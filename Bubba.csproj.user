@@ -1,0 +1,209 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup />
+  <ItemGroup>
+    <ApplicationDefinition Update="App.xaml">
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="UI\Themes\TextBox\MetroTextBox.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="UI\Controls\Frame\MetroComboFrame.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="UI\Controls\Frame\MetroTextInput.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="UI\Themes\Button\Button.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="UI\Themes\Button\ButtonAdv.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="UI\Themes\Button\MetroButton.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="UI\Themes\Calculator\SfCalculator.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="UI\Themes\CheckBox\CheckBox.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="UI\Themes\CheckList\CheckList.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="UI\Themes\Colors.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="UI\Themes\ComboBox\ComboBox.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="UI\Themes\ComboBox\ComboBoxAdv.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="UI\Themes\ComboBox\MetroComboBox.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="UI\Themes\Common\All.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="UI\Themes\Common\AnimationStyles.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="UI\Themes\Common\BaseStyle.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="UI\Themes\Common\Colors.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="UI\Themes\Common\Fonts.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="UI\Themes\Common\Sizes.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="UI\Themes\DropDown\DropDown.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="UI\Themes\DropDown\DropDownButtonAdv.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="UI\Themes\generic.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="UI\Themes\Label\Label.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="UI\Themes\ListBox\ListBox.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="UI\Themes\ListBox\MetroListBox.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="UI\Themes\ListView\ListView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="UI\Themes\Menu\ContextMenu.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="UI\Themes\Menu\Menu.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="UI\Themes\Menu\MenuItem.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="UI\Themes\Page\Page.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="UI\Themes\Progress\SfCircularProgressBar.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="UI\Themes\Progress\SfLinearProgressBar.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="UI\Themes\Progress\SfStepProgressBar.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="UI\Themes\RadioButton\RadioButton.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="UI\Themes\RichTextBox\ContextMenu.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="UI\Themes\RichTextBox\Dialogs.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="UI\Themes\RichTextBox\FormatDialogs.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="UI\Themes\RichTextBox\MetroRichTextBox.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="UI\Themes\RichTextBox\MiniToolBar.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="UI\Themes\RichTextBox\RichTextBox.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="UI\Themes\RichTextBox\SfRichTextBoxAdv.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="UI\Themes\RichTextBox\SfRichTextBoxCommon.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="UI\Themes\RichTextBox\SfRichTextRibbon.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="UI\Themes\RichTextBox\StyleDialogs.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="UI\Themes\RichTextBox\TableDialogs.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="UI\Themes\Scrolling\ScrollBar.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="UI\Themes\Scrolling\ScrollViewer.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="UI\Themes\TabControl\BrowserTabItem.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="UI\Themes\TabControl\TabControl.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="UI\Themes\TabControl\TabControlExt.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="UI\Themes\TextBlock\TextBlock.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="UI\Themes\TextBox\SfTextBoxExt.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="UI\Themes\TextBox\TextBox.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="UI\Themes\Tile\SfHubTile.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="UI\Themes\Tile\SfPulsingTile.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="UI\Themes\Tile\Tile.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="UI\Themes\Tile\TileViewControl.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="UI\Themes\ToolTip\ToolTip.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="UI\Themes\Window\Window.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="UI\Views\Windows\MainWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="UI\Views\Calculator\CalculatorWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="UI\Views\Error\ErrorWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="UI\Views\File\FileBrowser.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="UI\Views\Folder\FolderBrowser.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="UI\Views\Notification\Notification.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="UI\Views\Splash\SplashMessage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+</Project>
