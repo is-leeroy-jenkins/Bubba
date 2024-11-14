@@ -110,9 +110,7 @@ namespace Bubba
         /// </summary>
         private protected int _time;
 
-        private protected string OPENAI_API_KEY = "sk-proj-FpR4aNT7ttw8IBeLwUENF1nkxb1QMe6yRFi8"
-            + "H05bezetRnzrHVLcA7T5UINR26v_Zt69KtR9FxT3BlbkFJhWRWNPBtaIostrTV_" + 
-            "9nsdfu91Sq6jtj7Mc8wPMFEeKp8Y8BYIK6B8ZyTewWiTSzj2rTD-BEsoA";
+        private protected string OPENAI_API_KEY = App.KEY;
 
         /// <summary>
         /// The speech recognition engine
@@ -359,7 +357,6 @@ namespace Bubba
             var _stream = _response.GetResponseStream( );
             var _streamReader = new StreamReader( _stream );
             var _json = _streamReader.ReadToEnd( );
-            ModelComboBox.Items.Clear( );
             var _sortedList = new SortedList( );
             var _serializer = _json.SerializeToJavaScript( );
             var _objects = new Dictionary<string, object>( );
@@ -373,6 +370,7 @@ namespace Bubba
                 }
             }
 
+            ModelComboBox.Items.Clear( );
             foreach( DictionaryEntry _oItem in _sortedList )
             {
                 ModelComboBox.Items.Add( _oItem.Key );

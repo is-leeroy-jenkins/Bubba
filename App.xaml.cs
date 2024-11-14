@@ -68,6 +68,8 @@ namespace Bubba
             "SfMultiColumnDropDownControl"
         };
 
+        public static string KEY = ConfigurationManager.AppSettings[ "OpenAi" ];
+
         /// <summary>
         /// Registers the theme.
         /// </summary>
@@ -98,7 +100,7 @@ namespace Bubba
         public App( )
         {
             var _key = ConfigurationManager.AppSettings[ "UI" ];
-            SyncfusionLicenseProvider.RegisterLicense(_key);
+            SyncfusionLicenseProvider.RegisterLicense( _key );
             ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
             RegisterTheme( );
         }
