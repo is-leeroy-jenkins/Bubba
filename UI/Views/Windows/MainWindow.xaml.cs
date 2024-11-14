@@ -110,7 +110,9 @@ namespace Bubba
         /// </summary>
         private protected int _time;
 
-        private protected string OPENAI_API_KEY = "sfdsf";
+        private protected string OPENAI_API_KEY = "sk-proj-FpR4aNT7ttw8IBeLwUENF1nkxb1QMe6yRFi8"
+            + "H05bezetRnzrHVLcA7T5UINR26v_Zt69KtR9FxT3BlbkFJhWRWNPBtaIostrTV_" + 
+            "9nsdfu91Sq6jtj7Mc8wPMFEeKp8Y8BYIK6B8ZyTewWiTSzj2rTD-BEsoA";
 
         /// <summary>
         /// The speech recognition engine

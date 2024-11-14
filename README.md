@@ -1,40 +1,38 @@
-![](https://github.com/is-leeroy-jenkins/Bubba/blob/master/Bubba/Resources/GitHubImages/ProjectTemplate.png)
+![](https://github.com/is-leeroy-jenkins/Bubba/tree/master/Resources/GitHubImages/ProjectTemplate.png)
 
 <div align="left">
   <p>
-    <a href="https://github.com/is-leeroy-jenkins/Bubba/blob/master/Bubba/Resources/Github/Users.md">Download</a> •  <a href="">Documentation</a> •<a href="https://github.com/is-leeroy-jenkins/Bubba/blob/master/Bubba/Resources/Github/Compilation.md">Build</a> • <a href="#-license">License</a>
+    <a href="https://github.com/is-leeroy-jenkins/Bubba/tree/master/Resources/Github/Users.md">Download</a> •  <a href="">Documentation</a> •<a href="https://github.com/is-leeroy-jenkins/Bubba/tree/master/Resources/Github/Compilation.md">Build</a> • <a href="#-license">License</a>
   </p>
   <p>
-    <b>An open source tool for managing networks and troubleshooting network problems!</b>
+    <b>An open source tool for connecting and interacting through a single, windows interface!</b>
   </p>
   <p align="left">
-    Connect and manage remote systems with Remote Desktop, PowerShell, PuTTY, TigerVNC or AWS (Systems Manager) Session Manager. Analyze and troubleshoot your network and systems with features such as the WiFi Analyzer,IP Scanner, Port Scanner, Ping Monitor, Traceroute, DNS lookup or LLDP/CDP capture in a unfied interface. Hosts (or networks) can be saved in (encrypted) profiles and used across all features.  
+    Connect and interact with ChatGPT through a single user interface.
 
 </div>
 
 
-## ![](https://github.com/is-leeroy-jenkins/Bubba/blob/master/Bubba/Resources/GitHubImages/csharp.png)  Code
+## ![](https://github.com/is-leeroy-jenkins/Bubba/tree/master/Resources/GitHubImages/csharp.png)  Code
 
-- Ninja supports 'AnyCPU' as well as x86/x64 specific builds
-- [Controls](https://github.com/is-leeroy-jenkins/Bubba/tree/master/Ninja.Controls) - controls associated main ui layer and related functionality.
-- [Converters](https://github.com/is-leeroy-jenkins/Bubba/tree/master/Ninja.Converters) - various converter classes.
-- [Documentation](https://github.com/is-leeroy-jenkins/Bubba/tree/master/Ninja.Documentation)- app docs.
-- [Localization](https://github.com/is-leeroy-jenkins/Bubba/tree/master/Ninja.Localization) - internationalization
-- [Profiles](https://github.com/is-leeroy-jenkins/Bubba/tree/master/Ninja.Profiles) - profile classes
-- [Models](https://github.com/is-leeroy-jenkins/Bubba/tree/master/Ninja.Models) - models used in network analysis
-- [Settings](https://github.com/is-leeroy-jenkins/Bubba/tree/master/Ninja.Settings) - settings used in Ninja.
-- [Utility](https://github.com/is-leeroy-jenkins/Bubba/tree/master/Ninja.Utilities) - static types used by Ninja.
-- [Utilities.Wpf](https://github.com/is-leeroy-jenkins/Bubba/tree/master/Ninja.Utilities.WPF) - wpf utility classes.
-- [Validators](https://github.com/is-leeroy-jenkins/Bubba/tree/master/UI/Views) - Views
-- [Ninja](https://github.com/is-leeroy-jenkins/Bubba/tree/master/UI/ViewModels) - models used by the ui
+- Bubba supports x64 specific builds
+- [Enumerations](https://github.com/is-leeroy-jenkins/Bubba/tree/master/Enumerations) - enumerations used in the applications.
+- [Extensions](https://github.com/is-leeroy-jenkins/Bubba/tree/master/Extensions) - extension classes for Collections, DataTables, DataRows, LINQ, etc.
+- [IO](https://github.com/is-leeroy-jenkins/Bubba/tree/master/IO)- classes providing input/output and networking functionality.
+- [Resources](https://github.com/is-leeroy-jenkins/Bubba/tree/master/Resources) - images, documentation, and other assets used in the applications
+- [Controls](https://github.com/is-leeroy-jenkins/Bubba/tree/master/Controls) - classes used for interacting with the user interface. 
+- [Themes](https://github.com/is-leeroy-jenkins/Bubba/tree/master/Themes) - classes defining styles & themes for the user interface. 
+- [Views](https://github.com/is-leeroy-jenkins/Bubba/tree/master/Views) - windows used by Bubba.
+- [Events](https://github.com/is-leeroy-jenkins/Bubba/tree/master/Events) - callbacks used in the application
+- [Data](https://github.com/is-leeroy-jenkins/Bubba/tree/master/Data) - data classes used by Bubba
 
 
-## ![](https://github.com/is-leeroy-jenkins/Bubba/blob/master/Bubba/Resources/GitHubImages/documentation.png)  Documentation
+## ![](https://github.com/is-leeroy-jenkins/Bubba/tree/master/Resources/GitHubImages/documentation.png)  Documentation
 
-- [User Guide](https://github.com/is-leeroy-jenkins/Bubba/blob/master/Bubba/Resources/Github/Users.md) - how to use Ninja.
-- [Compilation Guide](https://github.com/is-leeroy-jenkins/Bubba/blob/master/Bubba/Resources/Github/Compilation.md) - instructions on how to compile Ninja.
-- [Configuration Guide](https://github.com/is-leeroy-jenkins/Bubba/blob/master/Bubba/Resources/Github/Configuration.md) - information for the Ninja configuration file. 
-- [Distribution Guide](https://github.com/is-leeroy-jenkins/Bubba/blob/master/Bubba/Resources/Github/Distribution.md) -  distributing Ninja.
+- [User Guide](https://github.com/is-leeroy-jenkins/Bubba/tree/master/Resources/Github/Users.md) - how to use Bubba.
+- [Compilation Guide](https://github.com/is-leeroy-jenkins/Bubba/tree/master/Resources/Github/Compilation.md) - instructions on how to compile Bubba.
+- [Configuration Guide](https://github.com/is-leeroy-jenkins/Bubba/tree/master/Resources/Github/Configuration.md) - information for the Bubba configuration file. 
+- [Distribution Guide](https://github.com/is-leeroy-jenkins/Bubba/tree/master/Resources/Github/Distribution.md) -  distributing Bubba.
 
 
 ## 📦 Download
@@ -44,17 +42,17 @@ Pre-built and binaries (setup, portable and archive) are available on the with i
 
 
 
-## ![](https://github.com/is-leeroy-jenkins/Bubba/blob/master/Bubba/Resources/GitHubImages/tools.png) Build
+## ![](https://github.com/is-leeroy-jenkins/Bubba/tree/master/Resources/GitHubImages/tools.png) Build
 
 - [x] VisualStudio 2022
 - [x] Based on .NET8 and WPF
 
 
 ```bash
-$ git clone https://github.com/is-leeroy-jenkins/Ninja.git
-$ cd Ninja
+$ git clone https://github.com/is-leeroy-jenkins/Bubba.git
+$ cd Bubba
 ```
-Run `Ninja.sln`
+Run `Bubba.sln`
 
 
 You can build the application like any other .NET / WPF application on Windows.
@@ -68,16 +66,16 @@ You can build the application like any other .NET / WPF application on Windows.
 
    ```PowerShell
    # Clone the repository
-   git clone https://github.com/is-leeroy-jenkins/Ninja
+   git clone https://github.com/is-leeroy-jenkins/Bubba
 
    # Navigate to the repository
-   cd Ninja
+   cd Bubba
 
    # Clone the submodules
    git submodule update --init
    ```
 
-3. Open the project file `.\Source\Ninja.sln` with Visual Studio or JetBrains Rider to build (or debug)
+3. Open the project file `.\Source\Bubba.sln` with Visual Studio or JetBrains Rider to build (or debug)
    the solution.
 
    > **ALTERNATIVE**
@@ -85,17 +83,16 @@ You can build the application like any other .NET / WPF application on Windows.
    > With the following commands you can directly build the binaries from the command line:
    >
    > ```PowerShell
-   > dotnet restore .\Source\Ninja.sln
+   > dotnet restore .\Source\Bubba.sln
    >
-   > dotnet build .\Source\Ninja.sln --configuration Release --no-restore
+   > dotnet build .\Source\Bubba.sln --configuration Release --no-restore
    > ```
 
 
 
 ## 🙏 Acknoledgements
 
-Thanks to everyone helping to improve Ninja by contributing code, translations, bug reports, feature requests, documentation, and more.
-Ninja uses the following projects and libraries. Please consider supporting them as well (e.g., by starring their repositories):
+Bubba uses the following projects and libraries. Please consider supporting them as well (e.g., by starring their repositories):
 
 |                                                                               |                                                                        |
 | ----------------------------------------------------------------------------- | ---------------------------------------------------------------------- |
@@ -113,9 +110,9 @@ Ninja uses the following projects and libraries. Please consider supporting them
 | [NetBeauty2](https://github.com/nulastudio/NetBeauty2)                        | Move .NET app runtime components and dependencies into a sub-directory |
 | [PSDiscoveryProtocol](https://github.com/lahell/PSDiscoveryProtocol)          | PowerShell module for LLDP/CDP discovery                               |
 
-## ![](https://github.com/is-leeroy-jenkins/Bubba/blob/master/Bubba/Resources/GitHubImages/signature.png)  Code Signing 
+## ![](https://github.com/is-leeroy-jenkins/Bubba/tree/master/Resources/GitHubImages/signature.png)  Code Signing 
 
-Ninja uses free code signing provided by [SignPath.io](https://signpath.io/) and a free code signing certificate
+Bubba uses free code signing provided by [SignPath.io](https://signpath.io/) and a free code signing certificate
 from [SignPath Foundation](https://signpath.org/).
 
 The binaries and installer are built on [AppVeyor](https://ci.appveyor.com/project/is-leeroy-jenkins/networkmanager) directly from the [GitHub repository](https://github.com/is-leeroy-jenkins/Bubba/blob/main/appveyor.yml).
@@ -123,11 +120,11 @@ Build artifacts are automatically sent to [SignPath.io](https://signpath.io/) vi
 The signed binaries are then uploaded to the [GitHub releases](https://github.com/is-leeroy-jenkins/Bubba/releases) page.
 
 
-## ![](https://github.com/is-leeroy-jenkins/Bubba/blob/master/Bubba/Resources/GitHubImages/training.png) Privacy Policy
+## ![](https://github.com/is-leeroy-jenkins/Bubba/tree/master/Resources/GitHubImages/training.png) Privacy Policy
 
 This program will not transfer any information to other networked systems unless specifically requested by the user or the person installing or operating it.
 
-Ninja has integrated the following services for additional functions, which can be enabled or disabled at the first start (in the welcome dialog) or at any time in the settings:
+Bubba has integrated the following services for additional functions, which can be enabled or disabled at the first start (in the welcome dialog) or at any time in the settings:
 
 - [api.github.com](https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement) (Check for program updates)
 - [ipify.org](https://www.ipify.org/) (Retrieve the public IP address used by the client)
@@ -135,6 +132,6 @@ Ninja has integrated the following services for additional functions, which can 
 
 ## 📝 License
 
-Ninja is published under the [GNU General Public License v3](https://github.com/is-leeroy-jenkins/Bubba/blob/main/LICENSE).
+Bubba is published under the [GNU General Public License v3](https://github.com/is-leeroy-jenkins/Bubba/blob/main/LICENSE).
 
-The licenses of the libraries used can be found [here](https://github.com/is-leeroy-jenkins/Bubba/tree/main/Source/Ninja.Documentation/Licenses).
+The licenses of the libraries used can be found [here](https://github.com/is-leeroy-jenkins/Bubba/tree/main/Source/Bubba.Documentation/Licenses).

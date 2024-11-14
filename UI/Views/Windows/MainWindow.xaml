@@ -255,12 +255,12 @@
 
                 <CheckBox
                     x:Name="ListenCheckBox"
-                    Canvas.Left="33"
-                    Canvas.Top="75"
+                    Canvas.Left="54"
+                    Canvas.Top="62"
                     Width="66"
                     Height="27"
                     HorizontalAlignment="Left"
-                    VerticalAlignment="Bottom"
+                    VerticalAlignment="Center"
                     Content="Listen" />
             </Canvas>
             <Canvas
@@ -271,7 +271,7 @@
                 <CheckBox
                     x:Name="MuteCheckBox"
                     Canvas.Left="30"
-                    Canvas.Top="75"
+                    Canvas.Top="62"
                     Width="58"
                     Height="27"
                     VerticalAlignment="Top"
