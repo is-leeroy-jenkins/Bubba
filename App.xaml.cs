@@ -68,7 +68,7 @@ namespace Bubba
             "SfMultiColumnDropDownControl"
         };
 
-        public static string KEY = "sk-proj-qW9o_PoT2CleBXOErbGxe2UlOeHtgJ9K-" 
+        public static readonly string KEY = "sk-proj-qW9o_PoT2CleBXOErbGxe2UlOeHtgJ9K-" 
             + "rVFooUImScUvXn44e4R9ivYZtbYh5OIObWepnxCGET3BlbkFJykj4Dt9MDZT2GQg" 
             + "NarXOifdSxGwmodYtevUniudDGt8vkUNmxurKO9DkULeAUVz3rdY9g_-OsA";
 
