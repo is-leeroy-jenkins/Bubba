@@ -13,7 +13,7 @@
 </div>
 
 
-## ![](https://github.com/is-leeroy-jenkins/Bubba/tree/master/Resources/Assets/GitHubImages/csharp.png)  Code
+## ![](https://github.com/is-leeroy-jenkins/Bubba/blob/master/Resources/Assets/GitHubImages/csharp.png)  Code
 
 - Bubba supports x64 specific builds
 - [Enumerations](https://github.com/is-leeroy-jenkins/Bubba/tree/master/Enumerations) - enumerations used in the applications.
@@ -27,7 +27,7 @@
 - [Data](https://github.com/is-leeroy-jenkins/Bubba/tree/master/Data) - data classes used by Bubba
 
 
-## ![](https://github.com/is-leeroy-jenkins/Bubba/tree/master/Resources/Assets/GitHubImages/documentation.png)  Documentation
+## ![](https://github.com/is-leeroy-jenkins/Bubba/blob/master/Resources/Assets/GitHubImages/documentation.png)  Documentation
 
 - [User Guide](https://github.com/is-leeroy-jenkins/Bubba/tree/master/Resources/Github/Users.md) - how to use Bubba.
 - [Compilation Guide](https://github.com/is-leeroy-jenkins/Bubba/tree/master/Resources/Github/Compilation.md) - instructions on how to compile Bubba.
@@ -42,7 +42,7 @@ Pre-built and binaries (setup, portable and archive) are available on the with i
 
 
 
-## ![](https://github.com/is-leeroy-jenkins/Bubba/tree/master/Resources/Assets/GitHubImages/tools.png) Build
+## ![](https://github.com/is-leeroy-jenkins/Bubba/blob/master/Resources/Assets/GitHubImages/tools.png) Build
 
 - [x] VisualStudio 2022
 - [x] Based on .NET8 and WPF
@@ -110,7 +110,7 @@ Bubba uses the following projects and libraries. Please consider supporting them
 | [NetBeauty2](https://github.com/nulastudio/NetBeauty2)                        | Move .NET app runtime components and dependencies into a sub-directory |
 | [PSDiscoveryProtocol](https://github.com/lahell/PSDiscoveryProtocol)          | PowerShell module for LLDP/CDP discovery                               |
 
-## ![](https://github.com/is-leeroy-jenkins/Bubba/tree/master/Resources/Assets/GitHubImages/signature.png)  Code Signing 
+## ![](https://github.com/is-leeroy-jenkins/Bubba/blob/master/Resources/Assets/GitHubImages/signature.png)  Code Signing 
 
 Bubba uses free code signing provided by [SignPath.io](https://signpath.io/) and a free code signing certificate
 from [SignPath Foundation](https://signpath.org/).
@@ -120,7 +120,7 @@ Build artifacts are automatically sent to [SignPath.io](https://signpath.io/) vi
 The signed binaries are then uploaded to the [GitHub releases](https://github.com/is-leeroy-jenkins/Bubba/releases) page.
 
 
-## ![](https://github.com/is-leeroy-jenkins/Bubba/tree/master/Resources/Assets/GitHubImages/training.png) Privacy Policy
+## ![](https://github.com/is-leeroy-jenkins/Bubba/blob/master/Resources/Assets/GitHubImages/training.png) Privacy Policy
 
 This program will not transfer any information to other networked systems unless specifically requested by the user or the person installing or operating it.
 
