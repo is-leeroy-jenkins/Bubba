@@ -90,7 +90,7 @@ You can build the application like any other .NET / WPF application on Windows.
 
 
 
-## 🙏 Acknoledgements
+## 🙏 Acknowledgements
 
 Bubba uses the following projects and libraries. Please consider supporting them as well (e.g., by starring their repositories):
 
