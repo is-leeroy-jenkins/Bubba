@@ -8,7 +8,6 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("resources/assets/applicationimages/bubba.ico")]
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("chrome_100_percent.pak")]
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("chrome_200_percent.pak")]
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("chrome_elf.dll")]

@@ -21,7 +21,7 @@
     WindowStartupLocation="CenterScreen"
     mc:Ignorable="d">
 
-    <!--******************************************** Resources *********************************************-->
+    <!--  ******************************************** Resources *********************************************  -->
 
     <Window.Resources>
         <Style TargetType="ToolTip">
@@ -33,7 +33,7 @@
     </Window.Resources>
 
 
-    <!--******************************************** Context Menu ******************************************-->
+    <!--  ******************************************** Context Menu ******************************************  -->
 
     <Grid x:Name="BrowserGrid">
         <Grid.RowDefinitions>
@@ -81,7 +81,7 @@
             Margin="335,0,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Center"
-            Header="" />
+            Header="  Select" />
 
         <b:MetroTile
             x:Name="BrowseButton"
@@ -92,7 +92,7 @@
             Margin="10,27,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
-            Header="" />
+            Header="  Browse" />
 
         <b:MetroTile
             x:Name="ClearButton"
@@ -103,7 +103,7 @@
             Margin="165,27,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
-            Header="" />
+            Header="  Clear" />
 
         <b:MetroLabel
             x:Name="DateLabel"
