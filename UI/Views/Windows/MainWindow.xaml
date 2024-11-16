@@ -1,4 +1,4 @@
-﻿<Window
+﻿<Window x:Name="BubbaWindow"
     x:Class="Bubba.MainWindow"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
@@ -12,6 +12,7 @@
     Height="525"
     MaxWidth="1050"
     MaxHeight="550"
+    WindowStartupLocation="CenterScreen"
     sync:SfSkinManager.Theme="{skin:SkinManagerExtension ThemeName=FluentDark}"
     Icon="/Resources/Assets/ApplicationImages/Bubba.ico"
     Background="{StaticResource FormBackground}"

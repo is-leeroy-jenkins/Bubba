@@ -131,6 +131,8 @@ namespace Bubba {
         [System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [System.CodeDom.Compiler.GeneratedCodeAttribute("PresentationBuildTasks", "9.0.0.0")]
         public static void Main() {
+            SplashScreen splashScreen = new SplashScreen("splashscreen.png");
+            splashScreen.Show(true);
             Bubba.App app = new Bubba.App();
             app.InitializeComponent();
             app.Run();

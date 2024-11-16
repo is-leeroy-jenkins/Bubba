@@ -159,6 +159,7 @@
     <None Remove="Resources\Assets\MenuImages\RefreshItem.png" />
     <None Remove="Resources\Assets\MenuImages\SaveItem.png" />
     <None Remove="Resources\Assets\MenuImages\TaskManagerItem.png" />
+    <None Remove="SplashScreen.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -338,6 +339,10 @@
     <Resource Include="Resources\Assets\MenuImages\RefreshItem.png" />
     <Resource Include="Resources\Assets\MenuImages\SaveItem.png" />
     <Resource Include="Resources\Assets\MenuImages\TaskManagerItem.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <SplashScreen Include="SplashScreen.png" />
   </ItemGroup>
 
   <ItemGroup>

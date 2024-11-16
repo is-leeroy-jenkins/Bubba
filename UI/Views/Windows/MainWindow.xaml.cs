@@ -44,6 +44,7 @@ namespace Bubba
     using System;
     using System.Collections;
     using System.Collections.Generic;
+    using System.ComponentModel;
     using System.Diagnostics.CodeAnalysis;
     using System.Globalization;
     using System.IO;
@@ -62,6 +63,7 @@ namespace Bubba
     using System.Speech.Synthesis;
     using System.Text.Json;
     using System.Threading.Tasks;
+    using Syncfusion.SfSkinManager;
 
     /// <inheritdoc />
     /// <summary>
@@ -134,12 +136,32 @@ namespace Bubba
         /// </summary>
         public MainWindow( )
         {
+            // Theme Properties
+            SfSkinManager.SetTheme(this, new Theme("FluentDark"));
+
+            // Window Settings
             InitializeComponent( );
+            RegisterCallbacks( );
             InitializeDelegates( );
 
             // Event Wiring
             Loaded += OnLoad;
-            Closing += OnClosing;
+        }
+
+        /// <summary>
+        /// Registers the callbacks.
+        /// </summary>
+        private protected void RegisterCallbacks( )
+        {
+            try
+            {
+                ListenCheckBox.Click += OnListenCheckedChanged;
+                MuteCheckBox.Click += OnMuteCheckedBoxChanged;
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+            }
         }
 
         /// <summary>
@@ -610,7 +632,6 @@ namespace Bubba
             }
 
             PopulateModelsAsync( );
-            ModelComboBox.SelectedIndex = 0;
             VoiceComboBox.Items.Clear( );
             var _synth = new SpeechSynthesizer( );
             var _voices = _synth.GetInstalledVoices( );
@@ -620,7 +641,6 @@ namespace Bubba
                 VoiceComboBox.Items.Add( _voice.VoiceInfo.Name );
             }
 
-            VoiceComboBox.SelectedIndex = 0;
             InitializeTimer( );
         }
 
@@ -628,9 +648,9 @@ namespace Bubba
         /// Called when [closing].
         /// </summary>
         /// <param name="sender">The sender.</param>
-        /// <param name="e">The <see cref="RoutedEventArgs"/>
+        /// <param name="e">The <see cref="CancelEventArgs"/>
         /// instance containing the event data.</param>
-        private void OnClosing( object sender, EventArgs e )
+        private void OnClosing( object sender, CancelEventArgs e )
         {
             try
             {
@@ -835,7 +855,7 @@ namespace Bubba
             else
             {
                 _engine.RecognizeAsyncStop( );
-                SpeechLabel.Visibility = Visibility.Visible;
+                SpeechLabel.Visibility = Visibility.Hidden;
             }
         }
 

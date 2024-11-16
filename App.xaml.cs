@@ -1,10 +1,10 @@
 ﻿// ******************************************************************************************
 //     Assembly:                Bubba
 //     Author:                  Terry D. Eppler
-//     Created:                 11-15-2024
+//     Created:                 11-16-2024
 // 
 //     Last Modified By:        Terry D. Eppler
-//     Last Modified On:        11-15-2024
+//     Last Modified On:        11-16-2024
 // ******************************************************************************************
 // <copyright file="App.xaml.cs" company="Terry D. Eppler">
 //    Bubba is an open source windows (wpf) application for interacting with OpenAI GPT
@@ -146,14 +146,31 @@ namespace Bubba
         /// </summary>
         public App( )
         {
+            InitializeDelegates( );
             var _key = ConfigurationManager.AppSettings[ "UI" ];
             SyncfusionLicenseProvider.RegisterLicense( _key );
             ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
             RegisterTheme( );
+        }
 
-            // Event-Wiring
-            Startup += ( sender, e ) => OnStartup( e );
-            Exit += ( sender, e ) => OnExit( e );
+        /// <summary>
+        /// Initializes the delegates.
+        /// </summary>
+        private void InitializeDelegates( )
+        {
+            try
+            {
+                DispatcherUnhandledException += ( s, args ) => HandleException( args.Exception );
+                TaskScheduler.UnobservedTaskException += ( s, args ) =>
+                    HandleException( args.Exception?.InnerException );
+
+                AppDomain.CurrentDomain.UnhandledException += ( s, args ) =>
+                    HandleException( args.ExceptionObject as Exception );
+            }
+            catch( Exception e )
+            {
+                Fail( e );
+            }
         }
 
         /// <summary>
@@ -162,19 +179,11 @@ namespace Bubba
         /// <param name="mainWindow">
         /// The main window.
         /// </param>
-        private protected void SetupRestoreWindowPlace( MainWindow mainWindow )
+        public void SetupRestoreWindowPlace( MainWindow mainWindow )
         {
             var _config = Path.Combine( AppDomain.CurrentDomain.BaseDirectory, "Bubba.config" );
             _windowPlace = new WindowPlace( _config );
             _windowPlace.Register( mainWindow );
-
-            // This logic works but I don't like the window being maximized
-            //if (!File.Exists(windowPlaceConfigFilePath))
-            //{
-            //    // For the first time, maximize the window, so it won't go off the screen on laptop
-            //    // WindowPlacement will take care of future runs
-            //    mainWindow.WindowState = WindowState.Maximized;
-            //}
         }
 
         /// <inheritdoc />
@@ -189,28 +198,7 @@ namespace Bubba
         {
             try
             {
-                DispatcherUnhandledException += ( s, args ) => HandleException( args.Exception );
-                TaskScheduler.UnobservedTaskException += ( s, args ) =>
-                    HandleException( args.Exception?.InnerException );
-
-                AppDomain.CurrentDomain.UnhandledException += ( s, args ) =>
-                    HandleException( args.ExceptionObject as Exception );
-
-                // TODO 1: Get your OpenAI API key: https://platform.openai.com/account/api-keys
-                var _openaiApiKey = "";
-                if( e.Args?.Length > 0
-                    && e.Args[ 0 ].StartsWith( '/' ) )
-                {
-                    // OpenAI API key from command line parameter
-                    // such as "/sk-Ih...WPd" after removing '/'
-                    _openaiApiKey = e.Args[ 0 ].Remove( 0, 1 );
-                }
-                else
-                {
-                    // Put your key from above here instead of
-                    // using a command line parameter in the 'if' block
-                    _openaiApiKey = KEY;
-                }
+                base.OnStartup( e );
             }
             catch( Exception ex )
             {
@@ -246,7 +234,8 @@ namespace Bubba
         {
             if( e == null )
             {
-                return;
+                var _msg = $"The argument {e} is null!";
+                throw new ArgumentNullException( _msg );
             }
             else
             {
