@@ -10,7 +10,7 @@
     Title="Bubba GPT"
     Width="825"
     Height="525"
-    MaxWidth="850"
+    MaxWidth="1050"
     MaxHeight="550"
     sync:SfSkinManager.Theme="{skin:SkinManagerExtension ThemeName=FluentDark}"
     Icon="/Resources/Assets/ApplicationImages/Bubba.ico"
@@ -158,41 +158,50 @@
             MaxHeight="125"
             Margin="0,10,0,10">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="160*" />
-                <ColumnDefinition Width="140" />
-                <ColumnDefinition Width="160" />
+                <ColumnDefinition Width="55*" />
+                <ColumnDefinition Width="130" />
                 <ColumnDefinition Width="135" />
-                <ColumnDefinition Width="203*" />
+                <ColumnDefinition Width="135" />
+                <ColumnDefinition Width="86*" />
             </Grid.ColumnDefinitions>
 
-            <Canvas x:Name="SenderCanvas">
+            <Canvas
+                x:Name="SenderCanvas"
+                Height="125"
+                Margin="0,-2,0,0"
+                VerticalAlignment="Top">
                 <Button
                     x:Name="SendButton"
-                    Canvas.Left="25"
-                    Canvas.Top="18"
+                    Canvas.Left="41"
+                    Canvas.Top="27"
                     Width="89"
                     Height="35"
                     HorizontalAlignment="Center"
-                    VerticalAlignment="Top"
+                    VerticalAlignment="Center"
                     Content="Send"
                     ToolTip="Send Chat Message"
                     RenderTransformOrigin="0.126,1.373" />
+
                 <Button
                     x:Name="ClearButton"
-                    Canvas.Left="25"
+                    Canvas.Left="41"
                     Canvas.Top="80"
                     Width="89"
                     Height="35"
-                    HorizontalAlignment="Center"
-                    VerticalAlignment="Top"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Center"
                     Content="Clear"
                     ToolTip="Clear Chat Log"
                     RenderTransformOrigin="0.126,1.373" />
+
             </Canvas>
 
             <Canvas
                 x:Name="UserCanvas"
-                Grid.Column="1">
+                Grid.Column="1"
+                Height="125"
+                Margin="0,-2,0,0"
+                VerticalAlignment="Top">
 
                 <Label
                     x:Name="UserIdLabel"
@@ -202,79 +211,87 @@
                     Height="24"
                     HorizontalAlignment="Center"
                     VerticalAlignment="Center"
-                    VerticalContentAlignment="Bottom"
+                    VerticalContentAlignment="Stretch"
                     Content="User ID" />
 
                 <b:MetroTextBox
                     x:Name="UserIdTextBox"
                     Canvas.Left="64"
                     Canvas.Top="20"
-                    Width="60"
+                    Width="40"
                     Height="24"
                     MaxWidth="60"
-                    Padding="5,5,1,1"
-                    HorizontalAlignment="Left"
-                    VerticalAlignment="Top"
+                    Padding="3,1,1,1"
+                    HorizontalAlignment="Stretch"
+                    VerticalAlignment="Stretch"
+                    HorizontalContentAlignment="Left"
                     VerticalContentAlignment="Center"
                     TextWrapping="Wrap"
                     Text="1"
                     ToolTip="User ID"
                     FontFamily="Roboto"
-                    FontSize="10" />
+                    FontSize="12" />
             </Canvas>
             <Canvas
                 x:Name="RandomCanvas"
-                Grid.Column="2">
+                Grid.Column="2"
+                Height="125"
+                Margin="0,-2,0,0"
+                VerticalAlignment="Top">
 
                 <Label
                     x:Name="RandomnessLabel"
                     Canvas.Left="10"
-                    Canvas.Top="26"
-                    Width="70"
+                    Canvas.Top="20"
+                    Width="40"
+                    Height="24"
                     Padding="1,1,1,1"
-                    HorizontalAlignment="Center"
-                    VerticalAlignment="Top"
+                    HorizontalAlignment="Stretch"
+                    VerticalAlignment="Stretch"
                     HorizontalContentAlignment="Right"
-                    VerticalContentAlignment="Bottom"
+                    VerticalContentAlignment="Center"
                     Content="Random" />
 
                 <b:MetroTextBox
                     x:Name="TemperatureTextBox"
-                    Canvas.Left="90"
+                    Canvas.Left="60"
                     Canvas.Top="20"
-                    Width="60"
+                    Width="45"
                     Height="24"
                     MaxWidth="60"
-                    Padding="5,5,1,1"
+                    Padding="3,1,1,1"
                     HorizontalAlignment="Left"
                     VerticalAlignment="Center"
+                    HorizontalContentAlignment="Left"
+                    VerticalContentAlignment="Center"
                     TextWrapping="Wrap"
                     Text="0.5"
                     FontFamily="Roboto"
-                    FontSize="10" />
+                    FontSize="12" />
 
                 <CheckBox
                     x:Name="ListenCheckBox"
-                    Canvas.Left="54"
-                    Canvas.Top="62"
+                    Canvas.Left="14"
+                    Canvas.Top="68"
                     Width="66"
                     Height="27"
                     HorizontalAlignment="Left"
-                    VerticalAlignment="Center"
+                    VerticalAlignment="Top"
                     Content="Listen" />
             </Canvas>
             <Canvas
                 x:Name="TokenCanvas"
                 Grid.Column="3"
+                Margin="0,0,0,6"
                 SnapsToDevicePixels="True">
 
                 <CheckBox
                     x:Name="MuteCheckBox"
-                    Canvas.Left="30"
-                    Canvas.Top="62"
+                    Canvas.Left="22"
+                    Canvas.Top="68"
                     Width="58"
                     Height="27"
-                    HorizontalAlignment="Center"
+                    HorizontalAlignment="Left"
                     VerticalAlignment="Top"
                     Content="Mute" />
 
@@ -286,33 +303,37 @@
                     Height="24"
                     Padding="1,1,1,1"
                     HorizontalAlignment="Center"
-                    VerticalAlignment="Top"
+                    VerticalAlignment="Stretch"
                     HorizontalContentAlignment="Right"
-                    VerticalContentAlignment="Bottom"
+                    VerticalContentAlignment="Stretch"
                     Content="Tokens" />
 
                 <b:MetroTextBox
                     x:Name="MaxTokensTextBox"
                     Canvas.Left="60"
                     Canvas.Top="20"
-                    Width="60"
+                    Width="55"
                     Height="24"
-                    Padding="5,5,1,1"
-                    HorizontalAlignment="Center"
-                    VerticalAlignment="Top"
+                    HorizontalAlignment="Stretch"
+                    VerticalAlignment="Stretch"
+                    HorizontalContentAlignment="Left"
+                    VerticalContentAlignment="Center"
                     TextWrapping="Wrap"
                     Text="2048"
                     ToolTip="Maximum Tokens"
                     FontFamily="Roboto"
-                    FontSize="10" />
+                    FontSize="12" />
             </Canvas>
-            <Canvas Grid.Column="4">
+
+            <Canvas
+                Grid.Column="4"
+                Margin="0,0,0,4">
 
                 <Label
                     x:Name="VoiceLabel"
-                    Canvas.Left="10"
+                    Canvas.Left="5"
                     Canvas.Top="78"
-                    Width="50"
+                    Width="45"
                     Height="26"
                     HorizontalAlignment="Left"
                     VerticalAlignment="Top"
@@ -320,20 +341,22 @@
 
                 <Label
                     x:Name="ModelLabel"
-                    Canvas.Left="10"
+                    Canvas.Left="5"
                     Canvas.Top="20"
-                    Width="58"
+                    Width="45"
                     Height="26"
                     VerticalAlignment="Top"
                     Content="Model" />
 
                 <sync:ComboBoxAdv
                     x:Name="ModelComboBox"
-                    Canvas.Left="65"
+                    Canvas.Left="60"
                     Canvas.Top="16"
-                    Width="125"
+                    Width="175"
                     Height="36"
                     Padding="15,1,1,1"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Center"
                     AllowMultiSelect="True"
                     DefaultText="Select"
                     ToolTip="Select AI Model"
@@ -347,11 +370,13 @@
 
                 <sync:ComboBoxAdv
                     x:Name="VoiceComboBox"
-                    Canvas.Left="65"
+                    Canvas.Left="60"
                     Canvas.Top="78"
-                    Width="125"
+                    Width="175"
                     Height="37"
                     Padding="15,1,1,1"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
                     AllowMultiSelect="True"
                     DefaultText="Select"
                     ToolTip="Make a Voice Selection"
@@ -381,9 +406,10 @@
             MinWidth="780"
             MinHeight="150"
             Margin="10,10,10,10"
+            Padding="15,15,5,5"
             TextWrapping="Wrap"
             Text="MetroTextBox"
-            FontSize="10" />
+            FontSize="12" />
 
         <b:MetroTextBox
             x:Name="QuestionTextBox"
@@ -391,9 +417,10 @@
             MinWidth="780"
             MinHeight="75"
             Margin="10,10,10,10"
+            Padding="15,15,5,5"
             TextWrapping="Wrap"
             Text="MetroTextBox"
-            FontSize="10" />
+            FontSize="12" />
 
         <b:MetroLabel
             x:Name="SpeechLabel"

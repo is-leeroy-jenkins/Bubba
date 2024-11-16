@@ -1,14 +1,16 @@
 ﻿// ******************************************************************************************
-//     Assembly:                Badger
+//     Assembly:                Bubba
 //     Author:                  Terry D. Eppler
-//     Created:                 07-28-2024
+//     Created:                 11-15-2024
 // 
 //     Last Modified By:        Terry D. Eppler
-//     Last Modified On:        07-28-2024
+//     Last Modified On:        11-15-2024
 // ******************************************************************************************
 // <copyright file="BabyBoy.cs" company="Terry D. Eppler">
-//    Badger is data analysis and reporting tool for EPA Analysts.
-//    Copyright ©  2024  Terry D. Eppler
+//    Bubba is an open source windows (wpf) application for interacting with OpenAI GPT
+//    that is based on NET 7 and written in C-Sharp.
+// 
+//    Copyright ©  2020-2024 Terry D. Eppler
 // 
 //    Permission is hereby granted, free of charge, to any person obtaining a copy
 //    of this software and associated documentation files (the “Software”),
@@ -30,7 +32,7 @@
 //    ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 //    DEALINGS IN THE SOFTWARE.
 // 
-//    You can contact me at: terryeppler@gmail.com or eppler.terry@epa.gov
+//    You can contact me at:  terryeppler@gmail.com or eppler.terry@epa.gov
 // </copyright>
 // <summary>
 //   BabyBoy.cs
@@ -93,10 +95,10 @@ namespace Bubba
             }
             set
             {
-                if(_port != value)
+                if( _port != value )
                 {
                     _port = value;
-                    OnPropertyChanged(nameof(Port));
+                    OnPropertyChanged( nameof( Port ) );
                 }
             }
         }
@@ -116,10 +118,10 @@ namespace Bubba
             }
             set
             {
-                if(_data != value)
+                if( _data != value )
                 {
                     _data = value;
-                    OnPropertyChanged(nameof(Data));
+                    OnPropertyChanged( nameof( Data ) );
                 }
             }
         }
@@ -139,10 +141,10 @@ namespace Bubba
             }
             set
             {
-                if(_message != value)
+                if( _message != value )
                 {
                     _message = value;
-                    OnPropertyChanged(nameof(Message));
+                    OnPropertyChanged( nameof( Message ) );
                 }
             }
         }
@@ -162,10 +164,10 @@ namespace Bubba
             }
             set
             {
-                if(_socket != value)
+                if( _socket != value )
                 {
                     _socket = value;
-                    OnPropertyChanged(nameof(Socket));
+                    OnPropertyChanged( nameof( Socket ) );
                 }
             }
         }
@@ -185,10 +187,10 @@ namespace Bubba
             }
             set
             {
-                if(_address != value)
+                if( _address != value )
                 {
                     _address = value;
-                    OnPropertyChanged(nameof(Address));
+                    OnPropertyChanged( nameof( Address ) );
                 }
             }
         }
@@ -208,10 +210,10 @@ namespace Bubba
             }
             set
             {
-                if(_endPoint != value)
+                if( _endPoint != value )
                 {
                     _endPoint = value;
-                    OnPropertyChanged(nameof(EndPoint));
+                    OnPropertyChanged( nameof( EndPoint ) );
                 }
             }
         }

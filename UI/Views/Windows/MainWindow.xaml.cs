@@ -134,6 +134,7 @@ namespace Bubba
 
             // Event Wiring
             Loaded += OnLoad;
+            Closing += OnClosing;
         }
 
         /// <summary>
@@ -491,9 +492,9 @@ namespace Bubba
             }
 
             ModelComboBox.Items.Clear( );
-            foreach( DictionaryEntry _oItem in _sortedList )
+            foreach( DictionaryEntry _item in _sortedList )
             {
-                ModelComboBox.Items.Add( _oItem.Key );
+                ModelComboBox.Items.Add( _item.Key );
             }
         }
 
@@ -604,6 +605,25 @@ namespace Bubba
 
             VoiceComboBox.SelectedIndex = 0;
             InitializeTimer( );
+        }
+
+        /// <summary>
+        /// Called when [closing].
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The <see cref="RoutedEventArgs"/>
+        /// instance containing the event data.</param>
+        private void OnClosing( object sender, EventArgs e )
+        {
+            try
+            {
+                _timer?.Dispose( );
+                Close( );
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+            }
         }
 
         /// <summary>

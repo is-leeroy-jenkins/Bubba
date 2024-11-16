@@ -211,8 +211,6 @@ namespace Bubba
         {
             try
             {
-                Opacity = 1.0;
-                FadeOutAsync( this );
                 Close( );
             }
             catch( Exception ex )

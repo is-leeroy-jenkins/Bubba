@@ -80,8 +80,7 @@
             Height="35"
             Margin="335,0,0,0"
             HorizontalAlignment="Left"
-            VerticalAlignment="Center"
-            Header="  Select" />
+            VerticalAlignment="Center" />
 
         <b:MetroTile
             x:Name="BrowseButton"
@@ -91,8 +90,7 @@
             Height="35"
             Margin="10,27,0,0"
             HorizontalAlignment="Left"
-            VerticalAlignment="Top"
-            Header="  Browse" />
+            VerticalAlignment="Top" />
 
         <b:MetroTile
             x:Name="ClearButton"
@@ -102,8 +100,7 @@
             Height="35"
             Margin="165,27,0,0"
             HorizontalAlignment="Left"
-            VerticalAlignment="Top"
-            Header="  Clear" />
+            VerticalAlignment="Top" />
 
         <b:MetroLabel
             x:Name="DateLabel"

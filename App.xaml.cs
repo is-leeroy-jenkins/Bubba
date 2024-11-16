@@ -215,7 +215,7 @@ namespace Bubba
             catch( Exception ex )
             {
                 Fail( ex );
-                Current?.Shutdown( );
+                Environment.Exit( 1 );
             }
         }
 
@@ -230,7 +230,6 @@ namespace Bubba
             try
             {
                 base.OnExit( e );
-                _windowPlace?.Save( );
                 Environment.Exit( 0 );
             }
             catch( Exception )

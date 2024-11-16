@@ -44,10 +44,12 @@ namespace Bubba
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel;
     using System.Diagnostics;
     using System.Diagnostics.CodeAnalysis;
     using System.IO;
     using System.Linq;
+    using System.Runtime.CompilerServices;
     using System.Threading;
     using System.Windows;
     using System.Windows.Media.Imaging;
@@ -65,7 +67,7 @@ namespace Bubba
     [ SuppressMessage( "ReSharper", "MemberCanBeInternal" ) ]
     [ SuppressMessage( "ReSharper", "FieldCanBeMadeReadOnly.Global" ) ]
     [ SuppressMessage( "ReSharper", "FieldCanBeMadeReadOnly.Global" ) ]
-    public partial class FileBrowser : Window, IDisposable
+    public partial class FileBrowser : Window, INotifyPropertyChanged, IDisposable
     {
         /// <summary>
         /// The busy
@@ -120,7 +122,7 @@ namespace Bubba
         /// <summary>
         /// The locked object
         /// </summary>
-        private protected object _path = new object( );
+        private protected object _entry = new object( );
 
         /// <summary>
         /// The radio buttons
@@ -166,6 +168,12 @@ namespace Bubba
         /// The timer
         /// </summary>
         private protected TimerCallback _timerCallback;
+
+        /// <inheritdoc />
+        /// <summary>
+        /// Occurs when a property value changes.
+        /// </summary>
+        public event PropertyChangedEventHandler PropertyChanged;
 
         /// <summary>
         /// Gets or sets the selected path.
@@ -215,7 +223,7 @@ namespace Bubba
         {
             get
             {
-                lock( _path )
+                lock( _entry )
                 {
                     return _busy;
                 }
@@ -307,20 +315,6 @@ namespace Bubba
         }
 
         /// <summary>
-        /// Initializes the text box.
-        /// </summary>
-        private void InitializeTextBoxes( )
-        {
-            try
-            {
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
-            }
-        }
-
-        /// <summary>
         /// Initializes the timer.
         /// </summary>
         private void InitializeTimer( )
@@ -343,9 +337,9 @@ namespace Bubba
         {
             try
             {
-                BrowseButton.Content = "Browse";
-                ClearButton.Content = "Clear";
-                SelectButton.Content = "Select";
+                BrowseButton.Header = "  Browse";
+                ClearButton.Header = "  Clear";
+                SelectButton.Header = "  Select";
             }
             catch( Exception ex )
             {
@@ -719,6 +713,15 @@ namespace Bubba
             {
                 Fail( ex );
             }
+        }
+
+        /// <summary>
+        /// Called when [property changed].
+        /// </summary>
+        /// <param name="propertyName">Name of the property.</param>
+        protected void OnPropertyChanged( [ CallerMemberName ] string propertyName = null )
+        {
+            PropertyChanged?.Invoke( this, new PropertyChangedEventArgs( propertyName ) );
         }
 
         /// <inheritdoc />
