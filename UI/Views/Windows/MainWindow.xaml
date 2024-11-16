@@ -243,7 +243,7 @@
                     x:Name="RandomnessLabel"
                     Canvas.Left="10"
                     Canvas.Top="20"
-                    Width="40"
+                    Width="45"
                     Height="24"
                     Padding="1,1,1,1"
                     HorizontalAlignment="Stretch"
@@ -267,6 +267,7 @@
                     TextWrapping="Wrap"
                     Text="0.5"
                     FontFamily="Roboto"
+                    ToolTip="Number between 0 and 1"
                     FontSize="12" />
 
                 <CheckBox
@@ -359,7 +360,7 @@
                     VerticalAlignment="Center"
                     AllowMultiSelect="True"
                     DefaultText="Select"
-                    ToolTip="Select AI Model"
+                    ToolTip="Choose AI Model to be used"
                     BorderBrush="{DynamicResource BlueBorderBrush}">
                     <sync:ComboBoxItemAdv Content="Item 1" />
                     <sync:ComboBoxItemAdv Content="Item 2" />

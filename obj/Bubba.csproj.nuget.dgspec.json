@@ -24,7 +24,7 @@
           "C:\\Program Files (x86)\\NuGet\\Config\\Syncfusion Toolbox for WPF.config"
         ],
         "originalTargetFrameworks": [
-          "net8.0-windows7.0"
+          "net8.0-windows"
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
@@ -33,7 +33,7 @@
         },
         "frameworks": {
           "net8.0-windows7.0": {
-            "targetAlias": "net8.0-windows7.0",
+            "targetAlias": "net8.0-windows",
             "projectReferences": {}
           }
         },
@@ -51,7 +51,7 @@
       },
       "frameworks": {
         "net8.0-windows7.0": {
-          "targetAlias": "net8.0-windows7.0",
+          "targetAlias": "net8.0-windows",
           "dependencies": {
             "CefSharp.Common": {
               "target": "Package",
@@ -63,7 +63,7 @@
             },
             "EPPlus": {
               "target": "Package",
-              "version": "[7.4.2, )"
+              "version": "[7.5.0, )"
             },
             "Google.Apis.CustomSearchAPI.v1": {
               "target": "Package",
@@ -74,6 +74,8 @@
               "version": "[2.4.10, )"
             },
             "Microsoft.NETFramework.ReferenceAssemblies": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
               "target": "Package",
               "version": "[1.0.3, )"
             },
@@ -136,10 +138,6 @@
             "System.Data.SqlClient": {
               "target": "Package",
               "version": "[4.9.0, )"
-            },
-            "System.Runtime.Serialization.Json": {
-              "target": "Package",
-              "version": "[4.3.0, )"
             },
             "System.Speech": {
               "target": "Package",

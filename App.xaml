@@ -7,7 +7,7 @@
     xmlns:sync="http://schemas.syncfusion.com/wpf"
     StartupUri="/UI/Views/Windows/MainWindow.xaml">
 
-    <!--*********************************************  RESOURCES *********************************************-->
+    <!--  *********************************************  RESOURCES *********************************************  -->
 
     <Application.Resources>
 

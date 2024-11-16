@@ -1,10 +1,10 @@
 ﻿// ******************************************************************************************
 //     Assembly:                Bubba
 //     Author:                  Terry D. Eppler
-//     Created:                 11-15-2024
+//     Created:                 11-16-2024
 // 
 //     Last Modified By:        Terry D. Eppler
-//     Last Modified On:        11-15-2024
+//     Last Modified On:        11-16-2024
 // ******************************************************************************************
 // <copyright file="MainWindow.xaml.cs" company="Terry D. Eppler">
 //    Bubba is an open source windows (wpf) application for interacting with OpenAI GPT
@@ -49,6 +49,9 @@ namespace Bubba
     using System.IO;
     using System.Linq;
     using System.Net;
+    using System.Net.Http;
+    using System.Net.Http.Headers;
+    using Newtonsoft.Json;
     using System.Windows;
     using System.Threading;
     using ToastNotifications;
@@ -57,6 +60,8 @@ namespace Bubba
     using ToastNotifications.Position;
     using System.Speech.Recognition;
     using System.Speech.Synthesis;
+    using System.Text.Json;
+    using System.Threading.Tasks;
 
     /// <inheritdoc />
     /// <summary>
@@ -115,12 +120,12 @@ namespace Bubba
         /// <summary>
         /// The speech recognition engine
         /// </summary>
-        private protected SpeechRecognitionEngine _speechRecognitionEngine;
+        private protected SpeechRecognitionEngine _engine;
 
         /// <summary>
         /// The speech synthesizer
         /// </summary>
-        private protected SpeechSynthesizer _speechSynthesizer;
+        private protected SpeechSynthesizer _synthesizer;
 
         /// <inheritdoc />
         /// <summary>
@@ -463,38 +468,50 @@ namespace Bubba
         /// <summary>
         /// Sets the models.
         /// </summary>
-        private void SetModels( )
+        private async void PopulateModelsAsync( )
         {
-            // https://beta.openai.com/docs/models/gpt-3
-            ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12
-                | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls;
-
-            var _endpoint = "https://api.openai.com/v1/models";
-            var _request = WebRequest.Create( _endpoint );
-            _request.Method = "GET";
-            _request.ContentType = "application/json";
-            _request.Headers.Add( "Authorization", "Bearer " + OPENAI_API_KEY );
-            var _response = _request.GetResponse( );
-            var _stream = _response.GetResponseStream( );
-            var _streamReader = new StreamReader( _stream );
-            var _json = _streamReader.ReadToEnd( );
-            var _sortedList = new SortedList( );
-            var _serializer = _json.SerializeToJavaScript( );
-            var _objects = new Dictionary<string, object>( );
-            for( var _i = 0; _i <= _sortedList.Count - 1; _i++ )
+            try
             {
-                var _item = new Dictionary<string, object>( );
-                var _id = ( string )_item[ "id" ];
-                if( _sortedList.ContainsKey( _id ) == false )
+                var _url = "https://api.openai.com/v1/models";
+                using var _httpClient = new HttpClient( );
+                _httpClient.DefaultRequestHeaders.Authorization =
+                    new AuthenticationHeaderValue( "Bearer", App.KEY );
+
+                var _response = await _httpClient.GetAsync( _url );
+                _response.EnsureSuccessStatusCode( );
+                var _body = await _response.Content.ReadAsStringAsync( );
+                var _models = new List<string>( );
+                using var _document = JsonDocument.Parse( _body );
+                var _root = _document.RootElement;
+                if( _root.TryGetProperty( "data", out var _data )
+                    && _data.ValueKind == JsonValueKind.Array )
                 {
-                    _sortedList.Add( _id, _id );
+                    foreach( var _item in _data.EnumerateArray( ) )
+                    {
+                        if( _item.TryGetProperty( "id", out var _element ) )
+                        {
+                            _models.Add( _element.GetString( ) );
+                        }
+                    }
                 }
-            }
 
-            ModelComboBox.Items.Clear( );
-            foreach( DictionaryEntry _item in _sortedList )
+                _models.Sort( );
+                Application.Current.Dispatcher.Invoke( ( ) =>
+                {
+                    ModelComboBox.Items.Clear( );
+                    foreach( var _model in _models )
+                    {
+                        ModelComboBox.Items.Add( _model );
+                    }
+                } );
+            }
+            catch( HttpRequestException ex )
             {
-                ModelComboBox.Items.Add( _item.Key );
+                Fail( ex );
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
             }
         }
 
@@ -503,18 +520,18 @@ namespace Bubba
         /// </summary>
         private void SpeechToText( )
         {
-            if( _speechRecognitionEngine != null )
+            if( _engine != null )
             {
-                _speechRecognitionEngine.RecognizeAsync( RecognizeMode.Multiple );
+                _engine.RecognizeAsync( RecognizeMode.Multiple );
                 return;
             }
 
-            _speechRecognitionEngine = new SpeechRecognitionEngine( new CultureInfo( "en-US" ) );
-            _speechRecognitionEngine.LoadGrammar( new DictationGrammar( ) );
-            _speechRecognitionEngine.SpeechRecognized += OnSpeechRecognized;
-            _speechRecognitionEngine.SpeechHypothesized += OnSpeechHypothesized;
-            _speechRecognitionEngine.SetInputToDefaultAudioDevice( );
-            _speechRecognitionEngine.RecognizeAsync( RecognizeMode.Multiple );
+            _engine = new SpeechRecognitionEngine( new CultureInfo( "en-US" ) );
+            _engine.LoadGrammar( new DictationGrammar( ) );
+            _engine.SpeechRecognized += OnSpeechRecognized;
+            _engine.SpeechHypothesized += OnSpeechHypothesized;
+            _engine.SetInputToDefaultAudioDevice( );
+            _engine.RecognizeAsync( RecognizeMode.Multiple );
         }
 
         /// <summary>
@@ -528,18 +545,18 @@ namespace Bubba
                 return;
             }
 
-            if( _speechSynthesizer == null )
+            if( _synthesizer == null )
             {
-                _speechSynthesizer = new SpeechSynthesizer( );
-                _speechSynthesizer.SetOutputToDefaultAudioDevice( );
+                _synthesizer = new SpeechSynthesizer( );
+                _synthesizer.SetOutputToDefaultAudioDevice( );
             }
 
             if( VoiceComboBox.Text != "" )
             {
-                _speechSynthesizer.SelectVoice( VoiceComboBox.Text );
+                _synthesizer.SelectVoice( VoiceComboBox.Text );
             }
 
-            _speechSynthesizer.Speak( input );
+            _synthesizer.Speak( input );
         }
 
         /// <summary>
@@ -592,7 +609,7 @@ namespace Bubba
                 OPENAI_API_KEY = _apiKey;
             }
 
-            //SetModels();
+            PopulateModelsAsync( );
             ModelComboBox.SelectedIndex = 0;
             VoiceComboBox.Items.Clear( );
             var _synth = new SpeechSynthesizer( );
@@ -817,7 +834,7 @@ namespace Bubba
             }
             else
             {
-                _speechRecognitionEngine.RecognizeAsyncStop( );
+                _engine.RecognizeAsyncStop( );
                 SpeechLabel.Visibility = Visibility.Visible;
             }
         }
@@ -900,8 +917,8 @@ namespace Bubba
                 try
                 {
                     var _answer = SendHttpMessage( _question ) + "";
-                    AnswerTextBox.AppendText(
-                        "Chat GPT: " + _answer.Replace( "\n", "\r\n" ).Trim( ) );
+                    AnswerTextBox.AppendText( "Chat GPT: " 
+                        + _answer.Replace( "\n", "\r\n" ).Trim( ) );
 
                     SpeechToText( _answer );
                 }
