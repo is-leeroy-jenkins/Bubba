@@ -65,6 +65,10 @@
               "target": "Package",
               "version": "[7.4.2, )"
             },
+            "Google.Apis.CustomSearchAPI.v1": {
+              "target": "Package",
+              "version": "[1.68.0.3520, )"
+            },
             "MahApps.Metro": {
               "target": "Package",
               "version": "[2.4.10, )"

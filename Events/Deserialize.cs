@@ -1,17 +1,16 @@
 ﻿// ******************************************************************************************
-//     Assembly:                Baby
+//     Assembly:                Bubba
 //     Author:                  Terry D. Eppler
-//     Created:                 09-09-2024
+//     Created:                 11-15-2024
 // 
 //     Last Modified By:        Terry D. Eppler
-//     Last Modified On:        09-09-2024
+//     Last Modified On:        11-15-2024
 // ******************************************************************************************
 // <copyright file="Deserialize.cs" company="Terry D. Eppler">
-//     Baby is a light-weight, full-featured, web-browser built with .NET 6 and is written
-//     in C#.  The baby browser is designed for budget execution and data analysis.
-//     A tool for EPA analysts and a component that can be used for general browsing.
+//    Bubba is an open source windows (wpf) application for interacting with OpenAI GPT
+//    that is based on NET 7 and written in C-Sharp.
 // 
-//     Copyright ©  2020 Terry D. Eppler
+//    Copyright ©  2020-2024 Terry D. Eppler
 // 
 //    Permission is hereby granted, free of charge, to any person obtaining a copy
 //    of this software and associated documentation files (the “Software”),
@@ -33,7 +32,7 @@
 //    ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 //    DEALINGS IN THE SOFTWARE.
 // 
-//    You can contact me at:  terryeppler@gmail.com or eppler.terry@epa.gov
+//    You can contact me at: terryeppler@gmail.com or eppler.terry@epa.gov
 // </copyright>
 // <summary>
 //   Deserialize.cs
@@ -43,6 +42,7 @@
 namespace Bubba
 {
     using System;
+    using System.Diagnostics.CodeAnalysis;
 
     /// <summary>
     /// 
@@ -50,5 +50,6 @@ namespace Bubba
     /// <param name="data">The data.</param>
     /// <returns>
     /// </returns>
+    [ SuppressMessage( "ReSharper", "UnusedType.Global" ) ]
     public delegate object Deserialize( string data );
 }

@@ -49,18 +49,18 @@ namespace Bubba
     using System.Net.Sockets;
     using System.Text;
 
-    /// <summary>
-    ///
-    /// </summary>
+    /// <inheritdoc />
+    ///  <summary>
+    ///  </summary>
     [ SuppressMessage( "ReSharper", "InconsistentNaming" ) ]
     [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
     [ SuppressMessage( "ReSharper", "MemberCanBeProtected.Global" ) ]
-    public abstract class ServerBase
+    public abstract class ServerBase : ClientBase
     {
         /// <summary>
         /// The busy
         /// </summary>
-        private protected bool _busy;
+        private protected new bool _busy;
 
         /// <summary>
         /// The is connected
@@ -68,45 +68,11 @@ namespace Bubba
         private protected bool _connected;
 
         /// <summary>
-        /// The bytes
-        /// </summary>
-        private protected int _count;
-
-        /// <summary>
-        /// The data
-        /// </summary>
-        private protected byte[ ] _data;
-
-        /// <summary>
-        /// The ip address
-        /// </summary>
-        private protected IPAddress _ipAddress;
-
-        /// <summary>
-        /// The ip end point
-        /// </summary>
-        private protected IPEndPoint _ipEndPoint;
-
-        /// <summary>
-        /// The message
-        /// </summary>
-        private protected string _message;
-
-        /// <summary>
         /// The locked object
         /// </summary>
-        private protected object _path;
+        private protected new object _entry;
 
-        /// <summary>
-        /// The port
-        /// </summary>
-        private protected int _port;
-
-        /// <summary>
-        /// The socket
-        /// </summary>
-        private protected Socket _socket;
-
+        /// <inheritdoc />
         /// <summary>
         /// Pings the network.
         /// </summary>
@@ -116,7 +82,7 @@ namespace Bubba
         /// <returns>
         /// bool
         /// </returns>
-        private protected bool PingNetwork( string ipAddress )
+        private protected override bool PingNetwork( string ipAddress )
         {
             var _status = false;
             try
@@ -140,10 +106,11 @@ namespace Bubba
             return _status;
         }
 
+        /// <inheritdoc />
         /// <summary>
         /// Notifies this instance.
         /// </summary>
-        private protected void SendNotification( string message )
+        private protected override void SendNotification( string message )
         {
             try
             {
@@ -157,27 +124,17 @@ namespace Bubba
             }
         }
 
+        /// <inheritdoc />
         /// <summary>
         /// Begins the initialize.
         /// </summary>
-        private protected void BeginInit( )
+        private protected override void Busy( )
         {
             try
             {
-                if( _path == null )
+                lock( _entry )
                 {
-                    _path = new object( );
-                    lock( _path )
-                    {
-                        _busy = true;
-                    }
-                }
-                else
-                {
-                    lock( _path )
-                    {
-                        _busy = true;
-                    }
+                    _busy = true;
                 }
             }
             catch( Exception ex )
@@ -186,27 +143,17 @@ namespace Bubba
             }
         }
 
+        /// <inheritdoc />
         /// <summary>
         /// Ends the initialize.
         /// </summary>
-        private protected void EndInit( )
+        private protected override void Chill( )
         {
             try
             {
-                if( _path == null )
+                lock( _entry )
                 {
-                    _path = new object( );
-                    lock( _path )
-                    {
-                        _busy = false;
-                    }
-                }
-                else
-                {
-                    lock( _path )
-                    {
-                        _busy = false;
-                    }
+                    _busy = false;
                 }
             }
             catch( Exception ex )
@@ -215,17 +162,7 @@ namespace Bubba
             }
         }
 
-        /// <summary>
-        /// Fails the specified ex.
-        /// </summary>
-        /// <param name="ex">The ex.</param>
-        private protected void Fail( Exception ex )
-        {
-            var _error = new ErrorWindow( ex );
-            _error?.SetText( );
-            _error?.ShowDialog( );
-        }
-
+        /// <inheritdoc />
         /// <summary>
         /// Gets a value indicating whether this instance is busy.
         /// </summary>
@@ -234,11 +171,11 @@ namespace Bubba
         /// if this instance is busy; otherwise,
         /// <c> false </c>
         /// </value>
-        public bool IsBusy
+        public override bool IsBusy
         {
             get
             {
-                lock( _path )
+                lock( _entry )
                 {
                     return _busy;
                 }

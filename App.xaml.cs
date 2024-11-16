@@ -1,10 +1,50 @@
-﻿
+﻿// ******************************************************************************************
+//     Assembly:                Bubba
+//     Author:                  Terry D. Eppler
+//     Created:                 11-15-2024
+// 
+//     Last Modified By:        Terry D. Eppler
+//     Last Modified On:        11-15-2024
+// ******************************************************************************************
+// <copyright file="App.xaml.cs" company="Terry D. Eppler">
+//    Bubba is an open source windows (wpf) application for interacting with OpenAI GPT
+//    that is based on NET 7 and written in C-Sharp.
+// 
+//    Copyright ©  2020-2024 Terry D. Eppler
+// 
+//    Permission is hereby granted, free of charge, to any person obtaining a copy
+//    of this software and associated documentation files (the “Software”),
+//    to deal in the Software without restriction,
+//    including without limitation the rights to use,
+//    copy, modify, merge, publish, distribute, sublicense,
+//    and/or sell copies of the Software,
+//    and to permit persons to whom the Software is furnished to do so,
+//    subject to the following conditions:
+// 
+//    The above copyright notice and this permission notice shall be included in all
+//    copies or substantial portions of the Software.
+// 
+//    THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,
+//    INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+//    FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT.
+//    IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
+//    DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,
+//    ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
+//    DEALINGS IN THE SOFTWARE.
+// 
+//    You can contact me at:  terryeppler@gmail.com or eppler.terry@epa.gov
+// </copyright>
+// <summary>
+//   App.xaml.cs
+// </summary>
+// ******************************************************************************************
 
 namespace Bubba
 {
     using System;
     using System.Configuration;
     using System.Data;
+    using System.Diagnostics.CodeAnalysis;
     using System.IO;
     using System.Threading.Tasks;
     using System.Windows;
@@ -15,15 +55,19 @@ namespace Bubba
     using Syncfusion.SfSkinManager;
     using Syncfusion.Themes.FluentDark.WPF;
 
+    /// <inheritdoc />
     /// <summary>
     /// Interaction logic for App.xaml
     /// </summary>
+    [ SuppressMessage( "ReSharper", "RedundantExtendsListEntry" ) ]
+    [ SuppressMessage( "ReSharper", "RedundantJumpStatement" ) ]
+    [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
     public partial class App : Application
     {
         /// <summary>
         /// The window place
         /// </summary>
-        private WindowPlace _windowPlace;
+        private protected WindowPlace _windowPlace;
 
         /// <summary>
         /// The controls
@@ -68,8 +112,8 @@ namespace Bubba
             "SfMultiColumnDropDownControl"
         };
 
-        public static readonly string KEY = "sk-proj-qW9o_PoT2CleBXOErbGxe2UlOeHtgJ9K-" 
-            + "rVFooUImScUvXn44e4R9ivYZtbYh5OIObWepnxCGET3BlbkFJykj4Dt9MDZT2GQg" 
+        public static readonly string KEY = "sk-proj-qW9o_PoT2CleBXOErbGxe2UlOeHtgJ9K-"
+            + "rVFooUImScUvXn44e4R9ivYZtbYh5OIObWepnxCGET3BlbkFJykj4Dt9MDZT2GQg"
             + "NarXOifdSxGwmodYtevUniudDGt8vkUNmxurKO9DkULeAUVz3rdY9g_-OsA";
 
         /// <summary>
@@ -95,9 +139,10 @@ namespace Bubba
             SfSkinManager.ApplyStylesOnApplication = true;
         }
 
+        /// <inheritdoc />
         /// <summary>
         /// Initializes a new instance of the
-        /// <see cref="App"/> class.
+        /// <see cref="T:Bubba.App" /> class.
         /// </summary>
         public App( )
         {
@@ -105,6 +150,10 @@ namespace Bubba
             SyncfusionLicenseProvider.RegisterLicense( _key );
             ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
             RegisterTheme( );
+
+            // Event-Wiring
+            Startup += ( sender, e ) => OnStartup( e );
+            Exit += ( sender, e ) => OnExit( e );
         }
 
         /// <summary>
@@ -113,11 +162,11 @@ namespace Bubba
         /// <param name="mainWindow">
         /// The main window.
         /// </param>
-        private void SetupRestoreWindowPlace( MainWindow mainWindow )
+        private protected void SetupRestoreWindowPlace( MainWindow mainWindow )
         {
-            var _config = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Bobo.config");
-            _windowPlace = new WindowPlace(_config);
-            _windowPlace.Register(mainWindow);
+            var _config = Path.Combine( AppDomain.CurrentDomain.BaseDirectory, "Bubba.config" );
+            _windowPlace = new WindowPlace( _config );
+            _windowPlace.Register( mainWindow );
 
             // This logic works but I don't like the window being maximized
             //if (!File.Exists(windowPlaceConfigFilePath))
@@ -148,8 +197,8 @@ namespace Bubba
                     HandleException( args.ExceptionObject as Exception );
 
                 // TODO 1: Get your OpenAI API key: https://platform.openai.com/account/api-keys
-                string _openaiApiKey;
-                if(e.Args?.Length > 0
+                var _openaiApiKey = "";
+                if( e.Args?.Length > 0
                     && e.Args[ 0 ].StartsWith( '/' ) )
                 {
                     // OpenAI API key from command line parameter
@@ -160,7 +209,7 @@ namespace Bubba
                 {
                     // Put your key from above here instead of
                     // using a command line parameter in the 'if' block
-                    _openaiApiKey = ConfigurationManager.AppSettings[ "Bubba" ];
+                    _openaiApiKey = KEY;
                 }
             }
             catch( Exception ex )
@@ -180,6 +229,7 @@ namespace Bubba
         {
             try
             {
+                base.OnExit( e );
                 _windowPlace?.Save( );
                 Environment.Exit( 0 );
             }
@@ -197,6 +247,7 @@ namespace Bubba
         {
             if( e == null )
             {
+                return;
             }
             else
             {

@@ -12,8 +12,8 @@
     Height="525"
     MaxWidth="850"
     MaxHeight="550"
-    Icon="/Resources/Assets/ApplicationImages/Bubba.ico"
     sync:SfSkinManager.Theme="{skin:SkinManagerExtension ThemeName=FluentDark}"
+    Icon="/Resources/Assets/ApplicationImages/Bubba.ico"
     Background="{StaticResource FormBackground}"
     Foreground="{StaticResource FormForeground}"
     BorderBrush="{StaticResource BlueBorderBrush}"
@@ -233,8 +233,8 @@
                     Width="70"
                     Padding="1,1,1,1"
                     HorizontalAlignment="Center"
-                    HorizontalContentAlignment="Right"
                     VerticalAlignment="Top"
+                    HorizontalContentAlignment="Right"
                     VerticalContentAlignment="Bottom"
                     Content="Random" />
 
@@ -274,8 +274,9 @@
                     Canvas.Top="62"
                     Width="58"
                     Height="27"
+                    HorizontalAlignment="Center"
                     VerticalAlignment="Top"
-                    Content="Mute" HorizontalAlignment="Center" />
+                    Content="Mute" />
 
                 <Label
                     x:Name="MaxTokenLabel"

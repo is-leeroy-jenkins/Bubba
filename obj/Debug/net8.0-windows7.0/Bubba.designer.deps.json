@@ -229,6 +229,39 @@
           }
         }
       },
+      "Google.Apis/1.68.0": {
+        "dependencies": {
+          "Google.Apis.Core": "1.68.0"
+        },
+        "runtime": {
+          "lib/net6.0/Google.Apis.dll": {
+            "assemblyVersion": "1.68.0.0",
+            "fileVersion": "1.68.0.0"
+          }
+        }
+      },
+      "Google.Apis.Core/1.68.0": {
+        "dependencies": {
+          "Newtonsoft.Json": "13.0.3"
+        },
+        "runtime": {
+          "lib/net6.0/Google.Apis.Core.dll": {
+            "assemblyVersion": "1.68.0.0",
+            "fileVersion": "1.68.0.0"
+          }
+        }
+      },
+      "Google.Apis.CustomSearchAPI.v1/1.68.0.3520": {
+        "dependencies": {
+          "Google.Apis": "1.68.0"
+        },
+        "runtime": {
+          "lib/net6.0/Google.Apis.CustomSearchAPI.v1.dll": {
+            "assemblyVersion": "1.68.0.3520",
+            "fileVersion": "1.68.0.3520"
+          }
+        }
+      },
       "MahApps.Metro/2.4.10": {
         "dependencies": {
           "ControlzEx": "4.4.0"
@@ -2103,6 +2136,27 @@
       "sha512": "sha512-lRF5gHYrmkHOOiLMI0t6q8zNYjUrzRgAM5BCXumv5xiqXko8fx3AWI+HCNZfhEqVFGOop+42KfR5GiUcCoyoMw==",
       "path": "epplus.system.drawing/6.1.1",
       "hashPath": "epplus.system.drawing.6.1.1.nupkg.sha512"
+    },
+    "Google.Apis/1.68.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-s2MymhdpH+ybZNBeZ2J5uFgFHApBp+QXf9FjZSdM1lk/vx5VqIknJwnaWiuAzXxPrLEkesX0Q+UsiWn39yZ9zw==",
+      "path": "google.apis/1.68.0",
+      "hashPath": "google.apis.1.68.0.nupkg.sha512"
+    },
+    "Google.Apis.Core/1.68.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-pAqwa6pfu53UXCR2b7A/PAPXeuVg6L1OFw38WckN27NU2+mf+KTjoEg2YGv/f0UyKxzz7DxF1urOTKg/6dTP9g==",
+      "path": "google.apis.core/1.68.0",
+      "hashPath": "google.apis.core.1.68.0.nupkg.sha512"
+    },
+    "Google.Apis.CustomSearchAPI.v1/1.68.0.3520": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-iEM8wkQb50PaGElkXt4wwkbn163sf+oXwHzbg5hy5Wdag89/5owTjqJ5BzdhkRgeLma7yIRErHIDaIlIO6F+3A==",
+      "path": "google.apis.customsearchapi.v1/1.68.0.3520",
+      "hashPath": "google.apis.customsearchapi.v1.1.68.0.3520.nupkg.sha512"
     },
     "MahApps.Metro/2.4.10": {
       "type": "package",

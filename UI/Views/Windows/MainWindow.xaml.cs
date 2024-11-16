@@ -1,13 +1,13 @@
 ﻿// ******************************************************************************************
 //     Assembly:                Bubba
 //     Author:                  Terry D. Eppler
-//     Created:                 11-12-2024
+//     Created:                 11-15-2024
 // 
 //     Last Modified By:        Terry D. Eppler
-//     Last Modified On:        11-12-2024
+//     Last Modified On:        11-15-2024
 // ******************************************************************************************
 // <copyright file="MainWindow.xaml.cs" company="Terry D. Eppler">
-//   Bubba is an open source windows (wpf) application for interacting with OpenAI GPT
+//    Bubba is an open source windows (wpf) application for interacting with OpenAI GPT
 //    that is based on NET 7 and written in C-Sharp.
 // 
 //    Copyright ©  2020-2024 Terry D. Eppler
@@ -42,10 +42,8 @@
 namespace Bubba
 {
     using System;
-    using System.Core;
     using System.Collections;
     using System.Collections.Generic;
-    using System.Configuration;
     using System.Diagnostics.CodeAnalysis;
     using System.Globalization;
     using System.IO;
@@ -59,7 +57,6 @@ namespace Bubba
     using ToastNotifications.Position;
     using System.Speech.Recognition;
     using System.Speech.Synthesis;
-    using static System.Net.WebRequestMethods;
 
     /// <inheritdoc />
     /// <summary>
@@ -96,20 +93,23 @@ namespace Bubba
         private protected Action _statusUpdate;
 
         /// <summary>
+        /// The timer callback
+        /// </summary>
+        private protected TimerCallback _timerCallback;
+
+        /// <summary>
         /// The theme
         /// </summary>
         private protected readonly DarkMode _theme = new DarkMode( );
-
-        /// <summary>
-        /// The tiles
-        /// </summary>
-        private protected IList<MetroTile> _tiles;
 
         /// <summary>
         /// The time
         /// </summary>
         private protected int _time;
 
+        /// <summary>
+        /// The openai API key
+        /// </summary>
         private protected string OPENAI_API_KEY = App.KEY;
 
         /// <summary>
@@ -122,13 +122,133 @@ namespace Bubba
         /// </summary>
         private protected SpeechSynthesizer _speechSynthesizer;
 
+        /// <inheritdoc />
         /// <summary>
         /// Initializes a new instance of the
-        /// <see cref="MainWindow"/> class.
+        /// <see cref="T:Bubba.MainWindow" /> class.
         /// </summary>
         public MainWindow( )
         {
             InitializeComponent( );
+            InitializeDelegates( );
+
+            // Event Wiring
+            Loaded += OnLoad;
+        }
+
+        /// <summary>
+        /// Initializes the delegates.
+        /// </summary>
+        private protected void InitializeDelegates( )
+        {
+            try
+            {
+                _statusUpdate += UpdateStatus;
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+            }
+        }
+
+        /// <summary>
+        /// Initializes the timer.
+        /// </summary>
+        private void InitializeTimer( )
+        {
+            try
+            {
+                _timerCallback += UpdateStatus;
+                _timer = new Timer( _timerCallback, null, 0, 260 );
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+            }
+        }
+
+        /// <summary>
+        /// Invokes if needed.
+        /// </summary>
+        /// <param name="action">The action.</param>
+        private void InvokeIf( Action action )
+        {
+            try
+            {
+                ThrowIf.Null( action, nameof( action ) );
+                if( Dispatcher.CheckAccess( ) )
+                {
+                    action?.Invoke( );
+                }
+                else
+                {
+                    Dispatcher.BeginInvoke( action );
+                }
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+            }
+        }
+
+        /// <summary>
+        /// Invokes if.
+        /// </summary>
+        /// <param name="action">The action.</param>
+        private void InvokeIf( Action<object> action )
+        {
+            try
+            {
+                ThrowIf.Null( action, nameof( action ) );
+                if( Dispatcher.CheckAccess( ) )
+                {
+                    action?.Invoke( null );
+                }
+                else
+                {
+                    Dispatcher.BeginInvoke( action );
+                }
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+            }
+        }
+
+        /// <summary>
+        /// Begins the initialize.
+        /// </summary>
+        private void Busy( )
+        {
+            try
+            {
+                lock( _entry )
+                {
+                    _busy = true;
+                }
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+            }
+        }
+
+        /// <summary>
+        /// Ends the initialize.
+        /// </summary>
+        private void Chill( )
+        {
+            try
+            {
+                lock( _entry )
+                {
+                    _busy = false;
+                }
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+            }
         }
 
         /// <summary>
@@ -363,7 +483,7 @@ namespace Bubba
             for( var _i = 0; _i <= _sortedList.Count - 1; _i++ )
             {
                 var _item = new Dictionary<string, object>( );
-                var _id = ( String )_item[ "id" ];
+                var _id = ( string )_item[ "id" ];
                 if( _sortedList.ContainsKey( _id ) == false )
                 {
                     _sortedList.Add( _id, _id );
@@ -422,6 +542,36 @@ namespace Bubba
         }
 
         /// <summary>
+        /// Updates the status.
+        /// </summary>
+        private void UpdateStatus( )
+        {
+            try
+            {
+                StatusLabel.Content = DateTime.Now.ToLongTimeString( );
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+            }
+        }
+
+        /// <summary>
+        /// Updates the status.
+        /// </summary>
+        private void UpdateStatus( object state )
+        {
+            try
+            {
+                InvokeIf( _statusUpdate );
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+            }
+        }
+
+        /// <summary>
         /// Called when [load].
         /// </summary>
         /// <param name="sender">The sender.</param>
@@ -429,11 +579,10 @@ namespace Bubba
         /// instance containing the event data.</param>
         private void OnLoad( object sender, RoutedEventArgs e )
         {
-            var _settingsReader = new AppSettingsReader( );
-            var _apiKey = _settingsReader.GetValue( "OPENAI_API_KEY", typeof( string ) ) + "";
+            var _apiKey = App.KEY;
             if( _apiKey == "" )
             {
-                var _msg = "Please enter your OpenAI API key in the App.config file.";
+                var _msg = "Please enter your OpenAI API key file.";
                 SendMessage( _msg );
                 Application.Current.Shutdown( );
             }
@@ -454,6 +603,7 @@ namespace Bubba
             }
 
             VoiceComboBox.SelectedIndex = 0;
+            InitializeTimer( );
         }
 
         /// <summary>
@@ -730,8 +880,8 @@ namespace Bubba
                 try
                 {
                     var _answer = SendHttpMessage( _question ) + "";
-                    AnswerTextBox.AppendText( "Chat GPT: " 
-                        + _answer.Replace( "\n", "\r\n" ).Trim( ) );
+                    AnswerTextBox.AppendText(
+                        "Chat GPT: " + _answer.Replace( "\n", "\r\n" ).Trim( ) );
 
                     SpeechToText( _answer );
                 }

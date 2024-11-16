@@ -486,3 +486,6 @@ C:\Users\terry\source\repos\Bubba\bin\Debug\net8.0-windows7.0\runtimes\win\lib\n
 C:\Users\terry\source\repos\Bubba\bin\Debug\net8.0-windows7.0\runtimes\browser\lib\net8.0\System.Text.Encodings.Web.dll
 C:\Users\terry\source\repos\Bubba\obj\Debug\net8.0-windows7.0\Bubba.sourcelink.json
 C:\Users\terry\source\repos\Bubba\bin\Debug\net8.0-windows7.0\Bubba.dll.config
+C:\Users\terry\source\repos\Bubba\bin\Debug\net8.0-windows7.0\Google.Apis.dll
+C:\Users\terry\source\repos\Bubba\bin\Debug\net8.0-windows7.0\Google.Apis.Core.dll
+C:\Users\terry\source\repos\Bubba\bin\Debug\net8.0-windows7.0\Google.Apis.CustomSearchAPI.v1.dll
