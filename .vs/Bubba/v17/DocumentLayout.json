@@ -11,6 +11,10 @@
       "RelativeMoniker": "D:0:0:{08012640-3765-4051-B5EB-4FF782150AEC}|Bubba.csproj|solutionrelative:ui\\views\\windows\\mainwindow.xaml.cs||{8B382828-6202-11D1-8870-0000F87579D2}|"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{08012640-3765-4051-B5EB-4FF782150AEC}|Bubba.csproj|c:\\users\\terry\\source\\repos\\bubba\\ui\\controls\\textbox\\metrotextbox.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{08012640-3765-4051-B5EB-4FF782150AEC}|Bubba.csproj|solutionrelative:ui\\controls\\textbox\\metrotextbox.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{08012640-3765-4051-B5EB-4FF782150AEC}|Bubba.csproj|c:\\users\\terry\\source\\repos\\bubba\\static\\throwif.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{08012640-3765-4051-B5EB-4FF782150AEC}|Bubba.csproj|solutionrelative:static\\throwif.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -77,12 +81,25 @@
               "ToolTip": "C:\\Users\\terry\\source\\repos\\Bubba\\UI\\Views\\Windows\\MainWindow.xaml",
               "RelativeToolTip": "UI\\Views\\Windows\\MainWindow.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2024-11-16T15:07:08.737Z",
+              "WhenOpened": "2024-11-17T13:41:54.352Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 2,
+              "Title": "MetroTextBox.cs",
+              "DocumentMoniker": "C:\\Users\\terry\\source\\repos\\Bubba\\UI\\Controls\\TextBox\\MetroTextBox.cs",
+              "RelativeDocumentMoniker": "UI\\Controls\\TextBox\\MetroTextBox.cs",
+              "ToolTip": "C:\\Users\\terry\\source\\repos\\Bubba\\UI\\Controls\\TextBox\\MetroTextBox.cs",
+              "RelativeToolTip": "UI\\Controls\\TextBox\\MetroTextBox.cs",
+              "ViewState": "AgIAADAAAAAAAAAAAAAYwC0AAAA6AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-17T13:36:54.2Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
               "Title": "ThrowIf.cs",
               "DocumentMoniker": "C:\\Users\\terry\\source\\repos\\Bubba\\Static\\ThrowIf.cs",
               "RelativeDocumentMoniker": "Static\\ThrowIf.cs",
@@ -100,14 +117,14 @@
               "RelativeDocumentMoniker": "UI\\Views\\Windows\\MainWindow.xaml.cs",
               "ToolTip": "C:\\Users\\terry\\source\\repos\\Bubba\\UI\\Views\\Windows\\MainWindow.xaml.cs",
               "RelativeToolTip": "UI\\Views\\Windows\\MainWindow.xaml.cs",
-              "ViewState": "AgIAAG4CAAAAAAAAAAAIwIoCAAA9AAAAAAAAAA==",
+              "ViewState": "AgIAAKICAAAAAAAAAAAAALoCAAAhAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-11-16T15:39:47.836Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 4,
               "Title": "App.xaml.cs",
               "DocumentMoniker": "C:\\Users\\terry\\source\\repos\\Bubba\\App.xaml.cs",
               "RelativeDocumentMoniker": "App.xaml.cs",

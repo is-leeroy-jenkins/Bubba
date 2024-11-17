@@ -642,6 +642,8 @@ namespace Bubba
             }
 
             InitializeTimer( );
+            ProgressBar.Visibility = Visibility.Hidden;
+            ProgressLabel.Visibility = Visibility.Hidden;
         }
 
         /// <summary>
