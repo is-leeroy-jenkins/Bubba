@@ -88,9 +88,8 @@ namespace Bubba
             FontSize = _theme.FontSize;
             Height = 460;
             Width = 410;
-            Padding = new Thickness( 1 );
+            Padding = new Thickness( 5 );
             Margin = new Thickness( 1 );
-            BorderThickness = new Thickness( 1 );
             WindowStyle = WindowStyle.None;
             Title = "Calculator";
             WindowStartupLocation = WindowStartupLocation.CenterOwner;

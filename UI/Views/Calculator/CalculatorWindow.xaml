@@ -40,10 +40,10 @@
             x:Name="Device"
             Canvas.Left="10"
             Canvas.Top="45"
-            Width="380"
+            Width="388"
             Height="393"
-            HorizontalAlignment="Center"
-            VerticalAlignment="Top"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Center"
             Background="{StaticResource BlackBackground}"
             BorderBrush="{StaticResource BlackBackground}"
             Foreground="{StaticResource BlueBorderBrush}" />
@@ -52,21 +52,20 @@
             x:Name="PictureBox"
             Canvas.Left="4"
             Canvas.Top="4"
-            Width="71"
+            Width="39"
             Height="24"
             HorizontalAlignment="Left"
-            VerticalAlignment="Top"
-            Source="/Resources/Assets/CalculatorImages/Main.png"
-            ToolTip="Click for Windows 10 Calculator" />
+            VerticalAlignment="Center"
+            Source="/Resources/Assets/ButtonImages/WindowsButton.png"
+            ToolTip="Windows Calculator" />
 
         <Image
             x:Name="CloseButton"
-            Canvas.Left="365"
-            Canvas.Top="1"
+            Canvas.Left="376"
+            Canvas.Top="6"
             Width="22"
             Height="22"
-            Margin="1,3,3,1"
-            Source="/Resources/Assets/CalculatorImages/Cancel.png"
+            Source="/Resources/Assets/ButtonImages/CircleCloseButton.png"
             ToolTip="Close Calculator" />
     </Canvas>
 </Window>

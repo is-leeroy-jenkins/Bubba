@@ -26,6 +26,7 @@
     <Window.Resources>
         <Style TargetType="ToolTip">
             <Setter Property="BorderThickness" Value="1" />
+            <Setter Property="Padding" Value="10" />
             <Setter Property="BorderBrush" Value="{StaticResource BlueBorderBrush}" />
             <Setter Property="Background" Value="{StaticResource BlackBackground}" />
             <Setter Property="Foreground" Value="{StaticResource LightBlueBrush}" />
@@ -76,19 +77,19 @@
             x:Name="SelectButton"
             Grid.Row="2"
             Grid.Column="1"
-            Width="95"
-            Height="35"
-            Margin="335,0,0,0"
+            Width="80"
+            Height="30"
+            Margin="350,25,0,0"
             HorizontalAlignment="Left"
-            VerticalAlignment="Center" />
+            VerticalAlignment="Top" />
 
         <b:MetroTile
             x:Name="BrowseButton"
             Grid.Row="2"
             Grid.Column="1"
-            Width="90"
-            Height="35"
-            Margin="10,27,0,0"
+            Width="80"
+            Height="30"
+            Margin="25,23,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top" />
 
@@ -96,21 +97,20 @@
             x:Name="ClearButton"
             Grid.Row="2"
             Grid.Column="1"
-            Width="90"
-            Height="35"
-            Margin="165,27,0,0"
-            HorizontalAlignment="Left"
+            Width="80"
+            Height="30"
+            Margin="0,23,0,0"
+            HorizontalAlignment="Center"
             VerticalAlignment="Top" />
 
         <b:MetroLabel
             x:Name="DateLabel"
             Grid.Row="2"
             Grid.Column="0"
-            Width="115"
+            Grid.ColumnSpan="2"
             Height="22"
-            Margin="0,60,0,0"
+            Margin="10,60,10,0"
             Padding="1"
-            HorizontalAlignment="Center"
             VerticalAlignment="Top"
             VerticalContentAlignment="Bottom"
             Content="Date"
