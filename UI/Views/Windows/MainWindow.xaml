@@ -465,7 +465,7 @@
             <Canvas
                 x:Name="ProgressBarCanvas"
                 Grid.Column="3" />
-            <sync:SfLinearProgressBar 
+            <sync:SfLinearProgressBar
                 x:Name="ProgressBar"
                 Grid.Column="3"
                 Height="36"
