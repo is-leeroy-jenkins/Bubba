@@ -1,4 +1,4 @@
-# How to distribute Bocefus within your own Department/Agency/Region/Division/Branch/Section
+# How to distribute Bubba within your own Department/Agency/Region/Division/Branch/Section
 
 #### Step 1: Clone the source
 

@@ -86,8 +86,8 @@ namespace Bubba
             // Window Properties
             FontFamily = _theme.FontFamily;
             FontSize = _theme.FontSize;
-            Height = 460;
-            Width = 410;
+            Height = 480;
+            Width = 425;
             Padding = new Thickness( 5 );
             Margin = new Thickness( 1 );
             WindowStyle = WindowStyle.None;

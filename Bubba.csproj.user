@@ -7,6 +7,14 @@
     </ApplicationDefinition>
   </ItemGroup>
   <ItemGroup>
+    <Compile Update="Data\Abstractions\AdapterBase.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Update="Data\Adapter\BudgetAdapter.cs">
+      <SubType>Component</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
     <Page Update="UI\Themes\TextBox\MetroTextBox.xaml">
       <SubType>Designer</SubType>
     </Page>

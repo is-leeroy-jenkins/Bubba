@@ -160,11 +160,11 @@
             MaxHeight="125"
             Margin="0,10,0,10">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="55*" />
+                <ColumnDefinition Width="165*" />
                 <ColumnDefinition Width="130" />
                 <ColumnDefinition Width="135" />
-                <ColumnDefinition Width="135" />
-                <ColumnDefinition Width="86*" />
+                <ColumnDefinition Width="130" />
+                <ColumnDefinition Width="263*" />
             </Grid.ColumnDefinitions>
 
             <Canvas
@@ -193,8 +193,7 @@
                     HorizontalAlignment="Left"
                     VerticalAlignment="Center"
                     Content="Clear"
-                    ToolTip="Clear Chat Log"
-                    RenderTransformOrigin="0.126,1.373" />
+                    ToolTip="Clear Chat Log" />
 
             </Canvas>
 
@@ -202,7 +201,7 @@
                 x:Name="UserCanvas"
                 Grid.Column="1"
                 Height="125"
-                Margin="0,-2,0,0"
+                Margin="0"
                 VerticalAlignment="Top">
 
                 <Label
@@ -239,7 +238,7 @@
                 x:Name="RandomCanvas"
                 Grid.Column="2"
                 Height="125"
-                Margin="0,-2,0,0"
+                Margin="0"
                 VerticalAlignment="Top">
 
                 <Label
@@ -275,7 +274,7 @@
 
                 <CheckBox
                     x:Name="ListenCheckBox"
-                    Canvas.Left="14"
+                    Canvas.Left="10"
                     Canvas.Top="68"
                     Width="66"
                     Height="27"
@@ -287,7 +286,7 @@
             <Canvas
                 x:Name="TokenCanvas"
                 Grid.Column="3"
-                Margin="0,0,0,6"
+                Margin="0"
                 SnapsToDevicePixels="True">
 
                 <CheckBox
@@ -332,39 +331,42 @@
 
             <Canvas
                 Grid.Column="4"
-                Margin="0,0,0,4">
+                Margin="0,0,0,6">
 
                 <Label
                     x:Name="VoiceLabel"
                     Canvas.Left="5"
-                    Canvas.Top="78"
-                    Width="45"
+                    Canvas.Top="84"
+                    Width="55"
                     Height="26"
-                    HorizontalAlignment="Left"
+                    HorizontalAlignment="Center"
                     VerticalAlignment="Top"
+                    HorizontalContentAlignment="Right"
                     Content="Voice" />
 
                 <Label
                     x:Name="ModelLabel"
                     Canvas.Left="5"
                     Canvas.Top="20"
-                    Width="45"
+                    Width="55"
                     Height="26"
-                    VerticalAlignment="Top"
-                    Content="Model" />
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Center"
+                    HorizontalContentAlignment="Right"
+                    Content="Models" />
 
                 <sync:ComboBoxAdv
                     x:Name="ModelComboBox"
-                    Canvas.Left="60"
-                    Canvas.Top="16"
+                    Canvas.Left="65"
+                    Canvas.Top="15"
                     Width="175"
                     Height="36"
                     Padding="15,1,1,1"
                     HorizontalAlignment="Left"
-                    VerticalAlignment="Center"
+                    VerticalAlignment="Top"
                     AllowMultiSelect="True"
                     DefaultText="Select"
-                    ToolTip="Choose AI Model to be used"
+                    ToolTip="Choose AI Model for ChatGPT"
                     BorderBrush="{DynamicResource BlueBorderBrush}">
                     <sync:ComboBoxItemAdv Content="Item 1" />
                     <sync:ComboBoxItemAdv Content="Item 2" />
@@ -375,12 +377,12 @@
 
                 <sync:ComboBoxAdv
                     x:Name="VoiceComboBox"
-                    Canvas.Left="60"
+                    Canvas.Left="65"
                     Canvas.Top="78"
                     Width="175"
                     Height="37"
                     Padding="15,1,1,1"
-                    HorizontalAlignment="Center"
+                    HorizontalAlignment="Left"
                     VerticalAlignment="Center"
                     AllowMultiSelect="True"
                     DefaultText="Select"
@@ -404,7 +406,7 @@
             Margin="10,10,10,10"
             Padding="15,15,5,5"
             TextWrapping="Wrap"
-            Text="MetroTextBox"
+            Text=""
             FontSize="12" />
 
         <b:MetroTextBox
@@ -415,7 +417,7 @@
             Margin="10,10,10,10"
             Padding="15,15,5,5"
             TextWrapping="Wrap"
-            Text="MetroTextBox"
+            Text=""
             FontSize="12" />
 
         <Grid
@@ -425,56 +427,93 @@
                 <ColumnDefinition Width="430*" />
                 <ColumnDefinition Width="205*" />
                 <ColumnDefinition Width="188*" />
+                <ColumnDefinition />
             </Grid.ColumnDefinitions>
+            <Canvas
+                x:Name="StatusLabelCanvas"
+                Grid.Column="0">
+                <b:MetroLabel
+                    x:Name="StatusLabel"
+                    Canvas.Left="10"
+                    Canvas.Top="10"
+                    Width="410"
+                    Height="30"
+                    Padding="1"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Center"
+                    VerticalContentAlignment="Bottom"
+                    Foreground="{StaticResource BlueBorderBrush}"
+                    Content="Label" />
+            </Canvas>
 
-            <b:MetroLabel
-                x:Name="StatusLabel"
-                Grid.Column="0"
-                Margin="20,9,20,9"
-                Padding="1"
-                Foreground="{StaticResource BlueBorderBrush}"
-                Content="Label" />
+            <Canvas
+                x:Name="ProgressLabelCanvas"
+                Grid.Column="1">
+                <b:MetroLabel
+                    x:Name="ProgressLabel"
+                    Grid.Column="1"
+                    Canvas.Left="76"
+                    Canvas.Top="3"
+                    Width="119"
+                    Height="40"
+                    VerticalAlignment="Top"
+                    HorizontalContentAlignment="Right"
+                    VerticalContentAlignment="Center"
+                    Content="Processing" />
+            </Canvas>
 
-            <ProgressBar
+            <Canvas
+                x:Name="ProgressBarCanvas"
+                Grid.Column="3" />
+            <sync:SfLinearProgressBar 
                 x:Name="ProgressBar"
-                Grid.Column="2"
-                Height="30"
-                Margin="7,0,7,0"
+                Grid.Column="3"
+                Height="36"
+                Margin="6,0,10,0"
                 VerticalAlignment="Center"
-                HorizontalContentAlignment="Stretch"
+                HorizontalContentAlignment="Left"
                 VerticalContentAlignment="Stretch"
                 Background="{x:Null}"
                 BorderBrush="{x:Null}"
-                IsIndeterminate="True">
-                <ProgressBar.Foreground>
+                IsIndeterminate="True"
+                SnapsToDevicePixels="True">
+                <sync:SfLinearProgressBar.Foreground>
                     <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1">
                         <GradientStop Offset="0" Color="#FF0B3652" />
                         <GradientStop Offset="1" Color="#FF278ED0" />
                         <GradientStop Offset="0.224" Color="#FF0B283B" />
                     </LinearGradientBrush>
-                </ProgressBar.Foreground>
-            </ProgressBar>
-
-            <b:MetroLabel
-                x:Name="ProgressLabel"
-                Grid.Column="1"
-                Height="40"
-                Margin="56,3,10,0"
-                VerticalAlignment="Top"
-                HorizontalContentAlignment="Right"
-                Content="Processing" />
+                </sync:SfLinearProgressBar.Foreground>
+            </sync:SfLinearProgressBar>
         </Grid>
-        <Grid x:Name="TopGrid" >
+
+        <Grid
+            x:Name="TopGrid"
+            Grid.Row="0">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
+                <ColumnDefinition />
+                <ColumnDefinition />
             </Grid.ColumnDefinitions>
+            <Canvas
+                x:Name="SpeechLabelCanvas"
+                Grid.Column="0" />
             <b:MetroLabel
                 x:Name="SpeechLabel"
-                Grid.Column="0"
-                Margin="20,0,26,0"
+                Width="366"
+                Margin="0,4,0,4"
+                HorizontalAlignment="Center"
                 HorizontalContentAlignment="Left"
-                Content="Speech..." VerticalAlignment="Center" />
+                Content="Speech..."
+                RenderTransformOrigin="0.5,0.5">
+                <b:MetroLabel.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform />
+                        <SkewTransform />
+                        <RotateTransform Angle="0.309" />
+                        <TranslateTransform />
+                    </TransformGroup>
+                </b:MetroLabel.RenderTransform>
+            </b:MetroLabel>
 
         </Grid>
     </Grid>

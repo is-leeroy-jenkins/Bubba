@@ -120,6 +120,21 @@ namespace Bubba
         private protected string OPENAI_API_KEY = App.KEY;
 
         /// <summary>
+        /// The chat model
+        /// </summary>
+        private protected string _chatModel;
+
+        /// <summary>
+        /// The temperature
+        /// </summary>
+        private protected string _temperature;
+
+        /// <summary>
+        /// The maximum tokens
+        /// </summary>
+        private protected string _maximumTokens;
+
+        /// <summary>
         /// The speech recognition engine
         /// </summary>
         private protected SpeechRecognitionEngine _engine;
@@ -143,9 +158,12 @@ namespace Bubba
             InitializeComponent( );
             RegisterCallbacks( );
             InitializeDelegates( );
+            _temperature = "0.5";
+            _maximumTokens = "2058";
 
             // Event Wiring
             Loaded += OnLoad;
+            Closed += OnClosed;
         }
 
         /// <summary>
@@ -157,6 +175,7 @@ namespace Bubba
             {
                 ListenCheckBox.Click += OnListenCheckedChanged;
                 MuteCheckBox.Click += OnMuteCheckedBoxChanged;
+                ModelComboBox.SelectionChanged += OnModelSelectionChanged;
             }
             catch( Exception ex )
             {
@@ -370,10 +389,10 @@ namespace Bubba
             var _request = WebRequest.Create( _url );
             _request.Method = "POST";
             _request.ContentType = "application/json";
-            _request.Headers.Add( "Authorization", "Bearer " + OPENAI_API_KEY );
+            _request.Headers.Add( "Authorization", "Bearer " + App.KEY );
             var _maxTokens = int.Parse( MaxTokensTextBox.Text );       // 2048
-            var _temperature = double.Parse( TemperatureTextBox.Text );// 0.5
-            if( ( _temperature < 0d ) | ( _temperature > 1d ) )
+            var _temp = double.Parse( TemperatureTextBox.Text );// 0.5
+            if( ( _temp < 0d ) | ( _temp > 1d ) )
             {
                 var _msg = "Randomness has to be between 0 and 1 "
                     + "with higher values resulting in more random text";
@@ -400,7 +419,7 @@ namespace Bubba
                 _data += " \"prompt\": \"" + PadQuotes( question ) + "\",";
                 _data += " \"max_tokens\": " + _maxTokens + ",";
                 _data += " \"user\": \"" + _userId + "\", ";
-                _data += " \"temperature\": " + _temperature + ", ";
+                _data += " \"temperature\": " + _temp + ", ";
 
                 // Number between -2.0 and 2.0  Positive value decrease the
                 // model's likelihood to repeat the same line verbatim.
@@ -416,13 +435,10 @@ namespace Bubba
                 _data += "}";
             }
 
-            using( var _streamWriter = new StreamWriter( _request.GetRequestStream( ) ) )
-            {
-                _streamWriter.Write( _data );
-                _streamWriter.Flush( );
-                _streamWriter.Close( );
-            }
-
+            using var _streamWriter = new StreamWriter( _request.GetRequestStream( ) );
+            _streamWriter.Write( _data );
+            _streamWriter.Flush( );
+            _streamWriter.Close( );
             var _response = _request.GetResponse( );
             var _stream = _response.GetResponseStream( );
             var _reader = new StreamReader( _stream );
@@ -632,6 +648,7 @@ namespace Bubba
             }
 
             PopulateModelsAsync( );
+            ModelComboBox.AllowMultiSelect = false;
             VoiceComboBox.Items.Clear( );
             var _synth = new SpeechSynthesizer( );
             var _voices = _synth.GetInstalledVoices( );
@@ -641,6 +658,7 @@ namespace Bubba
                 VoiceComboBox.Items.Add( _voice.VoiceInfo.Name );
             }
 
+            VoiceComboBox.AllowMultiSelect = false;
             InitializeTimer( );
             ProgressBar.Visibility = Visibility.Hidden;
             ProgressLabel.Visibility = Visibility.Hidden;
@@ -652,12 +670,12 @@ namespace Bubba
         /// <param name="sender">The sender.</param>
         /// <param name="e">The <see cref="CancelEventArgs"/>
         /// instance containing the event data.</param>
-        private void OnClosing( object sender, CancelEventArgs e )
+        private void OnClosed( object sender, EventArgs e )
         {
             try
             {
                 _timer?.Dispose( );
-                Close( );
+                Environment.Exit( 0 );
             }
             catch( Exception ex )
             {
@@ -675,8 +693,13 @@ namespace Bubba
         {
             try
             {
-                var _calculator = new CalculatorWindow( );
-                _calculator.ShowDialog( );
+                var _calculator = new CalculatorWindow
+                {
+                    Owner = this,
+                    Topmost = true
+                };
+
+                _calculator.Show( );
             }
             catch( Exception ex )
             {
@@ -934,12 +957,12 @@ namespace Bubba
                     AnswerTextBox.AppendText( "\r\n" );
                 }
 
-                AnswerTextBox.AppendText( "Me: " + _question + "\r\n" );
+                AnswerTextBox.AppendText( "User: " + _question + "\r\n" );
                 QuestionTextBox.Text = "";
                 try
                 {
                     var _answer = SendHttpMessage( _question ) + "";
-                    AnswerTextBox.AppendText( "Chat GPT: " 
+                    AnswerTextBox.AppendText( "Bubba GPT: " 
                         + _answer.Replace( "\n", "\r\n" ).Trim( ) );
 
                     SpeechToText( _answer );
@@ -948,6 +971,24 @@ namespace Bubba
                 {
                     AnswerTextBox.AppendText( "Error: " + ex.Message );
                 }
+            }
+        }
+
+        /// <summary>
+        /// Called when [model ComboBox selection changed].
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The <see cref="RoutedEventArgs"/>
+        /// instance containing the event data.</param>
+        private void OnModelSelectionChanged( object sender, RoutedEventArgs e )
+        {
+            try
+            {
+                _chatModel = ModelComboBox.SelectedValue.ToString( );
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
             }
         }
 
