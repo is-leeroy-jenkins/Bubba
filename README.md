@@ -6,7 +6,7 @@
     
   </p>
 </div>
-_
+
 ![](https://github.com/is-leeroy-jenkins/Bubba/blob/master/Resources/Assets/GitHubImages/project_bubba.png)
 
 
