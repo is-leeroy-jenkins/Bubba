@@ -13,14 +13,14 @@
 
 ## ![](https://github.com/is-leeroy-jenkins/Bubba/blob/master/Resources/Assets/GitHubImages/features.png) Features
 
-- **An open source tool for connecting and interacting through a single, windows interface!
-- **Connect and interact with ChatGPT through a single user interface.
-- **Asynchronous ChatGPT Interactio**: Efficiently sent prompts to the OpenAI Completions and Assistants API.
-- **Data Collection**: Collects data such as PDFs, CSVs, DOCX, XLS, PPTX, TXT, Images, Videos, JSON, DBSQL, XML, HTML, PHP, JS, Archives, and Miscellaneous files.
-- **Database Integration**: Organizes scraped URLs into SQLite databases based on their file types.
-- **Modern UI Design**: User-friendly WPF interface with rich text logging.
+- An open source tool for connecting and interacting through a single, windows interface!
+- Connect and interact with ChatGPT through a single user interface.
+- Asynchronous ChatGPT Interactio**: Efficiently sent prompts to the OpenAI Completions and Assistants API.
+- Data Collection**: Collects data such as PDFs, CSVs, DOCX, XLS, PPTX, TXT, Images, Videos, JSON, DBSQL, XML, HTML, PHP, JS, Archives, and Miscellaneous files.
+- Database Integration**: Organizes scraped URLs into SQLite databases based on their file types.
+- Modern UI Design**: User-friendly WPF interface with rich text logging.
 
-- **Multi OS Support**: Compatible with Windows x64/x86/ARM, Linux and MacOS.
+- Multi OS Support**: Compatible with Windows x64/x86/ARM, Linux and MacOS.
 
 ## ![](https://github.com/is-leeroy-jenkins/Bubba/blob/master/Resources/Assets/GitHubImages/csharp.png)  Code
 
@@ -141,7 +141,7 @@ Build artifacts are automatically sent to [SignPath.io](https://signpath.io/) vi
 The signed binaries are then uploaded to the [GitHub releases](https://github.com/is-leeroy-jenkins/Bubba/releases) page.
 
 
-## ![](https://github.com/is-leeroy-jenkins/Bubba/blob/master/Resources/Assets/GitHubImages/training.png) Privacy Policy
+## ![](https://github.com/is-leeroy-jenkins/Bubba/blob/master/Resources/Assets/GitHubImages/web.png) Privacy Policy
 
 This program will not transfer any information to other networked systems unless specifically requested by the user or the person installing or operating it.
 
