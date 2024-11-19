@@ -1,4 +1,5 @@
-![](https://github.com/is-leeroy-jenkins/Bubba/tree/master/Resources/Assets/GitHubImages/ProjectTemplate.png)
+_
+![](https://github.com/is-leeroy-jenkins/Bubba/blob/master/Resources/Assets/GitHubImages/project_bubba.png)
 
 <div align="left">
   <p>
