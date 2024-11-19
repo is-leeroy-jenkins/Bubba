@@ -29,9 +29,9 @@
 - [Extensions](https://github.com/is-leeroy-jenkins/Bubba/tree/master/Extensions) - extension classes for Collections, DataTables, DataRows, LINQ, etc.
 - [IO](https://github.com/is-leeroy-jenkins/Bubba/tree/master/IO)- classes providing input/output and networking functionality.
 - [Resources](https://github.com/is-leeroy-jenkins/Bubba/tree/master/Resources) - images, documentation, and other assets used in the applications
-- [Controls](https://github.com/is-leeroy-jenkins/Bubba/tree/master/Controls) - classes used for interacting with the user interface. 
-- [Themes](https://github.com/is-leeroy-jenkins/Bubba/tree/master/Themes) - classes defining styles & themes for the user interface. 
-- [Views](https://github.com/is-leeroy-jenkins/Bubba/tree/master/Views) - windows used by Bubba.
+- [Controls](https://github.com/is-leeroy-jenkins/Bubba/tree/master/UI/Controls) - classes used for interacting with the user interface. 
+- [Themes](https://github.com/is-leeroy-jenkins/Bubba/tree/master/UI/Themes) - classes defining styles & themes for the user interface. 
+- [Views](https://github.com/is-leeroy-jenkins/Bubba/tree/master/UI/Views) - windows used by Bubba.
 - [Events](https://github.com/is-leeroy-jenkins/Bubba/tree/master/Events) - callbacks used in the application
 - [Data](https://github.com/is-leeroy-jenkins/Bubba/tree/master/Data) - data classes used by Bubba
 
