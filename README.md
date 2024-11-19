@@ -6,15 +6,14 @@ _
     <a href="https://github.com/is-leeroy-jenkins/Bubba/tree/master/Resources/Github/Users.md">Download</a> •  <a href="">Documentation</a> •<a href="https://github.com/is-leeroy-jenkins/Bubba/tree/master/Resources/Github/Compilation.md">Build</a> • <a href="#-license">License</a>
   </p>
   <p>
-    <b>An open source tool for connecting and interacting through a single, windows interface!</b>
+    
   </p>
-  <p align="left">
-    Connect and interact with ChatGPT through a single user interface.
-
 </div>
 
 ## ![](https://github.com/is-leeroy-jenkins/Bubba/blob/master/Resources/Assets/GitHubImages/features.png) Features
 
+- **An open source tool for connecting and interacting through a single, windows interface!
+- **Connect and interact with ChatGPT through a single user interface.
 - **Asynchronous ChatGPT Interactio**: Efficiently sent prompts to the OpenAI Completions and Assistants API.
 - **Data Collection**: Collects data such as PDFs, CSVs, DOCX, XLS, PPTX, TXT, Images, Videos, JSON, DBSQL, XML, HTML, PHP, JS, Archives, and Miscellaneous files.
 - **Database Integration**: Organizes scraped URLs into SQLite databases based on their file types.
