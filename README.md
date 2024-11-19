@@ -32,7 +32,7 @@
 - [Controls](https://github.com/is-leeroy-jenkins/Bubba/tree/master/UI/Controls) - classes used for interacting with the user interface. 
 - [Themes](https://github.com/is-leeroy-jenkins/Bubba/tree/master/UI/Themes) - classes defining styles & themes for the user interface. 
 - [Views](https://github.com/is-leeroy-jenkins/Bubba/tree/master/UI/Views) - windows used by Bubba.
-- [Events](https://github.com/is-leeroy-jenkins/Bubba/tree/master/Events) - callbacks used in the application
+- [Callbacks](https://github.com/is-leeroy-jenkins/Bubba/tree/master/Callbacks) - events, delegates, and event-handlers used in the application
 - [Data](https://github.com/is-leeroy-jenkins/Bubba/tree/master/Data) - data classes used by Bubba
 
 
