@@ -1,10 +1,10 @@
 ﻿// ******************************************************************************************
 //     Assembly:                Bubba
 //     Author:                  Terry D. Eppler
-//     Created:                 11-18-2024
+//     Created:                 11-19-2024
 // 
 //     Last Modified By:        Terry D. Eppler
-//     Last Modified On:        11-18-2024
+//     Last Modified On:        11-19-2024
 // ******************************************************************************************
 // <copyright file="Payload.cs" company="Terry D. Eppler">
 //    Bubba is a small windows (wpf) application for interacting with
@@ -48,6 +48,7 @@ namespace Bubba
     using System.Text;
     using System.Threading.Tasks;
     using Newtonsoft.Json;
+    using Syncfusion.UI.Xaml.Scheduler;
     using JsonSerializer = System.Text.Json.JsonSerializer;
 
     [ SuppressMessage( "ReSharper", "UnusedType.Global" ) ]
@@ -76,6 +77,16 @@ namespace Bubba
         private protected int _maximumTokens;
 
         /// <summary>
+        /// The frequency
+        /// </summary>
+        private protected double _frequency;
+
+        /// <summary>
+        /// The presence
+        /// </summary>
+        private protected double _presence;
+
+        /// <summary>
         /// The maximum tokens
         /// </summary>
         private protected string _prompt;
@@ -93,6 +104,16 @@ namespace Bubba
         {
         }
 
+        public Payload( int id = 1, double frequency = 0.0, double presence = 0.0,
+            double temperature = 0.5, int tokens = 2048 )
+        {
+            _userId = id;
+            _temperature = temperature;
+            _maximumTokens = tokens;
+            _frequency = frequency;
+            _presence = presence;
+        }
+
         /// <summary>
         /// Gets the user identifier.
         /// </summary>
@@ -105,9 +126,13 @@ namespace Bubba
             {
                 return _userId;
             }
-            private protected set
+            set
             {
-                _userId = value;
+                if( _userId != value )
+                {
+                    _userId = value;
+                    OnPropertyChanged( nameof( UserId ) );
+                }
             }
         }
 
@@ -123,9 +148,13 @@ namespace Bubba
             {
                 return _maximumTokens;
             }
-            private protected set
+            set
             {
-                _maximumTokens = value;
+                if( _maximumTokens != value )
+                {
+                    _maximumTokens = value;
+                    OnPropertyChanged( nameof( MaximumTokens ) );
+                }
             }
         }
 
@@ -141,9 +170,57 @@ namespace Bubba
             {
                 return _temperature;
             }
-            private protected set
+            set
             {
-                _temperature = value;
+                if( _temperature != value )
+                {
+                    _temperature = value;
+                    OnPropertyChanged( nameof( Temperature ) );
+                }
+            }
+        }
+
+        /// <summary>
+        /// Gets the frequency.
+        /// </summary>
+        /// <value>
+        /// The frequency.
+        /// </value>
+        public double Frequency
+        {
+            get
+            {
+                return _frequency;
+            }
+            set
+            {
+                if( _frequency != value )
+                {
+                    _frequency = value;
+                    OnPropertyChanged( nameof( Frequency ) );
+                }
+            }
+        }
+
+        /// <summary>
+        /// Gets the presence.
+        /// </summary>
+        /// <value>
+        /// The presence.
+        /// </value>
+        public double Presence
+        {
+            get
+            {
+                return _presence;
+            }
+            set
+            {
+                if( _presence != value )
+                {
+                    _presence = value;
+                    OnPropertyChanged( nameof( Presence ) );
+                }
             }
         }
 
@@ -159,9 +236,13 @@ namespace Bubba
             {
                 return _model;
             }
-            private protected set
+            set
             {
-                _model = value;
+                if( _model != value )
+                {
+                    _model = value;
+                    OnPropertyChanged( nameof( Model ) );
+                }
             }
         }
 
@@ -177,9 +258,13 @@ namespace Bubba
             {
                 return _prompt;
             }
-            private protected set
+            set
             {
-                _prompt = value;
+                if( _prompt != value )
+                {
+                    _prompt = value;
+                    OnPropertyChanged( nameof( Prompt ) );
+                }
             }
         }
 
@@ -187,9 +272,8 @@ namespace Bubba
         /// Serializes the specified prompt.
         /// </summary>
         /// <param name="prompt">The prompt.</param>
-        /// <param name="temperature">The temperature.</param>
         /// <returns></returns>
-        public string Serialize( string prompt, double temperature = 0.5 )
+        public string Serialize( string prompt )
         {
             try
             {
@@ -217,9 +301,9 @@ namespace Bubba
                         prompt,
                         max_tokens = _maximumTokens,
                         user = _userId,
-                        temperature,
-                        frequency_penalty = 0.0,
-                        presence_penalty = 0.0,
+                        _temperature,
+                        frequency_penalty = _frequency,
+                        presence_penalty =_presence,
                         stop = new[ ]
                         {
                             "#",
@@ -242,38 +326,47 @@ namespace Bubba
         /// <returns></returns>
         private protected string PadQuotes( string input )
         {
-            if( input.IndexOf( "\\" ) != -1 )
+            try
             {
-                input = input.Replace( "\\", @"\\" );
-            }
+                ThrowIf.Empty( input, nameof( input ) );
+                if( input.IndexOf( "\\" ) != -1 )
+                {
+                    input = input.Replace( "\\", @"\\" );
+                }
 
-            if( input.IndexOf( "\n\r" ) != -1 )
-            {
-                input = input.Replace( "\n\r", @"\n" );
-            }
+                if( input.IndexOf( "\n\r" ) != -1 )
+                {
+                    input = input.Replace( "\n\r", @"\n" );
+                }
 
-            if( input.IndexOf( "\r" ) != -1 )
-            {
-                input = input.Replace( "\r", @"\r" );
-            }
+                if( input.IndexOf( "\r" ) != -1 )
+                {
+                    input = input.Replace( "\r", @"\r" );
+                }
 
-            if( input.IndexOf( "\n" ) != -1 )
-            {
-                input = input.Replace( "\n", @"\n" );
-            }
+                if( input.IndexOf( "\n" ) != -1 )
+                {
+                    input = input.Replace( "\n", @"\n" );
+                }
 
-            if( input.IndexOf( "\t" ) != -1 )
-            {
-                input = input.Replace( "\t", @"\t" );
-            }
+                if( input.IndexOf( "\t" ) != -1 )
+                {
+                    input = input.Replace( "\t", @"\t" );
+                }
 
-            if( input.IndexOf( "\"" ) != -1 )
-            {
-                return input.Replace( "\"", @"""" );
+                if( input.IndexOf( "\"" ) != -1 )
+                {
+                    return input.Replace( "\"", @"""" );
+                }
+                else
+                {
+                    return input;
+                }
             }
-            else
+            catch( Exception ex )
             {
-                return input;
+                Fail( ex );
+                return string.Empty;
             }
         }
 
