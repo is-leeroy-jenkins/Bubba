@@ -78,8 +78,7 @@
               "RelativeToolTip": "IO\\Abstractions\\GptBase.cs",
               "ViewState": "AgIAAJMAAAAAAAAAAAAAAKUAAAANAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-18T23:18:29.109Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-11-18T23:18:29.109Z"
             },
             {
               "$type": "Document",
@@ -89,7 +88,7 @@
               "RelativeDocumentMoniker": "IO\\Network\\ChatGptClient.cs",
               "ToolTip": "C:\\Users\\terry\\source\\repos\\Bubba\\IO\\Network\\ChatGptClient.cs",
               "RelativeToolTip": "IO\\Network\\ChatGptClient.cs",
-              "ViewState": "AgIAANkAAAAAAAAAAAAqwPEAAAAnAAAAAAAAAA==",
+              "ViewState": "AgIAANkAAAAAAAAAAAAqwAIBAAAwAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-11-18T22:30:37.207Z",
               "EditorCaption": ""
@@ -104,8 +103,7 @@
               "RelativeToolTip": "UI\\Views\\Windows\\MainWindow.xaml.cs",
               "ViewState": "AgIAAOMDAAAAAAAAAAAcwOYDAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-16T15:39:47.836Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-11-16T15:39:47.836Z"
             },
             {
               "$type": "Document",
@@ -117,8 +115,7 @@
               "RelativeToolTip": "App.xaml.cs",
               "ViewState": "AgIAAFQAAAAAAAAAAAAAAHIAAAAWAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-15T19:21:45.907Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-11-15T19:21:45.907Z"
             }
           ]
         },
