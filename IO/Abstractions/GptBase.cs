@@ -113,12 +113,12 @@ namespace Bubba
         /// A number between -2.0 and 2.0  Positive value decrease the
         /// model's likelihood to repeat the same line verbatim.
         /// </summary>
-        private protected string _temperature;
+        private protected double _temperature;
 
         /// <summary>
         /// The maximum tokens
         /// </summary>
-        private protected string _maximumTokens;
+        private protected int _maximumTokens;
 
         /// <summary>
         /// The prompt
@@ -258,6 +258,10 @@ namespace Bubba
             }
         }
 
+        /// <summary>
+        /// Gets the end points.
+        /// </summary>
+        /// <returns></returns>
         private protected IList<string> GetEndPoints( )
         {
             try

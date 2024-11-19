@@ -71,8 +71,8 @@ namespace Bubba
             _apiKey = App.KEY;
             _presence = double.Parse( "0.0" );
             _frequency = double.Parse( "0.0" );
-            _temperature = "0.5";
-            _maximumTokens = "2048";
+            _temperature = 0.5;
+            _maximumTokens = 2048;
             _model = "gpt-3.5-turbo";
             _endPoint = "https://api.openai.com/v1/chat/completions";
             _endPoints = new List<string>( );
@@ -86,7 +86,7 @@ namespace Bubba
         /// <param name="temperature">The temperature.</param>
         /// <param name="maximum">The maximum.</param>
         /// <param name="chatModel">The chat model.</param>
-        public ChatGptClient( string temperature, string maximum, string chatModel ) 
+        public ChatGptClient( string chatModel, double temperature = 0.5, int maximum = 2048 ) 
             : this( )
         {
             _apiKey = App.KEY;
@@ -140,13 +140,13 @@ namespace Bubba
         /// <value>
         /// The temperature.
         /// </value>
-        public string Temperature
+        public double Temperature
         {
             get
             {
                 return _temperature;
             }
-            private set
+            private protected set
             {
                 _temperature = value;
             }
@@ -164,7 +164,7 @@ namespace Bubba
             {
                 return _presence;
             }
-            private set
+            private protected set
             {
                 _presence = value;
             }
@@ -176,7 +176,7 @@ namespace Bubba
         /// <value>
         /// The maximum tokens.
         /// </value>
-        public string MaximumTokens
+        public int MaximumTokens
         {
             get
             {
@@ -288,14 +288,12 @@ namespace Bubba
                 ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12
                     | SecurityProtocolType.Tls11;
 
-                var _chatModel = _model;
-                var _url = _chatModel.Contains( "gpt-3.5-turbo" )
+                var _url = _model.Contains( "gpt-3.5-turbo" )
                     ? "https://api.openai.com/v1/chat/completions"
                     : "https://api.openai.com/v1/completions";
 
                 // Validate randomness (temperature)
-                var _temp = double.Parse( _temperature );
-                var _requestData = CreatePayload( prompt, _chatModel, _temp );
+                var _requestData = CreatePayload( prompt, _temperature );
                 var _request = WebRequest.Create( _url );
                 _request.Method = "POST";
                 _request.ContentType = "application/json";
@@ -312,7 +310,7 @@ namespace Bubba
 
                 using var _reader = new StreamReader( _responseStream );
                 var _jsonResponse = _reader.ReadToEnd( );
-                return ExtractMessageFromResponse( _jsonResponse, _chatModel );
+                return ExtractMessageFromResponse( _jsonResponse, _model );
             }
             catch( Exception ex )
             {
@@ -326,18 +324,15 @@ namespace Bubba
         /// Builds the request data.
         /// </summary>
         /// <param name="prompt">The question.</param>
-        /// <param name="chatModel">The chat model.</param>
         /// <param name="temperature">The temperature.</param>
         /// <returns></returns>
-        private string CreatePayload( string prompt, string chatModel, double temperature )
+        private string CreatePayload( string prompt, double temperature )
         {
-            var _maxTokens = int.Parse( _maximumTokens );
-            var _id = _userId.ToString( );
-            if( chatModel.Contains( "gpt-3.5-turbo" ) )
+            if( _model.Contains( "gpt-3.5-turbo" ) )
             {
                 return JsonSerializer.Serialize( new
                 {
-                    model = chatModel,
+                    model = _model,
                     messages = new[ ]
                     {
                         new
@@ -352,10 +347,10 @@ namespace Bubba
             {
                 return JsonSerializer.Serialize( new
                 {
-                    model = chatModel,
+                    model = _model,
                     prompt,
-                    max_tokens = _maxTokens,
-                    user = _id,
+                    max_tokens = _maximumTokens,
+                    user = _userId,
                     temperature,
                     frequency_penalty = 0.0,
                     presence_penalty = 0.0,
@@ -399,7 +394,7 @@ namespace Bubba
 
         public async Task<string> SendHttpMessageAsync( string prompt )
         {
-            var _temp = double.Parse( _temperature );
+            var _temp = _temperature;
             var _apiUrl = _model.Contains( "gpt-3.5-turbo" )
                 ? "https://api.openai.com/v1/chat/completions"
                 : "https://api.openai.com/v1/completions";
@@ -427,7 +422,7 @@ namespace Bubba
                 {
                     model = _model,
                     prompt = PadQuotes( prompt ),
-                    max_tokens = int.Parse( _maximumTokens ),
+                    max_tokens = _maximumTokens,
                     temperature = _temp,
                     user = _userId,
                     frequency_penalty = 0.0,
