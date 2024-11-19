@@ -15,7 +15,7 @@
 
 - An open source tool for connecting and interacting through a single, windows interface!
 - Connect and interact with ChatGPT through a single user interface.
-- Asynchronous ChatGPT Interactio**: Efficiently sent prompts to the OpenAI Completions and Assistants API.
+- Asynchronous ChatGPT Interaction: Efficiently sent prompts to the OpenAI Completions and Assistants API.
 - Data Collection**: Collects data such as PDFs, CSVs, DOCX, XLS, PPTX, TXT, Images, Videos, JSON, DBSQL, XML, HTML, PHP, JS, Archives, and Miscellaneous files.
 - Database Integration**: Organizes scraped URLs into SQLite databases based on their file types.
 - Modern UI Design**: User-friendly WPF interface with rich text logging.
