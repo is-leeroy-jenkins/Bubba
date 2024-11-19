@@ -73,7 +73,6 @@ namespace Bubba
             {
                 return _provider;
             }
-
             private protected set
             {
                 _provider = value;
@@ -92,7 +91,6 @@ namespace Bubba
             {
                 return _source;
             }
-
             private protected set
             {
                 _source = value;

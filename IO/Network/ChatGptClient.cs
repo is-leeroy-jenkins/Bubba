@@ -57,7 +57,7 @@ namespace Bubba
 
     [ SuppressMessage( "ReSharper", "UnusedType.Global" ) ]
     [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
-    public class ChatGptClient : ChatGptBase
+    public class ChatGptClient : GptBase
     {
         /// <inheritdoc />
         /// <summary>
@@ -67,13 +67,16 @@ namespace Bubba
         public ChatGptClient( ) 
             : base( )
         {
+            _entry = new object( );
             _apiKey = App.KEY;
             _presence = double.Parse( "0.0" );
             _frequency = double.Parse( "0.0" );
             _temperature = "0.5";
             _maximumTokens = "2048";
             _model = "gpt-3.5-turbo";
-            _baseUrl = "https://api.openai.com/v1/chat/completions";
+            _endPoint = "https://api.openai.com/v1/chat/completions";
+            _endPoints = new List<string>( );
+            _models = new List<string>( );
         }
 
         /// <inheritdoc />
@@ -92,7 +95,7 @@ namespace Bubba
             _temperature = temperature;
             _maximumTokens = maximum;
             _model = chatModel;
-            _baseUrl = "https://api.openai.com/v1/chat/completions";
+            _endPoint = "https://api.openai.com/v1/chat/completions";
         }
 
         /// <summary>
@@ -235,7 +238,7 @@ namespace Bubba
                 temperature
             };
 
-            return await SendRequestAsync( $"{_baseUrl}/chat/completions", _payload );
+            return await SendRequestAsync( $"{_endPoint}/chat/completions", _payload );
         }
 
         /// <summary>

@@ -6,7 +6,7 @@
 //     Last Modified By:        Terry D. Eppler
 //     Last Modified On:        11-18-2024
 // ******************************************************************************************
-// <copyright file="ChatGptBase.cs" company="Terry D. Eppler">
+// <copyright file="GptBase.cs" company="Terry D. Eppler">
 //    Bubba is a small windows (wpf) application for interacting with
 //    Chat GPT that's developed in C-Sharp under the MIT license
 // 
@@ -35,7 +35,7 @@
 //    You can contact me at:  terryeppler@gmail.com or eppler.terry@epa.gov
 // </copyright>
 // <summary>
-//   ChatGptBase.cs
+//   GptBase.cs
 // </summary>
 // ******************************************************************************************
 
@@ -43,12 +43,16 @@ namespace Bubba
 {
     using System;
     using System.Collections.Generic;
+    using System.Diagnostics.CodeAnalysis;
     using System.Linq;
     using System.Text;
     using System.Threading.Tasks;
     using System.Net.Http;
 
-    public abstract class ChatGptBase : PropertyChangedBase, IDisposable
+    [ SuppressMessage( "ReSharper", "FieldCanBeMadeReadOnly.Global" ) ]
+    [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
+    [ SuppressMessage( "ReSharper", "VirtualMemberNeverOverridden.Global" ) ]
+    public abstract class GptBase : PropertyChangedBase, IDisposable
     {
         /// <summary>
         /// The busy
@@ -58,7 +62,7 @@ namespace Bubba
         /// <summary>
         /// The path
         /// </summary>
-        private readonly object _entry = new object( );
+        private protected object _entry;
 
         /// <summary>
         /// The HTTP client
@@ -81,19 +85,29 @@ namespace Bubba
         private protected double _frequency;
 
         /// <summary>
-        /// The base URL
-        /// </summary>
-        private protected string _baseUrl;
-
-        /// <summary>
         /// The API key
         /// </summary>
         private protected string _apiKey;
 
         /// <summary>
+        /// The base URL
+        /// </summary>
+        private protected string _endPoint;
+
+        /// <summary>
         /// The chat model
         /// </summary>
         private protected string _model;
+
+        /// <summary>
+        /// The urls
+        /// </summary>
+        private protected IList<string> _endPoints;
+
+        /// <summary>
+        /// The models
+        /// </summary>
+        private protected IList<string> _models;
 
         /// <summary>
         /// A number between -2.0 and 2.0  Positive value decrease the
@@ -112,9 +126,10 @@ namespace Bubba
         private protected string _prompt;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="ChatGptBase"/> class.
+        /// Initializes a new instance of the
+        /// <see cref="GptBase"/> class.
         /// </summary>
-        protected ChatGptBase( )
+        protected GptBase( )
         {
         }
 
@@ -212,6 +227,51 @@ namespace Bubba
             else
             {
                 return input;
+            }
+        }
+
+        /// <summary>
+        /// Gets the available models.
+        /// </summary>
+        /// <returns>
+        /// A list of strings representing OpenAI models
+        /// </returns>
+        private protected IList<string> GetAvailableModels( )
+        {
+            try
+            {
+                _models.Add( "gpt-3.5-turbo" );
+                _models.Add( "gpt-3.5-turbo-16k" );
+                _models.Add( "gpt-4" );
+                _models.Add( "gpt-4-32k" );
+                _models.Add( "gpt-4o" );
+                _models.Add( "gpt-4o-mini" );
+                _models.Add( "o1-mini" );
+                return _models?.Any( ) == true
+                    ? _models
+                    : default( IList<string> );
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+                return default( IList<string> );
+            }
+        }
+
+        private protected IList<string> GetEndPoints( )
+        {
+            try
+            {
+                _endPoints.Add( "https://api.openai.com/v1/chat/completions" );
+                _endPoints.Add( "https://api.openai.com/v1/completions" );
+                return _endPoints?.Any( ) == true
+                    ? _endPoints
+                    : default(IList<string>);
+            }
+            catch(Exception ex)
+            {
+                Fail(ex);
+                return default(IList<string>);
             }
         }
 

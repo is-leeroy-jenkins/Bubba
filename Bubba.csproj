@@ -17,11 +17,13 @@
     <Optimize>True</Optimize>
     <WarningLevel>7</WarningLevel>
     <DebugType>embedded</DebugType>
+    <NoWarn>1701;1702;SYSLIB0014;</NoWarn>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
     <WarningLevel>7</WarningLevel>
     <DebugType>embedded</DebugType>
+    <NoWarn>1701;1702;SYSLIB0014;</NoWarn>
   </PropertyGroup>
 
   <ItemGroup>

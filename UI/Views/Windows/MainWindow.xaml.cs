@@ -120,6 +120,11 @@ namespace Bubba
         private protected string OPENAI_API_KEY = App.KEY;
 
         /// <summary>
+        /// The models
+        /// </summary>
+        private protected IList<string> _models;
+
+        /// <summary>
         /// The chat model
         /// </summary>
         private protected string _chatModel;
