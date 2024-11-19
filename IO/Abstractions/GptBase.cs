@@ -268,14 +268,26 @@ namespace Bubba
             {
                 _endPoints.Add( "https://api.openai.com/v1/chat/completions" );
                 _endPoints.Add( "https://api.openai.com/v1/completions" );
+                _endPoints.Add( "https://api.openai.com/v1/assistants" );                
+                _endPoints.Add( "https://api.openai.com/v1/fine_tuning/jobs" );
+                _endPoints.Add( "https://api.openai.com/v1/files" );
+                _endPoints.Add( "https://api.openai.com/v1/uploads" );
+                _endPoints.Add( "https://api.openai.com/v1/images/generations" );
+                _endPoints.Add( "https://api.openai.com/v1/images/variations" );
+                _endPoints.Add( "https://api.openai.com/v1/threads");
+                _endPoints.Add( "https://api.openai.com/v1/threads/runs" );
+                _endPoints.Add( "https://api.openai.com/v1/vector_stores" );
+                _endPoints.Add( "https://api.openai.com/v1/organization/invites" );
+                _endPoints.Add( "https://api.openai.com/v1/organization/users" );
+                _endPoints.Add( "https://api.openai.com/v1/organization/projects" );
                 return _endPoints?.Any( ) == true
                     ? _endPoints
-                    : default(IList<string>);
+                    : default( IList<string> );
             }
-            catch(Exception ex)
+            catch( Exception ex )
             {
                 Fail(ex);
-                return default(IList<string>);
+                return default( IList<string> );
             }
         }
 

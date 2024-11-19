@@ -122,7 +122,7 @@ namespace Bubba
         /// <summary>
         /// Initializes a new instance of the <see cref="DataConfig"/> class.
         /// </summary>
-        /// <param name="_dataConfig">The data arguments.</param>
+        /// <param name="_dataConfig"> The data arguments.</param>
         public DataConfig( DataConfig _dataConfig )
         {
             _source = _dataConfig.Source;

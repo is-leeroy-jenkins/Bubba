@@ -44,11 +44,6 @@ namespace Bubba
     using System;
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
-    using System.Linq;
-    using System.Text;
-    using System.Threading.Tasks;
-    using Newtonsoft.Json;
-    using Syncfusion.UI.Xaml.Scheduler;
     using JsonSerializer = System.Text.Json.JsonSerializer;
 
     [ SuppressMessage( "ReSharper", "UnusedType.Global" ) ]
@@ -104,14 +99,58 @@ namespace Bubba
         {
         }
 
-        public Payload( int id = 1, double frequency = 0.0, double presence = 0.0,
-            double temperature = 0.5, int tokens = 2048 )
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Payload"/> class.
+        /// </summary>
+        /// <param name = "prompt" > The ChatGPT prompt</param>
+        /// <param name="id">The identifier.</param>
+        /// <param name="frequency">The frequency.</param>
+        /// <param name="presence">The presence.</param>
+        /// <param name="temperature">The temperature.</param>
+        /// <param name="tokens">The tokens.</param>
+        public Payload( string prompt, int id = 1, double frequency = 0.0, 
+            double presence = 0.0, double temperature = 0.5, int tokens = 2048 )
         {
             _userId = id;
             _temperature = temperature;
             _maximumTokens = tokens;
             _frequency = frequency;
             _presence = presence;
+            _prompt = PadQuotes( prompt );
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the
+        /// <see cref="Payload"/> class.
+        /// </summary>
+        /// <param name="payload">The payload.</param>
+        public Payload( Payload payload )
+        {
+            _userId = payload.UserId;
+            _temperature = payload.Temperature;
+            _maximumTokens = payload.MaximumTokens;
+            _frequency = payload.Frequency;
+            _presence = payload.Presence;
+        }
+
+        /// <summary>
+        /// Deconstructs the specified user identifier.
+        /// </summary>
+        /// <param name = "prompt" > </param>
+        /// <param name="userId">The user identifier.</param>
+        /// <param name="frequency">The frequency.</param>
+        /// <param name="presence">The presence.</param>
+        /// <param name="temperature">The temperature.</param>
+        /// <param name="maximumTokens">The maximum tokens.</param>
+        public void Deconstruct( out string prompt, out int userId, out double frequency, 
+            out double presence, out double temperature, out int maximumTokens )
+        {
+            userId = _userId;
+            temperature = _temperature;
+            frequency = _frequency;
+            presence = _presence;
+            maximumTokens = _maximumTokens;
+            prompt = _prompt;
         }
 
         /// <summary>
@@ -303,7 +342,7 @@ namespace Bubba
                         user = _userId,
                         _temperature,
                         frequency_penalty = _frequency,
-                        presence_penalty =_presence,
+                        presence_penalty = _presence,
                         stop = new[ ]
                         {
                             "#",

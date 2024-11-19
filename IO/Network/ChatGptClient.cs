@@ -59,6 +59,11 @@ namespace Bubba
     [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
     public class ChatGptClient : GptBase
     {
+        private const string KEY = "sk-proj-qW9o_PoT2CleBXOErbGxe2UlOeHtgJ9K-"
+            + "rVFooUImScUvXn44e4R9ivYZtbYh5OIObWepnxCGET3BlbkFJykj4Dt9MDZT2GQg"
+            + "NarXOifdSxGwmodYtevUniudDGt8vkUNmxurKO9DkULeAUVz3rdY9g_-OsA";
+
+        /// <summary
         /// <inheritdoc />
         /// <summary>
         /// Initializes a new instance of the
@@ -68,9 +73,9 @@ namespace Bubba
             : base( )
         {
             _entry = new object( );
-            _apiKey = App.KEY;
-            _presence = double.Parse( "0.0" );
-            _frequency = double.Parse( "0.0" );
+            _apiKey = KEY;
+            _presence = 0.0;
+            _frequency = 0.0;
             _temperature = 0.5;
             _maximumTokens = 2048;
             _model = "gpt-3.5-turbo";
@@ -89,9 +94,9 @@ namespace Bubba
         public ChatGptClient( string chatModel, double temperature = 0.5, int maximum = 2048 ) 
             : this( )
         {
-            _apiKey = App.KEY;
-            _presence = double.Parse( "0.0" );
-            _frequency = double.Parse( "0.0" );
+            _apiKey = KEY;
+            _presence = 0.0;
+            _frequency = 0.0;
             _temperature = temperature;
             _maximumTokens = maximum;
             _model = chatModel;
@@ -261,8 +266,6 @@ namespace Bubba
 
             var _responseJson = await _response.Content.ReadAsStringAsync( );
             dynamic _result = JsonConvert.DeserializeObject( _responseJson );
-
-            // Extract the relevant part of the response for each API
             if( url.Contains( "/completions" ) )
             {
                 return _result?.choices[ 0 ]?.text ?? "No response.";
@@ -280,7 +283,7 @@ namespace Bubba
         /// </summary>
         /// <param name="prompt">The question.</param>
         /// <returns></returns>
-        public string SendHttpMessage( string prompt )
+        public string WebGenerate( string prompt )
         {
             try
             {
@@ -293,14 +296,14 @@ namespace Bubba
                     : "https://api.openai.com/v1/completions";
 
                 // Validate randomness (temperature)
-                var _requestData = CreatePayload( prompt, _temperature );
+                var _payload = CreatePayload( prompt );
                 var _request = WebRequest.Create( _url );
                 _request.Method = "POST";
                 _request.ContentType = "application/json";
                 _request.Headers.Add( "Authorization", $"Bearer {App.KEY}" );
                 using var _requestStream = _request.GetRequestStream( );
                 using var _writer = new StreamWriter( _requestStream );
-                _writer.Write( _requestData );
+                _writer.Write( _payload );
                 using var _response = _request.GetResponse( );
                 using var _responseStream = _response.GetResponseStream( );
                 if( _responseStream == null )
@@ -310,7 +313,7 @@ namespace Bubba
 
                 using var _reader = new StreamReader( _responseStream );
                 var _jsonResponse = _reader.ReadToEnd( );
-                return ExtractMessageFromResponse( _jsonResponse, _model );
+                return ExtractMessageFromResponse( _jsonResponse );
             }
             catch( Exception ex )
             {
@@ -324,9 +327,8 @@ namespace Bubba
         /// Builds the request data.
         /// </summary>
         /// <param name="prompt">The question.</param>
-        /// <param name="temperature">The temperature.</param>
         /// <returns></returns>
-        private string CreatePayload( string prompt, double temperature )
+        private string CreatePayload( string prompt )
         {
             if( _model.Contains( "gpt-3.5-turbo" ) )
             {
@@ -351,7 +353,7 @@ namespace Bubba
                     prompt,
                     max_tokens = _maximumTokens,
                     user = _userId,
-                    temperature,
+                    _temperature,
                     frequency_penalty = 0.0,
                     presence_penalty = 0.0,
                     stop = new[ ]
@@ -368,30 +370,43 @@ namespace Bubba
         /// Helper method to extract the message from the JSON response
         /// </summary>
         /// <param name="response">The json response.</param>
-        /// <param name="chatModel">The chat model.</param>
         /// <returns></returns>
-        private string ExtractMessageFromResponse( string response, string chatModel )
+        private string ExtractMessageFromResponse( string response )
         {
-            using var _document = JsonDocument.Parse( response );
-            var _root = _document.RootElement;
-            if( chatModel.Contains( "gpt-3.5-turbo" ) )
+            try
             {
-                var _choices = _root.GetProperty( "choices" );
-                if( _choices.ValueKind == JsonValueKind.Array
-                    && _choices.GetArrayLength( ) > 0 )
+                ThrowIf.Empty( response, nameof( response ) );
+                using var _document = JsonDocument.Parse( response );
+                var _root = _document.RootElement;
+                if( _model.Contains( "gpt-3.5-turbo" ) )
                 {
-                    var _element = _choices[ 0 ].GetProperty( "message" );
-                    return _element.GetProperty( "content" ).GetString( );
+                    var _choices = _root.GetProperty( "choices" );
+                    if( _choices.ValueKind == JsonValueKind.Array
+                        && _choices.GetArrayLength( ) > 0 )
+                    {
+                        var _element = _choices[ 0 ].GetProperty( "message" );
+                        return _element.GetProperty( "content" ).GetString( );
+                    }
+
+                    return _choices[ 0 ].GetProperty( "message" ).GetString( );
+                }
+                else
+                {
+                    return _root.GetProperty( "choices" )[ 0 ].GetProperty( "text" ).GetString( );
                 }
             }
-            else
+            catch( Exception ex )
             {
-                return _root.GetProperty( "choices" )[ 0 ].GetProperty( "text" ).GetString( );
+                Fail( ex );
+                return string.Empty;
             }
-
-            return string.Empty;
         }
 
+        /// <summary>
+        /// Sends the HTTP message asynchronous.
+        /// </summary>
+        /// <param name="prompt">The prompt.</param>
+        /// <returns></returns>
         public async Task<string> SendHttpMessageAsync( string prompt )
         {
             var _temp = _temperature;
