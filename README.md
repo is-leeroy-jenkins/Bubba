@@ -153,6 +153,6 @@ Bubba has integrated the following services for additional functions, which can 
 
 ## 📝 License
 
-Bubba is published under the [GNU General Public License v3](https://github.com/is-leeroy-jenkins/Bubba/blob/main/LICENSE).
+Bubba is published under the [MIT General Public License v3](https://github.com/is-leeroy-jenkins/Bubba/blob/main/LICENSE).
 
 The licenses of the libraries used can be found [here](https://github.com/is-leeroy-jenkins/Bubba/tree/main/Resources/Licenses).
