@@ -13,7 +13,7 @@ _
 
 </div>
 
-## ![](https://github.com/is-leeroy-jenkins//Bubba/blob/master/Resources/Assets/GitHubImages/features.png) Features
+## ![](https://github.com/is-leeroy-jenkins/Bubba/blob/master/Resources/Assets/GitHubImages/features.png) Features
 
 - **Asynchronous ChatGPT Interactio**: Efficiently sent prompts to the OpenAI Completions and Assistants API.
 - **Data Collection**: Collects data such as PDFs, CSVs, DOCX, XLS, PPTX, TXT, Images, Videos, JSON, DBSQL, XML, HTML, PHP, JS, Archives, and Miscellaneous files.
