@@ -97,9 +97,9 @@ Bubba uses the following projects and libraries. Please consider supporting them
 
 |                                                                               |                                                                        |
 | ----------------------------------------------------------------------------- | ---------------------------------------------------------------------- |
-| [#SNMP Library](https://github.com/lextudio/sharpsnmplib)                     | SNMP library for .NET                                                  |
-| [AirspaceFixer](https://github.com/chris84948/AirspaceFixer)                  | AirspacePanel fixes all Airspace issues with WPF-hosted Winforms.      |
-| [ControlzEx](https://github.com/ControlzEx/ControlzEx)                        | Shared Controlz for WPF and more                                       |
+| [LinqStatistics](https://www.nuget.org/packages/LinqStatistics)                     | SNMP library for .NET                                                  |
+| [System.Data.SqlServerCe](https://www.nuget.org/packages/System.Data.SqlServerCe_unofficial)                  | AirspacePanel fixes all Airspace issues with WPF-hosted Winforms.      |
+| [Microsoft.Office.Interop.Outlook 15.0.4797.1004](https://www.nuget.org/packages/Microsoft.Office.Interop.Outlook)                        | Shared Controlz for WPF and more                                       |
 | [DnsClient.NET](https://github.com/MichaCo/DnsClient.NET)                     | Powerful, high-performance open-source library for DNS lookups         |
 | [Docusaurus](https://docusaurus.io/)                                          | Easy to maintain open source documentation websites.                   |
 | [Dragablz](https://dragablz.net/)                                             | Tearable TabControl for WPF                                            |
