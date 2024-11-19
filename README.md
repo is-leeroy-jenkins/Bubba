@@ -95,7 +95,7 @@ You can build the application like any other .NET / WPF application on Windows.
 
 Bubba uses the following projects and libraries. Please consider supporting them as well (e.g., by starring their repositories):
 
-|                                                                               |                                                                        |
+|                                 Library                                       |             Description                                                |
 | ----------------------------------------------------------------------------- | ---------------------------------------------------------------------- |
 | [CefSharp.WPF.Core](https://github.com/cefsharp)                              | .NET (WPF/Windows Forms) bindings for the Chromium Embedded Framework  |
 | [Epplus](https://github.com/EPPlusSoftware/EPPlus)                  		    | EPPlus-Excel spreadsheets for .NET      								 |
