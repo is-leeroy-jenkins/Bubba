@@ -55,22 +55,17 @@ namespace Bubba
         /// <summary>
         /// The messages
         /// </summary>
-        private IList<string> _messages;
+        private protected IList<IGptMessage> _messages;
 
         /// <summary>
         /// The store
         /// </summary>
-        private bool _store;
+        private protected bool _store;
 
         /// <summary>
         /// The user identifier
         /// </summary>
         private protected int _id;
-
-        /// <summary>
-        /// ID of the model to use.
-        /// </summary>
-        private protected string _model;
 
         /// <summary>
         /// A number between -2.0 and 2.0  Positive value decrease the
@@ -90,6 +85,11 @@ namespace Bubba
         /// decreasing the model's likelihood to repeat the same line verbatim.
         /// </summary>
         private protected double _frequency;
+
+        /// <summary>
+        /// The body
+        /// </summary>
+        private protected GptBody _body;
 
         /// <summary>
         /// Number between -2.0 and 2.0. Positive values penalize new tokens
@@ -265,18 +265,18 @@ namespace Bubba
         /// <value>
         /// The chat model.
         /// </value>
-        public string Model
+        public GptBody Body
         {
             get
             {
-                return _model;
+                return _body;
             }
             set
             {
-                if( _model != value )
+                if( _body != value )
                 {
-                    _model = value;
-                    OnPropertyChanged( nameof( Model ) );
+                    _body = value;
+                    OnPropertyChanged( nameof( Body ) );
                 }
             }
         }

@@ -305,7 +305,7 @@ namespace Bubba
         /// and unmanaged resources;
         /// <c>false</c> to release only unmanaged resources.
         /// </param>
-        protected virtual void Dispose( bool disposing )
+        public virtual void Dispose( bool disposing )
         {
             if( disposing )
             {

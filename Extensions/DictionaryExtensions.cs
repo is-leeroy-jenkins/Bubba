@@ -52,6 +52,7 @@ namespace Bubba
     using System.Data.SqlServerCe;
     using System.Diagnostics.CodeAnalysis;
     using System.Linq;
+    using System.Text.Json;
 
     /// <summary>
     /// 
@@ -69,7 +70,7 @@ namespace Bubba
         /// Updates a IDictionary( K, V ) with a TKey and TValue or adds it
         /// </summary>
         /// <typeparam name="K">The type of the key.</typeparam>
-        /// <typeparam name="_value">The type of the value.</typeparam>
+        /// <typeparam name="V">The type of the value.</typeparam>
         /// <param name="dict">The dictionary.</param>
         /// <param name="key">The key.</param>
         /// <param name="value">The value.</param>
@@ -138,36 +139,15 @@ namespace Bubba
                 try
                 {
                     var _criteria = "";
-                    if( dict.HasPrimaryKey( ) )
+                    foreach( var _kvp in dict )
                     {
-                        var _key = dict.GetPrimaryKey( );
-                        if( !string.IsNullOrEmpty( _key.Key )
-                            & ( int.Parse( _key.Value.ToString( ) ) > -1 ) )
-                        {
-                            foreach( var _kvp in dict )
-                            {
-                                _criteria += $"{_kvp.Key} = '{_kvp.Value}' AND ";
-                            }
-
-                            var _sql = _criteria.TrimEnd( " AND ".ToCharArray( ) );
-                            _sql += $" WHERE {_key.Key} = {int.Parse( _key.Value.ToString( ) )};";
-                            return !string.IsNullOrEmpty( _sql )
-                                ? _sql
-                                : string.Empty;
-                        }
+                        _criteria += $"{_kvp.Key} = '{_kvp.Value}' AND ";
                     }
-                    else if( !dict.HasPrimaryKey( ) )
-                    {
-                        foreach( var _kvp in dict )
-                        {
-                            _criteria += $"{_kvp.Key} = '{_kvp.Value}' AND ";
-                        }
 
-                        var _sql = _criteria.TrimEnd( " AND ".ToCharArray( ) );
-                        return !string.IsNullOrEmpty( _sql )
-                            ? _sql
-                            : string.Empty;
-                    }
+                    var _sql = _criteria.TrimEnd( " AND ".ToCharArray( ) );
+                    return !string.IsNullOrEmpty( _sql )
+                        ? _sql
+                        : string.Empty;
                 }
                 catch( Exception ex )
                 {
@@ -350,73 +330,6 @@ namespace Bubba
         }
 
         /// <summary>
-        /// Determines whether [has a primary key].
-        /// </summary>
-        /// <param name="dict">The row.</param>
-        /// <returns>
-        /// <c> true </c>
-        /// if [has primary key] [the specified row]; otherwise,
-        /// <c> false </c>
-        /// .
-        /// </returns>
-        public static bool HasPrimaryKey( this IDictionary<string, object> dict )
-        {
-            try
-            {
-                var _array = dict.Keys?.ToArray( );
-                var _names = Enum.GetNames( typeof( PrimaryKey ) );
-                var _count = 0;
-                for( var _i = 1; _i < _array.Length; _i++ )
-                {
-                    var _name = _array[ _i ];
-                    if( _names.Contains( _name ) )
-                    {
-                        _count++;
-                    }
-                }
-
-                return _count > 0;
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
-                return default( bool );
-            }
-        }
-
-        /// <summary>
-        /// Gets the primary key.
-        /// </summary>
-        /// <param name="dict">The dictionary.</param>
-        /// <returns></returns>
-        public static KeyValuePair<string, object> GetPrimaryKey(
-            this IDictionary<string, object> dict )
-        {
-            if( dict?.Any( ) == true
-                && dict.HasPrimaryKey( ) )
-            {
-                try
-                {
-                    var _names = Enum.GetNames( typeof( PrimaryKey ) );
-                    foreach( var _kvp in dict )
-                    {
-                        if( _names.Contains( _kvp.Key ) )
-                        {
-                            return new KeyValuePair<string, object>( _kvp.Key, _kvp.Value );
-                        }
-                    }
-                }
-                catch( Exception ex )
-                {
-                    Fail( ex );
-                    return default( KeyValuePair<string, object> );
-                }
-            }
-
-            return default( KeyValuePair<string, object> );
-        }
-
-        /// <summary>
         /// Converts to Key bindinglist.
         /// </summary>
         /// <typeparam name="_"></typeparam>
@@ -480,6 +393,50 @@ namespace Bubba
             }
 
             return default( BindingList<object> );
+        }
+
+        /// <summary>
+        /// Converts to json.
+        /// </summary>
+        /// <param name="dict">The dictionary.</param>
+        /// <returns></returns>
+        /// <exception cref="System.ArgumentNullException">
+        /// dictionary - Dictionary cannot be null</exception>
+        public static string ToJson( this IDictionary<string, object> dict )
+        {
+            if( dict == null )
+            {
+                throw new ArgumentNullException( nameof( dict ), "Dictionary cannot be null" );
+            }
+
+            var _options = new JsonSerializerOptions
+            {
+                WriteIndented = true
+            };
+
+            return JsonSerializer.Serialize( dict, _options );
+        }
+
+        /// <summary>
+        /// Converts to json.
+        /// </summary>
+        /// <param name="dict">The dictionary.</param>
+        /// <returns></returns>
+        /// <exception cref="System.ArgumentNullException">
+        /// dict - Dictionary cannot be null</exception>
+        public static string ToJson( this IDictionary<string, string> dict )
+        {
+            if( dict == null )
+            {
+                throw new ArgumentNullException(nameof(dict), "Dictionary cannot be null");
+            }
+
+            var _options = new JsonSerializerOptions
+            {
+                WriteIndented = true
+            };
+
+            return JsonSerializer.Serialize( dict, _options );
         }
 
         /// <summary>

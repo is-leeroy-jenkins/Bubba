@@ -57,13 +57,12 @@ namespace Bubba
 
     [ SuppressMessage( "ReSharper", "UnusedType.Global" ) ]
     [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
-    public class GptClient : GptBase
+    public class GptClient : GptBase, IGptClient
     {
         private const string KEY = "sk-proj-qW9o_PoT2CleBXOErbGxe2UlOeHtgJ9K-"
             + "rVFooUImScUvXn44e4R9ivYZtbYh5OIObWepnxCGET3BlbkFJykj4Dt9MDZT2GQg"
             + "NarXOifdSxGwmodYtevUniudDGt8vkUNmxurKO9DkULeAUVz3rdY9g_-OsA";
 
-        /// <summary
         /// <inheritdoc />
         /// <summary>
         /// Initializes a new instance of the
@@ -101,6 +100,7 @@ namespace Bubba
             _endPoint = "https://api.openai.com/v1/chat/completions";
         }
 
+        /// <inheritdoc />
         /// <summary>
         /// Gets the user identifier.
         /// </summary>
@@ -123,6 +123,7 @@ namespace Bubba
             }
         }
 
+        /// <inheritdoc />
         /// <summary>
         /// Gets the frequency.
         /// </summary>
@@ -145,6 +146,7 @@ namespace Bubba
             }
         }
 
+        /// <inheritdoc />
         /// <summary>
         /// Gets the temperature.
         /// </summary>
@@ -167,6 +169,7 @@ namespace Bubba
             }
         }
 
+        /// <inheritdoc />
         /// <summary>
         /// Gets the presence.
         /// </summary>
@@ -189,6 +192,7 @@ namespace Bubba
             }
         }
 
+        /// <inheritdoc />
         /// <summary>
         /// Gets the maximum tokens.
         /// </summary>
@@ -211,6 +215,12 @@ namespace Bubba
             }
         }
 
+        /// <summary>
+        /// Gets the end point.
+        /// </summary>
+        /// <value>
+        /// The end point.
+        /// </value>
         public string EndPoint
         {
             get
@@ -227,6 +237,7 @@ namespace Bubba
             }
         }
 
+        /// <inheritdoc />
         /// <summary>
         /// Gets the chat model.
         /// </summary>
@@ -249,6 +260,7 @@ namespace Bubba
             }
         }
 
+        /// <inheritdoc />
         /// <summary>
         /// Gets the prompt.
         /// </summary>
@@ -271,6 +283,7 @@ namespace Bubba
             }
         }
 
+        /// <inheritdoc />
         /// <summary>
         /// Sends a request to the Chat (Assistant) API.
         /// </summary>
@@ -288,10 +301,11 @@ namespace Bubba
             return await SendRequestAsync( $"{_endPoint}/chat/completions", _payload );
         }
 
+        /// <inheritdoc />
         /// <summary>
         /// Handles POST requests and response parsing.
         /// </summary>
-        private async Task<string> SendRequestAsync( string url, object payload )
+        public async Task<string> SendRequestAsync( string url, object payload )
         {
             var _serial = JsonConvert.SerializeObject( payload );
             var _content = new StringContent( _serial, Encoding.UTF8, "application/json" );
@@ -320,6 +334,7 @@ namespace Bubba
             return "Unexpected response format.";
         }
 
+        /// <inheritdoc />
         /// <summary>
         /// Sends the HTTP message.
         /// </summary>
@@ -365,12 +380,13 @@ namespace Bubba
         }
 
         // Helper method to build the request payload
+        /// <inheritdoc />
         /// <summary>
         /// Builds the request data.
         /// </summary>
         /// <param name="prompt">The question.</param>
         /// <returns></returns>
-        private string CreatePayload( string prompt )
+        public string CreatePayload( string prompt )
         {
             if( _model.Contains( "gpt-3.5-turbo" ) )
             {
@@ -444,6 +460,7 @@ namespace Bubba
             }
         }
 
+        /// <inheritdoc />
         /// <summary>
         /// Sends the HTTP message asynchronous.
         /// </summary>

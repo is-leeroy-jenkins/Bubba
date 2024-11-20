@@ -62,7 +62,7 @@ namespace Bubba
         /// Called when [property changed].
         /// </summary>
         /// <param name="propertyName">Name of the property.</param>
-        protected void OnPropertyChanged( [ CallerMemberName ] string propertyName = null )
+        public void OnPropertyChanged( [ CallerMemberName ] string propertyName = null )
         {
             PropertyChanged?.Invoke( this, new PropertyChangedEventArgs( propertyName ) );
         }
