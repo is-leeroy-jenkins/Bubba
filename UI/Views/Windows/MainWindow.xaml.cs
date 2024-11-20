@@ -609,7 +609,7 @@ namespace Bubba
         {
             try
             {
-                StatusLabel.Content = DateTime.Now.ToLongTimeString( );
+                //StatusLabel.Content = DateTime.Now.ToLongTimeString( );
             }
             catch( Exception ex )
             {
@@ -640,33 +640,41 @@ namespace Bubba
         /// instance containing the event data.</param>
         private void OnLoad( object sender, RoutedEventArgs e )
         {
-            var _apiKey = App.KEY;
-            if( _apiKey == "" )
+            try
             {
-                var _msg = "Please enter your OpenAI API key file.";
-                SendMessage( _msg );
-                Application.Current.Shutdown( );
-            }
-            else
-            {
-                OPENAI_API_KEY = _apiKey;
-            }
+                var _apiKey = App.KEY;
+                if( _apiKey == "" )
+                {
+                    var _msg = "Please enter your OpenAI API key file.";
+                    SendMessage( _msg );
+                    Application.Current.Shutdown( );
+                }
+                else
+                {
+                    OPENAI_API_KEY = _apiKey;
+                }
 
-            PopulateModelsAsync( );
-            ModelComboBox.AllowMultiSelect = false;
-            VoiceComboBox.Items.Clear( );
-            var _synth = new SpeechSynthesizer( );
-            var _voices = _synth.GetInstalledVoices( );
-            for( var _index = 0; _index < _voices.Count; _index++ )
-            {
-                var _voice = _voices[ _index ];
-                VoiceComboBox.Items.Add( _voice.VoiceInfo.Name );
-            }
+                PopulateModelsAsync( );
+                ModelComboBox.AllowMultiSelect = false;
+                VoiceComboBox.Items.Clear( );
+                var _synth = new SpeechSynthesizer( );
+                var _voices = _synth.GetInstalledVoices( );
+                for( var _index = 0; _index < _voices.Count; _index++ )
+                {
+                    var _voice = _voices[ _index ];
+                    VoiceComboBox.Items.Add( _voice.VoiceInfo.Name );
+                }
 
-            VoiceComboBox.AllowMultiSelect = false;
-            InitializeTimer( );
-            ProgressBar.Visibility = Visibility.Hidden;
-            ProgressLabel.Visibility = Visibility.Hidden;
+                VoiceComboBox.AllowMultiSelect = false;
+                InitializeTimer( );
+
+                //ProgressBar.Visibility = Visibility.Hidden;
+                //ProgressLabel.Visibility = Visibility.Hidden;
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+            }
         }
 
         /// <summary>
@@ -919,13 +927,13 @@ namespace Bubba
         {
             // Reset Hypothesized text
             SpeechLabel.Content = "";
-            if( QuestionTextBox.Text != "" )
+            if( UserTextBox.Text != "" )
             {
-                QuestionTextBox.Text += "\n";
+                UserTextBox.Text += "\n";
             }
 
             var _text = e.Result.Text;
-            QuestionTextBox.Text += _text;
+            UserTextBox.Text += _text;
         }
 
         /// <summary>
@@ -949,11 +957,11 @@ namespace Bubba
         private void OnSendButtonClick( object sender, RoutedEventArgs e )
         {
             {
-                var _question = QuestionTextBox.Text;
+                var _question = UserTextBox.Text;
                 if( string.IsNullOrEmpty( _question ) )
                 {
                     MessageBox.Show( "Type in your question!" );
-                    QuestionTextBox.Focus( );
+                    UserTextBox.Focus( );
                     return;
                 }
 
@@ -963,7 +971,7 @@ namespace Bubba
                 }
 
                 AnswerTextBox.AppendText( "User: " + _question + "\r\n" );
-                QuestionTextBox.Text = "";
+                UserTextBox.Text = "";
                 try
                 {
                     var _answer = SendHttpMessage( _question ) + "";

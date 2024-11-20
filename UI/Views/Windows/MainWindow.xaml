@@ -7,18 +7,16 @@
     xmlns:sync="http://schemas.syncfusion.com/wpf"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
     x:Name="BubbaWindow"
     Title="Bubba GPT"
-    Width="825"
-    Height="525"
-    MaxWidth="1050"
-    MaxHeight="550"
-    sync:SfSkinManager.Theme="{skin:SkinManagerExtension ThemeName=FluentDark}"
+    Width="840"
+    Height="540"
+    MaxWidth="1500"
+    MaxHeight="1000"
+    sync:SfSkinManager.Theme="{sync:SkinManager ThemeName=FluentDark}"
     WindowStartupLocation="CenterScreen"
     Icon="/Resources/Assets/ApplicationImages/Bubba.ico"
-    Background="{StaticResource FormBackground}"
-    Foreground="{StaticResource FormForeground}"
-    BorderBrush="{StaticResource BlueBorderBrush}"
     BorderThickness="1"
     FontFamily="Roboto"
     FontSize="12"
@@ -27,7 +25,7 @@
     <!--  ******************************************** Resources *********************************************  -->
 
     <Window.Resources>
-        <Style TargetType="ToolTip">
+        <Style TargetType="{x:Type ToolTip}">
             <Setter Property="BorderThickness" Value="1" />
             <Setter Property="Padding" Value="10" />
             <Setter Property="BorderBrush" Value="{StaticResource BlueBorderBrush}" />
@@ -35,6 +33,16 @@
             <Setter Property="Foreground" Value="{StaticResource LightBlueBrush}" />
         </Style>
     </Window.Resources>
+
+    <Window.Background>
+        <StaticResource ResourceKey="FormBackground" />
+    </Window.Background>
+    <Window.Foreground>
+        <StaticResource ResourceKey="FormForeground" />
+    </Window.Foreground>
+    <Window.BorderBrush>
+        <StaticResource ResourceKey="BlueBorderBrush" />
+    </Window.BorderBrush>
 
     <!--  ******************************************** Context Menu ******************************************  -->
 
@@ -150,10 +158,46 @@
             <RowDefinition Height="97*" />
             <RowDefinition Height="41*" />
         </Grid.RowDefinitions>
-
-        <Canvas Grid.Row="3" />
-
-        <Canvas Grid.Row="1" />
+        <Grid Grid.Row="3">
+            <Label
+                x:Name="UserLabel"
+                Margin="1,5,10,75"
+                HorizontalContentAlignment="Center"
+                Content="User"
+                FontFamily="Roboto" />
+            <b:MetroTextBox
+                x:Name="UserTextBox"
+                MinWidth="480"
+                MinHeight="25"
+                Margin="40,29,43,10"
+                Padding="15,15,1,1"
+                TextWrapping="Wrap"
+                Text=""
+                FontSize="12" />
+        </Grid>
+        <Grid Grid.Row="1">
+            <b:MetroTextBox
+                x:Name="AnswerTextBox"
+                Height="140"
+                MinWidth="480"
+                MinHeight="50"
+                Margin="28,27,28,0"
+                Padding="15,15,5,5"
+                VerticalAlignment="Top"
+                TextWrapping="Wrap"
+                Text=""
+                FontSize="12" />
+            <Label
+                x:Name="SystemLabel"
+                Width="783"
+                Height="22"
+                Margin="0,5,0,0"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Top"
+                HorizontalContentAlignment="Center"
+                Content="System"
+                FontFamily="Roboto" />
+        </Grid>
 
         <Grid
             Grid.Row="2"
@@ -167,37 +211,34 @@
                 <ColumnDefinition Width="263*" />
             </Grid.ColumnDefinitions>
 
-            <Canvas
+            <Grid
                 x:Name="SenderCanvas"
                 Height="125"
                 Margin="0,-2,0,0"
                 VerticalAlignment="Top">
                 <Button
                     x:Name="SendButton"
-                    Canvas.Left="41"
-                    Canvas.Top="27"
                     Width="89"
                     Height="35"
-                    HorizontalAlignment="Center"
-                    VerticalAlignment="Center"
+                    Margin="41,27,0,0"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Top"
                     Content="Send"
                     ToolTip="Send Chat Message"
                     RenderTransformOrigin="0.126,1.373" />
 
                 <Button
                     x:Name="ClearButton"
-                    Canvas.Left="41"
-                    Canvas.Top="80"
                     Width="89"
                     Height="35"
+                    Margin="41,80,0,0"
                     HorizontalAlignment="Left"
-                    VerticalAlignment="Center"
+                    VerticalAlignment="Top"
                     Content="Clear"
                     ToolTip="Clear Chat Log" />
 
-            </Canvas>
-
-            <Canvas
+            </Grid>
+            <Grid
                 x:Name="UserCanvas"
                 Grid.Column="1"
                 Height="125"
@@ -206,25 +247,19 @@
 
                 <Label
                     x:Name="UserIdLabel"
-                    Canvas.Left="10"
-                    Canvas.Top="20"
                     Width="49"
                     Height="24"
-                    HorizontalAlignment="Center"
-                    VerticalAlignment="Center"
+                    Margin="10,20,0,0"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Top"
                     VerticalContentAlignment="Stretch"
                     Content="User ID" />
 
                 <b:MetroTextBox
                     x:Name="UserIdTextBox"
-                    Canvas.Left="64"
-                    Canvas.Top="20"
-                    Width="40"
-                    Height="24"
                     MaxWidth="60"
+                    Margin="64,20,26,81"
                     Padding="3,1,1,1"
-                    HorizontalAlignment="Stretch"
-                    VerticalAlignment="Stretch"
                     HorizontalContentAlignment="Left"
                     VerticalContentAlignment="Center"
                     TextWrapping="Wrap"
@@ -232,7 +267,7 @@
                     ToolTip="User ID"
                     FontFamily="Roboto"
                     FontSize="12" />
-            </Canvas>
+            </Grid>
 
             <Canvas
                 x:Name="RandomCanvas"
@@ -329,38 +364,35 @@
                     FontSize="12" />
             </Canvas>
 
-            <Canvas
+            <Grid
                 Grid.Column="4"
-                Margin="0,0,0,6">
+                Margin="3">
 
                 <Label
                     x:Name="VoiceLabel"
-                    Canvas.Left="5"
-                    Canvas.Top="84"
                     Width="55"
                     Height="26"
-                    HorizontalAlignment="Center"
+                    Margin="5,84,0,0"
+                    HorizontalAlignment="Left"
                     VerticalAlignment="Top"
                     HorizontalContentAlignment="Right"
                     Content="Voice" />
 
                 <Label
                     x:Name="ModelLabel"
-                    Canvas.Left="5"
-                    Canvas.Top="20"
                     Width="55"
                     Height="26"
+                    Margin="5,20,0,0"
                     HorizontalAlignment="Left"
-                    VerticalAlignment="Center"
+                    VerticalAlignment="Top"
                     HorizontalContentAlignment="Right"
                     Content="Models" />
 
                 <sync:ComboBoxAdv
                     x:Name="ModelComboBox"
-                    Canvas.Left="65"
-                    Canvas.Top="15"
                     Width="175"
                     Height="36"
+                    Margin="65,15,0,0"
                     Padding="15,1,1,1"
                     HorizontalAlignment="Left"
                     VerticalAlignment="Top"
@@ -377,13 +409,12 @@
 
                 <sync:ComboBoxAdv
                     x:Name="VoiceComboBox"
-                    Canvas.Left="65"
-                    Canvas.Top="78"
                     Width="175"
                     Height="37"
+                    Margin="65,78,0,0"
                     Padding="15,1,1,1"
                     HorizontalAlignment="Left"
-                    VerticalAlignment="Center"
+                    VerticalAlignment="Top"
                     AllowMultiSelect="True"
                     DefaultText="Select"
                     ToolTip="Make a Voice Selection"
@@ -394,114 +425,15 @@
                     <sync:ComboBoxItemAdv Content="Item 4" />
                     <sync:ComboBoxItemAdv Content="Item 5" />
                 </sync:ComboBoxAdv>
-            </Canvas>
-        </Grid>
-
-
-        <b:MetroTextBox
-            x:Name="AnswerTextBox"
-            Grid.Row="1"
-            MinWidth="780"
-            MinHeight="150"
-            Margin="10,10,10,10"
-            Padding="15,15,5,5"
-            TextWrapping="Wrap"
-            Text=""
-            FontSize="12" />
-
-        <b:MetroTextBox
-            x:Name="QuestionTextBox"
-            Grid.Row="3"
-            MinWidth="780"
-            MinHeight="75"
-            Margin="10,10,10,10"
-            Padding="15,15,5,5"
-            TextWrapping="Wrap"
-            Text=""
-            FontSize="12" />
-
-        <Grid
-            x:Name="BottomGrid"
-            Grid.Row="4">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="430*" />
-                <ColumnDefinition Width="205*" />
-                <ColumnDefinition Width="188*" />
-                <ColumnDefinition />
-            </Grid.ColumnDefinitions>
-            <Canvas
-                x:Name="StatusLabelCanvas"
-                Grid.Column="0">
-                <b:MetroLabel
-                    x:Name="StatusLabel"
-                    Canvas.Left="10"
-                    Canvas.Top="10"
-                    Width="410"
-                    Height="30"
-                    Padding="1"
-                    HorizontalAlignment="Left"
-                    VerticalAlignment="Center"
-                    VerticalContentAlignment="Bottom"
-                    Foreground="{StaticResource BlueBorderBrush}"
-                    Content="Label" />
-            </Canvas>
-
-            <Canvas
-                x:Name="ProgressLabelCanvas"
-                Grid.Column="1">
-                <b:MetroLabel
-                    x:Name="ProgressLabel"
-                    Grid.Column="1"
-                    Canvas.Left="76"
-                    Canvas.Top="3"
-                    Width="119"
-                    Height="40"
-                    VerticalAlignment="Top"
-                    HorizontalContentAlignment="Right"
-                    VerticalContentAlignment="Center"
-                    Content="Processing" />
-            </Canvas>
-
-            <Canvas
-                x:Name="ProgressBarCanvas"
-                Grid.Column="3" />
-            <sync:SfLinearProgressBar
-                x:Name="ProgressBar"
-                Grid.Column="3"
-                Height="36"
-                Margin="6,0,10,0"
-                VerticalAlignment="Center"
-                HorizontalContentAlignment="Left"
-                VerticalContentAlignment="Stretch"
-                Background="{x:Null}"
-                BorderBrush="{x:Null}"
-                IsIndeterminate="True"
-                SnapsToDevicePixels="True">
-                <sync:SfLinearProgressBar.Foreground>
-                    <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1">
-                        <GradientStop Offset="0" Color="#FF0B3652" />
-                        <GradientStop Offset="1" Color="#FF278ED0" />
-                        <GradientStop Offset="0.224" Color="#FF0B283B" />
-                    </LinearGradientBrush>
-                </sync:SfLinearProgressBar.Foreground>
-            </sync:SfLinearProgressBar>
+            </Grid>
         </Grid>
 
         <Grid
             x:Name="TopGrid"
             Grid.Row="0">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition />
-                <ColumnDefinition />
-            </Grid.ColumnDefinitions>
-            <Canvas
-                x:Name="SpeechLabelCanvas"
-                Grid.Column="0" />
             <b:MetroLabel
                 x:Name="SpeechLabel"
-                Width="366"
-                Margin="0,4,0,4"
-                HorizontalAlignment="Center"
+                Margin="31,3,21,5"
                 HorizontalContentAlignment="Left"
                 Content="Speech..."
                 RenderTransformOrigin="0.5,0.5">
@@ -514,7 +446,31 @@
                     </TransformGroup>
                 </b:MetroLabel.RenderTransform>
             </b:MetroLabel>
+        </Grid>
 
+        <Grid
+            x:Name="BottomGrid"
+            Grid.Row="4"
+            Margin="0,1,0,0"
+            SnapsToDevicePixels="True">
+            <b:ToolStrip
+                Height="40"
+                Margin="10,5,10,-2"
+                Background="{StaticResource ResourceKey=FormBackground}">
+                <Separator />
+                <b:ToolStripLabel
+                    x:Name="StatusLabel"
+                    Width="80" />
+                <Separator />
+                <b:ToolStripButton />
+                <b:ToolStripButton />
+                <b:ToolStripButton />
+                <b:ToolStripButton />
+                <Separator />
+                <b:ToolStripButton />
+                <mah:MetroProgressBar x:Name="ProgressBar" />
+                <Separator />
+            </b:ToolStrip>
         </Grid>
     </Grid>
 </Window>

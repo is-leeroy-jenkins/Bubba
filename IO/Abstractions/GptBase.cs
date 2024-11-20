@@ -45,8 +45,6 @@ namespace Bubba
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
     using System.Linq;
-    using System.Text;
-    using System.Threading.Tasks;
     using System.Net.Http;
 
     [ SuppressMessage( "ReSharper", "FieldCanBeMadeReadOnly.Global" ) ]
@@ -72,7 +70,12 @@ namespace Bubba
         /// <summary>
         /// The user identifier
         /// </summary>
-        private protected int _userId;
+        private protected int _id;
+
+        /// <summary>
+        /// The user
+        /// </summary>
+        private protected string _user;
 
         /// <summary>
         /// The presence
@@ -236,7 +239,7 @@ namespace Bubba
         /// <returns>
         /// A list of strings representing OpenAI models
         /// </returns>
-        private protected IList<string> GetAvailableModels( )
+        private protected IList<string> GetModels( )
         {
             try
             {
@@ -268,13 +271,15 @@ namespace Bubba
             {
                 _endPoints.Add( "https://api.openai.com/v1/chat/completions" );
                 _endPoints.Add( "https://api.openai.com/v1/completions" );
-                _endPoints.Add( "https://api.openai.com/v1/assistants" );                
+                _endPoints.Add( "https://api.openai.com/v1/assistants" );
+                _endPoints.Add( "https://api.openai.com/v1/audio/speech" );
+                _endPoints.Add( "https://api.openai.com/v1/audio/translations" );
                 _endPoints.Add( "https://api.openai.com/v1/fine_tuning/jobs" );
                 _endPoints.Add( "https://api.openai.com/v1/files" );
                 _endPoints.Add( "https://api.openai.com/v1/uploads" );
                 _endPoints.Add( "https://api.openai.com/v1/images/generations" );
                 _endPoints.Add( "https://api.openai.com/v1/images/variations" );
-                _endPoints.Add( "https://api.openai.com/v1/threads");
+                _endPoints.Add( "https://api.openai.com/v1/threads" );
                 _endPoints.Add( "https://api.openai.com/v1/threads/runs" );
                 _endPoints.Add( "https://api.openai.com/v1/vector_stores" );
                 _endPoints.Add( "https://api.openai.com/v1/organization/invites" );
@@ -286,7 +291,7 @@ namespace Bubba
             }
             catch( Exception ex )
             {
-                Fail(ex);
+                Fail( ex );
                 return default( IList<string> );
             }
         }

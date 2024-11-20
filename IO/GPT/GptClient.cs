@@ -1,12 +1,12 @@
 ﻿// ******************************************************************************************
 //     Assembly:                Bubba
 //     Author:                  Terry D. Eppler
-//     Created:                 11-18-2024
+//     Created:                 11-19-2024
 // 
 //     Last Modified By:        Terry D. Eppler
-//     Last Modified On:        11-18-2024
+//     Last Modified On:        11-19-2024
 // ******************************************************************************************
-// <copyright file="ChatGptClient.cs" company="Terry D. Eppler">
+// <copyright file="GptClient.cs" company="Terry D. Eppler">
 //    Bubba is a small windows (wpf) application for interacting with
 //    Chat GPT that's developed in C-Sharp under the MIT license
 // 
@@ -35,7 +35,7 @@
 //    You can contact me at:  terryeppler@gmail.com or eppler.terry@epa.gov
 // </copyright>
 // <summary>
-//   ChatGptClient.cs
+//   GptClient.cs
 // </summary>
 // ******************************************************************************************
 
@@ -57,7 +57,7 @@ namespace Bubba
 
     [ SuppressMessage( "ReSharper", "UnusedType.Global" ) ]
     [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
-    public class ChatGptClient : GptBase
+    public class GptClient : GptBase
     {
         private const string KEY = "sk-proj-qW9o_PoT2CleBXOErbGxe2UlOeHtgJ9K-"
             + "rVFooUImScUvXn44e4R9ivYZtbYh5OIObWepnxCGET3BlbkFJykj4Dt9MDZT2GQg"
@@ -67,9 +67,9 @@ namespace Bubba
         /// <inheritdoc />
         /// <summary>
         /// Initializes a new instance of the
-        /// <see cref="T:Bubba.ChatGptClient" /> class.
+        /// <see cref="T:Bubba.GptClient" /> class.
         /// </summary>
-        public ChatGptClient( ) 
+        public GptClient( )
             : base( )
         {
             _entry = new object( );
@@ -80,26 +80,24 @@ namespace Bubba
             _maximumTokens = 2048;
             _model = "gpt-3.5-turbo";
             _endPoint = "https://api.openai.com/v1/chat/completions";
-            _endPoints = new List<string>( );
-            _models = new List<string>( );
+            _endPoints = GetEndPoints( );
+            _models = GetModels( );
         }
 
         /// <inheritdoc />
         /// <summary>
-        /// Initializes a new instance of the <see cref="T:Bubba.ChatGptClient" /> class.
+        /// Initializes a new instance of the
+        /// <see cref="T:Bubba.GptClient" /> class.
         /// </summary>
         /// <param name="temperature">The temperature.</param>
-        /// <param name="maximum">The maximum.</param>
-        /// <param name="chatModel">The chat model.</param>
-        public ChatGptClient( string chatModel, double temperature = 0.5, int maximum = 2048 ) 
+        /// <param name="tokens">The tokens.</param>
+        /// <param name="model">The chat model.</param>
+        public GptClient( string model, double temperature = 0.5, int tokens = 2048 )
             : this( )
         {
-            _apiKey = KEY;
-            _presence = 0.0;
-            _frequency = 0.0;
+            _model = model;
             _temperature = temperature;
-            _maximumTokens = maximum;
-            _model = chatModel;
+            _maximumTokens = tokens;
             _endPoint = "https://api.openai.com/v1/chat/completions";
         }
 
@@ -109,15 +107,19 @@ namespace Bubba
         /// <value>
         /// The user identifier.
         /// </value>
-        public int UserId
+        public int Id
         {
             get
             {
-                return _userId;
+                return _id;
             }
             private set
             {
-                _userId = value;
+                if( _id != value )
+                {
+                    _id = value;
+                    OnPropertyChanged( nameof( Id ) );
+                }
             }
         }
 
@@ -135,7 +137,11 @@ namespace Bubba
             }
             private set
             {
-                _frequency = value;
+                if( _frequency != value )
+                {
+                    _frequency = value;
+                    OnPropertyChanged( nameof( Frequency ) );
+                }
             }
         }
 
@@ -151,9 +157,13 @@ namespace Bubba
             {
                 return _temperature;
             }
-            private protected set
+            private set
             {
-                _temperature = value;
+                if( _temperature != value )
+                {
+                    _temperature = value;
+                    OnPropertyChanged( nameof( Temperature ) );
+                }
             }
         }
 
@@ -169,9 +179,13 @@ namespace Bubba
             {
                 return _presence;
             }
-            private protected set
+            private set
             {
-                _presence = value;
+                if( _presence != value )
+                {
+                    _presence = value;
+                    OnPropertyChanged( nameof( Presence ) );
+                }
             }
         }
 
@@ -189,7 +203,27 @@ namespace Bubba
             }
             private set
             {
-                _maximumTokens = value;
+                if( _maximumTokens != value )
+                {
+                    _maximumTokens = value;
+                    OnPropertyChanged( nameof( MaximumTokens ) );
+                }
+            }
+        }
+
+        public string EndPoint
+        {
+            get
+            {
+                return _endPoint;
+            }
+            private set
+            {
+                if( _endPoint != value )
+                {
+                    _endPoint = value;
+                    OnPropertyChanged( nameof( EndPoint ) );
+                }
             }
         }
 
@@ -207,7 +241,11 @@ namespace Bubba
             }
             private set
             {
-                _model = value;
+                if( _model != value )
+                {
+                    _model = value;
+                    OnPropertyChanged( nameof( Model ) );
+                }
             }
         }
 
@@ -225,7 +263,11 @@ namespace Bubba
             }
             private set
             {
-                _prompt = value;
+                if( _prompt != value )
+                {
+                    _prompt = value;
+                    OnPropertyChanged( nameof( Prompt ) );
+                }
             }
         }
 
@@ -258,14 +300,14 @@ namespace Bubba
             var _response = await _httpClient.PostAsync( url, _content );
             if( !_response.IsSuccessStatusCode )
             {
-                var _msg =
+                var _message =
                     $"Error: {_response.StatusCode}, {await _response.Content.ReadAsStringAsync( )}";
 
-                throw new Exception( _msg );
+                throw new Exception( _message );
             }
 
-            var _responseJson = await _response.Content.ReadAsStringAsync( );
-            dynamic _result = JsonConvert.DeserializeObject( _responseJson );
+            var _json = await _response.Content.ReadAsStringAsync( );
+            dynamic _result = JsonConvert.DeserializeObject( _json );
             if( url.Contains( "/completions" ) )
             {
                 return _result?.choices[ 0 ]?.text ?? "No response.";
@@ -352,7 +394,7 @@ namespace Bubba
                     model = _model,
                     prompt,
                     max_tokens = _maximumTokens,
-                    user = _userId,
+                    user = _id,
                     _temperature,
                     frequency_penalty = 0.0,
                     presence_penalty = 0.0,
@@ -410,7 +452,7 @@ namespace Bubba
         public async Task<string> SendHttpMessageAsync( string prompt )
         {
             var _temp = _temperature;
-            var _apiUrl = _model.Contains( "gpt-3.5-turbo" )
+            var _url = _model.Contains( "gpt-3.5-turbo" )
                 ? "https://api.openai.com/v1/chat/completions"
                 : "https://api.openai.com/v1/completions";
 
@@ -439,7 +481,7 @@ namespace Bubba
                     prompt = PadQuotes( prompt ),
                     max_tokens = _maximumTokens,
                     temperature = _temp,
-                    user = _userId,
+                    user = _id,
                     frequency_penalty = 0.0,
                     presence_penalty = 0.0,
                     stop = new[ ]
@@ -457,7 +499,7 @@ namespace Bubba
                     new AuthenticationHeaderValue( "Bearer", App.KEY );
 
                 var _content = new StringContent( _payload, Encoding.UTF8, "application/json" );
-                var _response = await _client.PostAsync( _apiUrl, _content );
+                var _response = await _client.PostAsync( _url, _content );
                 _response.EnsureSuccessStatusCode( );
                 var _responseText = await _response.Content.ReadAsStringAsync( );
                 if( _model.Contains( "gpt-3.5-turbo" ) )
@@ -465,7 +507,8 @@ namespace Bubba
                     using var _doc = JsonDocument.Parse( _responseText );
                     var _root = _doc.RootElement;
                     var _choice = _root.GetProperty( "choices" )[ 0 ];
-                    var _message = _choice.GetProperty( "message" ).GetProperty( "content" )
+                    var _message = _choice.GetProperty( "message" )
+                        .GetProperty( "content" )
                         .GetString( );
 
                     return _message ?? string.Empty;
