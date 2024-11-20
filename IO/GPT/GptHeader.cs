@@ -50,6 +50,10 @@ namespace Bubba
     [ SuppressMessage( "ReSharper", "FieldCanBeMadeReadOnly.Global" ) ]
     public class GptHeader : PropertyChangedBase
     {
+        private const string KEY = "sk-proj-qW9o_PoT2CleBXOErbGxe2UlOeHtgJ9K-"
+            + "rVFooUImScUvXn44e4R9ivYZtbYh5OIObWepnxCGET3BlbkFJykj4Dt9MDZT2GQg"
+            + "NarXOifdSxGwmodYtevUniudDGt8vkUNmxurKO9DkULeAUVz3rdY9g_-OsA";
+
         /// <summary>
         /// The content type
         /// </summary>
@@ -63,17 +67,7 @@ namespace Bubba
         /// <summary>
         /// The data
         /// </summary>
-        private protected IDictionary<string, object> _data;
-
-        /// <summary>
-        /// Initializes a new instance of the
-        /// <see cref="GptHeader"/> class.
-        /// </summary>
-        public GptHeader( )
-        {
-            _contentType = "application/json";
-            _data = new Dictionary<string, object>( );
-        }
+        private protected IDictionary<string, object> _data = new Dictionary<string, object>( );
 
         /// <inheritdoc />
         /// <summary>
@@ -81,11 +75,10 @@ namespace Bubba
         /// <see cref="T:Bubba.GptHeader" /> class.
         /// </summary>
         /// <param name="key">The key.</param>
-        public GptHeader( string key )
-            : this( )
+        public GptHeader( )
         {
             _contentType = "application/json";
-            _authorization = "Bearer " + key;
+            _authorization = "Bearer " + KEY;
             _data.Add( "content-type", "application/json" );
             _data.Add( "authorization", _authorization );
         }

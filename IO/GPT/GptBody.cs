@@ -48,8 +48,13 @@ namespace Bubba
     using System.Text;
     using System.Threading.Tasks;
 
+    /// <inheritdoc />
+    /// <summary>
+    /// </summary>
+    /// <seealso cref="T:Bubba.IGptBody" />
     [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
-    public class GptBody : IGptBody
+    [ SuppressMessage( "ReSharper", "ClassNeverInstantiated.Global" ) ]
+    public class GptBody : PropertyChangedBase, IGptBody
     {
         /// <summary>
         /// The model
@@ -60,6 +65,11 @@ namespace Bubba
         /// The messages
         /// </summary>
         private protected IList<IGptMessage> _messages;
+
+        /// <summary>
+        /// The message
+        /// </summary>
+        private protected IGptMessage _message;
 
         /// <summary>
         /// The data
@@ -73,15 +83,20 @@ namespace Bubba
         public GptBody( )
         {
             _messages = new List<IGptMessage>( );
+            _data = new Dictionary<string, object>( );
         }
 
+        /// <inheritdoc />
         /// <summary>
-        /// Initializes a new instance of the <see cref="GptBody"/> class.
+        /// Initializes a new instance of the
+        /// <see cref="T:Bubba.GptBody" /> class.
         /// </summary>
         /// <param name="model">The model.</param>
-        public GptBody( string model )
+        public GptBody( string model ) 
+            : this( )
         {
             _model = model;
+            _data.Add( "model", model );
         }
 
         /// <inheritdoc />
@@ -99,7 +114,11 @@ namespace Bubba
             }
             set
             {
-                _model = value;
+                if( _model != value )
+                {
+                    _model = value;
+                    OnPropertyChanged( nameof( Model ) );
+                }
             }
         }
 
@@ -118,7 +137,11 @@ namespace Bubba
             }
             set
             {
-                _messages = value;
+                if( _messages != value )
+                {
+                    _messages = value;
+                    OnPropertyChanged( nameof( Messages ) );
+                }
             }
         }
 
@@ -137,7 +160,11 @@ namespace Bubba
             }
             set
             {
-                _data = value;
+                if( _data != value )
+                {
+                    _data = value;
+                    OnPropertyChanged( nameof( Data ) );
+                }
             }
         }
 
@@ -151,6 +178,17 @@ namespace Bubba
         public override string ToString( )
         {
             return _data.ToJson( );
+        }
+
+        /// <summary>
+        /// Fails the specified ex.
+        /// </summary>
+        /// <param name="ex">The ex.</param>
+        private protected void Fail( Exception ex )
+        {
+            var _error = new ErrorWindow( ex );
+            _error?.SetText( );
+            _error?.ShowDialog( );
         }
     }
 }

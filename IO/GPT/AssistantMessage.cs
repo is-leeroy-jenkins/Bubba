@@ -43,9 +43,6 @@ namespace Bubba
 {
     using System;
     using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
-    using System.Threading.Tasks;
     using System.Diagnostics.CodeAnalysis;
 
     [ SuppressMessage( "ReSharper", "UnusedType.Global" ) ]
@@ -66,7 +63,7 @@ namespace Bubba
         /// <summary>
         /// The data
         /// </summary>
-        private protected IDictionary<string, object> _data = new Dictionary<string, object>( );
+        private protected IDictionary<string, object> _data;
 
         /// <summary>
         /// Initializes a new instance of the
@@ -75,7 +72,7 @@ namespace Bubba
         public AssistantMessage( )
         {
             _role = "assistant";
-            _data.Add( "role", "assistant" );
+            _data = new Dictionary<string, object>( );
         }
 
         /// <inheritdoc />
@@ -88,6 +85,7 @@ namespace Bubba
             : this( )
         {
             _content = prompt;
+            _data.Add( "role", _role );
             _data.Add( "content", _content );
         }
 
@@ -143,6 +141,57 @@ namespace Bubba
             }
         }
 
+        /// <summary>
+        /// Pads the quotes.
+        /// </summary>
+        /// <param name="input">The input.</param>
+        /// <returns></returns>
+        private protected string PadQuotes( string input )
+        {
+            try
+            {
+                ThrowIf.Empty( input, nameof( input ) );
+                if( input.IndexOf( "\\" ) != -1 )
+                {
+                    input = input.Replace( "\\", @"\\" );
+                }
+
+                if( input.IndexOf( "\n\r" ) != -1 )
+                {
+                    input = input.Replace( "\n\r", @"\n" );
+                }
+
+                if( input.IndexOf( "\r" ) != -1 )
+                {
+                    input = input.Replace( "\r", @"\r" );
+                }
+
+                if( input.IndexOf( "\n" ) != -1 )
+                {
+                    input = input.Replace( "\n", @"\n" );
+                }
+
+                if( input.IndexOf( "\t" ) != -1 )
+                {
+                    input = input.Replace( "\t", @"\t" );
+                }
+
+                if( input.IndexOf( "\"" ) != -1 )
+                {
+                    return input.Replace( "\"", @"""" );
+                }
+                else
+                {
+                    return input;
+                }
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+                return string.Empty;
+            }
+        }
+
         /// <inheritdoc />
         /// <summary>
         /// Returns a string that represents the current object.
@@ -152,7 +201,18 @@ namespace Bubba
         /// </returns>
         public override string ToString( )
         {
-            return $" role : assistant, content: {_content}";
+            return _data.ToJson( );
+        }
+
+        /// <summary>
+        /// Fails the specified ex.
+        /// </summary>
+        /// <param name="ex">The ex.</param>
+        private protected void Fail( Exception ex )
+        {
+            var _error = new ErrorWindow( ex );
+            _error?.SetText( );
+            _error?.ShowDialog( );
         }
     }
 }

@@ -98,10 +98,22 @@ namespace Bubba
         /// </summary>
         private protected double _presence;
 
+        /// <summary>
+        /// Initializes a new instance of the
+        /// <see cref="GptRequest"/> class.
+        /// </summary>
         public GptRequest( )
         {
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="GptRequest"/> class.
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        /// <param name="frequency">The frequency.</param>
+        /// <param name="presence">The presence.</param>
+        /// <param name="temperature">The temperature.</param>
+        /// <param name="tokens">The tokens.</param>
         public GptRequest( int id = 1, double frequency = 0.0,
             double presence = 0.0, double temperature = 0.5, int tokens = 2048 )
         {
@@ -184,6 +196,29 @@ namespace Bubba
                 {
                     _maximumTokens = value;
                     OnPropertyChanged( nameof( MaximumTokens ) );
+                }
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether this
+        /// <see cref="GptRequest"/> is store.
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if store; otherwise, <c>false</c>.
+        /// </value>
+        public bool Store
+        {
+            get
+            {
+                return _store;
+            }
+            set
+            {
+                if( _store != value)
+                {
+                    _store = value;
+                    OnPropertyChanged(nameof(Store));
                 }
             }
         }

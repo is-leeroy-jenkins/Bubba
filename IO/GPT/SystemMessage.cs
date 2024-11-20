@@ -72,12 +72,20 @@ namespace Bubba
         public SystemMessage( )
         {
             _role = "system";
+            _data.Add( "role", _role );
         }
 
+        /// <inheritdoc />
+        /// <summary>
+        /// Initializes a new instance of the
+        /// <see cref="T:Bubba.SystemMessage" /> class.
+        /// </summary>
+        /// <param name="prompt">The prompt.</param>
         public SystemMessage( string prompt )
             : this( )
         {
-            _content = prompt;
+            _content = PadQuotes( prompt );
+            _data.Add( "content", prompt );
         }
 
         /// <inheritdoc />
@@ -132,6 +140,57 @@ namespace Bubba
             }
         }
 
+        /// <summary>
+        /// Pads the quotes.
+        /// </summary>
+        /// <param name="input">The input.</param>
+        /// <returns></returns>
+        private protected string PadQuotes( string input )
+        {
+            try
+            {
+                ThrowIf.Empty( input, nameof( input ) );
+                if( input.IndexOf( "\\" ) != -1 )
+                {
+                    input = input.Replace( "\\", @"\\" );
+                }
+
+                if( input.IndexOf( "\n\r" ) != -1 )
+                {
+                    input = input.Replace( "\n\r", @"\n" );
+                }
+
+                if( input.IndexOf( "\r" ) != -1 )
+                {
+                    input = input.Replace( "\r", @"\r" );
+                }
+
+                if( input.IndexOf( "\n" ) != -1 )
+                {
+                    input = input.Replace( "\n", @"\n" );
+                }
+
+                if( input.IndexOf( "\t" ) != -1 )
+                {
+                    input = input.Replace( "\t", @"\t" );
+                }
+
+                if( input.IndexOf( "\"" ) != -1 )
+                {
+                    return input.Replace( "\"", @"""" );
+                }
+                else
+                {
+                    return input;
+                }
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+                return string.Empty;
+            }
+        }
+
         /// <inheritdoc />
         /// <summary>
         /// Returns a string that represents the current object.
@@ -142,6 +201,17 @@ namespace Bubba
         public override string ToString( )
         {
             return _data.ToJson( );
+        }
+
+        /// <summary>
+        /// Fails the specified ex.
+        /// </summary>
+        /// <param name="ex">The ex.</param>
+        private protected void Fail( Exception ex )
+        {
+            var _error = new ErrorWindow( ex );
+            _error?.SetText( );
+            _error?.ShowDialog( );
         }
     }
 }

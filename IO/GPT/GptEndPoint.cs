@@ -1,10 +1,10 @@
 ﻿// ******************************************************************************************
 //     Assembly:                Bubba
 //     Author:                  Terry D. Eppler
-//     Created:                 11-19-2024
+//     Created:                 11-20-2024
 // 
 //     Last Modified By:        Terry D. Eppler
-//     Last Modified On:        11-19-2024
+//     Last Modified On:        11-20-2024
 // ******************************************************************************************
 // <copyright file="GptEndPoint.cs" company="Terry D. Eppler">
 //    Bubba is a small windows (wpf) application for interacting with
@@ -120,7 +120,7 @@ namespace Bubba
             _completions = "https://api.openai.com/v1/completions";
             _chatCompletions = "https://api.openai.com/v1/chat/completions";
             _assistant = "https://api.openai.com/v1/assistants";
-            _speech = "https://api.openai.com/v1/audio/speech"; 
+            _speech = "https://api.openai.com/v1/audio/speech";
             _translations = "https://api.openai.com/v1/audio/translations";
             _jobs = "https://api.openai.com/v1/fine_tuning/jobs";
             _files = "https://api.openai.com/v1/files";
@@ -128,7 +128,7 @@ namespace Bubba
             _vectorStores = "https://api.openai.com/v1/vector_stores";
             _projects = "https://api.openai.com/v1/organization/projects";
             _imageGenerations = "https://api.openai.com/v1/images/generations";
-            _all = GetLocations( );
+            _all = GetAll( );
         }
 
         /// <summary>
@@ -303,7 +303,7 @@ namespace Bubba
         /// Gets the end points.
         /// </summary>
         /// <returns></returns>
-        private protected IList<string> GetLocations( )
+        private protected IList<string> GetAll( )
         {
             _all.Add( "https://api.openai.com/v1/chat/completions" );
             _all.Add( "https://api.openai.com/v1/completions" );
@@ -324,6 +324,17 @@ namespace Bubba
             return _all?.Any( ) == true
                 ? _all
                 : default( IList<string> );
+        }
+
+        /// <summary>
+        /// Fails the specified ex.
+        /// </summary>
+        /// <param name="ex">The ex.</param>
+        private protected void Fail( Exception ex )
+        {
+            var _error = new ErrorWindow( ex );
+            _error?.SetText( );
+            _error?.ShowDialog( );
         }
     }
 }
