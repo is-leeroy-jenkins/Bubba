@@ -48,23 +48,9 @@ namespace Bubba
     [ SuppressMessage( "ReSharper", "UnusedType.Global" ) ]
     [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
     [ SuppressMessage( "ReSharper", "FieldCanBeMadeReadOnly.Global" ) ]
-    public class UserMessage : IGptMessage
+    [ SuppressMessage( "ReSharper", "ClassCanBeSealed.Global" ) ]
+    public class UserMessage : GptMessage, IGptMessage
     {
-        /// <summary>
-        /// The role
-        /// </summary>
-        private protected string _role;
-
-        /// <summary>
-        /// The content
-        /// </summary>
-        private protected string _content;
-
-        /// <summary>
-        /// The data
-        /// </summary>
-        private protected IDictionary<string, object> _data;
-
         /// <summary>
         /// Initializes a new instance of the
         /// <see cref="UserMessage"/> class.
@@ -86,7 +72,29 @@ namespace Bubba
         {
             _content = PadQuotes( prompt );
             _data.Add( "role", _role );
-            _data.Add( "content", prompt );
+            _data.Add( "content", _content );
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the
+        /// <see cref="UserMessage"/> class.
+        /// </summary>
+        /// <param name="message">The message.</param>
+        public UserMessage( UserMessage message )
+        {
+            _role = message.Role;
+            _content = message.Content;
+        }
+
+        /// <summary>
+        /// Deconstructs the specified role.
+        /// </summary>
+        /// <param name="role">The role.</param>
+        /// <param name="content">The content.</param>
+        public void Deconstruct( out string role, out string content )
+        {
+            role = _role;
+            content = _content;
         }
 
         /// <inheritdoc />
@@ -96,7 +104,7 @@ namespace Bubba
         /// <value>
         /// The role.
         /// </value>
-        public string Role
+        public override string Role
         {
             get
             {
@@ -111,7 +119,7 @@ namespace Bubba
         /// <value>
         /// The content.
         /// </value>
-        public string Content
+        public override string Content
         {
             get
             {
@@ -119,17 +127,22 @@ namespace Bubba
             }
             set
             {
-                _content = value;
+                if( _content != value )
+                {
+                    _content = value;
+                    OnPropertyChanged( nameof( Content ) );
+                }
             }
         }
 
+        /// <inheritdoc />
         /// <summary>
         /// Gets or sets the data.
         /// </summary>
         /// <value>
         /// The data.
         /// </value>
-        public IDictionary<string, object> Data
+        public override IDictionary<string, object> Data
         {
             get
             {
@@ -137,7 +150,11 @@ namespace Bubba
             }
             set
             {
-                _data = value;
+                if(_data != value)
+                {
+                    _data = value;
+                    OnPropertyChanged(nameof(Data));
+                }
             }
         }
 

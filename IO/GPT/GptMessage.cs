@@ -6,7 +6,7 @@
 //     Last Modified By:        Terry D. Eppler
 //     Last Modified On:        11-20-2024
 // ******************************************************************************************
-// <copyright file="SystemMessage.cs" company="Terry D. Eppler">
+// <copyright file="GptMessage.cs" company="Terry D. Eppler">
 //    Bubba is a small windows (wpf) application for interacting with
 //    Chat GPT that's developed in C-Sharp under the MIT license
 // 
@@ -35,71 +35,30 @@
 //    You can contact me at:  terryeppler@gmail.com or eppler.terry@epa.gov
 // </copyright>
 // <summary>
-//   SystemMessage.cs
+//   GptMessage.cs
 // </summary>
 // ******************************************************************************************
 
 namespace Bubba
 {
-    using System;
     using System.Collections.Generic;
-    using System.Diagnostics.CodeAnalysis;
 
-    [ SuppressMessage( "ReSharper", "UnusedType.Global" ) ]
-    [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
-    [ SuppressMessage( "ReSharper", "FieldCanBeMadeReadOnly.Global" ) ]
-    [ SuppressMessage( "ReSharper", "ClassCanBeSealed.Global" ) ]
-    public class SystemMessage : GptMessage, IGptMessage
+    public abstract class GptMessage : PropertyChangedBase
     {
         /// <summary>
-        /// Initializes a new instance of the
-        /// <see cref="SystemMessage"/> class.
+        /// The role
         /// </summary>
-        public SystemMessage( )
-        {
-            _role = "system";
-            _content = "You are an expert software engineer who responds with "
-                + "detailed explanations providing easy-to-understand "
-                + "examples written in either C#,  Python, VBA,  or JavaScript.";  
-
-            _data.Add( "role", _role );
-            _data.Add( "content", _content );
-        }
-
-        /// <inheritdoc />
-        /// <summary>
-        /// Initializes a new instance of the
-        /// <see cref="T:Bubba.SystemMessage" /> class.
-        /// </summary>
-        /// <param name="prompt">The prompt.</param>
-        public SystemMessage( string prompt )
-            : this( )
-        {
-            _content = prompt;
-            _data.Add( "content", prompt );
-        }
+        private protected string _role;
 
         /// <summary>
-        /// Deconstructs the specified role.
+        /// The content
         /// </summary>
-        /// <param name="role">The role.</param>
-        /// <param name="content">The content.</param>
-        public void Deconstruct( out string role, out string content )
-        {
-            role = _role;
-            content = _content;
-        }
+        private protected string _content;
 
         /// <summary>
-        /// Initializes a new instance of the
-        /// <see cref="SystemMessage"/> class.
+        /// The data
         /// </summary>
-        /// <param name="message">The message.</param>
-        public SystemMessage( IGptMessage message )
-        {
-            _role = message.Role;
-            _content = message.Content;
-        }
+        private protected IDictionary<string, object> _data;
 
         /// <inheritdoc />
         /// <summary>
@@ -108,7 +67,7 @@ namespace Bubba
         /// <value>
         /// The role.
         /// </value>
-        public override string Role
+        public virtual string Role
         {
             get
             {
@@ -123,7 +82,7 @@ namespace Bubba
         /// <value>
         /// The content.
         /// </value>
-        public override string Content
+        public virtual string Content
         {
             get
             {
@@ -135,14 +94,13 @@ namespace Bubba
             }
         }
 
-        /// <inheritdoc />
         /// <summary>
         /// Gets or sets the data.
         /// </summary>
         /// <value>
         /// The data.
         /// </value>
-        public override IDictionary<string, object> Data
+        public virtual IDictionary<string, object> Data
         {
             get
             {
@@ -164,17 +122,6 @@ namespace Bubba
         public override string ToString( )
         {
             return _data.ToJson( );
-        }
-
-        /// <summary>
-        /// Fails the specified ex.
-        /// </summary>
-        /// <param name="ex">The ex.</param>
-        private protected void Fail( Exception ex )
-        {
-            var _error = new ErrorWindow( ex );
-            _error?.SetText( );
-            _error?.ShowDialog( );
         }
     }
 }

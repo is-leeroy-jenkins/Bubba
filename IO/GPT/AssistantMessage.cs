@@ -48,23 +48,9 @@ namespace Bubba
     [ SuppressMessage( "ReSharper", "UnusedType.Global" ) ]
     [ SuppressMessage( "ReSharper", "FieldCanBeMadeReadOnly.Global" ) ]
     [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
-    public class AssistantMessage : IGptMessage
+    [ SuppressMessage( "ReSharper", "ClassCanBeSealed.Global" ) ]
+    public class AssistantMessage : GptMessage, IGptMessage
     {
-        /// <summary>
-        /// The role
-        /// </summary>
-        private protected string _role;
-
-        /// <summary>
-        /// The content
-        /// </summary>
-        private protected string _content;
-
-        /// <summary>
-        /// The data
-        /// </summary>
-        private protected IDictionary<string, object> _data;
-
         /// <summary>
         /// Initializes a new instance of the
         /// <see cref="AssistantMessage"/> class.
@@ -72,7 +58,12 @@ namespace Bubba
         public AssistantMessage( )
         {
             _role = "assistant";
-            _data = new Dictionary<string, object>( );
+            _content = "You are an expert software engineer who responds with "
+                + "detailed explanations providing easy-to-understand "
+                + "examples written in either C#,  Python, VBA,  or JavaScript.";
+
+            _data.Add("role", _role);
+            _data.Add("content", _content);
         }
 
         /// <inheritdoc />
@@ -84,61 +75,31 @@ namespace Bubba
         public AssistantMessage( string prompt )
             : this( )
         {
-            _content = prompt;
+            _content = PadQuotes( prompt );
             _data.Add( "role", _role );
             _data.Add( "content", _content );
         }
 
-        /// <inheritdoc />
         /// <summary>
-        /// Gets the role.
+        /// Initializes a new instance of the
+        /// <see cref="AssistantMessage"/> class.
         /// </summary>
-        /// <value>
-        /// The role.
-        /// </value>
-        public string Role
+        /// <param name="message">The message.</param>
+        public AssistantMessage( IGptMessage message )
         {
-            get
-            {
-                return _role;
-            }
-        }
-
-        /// <inheritdoc />
-        /// <summary>
-        /// Gets the content.
-        /// </summary>
-        /// <value>
-        /// The content.
-        /// </value>
-        public string Content
-        {
-            get
-            {
-                return _content;
-            }
-            set
-            {
-                _content = value;
-            }
+            _role = message.Role;
+            _content = message.Content;
         }
 
         /// <summary>
-        /// Gets or sets the data.
+        /// Deconstructs the specified role.
         /// </summary>
-        /// <value>
-        /// The data.
-        /// </value>
-        public IDictionary<string, object> Data
+        /// <param name="role">The role.</param>
+        /// <param name="content">The content.</param>
+        public void Deconstruct( out string role, out string content )
         {
-            get
-            {
-                return _data;
-            }
-            set
-            {
-                _data = value;
-            }
+            role = _role;
+            content = _content;
         }
 
         /// <summary>
@@ -190,18 +151,6 @@ namespace Bubba
                 Fail( ex );
                 return string.Empty;
             }
-        }
-
-        /// <inheritdoc />
-        /// <summary>
-        /// Returns a string that represents the current object.
-        /// </summary>
-        /// <returns>
-        /// A string that represents the current object.
-        /// </returns>
-        public override string ToString( )
-        {
-            return _data.ToJson( );
         }
 
         /// <summary>

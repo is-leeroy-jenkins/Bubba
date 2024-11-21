@@ -197,7 +197,7 @@ namespace Bubba
         {
             get
             {
-                return _assistant;
+                return _speech;
             }
         }
 

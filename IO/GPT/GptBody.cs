@@ -54,6 +54,7 @@ namespace Bubba
     /// <seealso cref="T:Bubba.IGptBody" />
     [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
     [ SuppressMessage( "ReSharper", "ClassNeverInstantiated.Global" ) ]
+    [ SuppressMessage( "ReSharper", "ClassCanBeSealed.Global" ) ]
     public class GptBody : PropertyChangedBase, IGptBody
     {
         /// <summary>
@@ -69,7 +70,17 @@ namespace Bubba
         /// <summary>
         /// The message
         /// </summary>
-        private protected IGptMessage _message;
+        private protected UserMessage _userMessage;
+
+        /// <summary>
+        /// The system message
+        /// </summary>
+        private protected SystemMessage _systemMessage;
+
+        /// <summary>
+        /// The assistant message
+        /// </summary>
+        private protected AssistantMessage _assistantMessage;
 
         /// <summary>
         /// The data
@@ -92,11 +103,40 @@ namespace Bubba
         /// <see cref="T:Bubba.GptBody" /> class.
         /// </summary>
         /// <param name="model">The model.</param>
-        public GptBody( string model ) 
+        public GptBody( string model )
             : this( )
         {
             _model = model;
             _data.Add( "model", model );
+        }
+
+        /// <inheritdoc />
+        /// <summary>
+        /// Initializes a new instance of the
+        /// <see cref="T:Bubba.GptBody" /> class.
+        /// </summary>
+        /// <param name="gptBody">The GPT body.</param>
+        public GptBody( GptBody gptBody )
+            : this( )
+        {
+            _model = gptBody.Model;
+            _data.Add( "model", gptBody.Model );
+        }
+
+        /// <summary>
+        /// Deconstructs the specified model.
+        /// </summary>
+        /// <param name="model">The model.</param>
+        /// <param name="system">The system.</param>
+        /// <param name="user">The user.</param>
+        /// <param name="assistant">The assistant.</param>
+        public void Deconstruct( out string model, out SystemMessage system, out UserMessage user,
+            out AssistantMessage assistant )
+        {
+            model = _model;
+            system = _systemMessage;
+            user = _userMessage;
+            assistant = _assistantMessage;
         }
 
         /// <inheritdoc />
@@ -141,6 +181,72 @@ namespace Bubba
                 {
                     _messages = value;
                     OnPropertyChanged( nameof( Messages ) );
+                }
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the system message.
+        /// </summary>
+        /// <value>
+        /// The system message.
+        /// </value>
+        public SystemMessage SystemMessage
+        {
+            get
+            {
+                return _systemMessage;
+            }
+            set
+            {
+                if( _systemMessage != value )
+                {
+                    _systemMessage = value;
+                    OnPropertyChanged( nameof( SystemMessage ) );
+                }
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the user message.
+        /// </summary>
+        /// <value>
+        /// The user message.
+        /// </value>
+        public UserMessage UserMessage
+        {
+            get
+            {
+                return _userMessage;
+            }
+            set
+            {
+                if( _userMessage != value )
+                {
+                    _userMessage = value;
+                    OnPropertyChanged( nameof( UserMessage ) );
+                }
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the assistant message.
+        /// </summary>
+        /// <value>
+        /// The assistant message.
+        /// </value>
+        public AssistantMessage AssistantMessage
+        {
+            get
+            {
+                return _assistantMessage;
+            }
+            set
+            {
+                if( _assistantMessage != value )
+                {
+                    _assistantMessage = value;
+                    OnPropertyChanged( nameof( AssistantMessage ) );
                 }
             }
         }

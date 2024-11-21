@@ -44,9 +44,6 @@ namespace Bubba
     using System;
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
-    using System.Linq;
-    using System.Text;
-    using System.Threading.Tasks;
 
     [ SuppressMessage( "ReSharper", "UnusedType.Global" ) ]
     [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
@@ -92,6 +89,11 @@ namespace Bubba
         private protected GptBody _body;
 
         /// <summary>
+        /// The header
+        /// </summary>
+        private protected GptHeader _header;
+
+        /// <summary>
         /// Number between -2.0 and 2.0. Positive values penalize new tokens
         /// based on whether they appear in the text so far,
         /// ncreasing the model's likelihood to talk about new topics.
@@ -104,10 +106,13 @@ namespace Bubba
         /// </summary>
         public GptRequest( )
         {
+            _header = new GptHeader( );
         }
 
+        /// <inheritdoc />
         /// <summary>
-        /// Initializes a new instance of the <see cref="GptRequest"/> class.
+        /// Initializes a new instance of the
+        /// <see cref="T:Bubba.GptRequest" /> class.
         /// </summary>
         /// <param name="id">The identifier.</param>
         /// <param name="frequency">The frequency.</param>
@@ -115,7 +120,8 @@ namespace Bubba
         /// <param name="temperature">The temperature.</param>
         /// <param name="tokens">The tokens.</param>
         public GptRequest( int id = 1, double frequency = 0.0,
-            double presence = 0.0, double temperature = 0.5, int tokens = 2048 )
+            double presence = 0.0, double temperature = 0.5, int tokens = 2048 ) 
+            : this( )
         {
             _id = id;
             _temperature = temperature;
@@ -145,15 +151,15 @@ namespace Bubba
         /// <param name="frequency">The frequency.</param>
         /// <param name="presence">The presence.</param>
         /// <param name="temperature">The temperature.</param>
-        /// <param name="maximumTokens">The maximum tokens.</param>
+        /// <param name="tokens">The maximum tokens.</param>
         public void Deconstruct( out int userId, out double frequency,
-            out double presence, out double temperature, out int maximumTokens)
+            out double presence, out double temperature, out int tokens )
         {
             userId = _id;
             temperature = _temperature;
             frequency = _frequency;
             presence = _presence;
-            maximumTokens = _maximumTokens;
+            tokens = _maximumTokens;
         }
 
         /// <summary>
@@ -215,16 +221,16 @@ namespace Bubba
             }
             set
             {
-                if( _store != value)
+                if( _store != value )
                 {
                     _store = value;
-                    OnPropertyChanged(nameof(Store));
+                    OnPropertyChanged( nameof( Store ) );
                 }
             }
         }
 
         /// <summary>
-        /// A number between -2.0 and 2.0  Positive value decrease the
+        /// A number between -2.0 and 2.0 Positive value decrease the
         /// model's likelihood to repeat the same line verbatim.
         /// </summary>
         /// <value>

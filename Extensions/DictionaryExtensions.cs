@@ -64,6 +64,7 @@ namespace Bubba
     [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
     [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
     [ SuppressMessage( "ReSharper", "InconsistentNaming" ) ]
+    [ SuppressMessage( "ReSharper", "BadParensLineBreaks" ) ]
     public static class DictionaryExtensions
     {
         /// <summary>
@@ -162,15 +163,15 @@ namespace Bubba
         /// <summary>
         /// Converts an IDictionary( string, object) to a bindinglist.
         /// </summary>
-        /// <param name="dictionary">The NVC.</param>
+        /// <param name="dict">The NVC.</param>
         /// <returns></returns>
         public static BindingList<KeyValuePair<string, object>> ToBindingList(
-            this IDictionary<string, object> dictionary )
+            this IDictionary<string, object> dict )
         {
             try
             {
                 var _bindingList = new BindingList<KeyValuePair<string, object>>( );
-                foreach( var _kvp in dictionary )
+                foreach( var _kvp in dict )
                 {
                     _bindingList.Add( _kvp );
                 }
@@ -404,9 +405,10 @@ namespace Bubba
         /// dictionary - Dictionary cannot be null</exception>
         public static string ToJson( this IDictionary<string, object> dict )
         {
-            if( dict == null )
+            if( dict?.Any( ) == false )
             {
-                throw new ArgumentNullException( nameof( dict ), "Dictionary cannot be null" );
+                var _msg = "Dictionary cannot be empty!";
+                throw new ArgumentNullException( nameof( dict ), _msg );
             }
 
             var _options = new JsonSerializerOptions
@@ -414,7 +416,8 @@ namespace Bubba
                 WriteIndented = true
             };
 
-            return JsonSerializer.Serialize( dict, _options );
+            return JsonSerializer.Serialize( dict, 
+                typeof( Dictionary<string, object> ), _options );
         }
 
         /// <summary>
@@ -426,9 +429,10 @@ namespace Bubba
         /// dict - Dictionary cannot be null</exception>
         public static string ToJson( this IDictionary<string, string> dict )
         {
-            if( dict == null )
+            if( dict?.Any( ) == false )
             {
-                throw new ArgumentNullException(nameof(dict), "Dictionary cannot be null");
+                var _msg = "Dictionary cannot be empty!";
+                throw new ArgumentNullException( nameof( dict ), _msg );
             }
 
             var _options = new JsonSerializerOptions
@@ -436,7 +440,31 @@ namespace Bubba
                 WriteIndented = true
             };
 
-            return JsonSerializer.Serialize( dict, _options );
+            return JsonSerializer.Serialize( dict,
+                typeof( Dictionary<string, object> ), _options );
+        }
+
+        /// <summary>
+        /// Converts to json.
+        /// </summary>
+        /// <param name="dict">The dictionary.</param>
+        /// <returns></returns>
+        /// <exception cref="System.ArgumentNullException">dict</exception>
+        public static string ToJson( this NameValueCollection dict )
+        {
+            if( dict.Count == 0 )
+            {
+                var _msg = "NameValueCollection cannot be empty!";
+                throw new ArgumentNullException(nameof(dict), _msg);
+            }
+
+            var _options = new JsonSerializerOptions
+            {
+                WriteIndented = true
+            };
+
+            return JsonSerializer.Serialize( dict,
+                typeof( NameValueCollection ), _options );
         }
 
         /// <summary>

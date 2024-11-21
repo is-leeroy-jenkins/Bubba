@@ -63,6 +63,7 @@ namespace Bubba
     [ SuppressMessage( "ReSharper", "UnusedType.Global" ) ]
     [ SuppressMessage( "ReSharper", "CompareNonConstrainedGenericWithNull" ) ]
     [ SuppressMessage( "ReSharper", "InconsistentNaming" ) ]
+    [ SuppressMessage( "ReSharper", "BadParensLineBreaks" ) ]
     public static class EnumerableExtensions
     {
         /// <summary>
@@ -107,7 +108,7 @@ namespace Bubba
         {
             try
             {
-                if( enumerable.Any( ) )
+                if( enumerable?.Any( ) == true )
                 {
                     var _rows = new ObservableCollection<DataRow>( );
                     foreach( var _row in enumerable )
@@ -159,8 +160,10 @@ namespace Bubba
         }
 
         /// <summary>
-        /// Filters a sequence of values based on a predicate and returns those values that don't match the
-        /// given predicate. Each element's index is used in the logic of predicate function.
+        /// Filters a sequence of values based on a predicate
+        /// and returns those values that don't match the
+        /// given predicate. Each element's index is used in
+        /// the logic of predicate function.
         /// </summary>
         /// <typeparam name="_">The type of the elements of
         /// <paramref name="source" />
@@ -168,13 +171,14 @@ namespace Bubba
         /// <param name="source">An
         /// <see cref="IEnumerable{T}" />
         /// to filter.</param>
-        /// <param name="predicate">A function to test each element for a condition; the second parameter of the functions represents
+        /// <param name="predicate">A function to test each element
+        /// for a condition; the second parameter of the functions represents
         /// the index of the source element.</param>
         /// <returns>
         /// Those values that don't match the given predicate.
         /// </returns>
-        public static IEnumerable<_> WhereNot<_>( this IEnumerable<_> source,
-            Func<_, int, bool> predicate )
+        public static IEnumerable<T> WhereNot<T>( this IEnumerable<T> source,
+            Func<T, int, bool> predicate )
         {
             try
             {
@@ -183,7 +187,7 @@ namespace Bubba
             catch( Exception ex )
             {
                 Fail( ex );
-                return default( IEnumerable<_> );
+                return default( IEnumerable<T> );
             }
         }
 
