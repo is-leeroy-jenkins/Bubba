@@ -265,9 +265,10 @@
 
             <Canvas
                 x:Name="UserCanvas"
+                Grid.ColumnSpan="2"
                 Height="140"
                 Margin="313,0,0,0"
-                VerticalAlignment="Top" Grid.ColumnSpan="2">
+                VerticalAlignment="Top">
 
                 <Label
                     x:Name="UserIdLabel"
@@ -574,7 +575,8 @@
                     Width="10"
                     Background="{StaticResource TransparentBrush}" />
 
-                <b:ToolStripButton ImageSource="/Resources/Assets/ButtonImages/ToggleButton.png" />
+                <b:ToolStripButton 
+                    ImageSource="/Resources/Assets/ButtonImages/ToggleButton.png" />
             </b:ToolStrip>
         </Canvas>
     </Grid>
