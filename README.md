@@ -117,7 +117,7 @@ Bubba uses the following projects and libraries. Please consider supporting them
 | [SkiaSharp 2.88.9](https://github.com/mono/SkiaSharp)   | SkiaSharp is a cross-platform 2D graphics API for .NET platforms based on Google's Skia Graphics Library.                           |
 | [Syncfusion.Licensing 24.1.41](https://www.nuget.org/packages/Syncfusion.Licensing)                           | Syncfusion licensing is a .NET library for validating the registered Syncfusion license in an application at runtime.         |
 | [System.Data.OleDb 9.0.0](https://www.nuget.org/packages/System.Data.OleDb)  | This package implements a data provider for OLE DB data sources.                            |
-| [OpenAI API] (https://github.com/openai/openai-dotnet)                       | The OpenAI .NET library provides convenient access to the OpenAI REST API from .NET applications.  |
+| [OpenAI API](https://github.com/openai/openai-dotnet)                       | The OpenAI .NET library provides convenient access to the OpenAI REST API from .NET applications.  |
 | [System.Data.SqlClient 4.9.0](https://www.nuget.org/packages/System.Data.SqlClient) | The legacy .NET Data Provider for SQL Server.                       |
 | [MahApps.Metro](https://mahapps.com/)                                         | UI toolkit for WPF applications                                        |
 | [System.Data.SQLite.Core](https://www.nuget.org/packages/System.Data.SQLite.Core)                        | The official SQLite database engine for both x86 and x64 along with the ADO.NET provider. |
