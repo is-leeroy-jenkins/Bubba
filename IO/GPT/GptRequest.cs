@@ -1,12 +1,12 @@
 ﻿// ******************************************************************************************
 //     Assembly:                Bubba
 //     Author:                  Terry D. Eppler
-//     Created:                 11-21-2024
+//     Created:                 11-19-2024
 // 
 //     Last Modified By:        Terry D. Eppler
-//     Last Modified On:        11-21-2024
+//     Last Modified On:        11-19-2024
 // ******************************************************************************************
-// <copyright file="GptInput.cs" company="Terry D. Eppler">
+// <copyright file="GptRequest.cs" company="Terry D. Eppler">
 //    Bubba is a small windows (wpf) application for interacting with
 //    Chat GPT that's developed in C-Sharp under the MIT license
 // 
@@ -35,23 +35,35 @@
 //    You can contact me at:  terryeppler@gmail.com or eppler.terry@epa.gov
 // </copyright>
 // <summary>
-//   GptInput.cs
+//   GptRequest.cs
 // </summary>
 // ******************************************************************************************
 
 namespace Bubba
 {
     using System;
+    using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
 
-    /// <inheritdoc />
-    /// <summary>
-    /// </summary>
-    /// <seealso cref="T:Bubba.PropertyChangedBase" />
-    [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
     [ SuppressMessage( "ReSharper", "UnusedType.Global" ) ]
-    public class GptInput : PropertyChangedBase
+    [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
+    public class GptRequest : PropertyChangedBase
     {
+        /// <summary>
+        /// The messages
+        /// </summary>
+        private protected IList<IGptMessage> _messages;
+
+        /// <summary>
+        /// The store
+        /// </summary>
+        private protected bool _store;
+
+        /// <summary>
+        /// The user identifier
+        /// </summary>
+        private protected int _id;
+
         /// <summary>
         /// A number between -2.0 and 2.0  Positive value decrease the
         /// model's likelihood to repeat the same line verbatim.
@@ -59,7 +71,8 @@ namespace Bubba
         private protected double _temperature;
 
         /// <summary>
-        /// An upper bound for the number of tokens that can be generated for a completion
+        /// An upper bound for the number of tokens
+        /// that can be generated for a completion
         /// </summary>
         private protected int _maximumTokens;
 
@@ -71,6 +84,16 @@ namespace Bubba
         private protected double _frequency;
 
         /// <summary>
+        /// The body
+        /// </summary>
+        private protected GptBody _body;
+
+        /// <summary>
+        /// The header
+        /// </summary>
+        private protected GptHeader _header;
+
+        /// <summary>
         /// Number between -2.0 and 2.0. Positive values penalize new tokens
         /// based on whether they appear in the text so far,
         /// ncreasing the model's likelihood to talk about new topics.
@@ -78,82 +101,87 @@ namespace Bubba
         private protected double _presence;
 
         /// <summary>
-        /// The system prompt
-        /// </summary>
-        private protected string _systemPrompt;
-
-        /// <summary>
-        /// The user prompt
-        /// </summary>
-        private protected string _userPrompt;
-
-        /// <summary>
-        /// The assistant prompt
-        /// </summary>
-        private protected string _assistantPrompt;
-
-        /// <summary>
         /// Initializes a new instance of the
-        /// <see cref="GptInput"/> class.
+        /// <see cref="GptRequest"/> class.
         /// </summary>
-        public GptInput( )
+        public GptRequest( )
         {
+            _header = new GptHeader( );
         }
 
+        /// <inheritdoc />
         /// <summary>
-        /// Initializes a new instance of the <see cref="GptInput"/> class.
+        /// Initializes a new instance of the
+        /// <see cref="T:Bubba.GptRequest" /> class.
         /// </summary>
-        /// <param name="systemPrompt">The system prompt.</param>
-        /// <param name="userPrompt">The user prompt.</param>
-        /// <param name="tokens">The tokens.</param>
-        /// <param name="temp">The temporary.</param>
+        /// <param name="id">The identifier.</param>
         /// <param name="frequency">The frequency.</param>
         /// <param name="presence">The presence.</param>
-        public GptInput( string systemPrompt, string userPrompt, int tokens = 2048,
-            double temp = 0.0, double frequency = 0.0, double presence = 0.0 )
+        /// <param name="temperature">The temperature.</param>
+        /// <param name="tokens">The tokens.</param>
+        public GptRequest( int id = 1, double frequency = 0.0,
+            double presence = 0.0, double temperature = 0.5, int tokens = 2048 ) 
+            : this( )
         {
-            _systemPrompt = systemPrompt;
-            _userPrompt = userPrompt;
+            _id = id;
+            _temperature = temperature;
             _maximumTokens = tokens;
-            _temperature = temp;
             _frequency = frequency;
             _presence = presence;
         }
 
         /// <summary>
         /// Initializes a new instance of the
-        /// <see cref="GptInput"/> class.
+        /// <see cref="GptRequest"/> class.
         /// </summary>
-        /// <param name="input">The prompt model.</param>
-        public GptInput( GptInput input )
+        /// <param name="gptRequest">The GPT request.</param>
+        public GptRequest( GptRequest gptRequest )
         {
-            _systemPrompt = input.SystemPrompt;
-            _userPrompt = input.UserPrompt;
-            _maximumTokens = input.MaximumTokens;
-            _temperature = input.Temperature;
-            _frequency = input.Frequency;
-            _presence = input.Presence;
+            _id = gptRequest.Id;
+            _temperature = gptRequest.Temperature;
+            _maximumTokens = gptRequest.MaximumTokens;
+            _frequency = gptRequest.Frequency;
+            _presence = gptRequest.Presence;
         }
 
         /// <summary>
-        /// Deconstructs the specified system prompt.
+        /// Deconstructs the specified user identifier.
         /// </summary>
-        /// <param name="systemPrompt">The system prompt.</param>
-        /// <param name="userPrompt">The user prompt.</param>
-        /// <param name="maximumTokens">The maximum tokens.</param>
-        /// <param name="temperature">The temperature.</param>
+        /// <param name="userId">The user identifier.</param>
         /// <param name="frequency">The frequency.</param>
         /// <param name="presence">The presence.</param>
-        public void Deconstruct( out string systemPrompt, out string userPrompt,
-            out int maximumTokens, out double temperature, out double frequency,
-            out double presence )
+        /// <param name="temperature">The temperature.</param>
+        /// <param name="tokens">The maximum tokens.</param>
+        public void Deconstruct( out int userId, out double frequency,
+            out double presence, out double temperature, out int tokens )
         {
-            systemPrompt = _systemPrompt;
-            userPrompt = _userPrompt;
-            maximumTokens = _maximumTokens;
+            userId = _id;
             temperature = _temperature;
             frequency = _frequency;
             presence = _presence;
+            tokens = _maximumTokens;
+        }
+
+        /// <summary>
+        /// Gets the user identifier.
+        /// </summary>
+        /// <value>
+        /// The user identifier.
+        /// </value>
+        public int Id
+        {
+            get
+            {
+                return _id;
+            }
+            set
+            {
+                if( _id != value )
+                {
+                    _id = value;
+                    OnPropertyChanged( nameof( Id ) );
+                }
+            }
         }
 
         /// <summary>
@@ -179,7 +207,31 @@ namespace Bubba
         }
 
         /// <summary>
-        /// Gets the temperature.
+        /// Gets or sets a value indicating whether this
+        /// <see cref="GptRequest"/> is store.
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if store; otherwise, <c>false</c>.
+        /// </value>
+        public bool Store
+        {
+            get
+            {
+                return _store;
+            }
+            set
+            {
+                if( _store != value )
+                {
+                    _store = value;
+                    OnPropertyChanged( nameof( Store ) );
+                }
+            }
+        }
+
+        /// <summary>
+        /// A number between -2.0 and 2.0 Positive value decrease the
+        /// model's likelihood to repeat the same line verbatim.
         /// </summary>
         /// <value>
         /// The temperature.
@@ -201,7 +253,9 @@ namespace Bubba
         }
 
         /// <summary>
-        /// Gets the frequency.
+        /// Number between -2.0 and 2.0. Positive values penalize new tokens
+        /// based on whether they appear in the text so far,
+        /// ncreasing the model's likelihood to talk about new topics.
         /// </summary>
         /// <value>
         /// The frequency.
@@ -223,7 +277,9 @@ namespace Bubba
         }
 
         /// <summary>
-        /// Gets the presence.
+        /// Number between -2.0 and 2.0. Positive values penalize new tokens
+        /// based on whether they appear in the text so far,
+        /// ncreasing the model's likelihood to talk about new topics.
         /// </summary>
         /// <value>
         /// The presence.
@@ -245,67 +301,23 @@ namespace Bubba
         }
 
         /// <summary>
-        /// Gets or sets the system prompt.
+        /// Gets the chat model.
         /// </summary>
         /// <value>
-        /// The system prompt.
+        /// The chat model.
         /// </value>
-        public string SystemPrompt
+        public GptBody Body
         {
             get
             {
-                return _systemPrompt;
+                return _body;
             }
             set
             {
-                if( _systemPrompt != value )
+                if( _body != value )
                 {
-                    _systemPrompt = value;
-                    OnPropertyChanged( nameof( SystemPrompt ) );
-                }
-            }
-        }
-
-        /// <summary>
-        /// Gets or sets the user prompt.
-        /// </summary>
-        /// <value>
-        /// The user prompt.
-        /// </value>
-        public string UserPrompt
-        {
-            get
-            {
-                return _userPrompt;
-            }
-            set
-            {
-                if( _userPrompt != value )
-                {
-                    _userPrompt = value;
-                    OnPropertyChanged( nameof( UserPrompt ) );
-                }
-            }
-        }
-
-        /// <summary>
-        /// Gets or sets the assistant prompt.
-        /// </summary>
-        /// <value>
-        /// The assistant prompt.
-        /// </value>
-        public string AssistantPrompt
-        {
-            get
-            {
-                return _assistantPrompt;
-            }
-            set
-            {
-                if( _assistantPrompt != value )
-                {
-                    _assistantPrompt = value;
-                    OnPropertyChanged( nameof( AssistantPrompt ) );
+                    _body = value;
+                    OnPropertyChanged( nameof( Body ) );
                 }
             }
         }

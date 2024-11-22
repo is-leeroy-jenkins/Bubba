@@ -1,10 +1,10 @@
 ﻿// ******************************************************************************************
 //     Assembly:                Bubba
 //     Author:                  Terry D. Eppler
-//     Created:                 11-22-2024
+//     Created:                 11-18-2024
 // 
 //     Last Modified By:        Terry D. Eppler
-//     Last Modified On:        11-22-2024
+//     Last Modified On:        11-18-2024
 // ******************************************************************************************
 // <copyright file="GptBase.cs" company="Terry D. Eppler">
 //    Bubba is a small windows (wpf) application for interacting with
@@ -43,25 +43,15 @@ namespace Bubba
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel;
     using System.Diagnostics.CodeAnalysis;
-    using System.IO;
     using System.Linq;
-    using System.Net;
     using System.Net.Http;
-    using System.Runtime.CompilerServices;
-    using OpenAI;
 
     [ SuppressMessage( "ReSharper", "FieldCanBeMadeReadOnly.Global" ) ]
     [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
     [ SuppressMessage( "ReSharper", "VirtualMemberNeverOverridden.Global" ) ]
-    [ SuppressMessage( "ReSharper", "MemberCanBeProtected.Global" ) ]
-    public abstract class GptBase : INotifyPropertyChanged, IDisposable
+    public abstract class GptBase : PropertyChangedBase, IDisposable
     {
-        protected const string KEY = "sk-proj-qW9o_PoT2CleBXOErbGxe2UlOeHtgJ9K-"
-            + "rVFooUImScUvXn44e4R9ivYZtbYh5OIObWepnxCGET3BlbkFJykj4Dt9MDZT2GQg"
-            + "NarXOifdSxGwmodYtevUniudDGt8vkUNmxurKO9DkULeAUVz3rdY9g_-OsA";
-
         /// <summary>
         /// The busy
         /// </summary>
@@ -88,9 +78,24 @@ namespace Bubba
         private protected string _user;
 
         /// <summary>
+        /// The presence
+        /// </summary>
+        private protected double _presence;
+
+        /// <summary>
+        /// The frequency
+        /// </summary>
+        private protected double _frequency;
+
+        /// <summary>
         /// The API key
         /// </summary>
         private protected string _apiKey;
+
+        /// <summary>
+        /// The base URL
+        /// </summary>
+        private protected string _endPoint;
 
         /// <summary>
         /// The chat model
@@ -108,15 +113,20 @@ namespace Bubba
         private protected IList<string> _models;
 
         /// <summary>
+        /// A number between -2.0 and 2.0  Positive value decrease the
+        /// model's likelihood to repeat the same line verbatim.
+        /// </summary>
+        private protected double _temperature;
+
+        /// <summary>
+        /// The maximum tokens
+        /// </summary>
+        private protected int _maximumTokens;
+
+        /// <summary>
         /// The prompt
         /// </summary>
-        private protected string _userPrompt;
-
-        /// <inheritdoc />
-        /// <summary>
-        /// Occurs when a property value changes.
-        /// </summary>
-        public event PropertyChangedEventHandler PropertyChanged;
+        private protected string _prompt;
 
         /// <summary>
         /// Initializes a new instance of the
@@ -284,111 +294,6 @@ namespace Bubba
                 Fail( ex );
                 return default( IList<string> );
             }
-        }
-
-        /// <summary>
-        /// Sends the HTTP message.
-        /// </summary>
-        /// <param name="userPrompt">The userPrompt.</param>
-        /// <returns></returns>
-        public string SendHttpMessage( string userPrompt )
-        {
-            try
-            {
-                ThrowIf.Null( userPrompt, nameof( userPrompt ) ); 
-                ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12
-                    | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls;
-
-                // text-davinci-002, text-davinci-003
-                var _url = "https://api.openai.com/v1/completions";
-                if( _model.IndexOf( "gpt-3.5-turbo" ) != -1 )
-                {
-                    //Chat GTP 4 https://openai.com/research/gpt-4
-                    _url = "https://api.openai.com/v1/chat/completions";
-                }
-
-                var _request = WebRequest.Create( _url );
-                _request.Method = "POST";
-                _request.ContentType = "application/json";
-                _request.Headers.Add( "Authorization", "Bearer " + App.KEY );
-                var _maxTokens = 2048;// 2048
-                var _temp = 0.5;      // 0.5
-                var _userId = 1;
-                var _data = "";
-                if( _model.IndexOf( "gpt-3.5-turbo" ) != -1 )
-                {
-                    _data = "{";
-                    _data += " \"model\":\"" + _model + "\",";
-                    _data += " \"messages\": [{\"role\": \"user\", \"content\": \""
-                        + PadQuotes( userPrompt ) + "\"}]";
-
-                    _data += "}";
-                }
-                else
-                {
-                    _data = "{";
-                    _data += " \"model\":\"" + _model + "\",";
-                    _data += " \"prompt\": \"" + PadQuotes( userPrompt ) + "\",";
-                    _data += " \"max_tokens\": " + _maxTokens + ",";
-                    _data += " \"user\": \"" + _userId + "\", ";
-                    _data += " \"temperature\": " + _temp + ", ";
-
-                    // Number between -2.0 and 2.0  Positive value decrease the
-                    // model's likelihood to repeat the same line verbatim.
-                    _data += " \"frequency_penalty\": 0.0" + ", ";
-
-                    // Number between -2.0 and 2.0. Positive values increase the model's
-                    // likelihood to talk about new topics.
-                    _data += " \"presence_penalty\": 0.0" + ", ";
-
-                    // Up to 4 sequences where the API will stop generating further tokens.
-                    // The returned text will not contain the stop sequence.
-                    _data += " \"stop\": [\"#\", \";\"]";
-                    _data += "}";
-                }
-
-                using var _streamWriter = new StreamWriter( _request.GetRequestStream( ) );
-                _streamWriter.Write( _data );
-                _streamWriter.Flush( );
-                _streamWriter.Close( );
-                var _response = _request.GetResponse( );
-                var _stream = _response.GetResponseStream( );
-                if( _stream != null )
-                {
-                    var _reader = new StreamReader( _stream );
-                    var _json = _reader.ReadToEnd( );
-                }
-
-                var _objects = new Dictionary<string, object>( );
-                var _choices = _objects.Keys.ToList( );
-                var _choice = _choices[ 0 ];
-                var _message = "";
-                if( _model.IndexOf( "gpt-3.5-turbo" ) != -1 )
-                {
-                    var _key = _objects[ "message" ];
-                    var _kvp = new Dictionary<string, object>( );
-                }
-                else
-                {
-                    _message = ( string )_objects[ "text" ];
-                }
-
-                return _message;
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
-                return string.Empty;
-            }
-        }
-
-        /// <summary>
-        /// Called when [property changed].
-        /// </summary>
-        /// <param name="propertyName">Name of the property.</param>
-        public void OnPropertyChanged( [ CallerMemberName ] string propertyName = null )
-        {
-            PropertyChanged?.Invoke( this, new PropertyChangedEventArgs( propertyName ) );
         }
 
         /// <summary>
