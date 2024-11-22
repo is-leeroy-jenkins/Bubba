@@ -45,7 +45,7 @@
 
 
 
-## ![](https://github.com/is-leeroy-jenkins/Bubba/blob/master/Resources/Assets/GitHubImages/documentation.png)  Machine Learning 
+## ![](https://github.com/is-leeroy-jenkins/Bubba/blob/master/Resources/Assets/GitHubImages/openai.png)  Machine Learning 
 
 - [Federal Appropriations](https://github.com/is-leeroy-jenkins/Bubba/tree/master/Resources/Github/Approprations.md) - federal funding data available for fine-tuning learning models
 - [Federal Regulations](https://github.com/is-leeroy-jenkins/Bubba/tree/master/Resources/Github/Regulations.md) - regulatory data available for fine-tuning learning models
