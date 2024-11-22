@@ -1,4 +1,4 @@
-# Bocefus Configuration
+# Bubba Configuration
 
 ### CLIENTS  
 - SQLiteMinion  "C:\Users\terry\source\repos\Bubba\Data\Clients\SQLite\DB Browser for SQLite.exe"
