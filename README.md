@@ -52,11 +52,6 @@
 
 
 
-## 📦 Download
-
-Pre-built and binaries (setup, portable and archive) are available on the with install instructions (e.g. silent install). 
-
-
 
 
 ## ![](https://github.com/is-leeroy-jenkins/Bubba/blob/master/Resources/Assets/GitHubImages/tools.png) Build
