@@ -1,4 +1,5 @@
-# ![](https://github.com/is-leeroy-jenkins/Bubba/blob/master/Resources/Assets/GitHubImages/Appropriation.png)Bubba's AI layer provides access to the OpenAI VectorStores and Files
+![](https://github.com/is-leeroy-jenkins/Bubba/blob/master/Resources/Assets/GitHubImages/Appropriation.png)
+## Bubba's AI layer provides access to the OpenAI VectorStores and Files
 
 ## Federal Appropriations
 
