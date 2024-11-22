@@ -17,6 +17,11 @@ namespace Bubba
     using System.Text;
     using System.Threading.Tasks;
 
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <seealso cref="Bubba.GptBase" />
+    [ SuppressMessage( "ReSharper", "UnusedType.Global" ) ]
     public class GptClientFactory : GptBase
     {
         private const string KEY = "sk-proj-qW9o_PoT2CleBXOErbGxe2UlOeHtgJ9K-"
@@ -28,6 +33,9 @@ namespace Bubba
         /// </summary>
         private OpenAIClient _client;
 
+        /// <summary>
+        /// The user prompt
+        /// </summary>
         private string _userPrompt;
 
         /// <inheritdoc />

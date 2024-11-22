@@ -103,26 +103,24 @@ namespace Bubba
         /// </summary>
         public GptConfig( )
         {
+            _maximumTokens = 2048;
+            _temperature = 0.0;
+            _frequency = 0.0;
+            _presence = 0.0;
         }
 
+        /// <inheritdoc />
         /// <summary>
-        /// Initializes a new instance of the <see cref="GptConfig"/> class.
+        /// Initializes a new instance of the
+        /// <see cref="T:Bubba.GptConfig" /> class.
         /// </summary>
         /// <param name="systemPrompt">The system prompt.</param>
         /// <param name="userPrompt">The user prompt.</param>
-        /// <param name="tokens">The tokens.</param>
-        /// <param name="temp">The temporary.</param>
-        /// <param name="frequency">The frequency.</param>
-        /// <param name="presence">The presence.</param>
-        public GptConfig( string systemPrompt, string userPrompt, int tokens = 2048, 
-            double temp = 0.0, double frequency = 0.0, double presence = 0.0 )
+        public GptConfig( string systemPrompt, string userPrompt ) 
+            : this( )
         {
             _systemPrompt = systemPrompt;
             _userPrompt = userPrompt;
-            _maximumTokens = tokens;
-            _temperature = temp;
-            _frequency = frequency;
-            _presence = presence;
         }
 
         /// <summary>
