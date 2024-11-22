@@ -66,6 +66,7 @@ namespace Bubba
 
     [ SuppressMessage( "ReSharper", "UnusedType.Global" ) ]
     [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
+    [ SuppressMessage( "ReSharper", "MergeConditionalExpression" ) ]
     public class GptClient : GptBase
     {
         private OpenAIClient _client;
@@ -228,7 +229,9 @@ namespace Bubba
             {
                 var _vectorStore = new OpenAIClient( _apiKey );
                 var _vectorClient = _vectorStore.GetVectorStoreClient( );
-                return _vectorClient;
+                return ( _vectorClient != null )
+                    ? _vectorClient
+                    : default( VectorStoreClient );
             }
             catch( Exception ex )
             {
@@ -245,7 +248,10 @@ namespace Bubba
         {
             try
             {
-                return new ImageClient( "dall-e-3", _apiKey );
+                var _imageClient = new ImageClient( "dall-e-3", _apiKey );
+                return ( _imageClient != null )
+                    ? _imageClient
+                    : default( ImageClient );
             }
             catch( Exception ex )
             {
@@ -262,7 +268,10 @@ namespace Bubba
         {
             try
             {
-                return new OpenAIFileClient( _apiKey );
+                var _fileClient = new OpenAIFileClient( _apiKey );
+                return ( _fileClient != null )
+                    ? _fileClient
+                    : default( OpenAIFileClient );
             }
             catch( Exception ex )
             {
@@ -279,7 +288,10 @@ namespace Bubba
         {
             try
             {
-                return new AudioClient( "tts-1", _apiKey );
+                var _audioClient = new AudioClient( "tts-1", _apiKey );
+                return ( _audioClient != null )
+                    ? _audioClient
+                    : default( AudioClient );
             }
             catch( Exception ex )
             {

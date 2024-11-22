@@ -110,6 +110,11 @@ namespace Bubba
         private protected readonly DarkMode _theme = new DarkMode( );
 
         /// <summary>
+        /// The HTTP client
+        /// </summary>
+        private protected HttpClient _httpClient;
+
+        /// <summary>
         /// The time
         /// </summary>
         private protected int _time;
@@ -1017,6 +1022,7 @@ namespace Bubba
             if( disposing )
             {
                 _timer?.Dispose( );
+                _httpClient?.Dispose( );
             }
         }
 
