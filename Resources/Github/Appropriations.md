@@ -4,7 +4,7 @@
 
 ## Bubba's AI layer provides access to the OpenAI VectorStores for fine-tuning using the OpenAI API
 
-### ![](https://github.com/is-leeroy-jenkins/Bubba/blob/master/Resources/Assets/GitHubImages/Appropriation.png)Federal Appropriations
+###Federal Appropriations
 
 
 |               Public Law                     |           Explanatory Statement       |	  	Appropriation Title			                                                  |   
