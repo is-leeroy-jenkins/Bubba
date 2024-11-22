@@ -97,12 +97,12 @@ You can build the application like any other .NET / WPF application on Windows.
    > dotnet build .\Source\Bubba.sln --configuration Release --no-restore
    > ```
 
-# Bubba's AI layer provides access to the OpenAI VectorStores and Files
+## Bubba's AI layer provides access to the OpenAI VectorStores and Files
 
-## Federal Appropriations
+### Federal Appropriations
 
-|               Public Law                 |           Explanatory Statement       |	  	Appropriation Title			                                                                            |	    
-| ---------------------------------------- | --------------------------------------|----------------------------------------------------------------------------------------------------------|
+|               Public Law                     |           Explanatory Statement       |	  	Appropriation Title			                                                  |   
+| -------------------------------------------- | --------------------------------------|----------------------------------------------------------------------------------------------------------|
 		P.L. 104-134			   H. Rpt. 104-537				 Omnibus Consolidated Rescissions and Appropriations Act
 		P.L. 104-208			   H. Rpt. 104-863 			         Omnibus Consolidated Appropriations Act, 1997
 		P.L. 105-277			   H. Rpt. 105-825				 Omnibus Consolidated and Emergency Supplemental Appropriations Act
