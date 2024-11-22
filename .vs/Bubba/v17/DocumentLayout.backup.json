@@ -76,9 +76,10 @@
               "RelativeDocumentMoniker": "IO\\Abstractions\\GptBase.cs",
               "ToolTip": "C:\\Users\\terry\\source\\repos\\Bubba\\IO\\Abstractions\\GptBase.cs",
               "RelativeToolTip": "IO\\Abstractions\\GptBase.cs",
-              "ViewState": "AgIAAEIAAAAAAAAAAAAYwGoAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAEcAAAAAAAAAAAAAAFAAAAAiAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-21T23:34:34.031Z"
+              "WhenOpened": "2024-11-21T23:34:34.031Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -88,7 +89,7 @@
               "RelativeDocumentMoniker": "IO\\GPT\\GptClient.cs",
               "ToolTip": "C:\\Users\\terry\\source\\repos\\Bubba\\IO\\GPT\\GptClient.cs",
               "RelativeToolTip": "IO\\GPT\\GptClient.cs",
-              "ViewState": "AgIAAPEAAAAAAAAAAAAAABcBAAANAAAAAAAAAA==",
+              "ViewState": "AgIAABsBAAAAAAAAAAAmwCcBAAAzAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-11-21T23:32:48.248Z",
               "EditorCaption": ""
@@ -101,7 +102,7 @@
               "RelativeDocumentMoniker": "UI\\Views\\Windows\\MainWindow.xaml.cs",
               "ToolTip": "C:\\Users\\terry\\source\\repos\\Bubba\\UI\\Views\\Windows\\MainWindow.xaml.cs",
               "RelativeToolTip": "UI\\Views\\Windows\\MainWindow.xaml.cs",
-              "ViewState": "AgIAAPsBAAAAAAAAAAAWwBUCAABCAAAAAAAAAA==",
+              "ViewState": "AgIAAGwBAAAAAAAAAAAAAHUBAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-11-21T16:23:03.381Z",
               "EditorCaption": ""
