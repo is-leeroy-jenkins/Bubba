@@ -1,17 +1,16 @@
 ﻿// ******************************************************************************************
-//     Assembly:                Ninja
+//     Assembly:                Bubba
 //     Author:                  Terry D. Eppler
-//     Created:                 09-22-2024
+//     Created:                 11-21-2024
 // 
 //     Last Modified By:        Terry D. Eppler
-//     Last Modified On:        09-22-2024
+//     Last Modified On:        11-21-2024
 // ******************************************************************************************
 // <copyright file="DataPath.cs" company="Terry D. Eppler">
+//    Bubba is a small windows (wpf) application for interacting with
+//    Chat GPT that's developed in C-Sharp under the MIT license
 // 
-//    Ninja is a network toolkit, support iperf, tcp, udp, websocket, mqtt,
-//    sniffer, pcap, port scan, listen, ip scan .etc.
-// 
-//    Copyright ©  2019-2024 Terry D. Eppler
+//    Copyright ©  2020-2024 Terry D. Eppler
 // 
 //    Permission is hereby granted, free of charge, to any person obtaining a copy
 //    of this software and associated documentation files (the “Software”),

@@ -1,14 +1,14 @@
 ﻿// ******************************************************************************************
 //     Assembly:                Bubba
 //     Author:                  Terry D. Eppler
-//     Created:                 11-15-2024
+//     Created:                 11-21-2024
 // 
 //     Last Modified By:        Terry D. Eppler
-//     Last Modified On:        11-15-2024
+//     Last Modified On:        11-21-2024
 // ******************************************************************************************
 // <copyright file="BabyBoy.cs" company="Terry D. Eppler">
-//    Bubba is an open source windows (wpf) application for interacting with OpenAI GPT
-//    that is based on NET 7 and written in C-Sharp.
+//    Bubba is a small windows (wpf) application for interacting with
+//    Chat GPT that's developed in C-Sharp under the MIT license
 // 
 //    Copyright ©  2020-2024 Terry D. Eppler
 // 

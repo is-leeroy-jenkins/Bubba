@@ -82,7 +82,7 @@ namespace Bubba
             FontFamily = _theme.FontFamily;
             FontSize = _theme.FontSize;
             Height = 40;
-            Width = 1400;
+            Width = 800;
             GripperVisibility = Visibility.Hidden;
             OverflowButtonVisibility = Visibility.Collapsed;
             Padding = _theme.Padding;

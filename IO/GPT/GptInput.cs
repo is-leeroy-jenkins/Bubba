@@ -1,10 +1,10 @@
 ﻿// ******************************************************************************************
 //     Assembly:                Bubba
 //     Author:                  Terry D. Eppler
-//     Created:                 11-20-2024
+//     Created:                 11-21-2024
 // 
 //     Last Modified By:        Terry D. Eppler
-//     Last Modified On:        11-20-2024
+//     Last Modified On:        11-21-2024
 // ******************************************************************************************
 // <copyright file="GptInput.cs" company="Terry D. Eppler">
 //    Bubba is a small windows (wpf) application for interacting with
@@ -42,11 +42,7 @@
 namespace Bubba
 {
     using System;
-    using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
-    using System.Linq;
-    using System.Text;
-    using System.Threading.Tasks;
 
     /// <inheritdoc />
     /// <summary>
@@ -113,7 +109,7 @@ namespace Bubba
         /// <param name="temp">The temporary.</param>
         /// <param name="frequency">The frequency.</param>
         /// <param name="presence">The presence.</param>
-        public GptInput( string systemPrompt, string userPrompt, int tokens = 2048, 
+        public GptInput( string systemPrompt, string userPrompt, int tokens = 2048,
             double temp = 0.0, double frequency = 0.0, double presence = 0.0 )
         {
             _systemPrompt = systemPrompt;
@@ -133,6 +129,31 @@ namespace Bubba
         {
             _systemPrompt = input.SystemPrompt;
             _userPrompt = input.UserPrompt;
+            _maximumTokens = input.MaximumTokens;
+            _temperature = input.Temperature;
+            _frequency = input.Frequency;
+            _presence = input.Presence;
+        }
+
+        /// <summary>
+        /// Deconstructs the specified system prompt.
+        /// </summary>
+        /// <param name="systemPrompt">The system prompt.</param>
+        /// <param name="userPrompt">The user prompt.</param>
+        /// <param name="maximumTokens">The maximum tokens.</param>
+        /// <param name="temperature">The temperature.</param>
+        /// <param name="frequency">The frequency.</param>
+        /// <param name="presence">The presence.</param>
+        public void Deconstruct( out string systemPrompt, out string userPrompt,
+            out int maximumTokens, out double temperature, out double frequency,
+            out double presence )
+        {
+            systemPrompt = _systemPrompt;
+            userPrompt = _userPrompt;
+            maximumTokens = _maximumTokens;
+            temperature = _temperature;
+            frequency = _frequency;
+            presence = _presence;
         }
 
         /// <summary>

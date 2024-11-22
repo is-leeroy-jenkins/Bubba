@@ -1,10 +1,10 @@
 ﻿// ******************************************************************************************
 //     Assembly:                Bubba
 //     Author:                  Terry D. Eppler
-//     Created:                 11-19-2024
+//     Created:                 11-21-2024
 // 
 //     Last Modified By:        Terry D. Eppler
-//     Last Modified On:        11-19-2024
+//     Last Modified On:        11-21-2024
 // ******************************************************************************************
 // <copyright file="GptClient.cs" company="Terry D. Eppler">
 //    Bubba is a small windows (wpf) application for interacting with
@@ -52,16 +52,22 @@ namespace Bubba
     using System.Text.Json;
     using System.Threading.Tasks;
     using Newtonsoft.Json;
+    using OpenAI;
+    using OpenAI.Chat;
+    using OpenAI.Files;
+    using OpenAI.Images;
+    using OpenAI.Assistants;
+    using OpenAI.Audio;
+    using OpenAI.FineTuning;
+    using OpenAI.VectorStores;
     using Exception = System.Exception;
     using JsonSerializer = System.Text.Json.JsonSerializer;
 
     [ SuppressMessage( "ReSharper", "UnusedType.Global" ) ]
     [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
-    public class GptClient : GptBase, IGptClient
+    public class GptClient : GptBase
     {
-        private const string KEY = "sk-proj-qW9o_PoT2CleBXOErbGxe2UlOeHtgJ9K-"
-            + "rVFooUImScUvXn44e4R9ivYZtbYh5OIObWepnxCGET3BlbkFJykj4Dt9MDZT2GQg"
-            + "NarXOifdSxGwmodYtevUniudDGt8vkUNmxurKO9DkULeAUVz3rdY9g_-OsA";
+        private OpenAIClient _client;
 
         /// <inheritdoc />
         /// <summary>
@@ -73,14 +79,8 @@ namespace Bubba
         {
             _entry = new object( );
             _apiKey = KEY;
-            _presence = 0.0;
-            _frequency = 0.0;
-            _temperature = 0.5;
-            _maximumTokens = 2048;
             _model = "gpt-3.5-turbo";
-            _endPoint = "https://api.openai.com/v1/chat/completions";
-            _endPoints = GetEndPoints( );
-            _models = GetModels( );
+            _client = new OpenAIClient( _apiKey );
         }
 
         /// <inheritdoc />
@@ -88,153 +88,13 @@ namespace Bubba
         /// Initializes a new instance of the
         /// <see cref="T:Bubba.GptClient" /> class.
         /// </summary>
-        /// <param name="temperature">The temperature.</param>
-        /// <param name="tokens">The tokens.</param>
         /// <param name="model">The chat model.</param>
-        public GptClient( string model, double temperature = 0.5, int tokens = 2048 )
-            : this( )
+        public GptClient( string model )
         {
+            _entry = new object( );
+            _apiKey = KEY;
             _model = model;
-            _temperature = temperature;
-            _maximumTokens = tokens;
-            _endPoint = "https://api.openai.com/v1/chat/completions";
-        }
-
-        /// <inheritdoc />
-        /// <summary>
-        /// Gets the user identifier.
-        /// </summary>
-        /// <value>
-        /// The user identifier.
-        /// </value>
-        public int Id
-        {
-            get
-            {
-                return _id;
-            }
-            private set
-            {
-                if( _id != value )
-                {
-                    _id = value;
-                    OnPropertyChanged( nameof( Id ) );
-                }
-            }
-        }
-
-        /// <inheritdoc />
-        /// <summary>
-        /// Gets the frequency.
-        /// </summary>
-        /// <value>
-        /// The frequency.
-        /// </value>
-        public double Frequency
-        {
-            get
-            {
-                return _frequency;
-            }
-            private set
-            {
-                if( _frequency != value )
-                {
-                    _frequency = value;
-                    OnPropertyChanged( nameof( Frequency ) );
-                }
-            }
-        }
-
-        /// <inheritdoc />
-        /// <summary>
-        /// Gets the temperature.
-        /// </summary>
-        /// <value>
-        /// The temperature.
-        /// </value>
-        public double Temperature
-        {
-            get
-            {
-                return _temperature;
-            }
-            private set
-            {
-                if( _temperature != value )
-                {
-                    _temperature = value;
-                    OnPropertyChanged( nameof( Temperature ) );
-                }
-            }
-        }
-
-        /// <inheritdoc />
-        /// <summary>
-        /// Gets the presence.
-        /// </summary>
-        /// <value>
-        /// The presence.
-        /// </value>
-        public double Presence
-        {
-            get
-            {
-                return _presence;
-            }
-            private set
-            {
-                if( _presence != value )
-                {
-                    _presence = value;
-                    OnPropertyChanged( nameof( Presence ) );
-                }
-            }
-        }
-
-        /// <inheritdoc />
-        /// <summary>
-        /// Gets the maximum tokens.
-        /// </summary>
-        /// <value>
-        /// The maximum tokens.
-        /// </value>
-        public int MaximumTokens
-        {
-            get
-            {
-                return _maximumTokens;
-            }
-            private set
-            {
-                if( _maximumTokens != value )
-                {
-                    _maximumTokens = value;
-                    OnPropertyChanged( nameof( MaximumTokens ) );
-                }
-            }
-        }
-
-        /// <summary>
-        /// Gets the end point.
-        /// </summary>
-        /// <value>
-        /// The end point.
-        /// </value>
-        public string EndPoint
-        {
-            get
-            {
-                return _endPoint;
-            }
-            private set
-            {
-                if( _endPoint != value )
-                {
-                    _endPoint = value;
-                    OnPropertyChanged( nameof( EndPoint ) );
-                }
-            }
+            _client = new OpenAIClient( _apiKey );
         }
 
         /// <inheritdoc />
@@ -250,7 +110,7 @@ namespace Bubba
             {
                 return _model;
             }
-            private set
+            set
             {
                 if( _model != value )
                 {
@@ -267,287 +127,163 @@ namespace Bubba
         /// <value>
         /// The prompt.
         /// </value>
-        public string Prompt
+        public string UserPrompt
         {
             get
             {
-                return _prompt;
+                return _userPrompt;
             }
-            private set
+            set
             {
-                if( _prompt != value )
+                if( _userPrompt != value )
                 {
-                    _prompt = value;
-                    OnPropertyChanged( nameof( Prompt ) );
+                    _userPrompt = value;
+                    OnPropertyChanged( nameof( UserPrompt ) );
                 }
             }
         }
 
-        /// <inheritdoc />
         /// <summary>
-        /// Sends a request to the Chat (Assistant) API.
+        /// Creates the chat client.
         /// </summary>
-        public async Task<string> GetResponseAsync( List<dynamic> messages, string model = "gpt-4",
-            int maxTokens = 150, double temperature = 0.7 )
-        {
-            var _payload = new
-            {
-                model,
-                messages,
-                max_tokens = maxTokens,
-                temperature
-            };
-
-            return await SendRequestAsync( $"{_endPoint}/chat/completions", _payload );
-        }
-
-        /// <inheritdoc />
-        /// <summary>
-        /// Handles POST requests and response parsing.
-        /// </summary>
-        public async Task<string> SendRequestAsync( string url, object payload )
-        {
-            var _serial = JsonConvert.SerializeObject( payload );
-            var _content = new StringContent( _serial, Encoding.UTF8, "application/json" );
-            _httpClient.DefaultRequestHeaders.Clear( );
-            _httpClient.DefaultRequestHeaders.Add( "Authorization", $"Bearer {_apiKey}" );
-            var _response = await _httpClient.PostAsync( url, _content );
-            if( !_response.IsSuccessStatusCode )
-            {
-                var _message =
-                    $"Error: {_response.StatusCode}, {await _response.Content.ReadAsStringAsync( )}";
-
-                throw new Exception( _message );
-            }
-
-            var _json = await _response.Content.ReadAsStringAsync( );
-            dynamic _result = JsonConvert.DeserializeObject( _json );
-            if( url.Contains( "/completions" ) )
-            {
-                return _result?.choices[ 0 ]?.text ?? "No response.";
-            }
-            else if( url.Contains( "/chat/completions" ) )
-            {
-                return _result?.choices[ 0 ]?.message?.content ?? "No response.";
-            }
-
-            return "Unexpected response format.";
-        }
-
-        /// <inheritdoc />
-        /// <summary>
-        /// Sends the HTTP message.
-        /// </summary>
-        /// <param name="prompt">The question.</param>
         /// <returns></returns>
-        public string WebGenerate( string prompt )
+        public ChatClient CreateChatClient( )
         {
             try
             {
-                ThrowIf.Null( prompt, nameof( prompt ) );
-                ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12
-                    | SecurityProtocolType.Tls11;
-
-                var _url = _model.Contains( "gpt-3.5-turbo" )
-                    ? "https://api.openai.com/v1/chat/completions"
-                    : "https://api.openai.com/v1/completions";
-
-                // Validate randomness (temperature)
-                var _payload = CreatePayload( prompt );
-                var _request = WebRequest.Create( _url );
-                _request.Method = "POST";
-                _request.ContentType = "application/json";
-                _request.Headers.Add( "Authorization", $"Bearer {App.KEY}" );
-                using var _requestStream = _request.GetRequestStream( );
-                using var _writer = new StreamWriter( _requestStream );
-                _writer.Write( _payload );
-                using var _response = _request.GetResponse( );
-                using var _responseStream = _response.GetResponseStream( );
-                if( _responseStream == null )
-                {
-                    return string.Empty;
-                }
-
-                using var _reader = new StreamReader( _responseStream );
-                var _jsonResponse = _reader.ReadToEnd( );
-                return ExtractMessageFromResponse( _jsonResponse );
+                return new ChatClient( "gpt-4o", _apiKey );
             }
             catch( Exception ex )
             {
                 Fail( ex );
-                return string.Empty;
+                return default( ChatClient );
             }
         }
 
-        // Helper method to build the request payload
-        /// <inheritdoc />
         /// <summary>
-        /// Builds the request data.
+        /// Creates the chat stream asynchronous.
         /// </summary>
-        /// <param name="prompt">The question.</param>
-        /// <returns></returns>
-        public string CreatePayload( string prompt )
+        public async Task CreateChatStreamAsync()
         {
-            if( _model.Contains( "gpt-3.5-turbo" ) )
+            var _streamClient = new ChatClient(_model, _apiKey);
+            var _updates = _streamClient.CompleteChatStreamingAsync("Say 'this is a test.'");
+            await foreach( var _update in _updates)
             {
-                return JsonSerializer.Serialize( new
+                if(_update.ContentUpdate.Count > 0)
                 {
-                    model = _model,
-                    messages = new[ ]
-                    {
-                        new
-                        {
-                            role = "user",
-                            content = prompt
-                        }
-                    }
-                } );
-            }
-            else
-            {
-                return JsonSerializer.Serialize( new
-                {
-                    model = _model,
-                    prompt,
-                    max_tokens = _maximumTokens,
-                    user = _id,
-                    _temperature,
-                    frequency_penalty = 0.0,
-                    presence_penalty = 0.0,
-                    stop = new[ ]
-                    {
-                        "#",
-                        ";"
-                    }
-                } );
+                    Console.Write(_update.ContentUpdate[0].Text);
+                }
             }
         }
 
         /// <summary>
-        /// Extracts the message from response.
-        /// Helper method to extract the message from the JSON response
+        /// Creates the assistant client.
         /// </summary>
-        /// <param name="response">The json response.</param>
         /// <returns></returns>
-        private string ExtractMessageFromResponse( string response )
+        [Experimental( "OPENAI001" ) ]
+        public AssistantClient CreateAssistantClient( )
         {
             try
             {
-                ThrowIf.Empty( response, nameof( response ) );
-                using var _document = JsonDocument.Parse( response );
-                var _root = _document.RootElement;
-                if( _model.Contains( "gpt-3.5-turbo" ) )
-                {
-                    var _choices = _root.GetProperty( "choices" );
-                    if( _choices.ValueKind == JsonValueKind.Array
-                        && _choices.GetArrayLength( ) > 0 )
-                    {
-                        var _element = _choices[ 0 ].GetProperty( "message" );
-                        return _element.GetProperty( "content" ).GetString( );
-                    }
-
-                    return _choices[ 0 ].GetProperty( "message" ).GetString( );
-                }
-                else
-                {
-                    return _root.GetProperty( "choices" )[ 0 ].GetProperty( "text" ).GetString( );
-                }
+                var _assistClient = new OpenAIClient( _apiKey );
+                var _assistant = _assistClient.GetAssistantClient( );
+                return _assistant;
             }
             catch( Exception ex )
             {
                 Fail( ex );
-                return string.Empty;
+                return default( AssistantClient );
             }
         }
 
-        /// <inheritdoc />
         /// <summary>
-        /// Sends the HTTP message asynchronous.
+        /// Creates the fine tuning client.
         /// </summary>
-        /// <param name="prompt">The prompt.</param>
         /// <returns></returns>
-        public async Task<string> SendHttpMessageAsync( string prompt )
+        [Experimental( "OPENAI001" ) ]
+        public FineTuningClient CreateFineTuningClient( )
         {
-            var _temp = _temperature;
-            var _url = _model.Contains( "gpt-3.5-turbo" )
-                ? "https://api.openai.com/v1/chat/completions"
-                : "https://api.openai.com/v1/completions";
-
-            // Prepare request payload
-            string _payload;
-            if( _model.Contains( "gpt-3.5-turbo" ) )
-            {
-                _payload = JsonSerializer.Serialize( new
-                {
-                    model = _model,
-                    messages = new[ ]
-                    {
-                        new
-                        {
-                            role = "user",
-                            content = PadQuotes( prompt )
-                        }
-                    }
-                } );
-            }
-            else
-            {
-                _payload = JsonSerializer.Serialize( new
-                {
-                    model = _model,
-                    prompt = PadQuotes( prompt ),
-                    max_tokens = _maximumTokens,
-                    temperature = _temp,
-                    user = _id,
-                    frequency_penalty = 0.0,
-                    presence_penalty = 0.0,
-                    stop = new[ ]
-                    {
-                        "#",
-                        ";"
-                    }
-                } );
-            }
-
             try
             {
-                using var _client = new HttpClient( );
-                _client.DefaultRequestHeaders.Authorization =
-                    new AuthenticationHeaderValue( "Bearer", App.KEY );
-
-                var _content = new StringContent( _payload, Encoding.UTF8, "application/json" );
-                var _response = await _client.PostAsync( _url, _content );
-                _response.EnsureSuccessStatusCode( );
-                var _responseText = await _response.Content.ReadAsStringAsync( );
-                if( _model.Contains( "gpt-3.5-turbo" ) )
-                {
-                    using var _doc = JsonDocument.Parse( _responseText );
-                    var _root = _doc.RootElement;
-                    var _choice = _root.GetProperty( "choices" )[ 0 ];
-                    var _message = _choice.GetProperty( "message" )
-                        .GetProperty( "content" )
-                        .GetString( );
-
-                    return _message ?? string.Empty;
-                }
-                else
-                {
-                    using var _doc = JsonDocument.Parse( _responseText );
-                    var _root = _doc.RootElement;
-                    var _choice = _root.GetProperty( "choices" )[ 0 ];
-                    var _text = _choice.GetProperty( "text" ).GetString( );
-                    return _text ?? string.Empty;
-                }
-            }
-            catch( HttpRequestException ex )
-            {
-                Fail( ex );
-                return string.Empty;
+                var _fineTuner = new OpenAIClient( _apiKey );
+                var _fineClient = _fineTuner.GetFineTuningClient( );
+                return _fineClient;
             }
             catch( Exception ex )
             {
                 Fail( ex );
-                return string.Empty;
+                return default( FineTuningClient );
+            }
+        }
+
+        /// <summary>
+        /// Creates the vector store client.
+        /// </summary>
+        /// <returns></returns>
+        [Experimental( "OPENAI001" ) ]
+        public VectorStoreClient CreateVectorStoreClient( )
+        {
+            try
+            {
+                var _vectorStore = new OpenAIClient( _apiKey );
+                var _vectorClient = _vectorStore.GetVectorStoreClient( );
+                return _vectorClient;
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+                return default( VectorStoreClient );
+            }
+        }
+
+        /// <summary>
+        /// Creates the image client.
+        /// </summary>
+        /// <returns></returns>
+        public ImageClient CreateImageClient( )
+        {
+            try
+            {
+                return new ImageClient( "dall-e-3", _apiKey );
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+                return default( ImageClient );
+            }
+        }
+
+        /// <summary>
+        /// Creates the file client.
+        /// </summary>
+        /// <returns></returns>
+        public OpenAIFileClient CreateFileClient( )
+        {
+            try
+            {
+                return new OpenAIFileClient( _apiKey );
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+                return default( OpenAIFileClient );
+            }
+        }
+
+        /// <summary>
+        /// Creates the audio client.
+        /// </summary>
+        /// <returns></returns>
+        public AudioClient CreateAudioClient( )
+        {
+            try
+            {
+                return new AudioClient( "tts-1", _apiKey );
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+                return default( AudioClient );
             }
         }
     }

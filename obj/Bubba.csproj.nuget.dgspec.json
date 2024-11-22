@@ -53,17 +53,17 @@
         "net8.0-windows7.0": {
           "targetAlias": "net8.0-windows",
           "dependencies": {
-            "CefSharp.Common": {
+            "CefSharp.Common.NETCore": {
               "target": "Package",
               "version": "[130.1.90, )"
             },
-            "CefSharp.Wpf": {
+            "CefSharp.Wpf.NETCore": {
               "target": "Package",
               "version": "[130.1.90, )"
             },
             "EPPlus": {
               "target": "Package",
-              "version": "[7.5.0, )"
+              "version": "[7.5.1, )"
             },
             "Google.Apis.CustomSearchAPI.v1": {
               "target": "Package",
@@ -94,6 +94,10 @@
             "Newtonsoft.Json": {
               "target": "Package",
               "version": "[13.0.3, )"
+            },
+            "OpenAI": {
+              "target": "Package",
+              "version": "[2.0.0, )"
             },
             "RestoreWindowPlace": {
               "target": "Package",
@@ -151,6 +155,10 @@
               "target": "Package",
               "version": "[9.0.0, )"
             },
+            "System.Text.Json": {
+              "target": "Package",
+              "version": "[9.0.0, )"
+            },
             "SystemExtensions.NetCore": {
               "target": "Package",
               "version": "[1.6.11, )"
@@ -162,6 +170,18 @@
             "ToastNotifications.Net6": {
               "target": "Package",
               "version": "[1.0.4, )"
+            },
+            "chromiumembeddedframework.runtime.win-arm64": {
+              "target": "Package",
+              "version": "[130.1.9, )"
+            },
+            "chromiumembeddedframework.runtime.win-x64": {
+              "target": "Package",
+              "version": "[130.1.9, )"
+            },
+            "chromiumembeddedframework.runtime.win-x86": {
+              "target": "Package",
+              "version": "[130.1.9, )"
             }
           },
           "imports": [

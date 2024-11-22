@@ -1,15 +1,17 @@
 {
   "version": 2,
-  "dgSpecHash": "4NiBhiSlyhQ=",
+  "dgSpecHash": "wZt1/uqcM+0=",
   "success": true,
   "projectFilePath": "C:\\Users\\terry\\source\\repos\\Bubba\\Bubba.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\terry\\.nuget\\packages\\cefsharp.common\\130.1.90\\cefsharp.common.130.1.90.nupkg.sha512",
-    "C:\\Users\\terry\\.nuget\\packages\\cefsharp.wpf\\130.1.90\\cefsharp.wpf.130.1.90.nupkg.sha512",
+    "C:\\Users\\terry\\.nuget\\packages\\cefsharp.common.netcore\\130.1.90\\cefsharp.common.netcore.130.1.90.nupkg.sha512",
+    "C:\\Users\\terry\\.nuget\\packages\\cefsharp.wpf.netcore\\130.1.90\\cefsharp.wpf.netcore.130.1.90.nupkg.sha512",
+    "C:\\Users\\terry\\.nuget\\packages\\chromiumembeddedframework.runtime\\130.1.9\\chromiumembeddedframework.runtime.130.1.9.nupkg.sha512",
+    "C:\\Users\\terry\\.nuget\\packages\\chromiumembeddedframework.runtime.win-arm64\\130.1.9\\chromiumembeddedframework.runtime.win-arm64.130.1.9.nupkg.sha512",
     "C:\\Users\\terry\\.nuget\\packages\\chromiumembeddedframework.runtime.win-x64\\130.1.9\\chromiumembeddedframework.runtime.win-x64.130.1.9.nupkg.sha512",
     "C:\\Users\\terry\\.nuget\\packages\\chromiumembeddedframework.runtime.win-x86\\130.1.9\\chromiumembeddedframework.runtime.win-x86.130.1.9.nupkg.sha512",
     "C:\\Users\\terry\\.nuget\\packages\\controlzex\\4.4.0\\controlzex.4.4.0.nupkg.sha512",
-    "C:\\Users\\terry\\.nuget\\packages\\epplus\\7.5.0\\epplus.7.5.0.nupkg.sha512",
+    "C:\\Users\\terry\\.nuget\\packages\\epplus\\7.5.1\\epplus.7.5.1.nupkg.sha512",
     "C:\\Users\\terry\\.nuget\\packages\\epplus.interfaces\\7.5.0\\epplus.interfaces.7.5.0.nupkg.sha512",
     "C:\\Users\\terry\\.nuget\\packages\\epplus.system.drawing\\7.5.0\\epplus.system.drawing.7.5.0.nupkg.sha512",
     "C:\\Users\\terry\\.nuget\\packages\\google.apis\\1.68.0\\google.apis.1.68.0.nupkg.sha512",
@@ -35,6 +37,7 @@
     "C:\\Users\\terry\\.nuget\\packages\\microsoft.xaml.behaviors.wpf\\1.1.19\\microsoft.xaml.behaviors.wpf.1.1.19.nupkg.sha512",
     "C:\\Users\\terry\\.nuget\\packages\\modernwpfui\\0.9.6\\modernwpfui.0.9.6.nupkg.sha512",
     "C:\\Users\\terry\\.nuget\\packages\\newtonsoft.json\\13.0.3\\newtonsoft.json.13.0.3.nupkg.sha512",
+    "C:\\Users\\terry\\.nuget\\packages\\openai\\2.0.0\\openai.2.0.0.nupkg.sha512",
     "C:\\Users\\terry\\.nuget\\packages\\restorewindowplace\\2.1.0\\restorewindowplace.2.1.0.nupkg.sha512",
     "C:\\Users\\terry\\.nuget\\packages\\runtime.native.system.data.sqlclient.sni\\4.4.0\\runtime.native.system.data.sqlclient.sni.4.4.0.nupkg.sha512",
     "C:\\Users\\terry\\.nuget\\packages\\runtime.win-arm64.runtime.native.system.data.sqlclient.sni\\4.4.0\\runtime.win-arm64.runtime.native.system.data.sqlclient.sni.4.4.0.nupkg.sha512",
@@ -51,35 +54,29 @@
     "C:\\Users\\terry\\.nuget\\packages\\syncfusion.themes.fluentdark.wpf\\24.1.41\\syncfusion.themes.fluentdark.wpf.24.1.41.nupkg.sha512",
     "C:\\Users\\terry\\.nuget\\packages\\syncfusion.tools.wpf\\24.1.41\\syncfusion.tools.wpf.24.1.41.nupkg.sha512",
     "C:\\Users\\terry\\.nuget\\packages\\syncfusion.ui.wpf.net\\24.1.41\\syncfusion.ui.wpf.net.24.1.41.nupkg.sha512",
+    "C:\\Users\\terry\\.nuget\\packages\\system.clientmodel\\1.1.0\\system.clientmodel.1.1.0.nupkg.sha512",
     "C:\\Users\\terry\\.nuget\\packages\\system.componentmodel.annotations\\5.0.0\\system.componentmodel.annotations.5.0.0.nupkg.sha512",
     "C:\\Users\\terry\\.nuget\\packages\\system.configuration.configurationmanager\\9.0.0\\system.configuration.configurationmanager.9.0.0.nupkg.sha512",
     "C:\\Users\\terry\\.nuget\\packages\\system.data.oledb\\9.0.0\\system.data.oledb.9.0.0.nupkg.sha512",
     "C:\\Users\\terry\\.nuget\\packages\\system.data.sqlclient\\4.9.0\\system.data.sqlclient.4.9.0.nupkg.sha512",
     "C:\\Users\\terry\\.nuget\\packages\\system.data.sqlite.core\\1.0.119\\system.data.sqlite.core.1.0.119.nupkg.sha512",
+    "C:\\Users\\terry\\.nuget\\packages\\system.diagnostics.diagnosticsource\\6.0.1\\system.diagnostics.diagnosticsource.6.0.1.nupkg.sha512",
     "C:\\Users\\terry\\.nuget\\packages\\system.diagnostics.eventlog\\9.0.0\\system.diagnostics.eventlog.9.0.0.nupkg.sha512",
     "C:\\Users\\terry\\.nuget\\packages\\system.diagnostics.performancecounter\\9.0.0\\system.diagnostics.performancecounter.9.0.0.nupkg.sha512",
     "C:\\Users\\terry\\.nuget\\packages\\system.drawing.common\\8.0.4\\system.drawing.common.8.0.4.nupkg.sha512",
+    "C:\\Users\\terry\\.nuget\\packages\\system.io.pipelines\\9.0.0\\system.io.pipelines.9.0.0.nupkg.sha512",
+    "C:\\Users\\terry\\.nuget\\packages\\system.memory.data\\1.0.2\\system.memory.data.1.0.2.nupkg.sha512",
+    "C:\\Users\\terry\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\6.0.0\\system.runtime.compilerservices.unsafe.6.0.0.nupkg.sha512",
     "C:\\Users\\terry\\.nuget\\packages\\system.security.cryptography.pkcs\\8.0.1\\system.security.cryptography.pkcs.8.0.1.nupkg.sha512",
     "C:\\Users\\terry\\.nuget\\packages\\system.security.cryptography.protecteddata\\9.0.0\\system.security.cryptography.protecteddata.9.0.0.nupkg.sha512",
     "C:\\Users\\terry\\.nuget\\packages\\system.speech\\9.0.0\\system.speech.9.0.0.nupkg.sha512",
     "C:\\Users\\terry\\.nuget\\packages\\system.text.encoding.codepages\\8.0.0\\system.text.encoding.codepages.8.0.0.nupkg.sha512",
     "C:\\Users\\terry\\.nuget\\packages\\system.text.encodings.web\\9.0.0\\system.text.encodings.web.9.0.0.nupkg.sha512",
-    "C:\\Users\\terry\\.nuget\\packages\\system.text.json\\4.7.2\\system.text.json.4.7.2.nupkg.sha512",
+    "C:\\Users\\terry\\.nuget\\packages\\system.text.json\\9.0.0\\system.text.json.9.0.0.nupkg.sha512",
     "C:\\Users\\terry\\.nuget\\packages\\systemextensions.netcore\\1.6.11\\systemextensions.netcore.1.6.11.nupkg.sha512",
     "C:\\Users\\terry\\.nuget\\packages\\systemextensions.netstandard\\1.6.11\\systemextensions.netstandard.1.6.11.nupkg.sha512",
     "C:\\Users\\terry\\.nuget\\packages\\toastnotifications.messages.net6\\1.0.4\\toastnotifications.messages.net6.1.0.4.nupkg.sha512",
     "C:\\Users\\terry\\.nuget\\packages\\toastnotifications.net6\\1.0.4\\toastnotifications.net6.1.0.4.nupkg.sha512"
   ],
-  "logs": [
-    {
-      "code": "NU1701",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Package 'CefSharp.Wpf 130.1.90' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1' instead of the project target framework 'net8.0-windows7.0'. This package may not be fully compatible with your project.",
-      "libraryId": "CefSharp.Wpf",
-      "targetGraphs": [
-        "net8.0-windows7.0"
-      ]
-    }
-  ]
+  "logs": []
 }

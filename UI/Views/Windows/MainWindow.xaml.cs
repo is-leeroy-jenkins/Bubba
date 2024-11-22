@@ -164,7 +164,7 @@ namespace Bubba
             RegisterCallbacks( );
             InitializeDelegates( );
             _temperature = "0.5";
-            _maximumTokens = "2058";
+            _maximumTokens = "2048";
 
             // Event Wiring
             Loaded += OnLoad;
@@ -520,9 +520,9 @@ namespace Bubba
                 _httpClient.DefaultRequestHeaders.Authorization =
                     new AuthenticationHeaderValue( "Bearer", App.KEY );
 
-                var _response = await _httpClient.GetAsync( _url );
-                _response.EnsureSuccessStatusCode( );
-                var _body = await _response.Content.ReadAsStringAsync( );
+                var _responseMessage = await _httpClient.GetAsync( _url );
+                _responseMessage.EnsureSuccessStatusCode( );
+                var _body = await _responseMessage.Content.ReadAsStringAsync( );
                 var _models = new List<string>( );
                 using var _document = JsonDocument.Parse( _body );
                 var _root = _document.RootElement;
@@ -609,7 +609,7 @@ namespace Bubba
         {
             try
             {
-                //StatusLabel.Content = DateTime.Now.ToLongTimeString( );
+                StatusLabel.Content = DateTime.Now.ToLongTimeString( );
             }
             catch( Exception ex )
             {
@@ -667,9 +667,7 @@ namespace Bubba
 
                 VoiceComboBox.AllowMultiSelect = false;
                 InitializeTimer( );
-
-                //ProgressBar.Visibility = Visibility.Hidden;
-                //ProgressLabel.Visibility = Visibility.Hidden;
+                ProgressBar.Visibility = Visibility.Hidden;
             }
             catch( Exception ex )
             {

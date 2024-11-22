@@ -258,9 +258,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="CefSharp.Common" Version="130.1.90" />
-    <PackageReference Include="CefSharp.Wpf" Version="130.1.90" />
-    <PackageReference Include="EPPlus" Version="7.5.0" />
+    <PackageReference Include="CefSharp.Common.NETCore" Version="130.1.90" />
+    <PackageReference Include="CefSharp.Wpf.NETCore" Version="130.1.90" />
+    <PackageReference Include="EPPlus" Version="7.5.1" />
     <PackageReference Include="Google.Apis.CustomSearchAPI.v1" Version="1.68.0.3520" />
     <PackageReference Include="MahApps.Metro" Version="2.4.10" />
     <PackageReference Include="Microsoft.NETFramework.ReferenceAssemblies" Version="1.0.3">
@@ -271,6 +271,7 @@
     <PackageReference Include="Microsoft.Office.Interop.Outlook" Version="15.0.4797.1004" />
     <PackageReference Include="ModernWpfUI" Version="0.9.6" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+    <PackageReference Include="OpenAI" Version="2.0.0" />
     <PackageReference Include="RestoreWindowPlace" Version="2.1.0" />
     <PackageReference Include="SkiaSharp" Version="2.88.9" />
     <PackageReference Include="Syncfusion.Licensing" Version="24.1.41" />
@@ -285,6 +286,7 @@
     <PackageReference Include="System.Data.SQLite.Core" Version="1.0.119" />
     <PackageReference Include="System.Speech" Version="9.0.0" />
     <PackageReference Include="System.Text.Encodings.Web" Version="9.0.0" />
+    <PackageReference Include="System.Text.Json" Version="9.0.0" />
     <PackageReference Include="SystemExtensions.NetCore" Version="1.6.11" />
     <PackageReference Include="ToastNotifications.Messages.Net6" Version="1.0.4" />
     <PackageReference Include="ToastNotifications.Net6" Version="1.0.4" />
