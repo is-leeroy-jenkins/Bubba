@@ -99,7 +99,7 @@ You can build the application like any other .NET / WPF application on Windows.
 
 ## Bubba's AI layer provides access to the OpenAI VectorStores and Files
 
-### Federal Appropriations
+### ![](https://github.com/is-leeroy-jenkins/Bubba/blob/master/Resources/Assets/GitHubImages/Appropriation.png)Federal Appropriations
 
 |               Public Law                     |           Explanatory Statement       |	  	Appropriation Title			                                                  |   
 | -------------------------------------------- | --------------------------------------|----------------------------------------------------------------------------------------------------------|
