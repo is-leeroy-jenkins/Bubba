@@ -969,24 +969,24 @@ namespace Bubba
                     return;
                 }
 
-                if( AnswerTextBox.Text != "" )
+                if( SystemTextBox.Text != "" )
                 {
-                    AnswerTextBox.AppendText( "\r\n" );
+                    SystemTextBox.AppendText( "\r\n" );
                 }
 
-                AnswerTextBox.AppendText( "User: " + _question + "\r\n" );
+                SystemTextBox.AppendText( "User: " + _question + "\r\n" );
                 UserTextBox.Text = "";
                 try
                 {
                     var _answer = SendHttpMessage( _question ) + "";
-                    AnswerTextBox.AppendText( "Bubba GPT: " 
+                    SystemTextBox.AppendText( "Bubba GPT: " 
                         + _answer.Replace( "\n", "\r\n" ).Trim( ) );
 
                     SpeechToText( _answer );
                 }
                 catch( Exception ex )
                 {
-                    AnswerTextBox.AppendText( "Error: " + ex.Message );
+                    SystemTextBox.AppendText( "Error: " + ex.Message );
                 }
             }
         }
