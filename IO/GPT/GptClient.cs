@@ -59,9 +59,9 @@ namespace Bubba
     [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
     public class GptClient : GptBase, IGptClient
     {
-        private const string KEY = "sk-proj-qW9o_PoT2CleBXOErbGxe2UlOeHtgJ9K-"
-            + "rVFooUImScUvXn44e4R9ivYZtbYh5OIObWepnxCGET3BlbkFJykj4Dt9MDZT2GQg"
-            + "NarXOifdSxGwmodYtevUniudDGt8vkUNmxurKO9DkULeAUVz3rdY9g_-OsA";
+        private const string KEY = "sk-proj-m1FNMEEpSuwC32xZedCfozYsGkCEhaVSCEv"
+            + "S2u6tzNR39HFYKlC0kz0iUvXoJtSACw49E1laKaT3BlbkFJIORKROk_"
+            + "EirH8g8KoWX7fyhM3oQcd9KqILMBo1rEVFlruTMOsDQ3bHt7mNBjvlZw8DLfYbckQA";
 
         /// <inheritdoc />
         /// <summary>
@@ -102,7 +102,9 @@ namespace Bubba
 
         /// <inheritdoc />
         /// <summary>
-        /// Gets the frequency.
+        /// Number between -2.0 and 2.0. Positive values penalize new tokens
+        /// based on their existing frequency in the text so far,
+        /// decreasing the model's likelihood to repeat the same line verbatim.
         /// </summary>
         /// <value>
         /// The frequency.
@@ -192,6 +194,7 @@ namespace Bubba
             }
         }
 
+        /// <inheritdoc />
         /// <summary>
         /// Gets the end point.
         /// </summary>

@@ -72,8 +72,14 @@ namespace Bubba
     [ SuppressMessage( "ReSharper", "AssignNullToNotNullAttribute" ) ]
     [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
     [ SuppressMessage( "ReSharper", "RedundantExtendsListEntry" ) ]
+    [ SuppressMessage( "ReSharper", "FieldCanBeMadeReadOnly.Global" ) ]
     public partial class MainWindow : Window, IDisposable
     {
+        /// <summary>
+        /// The provider
+        /// </summary>
+        private protected Provider _provider;
+
         /// <summary>
         /// The busy
         /// </summary>
@@ -168,7 +174,7 @@ namespace Bubba
             InitializeComponent( );
             RegisterCallbacks( );
             InitializeDelegates( );
-            _temperature = "0.5";
+            _temperature = "0.7";
             _maximumTokens = "2048";
 
             // Event Wiring
@@ -183,9 +189,16 @@ namespace Bubba
         {
             try
             {
+                FirstButton.Click += OnFirstButtonClick;
+                PreviousButton.Click += OnPreviousButtonClick;
+                NextButton.Click += OnNextButtonClick;
+                LastButton.Click += OnLastButtonClick;
+                LookupButton.Click += OnLookupButtonClick;
+                RefreshButton.Click += OnRefreshButtonClick;
                 ListenCheckBox.Click += OnListenCheckedChanged;
                 MuteCheckBox.Click += OnMuteCheckedBoxChanged;
                 ModelComboBox.SelectionChanged += OnModelSelectionChanged;
+                MenuButton.Click += OnToggleButtonClick;
             }
             catch( Exception ex )
             {
@@ -333,6 +346,27 @@ namespace Bubba
             {
                 Fail( ex );
                 return default( Notifier );
+            }
+        }
+
+        /// <summary>
+        /// Clears the controls.
+        /// </summary>
+        private void ClearControls( )
+        {
+            try
+            {
+                UserTextBox.Text = "1";
+                PresenceTextBox.Text = "0.0";
+                TemperatureTextBox.Text = "0.0";
+                FrequencyTextBox.Text = "0.0";
+                MaxTokensTextBox.Text = "2048";
+                SystemTextBox.Text = "";
+                UserTextBox.Text = "";
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
             }
         }
 
@@ -634,6 +668,137 @@ namespace Bubba
             catch( Exception ex )
             {
                 Fail( ex );
+            }
+        }
+
+        /// <summary>
+        /// Moves to first.
+        /// </summary>
+        private protected void MoveToFirst( )
+        {
+            try
+            {
+                var _message = "NOT YET IMPLEMENTED!";
+                SendMessage( _message );
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+            }
+        }
+
+        /// <summary>
+        /// Moves to previous.
+        /// </summary>
+        private protected void MoveToPrevious( )
+        {
+            try
+            {
+                var _message = "NOT YET IMPLEMENTED!";
+                SendMessage( _message );
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+            }
+        }
+
+        /// <summary>
+        /// Moves to next.
+        /// </summary>
+        private protected void MoveToNext( )
+        {
+            try
+            {
+                var _message = "NOT YET IMPLEMENTED!";
+                SendMessage( _message );
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+            }
+        }
+
+        /// <summary>
+        /// Moves to last.
+        /// </summary>
+        private protected void MoveToLast( )
+        {
+            try
+            {
+                var _message = "NOT YET IMPLEMENTED!";
+                SendMessage( _message );
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// Shows the items.
+        /// </summary>
+        private void SetToolbarVisibility( bool visible = true )
+        {
+            try
+            {
+                if( visible )
+                {
+                    FirstButton.Visibility = Visibility.Visible;
+                    PreviousButton.Visibility = Visibility.Visible;
+                    NextButton.Visibility = Visibility.Visible;
+                    LastButton.Visibility = Visibility.Visible;
+                    ToolStripTextBox.Visibility = Visibility.Visible;
+                    LookupButton.Visibility = Visibility.Visible;
+                    RefreshButton.Visibility = Visibility.Visible;
+                }
+                else
+                {
+                    FirstButton.Visibility = Visibility.Hidden;
+                    PreviousButton.Visibility = Visibility.Hidden;
+                    NextButton.Visibility = Visibility.Hidden;
+                    LastButton.Visibility = Visibility.Hidden;
+                    ToolStripTextBox.Visibility = Visibility.Hidden;
+                    LookupButton.Visibility = Visibility.Hidden;
+                    RefreshButton.Visibility = Visibility.Hidden;
+                }
+            }
+            catch( Exception ex )
+            {
+                Fail(ex);
+            }
+        }
+
+        /// <summary>
+        /// Runs the client application.
+        /// </summary>
+        private void RunClient( )
+        {
+            try
+            {
+                switch(_provider)
+                {
+                    case Provider.Access:
+                    {
+                        DataMinion.RunAccess();
+                        break;
+                    }
+                    case Provider.SqlCe:
+                    {
+                        DataMinion.RunSqlCe();
+                        break;
+                    }
+                    case Provider.SQLite:
+                    {
+                        DataMinion.RunSQLite();
+                        break;
+                    }
+                }
+            }
+            catch(Exception ex)
+            {
+                Fail(ex);
             }
         }
 
@@ -992,6 +1157,24 @@ namespace Bubba
         }
 
         /// <summary>
+        /// Called when [clear button click].
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The <see cref="RoutedEventArgs"/>
+        /// instance containing the event data.</param>
+        private void OnClearButtonClick(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                ClearControls();
+            }
+            catch(Exception ex)
+            {
+                Fail(ex);
+            }
+        }
+
+        /// <summary>
         /// Called when [model ComboBox selection changed].
         /// </summary>
         /// <param name="sender">The sender.</param>
@@ -1002,6 +1185,133 @@ namespace Bubba
             try
             {
                 _chatModel = ModelComboBox.SelectedValue.ToString( );
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+            }
+        }
+
+        /// <summary>
+        /// Called when [first button click].
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The <see cref="EventArgs"/>
+        /// instance containing the event data.</param>
+        private void OnFirstButtonClick(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                MoveToFirst();
+            }
+            catch(Exception ex)
+            {
+                Fail(ex);
+            }
+        }
+
+        /// <summary>
+        /// Called when [previous button click].
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The <see cref="EventArgs"/>
+        /// instance containing the event data.</param>
+        private void OnPreviousButtonClick(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                MoveToPrevious();
+            }
+            catch(Exception ex)
+            {
+                Fail(ex);
+            }
+        }
+
+        /// <summary>
+        /// Called when [next button click].
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The <see cref="EventArgs"/>
+        /// instance containing the event data.</param>
+        private void OnNextButtonClick(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                MoveToNext();
+            }
+            catch(Exception ex)
+            {
+                Fail(ex);
+            }
+        }
+
+        /// <summary>
+        /// Called when [last button click].
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The <see cref="EventArgs"/>
+        /// instance containing the event data.</param>
+        private void OnLastButtonClick(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                MoveToLast();
+            }
+            catch(Exception ex)
+            {
+                Fail(ex);
+            }
+        }
+
+        /// <summary>
+        /// Called when [lookup button click].
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The <see cref="EventArgs"/>
+        /// instance containing the event data.</param>
+        private void OnLookupButtonClick( object sender, RoutedEventArgs e )
+        {
+            try
+            {
+                var _message = "NOT YET IMPLEMENTED!";
+                SendMessage( _message );
+            }
+            catch(Exception ex)
+            {
+                Fail(ex);
+            }
+        }
+
+        /// <summary>
+        /// Called when [toggle button click].
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The <see cref="EventArgs"/>
+        /// instance containing the event data.</param>
+        private void OnToggleButtonClick(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                SetToolbarVisibility( !FirstButton.IsVisible );
+            }
+            catch(Exception ex)
+            {
+                Fail(ex);
+            }
+        }
+
+        /// <summary>
+        /// Called when [refresh button click].
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The <see cref="EventArgs"/>
+        /// instance containing the event data.</param>
+        private void OnRefreshButtonClick( object sender, RoutedEventArgs e )
+        {
+            try
+            {
+                ClearControls( );
             }
             catch( Exception ex )
             {

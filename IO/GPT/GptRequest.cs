@@ -50,6 +50,11 @@ namespace Bubba
     public class GptRequest : PropertyChangedBase
     {
         /// <summary>
+        /// The base URL
+        /// </summary>
+        private protected GptEndPoint _endPoint;
+
+        /// <summary>
         /// The messages
         /// </summary>
         private protected IList<IGptMessage> _messages;
@@ -62,7 +67,7 @@ namespace Bubba
         /// <summary>
         /// The user identifier
         /// </summary>
-        private protected int _id;
+        private protected int _number;
 
         /// <summary>
         /// A number between -2.0 and 2.0  Positive value decrease the
@@ -82,6 +87,11 @@ namespace Bubba
         /// decreasing the model's likelihood to repeat the same line verbatim.
         /// </summary>
         private protected double _frequency;
+
+        /// <summary>
+        /// The chat model
+        /// </summary>
+        private protected string _model;
 
         /// <summary>
         /// The body
@@ -107,6 +117,11 @@ namespace Bubba
         public GptRequest( )
         {
             _header = new GptHeader( );
+            _presence = 0.0;
+            _frequency = 0.0;
+            _temperature = 0.7;
+            _maximumTokens = 150;
+            _model = "gpt-3.5-turbo";
         }
 
         /// <inheritdoc />
@@ -114,20 +129,20 @@ namespace Bubba
         /// Initializes a new instance of the
         /// <see cref="T:Bubba.GptRequest" /> class.
         /// </summary>
-        /// <param name="id">The identifier.</param>
+        /// <param name="number">The identifier.</param>
         /// <param name="frequency">The frequency.</param>
         /// <param name="presence">The presence.</param>
         /// <param name="temperature">The temperature.</param>
         /// <param name="tokens">The tokens.</param>
-        public GptRequest( int id = 1, double frequency = 0.0,
-            double presence = 0.0, double temperature = 0.5, int tokens = 2048 ) 
-            : this( )
+        public GptRequest( int number = 1, double frequency = 0.0,
+            double presence = 0.0, double temperature = 0.7, int tokens = 150 ) 
         {
-            _id = id;
+            _header = new GptHeader( );
+            _number = number;
+            _presence = presence;
+            _frequency = frequency;
             _temperature = temperature;
             _maximumTokens = tokens;
-            _frequency = frequency;
-            _presence = presence;
         }
 
         /// <summary>
@@ -137,7 +152,8 @@ namespace Bubba
         /// <param name="gptRequest">The GPT request.</param>
         public GptRequest( GptRequest gptRequest )
         {
-            _id = gptRequest.Id;
+            _header = new GptHeader( );
+            _number = gptRequest.Number;
             _temperature = gptRequest.Temperature;
             _maximumTokens = gptRequest.MaximumTokens;
             _frequency = gptRequest.Frequency;
@@ -147,39 +163,85 @@ namespace Bubba
         /// <summary>
         /// Deconstructs the specified user identifier.
         /// </summary>
-        /// <param name="userId">The user identifier.</param>
+        /// <param name="number">The user identifier.</param>
         /// <param name="frequency">The frequency.</param>
         /// <param name="presence">The presence.</param>
         /// <param name="temperature">The temperature.</param>
         /// <param name="tokens">The maximum tokens.</param>
-        public void Deconstruct( out int userId, out double frequency,
+        public void Deconstruct( out int number, out double frequency,
             out double presence, out double temperature, out int tokens )
         {
-            userId = _id;
+            number = _number;
             temperature = _temperature;
             frequency = _frequency;
             presence = _presence;
             tokens = _maximumTokens;
         }
 
+        /// <inheritdoc />
         /// <summary>
-        /// Gets the user identifier.
+        /// Gets the end point.
+        /// </summary>
+        /// <value>
+        /// The end point.
+        /// </value>
+        public GptEndPoint EndPoint
+        {
+            get
+            {
+                return _endPoint;
+            }
+            private set
+            {
+                if( _endPoint != value )
+                {
+                    _endPoint = value;
+                    OnPropertyChanged( nameof( EndPoint ) );
+                }
+            }
+        }
+
+        /// <inheritdoc />
+        /// <summary>
+        /// Gets the chat model.
+        /// </summary>
+        /// <value>
+        /// The chat model.
+        /// </value>
+        public string Model
+        {
+            get
+            {
+                return _model;
+            }
+            private set
+            {
+                if( _model != value )
+                {
+                    _model = value;
+                    OnPropertyChanged( nameof( Model ) );
+                }
+            }
+        }
+
+        /// <summary>
+        /// THe number 'n' returned by the response.
         /// </summary>
         /// <value>
         /// The user identifier.
         /// </value>
-        public int Id
+        public int Number
         {
             get
             {
-                return _id;
+                return _number;
             }
             set
             {
-                if( _id != value )
+                if( _number != value )
                 {
-                    _id = value;
-                    OnPropertyChanged( nameof( Id ) );
+                    _number = value;
+                    OnPropertyChanged( nameof( Number ) );
                 }
             }
         }

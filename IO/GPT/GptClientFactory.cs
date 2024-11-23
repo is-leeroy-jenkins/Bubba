@@ -61,9 +61,9 @@ namespace Bubba
     [ SuppressMessage( "ReSharper", "MergeConditionalExpression" ) ]
     public class GptClientFactory : GptBase
     {
-        private const string KEY = "sk-proj-qW9o_PoT2CleBXOErbGxe2UlOeHtgJ9K-"
-            + "rVFooUImScUvXn44e4R9ivYZtbYh5OIObWepnxCGET3BlbkFJykj4Dt9MDZT2GQg"
-            + "NarXOifdSxGwmodYtevUniudDGt8vkUNmxurKO9DkULeAUVz3rdY9g_-OsA";
+        private const string KEY = "sk-proj-m1FNMEEpSuwC32xZedCfozYsGkCEhaVSCEv" 
+            + "S2u6tzNR39HFYKlC0kz0iUvXoJtSACw49E1laKaT3BlbkFJIORKROk_" 
+            + "EirH8g8KoWX7fyhM3oQcd9KqILMBo1rEVFlruTMOsDQ3bHt7mNBjvlZw8DLfYbckQA";
 
         /// <summary>
         /// The client
