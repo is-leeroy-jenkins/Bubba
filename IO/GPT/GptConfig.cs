@@ -42,11 +42,7 @@
 namespace Bubba
 {
     using System;
-    using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
-    using System.Linq;
-    using System.Text;
-    using System.Threading.Tasks;
 
     /// <inheritdoc />
     /// <summary>
@@ -103,8 +99,8 @@ namespace Bubba
         /// </summary>
         public GptConfig( )
         {
-            _maximumTokens = 2048;
-            _temperature = 0.0;
+            _maximumTokens = 150;
+            _temperature = 0.5;
             _frequency = 0.0;
             _presence = 0.0;
         }

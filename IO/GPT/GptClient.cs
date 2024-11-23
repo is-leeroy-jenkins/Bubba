@@ -76,7 +76,7 @@ namespace Bubba
             _presence = 0.0;
             _frequency = 0.0;
             _temperature = 0.5;
-            _maximumTokens = 2048;
+            _maximumTokens = 150;
             _model = "gpt-3.5-turbo";
             _endPoint = "https://api.openai.com/v1/chat/completions";
             _endPoints = GetEndPoints( );
@@ -91,36 +91,13 @@ namespace Bubba
         /// <param name="temperature">The temperature.</param>
         /// <param name="tokens">The tokens.</param>
         /// <param name="model">The chat model.</param>
-        public GptClient( string model, double temperature = 0.5, int tokens = 2048 )
+        public GptClient( string model, double temperature = 0.5, int tokens = 150 )
             : this( )
         {
             _model = model;
             _temperature = temperature;
             _maximumTokens = tokens;
             _endPoint = "https://api.openai.com/v1/chat/completions";
-        }
-
-        /// <inheritdoc />
-        /// <summary>
-        /// Gets the user identifier.
-        /// </summary>
-        /// <value>
-        /// The user identifier.
-        /// </value>
-        public int Id
-        {
-            get
-            {
-                return _id;
-            }
-            private set
-            {
-                if( _id != value )
-                {
-                    _id = value;
-                    OnPropertyChanged( nameof( Id ) );
-                }
-            }
         }
 
         /// <inheritdoc />
@@ -340,7 +317,7 @@ namespace Bubba
         /// </summary>
         /// <param name="prompt">The question.</param>
         /// <returns></returns>
-        public string WebGenerate( string prompt )
+        public string SendCompletionRequest( string prompt )
         {
             try
             {
@@ -357,7 +334,7 @@ namespace Bubba
                 var _request = WebRequest.Create( _url );
                 _request.Method = "POST";
                 _request.ContentType = "application/json";
-                _request.Headers.Add( "Authorization", $"Bearer {App.KEY}" );
+                _request.Headers.Add( "Authorization", $"Bearer {_apiKey}" );
                 using var _requestStream = _request.GetRequestStream( );
                 using var _writer = new StreamWriter( _requestStream );
                 _writer.Write( _payload );
@@ -370,7 +347,7 @@ namespace Bubba
 
                 using var _reader = new StreamReader( _responseStream );
                 var _jsonResponse = _reader.ReadToEnd( );
-                return ExtractMessageFromResponse( _jsonResponse );
+                return ExtractResponseContent( _jsonResponse );
             }
             catch( Exception ex )
             {
@@ -410,7 +387,7 @@ namespace Bubba
                     model = _model,
                     prompt,
                     max_tokens = _maximumTokens,
-                    user = _id,
+                    user = _user,
                     _temperature,
                     frequency_penalty = 0.0,
                     presence_penalty = 0.0,
@@ -429,7 +406,7 @@ namespace Bubba
         /// </summary>
         /// <param name="response">The json response.</param>
         /// <returns></returns>
-        private string ExtractMessageFromResponse( string response )
+        private string ExtractResponseContent( string response )
         {
             try
             {
@@ -442,15 +419,22 @@ namespace Bubba
                     if( _choices.ValueKind == JsonValueKind.Array
                         && _choices.GetArrayLength( ) > 0 )
                     {
-                        var _element = _choices[ 0 ].GetProperty( "message" );
-                        return _element.GetProperty( "content" ).GetString( );
+                        var _msg = _choices[ 0 ].GetProperty( "message" );
+                        var _cnt = _msg.GetProperty( "content" );
+                        var _txt = _cnt.GetString( );
+                        return _txt;
                     }
 
-                    return _choices[ 0 ].GetProperty( "message" ).GetString( );
+                    var _message = _choices[ 0 ].GetProperty( "message" );
+                    var _text = _message.GetString( );
+                    return _text;
                 }
                 else
                 {
-                    return _root.GetProperty( "choices" )[ 0 ].GetProperty( "text" ).GetString( );
+                    var _choice = _root.GetProperty( "choices" )[ 0 ];
+                    var _property = _choice.GetProperty( "text" );
+                    var _text = _property.GetString( );
+                    return _text;
                 }
             }
             catch( Exception ex )
@@ -484,8 +468,8 @@ namespace Bubba
                     {
                         new
                         {
-                            role = "user",
-                            content = PadQuotes( prompt )
+                            role = _role,
+                            content = ProcessQuotes( prompt )
                         }
                     }
                 } );
@@ -495,10 +479,10 @@ namespace Bubba
                 _payload = JsonSerializer.Serialize( new
                 {
                     model = _model,
-                    prompt = PadQuotes( prompt ),
+                    prompt = ProcessQuotes( prompt ),
                     max_tokens = _maximumTokens,
                     temperature = _temp,
-                    user = _id,
+                    user = _user,
                     frequency_penalty = 0.0,
                     presence_penalty = 0.0,
                     stop = new[ ]

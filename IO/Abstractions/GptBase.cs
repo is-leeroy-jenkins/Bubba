@@ -68,11 +68,6 @@ namespace Bubba
         private protected HttpClient _httpClient;
 
         /// <summary>
-        /// The user identifier
-        /// </summary>
-        private protected int _id;
-
-        /// <summary>
         /// The user
         /// </summary>
         private protected string _user;
@@ -124,6 +119,11 @@ namespace Bubba
         private protected int _maximumTokens;
 
         /// <summary>
+        /// The role
+        /// </summary>
+        private protected string _role;
+
+        /// <summary>
         /// The prompt
         /// </summary>
         private protected string _prompt;
@@ -134,6 +134,20 @@ namespace Bubba
         /// </summary>
         protected GptBase( )
         {
+        }
+
+        /// <summary>
+        /// Gets the API key.
+        /// </summary>
+        /// <value>
+        /// The API key.
+        /// </value>
+        public string ApiKey
+        {
+            get
+            {
+                return _apiKey;
+            }
         }
 
         /// <summary>
@@ -196,7 +210,7 @@ namespace Bubba
         /// </summary>
         /// <param name="input">The input.</param>
         /// <returns></returns>
-        private protected string PadQuotes( string input )
+        private protected string ProcessQuotes( string input )
         {
             if( input.IndexOf( "\\" ) != -1 )
             {

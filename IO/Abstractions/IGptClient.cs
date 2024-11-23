@@ -49,14 +49,6 @@ namespace Bubba
     public interface IGptClient
     {
         /// <summary>
-        /// Gets the user identifier.
-        /// </summary>
-        /// <value>
-        /// The user identifier.
-        /// </value>
-        int Id { get; }
-
-        /// <summary>
         /// Gets the frequency.
         /// </summary>
         /// <value>
@@ -88,6 +80,12 @@ namespace Bubba
         /// </value>
         int MaximumTokens { get; }
 
+        /// <summary>
+        /// Gets the end point.
+        /// </summary>
+        /// <value>
+        /// The end point.
+        /// </value>
         string EndPoint { get; }
 
         /// <summary>
@@ -132,7 +130,7 @@ namespace Bubba
         /// </summary>
         /// <param name="prompt">The question.</param>
         /// <returns></returns>
-        string WebGenerate( string prompt );
+        string SendCompletionRequest( string prompt );
 
         /// <summary>
         /// Builds the request data.

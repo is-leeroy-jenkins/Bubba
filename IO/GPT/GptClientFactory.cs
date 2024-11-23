@@ -1,4 +1,43 @@
-﻿
+﻿// ******************************************************************************************
+//     Assembly:                Bubba
+//     Author:                  Terry D. Eppler
+//     Created:                 11-22-2024
+// 
+//     Last Modified By:        Terry D. Eppler
+//     Last Modified On:        11-22-2024
+// ******************************************************************************************
+// <copyright file="GptClientFactory.cs" company="Terry D. Eppler">
+//    Bubba is a small windows (wpf) application for interacting with
+//    Chat GPT that's developed in C-Sharp under the MIT license
+// 
+//    Copyright ©  2020-2024 Terry D. Eppler
+// 
+//    Permission is hereby granted, free of charge, to any person obtaining a copy
+//    of this software and associated documentation files (the “Software”),
+//    to deal in the Software without restriction,
+//    including without limitation the rights to use,
+//    copy, modify, merge, publish, distribute, sublicense,
+//    and/or sell copies of the Software,
+//    and to permit persons to whom the Software is furnished to do so,
+//    subject to the following conditions:
+// 
+//    The above copyright notice and this permission notice shall be included in all
+//    copies or substantial portions of the Software.
+// 
+//    THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,
+//    INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+//    FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT.
+//    IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
+//    DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,
+//    ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
+//    DEALINGS IN THE SOFTWARE.
+// 
+//    You can contact me at:  terryeppler@gmail.com or eppler.terry@epa.gov
+// </copyright>
+// <summary>
+//   GptClientFactory.cs
+// </summary>
+// ******************************************************************************************
 
 namespace Bubba
 {
@@ -12,9 +51,6 @@ namespace Bubba
     using OpenAI.Images;
     using OpenAI.VectorStores;
     using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
     using System.Threading.Tasks;
 
     /// <summary>
@@ -22,6 +58,7 @@ namespace Bubba
     /// </summary>
     /// <seealso cref="Bubba.GptBase" />
     [ SuppressMessage( "ReSharper", "UnusedType.Global" ) ]
+    [ SuppressMessage( "ReSharper", "MergeConditionalExpression" ) ]
     public class GptClientFactory : GptBase
     {
         private const string KEY = "sk-proj-qW9o_PoT2CleBXOErbGxe2UlOeHtgJ9K-"
@@ -196,7 +233,7 @@ namespace Bubba
             {
                 var _vectorStore = new OpenAIClient( _apiKey );
                 var _vectorClient = _vectorStore.GetVectorStoreClient( );
-                return ( _vectorClient != null )
+                return _vectorClient != null
                     ? _vectorClient
                     : default( VectorStoreClient );
             }
@@ -216,7 +253,7 @@ namespace Bubba
             try
             {
                 var _imageClient = new ImageClient( "dall-e-3", _apiKey );
-                return ( _imageClient != null )
+                return _imageClient != null
                     ? _imageClient
                     : default( ImageClient );
             }
@@ -236,7 +273,7 @@ namespace Bubba
             try
             {
                 var _fileClient = new OpenAIFileClient( _apiKey );
-                return ( _fileClient != null )
+                return _fileClient != null
                     ? _fileClient
                     : default( OpenAIFileClient );
             }
@@ -256,7 +293,7 @@ namespace Bubba
             try
             {
                 var _audioClient = new AudioClient( "tts-1", _apiKey );
-                return ( _audioClient != null )
+                return _audioClient != null
                     ? _audioClient
                     : default( AudioClient );
             }
@@ -268,4 +305,3 @@ namespace Bubba
         }
     }
 }
-

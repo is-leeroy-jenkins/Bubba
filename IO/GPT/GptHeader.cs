@@ -48,8 +48,11 @@ namespace Bubba
     [ SuppressMessage( "ReSharper", "UnusedType.Global" ) ]
     [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
     [ SuppressMessage( "ReSharper", "FieldCanBeMadeReadOnly.Global" ) ]
+    [ SuppressMessage( "ReSharper", "ClassCanBeSealed.Global" ) ]
     public class GptHeader : PropertyChangedBase
     {
+        /// <summary>
+        /// </summary>
         private const string KEY = "sk-proj-qW9o_PoT2CleBXOErbGxe2UlOeHtgJ9K-"
             + "rVFooUImScUvXn44e4R9ivYZtbYh5OIObWepnxCGET3BlbkFJykj4Dt9MDZT2GQg"
             + "NarXOifdSxGwmodYtevUniudDGt8vkUNmxurKO9DkULeAUVz3rdY9g_-OsA";
@@ -65,6 +68,11 @@ namespace Bubba
         private protected string _authorization;
 
         /// <summary>
+        /// The API key
+        /// </summary>
+        private protected string _apiKey;
+
+        /// <summary>
         /// The data
         /// </summary>
         private protected IDictionary<string, object> _data = new Dictionary<string, object>( );
@@ -74,9 +82,9 @@ namespace Bubba
         /// Initializes a new instance of the
         /// <see cref="T:Bubba.GptHeader" /> class.
         /// </summary>
-        /// <param name="key">The key.</param>
         public GptHeader( )
         {
+            _apiKey = KEY;
             _contentType = "application/json";
             _authorization = "Bearer " + KEY;
             _data.Add( "content-type", "application/json" );
@@ -90,9 +98,24 @@ namespace Bubba
         /// <param name="header">The header.</param>
         public GptHeader( GptHeader header )
         {
-            _contentType = header.ContentType;
-            _authorization = header.Authorization;
+            _apiKey = KEY;
+            _contentType = "application/json";
+            _authorization = "Bearer " + KEY;
             _data = header.Data;
+        }
+
+        /// <summary>
+        /// Gets the API key.
+        /// </summary>
+        /// <value>
+        /// The API key.
+        /// </value>
+        public string ApiKey
+        {
+            get
+            {
+                return _apiKey;
+            }
         }
 
         /// <summary>
@@ -145,8 +168,12 @@ namespace Bubba
             }
         }
 
-        /// <summary>Returns a string that represents the current object.</summary>
-        /// <returns>A string that represents the current object.</returns>
+        /// <summary>
+        /// Returns a string that represents the current object.
+        /// </summary>
+        /// <returns>
+        /// A string that represents the current object.
+        /// </returns>
         public override string ToString( )
         {
             return _data.ToJson( );

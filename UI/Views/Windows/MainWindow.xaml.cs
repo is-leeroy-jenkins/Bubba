@@ -673,6 +673,7 @@ namespace Bubba
                 VoiceComboBox.AllowMultiSelect = false;
                 InitializeTimer( );
                 ProgressBar.Visibility = Visibility.Hidden;
+                SpeechLabel.Visibility = Visibility.Hidden;
             }
             catch( Exception ex )
             {
