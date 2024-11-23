@@ -407,7 +407,12 @@
                     Canvas.Top="10"
                     Width="70"
                     HorizontalAlignment="Left"
-                    VerticalAlignment="Center" LargeChange="0.25" SmallChange="0.2" TickPlacement="Both" Maximum="2" Minimum="-2" />
+                    VerticalAlignment="Center"
+                    LargeChange="0.25"
+                    SmallChange="0.2"
+                    TickPlacement="Both"
+                    Maximum="2"
+                    Minimum="-2" />
 
                 <b:MetroTextBox
                     x:Name="UserIdTextBox"
