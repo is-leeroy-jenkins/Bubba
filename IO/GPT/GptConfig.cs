@@ -1,10 +1,10 @@
 ﻿// ******************************************************************************************
 //     Assembly:                Bubba
 //     Author:                  Terry D. Eppler
-//     Created:                 11-20-2024
+//     Created:                 11-23-2024
 // 
 //     Last Modified By:        Terry D. Eppler
-//     Last Modified On:        11-20-2024
+//     Last Modified On:        11-23-2024
 // ******************************************************************************************
 // <copyright file="GptConfig.cs" company="Terry D. Eppler">
 //    Bubba is a small windows (wpf) application for interacting with
@@ -104,6 +104,11 @@ namespace Bubba
         private protected string _assistantPrompt;
 
         /// <summary>
+        /// The chat model
+        /// </summary>
+        private protected string _model;
+
+        /// <summary>
         /// Initializes a new instance of the
         /// <see cref="GptConfig"/> class.
         /// </summary>
@@ -123,7 +128,7 @@ namespace Bubba
         /// </summary>
         /// <param name="systemPrompt">The system prompt.</param>
         /// <param name="userPrompt">The user prompt.</param>
-        public GptConfig( string systemPrompt, string userPrompt ) 
+        public GptConfig( string systemPrompt, string userPrompt )
             : this( )
         {
             _systemPrompt = systemPrompt;
@@ -154,9 +159,8 @@ namespace Bubba
         /// <param name="temperature">The temperature.</param>
         /// <param name="frequency">The frequency.</param>
         /// <param name="presense">The presense.</param>
-        public void Decontruct( out string systemPrompt, out string userPrompt, 
-            out int maxTokens, out double temperature, out double frequency,
-            out double presense )
+        public void Decontruct( out string systemPrompt, out string userPrompt, out int maxTokens,
+            out double temperature, out double frequency, out double presense )
         {
             systemPrompt = _systemPrompt;
             userPrompt = _userPrompt;
@@ -164,6 +168,29 @@ namespace Bubba
             temperature = _temperature;
             frequency = _frequency;
             presense = _presence;
+        }
+
+        /// <inheritdoc />
+        /// <summary>
+        /// Gets the chat model.
+        /// </summary>
+        /// <value>
+        /// The chat model.
+        /// </value>
+        public string Model
+        {
+            get
+            {
+                return _model;
+            }
+            set
+            {
+                if( _model != value )
+                {
+                    _model = value;
+                    OnPropertyChanged( nameof( Model ) );
+                }
+            }
         }
 
         /// <summary>
