@@ -46,6 +46,9 @@ namespace Bubba
     using System.Runtime.CompilerServices;
     using System.Threading.Tasks;
 
+    /// <summary>
+    /// 
+    /// </summary>
     public interface IGptClient
     {
         /// <summary>

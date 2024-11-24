@@ -254,7 +254,7 @@
                     Width="116"
                     Height="38"
                     HorizontalAlignment="Center"
-                    VerticalAlignment="Top"
+                    VerticalAlignment="Center"
                     Content="Clear"
                     ToolTip="Clear All" />
             </Canvas>
@@ -266,7 +266,7 @@
                 <b:MetroTextBox
                     x:Name="FrequencyTextBox"
                     Canvas.Left="126"
-                    Canvas.Top="104"
+                    Canvas.Top="110"
                     Width="60"
                     Height="30"
                     HorizontalAlignment="Center"
@@ -279,7 +279,7 @@
                 <b:MetroTextBox
                     x:Name="TemperatureTextBox"
                     Canvas.Left="30"
-                    Canvas.Top="102"
+                    Canvas.Top="108"
                     Width="60"
                     Height="30"
                     HorizontalAlignment="Center"
@@ -292,7 +292,7 @@
                 <b:MetroTextBox
                     x:Name="MaxTokensTextBox"
                     Canvas.Left="223"
-                    Canvas.Top="104"
+                    Canvas.Top="110"
                     Width="60"
                     Height="30"
                     HorizontalAlignment="Center"
@@ -304,7 +304,7 @@
 
                 <b:MetroLabel
                     Canvas.Left="30"
-                    Canvas.Top="74"
+                    Canvas.Top="80"
                     Width="80"
                     HorizontalAlignment="Center"
                     VerticalAlignment="Top"
@@ -313,19 +313,19 @@
 
                 <b:MetroLabel
                     Canvas.Left="215"
-                    Canvas.Top="76"
+                    Canvas.Top="82"
                     Width="76"
-                    HorizontalAlignment="Left"
-                    VerticalAlignment="Center"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Top"
                     Content="Max Tokens" />
 
                 <b:MetroLabel
                     x:Name="FrequencyLabel"
                     Canvas.Left="120"
-                    Canvas.Top="74"
+                    Canvas.Top="80"
                     Width="72"
-                    HorizontalAlignment="Left"
-                    VerticalAlignment="Center"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Top"
                     Content="Frequency" />
 
                 <b:MetroComboBox
@@ -375,23 +375,23 @@
 
                 <b:MetroRadioButton
                     x:Name="MuteCheckBox"
-                    Canvas.Left="317"
-                    Canvas.Top="14"
+                    Canvas.Left="253"
+                    Canvas.Top="7"
                     Width="68"
                     Height="20"
-                    HorizontalAlignment="Left"
-                    VerticalAlignment="Center"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Top"
                     Content="Speech"
                     Foreground="#FF0078D4" />
 
                 <b:MetroRadioButton
                     x:Name="ListenCheckBox"
-                    Canvas.Left="416"
-                    Canvas.Top="14"
-                    Width="76"
+                    Canvas.Left="253"
+                    Canvas.Top="42"
+                    Width="70"
                     Height="20"
                     HorizontalAlignment="Left"
-                    VerticalAlignment="Center"
+                    VerticalAlignment="Top"
                     Content="Listen"
                     Foreground="#FF0078D4" />
 
@@ -406,7 +406,7 @@
                     Minimum="0"
                     LargeChange="0.25"
                     SmallChange="0.2"
-                    ToolTip="Adjust Temperature (Random) value"
+                    ToolTip="An alternative to sampling with temperature, \n called nucleus sampling, where the model considers \n the results of the tokens with top_p probability mass. \n So 0.1 means only the tokens \n comprising the top 10% probability \n mass are considered. We generally recommend altering this \n or temperature but not both."
                     TickPlacement="Both" />
 
                 <Slider
@@ -426,10 +426,10 @@
                 <b:MetroTextBox
                     x:Name="UserIdTextBox"
                     Canvas.Left="416"
-                    Canvas.Top="105"
+                    Canvas.Top="111"
                     Width="92"
                     Height="30"
-                    HorizontalAlignment="Left"
+                    HorizontalAlignment="Center"
                     VerticalAlignment="Center"
                     HorizontalContentAlignment="Center"
                     VerticalContentAlignment="Center"
@@ -438,7 +438,7 @@
 
                 <b:MetroLabel
                     Canvas.Left="416"
-                    Canvas.Top="76"
+                    Canvas.Top="82"
                     Width="60"
                     HorizontalAlignment="Center"
                     VerticalAlignment="Top"
@@ -447,22 +447,42 @@
                 <b:MetroTextBox
                     x:Name="PresenceTextBox"
                     Canvas.Left="331"
-                    Canvas.Top="104"
+                    Canvas.Top="110"
                     Width="60"
                     Height="30"
                     HorizontalAlignment="Center"
-                    HorizontalContentAlignment="Center"
                     VerticalAlignment="Center"
+                    HorizontalContentAlignment="Center"
                     ToolTip="A number between -2.0 and 2.0. Positive values \n penalize new tokens based on whether they appear \n in the text so far, increasing the model's \n likelihood to talk about new topics."
                     Text="0.0" />
 
                 <b:MetroLabel
                     Canvas.Left="325"
-                    Canvas.Top="74"
+                    Canvas.Top="80"
                     Width="72"
                     HorizontalAlignment="Center"
                     VerticalAlignment="Top"
                     Content="Presence" />
+
+                <b:MetroTextBox
+                    Canvas.Left="416"
+                    Canvas.Top="32"
+                    Width="60"
+                    Height="30"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    HorizontalContentAlignment="Center"
+                    TextWrapping="Wrap"
+                    Text="0.0" />
+
+                <b:MetroLabel
+                    Canvas.Left="416"
+                    Canvas.Top="5"
+                    Width="60"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Center"
+                    ToolTip="An alternative to sampling with temperature, \n called nucleus sampling, where the model considers \n the results of the tokens with top_p probability mass. \n So 0.1 means only the tokens \n comprising the top 10% probability \n mass are considered. We generally recommend altering this \n or temperature but not both."
+                    Content="Top P" />
             </Canvas>
 
         </Grid>
@@ -539,7 +559,7 @@
                     Background="{StaticResource TransparentBrush}" />
 
                 <TextBox
-                    x:Name="SearchTextBox"
+                    x:Name="ToolStripTextBox"
                     Width="300"
                     Background="{StaticResource ControlInteriorBrush}"
                     BorderBrush="{StaticResource BlueBorderBrush}"
@@ -560,11 +580,12 @@
                     ImageSource="/Resources/Assets/ButtonImages/RefreshButton.png" />
 
                 <b:ToolStripButton
+                    x:Name="DeleteButton"
                     Margin="5,1,5,1"
                     ImageSource="/Resources/Assets/ButtonImages/DeleteButton.png" />
 
                 <b:ToolStripDropDown
-                    x:Name="ToolStripTextBox"
+                    x:Name="ToolStripComboBox"
                     Width="120"
                     BorderBrush="{StaticResource BlueBorderBrush}" />
 

@@ -1,10 +1,10 @@
 ﻿// ******************************************************************************************
 //     Assembly:                Bubba
 //     Author:                  Terry D. Eppler
-//     Created:                 11-20-2024
+//     Created:                 11-23-2024
 // 
 //     Last Modified By:        Terry D. Eppler
-//     Last Modified On:        11-20-2024
+//     Last Modified On:        11-23-2024
 // ******************************************************************************************
 // <copyright file="SystemMessage.cs" company="Terry D. Eppler">
 //    Bubba is a small windows (wpf) application for interacting with
@@ -44,13 +44,29 @@ namespace Bubba
     using System;
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
+    using Newtonsoft.Json;
 
     [ SuppressMessage( "ReSharper", "UnusedType.Global" ) ]
     [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
     [ SuppressMessage( "ReSharper", "FieldCanBeMadeReadOnly.Global" ) ]
     [ SuppressMessage( "ReSharper", "ClassCanBeSealed.Global" ) ]
+    [ SuppressMessage( "ReSharper", "ClassNeverInstantiated.Global" ) ]
+    [ SuppressMessage( "ReSharper", "InconsistentNaming" ) ]
     public class SystemMessage : GptMessage, IGptMessage
     {
+        /// <summary>
+        /// The system prompt
+        /// </summary>
+        private const string _systemPrompt = "You are the most knowledgeable Budget Analyst"
+            + " in the US federal government who provides detailed"
+            + " responses based on your vast knowledge"
+            + " of budget legislation and federal appropriations.";
+
+        /// <summary>
+        /// The content
+        /// </summary>
+        private protected string _content;
+
         /// <summary>
         /// Initializes a new instance of the
         /// <see cref="SystemMessage"/> class.
@@ -58,12 +74,10 @@ namespace Bubba
         public SystemMessage( )
         {
             _role = "system";
-            _content = "You are an expert software engineer who responds with "
-                + "detailed explanations providing easy-to-understand "
-                + "examples written in either C#,  Python, VBA,  or JavaScript.";  
-
-            _data.Add( "role", _role );
-            _data.Add( "content", _content );
+            _messages = new Dictionary<string, object>( );
+            _messages.Add( "role", _role );
+            _content = _systemPrompt;
+            _messages.Add( "content", _content );
         }
 
         /// <inheritdoc />
@@ -73,21 +87,12 @@ namespace Bubba
         /// </summary>
         /// <param name="prompt">The prompt.</param>
         public SystemMessage( string prompt )
-            : this( )
         {
+            _role = "system";
+            _messages = new Dictionary<string, object>( );
+            _messages.Add( "role", _role );
             _content = prompt;
-            _data.Add( "content", prompt );
-        }
-
-        /// <summary>
-        /// Deconstructs the specified role.
-        /// </summary>
-        /// <param name="role">The role.</param>
-        /// <param name="content">The content.</param>
-        public void Deconstruct( out string role, out string content )
-        {
-            role = _role;
-            content = _content;
+            _messages.Add( "content", _content );
         }
 
         /// <summary>
@@ -95,10 +100,25 @@ namespace Bubba
         /// <see cref="SystemMessage"/> class.
         /// </summary>
         /// <param name="message">The message.</param>
-        public SystemMessage( IGptMessage message )
+        public SystemMessage( SystemMessage message )
         {
             _role = message.Role;
             _content = message.Content;
+            _messages = message.Messages;
+        }
+
+        /// <summary>
+        /// Deconstructs the specified role.
+        /// </summary>
+        /// <param name="role">The role.</param>
+        /// <param name="content">The content.</param>
+        /// <param name = "messages" > </param>
+        public void Deconstruct( out string role, out string content, 
+            out IDictionary<string, object> messages )
+        {
+            role = _role;
+            content = _content;
+            messages = _messages;
         }
 
         /// <inheritdoc />
@@ -142,15 +162,15 @@ namespace Bubba
         /// <value>
         /// The data.
         /// </value>
-        public override IDictionary<string, object> Data
+        public override IDictionary<string, object> Messages
         {
             get
             {
-                return _data;
+                return _messages;
             }
             set
             {
-                _data = value;
+                _messages = value;
             }
         }
 
@@ -163,18 +183,7 @@ namespace Bubba
         /// </returns>
         public override string ToString( )
         {
-            return _data.ToJson( );
-        }
-
-        /// <summary>
-        /// Fails the specified ex.
-        /// </summary>
-        /// <param name="ex">The ex.</param>
-        private protected void Fail( Exception ex )
-        {
-            var _error = new ErrorWindow( ex );
-            _error?.SetText( );
-            _error?.ShowDialog( );
+            return _messages.ToJson( );
         }
     }
 }

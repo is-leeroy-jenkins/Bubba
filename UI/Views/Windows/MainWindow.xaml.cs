@@ -1,14 +1,14 @@
 ﻿// ******************************************************************************************
 //     Assembly:                Bubba
 //     Author:                  Terry D. Eppler
-//     Created:                 11-16-2024
+//     Created:                 11-23-2024
 // 
 //     Last Modified By:        Terry D. Eppler
-//     Last Modified On:        11-16-2024
+//     Last Modified On:        11-23-2024
 // ******************************************************************************************
 // <copyright file="MainWindow.xaml.cs" company="Terry D. Eppler">
-//    Bubba is an open source windows (wpf) application for interacting with OpenAI GPT
-//    that is based on NET 7 and written in C-Sharp.
+//    Bubba is a small windows (wpf) application for interacting with
+//    Chat GPT that's developed in C-Sharp under the MIT license
 // 
 //    Copyright ©  2020-2024 Terry D. Eppler
 // 
@@ -52,6 +52,7 @@ namespace Bubba
     using System.Net;
     using System.Net.Http;
     using System.Net.Http.Headers;
+    using System.Runtime.CompilerServices;
     using Newtonsoft.Json;
     using System.Windows;
     using System.Threading;
@@ -73,7 +74,7 @@ namespace Bubba
     [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
     [ SuppressMessage( "ReSharper", "RedundantExtendsListEntry" ) ]
     [ SuppressMessage( "ReSharper", "FieldCanBeMadeReadOnly.Global" ) ]
-    public partial class MainWindow : Window, IDisposable
+    public partial class MainWindow : Window, INotifyPropertyChanged, IDisposable
     {
         /// <summary>
         /// The provider
@@ -131,6 +132,42 @@ namespace Bubba
         private protected string OPENAI_API_KEY = App.KEY;
 
         /// <summary>
+        /// An alternative to sampling with temperature,
+        /// called nucleus sampling, where the model considers
+        /// the results of the tokens with top_p probability mass.
+        /// So 0.1 means only the tokens comprising the top 10% probability
+        /// mass are considered. We generally recommend altering this
+        /// or temperature but not both.
+        /// </summary>
+        private protected double _topPercent;
+
+        /// <summary>
+        /// A number between -2.0 and 2.0  Positive value decrease the
+        /// model's likelihood to repeat the same line verbatim.
+        /// </summary>
+        private protected double _temperature;
+
+        /// <summary>
+        /// An upper bound for the number of tokens
+        /// that can be generated for a completion
+        /// </summary>
+        private protected int _maximumTokens;
+
+        /// <summary>
+        /// A number between -2.0 and 2.0. Positive values penalize new
+        /// tokens based on their existing frequency in the text so far,
+        /// decreasing the model's likelihood to repeat the same line verbatim.
+        /// </summary>
+        private protected double _frequency;
+
+        /// <summary>
+        /// Number between -2.0 and 2.0. Positive values penalize new tokens
+        /// based on whether they appear in the text so far,
+        /// ncreasing the model's likelihood to talk about new topics.
+        /// </summary>
+        private protected double _presence;
+
+        /// <summary>
         /// The models
         /// </summary>
         private protected IList<string> _models;
@@ -139,16 +176,6 @@ namespace Bubba
         /// The chat model
         /// </summary>
         private protected string _chatModel;
-
-        /// <summary>
-        /// The temperature
-        /// </summary>
-        private protected string _temperature;
-
-        /// <summary>
-        /// The maximum tokens
-        /// </summary>
-        private protected string _maximumTokens;
 
         /// <summary>
         /// The speech recognition engine
@@ -162,24 +189,124 @@ namespace Bubba
 
         /// <inheritdoc />
         /// <summary>
+        /// Occurs when a property value changes.
+        /// </summary>
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        /// <inheritdoc />
+        /// <summary>
         /// Initializes a new instance of the
         /// <see cref="T:Bubba.MainWindow" /> class.
         /// </summary>
         public MainWindow( )
         {
             // Theme Properties
-            SfSkinManager.SetTheme(this, new Theme("FluentDark"));
+            SfSkinManager.SetTheme( this, new Theme( "FluentDark" ) );
 
             // Window Settings
             InitializeComponent( );
             RegisterCallbacks( );
             InitializeDelegates( );
-            _temperature = "0.7";
-            _maximumTokens = "2048";
+            _temperature = 0.7;
+            _maximumTokens = 2048;
 
             // Event Wiring
             Loaded += OnLoad;
             Closed += OnClosed;
+        }
+
+        /// <summary>
+        /// An upper bound for the number of tokens
+        /// that can be generated for a completion
+        /// </summary>
+        /// <value>
+        /// The maximum tokens.
+        /// </value>
+        public int MaximumTokens
+        {
+            get
+            {
+                return _maximumTokens;
+            }
+            set
+            {
+                if( _maximumTokens != value )
+                {
+                    _maximumTokens = value;
+                    OnPropertyChanged( nameof( MaximumTokens ) );
+                }
+            }
+        }
+
+        /// <summary>
+        /// A number between -2.0 and 2.0  Positive value decrease the
+        /// model's likelihood to repeat the same line verbatim.
+        /// </summary>
+        /// <value>
+        /// The temperature.
+        /// </value>
+        public double Temperature
+        {
+            get
+            {
+                return _temperature;
+            }
+            set
+            {
+                if( _temperature != value )
+                {
+                    _temperature = value;
+                    OnPropertyChanged( nameof( Temperature ) );
+                }
+            }
+        }
+
+        /// <summary>
+        /// A number between -2.0 and 2.0. Positive values penalize new
+        /// tokens based on their existing frequency in the text so far,
+        /// decreasing the model's likelihood to repeat the same line verbatim.
+        /// </summary>
+        /// <value>
+        /// The frequency.
+        /// </value>
+        public double Frequency
+        {
+            get
+            {
+                return _frequency;
+            }
+            set
+            {
+                if( _frequency != value )
+                {
+                    _frequency = value;
+                    OnPropertyChanged( nameof( Frequency ) );
+                }
+            }
+        }
+
+        /// <summary>
+        /// Number between -2.0 and 2.0. Positive values penalize new tokens
+        /// based on whether they appear in the text so far,
+        /// ncreasing the model's likelihood to talk about new topics.
+        /// </summary>
+        /// <value>
+        /// The presence.
+        /// </value>
+        public double Presence
+        {
+            get
+            {
+                return _presence;
+            }
+            set
+            {
+                if( _presence != value )
+                {
+                    _presence = value;
+                    OnPropertyChanged( nameof( Presence ) );
+                }
+            }
         }
 
         /// <summary>
@@ -434,7 +561,7 @@ namespace Bubba
             _request.Method = "POST";
             _request.ContentType = "application/json";
             _request.Headers.Add( "Authorization", "Bearer " + App.KEY );
-            var _maxTokens = int.Parse( MaxTokensTextBox.Text );       // 2048
+            var _maxTokens = int.Parse( MaxTokensTextBox.Text );// 2048
             var _temp = double.Parse( TemperatureTextBox.Text );// 0.5
             if( ( _temp < 0d ) | ( _temp > 1d ) )
             {
@@ -766,7 +893,7 @@ namespace Bubba
             }
             catch( Exception ex )
             {
-                Fail(ex);
+                Fail( ex );
             }
         }
 
@@ -777,28 +904,28 @@ namespace Bubba
         {
             try
             {
-                switch(_provider)
+                switch( _provider )
                 {
                     case Provider.Access:
                     {
-                        DataMinion.RunAccess();
+                        DataMinion.RunAccess( );
                         break;
                     }
                     case Provider.SqlCe:
                     {
-                        DataMinion.RunSqlCe();
+                        DataMinion.RunSqlCe( );
                         break;
                     }
                     case Provider.SQLite:
                     {
-                        DataMinion.RunSQLite();
+                        DataMinion.RunSQLite( );
                         break;
                     }
                 }
             }
-            catch(Exception ex)
+            catch( Exception ex )
             {
-                Fail(ex);
+                Fail( ex );
             }
         }
 
@@ -844,6 +971,15 @@ namespace Bubba
             {
                 Fail( ex );
             }
+        }
+
+        /// <summary>
+        /// Called when [property changed].
+        /// </summary>
+        /// <param name="propertyName">Name of the property.</param>
+        public void OnPropertyChanged( [ CallerMemberName ] string propertyName = null )
+        {
+            PropertyChanged?.Invoke( this, new PropertyChangedEventArgs( propertyName ) );
         }
 
         /// <summary>
@@ -1144,7 +1280,7 @@ namespace Bubba
                 try
                 {
                     var _answer = SendHttpMessage( _question ) + "";
-                    SystemTextBox.AppendText( "Bubba GPT: " 
+                    SystemTextBox.AppendText( "Bubba GPT: "
                         + _answer.Replace( "\n", "\r\n" ).Trim( ) );
 
                     SpeechToText( _answer );
@@ -1162,15 +1298,15 @@ namespace Bubba
         /// <param name="sender">The sender.</param>
         /// <param name="e">The <see cref="RoutedEventArgs"/>
         /// instance containing the event data.</param>
-        private void OnClearButtonClick(object sender, RoutedEventArgs e)
+        private void OnClearButtonClick( object sender, RoutedEventArgs e )
         {
             try
             {
-                ClearControls();
+                ClearControls( );
             }
-            catch(Exception ex)
+            catch( Exception ex )
             {
-                Fail(ex);
+                Fail( ex );
             }
         }
 
@@ -1198,15 +1334,15 @@ namespace Bubba
         /// <param name="sender">The sender.</param>
         /// <param name="e">The <see cref="EventArgs"/>
         /// instance containing the event data.</param>
-        private void OnFirstButtonClick(object sender, RoutedEventArgs e)
+        private void OnFirstButtonClick( object sender, RoutedEventArgs e )
         {
             try
             {
-                MoveToFirst();
+                MoveToFirst( );
             }
-            catch(Exception ex)
+            catch( Exception ex )
             {
-                Fail(ex);
+                Fail( ex );
             }
         }
 
@@ -1216,15 +1352,15 @@ namespace Bubba
         /// <param name="sender">The sender.</param>
         /// <param name="e">The <see cref="EventArgs"/>
         /// instance containing the event data.</param>
-        private void OnPreviousButtonClick(object sender, RoutedEventArgs e)
+        private void OnPreviousButtonClick( object sender, RoutedEventArgs e )
         {
             try
             {
-                MoveToPrevious();
+                MoveToPrevious( );
             }
-            catch(Exception ex)
+            catch( Exception ex )
             {
-                Fail(ex);
+                Fail( ex );
             }
         }
 
@@ -1234,15 +1370,15 @@ namespace Bubba
         /// <param name="sender">The sender.</param>
         /// <param name="e">The <see cref="EventArgs"/>
         /// instance containing the event data.</param>
-        private void OnNextButtonClick(object sender, RoutedEventArgs e)
+        private void OnNextButtonClick( object sender, RoutedEventArgs e )
         {
             try
             {
-                MoveToNext();
+                MoveToNext( );
             }
-            catch(Exception ex)
+            catch( Exception ex )
             {
-                Fail(ex);
+                Fail( ex );
             }
         }
 
@@ -1252,15 +1388,15 @@ namespace Bubba
         /// <param name="sender">The sender.</param>
         /// <param name="e">The <see cref="EventArgs"/>
         /// instance containing the event data.</param>
-        private void OnLastButtonClick(object sender, RoutedEventArgs e)
+        private void OnLastButtonClick( object sender, RoutedEventArgs e )
         {
             try
             {
-                MoveToLast();
+                MoveToLast( );
             }
-            catch(Exception ex)
+            catch( Exception ex )
             {
-                Fail(ex);
+                Fail( ex );
             }
         }
 
@@ -1277,9 +1413,9 @@ namespace Bubba
                 var _message = "NOT YET IMPLEMENTED!";
                 SendMessage( _message );
             }
-            catch(Exception ex)
+            catch( Exception ex )
             {
-                Fail(ex);
+                Fail( ex );
             }
         }
 
@@ -1289,15 +1425,15 @@ namespace Bubba
         /// <param name="sender">The sender.</param>
         /// <param name="e">The <see cref="EventArgs"/>
         /// instance containing the event data.</param>
-        private void OnToggleButtonClick(object sender, RoutedEventArgs e)
+        private void OnToggleButtonClick( object sender, RoutedEventArgs e )
         {
             try
             {
                 SetToolbarVisibility( !FirstButton.IsVisible );
             }
-            catch(Exception ex)
+            catch( Exception ex )
             {
-                Fail(ex);
+                Fail( ex );
             }
         }
 

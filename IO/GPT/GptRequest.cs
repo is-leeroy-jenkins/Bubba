@@ -70,6 +70,16 @@ namespace Bubba
         private protected int _number;
 
         /// <summary>
+        /// An alternative to sampling with temperature,
+        /// called nucleus sampling, where the model considers
+        /// the results of the tokens with top_p probability mass.
+        /// So 0.1 means only the tokens comprising the top 10% probability
+        /// mass are considered. We generally recommend altering this
+        /// or temperature but not both.
+        /// </summary>
+        private protected double _topPercent;
+
+        /// <summary>
         /// A number between -2.0 and 2.0  Positive value decrease the
         /// model's likelihood to repeat the same line verbatim.
         /// </summary>
@@ -119,9 +129,10 @@ namespace Bubba
             _header = new GptHeader( );
             _presence = 0.0;
             _frequency = 0.0;
+            _topPercent = 0.0;
             _temperature = 0.7;
-            _maximumTokens = 150;
-            _model = "gpt-3.5-turbo";
+            _maximumTokens = 2048;
+            _model = "gpt-4o";
         }
 
         /// <inheritdoc />
@@ -132,15 +143,18 @@ namespace Bubba
         /// <param name="number">The identifier.</param>
         /// <param name="frequency">The frequency.</param>
         /// <param name="presence">The presence.</param>
+        /// <param name = "top" > </param>
         /// <param name="temperature">The temperature.</param>
         /// <param name="tokens">The tokens.</param>
         public GptRequest( int number = 1, double frequency = 0.0,
-            double presence = 0.0, double temperature = 0.7, int tokens = 150 ) 
+            double presence = 0.0, double top = 0.0,  
+            double temperature = 0.7, int tokens = 2048 ) 
         {
             _header = new GptHeader( );
             _number = number;
             _presence = presence;
             _frequency = frequency;
+            _topPercent = top;
             _temperature = temperature;
             _maximumTokens = tokens;
         }

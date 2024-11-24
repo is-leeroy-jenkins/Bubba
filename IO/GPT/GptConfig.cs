@@ -53,6 +53,16 @@ namespace Bubba
     public class GptConfig : PropertyChangedBase
     {
         /// <summary>
+        /// An alternative to sampling with temperature,
+        /// called nucleus sampling, where the model considers
+        /// the results of the tokens with top_p probability mass.
+        /// So 0.1 means only the tokens comprising the top 10% probability
+        /// mass are considered. We generally recommend altering this
+        /// or temperature but not both.
+        /// </summary>
+        private protected double _topPercent;
+
+        /// <summary>
         /// A number between -2.0 and 2.0  Positive value decrease the
         /// model's likelihood to repeat the same line verbatim.
         /// </summary>
@@ -65,7 +75,7 @@ namespace Bubba
         private protected int _maximumTokens;
 
         /// <summary>
-        /// TNumber between -2.0 and 2.0. Positive values penalize new
+        /// A number between -2.0 and 2.0. Positive values penalize new
         /// tokens based on their existing frequency in the text so far,
         /// decreasing the model's likelihood to repeat the same line verbatim.
         /// </summary>
@@ -99,10 +109,11 @@ namespace Bubba
         /// </summary>
         public GptConfig( )
         {
-            _maximumTokens = 150;
-            _temperature = 0.5;
+            _maximumTokens = 2048;
+            _temperature = 0.7;
             _frequency = 0.0;
             _presence = 0.0;
+            _topPercent = 0.0;
         }
 
         /// <inheritdoc />

@@ -75,9 +75,10 @@ namespace Bubba
             _apiKey = KEY;
             _presence = 0.0;
             _frequency = 0.0;
-            _temperature = 0.5;
-            _maximumTokens = 150;
-            _model = "gpt-3.5-turbo";
+            _topPercent = 0.0;
+            _temperature = 0.7;
+            _maximumTokens = 2048;
+            _model = "gpt-4o";
             _endPoint = "https://api.openai.com/v1/chat/completions";
             _endPoints = GetEndPoints( );
             _models = GetModels( );
@@ -91,7 +92,7 @@ namespace Bubba
         /// <param name="temperature">The temperature.</param>
         /// <param name="tokens">The tokens.</param>
         /// <param name="model">The chat model.</param>
-        public GptClient( string model, double temperature = 0.5, int tokens = 150 )
+        public GptClient( string model, double temperature = 0.7, int tokens = 2048 )
             : this( )
         {
             _model = model;

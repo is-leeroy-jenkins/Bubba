@@ -87,7 +87,7 @@ namespace Bubba
             _apiKey = KEY;
             _contentType = "application/json";
             _authorization = "Bearer " + KEY;
-            _data.Add( "content-type", "application/json" );
+            _data.Add( "content-type", _contentType );
             _data.Add( "authorization", _authorization );
         }
 

@@ -1,10 +1,10 @@
 ﻿// ******************************************************************************************
 //     Assembly:                Bubba
 //     Author:                  Terry D. Eppler
-//     Created:                 11-20-2024
+//     Created:                 11-23-2024
 // 
 //     Last Modified By:        Terry D. Eppler
-//     Last Modified On:        11-20-2024
+//     Last Modified On:        11-23-2024
 // ******************************************************************************************
 // <copyright file="GptMessage.cs" company="Terry D. Eppler">
 //    Bubba is a small windows (wpf) application for interacting with
@@ -41,14 +41,22 @@
 
 namespace Bubba
 {
+    using System;
     using System.Collections.Generic;
+    using System.Diagnostics.CodeAnalysis;
 
+    [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
     public abstract class GptMessage : PropertyChangedBase
     {
         /// <summary>
         /// The role
         /// </summary>
         private protected string _role;
+
+        /// <summary>
+        /// The type
+        /// </summary>
+        private protected string _type;
 
         /// <summary>
         /// The content
@@ -58,7 +66,7 @@ namespace Bubba
         /// <summary>
         /// The data
         /// </summary>
-        private protected IDictionary<string, object> _data;
+        private protected IDictionary<string, object> _messages;
 
         /// <inheritdoc />
         /// <summary>
@@ -75,9 +83,22 @@ namespace Bubba
             }
         }
 
-        /// <inheritdoc />
         /// <summary>
-        /// Gets the content.
+        /// Gets the type.
+        /// </summary>
+        /// <value>
+        /// The type.
+        /// </value>
+        public virtual string Type
+        {
+            get
+            {
+                return _type;
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the content.
         /// </summary>
         /// <value>
         /// The content.
@@ -90,7 +111,11 @@ namespace Bubba
             }
             set
             {
-                _content = value;
+                if(_content != value)
+                {
+                    _content = value;
+                    OnPropertyChanged(nameof(Content));
+                }
             }
         }
 
@@ -100,15 +125,70 @@ namespace Bubba
         /// <value>
         /// The data.
         /// </value>
-        public virtual IDictionary<string, object> Data
+        public virtual IDictionary<string, object> Messages
         {
             get
             {
-                return _data;
+                return _messages;
             }
             set
             {
-                _data = value;
+                if( _messages != value )
+                {
+                    _messages = value;
+                    OnPropertyChanged( nameof( Messages ) );
+                }
+            }
+        }
+
+        /// <summary>
+        /// Pads the quotes.
+        /// </summary>
+        /// <param name="input">The input.</param>
+        /// <returns></returns>
+        private protected string PadQuotes( string input )
+        {
+            try
+            {
+                ThrowIf.Empty( input, nameof( input ) );
+                if( input.IndexOf( "\\" ) != -1 )
+                {
+                    input = input.Replace( "\\", @"\\" );
+                }
+
+                if( input.IndexOf( "\n\r" ) != -1 )
+                {
+                    input = input.Replace( "\n\r", @"\n" );
+                }
+
+                if( input.IndexOf( "\r" ) != -1 )
+                {
+                    input = input.Replace( "\r", @"\r" );
+                }
+
+                if( input.IndexOf( "\n" ) != -1 )
+                {
+                    input = input.Replace( "\n", @"\n" );
+                }
+
+                if( input.IndexOf( "\t" ) != -1 )
+                {
+                    input = input.Replace( "\t", @"\t" );
+                }
+
+                if( input.IndexOf( "\"" ) != -1 )
+                {
+                    return input.Replace( "\"", @"""" );
+                }
+                else
+                {
+                    return input;
+                }
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+                return string.Empty;
             }
         }
 
@@ -121,7 +201,18 @@ namespace Bubba
         /// </returns>
         public override string ToString( )
         {
-            return _data.ToJson( );
+            return _messages.ToJson( );
+        }
+
+        /// <summary>
+        /// Fails the specified ex.
+        /// </summary>
+        /// <param name="ex">The ex.</param>
+        private protected void Fail( Exception ex )
+        {
+            var _error = new ErrorWindow( ex );
+            _error?.SetText( );
+            _error?.ShowDialog( );
         }
     }
 }

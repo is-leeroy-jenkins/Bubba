@@ -1,10 +1,10 @@
 ﻿// ******************************************************************************************
 //     Assembly:                Bubba
 //     Author:                  Terry D. Eppler
-//     Created:                 11-20-2024
+//     Created:                 11-23-2024
 // 
 //     Last Modified By:        Terry D. Eppler
-//     Last Modified On:        11-20-2024
+//     Last Modified On:        11-23-2024
 // ******************************************************************************************
 // <copyright file="AssistantMessage.cs" company="Terry D. Eppler">
 //    Bubba is a small windows (wpf) application for interacting with
@@ -49,8 +49,25 @@ namespace Bubba
     [ SuppressMessage( "ReSharper", "FieldCanBeMadeReadOnly.Global" ) ]
     [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
     [ SuppressMessage( "ReSharper", "ClassCanBeSealed.Global" ) ]
+    [ SuppressMessage( "ReSharper", "ArrangeTypeMemberModifiers" ) ]
+    [ SuppressMessage( "ReSharper", "FieldCanBeMadeReadOnly.Local" ) ]
+    [ SuppressMessage( "ReSharper", "InconsistentNaming" ) ]
+    [ SuppressMessage( "ReSharper", "ClassNeverInstantiated.Global" ) ]
     public class AssistantMessage : GptMessage, IGptMessage
     {
+        /// <summary>
+        /// The system prompt
+        /// </summary>
+        private const string _systemPrompt = "You are the most knowledgeable Budget Analyst"
+            + " in the US federal government who provides detailed"
+            + " responses based on your vast knowledge"
+            + " of budget legislation and federal appropriations.";
+
+        /// <summary>
+        /// The content
+        /// </summary>
+        private protected string _content;
+
         /// <summary>
         /// Initializes a new instance of the
         /// <see cref="AssistantMessage"/> class.
@@ -58,12 +75,11 @@ namespace Bubba
         public AssistantMessage( )
         {
             _role = "assistant";
-            _content = "You are an expert software engineer who responds with "
-                + "detailed explanations providing easy-to-understand "
-                + "examples written in either C#,  Python, VBA,  or JavaScript.";
-
-            _data.Add("role", _role);
-            _data.Add("content", _content);
+            _type = "text";
+            _content = _systemPrompt;
+            _messages = new Dictionary<string, object>( );
+            _messages.Add( "role", _role );
+            _messages.Add( "content", _content );
         }
 
         /// <inheritdoc />
@@ -73,11 +89,13 @@ namespace Bubba
         /// </summary>
         /// <param name="prompt">The prompt.</param>
         public AssistantMessage( string prompt )
-            : this( )
         {
-            _content = PadQuotes( prompt );
-            _data.Add( "role", _role );
-            _data.Add( "content", _content );
+            _role = "assistant";
+            _type = "text";
+            _content = prompt;
+            _messages = new Dictionary<string, object>( );
+            _messages.Add( "role", _role );
+            _messages.Add( "content", _content );
         }
 
         /// <summary>
@@ -85,83 +103,99 @@ namespace Bubba
         /// <see cref="AssistantMessage"/> class.
         /// </summary>
         /// <param name="message">The message.</param>
-        public AssistantMessage( IGptMessage message )
+        public AssistantMessage( AssistantMessage message )
         {
             _role = message.Role;
+            _type = message.Type;
             _content = message.Content;
+            _messages = message.Messages;
         }
 
         /// <summary>
         /// Deconstructs the specified role.
         /// </summary>
         /// <param name="role">The role.</param>
+        /// <param name = "messages" > </param>
         /// <param name="content">The content.</param>
-        public void Deconstruct( out string role, out string content )
+        public void Deconstruct(out string role, out IDictionary<string, object> messages,
+            out string content )
         {
             role = _role;
+            messages = _messages;
             content = _content;
         }
 
+        /// <inheritdoc />
         /// <summary>
-        /// Pads the quotes.
+        /// Gets the role.
         /// </summary>
-        /// <param name="input">The input.</param>
-        /// <returns></returns>
-        private protected string PadQuotes( string input )
+        /// <value>
+        /// The role.
+        /// </value>
+        public override string Role
         {
-            try
+            get
             {
-                ThrowIf.Empty( input, nameof( input ) );
-                if( input.IndexOf( "\\" ) != -1 )
-                {
-                    input = input.Replace( "\\", @"\\" );
-                }
-
-                if( input.IndexOf( "\n\r" ) != -1 )
-                {
-                    input = input.Replace( "\n\r", @"\n" );
-                }
-
-                if( input.IndexOf( "\r" ) != -1 )
-                {
-                    input = input.Replace( "\r", @"\r" );
-                }
-
-                if( input.IndexOf( "\n" ) != -1 )
-                {
-                    input = input.Replace( "\n", @"\n" );
-                }
-
-                if( input.IndexOf( "\t" ) != -1 )
-                {
-                    input = input.Replace( "\t", @"\t" );
-                }
-
-                if( input.IndexOf( "\"" ) != -1 )
-                {
-                    return input.Replace( "\"", @"""" );
-                }
-                else
-                {
-                    return input;
-                }
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
-                return string.Empty;
+                return _role;
             }
         }
 
+        /// <inheritdoc />
         /// <summary>
-        /// Fails the specified ex.
+        /// Gets the content.
         /// </summary>
-        /// <param name="ex">The ex.</param>
-        private protected void Fail( Exception ex )
+        /// <value>
+        /// The content.
+        /// </value>
+        public override string Content
         {
-            var _error = new ErrorWindow( ex );
-            _error?.SetText( );
-            _error?.ShowDialog( );
+            get
+            {
+                return _content;
+            }
+            set
+            {
+                if( _content != value )
+                {
+                    _content = value;
+                    OnPropertyChanged( nameof( Content ) );
+                }
+            }
+        }
+
+        /// <inheritdoc />
+        /// <summary>
+        /// Gets or sets the data.
+        /// </summary>
+        /// <value>
+        /// The data.
+        /// </value>
+        public override IDictionary<string, object> Messages
+        {
+            get
+            {
+                return _messages;
+            }
+            set
+            {
+                if( _messages != value )
+                {
+                    _messages = value;
+                    OnPropertyChanged( nameof( Messages ) );
+                }
+            }
+        }
+
+        /// <inheritdoc />
+        /// <summary>
+        /// Returns a string that represents the current object.
+        /// </summary>
+        /// <returns>
+        /// A string that represents the current object.
+        /// </returns>
+        public override string ToString( )
+        {
+            return _messages.ToJson( );
         }
     }
 }

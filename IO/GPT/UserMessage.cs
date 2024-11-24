@@ -1,10 +1,10 @@
 ﻿// ******************************************************************************************
 //     Assembly:                Bubba
 //     Author:                  Terry D. Eppler
-//     Created:                 11-20-2024
+//     Created:                 11-23-2024
 // 
 //     Last Modified By:        Terry D. Eppler
-//     Last Modified On:        11-20-2024
+//     Last Modified On:        11-23-2024
 // ******************************************************************************************
 // <copyright file="UserMessage.cs" company="Terry D. Eppler">
 //    Bubba is a small windows (wpf) application for interacting with
@@ -49,6 +49,7 @@ namespace Bubba
     [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
     [ SuppressMessage( "ReSharper", "FieldCanBeMadeReadOnly.Global" ) ]
     [ SuppressMessage( "ReSharper", "ClassCanBeSealed.Global" ) ]
+    [ SuppressMessage( "ReSharper", "InconsistentNaming" ) ]
     public class UserMessage : GptMessage, IGptMessage
     {
         /// <summary>
@@ -58,7 +59,8 @@ namespace Bubba
         public UserMessage( )
         {
             _role = "user";
-            _data = new Dictionary<string, object>( );
+            _messages = new Dictionary<string, object>( );
+            _messages.Add( "role", "user" );
         }
 
         /// <inheritdoc />
@@ -70,9 +72,8 @@ namespace Bubba
         public UserMessage( string prompt )
             : this( )
         {
-            _content = PadQuotes( prompt );
-            _data.Add( "role", _role );
-            _data.Add( "content", _content );
+            _content = prompt;
+            _messages.Add( "content", _content );
         }
 
         /// <summary>
@@ -83,17 +84,23 @@ namespace Bubba
         public UserMessage( UserMessage message )
         {
             _role = message.Role;
+            _type = message.Type;
             _content = message.Content;
+            _messages = message.Messages;
         }
 
         /// <summary>
         /// Deconstructs the specified role.
         /// </summary>
         /// <param name="role">The role.</param>
+        /// <param name = "text" > </param>
         /// <param name="content">The content.</param>
-        public void Deconstruct( out string role, out string content )
+        /// <param name = "type" > </param>
+        public void Deconstruct( out string role, out IDictionary<string, object> message,
+            out string content )
         {
             role = _role;
+            message = _messages;
             content = _content;
         }
 
@@ -142,70 +149,19 @@ namespace Bubba
         /// <value>
         /// The data.
         /// </value>
-        public override IDictionary<string, object> Data
+        public override IDictionary<string, object> Messages
         {
             get
             {
-                return _data;
+                return _messages;
             }
             set
             {
-                if(_data != value)
+                if( _messages != value )
                 {
-                    _data = value;
-                    OnPropertyChanged(nameof(Data));
+                    _messages = value;
+                    OnPropertyChanged( nameof( Messages ) );
                 }
-            }
-        }
-
-        /// <summary>
-        /// Pads the quotes.
-        /// </summary>
-        /// <param name="input">The input.</param>
-        /// <returns></returns>
-        private protected string PadQuotes( string input )
-        {
-            try
-            {
-                ThrowIf.Empty( input, nameof( input ) );
-                if( input.IndexOf( "\\" ) != -1 )
-                {
-                    input = input.Replace( "\\", @"\\" );
-                }
-
-                if( input.IndexOf( "\n\r" ) != -1 )
-                {
-                    input = input.Replace( "\n\r", @"\n" );
-                }
-
-                if( input.IndexOf( "\r" ) != -1 )
-                {
-                    input = input.Replace( "\r", @"\r" );
-                }
-
-                if( input.IndexOf( "\n" ) != -1 )
-                {
-                    input = input.Replace( "\n", @"\n" );
-                }
-
-                if( input.IndexOf( "\t" ) != -1 )
-                {
-                    input = input.Replace( "\t", @"\t" );
-                }
-
-                if( input.IndexOf( "\"" ) != -1 )
-                {
-                    return input.Replace( "\"", @"""" );
-                }
-                else
-                {
-                    return input;
-                }
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
-                return string.Empty;
             }
         }
 
@@ -218,18 +174,7 @@ namespace Bubba
         /// </returns>
         public override string ToString( )
         {
-            return _data.ToJson( );
-        }
-
-        /// <summary>
-        /// Fails the specified ex.
-        /// </summary>
-        /// <param name="ex">The ex.</param>
-        private protected void Fail( Exception ex )
-        {
-            var _error = new ErrorWindow( ex );
-            _error?.SetText( );
-            _error?.ShowDialog( );
+            return _messages.ToJson( );
         }
     }
 }

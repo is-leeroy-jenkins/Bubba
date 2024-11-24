@@ -41,6 +41,8 @@
 
 namespace Bubba
 {
+    using System.Collections.Generic;
+
     /// <summary>
     /// 
     /// </summary>
@@ -55,12 +57,12 @@ namespace Bubba
         string Role { get; }
 
         /// <summary>
-        /// Gets the content.
+        /// Gets the type.
         /// </summary>
         /// <value>
-        /// The content.
+        /// The type.
         /// </value>
-        string Content { get; set; }
+        string Type { get; }
 
         /// <summary>
         /// Returns a string that represents the current object.
