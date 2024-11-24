@@ -501,7 +501,7 @@ namespace Bubba
             {
                 using var _client = new HttpClient( );
                 _client.DefaultRequestHeaders.Authorization =
-                    new AuthenticationHeaderValue( "Bearer", App.KEY );
+                    new AuthenticationHeaderValue( "Bearer", KEY );
 
                 var _content = new StringContent( _payload, Encoding.UTF8, "application/json" );
                 var _response = await _client.PostAsync( _url, _content );

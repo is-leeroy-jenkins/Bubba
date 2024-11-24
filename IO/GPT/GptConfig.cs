@@ -53,6 +53,11 @@ namespace Bubba
     public class GptConfig : PropertyChangedBase
     {
         /// <summary>
+        /// The number responses to generate
+        /// </summary>
+        private protected int _number;
+
+        /// <summary>
         /// An alternative to sampling with temperature,
         /// called nucleus sampling, where the model considers
         /// the results of the tokens with top_p probability mass.
@@ -283,6 +288,55 @@ namespace Bubba
                 {
                     _presence = value;
                     OnPropertyChanged( nameof( Presence ) );
+                }
+            }
+        }
+
+        /// <summary>
+        /// An alternative to sampling with temperature,
+        /// called nucleus sampling, where the model considers
+        /// the results of the tokens with top_p probability mass.
+        /// So 0.1 means only the tokens comprising the top 10% probability
+        /// mass are considered. We generally recommend altering this
+        /// or temperature but not both.
+        /// </summary>
+        /// <value>
+        /// The top percent.
+        /// </value>
+        public double TopPercent
+        {
+            get
+            {
+                return _topPercent;
+            }
+            set
+            {
+                if(_topPercent != value)
+                {
+                    _topPercent = value;
+                    OnPropertyChanged(nameof(TopPercent));
+                }
+            }
+        }
+
+        /// <summary>
+        /// THe number 'n' returned by the response.
+        /// </summary>
+        /// <value>
+        /// The user identifier.
+        /// </value>
+        public int Number
+        {
+            get
+            {
+                return _number;
+            }
+            set
+            {
+                if(_number != value)
+                {
+                    _number = value;
+                    OnPropertyChanged(nameof(Number));
                 }
             }
         }

@@ -17,6 +17,9 @@
     MaxWidth="1500"
     MaxHeight="1000"
     sync:SfSkinManager.Theme="{sync:SkinManager ThemeName=FluentDark}"
+    Background="{StaticResource FormBackground}"
+    Foreground="{StaticResource FormForeground}"
+    BorderBrush="{StaticResource BlueBorderBrush}"
     WindowStartupLocation="CenterScreen"
     Icon="/Resources/Assets/ApplicationImages/Bubba.ico"
     BorderThickness="1"
@@ -35,16 +38,6 @@
             <Setter Property="Foreground" Value="{StaticResource LightBlueBrush}" />
         </Style>
     </Window.Resources>
-
-    <Window.Background>
-        <StaticResource ResourceKey="FormBackground" />
-    </Window.Background>
-    <Window.Foreground>
-        <StaticResource ResourceKey="FormForeground" />
-    </Window.Foreground>
-    <Window.BorderBrush>
-        <StaticResource ResourceKey="BlueBorderBrush" />
-    </Window.BorderBrush>
 
     <!--  ******************************************** Context Menu ******************************************  -->
 
@@ -162,28 +155,33 @@
         </Grid.RowDefinitions>
 
         <Canvas Grid.Row="3">
-            <Label
-                x:Name="UserLabel"
-                Canvas.Left="1"
-                Canvas.Top="5"
-                Width="1197"
-                Height="22"
-                HorizontalContentAlignment="Center"
-                Foreground="{StaticResource BlueBorderBrush}"
-                Content="User"
-                FontFamily="Roboto" />
+
+            <GroupBox
+                x:Name="InputGroupBox"
+                Canvas.Left="155"
+                Width="890"
+                Height="126"
+                Margin="3,3,3,3"
+                Padding="3,3,3,3"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Top"
+                Header="User Prompt"
+                BorderBrush="{StaticResource MutedForeground}"
+                FontFamily="Roboto"
+                FontSize="12" />
 
             <b:MetroTextBox
                 x:Name="UserTextBox"
-                Canvas.Left="142"
-                Canvas.Top="35"
-                Width="915"
+                Canvas.Left="176"
+                Canvas.Top="38"
+                Width="856"
                 Height="71"
                 MinWidth="480"
                 MinHeight="25"
                 Padding="15,15,1,1"
-                HorizontalAlignment="Center"
+                HorizontalAlignment="Left"
                 VerticalAlignment="Top"
+                ToolTip="Enter text for OpenAI User Prompt"
                 Background="{StaticResource ControlInteriorBrush}"
                 TextWrapping="Wrap"
                 Text=""
@@ -192,35 +190,35 @@
         </Canvas>
 
         <Canvas Grid.Row="1">
+            <GroupBox
+                Canvas.Left="158"
+                Canvas.Top="3"
+                Width="890"
+                Height="258"
+                Padding="3,3,3,3"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Top"
+                Header="System Prompt"
+                FontFamily="Roboto"
+                FontSize="12"
+                BorderBrush="{StaticResource MutedForeground}" />
+
             <b:MetroTextBox
                 x:Name="SystemTextBox"
-                Canvas.Left="140"
+                Canvas.Left="175"
                 Canvas.Top="27"
-                Width="900"
+                Width="855"
                 Height="222"
                 MinWidth="480"
                 MinHeight="50"
                 Padding="15,15,5,5"
-                HorizontalAlignment="Center"
-                VerticalAlignment="Top"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Center"
                 Background="{DynamicResource ControlInteriorBrush}"
                 TextWrapping="Wrap"
                 Text=""
                 FontFamily="Roboto"
                 FontSize="12" />
-
-            <Label
-                x:Name="SystemLabel"
-                Canvas.Left="140"
-                Canvas.Top="5"
-                Width="900"
-                Height="22"
-                HorizontalAlignment="Left"
-                VerticalAlignment="Center"
-                HorizontalContentAlignment="Center"
-                Foreground="{StaticResource BlueBorderBrush}"
-                Content="System"
-                FontFamily="Roboto" />
         </Canvas>
 
         <Grid
@@ -232,107 +230,103 @@
                 <ColumnDefinition Width="217*" />
             </Grid.ColumnDefinitions>
 
-            <Canvas
-                Grid.Column="0"
+            <GroupBox
+                x:Name="ParamaterGroupBox"
+                Grid.Column="1"
                 Height="170"
-                Margin="0"
-                VerticalAlignment="Stretch">
-                <Button
-                    x:Name="SendButton"
-                    Canvas.Left="150"
-                    Canvas.Top="28"
-                    Width="116"
-                    Height="39"
-                    HorizontalAlignment="Center"
-                    VerticalAlignment="Top"
-                    Content="Send"
-                    ToolTip="Send Chat Message" />
-                <Button
-                    x:Name="ClearButton"
-                    Canvas.Left="150"
-                    Canvas.Top="107"
-                    Width="116"
-                    Height="38"
-                    HorizontalAlignment="Center"
-                    VerticalAlignment="Center"
-                    Content="Clear"
-                    ToolTip="Clear All" />
-            </Canvas>
+                Margin="10,0,163,11"
+                Padding="3,3,3,3"
+                VerticalAlignment="Bottom"
+                Header="Hyper-Parameters"
+                FontFamily="Roboto"
+                FontSize="12"
+                BorderBrush="{StaticResource MutedForeground}" />
 
             <Canvas
+                x:Name="ParameterCanvas"
                 Grid.Column="1"
-                Height="170">
+                Margin="10,27,10,11">
 
                 <b:MetroTextBox
                     x:Name="FrequencyTextBox"
-                    Canvas.Left="126"
-                    Canvas.Top="110"
+                    Canvas.Left="125"
+                    Canvas.Top="102"
                     Width="60"
                     Height="30"
-                    HorizontalAlignment="Center"
+                    HorizontalAlignment="Left"
                     VerticalAlignment="Center"
                     HorizontalContentAlignment="Center"
                     TextWrapping="Wrap"
-                    ToolTip=""
-                    Text="0.0" />
+                    ToolTip="A number between -2 and 2 (Frequency)"
+                    Text="{Binding Value, ElementName=FrequencySlider, Mode=TwoWay}" />
 
                 <b:MetroTextBox
                     x:Name="TemperatureTextBox"
                     Canvas.Left="30"
-                    Canvas.Top="108"
+                    Canvas.Top="102"
                     Width="60"
                     Height="30"
-                    HorizontalAlignment="Center"
+                    HorizontalAlignment="Left"
                     VerticalAlignment="Center"
                     HorizontalContentAlignment="Center"
                     TextWrapping="Wrap"
-                    ToolTip="A nmmber between 0 and 2.\n Higher values like 0.8 will make the output more random, \n while lower values like 0.2 will \n make it more focused and deterministic."
-                    Text="0.7" />
+                    ToolTip="A number between 0 and 2 (Temperature)"
+                    Text="{Binding Value, ElementName=TemperatureSlider, Mode=TwoWay}" />
 
                 <b:MetroTextBox
                     x:Name="MaxTokensTextBox"
-                    Canvas.Left="223"
-                    Canvas.Top="110"
+                    Canvas.Left="231"
+                    Canvas.Top="107"
                     Width="60"
                     Height="30"
-                    HorizontalAlignment="Center"
+                    HorizontalAlignment="Left"
                     VerticalAlignment="Center"
                     HorizontalContentAlignment="Center"
                     TextWrapping="Wrap"
-                    ToolTip="An upper bound for the number of tokens \n that can be generated for a completion, \n including visible output tokens and reasoning tokens."
-                    Text="150" />
+                    ToolTip="An upper bound for token usage"
+                    Text="2048" />
 
-                <b:MetroLabel
-                    Canvas.Left="30"
+                <Label
+                    x:Name="TemperatureLabel"
+                    Canvas.Left="10"
+                    Canvas.Top="13"
+                    Width="85"
+                    Height="24"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    Foreground="{StaticResource BlueBorderBrush}"
+                    Content="Randomness"
+                    ToolTip="A number between 0 and 1 (Temperature)" />
+
+                <Label
+                    Canvas.Left="232"
                     Canvas.Top="80"
-                    Width="80"
-                    HorizontalAlignment="Center"
-                    VerticalAlignment="Top"
-                    Content="Random"
-                    ToolTip="Temperature" />
-
-                <b:MetroLabel
-                    Canvas.Left="215"
-                    Canvas.Top="82"
                     Width="76"
-                    HorizontalAlignment="Center"
+                    Height="24"
+                    HorizontalAlignment="Left"
                     VerticalAlignment="Top"
+                    VerticalContentAlignment="Bottom"
+                    Foreground="{StaticResource BlueBorderBrush}"
                     Content="Max Tokens" />
 
-                <b:MetroLabel
+                <Label
                     x:Name="FrequencyLabel"
-                    Canvas.Left="120"
-                    Canvas.Top="80"
+                    Canvas.Left="119"
+                    Canvas.Top="13"
                     Width="72"
-                    HorizontalAlignment="Center"
-                    VerticalAlignment="Top"
+                    Height="24"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Center"
+                    VerticalContentAlignment="Center"
+                    Foreground="{StaticResource BlueBorderBrush}"
+                    ToolTip="A number between -2 and 2 (Frequency)"
                     Content="Frequency" />
 
                 <b:MetroComboBox
                     x:Name="ModelComboBox"
                     Canvas.Left="550"
-                    Canvas.Top="34"
-                    Width="150"
+                    Canvas.Top="28"
+                    Width="125"
                     Height="35"
                     HorizontalAlignment="Center"
                     VerticalAlignment="Top"
@@ -343,12 +337,13 @@
                     <sync:ComboBoxItemAdv Content="Item 4" />
                     <sync:ComboBoxItemAdv Content="Item 5" />
                 </b:MetroComboBox>
+
                 <b:MetroComboBox
                     x:Name="VoiceComboBox"
                     Canvas.Left="550"
-                    Canvas.Top="106"
-                    Width="150"
-                    Height="35"
+                    Canvas.Top="104"
+                    Width="125"
+                    Height="36"
                     HorizontalAlignment="Center"
                     VerticalAlignment="Top"
                     DefaultText="    Voices">
@@ -358,131 +353,238 @@
                     <sync:ComboBoxItemAdv Content="Item 4" />
                     <sync:ComboBoxItemAdv Content="Item 5" />
                 </b:MetroComboBox>
-                <b:MetroLabel
+
+                <Label
                     x:Name="VoiceLabel"
                     Canvas.Left="550"
-                    Canvas.Top="5"
+                    Canvas.Top="2"
+                    Height="24"
                     HorizontalAlignment="Center"
                     VerticalAlignment="Top"
+                    Foreground="{StaticResource BlueBorderBrush}"
                     Content="Models" />
 
-                <b:MetroLabel
+                <Label
                     Canvas.Left="550"
-                    Canvas.Top="82"
+                    Canvas.Top="77"
+                    Height="24"
                     HorizontalAlignment="Center"
                     VerticalAlignment="Top"
+                    Foreground="{StaticResource BlueBorderBrush}"
                     Content="Voice" />
 
                 <b:MetroRadioButton
                     x:Name="MuteCheckBox"
-                    Canvas.Left="253"
-                    Canvas.Top="7"
+                    Canvas.Left="434"
+                    Canvas.Top="19"
                     Width="68"
                     Height="20"
                     HorizontalAlignment="Center"
                     VerticalAlignment="Top"
                     Content="Speech"
-                    Foreground="#FF0078D4" />
+                    Foreground="{StaticResource BlueBorderBrush}" />
 
                 <b:MetroRadioButton
                     x:Name="ListenCheckBox"
-                    Canvas.Left="253"
-                    Canvas.Top="42"
+                    Canvas.Left="434"
+                    Canvas.Top="47"
                     Width="70"
                     Height="20"
-                    HorizontalAlignment="Left"
+                    HorizontalAlignment="Center"
                     VerticalAlignment="Top"
                     Content="Listen"
-                    Foreground="#FF0078D4" />
-
-                <Slider
-                    x:Name="TemperatureSlider"
-                    Canvas.Left="22"
-                    Canvas.Top="10"
-                    Width="70"
-                    HorizontalAlignment="Left"
-                    VerticalAlignment="Top"
-                    Maximum="2"
-                    Minimum="0"
-                    LargeChange="0.25"
-                    SmallChange="0.2"
-                    ToolTip="An alternative to sampling with temperature, \n called nucleus sampling, where the model considers \n the results of the tokens with top_p probability mass. \n So 0.1 means only the tokens \n comprising the top 10% probability \n mass are considered. We generally recommend altering this \n or temperature but not both."
-                    TickPlacement="Both" />
-
-                <Slider
-                    x:Name="FrequencySlider"
-                    Canvas.Left="129"
-                    Canvas.Top="10"
-                    Width="70"
-                    HorizontalAlignment="Left"
-                    VerticalAlignment="Center"
-                    LargeChange="0.25"
-                    SmallChange="0.2"
-                    TickPlacement="Both"
-                    ToolTip="Adjust Frequency value"
-                    Maximum="2"
-                    Minimum="-2" />
+                    Foreground="{StaticResource BlueBorderBrush}" RenderTransformOrigin="0.443,0.173" />
 
                 <b:MetroTextBox
                     x:Name="UserIdTextBox"
-                    Canvas.Left="416"
-                    Canvas.Top="111"
+                    Canvas.Left="418"
+                    Canvas.Top="107"
                     Width="92"
                     Height="30"
-                    HorizontalAlignment="Center"
+                    HorizontalAlignment="Left"
                     VerticalAlignment="Center"
                     HorizontalContentAlignment="Center"
                     VerticalContentAlignment="Center"
                     TextWrapping="Wrap"
+                    ToolTip="Unique User ID"
                     Text="1" />
 
-                <b:MetroLabel
-                    Canvas.Left="416"
-                    Canvas.Top="82"
-                    Width="60"
-                    HorizontalAlignment="Center"
+                <Label
+                    Canvas.Left="424"
+                    Canvas.Top="80"
+                    Width="78"
+                    Height="24"
+                    HorizontalAlignment="Left"
                     VerticalAlignment="Top"
-                    Content="User" />
+                    VerticalContentAlignment="Bottom"
+                    Foreground="{StaticResource BlueBorderBrush}"
+                    Content="User ID" />
 
                 <b:MetroTextBox
                     x:Name="PresenceTextBox"
-                    Canvas.Left="331"
-                    Canvas.Top="110"
+                    Canvas.Left="326"
+                    Canvas.Top="107"
                     Width="60"
                     Height="30"
                     HorizontalAlignment="Center"
                     VerticalAlignment="Center"
                     HorizontalContentAlignment="Center"
-                    ToolTip="A number between -2.0 and 2.0. Positive values \n penalize new tokens based on whether they appear \n in the text so far, increasing the model's \n likelihood to talk about new topics."
+                    ToolTip="A number between -2.0 and 2.0 (Presence). Default 0.0"
                     Text="0.0" />
 
-                <b:MetroLabel
-                    Canvas.Left="325"
+                <Label
+                    x:Name="PresenceLabel"
+                    Canvas.Left="332"
                     Canvas.Top="80"
                     Width="72"
-                    HorizontalAlignment="Center"
+                    Height="24"
+                    HorizontalAlignment="Left"
                     VerticalAlignment="Top"
+                    VerticalContentAlignment="Bottom"
+                    Foreground="{StaticResource BlueBorderBrush}"
+                    ToolTip="A number between -2.0 and 2.0 (Presence). Default 0.0"
                     Content="Presence" />
 
                 <b:MetroTextBox
-                    Canvas.Left="416"
-                    Canvas.Top="32"
+                    x:Name="TopPercentTextBox"
+                    Canvas.Left="231"
+                    Canvas.Top="41"
                     Width="60"
                     Height="30"
                     HorizontalAlignment="Center"
                     VerticalAlignment="Center"
                     HorizontalContentAlignment="Center"
                     TextWrapping="Wrap"
+                    ToolTip="A number between 0 and 1 (Percentage)"
                     Text="0.0" />
 
-                <b:MetroLabel
-                    Canvas.Left="416"
-                    Canvas.Top="5"
+                <Label
+                    Canvas.Left="231"
+                    Canvas.Top="11"
                     Width="60"
+                    Height="24"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    VerticalContentAlignment="Center"
+                    Foreground="{StaticResource BlueBorderBrush}"
+                    ToolTip="A number between 0 and 1 (Percentage)"
+                    Content="Top P (%)" />
+
+                <b:MetroTextBox
+                    x:Name="NumberTextBox"
+                    Canvas.Left="332"
+                    Canvas.Top="40"
+                    Width="60"
+                    Height="30"
                     HorizontalAlignment="Left"
                     VerticalAlignment="Center"
-                    ToolTip="An alternative to sampling with temperature, \n called nucleus sampling, where the model considers \n the results of the tokens with top_p probability mass. \n So 0.1 means only the tokens \n comprising the top 10% probability \n mass are considered. We generally recommend altering this \n or temperature but not both."
-                    Content="Top P" />
+                    HorizontalContentAlignment="Center"
+                    VerticalContentAlignment="Center"
+                    TextWrapping="Wrap"
+                    ToolTip="The number of response to generate"
+                    Text="1" />
+
+                <Label
+                    x:Name="ResponseLabel"
+                    Canvas.Left="331"
+                    Canvas.Top="13"
+                    Width="72"
+                    Height="24"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Center"
+                    VerticalContentAlignment="Center"
+                    Foreground="{StaticResource BlueBorderBrush}"
+                    Content="Responses" />
+
+                <sync:SfRangeSlider
+                    x:Name="TemperatureSlider"
+                    Canvas.Left="15"
+                    Canvas.Top="38"
+                    Width="80"
+                    Height="32"
+                    HorizontalContentAlignment="Stretch"
+                    VerticalContentAlignment="Stretch"
+                    Maximum="1"
+                    Minimum="0"
+                    ShowValueLabels="True"
+                    TickFrequency="0.1"
+                    TickPlacement="BottomRight"
+                    RangeEnd="1"
+                    TickStroke="{x:Null}"
+                    BorderThickness="0,0,0,0"
+                    SmallChange="0.01"
+                    LargeChange="0.2"
+                    MinorTickFrequency="0.5"
+                    SnapsTo="StepValues"
+                    StepFrequency="0.1"
+                    Value="0.7" />
+
+                <sync:SfRangeSlider
+                    x:Name="FrequencySlider"
+                    Canvas.Left="125"
+                    Canvas.Top="39"
+                    Width="80"
+                    Height="32"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Top"
+                    Maximum="2"
+                    Minimum="-2"
+                    ShowValueLabels="True"
+                    TickFrequency="1"
+                    TickPlacement="BottomRight"
+                    LargeChange="0.25"
+                    SmallChange="0.1"
+                    RangeStart="-2"
+                    RangeEnd="2"
+                    SnapsTo="StepValues"
+                    StepFrequency="0.1"
+                    ThumbInterval="1"
+                    ToolTipFormat="P"
+                    TickLength="5.5"
+                    MinorTickLength="1"
+                    MinorTickFrequency="1" />
+
+            </Canvas>
+
+            <Canvas
+                Grid.Column="0"
+                Height="170"
+                Margin="0"
+                VerticalAlignment="Stretch">
+                <GroupBox
+                    x:Name="CommandGroupBox"
+                    Canvas.Left="150"
+                    Width="190"
+                    Height="170"
+                    Padding="3,3,3,3"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Top"
+                    Header="Commands"
+                    FontFamily="Roboto"
+                    FontSize="12"
+                    BorderBrush="#FF414141" />
+
+                <Button
+                    x:Name="SendButton"
+                    Canvas.Left="194"
+                    Canvas.Top="28"
+                    Width="116"
+                    Height="39"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Center"
+                    Content="Send"
+                    ToolTip="Send Chat Message" />
+
+                <Button
+                    x:Name="ClearButton"
+                    Canvas.Left="194"
+                    Canvas.Top="107"
+                    Width="116"
+                    Height="38"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Top"
+                    Content="Clear"
+                    ToolTip="Clear All Entries" />
             </Canvas>
 
         </Grid>
@@ -496,21 +598,13 @@
                 Canvas.Top="3"
                 Width="656"
                 Height="22"
-                HorizontalAlignment="Left"
-                VerticalAlignment="Top"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
                 HorizontalContentAlignment="Left"
-                Content="Speech..."
-                RenderTransformOrigin="0.5,0.5">
-                <b:MetroLabel.RenderTransform>
-                    <TransformGroup>
-                        <ScaleTransform />
-                        <SkewTransform />
-                        <RotateTransform Angle="0.309" />
-                        <TranslateTransform />
-                    </TransformGroup>
-                </b:MetroLabel.RenderTransform>
-            </b:MetroLabel>
+                VerticalContentAlignment="Center"
+                Content="Speech..." />
         </Canvas>
+
         <Canvas
             x:Name="BottomGrid"
             Grid.Row="4"
@@ -533,30 +627,26 @@
                 <b:ToolStripButton
                     x:Name="FirstButton"
                     Margin="5,1,5,1"
-                    ToolTip=""
-                    ImageSource="/Resources/Assets/ButtonImages/FirstButton.png" />
+                    ToolTip="First Item"
+                    ImageSource="/Resources/Assets/ToolStripImages/FirstButton.png" />
 
                 <b:ToolStripButton
                     x:Name="PreviousButton"
                     Margin="5,1,5,1"
-                    ToolTip=""
-                    ImageSource="/Resources/Assets/ButtonImages/PreviousButton.png" />
+                    ToolTip="Previous Item"
+                    ImageSource="/Resources/Assets/ToolStripImages/PreviousButton.png" />
 
                 <b:ToolStripButton
                     x:Name="NextButton"
                     Margin="5,1,5,1"
-                    ToolTip=""
-                    ImageSource="/Resources/Assets/ButtonImages/NextButton.png" />
+                    ToolTip="Next Item"
+                    ImageSource="/Resources/Assets/ToolStripImages/NextButton.png" />
 
                 <b:ToolStripButton
                     x:Name="LastButton"
                     Margin="5,1,5,1"
-                    ToolTip=""
-                    ImageSource="/Resources/Assets/ButtonImages/LastButton.png" />
-
-                <Separator
-                    Width="5"
-                    Background="{StaticResource TransparentBrush}" />
+                    ToolTip="Last Item"
+                    ImageSource="/Resources/Assets/ToolStripImages/LastButton.png" />
 
                 <TextBox
                     x:Name="ToolStripTextBox"
@@ -565,24 +655,23 @@
                     BorderBrush="{StaticResource BlueBorderBrush}"
                     FontFamily="Roboto" />
 
-                <Separator
-                    Width="5"
-                    Background="{StaticResource TransparentBrush}" />
-
                 <b:ToolStripButton
                     x:Name="LookupButton"
                     Margin="5,1,5,1"
-                    ImageSource="/Resources/Assets/ButtonImages/LookUpButton.png" />
+                    ToolTip="Begin Search"
+                    ImageSource="/Resources/Assets/ToolStripImages/LookUpButton.png" />
 
                 <b:ToolStripButton
                     x:Name="RefreshButton"
                     Margin="5,1,5,1"
-                    ImageSource="/Resources/Assets/ButtonImages/RefreshButton.png" />
+                    ToolTip="Refresh Data"
+                    ImageSource="/Resources/Assets/ToolStripImages/RefreshButton.png" />
 
                 <b:ToolStripButton
                     x:Name="DeleteButton"
                     Margin="5,1,5,1"
-                    ImageSource="/Resources/Assets/ButtonImages/DeleteButton.png" />
+                    ToolTip="Delete Item"
+                    ImageSource="/Resources/Assets/ToolStripImages/DeleteButton.png" />
 
                 <b:ToolStripDropDown
                     x:Name="ToolStripComboBox"
@@ -600,7 +689,9 @@
 
                 <b:ToolStripButton
                     x:Name="MenuButton"
-                    ImageSource="/Resources/Assets/ButtonImages/ToggleButton.png" />
+                    Margin="5,1,5,1"
+                    ToolTip="Show/Hide Toolbar"
+                    ImageSource="/Resources/Assets/ToolStripImages/ToggleButton.png" />
             </b:ToolStrip>
         </Canvas>
     </Grid>

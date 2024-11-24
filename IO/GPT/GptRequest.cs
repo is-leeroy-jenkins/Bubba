@@ -126,13 +126,14 @@ namespace Bubba
         /// </summary>
         public GptRequest( )
         {
-            _header = new GptHeader( );
+            _header = new GptHeader();
+            _model = "gpt-4o";
+            _number = 1;
             _presence = 0.0;
             _frequency = 0.0;
             _topPercent = 0.0;
             _temperature = 0.7;
             _maximumTokens = 2048;
-            _model = "gpt-4o";
         }
 
         /// <inheritdoc />
@@ -150,7 +151,8 @@ namespace Bubba
             double presence = 0.0, double top = 0.0,  
             double temperature = 0.7, int tokens = 2048 ) 
         {
-            _header = new GptHeader( );
+            _header = new GptHeader();
+            _model = "gpt-4o";
             _number = number;
             _presence = presence;
             _frequency = frequency;
@@ -167,11 +169,13 @@ namespace Bubba
         public GptRequest( GptRequest gptRequest )
         {
             _header = new GptHeader( );
+            _model = gptRequest.Model;
             _number = gptRequest.Number;
-            _temperature = gptRequest.Temperature;
-            _maximumTokens = gptRequest.MaximumTokens;
-            _frequency = gptRequest.Frequency;
             _presence = gptRequest.Presence;
+            _frequency = gptRequest.Frequency;
+            _temperature = gptRequest.Temperature;
+            _topPercent = gptRequest.
+            _maximumTokens = gptRequest.MaximumTokens;
         }
 
         /// <summary>
@@ -324,6 +328,33 @@ namespace Bubba
                 {
                     _temperature = value;
                     OnPropertyChanged( nameof( Temperature ) );
+                }
+            }
+        }
+
+        /// <summary>
+        /// An alternative to sampling with temperature,
+        /// called nucleus sampling, where the model considers
+        /// the results of the tokens with top_p probability mass.
+        /// So 0.1 means only the tokens comprising the top 10% probability
+        /// mass are considered. We generally recommend altering this
+        /// or temperature but not both.
+        /// </summary>
+        /// <value>
+        /// The top percent.
+        /// </value>
+        public double TopPercent
+        {
+            get
+            {
+                return _topPercent;
+            }
+            set
+            {
+                if(_topPercent != value)
+                {
+                    _topPercent = value;
+                    OnPropertyChanged(nameof( TopPercent ) );
                 }
             }
         }

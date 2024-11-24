@@ -76,6 +76,11 @@ namespace Bubba
     [ SuppressMessage( "ReSharper", "FieldCanBeMadeReadOnly.Global" ) ]
     public partial class MainWindow : Window, INotifyPropertyChanged, IDisposable
     {
+        private const string KEY = "sk-proj-eTIELWTlG8lKT3hpqgq7a3vmB6lBVKo"
+            + "GBlkoHhu0KqWqsnxyRq9bpEz0N1xZKcOxlyDbLJFCu"
+            + "YT3BlbkFJiQGzglbEgyZB7O9FsBi4bJTO0WEg-"
+            + "xddgKbywZr1o4bbn0HtNQlSU3OALS0pfMuifvMcy2XPAA";
+
         /// <summary>
         /// The provider
         /// </summary>
@@ -129,7 +134,7 @@ namespace Bubba
         /// <summary>
         /// The openai API key
         /// </summary>
-        private protected string OPENAI_API_KEY = App.KEY;
+        private protected string OPENAI_API_KEY = KEY;
 
         /// <summary>
         /// An alternative to sampling with temperature,
@@ -365,6 +370,21 @@ namespace Bubba
         }
 
         /// <summary>
+        /// Initializes the tool strip.
+        /// </summary>
+        private void InitializeToolStrip( )
+        {
+            try
+            {
+                SetToolbarVisibility( false );
+            }
+            catch( Exception ex )
+            {
+                Fail(ex);
+            }
+        }
+
+        /// <summary>
         /// Invokes if needed.
         /// </summary>
         /// <param name="action">The action.</param>
@@ -560,7 +580,7 @@ namespace Bubba
             var _request = WebRequest.Create( _url );
             _request.Method = "POST";
             _request.ContentType = "application/json";
-            _request.Headers.Add( "Authorization", "Bearer " + App.KEY );
+            _request.Headers.Add( "Authorization", "Bearer " + KEY );
             var _maxTokens = int.Parse( MaxTokensTextBox.Text );// 2048
             var _temp = double.Parse( TemperatureTextBox.Text );// 0.5
             if( ( _temp < 0d ) | ( _temp > 1d ) )
@@ -682,14 +702,14 @@ namespace Bubba
             try
             {
                 var _url = "https://api.openai.com/v1/models";
-                using var _httpClient = new HttpClient( );
+                _httpClient = new HttpClient( );
                 _httpClient.DefaultRequestHeaders.Authorization =
-                    new AuthenticationHeaderValue( "Bearer", App.KEY );
+                    new AuthenticationHeaderValue( "Bearer", KEY );
 
                 var _responseMessage = await _httpClient.GetAsync( _url );
                 _responseMessage.EnsureSuccessStatusCode( );
                 var _body = await _responseMessage.Content.ReadAsStringAsync( );
-                var _models = new List<string>( );
+                var _aiModels = new List<string>( );
                 using var _document = JsonDocument.Parse( _body );
                 var _root = _document.RootElement;
                 if( _root.TryGetProperty( "data", out var _data )
@@ -699,16 +719,16 @@ namespace Bubba
                     {
                         if( _item.TryGetProperty( "id", out var _element ) )
                         {
-                            _models.Add( _element.GetString( ) );
+                            _aiModels.Add( _element.GetString( ) );
                         }
                     }
                 }
 
-                _models.Sort( );
-                Application.Current.Dispatcher.Invoke( ( ) =>
+                _aiModels.Sort();
+                ModelComboBox.Items.Clear( );
+                Application.Current.Dispatcher.BeginInvoke( ( ) =>
                 {
-                    ModelComboBox.Items.Clear( );
-                    foreach( var _model in _models )
+                    foreach( var _model in _aiModels )
                     {
                         ModelComboBox.Items.Add( _model );
                     }
@@ -879,6 +899,9 @@ namespace Bubba
                     ToolStripTextBox.Visibility = Visibility.Visible;
                     LookupButton.Visibility = Visibility.Visible;
                     RefreshButton.Visibility = Visibility.Visible;
+                    DeleteButton.Visibility = Visibility.Visible;
+                    ToolStripTextBox.Visibility = Visibility.Visible;
+                    ToolStripComboBox.Visibility = Visibility.Visible;
                 }
                 else
                 {
@@ -889,6 +912,9 @@ namespace Bubba
                     ToolStripTextBox.Visibility = Visibility.Hidden;
                     LookupButton.Visibility = Visibility.Hidden;
                     RefreshButton.Visibility = Visibility.Hidden;
+                    DeleteButton.Visibility = Visibility.Hidden;
+                    ToolStripTextBox.Visibility = Visibility.Hidden;
+                    ToolStripComboBox.Visibility = Visibility.Hidden;
                 }
             }
             catch( Exception ex )
@@ -939,7 +965,7 @@ namespace Bubba
         {
             try
             {
-                var _apiKey = App.KEY;
+                var _apiKey = KEY;
                 if( _apiKey == "" )
                 {
                     var _msg = "Please enter your OpenAI API key file.";
@@ -963,6 +989,7 @@ namespace Bubba
                 }
 
                 VoiceComboBox.AllowMultiSelect = false;
+                InitializeToolStrip( );
                 InitializeTimer( );
                 ProgressBar.Visibility = Visibility.Hidden;
                 SpeechLabel.Visibility = Visibility.Hidden;

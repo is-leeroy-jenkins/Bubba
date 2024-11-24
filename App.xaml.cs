@@ -1,14 +1,14 @@
 ﻿// ******************************************************************************************
 //     Assembly:                Bubba
 //     Author:                  Terry D. Eppler
-//     Created:                 11-16-2024
+//     Created:                 11-24-2024
 // 
 //     Last Modified By:        Terry D. Eppler
-//     Last Modified On:        11-16-2024
+//     Last Modified On:        11-24-2024
 // ******************************************************************************************
 // <copyright file="App.xaml.cs" company="Terry D. Eppler">
-//    Bubba is an open source windows (wpf) application for interacting with OpenAI GPT
-//    that is based on NET 7 and written in C-Sharp.
+//    Bubba is a small windows (wpf) application for interacting with
+//    Chat GPT that's developed in C-Sharp under the MIT license
 // 
 //    Copyright ©  2020-2024 Terry D. Eppler
 // 
@@ -112,10 +112,6 @@ namespace Bubba
             "SfMultiColumnDropDownControl"
         };
 
-        public static readonly string KEY = "sk-proj-qW9o_PoT2CleBXOErbGxe2UlOeHtgJ9K-"
-            + "rVFooUImScUvXn44e4R9ivYZtbYh5OIObWepnxCGET3BlbkFJykj4Dt9MDZT2GQg"
-            + "NarXOifdSxGwmodYtevUniudDGt8vkUNmxurKO9DkULeAUVz3rdY9g_-OsA";
-
         /// <summary>
         /// Registers the theme.
         /// </summary>
@@ -186,6 +182,24 @@ namespace Bubba
             _windowPlace.Register( mainWindow );
         }
 
+        /// <summary>
+        /// Handles the exception.
+        /// </summary>
+        /// <param name="e">The e.</param>
+        private void HandleException( Exception e )
+        {
+            if( e == null )
+            {
+                var _msg = $"The argument {e} is null!";
+                throw new ArgumentNullException( _msg );
+            }
+            else
+            {
+                Fail( e );
+                Environment.Exit( 1 );
+            }
+        }
+
         /// <inheritdoc />
         /// <summary>
         /// Raises the <see cref="E:System.Windows.Application.Startup" /> event.
@@ -223,24 +237,6 @@ namespace Bubba
             catch( Exception )
             {
                 // Do Nothing
-            }
-        }
-
-        /// <summary>
-        /// Handles the exception.
-        /// </summary>
-        /// <param name="e">The e.</param>
-        private void HandleException( Exception e )
-        {
-            if( e == null )
-            {
-                var _msg = $"The argument {e} is null!";
-                throw new ArgumentNullException( _msg );
-            }
-            else
-            {
-                Fail( e );
-                Environment.Exit( 1 );
             }
         }
 

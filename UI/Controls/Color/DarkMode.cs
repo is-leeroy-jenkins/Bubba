@@ -51,7 +51,7 @@ namespace Bubba
     /// <inheritdoc />
     /// <summary>
     /// </summary>
-    /// <seealso cref="T:Bobo.Palette" />
+    /// <seealso cref="T:Bubba.Palette" />
     [ SuppressMessage( "ReSharper", "UnusedType.Global" ) ]
     [ SuppressMessage( "ReSharper", "ClassCanBeSealed.Global" ) ]
     [ SuppressMessage( "ReSharper", "MemberCanBeInternal" ) ]
@@ -185,9 +185,10 @@ namespace Bubba
             LightBlueBrush = new SolidColorBrush( _lightBlue );
             BlackBrush = new SolidColorBrush( _blackColor );
             WhiteForeground = new SolidColorBrush( _whiteColor );
-            FontFamily = new FontFamily( "Roboto" );
-            FontSize = 12;
+            FontFamily = new FontFamily( "Roboto Regular" );
+            FontSize = 11;
             Padding = new Thickness( 1 );
+            Margin = new Thickness( 1 );
             BorderThickness = new Thickness( 1 );
             WindowStyle = WindowStyle.SingleBorderWindow;
             SizeMode = ResizeMode.CanResize;

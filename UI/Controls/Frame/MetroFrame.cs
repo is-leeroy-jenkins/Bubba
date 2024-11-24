@@ -44,6 +44,7 @@ namespace Bubba
     using Syncfusion.UI.Xaml.TextInputLayout;
     using System;
     using System.Diagnostics.CodeAnalysis;
+    using System.Windows;
     using System.Windows.Controls;
     using System.Windows.Media;
 
@@ -78,17 +79,37 @@ namespace Bubba
         {
             // Control Properties
             SetResourceReference( StyleProperty, typeof( SfTextInputLayout ) );
-            Height = 200;
-            Width = 200;
+            Height = 150;
+            Width = 150;
+            _textBox.Margin = new Thickness(10);
+            _textBox.Padding = new Thickness( 10, 1, 1, 1 );
             FontFamily = new FontFamily( "Roboto" );
             FontSize = 12;
             Background = _theme.ControlBackground;
             Foreground = _theme.Foreground;
             BorderBrush = _theme.BorderBrush;
-            ContainerBackground = _theme.ControlBackground;
+            ContainerBackground = _theme.TransparentBrush;
             FocusedBorderBrush = _theme.Foreground;
             FocusedForeground = _theme.WhiteForeground;
             Hint = "Name";
+        }
+
+        /// <summary>
+        /// Gets or sets the text box.
+        /// </summary>
+        /// <value>
+        /// The text box.
+        /// </value>
+        public TextBox TextBox
+        {
+            get
+            {
+                return _textBox;
+            }
+            set
+            {
+                _textBox = value;
+            }
         }
 
         /// <summary>
