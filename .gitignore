@@ -6,8 +6,6 @@
 *.ko
 *.obj
 *.elf
-*obj/
-*bin/
 
 # Linker output
 *.ilk
@@ -48,6 +46,7 @@
 *.mdf
 *.db
 *.accdb
+*.laccdb
 
 # Kernel Module Compile Results
 *.mod*
@@ -116,10 +115,10 @@ StyleCopReport.xml
 *.pidb
 *.svclog
 *.scc
+*csproj.user
 
 # Chutzpah Test files
 _Chutzpah*
 
 /.vs/Bubba/FileContentIndex
-/obj/Debug/net8.0-windows
 /.vs/Supercharger/Bubba/codemap.dat

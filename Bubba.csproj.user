@@ -10,7 +10,7 @@
     <Compile Update="Data\Abstractions\AdapterBase.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Update="Data\Adapter\BudgetAdapter.cs">
+    <Compile Update="Data\Adapter\BubbaAdapter.cs">
       <SubType>Component</SubType>
     </Compile>
   </ItemGroup>

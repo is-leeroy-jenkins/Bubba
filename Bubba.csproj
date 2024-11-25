@@ -441,4 +441,10 @@
     </None>
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Data\Stores\Access\" />
+    <Folder Include="Data\Stores\SqlServer\" />
+    <Folder Include="Data\Stores\SQLite\" />
+  </ItemGroup>
+
 </Project>

@@ -88,7 +88,7 @@ namespace Bubba
         {
             _source = source;
             _provider = provider;
-            _connection = new BudgetConnection( source, provider ).Create( );
+            _connection = new BubbaConnection( source, provider ).Create( );
             _sqlStatement = new SqlStatement( source, provider, commandType );
             _dataAdapter = GetAdapterAsync( );
             _disposed = false;
@@ -110,7 +110,7 @@ namespace Bubba
             _source = source;
             _provider = provider;
             _criteria = where;
-            _connection = new BudgetConnection( source, provider ).Create( );
+            _connection = new BubbaConnection( source, provider ).Create( );
             _sqlStatement = new SqlStatement( source, provider, where, commandType );
             _dataAdapter = GetAdapterAsync( );
             _disposed = false;
@@ -133,7 +133,7 @@ namespace Bubba
             _source = source;
             _provider = provider;
             _criteria = where;
-            _connection = new BudgetConnection( source, provider ).Create( );
+            _connection = new BubbaConnection( source, provider ).Create( );
             _sqlStatement = new SqlStatement( source, provider, updates, where,
                 commandType );
 
@@ -159,7 +159,7 @@ namespace Bubba
             _provider = provider;
             _criteria = where;
             _commandType = commandType;
-            _connection = new BudgetConnection( source, provider ).Create( );
+            _connection = new BubbaConnection( source, provider ).Create( );
             _sqlStatement = new SqlStatement( source, provider, columns, where,
                 commandType );
 
@@ -186,7 +186,7 @@ namespace Bubba
             _source = source;
             _provider = provider;
             _criteria = having;
-            _connection = new BudgetConnection( source, provider ).Create( );
+            _connection = new BubbaConnection( source, provider ).Create( );
             _sqlStatement = new SqlStatement( source, provider, columns, having,
                 commandType );
 
@@ -207,7 +207,7 @@ namespace Bubba
         {
             _source = source;
             _provider = provider;
-            _connection = new BudgetConnection( source, provider ).Create( );
+            _connection = new BubbaConnection( source, provider ).Create( );
             _sqlStatement = new SqlStatement( source, provider, sqlText );
             _dataAdapter = GetAdapterAsync( );
             _disposed = false;
@@ -239,7 +239,7 @@ namespace Bubba
         public AsyncQuery( string fullPath, string sqlText, Command commandType = Command.SELECT )
         {
             _criteria = null;
-            _connection = new BudgetConnection( fullPath ).Create( );
+            _connection = new BubbaConnection( fullPath ).Create( );
             _provider = Provider.Access;
             _source = Source.External;
             _sqlStatement = new SqlStatement( _source, _provider, sqlText );
@@ -258,12 +258,12 @@ namespace Bubba
         /// <param name="where"> The dictionary. </param>
         public AsyncQuery( string fullPath, Command commandType, IDictionary<string, object> where )
         {
-            _connection = new BudgetConnection( fullPath ).Create( );
+            _connection = new BubbaConnection( fullPath ).Create( );
             _criteria = where;
             _commandType = commandType;
             _source = Source.External;
             _provider = Provider.Access;
-            _connection = new BudgetConnection( _source, _provider ).Create( );
+            _connection = new BubbaConnection( _source, _provider ).Create( );
             _sqlStatement = new SqlStatement( _source, _provider, where, commandType );
             _dataAdapter = GetAdapterAsync( );
             _disposed = false;
@@ -281,7 +281,7 @@ namespace Bubba
             _source = sqlStatement.Source;
             _provider = sqlStatement.Provider;
             _criteria = sqlStatement.Criteria;
-            _connection = new BudgetConnection( _source, _provider ).Create( );
+            _connection = new BubbaConnection( _source, _provider ).Create( );
             _sqlStatement = sqlStatement;
             _dataAdapter = GetAdapterAsync( );
             _disposed = false;

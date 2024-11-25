@@ -76,9 +76,9 @@ namespace Bubba
         {
             _source = source;
             _provider = provider;
-            _dataConnection = new BudgetConnection( source, provider ).Create( );
+            _dataConnection = new BubbaConnection( source, provider ).Create( );
             _sqlStatement = new SqlStatement( source, provider, commandType );
-            _dataAdapter = new BudgetAdapter( _sqlStatement ).Create( );
+            _dataAdapter = new BubbaAdapter( _sqlStatement ).Create( );
             _isDisposed = false;
         }
 
@@ -98,9 +98,9 @@ namespace Bubba
             _source = source;
             _provider = provider;
             _criteria = where;
-            _dataConnection = new BudgetConnection( source, provider ).Create( );
+            _dataConnection = new BubbaConnection( source, provider ).Create( );
             _sqlStatement = new SqlStatement( source, provider, where, commandType );
-            _dataAdapter = new BudgetAdapter( _sqlStatement ).Create( );
+            _dataAdapter = new BubbaAdapter( _sqlStatement ).Create( );
             _isDisposed = false;
         }
 
@@ -121,11 +121,11 @@ namespace Bubba
             _source = source;
             _provider = provider;
             _criteria = where;
-            _dataConnection = new BudgetConnection( source, provider ).Create( );
+            _dataConnection = new BubbaConnection( source, provider ).Create( );
             _sqlStatement = new SqlStatement( source, provider, updates, where,
                 commandType );
 
-            _dataAdapter = new BudgetAdapter( _sqlStatement ).Create( );
+            _dataAdapter = new BubbaAdapter( _sqlStatement ).Create( );
             _isDisposed = false;
         }
 
@@ -147,9 +147,9 @@ namespace Bubba
             _provider = provider;
             _criteria = where;
             _commandType = commandType;
-            _dataConnection = new BudgetConnection( source, provider ).Create( );
+            _dataConnection = new BubbaConnection( source, provider ).Create( );
             _sqlStatement = new SqlStatement( source, provider, columns, where, commandType );
-            _dataAdapter = new BudgetAdapter( _sqlStatement ).Create( );
+            _dataAdapter = new BubbaAdapter( _sqlStatement ).Create( );
             _isDisposed = false;
         }
 
@@ -172,11 +172,11 @@ namespace Bubba
             _source = source;
             _provider = provider;
             _criteria = having;
-            _dataConnection = new BudgetConnection( source, provider ).Create( );
+            _dataConnection = new BubbaConnection( source, provider ).Create( );
             _sqlStatement = new SqlStatement( source, provider, columns, numerics,
                 having, commandType );
 
-            _dataAdapter = new BudgetAdapter( _sqlStatement ).Create( );
+            _dataAdapter = new BubbaAdapter( _sqlStatement ).Create( );
             _isDisposed = false;
         }
 
@@ -193,8 +193,8 @@ namespace Bubba
             _source = sqlStatement.Source;
             _provider = sqlStatement.Provider;
             _criteria = sqlStatement.Criteria;
-            _dataConnection = new BudgetConnection( _source, _provider ).Create( );
-            _dataAdapter = new BudgetAdapter( sqlStatement ).Create( );
+            _dataConnection = new BubbaConnection( _source, _provider ).Create( );
+            _dataAdapter = new BubbaAdapter( sqlStatement ).Create( );
             _isDisposed = false;
         }
 
@@ -211,9 +211,9 @@ namespace Bubba
         {
             _source = source;
             _provider = provider;
-            _dataConnection = new BudgetConnection( source, provider ).Create( );
+            _dataConnection = new BubbaConnection( source, provider ).Create( );
             _sqlStatement = new SqlStatement( source, provider, sqlText );
-            _dataAdapter = new BudgetAdapter( _sqlStatement ).Create( );
+            _dataAdapter = new BubbaAdapter( _sqlStatement ).Create( );
             _criteria = null;
             _isDisposed = false;
         }
@@ -232,9 +232,9 @@ namespace Bubba
             _criteria = null;
             _provider = Provider.Access;
             _source = Source.External;
-            _dataConnection = new BudgetConnection( fullPath ).Create( );
+            _dataConnection = new BubbaConnection( fullPath ).Create( );
             _sqlStatement = new SqlStatement( _source, _provider, sqlText );
-            _dataAdapter = new BudgetAdapter( _sqlStatement ).Create( );
+            _dataAdapter = new BubbaAdapter( _sqlStatement ).Create( );
             _isDisposed = false;
         }
 
@@ -254,9 +254,9 @@ namespace Bubba
             _commandType = commandType;
             _provider = Provider.Access;
             _source = Source.External;
-            _dataConnection = new BudgetConnection( fullPath ).Create( );
+            _dataConnection = new BubbaConnection( fullPath ).Create( );
             _sqlStatement = new SqlStatement( _source, _provider, where, commandType );
-            _dataAdapter = new BudgetAdapter( _sqlStatement ).Create( );
+            _dataAdapter = new BubbaAdapter( _sqlStatement ).Create( );
             _isDisposed = false;
         }
     }

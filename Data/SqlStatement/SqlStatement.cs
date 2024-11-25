@@ -326,7 +326,7 @@ namespace Bubba
             Command commandType = Command.SELECTALL )
             : this( )
         {
-            _dbPath = new BudgetConnection( source, provider ).DataPath;
+            _dbPath = new BubbaConnection( source, provider ).DataPath;
             _commandType = commandType;
             _source = source;
             _provider = provider;
@@ -348,7 +348,7 @@ namespace Bubba
             Command commandType = Command.SELECTALL )
             : this( )
         {
-            _dbPath = new BudgetConnection( source, provider ).DataPath;
+            _dbPath = new BubbaConnection( source, provider ).DataPath;
             _commandType = commandType;
             _source = source;
             _provider = provider;
@@ -371,7 +371,7 @@ namespace Bubba
             IDictionary<string, object> where, Command commandType = Command.UPDATE )
             : this( )
         {
-            _dbPath = new BudgetConnection( source, provider ).DataPath;
+            _dbPath = new BubbaConnection( source, provider ).DataPath;
             _commandType = commandType;
             _source = source;
             _provider = provider;
@@ -396,7 +396,7 @@ namespace Bubba
             Command commandType = Command.SELECTALL )
             : this( )
         {
-            _dbPath = new BudgetConnection( source, provider ).DataPath;
+            _dbPath = new BubbaConnection( source, provider ).DataPath;
             _commandType = commandType;
             _source = source;
             _provider = provider;
@@ -420,7 +420,7 @@ namespace Bubba
             IDictionary<string, object> where, Command commandType = Command.SELECT )
             : this( )
         {
-            _dbPath = new BudgetConnection( source, provider ).DataPath;
+            _dbPath = new BubbaConnection( source, provider ).DataPath;
             _commandType = commandType;
             _source = source;
             _provider = provider;
@@ -447,7 +447,7 @@ namespace Bubba
             Command commandType = Command.SELECT )
             : this( )
         {
-            _dbPath = new BudgetConnection( source, provider ).DataPath;
+            _dbPath = new BubbaConnection( source, provider ).DataPath;
             _commandType = commandType;
             _source = source;
             _provider = provider;

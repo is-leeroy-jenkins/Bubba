@@ -112,7 +112,7 @@ namespace Bubba
         {
             _source = source;
             _provider = provider;
-            _connection = new BudgetConnection( source, provider ).Create( );
+            _connection = new BubbaConnection( source, provider ).Create( );
             _sqlStatement = new SqlStatement( source, provider, Command.SELECTALL );
             _query = new BudgetQuery( SqlStatement );
             _dataTable = GetDataTableAsync( );
@@ -139,7 +139,7 @@ namespace Bubba
         {
             _source = source;
             _provider = provider;
-            _connection = new BudgetConnection( source, provider ).Create( );
+            _connection = new BubbaConnection( source, provider ).Create( );
             _sqlStatement = new SqlStatement( source, provider, where );
             _query = new BudgetQuery( SqlStatement );
             _dataTable = GetDataTableAsync( );
@@ -169,7 +169,7 @@ namespace Bubba
         {
             _source = source;
             _provider = provider;
-            _connection = new BudgetConnection( source, provider ).Create( );
+            _connection = new BubbaConnection( source, provider ).Create( );
             _sqlStatement = new SqlStatement( source, provider, updates, where,
                 commandType );
 
@@ -201,7 +201,7 @@ namespace Bubba
         {
             _source = source;
             _provider = provider;
-            _connection = new BudgetConnection( source, provider ).Create( );
+            _connection = new BubbaConnection( source, provider ).Create( );
             _sqlStatement = new SqlStatement( source, provider, columns, where,
                 commandType );
 
@@ -234,7 +234,7 @@ namespace Bubba
         {
             _source = source;
             _provider = provider;
-            _connection = new BudgetConnection( source, provider ).Create( );
+            _connection = new BubbaConnection( source, provider ).Create( );
             _sqlStatement = new SqlStatement( source, provider, fields, numerics,
                 where, commandType );
 
@@ -262,7 +262,7 @@ namespace Bubba
         {
             _source = source;
             _provider = Provider.Access;
-            _connection = new BudgetConnection( source, _provider ).Create( );
+            _connection = new BubbaConnection( source, _provider ).Create( );
             _sqlStatement = new SqlStatement( source, Provider.Access, where );
             _query = new BudgetQuery( _sqlStatement );
             _dataTable = GetDataTableAsync( );
@@ -289,7 +289,7 @@ namespace Bubba
         {
             _source = source;
             _provider = provider;
-            _connection = new BudgetConnection( source, provider ).Create( );
+            _connection = new BubbaConnection( source, provider ).Create( );
             _sqlStatement = new SqlStatement( source, provider, sqlText );
             _query = new BudgetQuery( _sqlStatement );
             _dataTable = GetDataTableAsync( );
@@ -314,7 +314,7 @@ namespace Bubba
         /// <param name="commandType"> Type of the command. </param>
         public AsyncService( string fullPath, string sqlText, Command commandType = Command.SELECT )
         {
-            _connection = new BudgetConnection( fullPath ).Create( );
+            _connection = new BubbaConnection( fullPath ).Create( );
             _source = Source.External;
             _provider = Provider.Access;
             _sqlStatement = new SqlStatement( _source, _provider, sqlText, commandType );
@@ -343,7 +343,7 @@ namespace Bubba
             _source = query.Source;
             _provider = query.Provider;
             _sqlStatement = query.SqlStatement;
-            _connection = new BudgetConnection( _source, _provider ).Create( );
+            _connection = new BubbaConnection( _source, _provider ).Create( );
             _dataTable = GetDataTableAsync( );
             _dataColumns = GetColumnsAsync( );
             _columnNames = GetNamesAsync( );
