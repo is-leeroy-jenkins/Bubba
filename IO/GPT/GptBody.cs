@@ -58,6 +58,11 @@ namespace Bubba
     public class GptBody : PropertyChangedBase, IGptBody
     {
         /// <summary>
+        /// The response format
+        /// </summary>
+        private protected string _responseFormat;
+
+        /// <summary>
         /// The model
         /// </summary>
         private protected string _model;
@@ -78,11 +83,6 @@ namespace Bubba
         private protected SystemMessage _systemMessage;
 
         /// <summary>
-        /// The assistant message
-        /// </summary>
-        private protected AssistantMessage _assistantMessage;
-
-        /// <summary>
         /// The data
         /// </summary>
         private protected IDictionary<string, object> _data;
@@ -93,6 +93,9 @@ namespace Bubba
         /// </summary>
         public GptBody( )
         {
+            _responseFormat = "text";
+            _systemMessage = new SystemMessage();
+            _userMessage = new UserMessage();
             _messages = new List<IGptMessage>( );
             _data = new Dictionary<string, object>( );
         }
@@ -107,6 +110,7 @@ namespace Bubba
             : this( )
         {
             _model = model;
+            _data.Add( "response_format", _responseFormat );
             _data.Add( "model", model );
         }
 
@@ -120,6 +124,7 @@ namespace Bubba
             : this( )
         {
             _model = gptBody.Model;
+            _responseFormat = gptBody.ResponseFormat;
             _data.Add( "model", gptBody.Model );
         }
 
@@ -127,16 +132,18 @@ namespace Bubba
         /// Deconstructs the specified model.
         /// </summary>
         /// <param name="model">The model.</param>
+        /// <param name = "responseFormat" >
+        /// The format of the response
+        /// </param>
         /// <param name="system">The system.</param>
         /// <param name="user">The user.</param>
-        /// <param name="assistant">The assistant.</param>
-        public void Deconstruct( out string model, out SystemMessage system, out UserMessage user,
-            out AssistantMessage assistant )
+        public void Deconstruct( out string model, out string responseFormat, 
+            out SystemMessage system, out UserMessage user )
         {
             model = _model;
+            responseFormat = _responseFormat;
             system = _systemMessage;
             user = _userMessage;
-            assistant = _assistantMessage;
         }
 
         /// <inheritdoc />
@@ -158,6 +165,28 @@ namespace Bubba
                 {
                     _model = value;
                     OnPropertyChanged( nameof( Model ) );
+                }
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the response format.
+        /// </summary>
+        /// <value>
+        /// The response format.
+        /// </value>
+        public string ResponseFormat
+        {
+            get
+            {
+                return _responseFormat;
+            }
+            set
+            {
+                if(_responseFormat != value)
+                {
+                    _responseFormat = value;
+                    OnPropertyChanged(nameof(ResponseFormat));
                 }
             }
         }
@@ -225,28 +254,6 @@ namespace Bubba
                 {
                     _userMessage = value;
                     OnPropertyChanged( nameof( UserMessage ) );
-                }
-            }
-        }
-
-        /// <summary>
-        /// Gets or sets the assistant message.
-        /// </summary>
-        /// <value>
-        /// The assistant message.
-        /// </value>
-        public AssistantMessage AssistantMessage
-        {
-            get
-            {
-                return _assistantMessage;
-            }
-            set
-            {
-                if( _assistantMessage != value )
-                {
-                    _assistantMessage = value;
-                    OnPropertyChanged( nameof( AssistantMessage ) );
                 }
             }
         }

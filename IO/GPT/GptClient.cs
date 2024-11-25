@@ -405,18 +405,18 @@ namespace Bubba
         }
 
         /// <summary>
-        /// Extracts the message from response.
-        /// Helper method to extract the message from the JSON response
+        /// Extracts the message from jsonResponse.
+        /// Helper method to extract the message from the JSON jsonResponse
         /// </summary>
-        /// <param name="response">The json response.</param>
+        /// <param name="jsonResponse">The json jsonResponse.</param>
         /// <returns></returns>
-        private string ExtractResponseContent( string response )
+        private string ExtractResponseContent( string jsonResponse )
         {
             try
             {
-                ThrowIf.Empty( response, nameof( response ) );
-                using var _document = JsonDocument.Parse( response );
-                var _root = _document.RootElement;
+                ThrowIf.Empty( jsonResponse, nameof( jsonResponse ) );
+                using var _jsonDocument = JsonDocument.Parse( jsonResponse );
+                var _root = _jsonDocument.RootElement;
                 if( _model.Contains( "gpt-3.5-turbo" ) )
                 {
                     var _choices = _root.GetProperty( "choices" );
@@ -452,9 +452,9 @@ namespace Bubba
         /// <summary>
         /// Sends the HTTP message asynchronous.
         /// </summary>
-        /// <param name="prompt">The prompt.</param>
+        /// <param name="userPrompt">The prompt.</param>
         /// <returns></returns>
-        public async Task<string> SendHttpMessageAsync( string prompt )
+        public async Task<string> SendHttpMessageAsync( string userPrompt )
         {
             var _temp = _temperature;
             var _url = _model.Contains( "gpt-3.5-turbo" )
@@ -473,7 +473,7 @@ namespace Bubba
                         new
                         {
                             role = _role,
-                            content = ProcessQuotes( prompt )
+                            content = ProcessQuotes( userPrompt )
                         }
                     }
                 } );
@@ -483,7 +483,7 @@ namespace Bubba
                 _payload = JsonSerializer.Serialize( new
                 {
                     model = _model,
-                    prompt = ProcessQuotes( prompt ),
+                    prompt = ProcessQuotes( userPrompt ),
                     max_tokens = _maximumTokens,
                     temperature = _temp,
                     user = _user,

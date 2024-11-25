@@ -50,11 +50,6 @@ namespace Bubba
     public class GptRequest : PropertyChangedBase
     {
         /// <summary>
-        /// The base URL
-        /// </summary>
-        private protected GptEndPoint _endPoint;
-
-        /// <summary>
         /// The messages
         /// </summary>
         private protected IList<IGptMessage> _messages;
@@ -104,6 +99,11 @@ namespace Bubba
         private protected string _model;
 
         /// <summary>
+        /// The base URL
+        /// </summary>
+        private protected GptEndPoint _endPoint;
+
+        /// <summary>
         /// The body
         /// </summary>
         private protected GptBody _body;
@@ -126,7 +126,8 @@ namespace Bubba
         /// </summary>
         public GptRequest( )
         {
-            _header = new GptHeader();
+            _header = new GptHeader( );
+            _endPoint = new GptEndPoint( );
             _model = "gpt-4o";
             _number = 1;
             _presence = 0.0;
@@ -144,20 +145,21 @@ namespace Bubba
         /// <param name="number">The identifier.</param>
         /// <param name="frequency">The frequency.</param>
         /// <param name="presence">The presence.</param>
-        /// <param name = "top" > </param>
+        /// <param name = "topPercent" > </param>
         /// <param name="temperature">The temperature.</param>
         /// <param name="tokens">The tokens.</param>
         public GptRequest( int number = 1, double frequency = 0.0,
-            double presence = 0.0, double top = 0.0,  
-            double temperature = 0.7, int tokens = 2048 ) 
+            double presence = 0.0, double topPercent = 0.0,  
+            double temperature = 0.7, int tokens = 2048 )
         {
-            _header = new GptHeader();
+            _store = false;
+            _header = new GptHeader( );
             _model = "gpt-4o";
             _number = number;
             _presence = presence;
             _frequency = frequency;
-            _topPercent = top;
             _temperature = temperature;
+            _topPercent = topPercent;
             _maximumTokens = tokens;
         }
 
@@ -169,12 +171,13 @@ namespace Bubba
         public GptRequest( GptRequest gptRequest )
         {
             _header = new GptHeader( );
+            _store = gptRequest.Store;
             _model = gptRequest.Model;
             _number = gptRequest.Number;
             _presence = gptRequest.Presence;
             _frequency = gptRequest.Frequency;
             _temperature = gptRequest.Temperature;
-            _topPercent = gptRequest.
+            _topPercent = gptRequest.TopPercent;
             _maximumTokens = gptRequest.MaximumTokens;
         }
 
@@ -186,10 +189,13 @@ namespace Bubba
         /// <param name="presence">The presence.</param>
         /// <param name="temperature">The temperature.</param>
         /// <param name="tokens">The maximum tokens.</param>
+        /// <param name = "store" > </param>
         public void Deconstruct( out int number, out double frequency,
-            out double presence, out double temperature, out int tokens )
+            out double presence, out double temperature, 
+            out int tokens, out bool store )
         {
             number = _number;
+            store = _store;
             temperature = _temperature;
             frequency = _frequency;
             presence = _presence;

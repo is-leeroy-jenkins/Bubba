@@ -43,6 +43,7 @@ namespace Bubba
 {
     using System;
     using System.Diagnostics.CodeAnalysis;
+    using Microsoft.Office.Interop.Outlook;
 
     /// <inheritdoc />
     /// <summary>
@@ -56,6 +57,11 @@ namespace Bubba
         /// The number responses to generate
         /// </summary>
         private protected int _number;
+
+        /// <summary>
+        /// Whether or not to store the responses
+        /// </summary>
+        private protected bool _store;
 
         /// <summary>
         /// An alternative to sampling with temperature,
@@ -119,6 +125,7 @@ namespace Bubba
         /// </summary>
         public GptConfig( )
         {
+            _store = false;
             _maximumTokens = 2048;
             _temperature = 0.7;
             _frequency = 0.0;
@@ -173,6 +180,29 @@ namespace Bubba
             temperature = _temperature;
             frequency = _frequency;
             presense = _presence;
+        }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether this
+        /// <see cref="GptConfig"/> is store.
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if store; otherwise, <c>false</c>.
+        /// </value>
+        public bool Store
+        {
+            get
+            {
+                return _store;
+            }
+            set
+            {
+                if(_store != value)
+                {
+                    _store = value;
+                    OnPropertyChanged(nameof(Store));
+                }
+            }
         }
 
         /// <inheritdoc />
@@ -311,10 +341,11 @@ namespace Bubba
             }
             set
             {
-                if(_topPercent != value)
+
+                if( _topPercent != value )
                 {
                     _topPercent = value;
-                    OnPropertyChanged(nameof(TopPercent));
+                    OnPropertyChanged( nameof( TopPercent ) );
                 }
             }
         }

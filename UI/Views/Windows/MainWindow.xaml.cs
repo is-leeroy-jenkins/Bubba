@@ -786,7 +786,7 @@ namespace Bubba
             }
 
             _synthesizer.Speak( input );
-        }
+        } 
 
         /// <summary>
         /// Updates the status.

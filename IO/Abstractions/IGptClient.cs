@@ -145,9 +145,9 @@ namespace Bubba
         /// <summary>
         /// Sends the HTTP message asynchronous.
         /// </summary>
-        /// <param name="prompt">The prompt.</param>
+        /// <param name="userPrompt">The prompt.</param>
         /// <returns></returns>
-        Task<string> SendHttpMessageAsync( string prompt );
+        Task<string> SendHttpMessageAsync( string userPrompt );
 
         /// <inheritdoc />
         /// <summary>

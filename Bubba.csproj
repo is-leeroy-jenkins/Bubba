@@ -28,8 +28,10 @@
 
   <ItemGroup>
     <None Remove="Resources\Assets\ApplicationImages\Bubba.ico" />
+    <None Remove="Resources\Assets\CalculatorImages\CalculatorCloseButton.png" />
     <None Remove="Resources\Assets\CalculatorImages\Cancel.png" />
     <None Remove="Resources\Assets\CalculatorImages\Main.png" />
+    <None Remove="Resources\Assets\CalculatorImages\WindowsCalculatorButton.png" />
     <None Remove="Resources\Assets\ExtensionImages\ACCDB.png" />
     <None Remove="Resources\Assets\ExtensionImages\CSV.png" />
     <None Remove="Resources\Assets\ExtensionImages\DB.png" />
@@ -252,8 +254,8 @@
   <ItemGroup>
     <Resource Include="Resources\Assets\ApplicationImages\Bubba.ico" />
     <Resource Include="Resources\Assets\ApplicationImages\Bubba.png" />
-    <Resource Include="Resources\Assets\CalculatorImages\Cancel.png" />
-    <Resource Include="Resources\Assets\CalculatorImages\Main.png" />
+    <Resource Include="Resources\Assets\CalculatorImages\CalculatorCloseButton.png" />
+    <Resource Include="Resources\Assets\CalculatorImages\WindowsCalculatorButton.png" />
     <Resource Include="Resources\Assets\ExtensionImages\ACCDB.png" />
     <Resource Include="Resources\Assets\ExtensionImages\CSV.png" />
     <Resource Include="Resources\Assets\ExtensionImages\DB.png" />
