@@ -591,8 +591,6 @@
                     Background="#FF1C1C1C"
                     BorderBrush="{StaticResource MutedForeground}" />
 
-                <GroupBox />
-
                 <b:MetroTile
                     x:Name="SendButton"
                     Title="    Send"
