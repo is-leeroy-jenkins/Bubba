@@ -9,7 +9,7 @@
     xmlns:wpf="clr-namespace:Syncfusion.Themes.FluentDark.WPF;assembly=Syncfusion.Themes.FluentDark.WPF">
 
 
-    <!--*********************************************** MetroCheckList *****************************************************-->
+    <!--  *********************************************** MetroCheckList *****************************************************  -->
 
     <Style TargetType="{x:Type bdgr:MetroCheckList}">
         <Setter Property="Background" Value="{DynamicResource ControlInteriorBrush}" />
@@ -25,7 +25,7 @@
         <Setter Property="FontStyle" Value="Normal" />
     </Style>
 
-    <!--*********************************************** MetroCheckListItem *****************************************************-->
+    <!--  *********************************************** MetroCheckListItem *****************************************************  -->
 
     <Style TargetType="{x:Type bdgr:MetroCheckListItem}">
 

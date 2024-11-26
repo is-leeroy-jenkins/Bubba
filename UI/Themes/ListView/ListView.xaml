@@ -9,9 +9,9 @@
     <Style
         x:Key="DefaultListViewStyle"
         TargetType="{x:Type ListView}">
-        <Setter Property="Background" Value="{DynamicResource ControlInteriorBrush}" />
-        <Setter Property="BorderBrush" Value="{DynamicResource BlueBorderBrush}" />
-        <Setter Property="Foreground" Value="{DynamicResource LightBlueBrush}" />
+        <Setter Property="Background" Value="{StaticResource ControlInteriorBrush}" />
+        <Setter Property="BorderBrush" Value="{StaticResource BlueBorderBrush}" />
+        <Setter Property="Foreground" Value="{StaticResource LightBlueBrush}" />
         <Setter Property="BorderThickness" Value="1" />
         <Setter Property="HorizontalContentAlignment" Value="Center" />
         <Setter Property="VerticalContentAlignment" Value="Center" />
@@ -24,9 +24,9 @@
     <Style
         x:Key="DefaultListViewItemStyle"
         TargetType="{x:Type ListViewItem}">
-        <Setter Property="Background" Value="{DynamicResource ControlInteriorBrush}" />
-        <Setter Property="Background" Value="{DynamicResource ControlInteriorBrush}" />
-        <Setter Property="Foreground" Value="{DynamicResource LightBlueBrush}" />
+        <Setter Property="Background" Value="{StaticResource ControlInteriorBrush}" />
+        <Setter Property="Background" Value="{StaticResource ControlInteriorBrush}" />
+        <Setter Property="Foreground" Value="{StaticResource LightBlueBrush}" />
         <Setter Property="Height" Value="40" />
         <Setter Property="BorderThickness" Value="1" />
         <Setter Property="HorizontalContentAlignment" Value="Left" />
@@ -37,15 +37,15 @@
         <Style.Triggers>
 
             <Trigger Property="IsMouseOver" Value="True">
-                <Setter Property="Background" Value="{DynamicResource SteelBlueBackground}" />
-                <Setter Property="BorderBrush" Value="{DynamicResource SteelBlueBackground}" />
-                <Setter Property="Foreground" Value="{DynamicResource WhiteForeground}" />
+                <Setter Property="Background" Value="{StaticResource SteelBlueBackground}" />
+                <Setter Property="BorderBrush" Value="{StaticResource SteelBlueBackground}" />
+                <Setter Property="Foreground" Value="{StaticResource WhiteForeground}" />
             </Trigger>
 
             <Trigger Property="IsMouseOver" Value="False">
-                <Setter Property="Background" Value="{DynamicResource ControlInteriorBrush}" />
-                <Setter Property="Background" Value="{DynamicResource ControlInteriorBrush}" />
-                <Setter Property="Foreground" Value="{DynamicResource LightBlueBrush}" />
+                <Setter Property="Background" Value="{StaticResource ControlInteriorBrush}" />
+                <Setter Property="Background" Value="{StaticResource ControlInteriorBrush}" />
+                <Setter Property="Foreground" Value="{StaticResource LightBlueBrush}" />
             </Trigger>
 
 
@@ -59,9 +59,9 @@
     <Style
         x:Key="MetroListViewStyle"
         TargetType="{x:Type b:MetroListView}">
-        <Setter Property="Background" Value="{DynamicResource ControlInteriorBrush}" />
-        <Setter Property="BorderBrush" Value="{DynamicResource BlueBorderBrush}" />
-        <Setter Property="Foreground" Value="{DynamicResource LightBlueBrush}" />
+        <Setter Property="Background" Value="{StaticResource ControlInteriorBrush}" />
+        <Setter Property="BorderBrush" Value="{StaticResource BlueBorderBrush}" />
+        <Setter Property="Foreground" Value="{StaticResource LightBlueBrush}" />
         <Setter Property="BorderThickness" Value="1" />
         <Setter Property="HorizontalContentAlignment" Value="Center" />
         <Setter Property="VerticalContentAlignment" Value="Center" />
@@ -74,9 +74,9 @@
     <Style
         x:Key="MetroListViewItemStyle"
         TargetType="{x:Type ListViewItem}">
-        <Setter Property="Background" Value="{DynamicResource ControlInteriorBrush}" />
-        <Setter Property="Background" Value="{DynamicResource ControlInteriorBrush}" />
-        <Setter Property="Foreground" Value="{DynamicResource LightBlueBrush}" />
+        <Setter Property="Background" Value="{StaticResource ControlInteriorBrush}" />
+        <Setter Property="Background" Value="{StaticResource ControlInteriorBrush}" />
+        <Setter Property="Foreground" Value="{StaticResource LightBlueBrush}" />
         <Setter Property="Height" Value="40" />
         <Setter Property="BorderThickness" Value="1" />
         <Setter Property="HorizontalContentAlignment" Value="Left" />
@@ -87,16 +87,16 @@
         <Style.Triggers>
 
             <Trigger Property="IsMouseOver" Value="True">
-                <Setter Property="Background" Value="{DynamicResource SteelBlueBackground}" />
-                <Setter Property="BorderBrush" Value="{DynamicResource SteelBlueBackground}" />
-                <Setter Property="Foreground" Value="{DynamicResource WhiteForeground}" />
+                <Setter Property="Background" Value="{StaticResource SteelBlueBackground}" />
+                <Setter Property="BorderBrush" Value="{StaticResource SteelBlueBackground}" />
+                <Setter Property="Foreground" Value="{StaticResource WhiteForeground}" />
                 <Setter Property="FontWeight" Value="Bold" />
             </Trigger>
 
             <Trigger Property="IsMouseOver" Value="False">
-                <Setter Property="Background" Value="{DynamicResource ControlInteriorBrush}" />
-                <Setter Property="Background" Value="{DynamicResource ControlInteriorBrush}" />
-                <Setter Property="Foreground" Value="{DynamicResource LightBlueBrush}" />
+                <Setter Property="Background" Value="{StaticResource ControlInteriorBrush}" />
+                <Setter Property="Background" Value="{StaticResource ControlInteriorBrush}" />
+                <Setter Property="Foreground" Value="{StaticResource LightBlueBrush}" />
                 <Setter Property="FontWeight" Value="Normal" />
             </Trigger>
 

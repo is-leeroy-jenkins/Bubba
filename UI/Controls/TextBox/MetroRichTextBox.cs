@@ -7,10 +7,10 @@
     using Syncfusion.Windows.Controls.RichTextBoxAdv;
     using Syncfusion.Windows.Forms.Tools;
 
+    /// <inheritdoc />
     /// <summary>
-    /// 
     /// </summary>
-    /// <seealso cref="Syncfusion.Windows.Controls.RichTextBoxAdv.SfRichTextBoxAdv" />
+    /// <seealso cref="T:Syncfusion.Windows.Controls.RichTextBoxAdv.SfRichTextBoxAdv" />
     [SuppressMessage( "ReSharper", "UnusedType.Global" ) ]
     [ SuppressMessage( "ReSharper", "InconsistentNaming" ) ]
     [ SuppressMessage( "ReSharper", "FieldCanBeMadeReadOnly.Local" ) ]
@@ -40,8 +40,8 @@
             Padding = new Thickness( 1 );
             BorderThickness = _theme.BorderThickness;
             Padding = _theme.Padding;
-            Background = _theme.ControlBackground;
-            Foreground = _theme.LightBlueBrush;
+            Background = _theme.ControlInterior;
+            Foreground = _theme.WhiteForeground;
             BorderBrush = _theme.LightBlueBrush;
             SelectionBrush = _theme.SteelBlueBrush;
             HorizontalAlignment = HorizontalAlignment.Stretch;

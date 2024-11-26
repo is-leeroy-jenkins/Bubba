@@ -109,7 +109,7 @@
                             <Setter TargetName="border" Property="BorderBrush" Value="{StaticResource BlueBorderBrush}" />
                         </Trigger>
                         <Trigger Property="IsMouseOver" Value="true">
-                            <Setter TargetName="border" Property="Background" Value="{StaticResource ControlHoverBackground}" />
+                            <Setter TargetName="border" Property="Background" Value="{StaticResource ControlHoverBrush}" />
                             <Setter TargetName="border" Property="BorderBrush" Value="{StaticResource LightBlueBrush}" />
                         </Trigger>
                         <Trigger Property="IsPressed" Value="true">
@@ -131,7 +131,7 @@
 
 
     <Style
-        x:Key="DefaultButtonStyle"
+        x:Key="MetroButtonStyle"
         TargetType="{x:Type Button}">
         <Setter Property="Background" Value="{DynamicResource ControlBackground}" />
         <Setter Property="BorderBrush" Value="{DynamicResource BlueBorderBrush}" />

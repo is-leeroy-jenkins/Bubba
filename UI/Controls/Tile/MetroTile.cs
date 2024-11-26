@@ -43,6 +43,7 @@ namespace Bubba
 {
     using System;
     using System.Diagnostics.CodeAnalysis;
+    using System.Windows;
     using System.Windows.Input;
     using Syncfusion.Windows.Controls.Notification;
 
@@ -68,6 +69,7 @@ namespace Bubba
         /// <inheritdoc />
         /// <summary>
         /// Initializes a new instance of the
+        /// 
         /// <see cref="T:Booger.Tile" /> class.
         /// </summary>
         public MetroTile( )
@@ -82,9 +84,11 @@ namespace Bubba
             Padding = _theme.Padding;
             Margin = _theme.Margin;
             BorderThickness = _theme.BorderThickness;
-            Background = _theme.ControlInterior;
+            Background = _theme.ControlBackground;
             Foreground = _theme.LightBlueBrush;
-            BorderBrush = _theme.ControlInterior;
+            BorderBrush = _theme.ControlBackground;
+            HorizontalAlignment = HorizontalAlignment.Stretch;
+            VerticalAlignment = VerticalAlignment.Stretch;
 
             // Wire Events
             MouseEnter += OnMouseEnter;
@@ -123,9 +127,9 @@ namespace Bubba
         {
             try
             {
-                Background = _theme.ControlInterior;
+                Background = _theme.ControlBackground;
                 Foreground = _theme.LightBlueBrush;
-                BorderBrush = _theme.ControlInterior;
+                BorderBrush = _theme.ControlBackground;
             }
             catch( Exception ex )
             {

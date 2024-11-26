@@ -18,7 +18,7 @@
     MaxHeight="1000"
     sync:SfSkinManager.Theme="{sync:SkinManager ThemeName=FluentDark}"
     Background="{StaticResource FormBackground}"
-    Foreground="{StaticResource FormForeground}"
+    Foreground="{StaticResource LightBlueBrush}"
     BorderBrush="{StaticResource BlueBorderBrush}"
     WindowStartupLocation="CenterScreen"
     Icon="/Resources/Assets/ApplicationImages/Bubba.ico"
@@ -27,7 +27,7 @@
     FontSize="12"
     mc:Ignorable="d">
 
-    <!--******************************************** Resources *********************************************-->
+    <!--  ******************************************** Resources *********************************************  -->
 
     <Window.Resources>
         <Style TargetType="{x:Type ToolTip}">
@@ -158,14 +158,15 @@
 
             <GroupBox
                 x:Name="InputGroupBox"
-                Canvas.Left="155"
-                Width="890"
+                Canvas.Left="75"
+                Canvas.Top="3"
+                Width="1065"
                 Height="126"
-                Margin="3,3,3,3"
                 Padding="3,3,3,3"
-                HorizontalAlignment="Center"
-                VerticalAlignment="Top"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Center"
                 Header="User Prompt"
+                Background="#FF1C1C1C"
                 BorderBrush="{StaticResource MutedForeground}"
                 FontFamily="Roboto"
                 FontSize="12" />
@@ -191,16 +192,17 @@
 
         <Canvas Grid.Row="1">
             <GroupBox
-                Canvas.Left="158"
+                Canvas.Left="72"
                 Canvas.Top="3"
-                Width="890"
+                Width="1068"
                 Height="258"
                 Padding="3,3,3,3"
-                HorizontalAlignment="Center"
-                VerticalAlignment="Top"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Center"
                 Header="System Prompt"
                 FontFamily="Roboto"
                 FontSize="12"
+                Background="#FF1c1c1c"
                 BorderBrush="{StaticResource MutedForeground}" />
 
             <b:MetroTextBox
@@ -234,12 +236,13 @@
                 x:Name="ParamaterGroupBox"
                 Grid.Column="1"
                 Height="170"
-                Margin="10,0,154,0"
+                Margin="10,0,68,0"
                 Padding="3,3,3,3"
                 VerticalAlignment="Center"
-                Header="Hyper-Parameters"
+                Header="Hyper-parameters"
                 FontFamily="Roboto"
                 FontSize="12"
+                Background="#FF1C1C1C"
                 BorderBrush="{StaticResource MutedForeground}" />
 
             <Canvas
@@ -249,40 +252,45 @@
 
                 <b:MetroTextBox
                     x:Name="FrequencyTextBox"
-                    Canvas.Left="125"
-                    Canvas.Top="102"
-                    Width="60"
+                    Canvas.Left="170"
+                    Canvas.Top="111"
+                    Width="50"
                     Height="30"
                     HorizontalAlignment="Left"
                     VerticalAlignment="Center"
                     HorizontalContentAlignment="Center"
                     TextWrapping="Wrap"
+                    Tag="Frequency"
                     ToolTip="A number between -2 and 2 (Frequency)"
                     Text="{Binding Value, ElementName=FrequencySlider, Mode=TwoWay}" />
 
                 <b:MetroTextBox
                     x:Name="TemperatureTextBox"
-                    Canvas.Left="30"
-                    Canvas.Top="102"
-                    Width="60"
+                    Canvas.Left="35"
+                    Canvas.Top="111"
+                    Width="50"
                     Height="30"
                     HorizontalAlignment="Left"
                     VerticalAlignment="Center"
                     HorizontalContentAlignment="Center"
                     TextWrapping="Wrap"
-                    ToolTip="A number between 0 and 2 (Temperature)"
-                    Text="{Binding Value, ElementName=TemperatureSlider, Mode=TwoWay}" />
+                    Tag="Temperature"
+                    ToolTip="A number between 0 and 1 (Temperature)"
+                    Text="{Binding Value, ElementName=TemperatureSlider, Mode=TwoWay}"
+                    SelectionBackgroundColor="{DynamicResource BlueBackground}" />
 
                 <b:MetroTextBox
                     x:Name="MaxTokensTextBox"
-                    Canvas.Left="231"
-                    Canvas.Top="107"
+                    Canvas.Left="551"
+                    Canvas.Top="114"
                     Width="60"
                     Height="30"
                     HorizontalAlignment="Left"
                     VerticalAlignment="Center"
                     HorizontalContentAlignment="Center"
+                    VerticalContentAlignment="Center"
                     TextWrapping="Wrap"
+                    Tag="MaximumTokens"
                     ToolTip="An upper bound for token usage"
                     Text="2048" />
 
@@ -296,58 +304,41 @@
                     VerticalAlignment="Center"
                     Foreground="{StaticResource BlueBorderBrush}"
                     Content="Randomness"
-                    ToolTip="A number between 0 and 1 (Temperature)" />
+                    ToolTip="A number between 0 and 2 (Temperature)" />
 
                 <Label
-                    Canvas.Left="228"
-                    Canvas.Top="80"
-                    Width="76"
+                    Canvas.Left="544"
+                    Canvas.Top="86"
+                    Width="74"
                     Height="24"
-                    HorizontalAlignment="Stretch"
-                    VerticalAlignment="Stretch"
-                    VerticalContentAlignment="Bottom"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Top"
                     HorizontalContentAlignment="Left"
+                    VerticalContentAlignment="Bottom"
                     Foreground="{StaticResource BlueBorderBrush}"
                     Content="Max Tokens" />
 
                 <Label
                     x:Name="FrequencyLabel"
-                    Canvas.Left="119"
-                    Canvas.Top="13"
+                    Canvas.Left="158"
+                    Canvas.Top="11"
                     Width="72"
                     Height="24"
                     HorizontalAlignment="Left"
-                    VerticalAlignment="Center"
+                    VerticalAlignment="Top"
                     VerticalContentAlignment="Center"
                     Foreground="{StaticResource BlueBorderBrush}"
                     ToolTip="A number between -2 and 2 (Frequency)"
                     Content="Frequency" />
 
                 <b:MetroComboBox
-                    x:Name="ModelComboBox"
-                    Canvas.Left="550"
-                    Canvas.Top="28"
-                    Width="125"
-                    Height="35"
-                    HorizontalAlignment="Center"
-                    VerticalAlignment="Top"
-                    DefaultText="   GPT Model">
-                    <sync:ComboBoxItemAdv Content="Item 1" />
-                    <sync:ComboBoxItemAdv Content="Item 2" />
-                    <sync:ComboBoxItemAdv Content="Item 3" />
-                    <sync:ComboBoxItemAdv Content="Item 4" />
-                    <sync:ComboBoxItemAdv Content="Item 5" />
-                </b:MetroComboBox>
-
-                <b:MetroComboBox
                     x:Name="VoiceComboBox"
-                    Canvas.Left="550"
-                    Canvas.Top="104"
+                    Canvas.Left="645"
+                    Canvas.Top="108"
                     Width="125"
                     Height="36"
                     HorizontalAlignment="Center"
-                    VerticalAlignment="Top"
-                    DefaultText="    Voices">
+                    VerticalAlignment="Top">
                     <sync:ComboBoxItemAdv Content="Item 1" />
                     <sync:ComboBoxItemAdv Content="Item 2" />
                     <sync:ComboBoxItemAdv Content="Item 3" />
@@ -356,9 +347,9 @@
                 </b:MetroComboBox>
 
                 <Label
-                    x:Name="VoiceLabel"
-                    Canvas.Left="550"
-                    Canvas.Top="2"
+                    x:Name="ModelLabel"
+                    Canvas.Left="645"
+                    Canvas.Top="10"
                     Height="24"
                     HorizontalAlignment="Center"
                     VerticalAlignment="Top"
@@ -366,78 +357,32 @@
                     Content="Models" />
 
                 <Label
-                    Canvas.Left="550"
-                    Canvas.Top="77"
+                    x:Name="VoiceLabel"
+                    Canvas.Left="645"
+                    Canvas.Top="80"
                     Height="24"
-                    HorizontalAlignment="Center"
+                    HorizontalAlignment="Left"
                     VerticalAlignment="Top"
                     Foreground="{StaticResource BlueBorderBrush}"
                     Content="Voice" />
 
-                <b:MetroRadioButton
-                    x:Name="MuteCheckBox"
-                    Canvas.Left="436"
-                    Canvas.Top="6"
-                    Width="68"
-                    Height="20"
-                    HorizontalAlignment="Left"
-                    VerticalAlignment="Top"
-                    Content="Speech"
-                    Foreground="{StaticResource BlueBorderBrush}" />
-
-                <b:MetroRadioButton
-                    x:Name="ListenCheckBox"
-                    Canvas.Left="436"
-                    Canvas.Top="28"
-                    Width="70"
-                    Height="20"
-                    HorizontalAlignment="Left"
-                    VerticalAlignment="Top"
-                    Content="Listen"
-                    Foreground="{StaticResource BlueBorderBrush}"
-                    RenderTransformOrigin="0.443,0.173" />
-
-                <b:MetroTextBox
-                    x:Name="UserIdTextBox"
-                    Canvas.Left="418"
-                    Canvas.Top="107"
-                    Width="92"
-                    Height="30"
-                    HorizontalAlignment="Left"
-                    VerticalAlignment="Center"
-                    HorizontalContentAlignment="Center"
-                    VerticalContentAlignment="Center"
-                    TextWrapping="Wrap"
-                    ToolTip="Unique User ID"
-                    Text="1" />
-
-                <Label
-                    Canvas.Left="418"
-                    Canvas.Top="80"
-                    Width="78"
-                    Height="24"
-                    HorizontalAlignment="Left"
-                    VerticalAlignment="Top"
-                    VerticalContentAlignment="Bottom"
-                    Foreground="{StaticResource BlueBorderBrush}"
-                    Content="User ID" />
-
                 <b:MetroTextBox
                     x:Name="PresenceTextBox"
-                    Canvas.Left="326"
-                    Canvas.Top="107"
-                    Width="60"
+                    Canvas.Left="440"
+                    Canvas.Top="111"
+                    Width="50"
                     Height="30"
-                    HorizontalAlignment="Center"
+                    HorizontalAlignment="Left"
                     VerticalAlignment="Center"
                     HorizontalContentAlignment="Center"
+                    Tag="Presence"
                     ToolTip="A number between -2.0 and 2.0 (Presence). Default 0.0"
-                    Text="0.0" />
+                    Text="{Binding Value, ElementName=PresenceSlider, Mode=TwoWay}"  />
 
                 <Label
                     x:Name="PresenceLabel"
-                    Canvas.Left="326"
-                    Canvas.Top="80"
+                    Canvas.Left="424"
+                    Canvas.Top="13"
                     Width="72"
                     Height="24"
                     HorizontalAlignment="Left"
@@ -449,112 +394,141 @@
 
                 <b:MetroTextBox
                     x:Name="TopPercentTextBox"
-                    Canvas.Left="231"
-                    Canvas.Top="41"
-                    Width="60"
+                    Canvas.Left="317"
+                    Canvas.Top="111"
+                    Width="50"
                     Height="30"
-                    HorizontalAlignment="Center"
+                    HorizontalAlignment="Left"
                     VerticalAlignment="Center"
                     HorizontalContentAlignment="Center"
                     TextWrapping="Wrap"
-                    ToolTip="A number between 0 and 1 (Percentage)"
-                    Text="0.0" />
+                    Tag="TopPercent"
+                    ToolTip="A number between 0 and 1 (%)"
+                    Text="{Binding Value, ElementName=PercentSlider, Mode=TwoWay}"  />
 
                 <Label
-                    Canvas.Left="228"
+                    x:Name="TopPercentLabel"
+                    Canvas.Left="282"
                     Canvas.Top="13"
-                    Width="60"
+                    Width="105"
                     Height="24"
-                    HorizontalAlignment="Center"
-                    VerticalAlignment="Top"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Center"
                     VerticalContentAlignment="Center"
                     Foreground="{StaticResource BlueBorderBrush}"
-                    ToolTip="A number between 0 and 1 (Percentage)"
-                    Content="Top P (%)" />
+                    ToolTip="A number between 0 and 1 (%)"
+                    Content="Probability Mass" />
 
                 <b:MetroTextBox
                     x:Name="NumberTextBox"
-                    Canvas.Left="332"
-                    Canvas.Top="40"
-                    Width="60"
+                    Canvas.Left="556"
+                    Canvas.Top="39"
+                    Width="50"
                     Height="30"
                     HorizontalAlignment="Left"
                     VerticalAlignment="Center"
                     HorizontalContentAlignment="Center"
                     VerticalContentAlignment="Center"
                     TextWrapping="Wrap"
+                    Tag="Number"
                     ToolTip="The number of response to generate"
                     Text="1" />
 
                 <Label
                     x:Name="ResponseLabel"
-                    Canvas.Left="328"
-                    Canvas.Top="13"
-                    Width="72"
+                    Canvas.Left="544"
+                    Canvas.Top="10"
+                    Width="74"
                     Height="24"
                     HorizontalAlignment="Left"
                     VerticalAlignment="Center"
+                    HorizontalContentAlignment="Left"
                     VerticalContentAlignment="Center"
                     Foreground="{StaticResource BlueBorderBrush}"
                     Content="Responses" />
 
-                <sync:SfRangeSlider
+                <Slider
                     x:Name="TemperatureSlider"
-                    Canvas.Left="15"
-                    Canvas.Top="38"
-                    Width="80"
-                    Height="32"
-                    HorizontalContentAlignment="Stretch"
-                    VerticalContentAlignment="Stretch"
-                    Maximum="1"
+                    Canvas.Left="9"
+                    Canvas.Top="50"
+                    Width="120"
+                    Height="47"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    HorizontalContentAlignment="Center"
+                    VerticalContentAlignment="Center"
+                    ToolTip="A number between 0 and 2 (Temperature)"
+                    Maximum="2"
                     Minimum="0"
-                    ShowValueLabels="True"
-                    TickFrequency="0.1"
-                    TickPlacement="BottomRight"
-                    RangeEnd="1"
-                    TickStroke="{x:Null}"
+                    TickPlacement="Both"
                     BorderThickness="0,0,0,0"
-                    SmallChange="0.01"
+                    SmallChange="0.1"
                     LargeChange="0.2"
-                    MinorTickFrequency="0.5"
-                    SnapsTo="StepValues"
-                    StepFrequency="0.1"
+                    Foreground="{DynamicResource BlueBorderBrush}"
+                    TickFrequency="0.25"
                     Value="0.7" />
 
-                <sync:SfRangeSlider
+                <Slider
                     x:Name="FrequencySlider"
-                    Canvas.Left="125"
-                    Canvas.Top="39"
-                    Width="80"
-                    Height="32"
+                    Canvas.Left="144"
+                    Canvas.Top="50"
+                    Width="120"
+                    Height="46"
                     HorizontalAlignment="Center"
                     VerticalAlignment="Top"
                     Maximum="2"
                     Minimum="-2"
-                    ShowValueLabels="True"
-                    TickFrequency="1"
-                    TickPlacement="BottomRight"
-                    LargeChange="0.25"
+                    TickPlacement="Both"
+                    ToolTip="A number between -2 and 2 (Frequency)"
+                    LargeChange="0.2"
                     SmallChange="0.1"
-                    RangeStart="-2"
-                    RangeEnd="2"
-                    SnapsTo="StepValues"
-                    StepFrequency="0.1"
-                    ThumbInterval="1"
-                    ToolTipFormat="P"
-                    TickLength="5.5"
-                    MinorTickLength="1"
-                    MinorTickFrequency="1" />
+                    TickFrequency=".9"
+                    Value="0" />
 
-                <b:MetroRadioButton
-                    x:Name="StoreRadio"
-                    Canvas.Left="436"
-                    Canvas.Top="51"
-                    Width="70"
-                    Height="20"
-                    Foreground="{StaticResource BlueBorderBrush}"
-                    ToolTip="Whether or not to store the output"
-                    Content="Store" />
+                <b:MetroComboBox
+                    x:Name="ModelComboBox"
+                    Canvas.Left="645"
+                    Canvas.Top="39"
+                    Width="125"
+                    Height="35"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Top" />
+
+                <Slider
+                    x:Name="PercentSlider"
+                    Canvas.Left="282"
+                    Canvas.Top="50"
+                    Width="120"
+                    Height="46"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Top"
+                    Maximum="1"
+                    Minimum="0"
+                    TickPlacement="Both"
+                    ToolTip="A number between 0 and 1 (%)"
+                    LargeChange="0.1"
+                    SmallChange="0.01"
+                    TickFrequency=".2"
+                    Value="0" />
+
+                <Slider
+                    x:Name="PresenceSlider"
+                    Canvas.Left="410"
+                    Canvas.Top="50"
+                    Width="120"
+                    Height="46"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Top"
+                    HorizontalContentAlignment="Center"
+                    VerticalContentAlignment="Center"
+                    ToolTip="A number between -2.0 and 2.0 (Presence). Default 0.0"
+                    Maximum="2"
+                    Minimum="-2"
+                    TickPlacement="Both"
+                    LargeChange="0.2"
+                    SmallChange="0.1"
+                    TickFrequency=".9"
+                    Value="0" />
 
             </Canvas>
 
@@ -563,10 +537,11 @@
                 Height="170"
                 Margin="0"
                 VerticalAlignment="Stretch">
+
                 <GroupBox
                     x:Name="CommandGroupBox"
-                    Canvas.Left="162"
-                    Width="180"
+                    Canvas.Left="75"
+                    Width="263"
                     Height="170"
                     Padding="3,3,3,3"
                     HorizontalAlignment="Left"
@@ -574,28 +549,31 @@
                     Header="Commands"
                     FontFamily="Roboto"
                     FontSize="12"
-                    BorderBrush="#FF414141" />
+                    Background="#FF1C1C1C"
+                    BorderBrush="{StaticResource MutedForeground}" />
 
-                <Button
+                <GroupBox />
+
+                <b:MetroTile
                     x:Name="SendButton"
-                    Canvas.Left="194"
-                    Canvas.Top="28"
-                    Width="116"
+                    Title="    Send"
+                    Canvas.Left="150"
+                    Canvas.Top="32"
+                    Width="114"
                     Height="39"
                     HorizontalAlignment="Left"
-                    VerticalAlignment="Center"
-                    Content="Send"
+                    VerticalAlignment="Top"
                     ToolTip="Send Chat Message" />
 
-                <Button
+                <b:MetroTile
                     x:Name="ClearButton"
-                    Canvas.Left="194"
+                    Title="    Clear"
+                    Canvas.Left="152"
                     Canvas.Top="107"
-                    Width="116"
+                    Width="113"
                     Height="38"
-                    HorizontalAlignment="Center"
+                    HorizontalAlignment="Left"
                     VerticalAlignment="Top"
-                    Content="Clear"
                     ToolTip="Clear All Entries" />
             </Canvas>
 
@@ -604,17 +582,64 @@
         <Canvas
             x:Name="TopGrid"
             Grid.Row="0">
+
             <b:MetroLabel
                 x:Name="SpeechLabel"
                 Canvas.Left="3"
                 Canvas.Top="3"
-                Width="656"
+                Width="447"
                 Height="22"
-                HorizontalAlignment="Center"
+                HorizontalAlignment="Left"
                 VerticalAlignment="Center"
                 HorizontalContentAlignment="Left"
                 VerticalContentAlignment="Center"
                 Content="Speech..." />
+
+            <Label
+                x:Name="UserLabel"
+                Canvas.Left="506"
+                Canvas.Top="5"
+                Width="189"
+                Height="32"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Top"
+                VerticalContentAlignment="Top"
+                Foreground="{StaticResource BlueBorderBrush}"
+                Content="User ID" />
+
+            <b:MetroRadioButton
+                x:Name="MuteRadioButton"
+                Canvas.Left="1057"
+                Canvas.Top="79"
+                Width="54"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Top"
+                Content="Mute"
+                Background="{StaticResource LightBlueBrush}"
+                Foreground="{DynamicResource BlueBorderBrush}" />
+
+            <b:MetroRadioButton
+                x:Name="ListenRadioButton"
+                Canvas.Left="1057"
+                Canvas.Top="108"
+                Width="55"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Top"
+                Content="Listen"
+                Background="{StaticResource LightBlueBrush}"
+                Foreground="{DynamicResource BlueBorderBrush}" />
+
+            <b:MetroRadioButton
+                x:Name="StoreRadioButton"
+                Canvas.Left="1057"
+                Canvas.Top="137"
+                Width="55"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Top"
+                Content="Store"
+                Background="{StaticResource LightBlueBrush}"
+                Foreground="{DynamicResource BlueBorderBrush}" />
+
         </Canvas>
 
         <Canvas
@@ -690,7 +715,7 @@
 
                 <b:ToolStripDropDown
                     x:Name="ToolStripComboBox"
-                    Width="140"
+                    Width="150"
                     BorderBrush="{StaticResource BlueBorderBrush}" />
 
                 <Separator

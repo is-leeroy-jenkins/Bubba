@@ -15,9 +15,9 @@
         x:Key="DefaultRadioButtonStyle"
         TargetType="{x:Type RadioButton}">
         <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}" />
-        <Setter Property="Background" Value="{StaticResource ControlInteriorBrush}" />
+        <Setter Property="Background" Value="{StaticResource LightBlueColor}" />
         <Setter Property="BorderBrush" Value="Transparent" />
-        <Setter Property="Foreground" Value="{DynamicResource LightBlueBrush}" />
+        <Setter Property="Foreground" Value="{DynamicResource BlueBorderBrush}" />
         <Setter Property="BorderThickness" Value="1" />
         <Setter Property="HorizontalContentAlignment" Value="Center" />
         <Setter Property="VerticalContentAlignment" Value="Center" />
@@ -31,9 +31,9 @@
         x:Key="MetroRadioButtonStyle"
         TargetType="{x:Type b:MetroRadioButton}">
         <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}" />
-        <Setter Property="Background" Value="{StaticResource ControlInteriorBrush}" />
+        <Setter Property="Background" Value="{StaticResource LightBlueColor}" />
         <Setter Property="BorderBrush" Value="Transparent" />
-        <Setter Property="Foreground" Value="{DynamicResource LightBlueBrush}" />
+        <Setter Property="Foreground" Value="{DynamicResource BlueBorderBrush}" />
         <Setter Property="BorderThickness" Value="1" />
         <Setter Property="HorizontalContentAlignment" Value="Center" />
         <Setter Property="VerticalContentAlignment" Value="Center" />

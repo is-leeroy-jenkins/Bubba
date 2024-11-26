@@ -327,10 +327,12 @@ namespace Bubba
                 LastButton.Click += OnLastButtonClick;
                 LookupButton.Click += OnLookupButtonClick;
                 RefreshButton.Click += OnRefreshButtonClick;
-                ListenCheckBox.Click += OnListenCheckedChanged;
-                MuteCheckBox.Click += OnMuteCheckedBoxChanged;
                 ModelComboBox.SelectionChanged += OnModelSelectionChanged;
                 MenuButton.Click += OnToggleButtonClick;
+                TemperatureTextBox.TextChanged += OnTextBoxInputChanged;
+                PresenceTextBox.TextChanged += OnTextBoxInputChanged;
+                FrequencyTextBox.TextChanged += OnTextBoxInputChanged;
+                TopPercentTextBox.TextChanged += OnTextBoxInputChanged;
             }
             catch( Exception ex )
             {
@@ -518,6 +520,33 @@ namespace Bubba
         }
 
         /// <summary>
+        /// Gets the hyper parameter.
+        /// </summary>
+        /// <param name="input">The input.</param>
+        /// <returns></returns>
+        private protected HyperParameter GetHyperParameter(string input)
+        {
+            try
+            {
+                ThrowIf.Empty(input, nameof(input));
+                var _names = Enum.GetNames(typeof(HyperParameter));
+                if(_names.Contains(input))
+                {
+                    return (HyperParameter)Enum.Parse(typeof(HyperParameter), input);
+                }
+                else
+                {
+                    return default(HyperParameter);
+                }
+            }
+            catch(Exception ex)
+            {
+                Fail(ex);
+                return default(HyperParameter);
+            }
+        }
+
+        /// <summary>
         /// Sends the notification.
         /// </summary>
         /// <param name="message">
@@ -592,7 +621,7 @@ namespace Bubba
                 return "";
             }
 
-            var _userId = UserIdTextBox.Text;// 1        
+            var _userId = UserLabel.Content;// 1        
             var _data = "";
             if( _model.IndexOf( "gpt-3.5-turbo" ) != -1 )
             {
@@ -769,7 +798,7 @@ namespace Bubba
         /// <param name="input">The input.</param>
         public void SpeechToText( string input )
         {
-            if( MuteCheckBox.IsChecked == true )
+            //if( MuteCheckBox.IsChecked == true )
             {
                 return;
             }
@@ -787,6 +816,17 @@ namespace Bubba
 
             _synthesizer.Speak( input );
         } 
+
+        private protected void SetHyperParameters( )
+        {
+            try
+            {
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+            }
+        }
 
         /// <summary>
         /// Updates the status.
@@ -978,7 +1018,6 @@ namespace Bubba
                 }
 
                 PopulateModelsAsync( );
-                ModelComboBox.AllowMultiSelect = false;
                 VoiceComboBox.Items.Clear( );
                 var _synth = new SpeechSynthesizer( );
                 var _voices = _synth.GetInstalledVoices( );
@@ -988,7 +1027,7 @@ namespace Bubba
                     VoiceComboBox.Items.Add( _voice.VoiceInfo.Name );
                 }
 
-                VoiceComboBox.AllowMultiSelect = false;
+
                 InitializeToolStrip( );
                 InitializeTimer( );
                 ProgressBar.Visibility = Visibility.Hidden;
@@ -1007,6 +1046,53 @@ namespace Bubba
         public void OnPropertyChanged( [ CallerMemberName ] string propertyName = null )
         {
             PropertyChanged?.Invoke( this, new PropertyChangedEventArgs( propertyName ) );
+        }
+
+        /// <summary>
+        /// Called when [text box input changed].
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The <see cref="RoutedEventArgs"/>
+        /// instance containing the event data.</param>
+        private protected void OnTextBoxInputChanged( object sender, RoutedEventArgs e )
+        {
+            try
+            {
+                if( sender is MetroTextBox _textBox )
+                {
+                    var _tag = _textBox?.Tag.ToString( ); 
+                    if( !string.IsNullOrEmpty( _tag ) )
+                    {
+                        switch( _tag )
+                        {
+                            case "Frequency":
+                            case "Presence":
+                            case "Temperature":
+                            {
+                                var _temp = _textBox.Text;
+                                var _value = double.Parse( _temp );
+                                _textBox.Text = _value.ToString( "N2" );
+                                break;
+                            }
+                            case "TopPercent":
+                            {
+                                var _temp = _textBox.Text;
+                                var _top = double.TryParse( _temp, out var _value );
+                                if( _top )
+                                {
+                                    _textBox.Text = _value.ToString( "P1" );
+                                }
+
+                                break;
+                            }
+                        }
+                    }
+                }
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+            }
         }
 
         /// <summary>
@@ -1216,13 +1302,13 @@ namespace Bubba
         /// instance containing the event data.</param>
         private void OnListenCheckedChanged( object sender, RoutedEventArgs e )
         {
-            if( ListenCheckBox.IsChecked == true )
+           // if( ListenCheckBox.IsChecked == true )
             {
                 SpeechLabel.Content = "";
                 SpeechLabel.Visibility = Visibility.Visible;
                 SpeechToText( );
             }
-            else
+            //else
             {
                 _engine.RecognizeAsyncStop( );
                 SpeechLabel.Visibility = Visibility.Hidden;
@@ -1237,12 +1323,12 @@ namespace Bubba
         /// instance containing the event data.</param>
         private void OnMuteCheckedBoxChanged( object sender, RoutedEventArgs e )
         {
-            if( MuteCheckBox.IsChecked == true )
+            //if( MuteCheckBox.IsChecked == true )
             {
                 VoiceLabel.Visibility = Visibility.Hidden;
                 VoiceComboBox.Visibility = Visibility.Hidden;
             }
-            else
+            //else
             {
                 VoiceLabel.Visibility = Visibility.Visible;
                 VoiceComboBox.Visibility = Visibility.Visible;

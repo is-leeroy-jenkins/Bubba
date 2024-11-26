@@ -5,7 +5,7 @@
     xmlns:sync="http://schemas.syncfusion.com/wpf"
     xmlns:skin="clr-namespace:Syncfusion.SfSkinManager;assembly=Syncfusion.SfSkinManager.WPF">
 
-    <!--******************************************** RESOURCE *********************************************-->
+    <!--  ******************************************** RESOURCE *********************************************  -->
 
     <Style TargetType="{x:Type ContextMenu}">
         <Setter Property="SnapsToDevicePixels" Value="True" />
@@ -15,7 +15,8 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type ContextMenu}">
-                    <Border x:Name="Border"
+                    <Border
+                        x:Name="Border"
                         Background="{DynamicResource BlackBackground}"
                         BorderBrush="{DynamicResource BlueBorderBrush}"
                         BorderThickness="1"

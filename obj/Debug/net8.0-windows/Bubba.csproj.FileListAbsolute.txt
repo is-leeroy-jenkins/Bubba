@@ -539,7 +539,6 @@ C:\Users\terry\source\repos\Bubba\obj\Debug\net8.0-windows\Bubba.csproj.Assembly
 C:\Users\terry\source\repos\Bubba\obj\Debug\net8.0-windows\UI\Themes\Colors.baml
 C:\Users\terry\source\repos\Bubba\obj\Debug\net8.0-windows\UI\Themes\Common\All.baml
 C:\Users\terry\source\repos\Bubba\obj\Debug\net8.0-windows\UI\Themes\Common\BaseStyle.baml
-C:\Users\terry\source\repos\Bubba\obj\Debug\net8.0-windows\UI\Themes\Common\Colors.baml
 C:\Users\terry\source\repos\Bubba\obj\Debug\net8.0-windows\UI\Themes\Common\Sizes.baml
 C:\Users\terry\source\repos\Bubba\obj\Debug\net8.0-windows\UI\Themes\Progress\SfCircularProgressBar.baml
 C:\Users\terry\source\repos\Bubba\obj\Debug\net8.0-windows\UI\Themes\Progress\SfLinearProgressBar.baml

@@ -44,6 +44,7 @@ namespace Bubba
     using System;
     using System.Diagnostics.CodeAnalysis;
     using System.Windows;
+    using System.Windows.Controls;
     using Syncfusion.Windows.Tools.Controls;
 
     /// <inheritdoc />
@@ -73,7 +74,8 @@ namespace Bubba
 
         {
             // Control Properties
-            SetResourceReference( StyleProperty, typeof( ComboBoxAdv ) );
+            SetResourceReference(StyleProperty, typeof(ComboBoxAdv));
+            Width = 200;
             Width = 100;
             Height = 30;
             FontFamily = _theme.FontFamily;
@@ -81,10 +83,7 @@ namespace Bubba
             Padding = new Thickness( 10, 1, 1, 1 );
             BorderThickness = new Thickness( 1 );
             IsEditable = true;
-            AutoCompleteMode = AutoCompleteModes.None;
-            AllowMultiSelect = false;
             IsTextSearchEnabled = false;
-            AllowSelectAll = false;
             Background = _theme.ControlBackground;
             Foreground = _theme.Foreground;
             BorderBrush = _theme.BorderBrush;

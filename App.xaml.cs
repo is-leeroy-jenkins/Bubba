@@ -74,6 +74,7 @@ namespace Bubba
         /// </summary>
         public static string[ ] Controls =
         {
+            "SfRangeSlider",
             "ComboBoxAdv",
             "MetroComboBox",
             "MetroDatagrid",

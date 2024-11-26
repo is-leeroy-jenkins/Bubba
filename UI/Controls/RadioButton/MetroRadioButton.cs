@@ -43,6 +43,7 @@ namespace Bubba
 {
     using System;
     using System.Diagnostics.CodeAnalysis;
+    using System.Windows;
     using System.Windows.Controls;
     using System.Windows.Input;
     using System.Windows.Media;
@@ -73,14 +74,15 @@ namespace Bubba
             : base( )
         {
             // Basic Settings
-            Height = 30;
+            Height = 24;
             Width = 124;
             FontFamily = _theme.FontFamily;
             FontSize = _theme.FontSize;
             BorderThickness = _theme.BorderThickness;
-            Background = _theme.LightBlueBrush;
-            Foreground = _theme.LightBlueBrush;
-            BorderBrush = _theme.Background;
+            Background = _theme.DarkBlueBrush;
+            BorderBrush = _theme.TransparentBrush;
+            HorizontalAlignment = HorizontalAlignment.Stretch;
+            VerticalAlignment = VerticalAlignment.Stretch;
 
             // Wire Events
             MouseLeftButtonDown += OnMouseClick;
@@ -100,7 +102,7 @@ namespace Bubba
                     && _button.IsChecked == true )
                 {
                     Foreground = _theme.WhiteForeground;
-                    Background = new SolidColorBrush( Colors.Lime );
+                    Background = _theme.GreenBrush;
                 }
             }
             catch( Exception ex )

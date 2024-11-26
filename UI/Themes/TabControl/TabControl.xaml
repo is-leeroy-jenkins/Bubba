@@ -9,7 +9,7 @@
     xmlns:theme="clr-namespace:Syncfusion.Themes.FluentDark.WPF"
     xmlns:wpf="clr-namespace:Syncfusion.Themes.FluentDark.WPF;assembly=Syncfusion.Themes.FluentDark.WPF">
 
-    <!--*********************************************** TAB CONTROL  *****************************************************-->
+    <!--  *********************************************** TAB CONTROL  *****************************************************  -->
 
     <Style
         x:Key="TabControlStyle"
@@ -26,7 +26,7 @@
         <Setter Property="Margin" Value="1" />
     </Style>
 
-    <!--*********************************************** BROWSER TAB CONTROL  *****************************************************-->
+    <!--  *********************************************** BROWSER TAB CONTROL  *****************************************************  -->
 
     <Style
         x:Key="BrowserTabControlStyle"
@@ -43,7 +43,7 @@
         <Setter Property="Margin" Value="1" />
     </Style>
 
-    <!--*********************************************** METRO TAB CONTROL  *****************************************************-->
+    <!--  *********************************************** METRO TAB CONTROL  *****************************************************  -->
 
 
     <Style
