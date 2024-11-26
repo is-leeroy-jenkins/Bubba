@@ -42,7 +42,9 @@
     <!--  ******************************************** Context Menu ******************************************  -->
 
     <Window.ContextMenu>
-        <ContextMenu x:Name="MainWindowContextMenu">
+        <ContextMenu
+            x:Name="MainWindowContextMenu">
+
             <sync:MenuItemAdv
                 Click="OnFileMenuOptionClick"
                 Foreground="{StaticResource LightBlueBrush}"
@@ -377,7 +379,7 @@
                     HorizontalContentAlignment="Center"
                     Tag="Presence"
                     ToolTip="A number between -2.0 and 2.0 (Presence). Default 0.0"
-                    Text="{Binding Value, ElementName=PresenceSlider, Mode=TwoWay}"  />
+                    Text="{Binding Value, ElementName=PresenceSlider, Mode=TwoWay}" />
 
                 <Label
                     x:Name="PresenceLabel"
@@ -404,7 +406,7 @@
                     TextWrapping="Wrap"
                     Tag="TopPercent"
                     ToolTip="A number between 0 and 1 (%)"
-                    Text="{Binding Value, ElementName=PercentSlider, Mode=TwoWay}"  />
+                    Text="{Binding Value, ElementName=PercentSlider, Mode=TwoWay}" />
 
                 <Label
                     x:Name="TopPercentLabel"
@@ -563,6 +565,7 @@
                     Height="39"
                     HorizontalAlignment="Left"
                     VerticalAlignment="Top"
+                    BorderBrush="{StaticResource BlueBorderBrush}"
                     ToolTip="Send Chat Message" />
 
                 <b:MetroTile
@@ -574,6 +577,7 @@
                     Height="38"
                     HorizontalAlignment="Left"
                     VerticalAlignment="Top"
+                    BorderBrush="{StaticResource BlueBorderBrush}"
                     ToolTip="Clear All Entries" />
             </Canvas>
 
@@ -620,10 +624,10 @@
 
             <b:MetroRadioButton
                 x:Name="ListenRadioButton"
-                Canvas.Left="1057"
-                Canvas.Top="108"
+                Canvas.Left="1056"
+                Canvas.Top="120"
                 Width="55"
-                HorizontalAlignment="Center"
+                HorizontalAlignment="Left"
                 VerticalAlignment="Top"
                 Content="Listen"
                 Background="{StaticResource LightBlueBrush}"
@@ -632,9 +636,9 @@
             <b:MetroRadioButton
                 x:Name="StoreRadioButton"
                 Canvas.Left="1057"
-                Canvas.Top="137"
+                Canvas.Top="169"
                 Width="55"
-                HorizontalAlignment="Left"
+                HorizontalAlignment="Center"
                 VerticalAlignment="Top"
                 Content="Store"
                 Background="{StaticResource LightBlueBrush}"

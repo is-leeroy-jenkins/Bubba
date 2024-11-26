@@ -26,7 +26,6 @@
         <ResourceDictionary Source="/UI/Themes/TabControl/TabControl.xaml" />
         <ResourceDictionary Source="/UI/Themes/TabControl/BrowserTabItem.xaml" />
         <ResourceDictionary Source="/UI/Themes/Menu/ContextMenu.xaml" />
-        <ResourceDictionary Source="/UI/Themes/Calculator/SfCalculator.xaml" />
     </ResourceDictionary.MergedDictionaries>
 
 </ResourceDictionary>

@@ -4,7 +4,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:n="clr-namespace:Bubba"
+    xmlns:b="clr-namespace:Bubba"
     xmlns:skin="clr-namespace:Syncfusion.SfSkinManager;assembly=Syncfusion.SfSkinManager.WPF"
     xmlns:sync="http://schemas.syncfusion.com/wpf"
     x:Name="CalculationView"
@@ -14,9 +14,9 @@
     sync:SfSkinManager.Theme="{skin:SkinManagerExtension ThemeName=FluentDark}"
     Background="{StaticResource BlackBackground}"
     BorderBrush="{StaticResource BlueBorderBrush}"
+    Foreground="{StaticResource FormForeground}"
     BorderThickness="1"
     FontSize="11"
-    Foreground="{StaticResource FormForeground}"
     Topmost="True"
     WindowStartupLocation="CenterScreen"
     WindowStyle="None"
@@ -27,6 +27,7 @@
     <Window.Resources>
         <Style TargetType="ToolTip">
             <Setter Property="BorderThickness" Value="1" />
+            <Setter Property="Padding" Value="10" />
             <Setter Property="BorderBrush" Value="{StaticResource BlueBorderBrush}" />
             <Setter Property="Background" Value="{StaticResource BlackBackground}" />
             <Setter Property="Foreground" Value="{StaticResource LightBlueBrush}" />
@@ -36,7 +37,7 @@
     <!--  ********************************    Calculator   ********************************************  -->
 
     <Canvas>
-        <n:MetroCalculator
+        <b:MetroCalculator
             x:Name="Device"
             Canvas.Left="10"
             Canvas.Top="55"
