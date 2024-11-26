@@ -73,6 +73,16 @@ namespace Bubba
         private protected string _user;
 
         /// <summary>
+        /// Whether or not to store the responses
+        /// </summary>
+        private protected bool _store;
+
+        /// <summary>
+        /// The stream
+        /// </summary>
+        private protected bool _stream;
+
+        /// <summary>
         /// a number between -2.0 and 2.0.
         /// Positive values penalize new tokens
         /// based on whether they appear in the text so far,

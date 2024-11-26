@@ -64,6 +64,11 @@ namespace Bubba
         private protected bool _store;
 
         /// <summary>
+        /// The stream
+        /// </summary>
+        private protected bool _stream;
+
+        /// <summary>
         /// An alternative to sampling with temperature,
         /// called nucleus sampling, where the model considers
         /// the results of the tokens with top_p probability mass.
@@ -126,8 +131,10 @@ namespace Bubba
         public GptConfig( )
         {
             _store = false;
+            _stream = false;
+            _number = 1;
             _maximumTokens = 2048;
-            _temperature = 0.7;
+            _temperature = 1.0;
             _frequency = 0.0;
             _presence = 0.0;
             _topPercent = 0.0;
@@ -201,6 +208,29 @@ namespace Bubba
                 {
                     _store = value;
                     OnPropertyChanged(nameof(Store));
+                }
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether this
+        /// <see cref="GptConfig"/> is stream.
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if stream; otherwise, <c>false</c>.
+        /// </value>
+        public bool Stream
+        {
+            get
+            {
+                return _stream;
+            }
+            set
+            {
+                if(_stream != value)
+                {
+                    _stream = value;
+                    OnPropertyChanged(nameof(Stream));
                 }
             }
         }
@@ -341,7 +371,6 @@ namespace Bubba
             }
             set
             {
-
                 if( _topPercent != value )
                 {
                     _topPercent = value;

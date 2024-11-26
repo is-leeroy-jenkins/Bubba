@@ -47,12 +47,18 @@ namespace Bubba
 
     [ SuppressMessage( "ReSharper", "UnusedType.Global" ) ]
     [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
+    [ SuppressMessage( "ReSharper", "FieldCanBeMadeReadOnly.Global" ) ]
     public class GptRequest : PropertyChangedBase
     {
         /// <summary>
         /// The messages
         /// </summary>
         private protected IList<IGptMessage> _messages;
+
+        /// <summary>
+        /// The stream
+        /// </summary>
+        private protected bool _stream;
 
         /// <summary>
         /// The store
@@ -121,6 +127,16 @@ namespace Bubba
         private protected double _presence;
 
         /// <summary>
+        /// The user prompt
+        /// </summary>
+        private protected string _userPrompt;
+
+        /// <summary>
+        /// The assistant prompt
+        /// </summary>
+        private protected string _systemPrompt;
+
+        /// <summary>
         /// Initializes a new instance of the
         /// <see cref="GptRequest"/> class.
         /// </summary>
@@ -130,10 +146,10 @@ namespace Bubba
             _endPoint = new GptEndPoint( );
             _model = "gpt-4o";
             _number = 1;
+            _temperature = 1.0;
             _presence = 0.0;
             _frequency = 0.0;
             _topPercent = 0.0;
-            _temperature = 0.7;
             _maximumTokens = 2048;
         }
 
@@ -142,19 +158,30 @@ namespace Bubba
         /// Initializes a new instance of the
         /// <see cref="T:Bubba.GptRequest" /> class.
         /// </summary>
+        /// <param name = "user" > </param>
+        /// <param name = "system" > </param>
+        /// <param name = "model" > </param>
+        /// <param name = "store" > </param>
+        /// <param name = "stream" > </param>
         /// <param name="number">The identifier.</param>
         /// <param name="frequency">The frequency.</param>
         /// <param name="presence">The presence.</param>
         /// <param name = "topPercent" > </param>
         /// <param name="temperature">The temperature.</param>
         /// <param name="tokens">The tokens.</param>
-        public GptRequest( int number = 1, double frequency = 0.0,
+        public GptRequest( string user, string system, string model, 
+            bool store = false, bool stream = false, 
+            int number = 1, double frequency = 0.0,
             double presence = 0.0, double topPercent = 0.0,  
-            double temperature = 0.7, int tokens = 2048 )
+            double temperature = 1.0, int tokens = 2048 )
         {
-            _store = false;
             _header = new GptHeader( );
-            _model = "gpt-4o";
+            _endPoint = new GptEndPoint( );
+            _systemPrompt = system;
+            _userPrompt = user;
+            _model = model;
+            _store = store;
+            _stream = stream;
             _number = number;
             _presence = presence;
             _frequency = frequency;
@@ -171,7 +198,11 @@ namespace Bubba
         public GptRequest( GptRequest gptRequest )
         {
             _header = new GptHeader( );
+            _endPoint = gptRequest.EndPoint;
+            _systemPrompt = gptRequest.SystemPrompt;
+            _userPrompt = gptRequest.UserPrompt;
             _store = gptRequest.Store;
+            _stream = gptRequest.Stream;
             _model = gptRequest.Model;
             _number = gptRequest.Number;
             _presence = gptRequest.Presence;
@@ -184,22 +215,83 @@ namespace Bubba
         /// <summary>
         /// Deconstructs the specified user identifier.
         /// </summary>
+        /// <param name = "header" > </param>
+        /// <param name = "endPoint" > </param>
+        /// <param name = "model" > </param>
         /// <param name="number">The user identifier.</param>
         /// <param name="frequency">The frequency.</param>
         /// <param name="presence">The presence.</param>
         /// <param name="temperature">The temperature.</param>
+        /// <param name = "topPercent" > </param>
         /// <param name="tokens">The maximum tokens.</param>
+        /// <param name = "user" > </param>
         /// <param name = "store" > </param>
-        public void Deconstruct( out int number, out double frequency,
-            out double presence, out double temperature, 
-            out int tokens, out bool store )
+        /// <param name = "stream" > </param>
+        /// <param name = "system" > </param>
+        public void Deconstruct( out GptHeader header, out GptEndPoint endPoint,
+            out string system, out string user, out bool store, 
+            out bool stream, out string model,
+            out int number, out double presence, 
+            out double frequency, out double temperature,
+            out double topPercent, out int tokens )
         {
-            number = _number;
+            header = _header;
+            endPoint = _endPoint;
+            system = _systemPrompt;
+            user = _userPrompt;
             store = _store;
-            temperature = _temperature;
-            frequency = _frequency;
+            stream = _stream;
+            model = _model;
+            number = _number;
             presence = _presence;
+            frequency = _frequency;
+            temperature = _temperature;
+            topPercent = _topPercent;
             tokens = _maximumTokens;
+        }
+
+        /// <summary>
+        /// Gets or sets the system prompt.
+        /// </summary>
+        /// <value>
+        /// The system prompt.
+        /// </value>
+        public string SystemPrompt
+        {
+            get
+            {
+                return _systemPrompt;
+            }
+            set
+            {
+                if(_systemPrompt != value)
+                {
+                    _systemPrompt = value;
+                    OnPropertyChanged(nameof(SystemPrompt));
+                }
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the user prompt.
+        /// </summary>
+        /// <value>
+        /// The user prompt.
+        /// </value>
+        public string UserPrompt
+        {
+            get
+            {
+                return _userPrompt;
+            }
+            set
+            {
+                if(_userPrompt != value)
+                {
+                    _userPrompt = value;
+                    OnPropertyChanged(nameof(UserPrompt));
+                }
+            }
         }
 
         /// <inheritdoc />
@@ -311,6 +403,29 @@ namespace Bubba
                 {
                     _store = value;
                     OnPropertyChanged( nameof( Store ) );
+                }
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether this
+        /// <see cref="GptConfig"/> is stream.
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if stream; otherwise, <c>false</c>.
+        /// </value>
+        public bool Stream
+        {
+            get
+            {
+                return _stream;
+            }
+            set
+            {
+                if(_stream != value)
+                {
+                    _stream = value;
+                    OnPropertyChanged(nameof(Stream));
                 }
             }
         }

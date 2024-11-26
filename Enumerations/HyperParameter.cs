@@ -86,5 +86,10 @@ namespace Bubba
         /// The presence
         /// </summary>
         Presence,
+
+        /// <summary>
+        /// The stream
+        /// </summary>
+        Stream
     }
 }

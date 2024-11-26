@@ -1,10 +1,10 @@
 ﻿// ******************************************************************************************
 //     Assembly:                Bubba
 //     Author:                  Terry D. Eppler
-//     Created:                 11-23-2024
+//     Created:                 11-25-2024
 // 
 //     Last Modified By:        Terry D. Eppler
-//     Last Modified On:        11-23-2024
+//     Last Modified On:        11-25-2024
 // ******************************************************************************************
 // <copyright file="MainWindow.xaml.cs" company="Terry D. Eppler">
 //    Bubba is a small windows (wpf) application for interacting with
@@ -382,7 +382,7 @@ namespace Bubba
             }
             catch( Exception ex )
             {
-                Fail(ex);
+                Fail( ex );
             }
         }
 
@@ -506,12 +506,14 @@ namespace Bubba
             try
             {
                 UserTextBox.Text = "1";
-                PresenceTextBox.Text = "0.0";
-                TemperatureTextBox.Text = "0.0";
-                FrequencyTextBox.Text = "0.0";
+                PresenceSlider.Value = 0.0;
+                TemperatureSlider.Value = 1.0;
+                FrequencySlider.Value = 0.0;
+                PercentSlider.Value = 0.0;
                 MaxTokensTextBox.Text = "2048";
                 SystemTextBox.Text = "";
                 UserTextBox.Text = "";
+                ToolStripTextBox.Text = "";
             }
             catch( Exception ex )
             {
@@ -524,25 +526,25 @@ namespace Bubba
         /// </summary>
         /// <param name="input">The input.</param>
         /// <returns></returns>
-        private protected HyperParameter GetHyperParameter(string input)
+        private protected HyperParameter GetHyperParameter( string input )
         {
             try
             {
-                ThrowIf.Empty(input, nameof(input));
-                var _names = Enum.GetNames(typeof(HyperParameter));
-                if(_names.Contains(input))
+                ThrowIf.Empty( input, nameof( input ) );
+                var _names = Enum.GetNames( typeof( HyperParameter ) );
+                if( _names.Contains( input ) )
                 {
-                    return (HyperParameter)Enum.Parse(typeof(HyperParameter), input);
+                    return ( HyperParameter )Enum.Parse( typeof( HyperParameter ), input );
                 }
                 else
                 {
-                    return default(HyperParameter);
+                    return default( HyperParameter );
                 }
             }
-            catch(Exception ex)
+            catch( Exception ex )
             {
-                Fail(ex);
-                return default(HyperParameter);
+                Fail( ex );
+                return default( HyperParameter );
             }
         }
 
@@ -753,7 +755,7 @@ namespace Bubba
                     }
                 }
 
-                _aiModels.Sort();
+                _aiModels.Sort( );
                 ModelComboBox.Items.Clear( );
                 Application.Current.Dispatcher.BeginInvoke( ( ) =>
                 {
@@ -815,7 +817,7 @@ namespace Bubba
             }
 
             _synthesizer.Speak( input );
-        } 
+        }
 
         private protected void SetHyperParameters( )
         {
@@ -1027,7 +1029,6 @@ namespace Bubba
                     VoiceComboBox.Items.Add( _voice.VoiceInfo.Name );
                 }
 
-
                 InitializeToolStrip( );
                 InitializeTimer( );
                 ProgressBar.Visibility = Visibility.Hidden;
@@ -1060,7 +1061,7 @@ namespace Bubba
             {
                 if( sender is MetroTextBox _textBox )
                 {
-                    var _tag = _textBox?.Tag.ToString( ); 
+                    var _tag = _textBox?.Tag.ToString( );
                     if( !string.IsNullOrEmpty( _tag ) )
                     {
                         switch( _tag )
@@ -1302,12 +1303,13 @@ namespace Bubba
         /// instance containing the event data.</param>
         private void OnListenCheckedChanged( object sender, RoutedEventArgs e )
         {
-           // if( ListenCheckBox.IsChecked == true )
+            // if( ListenCheckBox.IsChecked == true )
             {
                 SpeechLabel.Content = "";
                 SpeechLabel.Visibility = Visibility.Visible;
                 SpeechToText( );
             }
+
             //else
             {
                 _engine.RecognizeAsyncStop( );
@@ -1328,6 +1330,7 @@ namespace Bubba
                 VoiceLabel.Visibility = Visibility.Hidden;
                 VoiceComboBox.Visibility = Visibility.Hidden;
             }
+
             //else
             {
                 VoiceLabel.Visibility = Visibility.Visible;

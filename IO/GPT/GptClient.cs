@@ -76,7 +76,7 @@ namespace Bubba
             _presence = 0.0;
             _frequency = 0.0;
             _topPercent = 0.0;
-            _temperature = 0.7;
+            _temperature = 1.0;
             _maximumTokens = 2048;
             _model = "gpt-4o";
             _endPoint = "https://api.openai.com/v1/chat/completions";
@@ -92,13 +92,59 @@ namespace Bubba
         /// <param name="temperature">The temperature.</param>
         /// <param name="tokens">The tokens.</param>
         /// <param name="model">The chat model.</param>
-        public GptClient( string model, double temperature = 0.7, int tokens = 2048 )
+        public GptClient( string model, double temperature = 1.0, int tokens = 2048 )
             : this( )
         {
             _model = model;
             _temperature = temperature;
             _maximumTokens = tokens;
             _endPoint = "https://api.openai.com/v1/chat/completions";
+        }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether this
+        /// <see cref="GptConfig"/> is store.
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if store; otherwise, <c>false</c>.
+        /// </value>
+        public bool Store
+        {
+            get
+            {
+                return _store;
+            }
+            set
+            {
+                if(_store != value)
+                {
+                    _store = value;
+                    OnPropertyChanged(nameof(Store));
+                }
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether this
+        /// <see cref="GptConfig"/> is stream.
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if stream; otherwise, <c>false</c>.
+        /// </value>
+        public bool Stream
+        {
+            get
+            {
+                return _stream;
+            }
+            set
+            {
+                if(_stream != value)
+                {
+                    _stream = value;
+                    OnPropertyChanged(nameof(Stream));
+                }
+            }
         }
 
         /// <inheritdoc />
@@ -191,6 +237,33 @@ namespace Bubba
                 {
                     _maximumTokens = value;
                     OnPropertyChanged( nameof( MaximumTokens ) );
+                }
+            }
+        }
+
+        /// <summary>
+        /// An alternative to sampling with temperature,
+        /// called nucleus sampling, where the model considers
+        /// the results of the tokens with top_p probability mass.
+        /// So 0.1 means only the tokens comprising the top 10% probability
+        /// mass are considered. We generally recommend altering this
+        /// or temperature but not both.
+        /// </summary>
+        /// <value>
+        /// The top percent.
+        /// </value>
+        public double TopPercent
+        {
+            get
+            {
+                return _topPercent;
+            }
+            set
+            {
+                if(_topPercent != value)
+                {
+                    _topPercent = value;
+                    OnPropertyChanged(nameof(TopPercent));
                 }
             }
         }
