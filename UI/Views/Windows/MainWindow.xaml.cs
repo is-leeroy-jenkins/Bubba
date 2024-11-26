@@ -131,6 +131,8 @@ namespace Bubba
         /// </summary>
         private protected int _time;
 
+        private protected int _number;
+
         /// <summary>
         /// The openai API key
         /// </summary>
@@ -145,6 +147,16 @@ namespace Bubba
         /// or temperature but not both.
         /// </summary>
         private protected double _topPercent;
+
+        /// <summary>
+        /// The store
+        /// </summary>
+        private protected bool _store;
+
+        /// <summary>
+        /// The stream
+        /// </summary>
+        private protected bool _stream;
 
         /// <summary>
         /// A number between -2.0 and 2.0  Positive value decrease the
@@ -218,6 +230,52 @@ namespace Bubba
             // Event Wiring
             Loaded += OnLoad;
             Closed += OnClosed;
+        }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether this
+        /// <see cref="MainWindow"/> is store.
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if store; otherwise, <c>false</c>.
+        /// </value>
+        public bool Store
+        {
+            get
+            {
+                return _store;
+            }
+            set
+            {
+                if(_store != value)
+                {
+                    _store = value;
+                    OnPropertyChanged(nameof(Store));
+                }
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether this
+        /// <see cref="MainWindow"/> is stream.
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if stream; otherwise, <c>false</c>.
+        /// </value>
+        public bool Stream
+        {
+            get
+            {
+                return _stream;
+            }
+            set
+            {
+                if(_stream != value)
+                {
+                    _stream = value;
+                    OnPropertyChanged(nameof(Stream));
+                }
+            }
         }
 
         /// <summary>
@@ -800,7 +858,7 @@ namespace Bubba
         /// <param name="input">The input.</param>
         public void SpeechToText( string input )
         {
-            //if( MuteCheckBox.IsChecked == true )
+            if( MuteCheckBox.IsChecked == true )
             {
                 return;
             }
@@ -819,10 +877,21 @@ namespace Bubba
             _synthesizer.Speak( input );
         }
 
+        /// <summary>
+        /// Sets the hyper parameters.
+        /// </summary>
         private protected void SetHyperParameters( )
         {
             try
             {
+                _store = StoreCheckBox.IsChecked ?? false;
+                _stream = StreamCheckBox.IsChecked ?? false;
+                _presence = PresenceSlider.Value;
+                _temperature = TemperatureSlider.Value;
+                _topPercent = PercentSlider.Value;
+                _frequency = FrequencySlider.Value;
+                _number = int.Parse( NumberTextBox.Text );
+                _maximumTokens = int.Parse( MaxTokensTextBox.Text );
             }
             catch( Exception ex )
             {

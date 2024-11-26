@@ -1,10 +1,10 @@
 ﻿// ******************************************************************************************
 //     Assembly:                Bubba
 //     Author:                  Terry D. Eppler
-//     Created:                 11-19-2024
+//     Created:                 11-25-2024
 // 
 //     Last Modified By:        Terry D. Eppler
-//     Last Modified On:        11-19-2024
+//     Last Modified On:        11-25-2024
 // ******************************************************************************************
 // <copyright file="GptRequest.cs" company="Terry D. Eppler">
 //    Bubba is a small windows (wpf) application for interacting with
@@ -105,6 +105,11 @@ namespace Bubba
         private protected string _model;
 
         /// <summary>
+        /// The response format
+        /// </summary>
+        private protected string _responseFormat;
+
+        /// <summary>
         /// The base URL
         /// </summary>
         private protected GptEndPoint _endPoint;
@@ -144,6 +149,7 @@ namespace Bubba
         {
             _header = new GptHeader( );
             _endPoint = new GptEndPoint( );
+            _responseFormat = "text";
             _model = "gpt-4o";
             _number = 1;
             _temperature = 1.0;
@@ -160,6 +166,7 @@ namespace Bubba
         /// </summary>
         /// <param name = "user" > </param>
         /// <param name = "system" > </param>
+        /// <param name = "format" > </param>
         /// <param name = "model" > </param>
         /// <param name = "store" > </param>
         /// <param name = "stream" > </param>
@@ -169,17 +176,17 @@ namespace Bubba
         /// <param name = "topPercent" > </param>
         /// <param name="temperature">The temperature.</param>
         /// <param name="tokens">The tokens.</param>
-        public GptRequest( string user, string system, string model, 
-            bool store = false, bool stream = false, 
-            int number = 1, double frequency = 0.0,
-            double presence = 0.0, double topPercent = 0.0,  
-            double temperature = 1.0, int tokens = 2048 )
+        public GptRequest( string user, string system, string model,
+            string format = "text", bool store = false, bool stream = false,
+            int number = 1, double frequency = 0.0, double presence = 0.0,
+            double topPercent = 0.0, double temperature = 1.0, int tokens = 2048 )
         {
             _header = new GptHeader( );
             _endPoint = new GptEndPoint( );
             _systemPrompt = system;
             _userPrompt = user;
             _model = model;
+            _responseFormat = format;
             _store = store;
             _stream = stream;
             _number = number;
@@ -203,6 +210,7 @@ namespace Bubba
             _userPrompt = gptRequest.UserPrompt;
             _store = gptRequest.Store;
             _stream = gptRequest.Stream;
+            _responseFormat = gptRequest.ResponseFormat;
             _model = gptRequest.Model;
             _number = gptRequest.Number;
             _presence = gptRequest.Presence;
@@ -218,6 +226,7 @@ namespace Bubba
         /// <param name = "header" > </param>
         /// <param name = "endPoint" > </param>
         /// <param name = "model" > </param>
+        /// <param name = "format" > </param>
         /// <param name="number">The user identifier.</param>
         /// <param name="frequency">The frequency.</param>
         /// <param name="presence">The presence.</param>
@@ -228,11 +237,10 @@ namespace Bubba
         /// <param name = "store" > </param>
         /// <param name = "stream" > </param>
         /// <param name = "system" > </param>
-        public void Deconstruct( out GptHeader header, out GptEndPoint endPoint,
-            out string system, out string user, out bool store, 
-            out bool stream, out string model,
-            out int number, out double presence, 
-            out double frequency, out double temperature,
+        public void Deconstruct( out GptHeader header, out GptEndPoint endPoint, out string system,
+            out string user, out bool store, out bool stream,
+            out string model, out string format, out int number,
+            out double presence, out double frequency, out double temperature,
             out double topPercent, out int tokens )
         {
             header = _header;
@@ -242,6 +250,7 @@ namespace Bubba
             store = _store;
             stream = _stream;
             model = _model;
+            format = _responseFormat;
             number = _number;
             presence = _presence;
             frequency = _frequency;
@@ -264,10 +273,10 @@ namespace Bubba
             }
             set
             {
-                if(_systemPrompt != value)
+                if( _systemPrompt != value )
                 {
                     _systemPrompt = value;
-                    OnPropertyChanged(nameof(SystemPrompt));
+                    OnPropertyChanged( nameof( SystemPrompt ) );
                 }
             }
         }
@@ -286,10 +295,10 @@ namespace Bubba
             }
             set
             {
-                if(_userPrompt != value)
+                if( _userPrompt != value )
                 {
                     _userPrompt = value;
-                    OnPropertyChanged(nameof(UserPrompt));
+                    OnPropertyChanged( nameof( UserPrompt ) );
                 }
             }
         }
@@ -336,6 +345,28 @@ namespace Bubba
                 {
                     _model = value;
                     OnPropertyChanged( nameof( Model ) );
+                }
+            }
+        }
+
+        /// <summary>
+        /// Gets the response format.
+        /// </summary>
+        /// <value>
+        /// The response format.
+        /// </value>
+        public string ResponseFormat
+        {
+            get
+            {
+                return _responseFormat;
+            }
+            private set
+            {
+                if( _responseFormat != value )
+                {
+                    _responseFormat = value;
+                    OnPropertyChanged( nameof( ResponseFormat ) );
                 }
             }
         }
@@ -422,10 +453,10 @@ namespace Bubba
             }
             set
             {
-                if(_stream != value)
+                if( _stream != value )
                 {
                     _stream = value;
-                    OnPropertyChanged(nameof(Stream));
+                    OnPropertyChanged( nameof( Stream ) );
                 }
             }
         }
@@ -472,10 +503,10 @@ namespace Bubba
             }
             set
             {
-                if(_topPercent != value)
+                if( _topPercent != value )
                 {
                     _topPercent = value;
-                    OnPropertyChanged(nameof( TopPercent ) );
+                    OnPropertyChanged( nameof( TopPercent ) );
                 }
             }
         }

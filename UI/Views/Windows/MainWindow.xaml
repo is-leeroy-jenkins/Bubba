@@ -183,7 +183,7 @@
                 Padding="15,15,1,1"
                 HorizontalAlignment="Left"
                 VerticalAlignment="Top"
-                ToolTip="Enter text for OpenAI User Prompt"
+                ToolTip="Enter User Prompt"
                 Background="{StaticResource ControlInteriorBrush}"
                 TextWrapping="Wrap"
                 Text=""
@@ -222,6 +222,44 @@
                 Text=""
                 FontFamily="Roboto"
                 FontSize="12" />
+            <CheckBox
+                x:Name="MuteCheckBox"
+                Canvas.Left="1060"
+                Canvas.Top="27"
+                Content="Mute"
+                Foreground="{DynamicResource BlueBorderBrush}"
+                Background="{DynamicResource ControlHoverBrush}"
+                BorderBrush="{DynamicResource LightBlueBrush}" HorizontalAlignment="Center" VerticalAlignment="Top" />
+            <CheckBox
+                x:Name="ListenCheckBox"
+                Canvas.Left="1060"
+                Canvas.Top="66"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Top"
+                Content="Listen"
+                Foreground="{DynamicResource BlueBorderBrush}"
+                Background="{DynamicResource ControlHoverBrush}"
+                BorderBrush="{DynamicResource LightBlueBrush}" />
+            <CheckBox
+                x:Name="StoreCheckBox"
+                Canvas.Left="1062"
+                Canvas.Top="101"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Top"
+                Content="Store"
+                Foreground="{DynamicResource BlueBorderBrush}"
+                Background="{DynamicResource ControlHoverBrush}"
+                BorderBrush="{DynamicResource LightBlueBrush}" />
+            <CheckBox
+                x:Name="StreamCheckBox"
+                Canvas.Left="1062"
+                Canvas.Top="138"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Top"
+                Content="Stream"
+                Foreground="{DynamicResource BlueBorderBrush}"
+                Background="{DynamicResource ControlHoverBrush}"
+                BorderBrush="{DynamicResource LightBlueBrush}" />
         </Canvas>
 
         <Grid
@@ -609,39 +647,6 @@
                 VerticalContentAlignment="Top"
                 Foreground="{StaticResource BlueBorderBrush}"
                 Content="User ID" />
-
-            <b:MetroRadioButton
-                x:Name="MuteRadioButton"
-                Canvas.Left="1057"
-                Canvas.Top="79"
-                Width="54"
-                HorizontalAlignment="Left"
-                VerticalAlignment="Top"
-                Content="Mute"
-                Background="{StaticResource LightBlueBrush}"
-                Foreground="{DynamicResource BlueBorderBrush}" />
-
-            <b:MetroRadioButton
-                x:Name="ListenRadioButton"
-                Canvas.Left="1056"
-                Canvas.Top="120"
-                Width="55"
-                HorizontalAlignment="Left"
-                VerticalAlignment="Top"
-                Content="Listen"
-                Background="{StaticResource LightBlueBrush}"
-                Foreground="{DynamicResource BlueBorderBrush}" />
-
-            <b:MetroRadioButton
-                x:Name="StoreRadioButton"
-                Canvas.Left="1057"
-                Canvas.Top="169"
-                Width="55"
-                HorizontalAlignment="Center"
-                VerticalAlignment="Top"
-                Content="Store"
-                Background="{StaticResource LightBlueBrush}"
-                Foreground="{DynamicResource BlueBorderBrush}" />
 
         </Canvas>
 
