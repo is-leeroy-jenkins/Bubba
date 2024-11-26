@@ -80,6 +80,32 @@ namespace Bubba
         }
 
         /// <summary>
+        /// Creates the item.
+        /// </summary>
+        /// <param name="name">The name.</param>
+        public void CreateItem(string name)
+        {
+            try
+            {
+                var _item = new MetroListBoxItem
+                {
+                    Background = _theme.ControlInterior,
+                    Foreground = _theme.Foreground,
+                    BorderBrush = _theme.ControlInterior,
+                    Content = name,
+                    Tag = name,
+                    Height = 35
+                };
+
+                Items.Add(_item);
+            }
+            catch(Exception ex)
+            {
+                Fail(ex);
+            }
+        }
+
+        /// <summary>
         /// Fails the specified _ex.
         /// </summary>
         /// <param name="_ex">The _ex.</param>

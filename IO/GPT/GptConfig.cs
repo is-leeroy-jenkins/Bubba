@@ -1,10 +1,10 @@
 ﻿// ******************************************************************************************
 //     Assembly:                Bubba
 //     Author:                  Terry D. Eppler
-//     Created:                 11-23-2024
+//     Created:                 11-26-2024
 // 
 //     Last Modified By:        Terry D. Eppler
-//     Last Modified On:        11-23-2024
+//     Last Modified On:        11-26-2024
 // ******************************************************************************************
 // <copyright file="GptConfig.cs" company="Terry D. Eppler">
 //    Bubba is a small windows (wpf) application for interacting with
@@ -43,7 +43,6 @@ namespace Bubba
 {
     using System;
     using System.Diagnostics.CodeAnalysis;
-    using Microsoft.Office.Interop.Outlook;
 
     /// <inheritdoc />
     /// <summary>
@@ -204,10 +203,10 @@ namespace Bubba
             }
             set
             {
-                if(_store != value)
+                if( _store != value )
                 {
                     _store = value;
-                    OnPropertyChanged(nameof(Store));
+                    OnPropertyChanged( nameof( Store ) );
                 }
             }
         }
@@ -227,10 +226,10 @@ namespace Bubba
             }
             set
             {
-                if(_stream != value)
+                if( _stream != value )
                 {
                     _stream = value;
-                    OnPropertyChanged(nameof(Stream));
+                    OnPropertyChanged( nameof( Stream ) );
                 }
             }
         }
@@ -393,10 +392,10 @@ namespace Bubba
             }
             set
             {
-                if(_number != value)
+                if( _number != value )
                 {
                     _number = value;
-                    OnPropertyChanged(nameof(Number));
+                    OnPropertyChanged( nameof( Number ) );
                 }
             }
         }

@@ -51,6 +51,7 @@ namespace Bubba
     using System.Runtime.CompilerServices;
     using System.Threading;
     using System.Windows;
+    using System.Windows.Controls;
     using System.Windows.Media.Imaging;
 
     /// <inheritdoc />
@@ -126,7 +127,7 @@ namespace Bubba
         /// <summary>
         /// The radio buttons
         /// </summary>
-        private protected IList<MetroRadioButton> _radioButtons;
+        private protected IList<RadioButton> _checkBoxes;
 
         /// <summary>
         /// The seconds
@@ -263,7 +264,7 @@ namespace Bubba
             // Budget Properties
             _extension = EXT.XLSX;
             _fileExtension = _extension.ToString( ).ToLower( );
-            _radioButtons = GetRadioButtons( );
+            _checkBoxes = GetCheckBoxes( );
             _initialPaths = CreateInitialDirectoryPaths( );
 
             // Wire Events
@@ -336,9 +337,6 @@ namespace Bubba
         {
             try
             {
-                BrowseButton.Header = "  Browse";
-                ClearButton.Header = "  Clear";
-                SelectButton.Header = "  Select";
             }
             catch( Exception ex )
             {
@@ -482,8 +480,8 @@ namespace Bubba
         {
             try
             {
-                TimeLabel.Content = DateTime.Now.ToLongTimeString( );
-                DateLabel.Content = DateTime.Now.ToLongDateString( );
+                TimeLabel.Content = DateTime.Now.ToShortTimeString( );
+                DateLabel.Content = DateTime.Now.ToShortDateString( );
             }
             catch( Exception ex )
             {
@@ -513,7 +511,7 @@ namespace Bubba
         {
             try
             {
-                var _file = $@"/UI/Windows/File/{_fileExtension.ToUpper( )}.png";
+                var _file = $@"/Resources/Assets/ExtensionImages/{_fileExtension.ToUpper( )}.png";
                 var _uri = new Uri( _file, UriKind.Relative );
                 _image = new BitmapImage( _uri );
                 PictureBox.Source = _image;
@@ -534,7 +532,7 @@ namespace Bubba
         {
             try
             {
-                ExcelRadioButton.IsChecked = true;
+                ExcelCheckBox.IsChecked = true;
                 _filePaths = GetFilePaths( );
                 _count = _filePaths.Count;
                 InitializeTimer( );
@@ -557,9 +555,9 @@ namespace Bubba
         {
             try
             {
-                foreach( var _radioButton in _radioButtons )
+                foreach( var _checkBox in _checkBoxes )
                 {
-                    _radioButton.Click += OnRadioButtonSelected;
+                    _checkBox.Click += OnRadioButtonSelected;
                 }
             }
             catch( Exception ex )
@@ -574,33 +572,33 @@ namespace Bubba
         /// <returns>
         /// List( MetroRadioButton )
         /// </returns>
-        private protected virtual IList<MetroRadioButton> GetRadioButtons( )
+        private protected virtual IList<RadioButton> GetCheckBoxes( )
         {
             try
             {
-                var _list = new List<MetroRadioButton>
+                var _list = new List<RadioButton>
                 {
-                    PdfRadioButton,
-                    AccessRadioButton,
-                    SQLiteRadioButton,
-                    SqlServerRadioButton,
-                    ExcelRadioButton,
-                    CsvRadioButton,
-                    TextRadioButton,
-                    PowerPointRadioButton,
-                    WordRadioButton,
-                    ExecutableRadioButton,
-                    LibraryRadioButton
+                    PdfCheckBox,
+                    AccessCheckBox,
+                    SqLiteCheckBox,
+                    SqlServerCheckBox,
+                    ExcelCheckBox,
+                    CsvCheckBox,
+                    TextCheckBox,
+                    PowerPointCheckBox,
+                    WordCheckBox,
+                    ExecutableCheckBox,
+                    LibraryCheckBox
                 };
 
                 return _list?.Any( ) == true
                     ? _list
-                    : default( IList<MetroRadioButton> );
+                    : default( IList<RadioButton> );
             }
             catch( Exception ex )
             {
                 Fail( ex );
-                return default( IList<MetroRadioButton> );
+                return default( IList<RadioButton> );
             }
         }
 
@@ -660,6 +658,8 @@ namespace Bubba
         {
             try
             {
+                Busy( );
+                var _watch = new Stopwatch( );
                 _filePaths?.Clear( );
                 var _pattern = "*." + _fileExtension;
                 for( var _i = 0; _i < _initialPaths.Count; _i++ )
@@ -684,6 +684,13 @@ namespace Bubba
                         _filePaths.AddRange( _lowerLevelFiles );
                     }
                 }
+
+                Chill( );
+                _watch.Stop( );
+                _count = _filePaths?.Count ?? 0;
+                CountLabel.Content = $"{_count:N0}";
+                _duration = _watch.Elapsed.TotalMilliseconds;
+                DurationLabel.Content = $"{_duration:N0}";
             }
             catch( Exception ex )
             {
@@ -699,7 +706,7 @@ namespace Bubba
         {
             try
             {
-                BeginInit( );
+                Busy( );
                 var _watch = new Stopwatch( );
                 _watch.Start( );
                 var _list = new List<string>( );
@@ -713,7 +720,8 @@ namespace Bubba
                         ?.Select( s => s.FullName )?.ToList( );
 
                     var _topLevelFiles = _parent.GetFiles( _pattern, SearchOption.TopDirectoryOnly )
-                        ?.Select( f => f.FullName )?.ToArray( );
+                        ?.Select( f => f.FullName )
+                        ?.ToArray( );
 
                     _list.AddRange( _topLevelFiles );
                     for( var _k = 0; _k < _folders.Count; _k++ )
@@ -721,15 +729,19 @@ namespace Bubba
                         var _folder = Directory.CreateDirectory( _folders[ _k ] );
                         var _lowerLevelFiles = _folder
                             .GetFiles( _pattern, SearchOption.AllDirectories )
-                            ?.Select( s => s.FullName )?.ToArray( );
+                            ?.Select( s => s.FullName )
+                            ?.ToArray( );
 
                         _list.AddRange( _lowerLevelFiles );
                     }
                 }
 
-                EndInit( );
+                Chill( );
                 _watch.Stop( );
+                _count = _list.Count;
+                CountLabel.Content = $"{_count:N0}";
                 _duration = _watch.Elapsed.TotalMilliseconds;
+                DurationLabel.Content = $"{_duration:N0}";
                 return _list;
             }
             catch( Exception ex )
@@ -756,7 +768,6 @@ namespace Bubba
                     Environment.GetFolderPath( Environment.SpecialFolder.Personal ),
                     Environment.GetFolderPath( Environment.SpecialFolder.Recent ),
                     Environment.CurrentDirectory,
-                    @"C:\Users\terry\source\repos\Ninja\Resources\Documents",
                     _current
                 };
 
@@ -780,6 +791,9 @@ namespace Bubba
         {
             try
             {
+                Busy( );
+                var _watch = new Stopwatch( );
+                _watch.Start( );
                 var _radioButton = sender as MetroRadioButton;
                 _fileExtension = _radioButton?.Tag?.ToString( );
                 if( !string.IsNullOrEmpty( _fileExtension ) )
@@ -789,8 +803,15 @@ namespace Bubba
 
                 _filePaths = GetFilePaths( );
                 _count = _filePaths.Count;
+                _duration = _watch.ElapsedMilliseconds;
+                CountLabel.Content = $"{_count:N0}";
+                DurationLabel.Content = $"{_duration:N0}";
                 PopulateListBox( _filePaths );
-                SetImage( );
+                var _file = $@"/Resources/Assets/ExtensionImages/{_fileExtension?.ToUpper()}.png";
+                var _uri = new Uri(_file, UriKind.Relative);
+                _image = new BitmapImage(_uri);
+                PictureBox.Source = _image;
+                Chill( );
             }
             catch( Exception ex )
             {

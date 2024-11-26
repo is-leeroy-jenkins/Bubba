@@ -10,7 +10,7 @@
 
         <Setter Property="Background" Value="{StaticResource ControlInteriorBrush}" />
         <Setter Property="BorderBrush" Value="{StaticResource BlueBorderBrush}" />
-        <Setter Property="Foreground" Value="{StaticResource LightBlueBrush}" />
+        <Setter Property="Foreground" Value="{StaticResource FormForeground}" />
         <Setter Property="BorderThickness" Value="1" />
         <Setter Property="HorizontalContentAlignment" Value="Left" />
         <Setter Property="VerticalContentAlignment" Value="Center" />
@@ -28,7 +28,7 @@
 
         <Setter Property="Background" Value="{StaticResource ControlInteriorBrush}" />
         <Setter Property="BorderBrush" Value="{StaticResource ControlInteriorBrush}" />
-        <Setter Property="Foreground" Value="{StaticResource LightBlueBrush}" />
+        <Setter Property="Foreground" Value="{StaticResource FormForeground}" />
         <Setter Property="Height" Value="35" />
         <Setter Property="BorderThickness" Value="1" />
         <Setter Property="HorizontalContentAlignment" Value="Left" />

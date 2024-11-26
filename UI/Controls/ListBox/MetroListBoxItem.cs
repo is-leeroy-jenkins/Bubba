@@ -79,7 +79,7 @@ namespace Bubba
             // Control Properties
             Height = 35;
             Background = _theme.ControlInterior;
-            Foreground = _theme.LightBlueBrush;
+            Foreground = _theme.Foreground;
             BorderBrush = _theme.ControlInterior;
             Margin = _theme.Margin;
             Padding = new Thickness( 30, 10, 1, 1 );
@@ -90,6 +90,7 @@ namespace Bubba
             // Event Wiring
             MouseEnter += OnMouseEnter;
             MouseLeave += OnMouseLeave;
+            Selected += OnItemSelected;
         }
 
         /// <summary>
@@ -137,6 +138,31 @@ namespace Bubba
             catch( Exception ex )
             {
                 Fail( ex );
+            }
+        }
+
+        /// <summary>
+        /// Called when [item selected].
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The <see cref="MouseEventArgs"/>
+        /// instance containing the event data.</param>
+        private protected void OnItemSelected( object sender, RoutedEventArgs e )
+        {
+            try
+            {
+                if(sender is MetroListBoxItem _item 
+                    && _item.IsSelected )
+                {
+                    _item.Foreground = _theme.WhiteForeground;
+                    _item.Background = _theme.DarkGreenBrush;
+                    _item.BorderBrush = _theme.GreenBrush;
+                    _item.FontWeight = FontWeights.Bold;
+                }
+            }
+            catch(Exception ex)
+            {
+                Fail(ex);
             }
         }
 

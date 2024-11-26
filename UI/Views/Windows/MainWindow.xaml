@@ -170,7 +170,8 @@
                 Background="#FF1C1C1C"
                 BorderBrush="{StaticResource MutedForeground}"
                 FontFamily="Roboto"
-                FontSize="12" />
+                FontSize="12"
+                Foreground="{DynamicResource LightBlueBrush}" />
 
             <b:MetroTextBox
                 x:Name="UserTextBox"
@@ -193,6 +194,7 @@
 
         <Canvas Grid.Row="1">
             <GroupBox
+                x:Name="SystemGroupBox"
                 Canvas.Left="72"
                 Canvas.Top="3"
                 Width="1068"
@@ -204,7 +206,8 @@
                 FontFamily="Roboto"
                 FontSize="12"
                 Background="#FF1c1c1c"
-                BorderBrush="{StaticResource MutedForeground}" />
+                BorderBrush="{StaticResource MutedForeground}"
+                Foreground="{DynamicResource LightBlueBrush}" />
 
             <b:MetroTextBox
                 x:Name="SystemTextBox"
@@ -222,14 +225,19 @@
                 Text=""
                 FontFamily="Roboto"
                 FontSize="12" />
+
             <CheckBox
                 x:Name="MuteCheckBox"
                 Canvas.Left="1060"
                 Canvas.Top="27"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Top"
                 Content="Mute"
+                ToolTip="Activates/Deactivates speech functionality"
                 Foreground="{DynamicResource BlueBorderBrush}"
                 Background="{DynamicResource ControlHoverBrush}"
-                BorderBrush="{DynamicResource LightBlueBrush}" HorizontalAlignment="Center" VerticalAlignment="Top" />
+                BorderBrush="{DynamicResource LightBlueBrush}" />
+
             <CheckBox
                 x:Name="ListenCheckBox"
                 Canvas.Left="1060"
@@ -237,9 +245,11 @@
                 HorizontalAlignment="Center"
                 VerticalAlignment="Top"
                 Content="Listen"
+                ToolTip="Activates/Deactivates sound functionality"
                 Foreground="{DynamicResource BlueBorderBrush}"
                 Background="{DynamicResource ControlHoverBrush}"
                 BorderBrush="{DynamicResource LightBlueBrush}" />
+
             <CheckBox
                 x:Name="StoreCheckBox"
                 Canvas.Left="1062"
@@ -247,9 +257,11 @@
                 HorizontalAlignment="Left"
                 VerticalAlignment="Top"
                 Content="Store"
+                ToolTip="Whether or not to store the completion for model distillation "
                 Foreground="{DynamicResource BlueBorderBrush}"
                 Background="{DynamicResource ControlHoverBrush}"
                 BorderBrush="{DynamicResource LightBlueBrush}" />
+
             <CheckBox
                 x:Name="StreamCheckBox"
                 Canvas.Left="1062"
@@ -257,6 +269,7 @@
                 HorizontalAlignment="Center"
                 VerticalAlignment="Top"
                 Content="Stream"
+                ToolTip="Sends partial messages as they occur"
                 Foreground="{DynamicResource BlueBorderBrush}"
                 Background="{DynamicResource ControlHoverBrush}"
                 BorderBrush="{DynamicResource LightBlueBrush}" />
@@ -269,12 +282,13 @@
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="340*" />
                 <ColumnDefinition Width="145*" />
-                <ColumnDefinition Width="723*"/>
+                <ColumnDefinition Width="723*" />
             </Grid.ColumnDefinitions>
 
             <GroupBox
                 x:Name="ParamaterGroupBox"
                 Grid.Column="1"
+                Grid.ColumnSpan="2"
                 Height="170"
                 Margin="10,0,68,0"
                 Padding="3,3,3,3"
@@ -283,12 +297,14 @@
                 FontFamily="Roboto"
                 FontSize="12"
                 Background="#FF1C1C1C"
-                BorderBrush="{StaticResource MutedForeground}" Grid.ColumnSpan="2" />
+                BorderBrush="{StaticResource MutedForeground}"
+                Foreground="{DynamicResource LightBlueBrush}" />
 
             <Canvas
                 x:Name="ParameterCanvas"
                 Grid.Column="1"
-                Margin="10,27,10,11" Grid.ColumnSpan="2">
+                Grid.ColumnSpan="2"
+                Margin="10,27,10,11">
 
                 <b:MetroTextBox
                     x:Name="FrequencyTextBox"
@@ -589,7 +605,8 @@
                     FontFamily="Roboto"
                     FontSize="12"
                     Background="#FF1C1C1C"
-                    BorderBrush="{StaticResource MutedForeground}" />
+                    BorderBrush="{StaticResource MutedForeground}"
+                    Foreground="{DynamicResource LightBlueBrush}" />
 
                 <b:MetroTile
                     x:Name="SendButton"
@@ -710,7 +727,7 @@
                 <b:ToolStripButton
                     x:Name="RefreshButton"
                     Margin="5,1,5,1"
-                    ToolTip="Refresh Data"
+                    ToolTip="Resets input controls and parameters"
                     ImageSource="/Resources/Assets/ToolStripImages/RefreshButton.png" />
 
                 <b:ToolStripButton
