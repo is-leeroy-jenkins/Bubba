@@ -373,7 +373,7 @@ namespace Bubba
             try
             {
                 // start from a weekday 
-                ThrowIf.NegativeOrZero( days, nameof( days ) );
+                ThrowIf.Negative( days, nameof( days ) );
                 while( startDate.IsWeekEnd( ) )
                 {
                     startDate = startDate.AddDays( 1.0 );

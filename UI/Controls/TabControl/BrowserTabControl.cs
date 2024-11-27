@@ -80,7 +80,7 @@
             UpdateLayout( );
         }
 
-        public BrowserTabItem SelectedItem
+        public new BrowserTabItem SelectedItem
         {
             get
             {
@@ -133,7 +133,7 @@
             }
         }
 
-        public BrowserTabCollection Items { get; set; }
+        public new BrowserTabCollection Items { get; set; }
 
         public void AddTab( BrowserTabItem tabItem )
         {
@@ -196,17 +196,17 @@
             return _result;
         }
 
-        public void BeginInit( )
+        public new void BeginInit( )
         {
             _initializing = true;
         }
 
-        public void EndInit( )
+        public new void EndInit( )
         {
             _initializing = false;
         }
 
-        protected virtual void UpdateLayout( )
+        protected virtual new void UpdateLayout( )
         {
             if( _formatString != null )
             {

@@ -68,7 +68,7 @@ namespace Bubba
             try
             {
                 ThrowIf.Null( text, nameof( text ) );
-                ThrowIf.NegativeOrZero( index, nameof( index ) );
+                ThrowIf.Negative( index, nameof( index ) );
                 if( !SkipSubDomain( text, ref index, allowInternational,
                     out var _type ) )
                 {
@@ -121,7 +121,7 @@ namespace Bubba
             try
             {
                 ThrowIf.Null( text, nameof( text ) );
-                ThrowIf.NegativeOrZero( index, nameof( index ) );
+                ThrowIf.Negative( index, nameof( index ) );
                 var _escaped = false;
                 index++;
                 while( index < text.Length )
@@ -178,7 +178,7 @@ namespace Bubba
             try
             {
                 ThrowIf.Null( text, nameof( text ) );
-                ThrowIf.NegativeOrZero( index, nameof( index ) );
+                ThrowIf.Negative( index, nameof( index ) );
                 var _groups = 0;
                 while( index < text.Length
                     && _groups < 4 )
@@ -249,7 +249,7 @@ namespace Bubba
             try
             {
                 ThrowIf.Null( text, nameof( text ) );
-                ThrowIf.NegativeOrZero( index, nameof( index ) );
+                ThrowIf.Negative( index, nameof( index ) );
                 var _needGroup = false;
                 var _compact = false;
                 var _groups = 0;

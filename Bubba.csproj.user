@@ -189,6 +189,9 @@
     <Page Update="UI\Themes\Window\Window.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Update="UI\Views\Search\SearchDialog.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="UI\Views\Windows\BubbaWindow.xaml">
       <SubType>Designer</SubType>
     </Page>

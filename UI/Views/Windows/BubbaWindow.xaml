@@ -12,7 +12,7 @@
     x:Name="Bubba"
     Title="Bubba GPT"
     Width="1210"
-    Height="750"
+    Height="850"
     MinWidth="1000"
     MinHeight="600"
     MaxWidth="1500"
@@ -39,122 +39,380 @@
             <Setter Property="Foreground" Value="{StaticResource LightBlueBrush}" />
         </Style>
     </Window.Resources>
+    <!--  *********************************************  CONTEXT MENU *********************************************  -->
 
-    <!--  ******************************************** Context Menu ******************************************  -->
+    <Window.ContextMenu>
+        <ContextMenu Name="BrowserContextMenu">
+            <sync:MenuItemAdv
+                Click="OnFileMenuOptionClick"
+                Header="File"
+                ToolTip="Browse File System">
+                <sync:MenuItemAdv.Icon>
+                    <Image Source="/Resources/Assets/MenuImages/FileItem.png" />
+                </sync:MenuItemAdv.Icon>
+            </sync:MenuItemAdv>
 
-    <Canvas>
-        <Grid>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="*" />
-                <RowDefinition Height="40" />
-            </Grid.RowDefinitions>
-        </Grid>
+            <sync:MenuItemAdv
+                Click="OnFolderMenuOptionClick"
+                Header="Folder"
+                ToolTip="Browse Directories">
+                <sync:MenuItemAdv.Icon>
+                    <Image Source="/Resources/Assets/MenuImages/FolderItem.png" />
+                </sync:MenuItemAdv.Icon>
+            </sync:MenuItemAdv>
+
+            <Separator Background="{StaticResource BlueBorderBrush}" />
+
+            <sync:MenuItemAdv
+                Click="OnChromeOptionClick"
+                Header="Chrome"
+                ToolTip="Launch Chrome Browser">
+                <sync:MenuItemAdv.Icon>
+                    <Image Source="/Resources/Assets/MenuImages/ChromeItem.png" />
+                </sync:MenuItemAdv.Icon>
+            </sync:MenuItemAdv>
+
+            <sync:MenuItemAdv
+                Click="OnEdgeOptionClick"
+                Header="Edge"
+                ToolTip="Launch Edge Browser">
+                <sync:MenuItemAdv.Icon>
+                    <Image Source="/Resources/Assets/MenuImages/EdgeItem.png" />
+                </sync:MenuItemAdv.Icon>
+            </sync:MenuItemAdv>
+
+            <sync:MenuItemAdv
+                Click="OnFirefoxOptionClick"
+                Header="FireFox"
+                ToolTip="Launch Firefox Browser">
+                <sync:MenuItemAdv.Icon>
+                    <Image Source="/Resources/Assets/MenuImages/FirefoxItem.png" />
+                </sync:MenuItemAdv.Icon>
+            </sync:MenuItemAdv>
+
+            <Separator Background="{StaticResource BlueBorderBrush}" />
+
+            <sync:MenuItemAdv
+                Click="OnCalculatorMenuOptionClick"
+                Header="Calculator"
+                ToolTip="Open Calculator">
+                <sync:MenuItemAdv.Icon>
+                    <Image Source="/Resources/Assets/MenuImages/CalculatorItem.png" />
+                </sync:MenuItemAdv.Icon>
+            </sync:MenuItemAdv>
+
+            <sync:MenuItemAdv
+                Click="OnControlPanelOptionClick"
+                Header="Control Panel"
+                ToolTip="Windows Control Panel">
+                <sync:MenuItemAdv.Icon>
+                    <Image Source="/Resources/Assets/MenuImages/ControlPanelItem.png" />
+                </sync:MenuItemAdv.Icon>
+            </sync:MenuItemAdv>
+
+            <sync:MenuItemAdv
+                Click="OnTaskManagerOptionClick"
+                Header="Task Manager"
+                ToolTip="Windows Task Manager">
+                <sync:MenuItemAdv.Icon>
+                    <Image Source="/Resources/Assets/MenuImages/TaskManagerItem.png" />
+                </sync:MenuItemAdv.Icon>
+            </sync:MenuItemAdv>
+
+            <Separator Background="{StaticResource BlueBorderBrush}" />
+
+            <sync:MenuItemAdv
+                Click="OnCloseOptionClick"
+                Header="Exit"
+                ToolTip="Exit Application">
+                <sync:MenuItemAdv.Icon>
+                    <Image Source="/Resources/Assets/MenuImages/CloseItem.png" />
+                </sync:MenuItemAdv.Icon>
+            </sync:MenuItemAdv>
+
+        </ContextMenu>
+    </Window.ContextMenu>
+
+
+    <!--********************************************* LAYOUT *********************************************-->
+
+    <Grid
+        Width="Auto"
+        Height="Auto"
+        MinWidth="1200"
+        MinHeight="500"
+        Margin="1,5,1,1"
+        ClipToBounds="True"
+        ScrollViewer.CanContentScroll="True"
+        SnapsToDevicePixels="True">
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50" />
+            <RowDefinition />
+            <RowDefinition Height="47.04" />
+        </Grid.RowDefinitions>
+
+        <!--******************************************** TAB CONTROL *********************************************-->
+
         <b:MetroTabControl
-            Canvas.Left="1"
-            Canvas.Top="1"
-            Width="1208"
-            Height="713"
-            HorizontalAlignment="Center"
-            VerticalAlignment="Top">
-            <TabItem Header="TabItem">
-                <Grid Background="{StaticResource TransparentBrush}" />
-            </TabItem>
-            <TabItem Header="TabItem">
-                <Canvas
-                    Height="Auto"
-                    Margin="0,0,0,-15"
-                    Background="{StaticResource TransparentBrush}">
-                    <b:ToolStrip
-                        x:Name="ToolStrip"
-                        Canvas.Left="3"
-                        Canvas.Top="650"
-                        Width="1198"
-                        Height="40"
-                        HorizontalAlignment="Left"
-                        VerticalAlignment="Top"
-                        Background="{StaticResource FormBackground}"
-                        FontFamily="Roboto"
-                        FontSize="12">
+            x:Name="TabControl"
+            Grid.Row="1"
+            Width="Auto"
+            MinWidth="800"
+            MinHeight="498"
+            Margin="5"
+            Padding="1"
+            HorizontalContentAlignment="Stretch"
+            VerticalContentAlignment="Stretch"
+            Background="{DynamicResource FormBackground}"
+            BorderBrush="{DynamicResource FormBackground}"
+            Foreground="{DynamicResource FormForeground}"
+            NewButtonBackground="{DynamicResource ControlBackground}"
+            ScrollViewer.VerticalScrollBarVisibility="Auto"
+            TabItemHoverBackground="{DynamicResource FormBackground}"
+            TabItemHoverBorderBrush="{DynamicResource FormBackground}"
+            TabItemHoverForeground="{DynamicResource WhiteForeground}"
+            TabItemSelectedBackground="{DynamicResource FormBackground}"
+            TabItemSelectedBorderBrush="{DynamicResource FormBackground}"
+            TabItemSelectedForeground="{DynamicResource BlueBorderBrush}"
+            TabPanelBackground="{DynamicResource FormBackground}">
 
-                        <b:ToolStripLabel
-                            x:Name="StatusLabel"
-                            Width="100"
-                            Foreground="{StaticResource BlueBorderBrush}" />
-
-                        <b:ToolStripButton
-                            x:Name="FirstButton"
-                            Margin="5,1,5,1"
-                            ToolTip="First Item"
-                            ImageSource="/Resources/Assets/ToolStripImages/FirstButton.png" />
-
-                        <b:ToolStripButton
-                            x:Name="PreviousButton"
-                            Margin="5,1,5,1"
-                            ToolTip="Previous Item"
-                            ImageSource="/Resources/Assets/ToolStripImages/PreviousButton.png" />
-
-                        <b:ToolStripButton
-                            x:Name="NextButton"
-                            Margin="5,1,5,1"
-                            ToolTip="Next Item"
-                            ImageSource="/Resources/Assets/ToolStripImages/NextButton.png" />
-
-                        <b:ToolStripButton
-                            x:Name="LastButton"
-                            Margin="5,1,5,1"
-                            ToolTip="Last Item"
-                            ImageSource="/Resources/Assets/ToolStripImages/LastButton.png" />
-
-                        <TextBox
-                            x:Name="ToolStripTextBox"
-                            Width="300"
-                            Background="{StaticResource ControlInteriorBrush}"
-                            BorderBrush="{StaticResource BlueBorderBrush}"
-                            FontFamily="Roboto" />
-
-                        <b:ToolStripButton
-                            x:Name="LookupButton"
-                            Margin="5,1,5,1"
-                            ToolTip="Begin Search"
-                            ImageSource="/Resources/Assets/ToolStripImages/LookUpButton.png" />
-
-                        <b:ToolStripButton
-                            x:Name="RefreshButton"
-                            Margin="5,1,5,1"
-                            ToolTip="Resets input controls and parameters"
-                            ImageSource="/Resources/Assets/ToolStripImages/RefreshButton.png" />
-
-                        <b:ToolStripButton
-                            x:Name="DeleteButton"
-                            Margin="5,1,5,1"
-                            ToolTip="Delete Item"
-                            ImageSource="/Resources/Assets/ToolStripImages/DeleteButton.png" />
-
-                        <b:ToolStripDropDown
-                            x:Name="ToolStripComboBox"
-                            Width="150"
-                            BorderBrush="{StaticResource BlueBorderBrush}" />
-
-                        <Separator
-                            Width="5"
-                            Background="{StaticResource TransparentBrush}" />
-
-                        <mah:MetroProgressBar
-                            x:Name="ProgressBar"
-                            Width="200"
-                            Background="{StaticResource TransparentBrush}" />
-
-                        <b:ToolStripButton
-                            x:Name="MenuButton"
-                            Margin="5,1,5,1"
-                            ToolTip="Show/Hide Toolbar"
-                            ImageSource="/Resources/Assets/ToolStripImages/ToggleButton.png" />
-                    </b:ToolStrip>
-                </Canvas>
-            </TabItem>
-            <core:ChromiumWebBrowser
+            <TabItem
+                x:Name="ChatTab"
+                Width="50"
+                Height="26"
+                Margin="1,1,1,1"
                 Padding="1,1,1,1"
-                ScrollViewer.CanContentScroll="True" />
+                IsSelected="True"
+                Background="{DynamicResource FormBackground}"
+                BorderBrush="{DynamicResource FormBackground}"
+                Foreground="{DynamicResource FormForeground}"
+                FontFamily="Roboto"
+                Header="" 
+                Content="GPT"/>
+
+            <b:BrowserTabItem
+                x:Name="BrowserTab"
+                Width="50"
+                Height="26"
+                Background="{DynamicResource FormBackground}"
+                BorderBrush="{DynamicResource FormBackground}"
+                Foreground="{DynamicResource FormForeground}">
+
+                <core:ChromiumWebBrowser
+                    x:Name="Browser"
+                    Address="https://www.google.com/" />
+
+            </b:BrowserTabItem>
+
         </b:MetroTabControl>
-    </Canvas>
+
+        <!--******************************************** ToolStrip  *********************************************-->
+
+        <Grid Grid.Row="2">
+            <Canvas x:Name="ToolStripCanvass" Margin="1,1,1,1">
+                <b:ToolStrip
+                    x:Name="ToolStrip"
+                    Width="1201"
+                    Height="40"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Top"
+                    Background="{StaticResource FormBackground}"
+                    FontFamily="Roboto"
+                    FontSize="12">
+
+                    <b:ToolStripLabel
+                        x:Name="StatusLabel"
+                        Width="100"
+                        Foreground="{StaticResource BlueBorderBrush}" />
+
+                    <b:ToolStripButton
+                        x:Name="FirstButton"
+                        Margin="5,1,5,1"
+                        ToolTip="First Item"
+                        ImageSource="/Resources/Assets/ToolStripImages/FirstButton.png" />
+
+                    <b:ToolStripButton
+                        x:Name="PreviousButton"
+                        Margin="5,1,5,1"
+                        ToolTip="Previous Item"
+                        ImageSource="/Resources/Assets/ToolStripImages/PreviousButton.png" />
+
+                    <b:ToolStripButton
+                        x:Name="NextButton"
+                        Margin="5,1,5,1"
+                        ToolTip="Next Item"
+                        ImageSource="/Resources/Assets/ToolStripImages/NextButton.png" />
+
+                    <b:ToolStripButton
+                        x:Name="LastButton"
+                        Margin="5,1,5,1"
+                        ToolTip="Last Item"
+                        ImageSource="/Resources/Assets/ToolStripImages/LastButton.png" />
+
+                    <TextBox
+                        x:Name="ToolStripTextBox"
+                        Width="300"
+                        Background="{StaticResource ControlInteriorBrush}"
+                        BorderBrush="{StaticResource BlueBorderBrush}"
+                        FontFamily="Roboto" />
+
+                    <b:ToolStripButton
+                        x:Name="LookupButton"
+                        Margin="5,1,5,1"
+                        ToolTip="Begin Search"
+                        ImageSource="/Resources/Assets/ToolStripImages/LookUpButton.png" />
+
+                    <b:ToolStripButton
+                        x:Name="RefreshButton"
+                        Margin="5,1,5,1"
+                        ToolTip="Resets input controls and parameters"
+                        ImageSource="/Resources/Assets/ToolStripImages/RefreshButton.png" />
+
+                    <b:ToolStripButton
+                        x:Name="DeleteButton"
+                        Margin="5,1,5,1"
+                        ToolTip="Delete Item"
+                        ImageSource="/Resources/Assets/ToolStripImages/DeleteButton.png" />
+
+                    <b:ToolStripDropDown
+                        x:Name="ToolStripComboBox"
+                        Width="150"
+                        BorderBrush="{StaticResource BlueBorderBrush}" />
+
+                    <Separator
+                        Width="5"
+                        Background="{StaticResource TransparentBrush}" />
+                    <b:ToolStripButton
+                        x:Name="ToolButton"
+                        Margin="5,1,5,1"
+                        ToolTip="Developer Tools"
+                        ImageSource="/Resources/Assets/ToolStripImages/ToolsButton.png" />
+
+                    <b:ToolStripButton
+                        x:Name="DownloadButton"
+                        Margin="5,1,5,1"
+                        ToolTip="Developer Tools"
+                        ImageSource="/Resources/Assets/ToolStripImages/WebDownload.png" />
+
+                    <mah:MetroProgressBar
+                        x:Name="ProgressBar"
+                        Width="120"
+                        Background="{StaticResource TransparentBrush}" />
+
+                    <b:ToolStripButton
+                        x:Name="MenuButton"
+                        Margin="5,1,5,1"
+                        ToolTip="Show/Hide Toolbar"
+                        ImageSource="/Resources/Assets/ToolStripImages/ToggleButton.png" />
+
+                </b:ToolStrip>
+            </Canvas>
+        </Grid>
+
+
+        <Grid
+            x:Name="ControlBox"
+            Height="40"
+            MinWidth="600"
+            Margin="10,0,0,0"
+            VerticalAlignment="Center">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="59*" />
+                <ColumnDefinition Width="65*" />
+                <ColumnDefinition Width="55" />
+                <ColumnDefinition Width="50" />
+                <ColumnDefinition Width="55*" />
+                <ColumnDefinition Width="663" />
+                <ColumnDefinition Width="60" />
+                <ColumnDefinition Width="45" />
+                <ColumnDefinition Width="144*" />
+            </Grid.ColumnDefinitions>
+
+            <b:ToolStripButton
+                x:Name="SearchPanelForwardButton"
+                Title=""
+                Grid.Column="6"
+                Width="40"
+                Height="30"
+                Padding="1"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                HorizontalContentAlignment="Stretch"
+                VerticalContentAlignment="Stretch"
+                Background="{StaticResource FormBackground}"
+                BorderBrush="{StaticResource FormBackground}"
+                BorderThickness="1"
+                Header=""
+                ImageSource="/Resources/Assets/ToolStripImages/NextButton.png"
+                ToolTip="Start Search" />
+
+            <b:ToolStripButton
+                x:Name="SearchPanelCancelButton"
+                Title=""
+                Grid.Column="7"
+                Width="40"
+                Height="30"
+                Padding="1"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                HorizontalContentAlignment="Stretch"
+                VerticalContentAlignment="Stretch"
+                Background="{StaticResource FormBackground}"
+                BorderBrush="{StaticResource FormBackground}"
+                BorderThickness="1"
+                Header=""
+                ImageSource="/Resources/Assets/ToolStripImages/CancelButton.png"
+                ToolTip="Cancel Search" />
+
+
+            <b:MetroLabel
+                x:Name="DateLabel"
+                Grid.Column="8"
+                MinWidth="100"
+                Margin="1,8,1,5"
+                HorizontalContentAlignment="Right"
+                Content="MetroLabel"
+                FontSize="11"
+                Foreground="{StaticResource BlueBorderBrush}" />
+
+            <b:MetroTextBox
+                x:Name="UrlTextBox"
+                Grid.Column="5"
+                Height="34"
+                MinWidth="70"
+                Padding="30,1,1,1"
+                VerticalAlignment="Center"
+                HorizontalContentAlignment="Left"
+                VerticalContentAlignment="Center"
+                Panel.ZIndex="1"
+                Background="{DynamicResource ControlInteriorBrush}"
+                BorderBrush="{DynamicResource BlueBorderBrush}"
+                BorderThickness="1"
+                ClipToBounds="True"
+                FontFamily="Roboto"
+                FontSize="16"
+                Foreground="{StaticResource FormForeground}"
+                Text="{Binding Address, ElementName=Browser}"
+                TextWrapping="NoWrap"
+                ToolTip="Search URL" />
+
+            <b:ToolStripButton
+                x:Name="SearchPanelBackButton"
+                Title=""
+                Grid.Column="4"
+                Width="40"
+                Height="30"
+                Margin="3,0,0,0"
+                Padding="1"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Center"
+                Background="{StaticResource FormBackground}"
+                BorderBrush="{StaticResource FormBackground}"
+                BorderThickness="1"
+                Header=""
+                ImageSource="/Resources/Assets/ToolStripImages/PreviousButton.png"
+                ToolTip="Next Page" />
+        </Grid>
+    </Grid>
 </Window>

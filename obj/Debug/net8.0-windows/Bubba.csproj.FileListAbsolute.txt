@@ -561,9 +561,7 @@ C:\Users\terry\source\repos\Bubba\bin\Debug\net8.0-windows\runtimes\win\lib\net8
 C:\Users\terry\source\repos\Bubba\bin\Debug\net8.0-windows\runtimes\browser\lib\net8.0\System.Text.Encodings.Web.dll
 C:\Users\terry\source\repos\Bubba\bin\Debug\net8.0-windows\LinqStatistics.dll
 C:\Users\terry\source\repos\Bubba\bin\Debug\net8.0-windows\System.Data.SqlServerCe.dll
-C:\Users\terry\source\repos\Bubba\obj\Debug\net8.0-windows\BubbaWindow.g.cs
 C:\Users\terry\source\repos\Bubba\obj\Debug\net8.0-windows\App.baml
-C:\Users\terry\source\repos\Bubba\obj\Debug\net8.0-windows\BubbaWindow.baml
 C:\Users\terry\source\repos\Bubba\obj\Debug\net8.0-windows\UI\Controls\Frame\MetroComboFrame.baml
 C:\Users\terry\source\repos\Bubba\obj\Debug\net8.0-windows\UI\Controls\Frame\MetroTextInput.baml
 C:\Users\terry\source\repos\Bubba\obj\Debug\net8.0-windows\UI\Themes\Button\Button.baml
@@ -630,3 +628,7 @@ C:\Users\terry\source\repos\Bubba\obj\Debug\net8.0-windows\Bubba.dll
 C:\Users\terry\source\repos\Bubba\obj\Debug\net8.0-windows\refint\Bubba.dll
 C:\Users\terry\source\repos\Bubba\obj\Debug\net8.0-windows\Bubba.genruntimeconfig.cache
 C:\Users\terry\source\repos\Bubba\obj\Debug\net8.0-windows\ref\Bubba.dll
+C:\Users\terry\source\repos\Bubba\obj\Debug\net8.0-windows\UI\Views\Search\SearchDialog.g.cs
+C:\Users\terry\source\repos\Bubba\obj\Debug\net8.0-windows\UI\Views\Windows\BubbaWindow.g.cs
+C:\Users\terry\source\repos\Bubba\obj\Debug\net8.0-windows\UI\Views\Search\SearchDialog.baml
+C:\Users\terry\source\repos\Bubba\obj\Debug\net8.0-windows\UI\Views\Windows\BubbaWindow.baml

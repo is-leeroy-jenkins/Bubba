@@ -131,6 +131,9 @@ namespace Bubba
         /// </summary>
         private protected int _time;
 
+        /// <summary>
+        /// The number
+        /// </summary>
         private protected int _number;
 
         /// <summary>

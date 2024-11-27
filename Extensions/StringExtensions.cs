@@ -195,7 +195,7 @@ namespace Bubba
         {
             try
             {
-                ThrowIf.NegativeOrZero( length, nameof( length ) );
+                ThrowIf.Negative( length, nameof( length ) );
                 return text?.Length > length
                     ? text.Substring( text.Length - length )
                     : text;
@@ -222,7 +222,7 @@ namespace Bubba
         {
             try
             {
-                ThrowIf.NegativeOrZero( length, nameof( length ) );
+                ThrowIf.Negative( length, nameof( length ) );
                 return text?.Length > length
                     ? text[ length ].ToString( )
                     : text;

@@ -366,7 +366,7 @@ namespace Bubba
         {
             try
             {
-                ThrowIf.NegativeOrZero( bufsize, nameof( bufsize ) );
+                ThrowIf.Negative( bufsize, nameof( bufsize ) );
                 var _buffer = new byte[ bufsize ];
                 var _offset = 0;
                 do

@@ -96,7 +96,7 @@ namespace Bubba
         {
             try
             {
-                ThrowIf.NegativeOrZero( header, nameof( header ) );
+                ThrowIf.Negative( header, nameof( header ) );
                 var _result = new DataSet( );
                 foreach( var _worksheet in excelPackage.Workbook.Worksheets )
                 {

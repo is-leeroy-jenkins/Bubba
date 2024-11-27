@@ -333,7 +333,7 @@ namespace Bubba
         {
             try
             {
-                ThrowIf.NegativeOrZero( columnIndex, nameof( columnIndex ) );
+                ThrowIf.Negative( columnIndex, nameof( columnIndex ) );
                 if( columnIndex < 26 )
                 {
                     return ( ( char )( 'A' + columnIndex ) ).ToString( );

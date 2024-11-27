@@ -361,7 +361,7 @@ namespace Bubba
             try
             {
                 ThrowIf.Null( text, nameof( text ) );
-                ThrowIf.NegativeOrZero( index, nameof( index ) );
+                ThrowIf.Negative( index, nameof( index ) );
                 var startIndex = index;
                 while( index < text.Length
                     && IsAtom( text[ index ], allowInternational ) )

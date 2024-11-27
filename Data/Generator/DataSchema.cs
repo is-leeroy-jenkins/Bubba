@@ -164,7 +164,7 @@ namespace Bubba
                 _dataSet.Tables.Add( _dataTable );
                 using var _query = new BudgetQuery( _sqlStatement );
                 using var _adapter = _query.DataAdapter;
-                _adapter.FillSchema( _dataSet, System.Data.SchemaType.Source,
+                _adapter.FillSchema( _dataSet, SchemaType.Source,
                     _dataTable.TableName );
 
                 _adapter.Fill( _dataSet, _dataTable.TableName );

@@ -327,8 +327,8 @@ namespace Bubba
         public static IEnumerable<T> Slice<T>( this IEnumerable<T> sequence, int startIndex,
             int count )
         {
-            ThrowIf.NegativeOrZero( startIndex, nameof( startIndex ) );
-            ThrowIf.NegativeOrZero( count, nameof( count ) );
+            ThrowIf.Negative( startIndex, nameof( startIndex ) );
+            ThrowIf.Negative( count, nameof( count ) );
             return sequence switch
             {
                 IList<T> _list => SliceList( _list.Count, i => _list[ i ] ),
@@ -358,8 +358,8 @@ namespace Bubba
         /// <returns></returns>
         public static IEnumerable<T> LazySlice<T>( this IEnumerable<T> type, int start, int end )
         {
-            ThrowIf.NegativeOrZero( start, nameof( start ) );
-            ThrowIf.NegativeOrZero( end, nameof( end ) );
+            ThrowIf.Negative( start, nameof( start ) );
+            ThrowIf.Negative( end, nameof( end ) );
             var _index = 0;
             foreach( var _item in type )
             {

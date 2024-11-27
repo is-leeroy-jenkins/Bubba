@@ -27,7 +27,7 @@
     FontSize="12"
     mc:Ignorable="d">
 
-    <!-- ******************************************** Resources ********************************************* -->
+    <!--  ******************************************** Resources *********************************************  -->
 
     <Window.Resources>
         <Style TargetType="{x:Type ToolTip}">
@@ -39,7 +39,7 @@
         </Style>
     </Window.Resources>
 
-    <!-- ******************************************** Context Menu ****************************************** -->
+    <!--  ******************************************** Context Menu ******************************************  -->
 
     <Window.ContextMenu>
         <ContextMenu x:Name="MainWindowContextMenu">
@@ -300,7 +300,9 @@
                 Canvas.Left="360"
                 Canvas.Top="22"
                 Width="838"
-                Height="159" HorizontalAlignment="Center" VerticalAlignment="Top">
+                Height="159"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Top">
 
                 <b:MetroTextBox
                     x:Name="FrequencyTextBox"

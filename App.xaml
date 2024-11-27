@@ -17,7 +17,7 @@
 
                 <!--  Fonts  -->
                 <ResourceDictionary>
-                    <FontFamily x:Key="Roboto-Regular">pack://application:,,,/Fonts/Roboto-Regular.ttf</FontFamily>
+                    <FontFamily x:Key="Roboto">pack://application:,,,/Fonts/Roboto-Regular.ttf</FontFamily>
                 </ResourceDictionary>
 
                 <!--  Styles  -->

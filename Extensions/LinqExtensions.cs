@@ -185,7 +185,7 @@ namespace Bubba
         {
             try
             {
-                ThrowIf.NegativeOrZero( count, nameof( count ) );
+                ThrowIf.Negative( count, nameof( count ) );
                 if( source is ICollection _sequence
                     && _sequence.Count < count )
                 {
