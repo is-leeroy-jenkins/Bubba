@@ -67,7 +67,7 @@ namespace Bubba
         /// <value>
         /// The item.
         /// </value>
-        public BrowserTab Item { get; }
+        public BrowserTabItem Item { get; }
 
         /// <inheritdoc />
         /// <summary>
@@ -77,7 +77,7 @@ namespace Bubba
         /// </summary>
         /// <param name="item">The item.</param>
         /// <param name="type">The type.</param>
-        public BrowserTabChangedEventArgs( BrowserTab item, ChangeType type )
+        public BrowserTabChangedEventArgs( BrowserTabItem item, ChangeType type )
         {
             ChangeType = type;
             Item = item;

@@ -15,10 +15,9 @@
     <SourceRoot Include="C:\Program Files (x86)\Syncfusion\Essential Studio\WPF\24.1.41\ToolboxNuGetPackages\" />
   </ItemGroup>
   <ImportGroup Condition=" '$(ExcludeRestorePackageImports)' != 'true' ">
-    <Import Project="$(NuGetPackageRoot)\chromiumembeddedframework.runtime.win-x86\130.1.9\buildTransitive\chromiumembeddedframework.runtime.win-x86.props" Condition="Exists('$(NuGetPackageRoot)\chromiumembeddedframework.runtime.win-x86\130.1.9\buildTransitive\chromiumembeddedframework.runtime.win-x86.props')" />
-    <Import Project="$(NuGetPackageRoot)\chromiumembeddedframework.runtime.win-x64\130.1.9\buildTransitive\chromiumembeddedframework.runtime.win-x64.props" Condition="Exists('$(NuGetPackageRoot)\chromiumembeddedframework.runtime.win-x64\130.1.9\buildTransitive\chromiumembeddedframework.runtime.win-x64.props')" />
-    <Import Project="$(NuGetPackageRoot)\chromiumembeddedframework.runtime.win-arm64\130.1.9\buildTransitive\chromiumembeddedframework.runtime.win-arm64.props" Condition="Exists('$(NuGetPackageRoot)\chromiumembeddedframework.runtime.win-arm64\130.1.9\buildTransitive\chromiumembeddedframework.runtime.win-arm64.props')" />
-    <Import Project="$(NuGetPackageRoot)\chromiumembeddedframework.runtime\130.1.9\buildTransitive\chromiumembeddedframework.runtime.props" Condition="Exists('$(NuGetPackageRoot)\chromiumembeddedframework.runtime\130.1.9\buildTransitive\chromiumembeddedframework.runtime.props')" />
+    <Import Project="$(NuGetPackageRoot)\chromiumembeddedframework.runtime.win-x86\131.2.7\buildTransitive\chromiumembeddedframework.runtime.win-x86.props" Condition="Exists('$(NuGetPackageRoot)\chromiumembeddedframework.runtime.win-x86\131.2.7\buildTransitive\chromiumembeddedframework.runtime.win-x86.props')" />
+    <Import Project="$(NuGetPackageRoot)\chromiumembeddedframework.runtime.win-x64\131.2.7\buildTransitive\chromiumembeddedframework.runtime.win-x64.props" Condition="Exists('$(NuGetPackageRoot)\chromiumembeddedframework.runtime.win-x64\131.2.7\buildTransitive\chromiumembeddedframework.runtime.win-x64.props')" />
+    <Import Project="$(NuGetPackageRoot)\cefsharp.common\131.2.70\buildTransitive\CefSharp.Common.props" Condition="Exists('$(NuGetPackageRoot)\cefsharp.common\131.2.70\buildTransitive\CefSharp.Common.props')" />
   </ImportGroup>
   <PropertyGroup Condition=" '$(ExcludeRestorePackageImports)' != 'true' ">
     <PkgSyncfusion_UI_WPF_NET Condition=" '$(PkgSyncfusion_UI_WPF_NET)' == '' ">C:\Users\terry\.nuget\packages\syncfusion.ui.wpf.net\24.1.41</PkgSyncfusion_UI_WPF_NET>

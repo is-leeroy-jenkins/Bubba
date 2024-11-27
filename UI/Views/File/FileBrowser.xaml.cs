@@ -127,7 +127,7 @@ namespace Bubba
         /// <summary>
         /// The radio buttons
         /// </summary>
-        private protected IList<RadioButton> _checkBoxes;
+        private protected IList<RadioButton> _radioButtons;
 
         /// <summary>
         /// The seconds
@@ -264,7 +264,7 @@ namespace Bubba
             // Budget Properties
             _extension = EXT.XLSX;
             _fileExtension = _extension.ToString( ).ToLower( );
-            _checkBoxes = GetCheckBoxes( );
+            _radioButtons = GetCheckBoxes( );
             _initialPaths = CreateInitialDirectoryPaths( );
 
             // Wire Events
@@ -555,7 +555,7 @@ namespace Bubba
         {
             try
             {
-                foreach( var _checkBox in _checkBoxes )
+                foreach( var _checkBox in _radioButtons )
                 {
                     _checkBox.Click += OnRadioButtonSelected;
                 }
@@ -578,7 +578,7 @@ namespace Bubba
             {
                 var _list = new List<RadioButton>
                 {
-                    PdfCheckBox,
+                    PdfRadioButton,
                     AccessCheckBox,
                     SqLiteCheckBox,
                     SqlServerCheckBox,
@@ -671,7 +671,8 @@ namespace Bubba
                         ?.ToList( );
 
                     var _topLevelFiles = _parent.GetFiles( _pattern, SearchOption.TopDirectoryOnly )
-                        ?.Select( f => f.FullName )?.ToArray( );
+                        ?.Select( f => f.FullName )
+                        ?.ToArray( );
 
                     _filePaths.AddRange( _topLevelFiles );
                     for( var _k = 0; _k < _folders.Count; _k++ )
@@ -679,7 +680,8 @@ namespace Bubba
                         var _folder = Directory.CreateDirectory( _folders[ _k ] );
                         var _lowerLevelFiles = _folder
                             .GetFiles( _pattern, SearchOption.AllDirectories )
-                            ?.Select( s => s.FullName )?.ToArray( );
+                            ?.Select( s => s.FullName )
+                            ?.ToArray( );
 
                         _filePaths.AddRange( _lowerLevelFiles );
                     }
@@ -709,15 +711,16 @@ namespace Bubba
                 Busy( );
                 var _watch = new Stopwatch( );
                 _watch.Start( );
-                var _list = new List<string>( );
-                var _pattern = "*" + _fileExtension;
+                var _list = new List<string>();
+                var _pattern = "*." + _fileExtension;
                 for( var _i = 0; _i < _initialPaths.Count; _i++ )
                 {
                     var _dirPath = _initialPaths[ _i ];
                     var _parent = Directory.CreateDirectory( _dirPath );
                     var _folders = _parent.GetDirectories( )
                         ?.Where( s => s.Name.StartsWith( "My" ) == false )
-                        ?.Select( s => s.FullName )?.ToList( );
+                        ?.Select( s => s.FullName )
+                        ?.ToList( );
 
                     var _topLevelFiles = _parent.GetFiles( _pattern, SearchOption.TopDirectoryOnly )
                         ?.Select( f => f.FullName )
@@ -807,7 +810,7 @@ namespace Bubba
                 CountLabel.Content = $"{_count:N0}";
                 DurationLabel.Content = $"{_duration:N0}";
                 PopulateListBox( _filePaths );
-                var _file = $@"/Resources/Assets/ExtensionImages/{_fileExtension?.ToUpper()}.png";
+                var _file = $@"/Resources/Assets/ExtensionImages/{_fileExtension?.ToUpper( )}.png";
                 var _uri = new Uri(_file, UriKind.Relative);
                 _image = new BitmapImage(_uri);
                 PictureBox.Source = _image;

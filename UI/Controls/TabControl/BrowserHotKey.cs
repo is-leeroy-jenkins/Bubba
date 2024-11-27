@@ -1,5 +1,5 @@
 ﻿// ******************************************************************************************
-//     Assembly:                Booger
+//     Assembly:                Baby
 //     Author:                  Terry D. Eppler
 //     Created:                 09-09-2024
 // 
@@ -52,6 +52,7 @@ namespace Bubba
     [ SuppressMessage( "ReSharper", "FieldCanBeMadeReadOnly.Global" ) ]
     [ SuppressMessage( "ReSharper", "MemberCanBeInternal" ) ]
     [ SuppressMessage( "ReSharper", "ClassCanBeSealed.Global" ) ]
+    [ SuppressMessage( "ReSharper", "UnusedType.Global" ) ]
     public class BrowserHotKey
     {
         /// <summary>
@@ -85,7 +86,8 @@ namespace Bubba
         public Action Callback;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="BrowserHotKey"/> class.
+        /// Initializes a new instance of the
+        /// <see cref="BrowserHotKey"/> class.
         /// </summary>
         /// <param name="callback">The callback.</param>
         /// <param name="key">The key.</param>

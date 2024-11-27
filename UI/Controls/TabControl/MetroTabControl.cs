@@ -1,14 +1,14 @@
 ﻿// ******************************************************************************************
-//     Assembly:                Booger
+//     Assembly:                Badger
 //     Author:                  Terry D. Eppler
-//     Created:                 08-08-2024
+//     Created:                 08-01-2024
 // 
 //     Last Modified By:        Terry D. Eppler
-//     Last Modified On:        08-08-2024
+//     Last Modified On:        08-01-2024
 // ******************************************************************************************
 // <copyright file="MetroTabControl.cs" company="Terry D. Eppler">
-//    Booger is a quick & dirty WPF application that interacts with OpenAI GPT-3.5 Turbo API
-//    based on NET6 and written in C-Sharp.
+//    Badger is data analysis and reporting tool for EPA Analysts
+//    based on WPF, NET6.0, and written in C-Sharp.
 // 
 //    Copyright ©  2024  Terry D. Eppler
 // 
@@ -43,9 +43,8 @@ namespace Bubba
 {
     using System;
     using System.Diagnostics.CodeAnalysis;
-    using System.Windows;
-    using System.Windows.Controls;
     using System.Windows.Media;
+    using Syncfusion.Windows.Tools.Controls;
 
     /// <inheritdoc />
     /// <summary>
@@ -56,13 +55,13 @@ namespace Bubba
     [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
     [ SuppressMessage( "ReSharper", "ClassCanBeSealed.Global" ) ]
     [ SuppressMessage( "ReSharper", "MemberCanBeInternal" ) ]
-    [ SuppressMessage( "ReSharper", "ClassNeverInstantiated.Global" ) ]
-    public class MetroTabControl : TabControl
+    [ SuppressMessage( "ReSharper", "FieldCanBeMadeReadOnly.Global" ) ]
+    public class MetroTabControl : TabControlExt
     {
         /// <summary>
         /// The theme
         /// </summary>
-        private protected readonly DarkMode _theme = new DarkMode( );
+        private protected DarkMode _theme = new DarkMode( );
 
         /// <inheritdoc />
         /// <summary>
@@ -74,11 +73,7 @@ namespace Bubba
         {
             // Control Properties
             FontFamily = new FontFamily( "Roboto" );
-            FontSize = 12;
-            Width = 260;
-            Height = 200;
-            HorizontalAlignment = HorizontalAlignment.Stretch;
-            VerticalAlignment = VerticalAlignment.Stretch;
+            FontSize = 11;
             Margin = _theme.Margin;
             Padding = _theme.Padding;
             BorderThickness = _theme.BorderThickness;

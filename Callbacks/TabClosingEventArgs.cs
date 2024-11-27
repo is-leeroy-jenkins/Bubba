@@ -59,10 +59,11 @@ namespace Bubba
         /// <value>
         /// The item.
         /// </value>
-        public BrowserTab Item { get; set; }
+        public BrowserTabItem Item { get; set; }
 
         /// <summary>
-        /// Gets or sets a value indicating whether this <see cref="TabClosingEventArgs"/> is cancel.
+        /// Gets or sets a value indicating whether this
+        /// see cref="TabClosingEventArgs"/> is cancel.
         /// </summary>
         /// <value>
         ///   <c>true</c> if cancel; otherwise, <c>false</c>.
@@ -71,10 +72,11 @@ namespace Bubba
 
         /// <inheritdoc />
         /// <summary>
-        /// Initializes a new instance of the <see cref="T:Bubba.TabClosingEventArgs" /> class.
+        /// Initializes a new instance of the
+        /// <see cref="T:Bubba.TabClosingEventArgs" /> class.
         /// </summary>
         /// <param name="item">The item.</param>
-        public TabClosingEventArgs( BrowserTab item )
+        public TabClosingEventArgs( BrowserTabItem item )
         {
             Item = item;
         }

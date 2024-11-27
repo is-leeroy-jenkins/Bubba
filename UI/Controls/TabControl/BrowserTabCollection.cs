@@ -43,10 +43,8 @@
 namespace Bubba
 {
     using System;
-    using System.Collections.Generic;
     using System.ComponentModel;
     using System.Diagnostics.CodeAnalysis;
-    using System.Windows;
 
     /// <inheritdoc />
     /// <summary>
@@ -66,21 +64,21 @@ namespace Bubba
 
         /// <summary>
         /// Gets or sets the
-        /// <see cref="BrowserTab"/>
+        /// <see cref="BrowserTabItem"/>
         /// at the specified index.
         /// </summary>
         /// <value>
-        /// The <see cref="BrowserTab"/>.
+        /// The <see cref="BrowserTabItem"/>.
         /// </value>
         /// <param name="index">The index.</param>
         /// <returns></returns>
-        public BrowserTab this[ int index ]
+        public BrowserTabItem this[ int index ]
         {
             get
             {
                 return index < 0 || List.Count - 1 < index
                     ? null
-                    : ( BrowserTab )List[ index ];
+                    : ( BrowserTabItem )List[ index ];
             }
             set
             {
@@ -124,7 +122,7 @@ namespace Bubba
         /// <value>
         /// The last visible.
         /// </value>
-        public virtual BrowserTab LastVisible
+        public virtual BrowserTabItem LastVisible
         {
             get
             {
@@ -146,7 +144,7 @@ namespace Bubba
         /// <value>
         /// The first visible.
         /// </value>
-        public virtual BrowserTab FirstVisible
+        public virtual BrowserTabItem FirstVisible
         {
             get
             {
@@ -212,7 +210,7 @@ namespace Bubba
         /// Adds the range.
         /// </summary>
         /// <param name="items">The items.</param>
-        public virtual void AddRange( BrowserTab[ ] items )
+        public virtual void AddRange( BrowserTabItem[ ] items )
         {
             BeginUpdate( );
             try
@@ -241,7 +239,7 @@ namespace Bubba
                 for( var _i = 0; _i < collection.Count; _i++ )
                 {
                     var _item = collection[ _i ];
-                    var _fATabStripItem = new BrowserTab( );
+                    var _fATabStripItem = new BrowserTabItem( );
                     _fATabStripItem.Assign( _item );
                     Add( _fATabStripItem );
                 }
@@ -257,7 +255,7 @@ namespace Bubba
         /// </summary>
         /// <param name="item">The item.</param>
         /// <returns></returns>
-        public virtual int Add( BrowserTab item )
+        public virtual int Add( BrowserTabItem item )
         {
             var _num = IndexOf( item );
             if( _num == -1 )
@@ -272,7 +270,7 @@ namespace Bubba
         /// Removes the specified item.
         /// </summary>
         /// <param name="item">The item.</param>
-        public virtual void Remove( BrowserTab item )
+        public virtual void Remove( BrowserTabItem item )
         {
             if( List.Contains( item ) )
             {
@@ -286,7 +284,7 @@ namespace Bubba
         /// <param name="newIndex">The new index.</param>
         /// <param name="item">The item.</param>
         /// <returns></returns>
-        public virtual BrowserTab MoveTo( int newIndex, BrowserTab item )
+        public virtual BrowserTabItem MoveTo( int newIndex, BrowserTabItem item )
         {
             var _num = List.IndexOf( item );
             if( _num >= 0 )
@@ -304,7 +302,7 @@ namespace Bubba
         /// </summary>
         /// <param name="item">The item.</param>
         /// <returns></returns>
-        public virtual int IndexOf( BrowserTab item )
+        public virtual int IndexOf( BrowserTabItem item )
         {
             return List.IndexOf( item );
         }
@@ -318,7 +316,7 @@ namespace Bubba
         /// [the specified item]; otherwise,
         /// <c>false</c>.
         /// </returns>
-        public virtual bool Contains( BrowserTab item )
+        public virtual bool Contains( BrowserTabItem item )
         {
             return List.Contains( item );
         }
@@ -328,7 +326,7 @@ namespace Bubba
         /// </summary>
         /// <param name="index">The index.</param>
         /// <param name="item">The item.</param>
-        public virtual void Insert( int index, BrowserTab item )
+        public virtual void Insert( int index, BrowserTabItem item )
         {
             if( !Contains( item ) )
             {
@@ -377,7 +375,7 @@ namespace Bubba
         /// <param name="item">The item.</param>
         protected override void OnInsertComplete( int index, object item )
         {
-            var _fATabStripItem = item as BrowserTab;
+            var _fATabStripItem = item as BrowserTabItem;
             _fATabStripItem.PropertyChanged += OnItemChanged;
             OnCollectionChanged( new CollectionChangeEventArgs( CollectionChangeAction.Add, item ) );
         }
@@ -391,7 +389,7 @@ namespace Bubba
         protected override void OnRemove( int index, object item )
         {
             base.OnRemove( index, item );
-            var _fATabStripItem = item as BrowserTab;
+            var _fATabStripItem = item as BrowserTabItem;
             _fATabStripItem.PropertyChanged -= OnItemChanged;
             OnCollectionChanged( new CollectionChangeEventArgs( CollectionChangeAction.Remove, item ) );
         }

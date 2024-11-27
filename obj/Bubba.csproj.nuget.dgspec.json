@@ -53,13 +53,13 @@
         "net8.0-windows7.0": {
           "targetAlias": "net8.0-windows",
           "dependencies": {
-            "CefSharp.Common.NETCore": {
+            "CefSharp.Common": {
               "target": "Package",
-              "version": "[130.1.90, )"
+              "version": "[131.2.70, )"
             },
-            "CefSharp.Wpf.NETCore": {
+            "CefSharp.Wpf": {
               "target": "Package",
-              "version": "[130.1.90, )"
+              "version": "[131.2.70, )"
             },
             "EPPlus": {
               "target": "Package",
@@ -170,18 +170,6 @@
             "ToastNotifications.Net6": {
               "target": "Package",
               "version": "[1.0.4, )"
-            },
-            "chromiumembeddedframework.runtime.win-arm64": {
-              "target": "Package",
-              "version": "[130.1.9, )"
-            },
-            "chromiumembeddedframework.runtime.win-x64": {
-              "target": "Package",
-              "version": "[130.1.9, )"
-            },
-            "chromiumembeddedframework.runtime.win-x86": {
-              "target": "Package",
-              "version": "[130.1.9, )"
             }
           },
           "imports": [

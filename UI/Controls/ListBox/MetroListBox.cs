@@ -71,12 +71,13 @@ namespace Bubba
         {
             // Control Properties
             Background = _theme.ControlInterior;
-            Foreground = _theme.LightBlueBrush;
+            Foreground = _theme.Foreground;
             BorderBrush = _theme.BorderBrush;
+            Height = 60;
+            Width = 100;
             Margin = _theme.Margin;
             Padding = _theme.Padding;
             BorderThickness = _theme.BorderThickness;
-            HorizontalContentAlignment = HorizontalAlignment.Left;
         }
 
         /// <summary>
@@ -87,6 +88,7 @@ namespace Bubba
         {
             try
             {
+                Items?.Clear( );
                 var _item = new MetroListBoxItem
                 {
                     Background = _theme.ControlInterior,

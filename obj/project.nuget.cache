@@ -1,15 +1,13 @@
 {
   "version": 2,
-  "dgSpecHash": "wZt1/uqcM+0=",
+  "dgSpecHash": "4owr+JySMU0=",
   "success": true,
   "projectFilePath": "C:\\Users\\terry\\source\\repos\\Bubba\\Bubba.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\terry\\.nuget\\packages\\cefsharp.common.netcore\\130.1.90\\cefsharp.common.netcore.130.1.90.nupkg.sha512",
-    "C:\\Users\\terry\\.nuget\\packages\\cefsharp.wpf.netcore\\130.1.90\\cefsharp.wpf.netcore.130.1.90.nupkg.sha512",
-    "C:\\Users\\terry\\.nuget\\packages\\chromiumembeddedframework.runtime\\130.1.9\\chromiumembeddedframework.runtime.130.1.9.nupkg.sha512",
-    "C:\\Users\\terry\\.nuget\\packages\\chromiumembeddedframework.runtime.win-arm64\\130.1.9\\chromiumembeddedframework.runtime.win-arm64.130.1.9.nupkg.sha512",
-    "C:\\Users\\terry\\.nuget\\packages\\chromiumembeddedframework.runtime.win-x64\\130.1.9\\chromiumembeddedframework.runtime.win-x64.130.1.9.nupkg.sha512",
-    "C:\\Users\\terry\\.nuget\\packages\\chromiumembeddedframework.runtime.win-x86\\130.1.9\\chromiumembeddedframework.runtime.win-x86.130.1.9.nupkg.sha512",
+    "C:\\Users\\terry\\.nuget\\packages\\cefsharp.common\\131.2.70\\cefsharp.common.131.2.70.nupkg.sha512",
+    "C:\\Users\\terry\\.nuget\\packages\\cefsharp.wpf\\131.2.70\\cefsharp.wpf.131.2.70.nupkg.sha512",
+    "C:\\Users\\terry\\.nuget\\packages\\chromiumembeddedframework.runtime.win-x64\\131.2.7\\chromiumembeddedframework.runtime.win-x64.131.2.7.nupkg.sha512",
+    "C:\\Users\\terry\\.nuget\\packages\\chromiumembeddedframework.runtime.win-x86\\131.2.7\\chromiumembeddedframework.runtime.win-x86.131.2.7.nupkg.sha512",
     "C:\\Users\\terry\\.nuget\\packages\\controlzex\\4.4.0\\controlzex.4.4.0.nupkg.sha512",
     "C:\\Users\\terry\\.nuget\\packages\\epplus\\7.5.1\\epplus.7.5.1.nupkg.sha512",
     "C:\\Users\\terry\\.nuget\\packages\\epplus.interfaces\\7.5.0\\epplus.interfaces.7.5.0.nupkg.sha512",
@@ -78,5 +76,16 @@
     "C:\\Users\\terry\\.nuget\\packages\\toastnotifications.messages.net6\\1.0.4\\toastnotifications.messages.net6.1.0.4.nupkg.sha512",
     "C:\\Users\\terry\\.nuget\\packages\\toastnotifications.net6\\1.0.4\\toastnotifications.net6.1.0.4.nupkg.sha512"
   ],
-  "logs": []
+  "logs": [
+    {
+      "code": "NU1701",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Package 'CefSharp.Wpf 131.2.70' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1' instead of the project target framework 'net8.0-windows7.0'. This package may not be fully compatible with your project.",
+      "libraryId": "CefSharp.Wpf",
+      "targetGraphs": [
+        "net8.0-windows7.0"
+      ]
+    }
+  ]
 }

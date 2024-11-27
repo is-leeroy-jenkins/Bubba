@@ -27,7 +27,7 @@
     FontSize="12"
     mc:Ignorable="d">
 
-    <!--  ******************************************** Resources *********************************************  -->
+    <!-- ******************************************** Resources ********************************************* -->
 
     <Window.Resources>
         <Style TargetType="{x:Type ToolTip}">
@@ -39,7 +39,7 @@
         </Style>
     </Window.Resources>
 
-    <!--  ******************************************** Context Menu ******************************************  -->
+    <!-- ******************************************** Context Menu ****************************************** -->
 
     <Window.ContextMenu>
         <ContextMenu x:Name="MainWindowContextMenu">
@@ -161,7 +161,7 @@
                 x:Name="InputGroupBox"
                 Canvas.Left="75"
                 Canvas.Top="3"
-                Width="1065"
+                Width="1070"
                 Height="126"
                 Padding="3,3,3,3"
                 HorizontalAlignment="Left"
@@ -195,9 +195,9 @@
         <Canvas Grid.Row="1">
             <GroupBox
                 x:Name="SystemGroupBox"
-                Canvas.Left="72"
+                Canvas.Left="75"
                 Canvas.Top="3"
-                Width="1068"
+                Width="1065"
                 Height="258"
                 Padding="3,3,3,3"
                 HorizontalAlignment="Left"
@@ -257,7 +257,7 @@
                 HorizontalAlignment="Left"
                 VerticalAlignment="Top"
                 Content="Store"
-                ToolTip="Whether or not to store the completion for model distillation "
+                ToolTip="Store completions for model distillation "
                 Foreground="{DynamicResource BlueBorderBrush}"
                 Background="{DynamicResource ControlHoverBrush}"
                 BorderBrush="{DynamicResource LightBlueBrush}" />
@@ -274,24 +274,19 @@
                 Background="{DynamicResource ControlHoverBrush}"
                 BorderBrush="{DynamicResource LightBlueBrush}" />
         </Canvas>
-
-        <Grid
+        <Canvas
             Grid.Row="2"
             MaxHeight="225"
             Margin="0,10,0,10">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="340*" />
-                <ColumnDefinition Width="145*" />
-                <ColumnDefinition Width="723*" />
-            </Grid.ColumnDefinitions>
 
             <GroupBox
                 x:Name="ParamaterGroupBox"
-                Grid.Column="1"
-                Grid.ColumnSpan="2"
+                Canvas.Left="360"
+                Canvas.Top="11"
+                Width="785"
                 Height="170"
-                Margin="10,0,68,0"
                 Padding="3,3,3,3"
+                HorizontalAlignment="Left"
                 VerticalAlignment="Center"
                 Header="Hyper-Parameters"
                 FontFamily="Roboto"
@@ -302,9 +297,10 @@
 
             <Canvas
                 x:Name="ParameterCanvas"
-                Grid.Column="1"
-                Grid.ColumnSpan="2"
-                Margin="10,27,10,11">
+                Canvas.Left="360"
+                Canvas.Top="22"
+                Width="838"
+                Height="159" HorizontalAlignment="Center" VerticalAlignment="Top">
 
                 <b:MetroTextBox
                     x:Name="FrequencyTextBox"
@@ -339,7 +335,7 @@
                     x:Name="MaxTokensTextBox"
                     Canvas.Left="551"
                     Canvas.Top="114"
-                    Width="60"
+                    Width="55"
                     Height="30"
                     HorizontalAlignment="Left"
                     VerticalAlignment="Center"
@@ -481,7 +477,7 @@
                     Canvas.Top="39"
                     Width="50"
                     Height="30"
-                    HorizontalAlignment="Left"
+                    HorizontalAlignment="Center"
                     VerticalAlignment="Center"
                     HorizontalContentAlignment="Center"
                     VerticalContentAlignment="Center"
@@ -548,7 +544,7 @@
                     Width="125"
                     Height="35"
                     HorizontalAlignment="Center"
-                    VerticalAlignment="Top" />
+                    VerticalAlignment="Center" />
 
                 <Slider
                     x:Name="PercentSlider"
@@ -589,9 +585,9 @@
             </Canvas>
 
             <Canvas
-                Grid.Column="0"
-                Height="170"
-                Margin="0,11,0,11">
+                Canvas.Top="11"
+                Width="350"
+                Height="170">
 
                 <GroupBox
                     x:Name="CommandGroupBox"
@@ -633,7 +629,7 @@
                     ToolTip="Clear All Entries" />
             </Canvas>
 
-        </Grid>
+        </Canvas>
 
         <Canvas
             x:Name="TopGrid"

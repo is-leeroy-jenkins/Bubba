@@ -700,17 +700,8 @@ namespace Bubba
                 _data += " \"max_tokens\": " + _maxTokens + ",";
                 _data += " \"user\": \"" + _userId + "\", ";
                 _data += " \"temperature\": " + _temp + ", ";
-
-                // Number between -2.0 and 2.0  Positive value decrease the
-                // model's likelihood to repeat the same line verbatim.
                 _data += " \"frequency_penalty\": 0.0" + ", ";
-
-                // Number between -2.0 and 2.0. Positive values increase the model's
-                // likelihood to talk about new topics.
                 _data += " \"presence_penalty\": 0.0" + ", ";
-
-                // Up to 4 sequences where the API will stop generating further tokens.
-                // The returned text will not contain the stop sequence.
                 _data += " \"stop\": [\"#\", \";\"]";
                 _data += "}";
             }
@@ -719,11 +710,14 @@ namespace Bubba
             _streamWriter.Write( _data );
             _streamWriter.Flush( );
             _streamWriter.Close( );
-            var _response = _request.GetResponse( );
-            var _stream = _response.GetResponseStream( );
-            var _reader = new StreamReader( _stream );
-            var _json = _reader.ReadToEnd( );
-            var _script = _json.SerializeToJavaScript( );
+            var _json = "";
+            using( var _response = _request.GetResponse( ) )
+            {
+                using var _responseStream = _response.GetResponseStream( );
+                using var _reader = new StreamReader( _responseStream );
+                _json = _reader.ReadToEnd( );
+            }
+
             var _objects = new Dictionary<string, object>( );
             var _choices = _objects.Keys.ToList( );
             var _choice = _choices[ 0 ];
@@ -792,6 +786,7 @@ namespace Bubba
             {
                 var _url = "https://api.openai.com/v1/models";
                 _httpClient = new HttpClient( );
+                _httpClient.Timeout = new TimeSpan( 0, 0, 3 );
                 _httpClient.DefaultRequestHeaders.Authorization =
                     new AuthenticationHeaderValue( "Bearer", KEY );
 
@@ -822,6 +817,8 @@ namespace Bubba
                         ModelComboBox.Items.Add( _model );
                     }
                 } );
+
+                ModelComboBox.SelectedIndex = 0;
             }
             catch( HttpRequestException ex )
             {

@@ -129,7 +129,7 @@ namespace Bubba
         /// <summary>
         /// The selected item
         /// </summary>
-        private BrowserTab _selectedItem;
+        private BrowserTabItem _selectedItem;
 
         /// <summary>
         /// The rectangle
@@ -191,7 +191,7 @@ namespace Bubba
         /// Gets or sets the first item in the current selection
         /// or returns null if the selection is empty.
         /// </summary>
-        public new BrowserTab SelectedItem
+        public new BrowserTabItem SelectedItem
         {
             get
             {
@@ -219,7 +219,7 @@ namespace Bubba
                     _selectedItem = value;
                 }
 
-                foreach( BrowserTab _item in Items )
+                foreach( BrowserTabItem _item in Items )
                 {
                     if( _item == _selectedItem )
                     {
@@ -254,7 +254,7 @@ namespace Bubba
         /// Adds the tab.
         /// </summary>
         /// <param name="tabItem">The tab item.</param>
-        public void AddTab( BrowserTab tabItem )
+        public void AddTab( BrowserTabItem tabItem )
         {
             AddTab( tabItem, false );
         }
@@ -264,7 +264,7 @@ namespace Bubba
         /// </summary>
         /// <param name="tabItem">The tab item.</param>
         /// <param name="autoSelect">if set to <c>true</c> [automatic select].</param>
-        public void AddTab( BrowserTab tabItem, bool autoSelect )
+        public void AddTab( BrowserTabItem tabItem, bool autoSelect )
         {
             Items.Add( tabItem );
             if( ( autoSelect && tabItem.IsVisible )
@@ -279,7 +279,7 @@ namespace Bubba
         /// Removes the tab.
         /// </summary>
         /// <param name="tabItem">The tab item.</param>
-        public void RemoveTab( BrowserTab tabItem )
+        public void RemoveTab( BrowserTabItem tabItem )
         {
             var _num = Items.IndexOf( tabItem );
             if( _num >= 0 )
@@ -306,9 +306,9 @@ namespace Bubba
         /// </summary>
         /// <param name="pt">The pt.</param>
         /// <returns></returns>
-        public BrowserTab GetTabItemByPoint( Point pt )
+        public BrowserTabItem GetTabItemByPoint( Point pt )
         {
-            BrowserTab _result = null;
+            BrowserTabItem _result = null;
             var _flag = false;
             for( var _i = 0; _i < Items.Count; _i++ )
             {
@@ -369,7 +369,7 @@ namespace Bubba
         /// Selects the item.
         /// </summary>
         /// <param name="tabItem">The tab item.</param>
-        public void SelectItem( BrowserTab tabItem )
+        public void SelectItem( BrowserTabItem tabItem )
         {
             tabItem.IsVisible = true;
             tabItem.Selected = true;
@@ -379,7 +379,7 @@ namespace Bubba
         /// Uns the select item.
         /// </summary>
         /// <param name="tabItem">The tab item.</param>
-        public void UnSelectItem( BrowserTab tabItem )
+        public void UnSelectItem( BrowserTabItem tabItem )
         {
             tabItem.Selected = false;
         }
@@ -482,20 +482,21 @@ namespace Bubba
         /// instance containing the event data.</param>
         private void OnCollectionChanged( object sender, CollectionChangeEventArgs e )
         {
-            var _tab = ( BrowserTab )e.Element;
+            var _tab = ( BrowserTabItem )e.Element;
             if( e.Action == CollectionChangeAction.Add )
             {
-                OnBrowserTabItemChanged( new BrowserTabChangedEventArgs( _tab, ChangeType.Added ) );
+                var _args = new BrowserTabChangedEventArgs( _tab, ChangeType.Added );
+                OnBrowserTabItemChanged( _args );
             }
             else if( e.Action == CollectionChangeAction.Remove )
             {
-                OnBrowserTabItemChanged(
-                    new BrowserTabChangedEventArgs( _tab, ChangeType.Removed ) );
+                var _args = new BrowserTabChangedEventArgs( _tab, ChangeType.Removed );
+                OnBrowserTabItemChanged( _args );
             }
             else
             {
-                OnBrowserTabItemChanged(
-                    new BrowserTabChangedEventArgs( _tab, ChangeType.Changed ) );
+                var _args = new BrowserTabChangedEventArgs( _tab, ChangeType.Changed );
+                OnBrowserTabItemChanged( _args );
             }
 
             UpdateFormat( );
