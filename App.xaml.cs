@@ -176,7 +176,7 @@ namespace Bubba
         /// <param name="mainWindow">
         /// The main window.
         /// </param>
-        public void SetupRestoreWindowPlace( MainWindow mainWindow )
+        public void SetupRestoreWindowPlace( BubbaWindow mainWindow )
         {
             var _config = Path.Combine( AppDomain.CurrentDomain.BaseDirectory, "Bubba.config" );
             _windowPlace = new WindowPlace( _config );

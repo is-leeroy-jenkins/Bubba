@@ -134,7 +134,7 @@
     </Window.ContextMenu>
 
 
-    <!--********************************************* LAYOUT *********************************************-->
+    <!--  ********************************************* LAYOUT *********************************************  -->
 
     <Grid
         Width="Auto"
@@ -152,7 +152,7 @@
             <RowDefinition Height="47.04" />
         </Grid.RowDefinitions>
 
-        <!--******************************************** TAB CONTROL *********************************************-->
+        <!--  ******************************************** TAB CONTROL *********************************************  -->
 
         <b:MetroTabControl
             x:Name="TabControl"
@@ -160,14 +160,14 @@
             Width="Auto"
             MinWidth="800"
             MinHeight="498"
-            Margin="5"
+            Margin="5,5,5,5"
             Padding="1"
             HorizontalContentAlignment="Stretch"
             VerticalContentAlignment="Stretch"
             Background="{DynamicResource FormBackground}"
             BorderBrush="{DynamicResource FormBackground}"
             Foreground="{DynamicResource FormForeground}"
-            NewButtonBackground="{DynamicResource ControlBackground}"
+            NewButtonBackground="{DynamicResource BrightGreenForeground}"
             ScrollViewer.VerticalScrollBarVisibility="Auto"
             TabItemHoverBackground="{DynamicResource FormBackground}"
             TabItemHoverBorderBrush="{DynamicResource FormBackground}"
@@ -184,12 +184,531 @@
                 Margin="1,1,1,1"
                 Padding="1,1,1,1"
                 IsSelected="True"
-                Background="{DynamicResource FormBackground}"
                 BorderBrush="{DynamicResource FormBackground}"
-                Foreground="{DynamicResource FormForeground}"
+                Foreground="{DynamicResource LightBlueBrush}"
                 FontFamily="Roboto"
-                Header="" 
-                Content="GPT"/>
+                Header="GPT"
+                Background="{DynamicResource BackgroundBrush}" />
+
+
+            <!--  ******************************************** Chat Layou *****************************************  -->
+
+            <Grid x:Name="MainGrid">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="31*" />
+                    <RowDefinition Height="175*" />
+                    <RowDefinition Height="140*" />
+                    <RowDefinition Height="97*" />
+                </Grid.RowDefinitions>
+
+                <Canvas Grid.Row="3">
+
+                    <GroupBox
+                        x:Name="InputGroupBox"
+                        Canvas.Left="75"
+                        Canvas.Top="3"
+                        Width="1070"
+                        Height="126"
+                        Padding="3,3,3,3"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Center"
+                        Header="User Prompt"
+                        Background="#FF1C1C1C"
+                        BorderBrush="{DynamicResource MutedForeground}"
+                        FontFamily="Roboto"
+                        FontSize="12"
+                        Foreground="{DynamicResource LightBlueBrush}" />
+
+                    <b:MetroTextBox
+                        x:Name="UserTextBox"
+                        Canvas.Left="176"
+                        Canvas.Top="38"
+                        Width="856"
+                        Height="71"
+                        MinWidth="480"
+                        MinHeight="25"
+                        Padding="15,15,1,1"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Top"
+                        ToolTip="Enter User Prompt"
+                        Background="{DynamicResource ControlInteriorBrush}"
+                        TextWrapping="Wrap"
+                        Text=""
+                        FontFamily="Roboto"
+                        FontSize="12" />
+                </Canvas>
+
+                <Canvas Grid.Row="1">
+                    <GroupBox
+                        x:Name="SystemGroupBox"
+                        Canvas.Left="75"
+                        Canvas.Top="3"
+                        Width="1065"
+                        Height="258"
+                        Padding="3,3,3,3"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Center"
+                        Header="System Prompt"
+                        FontFamily="Roboto"
+                        FontSize="12"
+                        Background="#FF1c1c1c"
+                        BorderBrush="{DynamicResource MutedForeground}"
+                        Foreground="{DynamicResource LightBlueBrush}" />
+
+                    <b:MetroTextBox
+                        x:Name="SystemTextBox"
+                        Canvas.Left="175"
+                        Canvas.Top="27"
+                        Width="855"
+                        Height="222"
+                        MinWidth="480"
+                        MinHeight="50"
+                        Padding="15,15,5,5"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Center"
+                        Background="{StaticResource ControlInteriorBrush}"
+                        TextWrapping="Wrap"
+                        Text=""
+                        FontFamily="Roboto"
+                        FontSize="12" />
+
+                    <CheckBox
+                        x:Name="MuteCheckBox"
+                        Canvas.Left="1060"
+                        Canvas.Top="27"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Top"
+                        Content="Mute"
+                        ToolTip="Activates/Deactivates speech functionality"
+                        Foreground="{StaticResource BlueBorderBrush}"
+                        Background="{StaticResource ControlHoverBrush}"
+                        BorderBrush="{StaticResource LightBlueBrush}" />
+
+                    <CheckBox
+                        x:Name="ListenCheckBox"
+                        Canvas.Left="1060"
+                        Canvas.Top="66"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Top"
+                        Content="Listen"
+                        ToolTip="Activates/Deactivates sound functionality"
+                        Foreground="{StaticResource BlueBorderBrush}"
+                        Background="{StaticResource ControlHoverBrush}"
+                        BorderBrush="{StaticResource LightBlueBrush}" />
+
+                    <CheckBox
+                        x:Name="StoreCheckBox"
+                        Canvas.Left="1062"
+                        Canvas.Top="101"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Top"
+                        Content="Store"
+                        ToolTip="Store completions for model distillation "
+                        Foreground="{StaticResource BlueBorderBrush}"
+                        Background="{StaticResource ControlHoverBrush}"
+                        BorderBrush="{StaticResource LightBlueBrush}" />
+
+                    <CheckBox
+                        x:Name="StreamCheckBox"
+                        Canvas.Left="1062"
+                        Canvas.Top="138"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Top"
+                        Content="Stream"
+                        ToolTip="Sends partial messages as they occur"
+                        Foreground="{StaticResource BlueBorderBrush}"
+                        Background="{DynamicResource ControlHoverBrush}"
+                        BorderBrush="{DynamicResource LightBlueBrush}" />
+                </Canvas>
+
+                <Canvas
+                    Grid.Row="2"
+                    MaxHeight="225"
+                    Margin="0,10,0,10">
+
+                    <GroupBox
+                        x:Name="ParamaterGroupBox"
+                        Canvas.Left="360"
+                        Canvas.Top="11"
+                        Width="785"
+                        Height="170"
+                        Padding="3,3,3,3"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Center"
+                        Header="Hyper-Parameters"
+                        FontFamily="Roboto"
+                        FontSize="12"
+                        Background="#FF1C1C1C"
+                        BorderBrush="{StaticResource MutedForeground}"
+                        Foreground="{DynamicResource LightBlueBrush}" />
+
+                    <Canvas
+                        x:Name="ParameterCanvas"
+                        Canvas.Left="360"
+                        Canvas.Top="22"
+                        Width="838"
+                        Height="159"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Top">
+
+                        <b:MetroTextBox
+                            x:Name="FrequencyTextBox"
+                            Canvas.Left="170"
+                            Canvas.Top="111"
+                            Width="50"
+                            Height="30"
+                            HorizontalAlignment="Left"
+                            VerticalAlignment="Center"
+                            HorizontalContentAlignment="Center"
+                            TextWrapping="Wrap"
+                            Tag="Frequency"
+                            ToolTip="A number between -2 and 2 (Frequency). Default=0"
+                            Text="{Binding Value, ElementName=FrequencySlider, Mode=TwoWay}" />
+
+                        <b:MetroTextBox
+                            x:Name="TemperatureTextBox"
+                            Canvas.Left="35"
+                            Canvas.Top="111"
+                            Width="50"
+                            Height="30"
+                            HorizontalAlignment="Left"
+                            VerticalAlignment="Center"
+                            HorizontalContentAlignment="Center"
+                            TextWrapping="Wrap"
+                            Tag="Temperature"
+                            ToolTip="A number between 0 and 1 (Temperature). Default=1"
+                            Text="{Binding Value, ElementName=TemperatureSlider, Mode=TwoWay}"
+                            SelectionBackgroundColor="{DynamicResource BlueBackground}" />
+
+                        <b:MetroTextBox
+                            x:Name="MaxTokensTextBox"
+                            Canvas.Left="551"
+                            Canvas.Top="114"
+                            Width="55"
+                            Height="30"
+                            HorizontalAlignment="Left"
+                            VerticalAlignment="Center"
+                            HorizontalContentAlignment="Center"
+                            VerticalContentAlignment="Center"
+                            TextWrapping="Wrap"
+                            Tag="MaximumTokens"
+                            ToolTip="An upper bound for token usage"
+                            Text="2048" />
+
+                        <Label
+                            x:Name="TemperatureLabel"
+                            Canvas.Left="10"
+                            Canvas.Top="13"
+                            Width="85"
+                            Height="24"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            Foreground="{StaticResource BlueBorderBrush}"
+                            Content="Randomness"
+                            ToolTip="A number between 0 and 2 (Temperature). Default=1" />
+
+                        <Label
+                            Canvas.Left="544"
+                            Canvas.Top="86"
+                            Width="74"
+                            Height="24"
+                            HorizontalAlignment="Left"
+                            VerticalAlignment="Top"
+                            HorizontalContentAlignment="Left"
+                            VerticalContentAlignment="Bottom"
+                            Foreground="{StaticResource BlueBorderBrush}"
+                            Content="Max Tokens" />
+
+                        <Label
+                            x:Name="FrequencyLabel"
+                            Canvas.Left="158"
+                            Canvas.Top="11"
+                            Width="72"
+                            Height="24"
+                            HorizontalAlignment="Left"
+                            VerticalAlignment="Top"
+                            VerticalContentAlignment="Center"
+                            Foreground="{StaticResource BlueBorderBrush}"
+                            ToolTip="A number between -2 and 2 (Frequency). Default=0"
+                            Content="Frequency" />
+
+                        <b:MetroComboBox
+                            x:Name="VoiceComboBox"
+                            Canvas.Left="645"
+                            Canvas.Top="108"
+                            Width="125"
+                            Height="36"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Top">
+                            <sync:ComboBoxItemAdv Content="Item 1" />
+                            <sync:ComboBoxItemAdv Content="Item 2" />
+                            <sync:ComboBoxItemAdv Content="Item 3" />
+                            <sync:ComboBoxItemAdv Content="Item 4" />
+                            <sync:ComboBoxItemAdv Content="Item 5" />
+                        </b:MetroComboBox>
+
+                        <Label
+                            x:Name="ModelLabel"
+                            Canvas.Left="645"
+                            Canvas.Top="10"
+                            Height="24"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Top"
+                            Foreground="{StaticResource BlueBorderBrush}"
+                            Content="Models" />
+
+                        <Label
+                            x:Name="VoiceLabel"
+                            Canvas.Left="645"
+                            Canvas.Top="80"
+                            Height="24"
+                            HorizontalAlignment="Left"
+                            VerticalAlignment="Top"
+                            Foreground="{StaticResource BlueBorderBrush}"
+                            Content="Voice" />
+
+                        <b:MetroTextBox
+                            x:Name="PresenceTextBox"
+                            Canvas.Left="440"
+                            Canvas.Top="111"
+                            Width="50"
+                            Height="30"
+                            HorizontalAlignment="Left"
+                            VerticalAlignment="Center"
+                            HorizontalContentAlignment="Center"
+                            Tag="Presence"
+                            ToolTip="A number between -2.0 and 2.0 (Presence). Default 0.0"
+                            Text="{Binding Value, ElementName=PresenceSlider, Mode=TwoWay}" />
+
+                        <Label
+                            x:Name="PresenceLabel"
+                            Canvas.Left="424"
+                            Canvas.Top="13"
+                            Width="72"
+                            Height="24"
+                            HorizontalAlignment="Left"
+                            VerticalAlignment="Top"
+                            VerticalContentAlignment="Bottom"
+                            Foreground="{StaticResource BlueBorderBrush}"
+                            ToolTip="A number between -2.0 and 2.0 (Presence). Default 0.0"
+                            Content="Presence" />
+
+                        <b:MetroTextBox
+                            x:Name="TopPercentTextBox"
+                            Canvas.Left="317"
+                            Canvas.Top="111"
+                            Width="50"
+                            Height="30"
+                            HorizontalAlignment="Left"
+                            VerticalAlignment="Center"
+                            HorizontalContentAlignment="Center"
+                            TextWrapping="Wrap"
+                            Tag="TopPercent"
+                            ToolTip="A number between 0 and 1 (%). Default=0"
+                            Text="{Binding Value, ElementName=PercentSlider, Mode=TwoWay}" />
+
+                        <Label
+                            x:Name="TopPercentLabel"
+                            Canvas.Left="282"
+                            Canvas.Top="13"
+                            Width="105"
+                            Height="24"
+                            HorizontalAlignment="Left"
+                            VerticalAlignment="Center"
+                            VerticalContentAlignment="Center"
+                            Foreground="{StaticResource BlueBorderBrush}"
+                            ToolTip="A number between 0 and 1 (%). Default=0"
+                            Content="Probability Mass" />
+
+                        <b:MetroTextBox
+                            x:Name="NumberTextBox"
+                            Canvas.Left="556"
+                            Canvas.Top="39"
+                            Width="50"
+                            Height="30"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            HorizontalContentAlignment="Center"
+                            VerticalContentAlignment="Center"
+                            TextWrapping="Wrap"
+                            Tag="Number"
+                            ToolTip="The number of response to generate"
+                            Text="1" />
+
+                        <Label
+                            x:Name="ResponseLabel"
+                            Canvas.Left="544"
+                            Canvas.Top="10"
+                            Width="74"
+                            Height="24"
+                            HorizontalAlignment="Left"
+                            VerticalAlignment="Center"
+                            HorizontalContentAlignment="Left"
+                            VerticalContentAlignment="Center"
+                            Foreground="{StaticResource BlueBorderBrush}"
+                            Content="Responses" />
+
+                        <Slider
+                            x:Name="TemperatureSlider"
+                            Canvas.Left="9"
+                            Canvas.Top="50"
+                            Width="120"
+                            Height="47"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            HorizontalContentAlignment="Center"
+                            VerticalContentAlignment="Center"
+                            ToolTip="A number between 0 and 2 (Temperature). Default 1.0"
+                            Maximum="2"
+                            Minimum="0"
+                            TickPlacement="Both"
+                            BorderThickness="0,0,0,0"
+                            SmallChange="0.1"
+                            LargeChange="0.2"
+                            Foreground="{DynamicResource BlueBorderBrush}"
+                            TickFrequency="0.25"
+                            Value="1.0" />
+
+                        <Slider
+                            x:Name="FrequencySlider"
+                            Canvas.Left="144"
+                            Canvas.Top="50"
+                            Width="120"
+                            Height="46"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Top"
+                            Maximum="2"
+                            Minimum="-2"
+                            TickPlacement="Both"
+                            ToolTip="A number between -2 and 2 (Frequency). Default 0.0"
+                            LargeChange="0.2"
+                            SmallChange="0.1"
+                            TickFrequency=".9"
+                            Value="0" />
+
+                        <b:MetroComboBox
+                            x:Name="ModelComboBox"
+                            Canvas.Left="645"
+                            Canvas.Top="39"
+                            Width="125"
+                            Height="35"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center" />
+
+                        <Slider
+                            x:Name="PercentSlider"
+                            Canvas.Left="282"
+                            Canvas.Top="50"
+                            Width="120"
+                            Height="46"
+                            HorizontalAlignment="Left"
+                            VerticalAlignment="Top"
+                            Maximum="1"
+                            Minimum="0"
+                            TickPlacement="Both"
+                            ToolTip="A number between 0 and 1 (%). Default 0.0"
+                            LargeChange="0.1"
+                            SmallChange="0.01"
+                            TickFrequency=".2"
+                            Value="0" />
+
+                        <Slider
+                            x:Name="PresenceSlider"
+                            Canvas.Left="410"
+                            Canvas.Top="50"
+                            Width="120"
+                            Height="46"
+                            HorizontalAlignment="Left"
+                            VerticalAlignment="Top"
+                            HorizontalContentAlignment="Center"
+                            VerticalContentAlignment="Center"
+                            ToolTip="A number between -2.0 and 2.0 (Presence). Default 0.0"
+                            Maximum="2"
+                            Minimum="-2"
+                            TickPlacement="Both"
+                            LargeChange="0.2"
+                            SmallChange="0.1"
+                            TickFrequency=".9"
+                            Value="0.0" />
+
+                    </Canvas>
+
+                    <Canvas
+                        Canvas.Top="11"
+                        Width="350"
+                        Height="170">
+
+                        <GroupBox
+                            x:Name="CommandGroupBox"
+                            Canvas.Left="75"
+                            Width="263"
+                            Height="170"
+                            Padding="3,3,3,3"
+                            HorizontalAlignment="Left"
+                            VerticalAlignment="Center"
+                            Header="Commands"
+                            FontFamily="Roboto"
+                            FontSize="12"
+                            Background="#FF1C1C1C"
+                            BorderBrush="{StaticResource MutedForeground}"
+                            Foreground="{DynamicResource LightBlueBrush}" />
+
+                        <b:MetroTile
+                            x:Name="SendButton"
+                            Title="    Send"
+                            Canvas.Left="150"
+                            Canvas.Top="32"
+                            Width="114"
+                            Height="39"
+                            HorizontalAlignment="Left"
+                            VerticalAlignment="Top"
+                            BorderBrush="{StaticResource BlueBorderBrush}"
+                            ToolTip="Send Chat Message" />
+
+                        <b:MetroTile
+                            x:Name="ClearButton"
+                            Title="    Clear"
+                            Canvas.Left="152"
+                            Canvas.Top="107"
+                            Width="113"
+                            Height="38"
+                            HorizontalAlignment="Left"
+                            VerticalAlignment="Top"
+                            BorderBrush="{StaticResource BlueBorderBrush}"
+                            ToolTip="Clear All Entries" />
+                    </Canvas>
+
+                </Canvas>
+
+                <Canvas
+                    x:Name="TopGrid"
+                    Grid.Row="0">
+
+                    <b:MetroLabel
+                        x:Name="SpeechLabel"
+                        Canvas.Left="3"
+                        Canvas.Top="3"
+                        Width="447"
+                        Height="22"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Center"
+                        HorizontalContentAlignment="Left"
+                        VerticalContentAlignment="Center"
+                        Content="Speech..." />
+
+                    <Label
+                        x:Name="UserLabel"
+                        Canvas.Left="506"
+                        Canvas.Top="5"
+                        Width="189"
+                        Height="32"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Top"
+                        VerticalContentAlignment="Top"
+                        Foreground="{StaticResource BlueBorderBrush}"
+                        Content="User ID" />
+                </Canvas>
+            </Grid>
 
             <b:BrowserTabItem
                 x:Name="BrowserTab"
@@ -207,10 +726,12 @@
 
         </b:MetroTabControl>
 
-        <!--******************************************** ToolStrip  *********************************************-->
+        <!--  ******************************************** ToolStrip  *********************************************  -->
 
         <Grid Grid.Row="2">
-            <Canvas x:Name="ToolStripCanvass" Margin="1,1,1,1">
+            <Canvas
+                x:Name="ToolStripCanvass"
+                Margin="1,1,1,1">
                 <b:ToolStrip
                     x:Name="ToolStrip"
                     Width="1201"
@@ -312,11 +833,9 @@
 
 
         <Grid
-            x:Name="ControlBox"
-            Height="40"
+            x:Name="ControlGrid"
             MinWidth="600"
-            Margin="10,0,0,0"
-            VerticalAlignment="Center">
+            Margin="10,5,0,5">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="59*" />
                 <ColumnDefinition Width="65*" />
@@ -369,8 +888,10 @@
             <b:MetroLabel
                 x:Name="DateLabel"
                 Grid.Column="8"
+                Width="142"
                 MinWidth="100"
-                Margin="1,8,1,5"
+                Margin="1,10,0,8"
+                HorizontalAlignment="Left"
                 HorizontalContentAlignment="Right"
                 Content="MetroLabel"
                 FontSize="11"
@@ -380,7 +901,7 @@
                 x:Name="UrlTextBox"
                 Grid.Column="5"
                 Height="34"
-                MinWidth="70"
+                MinWidth="660"
                 Padding="30,1,1,1"
                 VerticalAlignment="Center"
                 HorizontalContentAlignment="Left"

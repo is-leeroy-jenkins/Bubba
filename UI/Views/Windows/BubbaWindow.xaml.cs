@@ -52,11 +52,15 @@ namespace Bubba
     using System.Threading.Tasks;
     using System.Configuration;
     using System.Diagnostics.CodeAnalysis;
+    using System.Globalization;
     using System.Linq;
+    using System.Net;
     using System.Net.Http;
+    using System.Net.Http.Headers;
     using System.Runtime.CompilerServices;
     using System.Speech.Recognition;
     using System.Speech.Synthesis;
+    using System.Text.Json;
     using System.Threading;
     using System.Windows.Forms;
     using System.Windows.Input;
@@ -907,14 +911,21 @@ namespace Bubba
         {
             try
             {
-                PreviousButton.Click += OnPreviousButtonClick;
-                NextButton.Click += OnNextButtonClick;
-                LookupButton.Click += OnLookupButtonClick;
-                RefreshButton.Click += OnRefreshButtonClick;
-                MenuButton.Click += OnToggleButtonClick;
                 SearchPanelCancelButton.MouseLeftButtonDown += OnCloseButtonClick;
                 UrlTextBox.GotMouseCapture += OnUrlTextBoxClick;
                 ToolStripTextBox.GotMouseCapture += OnToolStripTextBoxClick;
+                FirstButton.Click += OnFirstButtonClick;
+                PreviousButton.Click += OnPreviousButtonClick;
+                NextButton.Click += OnNextButtonClick;
+                LastButton.Click += OnLastButtonClick;
+                LookupButton.Click += OnLookupButtonClick;
+                RefreshButton.Click += OnRefreshButtonClick;
+                ModelComboBox.SelectionChanged += OnModelSelectionChanged;
+                MenuButton.Click += OnToggleButtonClick;
+                TemperatureTextBox.TextChanged += OnTextBoxInputChanged;
+                PresenceTextBox.TextChanged += OnTextBoxInputChanged;
+                FrequencyTextBox.TextChanged += OnTextBoxInputChanged;
+                TopPercentTextBox.TextChanged += OnTextBoxInputChanged;
             }
             catch( Exception ex )
             {
@@ -1848,47 +1859,6 @@ namespace Bubba
         }
 
         /// <summary>
-        /// Sets the toolbar visibility.
-        /// </summary>
-        /// <param name="visible">if set to <c>true</c> [visible].</param>
-        private void SetToolbarVisibility( bool visible = true )
-        {
-            try
-            {
-                if( visible )
-                {
-                    FirstButton.Visibility = Visibility.Visible;
-                    PreviousButton.Visibility = Visibility.Visible;
-                    NextButton.Visibility = Visibility.Visible;
-                    LastButton.Visibility = Visibility.Visible;
-                    ToolStripTextBox.Visibility = Visibility.Visible;
-                    LookupButton.Visibility = Visibility.Visible;
-                    RefreshButton.Visibility = Visibility.Visible;
-                    DeleteButton.Visibility = Visibility.Visible;
-                    ToolStripTextBox.Visibility = Visibility.Visible;
-                    ToolStripComboBox.Visibility = Visibility.Visible;
-                }
-                else
-                {
-                    FirstButton.Visibility = Visibility.Hidden;
-                    PreviousButton.Visibility = Visibility.Hidden;
-                    NextButton.Visibility = Visibility.Hidden;
-                    LastButton.Visibility = Visibility.Hidden;
-                    ToolStripTextBox.Visibility = Visibility.Hidden;
-                    LookupButton.Visibility = Visibility.Hidden;
-                    RefreshButton.Visibility = Visibility.Hidden;
-                    DeleteButton.Visibility = Visibility.Hidden;
-                    ToolStripTextBox.Visibility = Visibility.Hidden;
-                    ToolStripComboBox.Visibility = Visibility.Hidden;
-                }
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
-            }
-        }
-
-        /// <summary>
         /// Updates the download item.
         /// </summary>
         /// <param name="item">The item.</param>
@@ -2206,34 +2176,52 @@ namespace Bubba
         }
 
         /// <summary>
-        /// Updates the status.
+        /// Clears the controls.
         /// </summary>
-        private void UpdateStatus( )
+        private void ClearChatControls( )
         {
             try
             {
-                StatusLabel.Content = DateTime.Now.ToLongTimeString( );
-                DateLabel.Content = DateTime.Now.ToShortDateString( );
+                UserTextBox.Text = "1";
+                PresenceSlider.Value = 0.0;
+                TemperatureSlider.Value = 1.0;
+                FrequencySlider.Value = 0.0;
+                PercentSlider.Value = 0.0;
+                MaxTokensTextBox.Text = "2048";
+                SystemTextBox.Text = "";
+                UserTextBox.Text = "";
+                ToolStripTextBox.Text = "";
             }
-            catch( Exception ex )
+            catch(Exception ex)
             {
-                Fail( ex );
+                Fail(ex);
             }
         }
 
         /// <summary>
-        /// Updates the status.
+        /// Gets the hyper parameter.
         /// </summary>
-        /// <param name="state">The state.</param>
-        private void UpdateStatus( object state )
+        /// <param name="input">The input.</param>
+        /// <returns></returns>
+        private protected HyperParameter GetHyperParameter(string input)
         {
             try
             {
-                Dispatcher.BeginInvoke( _statusUpdate );
+                ThrowIf.Empty(input, nameof(input));
+                var _names = Enum.GetNames(typeof(HyperParameter));
+                if(_names.Contains(input))
+                {
+                    return (HyperParameter)Enum.Parse(typeof(HyperParameter), input);
+                }
+                else
+                {
+                    return default(HyperParameter);
+                }
             }
-            catch( Exception ex )
+            catch(Exception ex)
             {
-                Fail( ex );
+                Fail(ex);
+                return default(HyperParameter);
             }
         }
 
@@ -2260,6 +2248,423 @@ namespace Bubba
                 Fail( ex );
             }
         }
+        
+        /// <summary>
+        /// Sends the HTTP message.
+        /// </summary>
+        /// <param name="question">The question.</param>
+        /// <returns></returns>
+        public string SendHttpMessage( string question )
+        {
+            ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12
+                | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls;
+
+            // text-davinci-002, text-davinci-003
+            var _model = ModelComboBox.Text;
+            var _url = "https://api.openai.com/v1/completions";
+            if( _model.IndexOf( "gpt-3.5-turbo" ) != -1 )
+            {
+                //Chat GTP 4 https://openai.com/research/gpt-4
+                _url = "https://api.openai.com/v1/chat/completions";
+            }
+
+            var _request = WebRequest.Create( _url );
+            _request.Method = "POST";
+            _request.ContentType = "application/json";
+            _request.Headers.Add( "Authorization", "Bearer " + KEY );
+            var _maxTokens = int.Parse( MaxTokensTextBox.Text );// 2048
+            var _temp = double.Parse( TemperatureTextBox.Text );// 0.5
+            if( ( _temp < 0d ) | ( _temp > 1d ) )
+            {
+                var _msg = "Randomness has to be between 0 and 1 "
+                    + "with higher values resulting in more random text";
+
+                SendMessage( _msg );
+                return "";
+            }
+
+            var _userId = UserLabel.Content;// 1        
+            var _data = "";
+            if( _model.IndexOf( "gpt-3.5-turbo" ) != -1 )
+            {
+                _data = "{";
+                _data += " \"model\":\"" + _model + "\",";
+                _data += " \"messages\": [{\"role\": \"user\", \"content\": \""
+                    + PadQuotes( question ) + "\"}]";
+
+                _data += "}";
+            }
+            else
+            {
+                _data = "{";
+                _data += " \"model\":\"" + _model + "\",";
+                _data += " \"prompt\": \"" + PadQuotes( question ) + "\",";
+                _data += " \"max_tokens\": " + _maxTokens + ",";
+                _data += " \"user\": \"" + _userId + "\", ";
+                _data += " \"temperature\": " + _temp + ", ";
+                _data += " \"frequency_penalty\": 0.0" + ", ";
+                _data += " \"presence_penalty\": 0.0" + ", ";
+                _data += " \"stop\": [\"#\", \";\"]";
+                _data += "}";
+            }
+
+            using var _streamWriter = new StreamWriter( _request.GetRequestStream( ) );
+            _streamWriter.Write( _data );
+            _streamWriter.Flush( );
+            _streamWriter.Close( );
+            var _json = "";
+            using( var _response = _request.GetResponse( ) )
+            {
+                using var _responseStream = _response.GetResponseStream( );
+                using var _reader = new StreamReader( _responseStream );
+                _json = _reader.ReadToEnd( );
+            }
+
+            var _objects = new Dictionary<string, object>( );
+            var _choices = _objects.Keys.ToList( );
+            var _choice = _choices[ 0 ];
+            var _message = "";
+            if( _model.IndexOf( "gpt-3.5-turbo" ) != -1 )
+            {
+                var _key = _objects[ "message" ];
+                var _kvp = new Dictionary<string, object>( );
+            }
+            else
+            {
+                _message = ( string )_objects[ "text" ];
+            }
+
+            return _message;
+        }
+
+        /// <summary>
+        /// Pads the quotes.
+        /// </summary>
+        /// <param name="input">The input.</param>
+        /// <returns></returns>
+        private string PadQuotes( string input )
+        {
+            if( input.IndexOf( "\\" ) != -1 )
+            {
+                input = input.Replace( "\\", @"\\" );
+            }
+
+            if( input.IndexOf( "\n\r" ) != -1 )
+            {
+                input = input.Replace( "\n\r", @"\n" );
+            }
+
+            if( input.IndexOf( "\r" ) != -1 )
+            {
+                input = input.Replace( "\r", @"\r" );
+            }
+
+            if( input.IndexOf( "\n" ) != -1 )
+            {
+                input = input.Replace( "\n", @"\n" );
+            }
+
+            if( input.IndexOf( "\t" ) != -1 )
+            {
+                input = input.Replace( "\t", @"\t" );
+            }
+
+            if( input.IndexOf( "\"" ) != -1 )
+            {
+                return input.Replace( "\"", @"""" );
+            }
+            else
+            {
+                return input;
+            }
+        }
+
+        /// <summary>
+        /// Sets the models.
+        /// </summary>
+        private async void PopulateModelsAsync( )
+        {
+            try
+            {
+                var _url = "https://api.openai.com/v1/models";
+                _httpClient = new HttpClient( );
+                _httpClient.Timeout = new TimeSpan( 0, 0, 3 );
+                _httpClient.DefaultRequestHeaders.Authorization =
+                    new AuthenticationHeaderValue( "Bearer", KEY );
+
+                var _responseMessage = await _httpClient.GetAsync( _url );
+                _responseMessage.EnsureSuccessStatusCode( );
+                var _body = await _responseMessage.Content.ReadAsStringAsync( );
+                var _aiModels = new List<string>( );
+                using var _document = JsonDocument.Parse( _body );
+                var _root = _document.RootElement;
+                if( _root.TryGetProperty( "data", out var _data )
+                    && _data.ValueKind == JsonValueKind.Array )
+                {
+                    foreach( var _item in _data.EnumerateArray( ) )
+                    {
+                        if( _item.TryGetProperty( "id", out var _element ) )
+                        {
+                            _aiModels.Add( _element.GetString( ) );
+                        }
+                    }
+                }
+
+                _aiModels.Sort( );
+                ModelComboBox.Items.Clear( );
+                Dispatcher.BeginInvoke( ( ) =>
+                {
+                    foreach( var _model in _aiModels )
+                    {
+                        ModelComboBox.Items.Add( _model );
+                    }
+                } );
+
+                ModelComboBox.SelectedIndex = 0;
+            }
+            catch( HttpRequestException ex )
+            {
+                Fail( ex );
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+            }
+        }
+
+        /// <summary>
+        /// Speeches to text.
+        /// </summary>
+        private void SpeechToText( )
+        {
+            if( _engine != null )
+            {
+                _engine.RecognizeAsync( RecognizeMode.Multiple );
+                return;
+            }
+
+            _engine = new SpeechRecognitionEngine( new CultureInfo( "en-US" ) );
+            _engine.LoadGrammar( new DictationGrammar( ) );
+            _engine.SpeechRecognized += OnSpeechRecognized;
+            _engine.SpeechHypothesized += OnSpeechHypothesized;
+            _engine.SetInputToDefaultAudioDevice( );
+            _engine.RecognizeAsync( RecognizeMode.Multiple );
+        }
+
+        /// <summary>
+        /// Speeches to text.
+        /// </summary>
+        /// <param name="input">The input.</param>
+        public void SpeechToText( string input )
+        {
+            if( MuteCheckBox.IsChecked == true )
+            {
+                return;
+            }
+
+            if( _synthesizer == null )
+            {
+                _synthesizer = new SpeechSynthesizer( );
+                _synthesizer.SetOutputToDefaultAudioDevice( );
+            }
+
+            if( VoiceComboBox.Text != "" )
+            {
+                _synthesizer.SelectVoice( VoiceComboBox.Text );
+            }
+
+            _synthesizer.Speak( input );
+        }
+
+        /// <summary>
+        /// Sets the hyper parameters.
+        /// </summary>
+        private protected void SetHyperParameters( )
+        {
+            try
+            {
+                _store = StoreCheckBox.IsChecked ?? false;
+                _stream = StreamCheckBox.IsChecked ?? false;
+                _presence = PresenceSlider.Value;
+                _temperature = TemperatureSlider.Value;
+                _topPercent = PercentSlider.Value;
+                _frequency = FrequencySlider.Value;
+                _number = int.Parse( NumberTextBox.Text );
+                _maximumTokens = int.Parse( MaxTokensTextBox.Text );
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+            }
+        }
+
+        /// <summary>
+        /// Updates the status.
+        /// </summary>
+        private void UpdateStatus( )
+        {
+            try
+            {
+                StatusLabel.Content = DateTime.Now.ToLongTimeString();
+                DateLabel.Content = DateTime.Now.ToShortDateString();
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+            }
+        }
+
+        /// <summary>
+        /// Updates the status.
+        /// </summary>
+        private void UpdateStatus( object state )
+        {
+            try
+            {
+                InvokeIf( _statusUpdate );
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+            }
+        }
+
+        /// <summary>
+        /// Moves to first.
+        /// </summary>
+        private protected void MoveToFirst( )
+        {
+            try
+            {
+                var _message = "NOT YET IMPLEMENTED!";
+                SendMessage( _message );
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+            }
+        }
+
+        /// <summary>
+        /// Moves to previous.
+        /// </summary>
+        private protected void MoveToPrevious( )
+        {
+            try
+            {
+                var _message = "NOT YET IMPLEMENTED!";
+                SendMessage( _message );
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+            }
+        }
+
+        /// <summary>
+        /// Moves to next.
+        /// </summary>
+        private protected void MoveToNext( )
+        {
+            try
+            {
+                var _message = "NOT YET IMPLEMENTED!";
+                SendMessage( _message );
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+            }
+        }
+
+        /// <summary>
+        /// Moves to last.
+        /// </summary>
+        private protected void MoveToLast( )
+        {
+            try
+            {
+                var _message = "NOT YET IMPLEMENTED!";
+                SendMessage( _message );
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// Shows the items.
+        /// </summary>
+        private void SetToolbarVisibility( bool visible = true )
+        {
+            try
+            {
+                if( visible )
+                {
+                    FirstButton.Visibility = Visibility.Visible;
+                    PreviousButton.Visibility = Visibility.Visible;
+                    NextButton.Visibility = Visibility.Visible;
+                    LastButton.Visibility = Visibility.Visible;
+                    ToolStripTextBox.Visibility = Visibility.Visible;
+                    LookupButton.Visibility = Visibility.Visible;
+                    RefreshButton.Visibility = Visibility.Visible;
+                    DeleteButton.Visibility = Visibility.Visible;
+                    ToolStripTextBox.Visibility = Visibility.Visible;
+                    ToolStripComboBox.Visibility = Visibility.Visible;
+                }
+                else
+                {
+                    FirstButton.Visibility = Visibility.Hidden;
+                    PreviousButton.Visibility = Visibility.Hidden;
+                    NextButton.Visibility = Visibility.Hidden;
+                    LastButton.Visibility = Visibility.Hidden;
+                    ToolStripTextBox.Visibility = Visibility.Hidden;
+                    LookupButton.Visibility = Visibility.Hidden;
+                    RefreshButton.Visibility = Visibility.Hidden;
+                    DeleteButton.Visibility = Visibility.Hidden;
+                    ToolStripTextBox.Visibility = Visibility.Hidden;
+                    ToolStripComboBox.Visibility = Visibility.Hidden;
+                }
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+            }
+        }
+
+        /// <summary>
+        /// Runs the client application.
+        /// </summary>
+        private void RunClient( )
+        {
+            try
+            {
+                switch( _provider )
+                {
+                    case Provider.Access:
+                    {
+                        DataMinion.RunAccess( );
+                        break;
+                    }
+                    case Provider.SqlCe:
+                    {
+                        DataMinion.RunSqlCe( );
+                        break;
+                    }
+                    case Provider.SQLite:
+                    {
+                        DataMinion.RunSQLite( );
+                        break;
+                    }
+                }
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+            }
+        }
 
         /// <summary>
         /// Called when [load].
@@ -2279,6 +2684,7 @@ namespace Bubba
                 InitializeTitle( );
                 InitializeToolStrip( );
                 _searchEngineUrl = AppSettings[ "Google" ];
+                TabControl.SelectedIndex = 0;
             }
             catch( Exception ex )
             {
@@ -3368,50 +3774,12 @@ namespace Bubba
         }
 
         /// <summary>
-        /// Called when [undo button click].
-        /// </summary>
-        /// <param name="sender">The sender.</param>
-        /// <param name="e">The <see cref="RoutedEventArgs"/>
-        /// instance containing the event data.</param>
-        private void OnUndoButtonClick( object sender, RoutedEventArgs e )
-        {
-            try
-            {
-                var _message = "NOT YET IMPLEMENTED!";
-                SendMessage( _message );
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
-            }
-        }
-
-        /// <summary>
         /// Called when [delete button click].
         /// </summary>
         /// <param name="sender">The sender.</param>
         /// <param name="e">The <see cref="RoutedEventArgs"/>
         /// instance containing the event data.</param>
         private void OnDeleteButtonClick( object sender, RoutedEventArgs e )
-        {
-            try
-            {
-                var _message = "NOT YET IMPLEMENTED!";
-                SendMessage( _message );
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
-            }
-        }
-
-        /// <summary>
-        /// Called when [export button click].
-        /// </summary>
-        /// <param name="sender">The sender.</param>
-        /// <param name="e">The <see cref="RoutedEventArgs"/>
-        /// instance containing the event data.</param>
-        private void OnExportButtonClick( object sender, RoutedEventArgs e )
         {
             try
             {
@@ -3498,7 +3866,203 @@ namespace Bubba
                 Fail( ex );
             }
         }
+        
+        /// <summary>
+        /// Called when [listen checked changed].
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The <see cref="RoutedEventArgs"/>
+        /// instance containing the event data.</param>
+        private void OnListenCheckedChanged( object sender, RoutedEventArgs e )
+        {
+            // if( ListenCheckBox.IsChecked == true )
+            {
+                SpeechLabel.Content = "";
+                SpeechLabel.Visibility = Visibility.Visible;
+                SpeechToText( );
+            }
 
+            //else
+            {
+                _engine.RecognizeAsyncStop( );
+                SpeechLabel.Visibility = Visibility.Hidden;
+            }
+        }
+
+        /// <summary>
+        /// Called when [mute checked box changed].
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The <see cref="RoutedEventArgs"/>
+        /// instance containing the event data.</param>
+        private void OnMuteCheckedBoxChanged( object sender, RoutedEventArgs e )
+        {
+            if( MuteCheckBox.IsChecked == true )
+            {
+                VoiceLabel.Visibility = Visibility.Hidden;
+                VoiceComboBox.Visibility = Visibility.Hidden;
+            }
+            else
+            {
+                VoiceLabel.Visibility = Visibility.Visible;
+                VoiceComboBox.Visibility = Visibility.Visible;
+            }
+        }
+
+        /// <summary>
+        /// Called when [speech recognized].
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The <see cref="SpeechRecognizedEventArgs"/>
+        /// instance containing the event data.</param>
+        private void OnSpeechRecognized( object sender, SpeechRecognizedEventArgs e )
+        {
+            // Reset Hypothesized text
+            SpeechLabel.Content = "";
+            if( UserTextBox.Text != "" )
+            {
+                UserTextBox.Text += "\n";
+            }
+
+            var _text = e.Result.Text;
+            UserTextBox.Text += _text;
+        }
+
+        /// <summary>
+        /// Called when [speech hypothesized].
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The <see cref="SpeechHypothesizedEventArgs"/>
+        /// instance containing the event data.</param>
+        private void OnSpeechHypothesized( object sender, SpeechHypothesizedEventArgs e )
+        {
+            var _text = e.Result.Text;
+            SpeechLabel.Content = _text;
+        }
+
+        /// <summary>
+        /// Called when [send button click].
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The <see cref="RoutedEventArgs"/>
+        /// instance containing the event data.</param>
+        private void OnSendButtonClick( object sender, RoutedEventArgs e )
+        {
+            {
+                var _question = UserTextBox.Text;
+                if( string.IsNullOrEmpty( _question ) )
+                {
+                    MessageBox.Show( "Type in your question!" );
+                    UserTextBox.Focus( );
+                    return;
+                }
+
+                if( SystemTextBox.Text != "" )
+                {
+                    SystemTextBox.AppendText( "\r\n" );
+                }
+
+                SystemTextBox.AppendText( "User: " + _question + "\r\n" );
+                UserTextBox.Text = "";
+                try
+                {
+                    var _answer = SendHttpMessage( _question ) + "";
+                    SystemTextBox.AppendText( "Bubba GPT: "
+                        + _answer.Replace( "\n", "\r\n" ).Trim( ) );
+
+                    SpeechToText( _answer );
+                }
+                catch( Exception ex )
+                {
+                    SystemTextBox.AppendText( "Error: " + ex.Message );
+                }
+            }
+        }
+
+        /// <summary>
+        /// Called when [clear button click].
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The <see cref="RoutedEventArgs"/>
+        /// instance containing the event data.</param>
+        private void OnClearButtonClick( object sender, RoutedEventArgs e )
+        {
+            try
+            {
+                ClearChatControls( );
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+            }
+        }
+
+        /// <summary>
+        /// Called when [model ComboBox selection changed].
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The <see cref="RoutedEventArgs"/>
+        /// instance containing the event data.</param>
+        private void OnModelSelectionChanged( object sender, RoutedEventArgs e )
+        {
+            try
+            {
+                _chatModel = ModelComboBox.SelectedValue.ToString( );
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+            }
+        }
+
+        /// <summary>
+        /// Called when [text box input changed].
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The <see cref="RoutedEventArgs"/>
+        /// instance containing the event data.</param>
+        private protected void OnTextBoxInputChanged(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                if(sender is MetroTextBox _textBox)
+                {
+                    var _tag = _textBox?.Tag.ToString();
+                    if(!string.IsNullOrEmpty(_tag))
+                    {
+                        switch(_tag)
+                        {
+                            case "Frequency":
+                            case "Presence":
+                            case "Temperature":
+                            {
+                                var _temp = _textBox.Text;
+                                var _value = double.Parse(_temp);
+                                _textBox.Text = _value.ToString("N2");
+                                break;
+                            }
+                            case "TopPercent":
+                            {
+                                var _temp = _textBox.Text;
+                                var _top = double.TryParse(_temp, out var _value);
+                                if(_top)
+                                {
+                                    _textBox.Text = _value.ToString("P1");
+                                }
+
+                                break;
+                            }
+                        }
+                    }
+                }
+            }
+            catch(Exception ex)
+            {
+                Fail(ex);
+            }
+        }
+
+        /// <inheritdoc />
         /// <summary>
         /// Releases unmanaged and - optionally - managed resources.
         /// </summary>

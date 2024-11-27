@@ -12,6 +12,14 @@
     <ApplicationIcon>Resources\Assets\ApplicationImages\Bubba.ico</ApplicationIcon>
     <PackageIcon>Bubba.png</PackageIcon>
     <UseWindowsForms>True</UseWindowsForms>
+    <GenerateDocumentationFile>True</GenerateDocumentationFile>
+    <Product>Bubba GPT</Product>
+    <Description>A small and simple windows (wpf) application for interacting with the OpenAI Completions and Assistants API that's developed in C-Sharp under the MIT license. </Description>
+    <PackageProjectUrl>https://github.com/is-leeroy-jenkins/Bubba</PackageProjectUrl>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <RepositoryUrl>https://github.com/is-leeroy-jenkins/Bubba</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageTags>machine-learning; ai; cefsharp; language-model; wpf-ui; chatgpt; chatgpt3; openai-chatgpt; chatgpt4;</PackageTags>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
@@ -509,6 +517,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Update="README.md">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
     <None Update="Resources\Assets\ApplicationImages\Bubba.png">
       <Pack>True</Pack>
       <PackagePath>\</PackagePath>
