@@ -19919,6 +19919,88 @@
             that represents this instance.
             </returns>
         </member>
+        <member name="T:Bubba.UrlDecoder">
+            <inheritdoc />
+            <summary>
+            </summary>
+        </member>
+        <member name="F:Bubba.UrlDecoder._bufferSize">
+            <summary>
+            The buffer size
+            </summary>
+        </member>
+        <member name="F:Bubba.UrlDecoder._byteBuffer">
+            <summary>
+            The byte buffer
+            </summary>
+        </member>
+        <member name="F:Bubba.UrlDecoder._charBuffer">
+            <summary>
+            The character buffer
+            </summary>
+        </member>
+        <member name="F:Bubba.UrlDecoder._encoding">
+            <summary>
+            The encoding
+            </summary>
+        </member>
+        <member name="F:Bubba.UrlDecoder._byteCount">
+            <summary>
+            The number bytes
+            </summary>
+        </member>
+        <member name="F:Bubba.UrlDecoder._charCount">
+            <summary>
+            The number chars
+            </summary>
+        </member>
+        <member name="M:Bubba.UrlDecoder.#ctor(System.Int32,System.Text.Encoding)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Bubba.UrlDecoder"/> class.
+            </summary>
+            <param name="bufferSize">Size of the buffer.</param>
+            <param name="encoding">The encoding.</param>
+        </member>
+        <member name="P:Bubba.UrlDecoder.ForFilePaths">
+            <summary>
+            Gets or sets a value indicating whether [for file paths].
+            </summary>
+            <value>
+              <c>true</c> if [for file paths]; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="M:Bubba.UrlDecoder.FlushBytes(System.Boolean)">
+            <summary>
+            Flushes the bytes.
+            </summary>
+            <param name="checkChar">if set to
+            <c>true</c> [check character].</param>
+        </member>
+        <member name="M:Bubba.UrlDecoder.AddByte(System.Byte)">
+            <summary>
+            Adds the byte.
+            </summary>
+            <param name="b">The b.</param>
+        </member>
+        <member name="M:Bubba.UrlDecoder.AddChar(System.Char,System.Boolean)">
+            <summary>
+            Adds the character.
+            </summary>
+            <param name="ch">The ch.</param>
+            <param name="checkChar">if set to <c>true</c> [check character].</param>
+        </member>
+        <member name="M:Bubba.UrlDecoder.AddString(System.String)">
+            <summary>
+            Adds the string.
+            </summary>
+            <param name="str">The string.</param>
+        </member>
+        <member name="M:Bubba.UrlDecoder.GetString">
+            <summary>
+            Gets the string.
+            </summary>
+            <returns></returns>
+        </member>
         <member name="T:Bubba.WebSearch">
             <inheritdoc />
             <summary>
@@ -20484,177 +20566,6 @@
             The drive separator.
             </value>
         </member>
-        <member name="T:Bubba.SafeDictionary`2">
-            <summary>
-            
-            </summary>
-            <typeparam name="TKey">The type of the key.</typeparam>
-            <typeparam name="TValue">The type of the value.</typeparam>
-        </member>
-        <member name="F:Bubba.SafeDictionary`2._dictionary">
-            <summary>
-            The dictionary
-            </summary>
-        </member>
-        <member name="F:Bubba.SafeDictionary`2._padlock">
-            <summary>
-            The padlock
-            </summary>
-        </member>
-        <member name="P:Bubba.SafeDictionary`2.Item(`0)">
-            <summary>
-            Gets or sets the <see cref="!:TValue"/> with the specified key.
-            </summary>
-            <value>
-            The <see cref="!:TValue"/>.
-            </value>
-            <param name="key">The key.</param>
-            <returns></returns>
-        </member>
-        <member name="M:Bubba.SafeDictionary`2.#ctor(System.Int32)">
-            <summary>
-            Initializes a new instance of the
-            <see cref="T:Bubba.SafeDictionary`2"/> class.
-            </summary>
-            <param name="capacity">The capacity.</param>
-        </member>
-        <member name="M:Bubba.SafeDictionary`2.#ctor">
-            <summary>
-            Initializes a new instance of the
-            <see cref="T:Bubba.SafeDictionary`2"/> class.
-            </summary>
-        </member>
-        <member name="M:Bubba.SafeDictionary`2.TryGetValue(`0,`1@)">
-            <summary>
-            Tries the get value.
-            </summary>
-            <param name="key">The key.</param>
-            <param name="value">The value.</param>
-            <returns></returns>
-        </member>
-        <member name="M:Bubba.SafeDictionary`2.Add(`0,`1)">
-            <summary>
-            Adds the specified key.
-            </summary>
-            <param name="key">The key.</param>
-            <param name="value">The value.</param>
-        </member>
-        <member name="T:Bubba.ShellFileInfo">
-            <summary>
-            Contains information about a file object.
-            </summary>
-        </member>
-        <member name="F:Bubba.ShellFileInfo.Attributes">
-            <summary>
-            Array of values that indicates the attributes of the file object.
-            For information about these values, see the IShellFolder::GetAttributesOf
-            method.
-            </summary>
-        </member>
-        <member name="F:Bubba.ShellFileInfo.IconHandle">
-            <summary>
-            Handle to the icon that represents the file. You are responsible for
-            destroying this handle with DestroyIcon when you no longer need it.
-            </summary>
-        </member>
-        <member name="F:Bubba.ShellFileInfo.IconIndex">
-            <summary>
-            Index of the icon image within the system image list.
-            </summary>
-        </member>
-        <member name="F:Bubba.ShellFileInfo.DisplayName">
-            <summary>
-            String that contains the name of the file as it appears in the Microsoft
-            Windows Shell, or the path and file name of the file that contains the
-            icon representing the file.
-            </summary>
-        </member>
-        <member name="F:Bubba.ShellFileInfo.TypeName">
-            <summary>
-            String that describes the type of file.
-            </summary>
-        </member>
-        <member name="T:Bubba.UrlDecoder">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="F:Bubba.UrlDecoder._bufferSize">
-            <summary>
-            The buffer size
-            </summary>
-        </member>
-        <member name="F:Bubba.UrlDecoder._byteBuffer">
-            <summary>
-            The byte buffer
-            </summary>
-        </member>
-        <member name="F:Bubba.UrlDecoder._charBuffer">
-            <summary>
-            The character buffer
-            </summary>
-        </member>
-        <member name="F:Bubba.UrlDecoder._encoding">
-            <summary>
-            The encoding
-            </summary>
-        </member>
-        <member name="F:Bubba.UrlDecoder._numBytes">
-            <summary>
-            The number bytes
-            </summary>
-        </member>
-        <member name="F:Bubba.UrlDecoder._numChars">
-            <summary>
-            The number chars
-            </summary>
-        </member>
-        <member name="P:Bubba.UrlDecoder.ForFilePaths">
-            <summary>
-            Gets or sets a value indicating whether [for file paths].
-            </summary>
-            <value>
-              <c>true</c> if [for file paths]; otherwise, <c>false</c>.
-            </value>
-        </member>
-        <member name="M:Bubba.UrlDecoder.#ctor(System.Int32,System.Text.Encoding)">
-            <summary>
-            Initializes a new instance of the <see cref="T:Bubba.UrlDecoder"/> class.
-            </summary>
-            <param name="bufferSize">Size of the buffer.</param>
-            <param name="encoding">The encoding.</param>
-        </member>
-        <member name="M:Bubba.UrlDecoder.FlushBytes(System.Boolean)">
-            <summary>
-            Flushes the bytes.
-            </summary>
-            <param name="checkChar">if set to <c>true</c> [check character].</param>
-        </member>
-        <member name="M:Bubba.UrlDecoder.AddByte(System.Byte)">
-            <summary>
-            Adds the byte.
-            </summary>
-            <param name="b">The b.</param>
-        </member>
-        <member name="M:Bubba.UrlDecoder.AddChar(System.Char,System.Boolean)">
-            <summary>
-            Adds the character.
-            </summary>
-            <param name="ch">The ch.</param>
-            <param name="checkChar">if set to <c>true</c> [check character].</param>
-        </member>
-        <member name="M:Bubba.UrlDecoder.AddString(System.String)">
-            <summary>
-            Adds the string.
-            </summary>
-            <param name="str">The string.</param>
-        </member>
-        <member name="M:Bubba.UrlDecoder.GetString">
-            <summary>
-            Gets the string.
-            </summary>
-            <returns></returns>
-        </member>
         <member name="T:Bubba.DataMinion">
             <summary>
             
@@ -20724,12 +20635,12 @@
             </summary>
             <param name="ex">The ex.</param>
         </member>
-        <member name="T:Bubba.IconUtils">
+        <member name="T:Bubba.IconUtility">
             <summary>
             
             </summary>
         </member>
-        <member name="M:Bubba.IconUtils.GetFileIcon(System.String,Bubba.IconSize)">
+        <member name="M:Bubba.IconUtility.GetFileIcon(System.String,Bubba.IconSize)">
             <summary>
             Gets the file icon.
             </summary>
@@ -20737,7 +20648,7 @@
             <param name="size">The size.</param>
             <returns></returns>
         </member>
-        <member name="M:Bubba.IconUtils.ExtractEx(System.String,System.Collections.Generic.List{System.Drawing.Icon},System.Collections.Generic.List{System.Drawing.Icon},System.Int32,System.Int32)">
+        <member name="M:Bubba.IconUtility.ExtractEx(System.String,System.Collections.Generic.List{System.Drawing.Icon},System.Collections.Generic.List{System.Drawing.Icon},System.Int32,System.Int32)">
             <summary>
             Extracts the ex.
             </summary>
@@ -20748,7 +20659,7 @@
             <param name="iconCount">The icon count.</param>
             <exception cref="T:Bubba.UnableToExtractIconsException"></exception>
         </member>
-        <member name="M:Bubba.IconUtils.ExtractEx(System.String,Bubba.IconSize,System.Int32,System.Int32)">
+        <member name="M:Bubba.IconUtility.ExtractEx(System.String,Bubba.IconSize,System.Int32,System.Int32)">
             <summary>
             Extracts the ex.
             </summary>
@@ -20759,7 +20670,7 @@
             <returns></returns>
             <exception cref="T:System.ArgumentOutOfRangeException">size</exception>
         </member>
-        <member name="M:Bubba.IconUtils.Extract(System.String,System.Collections.Generic.List{System.Drawing.Icon},System.Collections.Generic.List{System.Drawing.Icon})">
+        <member name="M:Bubba.IconUtility.Extract(System.String,System.Collections.Generic.List{System.Drawing.Icon},System.Collections.Generic.List{System.Drawing.Icon})">
             <summary>
             Extracts the specified file name.
             </summary>
@@ -20767,7 +20678,7 @@
             <param name="largeIcons">The large icons.</param>
             <param name="smallIcons">The small icons.</param>
         </member>
-        <member name="M:Bubba.IconUtils.Extract(System.String,Bubba.IconSize)">
+        <member name="M:Bubba.IconUtility.Extract(System.String,Bubba.IconSize)">
             <summary>
             Extracts the specified file name.
             </summary>
@@ -20775,7 +20686,7 @@
             <param name="size">The size.</param>
             <returns></returns>
         </member>
-        <member name="M:Bubba.IconUtils.ExtractOne(System.String,System.Int32,Bubba.IconSize)">
+        <member name="M:Bubba.IconUtility.ExtractOne(System.String,System.Int32,Bubba.IconSize)">
             <summary>
             Extracts the one.
             </summary>
@@ -20785,7 +20696,7 @@
             <returns></returns>
             <exception cref="T:Bubba.IconNotFoundException"></exception>
         </member>
-        <member name="M:Bubba.IconUtils.ExtractOne(System.String,System.Int32,System.Drawing.Icon@,System.Drawing.Icon@)">
+        <member name="M:Bubba.IconUtility.ExtractOne(System.String,System.Int32,System.Drawing.Icon@,System.Drawing.Icon@)">
             <summary>
             Extracts the one.
             </summary>
@@ -20795,7 +20706,7 @@
             <param name="smallIcon">The small icon.</param>
             <exception cref="T:Bubba.IconNotFoundException"></exception>
         </member>
-        <member name="M:Bubba.IconUtils.IconFromExtension(System.String,Bubba.IconSize)">
+        <member name="M:Bubba.IconUtility.IconFromExtension(System.String,Bubba.IconSize)">
             <summary>
             Icons from extension.
             </summary>
@@ -20803,7 +20714,7 @@
             <param name="size">The size.</param>
             <returns></returns>
         </member>
-        <member name="M:Bubba.IconUtils.ExtractInformationFromRegistryString(System.String,System.String@,System.Int32@)">
+        <member name="M:Bubba.IconUtility.ExtractInformationFromRegistryString(System.String,System.String@,System.Int32@)">
             <summary>
             Parse strings in registry who contains the name of the icon and
             the index of the icon an return both parts.
@@ -20814,7 +20725,7 @@
             <exception cref="T:System.ArgumentNullException">regString</exception>
             <exception cref="T:System.ArgumentException">The string should not be empty. - regString</exception>
         </member>
-        <member name="M:Bubba.IconUtils.ExtractIconEx(System.String,System.Int32,System.IntPtr[],System.IntPtr[],System.Int32)">
+        <member name="M:Bubba.IconUtility.ExtractIconEx(System.String,System.Int32,System.IntPtr[],System.IntPtr[],System.Int32)">
             <summary>
             Creates an array of handles to large or small icons extracted from
             the specified executable file, dynamic-link library (DLL), or icon
@@ -20859,12 +20770,202 @@
             extracted from the file.
             </returns>
         </member>
-        <member name="M:Bubba.IconUtils.GetIconsCountInFile(System.String)">
+        <member name="M:Bubba.IconUtility.GetIconsCountInFile(System.String)">
             <summary>
             Get the number of icons in the specified file.
             </summary>
             <param name="fileName">Full path of the file to look for.</param>
             <returns></returns>
+        </member>
+        <member name="T:Bubba.NetUtility">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Bubba.NetUtility.IsFocused(System.Windows.Controls.TextBox)">
+            <summary>
+            Determines whether the specified tb is focused.
+            </summary>
+            <param name="textBox">The tb.</param>
+            <returns>
+              <c>true</c> if the specified tb is focused; otherwise, <c>false</c>.
+            </returns>
+        </member>
+        <member name="M:Bubba.NetUtility.AddHotKey(System.Windows.Window,System.Action,System.Boolean,System.Boolean,System.Boolean)">
+            <summary>
+            Adds the hot key.
+            </summary>
+            <param name="form">The form.</param>
+            <param name="function">The function.</param>
+            <param name="ctrl">if set to <c>true</c> [control].</param>
+            <param name="shift">if set to <c>true</c> [shift].</param>
+            <param name="alt">if set to <c>true</c> [alt].</param>
+        </member>
+        <member name="M:Bubba.NetUtility.IsFullySelected(System.Windows.Controls.TextBox)">
+            <summary>
+            Determines whether [is fully selected] [the specified tb].
+            </summary>
+            <param name="textBox">The tb.</param>
+            <returns>
+            <c>true</c> if [is fully selected]
+            [the specified tb]; otherwise, <c>false</c>.
+            </returns>
+        </member>
+        <member name="M:Bubba.NetUtility.HasSelection(System.Windows.Controls.TextBox)">
+            <summary>
+            Determines whether the specified tb has selection.
+            </summary>
+            <param name="textBox">The tb.</param>
+            <returns>
+              <c>true</c>
+            if the specified tb has selection;
+            otherwise,
+            <c>false</c>.
+            </returns>
+        </member>
+        <member name="M:Bubba.NetUtility.CheckIfFilePath(System.String)">
+            <summary>
+            Checks if file path.
+            </summary>
+            <param name="path">The path.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Bubba.NetUtility.CheckIfFilePath2(System.String)">
+            <summary>
+            Checks if file path2.
+            </summary>
+            <param name="path">The path.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Bubba.NetUtility.GetAfter(System.String,System.String,System.Int32,System.Boolean,System.Boolean)">
+            <summary>
+            Gets the after.
+            </summary>
+            <param name="text">The text.</param>
+            <param name="find">The find.</param>
+            <param name="startAt">The start at.</param>
+            <param name="returnAll">
+            if set to <c>true</c> [return all].
+            </param>
+            <param name="forward">
+            if set to <c>true</c> [forward].
+            </param>
+            <returns>
+            string
+            </returns>
+        </member>
+        <member name="M:Bubba.NetUtility.GetAfterLast(System.String,System.String,System.Boolean)">
+            <summary>
+            Gets the after last.
+            </summary>
+            <param name="text">The text.</param>
+            <param name="find">The find.</param>
+            <param name="returnAll">if set to <c>true</c> [return all].</param>
+            <returns></returns>
+        </member>
+        <member name="M:Bubba.NetUtility.SupportedInFilePath(System.Char)">
+            <summary>
+            Supporteds the in file path.
+            </summary>
+            <param name="c">The c.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Bubba.NetUtility.ChangePathSlash(System.String,System.String)">
+            <summary>
+            Changes the path slash.
+            </summary>
+            <param name="filePath">The file path.</param>
+            <param name="slash">The slash.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Bubba.NetUtility.FileUrlToPath(System.String)">
+            <summary>
+            Files the URL to path.
+            </summary>
+            <param name="url">The URL.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Bubba.NetUtility.FileNotExists(System.String)">
+            <summary>
+            Files the not exists.
+            </summary>
+            <param name="path">The path.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Bubba.NetUtility.ConvertToString(System.Object)">
+            <summary>
+            Converts to string.
+            </summary>
+            <param name="o">The o.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Bubba.NetUtility.CheckIfValid(System.String,System.Boolean)">
+            <summary>
+            Checks if valid.
+            </summary>
+            <param name="text">The text.</param>
+            <param name="trimAndCheck">if set to <c>true</c> [trim and check].</param>
+            <returns></returns>
+        </member>
+        <member name="M:Bubba.NetUtility.IsHotKey(System.Windows.Input.KeyEventArgs,System.Boolean,System.Boolean,System.Boolean)">
+            <summary>
+            Determines whether [is hot key] [the specified key].
+            </summary>
+            <param name="eventData">The <see cref="T:System.Windows.Input.KeyEventArgs"/>
+            instance containing the event data.
+            </param>
+            <param name="ctrl">if set to <c>true</c> [control].</param>
+            <param name="shift">if set to <c>true</c> [shift].</param>
+            <param name="alt">if set to <c>true</c> [alt].</param>
+            <returns>
+              <c>true</c> if [is hot key] [the specified key];
+            otherwise, <c>false</c>.
+            </returns>
+        </member>
+        <member name="M:Bubba.NetUtility.ToCefState(System.Boolean)">
+            <summary>
+            Converts to cefstate.
+            </summary>
+            <param name="value">if set to <c>true</c> [value].</param>
+            <returns></returns>
+        </member>
+        <member name="M:Bubba.NetUtility.IsBitMaskOn(System.Int32,System.Int32)">
+            <summary>
+            Determines whether [is bitMask on] [the specified bitMask].
+            </summary>
+            <param name="num">The number.</param>
+            <param name="bitMask">The bitMask.</param>
+            <returns>
+              <c>true</c> if [is bitMask on] [the specified bitMask]; otherwise, <c>false</c>.
+            </returns>
+        </member>
+        <member name="M:Bubba.NetUtility.BeginsWith(System.String,System.String,System.Boolean)">
+            <summary>
+            Beginses the with.
+            </summary>
+            <param name="str">The string.</param>
+            <param name="beginsWith">The begins with.</param>
+            <param name="caseSensitive">
+            if set to <c>true</c> [case sensitive].
+            </param>
+            <returns></returns>
+        </member>
+        <member name="M:Bubba.NetUtility.RemovePrefix(System.String,System.String,System.Boolean)">
+            <summary>
+            Removes the prefix.
+            </summary>
+            <param name="str">The string.</param>
+            <param name="prefix">The prefix.</param>
+            <param name="caseSensitive">if set to <c>true</c> [case sensitive].</param>
+            <returns></returns>
+        </member>
+        <member name="M:Bubba.NetUtility.Fail(System.Exception)">
+            <summary>
+            Get ErrorDialog Dialog.
+            </summary>
+            <param name="ex">
+            The ex.
+            </param>
         </member>
         <member name="T:Bubba.Static">
             <summary>
@@ -20925,79 +21026,6 @@
             <param name="paramName">The argument's name.</param>
             <exception cref="T:System.ArgumentOutOfRangeException"></exception>
         </member>
-        <member name="T:Bubba.UrlUtils">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="M:Bubba.UrlUtils.PathToUrl(System.String,System.String)">
-            <summary>
-            Paths to URL.
-            </summary>
-            <param name="filePath">The file path.</param>
-            <param name="removeBaseDir">The remove base dir.</param>
-            <returns></returns>
-        </member>
-        <member name="M:Bubba.UrlUtils.IsFileOffline(System.String)">
-            <summary>
-            Determines whether [is file offline].
-            </summary>
-            <param name="url">The URL.</param>
-            <returns>
-            <c> true </c>
-            if [is file offline] [the specified URL]; otherwise,
-            <c> false </c>
-            .
-            </returns>
-        </member>
-        <member name="M:Bubba.UrlUtils.IsLocalhost(System.String)">
-            <summary>
-            Determines whether this instance is localhost.
-            </summary>
-            <param name="url">The URL.</param>
-            <returns>
-            <c> true </c>
-            if the specified URL is localhost; otherwise,
-            <c> false </c>
-            .
-            </returns>
-        </member>
-        <member name="M:Bubba.UrlUtils.UrlDecode(System.String)">
-            <summary>
-            URLs the decode.
-            </summary>
-            <param name="url">The URL.</param>
-            <returns></returns>
-        </member>
-        <member name="M:Bubba.UrlUtils.HexToInt(System.Char)">
-            <summary>
-            Hexadecimals to int.
-            </summary>
-            <param name="hex">The hexadecimal.</param>
-            <returns></returns>
-        </member>
-        <member name="M:Bubba.UrlUtils.DecodeUrlForFilePath(System.String)">
-            <summary>
-            Decodes the URL for filepath.
-            </summary>
-            <param name="url">The URL.</param>
-            <returns></returns>
-        </member>
-        <member name="M:Bubba.UrlUtils.UrlEncode(System.String)">
-            <summary>
-            URLs the encode.
-            </summary>
-            <param name="text">The text.</param>
-            <returns></returns>
-        </member>
-        <member name="M:Bubba.UrlUtils.Fail(System.Exception)">
-            <summary>
-            Get ErrorDialog Dialog.
-            </summary>
-            <param name="ex">
-            The ex.
-            </param>
-        </member>
         <member name="T:Bubba.WebMinion">
             <summary>
             
@@ -21047,189 +21075,72 @@
             </summary>
             <param name="ex">The ex.</param>
         </member>
-        <member name="T:Bubba.WebUtils">
+        <member name="T:Bubba.WebUtility">
             <summary>
             
             </summary>
         </member>
-        <member name="M:Bubba.WebUtils.IsFocused(System.Windows.Controls.TextBox)">
+        <member name="M:Bubba.WebUtility.PathToUrl(System.String,System.String)">
             <summary>
-            Determines whether the specified tb is focused.
-            </summary>
-            <param name="textBox">The tb.</param>
-            <returns>
-              <c>true</c> if the specified tb is focused; otherwise, <c>false</c>.
-            </returns>
-        </member>
-        <member name="M:Bubba.WebUtils.AddHotKey(System.Windows.Window,System.Action,System.Boolean,System.Boolean,System.Boolean)">
-            <summary>
-            Adds the hot key.
-            </summary>
-            <param name="form">The form.</param>
-            <param name="function">The function.</param>
-            <param name="ctrl">if set to <c>true</c> [control].</param>
-            <param name="shift">if set to <c>true</c> [shift].</param>
-            <param name="alt">if set to <c>true</c> [alt].</param>
-        </member>
-        <member name="M:Bubba.WebUtils.IsFullySelected(System.Windows.Controls.TextBox)">
-            <summary>
-            Determines whether [is fully selected] [the specified tb].
-            </summary>
-            <param name="textBox">The tb.</param>
-            <returns>
-            <c>true</c> if [is fully selected]
-            [the specified tb]; otherwise, <c>false</c>.
-            </returns>
-        </member>
-        <member name="M:Bubba.WebUtils.HasSelection(System.Windows.Controls.TextBox)">
-            <summary>
-            Determines whether the specified tb has selection.
-            </summary>
-            <param name="textBox">The tb.</param>
-            <returns>
-              <c>true</c>
-            if the specified tb has selection;
-            otherwise,
-            <c>false</c>.
-            </returns>
-        </member>
-        <member name="M:Bubba.WebUtils.CheckIfFilePath(System.String)">
-            <summary>
-            Checks if file path.
-            </summary>
-            <param name="path">The path.</param>
-            <returns></returns>
-        </member>
-        <member name="M:Bubba.WebUtils.CheckIfFilePath2(System.String)">
-            <summary>
-            Checks if file path2.
-            </summary>
-            <param name="path">The path.</param>
-            <returns></returns>
-        </member>
-        <member name="M:Bubba.WebUtils.GetAfter(System.String,System.String,System.Int32,System.Boolean,System.Boolean)">
-            <summary>
-            Gets the after.
-            </summary>
-            <param name="text">The text.</param>
-            <param name="find">The find.</param>
-            <param name="startAt">The start at.</param>
-            <param name="returnAll">
-            if set to <c>true</c> [return all].
-            </param>
-            <param name="forward">
-            if set to <c>true</c> [forward].
-            </param>
-            <returns>
-            string
-            </returns>
-        </member>
-        <member name="M:Bubba.WebUtils.GetAfterLast(System.String,System.String,System.Boolean)">
-            <summary>
-            Gets the after last.
-            </summary>
-            <param name="text">The text.</param>
-            <param name="find">The find.</param>
-            <param name="returnAll">if set to <c>true</c> [return all].</param>
-            <returns></returns>
-        </member>
-        <member name="M:Bubba.WebUtils.SupportedInFilePath(System.Char)">
-            <summary>
-            Supporteds the in file path.
-            </summary>
-            <param name="c">The c.</param>
-            <returns></returns>
-        </member>
-        <member name="M:Bubba.WebUtils.ChangePathSlash(System.String,System.String)">
-            <summary>
-            Changes the path slash.
+            Paths to URL.
             </summary>
             <param name="filePath">The file path.</param>
-            <param name="slash">The slash.</param>
+            <param name="removeBaseDir">The remove base dir.</param>
             <returns></returns>
         </member>
-        <member name="M:Bubba.WebUtils.FileUrlToPath(System.String)">
+        <member name="M:Bubba.WebUtility.IsFileOffline(System.String)">
             <summary>
-            Files the URL to path.
+            Determines whether [is file offline].
+            </summary>
+            <param name="url">The URL.</param>
+            <returns>
+            <c> true </c>
+            if [is file offline] [the specified URL]; otherwise,
+            <c> false </c>
+            .
+            </returns>
+        </member>
+        <member name="M:Bubba.WebUtility.IsLocalhost(System.String)">
+            <summary>
+            Determines whether this instance is localhost.
+            </summary>
+            <param name="url">The URL.</param>
+            <returns>
+            <c> true </c>
+            if the specified URL is localhost; otherwise,
+            <c> false </c>
+            .
+            </returns>
+        </member>
+        <member name="M:Bubba.WebUtility.UrlDecode(System.String)">
+            <summary>
+            URLs the decode.
             </summary>
             <param name="url">The URL.</param>
             <returns></returns>
         </member>
-        <member name="M:Bubba.WebUtils.FileNotExists(System.String)">
+        <member name="M:Bubba.WebUtility.HexToInt(System.Char)">
             <summary>
-            Files the not exists.
+            Hexadecimals to int.
             </summary>
-            <param name="path">The path.</param>
+            <param name="hex">The hexadecimal.</param>
             <returns></returns>
         </member>
-        <member name="M:Bubba.WebUtils.ConvertToString(System.Object)">
+        <member name="M:Bubba.WebUtility.DecodeUrlForFilePath(System.String)">
             <summary>
-            Converts to string.
+            Decodes the URL for filepath.
             </summary>
-            <param name="o">The o.</param>
+            <param name="url">The URL.</param>
             <returns></returns>
         </member>
-        <member name="M:Bubba.WebUtils.CheckIfValid(System.String,System.Boolean)">
+        <member name="M:Bubba.WebUtility.UrlEncode(System.String)">
             <summary>
-            Checks if valid.
+            URLs the encode.
             </summary>
             <param name="text">The text.</param>
-            <param name="trimAndCheck">if set to <c>true</c> [trim and check].</param>
             <returns></returns>
         </member>
-        <member name="M:Bubba.WebUtils.IsHotKey(System.Windows.Input.KeyEventArgs,System.Boolean,System.Boolean,System.Boolean)">
-            <summary>
-            Determines whether [is hot key] [the specified key].
-            </summary>
-            <param name="eventData">The <see cref="T:System.Windows.Input.KeyEventArgs"/>
-            instance containing the event data.
-            </param>
-            <param name="ctrl">if set to <c>true</c> [control].</param>
-            <param name="shift">if set to <c>true</c> [shift].</param>
-            <param name="alt">if set to <c>true</c> [alt].</param>
-            <returns>
-              <c>true</c> if [is hot key] [the specified key];
-            otherwise, <c>false</c>.
-            </returns>
-        </member>
-        <member name="M:Bubba.WebUtils.ToCefState(System.Boolean)">
-            <summary>
-            Converts to cefstate.
-            </summary>
-            <param name="value">if set to <c>true</c> [value].</param>
-            <returns></returns>
-        </member>
-        <member name="M:Bubba.WebUtils.IsBitMaskOn(System.Int32,System.Int32)">
-            <summary>
-            Determines whether [is bitMask on] [the specified bitMask].
-            </summary>
-            <param name="num">The number.</param>
-            <param name="bitMask">The bitMask.</param>
-            <returns>
-              <c>true</c> if [is bitMask on] [the specified bitMask]; otherwise, <c>false</c>.
-            </returns>
-        </member>
-        <member name="M:Bubba.WebUtils.BeginsWith(System.String,System.String,System.Boolean)">
-            <summary>
-            Beginses the with.
-            </summary>
-            <param name="str">The string.</param>
-            <param name="beginsWith">The begins with.</param>
-            <param name="caseSensitive">
-            if set to <c>true</c> [case sensitive].
-            </param>
-            <returns></returns>
-        </member>
-        <member name="M:Bubba.WebUtils.RemovePrefix(System.String,System.String,System.Boolean)">
-            <summary>
-            Removes the prefix.
-            </summary>
-            <param name="str">The string.</param>
-            <param name="prefix">The prefix.</param>
-            <param name="caseSensitive">if set to <c>true</c> [case sensitive].</param>
-            <returns></returns>
-        </member>
-        <member name="M:Bubba.WebUtils.Fail(System.Exception)">
+        <member name="M:Bubba.WebUtility.Fail(System.Exception)">
             <summary>
             Get ErrorDialog Dialog.
             </summary>
@@ -26460,6 +26371,52 @@
             Initializes the tool strip.
             </summary>
         </member>
+        <member name="M:Bubba.BubbaWindow.InvokeIf(System.Action)">
+            <summary>
+            Invokes if.
+            </summary>
+            <param name="action">The action.</param>
+        </member>
+        <member name="M:Bubba.BubbaWindow.InvokeIf(System.Action{System.Object})">
+            <summary>
+            Invokes if.
+            </summary>
+            <param name="action">The action.</param>
+        </member>
+        <member name="M:Bubba.BubbaWindow.IsBlank(System.String)">
+            <summary>
+            Determines whether the specified URL is blank.
+            </summary>
+            <param name="url">The URL.</param>
+            <returns>
+              <c>true</c> if the specified URL is blank; otherwise, <c>false</c>.
+            </returns>
+        </member>
+        <member name="M:Bubba.BubbaWindow.IsBlankOrSystem(System.String)">
+            <summary>
+            Determines whether [is blank or system] [the specified URL].
+            </summary>
+            <param name="url">The URL.</param>
+            <returns>
+              <c>true</c> if [is blank or system] [the specified URL]; otherwise, <c>false</c>.
+            </returns>
+        </member>
+        <member name="M:Bubba.BubbaWindow.IsFirstTab">
+            <summary>
+            Determines whether [is first tab].
+            </summary>
+            <returns>
+              <c>true</c> if [is first tab]; otherwise, <c>false</c>.
+            </returns>
+        </member>
+        <member name="M:Bubba.BubbaWindow.IsLastTab">
+            <summary>
+            Determines whether [is last tab].
+            </summary>
+            <returns>
+              <c>true</c> if [is last tab]; otherwise, <c>false</c>.
+            </returns>
+        </member>
         <member name="M:Bubba.BubbaWindow.RegisterCallbacks">
             <summary>
             Registers the callbacks.
@@ -26480,6 +26437,34 @@
             Configures the browser.
             </summary>
             <param name="browser">The browser.</param>
+        </member>
+        <member name="M:Bubba.BubbaWindow.CloseOtherTabs">
+            <summary>
+            Closes the other tabs.
+            </summary>
+        </member>
+        <member name="M:Bubba.BubbaWindow.CloseActiveTab">
+            <summary>
+            Closes the active tab.
+            </summary>
+        </member>
+        <member name="M:Bubba.BubbaWindow.CleanUrl(System.String)">
+            <summary>
+            Cleans the URL.
+            </summary>
+            <param name="url">The URL.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Bubba.BubbaWindow.CloseSearch">
+            <summary>
+            Closes the search.
+            </summary>
+        </member>
+        <member name="M:Bubba.BubbaWindow.CreateNotifier">
+            <summary>
+            Creates the notifier.
+            </summary>
+            <returns></returns>
         </member>
         <member name="M:Bubba.BubbaWindow.FadeInAsync(System.Windows.Window,System.Int32)">
             <summary>
@@ -26564,11 +26549,10 @@
             </summary>
             <param name="url">The URL.</param>
         </member>
-        <member name="M:Bubba.BubbaWindow.CreateNotifier">
+        <member name="M:Bubba.BubbaWindow.StopActiveTab">
             <summary>
-            Creates the notifier.
+            Stops the active tab.
             </summary>
-            <returns></returns>
         </member>
         <member name="M:Bubba.BubbaWindow.SendMessage(System.String)">
             <summary>
@@ -26581,16 +26565,53 @@
             Sends the notification.
             </summary>
         </member>
+        <member name="M:Bubba.BubbaWindow.SearchGovernmentDomains(System.String)">
+            <summary>
+            Searches the government domains.
+            </summary>
+            <param name="keyWords">The key words.</param>
+        </member>
+        <member name="M:Bubba.BubbaWindow.SpeechToText">
+            <summary>
+            Speeches to text.
+            </summary>
+        </member>
+        <member name="M:Bubba.BubbaWindow.SpeechToText(System.String)">
+            <summary>
+            Speeches to text.
+            </summary>
+            <param name="input">The input.</param>
+        </member>
+        <member name="M:Bubba.BubbaWindow.SetHyperParameters">
+            <summary>
+            Sets the hyper parameters.
+            </summary>
+        </member>
+        <member name="M:Bubba.BubbaWindow.SetSearchPanelVisibility(System.Boolean)">
+            <summary>
+            Sets the search panel visibility.
+            </summary>
+            <param name="visible">
+            if set to <c>true</c> [visible].</param>
+        </member>
+        <member name="M:Bubba.BubbaWindow.SetToolbarVisibility(System.Boolean)">
+            <summary>
+            
+            Shows the items.
+            </summary>
+        </member>
+        <member name="M:Bubba.BubbaWindow.SendHttpMessage(System.String)">
+            <summary>
+            Sends the HTTP message.
+            </summary>
+            <param name="question">The question.</param>
+            <returns></returns>
+        </member>
         <member name="M:Bubba.BubbaWindow.FindTextOnPage(System.Boolean)">
             <summary>
             Finds the text on page.
             </summary>
             <param name="next">if set to <c>true</c> [next].</param>
-        </member>
-        <member name="M:Bubba.BubbaWindow.CloseOtherTabs">
-            <summary>
-            Closes the other tabs.
-            </summary>
         </member>
         <member name="M:Bubba.BubbaWindow.LoadUrl(System.String)">
             <summary>
@@ -26616,25 +26637,6 @@
             </summary>
             <param name="canGoForward">if set to <c>true</c> [can go forward].</param>
         </member>
-        <member name="M:Bubba.BubbaWindow.CleanUrl(System.String)">
-            <summary>
-            Cleans the URL.
-            </summary>
-            <param name="url">The URL.</param>
-            <returns></returns>
-        </member>
-        <member name="M:Bubba.BubbaWindow.InvokeIf(System.Action)">
-            <summary>
-            Invokes if.
-            </summary>
-            <param name="action">The action.</param>
-        </member>
-        <member name="M:Bubba.BubbaWindow.InvokeIf(System.Action{System.Object})">
-            <summary>
-            Invokes if.
-            </summary>
-            <param name="action">The action.</param>
-        </member>
         <member name="M:Bubba.BubbaWindow.Busy">
             <summary>
             Busies this instance.
@@ -26645,45 +26647,6 @@
             Chills this instance.
             </summary>
         </member>
-        <member name="M:Bubba.BubbaWindow.IsBlank(System.String)">
-            <summary>
-            Determines whether the specified URL is blank.
-            </summary>
-            <param name="url">The URL.</param>
-            <returns>
-              <c>true</c> if the specified URL is blank; otherwise, <c>false</c>.
-            </returns>
-        </member>
-        <member name="M:Bubba.BubbaWindow.IsBlankOrSystem(System.String)">
-            <summary>
-            Determines whether [is blank or system] [the specified URL].
-            </summary>
-            <param name="url">The URL.</param>
-            <returns>
-              <c>true</c> if [is blank or system] [the specified URL]; otherwise, <c>false</c>.
-            </returns>
-        </member>
-        <member name="M:Bubba.BubbaWindow.IsFirstTab">
-            <summary>
-            Determines whether [is first tab].
-            </summary>
-            <returns>
-              <c>true</c> if [is first tab]; otherwise, <c>false</c>.
-            </returns>
-        </member>
-        <member name="M:Bubba.BubbaWindow.IsLastTab">
-            <summary>
-            Determines whether [is last tab].
-            </summary>
-            <returns>
-              <c>true</c> if [is last tab]; otherwise, <c>false</c>.
-            </returns>
-        </member>
-        <member name="M:Bubba.BubbaWindow.StopActiveTab">
-            <summary>
-            Stops the active tab.
-            </summary>
-        </member>
         <member name="M:Bubba.BubbaWindow.NextTab">
             <summary>
             Nexts the tab.
@@ -26692,6 +26655,16 @@
         <member name="M:Bubba.BubbaWindow.PreviousTab">
             <summary>
             Previouses the tab.
+            </summary>
+        </member>
+        <member name="M:Bubba.BubbaWindow.ActivateChatTab">
+            <summary>
+            Activates the GPT tab.
+            </summary>
+        </member>
+        <member name="M:Bubba.BubbaWindow.ActivateBrowserTab">
+            <summary>
+            Activates the web tab.
             </summary>
         </member>
         <member name="M:Bubba.BubbaWindow.AddBlankWindow">
@@ -26721,38 +26694,11 @@
             <param name="url">The URL.</param>
             <returns></returns>
         </member>
-        <member name="M:Bubba.BubbaWindow.SearchGovernmentDomains(System.String)">
-            <summary>
-            Searches the government domains.
-            </summary>
-            <param name="keyWords">The key words.</param>
-        </member>
-        <member name="M:Bubba.BubbaWindow.UpdateDownloadItem(CefSharp.DownloadItem)">
-            <summary>
-            Updates the download item.
-            </summary>
-            <param name="item">The item.</param>
-        </member>
         <member name="M:Bubba.BubbaWindow.DownloadsInProgress">
             <summary>
             Downloadses the in progress.
             </summary>
             <returns></returns>
-        </member>
-        <member name="M:Bubba.BubbaWindow.RefreshActiveTab">
-            <summary>
-            Refreshes the active tab.
-            </summary>
-        </member>
-        <member name="M:Bubba.BubbaWindow.CloseActiveTab">
-            <summary>
-            Closes the active tab.
-            </summary>
-        </member>
-        <member name="M:Bubba.BubbaWindow.OpenDownloadsTab">
-            <summary>
-            Opens the downloads tab.
-            </summary>
         </member>
         <member name="M:Bubba.BubbaWindow.OpenDeveloperTools">
             <summary>
@@ -26797,29 +26743,12 @@
             Opens the search.
             </summary>
         </member>
-        <member name="M:Bubba.BubbaWindow.CloseSearch">
-            <summary>
-            Closes the search.
-            </summary>
-        </member>
-        <member name="M:Bubba.BubbaWindow.ToggleFullscreen">
-            <summary>
-            Toggles the fullscreen.
-            </summary>
-        </member>
         <member name="M:Bubba.BubbaWindow.OpenSearchDialog(System.Double,System.Double)">
             <summary>
             Opens the search dialog.
             </summary>
             <param name="x">The x.</param>
             <param name="y">The y.</param>
-        </member>
-        <member name="M:Bubba.BubbaWindow.SendHttpMessage(System.String)">
-            <summary>
-            Sends the HTTP message.
-            </summary>
-            <param name="question">The question.</param>
-            <returns></returns>
         </member>
         <member name="M:Bubba.BubbaWindow.PadQuotes(System.String)">
             <summary>
@@ -26833,34 +26762,11 @@
             Sets the models.
             </summary>
         </member>
-        <member name="M:Bubba.BubbaWindow.SpeechToText">
+        <member name="M:Bubba.BubbaWindow.UpdateDownloadItem(CefSharp.DownloadItem)">
             <summary>
-            Speeches to text.
+            Updates the download item.
             </summary>
-        </member>
-        <member name="M:Bubba.BubbaWindow.SpeechToText(System.String)">
-            <summary>
-            Speeches to text.
-            </summary>
-            <param name="input">The input.</param>
-        </member>
-        <member name="M:Bubba.BubbaWindow.SetHyperParameters">
-            <summary>
-            Sets the hyper parameters.
-            </summary>
-        </member>
-        <member name="M:Bubba.BubbaWindow.SetSearchPanelVisibility(System.Boolean)">
-            <summary>
-            Sets the search panel visibility.
-            </summary>
-            <param name="visible">
-            if set to <c>true</c> [visible].</param>
-        </member>
-        <member name="M:Bubba.BubbaWindow.SetToolbarVisibility(System.Boolean)">
-            <summary>
-            
-            Shows the items.
-            </summary>
+            <param name="item">The item.</param>
         </member>
         <member name="M:Bubba.BubbaWindow.UpdateStatus">
             <summary>
@@ -26895,6 +26801,21 @@
         <member name="M:Bubba.BubbaWindow.RunClient">
             <summary>
             Runs the client application.
+            </summary>
+        </member>
+        <member name="M:Bubba.BubbaWindow.RefreshActiveTab">
+            <summary>
+            Refreshes the active tab.
+            </summary>
+        </member>
+        <member name="M:Bubba.BubbaWindow.OpenDownloadsTab">
+            <summary>
+            Opens the downloads tab.
+            </summary>
+        </member>
+        <member name="M:Bubba.BubbaWindow.ToggleFullscreen">
+            <summary>
+            Toggles the fullscreen.
             </summary>
         </member>
         <member name="M:Bubba.BubbaWindow.OnLoad(System.Object,System.Windows.RoutedEventArgs)">

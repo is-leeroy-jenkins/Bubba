@@ -923,6 +923,119 @@ namespace Bubba
         }
 
         /// <summary>
+        /// Invokes if.
+        /// </summary>
+        /// <param name="action">The action.</param>
+        public void InvokeIf( Action action )
+        {
+            try
+            {
+                ThrowIf.Null( action, nameof( action ) );
+                if( Dispatcher.CheckAccess( ) )
+                {
+                    action?.Invoke( );
+                }
+                else
+                {
+                    Dispatcher.BeginInvoke( action );
+                }
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+            }
+        }
+
+        /// <summary>
+        /// Invokes if.
+        /// </summary>
+        /// <param name="action">The action.</param>
+        public void InvokeIf( Action<object> action )
+        {
+            try
+            {
+                ThrowIf.Null( action, nameof( action ) );
+                if( Dispatcher.CheckAccess( ) )
+                {
+                    action?.Invoke( null );
+                }
+                else
+                {
+                    Dispatcher.BeginInvoke( action );
+                }
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+            }
+        }
+
+        /// <summary>
+        /// Determines whether the specified URL is blank.
+        /// </summary>
+        /// <param name="url">The URL.</param>
+        /// <returns>
+        ///   <c>true</c> if the specified URL is blank; otherwise, <c>false</c>.
+        /// </returns>
+        private bool IsBlank( string url )
+        {
+            try
+            {
+                ThrowIf.Null( url, nameof( url ) );
+                return url == "" || url == "about:blank";
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+                return false;
+            }
+        }
+
+        /// <summary>
+        /// Determines whether [is blank or system] [the specified URL].
+        /// </summary>
+        /// <param name="url">The URL.</param>
+        /// <returns>
+        ///   <c>true</c> if [is blank or system] [the specified URL]; otherwise, <c>false</c>.
+        /// </returns>
+        private bool IsBlankOrSystem( string url )
+        {
+            try
+            {
+                ThrowIf.Null( url, nameof( url ) );
+                return url == "" || url.BeginsWith( "about:" ) || url.BeginsWith( "chrome:" )
+                    || url.BeginsWith( AppSettings[ "Internal" ] + ":" );
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+                return false;
+            }
+        }
+
+        /// <summary>
+        /// Determines whether [is first tab].
+        /// </summary>
+        /// <returns>
+        ///   <c>true</c> if [is first tab]; otherwise, <c>false</c>.
+        /// </returns>
+        private bool IsFirstTab( )
+        {
+            return TabControl.SelectedItem == TabControl.Items[ 0 ];
+        }
+
+        /// <summary>
+        /// Determines whether [is last tab].
+        /// </summary>
+        /// <returns>
+        ///   <c>true</c> if [is last tab]; otherwise, <c>false</c>.
+        /// </returns>
+        private bool IsLastTab( )
+        {
+            return TabControl.SelectedItem == TabControl.Items[ ^2 ];
+        }
+
+        /// <summary>
         /// Registers the callbacks.
         /// </summary>
         private protected void RegisterCallbacks( )
@@ -1011,6 +1124,120 @@ namespace Bubba
             catch( Exception ex )
             {
                 Fail( ex );
+            }
+        }
+
+        /// <summary>
+        /// Closes the other tabs.
+        /// </summary>
+        private void CloseOtherTabs( )
+        {
+            try
+            {
+                var _listToClose = new List<BrowserTabItem>( );
+                foreach( BrowserTabItem _tab in TabControl.Items )
+                {
+                    if( _tab != _currentTab
+                        && _tab != TabControl.SelectedItem )
+                    {
+                        _listToClose.Add( _tab );
+                    }
+                }
+
+                foreach( var _tab in _listToClose )
+                {
+                    TabControl.Items.Remove( _tab );
+                }
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+            }
+        }
+
+        /// <summary>
+        /// Closes the active tab.
+        /// </summary>
+        public void CloseActiveTab( )
+        {
+            if( _currentTab != null/* && TabPages.Items.Count > 2*/ )
+            {
+                var _index = TabControl.Items.IndexOf( TabControl.SelectedItem );
+                TabControl.Items.RemoveAt( _index );
+                if( TabControl.Items.Count - 1 > _index )
+                {
+                    TabControl.SelectedItem = TabControl.Items[ _index ];
+                }
+            }
+        }
+
+        /// <summary>
+        /// Cleans the URL.
+        /// </summary>
+        /// <param name="url">The URL.</param>
+        /// <returns></returns>
+        private string CleanUrl( string url )
+        {
+            try
+            {
+                ThrowIf.Null( url, nameof( url ) );
+                if( url.BeginsWith( "about:" ) )
+                {
+                    return "";
+                }
+
+                url = url.RemovePrefix( "http://" );
+                url = url.RemovePrefix( "https://" );
+                url = url.RemovePrefix( "file://" );
+                url = url.RemovePrefix( "/" );
+                return url.DecodeUrlForFilePath( );
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+                return string.Empty;
+            }
+        }
+
+        /// <summary>
+        /// Closes the search.
+        /// </summary>
+        private void CloseSearch( )
+        {
+            if( _isSearchOpen )
+            {
+                _isSearchOpen = false;
+                InvokeIf( ( ) =>
+                {
+                    //SearchPanel.Visible = false;
+                    _currentBrowser.GetBrowser( )?.StopFinding( true );
+                } );
+            }
+        }
+
+        /// <summary>
+        /// Creates the notifier.
+        /// </summary>
+        /// <returns></returns>
+        private Notifier CreateNotifier( )
+        {
+            try
+            {
+                var _position = new PrimaryScreenPositionProvider( Corner.BottomRight, 10, 10 );
+                var _lifeTime = new TimeAndCountBasedLifetimeSupervisor( TimeSpan.FromSeconds( 5 ),
+                    MaximumNotificationCount.UnlimitedNotifications( ) );
+
+                return new Notifier( cfg =>
+                {
+                    cfg.LifetimeSupervisor = _lifeTime;
+                    cfg.PositionProvider = _position;
+                    cfg.Dispatcher = CurrentBrowser.Dispatcher;
+                } );
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+                return default( Notifier );
             }
         }
 
@@ -1290,29 +1517,11 @@ namespace Bubba
         }
 
         /// <summary>
-        /// Creates the notifier.
+        /// Stops the active tab.
         /// </summary>
-        /// <returns></returns>
-        private Notifier CreateNotifier( )
+        private void StopActiveTab( )
         {
-            try
-            {
-                var _position = new PrimaryScreenPositionProvider( Corner.BottomRight, 10, 10 );
-                var _lifeTime = new TimeAndCountBasedLifetimeSupervisor( TimeSpan.FromSeconds( 5 ),
-                    MaximumNotificationCount.UnlimitedNotifications( ) );
-
-                return new Notifier( cfg =>
-                {
-                    cfg.LifetimeSupervisor = _lifeTime;
-                    cfg.PositionProvider = _position;
-                    cfg.Dispatcher = CurrentBrowser.Dispatcher;
-                } );
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
-                return default( Notifier );
-            }
+            _currentBrowser.Stop( );
         }
 
         /// <summary>
@@ -1351,6 +1560,309 @@ namespace Bubba
         }
 
         /// <summary>
+        /// Searches the government domains.
+        /// </summary>
+        /// <param name="keyWords">The key words.</param>
+        private void SearchGovernmentDomains( string keyWords )
+        {
+            if( !string.IsNullOrEmpty( keyWords ) )
+            {
+                try
+                {
+                    var _google = AppSettings[ "Google" ] + keyWords;
+                    _currentBrowser.LoadUrl( _google );
+                    var _epa = AppSettings[ "EPA" ] + keyWords;
+                    AddNewBrowserTab( _epa, false );
+                    var _data = AppSettings[ "DATA" ] + keyWords;
+                    AddNewBrowserTab( _data, false );
+                    var _crs = AppSettings[ "CRS" ] + keyWords;
+                    AddNewBrowserTab( _crs, false );
+                    var _loc = AppSettings[ "LOC" ] + keyWords;
+                    AddNewBrowserTab( _loc, false );
+                    var _gpo = AppSettings[ "GPO" ] + keyWords;
+                    AddNewBrowserTab( _gpo, false );
+                    var _usgi = AppSettings[ "USGI" ] + keyWords;
+                    AddNewBrowserTab( _usgi, false );
+                    var _omb = AppSettings[ "OMB" ] + keyWords;
+                    AddNewBrowserTab( _omb, false );
+                    var _ust = AppSettings[ "UST" ] + keyWords;
+                    AddNewBrowserTab( _ust, false );
+                    var _nara = AppSettings[ "NARA" ] + keyWords;
+                    AddNewBrowserTab( _nara, false );
+                    var _nasa = AppSettings[ "NASA" ] + keyWords;
+                    AddNewBrowserTab( _nasa, false );
+                    var _noaa = AppSettings[ "NOAA" ] + keyWords;
+                    AddNewBrowserTab( _noaa, false );
+                    var _doi = AppSettings[ "DOI" ] + keyWords;
+                    AddNewBrowserTab( _doi, false );
+                    var _nps = AppSettings[ "NPS" ] + keyWords;
+                    AddNewBrowserTab( _nps, false );
+                    var _gsa = AppSettings[ "GSA" ] + keyWords;
+                    AddNewBrowserTab( _gsa, false );
+                    var _doc = AppSettings[ "DOC" ] + keyWords;
+                    AddNewBrowserTab( _doc, false );
+                    var _hhs = AppSettings[ "HHS" ] + keyWords;
+                    AddNewBrowserTab( _hhs, false );
+                    var _nrc = AppSettings[ "NRC" ] + keyWords;
+                    AddNewBrowserTab( _nrc, false );
+                    var _doe = AppSettings[ "DOE" ] + keyWords;
+                    AddNewBrowserTab( _doe, false );
+                    var _nsf = AppSettings[ "NSF" ] + keyWords;
+                    AddNewBrowserTab( _nsf, false );
+                    var _usda = AppSettings[ "USDA" ] + keyWords;
+                    AddNewBrowserTab( _usda, false );
+                    var _csb = AppSettings[ "CSB" ] + keyWords;
+                    AddNewBrowserTab( _csb, false );
+                    var _irs = AppSettings[ "IRS" ] + keyWords;
+                    AddNewBrowserTab( _irs, false );
+                    var _fda = AppSettings[ "FDA" ] + keyWords;
+                    AddNewBrowserTab( _fda, false );
+                    var _cdc = AppSettings[ "CDC" ] + keyWords;
+                    AddNewBrowserTab( _cdc, false );
+                    var _ace = AppSettings[ "ACE" ] + keyWords;
+                    AddNewBrowserTab( _ace, false );
+                    var _dhs = AppSettings[ "DHS" ] + keyWords;
+                    AddNewBrowserTab( _dhs, false );
+                    var _dod = AppSettings[ "DOD" ] + keyWords;
+                    AddNewBrowserTab( _dod, false );
+                    var _usno = AppSettings[ "USNO" ] + keyWords;
+                    AddNewBrowserTab( _usno, false );
+                    var _nws = AppSettings[ "NWS" ] + keyWords;
+                    AddNewBrowserTab( _nws, false );
+                }
+                catch( Exception ex )
+                {
+                    Fail( ex );
+                }
+            }
+        }
+
+        /// <summary>
+        /// Speeches to text.
+        /// </summary>
+        private void SpeechToText( )
+        {
+            if( _engine != null )
+            {
+                _engine.RecognizeAsync( RecognizeMode.Multiple );
+                return;
+            }
+
+            _engine = new SpeechRecognitionEngine( new CultureInfo( "en-US" ) );
+            _engine.LoadGrammar( new DictationGrammar( ) );
+            _engine.SpeechRecognized += OnSpeechRecognized;
+            _engine.SpeechHypothesized += OnSpeechHypothesized;
+            _engine.SetInputToDefaultAudioDevice( );
+            _engine.RecognizeAsync( RecognizeMode.Multiple );
+        }
+
+        /// <summary>
+        /// Speeches to text.
+        /// </summary>
+        /// <param name="input">The input.</param>
+        public void SpeechToText( string input )
+        {
+            if( MuteCheckBox.IsChecked == true )
+            {
+                return;
+            }
+
+            if( _synthesizer == null )
+            {
+                _synthesizer = new SpeechSynthesizer( );
+                _synthesizer.SetOutputToDefaultAudioDevice( );
+            }
+
+            if( VoiceComboBox.Text != "" )
+            {
+                _synthesizer.SelectVoice( VoiceComboBox.Text );
+            }
+
+            _synthesizer.Speak( input );
+        }
+
+        /// <summary>
+        /// Sets the hyper parameters.
+        /// </summary>
+        private protected void SetHyperParameters( )
+        {
+            try
+            {
+                _store = StoreCheckBox.IsChecked ?? false;
+                _stream = StreamCheckBox.IsChecked ?? false;
+                _presence = PresenceSlider.Value;
+                _temperature = TemperatureSlider.Value;
+                _topPercent = PercentSlider.Value;
+                _frequency = FrequencySlider.Value;
+                _number = int.Parse( NumberTextBox.Text ?? "1" );
+                _maximumTokens = int.Parse( MaxTokensTextBox.Text ?? "2048" );
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+            }
+        }
+
+        /// <summary>
+        /// Sets the search panel visibility.
+        /// </summary>
+        /// <param name="visible">
+        /// if set to <c>true</c> [visible].</param>
+        private void SetSearchPanelVisibility( bool visible = true )
+        {
+            try
+            {
+                if( visible )
+                {
+                    UrlTextBox.Visibility = Visibility.Visible;
+                    SearchPanelForwardButton.Visibility = Visibility.Visible;
+                    SearchPanelBackButton.Visibility = Visibility.Visible;
+                    SearchPanelCancelButton.Visibility = Visibility.Visible;
+                }
+                else
+                {
+                    UrlTextBox.Visibility = Visibility.Hidden;
+                    SearchPanelForwardButton.Visibility = Visibility.Hidden;
+                    SearchPanelBackButton.Visibility = Visibility.Hidden;
+                    SearchPanelCancelButton.Visibility = Visibility.Hidden;
+                }
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// Shows the items.
+        /// </summary>
+        private void SetToolbarVisibility( bool visible = true )
+        {
+            try
+            {
+                if( visible )
+                {
+                    FirstButton.Visibility = Visibility.Visible;
+                    PreviousButton.Visibility = Visibility.Visible;
+                    NextButton.Visibility = Visibility.Visible;
+                    LastButton.Visibility = Visibility.Visible;
+                    ToolStripTextBox.Visibility = Visibility.Visible;
+                    LookupButton.Visibility = Visibility.Visible;
+                    RefreshButton.Visibility = Visibility.Visible;
+                    DeleteButton.Visibility = Visibility.Visible;
+                    ToolStripTextBox.Visibility = Visibility.Visible;
+                    ToolStripComboBox.Visibility = Visibility.Visible;
+                }
+                else
+                {
+                    FirstButton.Visibility = Visibility.Hidden;
+                    PreviousButton.Visibility = Visibility.Hidden;
+                    NextButton.Visibility = Visibility.Hidden;
+                    LastButton.Visibility = Visibility.Hidden;
+                    ToolStripTextBox.Visibility = Visibility.Hidden;
+                    LookupButton.Visibility = Visibility.Hidden;
+                    RefreshButton.Visibility = Visibility.Hidden;
+                    DeleteButton.Visibility = Visibility.Hidden;
+                    ToolStripTextBox.Visibility = Visibility.Hidden;
+                    ToolStripComboBox.Visibility = Visibility.Hidden;
+                }
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+            }
+        }
+
+        /// <summary>
+        /// Sends the HTTP message.
+        /// </summary>
+        /// <param name="question">The question.</param>
+        /// <returns></returns>
+        public string SendHttpMessage( string question )
+        {
+            ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12
+                | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls;
+
+            // text-davinci-002, text-davinci-003
+            var _model = ModelComboBox.Text;
+            var _url = "https://api.openai.com/v1/completions";
+            if( _model.IndexOf( "gpt-3.5-turbo" ) != -1 )
+            {
+                //Chat GTP 4 https://openai.com/research/gpt-4
+                _url = "https://api.openai.com/v1/chat/completions";
+            }
+
+            var _request = WebRequest.Create( _url );
+            _request.Method = "POST";
+            _request.ContentType = "application/json";
+            _request.Headers.Add( "Authorization", "Bearer " + KEY );
+            var _maxTokens = int.Parse( MaxTokensTextBox.Text );// 2048
+            var _temp = double.Parse( TemperatureTextBox.Text );// 0.5
+            if( ( _temp < 0d ) | ( _temp > 1d ) )
+            {
+                var _msg = "Randomness has to be between 0 and 1 "
+                    + "with higher values resulting in more random text";
+
+                SendMessage( _msg );
+                return "";
+            }
+
+            var _userId = UserLabel.Content;// 1        
+            var _data = "";
+            if( _model.IndexOf( "gpt-3.5-turbo" ) != -1 )
+            {
+                _data = "{";
+                _data += " \"model\":\"" + _model + "\",";
+                _data += " \"messages\": [{\"role\": \"user\", \"content\": \""
+                    + PadQuotes( question ) + "\"}]";
+
+                _data += "}";
+            }
+            else
+            {
+                _data = "{";
+                _data += " \"model\":\"" + _model + "\",";
+                _data += " \"prompt\": \"" + PadQuotes( question ) + "\",";
+                _data += " \"max_tokens\": " + _maxTokens + ",";
+                _data += " \"user\": \"" + _userId + "\", ";
+                _data += " \"temperature\": " + _temp + ", ";
+                _data += " \"frequency_penalty\": 0.0" + ", ";
+                _data += " \"presence_penalty\": 0.0" + ", ";
+                _data += " \"stop\": [\"#\", \";\"]";
+                _data += "}";
+            }
+
+            using var _streamWriter = new StreamWriter( _request.GetRequestStream( ) );
+            _streamWriter.Write( _data );
+            _streamWriter.Flush( );
+            _streamWriter.Close( );
+            var _json = "";
+            using( var _response = _request.GetResponse( ) )
+            {
+                using var _responseStream = _response.GetResponseStream( );
+                using var _reader = new StreamReader( _responseStream );
+                _json = _reader.ReadToEnd( );
+            }
+
+            var _objects = new Dictionary<string, object>( );
+            var _choices = _objects.Keys.ToList( );
+            var _choice = _choices[ 0 ];
+            var _message = "";
+            if( _model.IndexOf( "gpt-3.5-turbo" ) != -1 )
+            {
+                var _key = _objects[ "message" ];
+                var _kvp = new Dictionary<string, object>( );
+            }
+            else
+            {
+                _message = ( string )_objects[ "text" ];
+            }
+
+            return _message;
+        }
+
+        /// <summary>
         /// Finds the text on page.
         /// </summary>
         /// <param name="next">if set to <c>true</c> [next].</param>
@@ -1368,34 +1880,6 @@ namespace Bubba
             }
 
             UrlTextBox.Focus( );
-        }
-
-        /// <summary>
-        /// Closes the other tabs.
-        /// </summary>
-        private void CloseOtherTabs( )
-        {
-            try
-            {
-                var _listToClose = new List<BrowserTabItem>( );
-                foreach( BrowserTabItem _tab in TabControl.Items )
-                {
-                    if( _tab != _currentTab
-                        && _tab != TabControl.SelectedItem )
-                    {
-                        _listToClose.Add( _tab );
-                    }
-                }
-
-                foreach( var _tab in _listToClose )
-                {
-                    TabControl.Items.Remove( _tab );
-                }
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
-            }
         }
 
         /// <summary>
@@ -1512,82 +1996,6 @@ namespace Bubba
         }
 
         /// <summary>
-        /// Cleans the URL.
-        /// </summary>
-        /// <param name="url">The URL.</param>
-        /// <returns></returns>
-        private string CleanUrl( string url )
-        {
-            try
-            {
-                ThrowIf.Null( url, nameof( url ) );
-                if( url.BeginsWith( "about:" ) )
-                {
-                    return "";
-                }
-
-                url = url.RemovePrefix( "http://" );
-                url = url.RemovePrefix( "https://" );
-                url = url.RemovePrefix( "file://" );
-                url = url.RemovePrefix( "/" );
-                return url.DecodeUrlForFilePath( );
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
-                return string.Empty;
-            }
-        }
-
-        /// <summary>
-        /// Invokes if.
-        /// </summary>
-        /// <param name="action">The action.</param>
-        public void InvokeIf( Action action )
-        {
-            try
-            {
-                ThrowIf.Null( action, nameof( action ) );
-                if( Dispatcher.CheckAccess( ) )
-                {
-                    action?.Invoke( );
-                }
-                else
-                {
-                    Dispatcher.BeginInvoke( action );
-                }
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
-            }
-        }
-
-        /// <summary>
-        /// Invokes if.
-        /// </summary>
-        /// <param name="action">The action.</param>
-        public void InvokeIf( Action<object> action )
-        {
-            try
-            {
-                ThrowIf.Null( action, nameof( action ) );
-                if( Dispatcher.CheckAccess( ) )
-                {
-                    action?.Invoke( null );
-                }
-                else
-                {
-                    Dispatcher.BeginInvoke( action );
-                }
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
-            }
-        }
-
-        /// <summary>
         /// Busies this instance.
         /// </summary>
         private void Busy( )
@@ -1624,79 +2032,6 @@ namespace Bubba
         }
 
         /// <summary>
-        /// Determines whether the specified URL is blank.
-        /// </summary>
-        /// <param name="url">The URL.</param>
-        /// <returns>
-        ///   <c>true</c> if the specified URL is blank; otherwise, <c>false</c>.
-        /// </returns>
-        private bool IsBlank( string url )
-        {
-            try
-            {
-                ThrowIf.Null( url, nameof( url ) );
-                return url == "" || url == "about:blank";
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
-                return false;
-            }
-        }
-
-        /// <summary>
-        /// Determines whether [is blank or system] [the specified URL].
-        /// </summary>
-        /// <param name="url">The URL.</param>
-        /// <returns>
-        ///   <c>true</c> if [is blank or system] [the specified URL]; otherwise, <c>false</c>.
-        /// </returns>
-        private bool IsBlankOrSystem( string url )
-        {
-            try
-            {
-                ThrowIf.Null( url, nameof( url ) );
-                return url == "" || url.BeginsWith( "about:" ) || url.BeginsWith( "chrome:" )
-                    || url.BeginsWith( AppSettings[ "Internal" ] + ":" );
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
-                return false;
-            }
-        }
-
-        /// <summary>
-        /// Determines whether [is first tab].
-        /// </summary>
-        /// <returns>
-        ///   <c>true</c> if [is first tab]; otherwise, <c>false</c>.
-        /// </returns>
-        private bool IsFirstTab( )
-        {
-            return TabControl.SelectedItem == TabControl.Items[ 0 ];
-        }
-
-        /// <summary>
-        /// Determines whether [is last tab].
-        /// </summary>
-        /// <returns>
-        ///   <c>true</c> if [is last tab]; otherwise, <c>false</c>.
-        /// </returns>
-        private bool IsLastTab( )
-        {
-            return TabControl.SelectedItem == TabControl.Items[ ^2 ];
-        }
-
-        /// <summary>
-        /// Stops the active tab.
-        /// </summary>
-        private void StopActiveTab( )
-        {
-            _currentBrowser.Stop( );
-        }
-
-        /// <summary>
         /// Nexts the tab.
         /// </summary>
         private void NextTab( )
@@ -1727,6 +2062,50 @@ namespace Bubba
             {
                 var _next = TabControl.SelectedIndex - 1;
                 TabControl.SelectedItem = TabControl.Items[ _next ];
+            }
+        }
+
+        /// <summary>
+        /// Activates the GPT tab.
+        /// </summary>
+        private void ActivateChatTab( )
+        {
+            try
+            {
+                BrowserTab.Visibility = Visibility.Hidden;
+                Header.Height = new GridLength( 30F );
+                Body.Height = new GridLength( 720F );
+                Footer.Height = new GridLength( 50F );
+                UrlTextBox.Visibility = Visibility.Hidden;
+                ChatTab.IsSelected = true;
+                ChatButton.Visibility = Visibility.Hidden;
+                TabControl.SelectedIndex = 0;
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+            }
+        }
+
+        /// <summary>
+        /// Activates the web tab.
+        /// </summary>
+        private void ActivateBrowserTab( )
+        {
+            try
+            {
+                ChatTab.Visibility = Visibility.Hidden;
+                Header.Height = new GridLength( 50F );
+                Body.Height = new GridLength( 700F );
+                Footer.Height = new GridLength( 50F );
+                UrlTextBox.Visibility = Visibility.Visible;
+                ChatButton.Visibility = Visibility.Visible;
+                BrowserTab.IsSelected = true;
+                TabControl.SelectedIndex = 0;
+            }
+            catch(Exception ex)
+            {
+                Fail(ex);
             }
         }
 
@@ -1849,112 +2228,6 @@ namespace Bubba
         }
 
         /// <summary>
-        /// Searches the government domains.
-        /// </summary>
-        /// <param name="keyWords">The key words.</param>
-        private void SearchGovernmentDomains( string keyWords )
-        {
-            if( !string.IsNullOrEmpty( keyWords ) )
-            {
-                try
-                {
-                    var _google = AppSettings[ "Google" ] + keyWords;
-                    _currentBrowser.LoadUrl( _google );
-                    var _epa = AppSettings[ "EPA" ] + keyWords;
-                    AddNewBrowserTab( _epa, false );
-                    var _data = AppSettings[ "DATA" ] + keyWords;
-                    AddNewBrowserTab( _data, false );
-                    var _crs = AppSettings[ "CRS" ] + keyWords;
-                    AddNewBrowserTab( _crs, false );
-                    var _loc = AppSettings[ "LOC" ] + keyWords;
-                    AddNewBrowserTab( _loc, false );
-                    var _gpo = AppSettings[ "GPO" ] + keyWords;
-                    AddNewBrowserTab( _gpo, false );
-                    var _usgi = AppSettings[ "USGI" ] + keyWords;
-                    AddNewBrowserTab( _usgi, false );
-                    var _omb = AppSettings[ "OMB" ] + keyWords;
-                    AddNewBrowserTab( _omb, false );
-                    var _ust = AppSettings[ "UST" ] + keyWords;
-                    AddNewBrowserTab( _ust, false );
-                    var _nara = AppSettings[ "NARA" ] + keyWords;
-                    AddNewBrowserTab( _nara, false );
-                    var _nasa = AppSettings[ "NASA" ] + keyWords;
-                    AddNewBrowserTab( _nasa, false );
-                    var _noaa = AppSettings[ "NOAA" ] + keyWords;
-                    AddNewBrowserTab( _noaa, false );
-                    var _doi = AppSettings[ "DOI" ] + keyWords;
-                    AddNewBrowserTab( _doi, false );
-                    var _nps = AppSettings[ "NPS" ] + keyWords;
-                    AddNewBrowserTab( _nps, false );
-                    var _gsa = AppSettings[ "GSA" ] + keyWords;
-                    AddNewBrowserTab( _gsa, false );
-                    var _doc = AppSettings[ "DOC" ] + keyWords;
-                    AddNewBrowserTab( _doc, false );
-                    var _hhs = AppSettings[ "HHS" ] + keyWords;
-                    AddNewBrowserTab( _hhs, false );
-                    var _nrc = AppSettings[ "NRC" ] + keyWords;
-                    AddNewBrowserTab( _nrc, false );
-                    var _doe = AppSettings[ "DOE" ] + keyWords;
-                    AddNewBrowserTab( _doe, false );
-                    var _nsf = AppSettings[ "NSF" ] + keyWords;
-                    AddNewBrowserTab( _nsf, false );
-                    var _usda = AppSettings[ "USDA" ] + keyWords;
-                    AddNewBrowserTab( _usda, false );
-                    var _csb = AppSettings[ "CSB" ] + keyWords;
-                    AddNewBrowserTab( _csb, false );
-                    var _irs = AppSettings[ "IRS" ] + keyWords;
-                    AddNewBrowserTab( _irs, false );
-                    var _fda = AppSettings[ "FDA" ] + keyWords;
-                    AddNewBrowserTab( _fda, false );
-                    var _cdc = AppSettings[ "CDC" ] + keyWords;
-                    AddNewBrowserTab( _cdc, false );
-                    var _ace = AppSettings[ "ACE" ] + keyWords;
-                    AddNewBrowserTab( _ace, false );
-                    var _dhs = AppSettings[ "DHS" ] + keyWords;
-                    AddNewBrowserTab( _dhs, false );
-                    var _dod = AppSettings[ "DOD" ] + keyWords;
-                    AddNewBrowserTab( _dod, false );
-                    var _usno = AppSettings[ "USNO" ] + keyWords;
-                    AddNewBrowserTab( _usno, false );
-                    var _nws = AppSettings[ "NWS" ] + keyWords;
-                    AddNewBrowserTab( _nws, false );
-                }
-                catch( Exception ex )
-                {
-                    Fail( ex );
-                }
-            }
-        }
-
-        /// <summary>
-        /// Updates the download item.
-        /// </summary>
-        /// <param name="item">The item.</param>
-        public void UpdateDownloadItem( DownloadItem item )
-        {
-            lock( _downloadItems )
-            {
-                // SuggestedFileName comes full only
-                // in the first attempt so keep it somewhere
-                if( item.SuggestedFileName != "" )
-                {
-                    _downloadNames[ item.Id ] = item.SuggestedFileName;
-                }
-
-                // Set it back if it is empty
-                if( item.SuggestedFileName == ""
-                    && _downloadNames.TryGetValue( item.Id, out var _name ) )
-                {
-                    item.SuggestedFileName = _name;
-                }
-
-                _downloadItems[ item.Id ] = item;
-
-                //UpdateSnipProgress();
-            }
-        }
-
-        /// <summary>
         /// Downloadses the in progress.
         /// </summary>
         /// <returns></returns>
@@ -1972,47 +2245,6 @@ namespace Bubba
             }
 
             return false;
-        }
-
-        /// <summary>
-        /// Refreshes the active tab.
-        /// </summary>
-        public void RefreshActiveTab( )
-        {
-            var _address = _currentBrowser.Address;
-            _currentBrowser.Load( _address );
-        }
-
-        /// <summary>
-        /// Closes the active tab.
-        /// </summary>
-        public void CloseActiveTab( )
-        {
-            if( _currentTab != null/* && TabPages.Items.Count > 2*/ )
-            {
-                var _index = TabControl.Items.IndexOf( TabControl.SelectedItem );
-                TabControl.Items.RemoveAt( _index );
-                if( TabControl.Items.Count - 1 > _index )
-                {
-                    TabControl.SelectedItem = TabControl.Items[ _index ];
-                }
-            }
-        }
-
-        /// <summary>
-        /// Opens the downloads tab.
-        /// </summary>
-        public void OpenDownloadsTab( )
-        {
-            if( _downloadStrip != null )
-            {
-                TabControl.SelectedItem = _downloadStrip;
-            }
-            else
-            {
-                var _brw = AddNewBrowserTab( AppSettings[ "Downloads" ] );
-                _downloadStrip = ( BrowserTabItem )_brw.Parent;
-            }
         }
 
         /// <summary>
@@ -2208,42 +2440,6 @@ namespace Bubba
         }
 
         /// <summary>
-        /// Closes the search.
-        /// </summary>
-        private void CloseSearch( )
-        {
-            if( _isSearchOpen )
-            {
-                _isSearchOpen = false;
-                InvokeIf( ( ) =>
-                {
-                    //SearchPanel.Visible = false;
-                    _currentBrowser.GetBrowser( )?.StopFinding( true );
-                } );
-            }
-        }
-
-        /// <summary>
-        /// Toggles the fullscreen.
-        /// </summary>
-        private void ToggleFullscreen( )
-        {
-            if( !_fullScreen )
-            {
-                _oldWindowState = WindowState;
-                WindowStyle = WindowStyle.SingleBorderWindow;
-                WindowState = WindowState.Maximized;
-                _fullScreen = true;
-            }
-            else
-            {
-                WindowStyle = WindowStyle.SingleBorderWindow;
-                WindowState = _oldWindowState;
-                _fullScreen = false;
-            }
-        }
-
-        /// <summary>
         /// Opens the search dialog.
         /// </summary>
         /// <param name="x">The x.</param>
@@ -2265,94 +2461,6 @@ namespace Bubba
             {
                 Fail( ex );
             }
-        }
-
-        /// <summary>
-        /// Sends the HTTP message.
-        /// </summary>
-        /// <param name="question">The question.</param>
-        /// <returns></returns>
-        public string SendHttpMessage( string question )
-        {
-            ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12
-                | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls;
-
-            // text-davinci-002, text-davinci-003
-            var _model = ModelComboBox.Text;
-            var _url = "https://api.openai.com/v1/completions";
-            if( _model.IndexOf( "gpt-3.5-turbo" ) != -1 )
-            {
-                //Chat GTP 4 https://openai.com/research/gpt-4
-                _url = "https://api.openai.com/v1/chat/completions";
-            }
-
-            var _request = WebRequest.Create( _url );
-            _request.Method = "POST";
-            _request.ContentType = "application/json";
-            _request.Headers.Add( "Authorization", "Bearer " + KEY );
-            var _maxTokens = int.Parse( MaxTokensTextBox.Text );// 2048
-            var _temp = double.Parse( TemperatureTextBox.Text );// 0.5
-            if( ( _temp < 0d ) | ( _temp > 1d ) )
-            {
-                var _msg = "Randomness has to be between 0 and 1 "
-                    + "with higher values resulting in more random text";
-
-                SendMessage( _msg );
-                return "";
-            }
-
-            var _userId = UserLabel.Content;// 1        
-            var _data = "";
-            if( _model.IndexOf( "gpt-3.5-turbo" ) != -1 )
-            {
-                _data = "{";
-                _data += " \"model\":\"" + _model + "\",";
-                _data += " \"messages\": [{\"role\": \"user\", \"content\": \""
-                    + PadQuotes( question ) + "\"}]";
-
-                _data += "}";
-            }
-            else
-            {
-                _data = "{";
-                _data += " \"model\":\"" + _model + "\",";
-                _data += " \"prompt\": \"" + PadQuotes( question ) + "\",";
-                _data += " \"max_tokens\": " + _maxTokens + ",";
-                _data += " \"user\": \"" + _userId + "\", ";
-                _data += " \"temperature\": " + _temp + ", ";
-                _data += " \"frequency_penalty\": 0.0" + ", ";
-                _data += " \"presence_penalty\": 0.0" + ", ";
-                _data += " \"stop\": [\"#\", \";\"]";
-                _data += "}";
-            }
-
-            using var _streamWriter = new StreamWriter( _request.GetRequestStream( ) );
-            _streamWriter.Write( _data );
-            _streamWriter.Flush( );
-            _streamWriter.Close( );
-            var _json = "";
-            using( var _response = _request.GetResponse( ) )
-            {
-                using var _responseStream = _response.GetResponseStream( );
-                using var _reader = new StreamReader( _responseStream );
-                _json = _reader.ReadToEnd( );
-            }
-
-            var _objects = new Dictionary<string, object>( );
-            var _choices = _objects.Keys.ToList( );
-            var _choice = _choices[ 0 ];
-            var _message = "";
-            if( _model.IndexOf( "gpt-3.5-turbo" ) != -1 )
-            {
-                var _key = _objects[ "message" ];
-                var _kvp = new Dictionary<string, object>( );
-            }
-            else
-            {
-                _message = ( string )_objects[ "text" ];
-            }
-
-            return _message;
         }
 
         /// <summary>
@@ -2451,139 +2559,30 @@ namespace Bubba
         }
 
         /// <summary>
-        /// Speeches to text.
+        /// Updates the download item.
         /// </summary>
-        private void SpeechToText( )
+        /// <param name="item">The item.</param>
+        public void UpdateDownloadItem( DownloadItem item )
         {
-            if( _engine != null )
+            lock( _downloadItems )
             {
-                _engine.RecognizeAsync( RecognizeMode.Multiple );
-                return;
-            }
-
-            _engine = new SpeechRecognitionEngine( new CultureInfo( "en-US" ) );
-            _engine.LoadGrammar( new DictationGrammar( ) );
-            _engine.SpeechRecognized += OnSpeechRecognized;
-            _engine.SpeechHypothesized += OnSpeechHypothesized;
-            _engine.SetInputToDefaultAudioDevice( );
-            _engine.RecognizeAsync( RecognizeMode.Multiple );
-        }
-
-        /// <summary>
-        /// Speeches to text.
-        /// </summary>
-        /// <param name="input">The input.</param>
-        public void SpeechToText( string input )
-        {
-            if( MuteCheckBox.IsChecked == true )
-            {
-                return;
-            }
-
-            if( _synthesizer == null )
-            {
-                _synthesizer = new SpeechSynthesizer( );
-                _synthesizer.SetOutputToDefaultAudioDevice( );
-            }
-
-            if( VoiceComboBox.Text != "" )
-            {
-                _synthesizer.SelectVoice( VoiceComboBox.Text );
-            }
-
-            _synthesizer.Speak( input );
-        }
-
-        /// <summary>
-        /// Sets the hyper parameters.
-        /// </summary>
-        private protected void SetHyperParameters( )
-        {
-            try
-            {
-                _store = StoreCheckBox.IsChecked ?? false;
-                _stream = StreamCheckBox.IsChecked ?? false;
-                _presence = PresenceSlider.Value;
-                _temperature = TemperatureSlider.Value;
-                _topPercent = PercentSlider.Value;
-                _frequency = FrequencySlider.Value;
-                _number = int.Parse( NumberTextBox.Text );
-                _maximumTokens = int.Parse( MaxTokensTextBox.Text );
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
-            }
-        }
-
-        /// <summary>
-        /// Sets the search panel visibility.
-        /// </summary>
-        /// <param name="visible">
-        /// if set to <c>true</c> [visible].</param>
-        private void SetSearchPanelVisibility( bool visible = true )
-        {
-            try
-            {
-                if( visible )
+                // SuggestedFileName comes full only
+                // in the first attempt so keep it somewhere
+                if( item.SuggestedFileName != "" )
                 {
-                    UrlTextBox.Visibility = Visibility.Visible;
-                    SearchPanelForwardButton.Visibility = Visibility.Visible;
-                    SearchPanelBackButton.Visibility = Visibility.Visible;
-                    SearchPanelCancelButton.Visibility = Visibility.Visible;
+                    _downloadNames[ item.Id ] = item.SuggestedFileName;
                 }
-                else
-                {
-                    UrlTextBox.Visibility = Visibility.Hidden;
-                    SearchPanelForwardButton.Visibility = Visibility.Hidden;
-                    SearchPanelBackButton.Visibility = Visibility.Hidden;
-                    SearchPanelCancelButton.Visibility = Visibility.Hidden;
-                }
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
-            }
-        }
 
-        /// <summary>
-        /// 
-        /// Shows the items.
-        /// </summary>
-        private void SetToolbarVisibility( bool visible = true )
-        {
-            try
-            {
-                if( visible )
+                // Set it back if it is empty
+                if( item.SuggestedFileName == ""
+                    && _downloadNames.TryGetValue( item.Id, out var _name ) )
                 {
-                    FirstButton.Visibility = Visibility.Visible;
-                    PreviousButton.Visibility = Visibility.Visible;
-                    NextButton.Visibility = Visibility.Visible;
-                    LastButton.Visibility = Visibility.Visible;
-                    ToolStripTextBox.Visibility = Visibility.Visible;
-                    LookupButton.Visibility = Visibility.Visible;
-                    RefreshButton.Visibility = Visibility.Visible;
-                    DeleteButton.Visibility = Visibility.Visible;
-                    ToolStripTextBox.Visibility = Visibility.Visible;
-                    ToolStripComboBox.Visibility = Visibility.Visible;
+                    item.SuggestedFileName = _name;
                 }
-                else
-                {
-                    FirstButton.Visibility = Visibility.Hidden;
-                    PreviousButton.Visibility = Visibility.Hidden;
-                    NextButton.Visibility = Visibility.Hidden;
-                    LastButton.Visibility = Visibility.Hidden;
-                    ToolStripTextBox.Visibility = Visibility.Hidden;
-                    LookupButton.Visibility = Visibility.Hidden;
-                    RefreshButton.Visibility = Visibility.Hidden;
-                    DeleteButton.Visibility = Visibility.Hidden;
-                    ToolStripTextBox.Visibility = Visibility.Hidden;
-                    ToolStripComboBox.Visibility = Visibility.Hidden;
-                }
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
+
+                _downloadItems[ item.Id ] = item;
+
+                //UpdateSnipProgress();
             }
         }
 
@@ -2715,6 +2714,51 @@ namespace Bubba
         }
 
         /// <summary>
+        /// Refreshes the active tab.
+        /// </summary>
+        public void RefreshActiveTab( )
+        {
+            var _address = _currentBrowser.Address;
+            _currentBrowser.Load( _address );
+        }
+
+        /// <summary>
+        /// Opens the downloads tab.
+        /// </summary>
+        public void OpenDownloadsTab( )
+        {
+            if( _downloadStrip != null )
+            {
+                TabControl.SelectedItem = _downloadStrip;
+            }
+            else
+            {
+                var _brw = AddNewBrowserTab( AppSettings[ "Downloads" ] );
+                _downloadStrip = ( BrowserTabItem )_brw.Parent;
+            }
+        }
+
+        /// <summary>
+        /// Toggles the fullscreen.
+        /// </summary>
+        private void ToggleFullscreen( )
+        {
+            if( !_fullScreen )
+            {
+                _oldWindowState = WindowState;
+                WindowStyle = WindowStyle.SingleBorderWindow;
+                WindowState = WindowState.Maximized;
+                _fullScreen = true;
+            }
+            else
+            {
+                WindowStyle = WindowStyle.SingleBorderWindow;
+                WindowState = _oldWindowState;
+                _fullScreen = false;
+            }
+        }
+
+        /// <summary>
         /// Called when [load].
         /// </summary>
         /// <param name="sender">The sender.</param>
@@ -2733,7 +2777,7 @@ namespace Bubba
                 InitializeToolStrip( );
                 _searchEngineUrl = AppSettings[ "Google" ];
                 SetSearchPanelVisibility( false );
-                TabControl.SelectedIndex = 0;
+                ActivateChatTab( );
             }
             catch( Exception ex )
             {
@@ -2775,7 +2819,7 @@ namespace Bubba
                 if( sender == _currentBrowser
                     && e.Property.Name.Equals( "Address" ) )
                 {
-                    if( !WebUtils.IsFocused( UrlTextBox ) )
+                    if( !NetUtility.IsFocused( UrlTextBox ) )
                     {
                         var _url = e.NewValue.ToString( );
                         SetUrl( _url );
@@ -3813,8 +3857,7 @@ namespace Bubba
         {
             try
             {
-                var _message = "NOT YET IMPLEMENTED!";
-                SendMessage( _message );
+                ActivateBrowserTab( );
             }
             catch( Exception ex )
             {

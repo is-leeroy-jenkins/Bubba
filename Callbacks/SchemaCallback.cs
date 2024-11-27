@@ -161,7 +161,7 @@ namespace Bubba
                     {
                         using( callBack )
                         {
-                            _stream = IconUtils.GetFileIcon( _fileName, IconSize.Large );
+                            _stream = IconUtility.GetFileIcon( _fileName, IconSize.Large );
                             _mimeType = ResourceHandler.GetMimeType( ".png" );
                             callBack.Continue( );
                         }

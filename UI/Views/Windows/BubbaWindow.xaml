@@ -43,7 +43,7 @@
     <!--  *********************************************  CONTEXT MENU *********************************************  -->
 
     <Window.ContextMenu>
-        <ContextMenu Name="BrowserContextMenu">
+        <ContextMenu Name="ChatContextMenu">
             <wpf:MenuItemAdv
                 Click="OnFileMenuOptionClick"
                 Header="File"
@@ -137,20 +137,26 @@
 
     <!--  ********************************************* LAYOUT *********************************************  -->
 
-    <Grid 
+    <Grid
         x:Name="MainGrid"
         Width="Auto"
         MinWidth="1200"
         MinHeight="500"
-        Margin="1,5,1,-8"
+        Margin="1,5,1,1"
         ClipToBounds="True"
         ScrollViewer.CanContentScroll="True"
         SnapsToDevicePixels="True">
 
         <Grid.RowDefinitions>
-            <RowDefinition Height="50" />
-            <RowDefinition Height="700" />
-            <RowDefinition Height="0" />
+            <RowDefinition
+                x:Name="Header"
+                Height="50" />
+            <RowDefinition
+                x:Name="Body"
+                Height="700" />
+            <RowDefinition
+                x:Name="Footer"
+                Height="50" />
         </Grid.RowDefinitions>
 
         <!--  ******************************************** TAB CONTROL *********************************************  -->
@@ -160,7 +166,7 @@
             Grid.Row="1"
             MinWidth="400"
             MinHeight="498"
-            Margin="8,0,-2,0"
+            Margin="8,0,1,0"
             Padding="1"
             HorizontalContentAlignment="Stretch"
             VerticalContentAlignment="Stretch"
@@ -179,8 +185,7 @@
             TabPanelBackground="{DynamicResource FormBackground}"
             BorderThickness="0,0,0,0">
 
-            <Grid
-                x:Name="ChatGrid">
+            <Grid x:Name="ChatGrid">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="31*" />
                     <RowDefinition Height="175*" />
@@ -188,7 +193,7 @@
                     <RowDefinition Height="97*" />
                 </Grid.RowDefinitions>
 
-                <Canvas Grid.Row="0" >
+                <Canvas Grid.Row="0">
 
                     <b:MetroLabel
                         x:Name="SpeechLabel"
@@ -215,13 +220,13 @@
                         Content="User ID" />
                 </Canvas>
 
-                <Canvas Grid.Row="1" >
-                    
+                <Canvas Grid.Row="1">
+
                     <GroupBox
                         x:Name="SystemGroupBox"
                         Canvas.Left="75"
                         Canvas.Top="3"
-                        Width="1065"
+                        Width="1072"
                         Height="258"
                         Padding="3,3,3,3"
                         HorizontalAlignment="Left"
@@ -299,13 +304,13 @@
                         BorderBrush="{DynamicResource LightBlueBrush}" />
                 </Canvas>
 
-                <Canvas Grid.Row="2" >
+                <Canvas Grid.Row="2">
 
                     <GroupBox
                         x:Name="ParamaterGroupBox"
-                        Canvas.Left="360"
+                        Canvas.Left="294"
                         Canvas.Top="11"
-                        Width="785"
+                        Width="851"
                         Height="170"
                         Padding="3,3,3,3"
                         HorizontalAlignment="Left"
@@ -319,12 +324,12 @@
 
                     <Canvas
                         x:Name="ParameterCanvas"
-                        Canvas.Left="360"
+                        Canvas.Left="307"
                         Canvas.Top="22"
                         Width="838"
                         Height="159"
-                        HorizontalAlignment="Center"
-                        VerticalAlignment="Top">
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Center">
 
                         <b:MetroTextBox
                             x:Name="FrequencyTextBox"
@@ -332,7 +337,7 @@
                             Canvas.Top="111"
                             Width="50"
                             Height="30"
-                            HorizontalAlignment="Left"
+                            HorizontalAlignment="Center"
                             VerticalAlignment="Center"
                             HorizontalContentAlignment="Center"
                             TextWrapping="Wrap"
@@ -346,7 +351,7 @@
                             Canvas.Top="111"
                             Width="50"
                             Height="30"
-                            HorizontalAlignment="Left"
+                            HorizontalAlignment="Center"
                             VerticalAlignment="Center"
                             HorizontalContentAlignment="Center"
                             TextWrapping="Wrap"
@@ -357,11 +362,11 @@
 
                         <b:MetroTextBox
                             x:Name="MaxTokensTextBox"
-                            Canvas.Left="551"
-                            Canvas.Top="114"
+                            Canvas.Left="585"
+                            Canvas.Top="111"
                             Width="55"
                             Height="30"
-                            HorizontalAlignment="Left"
+                            HorizontalAlignment="Center"
                             VerticalAlignment="Center"
                             HorizontalContentAlignment="Center"
                             VerticalContentAlignment="Center"
@@ -383,8 +388,8 @@
                             ToolTip="A number between 0 and 2 (Temperature). Default=1" />
 
                         <Label
-                            Canvas.Left="544"
-                            Canvas.Top="86"
+                            Canvas.Left="573"
+                            Canvas.Top="83"
                             Width="74"
                             Height="24"
                             HorizontalAlignment="Left"
@@ -409,12 +414,12 @@
 
                         <b:MetroComboBox
                             x:Name="VoiceComboBox"
-                            Canvas.Left="645"
-                            Canvas.Top="108"
+                            Canvas.Left="694"
+                            Canvas.Top="111"
                             Width="125"
                             Height="36"
                             HorizontalAlignment="Center"
-                            VerticalAlignment="Top">
+                            VerticalAlignment="Center">
                             <wpf:ComboBoxItemAdv Content="Item 1" />
                             <wpf:ComboBoxItemAdv Content="Item 2" />
                             <wpf:ComboBoxItemAdv Content="Item 3" />
@@ -424,8 +429,8 @@
 
                         <Label
                             x:Name="ModelLabel"
-                            Canvas.Left="645"
-                            Canvas.Top="10"
+                            Canvas.Left="694"
+                            Canvas.Top="7"
                             Height="24"
                             HorizontalAlignment="Center"
                             VerticalAlignment="Top"
@@ -434,8 +439,8 @@
 
                         <Label
                             x:Name="VoiceLabel"
-                            Canvas.Left="645"
-                            Canvas.Top="80"
+                            Canvas.Left="694"
+                            Canvas.Top="83"
                             Height="24"
                             HorizontalAlignment="Left"
                             VerticalAlignment="Top"
@@ -448,7 +453,7 @@
                             Canvas.Top="111"
                             Width="50"
                             Height="30"
-                            HorizontalAlignment="Left"
+                            HorizontalAlignment="Center"
                             VerticalAlignment="Center"
                             HorizontalContentAlignment="Center"
                             Tag="Presence"
@@ -474,7 +479,7 @@
                             Canvas.Top="111"
                             Width="50"
                             Height="30"
-                            HorizontalAlignment="Left"
+                            HorizontalAlignment="Center"
                             VerticalAlignment="Center"
                             HorizontalContentAlignment="Center"
                             TextWrapping="Wrap"
@@ -497,11 +502,11 @@
 
                         <b:MetroTextBox
                             x:Name="NumberTextBox"
-                            Canvas.Left="556"
-                            Canvas.Top="39"
+                            Canvas.Left="585"
+                            Canvas.Top="36"
                             Width="50"
                             Height="30"
-                            HorizontalAlignment="Center"
+                            HorizontalAlignment="Left"
                             VerticalAlignment="Center"
                             HorizontalContentAlignment="Center"
                             VerticalContentAlignment="Center"
@@ -512,12 +517,12 @@
 
                         <Label
                             x:Name="ResponseLabel"
-                            Canvas.Left="544"
-                            Canvas.Top="10"
+                            Canvas.Left="573"
+                            Canvas.Top="7"
                             Width="74"
                             Height="24"
                             HorizontalAlignment="Left"
-                            VerticalAlignment="Center"
+                            VerticalAlignment="Top"
                             HorizontalContentAlignment="Left"
                             VerticalContentAlignment="Center"
                             Foreground="{StaticResource BlueBorderBrush}"
@@ -528,7 +533,7 @@
                             Canvas.Left="9"
                             Canvas.Top="50"
                             Width="120"
-                            Height="47"
+                            Height="50"
                             HorizontalAlignment="Center"
                             VerticalAlignment="Center"
                             HorizontalContentAlignment="Center"
@@ -549,7 +554,7 @@
                             Canvas.Left="144"
                             Canvas.Top="50"
                             Width="120"
-                            Height="46"
+                            Height="50"
                             HorizontalAlignment="Center"
                             VerticalAlignment="Top"
                             Maximum="2"
@@ -563,20 +568,20 @@
 
                         <b:MetroComboBox
                             x:Name="ModelComboBox"
-                            Canvas.Left="645"
-                            Canvas.Top="39"
+                            Canvas.Left="694"
+                            Canvas.Top="36"
                             Width="125"
                             Height="35"
                             HorizontalAlignment="Center"
-                            VerticalAlignment="Center" />
+                            VerticalAlignment="Top" />
 
                         <Slider
                             x:Name="PercentSlider"
                             Canvas.Left="282"
-                            Canvas.Top="50"
+                            Canvas.Top="42"
                             Width="120"
-                            Height="46"
-                            HorizontalAlignment="Left"
+                            Height="50"
+                            HorizontalAlignment="Center"
                             VerticalAlignment="Top"
                             Maximum="1"
                             Minimum="0"
@@ -590,10 +595,10 @@
                         <Slider
                             x:Name="PresenceSlider"
                             Canvas.Left="410"
-                            Canvas.Top="50"
+                            Canvas.Top="42"
                             Width="120"
-                            Height="46"
-                            HorizontalAlignment="Left"
+                            Height="50"
+                            HorizontalAlignment="Center"
                             VerticalAlignment="Top"
                             HorizontalContentAlignment="Center"
                             VerticalContentAlignment="Center"
@@ -610,13 +615,15 @@
 
                     <Canvas
                         Canvas.Top="11"
-                        Width="350"
-                        Height="170">
+                        Width="292"
+                        Height="170"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Center">
 
                         <GroupBox
                             x:Name="CommandGroupBox"
-                            Canvas.Left="75"
-                            Width="263"
+                            Canvas.Left="77"
+                            Width="210"
                             Height="170"
                             Padding="3,3,3,3"
                             HorizontalAlignment="Left"
@@ -631,24 +638,24 @@
                         <b:MetroTile
                             x:Name="SendButton"
                             Title="    Send"
-                            Canvas.Left="150"
-                            Canvas.Top="32"
+                            Canvas.Left="116"
+                            Canvas.Top="33"
                             Width="114"
                             Height="39"
                             HorizontalAlignment="Left"
-                            VerticalAlignment="Top"
+                            VerticalAlignment="Center"
                             BorderBrush="{StaticResource BlueBorderBrush}"
                             ToolTip="Send Chat Message" />
 
                         <b:MetroTile
                             x:Name="ClearButton"
                             Title="    Clear"
-                            Canvas.Left="152"
-                            Canvas.Top="107"
-                            Width="113"
+                            Canvas.Left="118"
+                            Canvas.Top="108"
+                            Width="114"
                             Height="38"
                             HorizontalAlignment="Left"
-                            VerticalAlignment="Top"
+                            VerticalAlignment="Center"
                             BorderBrush="{StaticResource BlueBorderBrush}"
                             ToolTip="Clear All Entries" />
                     </Canvas>
@@ -730,7 +737,7 @@
 
         </b:MetroTabControl>
 
-        <!--******************************************** TOOLSTRIP  *********************************************-->
+        <!--  ******************************************** TOOLSTRIP  *********************************************  -->
 
         <Grid Grid.Row="2">
             <Canvas
@@ -738,13 +745,15 @@
                 Margin="1,1,1,1">
                 <b:ToolStrip
                     x:Name="ToolStrip"
+                    Canvas.Left="2"
+                    Canvas.Top="10"
                     Width="1201"
                     Height="40"
                     HorizontalAlignment="Center"
                     VerticalAlignment="Top"
                     Background="{StaticResource FormBackground}"
                     FontFamily="Roboto"
-                    FontSize="12" Canvas.Left="2" Canvas.Top="10">
+                    FontSize="12">
 
                     <b:ToolStripLabel
                         x:Name="StatusLabel"
@@ -786,7 +795,7 @@
                         x:Name="LookupButton"
                         Margin="5,1,5,1"
                         ToolTip="Begin Search"
-                        ImageSource="/Resources/Assets/ToolStripImages/LookUpButton.png" />
+                        ImageSource="/Resources/Assets/ToolStripImages/LookupButton.png" />
 
                     <b:ToolStripButton
                         x:Name="RefreshButton"
@@ -794,16 +803,21 @@
                         ToolTip="Resets input controls and parameters"
                         ImageSource="/Resources/Assets/ToolStripImages/RefreshButton.png" />
 
+                    <b:ToolStripDropDown
+                        x:Name="ToolStripComboBox"
+                        Width="115"
+                        BorderBrush="{StaticResource BlueBorderBrush}" />
                     <b:ToolStripButton
                         x:Name="DeleteButton"
                         Margin="5,1,5,1"
                         ToolTip="Delete Item"
-                        ImageSource="/Resources/Assets/ToolStripImages/DeleteButton.png" />
+                        ImageSource="/Resources/Assets/ToolStripImages/GoogleSearchButton.png" />
 
-                    <b:ToolStripDropDown
-                        x:Name="ToolStripComboBox"
-                        Width="150"
-                        BorderBrush="{StaticResource BlueBorderBrush}" />
+                    <b:ToolStripButton
+                        x:Name="ChatButton"
+                        Margin="5,1,5,1"
+                        ToolTip="GPT Mode"
+                        ImageSource="/Resources/Assets/ToolStripImages/ChatButton.png" />
 
                     <b:ToolStripButton
                         x:Name="ToolButton"
@@ -814,7 +828,7 @@
                     <b:ToolStripButton
                         x:Name="DownloadButton"
                         Margin="5,1,5,1"
-                        ToolTip="Developer Tools"
+                        ToolTip="Web Downloads"
                         ImageSource="/Resources/Assets/ToolStripImages/WebDownload.png" />
 
                     <mah:MetroProgressBar
@@ -832,7 +846,7 @@
             </Canvas>
         </Grid>
 
-        <!--******************************************** URL SEARCH BAR ***************************************-->
+        <!--  ******************************************** URL SEARCH BAR ***************************************  -->
 
         <Grid
             x:Name="UrlSearchGrid"

@@ -212,6 +212,7 @@
     <None Remove="Resources\Assets\ToolStripImages\BarButton.png" />
     <None Remove="Resources\Assets\ToolStripImages\BrowseButton.png" />
     <None Remove="Resources\Assets\ToolStripImages\CancelButton.png" />
+    <None Remove="Resources\Assets\ToolStripImages\ChatButton.png" />
     <None Remove="Resources\Assets\ToolStripImages\ColumnButton.png" />
     <None Remove="Resources\Assets\ToolStripImages\DataSourceButton.png" />
     <None Remove="Resources\Assets\ToolStripImages\DateButton.png" />
@@ -224,6 +225,7 @@
     <None Remove="Resources\Assets\ToolStripImages\FilterButton.png" />
     <None Remove="Resources\Assets\ToolStripImages\FirstButton.png" />
     <None Remove="Resources\Assets\ToolStripImages\GanttButton.png" />
+    <None Remove="Resources\Assets\ToolStripImages\GoogleSearchButton.png" />
     <None Remove="Resources\Assets\ToolStripImages\GraphButton.png" />
     <None Remove="Resources\Assets\ToolStripImages\GridButton.png" />
     <None Remove="Resources\Assets\ToolStripImages\GroupButton.png" />
@@ -249,6 +251,8 @@
     <None Remove="Resources\Assets\ToolStripImages\ToggleButton.png" />
     <None Remove="Resources\Assets\ToolStripImages\ToolsButton.png" />
     <None Remove="Resources\Assets\ToolStripImages\WebDownload.png" />
+    <None Remove="Resources\Assets\ToolStripImages\WebDownloadButton.png" />
+    <None Remove="Resources\Assets\ToolStripImages\WebSearchButton.png" />
     <None Remove="SplashScreen.png" />
   </ItemGroup>
 
@@ -473,6 +477,7 @@
     <Resource Include="Resources\Assets\ToolStripImages\BarButton.png" />
     <Resource Include="Resources\Assets\ToolStripImages\BrowseButton.png" />
     <Resource Include="Resources\Assets\ToolStripImages\CancelButton.png" />
+    <Resource Include="Resources\Assets\ToolStripImages\ChatButton.png" />
     <Resource Include="Resources\Assets\ToolStripImages\ColumnButton.png" />
     <Resource Include="Resources\Assets\ToolStripImages\DataSourceButton.png" />
     <Resource Include="Resources\Assets\ToolStripImages\DateButton.png" />
@@ -485,6 +490,7 @@
     <Resource Include="Resources\Assets\ToolStripImages\FilterButton.png" />
     <Resource Include="Resources\Assets\ToolStripImages\FirstButton.png" />
     <Resource Include="Resources\Assets\ToolStripImages\GanttButton.png" />
+    <Resource Include="Resources\Assets\ToolStripImages\GoogleSearchButton.png" />
     <Resource Include="Resources\Assets\ToolStripImages\GraphButton.png" />
     <Resource Include="Resources\Assets\ToolStripImages\GridButton.png" />
     <Resource Include="Resources\Assets\ToolStripImages\GroupButton.png" />
@@ -510,6 +516,8 @@
     <Resource Include="Resources\Assets\ToolStripImages\ToggleButton.png" />
     <Resource Include="Resources\Assets\ToolStripImages\ToolsButton.png" />
     <Resource Include="Resources\Assets\ToolStripImages\WebDownload.png" />
+    <Resource Include="Resources\Assets\ToolStripImages\WebDownloadButton.png" />
+    <Resource Include="Resources\Assets\ToolStripImages\WebSearchButton.png" />
   </ItemGroup>
 
   <ItemGroup>
