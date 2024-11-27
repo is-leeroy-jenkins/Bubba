@@ -366,12 +366,32 @@ namespace Bubba
         /// </summary>
         public event PropertyChangedEventHandler PropertyChanged;
 
+        /// <inheritdoc />
         /// <summary>
-        /// Initializes a new instance of the <see cref="BubbaWindow"/> class.
+        /// Initializes a new instance of the
+        /// <see cref="T:Bubba.BubbaWindow" /> class.
         /// </summary>
         public BubbaWindow( )
         {
+            // Theme Properties
+            SfSkinManager.SetTheme(this, new Theme("FluentDark", App.Controls));
+
+            // Window Initialization
+            Instance = this;
             InitializeComponent( );
+            RegisterCallbacks( );
+            InitializeBrowser( );
+            InitializeDelegates( );
+            InitializeToolStrip( );
+            InitializeTabControl( );
+
+            // GPT Hyperparameters
+            _temperature = 1.0;
+            _maximumTokens = 2048;
+
+            // Event Wiring
+            Loaded += OnLoad;
+            Closing += OnClosing;
         }
 
         /// <summary>
@@ -805,8 +825,6 @@ namespace Bubba
                 SearchPanelForwardButton.Visibility = Visibility.Hidden;
                 SearchPanelBackButton.Visibility = Visibility.Hidden;
                 SearchPanelCancelButton.Visibility = Visibility.Hidden;
-                PreviousButton.Visibility = Visibility.Hidden;
-                NextButton.Visibility = Visibility.Hidden;
             }
             catch( Exception ex )
             {
@@ -2594,6 +2612,36 @@ namespace Bubba
         }
 
         /// <summary>
+        /// Sets the search panel visibility.
+        /// </summary>
+        /// <param name="visible">
+        /// if set to <c>true</c> [visible].</param>
+        private void SetSearchPanelVisibility( bool visible = true )
+        {
+            try
+            {
+                if( visible )
+                {
+                    UrlTextBox.Visibility = Visibility.Visible;
+                    SearchPanelForwardButton.Visibility = Visibility.Visible;
+                    SearchPanelBackButton.Visibility = Visibility.Visible;
+                    SearchPanelCancelButton.Visibility = Visibility.Visible;
+                }
+                else
+                {
+                    UrlTextBox.Visibility = Visibility.Hidden;
+                    SearchPanelForwardButton.Visibility = Visibility.Hidden;
+                    SearchPanelBackButton.Visibility = Visibility.Hidden;
+                    SearchPanelCancelButton.Visibility = Visibility.Hidden;
+                }
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+            }
+        }
+
+        /// <summary>
         /// 
         /// Shows the items.
         /// </summary>
@@ -2684,6 +2732,7 @@ namespace Bubba
                 InitializeTitle( );
                 InitializeToolStrip( );
                 _searchEngineUrl = AppSettings[ "Google" ];
+                SetSearchPanelVisibility( false );
                 TabControl.SelectedIndex = 0;
             }
             catch( Exception ex )
