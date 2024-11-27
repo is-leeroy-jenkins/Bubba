@@ -134,7 +134,7 @@ Bubba uses the following projects and libraries. Please consider supporting them
 
 ## CefSharp Requirements
 
-### The binaries directory must contain these required dependencies:
+#### The binaries directory must contain these required dependencies:
 - libcef.dll (Chromium Embedded Framework Core library)
 - icudtl.dat (Unicode Support data)
 - chrome_elf.dll(Crash reporting library)
@@ -144,20 +144,20 @@ Bubba uses the following projects and libraries. Please consider supporting them
 - libEGL.dll 
 - libGLESv2.dll
 
-### Whilst these are technically listed as optional, the browser is unlikely to function without these files.
+1. Whilst these are technically listed as optional, the browser is unlikely to function without these files.
 
 - CefSharp.Core.dll, CefSharp.dll 
 - CefSharp.Core.Runtime.dll
 - CefSharp.BrowserSubprocess.exe 
 - CefSharp.BrowserSubProcess.Core.dll
 
-### These are required CefSharp binaries that are the common core logic binaries of CefSharp (only 1 required).
+2. These are required CefSharp binaries that are the common core logic binaries of CefSharp (only 1 required).
 
 - CefSharp.WinForms.dll
 - CefSharp.Wpf.dll
 - CefSharp.OffScreen.dll
 
-### By default `CEF` has it's own log file, `Debug.log` which is located in your executing folder. e.g. `bin`
+3. By default `CEF` has it's own log file, `Debug.log` which is located in your executing folder. e.g. `bin`
 
 
 ## ![](https://github.com/is-leeroy-jenkins/Bubba/blob/master/Resources/Assets/GitHubImages/signature.png)  Code Signing 
