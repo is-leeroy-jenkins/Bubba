@@ -132,6 +132,33 @@ Bubba uses the following projects and libraries. Please consider supporting them
 | [Syncfusion.Tools.WPF 24.1.41](https://www.nuget.org/packages/Syncfusion.Tools.WPF)          | This package contains WPF AutoComplete, WPF DockingManager, WPF Navigation Pane, WPF Hierarchy Navigator, WPF Range Slider, WPF Ribbon, WPF TabControl, WPF Wizard, and WPF Badge components for WPF application.                               |
 | [Syncfusion.UI.WPF.NET 24.1.41](https://www.nuget.org/packages/Syncfusion.UI.WPF.NET)          | Syncfusion WPF Controls is a library of 100+ WPF UI components and file formats to build modern WPF applications. 
 
+## CefSharp Requirements
+
+#### The binaries directory must contain these required dependencies:
+- libcef.dll (Chromium Embedded Framework Core library)
+- icudtl.dat (Unicode Support data)
+- chrome_elf.dll(Crash reporting library)
+- snapshot_blob.bin, v8_context_snapshot.bin (V8 snapshot data)
+- locales\en-US.pak, chrome_100_percent.pak, chrome_200_percent.pak, resources.pak, 
+- d3dcompiler_47.dll 
+- libEGL.dll 
+- libGLESv2.dll
+
+#### Whilst these are technically listed as optional, the browser is unlikely to function without these files.
+
+- CefSharp.Core.dll, CefSharp.dll 
+- CefSharp.Core.Runtime.dll
+- CefSharp.BrowserSubprocess.exe 
+- CefSharp.BrowserSubProcess.Core.dll
+
+#### These are required CefSharp binaries that are the common core logic binaries of CefSharp (only 1 required).
+
+- CefSharp.WinForms.dll
+- CefSharp.Wpf.dll
+- CefSharp.OffScreen.dll
+
+#### By default `CEF` has it's own log file, `Debug.log` which is located in your executing folder. e.g. `bin`
+
 
 ## ![](https://github.com/is-leeroy-jenkins/Bubba/blob/master/Resources/Assets/GitHubImages/signature.png)  Code Signing 
 
