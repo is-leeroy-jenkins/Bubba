@@ -26255,14 +26255,16 @@
             </summary>
         </member>
         <member name="M:Bubba.BubbaWindow.#ctor">
+            <inheritdoc />
             <summary>
-            Initializes a new instance of the <see cref="T:Bubba.BubbaWindow"/> class.
+            Initializes a new instance of the
+            <see cref="T:Bubba.BubbaWindow" /> class.
             </summary>
         </member>
         <member name="P:Bubba.BubbaWindow.Store">
             <summary>
             Gets or sets a value indicating whether this
-            <see cref="!:MainWindow"/> is store.
+            <see cref="P:Bubba.BubbaWindow.Store"/> is store.
             </summary>
             <value>
               <c>true</c> if store; otherwise, <c>false</c>.
@@ -26271,7 +26273,7 @@
         <member name="P:Bubba.BubbaWindow.Stream">
             <summary>
             Gets or sets a value indicating whether this
-            <see cref="!:MainWindow"/> is stream.
+            <see cref="P:Bubba.BubbaWindow.Stream"/> is stream.
             </summary>
             <value>
               <c>true</c> if stream; otherwise, <c>false</c>.
@@ -26468,6 +26470,11 @@
             Clears the callbacks.
             </summary>
         </member>
+        <member name="M:Bubba.BubbaWindow.ClearChatControls">
+            <summary>
+            Clears the controls.
+            </summary>
+        </member>
         <member name="M:Bubba.BubbaWindow.ConfigureBrowser(CefSharp.Wpf.ChromiumWebBrowser)">
             <summary>
             Configures the browser.
@@ -26487,48 +26494,6 @@
             </summary>
             <param name="form">The form.</param>
             <param name="interval">The interval.</param>
-        </member>
-        <member name="M:Bubba.BubbaWindow.SetTabText(CefSharp.Wpf.ChromiumWebBrowser,System.String)">
-            <summary>
-            Sets the tab text.
-            </summary>
-            <param name="browser">The browser.</param>
-            <param name="text">The text.</param>
-        </member>
-        <member name="M:Bubba.BubbaWindow.SetTitleText(System.String)">
-            <summary>
-            Sets the title text.
-            </summary>
-            <param name="title">The title.</param>
-        </member>
-        <member name="M:Bubba.BubbaWindow.SetUrl(System.String)">
-            <summary>
-            Sets the URL.
-            </summary>
-            <param name="url">The URL.</param>
-        </member>
-        <member name="M:Bubba.BubbaWindow.CreateNotifier">
-            <summary>
-            Creates the notifier.
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:Bubba.BubbaWindow.SendMessage(System.String)">
-            <summary>
-            Sends the message.
-            </summary>
-            <param name="message">The message.</param>
-        </member>
-        <member name="M:Bubba.BubbaWindow.SendNotification">
-            <summary>
-            Sends the notification.
-            </summary>
-        </member>
-        <member name="M:Bubba.BubbaWindow.FindTextOnPage(System.Boolean)">
-            <summary>
-            Finds the text on page.
-            </summary>
-            <param name="next">if set to <c>true</c> [next].</param>
         </member>
         <member name="M:Bubba.BubbaWindow.GetDownloadPath(CefSharp.DownloadItem)">
             <summary>
@@ -26572,6 +26537,55 @@
             <param name="url">The URL.</param>
             <param name="focused">if set to <c>true</c> [focused].</param>
             <returns></returns>
+        </member>
+        <member name="M:Bubba.BubbaWindow.GetHyperParameter(System.String)">
+            <summary>
+            Gets the hyper parameter.
+            </summary>
+            <param name="input">The input.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Bubba.BubbaWindow.SetTabText(CefSharp.Wpf.ChromiumWebBrowser,System.String)">
+            <summary>
+            Sets the tab text.
+            </summary>
+            <param name="browser">The browser.</param>
+            <param name="text">The text.</param>
+        </member>
+        <member name="M:Bubba.BubbaWindow.SetTitleText(System.String)">
+            <summary>
+            Sets the title text.
+            </summary>
+            <param name="title">The title.</param>
+        </member>
+        <member name="M:Bubba.BubbaWindow.SetUrl(System.String)">
+            <summary>
+            Sets the URL.
+            </summary>
+            <param name="url">The URL.</param>
+        </member>
+        <member name="M:Bubba.BubbaWindow.CreateNotifier">
+            <summary>
+            Creates the notifier.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Bubba.BubbaWindow.SendMessage(System.String)">
+            <summary>
+            Sends the message.
+            </summary>
+            <param name="message">The message.</param>
+        </member>
+        <member name="M:Bubba.BubbaWindow.SendNotification">
+            <summary>
+            Sends the notification.
+            </summary>
+        </member>
+        <member name="M:Bubba.BubbaWindow.FindTextOnPage(System.Boolean)">
+            <summary>
+            Finds the text on page.
+            </summary>
+            <param name="next">if set to <c>true</c> [next].</param>
         </member>
         <member name="M:Bubba.BubbaWindow.CloseOtherTabs">
             <summary>
@@ -26793,18 +26807,6 @@
             Toggles the fullscreen.
             </summary>
         </member>
-        <member name="M:Bubba.BubbaWindow.ClearChatControls">
-            <summary>
-            Clears the controls.
-            </summary>
-        </member>
-        <member name="M:Bubba.BubbaWindow.GetHyperParameter(System.String)">
-            <summary>
-            Gets the hyper parameter.
-            </summary>
-            <param name="input">The input.</param>
-            <returns></returns>
-        </member>
         <member name="M:Bubba.BubbaWindow.OpenSearchDialog(System.Double,System.Double)">
             <summary>
             Opens the search dialog.
@@ -26847,6 +26849,19 @@
             Sets the hyper parameters.
             </summary>
         </member>
+        <member name="M:Bubba.BubbaWindow.SetSearchPanelVisibility(System.Boolean)">
+            <summary>
+            Sets the search panel visibility.
+            </summary>
+            <param name="visible">
+            if set to <c>true</c> [visible].</param>
+        </member>
+        <member name="M:Bubba.BubbaWindow.SetToolbarVisibility(System.Boolean)">
+            <summary>
+            
+            Shows the items.
+            </summary>
+        </member>
         <member name="M:Bubba.BubbaWindow.UpdateStatus">
             <summary>
             Updates the status.
@@ -26875,12 +26890,6 @@
         <member name="M:Bubba.BubbaWindow.MoveToLast">
             <summary>
             Moves to last.
-            </summary>
-        </member>
-        <member name="M:Bubba.BubbaWindow.SetToolbarVisibility(System.Boolean)">
-            <summary>
-            
-            Shows the items.
             </summary>
         </member>
         <member name="M:Bubba.BubbaWindow.RunClient">
@@ -27470,36 +27479,6 @@
         <member name="M:Bubba.BubbaWindow.InitializeComponent">
             <summary>
             InitializeComponent
-            </summary>
-        </member>
-        <member name="T:XamlGeneratedNamespace.GeneratedInternalTypeHelper">
-            <summary>
-            GeneratedInternalTypeHelper
-            </summary>
-        </member>
-        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.CreateInstance(System.Type,System.Globalization.CultureInfo)">
-            <summary>
-            CreateInstance
-            </summary>
-        </member>
-        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.GetPropertyValue(System.Reflection.PropertyInfo,System.Object,System.Globalization.CultureInfo)">
-            <summary>
-            GetPropertyValue
-            </summary>
-        </member>
-        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.SetPropertyValue(System.Reflection.PropertyInfo,System.Object,System.Object,System.Globalization.CultureInfo)">
-            <summary>
-            SetPropertyValue
-            </summary>
-        </member>
-        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.CreateDelegate(System.Type,System.Object,System.String)">
-            <summary>
-            CreateDelegate
-            </summary>
-        </member>
-        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.AddEventHandler(System.Reflection.EventInfo,System.Object,System.Delegate)">
-            <summary>
-            AddEventHandler
             </summary>
         </member>
     </members>

@@ -374,7 +374,7 @@ namespace Bubba
         public BubbaWindow( )
         {
             // Theme Properties
-            SfSkinManager.SetTheme(this, new Theme("FluentDark", App.Controls));
+            SfSkinManager.SetTheme( this, new Theme( "FluentDark", App.Controls ) );
 
             // Window Initialization
             Instance = this;
@@ -396,7 +396,7 @@ namespace Bubba
 
         /// <summary>
         /// Gets or sets a value indicating whether this
-        /// <see cref="MainWindow"/> is store.
+        /// <see cref="Store"/> is store.
         /// </summary>
         /// <value>
         ///   <c>true</c> if store; otherwise, <c>false</c>.
@@ -419,7 +419,7 @@ namespace Bubba
 
         /// <summary>
         /// Gets or sets a value indicating whether this
-        /// <see cref="MainWindow"/> is stream.
+        /// <see cref="Stream"/> is stream.
         /// </summary>
         /// <value>
         ///   <c>true</c> if stream; otherwise, <c>false</c>.
@@ -973,6 +973,29 @@ namespace Bubba
         }
 
         /// <summary>
+        /// Clears the controls.
+        /// </summary>
+        private void ClearChatControls( )
+        {
+            try
+            {
+                UserTextBox.Text = "1";
+                PresenceSlider.Value = 0.0;
+                TemperatureSlider.Value = 1.0;
+                FrequencySlider.Value = 0.0;
+                PercentSlider.Value = 0.0;
+                MaxTokensTextBox.Text = "2048";
+                SystemTextBox.Text = "";
+                UserTextBox.Text = "";
+                ToolStripTextBox.Text = "";
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+            }
+        }
+
+        /// <summary>
         /// Configures the browser.
         /// </summary>
         /// <param name="browser">The browser.</param>
@@ -1036,6 +1059,149 @@ namespace Bubba
             catch( Exception ex )
             {
                 Fail( ex );
+            }
+        }
+
+        /// <summary>
+        /// Gets the download path.
+        /// </summary>
+        /// <param name="item">The item.</param>
+        /// <returns></returns>
+        public string GetDownloadPath( DownloadItem item )
+        {
+            return item.SuggestedFileName;
+        }
+
+        /// <summary>
+        /// Gets the tabs.
+        /// </summary>
+        /// <returns></returns>
+        public List<BrowserTabItem> GetTabs( )
+        {
+            var _tabs = new List<BrowserTabItem>( );
+            foreach( BrowserTabItem _tabPage in TabControl.Items )
+            {
+                if( _tabPage.Tag != null )
+                {
+                    _tabs.Add( ( BrowserTabItem )_tabPage.Tag );
+                }
+            }
+
+            return _tabs;
+        }
+
+        /// <summary>
+        /// Gets the tab by browser.
+        /// </summary>
+        /// <param name="browser">The browser.</param>
+        /// <returns></returns>
+        public BrowserTabItem GetTabByBrowser( IWebBrowser browser )
+        {
+            foreach( BrowserTabItem _item in TabControl.Items )
+            {
+                var _tab = ( BrowserTabItem )_item.Tag;
+                if( _tab != null
+                    && _tab.Browser == browser )
+                {
+                    return _tab;
+                }
+            }
+
+            return null;
+        }
+
+        /// <summary>
+        /// Gets the application directory.
+        /// </summary>
+        /// <param name="name">The name.</param>
+        /// <returns></returns>
+        private static string GetApplicationDirectory( string name )
+        {
+            try
+            {
+                ThrowIf.Null( name, nameof( name ) );
+                var _winXpDir = @"C:\Documents and Settings\All Users\Application Data\";
+                return Directory.Exists( _winXpDir )
+                    ? _winXpDir + AppSettings[ "Branding" ] + @"\" + name + @"\"
+                    : @"C:\ProgramData\" + AppSettings[ "Branding" ] + @"\" + name + @"\";
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+                return string.Empty;
+            }
+        }
+
+        /// <summary>
+        /// Gets the resource stream.
+        /// </summary>
+        /// <param name="fileName">Name of the file.</param>
+        /// <param name="nameSpace">if set to <c>true</c> [name space].</param>
+        /// <returns></returns>
+        public Stream GetResourceStream( string fileName, bool nameSpace = true )
+        {
+            try
+            {
+                ThrowIf.Null( fileName, nameof( fileName ) );
+                var _prefix = "Properties.Resources.";
+                return Assembly.GetManifestResourceStream( fileName );
+            }
+            catch( Exception )
+            {
+                //ignore exception
+            }
+
+            return null;
+        }
+
+        /// <summary>
+        /// Gets the browser asynchronous.
+        /// </summary>
+        /// <param name="url">The URL.</param>
+        /// <param name="focused">if set to <c>true</c> [focused].</param>
+        /// <returns></returns>
+        private Task<ChromiumWebBrowser> GetBrowserAsync( string url, bool focused )
+        {
+            var _tcs = new TaskCompletionSource<ChromiumWebBrowser>( );
+            try
+            {
+                ThrowIf.Null( url, nameof( url ) );
+                var _browser = AddNewBrowserTab( url, focused );
+                _tcs.SetResult( _browser );
+                return _tcs.Task;
+            }
+            catch( Exception ex )
+            {
+                _tcs.SetException( ex );
+                Fail( ex );
+                return default( Task<ChromiumWebBrowser> );
+            }
+        }
+
+        /// <summary>
+        /// Gets the hyper parameter.
+        /// </summary>
+        /// <param name="input">The input.</param>
+        /// <returns></returns>
+        private protected HyperParameter GetHyperParameter( string input )
+        {
+            try
+            {
+                ThrowIf.Empty( input, nameof( input ) );
+                var _names = Enum.GetNames( typeof( HyperParameter ) );
+                if( _names.Contains( input ) )
+                {
+                    return ( HyperParameter )Enum.Parse( typeof( HyperParameter ), input );
+                }
+                else
+                {
+                    return default( HyperParameter );
+                }
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+                return default( HyperParameter );
             }
         }
 
@@ -1202,122 +1368,6 @@ namespace Bubba
             }
 
             UrlTextBox.Focus( );
-        }
-
-        /// <summary>
-        /// Gets the download path.
-        /// </summary>
-        /// <param name="item">The item.</param>
-        /// <returns></returns>
-        public string GetDownloadPath( DownloadItem item )
-        {
-            return item.SuggestedFileName;
-        }
-
-        /// <summary>
-        /// Gets the tabs.
-        /// </summary>
-        /// <returns></returns>
-        public List<BrowserTabItem> GetTabs( )
-        {
-            var _tabs = new List<BrowserTabItem>( );
-            foreach( BrowserTabItem _tabPage in TabControl.Items )
-            {
-                if( _tabPage.Tag != null )
-                {
-                    _tabs.Add( ( BrowserTabItem )_tabPage.Tag );
-                }
-            }
-
-            return _tabs;
-        }
-
-        /// <summary>
-        /// Gets the tab by browser.
-        /// </summary>
-        /// <param name="browser">The browser.</param>
-        /// <returns></returns>
-        public BrowserTabItem GetTabByBrowser( IWebBrowser browser )
-        {
-            foreach( BrowserTabItem _item in TabControl.Items )
-            {
-                var _tab = ( BrowserTabItem )_item.Tag;
-                if( _tab != null
-                    && _tab.Browser == browser )
-                {
-                    return _tab;
-                }
-            }
-
-            return null;
-        }
-
-        /// <summary>
-        /// Gets the application directory.
-        /// </summary>
-        /// <param name="name">The name.</param>
-        /// <returns></returns>
-        private static string GetApplicationDirectory( string name )
-        {
-            try
-            {
-                ThrowIf.Null( name, nameof( name ) );
-                var _winXpDir = @"C:\Documents and Settings\All Users\Application Data\";
-                return Directory.Exists( _winXpDir )
-                    ? _winXpDir + AppSettings[ "Branding" ] + @"\" + name + @"\"
-                    : @"C:\ProgramData\" + AppSettings[ "Branding" ] + @"\" + name + @"\";
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
-                return string.Empty;
-            }
-        }
-
-        /// <summary>
-        /// Gets the resource stream.
-        /// </summary>
-        /// <param name="fileName">Name of the file.</param>
-        /// <param name="nameSpace">if set to <c>true</c> [name space].</param>
-        /// <returns></returns>
-        public Stream GetResourceStream( string fileName, bool nameSpace = true )
-        {
-            try
-            {
-                ThrowIf.Null( fileName, nameof( fileName ) );
-                var _prefix = "Properties.Resources.";
-                return Assembly.GetManifestResourceStream( fileName );
-            }
-            catch( Exception )
-            {
-                //ignore exception
-            }
-
-            return null;
-        }
-
-        /// <summary>
-        /// Gets the browser asynchronous.
-        /// </summary>
-        /// <param name="url">The URL.</param>
-        /// <param name="focused">if set to <c>true</c> [focused].</param>
-        /// <returns></returns>
-        private Task<ChromiumWebBrowser> GetBrowserAsync( string url, bool focused )
-        {
-            var _tcs = new TaskCompletionSource<ChromiumWebBrowser>( );
-            try
-            {
-                ThrowIf.Null( url, nameof( url ) );
-                var _browser = AddNewBrowserTab( url, focused );
-                _tcs.SetResult( _browser );
-                return _tcs.Task;
-            }
-            catch( Exception ex )
-            {
-                _tcs.SetException( ex );
-                Fail( ex );
-                return default( Task<ChromiumWebBrowser> );
-            }
         }
 
         /// <summary>
@@ -2194,56 +2244,6 @@ namespace Bubba
         }
 
         /// <summary>
-        /// Clears the controls.
-        /// </summary>
-        private void ClearChatControls( )
-        {
-            try
-            {
-                UserTextBox.Text = "1";
-                PresenceSlider.Value = 0.0;
-                TemperatureSlider.Value = 1.0;
-                FrequencySlider.Value = 0.0;
-                PercentSlider.Value = 0.0;
-                MaxTokensTextBox.Text = "2048";
-                SystemTextBox.Text = "";
-                UserTextBox.Text = "";
-                ToolStripTextBox.Text = "";
-            }
-            catch(Exception ex)
-            {
-                Fail(ex);
-            }
-        }
-
-        /// <summary>
-        /// Gets the hyper parameter.
-        /// </summary>
-        /// <param name="input">The input.</param>
-        /// <returns></returns>
-        private protected HyperParameter GetHyperParameter(string input)
-        {
-            try
-            {
-                ThrowIf.Empty(input, nameof(input));
-                var _names = Enum.GetNames(typeof(HyperParameter));
-                if(_names.Contains(input))
-                {
-                    return (HyperParameter)Enum.Parse(typeof(HyperParameter), input);
-                }
-                else
-                {
-                    return default(HyperParameter);
-                }
-            }
-            catch(Exception ex)
-            {
-                Fail(ex);
-                return default(HyperParameter);
-            }
-        }
-
-        /// <summary>
         /// Opens the search dialog.
         /// </summary>
         /// <param name="x">The x.</param>
@@ -2266,7 +2266,7 @@ namespace Bubba
                 Fail( ex );
             }
         }
-        
+
         /// <summary>
         /// Sends the HTTP message.
         /// </summary>
@@ -2517,14 +2517,85 @@ namespace Bubba
         }
 
         /// <summary>
+        /// Sets the search panel visibility.
+        /// </summary>
+        /// <param name="visible">
+        /// if set to <c>true</c> [visible].</param>
+        private void SetSearchPanelVisibility( bool visible = true )
+        {
+            try
+            {
+                if( visible )
+                {
+                    UrlTextBox.Visibility = Visibility.Visible;
+                    SearchPanelForwardButton.Visibility = Visibility.Visible;
+                    SearchPanelBackButton.Visibility = Visibility.Visible;
+                    SearchPanelCancelButton.Visibility = Visibility.Visible;
+                }
+                else
+                {
+                    UrlTextBox.Visibility = Visibility.Hidden;
+                    SearchPanelForwardButton.Visibility = Visibility.Hidden;
+                    SearchPanelBackButton.Visibility = Visibility.Hidden;
+                    SearchPanelCancelButton.Visibility = Visibility.Hidden;
+                }
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// Shows the items.
+        /// </summary>
+        private void SetToolbarVisibility( bool visible = true )
+        {
+            try
+            {
+                if( visible )
+                {
+                    FirstButton.Visibility = Visibility.Visible;
+                    PreviousButton.Visibility = Visibility.Visible;
+                    NextButton.Visibility = Visibility.Visible;
+                    LastButton.Visibility = Visibility.Visible;
+                    ToolStripTextBox.Visibility = Visibility.Visible;
+                    LookupButton.Visibility = Visibility.Visible;
+                    RefreshButton.Visibility = Visibility.Visible;
+                    DeleteButton.Visibility = Visibility.Visible;
+                    ToolStripTextBox.Visibility = Visibility.Visible;
+                    ToolStripComboBox.Visibility = Visibility.Visible;
+                }
+                else
+                {
+                    FirstButton.Visibility = Visibility.Hidden;
+                    PreviousButton.Visibility = Visibility.Hidden;
+                    NextButton.Visibility = Visibility.Hidden;
+                    LastButton.Visibility = Visibility.Hidden;
+                    ToolStripTextBox.Visibility = Visibility.Hidden;
+                    LookupButton.Visibility = Visibility.Hidden;
+                    RefreshButton.Visibility = Visibility.Hidden;
+                    DeleteButton.Visibility = Visibility.Hidden;
+                    ToolStripTextBox.Visibility = Visibility.Hidden;
+                    ToolStripComboBox.Visibility = Visibility.Hidden;
+                }
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+            }
+        }
+
+        /// <summary>
         /// Updates the status.
         /// </summary>
         private void UpdateStatus( )
         {
             try
             {
-                StatusLabel.Content = DateTime.Now.ToLongTimeString();
-                DateLabel.Content = DateTime.Now.ToShortDateString();
+                StatusLabel.Content = DateTime.Now.ToLongTimeString( );
+                DateLabel.Content = DateTime.Now.ToShortDateString( );
             }
             catch( Exception ex )
             {
@@ -2604,77 +2675,6 @@ namespace Bubba
             {
                 var _message = "NOT YET IMPLEMENTED!";
                 SendMessage( _message );
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
-            }
-        }
-
-        /// <summary>
-        /// Sets the search panel visibility.
-        /// </summary>
-        /// <param name="visible">
-        /// if set to <c>true</c> [visible].</param>
-        private void SetSearchPanelVisibility( bool visible = true )
-        {
-            try
-            {
-                if( visible )
-                {
-                    UrlTextBox.Visibility = Visibility.Visible;
-                    SearchPanelForwardButton.Visibility = Visibility.Visible;
-                    SearchPanelBackButton.Visibility = Visibility.Visible;
-                    SearchPanelCancelButton.Visibility = Visibility.Visible;
-                }
-                else
-                {
-                    UrlTextBox.Visibility = Visibility.Hidden;
-                    SearchPanelForwardButton.Visibility = Visibility.Hidden;
-                    SearchPanelBackButton.Visibility = Visibility.Hidden;
-                    SearchPanelCancelButton.Visibility = Visibility.Hidden;
-                }
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
-            }
-        }
-
-        /// <summary>
-        /// 
-        /// Shows the items.
-        /// </summary>
-        private void SetToolbarVisibility( bool visible = true )
-        {
-            try
-            {
-                if( visible )
-                {
-                    FirstButton.Visibility = Visibility.Visible;
-                    PreviousButton.Visibility = Visibility.Visible;
-                    NextButton.Visibility = Visibility.Visible;
-                    LastButton.Visibility = Visibility.Visible;
-                    ToolStripTextBox.Visibility = Visibility.Visible;
-                    LookupButton.Visibility = Visibility.Visible;
-                    RefreshButton.Visibility = Visibility.Visible;
-                    DeleteButton.Visibility = Visibility.Visible;
-                    ToolStripTextBox.Visibility = Visibility.Visible;
-                    ToolStripComboBox.Visibility = Visibility.Visible;
-                }
-                else
-                {
-                    FirstButton.Visibility = Visibility.Hidden;
-                    PreviousButton.Visibility = Visibility.Hidden;
-                    NextButton.Visibility = Visibility.Hidden;
-                    LastButton.Visibility = Visibility.Hidden;
-                    ToolStripTextBox.Visibility = Visibility.Hidden;
-                    LookupButton.Visibility = Visibility.Hidden;
-                    RefreshButton.Visibility = Visibility.Hidden;
-                    DeleteButton.Visibility = Visibility.Hidden;
-                    ToolStripTextBox.Visibility = Visibility.Hidden;
-                    ToolStripComboBox.Visibility = Visibility.Hidden;
-                }
             }
             catch( Exception ex )
             {
@@ -3915,7 +3915,7 @@ namespace Bubba
                 Fail( ex );
             }
         }
-        
+
         /// <summary>
         /// Called when [listen checked changed].
         /// </summary>
@@ -4070,33 +4070,33 @@ namespace Bubba
         /// <param name="sender">The sender.</param>
         /// <param name="e">The <see cref="RoutedEventArgs"/>
         /// instance containing the event data.</param>
-        private protected void OnTextBoxInputChanged(object sender, RoutedEventArgs e)
+        private protected void OnTextBoxInputChanged( object sender, RoutedEventArgs e )
         {
             try
             {
-                if(sender is MetroTextBox _textBox)
+                if( sender is MetroTextBox _textBox )
                 {
-                    var _tag = _textBox?.Tag.ToString();
-                    if(!string.IsNullOrEmpty(_tag))
+                    var _tag = _textBox?.Tag.ToString( );
+                    if( !string.IsNullOrEmpty( _tag ) )
                     {
-                        switch(_tag)
+                        switch( _tag )
                         {
                             case "Frequency":
                             case "Presence":
                             case "Temperature":
                             {
                                 var _temp = _textBox.Text;
-                                var _value = double.Parse(_temp);
-                                _textBox.Text = _value.ToString("N2");
+                                var _value = double.Parse( _temp );
+                                _textBox.Text = _value.ToString( "N2" );
                                 break;
                             }
                             case "TopPercent":
                             {
                                 var _temp = _textBox.Text;
-                                var _top = double.TryParse(_temp, out var _value);
-                                if(_top)
+                                var _top = double.TryParse( _temp, out var _value );
+                                if( _top )
                                 {
-                                    _textBox.Text = _value.ToString("P1");
+                                    _textBox.Text = _value.ToString( "P1" );
                                 }
 
                                 break;
@@ -4105,9 +4105,9 @@ namespace Bubba
                     }
                 }
             }
-            catch(Exception ex)
+            catch( Exception ex )
             {
-                Fail(ex);
+                Fail( ex );
             }
         }
 
