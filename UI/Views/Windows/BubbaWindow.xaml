@@ -61,17 +61,20 @@
             </TabItem>
             <TabItem Header="TabItem">
                 <Canvas
-                    Background="{StaticResource TransparentBrush}"
-                    Height="Auto" Margin="0,0,0,-15">
+                    Height="Auto"
+                    Margin="0,0,0,-15"
+                    Background="{StaticResource TransparentBrush}">
                     <b:ToolStrip
                         x:Name="ToolStrip"
+                        Canvas.Left="3"
+                        Canvas.Top="650"
                         Width="1198"
                         Height="40"
                         HorizontalAlignment="Left"
                         VerticalAlignment="Top"
                         Background="{StaticResource FormBackground}"
                         FontFamily="Roboto"
-                        FontSize="12" Canvas.Left="3" Canvas.Top="650">
+                        FontSize="12">
 
                         <b:ToolStripLabel
                             x:Name="StatusLabel"

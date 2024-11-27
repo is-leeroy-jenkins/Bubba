@@ -10,18 +10,6 @@
 //------------------------------------------------------------------------------
 
 using Bubba;
-using CefSharp.Wpf;
-using MahApps.Metro;
-using MahApps.Metro.Accessibility;
-using MahApps.Metro.Actions;
-using MahApps.Metro.Automation.Peers;
-using MahApps.Metro.Behaviors;
-using MahApps.Metro.Controls;
-using MahApps.Metro.Controls.Dialogs;
-using MahApps.Metro.Converters;
-using MahApps.Metro.Markup;
-using MahApps.Metro.Theming;
-using MahApps.Metro.ValueBoxes;
 using Syncfusion;
 using Syncfusion.SfSkinManager;
 using Syncfusion.UI.Xaml.BulletGraph;

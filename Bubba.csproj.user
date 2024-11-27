@@ -7,9 +7,6 @@
     </ApplicationDefinition>
   </ItemGroup>
   <ItemGroup>
-    <Compile Update="BubbaWindow.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Update="Data\Abstractions\AdapterBase.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -18,9 +15,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Page Update="BubbaWindow.xaml">
-      <SubType>Designer</SubType>
-    </Page>
     <Page Update="UI\Themes\TextBox\MetroTextBox.xaml">
       <SubType>Designer</SubType>
     </Page>
@@ -193,6 +187,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="UI\Themes\Window\Window.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="UI\Views\Windows\BubbaWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="UI\Views\Windows\MainWindow.xaml">

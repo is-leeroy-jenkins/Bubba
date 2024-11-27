@@ -17,6 +17,8 @@
   <ImportGroup Condition=" '$(ExcludeRestorePackageImports)' != 'true' ">
     <Import Project="$(NuGetPackageRoot)\chromiumembeddedframework.runtime.win-x86\131.2.7\buildTransitive\chromiumembeddedframework.runtime.win-x86.props" Condition="Exists('$(NuGetPackageRoot)\chromiumembeddedframework.runtime.win-x86\131.2.7\buildTransitive\chromiumembeddedframework.runtime.win-x86.props')" />
     <Import Project="$(NuGetPackageRoot)\chromiumembeddedframework.runtime.win-x64\131.2.7\buildTransitive\chromiumembeddedframework.runtime.win-x64.props" Condition="Exists('$(NuGetPackageRoot)\chromiumembeddedframework.runtime.win-x64\131.2.7\buildTransitive\chromiumembeddedframework.runtime.win-x64.props')" />
+    <Import Project="$(NuGetPackageRoot)\chromiumembeddedframework.runtime.win-arm64\131.2.7\buildTransitive\chromiumembeddedframework.runtime.win-arm64.props" Condition="Exists('$(NuGetPackageRoot)\chromiumembeddedframework.runtime.win-arm64\131.2.7\buildTransitive\chromiumembeddedframework.runtime.win-arm64.props')" />
+    <Import Project="$(NuGetPackageRoot)\chromiumembeddedframework.runtime\131.2.7\buildTransitive\chromiumembeddedframework.runtime.props" Condition="Exists('$(NuGetPackageRoot)\chromiumembeddedframework.runtime\131.2.7\buildTransitive\chromiumembeddedframework.runtime.props')" />
     <Import Project="$(NuGetPackageRoot)\cefsharp.common\131.2.70\buildTransitive\CefSharp.Common.props" Condition="Exists('$(NuGetPackageRoot)\cefsharp.common\131.2.70\buildTransitive\CefSharp.Common.props')" />
   </ImportGroup>
   <PropertyGroup Condition=" '$(ExcludeRestorePackageImports)' != 'true' ">
