@@ -98,7 +98,7 @@ namespace Bubba
         public GoogleSearch( string keywords )
             : this( )
         {
-            _query = keywords;
+            _keyWords = keywords;
         }
 
         /// <inheritdoc />
@@ -108,18 +108,18 @@ namespace Bubba
         /// <value>
         /// The query.
         /// </value>
-        public override string Query
+        public override string KeyWords
         {
             get
             {
-                return _query;
+                return _keyWords;
             }
             set
             {
-                if( _query != value )
+                if( _keyWords != value )
                 {
-                    _query = value;
-                    OnPropertyChanged( nameof( Query ) );
+                    _keyWords = value;
+                    OnPropertyChanged( nameof( KeyWords ) );
                 }
             }
         }
@@ -142,7 +142,7 @@ namespace Bubba
                 var _searchRequest = _customSearch?.Cse?.List( );
                 if( _searchRequest != null )
                 {
-                    _searchRequest.Q = _query;
+                    _searchRequest.Q = _keyWords;
                     _searchRequest.Cx = _engineId;
                     _searchRequest.Start = _count;
                     var _list = _searchRequest.Execute( )?.Items?.ToList( );
@@ -200,7 +200,7 @@ namespace Bubba
                 var _searchRequest = _customSearch?.Cse?.List( );
                 if( _searchRequest != null )
                 {
-                    _searchRequest.Q = _query;
+                    _searchRequest.Q = _keyWords;
                     _searchRequest.Cx = _engineId;
                     _searchRequest.Start = _count;
                     var _list = _searchRequest.Execute( )?.Items?.ToList( );

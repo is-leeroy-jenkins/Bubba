@@ -66,7 +66,7 @@ namespace Bubba
         /// <summary>
         /// The query
         /// </summary>
-        private protected string _query;
+        private protected string _keyWords;
 
         /// <summary>
         /// The link
@@ -121,18 +121,18 @@ namespace Bubba
         /// <value>
         /// The query.
         /// </value>
-        public virtual string Query
+        public virtual string KeyWords
         {
             get
             {
-                return _query;
+                return _keyWords;
             }
             set
             {
-                if( _query != value )
+                if( _keyWords != value )
                 {
-                    _query = value;
-                    OnPropertyChanged( nameof( Query ) );
+                    _keyWords = value;
+                    OnPropertyChanged( nameof( KeyWords ) );
                 }
             }
         }
@@ -241,7 +241,7 @@ namespace Bubba
             {
                 ThrowIf.Null( ipAddress, nameof( ipAddress ) );
                 using var _ping = new Ping( );
-                var _buffer = Encoding.ASCII.GetBytes( "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa" );
+                var _buffer = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"u8.ToArray( );
                 var _timeout = 5000;// 5sg
                 var _reply = _ping.Send( ipAddress, _timeout, _buffer );
                 if( _reply != null )

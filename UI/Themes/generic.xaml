@@ -8,24 +8,7 @@
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="/UI/Themes/Colors.xaml" />
         <ResourceDictionary Source="/UI/Themes/Common/Fonts.xaml" />
-        <ResourceDictionary Source="/UI/Themes/Common/Sizes.xaml" />
-        <ResourceDictionary Source="/UI/Themes/Tile/Tile.xaml" />
-        <ResourceDictionary Source="/UI/Themes/TextBox/TextBox.xaml" />
-        <ResourceDictionary Source="/UI/Themes/TextBox/MetroTextBox.xaml" />
-        <ResourceDictionary Source="/UI/Themes/ComboBox/ComboBox.xaml" />
-        <ResourceDictionary Source="/UI/Themes/ComboBox/MetroComboBox.xaml" />
-        <ResourceDictionary Source="/UI/Themes/CheckBox/CheckBox.xaml" />
-        <ResourceDictionary Source="/UI/Themes/CheckList/CheckList.xaml" />
-        <ResourceDictionary Source="/UI/Themes/Button/Button.xaml" />
-        <ResourceDictionary Source="/UI/Themes/Button/MetroButton.xaml" />
-        <ResourceDictionary Source="/UI/Themes/RadioButton/RadioButton.xaml" />
-        <ResourceDictionary Source="/UI/Themes/Label/Label.xaml" />
-        <ResourceDictionary Source="/UI/Themes/ListView/ListView.xaml" />
-        <ResourceDictionary Source="/UI/Themes/ListBox/ListBox.xaml" />
-        <ResourceDictionary Source="/UI/Themes/ListBox/MetroListBox.xaml" />
-        <ResourceDictionary Source="/UI/Themes/TabControl/TabControl.xaml" />
-        <ResourceDictionary Source="/UI/Themes/TabControl/BrowserTabItem.xaml" />
-        <ResourceDictionary Source="/UI/Themes/Menu/ContextMenu.xaml" />
+        <ResourceDictionary Source="/UI/Themes/Common/All.xaml" />
     </ResourceDictionary.MergedDictionaries>
 
 </ResourceDictionary>

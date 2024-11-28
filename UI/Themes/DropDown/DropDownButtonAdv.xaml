@@ -9,7 +9,7 @@
     xmlns:theme="clr-namespace:Syncfusion.Themes.FluentDark.WPF"
     xmlns:wpf="clr-namespace:Syncfusion.Themes.FluentDark.WPF;assembly=Syncfusion.Themes.FluentDark.WPF">
 
-    <!--**************************************  RESOURCES ***********************************************-->
+    <!--  **************************************  RESOURCES ***********************************************  -->
 
     <ResourceDictionary.MergedDictionaries>
         <skin:ResourceDictionaryProvider
@@ -30,14 +30,16 @@
         PressedBackground="{StaticResource SteelBlueBackground}" />
 
     <DataTemplate x:Key="LargeIconTemplate">
-        <Image x:Name="LargeImage"
+        <Image
+            x:Name="LargeImage"
             Width="{Binding Width, RelativeSource={RelativeSource TemplatedParent}}"
             Height="{Binding Height, RelativeSource={RelativeSource TemplatedParent}}"
             Source="{Binding Tag, RelativeSource={RelativeSource TemplatedParent}}" />
     </DataTemplate>
 
     <DataTemplate x:Key="SmallIconTemplate">
-        <Image x:Name="smallimage"
+        <Image
+            x:Name="smallimage"
             Width="{Binding Width, RelativeSource={RelativeSource TemplatedParent}}"
             Height="{Binding Height, RelativeSource={RelativeSource TemplatedParent}}"
             Source="{Binding Tag, RelativeSource={RelativeSource TemplatedParent}}" />
@@ -60,14 +62,16 @@
                     Margin="{TemplateBinding Padding}"
                     HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
                     VerticalAlignment="{TemplateBinding VerticalContentAlignment}">
-                    <ContentPresenter x:Name="LargeIconContent"
+                    <ContentPresenter
+                        x:Name="LargeIconContent"
                         MinWidth="{TemplateBinding MinWidth}"
                         MinHeight="{TemplateBinding MinHeight}"
                         Margin="2"
                         Content="{Binding}"
                         ContentTemplate="{TemplateBinding IconTemplate}"
                         ContentTemplateSelector="{TemplateBinding IconTemplateSelector}" />
-                    <TextBlock x:Name="PART_TextAreaLarge"
+                    <TextBlock
+                        x:Name="PART_TextAreaLarge"
                         Margin="2,0,4,0"
                         HorizontalAlignment="{TemplateBinding HorizontalAlignment}"
                         VerticalAlignment="{TemplateBinding VerticalAlignment}"
@@ -75,7 +79,8 @@
                         TextBlock.FontFamily="{TemplateBinding FontFamily}"
                         TextBlock.FontSize="{TemplateBinding FontSize}"
                         TextBlock.FontWeight="{TemplateBinding FontWeight}" />
-                    <Path x:Name="Arrow"
+                    <Path
+                        x:Name="Arrow"
                         Grid.Column="1"
                         Width="12"
                         Height="6"
@@ -94,7 +99,8 @@
                     </Path>
                 </StackPanel>
             </Border>
-            <Popup x:Name="PART_DropDown"
+            <Popup
+                x:Name="PART_DropDown"
                 AllowsTransparency="True"
                 Placement="Bottom"
                 StaysOpen="{TemplateBinding StaysOpen}">
@@ -199,7 +205,8 @@
                             <Grid Margin="{TemplateBinding Padding}">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="*" />
-                                    <ColumnDefinition x:Name="dropDownColumn"
+                                    <ColumnDefinition
+                                        x:Name="dropDownColumn"
                                         Width="30" />
                                 </Grid.ColumnDefinitions>
                                 <Grid
@@ -209,12 +216,14 @@
                                         <ColumnDefinition Width="Auto" />
                                         <ColumnDefinition />
                                     </Grid.ColumnDefinitions>
-                                    <ContentPresenter x:Name="SmallIconContent"
+                                    <ContentPresenter
+                                        x:Name="SmallIconContent"
                                         Margin="2"
                                         Content="{Binding}"
                                         ContentTemplate="{TemplateBinding IconTemplate}"
                                         ContentTemplateSelector="{TemplateBinding IconTemplateSelector}" />
-                                    <TextBlock x:Name="PART_Text"
+                                    <TextBlock
+                                        x:Name="PART_Text"
                                         Grid.Column="1"
                                         Margin="2,0,4,0"
                                         HorizontalAlignment="{TemplateBinding HorizontalAlignment}"
@@ -225,7 +234,8 @@
                                         Foreground="{TemplateBinding Foreground}"
                                         Text="{TemplateBinding Label}" />
                                 </Grid>
-                                <Path x:Name="Arrow"
+                                <Path
+                                    x:Name="Arrow"
                                     Grid.Column="1"
                                     Width="12"
                                     Height="6"
@@ -245,7 +255,8 @@
                             </Grid>
                         </Border>
 
-                        <Popup x:Name="PART_DropDown"
+                        <Popup
+                            x:Name="PART_DropDown"
                             AllowsTransparency="True"
                             Placement="Bottom"
                             StaysOpen="{TemplateBinding StaysOpen}">
@@ -359,14 +370,16 @@
                             <RowDefinition Height="Auto" />
                             <RowDefinition Height="Auto" />
                         </Grid.RowDefinitions>
-                        <Border x:Name="PART_Header"
+                        <Border
+                            x:Name="PART_Header"
                             Grid.Row="0"
                             Height="20"
                             HorizontalAlignment="Stretch"
                             BorderBrush="{TemplateBinding BorderBrush}"
                             BorderThickness="0"
                             Visibility="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Header, Converter={StaticResource TextConverter}}">
-                            <ContentControl x:Name="header"
+                            <ContentControl
+                                x:Name="header"
                                 Margin="5,0,0,0"
                                 VerticalAlignment="Center"
                                 HorizontalContentAlignment="Left"
@@ -376,14 +389,16 @@
                         </Border>
                         <Border Grid.Row="1">
                             <Grid>
-                                <Border x:Name="IconTray"
+                                <Border
+                                    x:Name="IconTray"
                                     Width="23"
                                     HorizontalAlignment="Left"
                                     BorderBrush="{TemplateBinding BorderBrush}"
                                     BorderThickness="1"
                                     Visibility="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=IconBarEnabled, Converter={StaticResource BoolConverter}}" />
                                 <Border>
-                                    <ScrollViewer x:Name="PART_ScrollViewer"
+                                    <ScrollViewer
+                                        x:Name="PART_ScrollViewer"
                                         BorderThickness="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=ScrollBarVisibility, Converter={StaticResource ThicknessConverter}}"
                                         KeyboardNavigation.DirectionalNavigation="Cycle"
                                         VerticalScrollBarVisibility="{TemplateBinding ScrollBarVisibility}">
@@ -394,7 +409,8 @@
                         </Border>
                         <Border Grid.Row="2">
                             <Grid>
-                                <Border x:Name="MoreitemBar"
+                                <Border
+                                    x:Name="MoreitemBar"
                                     Width="23"
                                     HorizontalAlignment="Left"
                                     BorderBrush="{TemplateBinding BorderBrush}"
@@ -449,7 +465,8 @@
                                             SnapsToDevicePixels="True" />
                                     </StackPanel>
                                 </Border>
-                                <Thumb x:Name="PART_ResizeThumb"
+                                <Thumb
+                                    x:Name="PART_ResizeThumb"
                                     Cursor="SizeNS"
                                     Opacity="0" />
                             </Grid>
@@ -500,7 +517,8 @@
             <Setter.Value>
                 <ControlTemplate TargetType="local:DropDownMenuItem">
                     <Grid>
-                        <Border x:Name="SelectionIndicator"
+                        <Border
+                            x:Name="SelectionIndicator"
                             Width="2"
                             Height="12"
                             HorizontalAlignment="Left"
@@ -513,13 +531,16 @@
                             BorderBrush="{TemplateBinding BorderBrush}"
                             BorderThickness="{TemplateBinding BorderThickness}"
                             CornerRadius="0">
-                            <Grid x:Name="DropDownTray"
+                            <Grid
+                                x:Name="DropDownTray"
                                 Margin="0">
                                 <Grid.ColumnDefinitions>
-                                    <ColumnDefinition x:Name="Icontraywidth"
+                                    <ColumnDefinition
+                                        x:Name="Icontraywidth"
                                         Width="25" />
                                     <ColumnDefinition Width="*" />
-                                    <ColumnDefinition x:Name="SubItemPath"
+                                    <ColumnDefinition
+                                        x:Name="SubItemPath"
                                         Width="20" />
                                 </Grid.ColumnDefinitions>
                                 <Grid.Resources>
@@ -551,7 +572,8 @@
                                         Visibility="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=HasItems, Converter={StaticResource BoolConverter}}" />
                                 </Border>
                                 <Border Margin="2">
-                                    <ContentControl x:Name="Part_Icon"
+                                    <ContentControl
+                                        x:Name="Part_Icon"
                                         Width="{TemplateBinding IconSize,
                                                                 Converter={StaticResource SizeToDoubleConverter},
                                                                 ConverterParameter=width}"
@@ -563,7 +585,8 @@
                                         Content="{TemplateBinding Icon}"
                                         IsTabStop="False" />
                                 </Border>
-                                <Border x:Name="PART_CheckedBorder"
+                                <Border
+                                    x:Name="PART_CheckedBorder"
                                     Width="18"
                                     Height="18"
                                     Margin="2"
@@ -571,7 +594,8 @@
                                     BorderThickness="1"
                                     SnapsToDevicePixels="True"
                                     Visibility="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=IsChecked, Converter={StaticResource BoolConverter}}">
-                                    <Path x:Name="CheckIcon"
+                                    <Path
+                                        x:Name="CheckIcon"
                                         Width="10.5"
                                         Height="10"
                                         Data="M102.03442,598.79645 L105.22962,597.78918 L106.78825,600.42358 C106.78825,600.42358 108.51028,595.74304 110.21724,593.60419 C112.00967,591.35822 114.89314,591.42316 114.89314,591.42316 C114.89314,591.42316 112.67844,593.42645 111.93174,594.44464 C110.7449,596.06293 107.15683,604.13837 107.15683,604.13837 z"
@@ -579,7 +603,8 @@
                                         FlowDirection="LeftToRight"
                                         Stretch="Fill" />
                                 </Border>
-                                <Popup x:Name="PART_DropDown"
+                                <Popup
+                                    x:Name="PART_DropDown"
                                     Margin="2,0,0,0"
                                     AllowsTransparency="True"
                                     IsOpen="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=IsMouseOver, Mode=OneWay}"

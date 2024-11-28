@@ -764,30 +764,6 @@ namespace Bubba
         }
 
         /// <summary>
-        /// Populates the domain drop downs.
-        /// </summary>
-        private void PopulateDomainDropDowns( )
-        {
-            try
-            {
-                ToolStripComboBox.Items?.Clear( );
-                var _domains = Enum.GetNames( typeof( Domains ) );
-                for( var _i = 0; _i < _domains.Length; _i++ )
-                {
-                    var _dom = _domains[ _i ];
-                    if( !string.IsNullOrEmpty( _dom ) )
-                    {
-                        ToolStripComboBox.Items.Add( _dom );
-                    }
-                }
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
-            }
-        }
-
-        /// <summary>
         /// Initializes the tab control.
         /// </summary>
         private void InitializeTabControl( )
@@ -1750,7 +1726,7 @@ namespace Bubba
                     ToolStripTextBox.Visibility = Visibility.Visible;
                     LookupButton.Visibility = Visibility.Visible;
                     RefreshButton.Visibility = Visibility.Visible;
-                    DeleteButton.Visibility = Visibility.Visible;
+                    GoogleSearchButton.Visibility = Visibility.Visible;
                     ToolStripTextBox.Visibility = Visibility.Visible;
                     ToolStripComboBox.Visibility = Visibility.Visible;
                 }
@@ -1763,7 +1739,7 @@ namespace Bubba
                     ToolStripTextBox.Visibility = Visibility.Hidden;
                     LookupButton.Visibility = Visibility.Hidden;
                     RefreshButton.Visibility = Visibility.Hidden;
-                    DeleteButton.Visibility = Visibility.Hidden;
+                    GoogleSearchButton.Visibility = Visibility.Hidden;
                     ToolStripTextBox.Visibility = Visibility.Hidden;
                     ToolStripComboBox.Visibility = Visibility.Hidden;
                 }
@@ -1801,8 +1777,8 @@ namespace Bubba
             var _temp = double.Parse( TemperatureTextBox.Text );// 0.5
             if( ( _temp < 0d ) | ( _temp > 1d ) )
             {
-                var _msg = "Randomness has to be between 0 and 1 "
-                    + "with higher values resulting in more random text";
+                var _msg = "Randomness has to be between 0 and 2"
+                    + "with higher values resulting in more random text; Default 1 ";
 
                 SendMessage( _msg );
                 return "";
@@ -1824,7 +1800,7 @@ namespace Bubba
                 _data = "{";
                 _data += " \"model\":\"" + _model + "\",";
                 _data += " \"prompt\": \"" + PadQuotes( question ) + "\",";
-                _data += " \"max_tokens\": " + _maxTokens + ",";
+                _data += " \"max_completion_tokens\": " + _maxTokens + ",";
                 _data += " \"user\": \"" + _userId + "\", ";
                 _data += " \"temperature\": " + _temp + ", ";
                 _data += " \"frequency_penalty\": 0.0" + ", ";
@@ -2079,6 +2055,7 @@ namespace Bubba
                 UrlTextBox.Visibility = Visibility.Hidden;
                 ChatTab.IsSelected = true;
                 ChatButton.Visibility = Visibility.Hidden;
+                GoogleSearchButton.Visibility = Visibility.Visible;
                 TabControl.SelectedIndex = 0;
             }
             catch( Exception ex )
@@ -2101,11 +2078,11 @@ namespace Bubba
                 UrlTextBox.Visibility = Visibility.Visible;
                 ChatButton.Visibility = Visibility.Visible;
                 BrowserTab.IsSelected = true;
-                TabControl.SelectedIndex = 0;
+                TabControl.SelectedIndex = 1;
             }
-            catch(Exception ex)
+            catch( Exception ex )
             {
-                Fail(ex);
+                Fail( ex );
             }
         }
 
@@ -2559,6 +2536,30 @@ namespace Bubba
         }
 
         /// <summary>
+        /// Populates the domain drop downs.
+        /// </summary>
+        private void PopulateDomainDropDowns( )
+        {
+            try
+            {
+                ToolStripComboBox.Items?.Clear( );
+                var _domains = Enum.GetNames( typeof( Domains ) );
+                for( var _i = 0; _i < _domains.Length; _i++ )
+                {
+                    var _dom = _domains[ _i ];
+                    if( !string.IsNullOrEmpty( _dom ) )
+                    {
+                        ToolStripComboBox.Items.Add( _dom );
+                    }
+                }
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+            }
+        }
+
+        /// <summary>
         /// Updates the download item.
         /// </summary>
         /// <param name="item">The item.</param>
@@ -2777,6 +2778,7 @@ namespace Bubba
                 InitializeToolStrip( );
                 _searchEngineUrl = AppSettings[ "Google" ];
                 SetSearchPanelVisibility( false );
+                PopulateDomainDropDowns( );
                 ActivateChatTab( );
             }
             catch( Exception ex )

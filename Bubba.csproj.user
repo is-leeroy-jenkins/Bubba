@@ -15,6 +15,12 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Page Update="UI\Themes\Common\Brushes.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="UI\Themes\Common\Common.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="UI\Themes\TextBox\MetroTextBox.xaml">
       <SubType>Designer</SubType>
     </Page>
@@ -58,9 +64,6 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="UI\Themes\Common\AnimationStyles.xaml">
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Update="UI\Themes\Common\BaseStyle.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="UI\Themes\Common\Fonts.xaml">
@@ -112,9 +115,6 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="UI\Themes\RadioButton\RadioButton.xaml">
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Update="UI\Themes\RichTextBox\ContextMenu.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="UI\Themes\RichTextBox\Dialogs.xaml">

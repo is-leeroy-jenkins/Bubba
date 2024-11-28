@@ -5,7 +5,7 @@
     xmlns:sync="http://schemas.syncfusion.com/wpf"
     xmlns:skin="clr-namespace:Syncfusion.SfSkinManager;assembly=Syncfusion.SfSkinManager.WPF">
 
-    <!--******************************************** RESOURCES *********************************************-->
+    <!--  ******************************************** RESOURCES *********************************************  -->
 
     <Style TargetType="Page">
         <Setter Property="Background" Value="{StaticResource FormBackground}" />

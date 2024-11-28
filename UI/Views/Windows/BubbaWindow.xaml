@@ -185,7 +185,7 @@
             TabPanelBackground="{DynamicResource FormBackground}"
             BorderThickness="0,0,0,0">
 
-            <Grid x:Name="ChatGrid">
+            <Grid x:Name="ChatGrid" Height="664" Width="1189">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="31*" />
                     <RowDefinition Height="175*" />
@@ -193,7 +193,7 @@
                     <RowDefinition Height="97*" />
                 </Grid.RowDefinitions>
 
-                <Canvas Grid.Row="0">
+                <Canvas Grid.Row="0" Height="30">
 
                     <b:MetroLabel
                         x:Name="SpeechLabel"
@@ -342,6 +342,7 @@
                             HorizontalContentAlignment="Center"
                             TextWrapping="Wrap"
                             Tag="Frequency"
+                            Foreground="{DynamicResource FormForeground}"
                             ToolTip="A number between -2 and 2 (Frequency). Default=0"
                             Text="{Binding Value, ElementName=FrequencySlider, Mode=TwoWay}" />
 
@@ -356,6 +357,7 @@
                             HorizontalContentAlignment="Center"
                             TextWrapping="Wrap"
                             Tag="Temperature"
+                            Foreground="{DynamicResource FormForeground}"
                             ToolTip="A number between 0 and 1 (Temperature). Default=1"
                             Text="{Binding Value, ElementName=TemperatureSlider, Mode=TwoWay}"
                             SelectionBackgroundColor="{DynamicResource BlueBackground}" />
@@ -453,6 +455,7 @@
                             Canvas.Top="111"
                             Width="50"
                             Height="30"
+                            Foreground="{DynamicResource FormForeground}"
                             HorizontalAlignment="Center"
                             VerticalAlignment="Center"
                             HorizontalContentAlignment="Center"
@@ -479,6 +482,7 @@
                             Canvas.Top="111"
                             Width="50"
                             Height="30"
+                            Foreground="{DynamicResource FormForeground}"
                             HorizontalAlignment="Center"
                             VerticalAlignment="Center"
                             HorizontalContentAlignment="Center"
@@ -705,8 +709,8 @@
 
             <TabItem
                 x:Name="ChatTab"
-                Width="50"
-                Height="26"
+                Width="1189"
+                Height="664"
                 Margin="1,1,1,1"
                 Padding="1,1,1,1"
                 IsSelected="True"
@@ -787,6 +791,7 @@
                     <TextBox
                         x:Name="ToolStripTextBox"
                         Width="300"
+                        Margin="5,1,5,1"
                         Background="{StaticResource ControlInteriorBrush}"
                         BorderBrush="{StaticResource BlueBorderBrush}"
                         FontFamily="Roboto" />
@@ -806,9 +811,21 @@
                     <b:ToolStripDropDown
                         x:Name="ToolStripComboBox"
                         Width="115"
+                        Margin="5,1,5,1"
                         BorderBrush="{StaticResource BlueBorderBrush}" />
                     <b:ToolStripButton
-                        x:Name="DeleteButton"
+                        x:Name="ToolButton"
+                        Margin="5,1,5,1"
+                        ToolTip="Developer Tools"
+                        ImageSource="/Resources/Assets/ToolStripImages/ToolsButton.png" />
+                    <b:ToolStripButton
+                        x:Name="DownloadButton"
+                        Margin="5,1,5,1"
+                        ToolTip="Web Downloads"
+                        ImageSource="/Resources/Assets/ToolStripImages/WebDownload.png" />
+
+                    <b:ToolStripButton
+                        x:Name="GoogleSearchButton"
                         Margin="5,1,5,1"
                         ToolTip="Delete Item"
                         ImageSource="/Resources/Assets/ToolStripImages/GoogleSearchButton.png" />
@@ -819,21 +836,9 @@
                         ToolTip="GPT Mode"
                         ImageSource="/Resources/Assets/ToolStripImages/ChatButton.png" />
 
-                    <b:ToolStripButton
-                        x:Name="ToolButton"
-                        Margin="5,1,5,1"
-                        ToolTip="Developer Tools"
-                        ImageSource="/Resources/Assets/ToolStripImages/ToolsButton.png" />
-
-                    <b:ToolStripButton
-                        x:Name="DownloadButton"
-                        Margin="5,1,5,1"
-                        ToolTip="Web Downloads"
-                        ImageSource="/Resources/Assets/ToolStripImages/WebDownload.png" />
-
                     <mah:MetroProgressBar
                         x:Name="ProgressBar"
-                        Width="120"
+                        Width="100"
                         Background="{StaticResource TransparentBrush}" />
 
                     <b:ToolStripButton

@@ -19806,7 +19806,7 @@
             The keywords.
             </param>
         </member>
-        <member name="P:Bubba.GoogleSearch.Query">
+        <member name="P:Bubba.GoogleSearch.KeyWords">
             <inheritdoc />
             <summary>
             Gets or sets the query.
@@ -20016,7 +20016,7 @@
             The busy
             </summary>
         </member>
-        <member name="F:Bubba.WebSearch._query">
+        <member name="F:Bubba.WebSearch._keyWords">
             <summary>
             The query
             </summary>
@@ -20057,7 +20057,7 @@
             <see cref="T:Bubba.WebSearch"/> class.
             </summary>
         </member>
-        <member name="P:Bubba.WebSearch.Query">
+        <member name="P:Bubba.WebSearch.KeyWords">
             <summary>
             Gets or sets the query.
             </summary>
@@ -26326,11 +26326,6 @@
             Initializes the downloads.
             </summary>
         </member>
-        <member name="M:Bubba.BubbaWindow.PopulateDomainDropDowns">
-            <summary>
-            Populates the domain drop downs.
-            </summary>
-        </member>
         <member name="M:Bubba.BubbaWindow.InitializeTabControl">
             <summary>
             Initializes the tab control.
@@ -26760,6 +26755,11 @@
         <member name="M:Bubba.BubbaWindow.PopulateModelsAsync">
             <summary>
             Sets the models.
+            </summary>
+        </member>
+        <member name="M:Bubba.BubbaWindow.PopulateDomainDropDowns">
+            <summary>
+            Populates the domain drop downs.
             </summary>
         </member>
         <member name="M:Bubba.BubbaWindow.UpdateDownloadItem(CefSharp.DownloadItem)">

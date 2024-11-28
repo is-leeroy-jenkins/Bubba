@@ -4,7 +4,7 @@
     xmlns:progressbar="clr-namespace:Syncfusion.UI.Xaml.ProgressBar;assembly=Syncfusion.SfProgressBar.WPF"
     xmlns:sfskin="clr-namespace:Syncfusion.SfSkinManager;assembly=Syncfusion.SfSkinManager.WPF">
 
-    <!--****************************************  RESOURCES  *******************************************-->
+    <!--  ****************************************  RESOURCES  *******************************************  -->
 
     <ResourceDictionary.MergedDictionaries>
         <sfskin:ResourceDictionaryProvider
