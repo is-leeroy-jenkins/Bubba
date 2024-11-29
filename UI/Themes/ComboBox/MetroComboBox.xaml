@@ -14,9 +14,9 @@
     <Style
         x:Key="MetroComboBoxStyle"
         TargetType="{x:Type b:MetroComboBox}">
-        <Setter Property="Background" Value="{DynamicResource ControlInteriorBrush}" />
-        <Setter Property="BorderBrush" Value="{DynamicResource ControlInteriorBrush}" />
-        <Setter Property="Foreground" Value="{DynamicResource LightBlueBrush}" />
+        <Setter Property="Background" Value="{StaticResource ControlInteriorBrush}" />
+        <Setter Property="BorderBrush" Value="{StaticResource ControlInteriorBrush}" />
+        <Setter Property="Foreground" Value="{StaticResource LightBlueBrush}" />
         <Setter Property="BorderThickness" Value="1" />
         <Setter Property="HorizontalAlignment" Value="Stretch" />
         <Setter Property="HorizontalContentAlignment" Value="Left" />
@@ -33,9 +33,9 @@
     <Style
         x:Key="MetroComboBoxItemStyle"
         TargetType="{x:Type b:MetroComboBoxItem}">
-        <Setter Property="Background" Value="{DynamicResource ControlInteriorBrush}" />
-        <Setter Property="BorderBrush" Value="{DynamicResource ControlInteriorBrush}" />
-        <Setter Property="Foreground" Value="{DynamicResource LightBlueBrush}" />
+        <Setter Property="Background" Value="{StaticResource ControlInteriorBrush}" />
+        <Setter Property="BorderBrush" Value="{StaticResource ControlInteriorBrush}" />
+        <Setter Property="Foreground" Value="{StaticResource LightBlueBrush}" />
         <Setter Property="BorderThickness" Value="1" />
         <Setter Property="HorizontalAlignment" Value="Stretch" />
         <Setter Property="HorizontalContentAlignment" Value="Left" />
@@ -49,15 +49,15 @@
         <Style.Triggers>
 
             <Trigger Property="IsMouseOver" Value="True">
-                <Setter Property="Background" Value="{DynamicResource SteelBlueBackground}" />
-                <Setter Property="BorderBrush" Value="{DynamicResource SteelBlueBackground}" />
-                <Setter Property="Foreground" Value="{DynamicResource WhiteForeground}" />
+                <Setter Property="Background" Value="{StaticResource SteelBlueBackground}" />
+                <Setter Property="BorderBrush" Value="{StaticResource SteelBlueBackground}" />
+                <Setter Property="Foreground" Value="{StaticResource WhiteForeground}" />
             </Trigger>
 
             <Trigger Property="IsMouseOver" Value="False">
-                <Setter Property="Background" Value="{DynamicResource ControlInteriorBrush}" />
-                <Setter Property="BorderBrush" Value="{DynamicResource ControlInteriorBrush}" />
-                <Setter Property="Foreground" Value="{DynamicResource LightBlueBrush}" />
+                <Setter Property="Background" Value="{StaticResource ControlInteriorBrush}" />
+                <Setter Property="BorderBrush" Value="{StaticResource ControlInteriorBrush}" />
+                <Setter Property="Foreground" Value="{StaticResource LightBlueBrush}" />
             </Trigger>
 
 

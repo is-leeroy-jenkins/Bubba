@@ -146,9 +146,9 @@ namespace Bubba
             // Control Properties
             Header.FontFamily = FontFamily;
             Header.FontSize = 14;
-            //MessageText.BorderBrush = _theme.RedBrush;
-            //MessageText.FontFamily = FontFamily;
-            //MessageText.FontSize = 12;
+            MessageText.BorderBrush = _theme.RedBrush;
+            MessageText.FontFamily = FontFamily;
+            MessageText.FontSize = 12;
 
             // Event Wiring
             Loaded += OnLoaded;
@@ -172,7 +172,7 @@ namespace Bubba
             _message = exception.Message;
             _text = exception.ToLogString( _title );
             Header.Content = _title;
-            //MessageText.Text = _text;
+            MessageText.Text = _text;
         }
 
         /// <inheritdoc />
@@ -191,7 +191,7 @@ namespace Bubba
             _message = exception.Message;
             _text = exception.ToLogString( _title );
             Header.Content = _title;
-            //MessageText.Text = _text;
+            MessageText.Text = _text;
         }
 
         /// <summary>
@@ -206,9 +206,9 @@ namespace Bubba
                     Header.Content = _title;
                 }
 
-                //if( string.IsNullOrEmpty( MessageText.Text ) )
+                if( string.IsNullOrEmpty( MessageText.Text ) )
                 {
-                    //MessageText.Text = _text;
+                    MessageText.Text = _text;
                 }
             }
             catch( Exception ex )
@@ -241,7 +241,6 @@ namespace Bubba
         {
             try
             {
-                //CloseButton.Click += OnCloseButtonClick;
             }
             catch( Exception ex )
             {

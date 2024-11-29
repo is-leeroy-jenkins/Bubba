@@ -55,8 +55,8 @@
                 <ControlTemplate TargetType="{x:Type RepeatButton}">
                     <Border
                         x:Name="border"
-                        Background="{DynamicResource ScrollBackground}"
-                        BorderBrush="{StaticResource ScrollBorder}"
+                        Background="{DynamicResource ScrollBarBackground}"
+                        BorderBrush="{StaticResource ScrollBarBorderBrush}"
                         BorderThickness="1"
                         SnapsToDevicePixels="true">
                         <ContentPresenter
@@ -69,17 +69,17 @@
                     </Border>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsMouseOver" Value="true">
-                            <Setter TargetName="border" Property="Background" Value="{DynamicResource ScrollHoverBackground}" />
-                            <Setter TargetName="border" Property="BorderBrush" Value="{DynamicResource ScrollHoverBorder}" />
+                            <Setter TargetName="border" Property="Background" Value="{DynamicResource ScrollBarHoverBackground}" />
+                            <Setter TargetName="border" Property="BorderBrush" Value="{DynamicResource ScrollBarHoverBorderBrush}" />
                         </Trigger>
                         <Trigger Property="IsPressed" Value="true">
-                            <Setter TargetName="border" Property="Background" Value="{DynamicResource ScrollPressBackground}" />
-                            <Setter TargetName="border" Property="BorderBrush" Value="{DynamicResource ScrollPressBorder}" />
+                            <Setter TargetName="border" Property="Background" Value="{DynamicResource ScrollBarPressedBackground}" />
+                            <Setter TargetName="border" Property="BorderBrush" Value="{DynamicResource ScrollBarPressedBorderBrush}" />
                         </Trigger>
                         <Trigger Property="IsEnabled" Value="false">
                             <Setter TargetName="contentPresenter" Property="Opacity" Value="0.56" />
-                            <Setter TargetName="border" Property="Background" Value="{DynamicResource ScrollBackground}" />
-                            <Setter TargetName="border" Property="BorderBrush" Value="{DynamicResource ScrollBorder}" />
+                            <Setter TargetName="border" Property="Background" Value="{DynamicResource ScrollBarBackground}" />
+                            <Setter TargetName="border" Property="BorderBrush" Value="{DynamicResource ScrollBarBorderBrush}" />
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
@@ -98,15 +98,15 @@
                         x:Name="rectangle"
                         Width="{TemplateBinding Width}"
                         Height="{TemplateBinding Height}"
-                        Background="{DynamicResource ScrollForeground}"
+                        Background="{DynamicResource ScrollBarForeground}"
                         CornerRadius="3"
                         SnapsToDevicePixels="True" />
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsMouseOver" Value="true">
-                            <Setter TargetName="rectangle" Property="Background" Value="{DynamicResource ScrollHoverForeground}" />
+                            <Setter TargetName="rectangle" Property="Background" Value="{DynamicResource ScrollBarHoverForeground}" />
                         </Trigger>
                         <Trigger Property="IsDragging" Value="true">
-                            <Setter TargetName="rectangle" Property="Background" Value="{DynamicResource ScrollPressForeground}" />
+                            <Setter TargetName="rectangle" Property="Background" Value="{DynamicResource ScrollBarHoverForeground}" />
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
@@ -130,10 +130,10 @@
                         SnapsToDevicePixels="True" />
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsMouseOver" Value="true">
-                            <Setter TargetName="rectangle" Property="Background" Value="{DynamicResource ScrollHoverForeground}" />
+                            <Setter TargetName="rectangle" Property="Background" Value="{DynamicResource ScrollBarHoverForeground}" />
                         </Trigger>
                         <Trigger Property="IsDragging" Value="true">
-                            <Setter TargetName="rectangle" Property="Background" Value="{DynamicResource ScrollPressForeground}" />
+                            <Setter TargetName="rectangle" Property="Background" Value="{DynamicResource ScrollBarHoverForeground}" />
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
@@ -143,8 +143,8 @@
     <Style TargetType="{x:Type ScrollBar}">
         <Setter Property="Stylus.IsPressAndHoldEnabled" Value="false" />
         <Setter Property="Stylus.IsFlicksEnabled" Value="false" />
-        <Setter Property="Background" Value="{DynamicResource ScrollBackground}" />
-        <Setter Property="BorderBrush" Value="{DynamicResource ScrollBorder}" />
+        <Setter Property="Background" Value="{DynamicResource ScrollBarBackground}" />
+        <Setter Property="BorderBrush" Value="{DynamicResource ScrollBarBorderBrush}" />
         <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}" />
         <Setter Property="BorderThickness" Value="1,0" />
         <Setter Property="Width" Value="8" />

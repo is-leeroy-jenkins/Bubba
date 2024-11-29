@@ -1,10 +1,10 @@
 ﻿// ******************************************************************************************
 //     Assembly:                Bubba
 //     Author:                  Terry D. Eppler
-//     Created:                 11-27-2024
+//     Created:                 11-28-2024
 // 
 //     Last Modified By:        Terry D. Eppler
-//     Last Modified On:        11-27-2024
+//     Last Modified On:        11-28-2024
 // ******************************************************************************************
 // <copyright file="BubbaWindow.xaml.cs" company="Terry D. Eppler">
 //    Bubba is a small windows (wpf) application for interacting with
@@ -92,6 +92,7 @@ namespace Bubba
     /// <seealso cref="T:System.Windows.Markup.IComponentConnector" />
     [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
     [ SuppressMessage( "ReSharper", "RedundantExtendsListEntry" ) ]
+    [ SuppressMessage( "ReSharper", "FieldCanBeMadeReadOnly.Global" ) ]
     public partial class BubbaWindow : Window, INotifyPropertyChanged, IDisposable
     {
         private const string KEY = "sk-proj-eTIELWTlG8lKT3hpqgq7a3vmB6lBVKo"
@@ -154,7 +155,7 @@ namespace Bubba
         /// An upper bound for the number of tokens
         /// that can be generated for a completion
         /// </summary>
-        private protected int _maximumTokens;
+        private protected int _maxCompletionTokens;
 
         /// <summary>
         /// A number between -2.0 and 2.0. Positive values penalize new
@@ -385,9 +386,14 @@ namespace Bubba
             InitializeToolStrip( );
             InitializeTabControl( );
 
-            // GPT Hyperparameters
+            // GPT Parameters
+            _store = false;
+            _stream = false;
             _temperature = 1.0;
-            _maximumTokens = 2048;
+            _topPercent = 1.0;
+            _presence = 0.0;
+            _frequency = 0.0;
+            _maxCompletionTokens = 2048;
 
             // Event Wiring
             Loaded += OnLoad;
@@ -447,18 +453,18 @@ namespace Bubba
         /// <value>
         /// The maximum tokens.
         /// </value>
-        public int MaximumTokens
+        public int MaxCompletionTokens
         {
             get
             {
-                return _maximumTokens;
+                return _maxCompletionTokens;
             }
             set
             {
-                if( _maximumTokens != value )
+                if( _maxCompletionTokens != value )
                 {
-                    _maximumTokens = value;
-                    OnPropertyChanged( nameof( MaximumTokens ) );
+                    _maxCompletionTokens = value;
+                    OnPropertyChanged( nameof( MaxCompletionTokens ) );
                 }
             }
         }
@@ -770,6 +776,7 @@ namespace Bubba
         {
             try
             {
+                ActivateChatTab( );
             }
             catch( Exception ex )
             {
@@ -1033,6 +1040,14 @@ namespace Bubba
                 PresenceTextBox.TextChanged += OnTextBoxInputChanged;
                 FrequencyTextBox.TextChanged += OnTextBoxInputChanged;
                 TopPercentTextBox.TextChanged += OnTextBoxInputChanged;
+                BrowserButton.Click += OnWebBrowserButtonClick;
+                ChatButton.Click += OnChatButtonClick;
+                IncreaseMaxTokenButton.Click += OnIncreaseButtonClick;
+                IncreaseResponseButton.Click += OnIncreaseButtonClick;
+                DecreaseMaxTokenButton.Click += OnDecreaseButtonClick;
+                DecreaseResponseButton.Click += OnDecreaseButtonClick;
+                ToolButton.Click += OnDeveloperToolsButtonClick;
+                DownloadButton.Click += OnDownloadsButtonClick;
             }
             catch( Exception ex )
             {
@@ -1043,7 +1058,44 @@ namespace Bubba
         /// <summary>
         /// Clears the callbacks.
         /// </summary>
-        private protected virtual void ClearCallbacks( )
+        private protected virtual void ClearCallbacks()
+        {
+            try
+            {
+                SearchPanelCancelButton.MouseLeftButtonDown -= OnCloseButtonClick;
+                UrlTextBox.GotMouseCapture -= OnUrlTextBoxClick;
+                ToolStripTextBox.GotMouseCapture -= OnToolStripTextBoxClick;
+                FirstButton.Click -= OnFirstButtonClick;
+                PreviousButton.Click -= OnPreviousButtonClick;
+                NextButton.Click -= OnNextButtonClick;
+                LastButton.Click -= OnLastButtonClick;
+                LookupButton.Click -= OnLookupButtonClick;
+                RefreshButton.Click -= OnRefreshButtonClick;
+                ModelComboBox.SelectionChanged -= OnModelSelectionChanged;
+                MenuButton.Click -= OnToggleButtonClick;
+                TemperatureTextBox.TextChanged -= OnTextBoxInputChanged;
+                PresenceTextBox.TextChanged -= OnTextBoxInputChanged;
+                FrequencyTextBox.TextChanged -= OnTextBoxInputChanged;
+                TopPercentTextBox.TextChanged -= OnTextBoxInputChanged;
+                BrowserButton.Click -= OnWebBrowserButtonClick;
+                ChatButton.Click -= OnChatButtonClick;
+                IncreaseMaxTokenButton.Click -= OnIncreaseButtonClick;
+                IncreaseResponseButton.Click -= OnIncreaseButtonClick;
+                DecreaseMaxTokenButton.Click -= OnDecreaseButtonClick;
+                DecreaseResponseButton.Click -= OnDecreaseButtonClick;
+                ToolButton.Click -= OnDeveloperToolsButtonClick;
+                DownloadButton.Click -= OnDownloadsButtonClick;
+            }
+            catch(Exception ex)
+            {
+                Fail(ex);
+            }
+        }
+
+        /// <summary>
+        /// Clears the callbacks.
+        /// </summary>
+        private protected virtual void ClearDelegates( )
         {
             try
             {
@@ -1054,6 +1106,9 @@ namespace Bubba
                 _timerCallback = null;
                 _hostCallback = null;
                 _timerCallback = null;
+                _statusUpdate = null;
+                _browserCallback = null;
+                _contextMenuCallback = null;
             }
             catch( Exception ex )
             {
@@ -1068,15 +1123,15 @@ namespace Bubba
         {
             try
             {
-                UserTextBox.Text = "1";
-                PresenceSlider.Value = 0.0;
-                TemperatureSlider.Value = 1.0;
-                FrequencySlider.Value = 0.0;
-                PercentSlider.Value = 0.0;
-                MaxTokensTextBox.Text = "2048";
                 SystemTextBox.Text = "";
                 UserTextBox.Text = "";
                 ToolStripTextBox.Text = "";
+                PresenceSlider.Value = 0.0;
+                FrequencySlider.Value = 0.0;
+                UserTextBox.Text = "1";
+                TemperatureSlider.Value = 1.0;
+                PercentSlider.Value = 1.0;
+                MaxTokensTextBox.Text = "2048";
             }
             catch( Exception ex )
             {
@@ -1671,7 +1726,7 @@ namespace Bubba
                 _topPercent = PercentSlider.Value;
                 _frequency = FrequencySlider.Value;
                 _number = int.Parse( NumberTextBox.Text ?? "1" );
-                _maximumTokens = int.Parse( MaxTokensTextBox.Text ?? "2048" );
+                _maxCompletionTokens = int.Parse( MaxTokensTextBox.Text ?? "2048" );
             }
             catch( Exception ex )
             {
@@ -1726,9 +1781,12 @@ namespace Bubba
                     ToolStripTextBox.Visibility = Visibility.Visible;
                     LookupButton.Visibility = Visibility.Visible;
                     RefreshButton.Visibility = Visibility.Visible;
-                    GoogleSearchButton.Visibility = Visibility.Visible;
                     ToolStripTextBox.Visibility = Visibility.Visible;
                     ToolStripComboBox.Visibility = Visibility.Visible;
+                    ToolButton.Visibility = Visibility.Visible;
+                    DownloadButton.Visibility = Visibility.Visible;
+                    BrowserButton.Visibility = Visibility.Visible;
+                    ChatButton.Visibility = Visibility.Visible;
                 }
                 else
                 {
@@ -1739,9 +1797,12 @@ namespace Bubba
                     ToolStripTextBox.Visibility = Visibility.Hidden;
                     LookupButton.Visibility = Visibility.Hidden;
                     RefreshButton.Visibility = Visibility.Hidden;
-                    GoogleSearchButton.Visibility = Visibility.Hidden;
                     ToolStripTextBox.Visibility = Visibility.Hidden;
                     ToolStripComboBox.Visibility = Visibility.Hidden;
+                    ToolButton.Visibility = Visibility.Hidden;
+                    DownloadButton.Visibility = Visibility.Hidden;
+                    BrowserButton.Visibility = Visibility.Hidden;
+                    ChatButton.Visibility = Visibility.Hidden;
                 }
             }
             catch( Exception ex )
@@ -1882,7 +1943,7 @@ namespace Bubba
                 else
                 {
                     Uri.TryCreate( url, UriKind.Absolute, out var _outUri );
-                    if( !( _urlLower.StartsWith( "http" )
+                    if( !( _urlLower.StartsWith( "http" ) 
                         || _urlLower.StartsWith( AppSettings[ "Internal" ] ) ) )
                     {
                         if( _outUri == null
@@ -2048,15 +2109,17 @@ namespace Bubba
         {
             try
             {
-                BrowserTab.Visibility = Visibility.Hidden;
                 Header.Height = new GridLength( 30F );
                 Body.Height = new GridLength( 720F );
                 Footer.Height = new GridLength( 50F );
-                UrlTextBox.Visibility = Visibility.Hidden;
-                ChatTab.IsSelected = true;
-                ChatButton.Visibility = Visibility.Hidden;
-                GoogleSearchButton.Visibility = Visibility.Visible;
                 TabControl.SelectedIndex = 0;
+                ChatTab.IsSelected = true;
+                BrowserTab.Visibility = Visibility.Hidden;
+                UrlSearchGrid.Visibility = Visibility.Hidden;
+                ChatButton.Visibility = Visibility.Hidden;
+                SpeechLabel.Visibility = Visibility.Visible;
+                UserLabel.Visibility = Visibility.Visible;
+                SetSearchPanelVisibility( false );
             }
             catch( Exception ex )
             {
@@ -2071,14 +2134,17 @@ namespace Bubba
         {
             try
             {
-                ChatTab.Visibility = Visibility.Hidden;
                 Header.Height = new GridLength( 50F );
                 Body.Height = new GridLength( 700F );
                 Footer.Height = new GridLength( 50F );
+                TabControl.SelectedIndex = 1;
+                BrowserTab.IsSelected = true;
+                ChatTab.Visibility = Visibility.Hidden;
                 UrlTextBox.Visibility = Visibility.Visible;
                 ChatButton.Visibility = Visibility.Visible;
-                BrowserTab.IsSelected = true;
-                TabControl.SelectedIndex = 1;
+                SpeechLabel.Visibility = Visibility.Hidden;
+                UserLabel.Visibility = Visibility.Hidden;
+                SetSearchPanelVisibility( true );
             }
             catch( Exception ex )
             {
@@ -2140,8 +2206,11 @@ namespace Bubba
                     }
                 }
 
-                var _tab = new BrowserTabItem( );
-                _tab.Title = "New Tab";
+                var _tab = new BrowserTabItem
+                {
+                    Title = "New Tab"
+                };
+
                 TabControl.Items.Insert( TabControl.Items.Count - 1, _tab );
                 _newTabItem = _tab;
                 var _newTab = AddNewBrowser( _newTabItem, url );
@@ -2427,10 +2496,13 @@ namespace Bubba
             {
                 ThrowIf.Negative( x, nameof( x ) );
                 ThrowIf.Negative( x, nameof( x ) );
-                var _searchDialog = new SearchDialog( );
-                _searchDialog.Owner = this;
-                _searchDialog.Left = x;
-                _searchDialog.Top = y;
+                var _searchDialog = new SearchDialog
+                {
+                    Owner = this,
+                    Left = x,
+                    Top = y
+                };
+
                 _searchDialog.Show( );
                 _searchDialog.SearchPanelTextBox.Focus( );
             }
@@ -2775,11 +2847,11 @@ namespace Bubba
                 InitializeHotkeys( );
                 InitializeButtons( );
                 InitializeTitle( );
-                InitializeToolStrip( );
                 _searchEngineUrl = AppSettings[ "Google" ];
                 SetSearchPanelVisibility( false );
                 PopulateDomainDropDowns( );
                 ActivateChatTab( );
+                InitializeToolStrip( );
             }
             catch( Exception ex )
             {
@@ -3228,10 +3300,13 @@ namespace Bubba
             try
             {
                 var _psn = e.GetPosition( this );
-                var _searchDialog = new SearchDialog( );
-                _searchDialog.Owner = this;
-                _searchDialog.Left = _psn.X - 100;
-                _searchDialog.Top = _psn.Y + 150;
+                var _searchDialog = new SearchDialog
+                {
+                    Owner = this,
+                    Left = _psn.X - 100,
+                    Top = _psn.Y + 150
+                };
+
                 _searchDialog.Show( );
                 _searchDialog.SearchPanelTextBox.Focus( );
             }
@@ -3252,10 +3327,13 @@ namespace Bubba
             try
             {
                 var _psn = e.GetPosition( this );
-                var _searchDialog = new SearchDialog( );
-                _searchDialog.Owner = this;
-                _searchDialog.Left = _psn.X;
-                _searchDialog.Top = _psn.Y - 150;
+                var _searchDialog = new SearchDialog
+                {
+                    Owner = this,
+                    Left = _psn.X,
+                    Top = _psn.Y - 150
+                };
+
                 _searchDialog.Show( );
                 _searchDialog.SearchPanelTextBox.Focus( );
             }
@@ -3271,7 +3349,7 @@ namespace Bubba
         /// <param name="sender">The sender.</param>
         /// <param name="e">The <see cref="MouseButtonEventArgs"/>
         /// instance containing the event data.</param>
-        private void OnTabPagesClick( object sender, MouseButtonEventArgs e )
+        private void OnTabPagesClick( object sender, MouseEventArgs e )
         {
             if( e.LeftButton == MouseButtonState.Pressed )
             {
@@ -3296,10 +3374,13 @@ namespace Bubba
             try
             {
                 SfSkinManager.Dispose( this );
+                ClearDelegates( );
                 foreach( BrowserTabItem _tab in TabControl.Items )
                 {
                     _tab.Dispose( );
                 }
+
+                _timer?.Dispose( );
             }
             catch( Exception )
             {
@@ -4153,6 +4234,110 @@ namespace Bubba
             catch( Exception ex )
             {
                 Fail( ex );
+            }
+        }
+
+        /// <summary>
+        /// Called when [chat button click].
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The <see cref="RoutedEventArgs"/>
+        /// instance containing the event data.</param>
+        private protected void OnChatButtonClick( object sender, RoutedEventArgs e )
+        {
+            try
+            {
+                ActivateChatTab( );
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+            }
+        }
+
+        /// <summary>
+        /// Called when [WebBrowser button click].
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The <see cref="RoutedEventArgs"/>
+        /// instance containing the event data.</param>
+        private protected void OnWebBrowserButtonClick( object sender, RoutedEventArgs e )
+        {
+            try
+            {
+                ActivateBrowserTab( );
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+            }
+        }
+
+        /// <summary>
+        /// Called when [increase button click].
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The <see cref="RoutedEventArgs"/>
+        /// instance containing the event data.</param>
+        private protected void OnIncreaseButtonClick(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                if( sender is Button _button
+                    && _button.Tag != null )
+                {
+                    var _tag = _button.Tag.ToString( );
+                    switch( _tag )
+                    {
+                        case "Number":
+                        {
+                            var _increase = _number + 1;
+                            NumberTextBox.Text = _increase.ToString( );
+                            break;
+                        }
+                        case "MaxCompletionTokens":
+                        {
+                            var _increase = _maxCompletionTokens + 1;
+                            MaxTokensTextBox.Text = _increase.ToString( );
+                            break;
+                        }
+                    }
+                }
+            }
+            catch(Exception ex)
+            {
+                Fail(ex);
+            }
+        }
+
+        private protected void OnDecreaseButtonClick(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                if(sender is Button _button
+                    && _button.Tag != null)
+                {
+                    var _tag = _button.Tag.ToString();
+                    switch(_tag)
+                    {
+                        case "Number":
+                        {
+                            var _decrease = _number -1;
+                            NumberTextBox.Text = _decrease.ToString( );
+                            break;
+                        }
+                        case "MaxCompletionTokens":
+                        {
+                            var _increase = _maxCompletionTokens - 1;
+                            MaxTokensTextBox.Text = _increase.ToString( );
+                            break;
+                        }
+                    }
+                }
+            }
+            catch(Exception ex)
+            {
+                Fail(ex);
             }
         }
 

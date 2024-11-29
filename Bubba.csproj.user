@@ -15,6 +15,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Page Update="UI\Themes\MultiSelectDropDown\MultiSelectDropDown.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="UI\Themes\Common\Brushes.xaml">
       <SubType>Designer</SubType>
     </Page>
@@ -63,9 +66,6 @@
     <Page Update="UI\Themes\Common\All.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="UI\Themes\Common\AnimationStyles.xaml">
-      <SubType>Designer</SubType>
-    </Page>
     <Page Update="UI\Themes\Common\Fonts.xaml">
       <SubType>Designer</SubType>
     </Page>
@@ -73,9 +73,6 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="UI\Themes\DropDown\DropDown.xaml">
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Update="UI\Themes\DropDown\DropDownButtonAdv.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="UI\Themes\generic.xaml">

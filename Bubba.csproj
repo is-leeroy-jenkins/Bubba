@@ -36,6 +36,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="IO\Google\**" />
+    <EmbeddedResource Remove="IO\Google\**" />
+    <None Remove="IO\Google\**" />
+    <Page Remove="IO\Google\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Remove="Resources\Assets\ApplicationImages\Bubba.ico" />
     <None Remove="Resources\Assets\CalculatorImages\CalculatorCloseButton.png" />
     <None Remove="Resources\Assets\CalculatorImages\Cancel.png" />

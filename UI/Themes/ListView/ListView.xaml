@@ -74,8 +74,6 @@
     <Style
         x:Key="MetroListViewItemStyle"
         TargetType="{x:Type ListViewItem}">
-        <Setter Property="Background" Value="{StaticResource ControlInteriorBrush}" />
-        <Setter Property="Background" Value="{StaticResource ControlInteriorBrush}" />
         <Setter Property="Foreground" Value="{StaticResource LightBlueBrush}" />
         <Setter Property="Height" Value="40" />
         <Setter Property="BorderThickness" Value="1" />

@@ -19774,6 +19774,69 @@
             <param name="socket">The socket.</param>
             <param name="message">The message.</param>
         </member>
+        <member name="T:Bubba.BabySearch">
+            <inheritdoc />
+            <summary>
+            </summary>
+        </member>
+        <member name="F:Bubba.BabySearch._key">
+            <summary>
+            The key
+            </summary>
+        </member>
+        <member name="F:Bubba.BabySearch._engineId">
+            <summary>
+            The engine
+            </summary>
+        </member>
+        <member name="M:Bubba.BabySearch.#ctor">
+            <inheritdoc />
+            <summary>
+            Initializes a new instance of the
+            <see cref="T:Bubba.BabySearch" /> class.
+            </summary>
+        </member>
+        <member name="M:Bubba.BabySearch.#ctor(System.String)">
+            <inheritdoc />
+            <summary>
+            Initializes a new instance of the
+            <see cref="T:Bubba.BabySearch" /> class.
+            </summary>
+            <param name="keywords">
+            The keywords.
+            </param>
+        </member>
+        <member name="P:Bubba.BabySearch.KeyWords">
+            <inheritdoc />
+            <summary>
+            Gets or sets the query.
+            </summary>
+            <value>
+            The query.
+            </value>
+        </member>
+        <member name="M:Bubba.BabySearch.GetResults">
+            <summary>
+            Gets the results.
+            </summary>
+            <returns>
+            List(SearchResult)
+            </returns>
+        </member>
+        <member name="M:Bubba.BabySearch.GetResultsAsync">
+            <summary>
+            Gets the results.
+            </summary>
+            <returns>
+            Task(IList(SearchResult))
+            </returns>
+        </member>
+        <member name="M:Bubba.BabySearch.SendNotification(System.String)">
+            <inheritdoc />
+            <summary>
+            Notifies this instance.
+            </summary>
+        </member>
         <member name="T:Bubba.GoogleSearch">
             <inheritdoc />
             <summary>
@@ -25949,7 +26012,7 @@
             model's likelihood to repeat the same line verbatim.
             </summary>
         </member>
-        <member name="F:Bubba.BubbaWindow._maximumTokens">
+        <member name="F:Bubba.BubbaWindow._maxCompletionTokens">
             <summary>
             An upper bound for the number of tokens
             that can be generated for a completion
@@ -26190,7 +26253,7 @@
               <c>true</c> if stream; otherwise, <c>false</c>.
             </value>
         </member>
-        <member name="P:Bubba.BubbaWindow.MaximumTokens">
+        <member name="P:Bubba.BubbaWindow.MaxCompletionTokens">
             <summary>
             An upper bound for the number of tokens
             that can be generated for a completion
@@ -26418,6 +26481,11 @@
             </summary>
         </member>
         <member name="M:Bubba.BubbaWindow.ClearCallbacks">
+            <summary>
+            Clears the callbacks.
+            </summary>
+        </member>
+        <member name="M:Bubba.BubbaWindow.ClearDelegates">
             <summary>
             Clears the callbacks.
             </summary>
@@ -27016,7 +27084,7 @@
             <param name="e">The <see cref="T:System.Windows.Input.MouseEventArgs"/>
             instance containing the event data.</param>
         </member>
-        <member name="M:Bubba.BubbaWindow.OnTabPagesClick(System.Object,System.Windows.Input.MouseButtonEventArgs)">
+        <member name="M:Bubba.BubbaWindow.OnTabPagesClick(System.Object,System.Windows.Input.MouseEventArgs)">
             <summary>
             Called when [tab pages click].
             </summary>
@@ -27371,6 +27439,30 @@
         <member name="M:Bubba.BubbaWindow.OnTextBoxInputChanged(System.Object,System.Windows.RoutedEventArgs)">
             <summary>
             Called when [text box input changed].
+            </summary>
+            <param name="sender">The sender.</param>
+            <param name="e">The <see cref="T:System.Windows.RoutedEventArgs"/>
+            instance containing the event data.</param>
+        </member>
+        <member name="M:Bubba.BubbaWindow.OnChatButtonClick(System.Object,System.Windows.RoutedEventArgs)">
+            <summary>
+            Called when [chat button click].
+            </summary>
+            <param name="sender">The sender.</param>
+            <param name="e">The <see cref="T:System.Windows.RoutedEventArgs"/>
+            instance containing the event data.</param>
+        </member>
+        <member name="M:Bubba.BubbaWindow.OnWebBrowserButtonClick(System.Object,System.Windows.RoutedEventArgs)">
+            <summary>
+            Called when [WebBrowser button click].
+            </summary>
+            <param name="sender">The sender.</param>
+            <param name="e">The <see cref="T:System.Windows.RoutedEventArgs"/>
+            instance containing the event data.</param>
+        </member>
+        <member name="M:Bubba.BubbaWindow.OnIncreaseButtonClick(System.Object,System.Windows.RoutedEventArgs)">
+            <summary>
+            Called when [increase button click].
             </summary>
             <param name="sender">The sender.</param>
             <param name="e">The <see cref="T:System.Windows.RoutedEventArgs"/>
