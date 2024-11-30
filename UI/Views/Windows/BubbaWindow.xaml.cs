@@ -389,10 +389,10 @@ namespace Bubba
             // GPT Parameters
             _store = false;
             _stream = false;
-            _temperature = 1.0;
-            _topPercent = 1.0;
-            _presence = 0.0;
-            _frequency = 0.0;
+            _temperature = 1D;
+            _topPercent = 1D;
+            _presence = 0D;
+            _frequency = 0D;
             _maxCompletionTokens = 2048;
 
             // Event Wiring
@@ -3499,6 +3499,13 @@ namespace Bubba
         {
             try
             {
+                // ask user if they are sure
+                if(DownloadsInProgress())
+                {
+                    var _msg = "DownloadItems are in progress.";
+                    SendMessage(_msg);
+                }
+
                 SfSkinManager.Dispose(this);
                 ClearDelegates();
                 ClearCallbacks();
@@ -3508,7 +3515,7 @@ namespace Bubba
                     _tab.Dispose();
                 }
 
-                Environment.Exit( 1 );
+                Environment.Exit( 0 );
             }
             catch( Exception ex )
             {
@@ -3579,53 +3586,6 @@ namespace Bubba
             else
             {
                 OpenChromeBrowser( );
-            }
-        }
-
-        /// <summary>
-        /// Called when [sharepoint button clicked].
-        /// </summary>
-        /// <param name="sender">The sender.</param>
-        /// <param name="e">The <see cref="RoutedEventArgs"/>
-        /// instance containing the event data.</param>
-        private void OnSharepointButtonClicked( object sender, RoutedEventArgs e )
-        {
-            try
-            {
-                var _message = "THIS HAS NOT BEEN IMPLEMENTED";
-                SendMessage( _message );
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
-            }
-        }
-
-        /// <summary>
-        /// Called when [form closing].
-        /// </summary>
-        /// <param name="sender">The sender.</param>
-        /// <param name="e">The <see cref="RoutedEventArgs"/>
-        /// instance containing the event data.</param>
-        private void OnFormClosing( object sender, RoutedEventArgs e )
-        {
-            try
-            {
-                SfSkinManager.Dispose(this);
-                ClearDelegates();
-                ClearCallbacks();
-                _timer?.Dispose();
-                foreach(BrowserTabItem _tab in TabControl.Items)
-                {
-                    _tab.Dispose();
-                }
-
-                Opacity = 1;
-                FadeOutAsync( this );
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
             }
         }
 
@@ -4309,14 +4269,38 @@ namespace Bubba
                         case "Number":
                         {
                             var _increase = _number + 1;
-                            NumberTextBox.Text = _increase.ToString( );
-                            break;
+                            if( _increase < 1 
+                                || _increase > 20 )
+                            {
+                                var _msg =
+                                    "The responses must be greater than 0 and less than 20";
+
+                                SendMessage( _msg );
+                                break;
+                            }
+                            else
+                            {
+                                NumberTextBox.Text = _increase.ToString();
+                                break;
+                            }
                         }
                         case "MaxCompletionTokens":
                         {
                             var _increase = _maxCompletionTokens + 1;
-                            MaxTokensTextBox.Text = _increase.ToString( );
-                            break;
+                            if(_increase < 1
+                                || _increase > 2049)
+                            {
+                                var _msg =
+                                    "The responses must be greater than 0 and less than 2049";
+
+                                SendMessage(_msg);
+                                break;
+                            }
+                            else
+                            {
+                                MaxTokensTextBox.Text = _increase.ToString();
+                                break;
+                            }
                         }
                     }
                 }

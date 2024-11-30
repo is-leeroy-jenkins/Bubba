@@ -27306,22 +27306,6 @@
             <param name="e">The <see cref="T:System.Windows.RoutedEventArgs"/>
             instance containing the event data.</param>
         </member>
-        <member name="M:Bubba.BubbaWindow.OnSharepointButtonClicked(System.Object,System.Windows.RoutedEventArgs)">
-            <summary>
-            Called when [sharepoint button clicked].
-            </summary>
-            <param name="sender">The sender.</param>
-            <param name="e">The <see cref="T:System.Windows.RoutedEventArgs"/>
-            instance containing the event data.</param>
-        </member>
-        <member name="M:Bubba.BubbaWindow.OnFormClosing(System.Object,System.Windows.RoutedEventArgs)">
-            <summary>
-            Called when [form closing].
-            </summary>
-            <param name="sender">The sender.</param>
-            <param name="e">The <see cref="T:System.Windows.RoutedEventArgs"/>
-            instance containing the event data.</param>
-        </member>
         <member name="M:Bubba.BubbaWindow.OnActivated(System.Object,System.Windows.RoutedEventArgs)">
             <summary>
             Called when [activated].
