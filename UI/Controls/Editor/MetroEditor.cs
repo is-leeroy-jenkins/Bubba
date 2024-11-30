@@ -54,6 +54,7 @@ namespace Bubba
     [ SuppressMessage( "ReSharper", "InconsistentNaming" ) ]
     [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
     [ SuppressMessage( "ReSharper", "FieldCanBeMadeReadOnly.Local" ) ]
+    [ SuppressMessage( "ReSharper", "ClassCanBeSealed.Global" ) ]
     public class MetroEditor : EditControl
     {
         /// <summary>
@@ -69,12 +70,14 @@ namespace Bubba
         public MetroEditor( )
             : base( )
         {
+            // Theme Properties
+            SetResourceReference( StyleProperty, typeof( EditControl ) );
+
             // Control Properties
-            SetResourceReference( MetroEditor.StyleProperty, typeof( EditControl ) );
             FontFamily = new FontFamily( "Roboto" );
             FontSize = 12;
-            Width = 800;
-            Height = 400;
+            Width = 400;
+            Height = 100;
             Background = _theme.ControlBackground;
             Foreground = _theme.Foreground;
             BorderBrush = _theme.BorderBrush;

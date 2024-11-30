@@ -5,8 +5,10 @@
     using System.Diagnostics.CodeAnalysis;
     using System;
     using System.Collections.Generic;
+    using System.Threading;
     using System.Threading.Tasks;
     using System.Windows;
+    using Syncfusion.SfSkinManager;
 
     /// <inheritdoc />
     /// <summary>
@@ -14,8 +16,34 @@
     /// </summary>
     [ SuppressMessage( "ReSharper", "ConvertToAutoPropertyWhenPossible" ) ]
     [ SuppressMessage( "ReSharper", "UnusedParameter.Global" ) ]
-    public partial class SearchDialog : Window
+    [ SuppressMessage( "ReSharper", "FieldCanBeMadeReadOnly.Local" ) ]
+    public partial class SearchDialog : Window, IDisposable
     {
+        /// <summary>
+        /// The busy
+        /// </summary>
+        private protected bool _busy;
+
+        /// <summary>
+        /// The entry
+        /// </summary>
+        private protected object _entry = new object( );
+
+        /// <summary>
+        /// The status update
+        /// </summary>
+        private protected Action _statusUpdate;
+
+        /// <summary>
+        /// The theme
+        /// </summary>
+        private protected readonly DarkMode _theme = new DarkMode( );
+
+        /// <summary>
+        /// The timer
+        /// </summary>
+        private protected Timer _timer;
+
         /// <summary>
         /// The domain
         /// </summary>
@@ -58,6 +86,10 @@
         /// </summary>
         public SearchDialog( )
         {
+            // Theme Properties
+            SfSkinManager.SetTheme(this, new Theme("FluentDark", App.Controls));
+
+            // Window Initialization
             InitializeComponent( );
             RegisterCallbacks( );
 
@@ -103,6 +135,9 @@
             {
                 LookupButton.Click += OnLookupButtonClick;
                 CancelButton.Click += OnCloseButtonClick;
+                RefreshButton.Click += OnClearButtonClick;
+                SearchPanelTextBox.TextChanged += OnInputTextChanged;
+                SearchPanelComboBox.SelectionChanged += OnSelectedDomainChanged;
             }
             catch( Exception ex )
             {
@@ -222,20 +257,39 @@
         {
             try
             {
-                DomainDropDown.Items?.Clear( );
+                SearchPanelComboBox.Items?.Clear( );
                 var _domains = Enum.GetNames( typeof( Domains ) );
                 for( var _i = 0; _i < _domains.Length; _i++ )
                 {
                     var _domain = _domains[ _i ];
                     if( !string.IsNullOrEmpty( _domain ) )
                     {
-                        DomainDropDown.Items.Add( _domain );
+                        SearchPanelComboBox.Items.Add( _domain );
                     }
                 }
             }
             catch( Exception ex )
             {
                 Fail( ex );
+            }
+        }
+
+        /// <summary>
+        /// Clears the callbacks.
+        /// </summary>
+        private void ClearCallbacks( )
+        {
+            try
+            {
+                LookupButton.Click -= OnLookupButtonClick;
+                CancelButton.Click -= OnCloseButtonClick;
+                RefreshButton.Click -= OnClearButtonClick;
+                SearchPanelTextBox.TextChanged -= OnInputTextChanged;
+                SearchPanelComboBox.SelectionChanged -= OnSelectedDomainChanged;
+            }
+            catch(Exception ex)
+            {
+                Fail(ex);
             }
         }
 
@@ -279,9 +333,11 @@
         {
             try
             {
+                SfSkinManager.Dispose( this );
                 _results = string.Empty;
                 _queryPrefix = string.Empty;
                 _domainLabelPrefix = string.Empty;
+                ClearCallbacks( );
                 Close( );
             }
             catch( Exception ex )
@@ -430,17 +486,40 @@
             }
         }
 
+        /// <inheritdoc />
         /// <summary>
-        /// Get ErrorDialog Dialog.
+        /// Releases unmanaged and - optionally - managed resources.
         /// </summary>
-        /// <param name="ex">
-        /// The ex.
-        /// </param>
-        private void Fail( Exception ex )
+        public void Dispose()
         {
-            using var _error = new ErrorWindow( ex );
-            _error?.SetText( );
-            _error?.ShowDialog( );
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        /// <summary>
+        /// Releases unmanaged and - optionally - managed resources.
+        /// </summary>
+        /// <param name="disposing"><c>true</c>
+        /// to release both managed and unmanaged resources;
+        /// <c>false</c> to release only unmanaged resources.
+        /// </param>
+        protected virtual void Dispose(bool disposing)
+        {
+            if(disposing)
+            {
+                _timer?.Dispose();
+            }
+        }
+
+        /// <summary>
+        /// Fails the specified ex.
+        /// </summary>
+        /// <param name="ex">The ex.</param>
+        private protected static void Fail(Exception ex)
+        {
+            using var _error = new ErrorWindow(ex);
+            _error?.SetText();
+            _error?.ShowDialog();
         }
     }
 }

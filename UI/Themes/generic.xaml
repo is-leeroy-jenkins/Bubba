@@ -32,6 +32,9 @@
         <ResourceDictionary Source="/UI/Themes/RichTextBox/RichTextBox.xaml" />
         <ResourceDictionary Source="/UI/Themes/RichTextBox/MetroRichTextBox.xaml" />
 
+        <!--  EDITOR  -->
+        <ResourceDictionary Source="/UI/Themes/Editor/EditControl.xaml" />
+
         <!--  LISTBOX/VIEW  -->
         <ResourceDictionary Source="/UI/Themes/ListBox/ListBox.xaml" />
         <ResourceDictionary Source="/UI/Themes/ListView/ListView.xaml" />

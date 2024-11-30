@@ -53,6 +53,7 @@ namespace Bubba
     using System.Windows;
     using System.Windows.Controls;
     using System.Windows.Media.Imaging;
+    using Syncfusion.SfSkinManager;
 
     /// <inheritdoc />
     /// <summary>
@@ -236,6 +237,10 @@ namespace Bubba
         /// </summary>
         public FileBrowser( )
         {
+            // Theme Properties
+            SfSkinManager.SetTheme(this, new Theme("FluentDark", App.Controls));
+
+            // Wwindow Initialization
             InitializeComponent( );
             InitializeDelegates( );
             RegisterCallbacks( );
@@ -269,6 +274,7 @@ namespace Bubba
 
             // Wire Events
             Loaded += OnLoaded;
+            Closing += OnClosing;
         }
 
         /// <summary>
@@ -429,6 +435,35 @@ namespace Bubba
         }
 
         /// <summary>
+        /// Clears the callbacks.
+        /// </summary>
+        private void ClearCallbacks()
+        {
+            try
+            {
+            }
+            catch(Exception ex)
+            {
+                Fail(ex);
+            }
+        }
+
+        /// <summary>
+        /// Clears the delegates.
+        /// </summary>
+        private void ClearDelegates( )
+        {
+            try
+            {
+                _timerCallback += UpdateStatus;
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+            }
+        }
+
+        /// <summary>
         /// Sends the notification.
         /// </summary>
         /// <param name="message">
@@ -521,33 +556,7 @@ namespace Bubba
                 Fail( ex );
             }
         }
-
-        /// <summary>
-        /// Called when [load].
-        /// </summary>
-        /// <param name="sender">The sender.</param>
-        /// <param name="e">The <see cref="EventArgs"/>
-        /// instance containing the event data.</param>
-        private void OnLoaded( object sender, EventArgs e )
-        {
-            try
-            {
-                ExcelCheckBox.IsChecked = true;
-                _filePaths = GetFilePaths( );
-                _count = _filePaths.Count;
-                InitializeTimer( );
-                PopulateListBox( );
-                InitializeLabels( );
-                InitializeButtons( );
-                RegisterRadioButtonEvents( );
-                SetImage( );
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
-            }
-        }
-
+        
         /// <summary>
         /// Sets the RadioButton events.
         /// </summary>
@@ -786,6 +795,32 @@ namespace Bubba
         }
 
         /// <summary>
+        /// Called when [load].
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The <see cref="EventArgs"/>
+        /// instance containing the event data.</param>
+        private void OnLoaded( object sender, EventArgs e )
+        {
+            try
+            {
+                ExcelCheckBox.IsChecked = true;
+                _filePaths = GetFilePaths( );
+                _count = _filePaths.Count;
+                InitializeTimer( );
+                PopulateListBox( );
+                InitializeLabels( );
+                InitializeButtons( );
+                RegisterRadioButtonEvents( );
+                SetImage( );
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+            }
+        }
+
+        /// <summary>
         /// Called when [RadioButton selected].
         /// </summary>
         /// <param name="sender">The sender.</param>
@@ -815,6 +850,25 @@ namespace Bubba
                 _image = new BitmapImage(_uri);
                 PictureBox.Source = _image;
                 Chill( );
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+            }
+        }
+
+        /// <summary>
+        /// Called when [closing].
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The <see cref="RoutedEventArgs"/> instance containing the event data.</param>
+        private void OnClosing( object sender, CancelEventArgs e )
+        {
+            try
+            {
+                SfSkinManager.Dispose( this );
+                ClearDelegates();
+                _timer?.Dispose();
             }
             catch( Exception ex )
             {

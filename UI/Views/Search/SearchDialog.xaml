@@ -5,14 +5,16 @@
     xmlns:b="clr-namespace:Bubba"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:sync="http://schemas.syncfusion.com/wpf"
+    xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
+    xmlns:wpf="http://schemas.syncfusion.com/wpf"
     Width="775"
     Height="150"
+    wpf:SfSkinManager.Theme="{wpf:SkinManager ThemeName=FluentDark}"
     Background="{StaticResource ControlBackground}"
-    BorderBrush="{DynamicResource LightBlueBrush}"
+    BorderBrush="{StaticResource LightBlueBrush}"
+    Foreground="{StaticResource WhiteForeground}"
     BorderThickness="1,1,1,1"
     FontFamily="Roboto"
-    Foreground="{StaticResource WhiteForeground}"
     ResizeMode="NoResize"
     WindowStyle="None"
     mc:Ignorable="d">
@@ -23,7 +25,7 @@
 
         <Style TargetType="{x:Type ToolTip}">
             <Setter Property="BorderThickness" Value="1" />
-            <Setter Property="Padding" Value="10,10,10,10" />
+            <Setter Property="Padding" Value="10" />
             <Setter Property="BorderBrush" Value="{StaticResource BlueBorderBrush}" />
             <Setter Property="Background" Value="{StaticResource BlackBackground}" />
             <Setter Property="Foreground" Value="{StaticResource LightBlueBrush}" />
@@ -45,9 +47,9 @@
             Height="45"
             HorizontalAlignment="Left"
             VerticalAlignment="Center"
-            Background="{DynamicResource ControlBackground}"
-            BorderBrush="{DynamicResource ControlBackground}"
-            Foreground="{DynamicResource FormForeground}"
+            Background="{StaticResource ControlBackground}"
+            BorderBrush="{StaticResource ControlBackground}"
+            Foreground="{StaticResource FormForeground}"
             Header=""
             ImageSource="/Resources/Assets/ToolStripImages/LookUpButton.png"
             ToolTip="Begin Search" />
@@ -61,29 +63,12 @@
             Height="45"
             HorizontalAlignment="Left"
             VerticalAlignment="Center"
-            Background="{DynamicResource ControlBackground}"
-            BorderBrush="{DynamicResource ControlBackground}"
-            Foreground="{DynamicResource FormForeground}"
+            Background="{StaticResource ControlBackground}"
+            BorderBrush="{StaticResource ControlBackground}"
+            Foreground="{StaticResource FormForeground}"
             Header=""
             ImageSource="/Resources/Assets/ToolStripImages/RefreshButton.png"
             ToolTip="Refresh Page" />
-
-        <b:MetroEditor
-            x:Name="SearchPanelTextBox"
-            Canvas.Left="25"
-            Canvas.Top="47"
-            Width="560"
-            Height="78"
-            Padding="10,5,1,1"
-            HorizontalAlignment="Center"
-            VerticalAlignment="Top"
-            Background="{StaticResource ControlInteriorBrush}"
-            BorderBrush="{StaticResource BlueBorderBrush}"
-            BorderThickness="1"
-            FontFamily="{StaticResource Roboto-Regular}"
-            FontSize="12"
-            Foreground="{StaticResource WhiteForeground}"
-            ToolTip="Enter Search Key Words" />
 
         <b:MetroLabel
             x:Name="DomainLabel"
@@ -93,35 +78,11 @@
             Height="32"
             HorizontalAlignment="Left"
             VerticalAlignment="Center"
+            HorizontalContentAlignment="Left"
             Content="Domain: "
-            FontFamily="{StaticResource Roboto-Regular}"
+            FontFamily="Roboto"
             FontSize="14"
-            Foreground="{StaticResource LightBlueBrush}" />
-
-        <b:MetroDropDown
-            x:Name="DomainDropDown"
-            Canvas.Left="605"
-            Canvas.Top="47"
-            Width="140"
-            Height="34"
-            Padding="15,5,1,1"
-            HorizontalAlignment="Left"
-            VerticalAlignment="Center"
-            HorizontalContentAlignment="Stretch"
-            VerticalContentAlignment="Center"
-            AllowMultiSelect="True"
-            AllowSelectAll="True"
-            Background="{DynamicResource ControlInteriorBrush}"
-            DefaultText="  Select Domain"
-            Foreground="{StaticResource FormForeground}"
-            IsEditable="True"
-            ToolTip="Select Domains">
-            <sync:ComboBoxItemAdv Content="Item 1" />
-            <sync:ComboBoxItemAdv Content="Item 2" />
-            <sync:ComboBoxItemAdv Content="Item 3" />
-            <sync:ComboBoxItemAdv Content="Item 4" />
-            <sync:ComboBoxItemAdv Content="Item 5" />
-        </b:MetroDropDown>
+            Foreground="{StaticResource BlueBorderBrush}" />
 
         <b:MetroLabel
             x:Name="QueryLabel"
@@ -131,10 +92,11 @@
             Height="31"
             HorizontalAlignment="Left"
             VerticalAlignment="Center"
+            HorizontalContentAlignment="Left"
             Content="Key Words: "
             FontFamily="Roboto"
             FontSize="14"
-            Foreground="{StaticResource LightBlueBrush}" />
+            Foreground="{StaticResource BlueBorderBrush}" />
 
         <b:MetroTile
             x:Name="CancelButton"
@@ -145,12 +107,54 @@
             Height="44"
             HorizontalAlignment="Left"
             VerticalAlignment="Center"
-            Background="{DynamicResource ControlBackground}"
-            BorderBrush="{DynamicResource ControlBackground}"
-            Foreground="{DynamicResource FormForeground}"
+            Background="{StaticResource ControlBackground}"
+            BorderBrush="{StaticResource ControlBackground}"
+            Foreground="{StaticResource FormForeground}"
             Header=""
             ImageSource="/Resources/Assets/ToolStripImages/RemoveButton.png"
             ToolTip="Cancel Search" />
+
+        <b:MetroComboBox
+            x:Name="SearchPanelComboBox"
+            Canvas.Left="605"
+            Canvas.Top="47"
+            Width="140"
+            Height="34"
+            Padding="15,5,1,1"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Center"
+            HorizontalContentAlignment="Stretch"
+            VerticalContentAlignment="Center"
+            IsEditable="True"
+            AllowMultiSelect="True"
+            AllowSelectAll="True"
+            Background="{StaticResource ControlInteriorBrush}"
+            Foreground="{StaticResource FormForeground}"
+            DefaultText="  Select Domain"
+            ToolTip="Select Domains">
+            <wpf:ComboBoxItemAdv Content="Item 1" />
+            <wpf:ComboBoxItemAdv Content="Item 2" />
+            <wpf:ComboBoxItemAdv Content="Item 3" />
+            <wpf:ComboBoxItemAdv Content="Item 4" />
+            <wpf:ComboBoxItemAdv Content="Item 5" />
+        </b:MetroComboBox>
+
+        <b:MetroTextBox
+            x:Name="SearchPanelTextBox"
+            Canvas.Left="25"
+            Canvas.Top="47"
+            Width="560"
+            Height="78"
+            Padding="10,10,1,1"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Top"
+            Background="{StaticResource ControlInteriorBrush}"
+            BorderBrush="{StaticResource BlueBorderBrush}"
+            Foreground="{StaticResource WhiteForeground}"
+            BorderThickness="1"
+            FontFamily="Roboto"
+            FontSize="12"
+            ToolTip="Enter Search Key Words" />
 
     </Canvas>
 </Window>

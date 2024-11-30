@@ -250,6 +250,7 @@
     <None Remove="Resources\Assets\ToolStripImages\PreviousButton.png" />
     <None Remove="Resources\Assets\ToolStripImages\PrintButton.png" />
     <None Remove="Resources\Assets\ToolStripImages\RefreshButton.png" />
+    <None Remove="Resources\Assets\ToolStripImages\RemoveButton.png" />
     <None Remove="Resources\Assets\ToolStripImages\SaveButton.png" />
     <None Remove="Resources\Assets\ToolStripImages\SchemaButton.png" />
     <None Remove="Resources\Assets\ToolStripImages\SmithButton.png" />
@@ -261,6 +262,7 @@
     <None Remove="Resources\Assets\ToolStripImages\WebDownloadButton.png" />
     <None Remove="Resources\Assets\ToolStripImages\WebSearchButton.png" />
     <None Remove="SplashScreen.png" />
+    <None Remove="UI\Views\Windows\BubbaWindow.xaml.cs~RF2be0067.TMP" />
   </ItemGroup>
 
   <ItemGroup>
@@ -515,6 +517,7 @@
     <Resource Include="Resources\Assets\ToolStripImages\PreviousButton.png" />
     <Resource Include="Resources\Assets\ToolStripImages\PrintButton.png" />
     <Resource Include="Resources\Assets\ToolStripImages\RefreshButton.png" />
+    <Resource Include="Resources\Assets\ToolStripImages\RemoveButton.png" />
     <Resource Include="Resources\Assets\ToolStripImages\SaveButton.png" />
     <Resource Include="Resources\Assets\ToolStripImages\SchemaButton.png" />
     <Resource Include="Resources\Assets\ToolStripImages\SmithButton.png" />

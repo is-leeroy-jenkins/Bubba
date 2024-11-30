@@ -49,6 +49,7 @@ namespace Bubba
     using System.Windows;
     using System.Windows.Input;
     using System.Windows.Media;
+    using Syncfusion.SfSkinManager;
 
     /// <inheritdoc />
     /// <summary>
@@ -75,7 +76,7 @@ namespace Bubba
         /// <summary>
         /// The path
         /// </summary>
-        private protected object _path = new object( );
+        private protected object _entry = new object( );
 
         /// <summary>
         /// The exception
@@ -123,6 +124,10 @@ namespace Bubba
         /// </summary>
         public ErrorWindow( )
         {
+            // Theme Properties
+            SfSkinManager.SetTheme(this, new Theme("FluentDark", App.Controls));
+
+            // Window Initialization
             InitializeComponent( );
             InitializeDelegates( );
             RegisterCallbacks( );
@@ -152,6 +157,7 @@ namespace Bubba
 
             // Event Wiring
             Loaded += OnLoaded;
+            _title = "Abnormal Termination!";
             MouseLeftButtonDown += OnClick;
             MouseRightButtonDown += OnClick;
         }
@@ -192,6 +198,75 @@ namespace Bubba
             _text = exception.ToLogString( _title );
             Header.Content = _title;
             MessageText.Text = _text;
+        }
+
+        /// <summary>
+        /// Gets or sets the exception.
+        /// </summary>
+        /// <value>
+        /// The exception.
+        /// </value>
+        public Exception Exception
+        {
+            get
+            {
+                return _exception;
+            }
+            set
+            {
+                _exception = value;
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the message.
+        /// </summary>
+        /// <value>
+        /// The message.
+        /// </value>
+        public string Message
+        {
+            get
+            {
+                return _message;
+            }
+            set
+            {
+                _message = value;
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the stack trace.
+        /// </summary>
+        /// <value>
+        /// The stack trace.
+        /// </value>
+        public string StackTrace
+        {
+            get
+            {
+                return _stackTrace;
+            }
+            set
+            {
+                _stackTrace = value;
+            }
+        }
+
+        /// <summary>
+        /// Clears the delegates.
+        /// </summary>
+        private void ClearDelegates( )
+        {
+            try
+            {
+                _statusUpdate -= UpdateStatus;
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+            }
         }
 
         /// <summary>
@@ -292,6 +367,42 @@ namespace Bubba
         }
 
         /// <summary>
+        /// Busies this instance.
+        /// </summary>
+        private void Busy()
+        {
+            try
+            {
+                lock(_entry)
+                {
+                    _busy = true;
+                }
+            }
+            catch(Exception ex)
+            {
+                Fail(ex);
+            }
+        }
+
+        /// <summary>
+        /// Chills this instance.
+        /// </summary>
+        private void Chill( )
+        {
+            try
+            {
+                lock(_entry)
+                {
+                    _busy = false;
+                }
+            }
+            catch(Exception ex)
+            {
+                Fail(ex);
+            }
+        }
+
+        /// <summary>
         /// Fades the in asynchronous.
         /// </summary>
         /// <param name="form">The o.</param>
@@ -370,26 +481,50 @@ namespace Bubba
         }
 
         /// <summary>
-        /// Invokes if needed.
+        /// Invokes if.
         /// </summary>
         /// <param name="action">The action.</param>
-        private protected void InvokeIf( Action action )
+        public void InvokeIf(Action action)
         {
             try
             {
-                ThrowIf.Null( action, nameof( action ) );
-                if( Dispatcher.CheckAccess( ) )
+                ThrowIf.Null(action, nameof(action));
+                if(Dispatcher.CheckAccess())
                 {
-                    action?.Invoke( );
+                    action?.Invoke();
                 }
                 else
                 {
-                    Dispatcher.BeginInvoke( action );
+                    Dispatcher.BeginInvoke(action);
                 }
             }
-            catch( Exception ex )
+            catch(Exception ex)
             {
-                Fail( ex );
+                Fail(ex);
+            }
+        }
+
+        /// <summary>
+        /// Invokes if.
+        /// </summary>
+        /// <param name="action">The action.</param>
+        public void InvokeIf(Action<object> action)
+        {
+            try
+            {
+                ThrowIf.Null(action, nameof(action));
+                if(Dispatcher.CheckAccess())
+                {
+                    action?.Invoke(null);
+                }
+                else
+                {
+                    Dispatcher.BeginInvoke(action);
+                }
+            }
+            catch(Exception ex)
+            {
+                Fail(ex);
             }
         }
 
@@ -421,6 +556,8 @@ namespace Bubba
         {
             try
             {
+                _timer?.Dispose( );
+                ClearDelegates( );
                 Close( );
             }
             catch( Exception ex )
@@ -439,6 +576,9 @@ namespace Bubba
         {
             try
             {
+                _timer?.Dispose( );
+                SfSkinManager.Dispose( this );
+                ClearDelegates( );
                 Close( );
             }
             catch( Exception ex )

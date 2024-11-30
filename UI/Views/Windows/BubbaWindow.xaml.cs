@@ -2111,7 +2111,6 @@ namespace Bubba
             {
                 Header.Height = new GridLength( 30F );
                 Body.Height = new GridLength( 720F );
-                Footer.Height = new GridLength( 50F );
                 TabControl.SelectedIndex = 0;
                 ChatTab.IsSelected = true;
                 BrowserTab.Visibility = Visibility.Hidden;
@@ -2136,7 +2135,6 @@ namespace Bubba
             {
                 Header.Height = new GridLength( 50F );
                 Body.Height = new GridLength( 700F );
-                Footer.Height = new GridLength( 50F );
                 TabControl.SelectedIndex = 1;
                 BrowserTab.IsSelected = true;
                 ChatTab.Visibility = Visibility.Hidden;
@@ -3375,12 +3373,12 @@ namespace Bubba
             {
                 SfSkinManager.Dispose( this );
                 ClearDelegates( );
+                ClearCallbacks( );
+                _timer?.Dispose( );
                 foreach( BrowserTabItem _tab in TabControl.Items )
                 {
                     _tab.Dispose( );
                 }
-
-                _timer?.Dispose( );
             }
             catch( Exception )
             {
@@ -3501,6 +3499,15 @@ namespace Bubba
         {
             try
             {
+                SfSkinManager.Dispose(this);
+                ClearDelegates();
+                ClearCallbacks();
+                _timer?.Dispose();
+                foreach(BrowserTabItem _tab in TabControl.Items)
+                {
+                    _tab.Dispose();
+                }
+
                 Environment.Exit( 1 );
             }
             catch( Exception ex )
@@ -3604,7 +3611,15 @@ namespace Bubba
         {
             try
             {
-                _timer?.Dispose( );
+                SfSkinManager.Dispose(this);
+                ClearDelegates();
+                ClearCallbacks();
+                _timer?.Dispose();
+                foreach(BrowserTabItem _tab in TabControl.Items)
+                {
+                    _tab.Dispose();
+                }
+
                 Opacity = 1;
                 FadeOutAsync( this );
             }
@@ -3754,6 +3769,8 @@ namespace Bubba
         {
             try
             {
+                ClearCallbacks( );
+                ClearDelegates( );
                 Application.Exit( );
             }
             catch( Exception ex )
@@ -4310,6 +4327,12 @@ namespace Bubba
             }
         }
 
+        /// <summary>
+        /// Called when [decrease button click].
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The <see cref="RoutedEventArgs"/>
+        /// instance containing the event data.</param>
         private protected void OnDecreaseButtonClick(object sender, RoutedEventArgs e)
         {
             try

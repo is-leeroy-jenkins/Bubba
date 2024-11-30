@@ -24632,6 +24632,11 @@
             Registers the callbacks.
             </summary>
         </member>
+        <member name="M:Bubba.CalculatorWindow.ClearCallbacks">
+            <summary>
+            Clears the callbacks.
+            </summary>
+        </member>
         <member name="M:Bubba.CalculatorWindow.FadeInAsync(System.Windows.Window,System.Int32)">
             <summary>
             Fades the in asynchronous.
@@ -24670,6 +24675,14 @@
             <param name="e">The <see cref="T:System.EventArgs"/>
             instance containing the event data.</param>
         </member>
+        <member name="M:Bubba.CalculatorWindow.OnClosing(System.Object,System.ComponentModel.CancelEventArgs)">
+            <summary>
+            Called when [closing].
+            </summary>
+            <param name="sender">The sender.</param>
+            <param name="e">The <see cref="T:System.ComponentModel.CancelEventArgs"/>
+            instance containing the event data.</param>
+        </member>
         <member name="M:Bubba.CalculatorWindow.Fail(System.Exception)">
             <summary>
             Fails the specified ex.
@@ -24695,7 +24708,7 @@
             The busy
             </summary>
         </member>
-        <member name="F:Bubba.ErrorWindow._path">
+        <member name="F:Bubba.ErrorWindow._entry">
             <summary>
             The path
             </summary>
@@ -24764,6 +24777,35 @@
             <param name="exception">The exception.</param>
             <param name="title">The title.</param>
         </member>
+        <member name="P:Bubba.ErrorWindow.Exception">
+            <summary>
+            Gets or sets the exception.
+            </summary>
+            <value>
+            The exception.
+            </value>
+        </member>
+        <member name="P:Bubba.ErrorWindow.Message">
+            <summary>
+            Gets or sets the message.
+            </summary>
+            <value>
+            The message.
+            </value>
+        </member>
+        <member name="P:Bubba.ErrorWindow.StackTrace">
+            <summary>
+            Gets or sets the stack trace.
+            </summary>
+            <value>
+            The stack trace.
+            </value>
+        </member>
+        <member name="M:Bubba.ErrorWindow.ClearDelegates">
+            <summary>
+            Clears the delegates.
+            </summary>
+        </member>
         <member name="M:Bubba.ErrorWindow.SetText">
             <summary>
             Sets the text.
@@ -24794,6 +24836,16 @@
             Initializes the text box.
             </summary>
         </member>
+        <member name="M:Bubba.ErrorWindow.Busy">
+            <summary>
+            Busies this instance.
+            </summary>
+        </member>
+        <member name="M:Bubba.ErrorWindow.Chill">
+            <summary>
+            Chills this instance.
+            </summary>
+        </member>
         <member name="M:Bubba.ErrorWindow.FadeInAsync(System.Windows.Window,System.Int32)">
             <summary>
             Fades the in asynchronous.
@@ -24820,7 +24872,13 @@
         </member>
         <member name="M:Bubba.ErrorWindow.InvokeIf(System.Action)">
             <summary>
-            Invokes if needed.
+            Invokes if.
+            </summary>
+            <param name="action">The action.</param>
+        </member>
+        <member name="M:Bubba.ErrorWindow.InvokeIf(System.Action{System.Object})">
+            <summary>
+            Invokes if.
             </summary>
             <param name="action">The action.</param>
         </member>
@@ -25083,6 +25141,16 @@
             Ends the initialize.
             </summary>
         </member>
+        <member name="M:Bubba.FileBrowser.ClearCallbacks">
+            <summary>
+            Clears the callbacks.
+            </summary>
+        </member>
+        <member name="M:Bubba.FileBrowser.ClearDelegates">
+            <summary>
+            Clears the delegates.
+            </summary>
+        </member>
         <member name="M:Bubba.FileBrowser.SendNotification(System.String)">
             <summary>
             Sends the notification.
@@ -25110,14 +25178,6 @@
             <summary>
             Sets the extension.
             </summary>
-        </member>
-        <member name="M:Bubba.FileBrowser.OnLoaded(System.Object,System.EventArgs)">
-            <summary>
-            Called when [load].
-            </summary>
-            <param name="sender">The sender.</param>
-            <param name="e">The <see cref="T:System.EventArgs"/>
-            instance containing the event data.</param>
         </member>
         <member name="M:Bubba.FileBrowser.RegisterRadioButtonEvents">
             <summary>
@@ -25163,12 +25223,27 @@
             IList(string)
             </returns>
         </member>
+        <member name="M:Bubba.FileBrowser.OnLoaded(System.Object,System.EventArgs)">
+            <summary>
+            Called when [load].
+            </summary>
+            <param name="sender">The sender.</param>
+            <param name="e">The <see cref="T:System.EventArgs"/>
+            instance containing the event data.</param>
+        </member>
         <member name="M:Bubba.FileBrowser.OnRadioButtonSelected(System.Object,System.EventArgs)">
             <summary>
             Called when [RadioButton selected].
             </summary>
             <param name="sender">The sender.</param>
             <param name = "e" > </param>
+        </member>
+        <member name="M:Bubba.FileBrowser.OnClosing(System.Object,System.ComponentModel.CancelEventArgs)">
+            <summary>
+            Called when [closing].
+            </summary>
+            <param name="sender">The sender.</param>
+            <param name="e">The <see cref="T:System.Windows.RoutedEventArgs"/> instance containing the event data.</param>
         </member>
         <member name="M:Bubba.FileBrowser.OnPropertyChanged(System.String)">
             <summary>
@@ -25611,6 +25686,31 @@
             SearchDialog
             </summary>
         </member>
+        <member name="F:Bubba.SearchDialog._busy">
+            <summary>
+            The busy
+            </summary>
+        </member>
+        <member name="F:Bubba.SearchDialog._entry">
+            <summary>
+            The entry
+            </summary>
+        </member>
+        <member name="F:Bubba.SearchDialog._statusUpdate">
+            <summary>
+            The status update
+            </summary>
+        </member>
+        <member name="F:Bubba.SearchDialog._theme">
+            <summary>
+            The theme
+            </summary>
+        </member>
+        <member name="F:Bubba.SearchDialog._timer">
+            <summary>
+            The timer
+            </summary>
+        </member>
         <member name="F:Bubba.SearchDialog._queryPrefix">
             <summary>
             The domain
@@ -25705,6 +25805,11 @@
             Sets the tool strip properties.
             </summary>
         </member>
+        <member name="M:Bubba.SearchDialog.ClearCallbacks">
+            <summary>
+            Clears the callbacks.
+            </summary>
+        </member>
         <member name="M:Bubba.SearchDialog.OnLoad(System.Object,System.Windows.RoutedEventArgs)">
             <summary>
             Called when [load].
@@ -25761,13 +25866,26 @@
             <param name="e">The <see cref="T:System.EventArgs"/>
             instance containing the event data.</param>
         </member>
+        <member name="M:Bubba.SearchDialog.Dispose">
+            <inheritdoc />
+            <summary>
+            Releases unmanaged and - optionally - managed resources.
+            </summary>
+        </member>
+        <member name="M:Bubba.SearchDialog.Dispose(System.Boolean)">
+            <summary>
+            Releases unmanaged and - optionally - managed resources.
+            </summary>
+            <param name="disposing"><c>true</c>
+            to release both managed and unmanaged resources;
+            <c>false</c> to release only unmanaged resources.
+            </param>
+        </member>
         <member name="M:Bubba.SearchDialog.Fail(System.Exception)">
             <summary>
-            Get ErrorDialog Dialog.
+            Fails the specified ex.
             </summary>
-            <param name="ex">
-            The ex.
-            </param>
+            <param name="ex">The ex.</param>
         </member>
         <member name="M:Bubba.SearchDialog.InitializeComponent">
             <summary>
@@ -27468,6 +27586,14 @@
             <param name="e">The <see cref="T:System.Windows.RoutedEventArgs"/>
             instance containing the event data.</param>
         </member>
+        <member name="M:Bubba.BubbaWindow.OnDecreaseButtonClick(System.Object,System.Windows.RoutedEventArgs)">
+            <summary>
+            Called when [decrease button click].
+            </summary>
+            <param name="sender">The sender.</param>
+            <param name="e">The <see cref="T:System.Windows.RoutedEventArgs"/>
+            instance containing the event data.</param>
+        </member>
         <member name="M:Bubba.BubbaWindow.Dispose">
             <inheritdoc />
             <summary>
@@ -27492,6 +27618,36 @@
         <member name="M:Bubba.BubbaWindow.InitializeComponent">
             <summary>
             InitializeComponent
+            </summary>
+        </member>
+        <member name="T:XamlGeneratedNamespace.GeneratedInternalTypeHelper">
+            <summary>
+            GeneratedInternalTypeHelper
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.CreateInstance(System.Type,System.Globalization.CultureInfo)">
+            <summary>
+            CreateInstance
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.GetPropertyValue(System.Reflection.PropertyInfo,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            GetPropertyValue
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.SetPropertyValue(System.Reflection.PropertyInfo,System.Object,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            SetPropertyValue
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.CreateDelegate(System.Type,System.Object,System.String)">
+            <summary>
+            CreateDelegate
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.AddEventHandler(System.Reflection.EventInfo,System.Object,System.Delegate)">
+            <summary>
+            AddEventHandler
             </summary>
         </member>
     </members>

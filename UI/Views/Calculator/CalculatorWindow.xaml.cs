@@ -44,6 +44,7 @@ namespace Bubba
 {
     using Syncfusion.SfSkinManager;
     using System;
+    using System.ComponentModel;
     using System.Diagnostics.CodeAnalysis;
     using System.Threading.Tasks;
     using System.Windows;
@@ -96,6 +97,7 @@ namespace Bubba
 
             // Window Event Wiring
             Loaded += OnLoaded;
+            Closing += OnClosing;
         }
 
         /// <summary>
@@ -111,6 +113,22 @@ namespace Bubba
             catch( Exception ex )
             {
                 Fail( ex );
+            }
+        }
+
+        /// <summary>
+        /// Clears the callbacks.
+        /// </summary>
+        private void ClearCallbacks()
+        {
+            try
+            {
+                CloseButton.MouseLeftButtonDown += OnCloseButtonClick;
+                PictureBox.MouseLeftButtonDown -= OnLeftClick;
+            }
+            catch(Exception ex)
+            {
+                Fail(ex);
             }
         }
 
@@ -172,8 +190,6 @@ namespace Bubba
         {
             try
             {
-                Opacity = 0;
-                FadeInAsync( this );
             }
             catch( Exception ex )
             {
@@ -215,6 +231,25 @@ namespace Bubba
             catch( Exception ex )
             {
                 Fail( ex );
+            }
+        }
+
+        /// <summary>
+        /// Called when [closing].
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The <see cref="CancelEventArgs"/>
+        /// instance containing the event data.</param>
+        private void OnClosing(object sender, CancelEventArgs e)
+        {
+            try
+            {
+                SfSkinManager.Dispose(this);
+                ClearCallbacks( );
+            }
+            catch(Exception ex)
+            {
+                Fail(ex);
             }
         }
 

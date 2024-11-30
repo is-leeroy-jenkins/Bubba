@@ -1,4 +1,4 @@
-﻿C:\Users\terry\source\repos\Bubba\obj\Debug\net8.0-windows\GeneratedInternalTypeHelper.g.cs
+﻿
 FC:\Users\terry\source\repos\Bubba\App.xaml;;
 FC:\Users\terry\source\repos\Bubba\UI\Controls\Frame\MetroComboFrame.xaml;;
 FC:\Users\terry\source\repos\Bubba\UI\Controls\Frame\MetroTextInput.xaml;;
@@ -15,6 +15,7 @@ FC:\Users\terry\source\repos\Bubba\UI\Themes\Common\All.xaml;;
 FC:\Users\terry\source\repos\Bubba\UI\Themes\Common\Common.xaml;;
 FC:\Users\terry\source\repos\Bubba\UI\Themes\Common\Fonts.xaml;;
 FC:\Users\terry\source\repos\Bubba\UI\Themes\DropDown\DropDown.xaml;;
+FC:\Users\terry\source\repos\Bubba\UI\Themes\Editor\EditControl.xaml;;
 FC:\Users\terry\source\repos\Bubba\UI\Themes\generic.xaml;;
 FC:\Users\terry\source\repos\Bubba\UI\Themes\Label\Label.xaml;;
 FC:\Users\terry\source\repos\Bubba\UI\Themes\ListBox\ListBox.xaml;;
