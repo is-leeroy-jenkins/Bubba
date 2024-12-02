@@ -6,8 +6,8 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:sync="http://schemas.syncfusion.com/wpf"
     x:Name="Toast"
-    Width="400"
-    Height="190"
+    Width="525"
+    Height="250"
     sync:SfSkinManager.Theme="{sync:SkinManagerExtension ThemeName=FluentDark}"
     Background="{StaticResource DarkBlueBackground}"
     BorderBrush="{StaticResource BlueBorderBrush}"
@@ -16,6 +16,7 @@
     Icon="/Resources/Assets/DialogImages/SplashNotification.png"
     ResizeMode="NoResize"
     WindowStyle="None"
+    WindowStartupLocation="CenterScreen"
     mc:Ignorable="d">
     <Grid>
         <Grid.ColumnDefinitions>
@@ -44,10 +45,8 @@
         <Label
             x:Name="MessageLabel"
             Grid.ColumnSpan="2"
-            Width="269"
-            Height="73"
-            Margin="66,0,0,0"
-            HorizontalAlignment="Left"
+            Height="58"
+            Margin="66,0,30,0"
             VerticalAlignment="Center"
             Content="Label"
             Foreground="{StaticResource WhiteForeground}" />

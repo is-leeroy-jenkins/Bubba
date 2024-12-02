@@ -172,116 +172,8 @@
             </Grid.RowDefinitions>
 
             <Canvas
-                x:Name="UserCanvas"
-                Grid.Row="2"
-                Margin="0,0,0,10">
-
-                <b:MetroEditor
-                    x:Name="UserTextBox"
-                    Canvas.Left="217"
-                    Canvas.Top="14"
-                    Width="840"
-                    Height="166"
-                    HorizontalAlignment="Left"
-                    VerticalAlignment="Center"
-                    Text="Enter User Prompt"
-                    BorderThickness="2,2,2,2"
-                    ClipToBounds="True" />
-
-                <GroupBox
-                    x:Name="LanguageGroupBox"
-                    Canvas.Left="37"
-                    Canvas.Top="6"
-                    Width="150"
-                    Height="174"
-                    HorizontalAlignment="Left"
-                    VerticalAlignment="Center"
-                    Header="Languages"
-                    Foreground="{StaticResource LightBlueBrush}"
-                    Background="#FF1E1E1E"
-                    BorderBrush="{StaticResource MutedForeground}"
-                    FontFamily="Roboto"
-                    FontSize="12" />
-
-                <b:MetroCheckList
-                    x:Name="LanguageListBox"
-                    Canvas.Left="60"
-                    Canvas.Top="34"
-                    Width="110"
-                    Height="126"
-                    Padding="15,1,1,1"
-                    HorizontalAlignment="Left"
-                    VerticalAlignment="Top"
-                    BorderThickness="2"
-                    Background="{StaticResource ControlInteriorBrush}"
-                    BorderBrush="{StaticResource BlueBorderBrush}"
-                    SnapsToDevicePixels="True"
-                    ClipToBounds="True"
-                    FontFamily="Roboto"
-                    MouseOverBackground="{StaticResource SteelBlueBackground}"
-                    SelectedItemBackground="#FF143509"
-                    IsSelectAllEnabled="False">
-                    <wpf:CheckListBoxItem
-                        Height="30"
-                        ToolTip="{Binding Path=CheckListBoxItem.Text, Source=Self}"
-                        Content="Text">
-                        <wpf:CheckListBoxItem.Foreground>
-                            <SolidColorBrush Color="{StaticResource {x:Static SystemColors.WindowColorKey}}" />
-                        </wpf:CheckListBoxItem.Foreground>
-                    </wpf:CheckListBoxItem>
-                    <wpf:CheckListBoxItem
-                        Height="30"
-                        Content="SQL" />
-                    <wpf:CheckListBoxItem
-                        Height="30"
-                        Content="C#" />
-                    <wpf:CheckListBoxItem
-                        Height="30"
-                        Content="Python" />
-                    <wpf:CheckListBoxItem
-                        Height="30"
-                        Content="C/C++" />
-                    <wpf:CheckListBoxItem
-                        Height="30"
-                        Content="VBA" />
-                    <wpf:CheckListBoxItem
-                        Height="30"
-                        Content="JavaScript" />
-                </b:MetroCheckList>
-
-            </Canvas>
-
-            <Canvas
                 x:Name="SystemCanvas"
                 Grid.Row="0">
-
-                <GroupBox
-                    Canvas.Left="1082"
-                    Canvas.Top="301"
-                    Width="125"
-                    Height="125"
-                    HorizontalAlignment="Center"
-                    VerticalAlignment="Top"
-                    Header="Sound / Audio"
-                    Background="#FF1E1E1E"
-                    BorderBrush="{StaticResource MutedForeground}"
-                    Foreground="{StaticResource LightBlueBrush}"
-                    FontFamily="Roboto"
-                    FontSize="12" />
-
-                <GroupBox
-                    Canvas.Left="1082"
-                    Canvas.Top="20"
-                    Width="125"
-                    Height="132"
-                    HorizontalAlignment="Center"
-                    VerticalAlignment="Top"
-                    Foreground="{StaticResource LightBlueBrush}"
-                    Header="Input / Output"
-                    Background="#FF1E1E1E"
-                    BorderBrush="{StaticResource MutedForeground}"
-                    FontFamily="Roboto"
-                    FontSize="12" />
 
                 <b:MetroEditor
                     x:Name="SystemTextBox"
@@ -342,51 +234,10 @@
 
             </Canvas>
 
-            <wpf:UpDown
-                x:Name="NumberTextBox"
-                Grid.Row="1"
-                Margin="862,85,267,195"
-                Padding="10,1,1,1"
-                NullValueText="Total Responses:"
-                UseNullOption="True"
-                Background="{StaticResource ControlInteriorBrush}"
-                BorderBrush="{StaticResource BlueBorderBrush}"
-                Foreground="{StaticResource LightBlueBrush}"
-                FocusedBackground="{StaticResource BlackBackground}"
-                BorderThickness="2"
-                FontFamily="Roboto"
-                SnapsToDevicePixels="True"
-                MaxValue="25"
-                MinValue="1"
-                NumberDecimalDigits="0"
-                ClipToBounds="True"
-                Value="1" />
             <Canvas
                 x:Name="ParameterCanvas"
                 Grid.Row="1"
                 Margin="0,0,0,10">
-
-                <CheckBox
-                    x:Name="MuteCheckBox"
-                    Canvas.Left="1102"
-                    Canvas.Top="211"
-                    HorizontalAlignment="Left"
-                    VerticalAlignment="Top"
-                    Foreground="{StaticResource LightBlueBrush}"
-                    Background="{StaticResource ControlHoverBrush}"
-                    BorderBrush="{StaticResource LightBlueBrush}"
-                    Content="Mute" />
-
-                <CheckBox
-                    x:Name="ListenCheckBox"
-                    Canvas.Left="1102"
-                    Canvas.Top="173"
-                    HorizontalAlignment="Left"
-                    VerticalAlignment="Top"
-                    Foreground="{StaticResource LightBlueBrush}"
-                    Background="{StaticResource ControlHoverBrush}"
-                    BorderBrush="{StaticResource LightBlueBrush}"
-                    Content="Listen" />
 
                 <GroupBox
                     Canvas.Left="828"
@@ -397,18 +248,6 @@
                     VerticalAlignment="Top"
                     Foreground="{StaticResource LightBlueBrush}"
                     Header="Max Tokens"
-                    FontFamily="Roboto"
-                    FontSize="12" />
-
-                <GroupBox
-                    Canvas.Left="827"
-                    Canvas.Top="40"
-                    Width="193"
-                    Height="98"
-                    HorizontalAlignment="Center"
-                    VerticalAlignment="Top"
-                    Foreground="{StaticResource LightBlueBrush}"
-                    Header="GPT Responses"
                     FontFamily="Roboto"
                     FontSize="12" />
 
@@ -557,11 +396,11 @@
                     TickPlacement="Both"
                     Maximum="1"
                     Minimum="0"
-                    Value="0"
                     Foreground="{StaticResource WhiteForeground}"
                     FontFamily="Roboto"
                     SnapsToDevicePixels="True"
-                    ClipToBounds="True" />
+                    ClipToBounds="True"
+                    Value="0" />
 
                 <wpf:DoubleTextBox
                     x:Name="TopPercentTextBox"
@@ -586,7 +425,11 @@
                     RangeAdornerBackground="{StaticResource BrightGreenForeground}"
                     ZeroColor="#FFEFA90D"
                     SelectionOpacity="1"
-                    NegativeForeground="{StaticResource RedForeground}" UseNullOption="True" MinValue="0" MaxValue="1" IsScrollingOnCircle="False">
+                    NegativeForeground="{StaticResource RedForeground}"
+                    UseNullOption="True"
+                    MinValue="0"
+                    MaxValue="1"
+                    IsScrollingOnCircle="False">
                     <wpf:DoubleTextBox.NumberFormat>
                         <num:NumberFormatInfo />
                     </wpf:DoubleTextBox.NumberFormat>
@@ -744,28 +587,6 @@
                     NumberDecimalDigits="0"
                     Value="150" />
 
-                <CheckBox
-                    x:Name="StreamCheckBox"
-                    Canvas.Left="1112"
-                    Canvas.Top="-111"
-                    HorizontalAlignment="Center"
-                    VerticalAlignment="Top"
-                    Foreground="{StaticResource LightBlueBrush}"
-                    Background="{StaticResource ControlHoverBrush}"
-                    BorderBrush="{StaticResource LightBlueBrush}"
-                    Content="Stream" />
-
-                <CheckBox
-                    x:Name="StoreCheckBox"
-                    Canvas.Left="1112"
-                    Canvas.Top="-72"
-                    HorizontalAlignment="Center"
-                    VerticalAlignment="Top"
-                    Foreground="{StaticResource LightBlueBrush}"
-                    Background="{StaticResource ControlHoverBrush}"
-                    BorderBrush="{StaticResource LightBlueBrush}"
-                    Content="Store" />
-
                 <Label
                     x:Name="VoiceLabel"
                     Canvas.Left="1082"
@@ -809,7 +630,166 @@
                     IsMultiLine="False"
                     IconHeight="0"
                     IconWidth="0" />
+                <GroupBox
+                    Canvas.Left="827"
+                    Canvas.Top="40"
+                    Width="193"
+                    Height="98"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Top"
+                    Foreground="{StaticResource LightBlueBrush}"
+                    Header="GPT Responses"
+                    FontFamily="Roboto"
+                    FontSize="12" />
+                <b:MetroRadioButton
+                    x:Name="StoreCheckBox"
+                    Canvas.Left="1104"
+                    Canvas.Top="-145"
+                    Width="92"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Top"
+                    Content="Store"
+                    FontSize="12"
+                    FontFamily="Roboto"
+                    Foreground="{DynamicResource LightBlueBrush}"
+                    Background="{DynamicResource BlueBorderBrush}" />
+                <b:MetroRadioButton
+                    x:Name="StreamCheckBox"
+                    Canvas.Left="1104"
+                    Canvas.Top="-89"
+                    Width="92"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Top"
+                    Content="Stream"
+                    FontSize="12"
+                    FontFamily="Roboto"
+                    Foreground="{DynamicResource LightBlueBrush}"
+                    Background="{DynamicResource BlueBorderBrush}" />
+                <b:MetroRadioButton
+                    x:Name="ListenCheckBox"
+                    Canvas.Left="1098"
+                    Canvas.Top="128"
+                    Width="92"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Top"
+                    Content="Listen"
+                    FontSize="12"
+                    FontFamily="Roboto"
+                    Foreground="{DynamicResource LightBlueBrush}"
+                    Background="{DynamicResource BlueBorderBrush}" />
+                <b:MetroRadioButton
+                    x:Name="MuteCheckBox"
+                    Canvas.Left="1098"
+                    Canvas.Top="175"
+                    Width="92"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Top"
+                    Content="Mute"
+                    FontSize="12"
+                    FontFamily="Roboto"
+                    Foreground="{DynamicResource LightBlueBrush}"
+                    Background="{DynamicResource BlueBorderBrush}" />
             </Canvas>
+
+            <Canvas
+                x:Name="UserCanvas"
+                Grid.Row="2"
+                Margin="0,0,0,10">
+
+                <b:MetroEditor
+                    x:Name="UserTextBox"
+                    Canvas.Left="217"
+                    Canvas.Top="14"
+                    Width="840"
+                    Height="166"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Center"
+                    Text="Enter User Prompt"
+                    BorderThickness="2,2,2,2"
+                    ClipToBounds="True" />
+
+                <GroupBox
+                    x:Name="LanguageGroupBox"
+                    Canvas.Left="37"
+                    Canvas.Top="6"
+                    Width="150"
+                    Height="174"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Center"
+                    Header="Languages"
+                    Foreground="{StaticResource LightBlueBrush}"
+                    Background="#FF1E1E1E"
+                    BorderBrush="{StaticResource MutedForeground}"
+                    FontFamily="Roboto"
+                    FontSize="12" />
+
+                <b:MetroCheckList
+                    x:Name="LanguageListBox"
+                    Canvas.Left="60"
+                    Canvas.Top="34"
+                    Width="110"
+                    Height="126"
+                    Padding="15,1,1,1"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Top"
+                    BorderThickness="2"
+                    Background="{StaticResource ControlInteriorBrush}"
+                    BorderBrush="{StaticResource BlueBorderBrush}"
+                    SnapsToDevicePixels="True"
+                    ClipToBounds="True"
+                    FontFamily="Roboto"
+                    MouseOverBackground="{StaticResource SteelBlueBackground}"
+                    SelectedItemBackground="#FF143509"
+                    IsSelectAllEnabled="False">
+                    <wpf:CheckListBoxItem
+                        Height="30"
+                        ToolTip="{Binding CheckListBoxItem.Text, Source=Self}"
+                        Content="Text">
+                        <wpf:CheckListBoxItem.Foreground>
+                            <SolidColorBrush Color="{StaticResource {x:Static SystemColors.WindowColorKey}}" />
+                        </wpf:CheckListBoxItem.Foreground>
+                    </wpf:CheckListBoxItem>
+                    <wpf:CheckListBoxItem
+                        Height="30"
+                        Content="SQL" />
+                    <wpf:CheckListBoxItem
+                        Height="30"
+                        Content="C#" />
+                    <wpf:CheckListBoxItem
+                        Height="30"
+                        Content="Python" />
+                    <wpf:CheckListBoxItem
+                        Height="30"
+                        Content="C/C++" />
+                    <wpf:CheckListBoxItem
+                        Height="30"
+                        Content="VBA" />
+                    <wpf:CheckListBoxItem
+                        Height="30"
+                        Content="JavaScript" />
+                </b:MetroCheckList>
+
+            </Canvas>
+
+            <wpf:UpDown
+                x:Name="NumberTextBox"
+                Grid.Row="1"
+                Margin="862,85,267,195"
+                Padding="10,1,1,1"
+                NullValueText="Total Responses:"
+                UseNullOption="True"
+                Background="{StaticResource ControlInteriorBrush}"
+                BorderBrush="{StaticResource BlueBorderBrush}"
+                Foreground="{StaticResource LightBlueBrush}"
+                FocusedBackground="{StaticResource BlackBackground}"
+                BorderThickness="2"
+                FontFamily="Roboto"
+                SnapsToDevicePixels="True"
+                MaxValue="25"
+                MinValue="1"
+                NumberDecimalDigits="0"
+                ClipToBounds="True"
+                Value="1" />
         </Grid>
 
         <Canvas

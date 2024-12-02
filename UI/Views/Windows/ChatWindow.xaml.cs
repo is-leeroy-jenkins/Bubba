@@ -31,6 +31,7 @@ namespace Bubba
     using Syncfusion.SfSkinManager;
     using ToastNotifications;
     using ToastNotifications.Lifetime;
+    using ToastNotifications.Messages;
     using ToastNotifications.Position;
 
     /// <inheritdoc />
@@ -866,8 +867,8 @@ namespace Bubba
             try
             {
                 ThrowIf.Null( message, nameof( message ) );
-                var _notify = new Notification( message );
-                _notify.Show( );
+                var _notify = CreateNotifier( );
+                _notify.ShowInformation( message );
             }
             catch( Exception ex )
             {
@@ -2159,7 +2160,9 @@ namespace Bubba
         {
             try
             {
-                _chatModel = ModelComboBox.SelectedValue.ToString( );
+                _chatModel = ModelComboBox.SelectedValue.ToString();
+                var _msg = $"The ' {_chatModel} ' GPT Model has been selected!";
+                SendNotification(_msg);
             }
             catch( Exception ex )
             {
@@ -2176,7 +2179,9 @@ namespace Bubba
         {
             try
             {
-                _chatModel = ModelComboBox.SelectedValue.ToString();
+                _language = LanguageListBox.SelectedValue.ToString( );
+                var _msg = $"The ' {_language} ' language has been selected!";
+                SendNotification(_msg);
             }
             catch(Exception ex)
             {
@@ -2195,7 +2200,7 @@ namespace Bubba
             try
             {
                 _role = RoleComboBox.SelectedValue.ToString( );
-                var _msg = $"The ' {_role} ' has been selected!";
+                var _msg = $"The ' {_role} ' role has been selected!";
                 SendNotification( _msg );
             }
             catch(Exception ex)
