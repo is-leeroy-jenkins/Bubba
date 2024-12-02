@@ -22,18 +22,12 @@
         <ResourceDictionary Source="/UI/Themes/TabControl/BrowserTabItem.xaml" />
         <ResourceDictionary Source="/UI/Themes/TabControl/TabControl.xaml" />
 
-        <!--  SCROLLING  -->
-        <ResourceDictionary Source="/UI/Themes/Scrolling/ScrollBar.xaml" />
-        <ResourceDictionary Source="/UI/Themes/Scrolling/ScrollViewer.xaml" />
 
         <!--  TEXT  -->
         <ResourceDictionary Source="/UI/Themes/TextBox/TextBox.xaml" />
         <ResourceDictionary Source="/UI/Themes/Label/Label.xaml" />
         <ResourceDictionary Source="/UI/Themes/RichTextBox/RichTextBox.xaml" />
         <ResourceDictionary Source="/UI/Themes/RichTextBox/MetroRichTextBox.xaml" />
-
-        <!--  EDITOR  -->
-        <ResourceDictionary Source="/UI/Themes/Editor/EditControl.xaml" />
 
         <!--  LISTBOX/VIEW  -->
         <ResourceDictionary Source="/UI/Themes/ListBox/ListBox.xaml" />
@@ -55,13 +49,6 @@
         <!--  TILE  -->
         <ResourceDictionary Source="/UI/Themes/Tile/Tile.xaml" />
 
-        <!--  WINDOWS  -->
-        <ResourceDictionary Source="/UI/Themes/Window/Window.xaml" />
-
-        <!--  MENU  -->
-        <ResourceDictionary Source="/UI/Themes/Menu/Menu.xaml" />
-        <ResourceDictionary Source="/UI/Themes/Menu/MenuItem.xaml" />
-        <ResourceDictionary Source="/UI/Themes/Menu/ContextMenu.xaml" />
 
         <!--  CONTROLS  -->
         <ResourceDictionary Source="/UI/Themes/RadioButton/RadioButton.xaml" />

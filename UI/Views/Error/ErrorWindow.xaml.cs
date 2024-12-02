@@ -94,6 +94,11 @@ namespace Bubba
         private protected string _stackTrace;
 
         /// <summary>
+        /// The timer callback
+        /// </summary>
+        private protected TimerCallback _timerCallback;
+
+        /// <summary>
         /// The status update
         /// </summary>
         private protected Action _statusUpdate;
@@ -124,9 +129,6 @@ namespace Bubba
         /// </summary>
         public ErrorWindow( )
         {
-            // Theme Properties
-            SfSkinManager.SetTheme(this, new Theme("FluentDark", App.Controls));
-
             // Window Initialization
             InitializeComponent( );
             InitializeDelegates( );
@@ -299,8 +301,8 @@ namespace Bubba
         {
             try
             {
-                var _callback = new TimerCallback( UpdateStatus );
-                _timer = new Timer( _callback, null, 0, 80 );
+                _timerCallback += UpdateStatus;
+                _timer = new Timer(_timerCallback, null, 0, 260);
             }
             catch( Exception ex )
             {
@@ -472,7 +474,7 @@ namespace Bubba
         {
             try
             {
-                Dispatcher.BeginInvoke( _statusUpdate );
+                InvokeIf( _statusUpdate );
             }
             catch( Exception ex )
             {
@@ -557,7 +559,6 @@ namespace Bubba
             try
             {
                 _timer?.Dispose( );
-                ClearDelegates( );
                 Close( );
             }
             catch( Exception ex )
@@ -578,7 +579,6 @@ namespace Bubba
             {
                 _timer?.Dispose( );
                 SfSkinManager.Dispose( this );
-                ClearDelegates( );
                 Close( );
             }
             catch( Exception ex )

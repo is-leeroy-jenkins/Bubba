@@ -59,7 +59,7 @@ namespace Bubba
         /// <summary>
         /// The browser
         /// </summary>
-        private readonly BubbaWindow _webBrowser;
+        private readonly WebBrowser _webBrowser;
 
         /// <summary>
         /// Initializes a new instance of the
@@ -67,7 +67,7 @@ namespace Bubba
         /// class.
         /// </summary>
         /// <param name="form">The form.</param>
-        public ResourceRequestCallback( BubbaWindow form )
+        public ResourceRequestCallback( WebBrowser form )
         {
             _webBrowser = form;
         }
@@ -129,10 +129,10 @@ namespace Bubba
             IBrowser browser, IFrame frame, IRequest request,
             IRequestCallback callback )
         {
-            var _tab = _webBrowser.GetTabByBrowser( chromiumWebBrowser );
-            if( _tab?.ReferringUrl != null )
+            //var _tab = _webBrowser.GetTabByBrowser( chromiumWebBrowser );
+            //if( _tab?.ReferringUrl != null )
             {
-                request.SetReferrer( _tab.ReferringUrl, ReferrerPolicy.Default );
+               // request.SetReferrer( _tab.ReferringUrl, ReferrerPolicy.Default );
             }
 
             return CefReturnValue.Continue;

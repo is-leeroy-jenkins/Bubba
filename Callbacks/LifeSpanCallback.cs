@@ -58,16 +58,16 @@ namespace Bubba
         /// <summary>
         /// The browser
         /// </summary>
-        private readonly BubbaWindow _webBrowser;
+        private readonly WebBrowser _webBrowser;
 
         /// <summary>
         /// Initializes a new instance of the
         /// <see cref="LifeSpanCallback"/> class.
         /// </summary>
         /// <param name="form">The form.</param>
-        public LifeSpanCallback( Window form )
+        public LifeSpanCallback( WebBrowser form )
         {
-            _webBrowser = form as BubbaWindow;
+            _webBrowser = form;
         }
 
         /// <summary>
@@ -126,7 +126,7 @@ namespace Bubba
             out IWebBrowser newBrowser )
         {
             newBrowser = null;
-            _webBrowser.AddNewBrowserTab( targetUrl );
+            //_webBrowser.AddNewBrowserTab( targetUrl );
             return true;
         }
     }

@@ -114,31 +114,6 @@
             ImageSource="/Resources/Assets/ToolStripImages/RemoveButton.png"
             ToolTip="Cancel Search" />
 
-        <b:MetroComboBox
-            x:Name="SearchPanelComboBox"
-            Canvas.Left="605"
-            Canvas.Top="47"
-            Width="140"
-            Height="34"
-            Padding="15,5,1,1"
-            HorizontalAlignment="Left"
-            VerticalAlignment="Center"
-            HorizontalContentAlignment="Stretch"
-            VerticalContentAlignment="Center"
-            IsEditable="True"
-            AllowMultiSelect="True"
-            AllowSelectAll="True"
-            Background="{StaticResource ControlInteriorBrush}"
-            Foreground="{StaticResource FormForeground}"
-            DefaultText="  Select Domain"
-            ToolTip="Select Domains">
-            <wpf:ComboBoxItemAdv Content="Item 1" />
-            <wpf:ComboBoxItemAdv Content="Item 2" />
-            <wpf:ComboBoxItemAdv Content="Item 3" />
-            <wpf:ComboBoxItemAdv Content="Item 4" />
-            <wpf:ComboBoxItemAdv Content="Item 5" />
-        </b:MetroComboBox>
-
         <b:MetroTextBox
             x:Name="SearchPanelTextBox"
             Canvas.Left="25"
@@ -155,6 +130,23 @@
             FontFamily="Roboto"
             FontSize="12"
             ToolTip="Enter Search Key Words" />
+
+        <b:MetroComboBox
+            x:Name="SearchPanelComboBox"
+            Canvas.Left="601"
+            Canvas.Top="47"
+            Width="150"
+            Height="35"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Center"
+            AllowMultiSelect="True"
+            DefaultText="ComboBox Items">
+            <wpf:ComboBoxItemAdv Content="Item 1" />
+            <wpf:ComboBoxItemAdv Content="Item 2" />
+            <wpf:ComboBoxItemAdv Content="Item 3" />
+            <wpf:ComboBoxItemAdv Content="Item 4" />
+            <wpf:ComboBoxItemAdv Content="Item 5" />
+        </b:MetroComboBox>
 
     </Canvas>
 </Window>

@@ -62,7 +62,7 @@ namespace Bubba
         /// <summary>
         /// My form
         /// </summary>
-        private WebBrowser _webBrowser;
+        private System.Windows.Forms.WebBrowser _webBrowser;
 
         /// <summary>
         /// The hot keys
@@ -74,7 +74,7 @@ namespace Bubba
         /// <see cref="KeyboardCallback"/> class.
         /// </summary>
         /// <param name="form">The form.</param>
-        public KeyboardCallback( WebBrowser form )
+        public KeyboardCallback( System.Windows.Forms.WebBrowser form )
         {
             _webBrowser = form;
         }

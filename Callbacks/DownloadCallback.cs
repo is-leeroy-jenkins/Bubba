@@ -57,7 +57,7 @@ namespace Bubba
         /// <summary>
         /// The browser
         /// </summary>
-        private readonly BubbaWindow _webBrowser;
+        private readonly WebBrowser _webBrowser;
 
         /// <summary>
         /// Initializes a new instance of the
@@ -65,9 +65,9 @@ namespace Bubba
         /// class.
         /// </summary>
         /// <param name="form"> The form. </param>
-        public DownloadCallback( BubbaWindow form )
+        public DownloadCallback( WebBrowser form )
         {
-            _webBrowser = form as BubbaWindow;
+            _webBrowser = form;
         }
 
         /// <summary> Determines whether this instance can download the specified chromium WebBrowser. </summary>
@@ -108,7 +108,6 @@ namespace Bubba
                     }
                     else
                     {
-                        _webBrowser.OpenDownloadsTab( );
                         callback.Continue(_path, true);
                         return true;
                     }

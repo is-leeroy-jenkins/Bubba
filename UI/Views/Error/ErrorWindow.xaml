@@ -40,8 +40,7 @@
     </Window.Resources>
     <!--  ************************************************* LAYOUT  ***************************************  -->
 
-    <Canvas 
-        x:Name="ErrorCanvas">
+    <Canvas x:Name="ErrorCanvas">
         <b:MetroImage
             x:Name="PictureBox"
             Canvas.Left="2"

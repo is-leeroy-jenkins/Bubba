@@ -7,14 +7,23 @@
     </ApplicationDefinition>
   </ItemGroup>
   <ItemGroup>
+    <Compile Update="UI\Views\Windows\ChatWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Data\Abstractions\AdapterBase.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Update="Data\Adapter\BubbaAdapter.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Update="UI\Views\Windows\WebBrowser.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Page Update="UI\Views\Windows\ChatWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="UI\Themes\Editor\EditControl.xaml">
       <SubType>Designer</SubType>
     </Page>
@@ -192,9 +201,6 @@
     <Page Update="UI\Views\Search\SearchDialog.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="UI\Views\Windows\BubbaWindow.xaml">
-      <SubType>Designer</SubType>
-    </Page>
     <Page Update="UI\Views\Calculator\CalculatorWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
@@ -211,6 +217,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="UI\Views\Splash\SplashMessage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="UI\Views\Windows\WebBrowser.xaml">
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>

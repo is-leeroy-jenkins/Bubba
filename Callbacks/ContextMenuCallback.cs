@@ -64,7 +64,7 @@ namespace Bubba
         /// <summary>
         /// My form
         /// </summary>
-        private readonly BubbaWindow _webBrowser;
+        private readonly WebBrowser _webBrowser;
 
         /// <summary>
         /// The show dev tools
@@ -123,7 +123,7 @@ namespace Bubba
         /// <param name="form">
         /// The form.
         /// </param>
-        public ContextMenuCallback( BubbaWindow form )
+        public ContextMenuCallback( WebBrowser form )
         {
             _webBrowser = form;
         }
@@ -248,7 +248,6 @@ namespace Bubba
                 case _REFRESH_TAB:
                 {
                     _webBrowser.RefreshActiveTab( );
-
                     break;
                 }
                 case _SAVE_AS_PDF:

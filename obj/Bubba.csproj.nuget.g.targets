@@ -6,6 +6,5 @@
     <Import Project="$(NuGetPackageRoot)\microsoft.netframework.referenceassemblies.net461\1.0.3\build\Microsoft.NETFramework.ReferenceAssemblies.net461.targets" Condition="Exists('$(NuGetPackageRoot)\microsoft.netframework.referenceassemblies.net461\1.0.3\build\Microsoft.NETFramework.ReferenceAssemblies.net461.targets')" />
     <Import Project="$(NuGetPackageRoot)\microsoft.netframework.referenceassemblies.net45\1.0.3\build\Microsoft.NETFramework.ReferenceAssemblies.net45.targets" Condition="Exists('$(NuGetPackageRoot)\microsoft.netframework.referenceassemblies.net45\1.0.3\build\Microsoft.NETFramework.ReferenceAssemblies.net45.targets')" />
     <Import Project="$(NuGetPackageRoot)\cefsharp.common.netcore\131.2.70\buildTransitive\CefSharp.Common.NETCore.targets" Condition="Exists('$(NuGetPackageRoot)\cefsharp.common.netcore\131.2.70\buildTransitive\CefSharp.Common.NETCore.targets')" />
-    <Import Project="$(NuGetPackageRoot)\cefsharp.common\131.2.70\buildTransitive\CefSharp.Common.targets" Condition="Exists('$(NuGetPackageRoot)\cefsharp.common\131.2.70\buildTransitive\CefSharp.Common.targets')" />
   </ImportGroup>
 </Project>

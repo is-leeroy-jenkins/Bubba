@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
-    <TargetFramework>net8.0-windows</TargetFramework>
+    <TargetFramework>net8.0-windows7.0</TargetFramework>
     <Nullable>disable</Nullable>
     <ImplicitUsings>disable</ImplicitUsings>
     <UseWPF>true</UseWPF>
@@ -267,7 +267,6 @@
 
   <ItemGroup>
     <PackageReference Include="CefSharp.Common.NETCore" Version="131.2.70" />
-    <PackageReference Include="CefSharp.OffScreen" Version="131.2.70" />
     <PackageReference Include="CefSharp.Wpf.NETCore" Version="131.2.70" />
     <PackageReference Include="EPPlus" Version="7.5.1" />
     <PackageReference Include="Google.Apis.CustomSearchAPI.v1" Version="1.68.0.3520" />

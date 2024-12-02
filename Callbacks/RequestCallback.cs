@@ -60,14 +60,14 @@ namespace Bubba
         /// <summary>
         /// The browser
         /// </summary>
-        private readonly BubbaWindow _webBrowser;
+        private readonly WebBrowser _webBrowser;
 
         /// <summary>
         /// Initializes a new instance of the
         /// <see cref="RequestCallback"/> class.
         /// </summary>
         /// <param name="form">The form.</param>
-        public RequestCallback( BubbaWindow form )
+        public RequestCallback( WebBrowser form )
         {
             _webBrowser = form;
         }

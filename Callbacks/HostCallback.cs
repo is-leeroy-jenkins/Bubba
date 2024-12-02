@@ -58,7 +58,7 @@ namespace Bubba
         /// <summary>
         /// The browser
         /// </summary>
-        private readonly BubbaWindow _webBrowser;
+        private readonly WebBrowser _webBrowser;
 
         /// <summary>
         /// Initializes a new instance of the
@@ -67,7 +67,7 @@ namespace Bubba
         /// <param name="webBrowser">The webBrowser.</param>
         public HostCallback( Window webBrowser )
         {
-            _webBrowser = webBrowser as BubbaWindow;
+            _webBrowser = webBrowser as WebBrowser;
         }
 
         /// <summary>
