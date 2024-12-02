@@ -42,6 +42,8 @@
 namespace Bubba
 {
     using System;
+    using System.Collections;
+    using System.Collections.Generic;
     using System.Configuration;
     using System.Data;
     using System.Diagnostics.CodeAnalysis;
@@ -66,6 +68,11 @@ namespace Bubba
     [ SuppressMessage( "ReSharper", "ClassCanBeSealed.Global" ) ]
     public partial class App : Application
     {
+        /// <summary>
+        /// The active windows
+        /// </summary>
+        public static IDictionary<string, Window> ActiveWindows;
+
         /// <summary>
         /// The window place
         /// </summary>

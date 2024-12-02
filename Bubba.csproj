@@ -277,10 +277,12 @@
     </PackageReference>
     <PackageReference Include="Microsoft.NETFramework.ReferenceAssemblies.net45" Version="1.0.3" />
     <PackageReference Include="Microsoft.Office.Interop.Outlook" Version="15.0.4797.1004" />
+    <PackageReference Include="ModernUI.WPF" Version="1.0.9" />
     <PackageReference Include="ModernWpfUI" Version="0.9.6" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
     <PackageReference Include="OpenAI" Version="2.0.0" />
     <PackageReference Include="RestoreWindowPlace" Version="2.1.0" />
+    <PackageReference Include="ScottPlot.WPF" Version="5.0.47" />
     <PackageReference Include="SkiaSharp" Version="2.88.9" />
     <PackageReference Include="Syncfusion.Licensing" Version="24.1.41" />
     <PackageReference Include="Syncfusion.SfSkinManager.WPF" Version="24.1.41" />
@@ -298,6 +300,7 @@
     <PackageReference Include="SystemExtensions.NetCore" Version="1.6.11" />
     <PackageReference Include="ToastNotifications.Messages.Net6" Version="1.0.4" />
     <PackageReference Include="ToastNotifications.Net6" Version="1.0.4" />
+    <PackageReference Include="WebEye.Controls.Wpf.WebCameraControl" Version="1.0.3" />
   </ItemGroup>
 
   <ItemGroup>

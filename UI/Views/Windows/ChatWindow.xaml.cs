@@ -5,6 +5,7 @@ namespace Bubba
     using System.Collections.Generic;
     using System.ComponentModel;
     using System.Configuration;
+    using System.Diagnostics.CodeAnalysis;
     using System.Globalization;
     using System.IO;
     using System.Linq;
@@ -32,15 +33,27 @@ namespace Bubba
     using ToastNotifications.Lifetime;
     using ToastNotifications.Position;
 
+    /// <inheritdoc />
     /// <summary>
     /// Interaction logic for ChatWindow.xaml
     /// </summary>
+    [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
     public partial class ChatWindow : Window, INotifyPropertyChanged
     {
         private const string KEY = "sk-proj-eTIELWTlG8lKT3hpqgq7a3vmB6lBVKo"
             + "GBlkoHhu0KqWqsnxyRq9bpEz0N1xZKcOxlyDbLJFCu"
             + "YT3BlbkFJiQGzglbEgyZB7O9FsBi4bJTO0WEg-"
             + "xddgKbywZr1o4bbn0HtNQlSU3OALS0pfMuifvMcy2XPAA";
+
+        /// <summary>
+        /// The role
+        /// </summary>
+        private protected string _role;
+
+        /// <summary>
+        /// The language
+        /// </summary>
+        private protected string _language;
 
         /// <summary>
         /// The busy
@@ -66,6 +79,11 @@ namespace Bubba
         /// The HTTP client
         /// </summary>
         private protected HttpClient _httpClient;
+        
+        /// <summary>
+        /// The assembly
+        /// </summary>
+        public static Assembly Assembly;
 
         /// <summary>
         /// An alternative to sampling with temperature,
@@ -109,7 +127,7 @@ namespace Bubba
         /// <summary>
         /// Number between -2.0 and 2.0. Positive values penalize new tokens
         /// based on whether they appear in the text so far,
-        /// ncreasing the model's likelihood to talk about new topics.
+        /// increasing the model's likelihood to talk about new topics.
         /// </summary>
         private protected double _presence;
 
@@ -168,22 +186,17 @@ namespace Bubba
         /// </summary>
         public MetroLabel TimeLabel;
 
-        /// <summary>
-        /// The tool strip forward button
-        /// </summary>
-        public ToolStripButton ToolStripForwardButton;
-
-        /// <summary>
-        /// The assembly
-        /// </summary>
-        public static Assembly Assembly;
-
         /// <inheritdoc />
         /// <summary>
         /// Occurs when a property value changes.
         /// </summary>
         public event PropertyChangedEventHandler PropertyChanged;
 
+        /// <inheritdoc />
+        /// <summary>
+        /// Initializes a new instance of the
+        /// <see cref="T:Bubba.ChatWindow" /> class.
+        /// </summary>
         public ChatWindow( )
         {
             // Theme Properties
@@ -458,56 +471,13 @@ namespace Bubba
         }
 
         /// <summary>
-        /// Determines whether the specified URL is blank.
-        /// </summary>
-        /// <param name="url">The URL.</param>
-        /// <returns>
-        ///   <c>true</c> if the specified URL is blank; otherwise, <c>false</c>.
-        /// </returns>
-        private bool IsBlank( string url )
-        {
-            try
-            {
-                ThrowIf.Null( url, nameof( url ) );
-                return url == "" || url == "about:blank";
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
-                return false;
-            }
-        }
-
-        /// <summary>
-        /// Determines whether [is blank or system] [the specified URL].
-        /// </summary>
-        /// <param name="url">The URL.</param>
-        /// <returns>
-        ///   <c>true</c> if [is blank or system] [the specified URL]; otherwise, <c>false</c>.
-        /// </returns>
-        private bool IsBlankOrSystem( string url )
-        {
-            try
-            {
-                ThrowIf.Null( url, nameof( url ) );
-                return url == "" || url.BeginsWith( "about:" ) || url.BeginsWith( "chrome:" )
-                    || url.BeginsWith( ConfigurationManager.AppSettings[ "Internal" ] + ":" );
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
-                return false;
-            }
-        }
-
-        /// <summary>
         /// Registers the callbacks.
         /// </summary>
         private protected void RegisterCallbacks( )
         {
             try
             {
-                ToolStripTextBox.GotMouseCapture += OnToolStripTextBoxClick;
+                ToolStripTextBox.GotMouseCapture += OnToolStripTextBoxMouseEnter;
                 FirstButton.Click += OnFirstButtonClick;
                 PreviousButton.Click += OnPreviousButtonClick;
                 NextButton.Click += OnNextButtonClick;
@@ -516,12 +486,19 @@ namespace Bubba
                 RefreshButton.Click += OnRefreshButtonClick;
                 ModelComboBox.SelectionChanged += OnModelSelectionChanged;
                 MenuButton.Click += OnToggleButtonClick;
+                BrowserButton.Click += OnWebBrowserButtonClick;
+                ToolStripTextBox.GotMouseCapture += OnToolStripTextBoxClick;
                 TemperatureTextBox.TextChanged += OnTextBoxInputChanged;
                 PresenceTextBox.TextChanged += OnTextBoxInputChanged;
                 FrequencyTextBox.TextChanged += OnTextBoxInputChanged;
                 TopPercentTextBox.TextChanged += OnTextBoxInputChanged;
-                BrowserButton.Click += OnWebBrowserButtonClick;
-                ToolStripTextBox.GotMouseCapture += OnToolStripTextBoxClick;
+                ListenCheckBox.Checked += OnListenCheckedChanged;
+                MuteCheckBox.Checked += OnMuteCheckedBoxChanged;
+                DeleteButton.Click += OnDeleteButtonClick;
+                ClearButton.Click += OnClearButtonClick;
+                SendButton.Click += OnSendButtonClick;
+                LanguageListBox.SelectionChanged += OnLanguageSelectionChanged;
+                RoleComboBox.SelectionChanged += OnRoleSelectionChanged;
             }
             catch( Exception ex )
             {
@@ -622,6 +599,90 @@ namespace Bubba
             {
                 Fail( ex );
                 return string.Empty;
+            }
+        }
+
+        /// <summary>
+        /// Clears the filter.
+        /// </summary>
+        private void ClearFilters( )
+        {
+            try
+            {
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+            }
+        }
+
+        /// <summary>
+        /// Clears the selections.
+        /// </summary>
+        private void ClearSelections( )
+        {
+            try
+            {
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+            }
+        }
+
+        /// <summary>
+        /// Clears the collections.
+        /// </summary>
+        private void ClearCollections( )
+        {
+            try
+            {
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+            }
+        }
+
+        /// <summary>
+        /// Clears the list boxes.
+        /// </summary>
+        private void ClearListBoxes()
+        {
+            try
+            {
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+            }
+        }
+
+        /// <summary>
+        /// Clears the combo boxes.
+        /// </summary>
+        private void ClearComboBoxes( )
+        {
+            try
+            {
+            }
+            catch( Exception ex )
+            {
+                Fail(ex);
+            }
+        }
+
+        /// <summary>
+        /// Clears the text boxes.
+        /// </summary>
+        private void ClearTextBoxes( )
+        {
+            try
+            {
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
             }
         }
 
@@ -800,12 +861,12 @@ namespace Bubba
         /// <summary>
         /// Sends the notification.
         /// </summary>
-        private void SendNotification( )
+        private void SendNotification( string message )
         {
             try
             {
-                var _message = "THIS IS NOT YET IMPLEMENTED!";
-                var _notify = new Notification( _message );
+                ThrowIf.Null( message, nameof( message ) );
+                var _notify = new Notification( message );
                 _notify.Show( );
             }
             catch( Exception ex )
@@ -1077,6 +1138,29 @@ namespace Bubba
         }
 
         /// <summary>
+        /// Opens the main form.
+        /// </summary>
+        private void OpenWebBrowser( )
+        {
+            try
+            {
+                var _form = new WebBrowser( )
+                {
+                    WindowStartupLocation = WindowStartupLocation.CenterScreen,
+                    Owner = this,
+                    Topmost = true
+                };
+
+                _form.Show( );
+                Close( );
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+            }
+        }
+
+        /// <summary>
         /// Pads the quotes.
         /// </summary>
         /// <param name="input">The input.</param>
@@ -1155,7 +1239,10 @@ namespace Bubba
                 {
                     foreach( var _model in _aiModels )
                     {
-                        ModelComboBox.Items.Add( _model );
+                        if( !_model.StartsWith( "ft" ) )
+                        {
+                            ModelComboBox.Items.Add(_model);
+                        }
                     }
                 } );
 
@@ -1937,14 +2024,15 @@ namespace Bubba
         /// instance containing the event data.</param>
         private void OnListenCheckedChanged( object sender, RoutedEventArgs e )
         {
-            // if( ListenCheckBox.IsChecked == true )
+            if( ListenCheckBox.IsChecked == true )
             {
                 SpeechLabel.Content = "";
                 SpeechLabel.Visibility = Visibility.Visible;
                 SpeechToText( );
+                var _msg = "The GPT Audio Client has been activated!";
+                SendNotification( _msg );
             }
-
-            //else
+            else
             {
                 _engine.RecognizeAsyncStop( );
                 SpeechLabel.Visibility = Visibility.Hidden;
@@ -1961,13 +2049,15 @@ namespace Bubba
         {
             if( MuteCheckBox.IsChecked == true )
             {
-                VoiceLabel.Visibility = Visibility.Hidden;
-                VoiceComboBox.Visibility = Visibility.Hidden;
+                VoiceLabel.Visibility = Visibility.Visible;
+                VoiceComboBox.Visibility = Visibility.Visible;
+                var _msg = "The GPT Audio Client has been activated!";
+                SendNotification(_msg);
             }
             else
             {
-                VoiceLabel.Visibility = Visibility.Visible;
-                VoiceComboBox.Visibility = Visibility.Visible;
+                VoiceLabel.Visibility = Visibility.Hidden;
+                VoiceComboBox.Visibility = Visibility.Hidden;
             }
         }
 
@@ -2078,6 +2168,43 @@ namespace Bubba
         }
 
         /// <summary>
+        /// Called when [language selection changed].
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The <see cref="RoutedEventArgs"/> instance containing the event data.</param>
+        private void OnLanguageSelectionChanged(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                _chatModel = ModelComboBox.SelectedValue.ToString();
+            }
+            catch(Exception ex)
+            {
+                Fail(ex);
+            }
+        }
+
+        /// <summary>
+        /// Called when [role selection changed].
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The <see cref="RoutedEventArgs"/>
+        /// instance containing the event data.</param>
+        private void OnRoleSelectionChanged(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                _role = RoleComboBox.SelectedValue.ToString( );
+                var _msg = $"The ' {_role} ' has been selected!";
+                SendNotification( _msg );
+            }
+            catch(Exception ex)
+            {
+                Fail(ex);
+            }
+        }
+
+        /// <summary>
         /// Called when [text box input changed].
         /// </summary>
         /// <param name="sender">The sender.</param>
@@ -2100,7 +2227,7 @@ namespace Bubba
                             {
                                 var _temp = _textBox.Text;
                                 var _value = double.Parse( _temp );
-                                _textBox.Text = _value.ToString( "N2" );
+                                _textBox.Text = _value.ToString( "N1" );
                                 break;
                             }
                             case "TopPercent":

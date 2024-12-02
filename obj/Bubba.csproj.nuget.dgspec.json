@@ -87,6 +87,10 @@
               "target": "Package",
               "version": "[15.0.4797.1004, )"
             },
+            "ModernUI.WPF": {
+              "target": "Package",
+              "version": "[1.0.9, )"
+            },
             "ModernWpfUI": {
               "target": "Package",
               "version": "[0.9.6, )"
@@ -102,6 +106,10 @@
             "RestoreWindowPlace": {
               "target": "Package",
               "version": "[2.1.0, )"
+            },
+            "ScottPlot.WPF": {
+              "target": "Package",
+              "version": "[5.0.47, )"
             },
             "SkiaSharp": {
               "target": "Package",
@@ -170,6 +178,10 @@
             "ToastNotifications.Net6": {
               "target": "Package",
               "version": "[1.0.4, )"
+            },
+            "WebEye.Controls.Wpf.WebCameraControl": {
+              "target": "Package",
+              "version": "[1.0.3, )"
             },
             "chromiumembeddedframework.runtime.win-arm64": {
               "target": "Package",

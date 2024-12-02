@@ -7,11 +7,20 @@
 
     <!--  **************************************  RESOURCES ***********************************************  -->
 
-    <Style TargetType="{x:Type Window}">
+    <Style
+        x:Key="WindowStyle"
+        TargetType="{x:Type Window}">
         <Setter Property="Foreground" Value="{StaticResource FormForeground}" />
         <Setter Property="Background" Value="{StaticResource FormBackground}" />
         <Setter Property="BorderBrush" Value="{StaticResource BlueBorderBrush}" />
+        <Setter Property="FontFamily" Value="Roboto" />
+        <Setter Property="FontSize" Value="12" />
+        <Setter Property="HorizontalAlignment" Value="Stretch" />
+        <Setter Property="VerticalAlignment" Value="Stretch" />
+        <Setter Property="HorizontalContentAlignment" Value="Center" />
+        <Setter Property="VerticalContentAlignment" Value="Center" />
         <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="Padding" Value="1" />
+        <Setter Property="Margin" Value="3" />
     </Style>
-
 </ResourceDictionary>

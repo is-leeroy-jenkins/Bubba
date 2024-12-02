@@ -5,7 +5,8 @@
     xmlns:local="clr-namespace:Bubba"
     xmlns:skin="clr-namespace:Syncfusion.SfSkinManager;assembly=Syncfusion.SfSkinManager.WPF"
     xmlns:sync="http://schemas.syncfusion.com/wpf"
-    StartupUri="/UI/Views/Windows/WebBrowser.xaml">
+    xmlns:ui="http://schemas.modernwpf.com/2019"
+    StartupUri="/UI/Views/Windows/ChatWindow.xaml">
 
     <!--  *********************************************  RESOURCES *********************************************  -->
 
@@ -21,6 +22,9 @@
                 </ResourceDictionary>
 
                 <!--  RESOURCES  -->
+
+                <ui:ThemeResources />
+                <ui:XamlControlsResources />
                 <ResourceDictionary Source="/UI/Themes/generic.xaml" />
 
                 <!--  Notifications  -->

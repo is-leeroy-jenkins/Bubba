@@ -13,6 +13,11 @@
             App
             </summary>
         </member>
+        <member name="F:Bubba.App.ActiveWindows">
+            <summary>
+            The active windows
+            </summary>
+        </member>
         <member name="F:Bubba.App._windowPlace">
             <summary>
             The window place
@@ -26075,11 +26080,22 @@
             </summary>
         </member>
         <member name="T:Bubba.ChatWindow">
+            <inheritdoc />
             <summary>
             Interaction logic for ChatWindow.xaml
             </summary>
             <summary>
             ChatWindow
+            </summary>
+        </member>
+        <member name="F:Bubba.ChatWindow._role">
+            <summary>
+            The role
+            </summary>
+        </member>
+        <member name="F:Bubba.ChatWindow._language">
+            <summary>
+            The language
             </summary>
         </member>
         <member name="F:Bubba.ChatWindow._busy">
@@ -26105,6 +26121,11 @@
         <member name="F:Bubba.ChatWindow._httpClient">
             <summary>
             The HTTP client
+            </summary>
+        </member>
+        <member name="F:Bubba.ChatWindow.Assembly">
+            <summary>
+            The assembly
             </summary>
         </member>
         <member name="F:Bubba.ChatWindow._topPercent">
@@ -26150,7 +26171,7 @@
             <summary>
             Number between -2.0 and 2.0. Positive values penalize new tokens
             based on whether they appear in the text so far,
-            ncreasing the model's likelihood to talk about new topics.
+            increasing the model's likelihood to talk about new topics.
             </summary>
         </member>
         <member name="F:Bubba.ChatWindow._models">
@@ -26208,20 +26229,17 @@
             The time label
             </summary>
         </member>
-        <member name="F:Bubba.ChatWindow.ToolStripForwardButton">
-            <summary>
-            The tool strip forward button
-            </summary>
-        </member>
-        <member name="F:Bubba.ChatWindow.Assembly">
-            <summary>
-            The assembly
-            </summary>
-        </member>
         <member name="E:Bubba.ChatWindow.PropertyChanged">
             <inheritdoc />
             <summary>
             Occurs when a property value changes.
+            </summary>
+        </member>
+        <member name="M:Bubba.ChatWindow.#ctor">
+            <inheritdoc />
+            <summary>
+            Initializes a new instance of the
+            <see cref="T:Bubba.ChatWindow" /> class.
             </summary>
         </member>
         <member name="P:Bubba.ChatWindow.Store">
@@ -26312,24 +26330,6 @@
             </summary>
             <param name="action">The action.</param>
         </member>
-        <member name="M:Bubba.ChatWindow.IsBlank(System.String)">
-            <summary>
-            Determines whether the specified URL is blank.
-            </summary>
-            <param name="url">The URL.</param>
-            <returns>
-              <c>true</c> if the specified URL is blank; otherwise, <c>false</c>.
-            </returns>
-        </member>
-        <member name="M:Bubba.ChatWindow.IsBlankOrSystem(System.String)">
-            <summary>
-            Determines whether [is blank or system] [the specified URL].
-            </summary>
-            <param name="url">The URL.</param>
-            <returns>
-              <c>true</c> if [is blank or system] [the specified URL]; otherwise, <c>false</c>.
-            </returns>
-        </member>
         <member name="M:Bubba.ChatWindow.RegisterCallbacks">
             <summary>
             Registers the callbacks.
@@ -26356,6 +26356,36 @@
             </summary>
             <param name="url">The URL.</param>
             <returns></returns>
+        </member>
+        <member name="M:Bubba.ChatWindow.ClearFilters">
+            <summary>
+            Clears the filter.
+            </summary>
+        </member>
+        <member name="M:Bubba.ChatWindow.ClearSelections">
+            <summary>
+            Clears the selections.
+            </summary>
+        </member>
+        <member name="M:Bubba.ChatWindow.ClearCollections">
+            <summary>
+            Clears the collections.
+            </summary>
+        </member>
+        <member name="M:Bubba.ChatWindow.ClearListBoxes">
+            <summary>
+            Clears the list boxes.
+            </summary>
+        </member>
+        <member name="M:Bubba.ChatWindow.ClearComboBoxes">
+            <summary>
+            Clears the combo boxes.
+            </summary>
+        </member>
+        <member name="M:Bubba.ChatWindow.ClearTextBoxes">
+            <summary>
+            Clears the text boxes.
+            </summary>
         </member>
         <member name="M:Bubba.ChatWindow.CreateNotifier">
             <summary>
@@ -26412,7 +26442,7 @@
             </summary>
             <param name="message">The message.</param>
         </member>
-        <member name="M:Bubba.ChatWindow.SendNotification">
+        <member name="M:Bubba.ChatWindow.SendNotification(System.String)">
             <summary>
             Sends the notification.
             </summary>
@@ -26462,6 +26492,11 @@
             </summary>
             <param name="x">The x.</param>
             <param name="y">The y.</param>
+        </member>
+        <member name="M:Bubba.ChatWindow.OpenWebBrowser">
+            <summary>
+            Opens the main form.
+            </summary>
         </member>
         <member name="M:Bubba.ChatWindow.PadQuotes(System.String)">
             <summary>
@@ -26817,6 +26852,21 @@
             <param name="e">The <see cref="T:System.Windows.RoutedEventArgs"/>
             instance containing the event data.</param>
         </member>
+        <member name="M:Bubba.ChatWindow.OnLanguageSelectionChanged(System.Object,System.Windows.RoutedEventArgs)">
+            <summary>
+            Called when [language selection changed].
+            </summary>
+            <param name="sender">The sender.</param>
+            <param name="e">The <see cref="T:System.Windows.RoutedEventArgs"/> instance containing the event data.</param>
+        </member>
+        <member name="M:Bubba.ChatWindow.OnRoleSelectionChanged(System.Object,System.Windows.RoutedEventArgs)">
+            <summary>
+            Called when [role selection changed].
+            </summary>
+            <param name="sender">The sender.</param>
+            <param name="e">The <see cref="T:System.Windows.RoutedEventArgs"/>
+            instance containing the event data.</param>
+        </member>
         <member name="M:Bubba.ChatWindow.OnTextBoxInputChanged(System.Object,System.Windows.RoutedEventArgs)">
             <summary>
             Called when [text box input changed].
@@ -27092,14 +27142,6 @@
             The downloads.
             </value>
         </member>
-        <member name="P:Bubba.WebBrowser.SearchEngineUrl">
-            <summary>
-            Gets the search engine URL.
-            </summary>
-            <value>
-            The search engine URL.
-            </value>
-        </member>
         <member name="P:Bubba.WebBrowser.LoadingDuration">
             <summary>
             Gets the duration of the current tab loading.
@@ -27108,21 +27150,33 @@
             The duration of the current tab loading.
             </value>
         </member>
-        <member name="P:Bubba.WebBrowser.CurrentTab">
+        <member name="M:Bubba.WebBrowser.AddBlankWindow">
             <summary>
-            Gets or sets the current tab.
+            Adds the blank window.
             </summary>
-            <value>
-            The current tab.
-            </value>
         </member>
-        <member name="P:Bubba.WebBrowser.CurrentBrowser">
+        <member name="M:Bubba.WebBrowser.AddBlankTab">
             <summary>
-            Gets the current browser.
+            Adds the blank tab.
             </summary>
-            <value>
-            The current browser.
-            </value>
+        </member>
+        <member name="M:Bubba.WebBrowser.AddNewBrowserTab(System.String,System.Boolean,System.String)">
+            <summary>
+            Adds the new browser tab.
+            </summary>
+            <param name="url">The URL.</param>
+            <param name="focus">if set to
+            <c>true</c> [focus new tab].</param>
+            <param name="referringUrl">The referring URL.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Bubba.WebBrowser.AddNewBrowser(Bubba.BrowserTabItem,System.String)">
+            <summary>
+            Adds the new browser.
+            </summary>
+            <param name="tabItem">The tab strip.</param>
+            <param name="url">The URL.</param>
+            <returns></returns>
         </member>
         <member name="M:Bubba.WebBrowser.InitializeBrowser">
             <summary>
@@ -27134,11 +27188,6 @@
             <summary>
             we must store download metadata in a list,
             since CefSharp does not
-            </summary>
-        </member>
-        <member name="M:Bubba.WebBrowser.PopulateDomainDropDowns">
-            <summary>
-            Sets the tool strip properties.
             </summary>
         </member>
         <member name="M:Bubba.WebBrowser.InitializeTabControl">
@@ -27184,6 +27233,57 @@
             Initializes the tool strip.
             </summary>
         </member>
+        <member name="M:Bubba.WebBrowser.IsBlank(System.String)">
+            <summary>
+            Determines whether the specified URL is blank.
+            </summary>
+            <param name="url">The URL.</param>
+            <returns>
+            <c>true</c>
+            if the specified URL is blank;
+            otherwise,
+            <c>false</c>.
+            </returns>
+        </member>
+        <member name="M:Bubba.WebBrowser.IsBlankOrSystem(System.String)">
+            <summary>
+            Determines whether [is blank or system] [the specified URL].
+            </summary>
+            <param name="url">The URL.</param>
+            <returns>
+            <c>true</c> if [is blank or system] [the specified URL];
+            otherwise,
+            <c>false</c>.
+            </returns>
+        </member>
+        <member name="M:Bubba.WebBrowser.IsFirstTab">
+            <summary>
+            Determines whether [is on first tab].
+            </summary>
+            <returns>
+              <c>true</c> if [is on first tab]; otherwise, <c>false</c>.
+            </returns>
+        </member>
+        <member name="M:Bubba.WebBrowser.IsLastTab">
+            <summary>
+            Determines whether [is on last tab].
+            </summary>
+            <returns>
+              <c>true</c> if [is on last tab]; otherwise, <c>false</c>.
+            </returns>
+        </member>
+        <member name="M:Bubba.WebBrowser.InvokeIf(System.Action)">
+            <summary>
+            Invokes if needed.
+            </summary>
+            <param name="action">The action.</param>
+        </member>
+        <member name="M:Bubba.WebBrowser.InvokeIf(System.Action{System.Object})">
+            <summary>
+            Invokes if.
+            </summary>
+            <param name="action">The action.</param>
+        </member>
         <member name="M:Bubba.WebBrowser.RegisterCallbacks">
             <summary>
             Initializes the callbacks.
@@ -27194,11 +27294,72 @@
             Clears the callbacks.
             </summary>
         </member>
+        <member name="P:Bubba.WebBrowser.CurrentTab">
+            <summary>
+            Gets or sets the current tab.
+            </summary>
+            <value>
+            The current tab.
+            </value>
+        </member>
+        <member name="P:Bubba.WebBrowser.CurrentBrowser">
+            <summary>
+            Gets the current browser.
+            </summary>
+            <value>
+            The current browser.
+            </value>
+        </member>
+        <member name="M:Bubba.WebBrowser.CreateNotifier">
+            <summary>
+            Creates a notifier.
+            </summary>
+            <returns>
+            Notifier
+            </returns>
+        </member>
         <member name="M:Bubba.WebBrowser.ConfigureBrowser(CefSharp.Wpf.ChromiumWebBrowser)">
             <summary>
             this is done every time a new tab is opened
             </summary>
             <param name="browser">The browser.</param>
+        </member>
+        <member name="M:Bubba.WebBrowser.CloseOtherTabs">
+            <summary>
+            Closes the other tabs.
+            </summary>
+        </member>
+        <member name="M:Bubba.WebBrowser.CleanUrl(System.String)">
+            <summary>
+            Called by SetURL to clean up the URL
+            </summary>
+            <param name="url">The URL.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Bubba.WebBrowser.CloseActiveTab">
+            <summary>
+            Closes the active tab.
+            </summary>
+        </member>
+        <member name="M:Bubba.WebBrowser.CloseSearch">
+            <summary>
+            Closes the search.
+            </summary>
+        </member>
+        <member name="M:Bubba.WebBrowser.EnableBackButton(System.Boolean)">
+            <summary>
+            Enables the back button.
+            </summary>
+            <param name="canGoBack">if set to
+            <c>true</c> [can go back].</param>
+        </member>
+        <member name="M:Bubba.WebBrowser.EnableForwardButton(System.Boolean)">
+            <summary>
+            Enables the forward button.
+            </summary>
+            <param name="canGoForward">
+            if set to <c>true</c> [can go forward].
+            </param>
         </member>
         <member name="M:Bubba.WebBrowser.FadeInAsync(System.Windows.Window,System.Int32)">
             <summary>
@@ -27213,46 +27374,6 @@
             </summary>
             <param name="form">The o.</param>
             <param name="interval">The interval.</param>
-        </member>
-        <member name="M:Bubba.WebBrowser.SetTabText(CefSharp.Wpf.ChromiumWebBrowser,System.String)">
-            <summary>
-            Sets the tab title.
-            </summary>
-            <param name="browser">The browser.</param>
-            <param name="text">The text.</param>
-        </member>
-        <member name="M:Bubba.WebBrowser.SetTitleText(System.String)">
-            <summary>
-            Sets the form title.
-            </summary>
-            <param name="title">
-            Name of the tab.
-            </param>
-        </member>
-        <member name="M:Bubba.WebBrowser.SetUrl(System.String)">
-            <summary>
-            Called by LoadURL to set the form URL.
-            </summary>
-            <param name="url">The URL.</param>
-        </member>
-        <member name="M:Bubba.WebBrowser.CreateNotifier">
-            <summary>
-            Creates a notifier.
-            </summary>
-            <returns>
-            Notifier
-            </returns>
-        </member>
-        <member name="M:Bubba.WebBrowser.SendMessage(System.String)">
-            <summary>
-            Sends the message.
-            </summary>
-            <param name="message">The message.</param>
-        </member>
-        <member name="M:Bubba.WebBrowser.SendNotification">
-            <summary>
-            Notifies this instance.
-            </summary>
         </member>
         <member name="M:Bubba.WebBrowser.FindTextOnPage(System.Boolean)">
             <summary>
@@ -27305,56 +27426,11 @@
             <param name="focused">if set to <c>true</c> [focused].</param>
             <returns></returns>
         </member>
-        <member name="M:Bubba.WebBrowser.CloseOtherTabs">
-            <summary>
-            Closes the other tabs.
-            </summary>
-        </member>
         <member name="M:Bubba.WebBrowser.LoadUrl(System.String)">
             <summary>
             Loads the URL.
             </summary>
             <param name="url">The URL.</param>
-        </member>
-        <member name="M:Bubba.WebBrowser.WaitForBrowserToInitialize(CefSharp.Wpf.ChromiumWebBrowser)">
-            <summary>
-            Waits for browser to initialize.
-            </summary>
-            <param name="browser">The browser.</param>
-        </member>
-        <member name="M:Bubba.WebBrowser.EnableBackButton(System.Boolean)">
-            <summary>
-            Enables the back button.
-            </summary>
-            <param name="canGoBack">if set to
-            <c>true</c> [can go back].</param>
-        </member>
-        <member name="M:Bubba.WebBrowser.EnableForwardButton(System.Boolean)">
-            <summary>
-            Enables the forward button.
-            </summary>
-            <param name="canGoForward">
-            if set to <c>true</c> [can go forward].
-            </param>
-        </member>
-        <member name="M:Bubba.WebBrowser.CleanUrl(System.String)">
-            <summary>
-            Called by SetURL to clean up the URL
-            </summary>
-            <param name="url">The URL.</param>
-            <returns></returns>
-        </member>
-        <member name="M:Bubba.WebBrowser.InvokeIf(System.Action)">
-            <summary>
-            Invokes if needed.
-            </summary>
-            <param name="action">The action.</param>
-        </member>
-        <member name="M:Bubba.WebBrowser.InvokeIf(System.Action{System.Object})">
-            <summary>
-            Invokes if.
-            </summary>
-            <param name="action">The action.</param>
         </member>
         <member name="M:Bubba.WebBrowser.Busy">
             <summary>
@@ -27364,50 +27440,6 @@
         <member name="M:Bubba.WebBrowser.Chill">
             <summary>
             Ends the initialize.
-            </summary>
-        </member>
-        <member name="M:Bubba.WebBrowser.IsBlank(System.String)">
-            <summary>
-            Determines whether the specified URL is blank.
-            </summary>
-            <param name="url">The URL.</param>
-            <returns>
-            <c>true</c>
-            if the specified URL is blank;
-            otherwise,
-            <c>false</c>.
-            </returns>
-        </member>
-        <member name="M:Bubba.WebBrowser.IsBlankOrSystem(System.String)">
-            <summary>
-            Determines whether [is blank or system] [the specified URL].
-            </summary>
-            <param name="url">The URL.</param>
-            <returns>
-            <c>true</c> if [is blank or system] [the specified URL];
-            otherwise,
-            <c>false</c>.
-            </returns>
-        </member>
-        <member name="M:Bubba.WebBrowser.IsFirstTab">
-            <summary>
-            Determines whether [is on first tab].
-            </summary>
-            <returns>
-              <c>true</c> if [is on first tab]; otherwise, <c>false</c>.
-            </returns>
-        </member>
-        <member name="M:Bubba.WebBrowser.IsLastTab">
-            <summary>
-            Determines whether [is on last tab].
-            </summary>
-            <returns>
-              <c>true</c> if [is on last tab]; otherwise, <c>false</c>.
-            </returns>
-        </member>
-        <member name="M:Bubba.WebBrowser.StopActiveTab">
-            <summary>
-            Stops the active tab.
             </summary>
         </member>
         <member name="M:Bubba.WebBrowser.NextTab">
@@ -27420,45 +27452,10 @@
             Previous tab.
             </summary>
         </member>
-        <member name="M:Bubba.WebBrowser.AddBlankWindow">
+        <member name="M:Bubba.WebBrowser.PopulateDomainDropDowns">
             <summary>
-            Adds the blank window.
+            Sets the tool strip properties.
             </summary>
-        </member>
-        <member name="M:Bubba.WebBrowser.AddBlankTab">
-            <summary>
-            Adds the blank tab.
-            </summary>
-        </member>
-        <member name="M:Bubba.WebBrowser.AddNewBrowserTab(System.String,System.Boolean,System.String)">
-            <summary>
-            Adds the new browser tab.
-            </summary>
-            <param name="url">The URL.</param>
-            <param name="focus">if set to
-            <c>true</c> [focus new tab].</param>
-            <param name="referringUrl">The referring URL.</param>
-            <returns></returns>
-        </member>
-        <member name="M:Bubba.WebBrowser.AddNewBrowser(Bubba.BrowserTabItem,System.String)">
-            <summary>
-            Adds the new browser.
-            </summary>
-            <param name="tabItem">The tab strip.</param>
-            <param name="url">The URL.</param>
-            <returns></returns>
-        </member>
-        <member name="M:Bubba.WebBrowser.SearchGovernmentDomains(System.String)">
-            <summary>
-            Executes the multi search.
-            </summary>
-            <param name="keyWords">The key words.</param>
-        </member>
-        <member name="M:Bubba.WebBrowser.UpdateDownloadItem(CefSharp.DownloadItem)">
-            <summary>
-            Updates the download item.
-            </summary>
-            <param name="item">The item.</param>
         </member>
         <member name="M:Bubba.WebBrowser.DownloadsInProgress">
             <summary>
@@ -27469,11 +27466,6 @@
         <member name="M:Bubba.WebBrowser.RefreshActiveTab">
             <summary>
             Refreshes the active tab.
-            </summary>
-        </member>
-        <member name="M:Bubba.WebBrowser.CloseActiveTab">
-            <summary>
-            Closes the active tab.
             </summary>
         </member>
         <member name="M:Bubba.WebBrowser.OpenDownloadsTab">
@@ -27524,11 +27516,6 @@
             Opens the search.
             </summary>
         </member>
-        <member name="M:Bubba.WebBrowser.CloseSearch">
-            <summary>
-            Closes the search.
-            </summary>
-        </member>
         <member name="M:Bubba.WebBrowser.ToggleFullscreen">
             <summary>
             Toggles the fullscreen.
@@ -27539,14 +27526,65 @@
             Updates the status.
             </summary>
         </member>
-        <member name="M:Bubba.WebBrowser.UpdateStatus(System.Object)">
+        <member name="M:Bubba.WebBrowser.SetTabText(CefSharp.Wpf.ChromiumWebBrowser,System.String)">
             <summary>
-            Updates the status.
+            Sets the tab title.
             </summary>
+            <param name="browser">The browser.</param>
+            <param name="text">The text.</param>
+        </member>
+        <member name="M:Bubba.WebBrowser.SetTitleText(System.String)">
+            <summary>
+            Sets the form title.
+            </summary>
+            <param name="title">
+            Name of the tab.
+            </param>
+        </member>
+        <member name="P:Bubba.WebBrowser.SearchEngineUrl">
+            <summary>
+            Gets the search engine URL.
+            </summary>
+            <value>
+            The search engine URL.
+            </value>
+        </member>
+        <member name="M:Bubba.WebBrowser.SetUrl(System.String)">
+            <summary>
+            Called by LoadURL to set the form URL.
+            </summary>
+            <param name="url">The URL.</param>
+        </member>
+        <member name="M:Bubba.WebBrowser.SendMessage(System.String)">
+            <summary>
+            Sends the message.
+            </summary>
+            <param name="message">The message.</param>
+        </member>
+        <member name="M:Bubba.WebBrowser.SendNotification">
+            <summary>
+            Notifies this instance.
+            </summary>
+        </member>
+        <member name="M:Bubba.WebBrowser.StopActiveTab">
+            <summary>
+            Stops the active tab.
+            </summary>
+        </member>
+        <member name="M:Bubba.WebBrowser.SearchGovernmentDomains(System.String)">
+            <summary>
+            Executes the multi search.
+            </summary>
+            <param name="keyWords">The key words.</param>
         </member>
         <member name="M:Bubba.WebBrowser.ShowToolbar">
             <summary>
             Shows the items.
+            </summary>
+        </member>
+        <member name="M:Bubba.WebBrowser.OpenSearchDialog(System.Double,System.Double)">
+            <summary>
+            Shows the search dialog.
             </summary>
         </member>
         <member name="M:Bubba.WebBrowser.HideToolbar">
@@ -27554,10 +27592,22 @@
             Hides the items.
             </summary>
         </member>
-        <member name="M:Bubba.WebBrowser.OpenSearchDialog(System.Double,System.Double)">
+        <member name="M:Bubba.WebBrowser.UpdateDownloadItem(CefSharp.DownloadItem)">
             <summary>
-            Shows the search dialog.
+            Updates the download item.
             </summary>
+            <param name="item">The item.</param>
+        </member>
+        <member name="M:Bubba.WebBrowser.UpdateStatus(System.Object)">
+            <summary>
+            Updates the status.
+            </summary>
+        </member>
+        <member name="M:Bubba.WebBrowser.WaitForBrowserToInitialize(CefSharp.Wpf.ChromiumWebBrowser)">
+            <summary>
+            Waits for browser to initialize.
+            </summary>
+            <param name="browser">The browser.</param>
         </member>
         <member name="M:Bubba.WebBrowser.OnLoad(System.Object,System.Windows.RoutedEventArgs)">
             <summary>

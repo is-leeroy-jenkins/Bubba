@@ -7,7 +7,21 @@
 
     <!--  ******************************************** RESOURCE *********************************************  -->
 
-    <Style TargetType="{x:Type ContextMenu}">
+    <Style 
+        x:Key="ContextMenuStyle" 
+        TargetType="{x:Type ContextMenu}">
+        <Setter Property="Foreground" Value="{StaticResource FormForeground}" />
+        <Setter Property="Background" Value="{StaticResource BlackBackground}" />
+        <Setter Property="BorderBrush" Value="{StaticResource BlueBorderBrush}" />
+        <Setter Property="FontFamily" Value="Roboto" />
+        <Setter Property="FontSize" Value="12" />
+        <Setter Property="HorizontalAlignment" Value="Stretch" />
+        <Setter Property="VerticalAlignment" Value="Stretch" />
+        <Setter Property="HorizontalContentAlignment" Value="Center" />
+        <Setter Property="VerticalContentAlignment" Value="Center" />
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="Padding" Value="1" />
+        <Setter Property="Margin" Value="3" />
         <Setter Property="SnapsToDevicePixels" Value="True" />
         <Setter Property="OverridesDefaultStyle" Value="True" />
         <Setter Property="Grid.IsSharedSizeScope" Value="true" />
