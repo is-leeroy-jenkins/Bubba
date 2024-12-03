@@ -575,7 +575,10 @@ namespace Bubba
                 FrequencySlider.Value = 0D;
                 TemperatureSlider.Value = 1D;
                 PercentSlider.Value = 1D;
-                MaxTokensTextBox.Value = 2048D;
+                MaxTokensTextBox.Value = 157D;
+                RoleComboBox.SelectedIndex = -1;
+                TaskComboBox.SelectedIndex = -1;
+                ModelComboBox.SelectedIndex = -1;
             }
             catch( Exception ex )
             {
@@ -2261,9 +2264,12 @@ namespace Bubba
         {
             try
             {
-                _chatModel = ModelComboBox.SelectedValue.ToString();
-                var _msg = $"The ' {_chatModel} ' GPT Model has been selected!";
-                SendNotification(_msg);
+                if( ModelComboBox.SelectedIndex != -1 )
+                {
+                    _chatModel = ModelComboBox.SelectedValue.ToString();
+                    var _msg = $"The ' {_chatModel} ' GPT Model has been selected!";
+                    SendNotification(_msg);
+                }
             }
             catch( Exception ex )
             {
@@ -2300,9 +2306,12 @@ namespace Bubba
         {
             try
             {
-                _role = RoleComboBox.SelectedItem.ToString( );
-                var _msg = $"The ' {_role} ' role has been selected!";
-                SendNotification( _msg );
+                if( RoleComboBox.SelectedIndex != -1 )
+                {
+                    _role = RoleComboBox.SelectedItem.ToString();
+                    var _msg = $"The ' {_role} ' role has been selected!";
+                    SendNotification(_msg);
+                }
             }
             catch(Exception ex)
             {
@@ -2319,9 +2328,12 @@ namespace Bubba
         {
             try
             {
-                _task = TaskComboBox.SelectedItem.ToString();
-                var _msg = $"The ' {_task} ' task has been selected!";
-                SendNotification(_msg);
+                if( TaskComboBox.SelectedIndex != -1 )
+                {
+                    _task = TaskComboBox.SelectedItem.ToString( );
+                    var _msg = $"The ' {_task} ' task has been selected!";
+                    SendNotification(_msg);
+                }
             }
             catch(Exception ex)
             {
