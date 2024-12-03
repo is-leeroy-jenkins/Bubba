@@ -214,12 +214,14 @@
     <None Remove="Resources\Assets\ProviderImages\SqlServer.png" />
     <None Remove="Resources\Assets\ToolStripImages\AddColumnButton.png" />
     <None Remove="Resources\Assets\ToolStripImages\AddRecordButton.png" />
+    <None Remove="Resources\Assets\ToolStripImages\AddTabButton.png" />
     <None Remove="Resources\Assets\ToolStripImages\AreaButton.png" />
     <None Remove="Resources\Assets\ToolStripImages\BackButton.png" />
     <None Remove="Resources\Assets\ToolStripImages\BarButton.png" />
     <None Remove="Resources\Assets\ToolStripImages\BrowseButton.png" />
     <None Remove="Resources\Assets\ToolStripImages\CancelButton.png" />
     <None Remove="Resources\Assets\ToolStripImages\ChatButton.png" />
+    <None Remove="Resources\Assets\ToolStripImages\CloseTabsButton.png" />
     <None Remove="Resources\Assets\ToolStripImages\ColumnButton.png" />
     <None Remove="Resources\Assets\ToolStripImages\DataSourceButton.png" />
     <None Remove="Resources\Assets\ToolStripImages\DateButton.png" />
@@ -238,6 +240,7 @@
     <None Remove="Resources\Assets\ToolStripImages\GroupButton.png" />
     <None Remove="Resources\Assets\ToolStripImages\HeatButton.png" />
     <None Remove="Resources\Assets\ToolStripImages\HistogramButton.png" />
+    <None Remove="Resources\Assets\ToolStripImages\HomeButton.png" />
     <None Remove="Resources\Assets\ToolStripImages\IncreaseButton.png" />
     <None Remove="Resources\Assets\ToolStripImages\LastButton.png" />
     <None Remove="Resources\Assets\ToolStripImages\LookUpButton.png" />
@@ -284,8 +287,20 @@
     <PackageReference Include="RestoreWindowPlace" Version="2.1.0" />
     <PackageReference Include="ScottPlot.WPF" Version="5.0.47" />
     <PackageReference Include="SkiaSharp" Version="2.88.9" />
+    <PackageReference Include="Syncfusion.Edit.WPF" Version="24.1.41" />
+    <PackageReference Include="Syncfusion.Grouping.Base" Version="24.1.41" />
     <PackageReference Include="Syncfusion.Licensing" Version="24.1.41" />
+    <PackageReference Include="Syncfusion.PivotTable.Wpf" Version="24.1.41" />
+    <PackageReference Include="Syncfusion.PropertyGrid.WPF" Version="24.1.41" />
+    <PackageReference Include="Syncfusion.SfAccordion.WPF" Version="24.1.41" />
+    <PackageReference Include="Syncfusion.SfBarcode.WPF" Version="24.1.41" />
+    <PackageReference Include="Syncfusion.SfBusyIndicator.WPF" Version="24.1.41" />
+    <PackageReference Include="Syncfusion.SfGauge.WPF" Version="24.1.41" />
+    <PackageReference Include="Syncfusion.SfHubTile.WPF" Version="24.1.41" />
+    <PackageReference Include="Syncfusion.SfInput.WPF" Version="24.1.41" />
+    <PackageReference Include="Syncfusion.SfNavigationDrawer.WPF" Version="24.1.41" />
     <PackageReference Include="Syncfusion.SfSkinManager.WPF" Version="24.1.41" />
+    <PackageReference Include="Syncfusion.SfTreeView.WPF" Version="24.1.41" />
     <PackageReference Include="Syncfusion.Shared.Base" Version="24.1.41" />
     <PackageReference Include="Syncfusion.Shared.WPF" Version="24.1.41" />
     <PackageReference Include="Syncfusion.Themes.FluentDark.WPF" Version="24.1.41" />
@@ -483,12 +498,14 @@
     <Resource Include="Resources\Assets\ProviderImages\SqlServer.png" />
     <Resource Include="Resources\Assets\ToolStripImages\AddColumnButton.png" />
     <Resource Include="Resources\Assets\ToolStripImages\AddRecordButton.png" />
+    <Resource Include="Resources\Assets\ToolStripImages\AddTabButton.png" />
     <Resource Include="Resources\Assets\ToolStripImages\AreaButton.png" />
     <Resource Include="Resources\Assets\ToolStripImages\BackButton.png" />
     <Resource Include="Resources\Assets\ToolStripImages\BarButton.png" />
     <Resource Include="Resources\Assets\ToolStripImages\BrowseButton.png" />
     <Resource Include="Resources\Assets\ToolStripImages\CancelButton.png" />
     <Resource Include="Resources\Assets\ToolStripImages\ChatButton.png" />
+    <Resource Include="Resources\Assets\ToolStripImages\CloseTabsButton.png" />
     <Resource Include="Resources\Assets\ToolStripImages\ColumnButton.png" />
     <Resource Include="Resources\Assets\ToolStripImages\DataSourceButton.png" />
     <Resource Include="Resources\Assets\ToolStripImages\DateButton.png" />
@@ -507,6 +524,7 @@
     <Resource Include="Resources\Assets\ToolStripImages\GroupButton.png" />
     <Resource Include="Resources\Assets\ToolStripImages\HeatButton.png" />
     <Resource Include="Resources\Assets\ToolStripImages\HistogramButton.png" />
+    <Resource Include="Resources\Assets\ToolStripImages\HomeButton.png" />
     <Resource Include="Resources\Assets\ToolStripImages\IncreaseButton.png" />
     <Resource Include="Resources\Assets\ToolStripImages\LastButton.png" />
     <Resource Include="Resources\Assets\ToolStripImages\LookUpButton.png" />

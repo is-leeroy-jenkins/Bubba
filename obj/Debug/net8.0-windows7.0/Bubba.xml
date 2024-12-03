@@ -13,11 +13,6 @@
             App
             </summary>
         </member>
-        <member name="F:Bubba.App.ActiveWindows">
-            <summary>
-            The active windows
-            </summary>
-        </member>
         <member name="F:Bubba.App._windowPlace">
             <summary>
             The window place
@@ -31,6 +26,11 @@
         <member name="M:Bubba.App.RegisterTheme">
             <summary>
             Registers the theme.
+            </summary>
+        </member>
+        <member name="P:Bubba.App.ActiveWindows">
+            <summary>
+            The active windows
             </summary>
         </member>
         <member name="M:Bubba.App.#ctor">
@@ -25956,7 +25956,12 @@
             The update status
             </summary>
         </member>
-        <member name="F:Bubba.SplashMessage._text">
+        <member name="F:Bubba.SplashMessage._title">
+            <summary>
+            The message
+            </summary>
+        </member>
+        <member name="F:Bubba.SplashMessage._message">
             <summary>
             The message
             </summary>
@@ -26008,6 +26013,14 @@
             </summary>
             <param name="message">The message.</param>
         </member>
+        <member name="M:Bubba.SplashMessage.#ctor(System.String,System.String)">
+            <inheritdoc />
+            <summary>
+            Initializes a new instance of the <see cref="T:Bubba.SplashMessage" /> class.
+            </summary>
+            <param name="title">The title.</param>
+            <param name="message">The message.</param>
+        </member>
         <member name="M:Bubba.SplashMessage.RegisterCallbacks">
             <summary>
             Initializes the callbacks.
@@ -26052,6 +26065,14 @@
             Updates the status.
             </summary>
         </member>
+        <member name="M:Bubba.SplashMessage.OnLoad(System.Object,System.Windows.RoutedEventArgs)">
+            <summary>
+            Called when [load].
+            </summary>
+            <param name="sender">The sender.</param>
+            <param name="e">The <see cref="T:System.Windows.RoutedEventArgs"/>
+            instance containing the event data.</param>
+        </member>
         <member name="M:Bubba.SplashMessage.OnVisibleChanged(System.Object,System.Windows.DependencyPropertyChangedEventArgs)">
             <summary>
             Called when [load].
@@ -26089,6 +26110,11 @@
             </summary>
         </member>
         <member name="F:Bubba.ChatWindow._role">
+            <summary>
+            The role
+            </summary>
+        </member>
+        <member name="F:Bubba.ChatWindow._task">
             <summary>
             The role
             </summary>
@@ -26495,7 +26521,7 @@
         </member>
         <member name="M:Bubba.ChatWindow.OpenWebBrowser">
             <summary>
-            Opens the main form.
+            Opens the chat window.
             </summary>
         </member>
         <member name="M:Bubba.ChatWindow.PadQuotes(System.String)">
@@ -26513,6 +26539,16 @@
         <member name="M:Bubba.ChatWindow.PopulateDomainDropDowns">
             <summary>
             Populates the domain drop downs.
+            </summary>
+        </member>
+        <member name="M:Bubba.ChatWindow.PopulateGptTasks">
+            <summary>
+            Populates the GPT tasks.
+            </summary>
+        </member>
+        <member name="M:Bubba.ChatWindow.PopulateGptRoles">
+            <summary>
+            Populates the GPT roles.
             </summary>
         </member>
         <member name="M:Bubba.ChatWindow.UpdateStatus">
@@ -26583,6 +26619,22 @@
         <member name="M:Bubba.ChatWindow.OnSourceButtonClick(System.Object,System.EventArgs)">
             <summary>
             Called when [source button click].
+            </summary>
+            <param name="sender">The sender.</param>
+            <param name="e">The <see cref="T:System.EventArgs"/>
+            instance containing the event data.</param>
+        </member>
+        <member name="M:Bubba.ChatWindow.OnStoreBoxChecked(System.Object,System.EventArgs)">
+            <summary>
+            Called when [store box checked].
+            </summary>
+            <param name="sender">The sender.</param>
+            <param name="e">The <see cref="T:System.EventArgs"/>
+            instance containing the event data.</param>
+        </member>
+        <member name="M:Bubba.ChatWindow.OnStreamBoxChecked(System.Object,System.EventArgs)">
+            <summary>
+            Called when [stream box checked].
             </summary>
             <param name="sender">The sender.</param>
             <param name="e">The <see cref="T:System.EventArgs"/>
@@ -26752,6 +26804,7 @@
             <summary>
             Called when [WebBrowser button click].
             </summary>
+            
             <param name="sender">The sender.</param>
             <param name="e">The <see cref="T:System.Windows.RoutedEventArgs"/>
             instance containing the event data.</param>
@@ -26866,6 +26919,13 @@
             <param name="sender">The sender.</param>
             <param name="e">The <see cref="T:System.Windows.RoutedEventArgs"/>
             instance containing the event data.</param>
+        </member>
+        <member name="M:Bubba.ChatWindow.OnTaskSelectionChanged(System.Object,System.Windows.RoutedEventArgs)">
+            <summary>
+            Called when [task selection changed].
+            </summary>
+            <param name="sender">The sender.</param>
+            <param name="e">The <see cref="T:System.Windows.RoutedEventArgs"/> instance containing the event data.</param>
         </member>
         <member name="M:Bubba.ChatWindow.OnTextBoxInputChanged(System.Object,System.Windows.RoutedEventArgs)">
             <summary>
@@ -27516,14 +27576,14 @@
             Opens the search.
             </summary>
         </member>
-        <member name="M:Bubba.WebBrowser.ToggleFullscreen">
+        <member name="M:Bubba.WebBrowser.OpenSearchDialog(System.Double,System.Double)">
             <summary>
-            Toggles the fullscreen.
+            Shows the search dialog.
             </summary>
         </member>
-        <member name="M:Bubba.WebBrowser.UpdateStatus">
+        <member name="M:Bubba.WebBrowser.OpenChatWindow">
             <summary>
-            Updates the status.
+            Opens the chat window.
             </summary>
         </member>
         <member name="M:Bubba.WebBrowser.SetTabText(CefSharp.Wpf.ChromiumWebBrowser,System.String)">
@@ -27561,7 +27621,7 @@
             </summary>
             <param name="message">The message.</param>
         </member>
-        <member name="M:Bubba.WebBrowser.SendNotification">
+        <member name="M:Bubba.WebBrowser.SendNotification(System.String)">
             <summary>
             Notifies this instance.
             </summary>
@@ -27582,14 +27642,19 @@
             Shows the items.
             </summary>
         </member>
-        <member name="M:Bubba.WebBrowser.OpenSearchDialog(System.Double,System.Double)">
-            <summary>
-            Shows the search dialog.
-            </summary>
-        </member>
         <member name="M:Bubba.WebBrowser.HideToolbar">
             <summary>
             Hides the items.
+            </summary>
+        </member>
+        <member name="M:Bubba.WebBrowser.ToggleFullscreen">
+            <summary>
+            Toggles the fullscreen.
+            </summary>
+        </member>
+        <member name="M:Bubba.WebBrowser.UpdateStatus">
+            <summary>
+            Updates the status.
             </summary>
         </member>
         <member name="M:Bubba.WebBrowser.UpdateDownloadItem(CefSharp.DownloadItem)">
@@ -27615,6 +27680,14 @@
             </summary>
             <param name="sender">The sender.</param>
             <param name="e">The <see cref="T:System.EventArgs" />
+            instance containing the event data.</param>
+        </member>
+        <member name="M:Bubba.WebBrowser.OnFrameLoaded(System.Object,CefSharp.FrameLoadEndEventArgs)">
+            <summary>
+            Called when [frame loaded].
+            </summary>
+            <param name="sender">The sender.</param>
+            <param name="e">The <see cref="T:CefSharp.FrameLoadEndEventArgs"/>
             instance containing the event data.</param>
         </member>
         <member name="M:Bubba.WebBrowser.OnAddressChanged(System.Object,System.Windows.DependencyPropertyChangedEventArgs)">
@@ -28093,6 +28166,30 @@
             </summary>
             <param name="sender">The sender.</param>
             <param name="e">The <see cref="T:System.EventArgs"/>
+            instance containing the event data.</param>
+        </member>
+        <member name="M:Bubba.WebBrowser.OnHomeButtonClick(System.Object,System.Windows.RoutedEventArgs)">
+            <summary>
+            Called when [home button click].
+            </summary>
+            <param name="sender">The sender.</param>
+            <param name="e">The <see cref="T:System.Windows.RoutedEventArgs"/>
+            instance containing the event data.</param>
+        </member>
+        <member name="M:Bubba.WebBrowser.OnChatButtonClick(System.Object,System.Windows.RoutedEventArgs)">
+            <summary>
+            Called when [chat button click].
+            </summary>
+            <param name="sender">The sender.</param>
+            <param name="e">The <see cref="T:System.Windows.RoutedEventArgs"/>
+            instance containing the event data.</param>
+        </member>
+        <member name="M:Bubba.WebBrowser.OnToolStripTextBoxMouseEnter(System.Object,System.Windows.RoutedEventArgs)">
+            <summary>
+            Called when [tool strip text box mouse enter].
+            </summary>
+            <param name="sender">The sender.</param>
+            <param name="e">The <see cref="T:System.Windows.RoutedEventArgs"/>
             instance containing the event data.</param>
         </member>
         <member name="M:Bubba.WebBrowser.Dispose">

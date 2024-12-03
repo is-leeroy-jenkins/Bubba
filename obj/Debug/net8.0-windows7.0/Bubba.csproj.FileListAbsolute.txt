@@ -667,3 +667,4 @@ C:\Users\terry\source\repos\Bubba\bin\Debug\net8.0-windows7.0\runtimes\linux-arm
 C:\Users\terry\source\repos\Bubba\bin\Debug\net8.0-windows7.0\runtimes\linux-musl-x64\native\libSkiaSharp.so
 C:\Users\terry\source\repos\Bubba\bin\Debug\net8.0-windows7.0\runtimes\linux-x64\native\libSkiaSharp.so
 C:\Users\terry\source\repos\Bubba\bin\Debug\net8.0-windows7.0\WebEye.Controls.Wpf.WebCameraControl.dll
+C:\Users\terry\source\repos\Bubba\bin\Debug\net8.0-windows7.0\Syncfusion.Grouping.Base.dll

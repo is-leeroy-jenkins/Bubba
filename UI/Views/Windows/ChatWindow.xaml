@@ -23,6 +23,7 @@
     BorderBrush="{StaticResource BlueBorderBrush}"
     Foreground="{StaticResource FormForeground}"
     WindowStartupLocation="CenterScreen"
+    Icon="/Resources/Assets/ApplicationImages/Bubba.png"
     mc:Ignorable="d">
 
     <!--  ******************************************** RESOURCES *********************************************  -->
@@ -134,8 +135,6 @@
     </Window.ContextMenu>
 
 
-
-
     <!--  *********************************************  MAIN GRID *************************************  -->
 
 
@@ -178,11 +177,11 @@
                 <b:MetroEditor
                     x:Name="SystemTextBox"
                     Canvas.Left="217"
-                    Canvas.Top="19"
+                    Canvas.Top="10"
                     Width="845"
-                    Height="133"
+                    Height="142"
                     Padding="15,15,5,5"
-                    HorizontalAlignment="Left"
+                    HorizontalAlignment="Center"
                     VerticalAlignment="Top"
                     Text="Enter System Prompt"
                     Background="{StaticResource ControlInteriorBrush}"
@@ -190,47 +189,162 @@
                     BorderThickness="2,2,2,2"
                     ClipToBounds="True" />
 
-                <b:MetroComboBox
+                <ComboBox
                     x:Name="RoleComboBox"
-                    Canvas.Left="34"
-                    Canvas.Top="31"
-                    Width="150"
+                    Canvas.Left="58"
+                    Canvas.Top="10"
+                    Width="129"
                     Height="30"
-                    HorizontalAlignment="Center"
-                    VerticalAlignment="Top"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Center"
+                    FontSize="10"
                     BorderThickness="2"
                     Background="{StaticResource ControlInteriorBrush}"
                     BorderBrush="{StaticResource BlueBorderBrush}"
                     Foreground="{StaticResource WhiteForeground}"
-                    ToolTip="Select GPT Role"
-                    DefaultText="    Select Roles">
-                    <wpf:ComboBoxItemAdv Content="System" />
-                    <wpf:ComboBoxItemAdv Content="User" />
-                    <wpf:ComboBoxItemAdv Content="Assistant" />
-                </b:MetroComboBox>
+                    ToolTip="Select GPT Role" />
+
                 <Label
-                    Canvas.Left="34"
-                    Canvas.Top="71"
-                    Width="150"
+                    Canvas.Left="10"
+                    Canvas.Top="13"
+                    Width="43"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Center"
+                    HorizontalContentAlignment="Right"
+                    FontSize="10"
+                    Content="Roles"
+                    Foreground="{DynamicResource LightBlueBrush}" />
+
+                <ComboBox
+                    x:Name="TaskComboBox"
+                    Canvas.Left="58"
+                    Canvas.Top="62"
+                    Width="129"
                     Height="30"
-                    HorizontalAlignment="Center"
-                    VerticalAlignment="Top"
-                    VerticalContentAlignment="Center"
-                    Content="Label"
-                    Foreground="{StaticResource BlueBorderBrush}" />
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Center"
+                    FontSize="10"
+                    BorderThickness="2"
+                    Background="{StaticResource ControlInteriorBrush}"
+                    BorderBrush="{StaticResource BlueBorderBrush}"
+                    Foreground="{StaticResource WhiteForeground}"
+                    ToolTip="Select GPT Task" />
+
                 <Label
-                    x:Name="ModelLabel"
-                    Canvas.Left="34"
-                    Canvas.Top="4"
-                    Width="138"
-                    Height="22"
-                    HorizontalAlignment="Center"
-                    VerticalAlignment="Top"
-                    Content="GPT Models"
-                    Foreground="{StaticResource BlueBorderBrush}"
+                    Canvas.Left="10"
+                    Canvas.Top="69"
+                    Width="43"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Center"
+                    HorizontalContentAlignment="Right"
+                    FontSize="10"
+                    Content="Tasks"
+                    Foreground="{DynamicResource LightBlueBrush}" />
+
+                <Label
+                    Canvas.Left="10"
+                    Canvas.Top="116"
+                    Width="43"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Center"
+                    HorizontalContentAlignment="Right"
+                    FontSize="10"
+                    Content="Models"
+                    Foreground="{DynamicResource LightBlueBrush}" />
+
+                <ComboBox
+                    x:Name="ModelComboBox"
+                    Canvas.Left="58"
+                    Canvas.Top="113"
+                    Width="129"
+                    Height="30"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Center"
+                    FontSize="10"
+                    BorderThickness="2"
+                    Background="{StaticResource ControlInteriorBrush}"
+                    BorderBrush="{StaticResource BlueBorderBrush}"
+                    Foreground="{StaticResource WhiteForeground}" />
+
+            </Canvas>
+
+            <Canvas
+                x:Name="UserCanvas"
+                Grid.Row="2"
+                Margin="0,0,0,10">
+
+                <b:MetroEditor
+                    x:Name="UserTextBox"
+                    Canvas.Left="217"
+                    Canvas.Top="14"
+                    Width="840"
+                    Height="166"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Center"
+                    Text="Enter User Prompt"
+                    BorderThickness="2,2,2,2"
+                    ClipToBounds="True" />
+
+                <GroupBox
+                    x:Name="LanguageGroupBox"
+                    Canvas.Left="37"
+                    Canvas.Top="6"
+                    Width="150"
+                    Height="174"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Center"
+                    Header="Languages"
+                    Foreground="{StaticResource LightBlueBrush}"
+                    Background="#FF181818"
+                    BorderBrush="{StaticResource MutedForeground}"
                     FontFamily="Roboto"
-                    ClipToBounds="True"
-                    SnapsToDevicePixels="True" />
+                    FontSize="12">
+
+                    <ListBox
+                        x:Name="LanguageListBox"
+                        Height="122"
+                        Margin="10,0,12,0"
+                        Background="{DynamicResource ControlInteriorBrush}"
+                        BorderBrush="{DynamicResource BlueBorderBrush}"
+                        Foreground="{DynamicResource WhiteForeground}">
+                        <ListBoxItem
+                            Margin="15,0,0,0"
+                            Content="Plain Text"
+                            FontFamily="Roboto"
+                            Background="{DynamicResource ControlInteriorBrush}"
+                            BorderBrush="{DynamicResource ControlInteriorBrush}" />
+                        <ListBoxItem
+                            Margin="15,0,0,0"
+                            Content="SQL"
+                            FontFamily="Roboto"
+                            BorderBrush="{DynamicResource ControlInteriorBrush}"
+                            Background="{DynamicResource ControlInteriorBrush}" />
+                        <ListBoxItem
+                            Margin="15,0,0,0"
+                            Content="C#"
+                            FontFamily="Roboto"
+                            Background="{DynamicResource ControlInteriorBrush}"
+                            BorderBrush="{DynamicResource ControlInteriorBrush}" />
+                        <ListBoxItem
+                            Margin="15,0,0,0"
+                            Content="VBA"
+                            FontFamily="Roboto"
+                            Background="{DynamicResource ControlInteriorBrush}"
+                            BorderBrush="{DynamicResource ControlInteriorBrush}" />
+                        <ListBoxItem
+                            Margin="15,0,0,0"
+                            Content="C/C++"
+                            FontFamily="Roboto"
+                            Background="{DynamicResource ControlInteriorBrush}"
+                            BorderBrush="{DynamicResource ControlInteriorBrush}" />
+                        <ListBoxItem
+                            Margin="15,0,0,0"
+                            Content="JavaScript"
+                            FontFamily="Roboto"
+                            BorderBrush="{DynamicResource ControlInteriorBrush}"
+                            Background="{DynamicResource ControlInteriorBrush}" />
+                    </ListBox>
+                </GroupBox>
 
             </Canvas>
 
@@ -247,6 +361,7 @@
                     HorizontalAlignment="Center"
                     VerticalAlignment="Top"
                     Foreground="{StaticResource LightBlueBrush}"
+                    Background="#FF181818"
                     Header="Max Tokens"
                     FontFamily="Roboto"
                     FontSize="12" />
@@ -260,7 +375,7 @@
                     VerticalAlignment="Top"
                     Foreground="{StaticResource LightBlueBrush}"
                     Header="Randomness"
-                    Background="#FF1E1E1E"
+                    Background="#FF181818"
                     BorderBrush="{StaticResource MutedForeground}"
                     FontFamily="Roboto"
                     FontSize="12" />
@@ -274,7 +389,7 @@
                     VerticalAlignment="Top"
                     Foreground="{StaticResource LightBlueBrush}"
                     Header="Probability Mass"
-                    Background="#FF1E1E1E"
+                    Background="#FF181818"
                     BorderBrush="{StaticResource MutedForeground}"
                     FontFamily="Roboto"
                     FontSize="12" />
@@ -288,7 +403,7 @@
                     VerticalAlignment="Top"
                     Foreground="{StaticResource LightBlueBrush}"
                     Header="Presence"
-                    Background="#FF1E1E1E"
+                    Background="#FF181818"
                     BorderBrush="{StaticResource MutedForeground}"
                     FontFamily="Roboto"
                     FontSize="12" />
@@ -302,7 +417,7 @@
                     VerticalAlignment="Top"
                     Foreground="{StaticResource LightBlueBrush}"
                     Header="Frequency"
-                    Background="#FF1E1E1E"
+                    Background="#FF181818"
                     BorderBrush="{StaticResource MutedForeground}"
                     FontFamily="Roboto"
                     FontSize="12" />
@@ -316,7 +431,7 @@
                     VerticalAlignment="Top"
                     Foreground="{StaticResource LightBlueBrush}"
                     Header="Commands"
-                    Background="#FF1E1E1E"
+                    Background="#FF181818"
                     BorderBrush="{StaticResource MutedForeground}"
                     FontFamily="Roboto"
                     FontSize="12" />
@@ -324,26 +439,23 @@
                 <Slider
                     x:Name="TemperatureSlider"
                     Canvas.Left="49"
-                    Canvas.Top="116"
+                    Canvas.Top="110"
                     Width="120"
                     Height="45"
-                    HorizontalAlignment="Left"
-                    VerticalAlignment="Center"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Top"
+                    ToolTip="A number between 0 and 1 (Temperature). Default=1"
+                    LargeChange="0.2"
+                    SmallChange="0.1"
+                    TickFrequency="0.25"
+                    Tag="TopPercent"
+                    TickPlacement="Both"
                     Maximum="1"
                     Minimum="0"
-                    ToolTip="A number between 0 and 1 (Temperature). Default=1"
-                    LargeChange="0.10"
-                    SmallChange="0.025"
-                    TickFrequency="0.1"
-                    Tag="Temperature"
-                    Foreground="{StaticResource FormForeground}"
+                    Foreground="{StaticResource WhiteForeground}"
                     FontFamily="Roboto"
-                    ClipToBounds="True"
                     SnapsToDevicePixels="True"
-                    TickPlacement="Both"
-                    Delay="300"
-                    AutoToolTipPlacement="TopLeft"
-                    IsSnapToTickEnabled="True"
+                    ClipToBounds="True"
                     Value="1" />
 
                 <wpf:DoubleTextBox
@@ -364,9 +476,8 @@
                     FontFamily="Roboto"
                     FontSize="12"
                     Tag="Temperature"
-                    Text="{Binding Value, ElementName=TemperatureSlider, Mode=TwoWay, StringFormat=N1}"
+                    Text="{Binding Value, ElementName=TemperatureSlider, Mode=TwoWay}"
                     NegativeForeground="{StaticResource RedForeground}"
-                    RangeAdornerBackground="{StaticResource RadioButtonActiveBrush}"
                     ZeroColor="#FFEFA90D"
                     NumberDecimalDigits="1"
                     UseNullOption="True"
@@ -383,15 +494,15 @@
                 <Slider
                     x:Name="PercentSlider"
                     Canvas.Left="240"
-                    Canvas.Top="116"
+                    Canvas.Top="110"
                     Width="120"
                     Height="45"
                     HorizontalAlignment="Center"
                     VerticalAlignment="Center"
-                    ToolTip="A number between 0 and 1 (%). Default=0"
+                    ToolTip="A ratio between 0 and 1 (%). Default=0"
                     LargeChange="0.2"
                     SmallChange="0.1"
-                    TickFrequency="0.1"
+                    TickFrequency="0.25"
                     Tag="TopPercent"
                     TickPlacement="Both"
                     Maximum="1"
@@ -400,7 +511,7 @@
                     FontFamily="Roboto"
                     SnapsToDevicePixels="True"
                     ClipToBounds="True"
-                    Value="0" />
+                    Value="1" />
 
                 <wpf:DoubleTextBox
                     x:Name="TopPercentTextBox"
@@ -418,7 +529,7 @@
                     SnapsToDevicePixels="True"
                     FontSize="12"
                     FontFamily="Roboto"
-                    Text="{Binding Value, ElementName=PercentSlider, Mode=TwoWay, StringFormat=P1}"
+                    Text="{Binding Value, ElementName=PercentSlider, Mode=TwoWay, StringFormat=P0}"
                     Tag="TopPercent"
                     ToolTip="A number between 0 and 1 (%). Default=0"
                     NumberDecimalDigits="1"
@@ -438,7 +549,7 @@
                 <Slider
                     x:Name="PresenceSlider"
                     Canvas.Left="446"
-                    Canvas.Top="116"
+                    Canvas.Top="105"
                     Width="120"
                     Height="45"
                     HorizontalAlignment="Center"
@@ -450,7 +561,8 @@
                     SmallChange="0.25"
                     TickFrequency="0.50"
                     Tag="Frequency"
-                    TickPlacement="Both" />
+                    TickPlacement="Both"
+                    Value="0" />
 
                 <wpf:DoubleTextBox
                     x:Name="PresenceTextBox"
@@ -458,7 +570,7 @@
                     Canvas.Top="189"
                     Width="80"
                     Height="30"
-                    HorizontalAlignment="Left"
+                    HorizontalAlignment="Center"
                     HorizontalContentAlignment="Center"
                     ApplyNegativeForeground="True"
                     ApplyZeroColor="True"
@@ -482,11 +594,11 @@
                 <Slider
                     x:Name="FrequencySlider"
                     Canvas.Left="647"
-                    Canvas.Top="116"
+                    Canvas.Top="105"
                     Width="120"
                     Height="45"
-                    HorizontalAlignment="Left"
-                    VerticalAlignment="Top"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
                     Maximum="2"
                     Minimum="-2"
                     ToolTip="A number between -2 and 2 (Frequency). Default=0"
@@ -526,32 +638,15 @@
                     </wpf:DoubleTextBox.NumberFormat>
                 </wpf:DoubleTextBox>
 
-                <b:MetroComboBox
-                    x:Name="ModelComboBox"
-                    Canvas.Left="34"
-                    Canvas.Top="-64"
-                    Width="150"
-                    Height="30"
-                    HorizontalAlignment="Center"
-                    VerticalAlignment="Top"
-                    BorderThickness="2"
-                    AllowMultiSelect="False"
-                    DefaultText="    Select Models"
-                    Background="{StaticResource ControlInteriorBrush}"
-                    BorderBrush="{StaticResource BlueBorderBrush}"
-                    Foreground="{StaticResource WhiteForeground}" />
-
-                <b:MetroComboBox
+                <ComboBox
                     x:Name="VoiceComboBox"
-                    Canvas.Left="1082"
+                    Canvas.Left="1098"
                     Canvas.Top="65"
-                    Width="125"
+                    Width="114"
                     Height="30"
-                    HorizontalAlignment="Center"
-                    VerticalAlignment="Top"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Center"
                     BorderThickness="2"
-                    AllowMultiSelect="False"
-                    DefaultText="    Voices"
                     Background="{StaticResource ControlInteriorBrush}"
                     BorderBrush="{StaticResource BlueBorderBrush}"
                     Foreground="{StaticResource WhiteForeground}">
@@ -560,7 +655,7 @@
                     <wpf:ComboBoxItemAdv Content="Item 3" />
                     <wpf:ComboBoxItemAdv Content="Item 4" />
                     <wpf:ComboBoxItemAdv Content="Item 5" />
-                </b:MetroComboBox>
+                </ComboBox>
 
                 <wpf:UpDown
                     x:Name="MaxTokensTextBox"
@@ -589,7 +684,7 @@
 
                 <Label
                     x:Name="VoiceLabel"
-                    Canvas.Left="1082"
+                    Canvas.Left="1098"
                     Canvas.Top="34"
                     Width="125"
                     HorizontalAlignment="Left"
@@ -630,6 +725,7 @@
                     IsMultiLine="False"
                     IconHeight="0"
                     IconWidth="0" />
+
                 <GroupBox
                     Canvas.Left="827"
                     Canvas.Top="40"
@@ -641,6 +737,7 @@
                     Header="GPT Responses"
                     FontFamily="Roboto"
                     FontSize="12" />
+
                 <b:MetroRadioButton
                     x:Name="StoreCheckBox"
                     Canvas.Left="1104"
@@ -653,6 +750,7 @@
                     FontFamily="Roboto"
                     Foreground="{DynamicResource LightBlueBrush}"
                     Background="{DynamicResource BlueBorderBrush}" />
+
                 <b:MetroRadioButton
                     x:Name="StreamCheckBox"
                     Canvas.Left="1104"
@@ -665,109 +763,33 @@
                     FontFamily="Roboto"
                     Foreground="{DynamicResource LightBlueBrush}"
                     Background="{DynamicResource BlueBorderBrush}" />
+
                 <b:MetroRadioButton
                     x:Name="ListenCheckBox"
                     Canvas.Left="1098"
-                    Canvas.Top="128"
+                    Canvas.Top="114"
                     Width="92"
-                    HorizontalAlignment="Left"
+                    HorizontalAlignment="Center"
                     VerticalAlignment="Top"
                     Content="Listen"
                     FontSize="12"
                     FontFamily="Roboto"
                     Foreground="{DynamicResource LightBlueBrush}"
                     Background="{DynamicResource BlueBorderBrush}" />
+
                 <b:MetroRadioButton
                     x:Name="MuteCheckBox"
                     Canvas.Left="1098"
-                    Canvas.Top="175"
+                    Canvas.Top="143"
                     Width="92"
-                    HorizontalAlignment="Left"
+                    HorizontalAlignment="Center"
                     VerticalAlignment="Top"
                     Content="Mute"
                     FontSize="12"
                     FontFamily="Roboto"
                     Foreground="{DynamicResource LightBlueBrush}"
                     Background="{DynamicResource BlueBorderBrush}" />
-            </Canvas>
 
-            <Canvas
-                x:Name="UserCanvas"
-                Grid.Row="2"
-                Margin="0,0,0,10">
-
-                <b:MetroEditor
-                    x:Name="UserTextBox"
-                    Canvas.Left="217"
-                    Canvas.Top="14"
-                    Width="840"
-                    Height="166"
-                    HorizontalAlignment="Left"
-                    VerticalAlignment="Center"
-                    Text="Enter User Prompt"
-                    BorderThickness="2,2,2,2"
-                    ClipToBounds="True" />
-
-                <GroupBox
-                    x:Name="LanguageGroupBox"
-                    Canvas.Left="37"
-                    Canvas.Top="6"
-                    Width="150"
-                    Height="174"
-                    HorizontalAlignment="Left"
-                    VerticalAlignment="Center"
-                    Header="Languages"
-                    Foreground="{StaticResource LightBlueBrush}"
-                    Background="#FF1E1E1E"
-                    BorderBrush="{StaticResource MutedForeground}"
-                    FontFamily="Roboto"
-                    FontSize="12" />
-
-                <b:MetroCheckList
-                    x:Name="LanguageListBox"
-                    Canvas.Left="60"
-                    Canvas.Top="34"
-                    Width="110"
-                    Height="126"
-                    Padding="15,1,1,1"
-                    HorizontalAlignment="Left"
-                    VerticalAlignment="Top"
-                    BorderThickness="2"
-                    Background="{StaticResource ControlInteriorBrush}"
-                    BorderBrush="{StaticResource BlueBorderBrush}"
-                    SnapsToDevicePixels="True"
-                    ClipToBounds="True"
-                    FontFamily="Roboto"
-                    MouseOverBackground="{StaticResource SteelBlueBackground}"
-                    SelectedItemBackground="#FF143509"
-                    IsSelectAllEnabled="False">
-                    <wpf:CheckListBoxItem
-                        Height="30"
-                        ToolTip="{Binding CheckListBoxItem.Text, Source=Self}"
-                        Content="Text">
-                        <wpf:CheckListBoxItem.Foreground>
-                            <SolidColorBrush Color="{StaticResource {x:Static SystemColors.WindowColorKey}}" />
-                        </wpf:CheckListBoxItem.Foreground>
-                    </wpf:CheckListBoxItem>
-                    <wpf:CheckListBoxItem
-                        Height="30"
-                        Content="SQL" />
-                    <wpf:CheckListBoxItem
-                        Height="30"
-                        Content="C#" />
-                    <wpf:CheckListBoxItem
-                        Height="30"
-                        Content="Python" />
-                    <wpf:CheckListBoxItem
-                        Height="30"
-                        Content="C/C++" />
-                    <wpf:CheckListBoxItem
-                        Height="30"
-                        Content="VBA" />
-                    <wpf:CheckListBoxItem
-                        Height="30"
-                        Content="JavaScript" />
-                </b:MetroCheckList>
 
             </Canvas>
 
@@ -791,6 +813,10 @@
                 ClipToBounds="True"
                 Value="1" />
         </Grid>
+
+
+        <!--  ********************************************* TOOLSTRIP *************************************  -->
+
 
         <Canvas
             x:Name="ToolStripCanvas"

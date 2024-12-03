@@ -7,18 +7,20 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     x:Name="Splash"
     Title="Message"
-    Width="830"
-    Height="455"
+    Width="760"
+    Height="385"
+    MinWidth="525"
+    MinHeight="255"
     Background="{StaticResource DarkBlueBackground}"
     BorderBrush="{StaticResource LightBlueBrush}"
-    BorderThickness="1"
     Foreground="{StaticResource WhiteForeground}"
+    BorderThickness="1"
     ResizeMode="NoResize"
     WindowStartupLocation="CenterScreen"
     WindowStyle="None"
     mc:Ignorable="d">
 
-    <!--******************************************** Resources *********************************************-->
+    <!--  ******************************************** Resources *********************************************  -->
 
     <Window.Resources>
         <Style TargetType="ToolTip">
@@ -29,8 +31,7 @@
         </Style>
     </Window.Resources>
 
-    <!--******************************************** Layout *********************************************-->
-
+    <!--  ******************************************** Layout *********************************************  -->
 
     <Canvas>
         <Image
@@ -41,6 +42,7 @@
             HorizontalAlignment="Center"
             VerticalAlignment="Center"
             Source="/Resources/Assets/DialogImages/SplashNotification.png" />
+
         <Label
             x:Name="TitleLabel"
             Canvas.Left="36"
@@ -50,24 +52,27 @@
             Padding="5,1,5,5"
             VerticalAlignment="Top"
             Content="Message"
-            FontSize="16"
+            FontSize="20"
             Foreground="{StaticResource LightBlueBrush}"
             OpacityMask="Black"
             SnapsToDevicePixels="True" />
+
         <Label
-            x:Name="MessageLabel"
-            Canvas.Left="155"
-            Canvas.Top="105"
-            Width="525"
-            Height="225"
+            x:Name="MessageText"
+            Canvas.Left="55"
+            Canvas.Top="73"
+            Width="648"
+            Height="262"
+            HorizontalAlignment="Center"
             VerticalAlignment="Top"
             Content="Label"
-            FontSize="14"
+            FontSize="16"
             Foreground="{StaticResource LightBlueBrush}" />
+
         <local:MetroLabel
             x:Name="StatusLabel"
-            Canvas.Left="675"
-            Canvas.Top="5"
+            Canvas.Left="603"
+            Canvas.Top="10"
             Width="145"
             Height="20"
             Padding="1"

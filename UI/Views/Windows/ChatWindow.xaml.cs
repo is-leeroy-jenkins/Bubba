@@ -52,6 +52,11 @@ namespace Bubba
         private protected string _role;
 
         /// <summary>
+        /// The role
+        /// </summary>
+        private protected string _task;
+
+        /// <summary>
         /// The language
         /// </summary>
         private protected string _language;
@@ -485,7 +490,6 @@ namespace Bubba
                 LastButton.Click += OnLastButtonClick;
                 LookupButton.Click += OnLookupButtonClick;
                 RefreshButton.Click += OnRefreshButtonClick;
-                ModelComboBox.SelectionChanged += OnModelSelectionChanged;
                 MenuButton.Click += OnToggleButtonClick;
                 BrowserButton.Click += OnWebBrowserButtonClick;
                 ToolStripTextBox.GotMouseCapture += OnToolStripTextBoxClick;
@@ -493,13 +497,17 @@ namespace Bubba
                 PresenceTextBox.TextChanged += OnTextBoxInputChanged;
                 FrequencyTextBox.TextChanged += OnTextBoxInputChanged;
                 TopPercentTextBox.TextChanged += OnTextBoxInputChanged;
-                ListenCheckBox.Checked += OnListenCheckedChanged;
-                MuteCheckBox.Checked += OnMuteCheckedBoxChanged;
                 DeleteButton.Click += OnDeleteButtonClick;
                 ClearButton.Click += OnClearButtonClick;
                 SendButton.Click += OnSendButtonClick;
                 LanguageListBox.SelectionChanged += OnLanguageSelectionChanged;
+                ListenCheckBox.Checked += OnListenCheckedChanged;
+                MuteCheckBox.Checked += OnMuteCheckedBoxChanged;
+                StoreCheckBox.Checked += OnStoreBoxChecked;
+                StreamCheckBox.Checked += OnStreamBoxChecked;
                 RoleComboBox.SelectionChanged += OnRoleSelectionChanged;
+                TaskComboBox.SelectionChanged += OnTaskSelectionChanged;
+                ModelComboBox.SelectionChanged += OnModelSelectionChanged;
             }
             catch( Exception ex )
             {
@@ -1139,21 +1147,29 @@ namespace Bubba
         }
 
         /// <summary>
-        /// Opens the main form.
+        /// Opens the chat window.
         /// </summary>
         private void OpenWebBrowser( )
         {
             try
             {
-                var _form = new WebBrowser( )
+                if( App.ActiveWindows?.ContainsKey( "WebBrowser" ) == true )
                 {
-                    WindowStartupLocation = WindowStartupLocation.CenterScreen,
-                    Owner = this,
-                    Topmost = true
-                };
+                    var _form = (WebBrowser)App.ActiveWindows[ "WebBrowser" ];
+                    _form.Show( );
+                }
+                else
+                {
+                    var _web = new WebBrowser
+                    {
+                        Owner = this,
+                        Topmost = true
+                    };
 
-                _form.Show( );
-                Close( );
+                    _web.Show( );
+                }
+
+                Hide( );
             }
             catch( Exception ex )
             {
@@ -1280,6 +1296,47 @@ namespace Bubba
             catch( Exception ex )
             {
                 Fail( ex );
+            }
+        }
+
+        /// <summary>
+        /// Populates the GPT tasks.
+        /// </summary>
+        private void PopulateGptTasks( )
+        {
+            try
+            {
+                TaskComboBox.Items.Clear( );
+                TaskComboBox.Items.Add( "Chat Completion" );
+                TaskComboBox.Items.Add( "Text Generation" );
+                TaskComboBox.Items.Add( "Text To Speech (TTS)" );
+                TaskComboBox.Items.Add( "Image Generation" );
+                TaskComboBox.Items.Add( "Fine-Tuning" );
+                TaskComboBox.Items.Add( "Speech To Text" );
+                TaskComboBox.Items.Add( "Files" );
+                TaskComboBox.Items.Add( "Embedding" );
+            }
+            catch(Exception ex)
+            {
+                Fail(ex);
+            }
+        }
+
+        /// <summary>
+        /// Populates the GPT roles.
+        /// </summary>
+        private void PopulateGptRoles()
+        {
+            try
+            {
+                RoleComboBox.Items.Clear( );
+                RoleComboBox.Items.Add( "System" );
+                RoleComboBox.Items.Add( "User" );
+                RoleComboBox.Items.Add( "Assistant" );
+            }
+            catch(Exception ex)
+            {
+                Fail(ex);
             }
         }
 
@@ -1423,7 +1480,10 @@ namespace Bubba
                 PopulateDomainDropDowns( );
                 InitializeToolStrip( );
                 PopulateModelsAsync( );
+                PopulateGptRoles( );
+                PopulateGptTasks( );
                 SetHyperParameters( );
+                App.ActiveWindows.Add( "ChatWindow", this );
             }
             catch( Exception ex )
             {
@@ -1498,6 +1558,46 @@ namespace Bubba
         }
 
         /// <summary>
+        /// Called when [store box checked].
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The <see cref="EventArgs"/>
+        /// instance containing the event data.</param>
+        private void OnStoreBoxChecked(object sender, EventArgs e)
+        {
+            try
+            {
+                var _message = "NOT YET IMPLEMENTED!";
+                var _notifier = CreateNotifier( );
+                _notifier.ShowInformation( _message );
+            }
+            catch(Exception ex)
+            {
+                Fail(ex);
+            }
+        }
+
+        /// <summary>
+        /// Called when [stream box checked].
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The <see cref="EventArgs"/>
+        /// instance containing the event data.</param>
+        private void OnStreamBoxChecked(object sender, EventArgs e)
+        {
+            try
+            {
+                var _message = "NOT YET IMPLEMENTED!";
+                var _notifier = CreateNotifier();
+                _notifier.ShowInformation(_message);
+            }
+            catch(Exception ex)
+            {
+                Fail(ex);
+            }
+        }
+
+        /// <summary>
         /// Called when [URL text box click].
         /// </summary>
         /// <param name="sender">The sender.</param>
@@ -1561,7 +1661,8 @@ namespace Bubba
         {
             try
             {
-                _timer?.Dispose( );
+                _timer?.Dispose();
+                SfSkinManager.Dispose(this);
                 Environment.Exit( 0 );
             }
             catch( Exception ex )
@@ -1907,6 +2008,7 @@ namespace Bubba
         /// <summary>
         /// Called when [WebBrowser button click].
         /// </summary>
+        /// 
         /// <param name="sender">The sender.</param>
         /// <param name="e">The <see cref="RoutedEventArgs"/>
         /// instance containing the event data.</param>
@@ -1914,8 +2016,7 @@ namespace Bubba
         {
             try
             {
-                var _message = "NOT YET IMPLEMENTED!";
-                SendMessage( _message );
+                OpenWebBrowser( );
             }
             catch( Exception ex )
             {
@@ -2179,13 +2280,13 @@ namespace Bubba
         {
             try
             {
-                _language = LanguageListBox.SelectedValue.ToString( );
+                _language = LanguageListBox.SelectedItem.ToString( );
                 var _msg = $"The ' {_language} ' language has been selected!";
                 SendNotification(_msg);
             }
-            catch(Exception ex)
+            catch( Exception ex )
             {
-                Fail(ex);
+                Fail( ex );
             }
         }
 
@@ -2195,13 +2296,32 @@ namespace Bubba
         /// <param name="sender">The sender.</param>
         /// <param name="e">The <see cref="RoutedEventArgs"/>
         /// instance containing the event data.</param>
-        private void OnRoleSelectionChanged(object sender, RoutedEventArgs e)
+        private void OnRoleSelectionChanged( object sender, RoutedEventArgs e )
         {
             try
             {
-                _role = RoleComboBox.SelectedValue.ToString( );
+                _role = RoleComboBox.SelectedItem.ToString( );
                 var _msg = $"The ' {_role} ' role has been selected!";
                 SendNotification( _msg );
+            }
+            catch(Exception ex)
+            {
+                Fail(ex);
+            }
+        }
+
+        /// <summary>
+        /// Called when [task selection changed].
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The <see cref="RoutedEventArgs"/> instance containing the event data.</param>
+        private void OnTaskSelectionChanged(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                _task = TaskComboBox.SelectedItem.ToString();
+                var _msg = $"The ' {_task} ' task has been selected!";
+                SendNotification(_msg);
             }
             catch(Exception ex)
             {

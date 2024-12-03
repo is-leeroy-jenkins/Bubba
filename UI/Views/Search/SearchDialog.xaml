@@ -123,7 +123,7 @@
             Padding="10,10,1,1"
             HorizontalAlignment="Center"
             VerticalAlignment="Top"
-            Background="{StaticResource ControlInteriorBrush}"
+            Background="{StaticResource ControlBackground}"
             BorderBrush="{StaticResource BlueBorderBrush}"
             Foreground="{StaticResource WhiteForeground}"
             BorderThickness="1"
@@ -133,12 +133,16 @@
 
         <b:MetroComboBox
             x:Name="SearchPanelComboBox"
-            Canvas.Left="601"
-            Canvas.Top="47"
-            Width="150"
+            Canvas.Left="591"
+            Canvas.Top="46"
+            Width="160"
             Height="35"
+            BorderThickness="2"
+            Background="{StaticResource ControlInteriorBrush}"
+            BorderBrush="{StaticResource BlueBorderBrush}"
+            Foreground="{StaticResource WhiteForeground}"
             HorizontalAlignment="Left"
-            VerticalAlignment="Center"
+            VerticalAlignment="Top"
             AllowMultiSelect="True"
             DefaultText="ComboBox Items">
             <wpf:ComboBoxItemAdv Content="Item 1" />

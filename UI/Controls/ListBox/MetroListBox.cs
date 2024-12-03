@@ -84,7 +84,7 @@ namespace Bubba
         /// Creates the item.
         /// </summary>
         /// <param name="name">The name.</param>
-        public void CreateItem(string name)
+        public void CreateItem( string name )
         {
             try
             {

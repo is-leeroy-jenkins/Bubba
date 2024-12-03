@@ -115,11 +115,59 @@
               "target": "Package",
               "version": "[2.88.9, )"
             },
+            "Syncfusion.Edit.WPF": {
+              "target": "Package",
+              "version": "[24.1.41, )"
+            },
+            "Syncfusion.Grouping.Base": {
+              "target": "Package",
+              "version": "[24.1.41, )"
+            },
             "Syncfusion.Licensing": {
               "target": "Package",
               "version": "[24.1.41, )"
             },
+            "Syncfusion.PivotTable.Wpf": {
+              "target": "Package",
+              "version": "[24.1.41, )"
+            },
+            "Syncfusion.PropertyGrid.WPF": {
+              "target": "Package",
+              "version": "[24.1.41, )"
+            },
+            "Syncfusion.SfAccordion.WPF": {
+              "target": "Package",
+              "version": "[24.1.41, )"
+            },
+            "Syncfusion.SfBarcode.WPF": {
+              "target": "Package",
+              "version": "[24.1.41, )"
+            },
+            "Syncfusion.SfBusyIndicator.WPF": {
+              "target": "Package",
+              "version": "[24.1.41, )"
+            },
+            "Syncfusion.SfGauge.WPF": {
+              "target": "Package",
+              "version": "[24.1.41, )"
+            },
+            "Syncfusion.SfHubTile.WPF": {
+              "target": "Package",
+              "version": "[24.1.41, )"
+            },
+            "Syncfusion.SfInput.WPF": {
+              "target": "Package",
+              "version": "[24.1.41, )"
+            },
+            "Syncfusion.SfNavigationDrawer.WPF": {
+              "target": "Package",
+              "version": "[24.1.41, )"
+            },
             "Syncfusion.SfSkinManager.WPF": {
+              "target": "Package",
+              "version": "[24.1.41, )"
+            },
+            "Syncfusion.SfTreeView.WPF": {
               "target": "Package",
               "version": "[24.1.41, )"
             },

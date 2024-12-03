@@ -69,11 +69,6 @@ namespace Bubba
     public partial class App : Application
     {
         /// <summary>
-        /// The active windows
-        /// </summary>
-        public static IDictionary<string, Window> ActiveWindows;
-
-        /// <summary>
         /// The window place
         /// </summary>
         private protected WindowPlace _windowPlace;
@@ -145,6 +140,11 @@ namespace Bubba
             SfSkinManager.ApplyStylesOnApplication = true;
         }
 
+        /// <summary>
+        /// The active windows
+        /// </summary>
+        public static IDictionary<string, Window> ActiveWindows { get; private set; }
+
         /// <inheritdoc />
         /// <summary>
         /// Initializes a new instance of the
@@ -156,7 +156,8 @@ namespace Bubba
             var _key = ConfigurationManager.AppSettings[ "UI" ];
             SyncfusionLicenseProvider.RegisterLicense( _key );
             ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
-            RegisterTheme( );
+            RegisterTheme();
+            ActiveWindows = new Dictionary<string, Window>( );
         }
 
         /// <summary>

@@ -73,7 +73,7 @@
               "ToolTip": "C:\\Users\\terry\\source\\repos\\Bubba\\UI\\Views\\Windows\\ChatWindow.xaml",
               "RelativeToolTip": "UI\\Views\\Windows\\ChatWindow.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2024-12-02T14:46:26.592Z",
+              "WhenOpened": "2024-12-02T22:41:04.995Z",
               "EditorCaption": ""
             },
             {
@@ -82,9 +82,9 @@
               "Title": "ChatWindow.xaml.cs",
               "DocumentMoniker": "C:\\Users\\terry\\source\\repos\\Bubba\\UI\\Views\\Windows\\ChatWindow.xaml.cs",
               "RelativeDocumentMoniker": "UI\\Views\\Windows\\ChatWindow.xaml.cs",
-              "ToolTip": "C:\\Users\\terry\\source\\repos\\Bubba\\UI\\Views\\Windows\\ChatWindow.xaml.cs*",
-              "RelativeToolTip": "UI\\Views\\Windows\\ChatWindow.xaml.cs*",
-              "ViewState": "AgIAAEEDAAAAAAAAAADwv1IDAAANAAAAAAAAAA==",
+              "ToolTip": "C:\\Users\\terry\\source\\repos\\Bubba\\UI\\Views\\Windows\\ChatWindow.xaml.cs",
+              "RelativeToolTip": "UI\\Views\\Windows\\ChatWindow.xaml.cs",
+              "ViewState": "AgIAAPAIAAAAAAAAAAAswBAJAAANAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-12-02T14:46:31.08Z",
               "EditorCaption": ""
@@ -97,7 +97,7 @@
               "RelativeDocumentMoniker": "App.xaml.cs",
               "ToolTip": "C:\\Users\\terry\\source\\repos\\Bubba\\App.xaml.cs",
               "RelativeToolTip": "App.xaml.cs",
-              "ViewState": "AgIAADsAAAAAAAAAAAAIwEIAAABHAAAAAAAAAA==",
+              "ViewState": "AgIAAIAAAAAAAAAAAAAcwJ4AAAAbAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-12-01T21:03:51.301Z"
             }

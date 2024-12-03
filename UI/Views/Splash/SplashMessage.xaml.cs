@@ -1,5 +1,5 @@
 ﻿// ******************************************************************************************
-//     Assembly:                Ninja
+//     Assembly:                Bubba
 //     Author:                  Terry D. Eppler
 //     Created:                 09-25-2024
 // 
@@ -130,7 +130,12 @@ namespace Bubba
         /// <summary>
         /// The message
         /// </summary>
-        private protected string _text;
+        private protected string _title;
+
+        /// <summary>
+        /// The message
+        /// </summary>
+        private protected string _message;
 
         /// <summary>
         /// The time
@@ -183,20 +188,9 @@ namespace Bubba
         {
             get
             {
-                if( _path == null )
+                lock( _path )
                 {
-                    _path = new object( );
-                    lock( _path )
-                    {
-                        return _busy;
-                    }
-                }
-                else
-                {
-                    lock( _path )
-                    {
-                        return _busy;
-                    }
+                    return _busy;
                 }
             }
         }
@@ -229,6 +223,7 @@ namespace Bubba
             IsVisibleChanged += OnVisibleChanged;
             MouseLeftButtonDown += OnClick;
             MouseRightButtonDown += OnClick;
+            Loaded += OnLoad;
         }
 
         /// <inheritdoc />
@@ -240,8 +235,21 @@ namespace Bubba
         public SplashMessage( string message )
             : this( )
         {
-            TitleLabel.Content = "Message";
-            MessageLabel.Content = message;
+            _message = message;
+            _title = "";
+        }
+
+        /// <inheritdoc />
+        /// <summary>
+        /// Initializes a new instance of the <see cref="T:Bubba.SplashMessage" /> class.
+        /// </summary>
+        /// <param name="title">The title.</param>
+        /// <param name="message">The message.</param>
+        public SplashMessage( string title, string message )
+            : this( )
+        {
+            _message = message;
+            _title = title;
         }
 
         /// <summary>
@@ -370,6 +378,32 @@ namespace Bubba
         {
             try
             {
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+            }
+        }
+
+        /// <summary>
+        /// Called when [load].
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The <see cref="RoutedEventArgs"/>
+        /// instance containing the event data.</param>
+        private void OnLoad( object sender, RoutedEventArgs e )
+        {
+            try
+            {
+                if( !string.IsNullOrEmpty( _message ) )
+                {
+                    MessageText.Content = _message;
+                }
+
+                if( !string.IsNullOrEmpty( _title ) )
+                {
+                    TitleLabel.Content = _title;
+                }
             }
             catch( Exception ex )
             {

@@ -1,10 +1,10 @@
 ﻿// ******************************************************************************************
 //     Assembly:                Bubba
 //     Author:                  Terry D. Eppler
-//     Created:                 12-01-2024
+//     Created:                 12-02-2024
 // 
 //     Last Modified By:        Terry D. Eppler
-//     Last Modified On:        12-01-2024
+//     Last Modified On:        12-02-2024
 // ******************************************************************************************
 // <copyright file="WebBrowser.xaml.cs" company="Terry D. Eppler">
 //    Bubba is a small windows (wpf) application for interacting with
@@ -63,6 +63,7 @@ namespace Bubba
     using Syncfusion.Windows.Tools.Controls;
     using ToastNotifications;
     using ToastNotifications.Lifetime;
+    using ToastNotifications.Messages;
     using ToastNotifications.Position;
     using static System.Configuration.ConfigurationManager;
     using Application = System.Windows.Forms.Application;
@@ -84,6 +85,7 @@ namespace Bubba
     [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
     [ SuppressMessage( "ReSharper", "ConvertToAutoPropertyWithPrivateSetter" ) ]
     [ SuppressMessage( "ReSharper", "RedundantExtendsListEntry" ) ]
+    [ SuppressMessage( "ReSharper", "CanSimplifyDictionaryLookupWithTryGetValue" ) ]
     public partial class WebBrowser : Window, IDisposable
     {
         /// <summary>
@@ -610,6 +612,7 @@ namespace Bubba
                 CancelButton.Visibility = Visibility.Hidden;
                 PreviousButton.Visibility = Visibility.Hidden;
                 NextButton.Visibility = Visibility.Hidden;
+                HomeButton.Visibility = Visibility.Hidden;
             }
             catch( Exception ex )
             {
@@ -844,6 +847,7 @@ namespace Bubba
                 SearchPanelCancelButton.MouseLeftButtonDown += OnCloseButtonClick;
                 UrlTextBox.GotMouseCapture += OnUrlTextBoxClick;
                 ToolStripTextBox.GotMouseCapture += OnToolStripTextBoxClick;
+                ChatButton.Click += OnChatButtonClick;
             }
             catch( Exception ex )
             {
@@ -1670,34 +1674,51 @@ namespace Bubba
         }
 
         /// <summary>
-        /// Toggles the fullscreen.
+        /// Shows the search dialog.
         /// </summary>
-        private void ToggleFullscreen( )
+        private protected virtual void OpenSearchDialog( double x, double y )
         {
-            if( !_fullScreen )
+            try
             {
-                _oldWindowState = WindowState;
-                WindowStyle = WindowStyle.SingleBorderWindow;
-                WindowState = WindowState.Maximized;
-                _fullScreen = true;
+                ThrowIf.Negative( x, nameof( x ) );
+                ThrowIf.Negative( y, nameof( y ) );
+                var _searchDialog = new SearchDialog( );
+                _searchDialog.Owner = this;
+                _searchDialog.Left = x;
+                _searchDialog.Top = y;
+                _searchDialog.Show( );
+                _searchDialog.SearchPanelTextBox.Focus( );
             }
-            else
+            catch( Exception ex )
             {
-                WindowStyle = WindowStyle.SingleBorderWindow;
-                WindowState = _oldWindowState;
-                _fullScreen = false;
+                Fail( ex );
             }
         }
 
         /// <summary>
-        /// Updates the status.
+        /// Opens the chat window.
         /// </summary>
-        private void UpdateStatus( )
+        private void OpenChatWindow( )
         {
             try
             {
-                StatusLabel.Content = DateTime.Now.ToLongTimeString( );
-                DateLabel.Content = DateTime.Now.ToShortDateString( );
+                if( App.ActiveWindows?.ContainsKey( "ChatWindow" ) == true )
+                {
+                    var _form = ( ChatWindow )App.ActiveWindows[ "ChatWindow" ];
+                    _form.Show( );
+                }
+                else
+                {
+                    var _chat = new ChatWindow
+                    {
+                        Owner = this,
+                        Topmost = true
+                    };
+
+                    _chat.Show( );
+                }
+
+                Hide( );
             }
             catch( Exception ex )
             {
@@ -1830,13 +1851,13 @@ namespace Bubba
         /// <summary>
         /// Notifies this instance.
         /// </summary>
-        private void SendNotification( )
+        private void SendNotification( string message )
         {
             try
             {
-                var _message = "THIS IS NOT YET IMPLEMENTED!";
-                var _notify = new Notification( _message );
-                _notify.Show( );
+                ThrowIf.Null( message, nameof( message ) );
+                var _notifier = CreateNotifier( );
+                _notifier.ShowInformation( message );
             }
             catch( Exception ex )
             {
@@ -1956,28 +1977,6 @@ namespace Bubba
         }
 
         /// <summary>
-        /// Shows the search dialog.
-        /// </summary>
-        private protected virtual void OpenSearchDialog( double x, double y )
-        {
-            try
-            {
-                ThrowIf.Negative( x, nameof( x ) );
-                ThrowIf.Negative( x, nameof( x ) );
-                var _searchDialog = new SearchDialog( );
-                _searchDialog.Owner = this;
-                _searchDialog.Left = x;
-                _searchDialog.Top = y;
-                _searchDialog.Show( );
-                _searchDialog.SearchPanelTextBox.Focus( );
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
-            }
-        }
-
-        /// <summary>
         /// Hides the items.
         /// </summary>
         private void HideToolbar( )
@@ -1995,6 +1994,42 @@ namespace Bubba
                 CancelButton.Visibility = Visibility.Hidden;
                 ChatButton.Visibility = Visibility.Hidden;
                 ToolButton.Visibility = Visibility.Hidden;
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+            }
+        }
+
+        /// <summary>
+        /// Toggles the fullscreen.
+        /// </summary>
+        private void ToggleFullscreen( )
+        {
+            if( !_fullScreen )
+            {
+                _oldWindowState = WindowState;
+                WindowStyle = WindowStyle.SingleBorderWindow;
+                WindowState = WindowState.Maximized;
+                _fullScreen = true;
+            }
+            else
+            {
+                WindowStyle = WindowStyle.SingleBorderWindow;
+                WindowState = _oldWindowState;
+                _fullScreen = false;
+            }
+        }
+
+        /// <summary>
+        /// Updates the status.
+        /// </summary>
+        private void UpdateStatus( )
+        {
+            try
+            {
+                StatusLabel.Content = DateTime.Now.ToLongTimeString( );
+                DateLabel.Content = DateTime.Now.ToShortDateString( );
             }
             catch( Exception ex )
             {
@@ -2037,7 +2072,7 @@ namespace Bubba
         {
             try
             {
-                Dispatcher.BeginInvoke( _statusUpdate );
+                InvokeIf( _statusUpdate );
             }
             catch( Exception ex )
             {
@@ -2075,6 +2110,7 @@ namespace Bubba
                 InitializeTitle( );
                 InitializeToolStrip( );
                 _searchEngineUrl = AppSettings[ "Google" ];
+                App.ActiveWindows.Add( "WebBrowser", this );
             }
             catch( Exception ex )
             {
@@ -2082,6 +2118,12 @@ namespace Bubba
             }
         }
 
+        /// <summary>
+        /// Called when [frame loaded].
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The <see cref="FrameLoadEndEventArgs"/>
+        /// instance containing the event data.</param>
         private void OnFrameLoaded( object sender, FrameLoadEndEventArgs e )
         {
             // Do something after the page loads
@@ -2577,6 +2619,9 @@ namespace Bubba
                 {
                     _tab.Dispose( );
                 }
+
+                _timer?.Dispose( );
+                Environment.Exit( 0 );
             }
             catch( Exception )
             {
@@ -3265,6 +3310,12 @@ namespace Bubba
             }
         }
 
+        /// <summary>
+        /// Called when [home button click].
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The <see cref="RoutedEventArgs"/>
+        /// instance containing the event data.</param>
         private void OnHomeButtonClick( object sender, RoutedEventArgs e )
         {
             try
@@ -3276,6 +3327,30 @@ namespace Bubba
             }
         }
 
+        /// <summary>
+        /// Called when [chat button click].
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The <see cref="RoutedEventArgs"/>
+        /// instance containing the event data.</param>
+        private void OnChatButtonClick( object sender, RoutedEventArgs e )
+        {
+            try
+            {
+                OpenChatWindow( );
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+            }
+        }
+
+        /// <summary>
+        /// Called when [tool strip text box mouse enter].
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The <see cref="RoutedEventArgs"/>
+        /// instance containing the event data.</param>
         private void OnToolStripTextBoxMouseEnter( object sender, RoutedEventArgs e )
         {
             try
