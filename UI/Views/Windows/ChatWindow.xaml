@@ -187,13 +187,13 @@
                     Background="{StaticResource ControlInteriorBrush}"
                     Foreground="{StaticResource WhiteForeground}"
                     BorderThickness="2,2,2,2"
-                    ClipToBounds="True" />
+                    ClipToBounds="True" VerticalScrollBarVisibility="Visible" />
 
                 <ComboBox
                     x:Name="RoleComboBox"
-                    Canvas.Left="58"
+                    Canvas.Left="82"
                     Canvas.Top="10"
-                    Width="129"
+                    Width="105"
                     Height="30"
                     HorizontalAlignment="Left"
                     VerticalAlignment="Center"
@@ -205,21 +205,21 @@
                     ToolTip="Select GPT Role" />
 
                 <Label
-                    Canvas.Left="10"
+                    Canvas.Left="18"
                     Canvas.Top="13"
-                    Width="43"
+                    Width="40"
                     HorizontalAlignment="Left"
                     VerticalAlignment="Center"
-                    HorizontalContentAlignment="Right"
+                    HorizontalContentAlignment="Left"
                     FontSize="10"
                     Content="Roles"
                     Foreground="{DynamicResource LightBlueBrush}" />
 
                 <ComboBox
                     x:Name="TaskComboBox"
-                    Canvas.Left="58"
+                    Canvas.Left="82"
                     Canvas.Top="62"
-                    Width="129"
+                    Width="105"
                     Height="30"
                     HorizontalAlignment="Left"
                     VerticalAlignment="Center"
@@ -231,32 +231,32 @@
                     ToolTip="Select GPT Task" />
 
                 <Label
-                    Canvas.Left="10"
+                    Canvas.Left="18"
                     Canvas.Top="69"
-                    Width="43"
+                    Width="40"
                     HorizontalAlignment="Left"
                     VerticalAlignment="Center"
-                    HorizontalContentAlignment="Right"
+                    HorizontalContentAlignment="Left"
                     FontSize="10"
                     Content="Tasks"
                     Foreground="{DynamicResource LightBlueBrush}" />
 
                 <Label
-                    Canvas.Left="10"
+                    Canvas.Left="18"
                     Canvas.Top="116"
-                    Width="43"
+                    Width="40"
                     HorizontalAlignment="Left"
                     VerticalAlignment="Center"
-                    HorizontalContentAlignment="Right"
+                    HorizontalContentAlignment="Left"
                     FontSize="10"
                     Content="Models"
                     Foreground="{DynamicResource LightBlueBrush}" />
 
                 <ComboBox
                     x:Name="ModelComboBox"
-                    Canvas.Left="58"
+                    Canvas.Left="82"
                     Canvas.Top="113"
-                    Width="129"
+                    Width="105"
                     Height="30"
                     HorizontalAlignment="Left"
                     VerticalAlignment="Center"
@@ -283,7 +283,7 @@
                     VerticalAlignment="Center"
                     Text="Enter User Prompt"
                     BorderThickness="2,2,2,2"
-                    ClipToBounds="True" />
+                    ClipToBounds="True" VerticalScrollBarVisibility="Visible" />
 
                 <GroupBox
                     x:Name="LanguageGroupBox"
@@ -293,6 +293,7 @@
                     Height="174"
                     HorizontalAlignment="Left"
                     VerticalAlignment="Center"
+                     
                     Header="Languages"
                     Foreground="{StaticResource LightBlueBrush}"
                     Background="#FF181818"
@@ -304,12 +305,13 @@
                         x:Name="LanguageListBox"
                         Height="122"
                         Margin="10,0,12,0"
+                         
                         Background="{DynamicResource ControlInteriorBrush}"
                         BorderBrush="{DynamicResource BlueBorderBrush}"
                         Foreground="{DynamicResource WhiteForeground}">
                         <ListBoxItem
                             Margin="15,0,0,0"
-                            Content="Plain Text"
+                            Content="Text"
                             FontFamily="Roboto"
                             Background="{DynamicResource ControlInteriorBrush}"
                             BorderBrush="{DynamicResource ControlInteriorBrush}" />
@@ -741,7 +743,7 @@
                 <b:MetroRadioButton
                     x:Name="StoreCheckBox"
                     Canvas.Left="1104"
-                    Canvas.Top="-145"
+                    Canvas.Top="-135"
                     Width="92"
                     HorizontalAlignment="Center"
                     VerticalAlignment="Top"
@@ -767,7 +769,7 @@
                 <b:MetroRadioButton
                     x:Name="ListenCheckBox"
                     Canvas.Left="1098"
-                    Canvas.Top="114"
+                    Canvas.Top="175"
                     Width="92"
                     HorizontalAlignment="Center"
                     VerticalAlignment="Top"
@@ -780,7 +782,7 @@
                 <b:MetroRadioButton
                     x:Name="MuteCheckBox"
                     Canvas.Left="1098"
-                    Canvas.Top="143"
+                    Canvas.Top="226"
                     Width="92"
                     HorizontalAlignment="Center"
                     VerticalAlignment="Top"

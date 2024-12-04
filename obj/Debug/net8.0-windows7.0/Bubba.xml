@@ -26910,7 +26910,8 @@
             Called when [language selection changed].
             </summary>
             <param name="sender">The sender.</param>
-            <param name="e">The <see cref="T:System.Windows.RoutedEventArgs"/> instance containing the event data.</param>
+            <param name="e">The <see cref="T:System.Windows.RoutedEventArgs"/>
+            instance containing the event data.</param>
         </member>
         <member name="M:Bubba.ChatWindow.OnRoleSelectionChanged(System.Object,System.Windows.RoutedEventArgs)">
             <summary>

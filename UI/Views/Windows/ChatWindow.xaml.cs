@@ -39,6 +39,7 @@ namespace Bubba
     /// Interaction logic for ChatWindow.xaml
     /// </summary>
     [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
+    [ SuppressMessage( "ReSharper", "FieldCanBeMadeReadOnly.Global" ) ]
     public partial class ChatWindow : Window, INotifyPropertyChanged
     {
         private const string KEY = "sk-proj-eTIELWTlG8lKT3hpqgq7a3vmB6lBVKo"
@@ -567,8 +568,8 @@ namespace Bubba
         {
             try
             {
-                SystemTextBox.Text = "";
-                UserTextBox.Text = "";
+                SystemTextBox.Text = "System Prompt:";
+                UserTextBox.Text = "User Prompt:";
                 ToolStripTextBox.Text = "";
                 NumberTextBox.Value = 1;
                 PresenceSlider.Value = 0D;
@@ -579,6 +580,11 @@ namespace Bubba
                 RoleComboBox.SelectedIndex = -1;
                 TaskComboBox.SelectedIndex = -1;
                 ModelComboBox.SelectedIndex = -1;
+                LanguageListBox.SelectedIndex = -1;
+                MuteCheckBox.IsChecked = false;
+                ListenCheckBox.IsChecked = false;
+                StoreCheckBox.IsChecked = false;
+                StreamCheckBox.IsChecked = false;
             }
             catch( Exception ex )
             {
@@ -659,7 +665,7 @@ namespace Bubba
         /// <summary>
         /// Clears the list boxes.
         /// </summary>
-        private void ClearListBoxes()
+        private void ClearListBoxes( )
         {
             try
             {
@@ -1261,12 +1267,10 @@ namespace Bubba
                     {
                         if( !_model.StartsWith( "ft" ) )
                         {
-                            ModelComboBox.Items.Add(_model);
+                            ModelComboBox.Items.Add( _model );
                         }
                     }
                 } );
-
-                ModelComboBox.SelectedIndex = 0;
             }
             catch( HttpRequestException ex )
             {
@@ -1310,25 +1314,22 @@ namespace Bubba
             try
             {
                 TaskComboBox.Items.Clear( );
-                TaskComboBox.Items.Add( "Chat Completion" );
                 TaskComboBox.Items.Add( "Text Generation" );
-                TaskComboBox.Items.Add( "Text To Speech (TTS)" );
                 TaskComboBox.Items.Add( "Image Generation" );
-                TaskComboBox.Items.Add( "Fine-Tuning" );
-                TaskComboBox.Items.Add( "Speech To Text" );
-                TaskComboBox.Items.Add( "Files" );
                 TaskComboBox.Items.Add( "Embedding" );
+                TaskComboBox.Items.Add( "Text-to-speech" );
+                TaskComboBox.Items.Add( "Fine-tuning" );
             }
-            catch(Exception ex)
+            catch( Exception ex )
             {
-                Fail(ex);
+                Fail( ex );
             }
         }
 
         /// <summary>
         /// Populates the GPT roles.
         /// </summary>
-        private void PopulateGptRoles()
+        private void PopulateGptRoles( )
         {
             try
             {
@@ -1337,9 +1338,9 @@ namespace Bubba
                 RoleComboBox.Items.Add( "User" );
                 RoleComboBox.Items.Add( "Assistant" );
             }
-            catch(Exception ex)
+            catch( Exception ex )
             {
-                Fail(ex);
+                Fail( ex );
             }
         }
 
@@ -1552,7 +1553,8 @@ namespace Bubba
             try
             {
                 var _message = "NOT YET IMPLEMENTED!";
-                SendMessage( _message );
+                var _notifier = CreateNotifier();
+                _notifier.ShowInformation(_message);
             }
             catch( Exception ex )
             {
@@ -2281,14 +2283,18 @@ namespace Bubba
         /// Called when [language selection changed].
         /// </summary>
         /// <param name="sender">The sender.</param>
-        /// <param name="e">The <see cref="RoutedEventArgs"/> instance containing the event data.</param>
+        /// <param name="e">The <see cref="RoutedEventArgs"/>
+        /// instance containing the event data.</param>
         private void OnLanguageSelectionChanged(object sender, RoutedEventArgs e)
         {
             try
             {
-                _language = LanguageListBox.SelectedItem.ToString( );
-                var _msg = $"The ' {_language} ' language has been selected!";
-                SendNotification(_msg);
+                if( LanguageListBox.SelectedIndex != -1 )
+                {
+                    _language = LanguageListBox.SelectedItem.ToString( );
+                    var _msg = $"The ' {_language} ' language has been selected!";
+                    SendNotification(_msg);
+                }
             }
             catch( Exception ex )
             {
