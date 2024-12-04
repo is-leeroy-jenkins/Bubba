@@ -24,6 +24,7 @@
         <Setter Property="VerticalContentAlignment" Value="Center" />
         <Setter Property="Padding" Value="1" />
         <Setter Property="Margin" Value="1" />
+        <Setter Property="Height" Value="30" />
         <Setter Property="IsEditable" Value="True" />
 
     </Style>
@@ -43,7 +44,7 @@
         <Setter Property="VerticalContentAlignment" Value="Center" />
         <Setter Property="Padding" Value="1" />
         <Setter Property="Margin" Value="1" />
-        <Setter Property="Height" Value="24" />
+        <Setter Property="Height" Value="30" />
 
 
         <Style.Triggers>

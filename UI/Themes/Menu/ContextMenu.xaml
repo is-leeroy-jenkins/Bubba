@@ -7,8 +7,8 @@
 
     <!--  ******************************************** RESOURCE *********************************************  -->
 
-    <Style 
-        x:Key="ContextMenuStyle" 
+    <Style
+        x:Key="MetroContextMenuStyle"
         TargetType="{x:Type ContextMenu}">
         <Setter Property="Foreground" Value="{StaticResource FormForeground}" />
         <Setter Property="Background" Value="{StaticResource BlackBackground}" />

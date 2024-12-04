@@ -15,8 +15,11 @@
             ThemeName="FluentDark" />
     </ResourceDictionary.MergedDictionaries>
 
+
+    <!--  ****************************************  STYLE  *******************************************  -->
+
     <Style
-        x:Key="SyncfusionSfCircularProgressBarStyle"
+        x:Key="MetroCircularProgressBarStyle"
         TargetType="{x:Type progressbar:SfCircularProgressBar}">
         <Setter Property="ProgressColor" Value="{StaticResource BrightGreenForeground}" />
         <Setter Property="SecondaryProgressColor" Value="{StaticResource BlueBorderBrush}" />
@@ -34,6 +37,6 @@
         </Style.Triggers>
     </Style>
     <Style
-        BasedOn="{StaticResource SyncfusionSfCircularProgressBarStyle}"
+        BasedOn="{StaticResource MetroCircularProgressBarStyle}"
         TargetType="{x:Type progressbar:SfCircularProgressBar}" />
 </ResourceDictionary>

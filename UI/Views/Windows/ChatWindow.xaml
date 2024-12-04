@@ -187,7 +187,8 @@
                     Background="{StaticResource ControlInteriorBrush}"
                     Foreground="{StaticResource WhiteForeground}"
                     BorderThickness="2,2,2,2"
-                    ClipToBounds="True" VerticalScrollBarVisibility="Visible" />
+                    ClipToBounds="True"
+                    VerticalScrollBarVisibility="Visible" />
 
                 <ComboBox
                     x:Name="RoleComboBox"
@@ -283,7 +284,8 @@
                     VerticalAlignment="Center"
                     Text="Enter User Prompt"
                     BorderThickness="2,2,2,2"
-                    ClipToBounds="True" VerticalScrollBarVisibility="Visible" />
+                    ClipToBounds="True"
+                    VerticalScrollBarVisibility="Visible" />
 
                 <GroupBox
                     x:Name="LanguageGroupBox"
@@ -293,7 +295,6 @@
                     Height="174"
                     HorizontalAlignment="Left"
                     VerticalAlignment="Center"
-                     
                     Header="Languages"
                     Foreground="{StaticResource LightBlueBrush}"
                     Background="#FF181818"
@@ -305,7 +306,6 @@
                         x:Name="LanguageListBox"
                         Height="122"
                         Margin="10,0,12,0"
-                         
                         Background="{DynamicResource ControlInteriorBrush}"
                         BorderBrush="{DynamicResource BlueBorderBrush}"
                         Foreground="{DynamicResource WhiteForeground}">

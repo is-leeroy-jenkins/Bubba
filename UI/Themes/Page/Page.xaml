@@ -9,7 +9,10 @@
 
     <Style TargetType="Page">
         <Setter Property="Background" Value="{StaticResource FormBackground}" />
-        <Setter Property="Foreground" Value="{DynamicResource FormForeground}" />
+        <Setter Property="Foreground" Value="{StaticResource FormForeground}" />
+        <Setter Property="FontFamily" Value="Roboto" />
+        <Setter Property="FontSize" Value="12" />
+        <Setter Property="Margin" Value="1" />
     </Style>
 
 </ResourceDictionary>

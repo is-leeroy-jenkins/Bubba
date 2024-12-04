@@ -7,7 +7,7 @@
     <!--  *********************************************** ListView *****************************************************  -->
 
     <Style
-        x:Key="DefaultListViewStyle"
+        x:Key="MetroListViewStyle"
         TargetType="{x:Type ListView}">
         <Setter Property="Background" Value="{StaticResource ControlInteriorBrush}" />
         <Setter Property="BorderBrush" Value="{StaticResource BlueBorderBrush}" />
@@ -22,58 +22,10 @@
     <!--  *********************************************** ListViewItem *****************************************************  -->
 
     <Style
-        x:Key="DefaultListViewItemStyle"
-        TargetType="{x:Type ListViewItem}">
-        <Setter Property="Background" Value="{StaticResource ControlInteriorBrush}" />
-        <Setter Property="Background" Value="{StaticResource ControlInteriorBrush}" />
-        <Setter Property="Foreground" Value="{StaticResource LightBlueBrush}" />
-        <Setter Property="Height" Value="40" />
-        <Setter Property="BorderThickness" Value="1" />
-        <Setter Property="HorizontalContentAlignment" Value="Left" />
-        <Setter Property="VerticalContentAlignment" Value="Center" />
-        <Setter Property="Padding" Value="5,1,1,1" />
-        <Setter Property="Margin" Value="1" />
-
-        <Style.Triggers>
-
-            <Trigger Property="IsMouseOver" Value="True">
-                <Setter Property="Background" Value="{StaticResource SteelBlueBackground}" />
-                <Setter Property="BorderBrush" Value="{StaticResource SteelBlueBackground}" />
-                <Setter Property="Foreground" Value="{StaticResource WhiteForeground}" />
-            </Trigger>
-
-            <Trigger Property="IsMouseOver" Value="False">
-                <Setter Property="Background" Value="{StaticResource ControlInteriorBrush}" />
-                <Setter Property="Background" Value="{StaticResource ControlInteriorBrush}" />
-                <Setter Property="Foreground" Value="{StaticResource LightBlueBrush}" />
-            </Trigger>
-
-
-        </Style.Triggers>
-
-    </Style>
-
-
-    <!--  *********************************************** MetroListView *****************************************************  -->
-
-    <Style
-        x:Key="MetroListViewStyle"
-        TargetType="{x:Type b:MetroListView}">
-        <Setter Property="Background" Value="{StaticResource ControlInteriorBrush}" />
-        <Setter Property="BorderBrush" Value="{StaticResource BlueBorderBrush}" />
-        <Setter Property="Foreground" Value="{StaticResource LightBlueBrush}" />
-        <Setter Property="BorderThickness" Value="1" />
-        <Setter Property="HorizontalContentAlignment" Value="Center" />
-        <Setter Property="VerticalContentAlignment" Value="Center" />
-        <Setter Property="Padding" Value="1" />
-        <Setter Property="Margin" Value="1" />
-    </Style>
-
-    <!--  *********************************************** MetroListViewItem *****************************************************  -->
-
-    <Style
         x:Key="MetroListViewItemStyle"
         TargetType="{x:Type ListViewItem}">
+        <Setter Property="Background" Value="{StaticResource ControlInteriorBrush}" />
+        <Setter Property="BorderBrush" Value="{StaticResource ControlInteriorBrush}" />
         <Setter Property="Foreground" Value="{StaticResource LightBlueBrush}" />
         <Setter Property="Height" Value="40" />
         <Setter Property="BorderThickness" Value="1" />
@@ -88,16 +40,13 @@
                 <Setter Property="Background" Value="{StaticResource SteelBlueBackground}" />
                 <Setter Property="BorderBrush" Value="{StaticResource SteelBlueBackground}" />
                 <Setter Property="Foreground" Value="{StaticResource WhiteForeground}" />
-                <Setter Property="FontWeight" Value="Bold" />
             </Trigger>
 
             <Trigger Property="IsMouseOver" Value="False">
                 <Setter Property="Background" Value="{StaticResource ControlInteriorBrush}" />
                 <Setter Property="Background" Value="{StaticResource ControlInteriorBrush}" />
                 <Setter Property="Foreground" Value="{StaticResource LightBlueBrush}" />
-                <Setter Property="FontWeight" Value="Normal" />
             </Trigger>
-
 
         </Style.Triggers>
 

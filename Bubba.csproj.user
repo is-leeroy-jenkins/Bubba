@@ -36,9 +36,6 @@
     <Page Update="UI\Themes\Common\Common.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="UI\Themes\TextBox\MetroTextBox.xaml">
-      <SubType>Designer</SubType>
-    </Page>
     <Page Update="UI\Controls\Frame\MetroComboFrame.xaml">
       <SubType>Designer</SubType>
     </Page>
@@ -46,12 +43,6 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="UI\Themes\Button\Button.xaml">
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Update="UI\Themes\Button\ButtonAdv.xaml">
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Update="UI\Themes\Button\MetroButton.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="UI\Themes\Calculator\SfCalculator.xaml">
@@ -67,12 +58,6 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="UI\Themes\ComboBox\ComboBox.xaml">
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Update="UI\Themes\ComboBox\ComboBoxAdv.xaml">
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Update="UI\Themes\ComboBox\MetroComboBox.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="UI\Themes\Common\All.xaml">
@@ -94,9 +79,6 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="UI\Themes\ListBox\ListBox.xaml">
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Update="UI\Themes\ListBox\MetroListBox.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="UI\Themes\ListView\ListView.xaml">
@@ -126,34 +108,7 @@
     <Page Update="UI\Themes\RadioButton\RadioButton.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="UI\Themes\RichTextBox\Dialogs.xaml">
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Update="UI\Themes\RichTextBox\FormatDialogs.xaml">
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Update="UI\Themes\RichTextBox\MetroRichTextBox.xaml">
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Update="UI\Themes\RichTextBox\MiniToolBar.xaml">
-      <SubType>Designer</SubType>
-    </Page>
     <Page Update="UI\Themes\RichTextBox\RichTextBox.xaml">
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Update="UI\Themes\RichTextBox\SfRichTextBoxAdv.xaml">
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Update="UI\Themes\RichTextBox\SfRichTextBoxCommon.xaml">
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Update="UI\Themes\RichTextBox\SfRichTextRibbon.xaml">
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Update="UI\Themes\RichTextBox\StyleDialogs.xaml">
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Update="UI\Themes\RichTextBox\TableDialogs.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="UI\Themes\Scrolling\ScrollBar.xaml">
@@ -168,28 +123,13 @@
     <Page Update="UI\Themes\TabControl\TabControl.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="UI\Themes\TabControl\TabControlExt.xaml">
-      <SubType>Designer</SubType>
-    </Page>
     <Page Update="UI\Themes\TextBlock\TextBlock.xaml">
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Update="UI\Themes\TextBox\SfTextBoxExt.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="UI\Themes\TextBox\TextBox.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="UI\Themes\Tile\SfHubTile.xaml">
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Update="UI\Themes\Tile\SfPulsingTile.xaml">
-      <SubType>Designer</SubType>
-    </Page>
     <Page Update="UI\Themes\Tile\Tile.xaml">
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Update="UI\Themes\Tile\TileViewControl.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="UI\Themes\ToolTip\ToolTip.xaml">
