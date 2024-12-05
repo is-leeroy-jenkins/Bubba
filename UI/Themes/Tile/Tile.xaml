@@ -11,9 +11,9 @@
         x:Key="MetroHubTileStyle"
         TargetType="{x:Type sync:SfHubTile}">
 
-        <Setter Property="Background" Value="{StaticResource ControlInteriorColor}" />
-        <Setter Property="BorderBrush" Value="{StaticResource BlueBorderBrush}" />
-        <Setter Property="Foreground" Value="{StaticResource FormForeground}" />
+        <Setter Property="Background" Value="{DynamicResource ControlInteriorColor}" />
+        <Setter Property="BorderBrush" Value="{DynamicResource BlueBorderBrush}" />
+        <Setter Property="Foreground" Value="{DynamicResource FormForeground}" />
         <Setter Property="FontFamily" Value="Roboto" />
         <Setter Property="FontSize" Value="12" />
         <Setter Property="BorderThickness" Value="1" />
@@ -26,16 +26,16 @@
         <Style.Triggers>
 
             <Trigger Property="IsMouseOver" Value="True">
-                <Setter Property="Background" Value="{StaticResource SteelBlueBackground}" />
-                <Setter Property="BorderBrush" Value="{StaticResource LightBlueBrush}" />
-                <Setter Property="Foreground" Value="{StaticResource WhiteForeground}" />
+                <Setter Property="Background" Value="{DynamicResource SteelBlueBackground}" />
+                <Setter Property="BorderBrush" Value="{DynamicResource LightBlueBrush}" />
+                <Setter Property="Foreground" Value="{DynamicResource WhiteForeground}" />
                 <Setter Property="FontWeight" Value="Bold" />
             </Trigger>
 
             <Trigger Property="IsMouseOver" Value="False">
-                <Setter Property="Background" Value="{StaticResource ControlInteriorColor}" />
-                <Setter Property="BorderBrush" Value="{StaticResource BlueBorderBrush}" />
-                <Setter Property="Foreground" Value="{StaticResource FormForeground}" />
+                <Setter Property="Background" Value="{DynamicResource ControlInteriorColor}" />
+                <Setter Property="BorderBrush" Value="{DynamicResource BlueBorderBrush}" />
+                <Setter Property="Foreground" Value="{DynamicResource FormForeground}" />
                 <Setter Property="FontWeight" Value="Normal" />
             </Trigger>
 

@@ -1,4 +1,44 @@
-﻿
+﻿// ******************************************************************************************
+//     Assembly:                Bubba
+//     Author:                  Terry D. Eppler
+//     Created:                 12-04-2024
+// 
+//     Last Modified By:        Terry D. Eppler
+//     Last Modified On:        12-04-2024
+// ******************************************************************************************
+// <copyright file="ChatWindow.xaml.cs" company="Terry D. Eppler">
+//    Bubba is a small windows (wpf) application for interacting with
+//    Chat GPT that's developed in C-Sharp under the MIT license
+// 
+//    Copyright ©  2020-2024 Terry D. Eppler
+// 
+//    Permission is hereby granted, free of charge, to any person obtaining a copy
+//    of this software and associated documentation files (the “Software”),
+//    to deal in the Software without restriction,
+//    including without limitation the rights to use,
+//    copy, modify, merge, publish, distribute, sublicense,
+//    and/or sell copies of the Software,
+//    and to permit persons to whom the Software is furnished to do so,
+//    subject to the following conditions:
+// 
+//    The above copyright notice and this permission notice shall be included in all
+//    copies or substantial portions of the Software.
+// 
+//    THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,
+//    INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+//    FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT.
+//    IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
+//    DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,
+//    ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
+//    DEALINGS IN THE SOFTWARE.
+// 
+//    You can contact me at:  terryeppler@gmail.com or eppler.terry@epa.gov
+// </copyright>
+// <summary>
+//   ChatWindow.xaml.cs
+// </summary>
+// ******************************************************************************************
+
 namespace Bubba
 {
     using System;
@@ -16,19 +56,14 @@ namespace Bubba
     using System.Runtime.CompilerServices;
     using System.Speech.Recognition;
     using System.Speech.Synthesis;
-    using System.Text;
     using System.Text.Json;
     using System.Threading;
     using System.Threading.Tasks;
     using System.Windows;
-    using System.Windows.Data;
-    using System.Windows.Documents;
     using System.Windows.Input;
-    using System.Windows.Media;
-    using System.Windows.Media.Imaging;
-    using System.Windows.Shapes;
     using CefSharp;
     using Syncfusion.SfSkinManager;
+    using Syncfusion.Windows.Edit;
     using ToastNotifications;
     using ToastNotifications.Lifetime;
     using ToastNotifications.Messages;
@@ -40,12 +75,23 @@ namespace Bubba
     /// </summary>
     [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
     [ SuppressMessage( "ReSharper", "FieldCanBeMadeReadOnly.Global" ) ]
+    [ SuppressMessage( "ReSharper", "FieldCanBeMadeReadOnly.Local" ) ]
     public partial class ChatWindow : Window, INotifyPropertyChanged
     {
         private const string KEY = "sk-proj-eTIELWTlG8lKT3hpqgq7a3vmB6lBVKo"
             + "GBlkoHhu0KqWqsnxyRq9bpEz0N1xZKcOxlyDbLJFCu"
             + "YT3BlbkFJiQGzglbEgyZB7O9FsBi4bJTO0WEg-"
             + "xddgKbywZr1o4bbn0HtNQlSU3OALS0pfMuifvMcy2XPAA";
+
+        /// <summary>
+        /// The system prompt
+        /// </summary>
+        private string _systemPrompt;
+
+        /// <summary>
+        /// The user prompt
+        /// </summary>
+        private string _userPrompt;
 
         /// <summary>
         /// The role
@@ -58,11 +104,6 @@ namespace Bubba
         private protected string _task;
 
         /// <summary>
-        /// The language
-        /// </summary>
-        private protected string _language;
-
-        /// <summary>
         /// The busy
         /// </summary>
         private protected bool _busy;
@@ -73,9 +114,19 @@ namespace Bubba
         private protected object _entry = new object( );
 
         /// <summary>
+        /// The endpoint
+        /// </summary>
+        private protected string _endpoint;
+
+        /// <summary>
         /// The provider
         /// </summary>
         private protected Provider _provider;
+
+        /// <summary>
+        /// The language
+        /// </summary>
+        private protected string _language;
 
         /// <summary>
         /// The theme
@@ -86,7 +137,7 @@ namespace Bubba
         /// The HTTP client
         /// </summary>
         private protected HttpClient _httpClient;
-        
+
         /// <summary>
         /// The assembly
         /// </summary>
@@ -370,6 +421,28 @@ namespace Bubba
         }
 
         /// <summary>
+        /// Gets or sets the endpoint.
+        /// </summary>
+        /// <value>
+        /// The endpoint.
+        /// </value>
+        public string Endpoint
+        {
+            get
+            {
+                return _endpoint;
+            }
+            set
+            {
+                if(_endpoint != value)
+                {
+                    _endpoint = value;
+                    OnPropertyChanged(nameof(EndPoint));
+                }
+            }
+        }
+
+        /// <summary>
         /// Initializes the title.
         /// </summary>
         private void InitializeTitle( )
@@ -426,6 +499,28 @@ namespace Bubba
             catch( Exception ex )
             {
                 Fail( ex );
+            }
+        }
+
+        /// <summary>
+        /// Initializes the user system text box.
+        /// </summary>
+        private void InitializeChatEditor( )
+        {
+            try
+            {
+                ChatEditor.EnableOutlining = true;
+                ChatEditor.EnableIntellisense = false;
+                ChatEditor.DocumentLanguage = Languages.Text;
+                ChatEditor.IsMultiLine = true;
+                ChatEditor.IsUndoEnabled = true;
+                ChatEditor.IsRedoEnabled = true;
+                ChatEditor.SelectionBackground = _theme.SteelBlueBrush;
+                ChatEditor.SelectionForeground = _theme.WhiteForeground;
+            }
+            catch(Exception ex)
+            {
+                Fail(ex);
             }
         }
 
@@ -506,9 +601,11 @@ namespace Bubba
                 MuteCheckBox.Checked += OnMuteCheckedBoxChanged;
                 StoreCheckBox.Checked += OnStoreBoxChecked;
                 StreamCheckBox.Checked += OnStreamBoxChecked;
-                RoleComboBox.SelectionChanged += OnRoleSelectionChanged;
                 TaskComboBox.SelectionChanged += OnTaskSelectionChanged;
                 ModelComboBox.SelectionChanged += OnModelSelectionChanged;
+                EndpointComboBox.SelectionChanged += OnEndpointSelectionChanged;
+                SystemRadioButton.Checked += OnSystemRadioButtonChecked;
+                UserRadioButton.Checked += OnUserRadioButtonChecked;
             }
             catch( Exception ex )
             {
@@ -568,8 +665,7 @@ namespace Bubba
         {
             try
             {
-                SystemTextBox.Text = "System Prompt:";
-                UserTextBox.Text = "User Prompt:";
+                ChatEditor.Text = _userPrompt;
                 ToolStripTextBox.Text = "";
                 NumberTextBox.Value = 1;
                 PresenceSlider.Value = 0D;
@@ -577,14 +673,16 @@ namespace Bubba
                 TemperatureSlider.Value = 1D;
                 PercentSlider.Value = 1D;
                 MaxTokensTextBox.Value = 157D;
-                RoleComboBox.SelectedIndex = -1;
                 TaskComboBox.SelectedIndex = -1;
                 ModelComboBox.SelectedIndex = -1;
                 LanguageListBox.SelectedIndex = -1;
+                EndpointComboBox.SelectedIndex = -1;
                 MuteCheckBox.IsChecked = false;
                 ListenCheckBox.IsChecked = false;
                 StoreCheckBox.IsChecked = false;
                 StreamCheckBox.IsChecked = false;
+                SystemRadioButton.IsChecked = false;
+                UserRadioButton.IsChecked = false;
             }
             catch( Exception ex )
             {
@@ -686,7 +784,7 @@ namespace Bubba
             }
             catch( Exception ex )
             {
-                Fail(ex);
+                Fail( ex );
             }
         }
 
@@ -799,8 +897,10 @@ namespace Bubba
                 ThrowIf.Null( name, nameof( name ) );
                 var _winXpDir = @"C:\Documents and Settings\All Users\Application Data\";
                 return Directory.Exists( _winXpDir )
-                    ? _winXpDir + ConfigurationManager.AppSettings[ "Branding" ] + @"\" + name + @"\"
-                    : @"C:\ProgramData\" + ConfigurationManager.AppSettings[ "Branding" ] + @"\" + name + @"\";
+                    ? _winXpDir + ConfigurationManager.AppSettings[ "Branding" ] + @"\" + name
+                    + @"\"
+                    : @"C:\ProgramData\" + ConfigurationManager.AppSettings[ "Branding" ] + @"\"
+                    + name + @"\";
             }
             catch( Exception ex )
             {
@@ -952,6 +1052,84 @@ namespace Bubba
                 _frequency = FrequencySlider.Value;
                 _number = int.Parse( NumberTextBox.Value.ToString( ) );
                 _maxCompletionTokens = int.Parse( MaxTokensTextBox.Value.ToString( ) );
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+            }
+        }
+
+        /// <summary>
+        /// Sets the user document language.
+        /// </summary>
+        private protected void SetUserDocumentLanguage( )
+        {
+            try
+            {
+                var _prefix = @"C:\Users\terry\source\repos\Bubba\";
+                if( !string.IsNullOrEmpty( _language ) )
+                {
+                    ChatEditor.Text = "";
+                    switch( _language )
+                    {
+                        case "Text":
+                        {
+                            var _path = _prefix + @"Resources\Documents\Editor\Stubs\Text.txt";
+                            ChatEditor.DocumentLanguage = Languages.Text;
+                            ChatEditor.DocumentSource = _path;
+                            break;
+                        }
+                        case "C#":
+                        {
+                            var _path = _prefix + @"Resources\Documents\Editor\Stubs\CSharp.txt";
+                            ChatEditor.DocumentLanguage = Languages.CSharp;
+                            ChatEditor.DocumentSource = _path;
+                            break;
+                        }
+                        case "Python":
+                        {
+                            var _path = _prefix + @"Resources\Documents\Editor\Stubs\Python.txt";
+                            ChatEditor.DocumentLanguage = Languages.Text;
+                            ChatEditor.DocumentSource = _path;
+                            break;
+                        }
+                        case "SQL":
+                        {
+                            var _path = _prefix + @"Resources\Documents\Editor\Stubs\SQL.txt";
+                            ChatEditor.DocumentLanguage = Languages.SQL;
+                            ChatEditor.DocumentSource = _path;
+                            break;
+                        }
+                        case "JavaScript":
+                        {
+                            var _path = _prefix + @"Resources\Documents\Editor\Stubs\JavaScript.txt";
+                            ChatEditor.DocumentLanguage = Languages.JScript;
+                            ChatEditor.DocumentSource = _path;
+                            break;
+                        }
+                        case "C/C++":
+                        {
+                            var _path = _prefix + @"Resources\Documents\Editor\Stubs\C.txt";
+                            ChatEditor.DocumentLanguage = Languages.C;
+                            ChatEditor.DocumentSource = _path;
+                            break;
+                        }
+                        case "VBA":
+                        {
+                            var _path = _prefix + @"Resources\Documents\Editor\Stubs\VBA.txt";
+                            ChatEditor.DocumentLanguage = Languages.Text;
+                            ChatEditor.DocumentSource = _path;
+                            break;
+                        }
+                        default:
+                        {
+                            var _path = _prefix + @"Resources\Documents\Editor\Stubs\Text.txt";
+                            ChatEditor.DocumentLanguage = Languages.Text;
+                            ChatEditor.DocumentSource = _path;
+                            break;
+                        }
+                    }
+                }
             }
             catch( Exception ex )
             {
@@ -1164,7 +1342,7 @@ namespace Bubba
             {
                 if( App.ActiveWindows?.ContainsKey( "WebBrowser" ) == true )
                 {
-                    var _form = (WebBrowser)App.ActiveWindows[ "WebBrowser" ];
+                    var _form = ( WebBrowser )App.ActiveWindows[ "WebBrowser" ];
                     _form.Show( );
                 }
                 else
@@ -1327,20 +1505,44 @@ namespace Bubba
         }
 
         /// <summary>
-        /// Populates the GPT roles.
+        /// Populates the language ListBox.
         /// </summary>
-        private void PopulateGptRoles( )
+        private void PopulateLanguageListBox( )
         {
             try
             {
-                RoleComboBox.Items.Clear( );
-                RoleComboBox.Items.Add( "System" );
-                RoleComboBox.Items.Add( "User" );
-                RoleComboBox.Items.Add( "Assistant" );
+                LanguageListBox.Items?.Clear( );
+                LanguageListBox.Items.Add( "Text" );
+                LanguageListBox.Items.Add( "C#" );
+                LanguageListBox.Items.Add( "Python" );
+                LanguageListBox.Items.Add( "SQL" );
+                LanguageListBox.Items.Add( "JavaScript" );
+                LanguageListBox.Items.Add( "C/C++" );
+                LanguageListBox.Items.Add( "VBA" );
             }
             catch( Exception ex )
             {
                 Fail( ex );
+            }
+        }
+
+        /// <summary>
+        /// Populates the end points.
+        /// </summary>
+        private void PopulateEndpoints( )
+        {
+            try
+            {
+                var _endpoints = new GptEndPoint( );
+                EndpointComboBox.Items.Clear( );
+                foreach( var _endpoint in _endpoints.All )
+                {
+                    EndpointComboBox.Items.Add( _endpoint );
+                }
+            }
+            catch(Exception ex)
+            {
+                Fail(ex);
             }
         }
 
@@ -1484,10 +1686,14 @@ namespace Bubba
                 PopulateDomainDropDowns( );
                 InitializeToolStrip( );
                 PopulateModelsAsync( );
-                PopulateGptRoles( );
                 PopulateGptTasks( );
+                PopulateLanguageListBox( );
+                PopulateEndpoints( );
                 SetHyperParameters( );
+                ClearChatControls( );
+                InitializeChatEditor();
                 App.ActiveWindows.Add( "ChatWindow", this );
+                UserRadioButton.IsChecked = true;
             }
             catch( Exception ex )
             {
@@ -1553,8 +1759,8 @@ namespace Bubba
             try
             {
                 var _message = "NOT YET IMPLEMENTED!";
-                var _notifier = CreateNotifier();
-                _notifier.ShowInformation(_message);
+                var _notifier = CreateNotifier( );
+                _notifier.ShowInformation( _message );
             }
             catch( Exception ex )
             {
@@ -1568,7 +1774,7 @@ namespace Bubba
         /// <param name="sender">The sender.</param>
         /// <param name="e">The <see cref="EventArgs"/>
         /// instance containing the event data.</param>
-        private void OnStoreBoxChecked(object sender, EventArgs e)
+        private void OnStoreBoxChecked( object sender, EventArgs e )
         {
             try
             {
@@ -1576,9 +1782,9 @@ namespace Bubba
                 var _notifier = CreateNotifier( );
                 _notifier.ShowInformation( _message );
             }
-            catch(Exception ex)
+            catch( Exception ex )
             {
-                Fail(ex);
+                Fail( ex );
             }
         }
 
@@ -1588,17 +1794,17 @@ namespace Bubba
         /// <param name="sender">The sender.</param>
         /// <param name="e">The <see cref="EventArgs"/>
         /// instance containing the event data.</param>
-        private void OnStreamBoxChecked(object sender, EventArgs e)
+        private void OnStreamBoxChecked( object sender, EventArgs e )
         {
             try
             {
                 var _message = "NOT YET IMPLEMENTED!";
-                var _notifier = CreateNotifier();
-                _notifier.ShowInformation(_message);
+                var _notifier = CreateNotifier( );
+                _notifier.ShowInformation( _message );
             }
-            catch(Exception ex)
+            catch( Exception ex )
             {
-                Fail(ex);
+                Fail( ex );
             }
         }
 
@@ -1666,8 +1872,9 @@ namespace Bubba
         {
             try
             {
-                _timer?.Dispose();
-                SfSkinManager.Dispose(this);
+                _timer?.Dispose( );
+                SfSkinManager.Dispose( this );
+                App.ActiveWindows.Clear( );
                 Environment.Exit( 0 );
             }
             catch( Exception ex )
@@ -2159,7 +2366,7 @@ namespace Bubba
                 VoiceLabel.Visibility = Visibility.Visible;
                 VoiceComboBox.Visibility = Visibility.Visible;
                 var _msg = "The GPT Audio Client has been activated!";
-                SendNotification(_msg);
+                SendNotification( _msg );
             }
             else
             {
@@ -2178,13 +2385,13 @@ namespace Bubba
         {
             // Reset Hypothesized text
             SpeechLabel.Content = "";
-            if( UserTextBox.Text != "" )
+            if( ChatEditor.Text != "" )
             {
-                UserTextBox.Text += "\n";
+                ChatEditor.Text += "\n";
             }
 
             var _text = e.Result.Text;
-            UserTextBox.Text += _text;
+            ChatEditor.Text += _text;
         }
 
         /// <summary>
@@ -2208,32 +2415,32 @@ namespace Bubba
         private void OnSendButtonClick( object sender, RoutedEventArgs e )
         {
             {
-                var _question = UserTextBox.Text;
+                var _question = ChatEditor.Text;
                 if( string.IsNullOrEmpty( _question ) )
                 {
                     MessageBox.Show( "Type in your question!" );
-                    UserTextBox.Focus( );
+                    ChatEditor.Focus( );
                     return;
                 }
 
-                if( SystemTextBox.Text != "" )
+                if( ChatEditor.Text != "" )
                 {
-                    SystemTextBox.AppendText( "\r\n" );
+                    ChatEditor.AppendText( "\r\n" );
                 }
 
-                SystemTextBox.AppendText( "User: " + _question + "\r\n" );
-                UserTextBox.Text = "";
+                ChatEditor.AppendText( "User: " + _question + "\r\n" );
+                ChatEditor.Text = "";
                 try
                 {
                     var _answer = SendHttpMessage( _question ) + "";
-                    SystemTextBox.AppendText( "Bubba GPT: "
+                    ChatEditor.AppendText( "Bubba GPT: "
                         + _answer.Replace( "\n", "\r\n" ).Trim( ) );
 
                     SpeechToText( _answer );
                 }
                 catch( Exception ex )
                 {
-                    SystemTextBox.AppendText( "Error: " + ex.Message );
+                    ChatEditor.AppendText( "Error: " + ex.Message );
                 }
             }
         }
@@ -2268,9 +2475,9 @@ namespace Bubba
             {
                 if( ModelComboBox.SelectedIndex != -1 )
                 {
-                    _chatModel = ModelComboBox.SelectedValue.ToString();
+                    _chatModel = ModelComboBox.SelectedValue.ToString( );
                     var _msg = $"The ' {_chatModel} ' GPT Model has been selected!";
-                    SendNotification(_msg);
+                    SendNotification( _msg );
                 }
             }
             catch( Exception ex )
@@ -2285,15 +2492,14 @@ namespace Bubba
         /// <param name="sender">The sender.</param>
         /// <param name="e">The <see cref="RoutedEventArgs"/>
         /// instance containing the event data.</param>
-        private void OnLanguageSelectionChanged(object sender, RoutedEventArgs e)
+        private void OnLanguageSelectionChanged( object sender, RoutedEventArgs e )
         {
             try
             {
                 if( LanguageListBox.SelectedIndex != -1 )
                 {
-                    _language = LanguageListBox.SelectedItem.ToString( );
-                    var _msg = $"The ' {_language} ' language has been selected!";
-                    SendNotification(_msg);
+                    _language = LanguageListBox.SelectedItem.ToString();
+                    SetUserDocumentLanguage( );
                 }
             }
             catch( Exception ex )
@@ -2308,15 +2514,40 @@ namespace Bubba
         /// <param name="sender">The sender.</param>
         /// <param name="e">The <see cref="RoutedEventArgs"/>
         /// instance containing the event data.</param>
-        private void OnRoleSelectionChanged( object sender, RoutedEventArgs e )
+        private void OnSystemRadioButtonChecked( object sender, RoutedEventArgs e )
         {
             try
             {
-                if( RoleComboBox.SelectedIndex != -1 )
+                if( SystemRadioButton.IsChecked == true )
                 {
-                    _role = RoleComboBox.SelectedItem.ToString();
-                    var _msg = $"The ' {_role} ' role has been selected!";
-                    SendNotification(_msg);
+                    ChatEditor.Text = "";
+                    EditorLabel.Content = "System";
+                    _systemPrompt = ConfigurationManager.AppSettings[ "SystemInstructions" ];
+                    ChatEditor.Text = _systemPrompt;
+                }
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+            }
+        }
+
+        /// <summary>
+        /// Called when [user RadioButton checked].
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The <see cref="RoutedEventArgs"/>
+        /// instance containing the event data.</param>
+        private void OnUserRadioButtonChecked(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                if( UserRadioButton.IsChecked == true )
+                {
+                    ChatEditor.Text = "";
+                    EditorLabel.Content = "User";
+                    _userPrompt = "<Replace With User Prompt>";
+                    ChatEditor.Text = _userPrompt;
                 }
             }
             catch(Exception ex)
@@ -2329,8 +2560,9 @@ namespace Bubba
         /// Called when [task selection changed].
         /// </summary>
         /// <param name="sender">The sender.</param>
-        /// <param name="e">The <see cref="RoutedEventArgs"/> instance containing the event data.</param>
-        private void OnTaskSelectionChanged(object sender, RoutedEventArgs e)
+        /// <param name="e">The <see cref="RoutedEventArgs"/>
+        /// instance containing the event data.</param>
+        private void OnTaskSelectionChanged( object sender, RoutedEventArgs e )
         {
             try
             {
@@ -2338,12 +2570,12 @@ namespace Bubba
                 {
                     _task = TaskComboBox.SelectedItem.ToString( );
                     var _msg = $"The ' {_task} ' task has been selected!";
-                    SendNotification(_msg);
+                    SendNotification( _msg );
                 }
             }
-            catch(Exception ex)
+            catch( Exception ex )
             {
-                Fail(ex);
+                Fail( ex );
             }
         }
 
@@ -2391,6 +2623,29 @@ namespace Bubba
             catch( Exception ex )
             {
                 Fail( ex );
+            }
+        }
+
+        /// <summary>
+        /// Called when [endpoint selection changed].
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The <see cref="RoutedEventArgs"/>
+        /// instance containing the event data.</param>
+        private void OnEndpointSelectionChanged(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                if( EndpointComboBox.SelectedIndex != -1 )
+                {
+                    _endpoint = EndpointComboBox.SelectedItem.ToString();
+                    var _msg = $"The ' {_endpoint} ' endpoint has been selected!";
+                    SendNotification(_msg);
+                }
+            }
+            catch(Exception ex)
+            {
+                Fail(ex);
             }
         }
 

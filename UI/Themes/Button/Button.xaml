@@ -42,7 +42,7 @@
                 <Setter Property="Background" Value="{StaticResource ControlInteriorColor}" />
                 <Setter Property="BorderBrush" Value="{StaticResource BlueBorderBrush}" />
                 <Setter Property="Foreground" Value="{StaticResource FormForeground}" />
-                <Setter Property="FontWeight" Value="Bold" />
+                <Setter Property="FontWeight" Value="Regular" />
             </Trigger>
 
 

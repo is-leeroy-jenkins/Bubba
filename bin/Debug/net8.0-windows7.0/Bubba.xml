@@ -26109,6 +26109,16 @@
             ChatWindow
             </summary>
         </member>
+        <member name="F:Bubba.ChatWindow._systemPrompt">
+            <summary>
+            The system prompt
+            </summary>
+        </member>
+        <member name="F:Bubba.ChatWindow._userPrompt">
+            <summary>
+            The user prompt
+            </summary>
+        </member>
         <member name="F:Bubba.ChatWindow._role">
             <summary>
             The role
@@ -26117,11 +26127,6 @@
         <member name="F:Bubba.ChatWindow._task">
             <summary>
             The role
-            </summary>
-        </member>
-        <member name="F:Bubba.ChatWindow._language">
-            <summary>
-            The language
             </summary>
         </member>
         <member name="F:Bubba.ChatWindow._busy">
@@ -26134,9 +26139,19 @@
             The entry
             </summary>
         </member>
+        <member name="F:Bubba.ChatWindow._endpoint">
+            <summary>
+            The endpoint
+            </summary>
+        </member>
         <member name="F:Bubba.ChatWindow._provider">
             <summary>
             The provider
+            </summary>
+        </member>
+        <member name="F:Bubba.ChatWindow._language">
+            <summary>
+            The language
             </summary>
         </member>
         <member name="F:Bubba.ChatWindow._theme">
@@ -26324,6 +26339,14 @@
             The presence.
             </value>
         </member>
+        <member name="P:Bubba.ChatWindow.Endpoint">
+            <summary>
+            Gets or sets the endpoint.
+            </summary>
+            <value>
+            The endpoint.
+            </value>
+        </member>
         <member name="M:Bubba.ChatWindow.InitializeTitle">
             <summary>
             Initializes the title.
@@ -26342,6 +26365,11 @@
         <member name="M:Bubba.ChatWindow.InitializeToolStrip">
             <summary>
             Initializes the tool strip.
+            </summary>
+        </member>
+        <member name="M:Bubba.ChatWindow.InitializeChatEditor">
+            <summary>
+            Initializes the user system text box.
             </summary>
         </member>
         <member name="M:Bubba.ChatWindow.InvokeIf(System.Action)">
@@ -26489,6 +26517,11 @@
             Sets the hyper parameters.
             </summary>
         </member>
+        <member name="M:Bubba.ChatWindow.SetUserDocumentLanguage">
+            <summary>
+            Sets the user document language.
+            </summary>
+        </member>
         <member name="M:Bubba.ChatWindow.SetToolbarVisibility(System.Boolean)">
             <summary>
             
@@ -26546,9 +26579,14 @@
             Populates the GPT tasks.
             </summary>
         </member>
-        <member name="M:Bubba.ChatWindow.PopulateGptRoles">
+        <member name="M:Bubba.ChatWindow.PopulateLanguageListBox">
             <summary>
-            Populates the GPT roles.
+            Populates the language ListBox.
+            </summary>
+        </member>
+        <member name="M:Bubba.ChatWindow.PopulateEndpoints">
+            <summary>
+            Populates the end points.
             </summary>
         </member>
         <member name="M:Bubba.ChatWindow.UpdateStatus">
@@ -26913,9 +26951,17 @@
             <param name="e">The <see cref="T:System.Windows.RoutedEventArgs"/>
             instance containing the event data.</param>
         </member>
-        <member name="M:Bubba.ChatWindow.OnRoleSelectionChanged(System.Object,System.Windows.RoutedEventArgs)">
+        <member name="M:Bubba.ChatWindow.OnSystemRadioButtonChecked(System.Object,System.Windows.RoutedEventArgs)">
             <summary>
             Called when [role selection changed].
+            </summary>
+            <param name="sender">The sender.</param>
+            <param name="e">The <see cref="T:System.Windows.RoutedEventArgs"/>
+            instance containing the event data.</param>
+        </member>
+        <member name="M:Bubba.ChatWindow.OnUserRadioButtonChecked(System.Object,System.Windows.RoutedEventArgs)">
+            <summary>
+            Called when [user RadioButton checked].
             </summary>
             <param name="sender">The sender.</param>
             <param name="e">The <see cref="T:System.Windows.RoutedEventArgs"/>
@@ -26926,11 +26972,20 @@
             Called when [task selection changed].
             </summary>
             <param name="sender">The sender.</param>
-            <param name="e">The <see cref="T:System.Windows.RoutedEventArgs"/> instance containing the event data.</param>
+            <param name="e">The <see cref="T:System.Windows.RoutedEventArgs"/>
+            instance containing the event data.</param>
         </member>
         <member name="M:Bubba.ChatWindow.OnTextBoxInputChanged(System.Object,System.Windows.RoutedEventArgs)">
             <summary>
             Called when [text box input changed].
+            </summary>
+            <param name="sender">The sender.</param>
+            <param name="e">The <see cref="T:System.Windows.RoutedEventArgs"/>
+            instance containing the event data.</param>
+        </member>
+        <member name="M:Bubba.ChatWindow.OnEndpointSelectionChanged(System.Object,System.Windows.RoutedEventArgs)">
+            <summary>
+            Called when [endpoint selection changed].
             </summary>
             <param name="sender">The sender.</param>
             <param name="e">The <see cref="T:System.Windows.RoutedEventArgs"/>
@@ -28221,6 +28276,36 @@
         <member name="M:Bubba.WebBrowser.InitializeComponent">
             <summary>
             InitializeComponent
+            </summary>
+        </member>
+        <member name="T:XamlGeneratedNamespace.GeneratedInternalTypeHelper">
+            <summary>
+            GeneratedInternalTypeHelper
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.CreateInstance(System.Type,System.Globalization.CultureInfo)">
+            <summary>
+            CreateInstance
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.GetPropertyValue(System.Reflection.PropertyInfo,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            GetPropertyValue
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.SetPropertyValue(System.Reflection.PropertyInfo,System.Object,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            SetPropertyValue
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.CreateDelegate(System.Type,System.Object,System.String)">
+            <summary>
+            CreateDelegate
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.AddEventHandler(System.Reflection.EventInfo,System.Object,System.Delegate)">
+            <summary>
+            AddEventHandler
             </summary>
         </member>
     </members>

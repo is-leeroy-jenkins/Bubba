@@ -14,7 +14,7 @@
         <!--  BUTTONS  -->
 
         <ResourceDictionary Source="/UI/Themes/Button/Button.xaml" />
-        <ResourceDictionary Source="/UI/Themes/Button/MetroButton.xaml" />
+        <ResourceDictionary Source="/UI/Themes/RadioButton/RadioButton.xaml" />
 
         <!--  COMMON  -->
 
@@ -27,12 +27,10 @@
         <ResourceDictionary Source="/UI/Themes/TextBox/TextBox.xaml" />
         <ResourceDictionary Source="/UI/Themes/Label/Label.xaml" />
         <ResourceDictionary Source="/UI/Themes/RichTextBox/RichTextBox.xaml" />
-        <ResourceDictionary Source="/UI/Themes/RichTextBox/MetroRichTextBox.xaml" />
 
         <!--  LISTBOX/VIEW  -->
         <ResourceDictionary Source="/UI/Themes/ListBox/ListBox.xaml" />
         <ResourceDictionary Source="/UI/Themes/ListView/ListView.xaml" />
-        <ResourceDictionary Source="/UI/Themes/ListBox/MetroListBox.xaml" />
 
         <!--  DROPDOWN  -->
         <ResourceDictionary Source="/UI/Themes/DropDown/DropDown.xaml" />
@@ -40,7 +38,6 @@
 
         <!--  COMBOBOX  -->
         <ResourceDictionary Source="/UI/Themes/ComboBox/ComboBox.xaml" />
-        <ResourceDictionary Source="/UI/Themes/ComboBox/MetroComboBox.xaml" />
 
         <!--  CHECK BOX/LIST  -->
         <ResourceDictionary Source="/UI/Themes/CheckBox/CheckBox.xaml" />
@@ -50,9 +47,6 @@
         <ResourceDictionary Source="/UI/Themes/Tile/Tile.xaml" />
 
 
-        <!--  CONTROLS  -->
-        <ResourceDictionary Source="/UI/Themes/RadioButton/RadioButton.xaml" />
-        <ResourceDictionary Source="/UI/Themes/Button/Button.xaml" />
     </ResourceDictionary.MergedDictionaries>
 
 </ResourceDictionary>

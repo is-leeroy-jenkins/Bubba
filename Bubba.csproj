@@ -234,6 +234,7 @@
     <None Remove="Resources\Assets\ToolStripImages\FilterButton.png" />
     <None Remove="Resources\Assets\ToolStripImages\FirstButton.png" />
     <None Remove="Resources\Assets\ToolStripImages\GanttButton.png" />
+    <None Remove="Resources\Assets\ToolStripImages\GoButton.png" />
     <None Remove="Resources\Assets\ToolStripImages\GoogleSearchButton.png" />
     <None Remove="Resources\Assets\ToolStripImages\GraphButton.png" />
     <None Remove="Resources\Assets\ToolStripImages\GridButton.png" />
@@ -518,6 +519,7 @@
     <Resource Include="Resources\Assets\ToolStripImages\FilterButton.png" />
     <Resource Include="Resources\Assets\ToolStripImages\FirstButton.png" />
     <Resource Include="Resources\Assets\ToolStripImages\GanttButton.png" />
+    <Resource Include="Resources\Assets\ToolStripImages\GoButton.png" />
     <Resource Include="Resources\Assets\ToolStripImages\GoogleSearchButton.png" />
     <Resource Include="Resources\Assets\ToolStripImages\GraphButton.png" />
     <Resource Include="Resources\Assets\ToolStripImages\GridButton.png" />

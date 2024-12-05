@@ -53,12 +53,13 @@ namespace Bubba
     [SuppressMessage( "ReSharper", "UnusedType.Global" ) ]
     [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
     [ SuppressMessage( "ReSharper", "FieldCanBeMadeReadOnly.Global" ) ]
+    [ SuppressMessage( "ReSharper", "MemberInitializerValueIgnored" ) ]
     public class GptEndPoint : PropertyChangedBase
     {
         /// <summary>
         /// The locations
         /// </summary>
-        private protected IList<string> _all;
+        private protected IList<string> _all = new List<string>( );
 
         /// <summary>
         /// The Completions API
@@ -121,8 +122,8 @@ namespace Bubba
         /// </summary>
         public GptEndPoint( )
         {
-            _completions = "https://api.openai.com/v1/completions";
             _chatCompletions = "https://api.openai.com/v1/chat/completions";
+            _completions = "https://api.openai.com/v1/completions";
             _assistant = "https://api.openai.com/v1/assistants";
             _speech = "https://api.openai.com/v1/audio/speech";
             _translations = "https://api.openai.com/v1/audio/translations";

@@ -21,7 +21,7 @@
     BorderBrush="{StaticResource BlueBorderBrush}"
     BorderThickness="1"
     Foreground="{StaticResource LightBlueBrush}"
-    Icon="/Resources/Assets/FormImages/Badger.png"
+    Icon="/Resources/Assets/ApplicationImages/Bubba.png"
     WindowStartupLocation="CenterScreen"
     mc:Ignorable="d">
 
@@ -54,45 +54,52 @@
         </Grid.ColumnDefinitions>
 
 
+        <Canvas
+            Grid.Row="2"
+            Grid.Column="1" />
+
+
         <b:MetroTile
             x:Name="SelectButton"
             Title="   Select"
             Grid.Row="2"
             Grid.Column="1"
-            Width="70"
+            Width="65"
             Height="30"
-            Margin="335,0,0,29"
+            Margin="335,0,0,0"
             HorizontalAlignment="Left"
-            VerticalAlignment="Bottom"
-            FontFamily="Roboto"
-            FontSize="12" />
+            VerticalAlignment="Center"
+            Background="{StaticResource ControlBackground}"
+            Foreground="{StaticResource LightBlueBrush}"
+            BorderBrush="{StaticResource BlueBorderBrush}" />
 
         <b:MetroTile
             x:Name="BrowseButton"
             Title="   Browse"
             Grid.Row="2"
             Grid.Column="1"
-            Width="80"
+            Width="70"
             Height="30"
-            Margin="35,0,0,0"
+            Margin="30,27,0,0"
             HorizontalAlignment="Left"
-            VerticalAlignment="Center"
-            FontFamily="Roboto"
-            FontSize="10"
-            Foreground="{DynamicResource LightBlueBrush}" />
+            VerticalAlignment="Top"
+            Background="{StaticResource ResourceKey=ControlBackground}"
+            Foreground="{StaticResource LightBlueBrush}"
+            BorderBrush="{StaticResource BlueBorderBrush}" />
 
         <b:MetroTile
             x:Name="ClearButton"
             Title="    Clear"
             Grid.Row="2"
             Grid.Column="1"
-            Width="80"
+            Width="85"
             Height="30"
-            HorizontalAlignment="Center"
+            Margin="180,0,0,0"
+            HorizontalAlignment="Left"
             VerticalAlignment="Center"
-            FontFamily="Roboto"
-            FontSize="10"
-            Foreground="{DynamicResource LightBlueBrush}" />
+            Background="{StaticResource ControlBackground}"
+            Foreground="{StaticResource LightBlueBrush}"
+            BorderBrush="{StaticResource BlueBorderBrush}" />
 
         <b:MetroRadioButton
             x:Name="PdfRadioButton"

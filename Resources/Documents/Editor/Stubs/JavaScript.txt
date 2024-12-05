@@ -1,0 +1,12 @@
+// Change the background color to "dimgrey".
+document.body.style.backgroundColor = "dimgrey";
+
+// Add a paragraph at the bottom of the document.
+const p = document.createElement("p");
+p.textContent = "Hello world";
+p.style.color = "white";
+p.style.fontSize = "2rem";
+document.body.appendChild(p);
+
+// Log a message to the console.
+console.log("Hello world");

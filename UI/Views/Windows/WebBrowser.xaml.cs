@@ -2551,7 +2551,7 @@ namespace Bubba
                 var _searchDialog = new SearchDialog( );
                 _searchDialog.Owner = this;
                 _searchDialog.Left = _psn.X - 100;
-                _searchDialog.Top = _psn.Y + 150;
+                _searchDialog.Top = _psn.Y + 100;
                 _searchDialog.Show( );
                 _searchDialog.SearchPanelTextBox.Focus( );
             }
@@ -2574,7 +2574,7 @@ namespace Bubba
                 var _searchDialog = new SearchDialog( );
                 _searchDialog.Owner = this;
                 _searchDialog.Left = _psn.X;
-                _searchDialog.Top = _psn.Y - 150;
+                _searchDialog.Top = _psn.Y - 100;
                 _searchDialog.Show( );
                 _searchDialog.SearchPanelTextBox.Focus( );
             }
@@ -2620,7 +2620,8 @@ namespace Bubba
                     _tab.Dispose( );
                 }
 
-                _timer?.Dispose( );
+                _timer?.Dispose();
+                App.ActiveWindows.Clear();
                 Environment.Exit( 0 );
             }
             catch( Exception )

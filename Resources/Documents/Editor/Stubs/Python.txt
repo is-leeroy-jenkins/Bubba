@@ -1,0 +1,21 @@
+import os
+import sys
+import random
+import io
+
+class Example(  ):
+
+	def __init__( self, heading: str=None, cause: str=None,
+	              method: str=None, module: str=None ):
+		self.heading = heading
+		self.cause = cause
+		self.method = method
+		self.module = module
+	
+	def __str__( self ) -> str:
+		if self.info is not None:
+			return self.info
+	
+	def __dir__( self ) -> list[ str ]:
+		return [ 'heading', 'cause', 
+			 'method', 'module']

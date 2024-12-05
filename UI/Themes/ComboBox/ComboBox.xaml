@@ -15,7 +15,7 @@
         x:Key="MetroComboBoxStyle"
         TargetType="{x:Type ComboBox}">
         <Setter Property="Background" Value="{StaticResource ControlInteriorBrush}" />
-        <Setter Property="BorderBrush" Value="{StaticResource ControlInteriorBrush}" />
+        <Setter Property="BorderBrush" Value="{StaticResource BlueBorderBrush}" />
         <Setter Property="Foreground" Value="{StaticResource LightBlueBrush}" />
         <Setter Property="BorderThickness" Value="1" />
         <Setter Property="HorizontalAlignment" Value="Stretch" />
@@ -26,6 +26,19 @@
         <Setter Property="Margin" Value="1" />
         <Setter Property="Height" Value="30" />
         <Setter Property="IsEditable" Value="True" />
+
+        <Style.Triggers>
+
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="BorderBrush" Value="{StaticResource BrightGreenForeground}" />
+            </Trigger>
+
+            <Trigger Property="IsMouseOver" Value="False">
+                <Setter Property="BorderBrush" Value="{StaticResource BlueBorderBrush}" />
+            </Trigger>
+
+
+        </Style.Triggers>
 
     </Style>
 
@@ -53,12 +66,21 @@
                 <Setter Property="Background" Value="{StaticResource SteelBlueBackground}" />
                 <Setter Property="BorderBrush" Value="{StaticResource SteelBlueBackground}" />
                 <Setter Property="Foreground" Value="{StaticResource WhiteForeground}" />
+                <Setter Property="FontWeight" Value="Bold" />
             </Trigger>
 
             <Trigger Property="IsMouseOver" Value="False">
                 <Setter Property="Background" Value="{StaticResource ControlInteriorBrush}" />
                 <Setter Property="BorderBrush" Value="{StaticResource ControlInteriorBrush}" />
                 <Setter Property="Foreground" Value="{StaticResource LightBlueBrush}" />
+                <Setter Property="FontWeight" Value="Normal" />
+            </Trigger>
+
+            <Trigger Property="IsSelected" Value="True">
+                <Setter Property="Background" Value="{StaticResource SteelBlueBackground}" />
+                <Setter Property="BorderBrush" Value="{StaticResource SteelBlueBackground}" />
+                <Setter Property="Foreground" Value="{StaticResource WhiteForeground}" />
+                <Setter Property="FontWeight" Value="Normal" />
             </Trigger>
 
 

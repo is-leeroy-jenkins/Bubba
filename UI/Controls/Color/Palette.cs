@@ -251,8 +251,8 @@ namespace Bubba
         {
             A = 255,
             R = 1,
-            G = 61,
-            B = 17
+            G = 43,
+            B = 12
         };
 
         /// <summary>
