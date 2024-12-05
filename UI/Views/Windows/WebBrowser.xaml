@@ -61,7 +61,8 @@
                 <ColumnDefinition Width="95" />
                 <ColumnDefinition Width="50" />
                 <ColumnDefinition Width="50" />
-                <ColumnDefinition Width="690" />
+                <ColumnDefinition Width="415" />
+                <ColumnDefinition Width="275" />
                 <ColumnDefinition Width="55" />
                 <ColumnDefinition Width="55" />
                 <ColumnDefinition Width="10" />
@@ -75,7 +76,7 @@
             <b:ToolStripButton
                 x:Name="SearchPanelForwardButton"
                 Title=""
-                Grid.Column="6"
+                Grid.Column="7"
                 Width="40"
                 Height="30"
                 Padding="1"
@@ -93,7 +94,7 @@
             <b:ToolStripButton
                 x:Name="SearchPanelCancelButton"
                 Title=""
-                Grid.Column="7"
+                Grid.Column="8"
                 Width="40"
                 Height="30"
                 Padding="1"
@@ -105,12 +106,13 @@
                 BorderBrush="{StaticResource FormBackground}"
                 BorderThickness="1"
                 Header=""
-                ImageSource="/Resources/Assets/ToolStripImages/CancelButton.png"
+                ImageSource="/Resources/Assets/ToolStripImages/StopButton.png"
                 ToolTip="Cancel Search" />
 
             <b:MetroTextBox
                 x:Name="UrlTextBox"
                 Grid.Column="5"
+                Grid.ColumnSpan="2"
                 Height="30"
                 MinWidth="670"
                 Margin="10,0,10,0"
@@ -148,7 +150,7 @@
 
             <Label
                 x:Name="DateLabel"
-                Grid.Column="8"
+                Grid.Column="9"
                 Margin="10,5,-125,9"
                 HorizontalContentAlignment="Right"
                 Content="Label"
@@ -284,7 +286,7 @@
                     x:Name="LookupButton"
                     Margin="5,1,5,1"
                     ToolTip="Begin Search"
-                    ImageSource="/Resources/Assets/ToolStripImages/LookupButton.png" />
+                    ImageSource="/Resources/Assets/ToolStripImages/GoButton.png" />
 
 
                 <b:ToolStripButton

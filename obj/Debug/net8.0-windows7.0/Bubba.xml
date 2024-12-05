@@ -557,7 +557,7 @@
             The hot keys
             </summary>
         </member>
-        <member name="M:Bubba.KeyboardCallback.#ctor(System.Windows.Forms.WebBrowser)">
+        <member name="M:Bubba.KeyboardCallback.#ctor(Bubba.WebBrowser)">
             <summary>
             Initializes a new instance of the
             <see cref="T:Bubba.KeyboardCallback"/> class.

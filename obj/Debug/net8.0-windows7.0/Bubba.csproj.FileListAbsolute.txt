@@ -175,6 +175,8 @@ C:\Users\terry\source\repos\Bubba\bin\Debug\net8.0-windows7.0\Bubba.deps.json
 C:\Users\terry\source\repos\Bubba\bin\Debug\net8.0-windows7.0\Bubba.runtimeconfig.json
 C:\Users\terry\source\repos\Bubba\bin\Debug\net8.0-windows7.0\Bubba.dll
 C:\Users\terry\source\repos\Bubba\bin\Debug\net8.0-windows7.0\Bubba.xml
+C:\Users\terry\source\repos\Bubba\bin\Debug\net8.0-windows7.0\CefSharp.OffScreen.dll
+C:\Users\terry\source\repos\Bubba\bin\Debug\net8.0-windows7.0\CefSharp.WinForms.dll
 C:\Users\terry\source\repos\Bubba\bin\Debug\net8.0-windows7.0\CefSharp.Wpf.dll
 C:\Users\terry\source\repos\Bubba\bin\Debug\net8.0-windows7.0\ControlzEx.dll
 C:\Users\terry\source\repos\Bubba\bin\Debug\net8.0-windows7.0\EPPlus.dll

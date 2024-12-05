@@ -208,6 +208,7 @@
                     HorizontalContentAlignment="Right"
                     Content="System"
                     FontFamily="Roboto"
+                    FontSize="14"
                     Foreground="{DynamicResource LightBlueBrush}" />
 
             </Canvas>
@@ -315,6 +316,7 @@
                     VerticalAlignment="Top"
                     Content="Store"
                     FontFamily="Roboto"
+                    FontSize="14"
                     RenderTransformOrigin="0.565,0.138" />
 
                 <CheckBox
@@ -326,6 +328,7 @@
                     HorizontalAlignment="Center"
                     VerticalAlignment="Top"
                     Content="Stream"
+                    FontSize="14"
                     FontFamily="Roboto" />
 
                 <GroupBox
@@ -730,7 +733,7 @@
                     Content=""
                     Label="Send"
                     FontFamily="Roboto"
-                    FontSize="12"
+                    FontSize="14"
                     IsMultiLine="False"
                     ToolTip="Send Request"
                     IconHeight="0"
@@ -748,7 +751,7 @@
                     Content=""
                     Label="Reset"
                     FontFamily="Roboto"
-                    FontSize="12"
+                    FontSize="14"
                     IsMultiLine="False"
                     IconHeight="0"
                     IconWidth="0" />
@@ -797,6 +800,7 @@
                     HorizontalAlignment="Left"
                     VerticalAlignment="Top"
                     Content="Mute"
+                    FontSize="14"
                     FontFamily="Roboto" />
 
                 <CheckBox
@@ -808,6 +812,7 @@
                     HorizontalAlignment="Left"
                     VerticalAlignment="Top"
                     Content="Listen"
+                    FontSize="14"
                     FontFamily="Roboto" />
 
                 <TextBlock
@@ -867,6 +872,7 @@
                     Content="System"
                     Foreground="{DynamicResource LightBlueBrush}"
                     FontFamily="Roboto"
+                    FontSize="14"
                     Background="{DynamicResource FormForeground}" />
 
                 <b:MetroRadioButton
@@ -876,6 +882,7 @@
                     HorizontalAlignment="Center"
                     VerticalAlignment="Top"
                     Content="User"
+                    FontSize="14"
                     Foreground="{DynamicResource LightBlueBrush}"
                     Background="{DynamicResource FormForeground}" />
 
@@ -926,6 +933,17 @@
                     Margin="5,1,5,1"
                     ToolTip="Previous Item"
                     ImageSource="/Resources/Assets/ToolStripImages/PreviousButton.png" />
+                <b:ToolStripTextBox
+                    x:Name="ToolStripTextBox"
+                    Width="300"
+                    Height="30"
+                    Margin="5,1,5,1"
+                    Padding="15,1,1,1"
+                    ToolTip="Google Search"
+                    BorderThickness="2"
+                    Background="{StaticResource ControlInteriorBrush}"
+                    BorderBrush="{StaticResource BlueBorderBrush}"
+                    FontFamily="Roboto" />
 
                 <b:ToolStripButton
                     x:Name="NextButton"
@@ -938,18 +956,6 @@
                     Margin="5,1,5,1"
                     ToolTip="Last Item"
                     ImageSource="/Resources/Assets/ToolStripImages/LastButton.png" />
-
-                <b:ToolStripTextBox
-                    x:Name="ToolStripTextBox"
-                    Width="300"
-                    Height="30"
-                    Margin="5,1,5,1"
-                    Padding="15,1,1,1"
-                    ToolTip="Google Search"
-                    BorderThickness="2"
-                    Background="{StaticResource ControlInteriorBrush}"
-                    BorderBrush="{StaticResource BlueBorderBrush}"
-                    FontFamily="Roboto" />
 
                 <b:ToolStripButton
                     x:Name="LookupButton"

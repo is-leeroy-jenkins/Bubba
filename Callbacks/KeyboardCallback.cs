@@ -48,6 +48,7 @@ namespace Bubba
     using CefSharp;
     using System.Diagnostics.CodeAnalysis;
     using System.Windows;
+    using MahApps.Metro.Controls;
 
     /// <summary>
     /// 
@@ -62,7 +63,7 @@ namespace Bubba
         /// <summary>
         /// My form
         /// </summary>
-        private System.Windows.Forms.WebBrowser _webBrowser;
+        private WebBrowser _webBrowser;
 
         /// <summary>
         /// The hot keys
@@ -74,7 +75,7 @@ namespace Bubba
         /// <see cref="KeyboardCallback"/> class.
         /// </summary>
         /// <param name="form">The form.</param>
-        public KeyboardCallback( System.Windows.Forms.WebBrowser form )
+        public KeyboardCallback( WebBrowser form )
         {
             _webBrowser = form;
         }

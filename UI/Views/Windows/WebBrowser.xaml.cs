@@ -1,10 +1,10 @@
 ﻿// ******************************************************************************************
 //     Assembly:                Bubba
 //     Author:                  Terry D. Eppler
-//     Created:                 12-02-2024
+//     Created:                 12-05-2024
 // 
 //     Last Modified By:        Terry D. Eppler
-//     Last Modified On:        12-02-2024
+//     Last Modified On:        12-05-2024
 // ******************************************************************************************
 // <copyright file="WebBrowser.xaml.cs" company="Terry D. Eppler">
 //    Bubba is a small windows (wpf) application for interacting with
@@ -558,6 +558,31 @@ namespace Bubba
             _currentTab = BrowserTab;
             _currentBrowser = Browser;
             _searchEngineUrl = Browser.Address;
+            var _settings = new CefSettings( );
+            _settings.RegisterScheme( new CefCustomScheme
+            {
+                SchemeName = AppSettings[ "Internal" ],
+                SchemeHandlerFactory = new SchemaCallbackFactory( )
+            } );
+
+            _settings.UserAgent = BrowserConfig.UserAgent;
+            _settings.AcceptLanguageList = BrowserConfig.AcceptLanguage;
+            _settings.IgnoreCertificateErrors = true;
+            var _cache = AppSettings[ "Downloads" ];
+            _settings.CachePath = GetApplicationDirectory( _cache );
+            if( BrowserConfig.Proxy )
+            {
+                var _proxy = AppSettings[ "ProxyIP" ];
+                var _port = AppSettings[ "ProxyPort" ];
+                CefSharpSettings.Proxy = new ProxyOptions( _proxy, _port );
+            }
+
+            _downloadCallback = new DownloadCallback( this );
+            _lifeSpanCallback = new LifeSpanCallback( this );
+            _contextMenuCallback = new ContextMenuCallback( this );
+            _keyboardCallback = new KeyboardCallback( this );
+            _requestCallback = new RequestCallback( this );
+            InitializeDownloads( );
         }
 
         /// <summary>
@@ -2620,8 +2645,8 @@ namespace Bubba
                     _tab.Dispose( );
                 }
 
-                _timer?.Dispose();
-                App.ActiveWindows.Clear();
+                _timer?.Dispose( );
+                App.ActiveWindows.Clear( );
                 Environment.Exit( 0 );
             }
             catch( Exception )

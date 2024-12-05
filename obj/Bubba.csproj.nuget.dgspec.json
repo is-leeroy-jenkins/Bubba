@@ -57,6 +57,14 @@
               "target": "Package",
               "version": "[131.2.70, )"
             },
+            "CefSharp.OffScreen.NETCore": {
+              "target": "Package",
+              "version": "[131.2.70, )"
+            },
+            "CefSharp.WinForms.NETCore": {
+              "target": "Package",
+              "version": "[131.2.70, )"
+            },
             "CefSharp.Wpf.NETCore": {
               "target": "Package",
               "version": "[131.2.70, )"
@@ -101,7 +109,7 @@
             },
             "OpenAI": {
               "target": "Package",
-              "version": "[2.0.0, )"
+              "version": "[2.1.0, )"
             },
             "RestoreWindowPlace": {
               "target": "Package",
@@ -113,7 +121,7 @@
             },
             "SkiaSharp": {
               "target": "Package",
-              "version": "[2.88.9, )"
+              "version": "[3.116.1, )"
             },
             "Syncfusion.Edit.WPF": {
               "target": "Package",
