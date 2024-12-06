@@ -1494,12 +1494,13 @@ namespace Bubba
             try
             {
                 TaskComboBox.Items.Clear();
-                TaskComboBox.Items.Add("Completions");
                 TaskComboBox.Items.Add( "Text Generation" );
                 TaskComboBox.Items.Add( "Image Generation" );
                 TaskComboBox.Items.Add( "Embedding" );
-                TaskComboBox.Items.Add( "Text-to-speech" );
+                TaskComboBox.Items.Add( "Transcriptions" );
+                TaskComboBox.Items.Add( "Speech Generation" );
                 TaskComboBox.Items.Add( "Fine-tuning" );
+                TaskComboBox.Items.Add( "Translations" );
             }
             catch( Exception ex )
             {

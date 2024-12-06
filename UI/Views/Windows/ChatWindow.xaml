@@ -178,7 +178,7 @@
                 <GroupBox
                     x:Name="LanguageGroupBox"
                     Canvas.Left="37"
-                    Canvas.Top="86"
+                    Canvas.Top="80"
                     Width="150"
                     Height="159"
                     HorizontalAlignment="Center"
@@ -192,10 +192,8 @@
 
                     <ListBox
                         x:Name="LanguageListBox"
-                        Width="110"
                         Height="93"
-                        Margin="0,0,12,0"
-                        HorizontalAlignment="Right"
+                        Margin="10,0,12,0"
                         Background="{DynamicResource ControlInteriorBrush}"
                         BorderBrush="{DynamicResource BlueBorderBrush}"
                         Foreground="{DynamicResource WhiteForeground}" />
@@ -208,11 +206,11 @@
                 Grid.Row="0">
 
                 <GroupBox
-                    Canvas.Left="352"
+                    Canvas.Left="347"
                     Canvas.Top="19"
-                    Width="230"
+                    Width="265"
                     Height="97"
-                    HorizontalAlignment="Center"
+                    HorizontalAlignment="Left"
                     VerticalAlignment="Center"
                     Header="Models"
                     Background="#FF181818"
@@ -221,19 +219,19 @@
                 <GroupBox
                     Canvas.Left="37"
                     Canvas.Top="19"
-                    Width="220"
+                    Width="260"
                     Height="97"
-                    HorizontalAlignment="Center"
-                    VerticalAlignment="Top"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Center"
                     Header="Tasks"
                     Background="#FF181818"
                     Foreground="{DynamicResource LightBlueBrush}" />
 
                 <GroupBox
                     Canvas.Left="37"
-                    Canvas.Top="406"
+                    Canvas.Top="393"
                     Width="150"
-                    Height="80"
+                    Height="73"
                     HorizontalAlignment="Center"
                     VerticalAlignment="Top"
                     Header="Roles"
@@ -297,39 +295,41 @@
 
                 <ComboBox
                     x:Name="TaskComboBox"
-                    Canvas.Left="67"
-                    Canvas.Top="54"
-                    Width="160"
+                    Canvas.Left="62"
+                    Canvas.Top="57"
+                    Width="200"
                     Height="30"
                     HorizontalAlignment="Left"
-                    VerticalAlignment="Top"
+                    VerticalAlignment="Center"
                     BorderThickness="2"
                     Background="{StaticResource ControlInteriorBrush}"
                     BorderBrush="{StaticResource BlueBorderBrush}"
                     Foreground="{StaticResource WhiteForeground}"
                     ToolTip="Select GPT Task" />
-                <ComboBox
-                    x:Name="ModelComboBox"
-                    Canvas.Left="372"
-                    Canvas.Top="57"
-                    Width="190"
-                    Height="30"
-                    HorizontalAlignment="Left"
-                    VerticalAlignment="Top"
-                    BorderThickness="2"
-                    Background="{StaticResource ControlInteriorBrush}"
-                    BorderBrush="{StaticResource BlueBorderBrush}"
-                    Foreground="{StaticResource WhiteForeground}" />
+
                 <GroupBox
-                    Canvas.Left="682"
+                    Canvas.Left="667"
                     Canvas.Top="20"
-                    Width="245"
+                    Width="260"
                     Height="97"
                     HorizontalAlignment="Left"
                     VerticalAlignment="Center"
                     Header="Endpoints"
                     Background="#FF181818"
                     Foreground="{DynamicResource LightBlueBrush}" />
+
+                <ComboBox
+                    x:Name="ModelComboBox"
+                    Canvas.Left="372"
+                    Canvas.Top="57"
+                    Width="210"
+                    Height="30"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Center"
+                    BorderThickness="2"
+                    Background="{StaticResource ControlInteriorBrush}"
+                    BorderBrush="{StaticResource BlueBorderBrush}"
+                    Foreground="{StaticResource WhiteForeground}" />
 
             </Canvas>
 
@@ -347,7 +347,7 @@
                     HorizontalAlignment="Left"
                     VerticalAlignment="Top"
                     Background="#FF181818"
-                    Header="Speech Model"
+                    Header="Voices"
                     Foreground="{DynamicResource LightBlueBrush}" />
 
 
@@ -377,12 +377,12 @@
                     FontSize="12" />
 
                 <GroupBox
-                    Canvas.Left="41"
+                    Canvas.Left="44"
                     Canvas.Top="6"
-                    Width="150"
+                    Width="147"
                     Height="186"
-                    HorizontalAlignment="Center"
-                    VerticalAlignment="Top"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Center"
                     Foreground="{StaticResource LightBlueBrush}"
                     Header="Randomness"
                     Background="#FF181818"
@@ -659,10 +659,10 @@
                 <ComboBox
                     x:Name="VoiceComboBox"
                     Canvas.Left="1020"
-                    Canvas.Top="-109"
+                    Canvas.Top="-108"
                     Width="180"
                     Height="30"
-                    HorizontalAlignment="Left"
+                    HorizontalAlignment="Center"
                     VerticalAlignment="Top"
                     BorderThickness="2"
                     Background="{StaticResource ControlInteriorBrush}"
@@ -843,10 +843,10 @@
 
                 <b:MetroRadioButton
                     x:Name="SystemRadioButton"
-                    Canvas.Left="76"
+                    Canvas.Left="108"
                     Canvas.Top="259"
-                    Width="72"
-                    HorizontalAlignment="Center"
+                    Width="64"
+                    HorizontalAlignment="Left"
                     VerticalAlignment="Top"
                     Content="System"
                     Foreground="{DynamicResource LightBlueBrush}"
@@ -856,10 +856,10 @@
 
                 <b:MetroRadioButton
                     x:Name="UserRadioButton"
-                    Canvas.Left="76"
-                    Canvas.Top="288"
-                    Width="56"
-                    HorizontalAlignment="Center"
+                    Canvas.Left="55"
+                    Canvas.Top="259"
+                    Width="48"
+                    HorizontalAlignment="Left"
                     VerticalAlignment="Top"
                     Content="User"
                     FontSize="14"
@@ -867,10 +867,10 @@
                     Background="{DynamicResource FormForeground}" />
                 <ComboBox
                     x:Name="EndpointComboBox"
-                    Canvas.Left="707"
-                    Canvas.Top="-109"
-                    Width="190"
-                    Height="31"
+                    Canvas.Left="690"
+                    Canvas.Top="-108"
+                    Width="214"
+                    Height="30"
                     HorizontalAlignment="Left"
                     VerticalAlignment="Center"
                     BorderThickness="2"
