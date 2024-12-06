@@ -87,7 +87,7 @@
         public SearchDialog( )
         {
             // Theme Properties
-            SfSkinManager.SetTheme(this, new Theme("FluentDark", App.Controls));
+            SfSkinManager.SetTheme(this, new Theme( "FluentDark", App.Controls ) );
 
             // Window Initialization
             InitializeComponent( );
@@ -98,11 +98,7 @@
             _results = string.Empty;
             _domainLabelPrefix = "Domain:";
             _keywordLabelPrefix = "Key Words:";
-            _queryPrefix = ConfigurationManager.AppSettings[ "Google" ];
-
-            // Control Properties
-            DomainLabel.Content = _domainLabelPrefix + " " + "Google";
-            QueryLabel.Content = _keywordLabelPrefix + " " + "0";
+            _queryPrefix = ConfigurationManager.AppSettings[ "GOOG" ];
 
             //Event Wiring
             Loaded += OnLoad;
@@ -127,15 +123,33 @@
         }
 
         /// <summary>
+        /// Gets the selected domains.
+        /// </summary>
+        /// <value>
+        /// The selected domains.
+        /// </value>
+        public IList<string> SelectedDomains
+        {
+            get
+            {
+                return _selectedDomains;
+            }
+            private protected set
+            {
+                _selectedDomains = value;
+            }
+        }
+
+        /// <summary>
         /// Registers the callbacks.
         /// </summary>
         private void RegisterCallbacks( )
         {
             try
             {
-                LookupButton.Click += OnLookupButtonClick;
-                CancelButton.Click += OnCloseButtonClick;
-                RefreshButton.Click += OnClearButtonClick;
+                SearchPanelLookupButton.Click += OnLookupButtonClick;
+                SearchPanelCancelButton.Click += OnCloseButtonClick;
+                SearchPanelRefreshButton.Click += OnClearButtonClick;
                 SearchPanelTextBox.TextChanged += OnInputTextChanged;
                 SearchPanelComboBox.SelectionChanged += OnSelectedDomainChanged;
             }
@@ -166,6 +180,8 @@
         {
             try
             {
+                SearchPanelDomainLabel.Content = _domainLabelPrefix + " " + "Google";
+                SearchPanelQueryLabel.Content = _keywordLabelPrefix + " " + "0";
             }
             catch( Exception ex )
             {
@@ -281,9 +297,9 @@
         {
             try
             {
-                LookupButton.Click -= OnLookupButtonClick;
-                CancelButton.Click -= OnCloseButtonClick;
-                RefreshButton.Click -= OnClearButtonClick;
+                SearchPanelLookupButton.Click -= OnLookupButtonClick;
+                SearchPanelCancelButton.Click -= OnCloseButtonClick;
+                SearchPanelRefreshButton.Click -= OnClearButtonClick;
                 SearchPanelTextBox.TextChanged -= OnInputTextChanged;
                 SearchPanelComboBox.SelectionChanged -= OnSelectedDomainChanged;
             }
@@ -359,7 +375,7 @@
                 if( !string.IsNullOrEmpty( _keywordInput )
                     && !string.IsNullOrEmpty( _queryPrefix ) )
                 {
-                    _results = _queryPrefix + _keywordInput;;
+                    _results = _queryPrefix + _keywordInput;
                     Close( );
                 }
             }
@@ -382,8 +398,8 @@
                 _keywordInput = string.Empty;
                 _results = string.Empty;
                 _queryPrefix = ConfigurationManager.AppSettings[ "Google" ];
-                DomainLabel.Content = _domainLabelPrefix;
-                QueryLabel.Content = _keywordLabelPrefix;
+                SearchPanelDomainLabel.Content = _domainLabelPrefix;
+                SearchPanelQueryLabel.Content = _keywordLabelPrefix;
             }
             catch( Exception ex )
             {
@@ -405,12 +421,12 @@
                 if( _keywordInput.Contains( " " ) )
                 {
                     var _split = _keywordInput.Split( " " );
-                    QueryLabel.Content = _keywordLabelPrefix + " " + _split.Length;
+                    SearchPanelQueryLabel.Content = _keywordLabelPrefix + " " + _split.Length;
                     _results = _queryPrefix + _keywordInput;
                 }
                 else
                 {
-                    QueryLabel.Content = _keywordLabelPrefix + " " + 0;
+                    SearchPanelQueryLabel.Content = _keywordLabelPrefix + " " + 0;
                     _results = _queryPrefix + _keywordInput;
                 }
             }
@@ -432,52 +448,6 @@
             {
                 if( sender is MetroComboBox _comboBox )
                 {
-                    var _index = _comboBox.SelectedIndex;
-                    var _tag = _comboBox.SelectedItem;
-                    _comboBox.Tag = _tag;
-                    _queryPrefix = _index switch
-                    {
-                        0 => ConfigurationManager.AppSettings[ "EPA" ],
-                        1 => ConfigurationManager.AppSettings[ "DATA" ],
-                        2 => ConfigurationManager.AppSettings[ "GPO" ],
-                        3 => ConfigurationManager.AppSettings[ "USGI" ],
-                        4 => ConfigurationManager.AppSettings[ "CRS" ],
-                        5 => ConfigurationManager.AppSettings[ "LOC" ],
-                        6 => ConfigurationManager.AppSettings[ "OMB" ],
-                        7 => ConfigurationManager.AppSettings[ "UST" ],
-                        8 => ConfigurationManager.AppSettings[ "NASA" ],
-                        9 => ConfigurationManager.AppSettings[ "NOAA" ],
-                        10 => ConfigurationManager.AppSettings[ "DOI" ],
-                        11 => ConfigurationManager.AppSettings[ "NPS" ],
-                        12 => ConfigurationManager.AppSettings[ "GSA" ],
-                        13 => ConfigurationManager.AppSettings[ "NARA" ],
-                        14 => ConfigurationManager.AppSettings[ "DOC" ],
-                        15 => ConfigurationManager.AppSettings[ "HHS" ],
-                        16 => ConfigurationManager.AppSettings[ "NRC" ],
-                        17 => ConfigurationManager.AppSettings[ "DOE" ],
-                        18 => ConfigurationManager.AppSettings[ "NSF" ],
-                        19 => ConfigurationManager.AppSettings[ "USDA" ],
-                        20 => ConfigurationManager.AppSettings[ "CSB" ],
-                        21 => ConfigurationManager.AppSettings[ "IRS" ],
-                        22 => ConfigurationManager.AppSettings[ "FDA" ],
-                        23 => ConfigurationManager.AppSettings[ "CDC" ],
-                        24 => ConfigurationManager.AppSettings[ "ACE" ],
-                        25 => ConfigurationManager.AppSettings[ "DHS" ],
-                        26 => ConfigurationManager.AppSettings[ "DOD" ],
-                        27 => ConfigurationManager.AppSettings[ "USNO" ],
-                        28 => ConfigurationManager.AppSettings[ "NWS" ],
-                        _ => ConfigurationManager.AppSettings[ "Google" ]
-                    };
-
-                    var _selection = _tag.ToString( );
-                    if( !string.IsNullOrEmpty( _selection ) )
-                    {
-                        //DomainLabel.Text = _domainLabelPrefix + " " + _selection;
-                    }
-                    else
-                    {
-                        //DomainLabel.Text = _domainLabelPrefix + " " + "Google";
-                    }
                 }
             }
             catch( Exception ex )
@@ -490,10 +460,10 @@
         /// <summary>
         /// Releases unmanaged and - optionally - managed resources.
         /// </summary>
-        public void Dispose()
+        public void Dispose( )
         {
-            Dispose(true);
-            GC.SuppressFinalize(this);
+            Dispose( true );
+            GC.SuppressFinalize( this );
         }
 
         /// <summary>
@@ -503,9 +473,9 @@
         /// to release both managed and unmanaged resources;
         /// <c>false</c> to release only unmanaged resources.
         /// </param>
-        protected virtual void Dispose(bool disposing)
+        protected virtual void Dispose( bool disposing )
         {
-            if(disposing)
+            if( disposing )
             {
                 _timer?.Dispose();
             }
@@ -515,7 +485,7 @@
         /// Fails the specified ex.
         /// </summary>
         /// <param name="ex">The ex.</param>
-        private protected static void Fail(Exception ex)
+        private protected static void Fail( Exception ex )
         {
             using var _error = new ErrorWindow(ex);
             _error?.SetText();

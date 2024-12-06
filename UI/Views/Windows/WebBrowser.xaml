@@ -38,6 +38,102 @@
 
     <!--  *********************************************  CONTEXT MENU *************************************  -->
 
+    <Window.ContextMenu>
+        <ContextMenu x:Name="BrowserContextMenu">
+            <wpf:MenuItemAdv
+                Click="OnFileMenuOptionClick"
+                Header="File"
+                ToolTip="Browse File System">
+                <wpf:MenuItemAdv.Icon>
+                    <Image Source="/Resources/Assets/MenuImages/FileItem.png" />
+                </wpf:MenuItemAdv.Icon>
+            </wpf:MenuItemAdv>
+
+            <wpf:MenuItemAdv
+                Click="OnFolderMenuOptionClick"
+                Header="Folder"
+                ToolTip="Browse Directories">
+                <wpf:MenuItemAdv.Icon>
+                    <Image Source="/Resources/Assets/MenuImages/FolderItem.png" />
+                </wpf:MenuItemAdv.Icon>
+            </wpf:MenuItemAdv>
+
+            <Separator Background="{StaticResource BlueBorderBrush}" />
+
+            <wpf:MenuItemAdv
+                Click="OnChromeOptionClick"
+                Header="Chrome"
+                ToolTip="Launch Chrome Browser">
+                <wpf:MenuItemAdv.Icon>
+                    <Image Source="/Resources/Assets/MenuImages/ChromeItem.png" />
+                </wpf:MenuItemAdv.Icon>
+            </wpf:MenuItemAdv>
+
+            <wpf:MenuItemAdv
+                Click="OnEdgeOptionClick"
+                Header="Edge"
+                ToolTip="Launch Edge Browser">
+                <wpf:MenuItemAdv.Icon>
+                    <Image Source="/Resources/Assets/MenuImages/EdgeItem.png" />
+                </wpf:MenuItemAdv.Icon>
+            </wpf:MenuItemAdv>
+
+            <wpf:MenuItemAdv
+                Click="OnFirefoxOptionClick"
+                Header="FireFox"
+                ToolTip="Launch Firefox Browser">
+                <wpf:MenuItemAdv.Icon>
+                    <Image Source="/Resources/Assets/MenuImages/FirefoxItem.png" />
+                </wpf:MenuItemAdv.Icon>
+            </wpf:MenuItemAdv>
+
+            <Separator Background="{StaticResource BlueBorderBrush}" />
+
+            <wpf:MenuItemAdv
+                Click="OnCalculatorMenuOptionClick"
+                Header="Calculator"
+                ToolTip="Open Calculator">
+                <wpf:MenuItemAdv.Icon>
+                    <Image Source="/Resources/Assets/MenuImages/CalculatorItem.png" />
+                </wpf:MenuItemAdv.Icon>
+            </wpf:MenuItemAdv>
+
+            <wpf:MenuItemAdv
+                Click="OnControlPanelOptionClick"
+                Header="Control Panel"
+                ToolTip="Windows Control Panel">
+                <wpf:MenuItemAdv.Icon>
+                    <Image Source="/Resources/Assets/MenuImages/ControlPanelItem.png" />
+                </wpf:MenuItemAdv.Icon>
+            </wpf:MenuItemAdv>
+
+            <wpf:MenuItemAdv
+                Click="OnTaskManagerOptionClick"
+                Header="Task Manager"
+                ToolTip="Windows Task Manager">
+                <wpf:MenuItemAdv.Icon>
+                    <Image Source="/Resources/Assets/MenuImages/TaskManagerItem.png" />
+                </wpf:MenuItemAdv.Icon>
+            </wpf:MenuItemAdv>
+
+            <Separator Background="{StaticResource BlueBorderBrush}" />
+
+            <wpf:MenuItemAdv
+                Click="OnCloseOptionClick"
+                Header="Exit"
+                ToolTip="Exit Application">
+                <wpf:MenuItemAdv.Icon>
+                    <Image Source="/Resources/Assets/MenuImages/CloseItem.png" />
+                </wpf:MenuItemAdv.Icon>
+            </wpf:MenuItemAdv>
+
+        </ContextMenu>
+    </Window.ContextMenu>
+
+
+
+    <!--  *********************************************  MAIN GRID  *************************************  -->
+
     <Grid x:Name="MainGrid">
         <Grid.RowDefinitions>
             <RowDefinition Height="40" />
@@ -205,13 +301,13 @@
 
             <b:BrowserTabItem
                 x:Name="BrowserTab"
-                Width="120"
-                Height="24"
+                Width="0"
+                Height="0"
                 Background="{DynamicResource FormBackground}"
                 BorderBrush="{DynamicResource FormBackground}"
                 Foreground="{DynamicResource FormForeground}"
                 CloseButtonState="Hidden"
-                Header="Browser">
+                Header="">
 
                 <web:ChromiumWebBrowser
                     x:Name="Browser"

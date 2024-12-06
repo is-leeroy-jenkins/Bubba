@@ -52,42 +52,22 @@ namespace Bubba
     public enum Domains
     {
         /// <summary>
-        /// "https://www.google.com/search?q=site:fda.gov "
-        /// </summary>
-        FDA,
-
-        /// <summary>
-        /// "https://www.google.com/search?q=site:cdc.gov "
-        /// </summary>
-        CDC,
-
-        /// <summary>
-        /// "https://www.google.com/search?q=site:nasa.gov "
-        /// </summary>
-        NASA,
-
-        /// <summary>
-        /// "https://www.google.com/search?q=site:noaa.gov "
-        /// </summary>
-        NOAA,
-
-        /// <summary>
-        /// "https://www.google.com/search?q=site:epa.gov "
+        /// "https://www.google.com/search?q=site:www.epa.gov "
         /// </summary>
         EPA,
 
         /// <summary>
-        /// "https://www.google.com/search?q=site:epa.gov "
+        /// "https://www.google.com/search?q=site:data.gov "
         /// </summary>
         DATA,
 
         /// <summary>
-        /// "https://www.google.com/search?q=site:gpo.gov "
+        /// "https://www.google.com/search?q=site:www.gpo.gov "
         /// </summary>
         GPO,
 
         /// <summary>
-        /// "https://www.google.com/search?q=site:govinfo.gov "
+        /// "https://www.google.com/search?q=site:www.govinfo.gov "
         /// </summary>
         USGI,
 
@@ -97,12 +77,12 @@ namespace Bubba
         CRS,
 
         /// <summary>
-        /// "https://www.google.com/search?q=site:loc.gov "
+        /// "https://www.google.com/search?q=site:www.loc.gov "
         /// </summary>
         LOC,
 
         /// <summary>
-        /// "https://www.google.com/search?q=site:whitehouse.gov "
+        /// "https://www.google.com/search?q=site:www.whitehouse.gov "
         /// </summary>
         OMB,
 
@@ -112,64 +92,84 @@ namespace Bubba
         UST,
 
         /// <summary>
-        /// "https://www.google.com/search?q=site:doi.gov "
+        /// "https://www.google.com/search?q=site:www.nasa.gov "
+        /// </summary>
+        NASA,
+
+        /// <summary>
+        /// "https://www.google.com/search?q=site:www.noaa.gov "
+        /// </summary>
+        NOAA,
+
+        /// <summary>
+        /// "https://www.google.com/search?q=site:www.doi.gov "
         /// </summary>
         DOI,
 
         /// <summary>
-        /// "https://www.google.com/search?q=site:nps.gov "
+        /// "https://www.google.com/search?q=site:www.nps.gov "
         /// </summary>
         NPS,
 
         /// <summary>
-        /// "https://www.google.com/search?q=site:gsa.gov "
+        /// "https://www.google.com/search?q=site:www.gsa.gov "
         /// </summary>
         GSA,
 
         /// <summary>
-        /// The National Archives
+        /// "https://www.google.com/search?q=site:www.archives.gov "
         /// </summary>
         NARA,
 
         /// <summary>
-        /// "https://www.google.com/search?q=site:commerce.gov "
+        /// "https://www.google.com/search?q=site:www.commerce.gov "
         /// </summary>
         DOC,
 
         /// <summary>
-        /// The HHS
+        /// The HHS "https://www.google.com/search?q=site:www.hhs.gov "
         /// </summary>
         HHS,
 
         /// <summary>
-        /// The NRC
+        /// The NRC "https://www.google.com/search?q=site:www.nrc.gov "
         /// </summary>
         NRC,
 
         /// <summary>
-        /// The doe
+        /// The doe  "https://www.google.com/search?q=site:www.energy.gov "
         /// </summary>
         DOE,
 
         /// <summary>
-        /// The NSF
+        /// The NSF https://www.google.com/search?q=site:www.nsf.gov "
         /// </summary>
         NSF,
 
         /// <summary>
-        /// The usda
+        /// The usda  "https://www.google.com/search?q=site:www.usda.gov "
         /// </summary>
         USDA,
 
         /// <summary>
-        /// "https://www.google.com/search?q=site:csb.gov "
+        /// "https://www.google.com/search?q=site:www.csb.gov "
         /// </summary>
         CSB,
 
         /// <summary>
-        /// "https://www.google.com/search?q=site:irs.gov "
+        /// "https://www.google.com/search?q=site:www.irs.gov "
         /// </summary>
         IRS,
+
+        /// <summary>
+        /// "https://www.google.com/search?q=site:www.fda.gov "
+        /// </summary>
+        FDA,
+
+        /// <summary>
+        /// "https://www.google.com/search?q=site:www.cdc.gov "
+        /// </summary>
+        CDC,
 
         /// <summary>
         /// "https://www.google.com/search?q=site:usace.army.mil "
@@ -177,12 +177,12 @@ namespace Bubba
         ACE,
 
         /// <summary>
-        /// "https://www.google.com/search?q=site:dhs.gov "
+        /// "https://www.google.com/search?q=site:www.dhs.gov "
         /// </summary>
         DHS,
 
         /// <summary>
-        /// "https://www.google.com/search?q=site:defense.gov "
+        /// "https://www.google.com/search?q=site:www.defense.gov "
         /// </summary>
         DOD,
 
@@ -192,7 +192,7 @@ namespace Bubba
         USNO,
 
         /// <summary>
-        /// "https://www.google.com/search?q=site:weather.gov "
+        /// "https://www.google.com/search?q=site:www.weather.gov "
         /// </summary>
         NWS
     }

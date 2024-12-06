@@ -56,6 +56,8 @@ namespace Bubba
     [ SuppressMessage( "ReSharper", "MemberInitializerValueIgnored" ) ]
     public class GptEndPoint : PropertyChangedBase
     {
+        private protected string _domain = @"https://api.openai.com/";
+
         /// <summary>
         /// The locations
         /// </summary>
@@ -134,6 +136,20 @@ namespace Bubba
             _projects = "https://api.openai.com/v1/organization/projects";
             _imageGenerations = "https://api.openai.com/v1/images/generations";
             _all = GetAll( );
+        }
+
+        /// <summary>
+        /// Gets the domain.
+        /// </summary>
+        /// <value>
+        /// The domain.
+        /// </value>
+        public string Domain
+        {
+            get
+            {
+                return _domain;
+            }
         }
 
         /// <summary>
@@ -310,22 +326,22 @@ namespace Bubba
         /// <returns></returns>
         private protected IList<string> GetAll( )
         {
-            _all.Add( "https://api.openai.com/v1/chat/completions" );
-            _all.Add( "https://api.openai.com/v1/completions" );
-            _all.Add( "https://api.openai.com/v1/assistants" );
-            _all.Add( "https://api.openai.com/v1/audio/speech" );
-            _all.Add( "https://api.openai.com/v1/audio/translations" );
-            _all.Add( "https://api.openai.com/v1/fine_tuning/jobs" );
-            _all.Add( "https://api.openai.com/v1/files" );
-            _all.Add( "https://api.openai.com/v1/uploads" );
-            _all.Add( "https://api.openai.com/v1/images/generations" );
-            _all.Add( "https://api.openai.com/v1/images/variations" );
-            _all.Add( "https://api.openai.com/v1/threads" );
-            _all.Add( "https://api.openai.com/v1/threads/runs" );
-            _all.Add( "https://api.openai.com/v1/vector_stores" );
-            _all.Add( "https://api.openai.com/v1/organization/invites" );
-            _all.Add( "https://api.openai.com/v1/organization/users" );
-            _all.Add( "https://api.openai.com/v1/organization/projects" );
+            _all.Add( "v1/chat/completions" );
+            _all.Add( "v1/completions" );
+            _all.Add( "v1/assistants" );
+            _all.Add( "v1/audio/speech" );
+            _all.Add( "v1/audio/translations" );
+            _all.Add( "v1/fine_tuning/jobs" );
+            _all.Add( "v1/files" );
+            _all.Add( "v1/uploads" );
+            _all.Add( "v1/images/generations" );
+            _all.Add( "v1/images/variations" );
+            _all.Add( "v1/threads" );
+            _all.Add( "v1/threads/runs" );
+            _all.Add( "v1/vector_stores" );
+            _all.Add( "v1/organization/invites" );
+            _all.Add( "v1/organization/users" );
+            _all.Add( "v1/organization/projects" );
             return _all?.Any( ) == true
                 ? _all
                 : default( IList<string> );

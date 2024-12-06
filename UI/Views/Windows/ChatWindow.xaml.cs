@@ -62,6 +62,7 @@ namespace Bubba
     using System.Windows;
     using System.Windows.Input;
     using CefSharp;
+    using OpenTK.Platform.Windows;
     using Syncfusion.SfSkinManager;
     using Syncfusion.Windows.Edit;
     using ToastNotifications;
@@ -76,6 +77,7 @@ namespace Bubba
     [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
     [ SuppressMessage( "ReSharper", "FieldCanBeMadeReadOnly.Global" ) ]
     [ SuppressMessage( "ReSharper", "FieldCanBeMadeReadOnly.Local" ) ]
+    [ SuppressMessage( "ReSharper", "LoopCanBePartlyConvertedToQuery" ) ]
     public partial class ChatWindow : Window, INotifyPropertyChanged
     {
         private const string KEY = "sk-proj-eTIELWTlG8lKT3hpqgq7a3vmB6lBVKo"
@@ -682,7 +684,7 @@ namespace Bubba
                 StoreCheckBox.IsChecked = false;
                 StreamCheckBox.IsChecked = false;
                 SystemRadioButton.IsChecked = false;
-                UserRadioButton.IsChecked = false;
+                UserRadioButton.IsChecked = true;
             }
             catch( Exception ex )
             {
@@ -1491,7 +1493,8 @@ namespace Bubba
         {
             try
             {
-                TaskComboBox.Items.Clear( );
+                TaskComboBox.Items.Clear();
+                TaskComboBox.Items.Add("Completions");
                 TaskComboBox.Items.Add( "Text Generation" );
                 TaskComboBox.Items.Add( "Image Generation" );
                 TaskComboBox.Items.Add( "Embedding" );
@@ -1535,9 +1538,9 @@ namespace Bubba
             {
                 var _endpoints = new GptEndPoint( );
                 EndpointComboBox.Items.Clear( );
-                foreach( var _endpoint in _endpoints.All )
+                foreach( var _url in _endpoints.All )
                 {
-                    EndpointComboBox.Items.Add( _endpoint );
+                    EndpointComboBox.Items.Add( _url );
                 }
             }
             catch(Exception ex)
@@ -2521,7 +2524,6 @@ namespace Bubba
                 if( SystemRadioButton.IsChecked == true )
                 {
                     ChatEditor.Text = "";
-                    EditorLabel.Content = "System";
                     _systemPrompt = ConfigurationManager.AppSettings[ "SystemInstructions" ];
                     ChatEditor.Text = _systemPrompt;
                 }
@@ -2545,7 +2547,6 @@ namespace Bubba
                 if( UserRadioButton.IsChecked == true )
                 {
                     ChatEditor.Text = "";
-                    EditorLabel.Content = "User";
                     _userPrompt = "<Replace With User Prompt>";
                     ChatEditor.Text = _userPrompt;
                 }

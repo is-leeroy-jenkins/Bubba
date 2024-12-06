@@ -7723,44 +7723,24 @@
             
             </summary>
         </member>
-        <member name="F:Bubba.Domains.FDA">
-            <summary>
-            "https://www.google.com/search?q=site:fda.gov "
-            </summary>
-        </member>
-        <member name="F:Bubba.Domains.CDC">
-            <summary>
-            "https://www.google.com/search?q=site:cdc.gov "
-            </summary>
-        </member>
-        <member name="F:Bubba.Domains.NASA">
-            <summary>
-            "https://www.google.com/search?q=site:nasa.gov "
-            </summary>
-        </member>
-        <member name="F:Bubba.Domains.NOAA">
-            <summary>
-            "https://www.google.com/search?q=site:noaa.gov "
-            </summary>
-        </member>
         <member name="F:Bubba.Domains.EPA">
             <summary>
-            "https://www.google.com/search?q=site:epa.gov "
+            "https://www.google.com/search?q=site:www.epa.gov "
             </summary>
         </member>
         <member name="F:Bubba.Domains.DATA">
             <summary>
-            "https://www.google.com/search?q=site:epa.gov "
+            "https://www.google.com/search?q=site:data.gov "
             </summary>
         </member>
         <member name="F:Bubba.Domains.GPO">
             <summary>
-            "https://www.google.com/search?q=site:gpo.gov "
+            "https://www.google.com/search?q=site:www.gpo.gov "
             </summary>
         </member>
         <member name="F:Bubba.Domains.USGI">
             <summary>
-            "https://www.google.com/search?q=site:govinfo.gov "
+            "https://www.google.com/search?q=site:www.govinfo.gov "
             </summary>
         </member>
         <member name="F:Bubba.Domains.CRS">
@@ -7770,12 +7750,12 @@
         </member>
         <member name="F:Bubba.Domains.LOC">
             <summary>
-            "https://www.google.com/search?q=site:loc.gov "
+            "https://www.google.com/search?q=site:www.loc.gov "
             </summary>
         </member>
         <member name="F:Bubba.Domains.OMB">
             <summary>
-            "https://www.google.com/search?q=site:whitehouse.gov "
+            "https://www.google.com/search?q=site:www.whitehouse.gov "
             </summary>
         </member>
         <member name="F:Bubba.Domains.UST">
@@ -7783,64 +7763,84 @@
             "https://www.google.com/search?q=site:fiscal.treasury.gov "
             </summary>
         </member>
+        <member name="F:Bubba.Domains.NASA">
+            <summary>
+            "https://www.google.com/search?q=site:www.nasa.gov "
+            </summary>
+        </member>
+        <member name="F:Bubba.Domains.NOAA">
+            <summary>
+            "https://www.google.com/search?q=site:www.noaa.gov "
+            </summary>
+        </member>
         <member name="F:Bubba.Domains.DOI">
             <summary>
-            "https://www.google.com/search?q=site:doi.gov "
+            "https://www.google.com/search?q=site:www.doi.gov "
             </summary>
         </member>
         <member name="F:Bubba.Domains.NPS">
             <summary>
-            "https://www.google.com/search?q=site:nps.gov "
+            "https://www.google.com/search?q=site:www.nps.gov "
             </summary>
         </member>
         <member name="F:Bubba.Domains.GSA">
             <summary>
-            "https://www.google.com/search?q=site:gsa.gov "
+            "https://www.google.com/search?q=site:www.gsa.gov "
             </summary>
         </member>
         <member name="F:Bubba.Domains.NARA">
             <summary>
-            The National Archives
+            "https://www.google.com/search?q=site:www.archives.gov "
             </summary>
         </member>
         <member name="F:Bubba.Domains.DOC">
             <summary>
-            "https://www.google.com/search?q=site:commerce.gov "
+            "https://www.google.com/search?q=site:www.commerce.gov "
             </summary>
         </member>
         <member name="F:Bubba.Domains.HHS">
             <summary>
-            The HHS
+            The HHS "https://www.google.com/search?q=site:www.hhs.gov "
             </summary>
         </member>
         <member name="F:Bubba.Domains.NRC">
             <summary>
-            The NRC
+            The NRC "https://www.google.com/search?q=site:www.nrc.gov "
             </summary>
         </member>
         <member name="F:Bubba.Domains.DOE">
             <summary>
-            The doe
+            The doe  "https://www.google.com/search?q=site:www.energy.gov "
             </summary>
         </member>
         <member name="F:Bubba.Domains.NSF">
             <summary>
-            The NSF
+            The NSF https://www.google.com/search?q=site:www.nsf.gov "
             </summary>
         </member>
         <member name="F:Bubba.Domains.USDA">
             <summary>
-            The usda
+            The usda  "https://www.google.com/search?q=site:www.usda.gov "
             </summary>
         </member>
         <member name="F:Bubba.Domains.CSB">
             <summary>
-            "https://www.google.com/search?q=site:csb.gov "
+            "https://www.google.com/search?q=site:www.csb.gov "
             </summary>
         </member>
         <member name="F:Bubba.Domains.IRS">
             <summary>
-            "https://www.google.com/search?q=site:irs.gov "
+            "https://www.google.com/search?q=site:www.irs.gov "
+            </summary>
+        </member>
+        <member name="F:Bubba.Domains.FDA">
+            <summary>
+            "https://www.google.com/search?q=site:www.fda.gov "
+            </summary>
+        </member>
+        <member name="F:Bubba.Domains.CDC">
+            <summary>
+            "https://www.google.com/search?q=site:www.cdc.gov "
             </summary>
         </member>
         <member name="F:Bubba.Domains.ACE">
@@ -7850,12 +7850,12 @@
         </member>
         <member name="F:Bubba.Domains.DHS">
             <summary>
-            "https://www.google.com/search?q=site:dhs.gov "
+            "https://www.google.com/search?q=site:www.dhs.gov "
             </summary>
         </member>
         <member name="F:Bubba.Domains.DOD">
             <summary>
-            "https://www.google.com/search?q=site:defense.gov "
+            "https://www.google.com/search?q=site:www.defense.gov "
             </summary>
         </member>
         <member name="F:Bubba.Domains.USNO">
@@ -7865,7 +7865,7 @@
         </member>
         <member name="F:Bubba.Domains.NWS">
             <summary>
-            "https://www.google.com/search?q=site:weather.gov "
+            "https://www.google.com/search?q=site:www.weather.gov "
             </summary>
         </member>
         <member name="T:Bubba.EXT">
@@ -18706,6 +18706,14 @@
             <see cref="T:Bubba.GptEndPoint"/> class.
             </summary>
         </member>
+        <member name="P:Bubba.GptEndPoint.Domain">
+            <summary>
+            Gets the domain.
+            </summary>
+            <value>
+            The domain.
+            </value>
+        </member>
         <member name="P:Bubba.GptEndPoint.All">
             <summary>
             Gets the locations.
@@ -25771,6 +25779,14 @@
             The results.
             </value>
         </member>
+        <member name="P:Bubba.SearchDialog.SelectedDomains">
+            <summary>
+            Gets the selected domains.
+            </summary>
+            <value>
+            The selected domains.
+            </value>
+        </member>
         <member name="M:Bubba.SearchDialog.RegisterCallbacks">
             <summary>
             Registers the callbacks.
@@ -28222,14 +28238,6 @@
             </summary>
             <param name="sender">The sender.</param>
             <param name="e">The <see cref="T:System.EventArgs"/>
-            instance containing the event data.</param>
-        </member>
-        <member name="M:Bubba.WebBrowser.OnHomeButtonClick(System.Object,System.Windows.RoutedEventArgs)">
-            <summary>
-            Called when [home button click].
-            </summary>
-            <param name="sender">The sender.</param>
-            <param name="e">The <see cref="T:System.Windows.RoutedEventArgs"/>
             instance containing the event data.</param>
         </member>
         <member name="M:Bubba.WebBrowser.OnChatButtonClick(System.Object,System.Windows.RoutedEventArgs)">

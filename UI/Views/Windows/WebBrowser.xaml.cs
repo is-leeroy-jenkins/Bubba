@@ -873,6 +873,8 @@ namespace Bubba
                 UrlTextBox.GotMouseCapture += OnUrlTextBoxClick;
                 ToolStripTextBox.GotMouseCapture += OnToolStripTextBoxClick;
                 ChatButton.Click += OnChatButtonClick;
+                HomeButton.Click += OnHomeButtonClick;
+                ToolStripComboBox.SelectionChanged += OnSelectedDomainChanged;
             }
             catch( Exception ex )
             {
@@ -980,8 +982,17 @@ namespace Bubba
             {
                 ThrowIf.Null( browser, nameof( browser ) );
                 var _config = new BrowserSettings( );
-                _config.WebGl = bool.Parse( AppSettings[ "WebGL" ] ).ToCefState( );
-                browser.BrowserSettings = _config;
+                var _flag = AppSettings[ "WebGL" ];
+                if( !string.IsNullOrEmpty( _flag ) )
+                {
+                    _config.WebGl = bool.Parse( _flag ).ToCefState( );
+                    browser.BrowserSettings = _config;
+                }
+                else
+                {
+                    _config.WebGl = bool.Parse( "false" ).ToCefState( );
+                    browser.BrowserSettings = _config;
+                }
             }
             catch( Exception ex )
             {
@@ -1250,9 +1261,10 @@ namespace Bubba
             {
                 ThrowIf.Null( name, nameof( name ) );
                 var _winXpDir = @"C:\Documents and Settings\All Users\Application Data\";
+                var _app = AppSettings[ "Branding" ];
                 return Directory.Exists( _winXpDir )
                     ? _winXpDir + AppSettings[ "Branding" ] + @"\" + name + @"\"
-                    : @"C:\ProgramData\" + AppSettings[ "Branding" ] + @"\" + name + @"\";
+                    : @"C:\ProgramData\" + _app + @"\" + name + @"\";
             }
             catch( Exception ex )
             {
@@ -3329,23 +3341,6 @@ namespace Bubba
                 {
                     HideToolbar( );
                 }
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
-            }
-        }
-
-        /// <summary>
-        /// Called when [home button click].
-        /// </summary>
-        /// <param name="sender">The sender.</param>
-        /// <param name="e">The <see cref="RoutedEventArgs"/>
-        /// instance containing the event data.</param>
-        private void OnHomeButtonClick( object sender, RoutedEventArgs e )
-        {
-            try
-            {
             }
             catch( Exception ex )
             {

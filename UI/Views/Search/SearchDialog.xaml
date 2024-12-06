@@ -39,7 +39,7 @@
 
     <Canvas>
         <b:MetroTile
-            x:Name="LookupButton"
+            x:Name="SearchPanelLookupButton"
             Title=""
             Canvas.Left="590"
             Canvas.Top="87"
@@ -51,11 +51,11 @@
             BorderBrush="{StaticResource ControlBackground}"
             Foreground="{StaticResource FormForeground}"
             Header=""
-            ImageSource="/Resources/Assets/ToolStripImages/LookUpButton.png"
+            ImageSource="/Resources/Assets/ToolStripImages/GoButton.png"
             ToolTip="Begin Search" />
 
         <b:MetroTile
-            x:Name="RefreshButton"
+            x:Name="SearchPanelRefreshButton"
             Title=""
             Canvas.Left="645"
             Canvas.Top="86"
@@ -71,7 +71,7 @@
             ToolTip="Refresh Page" />
 
         <b:MetroLabel
-            x:Name="DomainLabel"
+            x:Name="SearchPanelDomainLabel"
             Canvas.Left="25"
             Canvas.Top="10"
             Width="140"
@@ -85,7 +85,7 @@
             Foreground="{StaticResource BlueBorderBrush}" />
 
         <b:MetroLabel
-            x:Name="QueryLabel"
+            x:Name="SearchPanelQueryLabel"
             Canvas.Left="170"
             Canvas.Top="10"
             Width="575"
@@ -99,7 +99,7 @@
             Foreground="{StaticResource BlueBorderBrush}" />
 
         <b:MetroTile
-            x:Name="CancelButton"
+            x:Name="SearchPanelCancelButton"
             Title=""
             Canvas.Left="700"
             Canvas.Top="87"
@@ -111,7 +111,7 @@
             BorderBrush="{StaticResource ControlBackground}"
             Foreground="{StaticResource FormForeground}"
             Header=""
-            ImageSource="/Resources/Assets/ToolStripImages/RemoveButton.png"
+            ImageSource="/Resources/Assets/ToolStripImages/StopButton.png"
             ToolTip="Cancel Search" />
 
         <b:MetroTextBox
@@ -137,14 +137,14 @@
             Canvas.Top="46"
             Width="160"
             Height="35"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
             BorderThickness="2"
             Background="{StaticResource ControlInteriorBrush}"
             BorderBrush="{StaticResource BlueBorderBrush}"
             Foreground="{StaticResource WhiteForeground}"
-            HorizontalAlignment="Left"
-            VerticalAlignment="Top"
             AllowMultiSelect="True"
-            DefaultText="ComboBox Items">
+            DefaultText="Available Domains">
             <wpf:ComboBoxItemAdv Content="Item 1" />
             <wpf:ComboBoxItemAdv Content="Item 2" />
             <wpf:ComboBoxItemAdv Content="Item 3" />
