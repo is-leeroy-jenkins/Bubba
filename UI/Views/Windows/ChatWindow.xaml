@@ -175,12 +175,20 @@
                 Grid.Row="2"
                 Margin="0,0,0,10">
 
+                <GroupBox x:Name="PromptGroupBox"
+                    Canvas.Left="217"
+                    Width="830"
+                    Height="239"
+                    Background="#FF181818"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    Header="Prompt" BorderBrush="{DynamicResource MutedForeground}" Foreground="{DynamicResource LightBlueBrush}" FontFamily="Roboto" FontSize="12" />
+
                 <GroupBox
                     x:Name="LanguageGroupBox"
                     Canvas.Left="37"
-                    Canvas.Top="80"
-                    Width="150"
-                    Height="159"
+                    Width="160"
+                    Height="239"
                     HorizontalAlignment="Center"
                     VerticalAlignment="Top"
                     Header="Language"
@@ -188,22 +196,52 @@
                     Background="#FF181818"
                     BorderBrush="{StaticResource MutedForeground}"
                     FontFamily="Roboto"
-                    FontSize="12">
-
-                    <ListBox
-                        x:Name="LanguageListBox"
-                        Height="93"
-                        Margin="10,0,12,0"
-                        Background="{DynamicResource ControlInteriorBrush}"
-                        BorderBrush="{DynamicResource BlueBorderBrush}"
-                        Foreground="{DynamicResource WhiteForeground}" />
-                </GroupBox>
+                    FontSize="12" />
+                <ListBox
+                    x:Name="LanguageListBox"
+                    Canvas.Left="57"
+                    Canvas.Top="45"
+                    Width="120"
+                    Height="170"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Top"
+                    Background="{DynamicResource ControlInteriorBrush}"
+                    BorderBrush="{DynamicResource BlueBorderBrush}"
+                    Foreground="{DynamicResource WhiteForeground}" />
 
             </Canvas>
 
             <Canvas
                 x:Name="SystemCanvas"
                 Grid.Row="0">
+
+                <GroupBox
+                    Canvas.Left="667"
+                    Canvas.Top="20"
+                    Width="265"
+                    Height="97"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Center"
+                    Header="Endpoints"
+                    Background="#FF181818"
+                    Foreground="{DynamicResource LightBlueBrush}" />
+
+                <b:MetroEditor
+                    x:Name="ChatEditor"
+                    Canvas.Left="222"
+                    Canvas.Top="446"
+                    Width="815"
+                    Height="190"
+                    MaxWidth="840"
+                    Padding="15,15,5,5"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Top"
+                    Background="{StaticResource ControlInteriorBrush}"
+                    Foreground="{StaticResource WhiteForeground}"
+                    BorderThickness="2,2,2,2"
+                    ClipToBounds="True"
+                    VerticalScrollBarVisibility="Visible"
+                    OutliningAreaWidth="15" />
 
                 <GroupBox
                     Canvas.Left="347"
@@ -228,19 +266,6 @@
                     Foreground="{DynamicResource LightBlueBrush}" />
 
                 <GroupBox
-                    Canvas.Left="37"
-                    Canvas.Top="393"
-                    Width="150"
-                    Height="73"
-                    HorizontalAlignment="Center"
-                    VerticalAlignment="Top"
-                    Header="Roles"
-                    Background="#FF181818"
-                    Foreground="{DynamicResource LightBlueBrush}"
-                    FontFamily="Roboto"
-                    FontSize="12" />
-
-                <GroupBox
                     x:Name="OutputGroupBox"
                     Canvas.Left="1061"
                     Canvas.Top="171"
@@ -251,23 +276,6 @@
                     Background="#FF181818"
                     Header="Output"
                     Foreground="{DynamicResource LightBlueBrush}" />
-
-                <b:MetroEditor
-                    x:Name="ChatEditor"
-                    Canvas.Left="222"
-                    Canvas.Top="405"
-                    Width="815"
-                    Height="242"
-                    MaxWidth="840"
-                    Padding="15,15,5,5"
-                    HorizontalAlignment="Left"
-                    VerticalAlignment="Top"
-                    Background="{StaticResource ControlInteriorBrush}"
-                    Foreground="{StaticResource WhiteForeground}"
-                    BorderThickness="2,2,2,2"
-                    ClipToBounds="True"
-                    VerticalScrollBarVisibility="Visible"
-                    OutliningAreaWidth="15" />
 
                 <CheckBox
                     x:Name="StoreCheckBox"
@@ -307,17 +315,6 @@
                     Foreground="{StaticResource WhiteForeground}"
                     ToolTip="Select GPT Task" />
 
-                <GroupBox
-                    Canvas.Left="667"
-                    Canvas.Top="20"
-                    Width="260"
-                    Height="97"
-                    HorizontalAlignment="Left"
-                    VerticalAlignment="Center"
-                    Header="Endpoints"
-                    Background="#FF181818"
-                    Foreground="{DynamicResource LightBlueBrush}" />
-
                 <ComboBox
                     x:Name="ModelComboBox"
                     Canvas.Left="372"
@@ -332,19 +329,32 @@
                     Foreground="{StaticResource WhiteForeground}" />
 
             </Canvas>
-
             <Canvas
                 x:Name="ParameterCanvas"
                 Grid.Row="1"
                 Margin="0,0,0,10">
 
                 <GroupBox
+                    Canvas.Left="44"
+                    Canvas.Top="6"
+                    Width="148"
+                    Height="186"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Center"
+                    Foreground="{StaticResource LightBlueBrush}"
+                    Header="Randomness"
+                    Background="#FF181818"
+                    BorderBrush="{StaticResource MutedForeground}"
+                    FontFamily="Roboto"
+                    FontSize="12" />
+
+                <GroupBox
                     x:Name="VoiceLabel"
                     Canvas.Left="1001"
-                    Canvas.Top="-148"
+                    Canvas.Top="-142"
                     Width="230"
-                    Height="97"
-                    HorizontalAlignment="Left"
+                    Height="98"
+                    HorizontalAlignment="Center"
                     VerticalAlignment="Top"
                     Background="#FF181818"
                     Header="Voices"
@@ -373,20 +383,6 @@
                     Foreground="{StaticResource LightBlueBrush}"
                     Background="#FF181818"
                     Header="Max Token"
-                    FontFamily="Roboto"
-                    FontSize="12" />
-
-                <GroupBox
-                    Canvas.Left="44"
-                    Canvas.Top="6"
-                    Width="147"
-                    Height="186"
-                    HorizontalAlignment="Left"
-                    VerticalAlignment="Center"
-                    Foreground="{StaticResource LightBlueBrush}"
-                    Header="Randomness"
-                    Background="#FF181818"
-                    BorderBrush="{StaticResource MutedForeground}"
                     FontFamily="Roboto"
                     FontSize="12" />
 
@@ -446,28 +442,6 @@
                     FontFamily="Roboto"
                     FontSize="12" />
 
-                <Slider
-                    x:Name="TemperatureSlider"
-                    Canvas.Left="56"
-                    Canvas.Top="76"
-                    Width="120"
-                    Height="45"
-                    HorizontalAlignment="Left"
-                    VerticalAlignment="Top"
-                    ToolTip="A number between 0 and 1 (Temperature). Default=1"
-                    LargeChange="0.2"
-                    SmallChange="0.1"
-                    TickFrequency="0.25"
-                    Tag="TopPercent"
-                    TickPlacement="Both"
-                    Maximum="1"
-                    Minimum="0"
-                    Foreground="{StaticResource WhiteForeground}"
-                    FontFamily="Roboto"
-                    SnapsToDevicePixels="True"
-                    ClipToBounds="True"
-                    Value="1" />
-
                 <wpf:DoubleTextBox
                     x:Name="TemperatureTextBox"
                     Canvas.Left="76"
@@ -498,7 +472,7 @@
                     ApplyNegativeForeground="True"
                     ApplyZeroColor="True"
                     MaximumNumberDecimalDigits="1"
-                    MinimumNumberDecimalDigits="0">
+                    MinimumNumberDecimalDigits="1">
                     <wpf:DoubleTextBox.NumberFormat>
                         <num:NumberFormatInfo
                             CurrencyDecimalDigits="1"
@@ -515,9 +489,9 @@
                     HorizontalAlignment="Left"
                     VerticalAlignment="Top"
                     ToolTip="A ratio between 0 and 1 (%). Default=0"
-                    LargeChange="0.2"
+                    LargeChange="0.25"
                     SmallChange="0.1"
-                    TickFrequency="0.25"
+                    TickFrequency="0.1"
                     Tag="TopPercent"
                     TickPlacement="Both"
                     Maximum="1"
@@ -702,14 +676,14 @@
 
                 <b:MetroButton
                     x:Name="SendButton"
-                    Canvas.Left="1110"
+                    Canvas.Left="1092"
                     Canvas.Top="300"
-                    Width="80"
+                    Width="98"
                     Height="35"
                     HorizontalAlignment="Left"
-                    VerticalAlignment="Top"
+                    VerticalAlignment="Center"
                     Content=""
-                    Label="Send"
+                    Label="Generate"
                     FontFamily="Roboto"
                     FontSize="14"
                     IsMultiLine="False"
@@ -719,12 +693,12 @@
 
                 <b:MetroButton
                     x:Name="ClearButton"
-                    Canvas.Left="1110"
+                    Canvas.Left="1092"
                     Canvas.Top="395"
-                    Width="80"
+                    Width="98"
                     Height="35"
                     HorizontalAlignment="Left"
-                    VerticalAlignment="Top"
+                    VerticalAlignment="Center"
                     ToolTip="Resets input controls and parameters"
                     Content=""
                     Label="Reset"
@@ -840,30 +814,18 @@
                     Foreground="{DynamicResource BlueBorderBrush}"
                     FontFamily="Roboto"
                     FontSize="18" />
-
                 <b:MetroRadioButton
                     x:Name="SystemRadioButton"
-                    Canvas.Left="108"
-                    Canvas.Top="259"
+                    Canvas.Left="690"
+                    Canvas.Top="260"
                     Width="64"
-                    HorizontalAlignment="Left"
+                    Height="22"
+                    HorizontalAlignment="Center"
                     VerticalAlignment="Top"
                     Content="System"
                     Foreground="{DynamicResource LightBlueBrush}"
                     FontFamily="Roboto"
                     FontSize="14"
-                    Background="{DynamicResource FormForeground}" />
-
-                <b:MetroRadioButton
-                    x:Name="UserRadioButton"
-                    Canvas.Left="55"
-                    Canvas.Top="259"
-                    Width="48"
-                    HorizontalAlignment="Left"
-                    VerticalAlignment="Top"
-                    Content="User"
-                    FontSize="14"
-                    Foreground="{DynamicResource LightBlueBrush}"
                     Background="{DynamicResource FormForeground}" />
                 <ComboBox
                     x:Name="EndpointComboBox"
@@ -876,7 +838,20 @@
                     BorderThickness="2"
                     Background="{StaticResource ControlInteriorBrush}"
                     BorderBrush="{StaticResource BlueBorderBrush}"
-                    Foreground="{StaticResource WhiteForeground}" />
+                    Foreground="{StaticResource WhiteForeground}" FontFamily="Roboto" Panel.ZIndex="1" />
+                <b:MetroRadioButton
+                    x:Name="UserRadioButton"
+                    Canvas.Left="387"
+                    Canvas.Top="260"
+                    Width="55"
+                    Height="22"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Top"
+                    Content="User"
+                    FontSize="14"
+                    Foreground="{DynamicResource LightBlueBrush}"
+                    Background="{DynamicResource FormForeground}" />
+                <Slider x:Name="TemperatureSlider" Canvas.Left="58" Canvas.Top="76" Width="120" TickPlacement="Both" Value="1" TickFrequency="0.1" LargeChange="0.2" Maximum="1"/>
 
 
             </Canvas>
