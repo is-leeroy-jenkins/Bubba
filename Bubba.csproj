@@ -255,6 +255,7 @@
     <None Remove="Resources\Assets\ToolStripImages\PrintButton.png" />
     <None Remove="Resources\Assets\ToolStripImages\RefreshButton.png" />
     <None Remove="Resources\Assets\ToolStripImages\RemoveButton.png" />
+    <None Remove="Resources\Assets\ToolStripImages\ResfreshButton.png" />
     <None Remove="Resources\Assets\ToolStripImages\SaveButton.png" />
     <None Remove="Resources\Assets\ToolStripImages\SchemaButton.png" />
     <None Remove="Resources\Assets\ToolStripImages\SmithButton.png" />

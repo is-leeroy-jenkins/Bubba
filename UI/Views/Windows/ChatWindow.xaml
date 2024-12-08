@@ -175,14 +175,19 @@
                 Grid.Row="2"
                 Margin="0,0,0,10">
 
-                <GroupBox x:Name="PromptGroupBox"
+                <GroupBox
+                    x:Name="PromptGroupBox"
                     Canvas.Left="217"
                     Width="830"
                     Height="239"
-                    Background="#FF181818"
                     HorizontalAlignment="Center"
                     VerticalAlignment="Center"
-                    Header="Prompt" BorderBrush="{DynamicResource MutedForeground}" Foreground="{DynamicResource LightBlueBrush}" FontFamily="Roboto" FontSize="12" />
+                    Header="Prompt"
+                    BorderBrush="{DynamicResource MutedForeground}"
+                    Background="{StaticResource GroupBoxBackground}"
+                    Foreground="{DynamicResource LightBlueBrush}"
+                    FontFamily="Roboto"
+                    FontSize="12" />
 
                 <GroupBox
                     x:Name="LanguageGroupBox"
@@ -193,10 +198,11 @@
                     VerticalAlignment="Top"
                     Header="Language"
                     Foreground="{StaticResource LightBlueBrush}"
-                    Background="#FF181818"
+                    Background="{StaticResource GroupBoxBackground}"
                     BorderBrush="{StaticResource MutedForeground}"
                     FontFamily="Roboto"
                     FontSize="12" />
+
                 <ListBox
                     x:Name="LanguageListBox"
                     Canvas.Left="57"
@@ -205,6 +211,7 @@
                     Height="170"
                     HorizontalAlignment="Center"
                     VerticalAlignment="Top"
+                    BorderThickness="2"
                     Background="{DynamicResource ControlInteriorBrush}"
                     BorderBrush="{DynamicResource BlueBorderBrush}"
                     Foreground="{DynamicResource WhiteForeground}" />
@@ -218,20 +225,20 @@
                 <GroupBox
                     Canvas.Left="667"
                     Canvas.Top="20"
-                    Width="265"
+                    Width="270"
                     Height="97"
                     HorizontalAlignment="Left"
                     VerticalAlignment="Center"
                     Header="Endpoints"
-                    Background="#FF181818"
+                    Background="{StaticResource GroupBoxBackground}"
                     Foreground="{DynamicResource LightBlueBrush}" />
 
                 <b:MetroEditor
                     x:Name="ChatEditor"
-                    Canvas.Left="222"
+                    Canvas.Left="232"
                     Canvas.Top="446"
-                    Width="815"
-                    Height="190"
+                    Width="795"
+                    Height="180"
                     MaxWidth="840"
                     Padding="15,15,5,5"
                     HorizontalAlignment="Center"
@@ -251,7 +258,7 @@
                     HorizontalAlignment="Left"
                     VerticalAlignment="Center"
                     Header="Models"
-                    Background="#FF181818"
+                    Background="{StaticResource GroupBoxBackground}"
                     Foreground="{DynamicResource LightBlueBrush}" />
 
                 <GroupBox
@@ -262,7 +269,7 @@
                     HorizontalAlignment="Left"
                     VerticalAlignment="Center"
                     Header="Tasks"
-                    Background="#FF181818"
+                    Background="{StaticResource GroupBoxBackground}"
                     Foreground="{DynamicResource LightBlueBrush}" />
 
                 <GroupBox
@@ -273,8 +280,8 @@
                     Height="89"
                     HorizontalAlignment="Left"
                     VerticalAlignment="Top"
-                    Background="#FF181818"
                     Header="Output"
+                    Background="{StaticResource GroupBoxBackground}"
                     Foreground="{DynamicResource LightBlueBrush}" />
 
                 <CheckBox
@@ -329,10 +336,25 @@
                     Foreground="{StaticResource WhiteForeground}" />
 
             </Canvas>
+
             <Canvas
                 x:Name="ParameterCanvas"
                 Grid.Row="1"
                 Margin="0,0,0,10">
+
+                <GroupBox
+                    Canvas.Left="1059"
+                    Canvas.Top="245"
+                    Width="172"
+                    Height="240"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Top"
+                    Foreground="{StaticResource LightBlueBrush}"
+                    Header="Command"
+                    Background="{StaticResource GroupBoxBackground}"
+                    BorderBrush="{StaticResource MutedForeground}"
+                    FontFamily="Roboto"
+                    FontSize="12" />
 
                 <GroupBox
                     Canvas.Left="44"
@@ -343,7 +365,7 @@
                     VerticalAlignment="Center"
                     Foreground="{StaticResource LightBlueBrush}"
                     Header="Randomness"
-                    Background="#FF181818"
+                    Background="{StaticResource GroupBoxBackground}"
                     BorderBrush="{StaticResource MutedForeground}"
                     FontFamily="Roboto"
                     FontSize="12" />
@@ -356,8 +378,8 @@
                     Height="98"
                     HorizontalAlignment="Center"
                     VerticalAlignment="Top"
-                    Background="#FF181818"
                     Header="Voices"
+                    Background="{StaticResource GroupBoxBackground}"
                     Foreground="{DynamicResource LightBlueBrush}" />
 
 
@@ -368,8 +390,8 @@
                     Height="89"
                     HorizontalAlignment="Center"
                     VerticalAlignment="Top"
-                    Background="#FF181818"
                     Header="Sound"
+                    Background="{StaticResource GroupBoxBackground}"
                     Foreground="{DynamicResource LightBlueBrush}" />
 
 
@@ -381,7 +403,7 @@
                     HorizontalAlignment="Center"
                     VerticalAlignment="Top"
                     Foreground="{StaticResource LightBlueBrush}"
-                    Background="#FF181818"
+                    Background="{StaticResource GroupBoxBackground}"
                     Header="Max Token"
                     FontFamily="Roboto"
                     FontSize="12" />
@@ -395,7 +417,7 @@
                     VerticalAlignment="Top"
                     Foreground="{StaticResource LightBlueBrush}"
                     Header="Probability Mass"
-                    Background="#FF181818"
+                    Background="{StaticResource GroupBoxBackground}"
                     BorderBrush="{StaticResource MutedForeground}"
                     FontFamily="Roboto"
                     FontSize="12" />
@@ -409,7 +431,7 @@
                     VerticalAlignment="Top"
                     Foreground="{StaticResource LightBlueBrush}"
                     Header="Presence"
-                    Background="#FF181818"
+                    Background="{StaticResource GroupBoxBackground}"
                     BorderBrush="{StaticResource MutedForeground}"
                     FontFamily="Roboto"
                     FontSize="12" />
@@ -423,21 +445,7 @@
                     VerticalAlignment="Top"
                     Foreground="{StaticResource LightBlueBrush}"
                     Header="Frequency"
-                    Background="#FF181818"
-                    BorderBrush="{StaticResource MutedForeground}"
-                    FontFamily="Roboto"
-                    FontSize="12" />
-
-                <GroupBox
-                    Canvas.Left="1059"
-                    Canvas.Top="245"
-                    Width="172"
-                    Height="240"
-                    HorizontalAlignment="Center"
-                    VerticalAlignment="Top"
-                    Foreground="{StaticResource LightBlueBrush}"
-                    Header="Command"
-                    Background="#FF181818"
+                    Background="{StaticResource GroupBoxBackground}"
                     BorderBrush="{StaticResource MutedForeground}"
                     FontFamily="Roboto"
                     FontSize="12" />
@@ -481,7 +489,7 @@
                 </wpf:DoubleTextBox>
 
                 <Slider
-                    x:Name="PercentSlider"
+                    x:Name="TopPercentSlider"
                     Canvas.Left="242"
                     Canvas.Top="76"
                     Width="120"
@@ -491,16 +499,16 @@
                     ToolTip="A ratio between 0 and 1 (%). Default=0"
                     LargeChange="0.25"
                     SmallChange="0.1"
-                    TickFrequency="0.1"
+                    TickFrequency="0.2"
                     Tag="TopPercent"
                     TickPlacement="Both"
-                    Maximum="1"
-                    Minimum="0"
+                    Maximum="1.0"
+                    Minimum="0.0"
                     Foreground="{StaticResource WhiteForeground}"
                     FontFamily="Roboto"
                     SnapsToDevicePixels="True"
                     ClipToBounds="True"
-                    Value="1" />
+                    Value="1.0" />
 
                 <wpf:DoubleTextBox
                     x:Name="TopPercentTextBox"
@@ -519,7 +527,7 @@
                     SnapsToDevicePixels="True"
                     FontSize="12"
                     FontFamily="Roboto"
-                    Text="{Binding Value, ElementName=PercentSlider, Mode=TwoWay, StringFormat=P1}"
+                    Text="{Binding Value, ElementName=TopPercentSlider, Mode=TwoWay, StringFormat=P1}"
                     Tag="TopPercent"
                     ToolTip="A number between 0 and 1 (%). Default=0"
                     NumberDecimalDigits="1"
@@ -527,7 +535,6 @@
                     ZeroColor="#FFEFA90D"
                     SelectionOpacity="1"
                     NegativeForeground="{StaticResource RedForeground}"
-                    UseNullOption="True"
                     MinValue="0"
                     MaxValue="1"
                     IsScrollingOnCircle="False">
@@ -674,40 +681,6 @@
                     NumberDecimalDigits="0"
                     Value="150" />
 
-                <b:MetroButton
-                    x:Name="SendButton"
-                    Canvas.Left="1092"
-                    Canvas.Top="300"
-                    Width="98"
-                    Height="35"
-                    HorizontalAlignment="Left"
-                    VerticalAlignment="Center"
-                    Content=""
-                    Label="Generate"
-                    FontFamily="Roboto"
-                    FontSize="14"
-                    IsMultiLine="False"
-                    ToolTip="Send Request"
-                    IconHeight="0"
-                    IconWidth="0" />
-
-                <b:MetroButton
-                    x:Name="ClearButton"
-                    Canvas.Left="1092"
-                    Canvas.Top="395"
-                    Width="98"
-                    Height="35"
-                    HorizontalAlignment="Left"
-                    VerticalAlignment="Center"
-                    ToolTip="Resets input controls and parameters"
-                    Content=""
-                    Label="Reset"
-                    FontFamily="Roboto"
-                    FontSize="14"
-                    IsMultiLine="False"
-                    IconHeight="0"
-                    IconWidth="0" />
-
                 <GroupBox
                     Canvas.Left="838"
                     Canvas.Top="6"
@@ -715,7 +688,7 @@
                     Height="78"
                     HorizontalAlignment="Center"
                     VerticalAlignment="Center"
-                    Background="#FF181818"
+                    Background="{StaticResource GroupBoxBackground}"
                     Foreground="{StaticResource LightBlueBrush}"
                     Header="GPT Response"
                     FontFamily="Roboto"
@@ -810,10 +783,11 @@
                     Width="78"
                     HorizontalAlignment="Left"
                     VerticalAlignment="Top"
-                    Text="{Binding Value, ElementName=PercentSlider, Mode=TwoWay, StringFormat=P1}"
+                    Text="{Binding Value, ElementName=TopPercentSlider, Mode=TwoWay, StringFormat=P1}"
                     Foreground="{DynamicResource BlueBorderBrush}"
                     FontFamily="Roboto"
                     FontSize="18" />
+
                 <b:MetroRadioButton
                     x:Name="SystemRadioButton"
                     Canvas.Left="690"
@@ -826,7 +800,8 @@
                     Foreground="{DynamicResource LightBlueBrush}"
                     FontFamily="Roboto"
                     FontSize="14"
-                    Background="{DynamicResource FormForeground}" />
+                    Background="{DynamicResource LightBlueBrush}" />
+
                 <ComboBox
                     x:Name="EndpointComboBox"
                     Canvas.Left="690"
@@ -835,10 +810,13 @@
                     Height="30"
                     HorizontalAlignment="Left"
                     VerticalAlignment="Center"
+                    Panel.ZIndex="1"
                     BorderThickness="2"
                     Background="{StaticResource ControlInteriorBrush}"
                     BorderBrush="{StaticResource BlueBorderBrush}"
-                    Foreground="{StaticResource WhiteForeground}" FontFamily="Roboto" Panel.ZIndex="1" />
+                    Foreground="{StaticResource WhiteForeground}"
+                    FontFamily="Roboto" />
+
                 <b:MetroRadioButton
                     x:Name="UserRadioButton"
                     Canvas.Left="387"
@@ -849,9 +827,50 @@
                     VerticalAlignment="Top"
                     Content="User"
                     FontSize="14"
-                    Foreground="{DynamicResource LightBlueBrush}"
-                    Background="{DynamicResource FormForeground}" />
-                <Slider x:Name="TemperatureSlider" Canvas.Left="58" Canvas.Top="76" Width="120" TickPlacement="Both" Value="1" TickFrequency="0.1" LargeChange="0.2" Maximum="1"/>
+                    Foreground="{DynamicResource LightBlueBrush}">
+                    <b:MetroRadioButton.Background>
+                        <SolidColorBrush Color="{DynamicResource LightBlueColor}" />
+                    </b:MetroRadioButton.Background>
+                </b:MetroRadioButton>
+
+                <Slider
+                    x:Name="TemperatureSlider"
+                    Canvas.Left="58"
+                    Canvas.Top="76"
+                    Width="120"
+                    Height="45"
+                    TickPlacement="Both"
+                    TickFrequency="0.2"
+                    LargeChange="0.25"
+                    Maximum="2.0"
+                    Minimum="0.0"
+                    Value="1.0" />
+
+                <b:MetroTile
+                    x:Name="SendButton"
+                    Title=""
+                    Canvas.Left="1095"
+                    Canvas.Top="285"
+                    Width="100"
+                    Height="80"
+                    ToolTip="Send GPT Reqeust"
+                    BorderBrush="{StaticResource BlueBorderBrush}"
+                    Header=""
+                    ImageSource="/Resources/Assets/ToolStripImages/ChatButton.png" />
+
+                <b:MetroTile
+                    x:Name="ClearButton"
+                    Title=""
+                    Canvas.Left="1095"
+                    Canvas.Top="385"
+                    Width="100"
+                    Height="80"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Top"
+                    BorderBrush="{StaticResource BlueBorderBrush}"
+                    ToolTip="Reset GPT Parameters"
+                    Header=""
+                    ImageSource="/Resources/Assets/ToolStripImages/RefreshButton.png" />
 
 
             </Canvas>
@@ -973,7 +992,7 @@
                     Height="30"
                     Margin="5,1,5,1"
                     ToolTip="Show/Hide Toolbar"
-                    ImageSource="/Resources/Assets/ToolStripImages/LookupButton.png"
+                    ImageSource="/Resources/Assets/ToolStripImages/ToggleButton.png"
                     FontFamily="Roboto" />
             </ToolBar>
         </Canvas>

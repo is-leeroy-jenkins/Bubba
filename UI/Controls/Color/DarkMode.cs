@@ -185,6 +185,7 @@ namespace Bubba
             LightBlueBrush = new SolidColorBrush( _lightBlue );
             BlackBrush = new SolidColorBrush( _blackColor );
             WhiteForeground = new SolidColorBrush( _whiteColor );
+            GroupBoxBackground = new SolidColorBrush( _groupBoxBackground );
             FontFamily = new FontFamily( "Roboto Regular" );
             FontSize = 11;
             Padding = new Thickness( 1 );

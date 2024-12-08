@@ -546,7 +546,8 @@ namespace Bubba
         {
             try
             {
-                var _file = $@"/Resources/Assets/ExtensionImages/{_fileExtension.ToUpper( )}.png";
+                var _extn = _fileExtension.ToUpper( );
+                var _file = $@"/Resources/Assets/ExtensionImages/{_extn}.png";
                 var _uri = new Uri( _file, UriKind.Relative );
                 _image = new BitmapImage( _uri );
                 PictureBox.Source = _image;
@@ -701,7 +702,7 @@ namespace Bubba
                 _count = _filePaths?.Count ?? 0;
                 CountLabel.Content = $"{_count:N0}";
                 _duration = _watch.Elapsed.TotalMilliseconds;
-                DurationLabel.Content = $"{_duration:N0}";
+                DurationLabel.Content = $"{_duration:N0} ms";
             }
             catch( Exception ex )
             {
@@ -722,9 +723,9 @@ namespace Bubba
                 _watch.Start( );
                 var _list = new List<string>();
                 var _pattern = "*." + _fileExtension;
-                for( var _i = 0; _i < _initialPaths.Count; _i++ )
+                for( var _e = 0; _e < _initialPaths.Count; _e++ )
                 {
-                    var _dirPath = _initialPaths[ _i ];
+                    var _dirPath = _initialPaths[ _e ];
                     var _parent = Directory.CreateDirectory( _dirPath );
                     var _folders = _parent.GetDirectories( )
                         ?.Where( s => s.Name.StartsWith( "My" ) == false )

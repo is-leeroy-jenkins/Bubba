@@ -159,6 +159,17 @@ namespace Bubba
         /// </summary>
         private protected Color _grayColor = Colors.DarkGray;
 
+        /// <summary>
+        /// The group box background
+        /// </summary>
+        private protected Color _groupBoxBackground = new Color( )
+        {
+            A = 255,
+            R = 24,
+            G = 24,
+            B = 24
+        };
+
         /// <inheritdoc />
         /// <summary>
         /// The green
@@ -386,6 +397,14 @@ namespace Bubba
         /// The color of the back.
         /// </value>
         public SolidColorBrush Background { get; private protected init; }
+
+        /// <summary>
+        /// Gets the group box background.
+        /// </summary>
+        /// <value>
+        /// The group box background.
+        /// </value>
+        public SolidColorBrush GroupBoxBackground { get; private protected init; }
 
         /// <inheritdoc />
         /// <summary>

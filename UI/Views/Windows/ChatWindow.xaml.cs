@@ -1,14 +1,14 @@
 ﻿// ******************************************************************************************
 //     Assembly:                Bubba
 //     Author:                  Terry D. Eppler
-//     Created:                 12-04-2024
+//     Created:                 12-07-2024
 // 
 //     Last Modified By:        Terry D. Eppler
-//     Last Modified On:        12-04-2024
+//     Last Modified On:        12-07-2024
 // ******************************************************************************************
 // <copyright file="ChatWindow.xaml.cs" company="Terry D. Eppler">
-//    Bubba is a small windows (wpf) application for interacting with
-//    Chat GPT that's developed in C-Sharp under the MIT license
+//    Bubba is a small and simple windows (wpf) application for interacting with the OpenAI API
+//    that's developed in C-Sharp under the MIT license.C#.
 // 
 //    Copyright ©  2020-2024 Terry D. Eppler
 // 
@@ -63,6 +63,7 @@ namespace Bubba
     using System.Windows.Input;
     using CefSharp;
     using OpenTK.Platform.Windows;
+    using Syncfusion.PMML;
     using Syncfusion.SfSkinManager;
     using Syncfusion.Windows.Edit;
     using ToastNotifications;
@@ -78,6 +79,7 @@ namespace Bubba
     [ SuppressMessage( "ReSharper", "FieldCanBeMadeReadOnly.Global" ) ]
     [ SuppressMessage( "ReSharper", "FieldCanBeMadeReadOnly.Local" ) ]
     [ SuppressMessage( "ReSharper", "LoopCanBePartlyConvertedToQuery" ) ]
+    [ SuppressMessage( "ReSharper", "RedundantExtendsListEntry" ) ]
     public partial class ChatWindow : Window, INotifyPropertyChanged
     {
         private const string KEY = "sk-proj-eTIELWTlG8lKT3hpqgq7a3vmB6lBVKo"
@@ -166,8 +168,10 @@ namespace Bubba
         private protected bool _stream;
 
         /// <summary>
-        /// A number between -2.0 and 2.0  Positive value decrease the
-        /// model's likelihood to repeat the same line verbatim.
+        /// A number between 0 and 2.0
+        /// Higher values like 0.8 will make the output more random,
+        /// while lower values like 0.2 will make it more focused and deterministic.
+        /// Default=1
         /// </summary>
         private protected double _temperature;
 
@@ -352,12 +356,11 @@ namespace Bubba
         }
 
         /// <summary>
-        /// A number between -2.0 and 2.0  Positive value decrease the
-        /// model's likelihood to repeat the same line verbatim.
+        /// A number between 0 and 2.0
+        /// Higher values like 0.8 will make the output more random,
+        /// while lower values like 0.2 will make it more focused and deterministic.
+        /// Default=1
         /// </summary>
-        /// <value>
-        /// The temperature.
-        /// </value>
         public double Temperature
         {
             get
@@ -436,10 +439,10 @@ namespace Bubba
             }
             set
             {
-                if(_endpoint != value)
+                if( _endpoint != value )
                 {
                     _endpoint = value;
-                    OnPropertyChanged(nameof(EndPoint));
+                    OnPropertyChanged( nameof( EndPoint ) );
                 }
             }
         }
@@ -520,9 +523,9 @@ namespace Bubba
                 ChatEditor.SelectionBackground = _theme.SteelBlueBrush;
                 ChatEditor.SelectionForeground = _theme.WhiteForeground;
             }
-            catch(Exception ex)
+            catch( Exception ex )
             {
-                Fail(ex);
+                Fail( ex );
             }
         }
 
@@ -673,7 +676,7 @@ namespace Bubba
                 PresenceSlider.Value = 0D;
                 FrequencySlider.Value = 0D;
                 TemperatureSlider.Value = 1D;
-                PercentSlider.Value = 1D;
+                TopPercentSlider.Value = 1D;
                 MaxTokensTextBox.Value = 157D;
                 TaskComboBox.SelectedIndex = -1;
                 ModelComboBox.SelectedIndex = -1;
@@ -1042,7 +1045,7 @@ namespace Bubba
         /// <summary>
         /// Sets the hyper parameters.
         /// </summary>
-        private protected void SetHyperParameters( )
+        private protected void SetHyperameters( )
         {
             try
             {
@@ -1050,10 +1053,41 @@ namespace Bubba
                 _stream = StreamCheckBox.IsChecked ?? false;
                 _presence = PresenceSlider.Value;
                 _temperature = TemperatureSlider.Value;
-                _topPercent = PercentSlider.Value;
+                _topPercent = TopPercentSlider.Value;
                 _frequency = FrequencySlider.Value;
                 _number = int.Parse( NumberTextBox.Value.ToString( ) );
                 _maxCompletionTokens = int.Parse( MaxTokensTextBox.Value.ToString( ) );
+                switch( _role )
+                {
+                    case "Text Generation":
+                    {
+                        break;
+                    }
+                    case "Image Generation":
+                    {
+                        break;
+                    }
+                    case "Speech Generation":
+                    {
+                        break;
+                    }
+                    case "Embedding":
+                    {
+                        break;
+                    }
+                    case "Fine-tuning":
+                    {
+                        break;
+                    }
+                    case "Transcriptions":
+                    {
+                        break;
+                    }
+                    case "Translations":
+                    {
+                        break;
+                    }
+                }
             }
             catch( Exception ex )
             {
@@ -1104,7 +1138,9 @@ namespace Bubba
                         }
                         case "JavaScript":
                         {
-                            var _path = _prefix + @"Resources\Documents\Editor\Stubs\JavaScript.txt";
+                            var _path = _prefix
+                                + @"Resources\Documents\Editor\Stubs\JavaScript.txt";
+
                             ChatEditor.DocumentLanguage = Languages.JScript;
                             ChatEditor.DocumentSource = _path;
                             break;
@@ -1493,7 +1529,7 @@ namespace Bubba
         {
             try
             {
-                TaskComboBox.Items.Clear();
+                TaskComboBox.Items.Clear( );
                 TaskComboBox.Items.Add( "Text Generation" );
                 TaskComboBox.Items.Add( "Image Generation" );
                 TaskComboBox.Items.Add( "Embedding" );
@@ -1501,6 +1537,142 @@ namespace Bubba
                 TaskComboBox.Items.Add( "Speech Generation" );
                 TaskComboBox.Items.Add( "Fine-tuning" );
                 TaskComboBox.Items.Add( "Translations" );
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+            }
+        }
+
+        /// <summary>
+        /// Populates the text generation models.
+        /// </summary>
+        private void PopulateTextModels( )
+        {
+            try
+            {
+                ModelComboBox.Items?.Clear( );
+                ModelComboBox.Items.Add( "gpt-4-turbo" );
+                ModelComboBox.Items.Add( "gpt-4-turbo-2024-04-09" );
+                ModelComboBox.Items.Add( "gpt-4-turbo-preview" );
+                ModelComboBox.Items.Add( "gpt-4-0125-preview" );
+                ModelComboBox.Items.Add( "gpt-4-1106-preview" );
+                ModelComboBox.Items.Add( "gpt-4" );
+                ModelComboBox.Items.Add( "gpt-4-0613" );
+                ModelComboBox.Items.Add( "gpt-4-0314" );
+                ModelComboBox.Items.Add( "gpt-4-turbo" );
+                ModelComboBox.Items.Add( "gpt-4-turbo-2024-04-09" );
+                ModelComboBox.Items.Add( "gpt-4-turbo-preview" );
+                ModelComboBox.Items.Add( "gpt-4-0125-preview" );
+                ModelComboBox.Items.Add( "gpt-4-1106-preview" );
+                ModelComboBox.Items.Add( "gpt-4o" );
+                ModelComboBox.Items.Add( "gpt-4o-mini" );
+                ModelComboBox.Items.Add( "o1-preview" );
+                ModelComboBox.Items.Add( "o1-mini" );
+                ModelComboBox.Items.Add( "gpt-3.5-turbo" );
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+            }
+        }
+
+        /// <summary>
+        /// Populates the image generation models.
+        /// </summary>
+        private void PopulateImageModels( )
+        {
+            try
+            {
+                ModelComboBox.Items?.Clear( );
+                ModelComboBox.Items.Add( "dall-e-3" );
+                ModelComboBox.Items.Add( "dall-e-2" );
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+            }
+        }
+
+        /// <summary>
+        /// Populates the translation models.
+        /// </summary>
+        private void PopulateTranslationModels( )
+        {
+            try
+            {
+                ModelComboBox.Items?.Clear( );
+                ModelComboBox.Items.Add( "whisper-1" );
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+            }
+        }
+
+        /// <summary>
+        /// Populates the transcription models.
+        /// </summary>
+        private void PopulateTranscriptionModels( )
+        {
+            try
+            {
+                ModelComboBox.Items?.Clear( );
+                ModelComboBox.Items.Add( "whisper-1" );
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+            }
+        }
+
+        /// <summary>
+        /// Populates the embedding models.
+        /// </summary>
+        private void PopulateEmbeddingModels( )
+        {
+            try
+            {
+                ModelComboBox.Items?.Clear( );
+                ModelComboBox.Items.Add( "text-embedding-3-small" );
+                ModelComboBox.Items.Add( "text-embedding-3-large" );
+                ModelComboBox.Items.Add( "text-embedding-ada-002" );
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+            }
+        }
+
+        /// <summary>
+        /// Populates the fine tuning models.
+        /// </summary>
+        private void PopulateFineTuningModels( )
+        {
+            try
+            {
+                ModelComboBox.Items?.Clear( );
+                ModelComboBox.Items.Add( "gpt-4o" );
+                ModelComboBox.Items.Add( "gpt-4o-mini" );
+                ModelComboBox.Items.Add( "gpt-4" );
+                ModelComboBox.Items.Add( "gpt-3.5-turbo" );
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+            }
+        }
+
+        /// <summary>
+        /// Populates the speech models.
+        /// </summary>
+        private void PopulateSpeechModels( )
+        {
+            try
+            {
+                ModelComboBox.Items?.Clear( );
+                ModelComboBox.Items.Add( "tts-1" );
+                ModelComboBox.Items.Add( "tts-1-hd" );
             }
             catch( Exception ex )
             {
@@ -1544,9 +1716,9 @@ namespace Bubba
                     EndpointComboBox.Items.Add( _url );
                 }
             }
-            catch(Exception ex)
+            catch( Exception ex )
             {
-                Fail(ex);
+                Fail( ex );
             }
         }
 
@@ -1693,9 +1865,9 @@ namespace Bubba
                 PopulateGptTasks( );
                 PopulateLanguageListBox( );
                 PopulateEndpoints( );
-                SetHyperParameters( );
+                SetHyperameters( );
                 ClearChatControls( );
-                InitializeChatEditor();
+                InitializeChatEditor( );
                 App.ActiveWindows.Add( "ChatWindow", this );
                 UserRadioButton.IsChecked = true;
             }
@@ -1782,7 +1954,8 @@ namespace Bubba
         {
             try
             {
-                var _message = "NOT YET IMPLEMENTED!";
+                _store = StoreCheckBox.IsChecked == true;
+                var _message = $"The '{nameof( _store )}' data member is {_store.ToString( )} ";
                 var _notifier = CreateNotifier( );
                 _notifier.ShowInformation( _message );
             }
@@ -1802,7 +1975,8 @@ namespace Bubba
         {
             try
             {
-                var _message = "NOT YET IMPLEMENTED!";
+                _stream = StreamCheckBox.IsChecked == true;
+                var _message = $"The '{nameof( _stream )}' data member is {_stream.ToString( )} ";
                 var _notifier = CreateNotifier( );
                 _notifier.ShowInformation( _message );
             }
@@ -1827,7 +2001,7 @@ namespace Bubba
                 {
                     Owner = this,
                     Left = _psn.X - 100,
-                    Top = _psn.Y + 150
+                    Top = _psn.Y + 50
                 };
 
                 _searchDialog.Show( );
@@ -1854,7 +2028,7 @@ namespace Bubba
                 {
                     Owner = this,
                     Left = _psn.X,
-                    Top = _psn.Y - 150
+                    Top = _psn.Y - 50
                 };
 
                 _searchDialog.Show( );
@@ -2502,7 +2676,7 @@ namespace Bubba
             {
                 if( LanguageListBox.SelectedIndex != -1 )
                 {
-                    _language = LanguageListBox.SelectedItem.ToString();
+                    _language = LanguageListBox.SelectedItem.ToString( );
                     SetUserDocumentLanguage( );
                 }
             }
@@ -2541,7 +2715,7 @@ namespace Bubba
         /// <param name="sender">The sender.</param>
         /// <param name="e">The <see cref="RoutedEventArgs"/>
         /// instance containing the event data.</param>
-        private void OnUserRadioButtonChecked(object sender, RoutedEventArgs e)
+        private void OnUserRadioButtonChecked( object sender, RoutedEventArgs e )
         {
             try
             {
@@ -2552,9 +2726,9 @@ namespace Bubba
                     ChatEditor.Text = _userPrompt;
                 }
             }
-            catch(Exception ex)
+            catch( Exception ex )
             {
-                Fail(ex);
+                Fail( ex );
             }
         }
 
@@ -2634,20 +2808,20 @@ namespace Bubba
         /// <param name="sender">The sender.</param>
         /// <param name="e">The <see cref="RoutedEventArgs"/>
         /// instance containing the event data.</param>
-        private void OnEndpointSelectionChanged(object sender, RoutedEventArgs e)
+        private void OnEndpointSelectionChanged( object sender, RoutedEventArgs e )
         {
             try
             {
                 if( EndpointComboBox.SelectedIndex != -1 )
                 {
-                    _endpoint = EndpointComboBox.SelectedItem.ToString();
+                    _endpoint = EndpointComboBox.SelectedItem.ToString( );
                     var _msg = $"The ' {_endpoint} ' endpoint has been selected!";
-                    SendNotification(_msg);
+                    SendNotification( _msg );
                 }
             }
-            catch(Exception ex)
+            catch( Exception ex )
             {
-                Fail(ex);
+                Fail( ex );
             }
         }
 

@@ -17,6 +17,7 @@
     [ SuppressMessage( "ReSharper", "ConvertToAutoPropertyWhenPossible" ) ]
     [ SuppressMessage( "ReSharper", "UnusedParameter.Global" ) ]
     [ SuppressMessage( "ReSharper", "FieldCanBeMadeReadOnly.Local" ) ]
+    [ SuppressMessage( "ReSharper", "RedundantExtendsListEntry" ) ]
     public partial class SearchDialog : Window, IDisposable
     {
         /// <summary>
@@ -87,7 +88,7 @@
         public SearchDialog( )
         {
             // Theme Properties
-            SfSkinManager.SetTheme(this, new Theme( "FluentDark", App.Controls ) );
+            SfSkinManager.SetTheme( this, new Theme( "FluentDark", App.Controls ) );
 
             // Window Initialization
             InitializeComponent( );

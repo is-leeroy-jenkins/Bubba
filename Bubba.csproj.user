@@ -21,6 +21,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Page Update="UI\Views\Document\DocumentWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="UI\Views\Windows\ChatWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
