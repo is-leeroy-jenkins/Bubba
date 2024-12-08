@@ -238,7 +238,7 @@ namespace Bubba {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/Bubba;V1.0.0.0;component/ui/views/document/documentwindow.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/Bubba;component/ui/views/document/documentwindow.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\..\..\UI\Views\Document\DocumentWindow.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

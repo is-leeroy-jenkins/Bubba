@@ -1057,34 +1057,46 @@ namespace Bubba
                 _frequency = FrequencySlider.Value;
                 _number = int.Parse( NumberTextBox.Value.ToString( ) );
                 _maxCompletionTokens = int.Parse( MaxTokensTextBox.Value.ToString( ) );
-                switch( _role )
+                switch( _task )
                 {
                     case "Text Generation":
                     {
+                        PopulateTextModels( );
                         break;
                     }
                     case "Image Generation":
                     {
+                        PopulateImageModels( );
                         break;
                     }
                     case "Speech Generation":
                     {
+                        PopulateSpeechModels( );
                         break;
                     }
                     case "Embedding":
                     {
+                        PopulateEmbeddingModels( );
                         break;
                     }
                     case "Fine-tuning":
                     {
+                        PopulateFineTuningModels( );
                         break;
                     }
                     case "Transcriptions":
                     {
+                        PopulateTranscriptionModels( );
                         break;
                     }
                     case "Translations":
                     {
+                        PopulateTranslationModels( );
+                        break;
+                    }
+                    default:
+                    {
+                        PopulateTextModels( );
                         break;
                     }
                 }

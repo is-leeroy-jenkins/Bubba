@@ -27034,7 +27034,7 @@
             </summary>
             <param name="input">The input.</param>
         </member>
-        <member name="M:Bubba.ChatWindow.SetHyperParameters">
+        <member name="M:Bubba.ChatWindow.SetHyperameters">
             <summary>
             Sets the hyper parameters.
             </summary>
@@ -27099,6 +27099,41 @@
         <member name="M:Bubba.ChatWindow.PopulateGptTasks">
             <summary>
             Populates the GPT tasks.
+            </summary>
+        </member>
+        <member name="M:Bubba.ChatWindow.PopulateTextModels">
+            <summary>
+            Populates the text generation models.
+            </summary>
+        </member>
+        <member name="M:Bubba.ChatWindow.PopulateImageModels">
+            <summary>
+            Populates the image generation models.
+            </summary>
+        </member>
+        <member name="M:Bubba.ChatWindow.PopulateTranslationModels">
+            <summary>
+            Populates the translation models.
+            </summary>
+        </member>
+        <member name="M:Bubba.ChatWindow.PopulateTranscriptionModels">
+            <summary>
+            Populates the transcription models.
+            </summary>
+        </member>
+        <member name="M:Bubba.ChatWindow.PopulateEmbeddingModels">
+            <summary>
+            Populates the embedding models.
+            </summary>
+        </member>
+        <member name="M:Bubba.ChatWindow.PopulateFineTuningModels">
+            <summary>
+            Populates the fine tuning models.
+            </summary>
+        </member>
+        <member name="M:Bubba.ChatWindow.PopulateSpeechModels">
+            <summary>
+            Populates the speech models.
             </summary>
         </member>
         <member name="M:Bubba.ChatWindow.PopulateLanguageListBox">

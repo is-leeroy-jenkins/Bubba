@@ -314,7 +314,8 @@
                     Canvas.Top="57"
                     Width="200"
                     Height="30"
-                    HorizontalAlignment="Left"
+                    HorizontalAlignment="Center"
+                    HorizontalContentAlignment="Left"
                     VerticalAlignment="Center"
                     BorderThickness="2"
                     Background="{StaticResource ControlInteriorBrush}"
@@ -328,7 +329,8 @@
                     Canvas.Top="57"
                     Width="210"
                     Height="30"
-                    HorizontalAlignment="Left"
+                    HorizontalAlignment="Center"
+                    HorizontalContentAlignment="Left"
                     VerticalAlignment="Center"
                     BorderThickness="2"
                     Background="{StaticResource ControlInteriorBrush}"
@@ -480,7 +482,7 @@
                     ApplyNegativeForeground="True"
                     ApplyZeroColor="True"
                     MaximumNumberDecimalDigits="1"
-                    MinimumNumberDecimalDigits="1">
+                    MinimumNumberDecimalDigits="0">
                     <wpf:DoubleTextBox.NumberFormat>
                         <num:NumberFormatInfo
                             CurrencyDecimalDigits="1"
@@ -644,7 +646,8 @@
                     Width="180"
                     Height="30"
                     HorizontalAlignment="Center"
-                    VerticalAlignment="Top"
+                    HorizontalContentAlignment="Left"
+                    VerticalAlignment="Center"
                     BorderThickness="2"
                     Background="{StaticResource ControlInteriorBrush}"
                     BorderBrush="{StaticResource BlueBorderBrush}"
@@ -807,9 +810,10 @@
                     Canvas.Left="690"
                     Canvas.Top="-108"
                     Width="214"
-                    Height="30"
-                    HorizontalAlignment="Left"
+                    HorizontalAlignment="Center"
+                    HorizontalContentAlignment="Left"
                     VerticalAlignment="Center"
+                    Height="30"
                     Panel.ZIndex="1"
                     BorderThickness="2"
                     Background="{StaticResource ControlInteriorBrush}"
@@ -1007,6 +1011,7 @@
 
         <Label
             x:Name="UserLabel"
+            Grid.Row="0" 
             Height="26"
             Margin="807,4,30,0"
             VerticalAlignment="Top"
