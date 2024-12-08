@@ -27146,6 +27146,11 @@
             Populates the end points.
             </summary>
         </member>
+        <member name="M:Bubba.ChatWindow.PopulateVoices">
+            <summary>
+            Populates the voices.
+            </summary>
+        </member>
         <member name="M:Bubba.ChatWindow.UpdateStatus">
             <summary>
             Updates the status.

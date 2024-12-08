@@ -62,6 +62,7 @@ namespace Bubba
     using System.Windows;
     using System.Windows.Input;
     using CefSharp;
+    using Microsoft.Office.Interop.Outlook;
     using OpenTK.Platform.Windows;
     using Syncfusion.PMML;
     using Syncfusion.SfSkinManager;
@@ -70,6 +71,8 @@ namespace Bubba
     using ToastNotifications.Lifetime;
     using ToastNotifications.Messages;
     using ToastNotifications.Position;
+    using Action = System.Action;
+    using Exception = System.Exception;
 
     /// <inheritdoc />
     /// <summary>
@@ -653,7 +656,6 @@ namespace Bubba
         {
             try
             {
-                _timerCallback = null;
                 _timerCallback = null;
                 _statusUpdate = null;
             }
@@ -1735,6 +1737,27 @@ namespace Bubba
         }
 
         /// <summary>
+        /// Populates the voices.
+        /// </summary>
+        private void PopulateVoices( )
+        {
+            try
+            {
+                var _synth = new SpeechSynthesizer( );
+                VoiceComboBox.Items?.Clear( );
+                foreach( var _voice in _synth.GetInstalledVoices( ) )
+                {
+                    var _info = _voice.VoiceInfo;
+                    VoiceComboBox.Items.Add( _info.Name );
+                }
+            }
+            catch(Exception ex)
+            {
+                Fail(ex);
+            }
+        }
+
+        /// <summary>
         /// Updates the status.
         /// </summary>
         private void UpdateStatus( )
@@ -1876,6 +1899,7 @@ namespace Bubba
                 PopulateModelsAsync( );
                 PopulateGptTasks( );
                 PopulateLanguageListBox( );
+                PopulateVoices( );
                 PopulateEndpoints( );
                 SetHyperameters( );
                 ClearChatControls( );
@@ -2533,8 +2557,6 @@ namespace Bubba
                 SpeechLabel.Content = "";
                 SpeechLabel.Visibility = Visibility.Visible;
                 SpeechToText( );
-                var _msg = "The GPT Audio Client has been activated!";
-                SendNotification( _msg );
             }
             else
             {
