@@ -53,7 +53,7 @@ namespace Bubba
     /// </summary>
     [ SuppressMessage( "ReSharper", "UnusedType.Global" ) ]
     [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
-    public class GptResponse : GptBase
+    public class GptResponse : GptResponseBase
     {
         /// <summary>
         /// The identifier

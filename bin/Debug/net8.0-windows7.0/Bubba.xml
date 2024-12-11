@@ -13942,6 +13942,177 @@
             </summary>
             <param name="ex">The ex.</param>
         </member>
+        <member name="T:Bubba.GptRequestBase">
+            <inheritdoc />
+            <summary>
+            </summary>
+        </member>
+        <member name="F:Bubba.GptRequestBase._messages">
+            <summary>
+            The messages
+            </summary>
+        </member>
+        <member name="F:Bubba.GptRequestBase._body">
+            <summary>
+            The body
+            </summary>
+        </member>
+        <member name="F:Bubba.GptRequestBase._header">
+            <summary>
+            The header
+            </summary>
+        </member>
+        <member name="F:Bubba.GptRequestBase._userPrompt">
+            <summary>
+            The user prompt
+            </summary>
+        </member>
+        <member name="F:Bubba.GptRequestBase._systemPrompt">
+            <summary>
+            The assistant prompt
+            </summary>
+        </member>
+        <member name="M:Bubba.GptRequestBase.#ctor">
+            <inheritdoc />
+            <summary>
+            </summary>
+        </member>
+        <member name="P:Bubba.GptRequestBase.SystemPrompt">
+            <summary>
+            Gets or sets the system prompt.
+            </summary>
+            <value>
+            The system prompt.
+            </value>
+        </member>
+        <member name="P:Bubba.GptRequestBase.UserPrompt">
+            <summary>
+            Gets or sets the user prompt.
+            </summary>
+            <value>
+            The user prompt.
+            </value>
+        </member>
+        <member name="P:Bubba.GptRequestBase.EndPoint">
+            <inheritdoc />
+            <summary>
+            Gets the end point.
+            </summary>
+            <value>
+            The end point.
+            </value>
+        </member>
+        <member name="P:Bubba.GptRequestBase.Model">
+            <inheritdoc />
+            <summary>
+            Gets the chat model.
+            </summary>
+            <value>
+            The chat model.
+            </value>
+        </member>
+        <member name="P:Bubba.GptRequestBase.ResponseFormat">
+            <summary>
+            An string specifying the format that the model must output.
+            Important: when using JSON mode, you must also instruct the model
+            to produce JSON yourself via a system or user message. Without this,
+            the model may generate an unending stream of whitespace until the
+            generation reaches the token limit, resulting in a
+            long-running and seemingly "stuck" request.  
+            </summary>
+            <value>
+            The response format.
+            </value>
+        </member>
+        <member name="P:Bubba.GptRequestBase.Number">
+            <summary>
+            THe number 'n' of responses returned by the API.
+            </summary>
+            <value>
+            The user identifier.
+            </value>
+        </member>
+        <member name="P:Bubba.GptRequestBase.MaximumCompletionTokens">
+            <summary>
+            Gets the maximum tokens.
+            </summary>
+            <value>
+            The maximum tokens.
+            </value>
+        </member>
+        <member name="P:Bubba.GptRequestBase.Store">
+            <summary>
+            Gets or sets a value indicating whether this
+            <see cref="T:Bubba.GptRequest"/> is store.
+            </summary>
+            <value>
+              <c>true</c> if store; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:Bubba.GptRequestBase.Stream">
+            <summary>
+            Gets or sets a value indicating whether this
+            <see cref="P:Bubba.GptRequestBase.Stream"/> is stream.
+            </summary>
+            <value>
+              <c>true</c> if stream; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:Bubba.GptRequestBase.Temperature">
+            <summary>
+            A number between -2.0 and 2.0 Positive value decrease the
+            model's likelihood to repeat the same line verbatim.
+            </summary>
+            <value>
+            The temperature.
+            </value>
+        </member>
+        <member name="P:Bubba.GptRequestBase.TopPercent">
+            <summary>
+            An alternative to sampling with temperature,
+            called nucleus sampling, where the model considers
+            the results of the tokens with top_p probability mass.
+            So 0.1 means only the tokens comprising the top 10% probability
+            mass are considered. We generally recommend altering this
+            or temperature but not both.
+            </summary>
+            <value>
+            The top percent.
+            </value>
+        </member>
+        <member name="P:Bubba.GptRequestBase.Frequency">
+            <summary>
+            Number between -2.0 and 2.0. Positive values penalize new tokens
+            based on whether they appear in the text so far,
+            ncreasing the model's likelihood to talk about new topics.
+            </summary>
+            <value>
+            The frequency.
+            </value>
+        </member>
+        <member name="P:Bubba.GptRequestBase.Presence">
+            <summary>
+            Number between -2.0 and 2.0. Positive values penalize new tokens
+            based on whether they appear in the text so far,
+            ncreasing the model's likelihood to talk about new topics.
+            </summary>
+            <value>
+            The presence.
+            </value>
+        </member>
+        <member name="T:Bubba.GptResponseBase">
+            <inheritdoc />
+            <summary>
+            </summary>
+            <seealso cref="T:Bubba.GptBase" />
+        </member>
+        <member name="M:Bubba.GptResponseBase.#ctor">
+            <inheritdoc />
+            <summary>
+            Initializes a new instance of the
+            <see cref="T:Bubba.GptResponseBase" /> class.
+            </summary>
+        </member>
         <member name="T:Bubba.AsyncFileBase">
             <inheritdoc />
             <summary>
@@ -19339,31 +19510,6 @@
         <member name="T:Bubba.GptRequest">
             <inheritdoc />
         </member>
-        <member name="F:Bubba.GptRequest._messages">
-            <summary>
-            The messages
-            </summary>
-        </member>
-        <member name="F:Bubba.GptRequest._body">
-            <summary>
-            The body
-            </summary>
-        </member>
-        <member name="F:Bubba.GptRequest._header">
-            <summary>
-            The header
-            </summary>
-        </member>
-        <member name="F:Bubba.GptRequest._userPrompt">
-            <summary>
-            The user prompt
-            </summary>
-        </member>
-        <member name="F:Bubba.GptRequest._systemPrompt">
-            <summary>
-            The assistant prompt
-            </summary>
-        </member>
         <member name="M:Bubba.GptRequest.#ctor">
             <inheritdoc />
             <summary>
@@ -19398,129 +19544,6 @@
             <param name = "store" > </param>
             <param name = "stream" > </param>
             <param name = "system" > </param>
-        </member>
-        <member name="P:Bubba.GptRequest.SystemPrompt">
-            <summary>
-            Gets or sets the system prompt.
-            </summary>
-            <value>
-            The system prompt.
-            </value>
-        </member>
-        <member name="P:Bubba.GptRequest.UserPrompt">
-            <summary>
-            Gets or sets the user prompt.
-            </summary>
-            <value>
-            The user prompt.
-            </value>
-        </member>
-        <member name="P:Bubba.GptRequest.EndPoint">
-            <inheritdoc />
-            <summary>
-            Gets the end point.
-            </summary>
-            <value>
-            The end point.
-            </value>
-        </member>
-        <member name="P:Bubba.GptRequest.Model">
-            <inheritdoc />
-            <summary>
-            Gets the chat model.
-            </summary>
-            <value>
-            The chat model.
-            </value>
-        </member>
-        <member name="P:Bubba.GptRequest.ResponseFormat">
-            <summary>
-            An string specifying the format that the model must output.
-            Important: when using JSON mode, you must also instruct the model
-            to produce JSON yourself via a system or user message. Without this,
-            the model may generate an unending stream of whitespace until the
-            generation reaches the token limit, resulting in a
-            long-running and seemingly "stuck" request.  
-            </summary>
-            <value>
-            The response format.
-            </value>
-        </member>
-        <member name="P:Bubba.GptRequest.Number">
-            <summary>
-            THe number 'n' of responses returned by the API.
-            </summary>
-            <value>
-            The user identifier.
-            </value>
-        </member>
-        <member name="P:Bubba.GptRequest.MaximumCompletionTokens">
-            <summary>
-            Gets the maximum tokens.
-            </summary>
-            <value>
-            The maximum tokens.
-            </value>
-        </member>
-        <member name="P:Bubba.GptRequest.Store">
-            <summary>
-            Gets or sets a value indicating whether this
-            <see cref="T:Bubba.GptRequest"/> is store.
-            </summary>
-            <value>
-              <c>true</c> if store; otherwise, <c>false</c>.
-            </value>
-        </member>
-        <member name="P:Bubba.GptRequest.Stream">
-            <summary>
-            Gets or sets a value indicating whether this
-            <see cref="P:Bubba.GptRequest.Stream"/> is stream.
-            </summary>
-            <value>
-              <c>true</c> if stream; otherwise, <c>false</c>.
-            </value>
-        </member>
-        <member name="P:Bubba.GptRequest.Temperature">
-            <summary>
-            A number between -2.0 and 2.0 Positive value decrease the
-            model's likelihood to repeat the same line verbatim.
-            </summary>
-            <value>
-            The temperature.
-            </value>
-        </member>
-        <member name="P:Bubba.GptRequest.TopPercent">
-            <summary>
-            An alternative to sampling with temperature,
-            called nucleus sampling, where the model considers
-            the results of the tokens with top_p probability mass.
-            So 0.1 means only the tokens comprising the top 10% probability
-            mass are considered. We generally recommend altering this
-            or temperature but not both.
-            </summary>
-            <value>
-            The top percent.
-            </value>
-        </member>
-        <member name="P:Bubba.GptRequest.Frequency">
-            <summary>
-            Number between -2.0 and 2.0. Positive values penalize new tokens
-            based on whether they appear in the text so far,
-            ncreasing the model's likelihood to talk about new topics.
-            </summary>
-            <value>
-            The frequency.
-            </value>
-        </member>
-        <member name="P:Bubba.GptRequest.Presence">
-            <summary>
-            Number between -2.0 and 2.0. Positive values penalize new tokens
-            based on whether they appear in the text so far,
-            ncreasing the model's likelihood to talk about new topics.
-            </summary>
-            <value>
-            The presence.
-            </value>
         </member>
         <member name="P:Bubba.GptRequest.Body">
             <summary>

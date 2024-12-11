@@ -91,6 +91,7 @@ namespace Bubba
         public GptBody( )
         {
             _responseFormat = "text";
+            _model = "gpt-4o";
             _systemMessage = new SystemMessage( );
             _userMessage = new UserMessage( );
             _messages = new List<IGptMessage>( );
@@ -106,9 +107,9 @@ namespace Bubba
         public GptBody( string model )
             : this( )
         {
-            _model = model;
+            _model = model ?? "gpt-4o";
             _data.Add( "response_format", _responseFormat );
-            _data.Add( "model", model );
+            _data.Add( "model", _model );
         }
 
         /// <inheritdoc />

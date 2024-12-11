@@ -1,10 +1,10 @@
 ﻿// ******************************************************************************************
 //     Assembly:                Bubba
 //     Author:                  Terry D. Eppler
-//     Created:                 12-10-2024
+//     Created:                 12-11-2024
 // 
 //     Last Modified By:        Terry D. Eppler
-//     Last Modified On:        12-10-2024
+//     Last Modified On:        12-11-2024
 // ******************************************************************************************
 // <copyright file="ChatWindow.xaml.cs" company="Terry D. Eppler">
 //    Bubba is a small and simple windows (wpf) application for interacting with the OpenAI API
@@ -1142,7 +1142,7 @@ namespace Bubba
                     }
                     case "Translations":
                     {
-                        PopulateTranslationModels();
+                        PopulateTranslationModels( );
                         _endpoint = _endpoints.Translations;
                         break;
                     }
@@ -1160,13 +1160,13 @@ namespace Bubba
                     }
                     case "Transcriptions":
                     {
-                        PopulateTranscriptionModels();
+                        PopulateTranscriptionModels( );
                         _endpoint = _endpoints.Transcriptions;
                         break;
                     }
                     case "Vector Stores":
                     {
-                        PopulateEmbeddingModels();
+                        PopulateEmbeddingModels( );
                         _endpoint = _endpoints.VectorStores;
                         break;
                     }
@@ -1178,25 +1178,25 @@ namespace Bubba
                     }
                     case "Fine-Tuning":
                     {
-                        PopulateFineTuningModels();
+                        PopulateFineTuningModels( );
                         _endpoint = _endpoints.FineTuning;
                         break;
                     }
                     case "Files":
                     {
-                        PopulateTextModels();
+                        PopulateTextModels( );
                         _endpoint = _endpoints.Files;
                         break;
                     }
                     case "Uploads":
                     {
-                        PopulateTextModels();
+                        PopulateTextModels( );
                         _endpoint = _endpoints.Uploads;
                         break;
                     }
                     default:
                     {
-                        PopulateTextModels();
+                        PopulateTextModels( );
                         _endpoint = _endpoints.TextGeneration;
                         break;
                     }
@@ -1356,8 +1356,8 @@ namespace Bubba
             _request.Method = "POST";
             _request.ContentType = "application/json";
             _request.Headers.Add( "Authorization", "Bearer " + KEY );
-            var _maxTokens = int.Parse( MaxTokenTextBox.Text);// 2048
-            var _temp = double.Parse( TemperatureTextBox.Text );             // 0.5
+            var _maxTokens = int.Parse( MaxTokenTextBox.Text ); // 2048
+            var _temp = double.Parse( TemperatureTextBox.Text );// 0.5
             if( ( _temp < 0d ) | ( _temp > 1d ) )
             {
                 var _msg = "Randomness has to be between 0 and 2"
@@ -1804,8 +1804,8 @@ namespace Bubba
                 LanguageListBox.Items.Add( "C#" );
                 LanguageListBox.Items.Add( "Python" );
                 LanguageListBox.Items.Add( "SQL" );
-                LanguageListBox.Items.Add("C/C++");
-                LanguageListBox.Items.Add("JavaScript");
+                LanguageListBox.Items.Add( "C/C++" );
+                LanguageListBox.Items.Add( "JavaScript" );
                 LanguageListBox.Items.Add( "VB/VBA" );
             }
             catch( Exception ex )
