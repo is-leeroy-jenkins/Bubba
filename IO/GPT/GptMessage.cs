@@ -45,7 +45,11 @@ namespace Bubba
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
 
-    [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
+    /// <inheritdoc />
+    /// <summary>
+    /// </summary>
+    /// <seealso cref="T:Bubba.PropertyChangedBase" />
+    [SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
     public abstract class GptMessage : PropertyChangedBase
     {
         /// <summary>
@@ -111,10 +115,10 @@ namespace Bubba
             }
             set
             {
-                if(_content != value)
+                if(_content != value )
                 {
                     _content = value;
-                    OnPropertyChanged(nameof(Content));
+                    OnPropertyChanged( nameof( Content ) );
                 }
             }
         }

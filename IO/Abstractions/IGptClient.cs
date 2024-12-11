@@ -81,7 +81,7 @@ namespace Bubba
         /// <value>
         /// The maximum tokens.
         /// </value>
-        int MaximumTokens { get; }
+        int MaxCompletionTokens { get; }
 
         /// <summary>
         /// Gets the end point.

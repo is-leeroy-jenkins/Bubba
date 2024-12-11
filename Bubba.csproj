@@ -76,6 +76,9 @@
     <None Remove="Resources\Assets\DialogImages\SplashNotification.png" />
     <None Remove="Resources\Assets\DialogImages\TextDialog.png" />
     <None Remove="Resources\Assets\ExtensionImages\ACCDB.png" />
+    <None Remove="Resources\Assets\ExtensionImages\C.png" />
+    <None Remove="Resources\Assets\ExtensionImages\CPP.png" />
+    <None Remove="Resources\Assets\ExtensionImages\CS.png" />
     <None Remove="Resources\Assets\ExtensionImages\CSV.png" />
     <None Remove="Resources\Assets\ExtensionImages\DB.png" />
     <None Remove="Resources\Assets\ExtensionImages\DLL.png" />
@@ -83,6 +86,9 @@
     <None Remove="Resources\Assets\ExtensionImages\DOCX.png" />
     <None Remove="Resources\Assets\ExtensionImages\EXE.png" />
     <None Remove="Resources\Assets\ExtensionImages\HTML.png" />
+    <None Remove="Resources\Assets\ExtensionImages\JS.png" />
+    <None Remove="Resources\Assets\ExtensionImages\JSON.png" />
+    <None Remove="Resources\Assets\ExtensionImages\MD.png" />
     <None Remove="Resources\Assets\ExtensionImages\MDB.png" />
     <None Remove="Resources\Assets\ExtensionImages\MDF.png" />
     <None Remove="Resources\Assets\ExtensionImages\PDF.png" />
@@ -268,7 +274,6 @@
     <None Remove="Resources\Assets\ToolStripImages\WebDownloadButton.png" />
     <None Remove="Resources\Assets\ToolStripImages\WebSearchButton.png" />
     <None Remove="SplashScreen.png" />
-    <None Remove="UI\Views\Windows\BubbaWindow.xaml.cs~RF2be0067.TMP" />
   </ItemGroup>
 
   <ItemGroup>
@@ -365,6 +370,9 @@
     <Resource Include="Resources\Assets\DialogImages\SplashNotification.png" />
     <Resource Include="Resources\Assets\DialogImages\TextDialog.png" />
     <Resource Include="Resources\Assets\ExtensionImages\ACCDB.png" />
+    <Resource Include="Resources\Assets\ExtensionImages\C.png" />
+    <Resource Include="Resources\Assets\ExtensionImages\CPP.png" />
+    <Resource Include="Resources\Assets\ExtensionImages\CS.png" />
     <Resource Include="Resources\Assets\ExtensionImages\CSV.png" />
     <Resource Include="Resources\Assets\ExtensionImages\DB.png" />
     <Resource Include="Resources\Assets\ExtensionImages\DLL.png" />
@@ -372,6 +380,9 @@
     <Resource Include="Resources\Assets\ExtensionImages\DOCX.png" />
     <Resource Include="Resources\Assets\ExtensionImages\EXE.png" />
     <Resource Include="Resources\Assets\ExtensionImages\HTML.png" />
+    <Resource Include="Resources\Assets\ExtensionImages\JS.png" />
+    <Resource Include="Resources\Assets\ExtensionImages\JSON.png" />
+    <Resource Include="Resources\Assets\ExtensionImages\MD.png" />
     <Resource Include="Resources\Assets\ExtensionImages\MDB.png" />
     <Resource Include="Resources\Assets\ExtensionImages\MDF.png" />
     <Resource Include="Resources\Assets\ExtensionImages\PDF.png" />

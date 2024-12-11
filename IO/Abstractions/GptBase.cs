@@ -1,14 +1,14 @@
 ﻿// ******************************************************************************************
 //     Assembly:                Bubba
 //     Author:                  Terry D. Eppler
-//     Created:                 11-18-2024
+//     Created:                 12-09-2024
 // 
 //     Last Modified By:        Terry D. Eppler
-//     Last Modified On:        11-18-2024
+//     Last Modified On:        12-09-2024
 // ******************************************************************************************
 // <copyright file="GptBase.cs" company="Terry D. Eppler">
-//    Bubba is a small windows (wpf) application for interacting with
-//    Chat GPT that's developed in C-Sharp under the MIT license
+//    Bubba is a small and simple windows (wpf) application for interacting with the OpenAI API
+//    that's developed in C-Sharp under the MIT license.C#.
 // 
 //    Copyright ©  2020-2024 Terry D. Eppler
 // 
@@ -46,7 +46,13 @@ namespace Bubba
     using System.Diagnostics.CodeAnalysis;
     using System.Linq;
     using System.Net.Http;
+    using System.Windows.Threading;
 
+    /// <inheritdoc />
+    /// <summary>
+    /// </summary>
+    /// <seealso cref="T:Bubba.PropertyChangedBase" />
+    /// <seealso cref="T:System.IDisposable" />
     [ SuppressMessage( "ReSharper", "FieldCanBeMadeReadOnly.Global" ) ]
     [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
     [ SuppressMessage( "ReSharper", "VirtualMemberNeverOverridden.Global" ) ]
@@ -68,9 +74,19 @@ namespace Bubba
         private protected HttpClient _httpClient;
 
         /// <summary>
+        /// The response format
+        /// </summary>
+        private protected string _responseFormat;
+
+        /// <summary>
         /// A unique identifier representing your end-user
         /// </summary>
         private protected string _user;
+
+        /// <summary>
+        /// The user identifier
+        /// </summary>
+        private protected int _number;
 
         /// <summary>
         /// Whether or not to store the responses
@@ -142,7 +158,7 @@ namespace Bubba
         /// <summary>
         /// The maximum tokens
         /// </summary>
-        private protected int _maximumTokens;
+        private protected int _maximumCompletionTokens;
 
         /// <summary>
         /// The role
@@ -283,13 +299,33 @@ namespace Bubba
         {
             try
             {
-                _models.Add( "gpt-3.5-turbo" );
-                _models.Add( "gpt-3.5-turbo-16k" );
-                _models.Add( "gpt-4" );
-                _models.Add( "gpt-4-32k" );
-                _models.Add( "gpt-4o" );
-                _models.Add( "gpt-4o-mini" );
-                _models.Add( "o1-mini" );
+                _models?.Clear( );
+                _models?.Add( "gpt-4-turbo" );
+                _models?.Add( "gpt-4-turbo-2024-04-09" );
+                _models?.Add( "gpt-4-turbo-preview" );
+                _models?.Add( "gpt-4-0125-preview" );
+                _models?.Add( "gpt-4-1106-preview" );
+                _models?.Add( "gpt-4" );
+                _models?.Add( "gpt-4-0613" );
+                _models?.Add( "gpt-4-0314" );
+                _models?.Add( "gpt-4-turbo" );
+                _models?.Add( "gpt-4-turbo-2024-04-09" );
+                _models?.Add( "gpt-4-turbo-preview" );
+                _models?.Add( "gpt-4-0125-preview" );
+                _models?.Add( "gpt-4-1106-preview" );
+                _models?.Add( "gpt-4o" );
+                _models?.Add( "gpt-4o-mini" );
+                _models?.Add( "o1-preview" );
+                _models?.Add( "o1-mini" );
+                _models?.Add( "gpt-3.5-turbo" );
+                _models?.Add( "dall-e-3" );
+                _models?.Add( "dall-e-2" );
+                _models?.Add( "whisper-1" );
+                _models?.Add( "tts-1" );
+                _models?.Add( "tts-1-hd" );
+                _models?.Add( "text-embedding-3-small" );
+                _models?.Add( "text-embedding-3-large" );
+                _models?.Add( "text-embedding-ada-002" );
                 return _models?.Any( ) == true
                     ? _models
                     : default( IList<string> );
@@ -366,14 +402,14 @@ namespace Bubba
         }
 
         /// <summary>
-        /// Fails the specified ex.
+        /// Wraps error
         /// </summary>
         /// <param name="ex">The ex.</param>
-        private protected void Fail( Exception ex )
+        private protected void Fail(Exception ex)
         {
-            var _error = new ErrorWindow( ex );
-            _error?.SetText( );
-            _error?.ShowDialog( );
+            var _error = new ErrorWindow(ex);
+            _error?.SetText();
+            _error?.ShowDialog();
         }
     }
 }

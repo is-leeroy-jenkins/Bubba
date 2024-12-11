@@ -413,7 +413,8 @@ namespace Bubba
 
             var _options = new JsonSerializerOptions
             {
-                WriteIndented = true
+                WriteIndented = true,
+                DictionaryKeyPolicy = JsonNamingPolicy.SnakeCaseLower
             };
 
             return JsonSerializer.Serialize( dict, 
@@ -437,7 +438,8 @@ namespace Bubba
 
             var _options = new JsonSerializerOptions
             {
-                WriteIndented = true
+                WriteIndented = true,
+                DictionaryKeyPolicy = JsonNamingPolicy.SnakeCaseLower
             };
 
             return JsonSerializer.Serialize( dict,
@@ -460,7 +462,8 @@ namespace Bubba
 
             var _options = new JsonSerializerOptions
             {
-                WriteIndented = true
+                WriteIndented = true,
+                DictionaryKeyPolicy = JsonNamingPolicy.SnakeCaseLower
             };
 
             return JsonSerializer.Serialize( dict,

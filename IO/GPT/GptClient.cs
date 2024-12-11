@@ -55,13 +55,24 @@ namespace Bubba
     using Exception = System.Exception;
     using JsonSerializer = System.Text.Json.JsonSerializer;
 
+    /// <inheritdoc />
+    /// <summary>
+    /// </summary>
+    /// <seealso cref="T:Bubba.GptBase" />
+    /// <seealso cref="T:Bubba.IGptClient" />
     [ SuppressMessage( "ReSharper", "UnusedType.Global" ) ]
     [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
+    [ SuppressMessage( "ReSharper", "InternalOrPrivateMemberNotDocumented" ) ]
     public class GptClient : GptBase, IGptClient
     {
         private const string KEY = "sk-proj-m1FNMEEpSuwC32xZedCfozYsGkCEhaVSCEv"
             + "S2u6tzNR39HFYKlC0kz0iUvXoJtSACw49E1laKaT3BlbkFJIORKROk_"
             + "EirH8g8KoWX7fyhM3oQcd9KqILMBo1rEVFlruTMOsDQ3bHt7mNBjvlZw8DLfYbckQA";
+
+        /// <summary>
+        /// The data
+        /// </summary>
+        private protected IDictionary<string, object> _data;
 
         /// <inheritdoc />
         /// <summary>
@@ -75,9 +86,9 @@ namespace Bubba
             _apiKey = KEY;
             _presence = 0.0;
             _frequency = 0.0;
-            _topPercent = 0.0;
+            _topPercent = 1.0;
             _temperature = 1.0;
-            _maximumTokens = 2048;
+            _maximumCompletionTokens = 157;
             _model = "gpt-4o";
             _endPoint = "https://api.openai.com/v1/chat/completions";
             _endPoints = GetEndPoints( );
@@ -92,18 +103,17 @@ namespace Bubba
         /// <param name="temperature">The temperature.</param>
         /// <param name="tokens">The tokens.</param>
         /// <param name="model">The chat model.</param>
-        public GptClient( string model, double temperature = 1.0, int tokens = 2048 )
+        public GptClient( string model, double temperature = 1.0, int tokens = 157 )
             : this( )
         {
             _model = model;
             _temperature = temperature;
-            _maximumTokens = tokens;
-            _endPoint = "https://api.openai.com/v1/chat/completions";
+            _maximumCompletionTokens = tokens;
         }
 
         /// <summary>
         /// Gets or sets a value indicating whether this
-        /// <see cref="GptConfig"/> is store.
+        /// <see cref="Store"/> is store.
         /// </summary>
         /// <value>
         ///   <c>true</c> if store; otherwise, <c>false</c>.
@@ -116,17 +126,17 @@ namespace Bubba
             }
             set
             {
-                if(_store != value)
+                if( _store != value )
                 {
                     _store = value;
-                    OnPropertyChanged(nameof(Store));
+                    OnPropertyChanged( nameof( Store ) );
                 }
             }
         }
 
         /// <summary>
         /// Gets or sets a value indicating whether this
-        /// <see cref="GptConfig"/> is stream.
+        /// <see cref="Stream"/> is stream.
         /// </summary>
         /// <value>
         ///   <c>true</c> if stream; otherwise, <c>false</c>.
@@ -139,10 +149,10 @@ namespace Bubba
             }
             set
             {
-                if(_stream != value)
+                if( _stream != value )
                 {
                     _stream = value;
-                    OnPropertyChanged(nameof(Stream));
+                    OnPropertyChanged( nameof( Stream ) );
                 }
             }
         }
@@ -225,18 +235,18 @@ namespace Bubba
         /// <value>
         /// The maximum tokens.
         /// </value>
-        public int MaximumTokens
+        public int MaxCompletionTokens
         {
             get
             {
-                return _maximumTokens;
+                return _maximumCompletionTokens;
             }
             private set
             {
-                if( _maximumTokens != value )
+                if( _maximumCompletionTokens != value )
                 {
-                    _maximumTokens = value;
-                    OnPropertyChanged( nameof( MaximumTokens ) );
+                    _maximumCompletionTokens = value;
+                    OnPropertyChanged( nameof( MaxCompletionTokens ) );
                 }
             }
         }
@@ -260,10 +270,10 @@ namespace Bubba
             }
             set
             {
-                if(_topPercent != value)
+                if( _topPercent != value )
                 {
                     _topPercent = value;
-                    OnPropertyChanged(nameof(TopPercent));
+                    OnPropertyChanged( nameof( TopPercent ) );
                 }
             }
         }
@@ -341,8 +351,8 @@ namespace Bubba
         /// <summary>
         /// Sends a request to the Chat (Assistant) API.
         /// </summary>
-        public async Task<string> GetResponseAsync( List<dynamic> messages, string model = "gpt-4",
-            int maxTokens = 150, double temperature = 0.7 )
+        public async Task<string> GetResponseAsync( List<dynamic> messages, string model = "gpt-4o",
+            int maxTokens = 157, double temperature = 1.0 )
         {
             var _payload = new
             {
@@ -463,7 +473,7 @@ namespace Bubba
                 {
                     model = _model,
                     prompt,
-                    max_tokens = _maximumTokens,
+                    max_tokens = _maximumCompletionTokens,
                     user = _user,
                     _temperature,
                     frequency_penalty = 0.0,
@@ -557,7 +567,7 @@ namespace Bubba
                 {
                     model = _model,
                     prompt = ProcessQuotes( userPrompt ),
-                    max_tokens = _maximumTokens,
+                    max_tokens = _maximumCompletionTokens,
                     temperature = _temp,
                     user = _user,
                     frequency_penalty = 0.0,

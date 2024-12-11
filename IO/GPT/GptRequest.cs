@@ -45,74 +45,17 @@ namespace Bubba
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
 
+    /// <inheritdoc />
     [ SuppressMessage( "ReSharper", "UnusedType.Global" ) ]
     [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
     [ SuppressMessage( "ReSharper", "FieldCanBeMadeReadOnly.Global" ) ]
-    public class GptRequest : PropertyChangedBase
+    [ SuppressMessage( "ReSharper", "MemberCanBeProtected.Global" ) ]
+    public class GptRequest : GptBase
     {
         /// <summary>
         /// The messages
         /// </summary>
         private protected IList<IGptMessage> _messages;
-
-        /// <summary>
-        /// The stream
-        /// </summary>
-        private protected bool _stream;
-
-        /// <summary>
-        /// The store
-        /// </summary>
-        private protected bool _store;
-
-        /// <summary>
-        /// The user identifier
-        /// </summary>
-        private protected int _number;
-
-        /// <summary>
-        /// An alternative to sampling with temperature,
-        /// called nucleus sampling, where the model considers
-        /// the results of the tokens with top_p probability mass.
-        /// So 0.1 means only the tokens comprising the top 10% probability
-        /// mass are considered. We generally recommend altering this
-        /// or temperature but not both.
-        /// </summary>
-        private protected double _topPercent;
-
-        /// <summary>
-        /// A number between -2.0 and 2.0  Positive value decrease the
-        /// model's likelihood to repeat the same line verbatim.
-        /// </summary>
-        private protected double _temperature;
-
-        /// <summary>
-        /// An upper bound for the number of tokens
-        /// that can be generated for a completion
-        /// </summary>
-        private protected int _maximumTokens;
-
-        /// <summary>
-        /// TNumber between -2.0 and 2.0. Positive values penalize new
-        /// tokens based on their existing frequency in the text so far,
-        /// decreasing the model's likelihood to repeat the same line verbatim.
-        /// </summary>
-        private protected double _frequency;
-
-        /// <summary>
-        /// The chat model
-        /// </summary>
-        private protected string _model;
-
-        /// <summary>
-        /// The response format
-        /// </summary>
-        private protected string _responseFormat;
-
-        /// <summary>
-        /// The base URL
-        /// </summary>
-        private protected GptEndPoint _endPoint;
 
         /// <summary>
         /// The body
@@ -125,13 +68,6 @@ namespace Bubba
         private protected GptHeader _header;
 
         /// <summary>
-        /// Number between -2.0 and 2.0. Positive values penalize new tokens
-        /// based on whether they appear in the text so far,
-        /// ncreasing the model's likelihood to talk about new topics.
-        /// </summary>
-        private protected double _presence;
-
-        /// <summary>
         /// The user prompt
         /// </summary>
         private protected string _userPrompt;
@@ -141,22 +77,25 @@ namespace Bubba
         /// </summary>
         private protected string _systemPrompt;
 
+        /// <inheritdoc />
         /// <summary>
         /// Initializes a new instance of the
-        /// <see cref="GptRequest"/> class.
+        /// <see cref="T:Bubba.GptRequest" /> class.
         /// </summary>
         public GptRequest( )
         {
+            _entry = new object( );
             _header = new GptHeader( );
-            _endPoint = new GptEndPoint( );
-            _responseFormat = "text";
-            _model = "gpt-4o";
-            _number = 1;
-            _temperature = 1.0;
+            _apiKey = _header.ApiKey;
             _presence = 0.0;
             _frequency = 0.0;
-            _topPercent = 0.0;
-            _maximumTokens = 2048;
+            _topPercent = 1.0;
+            _temperature = 1.0;
+            _maximumCompletionTokens = 157;
+            _model = "gpt-4o";
+            _endPoint = "https://api.openai.com/v1/chat/completions";
+            _responseFormat = "text";
+            _number = 1;
         }
 
         /// <inheritdoc />
@@ -175,14 +114,14 @@ namespace Bubba
         /// <param name="presence">The presence.</param>
         /// <param name = "topPercent" > </param>
         /// <param name="temperature">The temperature.</param>
-        /// <param name="tokens">The tokens.</param>
-        public GptRequest( string user, string system, string model,
+        /// <param name="completionTokens"</param>
+        public GptRequest( string user, string system, string model = "gpt-4o",
             string format = "text", bool store = false, bool stream = false,
             int number = 1, double frequency = 0.0, double presence = 0.0,
-            double topPercent = 0.0, double temperature = 1.0, int tokens = 2048 )
+            double topPercent = 1.0, double temperature = 1.0, int completionTokens = 157 )
         {
             _header = new GptHeader( );
-            _endPoint = new GptEndPoint( );
+            _endPoint = new GptEndPoint( ).TextGeneration;
             _systemPrompt = system;
             _userPrompt = user;
             _model = model;
@@ -194,12 +133,13 @@ namespace Bubba
             _frequency = frequency;
             _temperature = temperature;
             _topPercent = topPercent;
-            _maximumTokens = tokens;
+            _maximumCompletionTokens = completionTokens;
         }
 
+        /// <inheritdoc />
         /// <summary>
         /// Initializes a new instance of the
-        /// <see cref="GptRequest"/> class.
+        /// <see cref="T:Bubba.GptRequest" /> class.
         /// </summary>
         /// <param name="gptRequest">The GPT request.</param>
         public GptRequest( GptRequest gptRequest )
@@ -217,7 +157,7 @@ namespace Bubba
             _frequency = gptRequest.Frequency;
             _temperature = gptRequest.Temperature;
             _topPercent = gptRequest.TopPercent;
-            _maximumTokens = gptRequest.MaximumTokens;
+            _maximumCompletionTokens = gptRequest.MaximumCompletionTokens;
         }
 
         /// <summary>
@@ -237,7 +177,7 @@ namespace Bubba
         /// <param name = "store" > </param>
         /// <param name = "stream" > </param>
         /// <param name = "system" > </param>
-        public void Deconstruct( out GptHeader header, out GptEndPoint endPoint, out string system,
+        public void Deconstruct( out GptHeader header, out string endPoint, out string system,
             out string user, out bool store, out bool stream,
             out string model, out string format, out int number,
             out double presence, out double frequency, out double temperature,
@@ -256,7 +196,7 @@ namespace Bubba
             frequency = _frequency;
             temperature = _temperature;
             topPercent = _topPercent;
-            tokens = _maximumTokens;
+            tokens = _maximumCompletionTokens;
         }
 
         /// <summary>
@@ -310,13 +250,13 @@ namespace Bubba
         /// <value>
         /// The end point.
         /// </value>
-        public GptEndPoint EndPoint
+        public virtual string EndPoint
         {
             get
             {
                 return _endPoint;
             }
-            private set
+            set
             {
                 if( _endPoint != value )
                 {
@@ -333,13 +273,13 @@ namespace Bubba
         /// <value>
         /// The chat model.
         /// </value>
-        public string Model
+        public virtual string Model
         {
             get
             {
                 return _model;
             }
-            private set
+            set
             {
                 if( _model != value )
                 {
@@ -350,18 +290,23 @@ namespace Bubba
         }
 
         /// <summary>
-        /// Gets the response format.
+        /// An string specifying the format that the model must output.
+        /// Important: when using JSON mode, you must also instruct the model
+        /// to produce JSON yourself via a system or user message. Without this,
+        /// the model may generate an unending stream of whitespace until the
+        /// generation reaches the token limit, resulting in a
+        /// long-running and seemingly "stuck" request.  
         /// </summary>
         /// <value>
         /// The response format.
         /// </value>
-        public string ResponseFormat
+        public virtual string ResponseFormat
         {
             get
             {
                 return _responseFormat;
             }
-            private set
+            set
             {
                 if( _responseFormat != value )
                 {
@@ -372,12 +317,12 @@ namespace Bubba
         }
 
         /// <summary>
-        /// THe number 'n' returned by the response.
+        /// THe number 'n' of responses returned by the API.
         /// </summary>
         /// <value>
         /// The user identifier.
         /// </value>
-        public int Number
+        public virtual int Number
         {
             get
             {
@@ -399,18 +344,18 @@ namespace Bubba
         /// <value>
         /// The maximum tokens.
         /// </value>
-        public int MaximumTokens
+        public virtual int MaximumCompletionTokens
         {
             get
             {
-                return _maximumTokens;
+                return _maximumCompletionTokens;
             }
             set
             {
-                if( _maximumTokens != value )
+                if( _maximumCompletionTokens != value )
                 {
-                    _maximumTokens = value;
-                    OnPropertyChanged( nameof( MaximumTokens ) );
+                    _maximumCompletionTokens = value;
+                    OnPropertyChanged( nameof( MaximumCompletionTokens ) );
                 }
             }
         }
@@ -422,7 +367,7 @@ namespace Bubba
         /// <value>
         ///   <c>true</c> if store; otherwise, <c>false</c>.
         /// </value>
-        public bool Store
+        public virtual bool Store
         {
             get
             {
@@ -440,12 +385,12 @@ namespace Bubba
 
         /// <summary>
         /// Gets or sets a value indicating whether this
-        /// <see cref="GptConfig"/> is stream.
+        /// <see cref="Stream"/> is stream.
         /// </summary>
         /// <value>
         ///   <c>true</c> if stream; otherwise, <c>false</c>.
         /// </value>
-        public bool Stream
+        public virtual bool Stream
         {
             get
             {
@@ -468,7 +413,7 @@ namespace Bubba
         /// <value>
         /// The temperature.
         /// </value>
-        public double Temperature
+        public virtual double Temperature
         {
             get
             {
@@ -495,7 +440,7 @@ namespace Bubba
         /// <value>
         /// The top percent.
         /// </value>
-        public double TopPercent
+        public virtual double TopPercent
         {
             get
             {
@@ -519,7 +464,7 @@ namespace Bubba
         /// <value>
         /// The frequency.
         /// </value>
-        public double Frequency
+        public virtual double Frequency
         {
             get
             {
@@ -543,7 +488,7 @@ namespace Bubba
         /// <value>
         /// The presence.
         /// </value>
-        public double Presence
+        public virtual double Presence
         {
             get
             {
@@ -565,7 +510,7 @@ namespace Bubba
         /// <value>
         /// The chat model.
         /// </value>
-        public GptBody Body
+        public virtual GptBody Body
         {
             get
             {

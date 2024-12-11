@@ -45,6 +45,11 @@ namespace Bubba
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
 
+    /// <inheritdoc />
+    /// <summary>
+    /// </summary>
+    /// <seealso cref="T:Bubba.GptMessage" />
+    /// <seealso cref="T:Bubba.IGptMessage" />
     [ SuppressMessage( "ReSharper", "UnusedType.Global" ) ]
     [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
     [ SuppressMessage( "ReSharper", "FieldCanBeMadeReadOnly.Global" ) ]
@@ -93,14 +98,14 @@ namespace Bubba
         /// Deconstructs the specified role.
         /// </summary>
         /// <param name="role">The role.</param>
-        /// <param name = "text" > </param>
+        /// <param name = "messages" > </param>
         /// <param name="content">The content.</param>
         /// <param name = "type" > </param>
-        public void Deconstruct( out string role, out IDictionary<string, object> message,
+        public void Deconstruct( out string role, out IDictionary<string, object> messages,
             out string content )
         {
             role = _role;
-            message = _messages;
+            messages = _messages;
             content = _content;
         }
 

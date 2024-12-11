@@ -1,14 +1,14 @@
 ﻿// ******************************************************************************************
 //     Assembly:                Bubba
 //     Author:                  Terry D. Eppler
-//     Created:                 11-20-2024
+//     Created:                 12-09-2024
 // 
 //     Last Modified By:        Terry D. Eppler
-//     Last Modified On:        11-20-2024
+//     Last Modified On:        12-09-2024
 // ******************************************************************************************
 // <copyright file="GptBody.cs" company="Terry D. Eppler">
-//    Bubba is a small windows (wpf) application for interacting with
-//    Chat GPT that's developed in C-Sharp under the MIT license
+//    Bubba is a small and simple windows (wpf) application for interacting with the OpenAI API
+//    that's developed in C-Sharp under the MIT license.C#.
 // 
 //    Copyright ©  2020-2024 Terry D. Eppler
 // 
@@ -44,9 +44,6 @@ namespace Bubba
     using System;
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
-    using System.Linq;
-    using System.Text;
-    using System.Threading.Tasks;
 
     /// <inheritdoc />
     /// <summary>
@@ -94,8 +91,8 @@ namespace Bubba
         public GptBody( )
         {
             _responseFormat = "text";
-            _systemMessage = new SystemMessage();
-            _userMessage = new UserMessage();
+            _systemMessage = new SystemMessage( );
+            _userMessage = new UserMessage( );
             _messages = new List<IGptMessage>( );
             _data = new Dictionary<string, object>( );
         }
@@ -137,7 +134,7 @@ namespace Bubba
         /// </param>
         /// <param name="system">The system.</param>
         /// <param name="user">The user.</param>
-        public void Deconstruct( out string model, out string responseFormat, 
+        public void Deconstruct( out string model, out string responseFormat,
             out SystemMessage system, out UserMessage user )
         {
             model = _model;
@@ -183,10 +180,10 @@ namespace Bubba
             }
             set
             {
-                if(_responseFormat != value)
+                if( _responseFormat != value )
                 {
                     _responseFormat = value;
-                    OnPropertyChanged(nameof(ResponseFormat));
+                    OnPropertyChanged( nameof( ResponseFormat ) );
                 }
             }
         }

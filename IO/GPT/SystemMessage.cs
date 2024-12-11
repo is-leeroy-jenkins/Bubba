@@ -46,7 +46,12 @@ namespace Bubba
     using System.Diagnostics.CodeAnalysis;
     using Newtonsoft.Json;
 
-    [ SuppressMessage( "ReSharper", "UnusedType.Global" ) ]
+    /// <inheritdoc />
+    /// <summary>
+    /// </summary>
+    /// <seealso cref="T:Bubba.GptMessage" />
+    /// <seealso cref="T:Bubba.IGptMessage" />
+    [SuppressMessage( "ReSharper", "UnusedType.Global" ) ]
     [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
     [ SuppressMessage( "ReSharper", "FieldCanBeMadeReadOnly.Global" ) ]
     [ SuppressMessage( "ReSharper", "ClassCanBeSealed.Global" ) ]
@@ -57,15 +62,10 @@ namespace Bubba
         /// <summary>
         /// The system prompt
         /// </summary>
-        private const string _systemPrompt = "You are the most knowledgeable Budget Analyst"
-            + " in the US federal government who provides detailed"
-            + " responses based on your vast knowledge"
-            + " of budget legislation and federal appropriations.";
-
-        /// <summary>
-        /// The content
-        /// </summary>
-        private protected string _content;
+        private const string _systemPrompt = 
+            "You are the most knowledgeable Budget Analyst in the federal government."
+            + " You provide detailed responses based on your vast" 
+            + " knowledge of regulations and federal appropriations.";
 
         /// <summary>
         /// Initializes a new instance of the

@@ -7,7 +7,10 @@
     </ApplicationDefinition>
   </ItemGroup>
   <ItemGroup>
-    <Compile Update="UI\Views\Windows\ChatWindow.xaml.cs">
+    <Compile Update="UI\Views\Upload\GptUpload.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="UI\Views\ChatWindow\ChatWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="Data\Abstractions\AdapterBase.cs">
@@ -16,15 +19,18 @@
     <Compile Update="Data\Adapter\BubbaAdapter.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Update="UI\Views\Windows\WebBrowser.xaml.cs">
+    <Compile Update="UI\Views\WebBrowser\WebBrowser.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Page Update="UI\Views\Upload\GptUpload.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="UI\Views\Document\DocumentWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="UI\Views\Windows\ChatWindow.xaml">
+    <Page Update="UI\Views\ChatWindow\ChatWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="UI\Themes\Editor\EditControl.xaml">
@@ -141,16 +147,16 @@
     <Page Update="UI\Themes\Window\Window.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="UI\Views\Search\SearchDialog.xaml">
+    <Page Update="UI\Views\SearchDialog\SearchDialog.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="UI\Views\Calculator\CalculatorWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="UI\Views\Error\ErrorWindow.xaml">
+    <Page Update="UI\Views\ErrorWindow\ErrorWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="UI\Views\File\FileBrowser.xaml">
+    <Page Update="UI\Views\FileBrowser\FileBrowser.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="UI\Views\Folder\FolderBrowser.xaml">
@@ -159,10 +165,10 @@
     <Page Update="UI\Views\Notification\Notification.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="UI\Views\Splash\SplashMessage.xaml">
+    <Page Update="UI\Views\SplashWindow\SplashMessage.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="UI\Views\Windows\WebBrowser.xaml">
+    <Page Update="UI\Views\WebBrowser\WebBrowser.xaml">
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>

@@ -1,14 +1,14 @@
 ﻿// ******************************************************************************************
 //     Assembly:                Bubba
 //     Author:                  Terry D. Eppler
-//     Created:                 11-20-2024
+//     Created:                 12-10-2024
 // 
 //     Last Modified By:        Terry D. Eppler
-//     Last Modified On:        11-20-2024
+//     Last Modified On:        12-10-2024
 // ******************************************************************************************
 // <copyright file="GptEndPoint.cs" company="Terry D. Eppler">
-//    Bubba is a small windows (wpf) application for interacting with
-//    Chat GPT that's developed in C-Sharp under the MIT license
+//    Bubba is a small and simple windows (wpf) application for interacting with the OpenAI API
+//    that's developed in C-Sharp under the MIT license.C#.
 // 
 //    Copyright ©  2020-2024 Terry D. Eppler
 // 
@@ -50,13 +50,17 @@ namespace Bubba
     /// <summary>
     /// </summary>
     /// <seealso cref="T:Bubba.PropertyChangedBase" />
-    [SuppressMessage( "ReSharper", "UnusedType.Global" ) ]
+    [ SuppressMessage( "ReSharper", "UnusedType.Global" ) ]
     [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
     [ SuppressMessage( "ReSharper", "FieldCanBeMadeReadOnly.Global" ) ]
     [ SuppressMessage( "ReSharper", "MemberInitializerValueIgnored" ) ]
+    [ SuppressMessage( "ReSharper", "ClassCanBeSealed.Global" ) ]
     public class GptEndPoint : PropertyChangedBase
     {
-        private protected string _domain = @"https://api.openai.com/";
+        /// <summary>
+        /// The domain
+        /// </summary>
+        private protected string _apiDomain = @"https://api.openai.com/";
 
         /// <summary>
         /// The locations
@@ -66,22 +70,17 @@ namespace Bubba
         /// <summary>
         /// The Completions API
         /// </summary>
-        private protected string _completions;
-
-        /// <summary>
-        /// The chat completions
-        /// </summary>
-        private protected string _chatCompletions;
+        private protected string _textGeneration;
 
         /// <summary>
         /// The assistant
         /// </summary>
-        private protected string _assistant;
+        private protected string _assistants;
 
         /// <summary>
         /// The speech
         /// </summary>
-        private protected string _speech;
+        private protected string _speechGeneration;
 
         /// <summary>
         /// The translations
@@ -89,9 +88,14 @@ namespace Bubba
         private protected string _translations;
 
         /// <summary>
+        /// The transcriptions
+        /// </summary>
+        private protected string _transcriptions;
+
+        /// <summary>
         /// The jobs
         /// </summary>
-        private protected string _jobs;
+        private protected string _fineTuning;
 
         /// <summary>
         /// The files
@@ -116,7 +120,17 @@ namespace Bubba
         /// <summary>
         /// The generations
         /// </summary>
-        private protected string _imageGenerations;
+        private protected string _imageGeneration;
+
+        /// <summary>
+        /// The vector embedding
+        /// </summary>
+        private protected string _vectorEmbeddings;
+
+        /// <summary>
+        /// The data
+        /// </summary>
+        private protected IDictionary<string, string> _data;
 
         /// <summary>
         /// Initializes a new instance of the
@@ -124,18 +138,20 @@ namespace Bubba
         /// </summary>
         public GptEndPoint( )
         {
-            _chatCompletions = "https://api.openai.com/v1/chat/completions";
-            _completions = "https://api.openai.com/v1/completions";
-            _assistant = "https://api.openai.com/v1/assistants";
-            _speech = "https://api.openai.com/v1/audio/speech";
+            _textGeneration = "https://api.openai.com/v1/chat/completions";
+            _assistants = "https://api.openai.com/v1/assistants";
+            _speechGeneration = "https://api.openai.com/v1/audio/speech";
             _translations = "https://api.openai.com/v1/audio/translations";
-            _jobs = "https://api.openai.com/v1/fine_tuning/jobs";
+            _transcriptions = "https://api.openai.com/v1/audio/transcriptions";
+            _fineTuning = "https://api.openai.com/v1/fine_tuning/jobs";
             _files = "https://api.openai.com/v1/files";
             _uploads = "https://api.openai.com/v1/uploads";
+            _vectorEmbeddings = "https://api.openai.com/v1/embeddings";
             _vectorStores = "https://api.openai.com/v1/vector_stores";
             _projects = "https://api.openai.com/v1/organization/projects";
-            _imageGenerations = "https://api.openai.com/v1/images/generations";
+            _imageGeneration = "https://api.openai.com/v1/images/generations";
             _all = GetAll( );
+            _data = CreateData( );
         }
 
         /// <summary>
@@ -144,11 +160,11 @@ namespace Bubba
         /// <value>
         /// The domain.
         /// </value>
-        public string Domain
+        public string ApiDomain
         {
             get
             {
-                return _domain;
+                return _apiDomain;
             }
         }
 
@@ -167,30 +183,30 @@ namespace Bubba
         }
 
         /// <summary>
+        /// Gets the data.
+        /// </summary>
+        /// <value>
+        /// The data.
+        /// </value>
+        public IDictionary<string, string> Data
+        {
+            get
+            {
+                return _data;
+            }
+        }
+
+        /// <summary>
         /// Gets the completions.
         /// </summary>
         /// <value>
         /// The completions.
         /// </value>
-        public string Completions
+        public string TextGeneration
         {
             get
             {
-                return _completions;
-            }
-        }
-
-        /// <summary>
-        /// Gets the chat completions.
-        /// </summary>
-        /// <value>
-        /// The chat completions.
-        /// </value>
-        public string ChatCompletions
-        {
-            get
-            {
-                return _chatCompletions;
+                return _textGeneration;
             }
         }
 
@@ -200,11 +216,11 @@ namespace Bubba
         /// <value>
         /// The assistant.
         /// </value>
-        public string Assistant
+        public string Assistants
         {
             get
             {
-                return _assistant;
+                return _assistants;
             }
         }
 
@@ -214,11 +230,11 @@ namespace Bubba
         /// <value>
         /// The speech.
         /// </value>
-        public string Speech
+        public string SpeechGeneration
         {
             get
             {
-                return _speech;
+                return _speechGeneration;
             }
         }
 
@@ -237,16 +253,30 @@ namespace Bubba
         }
 
         /// <summary>
+        /// Gets the translations.
+        /// </summary>
+        /// <value>
+        /// The translations.
+        /// </value>
+        public string Transcriptions
+        {
+            get
+            {
+                return _transcriptions;
+            }
+        }
+
+        /// <summary>
         /// Gets the jobs.
         /// </summary>
         /// <value>
         /// The jobs.
         /// </value>
-        public string Jobs
+        public string FineTuning
         {
             get
             {
-                return _jobs;
+                return _fineTuning;
             }
         }
 
@@ -293,6 +323,20 @@ namespace Bubba
         }
 
         /// <summary>
+        /// Gets the vector embedding.
+        /// </summary>
+        /// <value>
+        /// The vector embedding.
+        /// </value>
+        public string VectorEmbeddings
+        {
+            get
+            {
+                return _vectorEmbeddings;
+            }
+        }
+
+        /// <summary>
         /// Gets the projects.
         /// </summary>
         /// <value>
@@ -312,11 +356,39 @@ namespace Bubba
         /// <value>
         /// The image generations.
         /// </value>
-        public string ImageGenerations
+        public string ImageGeneration
         {
             get
             {
-                return _imageGenerations;
+                return _imageGeneration;
+            }
+        }
+
+        /// <summary>
+        /// Creates the data.
+        /// </summary>
+        /// <returns></returns>
+        private IDictionary<string, string> CreateData( )
+        {
+            try
+            {
+                var _urls = new Dictionary<string, string>( );
+                _urls.Add( "Text Generation", _textGeneration );
+                _urls.Add( "Translations", _translations );
+                _urls.Add( "Image Generation", _imageGeneration );
+                _urls.Add( "Vector Embeddings", _vectorEmbeddings );
+                _urls.Add( "Transcriptions", _transcriptions );
+                _urls.Add( "Vector Stores", _vectorStores );
+                _urls.Add( "Speech Generation", _speechGeneration );
+                _urls.Add( "Fine Tuning", _fineTuning );
+                _urls.Add( "Files", _files );
+                _urls.Add( "Uploads", _uploads );
+                return _urls;
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+                return default( IDictionary<string, string> );
             }
         }
 

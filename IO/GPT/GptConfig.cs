@@ -78,8 +78,9 @@ namespace Bubba
         private protected double _topPercent;
 
         /// <summary>
-        /// A number between -2.0 and 2.0  Positive value decrease the
-        /// model's likelihood to repeat the same line verbatim.
+        /// A number between 0.0 and 2.0   between 0 and 2.
+        /// Higher values like 0.8 will make the output more random,
+        /// while lower values like 0.2 will make it more focused and deterministic.
         /// </summary>
         private protected double _temperature;
 
@@ -104,7 +105,7 @@ namespace Bubba
         private protected double _presence;
 
         /// <summary>
-        /// The system prompt
+        /// The system instructions
         /// </summary>
         private protected string _systemPrompt;
 
@@ -132,11 +133,11 @@ namespace Bubba
             _store = false;
             _stream = false;
             _number = 1;
-            _maximumTokens = 2048;
+            _maximumTokens = 157;
             _temperature = 1.0;
+            _topPercent = 1.0;
             _frequency = 0.0;
             _presence = 0.0;
-            _topPercent = 0.0;
         }
 
         /// <inheritdoc />
@@ -281,8 +282,9 @@ namespace Bubba
         }
 
         /// <summary>
-        /// A number between -2.0 and 2.0  Positive value decrease the
-        /// model's likelihood to repeat the same line verbatim.
+        /// A number between 0.0 and 2.0   between 0 and 2.
+        /// Higher values like 0.8 will make the output more random,
+        /// while lower values like 0.2 will make it more focused and deterministic.
         /// </summary>
         /// <value>
         /// The temperature.
@@ -379,7 +381,7 @@ namespace Bubba
         }
 
         /// <summary>
-        /// THe number 'n' returned by the response.
+        /// THe number 'n' of responses generatred.
         /// </summary>
         /// <value>
         /// The user identifier.
