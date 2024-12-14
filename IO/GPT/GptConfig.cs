@@ -42,7 +42,10 @@
 namespace Bubba
 {
     using System;
+    using System.ComponentModel;
     using System.Diagnostics.CodeAnalysis;
+    using System.Runtime.CompilerServices;
+    using OpenAI.Chat;
 
     /// <inheritdoc />
     /// <summary>
@@ -50,7 +53,8 @@ namespace Bubba
     /// <seealso cref="T:Bubba.PropertyChangedBase" />
     [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
     [ SuppressMessage( "ReSharper", "UnusedType.Global" ) ]
-    public class GptConfig : PropertyChangedBase
+    [ SuppressMessage( "ReSharper", "ClassCanBeSealed.Global" ) ]
+    public class GptConfig : ChatCompletionOptions, INotifyPropertyChanged
     {
         /// <summary>
         /// The number responses to generate
@@ -125,15 +129,29 @@ namespace Bubba
         private protected string _model;
 
         /// <summary>
+        /// The end point
+        /// </summary>
+        private protected string _endPoint;
+
+        /// <inheritdoc />
+        /// <summary>
+        /// Occurs when a property value changes.
+        /// </summary>
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        /// <inheritdoc />
+        /// <summary>
         /// Initializes a new instance of the
-        /// <see cref="GptConfig"/> class.
+        /// <see cref="T:Bubba.GptConfig" /> class.
         /// </summary>
         public GptConfig( )
+            : base( )
         {
             _store = false;
             _stream = false;
+            _model = "gpt-4o";
             _number = 1;
-            _maximumTokens = 157;
+            _maximumTokens = 2048;
             _temperature = 1.0;
             _topPercent = 1.0;
             _frequency = 0.0;
@@ -142,31 +160,40 @@ namespace Bubba
 
         /// <inheritdoc />
         /// <summary>
-        /// Initializes a new instance of the
-        /// <see cref="T:Bubba.GptConfig" /> class.
+        /// Initializes a new instance of the <see cref="T:Bubba.GptConfig" /> class.
         /// </summary>
         /// <param name="systemPrompt">The system prompt.</param>
         /// <param name="userPrompt">The user prompt.</param>
-        public GptConfig( string systemPrompt, string userPrompt )
+        /// <param name = "model" > </param>
+        /// <param name = "endpoint" > </param>
+        public GptConfig( string systemPrompt, string userPrompt, string endpoint,
+            string model = "gpt-4o" ) 
             : this( )
         {
             _systemPrompt = systemPrompt;
             _userPrompt = userPrompt;
+            _endPoint = endpoint;
+            _model = model;
         }
-
+        
+        /// <inheritdoc />
         /// <summary>
         /// Initializes a new instance of the
-        /// <see cref="GptConfig"/> class.
+        /// <see cref="T:Bubba.GptConfig" /> class.
         /// </summary>
         /// <param name="config">The prompt model.</param>
         public GptConfig( GptConfig config )
         {
             _systemPrompt = config.SystemPrompt;
             _userPrompt = config.UserPrompt;
-            _maximumTokens = config.MaximumTokens;
-            _temperature = config.Temperature;
+            _model = config.Model;
+            _number = config.Number;
             _frequency = config.Frequency;
             _presence = config.Presence;
+            _temperature = config.Temperature;
+            _maximumTokens = config.MaximumTokens;
+            _store = config.Store;
+            _stream = config.Stream;
         }
 
         /// <summary>
@@ -178,8 +205,11 @@ namespace Bubba
         /// <param name="temperature">The temperature.</param>
         /// <param name="frequency">The frequency.</param>
         /// <param name="presense">The presense.</param>
+        /// <param name = "store" > </param>
+        /// <param name = "stream" > </param>
         public void Decontruct( out string systemPrompt, out string userPrompt, out int maxTokens,
-            out double temperature, out double frequency, out double presense )
+            out double temperature, out double frequency, out double presense,
+            out bool store, out bool stream )
         {
             systemPrompt = _systemPrompt;
             userPrompt = _userPrompt;
@@ -187,6 +217,39 @@ namespace Bubba
             temperature = _temperature;
             frequency = _frequency;
             presense = _presence;
+            store = _store;
+            stream = _stream;
+        }
+
+        /// <summary>
+        /// Called when [property changed].
+        /// </summary>
+        /// <param name="propertyName">Name of the property.</param>
+        public void OnPropertyChanged( [ CallerMemberName ] string propertyName = null )
+        {
+            PropertyChanged?.Invoke( this, new PropertyChangedEventArgs( propertyName ) );
+        }
+
+        /// <summary>
+        /// Gets or sets the end point.
+        /// </summary>
+        /// <value>
+        /// The end point.
+        /// </value>
+        public string EndPoint
+        {
+            get
+            {
+                return _endPoint;
+            }
+            set
+            {
+                if( _endPoint != value )
+                {
+                    _endPoint = value;
+                    OnPropertyChanged( nameof( EndPoint ) );
+                }
+            }
         }
 
         /// <summary>
@@ -289,7 +352,7 @@ namespace Bubba
         /// <value>
         /// The temperature.
         /// </value>
-        public double Temperature
+        public new double Temperature
         {
             get
             {

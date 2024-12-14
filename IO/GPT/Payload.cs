@@ -46,112 +46,62 @@ namespace Bubba
     using System.Diagnostics.CodeAnalysis;
     using JsonSerializer = System.Text.Json.JsonSerializer;
 
+    /// <inheritdoc />
+    /// <summary>
+    /// </summary>
+    /// <seealso cref="T:OpenAI.Chat.ChatCompletionOptions" />
+    /// <seealso cref="T:System.ComponentModel.INotifyPropertyChanged" />
     [ SuppressMessage( "ReSharper", "UnusedType.Global" ) ]
     [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
-    public class Payload : PropertyChangedBase
+    [ SuppressMessage( "ReSharper", "FieldCanBeMadeReadOnly.Global" ) ]
+    public class Payload : PayloadBase
     {
-        /// <summary>
-        /// The user identifier
-        /// </summary>
-        private protected int _id;
-
-        /// <summary>
-        /// The number of images
-        /// </summary>
-        private protected int _number;
-
-        /// <summary>
-        /// ID of the model to use.
-        /// </summary>
-        private protected string _model;
-
-        /// <summary>
-        /// A number between -2.0 and 2.0  Positive value decrease the
-        /// model's likelihood to repeat the same line verbatim.
-        /// </summary>
-        private protected double _temperature;
-
-        /// <summary>
-        /// An upper bound for the number of tokens that can be generated for a completion
-        /// </summary>
-        private protected int _maxCompletionTokens;
-
-        /// <summary>
-        /// TNumber between -2.0 and 2.0. Positive values penalize new
-        /// tokens based on their existing frequency in the text so far,
-        /// decreasing the model's likelihood to repeat the same line verbatim.
-        /// </summary>
-        private protected double _frequency;
-
-        /// <summary>
-        /// The top percent
-        /// </summary>
-        private protected double _topPercent;
-
-        /// <summary>
-        /// The stop sequences
-        /// </summary>
-        private protected IList<string> _stopSequences;
-
-        /// <summary>
-        /// Number between -2.0 and 2.0. Positive values penalize new tokens
-        /// based on whether they appear in the text so far,
-        /// ncreasing the model's likelihood to talk about new topics.
-        /// </summary>
-        private protected double _presence;
-
-        /// <summary>
-        /// The size
-        /// </summary>
-        private protected string _size;
-
-        /// <summary>
-        /// The string provided to GPT
-        /// </summary>
-        private protected string _prompt;
-
-        /// <summary>
-        /// The response format
-        /// </summary>
-        private protected string _responseFormat;
-
-        /// <summary>
-        /// The messages
-        /// </summary>
-        private protected List<dynamic> _messages;
-
+        /// <inheritdoc />
         /// <summary>
         /// Initializes a new instance of the
-        /// <see cref="Payload"/> class.
+        /// <see cref="T:Bubba.Payload" /> class.
         /// </summary>
         public Payload( )
         {
             _stopSequences = new List<string>( );
+            _stopSequences.Add( "#" );
+            _stopSequences.Add( ";" );
+            _data = new Dictionary<string, object>( );
+            _data.Add( "stop", _stopSequences );
         }
 
+        /// <inheritdoc />
         /// <summary>
-        /// Initializes a new instance of the <see cref="Payload"/> class.
+        /// Initializes a new instance of the
+        /// <see cref="T:Bubba.Payload" /> class.
         /// </summary>
-        /// <param name = "prompt" > The ChatGPT prompt</param>
+        /// <param name="prompt"> The ChatGPT prompt</param>
         /// <param name="id">The identifier.</param>
         /// <param name="frequency">The frequency.</param>
         /// <param name="presence">The presence.</param>
         /// <param name="temperature">The temperature.</param>
-        /// <param name="completionTokens">The tokens.</param>
+        /// <param name="maxTokens">The tokens.</param>
         public Payload( string prompt, int id = 1, double frequency = 0.0,
-            double presence = 0.0, double temperature = 0.5, int completionTokens = 2048 )
+            double presence = 0.0, double temperature = 0.7, int maxTokens = 2048 ) 
+            : this( )
         {
             _id = id;
             _temperature = temperature;
-            _maxCompletionTokens = completionTokens;
+            _maxCompletionTokens = maxTokens;
             _frequency = frequency;
             _presence = presence;
             _prompt = prompt;
+            _data.Add( "id", id );
+            _data.Add( "max_completion_tokens", maxTokens );
+            _data.Add( "frequency", frequency );
+            _data.Add( "presence", presence );
+            _data.Add( "content", prompt );
         }
 
+        /// <inheritdoc />
         /// <summary>
         /// Initializes a new instance of the
-        /// <see cref="Payload"/> class.
+        /// <see cref="T:Bubba.Payload" /> class.
         /// </summary>
         /// <param name="payload">The payload.</param>
         public Payload( Payload payload )
@@ -161,6 +111,7 @@ namespace Bubba
             _maxCompletionTokens = payload.MaxCompletionTokens;
             _frequency = payload.Frequency;
             _presence = payload.Presence;
+            _prompt = payload.Prompt;
         }
 
         /// <summary>
@@ -184,225 +135,43 @@ namespace Bubba
         }
 
         /// <summary>
-        /// Gets the user identifier.
+        /// Fors the text generation.
+        /// A method to construct other reusable default payloads if required
         /// </summary>
-        /// <value>
-        /// The user identifier.
-        /// </value>
-        public int Id
+        /// <returns>
+        /// Payload
+        /// </returns>
+        public Payload ForTextGeneration( )
         {
-            get
+            return new Payload
             {
-                return _id;
-            }
-            set
-            {
-                if( _id != value )
-                {
-                    _id = value;
-                    OnPropertyChanged( nameof( Id ) );
-                }
-            }
+                Model = _model,
+                Prompt = _prompt,
+                MaxCompletionTokens = _maxCompletionTokens,
+                Temperature = _temperature,
+                ResponseFormat = "url" 
+            };
         }
 
+        // A method to easily set up image generation specifics
         /// <summary>
-        /// Gets or sets the stop sequences.
+        /// Fors the image generation.
         /// </summary>
-        /// <value>
-        /// The stop sequences.
-        /// </value>
-        public IList<string> StopSequences
+        /// <param name="prompt">The prompt.</param>
+        /// <param name="size">The size.</param>
+        /// <param name="numberOfImages">The number of images.</param>
+        /// <returns></returns>
+        public static Payload ForImageGeneration( string prompt, string size = "512x512", int numberOfImages = 1 )
         {
-            get
+            return new Payload
             {
-                return _stopSequences;
-            }
-            set
-            {
-                if( _stopSequences != value )
-                {
-                    _stopSequences = value;
-                    OnPropertyChanged( nameof( StopSequences ) );
-                }
-            }
+                Prompt = prompt,
+                ImageSize = size,
+                Number = numberOfImages,
+                ResponseFormat = "url"
+            };
         }
-
-        /// <summary>
-        /// Gets or sets the number of images.
-        /// </summary>
-        /// <value>
-        /// The number of images.
-        /// </value>
-        public int NumberOfImages
-        {
-            get
-            {
-                return _maxCompletionTokens;
-            }
-            set
-            {
-                if( _maxCompletionTokens != value )
-                {
-                    _maxCompletionTokens = value;
-                    OnPropertyChanged( nameof( MaxCompletionTokens ) );
-                }
-            }
-        }
-
-        /// <summary>
-        /// Gets the maximum tokens.
-        /// </summary>
-        /// <value>
-        /// The maximum tokens.
-        /// </value>
-        public int MaxCompletionTokens
-        {
-            get
-            {
-                return _maxCompletionTokens;
-            }
-            set
-            {
-                if( _maxCompletionTokens != value )
-                {
-                    _maxCompletionTokens = value;
-                    OnPropertyChanged( nameof( MaxCompletionTokens ) );
-                }
-            }
-        }
-
-        /// <summary>
-        /// Gets the temperature.
-        /// </summary>
-        /// <value>
-        /// The temperature.
-        /// </value>
-        public double Temperature
-        {
-            get
-            {
-                return _temperature;
-            }
-            set
-            {
-                if( _temperature != value )
-                {
-                    _temperature = value;
-                    OnPropertyChanged( nameof( Temperature ) );
-                }
-            }
-        }
-
-        /// <summary>
-        /// Gets the frequency.
-        /// </summary>
-        /// <value>
-        /// The frequency.
-        /// </value>
-        public double Frequency
-        {
-            get
-            {
-                return _frequency;
-            }
-            set
-            {
-                if( _frequency != value )
-                {
-                    _frequency = value;
-                    OnPropertyChanged( nameof( Frequency ) );
-                }
-            }
-        }
-
-        /// <summary>
-        /// Gets the presence.
-        /// </summary>
-        /// <value>
-        /// The presence.
-        /// </value>
-        public double Presence
-        {
-            get
-            {
-                return _presence;
-            }
-            set
-            {
-                if( _presence != value )
-                {
-                    _presence = value;
-                    OnPropertyChanged( nameof( Presence ) );
-                }
-            }
-        }
-
-        /// <summary>
-        /// Gets the chat model.
-        /// </summary>
-        /// <value>
-        /// The chat model.
-        /// </value>
-        public string Model
-        {
-            get
-            {
-                return _model;
-            }
-            set
-            {
-                if( _model != value )
-                {
-                    _model = value;
-                    OnPropertyChanged( nameof( Model ) );
-                }
-            }
-        }
-
-        /// <summary>
-        /// Gets or sets the response format.
-        /// </summary>
-        /// <value>
-        /// The response format.
-        /// </value>
-        public string ResponseFormat
-        {
-            get
-            {
-                return _responseFormat;
-            }
-            set
-            {
-                if( _responseFormat != value )
-                {
-                    _responseFormat = value;
-                    OnPropertyChanged( nameof( ResponseFormat ) );
-                }
-            }
-        }
-
-        /// <summary>
-        /// Gets the prompt.
-        /// </summary>
-        /// <value>
-        /// The prompt.
-        /// </value>
-        public string Prompt
-        {
-            get
-            {
-                return _prompt;
-            }
-            set
-            {
-                if( _prompt != value )
-                {
-                    _prompt = value;
-                    OnPropertyChanged( nameof( Prompt ) );
-                }
-            }
-        }
-
+    
         /// <summary>
         /// Serializes the specified prompt.
         /// </summary>

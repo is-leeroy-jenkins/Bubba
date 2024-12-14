@@ -42,7 +42,6 @@
 namespace Bubba
 {
     using System;
-    using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
     using System.Net.Http;
 
@@ -76,34 +75,33 @@ namespace Bubba
         /// Initializes a new instance of the
         /// <see cref="T:Bubba.GptRequest" /> class.
         /// </summary>
-        /// <param name = "user" > </param>
         /// <param name = "system" > </param>
+        /// <param name = "user" > </param>
         /// <param name = "model" > </param>
+        /// <param name = "endpoint" > </param>
+        /// <param name="number">The identifier.</param>
         /// <param name = "store" > </param>
         /// <param name = "stream" > </param>
-        /// <param name="number">The identifier.</param>
         /// <param name="frequency">The frequency.</param>
         /// <param name="presence">The presence.</param>
         /// <param name = "topPercent" > </param>
         /// <param name="temperature">The temperature.</param>
-        /// <param name="completionTokens"</param>
-        public GptRequest( string user, string system, string model = "gpt-4o",
-            bool store = false, bool stream = false,
-            int number = 1, double frequency = 0.0, double presence = 0.0,
+        /// <param name="completionTokens" </param>/param>
+        public GptRequest( string system, string user, string model,
+            string endpoint, int number = 1, bool store = false,
+            bool stream = false, double frequency = 0.0, double presence = 0.0, 
             double topPercent = 1.0, double temperature = 1.0, int completionTokens = 2048 )
         {
             _header = new GptHeader( );
-            _endPoint = new GptEndPoint( ).TextGeneration;
-            _systemPrompt = system;
-            _userPrompt = user;
-            _model = model;
-            _store = store;
-            _stream = stream;
+            _body = new GptBody( system, user, model );
+            _endPoint = endpoint;
             _number = number;
-            _presence = presence;
+            _stream = stream;
+            _stream = stream;
             _frequency = frequency;
-            _temperature = temperature;
+            _presence = presence;
             _topPercent = topPercent;
+            _temperature = temperature;
             _maximumCompletionTokens = completionTokens;
         }
 
@@ -112,21 +110,20 @@ namespace Bubba
         /// Initializes a new instance of the
         /// <see cref="T:Bubba.GptRequest" /> class.
         /// </summary>
-        /// <param name="gptRequest">The GPT request.</param>
-        public GptRequest( GptRequest gptRequest )
+        /// <param name="config">The GPT request.</param>
+        public GptRequest( GptConfig config )
         {
             _header = new GptHeader( );
-            _endPoint = gptRequest.EndPoint;
-            _systemPrompt = gptRequest.SystemPrompt;
-            _userPrompt = gptRequest.UserPrompt;
-            _store = gptRequest.Store;
-            _stream = gptRequest.Stream;
-            _number = gptRequest.Number;
-            _presence = gptRequest.Presence;
-            _frequency = gptRequest.Frequency;
-            _temperature = gptRequest.Temperature;
-            _topPercent = gptRequest.TopPercent;
-            _maximumCompletionTokens = gptRequest.MaximumCompletionTokens;
+            _body = new GptBody( config.SystemPrompt, config.UserPrompt, config.Model );
+            _endPoint = config.EndPoint;
+            _number = config.Number;
+            _stream = config.Stream;
+            _store = config.Store;
+            _frequency = config.Frequency;
+            _presence = config.Presence;
+            _topPercent = config.TopPercent;
+            _temperature = config.Temperature;
+            _maximumCompletionTokens = config.MaximumTokens;
         }
 
         /// <summary>
@@ -134,8 +131,8 @@ namespace Bubba
         /// </summary>
         /// <param name = "header" > </param>
         /// <param name = "endPoint" > </param>
-        /// <param name = "system" > </param>
         /// <param name = "user" > </param>
+        /// <param name = "system" > </param>
         /// <param name = "store" > </param>
         /// <param name = "stream" > </param>
         /// <param name = "model" > </param>
@@ -145,16 +142,16 @@ namespace Bubba
         /// <param name="temperature">The temperature.</param>
         /// <param name = "topPercent" > </param>
         /// <param name="tokens">The maximum tokens.</param>
-        public void Deconstruct( out GptHeader header, out string endPoint, out string system,
-            out string user, out bool store, out bool stream,
+        public void Deconstruct( out GptHeader header, out string endPoint, out string user, 
+            out string system, out bool store, out bool stream,
             out string model, out int number, out double presence, 
             out double frequency, out double temperature,
             out double topPercent, out int tokens )
         {
             header = _header;
+            system = _body.SystemMessage.Content;
+            user = _body.UserMessage.Content;
             endPoint = _endPoint;
-            system = _systemPrompt;
-            user = _userPrompt;
             store = _store;
             stream = _stream;
             model = _model;

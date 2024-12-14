@@ -603,6 +603,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <EmbeddedResource Update="ResourceLocations.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>ResourceLocations.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Update="Resources\SystemInstructions.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>SystemInstructions.Designer.cs</LastGenOutput>

@@ -44,15 +44,12 @@ namespace Bubba
     using System;
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
-    using System.Linq;
-    using System.Net.Http;
-    using System.Text;
-    using System.Threading.Tasks;
 
     /// <inheritdoc />
     /// <summary>
     /// </summary>
     [ SuppressMessage( "ReSharper", "UnusedType.Global" ) ]
+    [ SuppressMessage( "ReSharper", "MemberCanBeProtected.Global" ) ]
     public abstract class GptRequestBase : GptBase
     {
         /// <summary>
@@ -71,58 +68,9 @@ namespace Bubba
         private protected GptHeader _header;
 
         /// <summary>
-        /// The user prompt
+        /// The configuration
         /// </summary>
-        private protected string _userPrompt;
-
-        /// <summary>
-        /// The assistant prompt
-        /// </summary>
-        private protected string _systemPrompt;
-
-        /// <summary>
-        /// Gets or sets the system prompt.
-        /// </summary>
-        /// <value>
-        /// The system prompt.
-        /// </value>
-        public virtual string SystemPrompt
-        {
-            get
-            {
-                return _systemPrompt;
-            }
-            set
-            {
-                if( _systemPrompt != value )
-                {
-                    _systemPrompt = value;
-                    OnPropertyChanged( nameof( SystemPrompt ) );
-                }
-            }
-        }
-
-        /// <summary>
-        /// Gets or sets the user prompt.
-        /// </summary>
-        /// <value>
-        /// The user prompt.
-        /// </value>
-        public virtual string UserPrompt
-        {
-            get
-            {
-                return _userPrompt;
-            }
-            set
-            {
-                if( _userPrompt != value )
-                {
-                    _userPrompt = value;
-                    OnPropertyChanged( nameof( UserPrompt ) );
-                }
-            }
-        }
+        private protected GptConfig _config;
 
         /// <inheritdoc />
         /// <summary>

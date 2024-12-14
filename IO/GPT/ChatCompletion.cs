@@ -70,9 +70,21 @@ namespace Bubba
         {
         }
 
+        /// <summary>
+        /// Initializes a new instance of the
+        /// <see cref="ChatCompletion"/> class.
+        /// </summary>
+        /// <param name="config">The configuration.</param>
+        public ChatCompletion( GptConfig config )
+        {
+            _header = new GptHeader();
+            _endPoint = new GptEndPoint( ).TextGeneration;
+        }
+
         /// <inheritdoc />
         /// <summary>
-        /// Initializes a new instance of the <see cref="T:Bubba.ChatCompletion" /> class.
+        /// Initializes a new instance of the
+        /// <see cref="T:Bubba.ChatCompletion" /> class.
         /// </summary>
         /// <param name="user">The user.</param>
         /// <param name="system">The system.</param>
@@ -93,8 +105,6 @@ namespace Bubba
         {
             _header = new GptHeader( );
             _endPoint = new GptEndPoint( ).TextGeneration;
-            _systemPrompt = system;
-            _userPrompt = user;
             _store = store;
             _stream = stream;
             _number = number;
@@ -115,8 +125,6 @@ namespace Bubba
         {
             _header = new GptHeader( );
             _endPoint = chatCompletion.EndPoint;
-            _systemPrompt = chatCompletion.SystemPrompt;
-            _userPrompt = chatCompletion.UserPrompt;
             _store = chatCompletion.Store;
             _stream = chatCompletion.Stream;
             _number = chatCompletion.Number;
@@ -132,8 +140,6 @@ namespace Bubba
         /// </summary>
         /// <param name="header">The header.</param>
         /// <param name="endPoint">The end point.</param>
-        /// <param name="system">The system.</param>
-        /// <param name="user">The user.</param>
         /// <param name="store">if set to <c>true</c> [store].</param>
         /// <param name="stream">if set to <c>true</c> [stream].</param>
         /// <param name="model">The model.</param>
@@ -143,16 +149,13 @@ namespace Bubba
         /// <param name="temperature">The temperature.</param>
         /// <param name="topPercent">The top percent.</param>
         /// <param name="tokens">The tokens.</param>
-        public void Decontruct( out GptHeader header, out string endPoint, out string system,
-            out string user, out bool store, out bool stream,
-            out string model, out int number,
+        public void Decontruct( out GptHeader header, out string endPoint, out bool store, 
+            out bool stream, out string model, out int number,
             out double presence, out double frequency, out double temperature,
             out double topPercent, out int tokens )
         {
             header = _header;
             endPoint = _endPoint;
-            system = _systemPrompt;
-            user = _userPrompt;
             store = _store;
             stream = _stream;
             model = _model;
@@ -413,7 +416,7 @@ namespace Bubba
         /// <value>
         /// The chat model.
         /// </value>
-        public GptBody Body
+        public override GptBody Body
         {
             get
             {

@@ -241,6 +241,7 @@
                     HorizontalAlignment="Left"
                     VerticalAlignment="Center"
                     Content="Store"
+                    ToolTip="Adds GPT Output to model"
                     FontFamily="Roboto"
                     FontSize="14" />
 
@@ -254,6 +255,7 @@
                     VerticalAlignment="Center"
                     Content="Stream"
                     FontSize="14"
+                    ToolTip="Return GPT output in chuncks"
                     FontFamily="Roboto" />
 
                 <ComboBox
@@ -281,6 +283,7 @@
                     VerticalAlignment="Center"
                     HorizontalContentAlignment="Left"
                     BorderThickness="2"
+                    ToolTip="Available Learning Models"
                     Background="{StaticResource ControlInteriorBrush}"
                     BorderBrush="{StaticResource BlueBorderBrush}"
                     Foreground="{StaticResource WhiteForeground}" />
@@ -309,8 +312,9 @@
                         x:Name="ImageSizeComboBox"
                         Height="30"
                         Margin="5,0,12,0"
-                        AllowMultiSelect="True"
+                        AllowMultiSelect="False"
                         BorderThickness="2"
+                        ToolTip="Select size for image generation"
                         Background="{StaticResource ControlInteriorBrush}"
                         BorderBrush="{StaticResource BlueBorderBrush}"
                         Foreground="{StaticResource WhiteForeground}"
@@ -549,8 +553,8 @@
 
                 <Slider
                     x:Name="FrequencySlider"
-                    Canvas.Left="652"
-                    Canvas.Top="83"
+                    Canvas.Left="662"
+                    Canvas.Top="79"
                     Width="120"
                     Height="45"
                     HorizontalAlignment="Left"
@@ -617,9 +621,9 @@
                 <GroupBox
                     Canvas.Left="838"
                     Canvas.Top="13"
-                    Width="190"
+                    Width="179"
                     Height="186"
-                    HorizontalAlignment="Left"
+                    HorizontalAlignment="Center"
                     VerticalAlignment="Center"
                     Background="{StaticResource GroupBoxBackground}"
                     Foreground="{StaticResource LightBlueBrush}"
@@ -641,8 +645,8 @@
 
                 <TextBlock
                     x:Name="FrequencyText"
-                    Canvas.Left="692"
-                    Canvas.Top="44"
+                    Canvas.Left="697"
+                    Canvas.Top="39"
                     Width="60"
                     Padding="1,1,1,1"
                     HorizontalAlignment="Left"
@@ -727,6 +731,7 @@
                     VerticalAlignment="Center"
                     Content="Mute"
                     FontSize="14"
+                    ToolTip="Deactivates Text-to-speech (TTS)"
                     FontFamily="Roboto" />
                 <CheckBox
                     x:Name="ListenCheckBox"
@@ -738,6 +743,7 @@
                     VerticalAlignment="Center"
                     Content="Listen"
                     FontSize="14"
+                    ToolTip="Transcribes audio"
                     FontFamily="Roboto" />
 
                 <wpf:IntegerTextBox
@@ -811,7 +817,7 @@
                     Height="239"
                     HorizontalAlignment="Left"
                     VerticalAlignment="Center"
-                    Header="Prompt"
+                    Header="Editor"
                     BorderBrush="{DynamicResource MutedForeground}"
                     Background="{StaticResource GroupBoxBackground}"
                     Foreground="{DynamicResource LightBlueBrush}"
@@ -841,6 +847,7 @@
                     HorizontalAlignment="Center"
                     VerticalAlignment="Top"
                     BorderThickness="2"
+                    ToolTip="Select Language"
                     Background="{DynamicResource ControlInteriorBrush}"
                     BorderBrush="{DynamicResource BlueBorderBrush}"
                     Foreground="{DynamicResource WhiteForeground}" />

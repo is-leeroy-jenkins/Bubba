@@ -168,6 +168,11 @@ namespace Bubba
         private protected string _prompt;
 
         /// <summary>
+        /// The data
+        /// </summary>
+        private protected IDictionary<string, object> _data;
+
+        /// <summary>
         /// Initializes a new instance of the
         /// <see cref="GptBase"/> class.
         /// </summary>
@@ -204,6 +209,29 @@ namespace Bubba
                 lock( _entry )
                 {
                     return _busy;
+                }
+            }
+        }
+
+        /// <inheritdoc />
+        /// <summary>
+        /// Gets or sets the data.
+        /// </summary>
+        /// <value>
+        /// The data.
+        /// </value>
+        public virtual IDictionary<string, object> Data
+        {
+            get
+            {
+                return _data;
+            }
+            set
+            {
+                if(_data != value)
+                {
+                    _data = value;
+                    OnPropertyChanged(nameof(Data));
                 }
             }
         }

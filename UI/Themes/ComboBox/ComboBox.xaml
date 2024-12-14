@@ -45,8 +45,8 @@
     <!--  *********************************************** ComboBoxItem *****************************************************  -->
 
     <Style
-        x:Key="MetroComboBoxItemStyle"
-        TargetType="{x:Type b:MetroComboBoxItem}">
+        x:Key="ComboBoxItemStyle"
+        TargetType="{x:Type ComboBoxItem}">
         <Setter Property="Background" Value="{StaticResource ControlInteriorBrush}" />
         <Setter Property="BorderBrush" Value="{StaticResource ControlInteriorBrush}" />
         <Setter Property="Foreground" Value="{StaticResource LightBlueBrush}" />
@@ -80,6 +80,13 @@
                 <Setter Property="Background" Value="{StaticResource SteelBlueBackground}" />
                 <Setter Property="BorderBrush" Value="{StaticResource SteelBlueBackground}" />
                 <Setter Property="Foreground" Value="{StaticResource WhiteForeground}" />
+                <Setter Property="FontWeight" Value="Bold" />
+            </Trigger>
+
+            <Trigger Property="IsSelected" Value="False">
+                <Setter Property="Background" Value="{StaticResource ControlInteriorBrush}" />
+                <Setter Property="BorderBrush" Value="{StaticResource ControlInteriorBrush}" />
+                <Setter Property="Foreground" Value="{StaticResource LightBlueBrush}" />
                 <Setter Property="FontWeight" Value="Normal" />
             </Trigger>
 
@@ -124,8 +131,8 @@
     <!--  *********************************************** ComboBoxItem *****************************************************  -->
 
     <Style
-        x:Key="ComboBoxItemStyle"
-        TargetType="{x:Type ComboBoxItem}">
+        x:Key="MetroComboBoxItemStyle"
+        TargetType="{x:Type b:MetroComboBoxItem}">
         <Setter Property="Background" Value="{StaticResource ControlInteriorBrush}" />
         <Setter Property="BorderBrush" Value="{StaticResource ControlInteriorBrush}" />
         <Setter Property="Foreground" Value="{StaticResource LightBlueBrush}" />
@@ -159,6 +166,13 @@
                 <Setter Property="Background" Value="{StaticResource SteelBlueBackground}" />
                 <Setter Property="BorderBrush" Value="{StaticResource SteelBlueBackground}" />
                 <Setter Property="Foreground" Value="{StaticResource WhiteForeground}" />
+                <Setter Property="FontWeight" Value="Bold" />
+            </Trigger>
+
+            <Trigger Property="IsSelected" Value="False">
+                <Setter Property="Background" Value="{StaticResource ControlInteriorBrush}" />
+                <Setter Property="BorderBrush" Value="{StaticResource ControlInteriorBrush}" />
+                <Setter Property="Foreground" Value="{StaticResource LightBlueBrush}" />
                 <Setter Property="FontWeight" Value="Normal" />
             </Trigger>
 
