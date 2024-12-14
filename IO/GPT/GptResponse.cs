@@ -44,9 +44,6 @@ namespace Bubba
     using System;
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
-    using System.Linq;
-    using System.Text;
-    using System.Threading.Tasks;
 
     /// <inheritdoc />
     /// <summary>
@@ -93,10 +90,9 @@ namespace Bubba
             _frequency = 0.0;
             _topPercent = 1.0;
             _temperature = 1.0;
-            _maximumCompletionTokens = 157;
+            _maximumCompletionTokens = 2048;
             _model = "gpt-4o";
             _endPoint = "https://api.openai.com/v1/chat/completions";
-            _responseFormat = "text";
             _number = 1;
         }
 

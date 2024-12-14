@@ -655,3 +655,6 @@ C:\Users\terry\source\repos\Bubba\obj\Debug\net8.0-windows7.0\UI\Views\FileBrows
 C:\Users\terry\source\repos\Bubba\obj\Debug\net8.0-windows7.0\UI\Views\SearchDialog\SearchDialog.baml
 C:\Users\terry\source\repos\Bubba\obj\Debug\net8.0-windows7.0\UI\Views\SplashWindow\SplashMessage.baml
 C:\Users\terry\source\repos\Bubba\obj\Debug\net8.0-windows7.0\UI\Views\WebBrowser\WebBrowser.baml
+C:\Users\terry\source\repos\Bubba\obj\Debug\net8.0-windows7.0\Bubba.Resources.SearchEngine.resources
+C:\Users\terry\source\repos\Bubba\obj\Debug\net8.0-windows7.0\Bubba.Resources.SystemInstructions.resources
+C:\Users\terry\source\repos\Bubba\obj\Debug\net8.0-windows7.0\Bubba.csproj.GenerateResource.cache

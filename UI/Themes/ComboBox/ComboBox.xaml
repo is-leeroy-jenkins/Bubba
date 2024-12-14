@@ -12,7 +12,7 @@
     <!--  *********************************************** ComboBox *****************************************************  -->
 
     <Style
-        x:Key="MetroComboBoxStyle"
+        x:Key="ComboBoxStyle"
         TargetType="{x:Type ComboBox}">
         <Setter Property="Background" Value="{StaticResource ControlInteriorBrush}" />
         <Setter Property="BorderBrush" Value="{StaticResource BlueBorderBrush}" />
@@ -46,6 +46,85 @@
 
     <Style
         x:Key="MetroComboBoxItemStyle"
+        TargetType="{x:Type b:MetroComboBoxItem}">
+        <Setter Property="Background" Value="{StaticResource ControlInteriorBrush}" />
+        <Setter Property="BorderBrush" Value="{StaticResource ControlInteriorBrush}" />
+        <Setter Property="Foreground" Value="{StaticResource LightBlueBrush}" />
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="HorizontalAlignment" Value="Stretch" />
+        <Setter Property="HorizontalContentAlignment" Value="Left" />
+        <Setter Property="VerticalAlignment" Value="Stretch" />
+        <Setter Property="VerticalContentAlignment" Value="Center" />
+        <Setter Property="Padding" Value="1" />
+        <Setter Property="Margin" Value="1" />
+        <Setter Property="Height" Value="30" />
+
+
+        <Style.Triggers>
+
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background" Value="{StaticResource SteelBlueBackground}" />
+                <Setter Property="BorderBrush" Value="{StaticResource SteelBlueBackground}" />
+                <Setter Property="Foreground" Value="{StaticResource WhiteForeground}" />
+                <Setter Property="FontWeight" Value="Bold" />
+            </Trigger>
+
+            <Trigger Property="IsMouseOver" Value="False">
+                <Setter Property="Background" Value="{StaticResource ControlInteriorBrush}" />
+                <Setter Property="BorderBrush" Value="{StaticResource ControlInteriorBrush}" />
+                <Setter Property="Foreground" Value="{StaticResource LightBlueBrush}" />
+                <Setter Property="FontWeight" Value="Normal" />
+            </Trigger>
+
+            <Trigger Property="IsSelected" Value="True">
+                <Setter Property="Background" Value="{StaticResource SteelBlueBackground}" />
+                <Setter Property="BorderBrush" Value="{StaticResource SteelBlueBackground}" />
+                <Setter Property="Foreground" Value="{StaticResource WhiteForeground}" />
+                <Setter Property="FontWeight" Value="Normal" />
+            </Trigger>
+
+
+        </Style.Triggers>
+
+    </Style>
+
+    <!--  *********************************************** ComboBox *****************************************************  -->
+
+    <Style
+        x:Key="MetroComboBoxStyle"
+        TargetType="{x:Type b:MetroComboBox}">
+        <Setter Property="Background" Value="{StaticResource ControlInteriorBrush}" />
+        <Setter Property="BorderBrush" Value="{StaticResource BlueBorderBrush}" />
+        <Setter Property="Foreground" Value="{StaticResource LightBlueBrush}" />
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="HorizontalAlignment" Value="Stretch" />
+        <Setter Property="HorizontalContentAlignment" Value="Left" />
+        <Setter Property="VerticalAlignment" Value="Stretch" />
+        <Setter Property="VerticalContentAlignment" Value="Center" />
+        <Setter Property="Padding" Value="1" />
+        <Setter Property="Margin" Value="1" />
+        <Setter Property="Height" Value="30" />
+        <Setter Property="IsEditable" Value="True" />
+
+        <Style.Triggers>
+
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="BorderBrush" Value="{StaticResource BrightGreenForeground}" />
+            </Trigger>
+
+            <Trigger Property="IsMouseOver" Value="False">
+                <Setter Property="BorderBrush" Value="{StaticResource BlueBorderBrush}" />
+            </Trigger>
+
+
+        </Style.Triggers>
+
+    </Style>
+
+    <!--  *********************************************** ComboBoxItem *****************************************************  -->
+
+    <Style
+        x:Key="ComboBoxItemStyle"
         TargetType="{x:Type ComboBoxItem}">
         <Setter Property="Background" Value="{StaticResource ControlInteriorBrush}" />
         <Setter Property="BorderBrush" Value="{StaticResource ControlInteriorBrush}" />
@@ -87,6 +166,7 @@
         </Style.Triggers>
 
     </Style>
+
 
 
 </ResourceDictionary>

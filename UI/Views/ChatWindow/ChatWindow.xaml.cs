@@ -176,6 +176,11 @@ namespace Bubba
         private protected bool _stream;
 
         /// <summary>
+        /// The image size
+        /// </summary>
+        private protected string _imageSize;
+
+        /// <summary>
         /// A number between 0 and 2.0
         /// Higher values like 0.8 will make the output more random,
         /// while lower values like 0.2 will make it more focused and deterministic.
@@ -211,7 +216,7 @@ namespace Bubba
         /// <summary>
         /// The chat model
         /// </summary>
-        private protected string _chatModel;
+        private protected string _model;
 
         /// <summary>
         /// The speech recognition engine
@@ -283,11 +288,11 @@ namespace Bubba
             // GPT Parameters
             _store = false;
             _stream = false;
-            _temperature = 1.0D;
+            _temperature = 1;
             _topPercent = 1.0D;
             _presence = 0.0D;
             _frequency = 0.0D;
-            _maxCompletionTokens = 157;
+            _maxCompletionTokens = 2048;
 
             // Event Wiring
             Loaded += OnLoad;
@@ -632,6 +637,7 @@ namespace Bubba
                 GenerationComboBox.SelectionChanged += OnGenerationChanged;
                 ModelComboBox.SelectionChanged += OnModelSelectionChanged;
                 GenerationComboBox.SelectionChanged += OnGenerationChanged;
+                ImageSizeComboBox.SelectionChanged += OnSelectedImageSizeChanged;
             }
             catch( Exception ex )
             {
@@ -696,12 +702,13 @@ namespace Bubba
                 FrequencySlider.Value = 0D;
                 TemperatureSlider.Value = 1D;
                 TopPercentSlider.Value = 1D;
+                MaxTokenSlider.Value = 2048;
                 NumberTextBox.Text = "1";
-                MaxTokenTextBox.Text = "157";
                 GenerationComboBox.SelectedIndex = -1;
                 ModelComboBox.SelectedIndex = -1;
                 LanguageListBox.SelectedIndex = -1;
                 VoiceComboBox.SelectedIndex = -1;
+                ImageSizeComboBox.SelectedIndex = -1;
                 MuteCheckBox.IsChecked = false;
                 ListenCheckBox.IsChecked = false;
                 StoreCheckBox.IsChecked = false;
@@ -1096,10 +1103,11 @@ namespace Bubba
         /// <summary>
         /// Sets the hyper parameters.
         /// </summary>
-        private protected void SetHyperameters( )
+        private protected void SetGptParameters( )
         {
             try
             {
+                var _input = ChatEditor.Text;
                 if( !string.IsNullOrEmpty( _generation ) )
                 {
                     var _msg = "Select a GPT Task!";
@@ -1114,7 +1122,15 @@ namespace Bubba
                     _topPercent = TopPercentSlider.Value;
                     _frequency = FrequencySlider.Value;
                     _number = int.Parse( NumberTextBox.Text );
-                    _maxCompletionTokens = int.Parse( MaxTokenTextBox.Text );
+                    _maxCompletionTokens = Convert.ToInt32( MaxTokenTextBox.Value );
+                    _userPrompt = ( _language == "Text" )
+                        ? ChatEditor.Text
+                        : "Hi Bubba, Can you write me a 'Hello World!' script in Python?";
+                }
+
+                if( _language == "Text" )
+                {
+                    _userPrompt = ChatEditor.Text;
                 }
             }
             catch( Exception ex )
@@ -1138,30 +1154,46 @@ namespace Bubba
                     {
                         PopulateTextModels( );
                         _endpoint = _endpoints.TextGeneration;
+                        TemperatureSlider.Value = 0.6;
+                        TopPercentSlider.Value = 0.95;
+                        MaxTokenSlider.Value = 200;
+                        FrequencySlider.Value = 0.4;
+                        PresenceSlider.Value = 0.1;
+                        NumberSlider.Value = 1;
                         break;
                     }
                     case "Translations":
                     {
                         PopulateTranslationModels( );
                         _endpoint = _endpoints.Translations;
+                        TemperatureSlider.Value = 0.7;
+                        MaxTokenSlider.Value = 150;
+                        NumberSlider.Value = 1;
                         break;
                     }
                     case "Image Generation":
                     {
                         PopulateImageModels( );
                         _endpoint = _endpoints.ImageGeneration;
+                        TopPercentSlider.Value = 1.0;
+                        TemperatureSlider.Value = 1.0;
+                        NumberSlider.Value = 1;
                         break;
                     }
                     case "Vector Embedding":
                     {
                         PopulateEmbeddingModels( );
                         _endpoint = _endpoints.VectorEmbeddings;
+                        NumberSlider.Value = 1;
                         break;
                     }
                     case "Transcriptions":
                     {
                         PopulateTranscriptionModels( );
                         _endpoint = _endpoints.Transcriptions;
+                        TemperatureSlider.Value = 0.7;
+                        MaxTokenSlider.Value = 150;
+                        NumberSlider.Value = 1;
                         break;
                     }
                     case "Vector Stores":
@@ -1174,6 +1206,8 @@ namespace Bubba
                     {
                         PopulateSpeechModels( );
                         _endpoint = _endpoints.SpeechGeneration;
+                        TemperatureSlider.Value = 0.6;
+                        MaxTokenSlider.Value = 200;
                         break;
                     }
                     case "Fine-Tuning":
@@ -1979,7 +2013,7 @@ namespace Bubba
                 PopulateGenerations( );
                 PopulateLanguageListBox( );
                 PopulateVoices( );
-                SetHyperameters( );
+                SetGptParameters( );
                 ClearChatControls( );
                 InitializeChatEditor( );
                 App.ActiveWindows.Add( "ChatWindow", this );
@@ -2764,7 +2798,7 @@ namespace Bubba
             {
                 if( ModelComboBox.SelectedIndex != -1 )
                 {
-                    _chatModel = ModelComboBox.SelectedValue.ToString( );
+                    _model = ModelComboBox.SelectedValue.ToString( );
                 }
             }
             catch( Exception ex )
@@ -2856,6 +2890,27 @@ namespace Bubba
                             }
                         }
                     }
+                }
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+            }
+        }
+
+        /// <summary>
+        /// Called when [selected image size changed].
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The <see cref="RoutedEventArgs"/>
+        /// instance containing the event data.</param>
+        private void OnSelectedImageSizeChanged( object sender, RoutedEventArgs e )
+        {
+            try
+            {
+                if( ImageSizeComboBox.SelectedIndex != -1 )
+                {
+                    _imageSize = ImageSizeComboBox.SelectedValue.ToString( );
                 }
             }
             catch( Exception ex )

@@ -1,14 +1,14 @@
 ﻿// ******************************************************************************************
 //     Assembly:                Bubba
 //     Author:                  Terry D. Eppler
-//     Created:                 11-25-2024
+//     Created:                 12-11-2024
 // 
 //     Last Modified By:        Terry D. Eppler
-//     Last Modified On:        11-25-2024
+//     Last Modified On:        12-11-2024
 // ******************************************************************************************
 // <copyright file="GptRequest.cs" company="Terry D. Eppler">
-//    Bubba is a small windows (wpf) application for interacting with
-//    Chat GPT that's developed in C-Sharp under the MIT license
+//    Bubba is a small and simple windows (wpf) application for interacting with the OpenAI API
+//    that's developed in C-Sharp under the MIT license.C#.
 // 
 //    Copyright ©  2020-2024 Terry D. Eppler
 // 
@@ -44,6 +44,7 @@ namespace Bubba
     using System;
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
+    using System.Net.Http;
 
     /// <inheritdoc />
     [ SuppressMessage( "ReSharper", "UnusedType.Global" ) ]
@@ -57,17 +58,16 @@ namespace Bubba
         /// Initializes a new instance of the
         /// <see cref="T:Bubba.GptRequest" /> class.
         /// </summary>
-        public GptRequest( ) 
+        public GptRequest( )
         {
             _entry = new object( );
             _presence = 0.0;
             _frequency = 0.0;
             _topPercent = 1.0;
             _temperature = 1.0;
-            _maximumCompletionTokens = 157;
+            _maximumCompletionTokens = 2048;
             _model = "gpt-4o";
             _endPoint = "https://api.openai.com/v1/chat/completions";
-            _responseFormat = "text";
             _number = 1;
         }
 
@@ -78,7 +78,6 @@ namespace Bubba
         /// </summary>
         /// <param name = "user" > </param>
         /// <param name = "system" > </param>
-        /// <param name = "format" > </param>
         /// <param name = "model" > </param>
         /// <param name = "store" > </param>
         /// <param name = "stream" > </param>
@@ -89,16 +88,15 @@ namespace Bubba
         /// <param name="temperature">The temperature.</param>
         /// <param name="completionTokens"</param>
         public GptRequest( string user, string system, string model = "gpt-4o",
-            string format = "text", bool store = false, bool stream = false,
+            bool store = false, bool stream = false,
             int number = 1, double frequency = 0.0, double presence = 0.0,
-            double topPercent = 1.0, double temperature = 1.0, int completionTokens = 157 )
+            double topPercent = 1.0, double temperature = 1.0, int completionTokens = 2048 )
         {
             _header = new GptHeader( );
             _endPoint = new GptEndPoint( ).TextGeneration;
             _systemPrompt = system;
             _userPrompt = user;
             _model = model;
-            _responseFormat = format;
             _store = store;
             _stream = stream;
             _number = number;
@@ -123,8 +121,6 @@ namespace Bubba
             _userPrompt = gptRequest.UserPrompt;
             _store = gptRequest.Store;
             _stream = gptRequest.Stream;
-            _responseFormat = gptRequest.ResponseFormat;
-            _model = gptRequest.Model;
             _number = gptRequest.Number;
             _presence = gptRequest.Presence;
             _frequency = gptRequest.Frequency;
@@ -138,22 +134,21 @@ namespace Bubba
         /// </summary>
         /// <param name = "header" > </param>
         /// <param name = "endPoint" > </param>
-        /// <param name = "model" > </param>
-        /// <param name = "format" > </param>
-        /// <param name="number">The user identifier.</param>
-        /// <param name="frequency">The frequency.</param>
-        /// <param name="presence">The presence.</param>
-        /// <param name="temperature">The temperature.</param>
-        /// <param name = "topPercent" > </param>
-        /// <param name="tokens">The maximum tokens.</param>
+        /// <param name = "system" > </param>
         /// <param name = "user" > </param>
         /// <param name = "store" > </param>
         /// <param name = "stream" > </param>
-        /// <param name = "system" > </param>
+        /// <param name = "model" > </param>
+        /// <param name="number">The user identifier.</param>
+        /// <param name="presence">The presence.</param>
+        /// <param name="frequency">The frequency.</param>
+        /// <param name="temperature">The temperature.</param>
+        /// <param name = "topPercent" > </param>
+        /// <param name="tokens">The maximum tokens.</param>
         public void Deconstruct( out GptHeader header, out string endPoint, out string system,
             out string user, out bool store, out bool stream,
-            out string model, out string format, out int number,
-            out double presence, out double frequency, out double temperature,
+            out string model, out int number, out double presence, 
+            out double frequency, out double temperature,
             out double topPercent, out int tokens )
         {
             header = _header;
@@ -163,7 +158,6 @@ namespace Bubba
             store = _store;
             stream = _stream;
             model = _model;
-            format = _responseFormat;
             number = _number;
             presence = _presence;
             frequency = _frequency;
@@ -172,13 +166,38 @@ namespace Bubba
             tokens = _maximumCompletionTokens;
         }
 
+        /// <inheritdoc />
+        /// <summary>
+        /// Gets or sets a value indicating whether this
+        /// <see cref="P:Bubba.GptRequest.HttpClient" /> is store.
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if store; otherwise, <c>false</c>.
+        /// </value>
+        public override HttpClient HttpClient
+        {
+            get
+            {
+                return _httpClient;
+            }
+            set
+            {
+                if( _httpClient != value )
+                {
+                    _httpClient = value;
+                    OnPropertyChanged( nameof( HttpClient ) );
+                }
+            }
+        }
+
+        /// <inheritdoc />
         /// <summary>
         /// Gets the chat model.
         /// </summary>
         /// <value>
         /// The chat model.
         /// </value>
-        public virtual GptBody Body
+        public override GptBody Body
         {
             get
             {

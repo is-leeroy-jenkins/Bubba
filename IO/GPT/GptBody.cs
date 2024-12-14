@@ -103,13 +103,19 @@ namespace Bubba
         /// Initializes a new instance of the
         /// <see cref="T:Bubba.GptBody" /> class.
         /// </summary>
+        /// <param name = "userPrompt" > </param>
         /// <param name="model">The model.</param>
-        public GptBody( string model )
+        /// <param name = "systemPrompt" > </param>
+        public GptBody( string systemPrompt, string userPrompt, string model = "gpt-4o" )
             : this( )
         {
-            _model = model ?? "gpt-4o";
+            _model = model;
+            _systemMessage = new SystemMessage( systemPrompt );
+            _userMessage = new UserMessage( userPrompt );
             _data.Add( "response_format", _responseFormat );
             _data.Add( "model", _model );
+            _messages.Add( _systemMessage );
+            _messages.Add( _userMessage );
         }
 
         /// <inheritdoc />
@@ -122,8 +128,11 @@ namespace Bubba
             : this( )
         {
             _model = gptBody.Model;
+            _systemMessage = gptBody.SystemMessage;
+            _userMessage = gptBody.UserMessage;
             _responseFormat = gptBody.ResponseFormat;
-            _data.Add( "model", gptBody.Model );
+            _messages = gptBody.Messages;
+            _data = gptBody.Data;
         }
 
         /// <summary>
@@ -135,13 +144,18 @@ namespace Bubba
         /// </param>
         /// <param name="system">The system.</param>
         /// <param name="user">The user.</param>
+        /// <param name = "data" > </param>
+        /// <param name = "messages" > </param>
         public void Deconstruct( out string model, out string responseFormat,
-            out SystemMessage system, out UserMessage user )
+            out SystemMessage system, out UserMessage user, 
+            out IDictionary<string, object> data, out IList<IGptMessage> messages )
         {
             model = _model;
             responseFormat = _responseFormat;
             system = _systemMessage;
             user = _userMessage;
+            data = _data;
+            messages = _messages;
         }
 
         /// <inheritdoc />

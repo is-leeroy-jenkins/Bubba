@@ -589,4 +589,28 @@
     <Folder Include="Data\Stores\SQLite\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Compile Update="Resources\SystemInstructions.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>SystemInstructions.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Resources\SearchEngine.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>SearchEngine.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="Resources\SystemInstructions.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>SystemInstructions.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\SearchEngine.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>SearchEngine.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+
 </Project>

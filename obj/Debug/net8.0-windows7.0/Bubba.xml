@@ -9728,6 +9728,46 @@
             The year
             </summary>
         </member>
+        <member name="T:Bubba.GenerationTypes">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Bubba.GenerationTypes.ChatCompletion">
+            <summary>
+            The chat completion
+            </summary>
+        </member>
+        <member name="F:Bubba.GenerationTypes.TextGeneration">
+            <summary>
+            The text generation
+            </summary>
+        </member>
+        <member name="F:Bubba.GenerationTypes.ImageGeneration">
+            <summary>
+            The image generation
+            </summary>
+        </member>
+        <member name="F:Bubba.GenerationTypes.SpeechGeneration">
+            <summary>
+            The speech generation
+            </summary>
+        </member>
+        <member name="F:Bubba.GenerationTypes.FineTuning">
+            <summary>
+            The fine tuning
+            </summary>
+        </member>
+        <member name="F:Bubba.GenerationTypes.Files">
+            <summary>
+            The files
+            </summary>
+        </member>
+        <member name="F:Bubba.GenerationTypes.Uploads">
+            <summary>
+            The uploads
+            </summary>
+        </member>
         <member name="T:Bubba.HitResult">
             <summary>
             
@@ -13942,177 +13982,6 @@
             </summary>
             <param name="ex">The ex.</param>
         </member>
-        <member name="T:Bubba.GptRequestBase">
-            <inheritdoc />
-            <summary>
-            </summary>
-        </member>
-        <member name="F:Bubba.GptRequestBase._messages">
-            <summary>
-            The messages
-            </summary>
-        </member>
-        <member name="F:Bubba.GptRequestBase._body">
-            <summary>
-            The body
-            </summary>
-        </member>
-        <member name="F:Bubba.GptRequestBase._header">
-            <summary>
-            The header
-            </summary>
-        </member>
-        <member name="F:Bubba.GptRequestBase._userPrompt">
-            <summary>
-            The user prompt
-            </summary>
-        </member>
-        <member name="F:Bubba.GptRequestBase._systemPrompt">
-            <summary>
-            The assistant prompt
-            </summary>
-        </member>
-        <member name="M:Bubba.GptRequestBase.#ctor">
-            <inheritdoc />
-            <summary>
-            </summary>
-        </member>
-        <member name="P:Bubba.GptRequestBase.SystemPrompt">
-            <summary>
-            Gets or sets the system prompt.
-            </summary>
-            <value>
-            The system prompt.
-            </value>
-        </member>
-        <member name="P:Bubba.GptRequestBase.UserPrompt">
-            <summary>
-            Gets or sets the user prompt.
-            </summary>
-            <value>
-            The user prompt.
-            </value>
-        </member>
-        <member name="P:Bubba.GptRequestBase.EndPoint">
-            <inheritdoc />
-            <summary>
-            Gets the end point.
-            </summary>
-            <value>
-            The end point.
-            </value>
-        </member>
-        <member name="P:Bubba.GptRequestBase.Model">
-            <inheritdoc />
-            <summary>
-            Gets the chat model.
-            </summary>
-            <value>
-            The chat model.
-            </value>
-        </member>
-        <member name="P:Bubba.GptRequestBase.ResponseFormat">
-            <summary>
-            An string specifying the format that the model must output.
-            Important: when using JSON mode, you must also instruct the model
-            to produce JSON yourself via a system or user message. Without this,
-            the model may generate an unending stream of whitespace until the
-            generation reaches the token limit, resulting in a
-            long-running and seemingly "stuck" request.  
-            </summary>
-            <value>
-            The response format.
-            </value>
-        </member>
-        <member name="P:Bubba.GptRequestBase.Number">
-            <summary>
-            THe number 'n' of responses returned by the API.
-            </summary>
-            <value>
-            The user identifier.
-            </value>
-        </member>
-        <member name="P:Bubba.GptRequestBase.MaximumCompletionTokens">
-            <summary>
-            Gets the maximum tokens.
-            </summary>
-            <value>
-            The maximum tokens.
-            </value>
-        </member>
-        <member name="P:Bubba.GptRequestBase.Store">
-            <summary>
-            Gets or sets a value indicating whether this
-            <see cref="T:Bubba.GptRequest"/> is store.
-            </summary>
-            <value>
-              <c>true</c> if store; otherwise, <c>false</c>.
-            </value>
-        </member>
-        <member name="P:Bubba.GptRequestBase.Stream">
-            <summary>
-            Gets or sets a value indicating whether this
-            <see cref="P:Bubba.GptRequestBase.Stream"/> is stream.
-            </summary>
-            <value>
-              <c>true</c> if stream; otherwise, <c>false</c>.
-            </value>
-        </member>
-        <member name="P:Bubba.GptRequestBase.Temperature">
-            <summary>
-            A number between -2.0 and 2.0 Positive value decrease the
-            model's likelihood to repeat the same line verbatim.
-            </summary>
-            <value>
-            The temperature.
-            </value>
-        </member>
-        <member name="P:Bubba.GptRequestBase.TopPercent">
-            <summary>
-            An alternative to sampling with temperature,
-            called nucleus sampling, where the model considers
-            the results of the tokens with top_p probability mass.
-            So 0.1 means only the tokens comprising the top 10% probability
-            mass are considered. We generally recommend altering this
-            or temperature but not both.
-            </summary>
-            <value>
-            The top percent.
-            </value>
-        </member>
-        <member name="P:Bubba.GptRequestBase.Frequency">
-            <summary>
-            Number between -2.0 and 2.0. Positive values penalize new tokens
-            based on whether they appear in the text so far,
-            ncreasing the model's likelihood to talk about new topics.
-            </summary>
-            <value>
-            The frequency.
-            </value>
-        </member>
-        <member name="P:Bubba.GptRequestBase.Presence">
-            <summary>
-            Number between -2.0 and 2.0. Positive values penalize new tokens
-            based on whether they appear in the text so far,
-            ncreasing the model's likelihood to talk about new topics.
-            </summary>
-            <value>
-            The presence.
-            </value>
-        </member>
-        <member name="T:Bubba.GptResponseBase">
-            <inheritdoc />
-            <summary>
-            </summary>
-            <seealso cref="T:Bubba.GptBase" />
-        </member>
-        <member name="M:Bubba.GptResponseBase.#ctor">
-            <inheritdoc />
-            <summary>
-            Initializes a new instance of the
-            <see cref="T:Bubba.GptResponseBase" /> class.
-            </summary>
-        </member>
         <member name="T:Bubba.AsyncFileBase">
             <inheritdoc />
             <summary>
@@ -14867,19 +14736,14 @@
             The busy
             </summary>
         </member>
-        <member name="F:Bubba.GptBase._entry">
-            <summary>
-            The path
-            </summary>
-        </member>
         <member name="F:Bubba.GptBase._httpClient">
             <summary>
             The HTTP client
             </summary>
         </member>
-        <member name="F:Bubba.GptBase._responseFormat">
+        <member name="F:Bubba.GptBase._entry">
             <summary>
-            The response format
+            The path
             </summary>
         </member>
         <member name="F:Bubba.GptBase._user">
@@ -15008,6 +14872,25 @@
             Ends the initialize.
             </summary>
         </member>
+        <member name="P:Bubba.GptBase.HttpClient">
+            <inheritdoc />
+            <summary>
+            Gets or sets a value indicating whether this
+            <see cref="P:Bubba.GptRequest.HttpClient" /> is store.
+            </summary>
+            <value>
+              <c>true</c> if store; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="M:Bubba.GptBase.PostJsonAsync(System.String,System.Object)">
+            <summary>
+            Posts the json asynchronous.
+            </summary>
+            <param name="endpoint">The endpoint.</param>
+            <param name="payload">The payload.</param>
+            <returns></returns>
+            <exception cref="T:System.Net.Http.HttpRequestException">Error: {_response.StatusCode}, {_error}</exception>
+        </member>
         <member name="M:Bubba.GptBase.ProcessQuotes(System.String)">
             <summary>
             Pads the quotes.
@@ -15029,7 +14912,152 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="M:Bubba.GptBase.Dispose(System.Boolean)">
+        <member name="M:Bubba.GptBase.Fail(System.Exception)">
+            <summary>
+            Wraps error
+            </summary>
+            <param name="ex">The ex.</param>
+        </member>
+        <member name="T:Bubba.GptRequestBase">
+            <inheritdoc />
+            <summary>
+            </summary>
+        </member>
+        <member name="F:Bubba.GptRequestBase._messages">
+            <summary>
+            The messages
+            </summary>
+        </member>
+        <member name="F:Bubba.GptRequestBase._body">
+            <summary>
+            The body
+            </summary>
+        </member>
+        <member name="F:Bubba.GptRequestBase._header">
+            <summary>
+            The header
+            </summary>
+        </member>
+        <member name="F:Bubba.GptRequestBase._userPrompt">
+            <summary>
+            The user prompt
+            </summary>
+        </member>
+        <member name="F:Bubba.GptRequestBase._systemPrompt">
+            <summary>
+            The assistant prompt
+            </summary>
+        </member>
+        <member name="P:Bubba.GptRequestBase.SystemPrompt">
+            <summary>
+            Gets or sets the system prompt.
+            </summary>
+            <value>
+            The system prompt.
+            </value>
+        </member>
+        <member name="P:Bubba.GptRequestBase.UserPrompt">
+            <summary>
+            Gets or sets the user prompt.
+            </summary>
+            <value>
+            The user prompt.
+            </value>
+        </member>
+        <member name="P:Bubba.GptRequestBase.EndPoint">
+            <inheritdoc />
+            <summary>
+            Gets the end point.
+            </summary>
+            <value>
+            The end point.
+            </value>
+        </member>
+        <member name="P:Bubba.GptRequestBase.Body">
+            <summary>
+            Gets the chat model.
+            </summary>
+            <value>
+            The chat model.
+            </value>
+        </member>
+        <member name="P:Bubba.GptRequestBase.Number">
+            <summary>
+            THe number 'n' of responses returned by the API.
+            </summary>
+            <value>
+            The user identifier.
+            </value>
+        </member>
+        <member name="P:Bubba.GptRequestBase.MaximumCompletionTokens">
+            <summary>
+            Gets the maximum tokens.
+            </summary>
+            <value>
+            The maximum tokens.
+            </value>
+        </member>
+        <member name="P:Bubba.GptRequestBase.Store">
+            <summary>
+            Gets or sets a value indicating whether this
+            <see cref="T:Bubba.GptRequest"/> is store.
+            </summary>
+            <value>
+              <c>true</c> if store; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:Bubba.GptRequestBase.Stream">
+            <summary>
+            Gets or sets a value indicating whether this
+            <see cref="P:Bubba.GptRequestBase.Stream"/> is stream.
+            </summary>
+            <value>
+              <c>true</c> if stream; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:Bubba.GptRequestBase.Temperature">
+            <summary>
+            A number between -2.0 and 2.0 Positive value decrease the
+            model's likelihood to repeat the same line verbatim.
+            </summary>
+            <value>
+            The temperature.
+            </value>
+        </member>
+        <member name="P:Bubba.GptRequestBase.TopPercent">
+            <summary>
+            An alternative to sampling with temperature,
+            called nucleus sampling, where the model considers
+            the results of the tokens with top_p probability mass.
+            So 0.1 means only the tokens comprising the top 10% probability
+            mass are considered. We generally recommend altering this
+            or temperature but not both.
+            </summary>
+            <value>
+            The top percent.
+            </value>
+        </member>
+        <member name="P:Bubba.GptRequestBase.Frequency">
+            <summary>
+            Number between -2.0 and 2.0. Positive values penalize new tokens
+            based on whether they appear in the text so far,
+            ncreasing the model's likelihood to talk about new topics.
+            </summary>
+            <value>
+            The frequency.
+            </value>
+        </member>
+        <member name="P:Bubba.GptRequestBase.Presence">
+            <summary>
+            Number between -2.0 and 2.0. Positive values penalize new tokens
+            based on whether they appear in the text so far,
+            ncreasing the model's likelihood to talk about new topics.
+            </summary>
+            <value>
+            The presence.
+            </value>
+        </member>
+        <member name="M:Bubba.GptRequestBase.Dispose(System.Boolean)">
             <summary>
             Releases unmanaged and - optionally - managed resources.
             </summary>
@@ -15040,7 +15068,7 @@
             <c>false</c> to release only unmanaged resources.
             </param>
         </member>
-        <member name="M:Bubba.GptBase.Dispose">
+        <member name="M:Bubba.GptRequestBase.Dispose">
             <inheritdoc />
             <summary>
             Performs application-defined tasks
@@ -15048,11 +15076,33 @@
             or resetting unmanaged resources.
             </summary>
         </member>
-        <member name="M:Bubba.GptBase.Fail(System.Exception)">
+        <member name="T:Bubba.GptResponseBase">
+            <inheritdoc />
             <summary>
-            Wraps error
             </summary>
-            <param name="ex">The ex.</param>
+            <seealso cref="T:Bubba.GptBase" />
+        </member>
+        <member name="F:Bubba.GptResponseBase._id">
+            <summary>
+            The identifier
+            </summary>
+        </member>
+        <member name="F:Bubba.GptResponseBase._object">
+            <summary>
+            The object
+            </summary>
+        </member>
+        <member name="F:Bubba.GptResponseBase._created">
+            <summary>
+            The created
+            </summary>
+        </member>
+        <member name="M:Bubba.GptResponseBase.#ctor">
+            <inheritdoc />
+            <summary>
+            Initializes a new instance of the
+            <see cref="T:Bubba.GptResponseBase" /> class.
+            </summary>
         </member>
         <member name="T:Bubba.IFile">
             <summary>
@@ -15222,31 +15272,29 @@
         </member>
         <member name="P:Bubba.IGptClient.Frequency">
             <summary>
-            Gets the frequency.
+            Number between -2.0 and 2.0. Positive values penalize new tokens
+            based on their existing frequency in the text so far,
+            decreasing the model's likelihood to repeat the same line verbatim.
             </summary>
-            <value>
-            The frequency.
-            </value>
         </member>
         <member name="P:Bubba.IGptClient.Temperature">
             <summary>
-            Gets the temperature.
+            A number between 0 and 2.
+            Higher values like 0.8 will make the output more random,
+            while lower values like 0.2 will make it more focused and deterministic.
             </summary>
-            <value>
-            The temperature.
-            </value>
         </member>
         <member name="P:Bubba.IGptClient.Presence">
             <summary>
-            Gets the presence.
+            a number between -2.0 and 2.0.
+            Positive values penalize new tokens
+            based on whether they appear in the text so far,
+            increasing the model's likelihood to talk about new topics.
             </summary>
-            <value>
-            The presence.
-            </value>
         </member>
         <member name="P:Bubba.IGptClient.MaxCompletionTokens">
             <summary>
-            Gets the maximum tokens.
+            Gets the maximum number of tokens.
             </summary>
             <value>
             The maximum tokens.
@@ -15328,25 +15376,6 @@
             Called when [property changed].
             </summary>
             <param name="propertyName">Name of the property.</param>
-        </member>
-        <member name="M:Bubba.IGptClient.Dispose(System.Boolean)">
-            <summary>
-            Releases unmanaged and - optionally - managed resources.
-            </summary>
-            <param name="disposing">
-            <c>true</c>
-            to release both managed
-            and unmanaged resources;
-            <c>false</c> to release only unmanaged resources.
-            </param>
-        </member>
-        <member name="M:Bubba.IGptClient.Dispose">
-            <inheritdoc />
-            <summary>
-            Performs application-defined tasks
-            associated with freeing, releasing,
-            or resetting unmanaged resources.
-            </summary>
         </member>
         <member name="T:Bubba.IGptMessage">
             <summary>
@@ -18214,32 +18243,32 @@
             A string that represents the current object.
             </returns>
         </member>
-        <member name="T:Bubba.Completion">
+        <member name="T:Bubba.ChatCompletion">
             <inheritdoc />
             <summary>
             </summary>
         </member>
-        <member name="F:Bubba.Completion._metaData">
+        <member name="F:Bubba.ChatCompletion._metaData">
             <summary>
             Developer-defined tags and values used for filtering completions
             </summary>
         </member>
-        <member name="F:Bubba.Completion._data">
+        <member name="F:Bubba.ChatCompletion._data">
             <summary>
             The data
             </summary>
         </member>
-        <member name="M:Bubba.Completion.#ctor">
+        <member name="M:Bubba.ChatCompletion.#ctor">
             <inheritdoc />
             <summary>
             Initializes a new instance of the
-            <see cref="T:Bubba.Completion" /> class.
+            <see cref="T:Bubba.ChatCompletion" /> class.
             </summary>
         </member>
-        <member name="M:Bubba.Completion.#ctor(System.String,System.String,System.String,System.String,System.Boolean,System.Boolean,System.Int32,System.Double,System.Double,System.Double,System.Double,System.Int32)">
+        <member name="M:Bubba.ChatCompletion.#ctor(System.String,System.String,System.String,System.String,System.Boolean,System.Boolean,System.Int32,System.Double,System.Double,System.Double,System.Double,System.Int32)">
             <inheritdoc />
             <summary>
-            Initializes a new instance of the <see cref="T:Bubba.Completion" /> class.
+            Initializes a new instance of the <see cref="T:Bubba.ChatCompletion" /> class.
             </summary>
             <param name="user">The user.</param>
             <param name="system">The system.</param>
@@ -18254,15 +18283,15 @@
             <param name="temperature">The temperature.</param>
             <param name="completionTokens">The completion tokens.</param>
         </member>
-        <member name="M:Bubba.Completion.#ctor(Bubba.Completion)">
+        <member name="M:Bubba.ChatCompletion.#ctor(Bubba.ChatCompletion)">
             <inheritdoc />
             <summary>
             Initializes a new instance of the
-            <see cref="T:Bubba.Completion" /> class.
+            <see cref="T:Bubba.ChatCompletion" /> class.
             </summary>
-            <param name="completion">The completion.</param>
+            <param name="chatCompletion">The chatCompletion.</param>
         </member>
-        <member name="M:Bubba.Completion.Decontruct(Bubba.GptHeader@,System.String@,System.String@,System.String@,System.Boolean@,System.Boolean@,System.String@,System.String@,System.Int32@,System.Double@,System.Double@,System.Double@,System.Double@,System.Int32@)">
+        <member name="M:Bubba.ChatCompletion.Decontruct(Bubba.GptHeader@,System.String@,System.String@,System.String@,System.Boolean@,System.Boolean@,System.String@,System.Int32@,System.Double@,System.Double@,System.Double@,System.Double@,System.Int32@)">
             <summary>
             Decontructs the specified header.
             </summary>
@@ -18273,7 +18302,6 @@
             <param name="store">if set to <c>true</c> [store].</param>
             <param name="stream">if set to <c>true</c> [stream].</param>
             <param name="model">The model.</param>
-            <param name="format">The format.</param>
             <param name="number">The number.</param>
             <param name="presence">The presence.</param>
             <param name="frequency">The frequency.</param>
@@ -18281,7 +18309,7 @@
             <param name="topPercent">The top percent.</param>
             <param name="tokens">The tokens.</param>
         </member>
-        <member name="P:Bubba.Completion.Messages">
+        <member name="P:Bubba.ChatCompletion.Messages">
             <inheritdoc />
             <summary>
             Gets or sets the messages.
@@ -18290,7 +18318,7 @@
             The messages.
             </value>
         </member>
-        <member name="P:Bubba.Completion.EndPoint">
+        <member name="P:Bubba.ChatCompletion.EndPoint">
             <inheritdoc />
             <summary>
             Gets the end point.
@@ -18299,30 +18327,7 @@
             The end point.
             </value>
         </member>
-        <member name="P:Bubba.Completion.Model">
-            <inheritdoc />
-            <summary>
-            Gets the chat model.
-            </summary>
-            <value>
-            The chat model.
-            </value>
-        </member>
-        <member name="P:Bubba.Completion.ResponseFormat">
-            <inheritdoc />
-            <summary>
-            An string specifying the format that the model must output.
-            Important: when using JSON mode, you must also instruct the model
-            to produce JSON yourself via a system or user message. Without this,
-            the model may generate an unending stream of whitespace until the
-            generation reaches the token limit, resulting in a
-            long-running and seemingly "stuck" request.  
-            </summary>
-            <value>
-            The response format.
-            </value>
-        </member>
-        <member name="P:Bubba.Completion.Number">
+        <member name="P:Bubba.ChatCompletion.Number">
             <inheritdoc />
             <summary>
             THe number 'n' of responses returned by the API.
@@ -18331,7 +18336,7 @@
             The user identifier.
             </value>
         </member>
-        <member name="P:Bubba.Completion.MaximumCompletionTokens">
+        <member name="P:Bubba.ChatCompletion.MaximumCompletionTokens">
             <inheritdoc />
             <summary>
             Gets the maximum tokens.
@@ -18340,7 +18345,7 @@
             The maximum tokens.
             </value>
         </member>
-        <member name="P:Bubba.Completion.Store">
+        <member name="P:Bubba.ChatCompletion.Store">
             <inheritdoc />
             <summary>
             Gets or sets a value indicating whether this
@@ -18350,17 +18355,17 @@
               <c>true</c> if store; otherwise, <c>false</c>.
             </value>
         </member>
-        <member name="P:Bubba.Completion.Stream">
+        <member name="P:Bubba.ChatCompletion.Stream">
             <inheritdoc />
             <summary>
             Gets or sets a value indicating whether this
-            <see cref="P:Bubba.Completion.Stream" /> is stream.
+            <see cref="P:Bubba.ChatCompletion.Stream" /> is stream.
             </summary>
             <value>
               <c>true</c> if stream; otherwise, <c>false</c>.
             </value>
         </member>
-        <member name="P:Bubba.Completion.Temperature">
+        <member name="P:Bubba.ChatCompletion.Temperature">
             <inheritdoc />
             <summary>
             A number between -2.0 and 2.0 Positive value decrease the
@@ -18370,7 +18375,7 @@
             The temperature.
             </value>
         </member>
-        <member name="P:Bubba.Completion.TopPercent">
+        <member name="P:Bubba.ChatCompletion.TopPercent">
             <inheritdoc />
             <summary>
             An alternative to sampling with temperature,
@@ -18384,7 +18389,7 @@
             The top percent.
             </value>
         </member>
-        <member name="P:Bubba.Completion.Frequency">
+        <member name="P:Bubba.ChatCompletion.Frequency">
             <inheritdoc />
             <summary>
             Number between -2.0 and 2.0. Positive values penalize new tokens
@@ -18395,7 +18400,7 @@
             The frequency.
             </value>
         </member>
-        <member name="P:Bubba.Completion.Presence">
+        <member name="P:Bubba.ChatCompletion.Presence">
             <inheritdoc />
             <summary>
             Number between -2.0 and 2.0. Positive values penalize new tokens
@@ -18406,7 +18411,7 @@
             The presence.
             </value>
         </member>
-        <member name="P:Bubba.Completion.Body">
+        <member name="P:Bubba.ChatCompletion.Body">
             <inheritdoc />
             <summary>
             Gets the chat model.
@@ -18457,13 +18462,15 @@
             <see cref="T:Bubba.GptBody"/> class.
             </summary>
         </member>
-        <member name="M:Bubba.GptBody.#ctor(System.String)">
+        <member name="M:Bubba.GptBody.#ctor(System.String,System.String,System.String)">
             <inheritdoc />
             <summary>
             Initializes a new instance of the
             <see cref="T:Bubba.GptBody" /> class.
             </summary>
+            <param name = "userPrompt" > </param>
             <param name="model">The model.</param>
+            <param name = "systemPrompt" > </param>
         </member>
         <member name="M:Bubba.GptBody.#ctor(Bubba.GptBody)">
             <inheritdoc />
@@ -18473,7 +18480,7 @@
             </summary>
             <param name="gptBody">The GPT body.</param>
         </member>
-        <member name="M:Bubba.GptBody.Deconstruct(System.String@,System.String@,Bubba.SystemMessage@,Bubba.UserMessage@)">
+        <member name="M:Bubba.GptBody.Deconstruct(System.String@,System.String@,Bubba.SystemMessage@,Bubba.UserMessage@,System.Collections.Generic.IDictionary{System.String,System.Object}@,System.Collections.Generic.IList{Bubba.IGptMessage}@)">
             <summary>
             Deconstructs the specified model.
             </summary>
@@ -18483,6 +18490,8 @@
             </param>
             <param name="system">The system.</param>
             <param name="user">The user.</param>
+            <param name = "data" > </param>
+            <param name = "messages" > </param>
         </member>
         <member name="P:Bubba.GptBody.Model">
             <inheritdoc />
@@ -19517,7 +19526,7 @@
             <see cref="T:Bubba.GptRequest" /> class.
             </summary>
         </member>
-        <!-- Badly formed XML comment ignored for member "M:Bubba.GptRequest.#ctor(System.String,System.String,System.String,System.String,System.Boolean,System.Boolean,System.Int32,System.Double,System.Double,System.Double,System.Double,System.Int32)" -->
+        <!-- Badly formed XML comment ignored for member "M:Bubba.GptRequest.#ctor(System.String,System.String,System.String,System.Boolean,System.Boolean,System.Int32,System.Double,System.Double,System.Double,System.Double,System.Int32)" -->
         <member name="M:Bubba.GptRequest.#ctor(Bubba.GptRequest)">
             <inheritdoc />
             <summary>
@@ -19526,26 +19535,36 @@
             </summary>
             <param name="gptRequest">The GPT request.</param>
         </member>
-        <member name="M:Bubba.GptRequest.Deconstruct(Bubba.GptHeader@,System.String@,System.String@,System.String@,System.Boolean@,System.Boolean@,System.String@,System.String@,System.Int32@,System.Double@,System.Double@,System.Double@,System.Double@,System.Int32@)">
+        <member name="M:Bubba.GptRequest.Deconstruct(Bubba.GptHeader@,System.String@,System.String@,System.String@,System.Boolean@,System.Boolean@,System.String@,System.Int32@,System.Double@,System.Double@,System.Double@,System.Double@,System.Int32@)">
             <summary>
             Deconstructs the specified user identifier.
             </summary>
             <param name = "header" > </param>
             <param name = "endPoint" > </param>
-            <param name = "model" > </param>
-            <param name = "format" > </param>
-            <param name="number">The user identifier.</param>
-            <param name="frequency">The frequency.</param>
-            <param name="presence">The presence.</param>
-            <param name="temperature">The temperature.</param>
-            <param name = "topPercent" > </param>
-            <param name="tokens">The maximum tokens.</param>
+            <param name = "system" > </param>
             <param name = "user" > </param>
             <param name = "store" > </param>
             <param name = "stream" > </param>
-            <param name = "system" > </param>
+            <param name = "model" > </param>
+            <param name="number">The user identifier.</param>
+            <param name="presence">The presence.</param>
+            <param name="frequency">The frequency.</param>
+            <param name="temperature">The temperature.</param>
+            <param name = "topPercent" > </param>
+            <param name="tokens">The maximum tokens.</param>
+        </member>
+        <member name="P:Bubba.GptRequest.HttpClient">
+            <inheritdoc />
+            <summary>
+            Gets or sets a value indicating whether this
+            <see cref="P:Bubba.GptRequest.HttpClient" /> is store.
+            </summary>
+            <value>
+              <c>true</c> if store; otherwise, <c>false</c>.
+            </value>
         </member>
         <member name="P:Bubba.GptRequest.Body">
+            <inheritdoc />
             <summary>
             Gets the chat model.
             </summary>
@@ -19715,6 +19734,11 @@
             The user identifier
             </summary>
         </member>
+        <member name="F:Bubba.Payload._number">
+            <summary>
+            The number of images
+            </summary>
+        </member>
         <member name="F:Bubba.Payload._model">
             <summary>
             ID of the model to use.
@@ -19726,7 +19750,7 @@
             model's likelihood to repeat the same line verbatim.
             </summary>
         </member>
-        <member name="F:Bubba.Payload._maximumTokens">
+        <member name="F:Bubba.Payload._maxCompletionTokens">
             <summary>
             An upper bound for the number of tokens that can be generated for a completion
             </summary>
@@ -19738,6 +19762,16 @@
             decreasing the model's likelihood to repeat the same line verbatim.
             </summary>
         </member>
+        <member name="F:Bubba.Payload._topPercent">
+            <summary>
+            The top percent
+            </summary>
+        </member>
+        <member name="F:Bubba.Payload._stopSequences">
+            <summary>
+            The stop sequences
+            </summary>
+        </member>
         <member name="F:Bubba.Payload._presence">
             <summary>
             Number between -2.0 and 2.0. Positive values penalize new tokens
@@ -19745,9 +19779,19 @@
             ncreasing the model's likelihood to talk about new topics.
             </summary>
         </member>
+        <member name="F:Bubba.Payload._size">
+            <summary>
+            The size
+            </summary>
+        </member>
         <member name="F:Bubba.Payload._prompt">
             <summary>
             The string provided to GPT
+            </summary>
+        </member>
+        <member name="F:Bubba.Payload._responseFormat">
+            <summary>
+            The response format
             </summary>
         </member>
         <member name="F:Bubba.Payload._messages">
@@ -19770,7 +19814,7 @@
             <param name="frequency">The frequency.</param>
             <param name="presence">The presence.</param>
             <param name="temperature">The temperature.</param>
-            <param name="tokens">The tokens.</param>
+            <param name="completionTokens">The tokens.</param>
         </member>
         <member name="M:Bubba.Payload.#ctor(Bubba.Payload)">
             <summary>
@@ -19798,7 +19842,23 @@
             The user identifier.
             </value>
         </member>
-        <member name="P:Bubba.Payload.MaximumTokens">
+        <member name="P:Bubba.Payload.StopSequences">
+            <summary>
+            Gets or sets the stop sequences.
+            </summary>
+            <value>
+            The stop sequences.
+            </value>
+        </member>
+        <member name="P:Bubba.Payload.NumberOfImages">
+            <summary>
+            Gets or sets the number of images.
+            </summary>
+            <value>
+            The number of images.
+            </value>
+        </member>
+        <member name="P:Bubba.Payload.MaxCompletionTokens">
             <summary>
             Gets the maximum tokens.
             </summary>
@@ -19838,6 +19898,14 @@
             The chat model.
             </value>
         </member>
+        <member name="P:Bubba.Payload.ResponseFormat">
+            <summary>
+            Gets or sets the response format.
+            </summary>
+            <value>
+            The response format.
+            </value>
+        </member>
         <member name="P:Bubba.Payload.Prompt">
             <summary>
             Gets the prompt.
@@ -19852,11 +19920,11 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="M:Bubba.Payload.PadQuotes(System.String)">
+        <member name="M:Bubba.Payload.Serialize(System.String)">
             <summary>
-            Pads the quotes.
+            Serializes the specified prompt.
             </summary>
-            <param name="input">The input.</param>
+            <param name="prompt">The prompt.</param>
             <returns></returns>
         </member>
         <member name="M:Bubba.Payload.Fail(System.Exception)">
@@ -21117,6 +21185,58 @@
             <value>
             The drive separator.
             </value>
+        </member>
+        <member name="T:Bubba.Resources.SearchEngine">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:Bubba.Resources.SearchEngine.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:Bubba.Resources.SearchEngine.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="P:Bubba.Resources.SearchEngine.ID">
+            <summary>
+              Looks up a localized string similar to e78aa3dcb21474bf4.
+            </summary>
+        </member>
+        <member name="P:Bubba.Resources.SearchEngine.KEY">
+            <summary>
+              Looks up a localized string similar to AIzaSyBsfbY19GJMzr3MXqr6MhJ4YKDfhv4QNkw.
+            </summary>
+        </member>
+        <member name="P:Bubba.Resources.SearchEngine.URL">
+            <summary>
+              Looks up a localized string similar to https://cse.google.com/cse?cx=e78aa3dcb21474bf4.
+            </summary>
+        </member>
+        <member name="T:Bubba.Resources.SystemInstructions">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:Bubba.Resources.SystemInstructions.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:Bubba.Resources.SystemInstructions.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="P:Bubba.Resources.SystemInstructions.Bubba">
+            <summary>
+              Looks up a localized string similar to You are the most knowledgeable Budget Analyst in the federal government who provides detailed responses based on your vast knowledge of budget legislation, and federal appropriations.  Your responses to questions about federal finance are very detailed using an academic format.  Your vast knowledge of and experience in Data Science makes you the best Data Analyst in the world. You are proficient in C#, Python, SQL, C++, JavaScript, and VBA. Your name is Bubba..
+            </summary>
         </member>
         <member name="T:Bubba.DataMinion">
             <summary>
@@ -25323,7 +25443,7 @@
             The models
             </summary>
         </member>
-        <member name="F:Bubba.ChatWindow._chatModel">
+        <member name="F:Bubba.ChatWindow._model">
             <summary>
             The chat model
             </summary>
@@ -25625,7 +25745,7 @@
             </summary>
             <param name="input">The input.</param>
         </member>
-        <member name="M:Bubba.ChatWindow.SetHyperameters">
+        <member name="M:Bubba.ChatWindow.SetGptParameters">
             <summary>
             Sets the hyper parameters.
             </summary>
@@ -29632,6 +29752,36 @@
         <member name="M:Bubba.WebBrowser.InitializeComponent">
             <summary>
             InitializeComponent
+            </summary>
+        </member>
+        <member name="T:XamlGeneratedNamespace.GeneratedInternalTypeHelper">
+            <summary>
+            GeneratedInternalTypeHelper
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.CreateInstance(System.Type,System.Globalization.CultureInfo)">
+            <summary>
+            CreateInstance
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.GetPropertyValue(System.Reflection.PropertyInfo,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            GetPropertyValue
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.SetPropertyValue(System.Reflection.PropertyInfo,System.Object,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            SetPropertyValue
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.CreateDelegate(System.Type,System.Object,System.String)">
+            <summary>
+            CreateDelegate
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.AddEventHandler(System.Reflection.EventInfo,System.Object,System.Delegate)">
+            <summary>
+            AddEventHandler
             </summary>
         </member>
     </members>

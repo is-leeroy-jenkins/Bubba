@@ -52,31 +52,29 @@ namespace Bubba
     public interface IGptClient
     {
         /// <summary>
-        /// Gets the frequency.
+        /// Number between -2.0 and 2.0. Positive values penalize new tokens
+        /// based on their existing frequency in the text so far,
+        /// decreasing the model's likelihood to repeat the same line verbatim.
         /// </summary>
-        /// <value>
-        /// The frequency.
-        /// </value>
         double Frequency { get; }
 
         /// <summary>
-        /// Gets the temperature.
+        /// A number between 0 and 2.
+        /// Higher values like 0.8 will make the output more random,
+        /// while lower values like 0.2 will make it more focused and deterministic.
         /// </summary>
-        /// <value>
-        /// The temperature.
-        /// </value>
         double Temperature { get; }
 
         /// <summary>
-        /// Gets the presence.
+        /// a number between -2.0 and 2.0.
+        /// Positive values penalize new tokens
+        /// based on whether they appear in the text so far,
+        /// increasing the model's likelihood to talk about new topics.
         /// </summary>
-        /// <value>
-        /// The presence.
-        /// </value>
         double Presence { get; }
 
         /// <summary>
-        /// Gets the maximum tokens.
+        /// Gets the maximum number of tokens.
         /// </summary>
         /// <value>
         /// The maximum tokens.
@@ -120,8 +118,8 @@ namespace Bubba
         /// <summary>
         /// Sends a request to the Chat (Assistant) API.
         /// </summary>
-        Task<string> GetResponseAsync( List<dynamic> messages, string model = "gpt-4",
-            int maxTokens = 150, double temperature = 0.7 );
+        Task<string> GetResponseAsync( List<dynamic> messages, string model = "gpt-4o",
+            int maxTokens = 2048, double temperature = 0.7 );
 
         /// <summary>
         /// Handles POST requests and response parsing.
@@ -160,24 +158,5 @@ namespace Bubba
         /// </summary>
         /// <param name="propertyName">Name of the property.</param>
         void OnPropertyChanged( [ CallerMemberName ] string propertyName = null );
-
-        /// <summary>
-        /// Releases unmanaged and - optionally - managed resources.
-        /// </summary>
-        /// <param name="disposing">
-        /// <c>true</c>
-        /// to release both managed
-        /// and unmanaged resources;
-        /// <c>false</c> to release only unmanaged resources.
-        /// </param>
-        void Dispose( bool disposing );
-
-        /// <inheritdoc />
-        /// <summary>
-        /// Performs application-defined tasks
-        /// associated with freeing, releasing,
-        /// or resetting unmanaged resources.
-        /// </summary>
-        void Dispose( );
     }
 }

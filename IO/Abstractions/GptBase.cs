@@ -1,10 +1,10 @@
 ﻿// ******************************************************************************************
 //     Assembly:                Bubba
 //     Author:                  Terry D. Eppler
-//     Created:                 12-09-2024
+//     Created:                 12-11-2024
 // 
 //     Last Modified By:        Terry D. Eppler
-//     Last Modified On:        12-09-2024
+//     Last Modified On:        12-11-2024
 // ******************************************************************************************
 // <copyright file="GptBase.cs" company="Terry D. Eppler">
 //    Bubba is a small and simple windows (wpf) application for interacting with the OpenAI API
@@ -46,7 +46,9 @@ namespace Bubba
     using System.Diagnostics.CodeAnalysis;
     using System.Linq;
     using System.Net.Http;
-    using System.Windows.Threading;
+    using System.Text;
+    using System.Threading.Tasks;
+    using Newtonsoft.Json;
 
     /// <inheritdoc />
     /// <summary>
@@ -56,7 +58,7 @@ namespace Bubba
     [ SuppressMessage( "ReSharper", "FieldCanBeMadeReadOnly.Global" ) ]
     [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
     [ SuppressMessage( "ReSharper", "VirtualMemberNeverOverridden.Global" ) ]
-    public abstract class GptBase : PropertyChangedBase, IDisposable
+    public abstract class GptBase : PropertyChangedBase 
     {
         /// <summary>
         /// The busy
@@ -64,19 +66,14 @@ namespace Bubba
         private protected bool _busy;
 
         /// <summary>
-        /// The path
-        /// </summary>
-        private protected object _entry;
-
-        /// <summary>
         /// The HTTP client
         /// </summary>
         private protected HttpClient _httpClient;
 
         /// <summary>
-        /// The response format
+        /// The path
         /// </summary>
-        private protected string _responseFormat;
+        private protected object _entry;
 
         /// <summary>
         /// A unique identifier representing your end-user
@@ -247,12 +244,60 @@ namespace Bubba
             }
         }
 
+        /// <inheritdoc />
+        /// <summary>
+        /// Gets or sets a value indicating whether this
+        /// <see cref="P:Bubba.GptRequest.HttpClient" /> is store.
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if store; otherwise, <c>false</c>.
+        /// </value>
+        public virtual HttpClient HttpClient
+        {
+            get
+            {
+                return _httpClient;
+            }
+            set
+            {
+                if(_httpClient != value)
+                {
+                    _httpClient = value;
+                    OnPropertyChanged(nameof(HttpClient));
+                }
+            }
+        }
+
+        /// <summary>
+        /// Posts the json asynchronous.
+        /// </summary>
+        /// <param name="endpoint">The endpoint.</param>
+        /// <param name="payload">The payload.</param>
+        /// <returns></returns>
+        /// <exception cref="System.Net.Http.HttpRequestException">Error: {_response.StatusCode}, {_error}</exception>
+        private protected virtual async Task<string> PostJsonAsync(string endpoint, object payload)
+        {
+            var _url = new GptEndPoint( ).ApiDomain;
+            _httpClient.DefaultRequestHeaders.Clear();
+            _httpClient.DefaultRequestHeaders.Add("Authorization", $"Bearer {ApiKey}");
+            var _json = JsonConvert.SerializeObject( payload );
+            var _content = new StringContent( _json, Encoding.UTF8, "application/json" );
+            var _response = await _httpClient.PostAsync( $"{_url}/{endpoint}", _content );
+            if(!_response.IsSuccessStatusCode )
+            {
+                var _error = await _response.Content.ReadAsStringAsync();
+                throw new HttpRequestException($"Error: {_response.StatusCode}, {_error}");
+            }
+
+            return await _response.Content.ReadAsStringAsync( );
+        }
+
         /// <summary>
         /// Pads the quotes.
         /// </summary>
         /// <param name="input">The input.</param>
         /// <returns></returns>
-        private protected string ProcessQuotes( string input )
+        private protected virtual string ProcessQuotes( string input )
         {
             if( input.IndexOf( "\\" ) != -1 )
             {
@@ -295,7 +340,7 @@ namespace Bubba
         /// <returns>
         /// A list of strings representing OpenAI models
         /// </returns>
-        private protected IList<string> GetModels( )
+        private protected virtual IList<string> GetModels( )
         {
             try
             {
@@ -341,7 +386,7 @@ namespace Bubba
         /// Gets the end points.
         /// </summary>
         /// <returns></returns>
-        private protected IList<string> GetEndPoints( )
+        private protected virtual IList<string> GetEndPoints( )
         {
             try
             {
@@ -373,43 +418,14 @@ namespace Bubba
         }
 
         /// <summary>
-        /// Releases unmanaged and - optionally - managed resources.
-        /// </summary>
-        /// <param name="disposing">
-        /// <c>true</c>
-        /// to release both managed
-        /// and unmanaged resources;
-        /// <c>false</c> to release only unmanaged resources.
-        /// </param>
-        public virtual void Dispose( bool disposing )
-        {
-            if( disposing )
-            {
-                _httpClient?.Dispose( );
-            }
-        }
-
-        /// <inheritdoc />
-        /// <summary>
-        /// Performs application-defined tasks
-        /// associated with freeing, releasing,
-        /// or resetting unmanaged resources.
-        /// </summary>
-        public void Dispose( )
-        {
-            Dispose( true );
-            GC.SuppressFinalize( this );
-        }
-
-        /// <summary>
         /// Wraps error
         /// </summary>
         /// <param name="ex">The ex.</param>
-        private protected void Fail(Exception ex)
+        private protected void Fail( Exception ex )
         {
-            var _error = new ErrorWindow(ex);
-            _error?.SetText();
-            _error?.ShowDialog();
+            var _error = new ErrorWindow( ex );
+            _error?.SetText( );
+            _error?.ShowDialog( );
         }
     }
 }
