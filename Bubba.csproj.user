@@ -24,6 +24,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Page Update="UI\Themes\Slider\Slider.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="UI\Views\Upload\GptUpload.xaml">
       <SubType>Designer</SubType>
     </Page>

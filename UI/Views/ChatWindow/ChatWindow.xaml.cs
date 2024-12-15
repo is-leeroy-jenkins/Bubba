@@ -703,7 +703,7 @@ namespace Bubba
                 TemperatureSlider.Value = 1D;
                 TopPercentSlider.Value = 1D;
                 MaxTokenSlider.Value = 2048;
-                NumberTextBox.Text = "1";
+                NumberSlider.Value = 1D;
                 GenerationComboBox.SelectedIndex = -1;
                 ModelComboBox.SelectedIndex = -1;
                 LanguageListBox.SelectedIndex = -1;
@@ -713,10 +713,38 @@ namespace Bubba
                 ListenCheckBox.IsChecked = false;
                 StoreCheckBox.IsChecked = false;
                 StreamCheckBox.IsChecked = false;
+                LanguageListBox.SelectedValue = "Text";
             }
             catch( Exception ex )
             {
                 Fail( ex );
+            }
+        }
+
+        /// <summary>
+        /// Clears the parameters.
+        /// </summary>
+        private void ClearParameters()
+        {
+            try
+            {
+                _store = false;
+                _stream = false;
+                _model = "";
+                _imageSize = "";
+                _endpoint = "";
+                _number = 1;
+                _maxCompletionTokens = 2048;
+                _temperature = 1.0;
+                _topPercent = 1.0;
+                _frequency = 0.0;
+                _presence = 0.0;
+                _language = "";
+                _voice = "";
+            }
+            catch(Exception ex)
+            {
+                Fail(ex);
             }
         }
 
@@ -1125,7 +1153,7 @@ namespace Bubba
                     _maxCompletionTokens = Convert.ToInt32( MaxTokenTextBox.Value );
                     _userPrompt = ( _language == "Text" )
                         ? ChatEditor.Text
-                        : "Hi Bubba, Can you write me a 'Hello World!' script in Python?";
+                        : "";
                 }
             }
             catch( Exception ex )
@@ -2165,6 +2193,7 @@ namespace Bubba
         {
             try
             {
+                ToolStripTextBox.SelectAll( );
                 var _psn = e.GetPosition( this );
                 var _searchDialog = new SearchDialog
                 {

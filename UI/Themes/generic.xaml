@@ -46,6 +46,9 @@
         <!--  TILE  -->
         <ResourceDictionary Source="/UI/Themes/Tile/Tile.xaml" />
 
+        <!--  SLIDER  -->
+        <ResourceDictionary Source="/UI/Themes/Slider/Slider.xaml" />
+
 
     </ResourceDictionary.MergedDictionaries>
 

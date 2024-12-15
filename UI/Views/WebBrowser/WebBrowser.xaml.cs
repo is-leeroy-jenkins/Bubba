@@ -2419,7 +2419,8 @@ namespace Bubba
                         26 => AppSettings[ "DOD" ],
                         27 => AppSettings[ "USNO" ],
                         28 => AppSettings[ "NWS" ],
-                        var _ => AppSettings[ "Google" ]
+                        29 => AppSettings[ "GOOG" ],
+                        var _ => AppSettings[ "GPT" ]
                     };
                 }
             }

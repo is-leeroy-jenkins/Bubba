@@ -18,6 +18,11 @@
             The window place
             </summary>
         </member>
+        <member name="P:Bubba.App.ActiveWindows">
+            <summary>
+            The active windows
+            </summary>
+        </member>
         <member name="F:Bubba.App.Controls">
             <summary>
             The controls
@@ -26,11 +31,6 @@
         <member name="M:Bubba.App.RegisterTheme">
             <summary>
             Registers the theme.
-            </summary>
-        </member>
-        <member name="P:Bubba.App.ActiveWindows">
-            <summary>
-            The active windows
             </summary>
         </member>
         <member name="M:Bubba.App.#ctor">
@@ -23925,6 +23925,24 @@
             </summary>
             <param name="ex">The ex.</param>
         </member>
+        <member name="T:Bubba.MetroSlider">
+            <inheritdoc />
+            <summary>
+            </summary>
+            <seealso cref="T:Syncfusion.Windows.Controls.Input.SfRangeSlider" />
+        </member>
+        <member name="F:Bubba.MetroSlider._theme">
+            <summary>
+            The theme
+            </summary>
+        </member>
+        <member name="M:Bubba.MetroSlider.#ctor">
+            <inheritdoc />
+            <summary>
+            Initializes a new instance of the
+            <see cref="T:Bubba.MetroSlider" /> class.
+            </summary>
+        </member>
         <member name="T:Bubba.BrowserConfig">
             <summary>
             
@@ -25771,6 +25789,11 @@
         <member name="M:Bubba.ChatWindow.ClearChatControls">
             <summary>
             Clears the controls.
+            </summary>
+        </member>
+        <member name="M:Bubba.ChatWindow.ClearParameters">
+            <summary>
+            Clears the parameters.
             </summary>
         </member>
         <member name="M:Bubba.ChatWindow.CleanUrl(System.String)">

@@ -42,10 +42,8 @@
 namespace Bubba
 {
     using System;
-    using System.Collections;
     using System.Collections.Generic;
     using System.Configuration;
-    using System.Data;
     using System.Diagnostics.CodeAnalysis;
     using System.IO;
     using System.Threading.Tasks;
@@ -72,6 +70,11 @@ namespace Bubba
         /// The window place
         /// </summary>
         private protected WindowPlace _windowPlace;
+
+        /// <summary>
+        /// The active windows
+        /// </summary>
+        public static IDictionary<string, Window> ActiveWindows { get; private set; }
 
         /// <summary>
         /// The controls
@@ -138,11 +141,6 @@ namespace Bubba
             SfSkinManager.RegisterThemeSettings( "FluentDark", _theme );
             SfSkinManager.ApplyStylesOnApplication = true;
         }
-
-        /// <summary>
-        /// The active windows
-        /// </summary>
-        public static IDictionary<string, Window> ActiveWindows { get; private set; }
 
         /// <inheritdoc />
         /// <summary>
