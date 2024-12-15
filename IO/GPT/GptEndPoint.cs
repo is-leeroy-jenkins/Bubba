@@ -60,7 +60,7 @@ namespace Bubba
         /// <summary>
         /// The domain
         /// </summary>
-        private protected string _apiDomain = @"https://api.openai.com/";
+        private protected string _baseUrl;
 
         /// <summary>
         /// The locations
@@ -138,6 +138,7 @@ namespace Bubba
         /// </summary>
         public GptEndPoint( )
         {
+            _baseUrl = @"https://api.openai.com/";
             _textGeneration = "https://api.openai.com/v1/chat/completions";
             _assistants = "https://api.openai.com/v1/assistants";
             _speechGeneration = "https://api.openai.com/v1/audio/speech";
@@ -150,8 +151,8 @@ namespace Bubba
             _vectorStores = "https://api.openai.com/v1/vector_stores";
             _projects = "https://api.openai.com/v1/organization/projects";
             _imageGeneration = "https://api.openai.com/v1/images/generations";
-            _all = GetAll( );
             _data = CreateData( );
+            _all = GetAll( );
         }
 
         /// <summary>
@@ -160,11 +161,11 @@ namespace Bubba
         /// <value>
         /// The domain.
         /// </value>
-        public string ApiDomain
+        public string BaseUrl
         {
             get
             {
-                return _apiDomain;
+                return _baseUrl;
             }
         }
 

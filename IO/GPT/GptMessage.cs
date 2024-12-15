@@ -49,7 +49,7 @@ namespace Bubba
     /// <summary>
     /// </summary>
     /// <seealso cref="T:Bubba.PropertyChangedBase" />
-    [SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
+    [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
     public abstract class GptMessage : PropertyChangedBase
     {
         /// <summary>
@@ -115,7 +115,7 @@ namespace Bubba
             }
             set
             {
-                if(_content != value )
+                if( _content != value )
                 {
                     _content = value;
                     OnPropertyChanged( nameof( Content ) );

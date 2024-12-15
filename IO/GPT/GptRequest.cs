@@ -60,6 +60,7 @@ namespace Bubba
         public GptRequest( )
         {
             _entry = new object( );
+            _httpClient = new HttpClient( );
             _presence = 0.0;
             _frequency = 0.0;
             _topPercent = 1.0;
@@ -96,7 +97,7 @@ namespace Bubba
             _body = new GptBody( system, user, model );
             _endPoint = endpoint;
             _number = number;
-            _stream = stream;
+            _store = store;
             _stream = stream;
             _frequency = frequency;
             _presence = presence;
@@ -110,20 +111,21 @@ namespace Bubba
         /// Initializes a new instance of the
         /// <see cref="T:Bubba.GptRequest" /> class.
         /// </summary>
-        /// <param name="config">The GPT request.</param>
-        public GptRequest( GptConfig config )
+        /// <param name="request">The GPT request.</param>
+        public GptRequest( GptRequest request )
         {
             _header = new GptHeader( );
-            _body = new GptBody( config.SystemPrompt, config.UserPrompt, config.Model );
-            _endPoint = config.EndPoint;
-            _number = config.Number;
-            _stream = config.Stream;
-            _store = config.Store;
-            _frequency = config.Frequency;
-            _presence = config.Presence;
-            _topPercent = config.TopPercent;
-            _temperature = config.Temperature;
-            _maximumCompletionTokens = config.MaximumTokens;
+            _httpClient = request.HttpClient;
+            _body = request.Body;
+            _endPoint = request.EndPoint;
+            _number = request.Number;
+            _stream = request.Stream;
+            _store = request.Store;
+            _frequency = request.Frequency;
+            _presence = request.Presence;
+            _topPercent = request.TopPercent;
+            _temperature = request.Temperature;
+            _maximumCompletionTokens = request.MaximumCompletionTokens;
         }
 
         /// <summary>

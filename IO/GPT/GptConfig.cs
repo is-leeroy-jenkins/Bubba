@@ -1,14 +1,14 @@
 ﻿// ******************************************************************************************
 //     Assembly:                Bubba
 //     Author:                  Terry D. Eppler
-//     Created:                 11-26-2024
+//     Created:                 12-14-2024
 // 
 //     Last Modified By:        Terry D. Eppler
-//     Last Modified On:        11-26-2024
+//     Last Modified On:        12-14-2024
 // ******************************************************************************************
 // <copyright file="GptConfig.cs" company="Terry D. Eppler">
-//    Bubba is a small windows (wpf) application for interacting with
-//    Chat GPT that's developed in C-Sharp under the MIT license
+//    Bubba is a small and simple windows (wpf) application for interacting with the OpenAI API
+//    that's developed in C-Sharp under the MIT license.C#.
 // 
 //    Copyright ©  2020-2024 Terry D. Eppler
 // 
@@ -133,6 +133,11 @@ namespace Bubba
         /// </summary>
         private protected string _endPoint;
 
+        /// <summary>
+        /// The image size
+        /// </summary>
+        private protected string _imageSize;
+
         /// <inheritdoc />
         /// <summary>
         /// Occurs when a property value changes.
@@ -150,6 +155,8 @@ namespace Bubba
             _store = false;
             _stream = false;
             _model = "gpt-4o";
+            _imageSize = "250X250";
+            _endPoint = "https://api.openai.com/v1/chat/completions";
             _number = 1;
             _maximumTokens = 2048;
             _temperature = 1.0;
@@ -162,20 +169,15 @@ namespace Bubba
         /// <summary>
         /// Initializes a new instance of the <see cref="T:Bubba.GptConfig" /> class.
         /// </summary>
-        /// <param name="systemPrompt">The system prompt.</param>
-        /// <param name="userPrompt">The user prompt.</param>
-        /// <param name = "model" > </param>
-        /// <param name = "endpoint" > </param>
-        public GptConfig( string systemPrompt, string userPrompt, string endpoint,
-            string model = "gpt-4o" ) 
+        /// <param name="system">The system prompt.</param>
+        /// <param name="user">The user prompt.</param>
+        public GptConfig( string system, string user )
             : this( )
         {
-            _systemPrompt = systemPrompt;
-            _userPrompt = userPrompt;
-            _endPoint = endpoint;
-            _model = model;
+            _systemPrompt = system;
+            _userPrompt = user;
         }
-        
+
         /// <inheritdoc />
         /// <summary>
         /// Initializes a new instance of the
@@ -199,21 +201,21 @@ namespace Bubba
         /// <summary>
         /// Decontructs the specified system prompt.
         /// </summary>
-        /// <param name="systemPrompt">The system prompt.</param>
-        /// <param name="userPrompt">The user prompt.</param>
-        /// <param name="maxTokens">The maximum tokens.</param>
+        /// <param name="system">The system prompt.</param>
+        /// <param name="user">The user prompt.</param>
+        /// <param name="tokens">The maximum tokens.</param>
         /// <param name="temperature">The temperature.</param>
         /// <param name="frequency">The frequency.</param>
         /// <param name="presense">The presense.</param>
         /// <param name = "store" > </param>
         /// <param name = "stream" > </param>
-        public void Decontruct( out string systemPrompt, out string userPrompt, out int maxTokens,
+        public void Decontruct( out string system, out string user, out int tokens,
             out double temperature, out double frequency, out double presense,
             out bool store, out bool stream )
         {
-            systemPrompt = _systemPrompt;
-            userPrompt = _userPrompt;
-            maxTokens = _maximumTokens;
+            system = _systemPrompt;
+            user = _userPrompt;
+            tokens = _maximumTokens;
             temperature = _temperature;
             frequency = _frequency;
             presense = _presence;
@@ -461,6 +463,28 @@ namespace Bubba
                 {
                     _number = value;
                     OnPropertyChanged( nameof( Number ) );
+                }
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the size of the image.
+        /// </summary>
+        /// <value>
+        /// The size of the image.
+        /// </value>
+        public string ImageSize
+        {
+            get
+            {
+                return _imageSize;
+            }
+            set
+            {
+                if( _imageSize != value )
+                {
+                    _imageSize = value;
+                    OnPropertyChanged( nameof( ImageSize ) );
                 }
             }
         }

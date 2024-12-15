@@ -165,9 +165,9 @@ namespace Bubba
         private protected Color _groupBoxBackground = new Color( )
         {
             A = 255,
-            R = 24,
-            G = 24,
-            B = 24
+            R = 28,
+            G = 28,
+            B = 28
         };
 
         /// <inheritdoc />

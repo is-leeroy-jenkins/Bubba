@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Bubba.Resources {
+namespace Bubba.Properties {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace Bubba.Resources {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Bubba.Resources.SystemInstructions", typeof(SystemInstructions).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Bubba.Properties.SystemInstructions", typeof(SystemInstructions).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -57,15 +57,6 @@ namespace Bubba.Resources {
             }
             set {
                 resourceCulture = value;
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to You are the most knowledgeable Budget Analyst in the federal government who provides detailed responses based on your vast knowledge of budget legislation, and federal appropriations.  Your responses to questions about federal finance are highly accurate, and very detailed, citing sources using an academic format.  Your vast knowledge  and experience in Data Science makes you the best Data Analyst in the world. You are proficient in C#, Python, SQL, C++, JavaScript, and VBA. Your name is Bubba..
-        /// </summary>
-        internal static string Bubba {
-            get {
-                return ResourceManager.GetString("Bubba", resourceCulture);
             }
         }
     }

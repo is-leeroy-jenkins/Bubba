@@ -1127,11 +1127,6 @@ namespace Bubba
                         ? ChatEditor.Text
                         : "Hi Bubba, Can you write me a 'Hello World!' script in Python?";
                 }
-
-                if( _language == "Text" )
-                {
-                    _userPrompt = ChatEditor.Text;
-                }
             }
             catch( Exception ex )
             {
@@ -1147,7 +1142,7 @@ namespace Bubba
             try
             {
                 var _endpoints = new GptEndPoint( );
-                var _domain = _endpoints.ApiDomain;
+                var _domain = _endpoints.BaseUrl;
                 switch( _generation )
                 {
                     case "Text Generation":
@@ -1607,7 +1602,7 @@ namespace Bubba
                 var _responseMessage = await _httpClient.GetAsync( _url );
                 _responseMessage.EnsureSuccessStatusCode( );
                 var _body = await _responseMessage.Content.ReadAsStringAsync( );
-                var _aiModels = new List<string>( );
+                var _llms = new List<string>( );
                 using var _document = JsonDocument.Parse( _body );
                 var _root = _document.RootElement;
                 if( _root.TryGetProperty( "data", out var _data )
@@ -1617,20 +1612,20 @@ namespace Bubba
                     {
                         if( _item.TryGetProperty( "id", out var _element ) )
                         {
-                            _aiModels.Add( _element.GetString( ) );
+                            _llms.Add( _element.GetString( ) );
                         }
                     }
                 }
 
-                _aiModels.Sort( );
+                _llms.Sort( );
                 ModelComboBox.Items.Clear( );
                 Dispatcher.BeginInvoke( ( ) =>
                 {
-                    foreach( var _model in _aiModels )
+                    foreach( var _lm in _llms )
                     {
-                        if( !_model.StartsWith( "ft" ) )
+                        if( !_lm.StartsWith( "ft" ) )
                         {
-                            ModelComboBox.Items.Add( _model );
+                            ModelComboBox.Items.Add( _lm );
                         }
                     }
                 } );
@@ -1840,7 +1835,7 @@ namespace Bubba
                 LanguageListBox.Items.Add( "SQL" );
                 LanguageListBox.Items.Add( "C/C++" );
                 LanguageListBox.Items.Add( "JavaScript" );
-                LanguageListBox.Items.Add( "VB/VBA" );
+                LanguageListBox.Items.Add( "VBA" );
             }
             catch( Exception ex )
             {

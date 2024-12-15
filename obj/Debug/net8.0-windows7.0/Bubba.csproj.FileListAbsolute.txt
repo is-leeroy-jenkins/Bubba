@@ -644,9 +644,6 @@ C:\Users\terry\source\repos\Bubba\obj\Debug\net8.0-windows7.0\UI\Views\SplashWin
 C:\Users\terry\source\repos\Bubba\obj\Debug\net8.0-windows7.0\UI\Views\Upload\GptUpload.baml
 C:\Users\terry\source\repos\Bubba\obj\Debug\net8.0-windows7.0\UI\Views\WebBrowser\WebBrowser.baml
 C:\Users\terry\source\repos\Bubba\obj\Debug\net8.0-windows7.0\Bubba.g.resources
-C:\Users\terry\source\repos\Bubba\obj\Debug\net8.0-windows7.0\Bubba.Locations.resources
-C:\Users\terry\source\repos\Bubba\obj\Debug\net8.0-windows7.0\Bubba.Resources.SearchEngine.resources
-C:\Users\terry\source\repos\Bubba\obj\Debug\net8.0-windows7.0\Bubba.Resources.SystemInstructions.resources
 C:\Users\terry\source\repos\Bubba\obj\Debug\net8.0-windows7.0\Bubba.csproj.GenerateResource.cache
 C:\Users\terry\source\repos\Bubba\obj\Debug\net8.0-windows7.0\Bubba.GeneratedMSBuildEditorConfig.editorconfig
 C:\Users\terry\source\repos\Bubba\obj\Debug\net8.0-windows7.0\Bubba.AssemblyInfoInputs.cache
@@ -659,3 +656,10 @@ C:\Users\terry\source\repos\Bubba\obj\Debug\net8.0-windows7.0\refint\Bubba.dll
 C:\Users\terry\source\repos\Bubba\obj\Debug\net8.0-windows7.0\Bubba.xml
 C:\Users\terry\source\repos\Bubba\obj\Debug\net8.0-windows7.0\Bubba.genruntimeconfig.cache
 C:\Users\terry\source\repos\Bubba\obj\Debug\net8.0-windows7.0\ref\Bubba.dll
+C:\Users\terry\source\repos\Bubba\bin\Debug\net8.0-windows7.0\Properties\Locations.resx
+C:\Users\terry\source\repos\Bubba\bin\Debug\net8.0-windows7.0\Properties\SearchEngine.resx
+C:\Users\terry\source\repos\Bubba\bin\Debug\net8.0-windows7.0\Properties\SystemInstructions.resx
+C:\Users\terry\source\repos\Bubba\obj\Debug\net8.0-windows7.0\Bubba.Properties.AI.resources
+C:\Users\terry\source\repos\Bubba\obj\Debug\net8.0-windows7.0\Bubba.Properties.Locations.resources
+C:\Users\terry\source\repos\Bubba\obj\Debug\net8.0-windows7.0\Bubba.Properties.SearchEngine.resources
+C:\Users\terry\source\repos\Bubba\obj\Debug\net8.0-windows7.0\Bubba.Properties.SystemInstructions.resources

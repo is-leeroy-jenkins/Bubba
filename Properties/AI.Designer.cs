@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Bubba {
+namespace Bubba.Properties {
     using System;
     
     
@@ -22,14 +22,14 @@ namespace Bubba {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class Locations {
+    internal class AI {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal Locations() {
+        internal AI() {
         }
         
         /// <summary>
@@ -39,7 +39,7 @@ namespace Bubba {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Bubba.Locations", typeof(Locations).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Bubba.Properties.AI", typeof(AI).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -61,65 +61,47 @@ namespace Bubba {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to vs_8fEoYp1zVvk5D8atfWLbEupN.
         /// </summary>
-        internal static string Chrome {
+        internal static string BubbaAppropriations {
             get {
-                return ResourceManager.GetString("Chrome", resourceCulture);
+                return ResourceManager.GetString("BubbaAppropriations", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Data\Stores\.
+        ///   Looks up a localized string similar to You are the most knowledgeable Budget Analyst in the federal government who provides detailed responses based on your vast knowledge of budget legislation, and federal appropriations.  Your responses to questions about federal finance are highly accurate, and very detailed, citing sources using an academic format.  Your vast knowledge  and experience in Data Science makes you the best Data Analyst in the world. You are proficient in C#, Python, SQL, C++, JavaScript, and VBA. Your name is Bubba..
         /// </summary>
-        internal static string DatabasePath {
+        internal static string BubbaInstructions {
             get {
-                return ResourceManager.GetString("DatabasePath", resourceCulture);
+                return ResourceManager.GetString("BubbaInstructions", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe.
+        ///   Looks up a localized string similar to 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.
         /// </summary>
-        internal static string Edge {
+        internal static string BubbaKey {
             get {
-                return ResourceManager.GetString("Edge", resourceCulture);
+                return ResourceManager.GetString("BubbaKey", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to proj_4OQYEZava5a8a5AfFDmRtggo.
         /// </summary>
-        internal static string FireFox {
+        internal static string BubbaProject {
             get {
-                return ResourceManager.GetString("FireFox", resourceCulture);
+                return ResourceManager.GetString("BubbaProject", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to https://www.google.com.
+        ///   Looks up a localized string similar to vs_dx5IIjBuEw5M0j5S2FTo9lRS.
         /// </summary>
-        internal static string Google {
+        internal static string BubbaRegulations {
             get {
-                return ResourceManager.GetString("Google", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to UI/Pages/index.html.
-        /// </summary>
-        internal static string HomePage {
-            get {
-                return ResourceManager.GetString("HomePage", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to C:\Users\terry\source\repos\Bubba\.
-        /// </summary>
-        internal static string PathPrefix {
-            get {
-                return ResourceManager.GetString("PathPrefix", resourceCulture);
+                return ResourceManager.GetString("BubbaRegulations", resourceCulture);
             }
         }
     }

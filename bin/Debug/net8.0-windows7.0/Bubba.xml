@@ -15692,6 +15692,178 @@
             Occurs when a property value changes.
             </summary>
         </member>
+        <member name="T:Bubba.PayloadBase">
+            <inheritdoc />
+            <summary>
+            </summary>
+        </member>
+        <member name="F:Bubba.PayloadBase._id">
+            <summary>
+            The user identifier
+            </summary>
+        </member>
+        <member name="F:Bubba.PayloadBase._number">
+            <summary>
+            The number of images
+            </summary>
+        </member>
+        <member name="F:Bubba.PayloadBase._model">
+            <summary>
+            ID of the model to use.
+            </summary>
+        </member>
+        <member name="F:Bubba.PayloadBase._temperature">
+            <summary>
+            A number between -2.0 and 2.0  Positive value decrease the
+            model's likelihood to repeat the same line verbatim.
+            </summary>
+        </member>
+        <member name="F:Bubba.PayloadBase._maxCompletionTokens">
+            <summary>
+            An upper bound for the number of tokens that can be generated for a completion
+            </summary>
+        </member>
+        <member name="F:Bubba.PayloadBase._frequency">
+            <summary>
+            TNumber between -2.0 and 2.0. Positive values penalize new
+            tokens based on their existing frequency in the text so far,
+            decreasing the model's likelihood to repeat the same line verbatim.
+            </summary>
+        </member>
+        <member name="F:Bubba.PayloadBase._topPercent">
+            <summary>
+            The top percent
+            </summary>
+        </member>
+        <member name="F:Bubba.PayloadBase._stopSequences">
+            <summary>
+            The stop sequences
+            </summary>
+        </member>
+        <member name="F:Bubba.PayloadBase._presence">
+            <summary>
+            Number between -2.0 and 2.0. Positive values penalize new tokens
+            based on whether they appear in the text so far,
+            ncreasing the model's likelihood to talk about new topics.
+            </summary>
+        </member>
+        <member name="F:Bubba.PayloadBase._imageSize">
+            <summary>
+            The size
+            </summary>
+        </member>
+        <member name="F:Bubba.PayloadBase._prompt">
+            <summary>
+            The string provided to GPT
+            </summary>
+        </member>
+        <member name="F:Bubba.PayloadBase._responseFormat">
+            <summary>
+            The response format
+            </summary>
+        </member>
+        <member name="F:Bubba.PayloadBase._messages">
+            <summary>
+            The messages
+            </summary>
+        </member>
+        <member name="F:Bubba.PayloadBase._data">
+            <summary>
+            The data
+            </summary>
+        </member>
+        <member name="E:Bubba.PayloadBase.PropertyChanged">
+            <inheritdoc />
+            <summary>
+            Occurs when a property value changes.
+            </summary>
+        </member>
+        <member name="M:Bubba.PayloadBase.OnPropertyChanged(System.String)">
+            <summary>
+            Called when [property changed].
+            </summary>
+            <param name="propertyName">Name of the property.</param>
+        </member>
+        <member name="P:Bubba.PayloadBase.Id">
+            <summary>
+            Gets the user identifier.
+            </summary>
+            <value>
+            The user identifier.
+            </value>
+        </member>
+        <member name="P:Bubba.PayloadBase.MaxCompletionTokens">
+            <summary>
+            Gets the maximum tokens.
+            </summary>
+            <value>
+            The maximum tokens.
+            </value>
+        </member>
+        <member name="P:Bubba.PayloadBase.Temperature">
+            <summary>
+            Gets or sets the temperature.
+            </summary>
+            <value>
+            The temperature.
+            </value>
+        </member>
+        <member name="P:Bubba.PayloadBase.Frequency">
+            <summary>
+            Gets the frequency.
+            </summary>
+            <value>
+            The frequency.
+            </value>
+        </member>
+        <member name="P:Bubba.PayloadBase.Number">
+            <summary>
+            Gets or sets the number.
+            </summary>
+            <value>
+            The number.
+            </value>
+        </member>
+        <member name="P:Bubba.PayloadBase.Presence">
+            <summary>
+            Gets the presence.
+            </summary>
+            <value>
+            The presence.
+            </value>
+        </member>
+        <member name="P:Bubba.PayloadBase.Model">
+            <summary>
+            Gets the chat model.
+            </summary>
+            <value>
+            The chat model.
+            </value>
+        </member>
+        <member name="P:Bubba.PayloadBase.ImageSize">
+            <summary>
+            Gets or sets the size of the image.
+            </summary>
+            <value>
+            The size of the image.
+            </value>
+        </member>
+        <member name="P:Bubba.PayloadBase.Prompt">
+            <summary>
+            Gets the prompt.
+            </summary>
+            <value>
+            The prompt.
+            </value>
+        </member>
+        <member name="P:Bubba.PayloadBase.ResponseFormat">
+            <summary>
+            Gets or sets the response format.
+            </summary>
+            <value>
+            The response format.
+            </value>
+        </member>
         <member name="T:Bubba.PropertyChangedBase">
             <inheritdoc />
             <summary>
@@ -18992,6 +19164,11 @@
             The end point
             </summary>
         </member>
+        <member name="F:Bubba.GptConfig._imageSize">
+            <summary>
+            The image size
+            </summary>
+        </member>
         <member name="E:Bubba.GptConfig.PropertyChanged">
             <inheritdoc />
             <summary>
@@ -19005,15 +19182,13 @@
             <see cref="T:Bubba.GptConfig" /> class.
             </summary>
         </member>
-        <member name="M:Bubba.GptConfig.#ctor(System.String,System.String,System.String,System.String)">
+        <member name="M:Bubba.GptConfig.#ctor(System.String,System.String)">
             <inheritdoc />
             <summary>
             Initializes a new instance of the <see cref="T:Bubba.GptConfig" /> class.
             </summary>
-            <param name="systemPrompt">The system prompt.</param>
-            <param name="userPrompt">The user prompt.</param>
-            <param name = "model" > </param>
-            <param name = "endpoint" > </param>
+            <param name="system">The system prompt.</param>
+            <param name="user">The user prompt.</param>
         </member>
         <member name="M:Bubba.GptConfig.#ctor(Bubba.GptConfig)">
             <inheritdoc />
@@ -19027,9 +19202,9 @@
             <summary>
             Decontructs the specified system prompt.
             </summary>
-            <param name="systemPrompt">The system prompt.</param>
-            <param name="userPrompt">The user prompt.</param>
-            <param name="maxTokens">The maximum tokens.</param>
+            <param name="system">The system prompt.</param>
+            <param name="user">The user prompt.</param>
+            <param name="tokens">The maximum tokens.</param>
             <param name="temperature">The temperature.</param>
             <param name="frequency">The frequency.</param>
             <param name="presense">The presense.</param>
@@ -19137,6 +19312,14 @@
             The user identifier.
             </value>
         </member>
+        <member name="P:Bubba.GptConfig.ImageSize">
+            <summary>
+            Gets or sets the size of the image.
+            </summary>
+            <value>
+            The size of the image.
+            </value>
+        </member>
         <member name="P:Bubba.GptConfig.SystemPrompt">
             <summary>
             Gets or sets the system prompt.
@@ -19167,7 +19350,7 @@
             </summary>
             <seealso cref="T:Bubba.PropertyChangedBase" />
         </member>
-        <member name="F:Bubba.GptEndPoint._apiDomain">
+        <member name="F:Bubba.GptEndPoint._baseUrl">
             <summary>
             The domain
             </summary>
@@ -19248,7 +19431,7 @@
             <see cref="T:Bubba.GptEndPoint"/> class.
             </summary>
         </member>
-        <member name="P:Bubba.GptEndPoint.ApiDomain">
+        <member name="P:Bubba.GptEndPoint.BaseUrl">
             <summary>
             Gets the domain.
             </summary>
@@ -19556,13 +19739,13 @@
             </summary>
         </member>
         <!-- Badly formed XML comment ignored for member "M:Bubba.GptRequest.#ctor(System.String,System.String,System.String,System.String,System.Int32,System.Boolean,System.Boolean,System.Double,System.Double,System.Double,System.Double,System.Int32)" -->
-        <member name="M:Bubba.GptRequest.#ctor(Bubba.GptConfig)">
+        <member name="M:Bubba.GptRequest.#ctor(Bubba.GptRequest)">
             <inheritdoc />
             <summary>
             Initializes a new instance of the
             <see cref="T:Bubba.GptRequest" /> class.
             </summary>
-            <param name="config">The GPT request.</param>
+            <param name="request">The GPT request.</param>
         </member>
         <member name="M:Bubba.GptRequest.Deconstruct(Bubba.GptHeader@,System.String@,System.String@,System.String@,System.Boolean@,System.Boolean@,System.String@,System.Int32@,System.Double@,System.Double@,System.Double@,System.Double@,System.Int32@)">
             <summary>
@@ -21094,279 +21277,102 @@
             The drive separator.
             </value>
         </member>
-        <member name="T:Bubba.Locations">
+        <member name="T:Bubba.Properties.AI">
             <summary>
               A strongly-typed resource class, for looking up localized strings, etc.
             </summary>
         </member>
-        <member name="P:Bubba.Locations.ResourceManager">
+        <member name="P:Bubba.Properties.AI.ResourceManager">
             <summary>
               Returns the cached ResourceManager instance used by this class.
             </summary>
         </member>
-        <member name="P:Bubba.Locations.Culture">
+        <member name="P:Bubba.Properties.AI.Culture">
             <summary>
               Overrides the current thread's CurrentUICulture property for all
               resource lookups using this strongly typed resource class.
             </summary>
         </member>
-        <member name="P:Bubba.Locations.Chrome">
+        <member name="P:Bubba.Properties.AI.BubbaAppropriations">
             <summary>
-              Looks up a localized string similar to .
+              Looks up a localized string similar to vs_8fEoYp1zVvk5D8atfWLbEupN.
             </summary>
         </member>
-        <member name="P:Bubba.Locations.DatabasePath">
+        <member name="P:Bubba.Properties.AI.BubbaInstructions">
             <summary>
-              Looks up a localized string similar to Data\Stores\.
+              Looks up a localized string similar to You are the most knowledgeable Budget Analyst in the federal government who provides detailed responses based on your vast knowledge of budget legislation, and federal appropriations.  Your responses to questions about federal finance are highly accurate, and very detailed, citing sources using an academic format.  Your vast knowledge  and experience in Data Science makes you the best Data Analyst in the world. You are proficient in C#, Python, SQL, C++, JavaScript, and VBA. Your name is Bubba..
             </summary>
         </member>
-        <member name="P:Bubba.Locations.Edge">
+        <member name="P:Bubba.Properties.AI.BubbaKey">
             <summary>
-              Looks up a localized string similar to C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe.
+              Looks up a localized string similar to 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.
             </summary>
         </member>
-        <member name="P:Bubba.Locations.FireFox">
+        <member name="P:Bubba.Properties.AI.BubbaProject">
             <summary>
-              Looks up a localized string similar to .
+              Looks up a localized string similar to proj_4OQYEZava5a8a5AfFDmRtggo.
             </summary>
         </member>
-        <member name="P:Bubba.Locations.Google">
+        <member name="P:Bubba.Properties.AI.BubbaRegulations">
             <summary>
-              Looks up a localized string similar to https://www.google.com.
+              Looks up a localized string similar to vs_dx5IIjBuEw5M0j5S2FTo9lRS.
             </summary>
         </member>
-        <member name="P:Bubba.Locations.HomePage">
-            <summary>
-              Looks up a localized string similar to UI/Pages/index.html.
-            </summary>
-        </member>
-        <member name="P:Bubba.Locations.PathPrefix">
-            <summary>
-              Looks up a localized string similar to C:\Users\terry\source\repos\Bubba\.
-            </summary>
-        </member>
-        <member name="T:Bubba.PayloadBase">
-            <inheritdoc />
-            <summary>
-            </summary>
-        </member>
-        <member name="F:Bubba.PayloadBase._id">
-            <summary>
-            The user identifier
-            </summary>
-        </member>
-        <member name="F:Bubba.PayloadBase._number">
-            <summary>
-            The number of images
-            </summary>
-        </member>
-        <member name="F:Bubba.PayloadBase._model">
-            <summary>
-            ID of the model to use.
-            </summary>
-        </member>
-        <member name="F:Bubba.PayloadBase._temperature">
-            <summary>
-            A number between -2.0 and 2.0  Positive value decrease the
-            model's likelihood to repeat the same line verbatim.
-            </summary>
-        </member>
-        <member name="F:Bubba.PayloadBase._maxCompletionTokens">
-            <summary>
-            An upper bound for the number of tokens that can be generated for a completion
-            </summary>
-        </member>
-        <member name="F:Bubba.PayloadBase._frequency">
-            <summary>
-            TNumber between -2.0 and 2.0. Positive values penalize new
-            tokens based on their existing frequency in the text so far,
-            decreasing the model's likelihood to repeat the same line verbatim.
-            </summary>
-        </member>
-        <member name="F:Bubba.PayloadBase._topPercent">
-            <summary>
-            The top percent
-            </summary>
-        </member>
-        <member name="F:Bubba.PayloadBase._stopSequences">
-            <summary>
-            The stop sequences
-            </summary>
-        </member>
-        <member name="F:Bubba.PayloadBase._presence">
-            <summary>
-            Number between -2.0 and 2.0. Positive values penalize new tokens
-            based on whether they appear in the text so far,
-            ncreasing the model's likelihood to talk about new topics.
-            </summary>
-        </member>
-        <member name="F:Bubba.PayloadBase._imageSize">
-            <summary>
-            The size
-            </summary>
-        </member>
-        <member name="F:Bubba.PayloadBase._prompt">
-            <summary>
-            The string provided to GPT
-            </summary>
-        </member>
-        <member name="F:Bubba.PayloadBase._responseFormat">
-            <summary>
-            The response format
-            </summary>
-        </member>
-        <member name="F:Bubba.PayloadBase._messages">
-            <summary>
-            The messages
-            </summary>
-        </member>
-        <member name="F:Bubba.PayloadBase._data">
-            <summary>
-            The data
-            </summary>
-        </member>
-        <member name="E:Bubba.PayloadBase.PropertyChanged">
-            <inheritdoc />
-            <summary>
-            Occurs when a property value changes.
-            </summary>
-        </member>
-        <member name="M:Bubba.PayloadBase.OnPropertyChanged(System.String)">
-            <summary>
-            Called when [property changed].
-            </summary>
-            <param name="propertyName">Name of the property.</param>
-        </member>
-        <member name="P:Bubba.PayloadBase.Id">
-            <summary>
-            Gets the user identifier.
-            </summary>
-            <value>
-            The user identifier.
-            </value>
-        </member>
-        <member name="P:Bubba.PayloadBase.MaxCompletionTokens">
-            <summary>
-            Gets the maximum tokens.
-            </summary>
-            <value>
-            The maximum tokens.
-            </value>
-        </member>
-        <member name="P:Bubba.PayloadBase.Temperature">
-            <summary>
-            Gets or sets the temperature.
-            </summary>
-            <value>
-            The temperature.
-            </value>
-        </member>
-        <member name="P:Bubba.PayloadBase.Frequency">
-            <summary>
-            Gets the frequency.
-            </summary>
-            <value>
-            The frequency.
-            </value>
-        </member>
-        <member name="P:Bubba.PayloadBase.Number">
-            <summary>
-            Gets or sets the number.
-            </summary>
-            <value>
-            The number.
-            </value>
-        </member>
-        <member name="P:Bubba.PayloadBase.Presence">
-            <summary>
-            Gets the presence.
-            </summary>
-            <value>
-            The presence.
-            </value>
-        </member>
-        <member name="P:Bubba.PayloadBase.Model">
-            <summary>
-            Gets the chat model.
-            </summary>
-            <value>
-            The chat model.
-            </value>
-        </member>
-        <member name="P:Bubba.PayloadBase.ImageSize">
-            <summary>
-            Gets or sets the size of the image.
-            </summary>
-            <value>
-            The size of the image.
-            </value>
-        </member>
-        <member name="P:Bubba.PayloadBase.Prompt">
-            <summary>
-            Gets the prompt.
-            </summary>
-            <value>
-            The prompt.
-            </value>
-        </member>
-        <member name="P:Bubba.PayloadBase.ResponseFormat">
-            <summary>
-            Gets or sets the response format.
-            </summary>
-            <value>
-            The response format.
-            </value>
-        </member>
-        <member name="T:Bubba.Resources.SearchEngine">
+        <member name="T:Bubba.Properties.SearchEngine">
             <summary>
               A strongly-typed resource class, for looking up localized strings, etc.
             </summary>
         </member>
-        <member name="P:Bubba.Resources.SearchEngine.ResourceManager">
+        <member name="P:Bubba.Properties.SearchEngine.ResourceManager">
             <summary>
               Returns the cached ResourceManager instance used by this class.
             </summary>
         </member>
-        <member name="P:Bubba.Resources.SearchEngine.Culture">
+        <member name="P:Bubba.Properties.SearchEngine.Culture">
             <summary>
               Overrides the current thread's CurrentUICulture property for all
               resource lookups using this strongly typed resource class.
             </summary>
         </member>
-        <member name="P:Bubba.Resources.SearchEngine.ID">
+        <member name="P:Bubba.Properties.SearchEngine.ID">
             <summary>
               Looks up a localized string similar to e78aa3dcb21474bf4.
             </summary>
         </member>
-        <member name="P:Bubba.Resources.SearchEngine.KEY">
+        <member name="P:Bubba.Properties.SearchEngine.KEY">
             <summary>
               Looks up a localized string similar to AIzaSyBsfbY19GJMzr3MXqr6MhJ4YKDfhv4QNkw.
             </summary>
         </member>
-        <member name="P:Bubba.Resources.SearchEngine.URL">
+        <member name="P:Bubba.Properties.SearchEngine.ProjectID">
+            <summary>
+              Looks up a localized string similar to budgetsearchengi-1681042238302.
+            </summary>
+        </member>
+        <member name="P:Bubba.Properties.SearchEngine.ProjectNumber">
+            <summary>
+              Looks up a localized string similar to 789831279238.
+            </summary>
+        </member>
+        <member name="P:Bubba.Properties.SearchEngine.URL">
             <summary>
               Looks up a localized string similar to https://cse.google.com/cse?cx=e78aa3dcb21474bf4.
             </summary>
         </member>
-        <member name="T:Bubba.Resources.SystemInstructions">
+        <member name="T:Bubba.Properties.SystemInstructions">
             <summary>
               A strongly-typed resource class, for looking up localized strings, etc.
             </summary>
         </member>
-        <member name="P:Bubba.Resources.SystemInstructions.ResourceManager">
+        <member name="P:Bubba.Properties.SystemInstructions.ResourceManager">
             <summary>
               Returns the cached ResourceManager instance used by this class.
             </summary>
         </member>
-        <member name="P:Bubba.Resources.SystemInstructions.Culture">
+        <member name="P:Bubba.Properties.SystemInstructions.Culture">
             <summary>
               Overrides the current thread's CurrentUICulture property for all
               resource lookups using this strongly typed resource class.
-            </summary>
-        </member>
-        <member name="P:Bubba.Resources.SystemInstructions.Bubba">
-            <summary>
-              Looks up a localized string similar to You are the most knowledgeable Budget Analyst in the federal government who provides detailed responses based on your vast knowledge of budget legislation, and federal appropriations.  Your responses to questions about federal finance are highly accurate, and very detailed, citing sources using an academic format.  Your vast knowledge  and experience in Data Science makes you the best Data Analyst in the world. You are proficient in C#, Python, SQL, C++, JavaScript, and VBA. Your name is Bubba..
             </summary>
         </member>
         <member name="T:Bubba.DataMinion">
@@ -29896,6 +29902,36 @@
         <member name="M:Bubba.WebBrowser.InitializeComponent">
             <summary>
             InitializeComponent
+            </summary>
+        </member>
+        <member name="T:XamlGeneratedNamespace.GeneratedInternalTypeHelper">
+            <summary>
+            GeneratedInternalTypeHelper
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.CreateInstance(System.Type,System.Globalization.CultureInfo)">
+            <summary>
+            CreateInstance
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.GetPropertyValue(System.Reflection.PropertyInfo,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            GetPropertyValue
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.SetPropertyValue(System.Reflection.PropertyInfo,System.Object,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            SetPropertyValue
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.CreateDelegate(System.Type,System.Object,System.String)">
+            <summary>
+            CreateDelegate
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.AddEventHandler(System.Reflection.EventInfo,System.Object,System.Delegate)">
+            <summary>
+            AddEventHandler
             </summary>
         </member>
     </members>

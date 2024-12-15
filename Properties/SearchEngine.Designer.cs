@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Bubba.Resources {
+namespace Bubba.Properties {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace Bubba.Resources {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Bubba.Resources.SearchEngine", typeof(SearchEngine).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Bubba.Properties.SearchEngine", typeof(SearchEngine).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -75,6 +75,24 @@ namespace Bubba.Resources {
         internal static string KEY {
             get {
                 return ResourceManager.GetString("KEY", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to budgetsearchengi-1681042238302.
+        /// </summary>
+        internal static string ProjectID {
+            get {
+                return ResourceManager.GetString("ProjectID", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 789831279238.
+        /// </summary>
+        internal static string ProjectNumber {
+            get {
+                return ResourceManager.GetString("ProjectNumber", resourceCulture);
             }
         }
         

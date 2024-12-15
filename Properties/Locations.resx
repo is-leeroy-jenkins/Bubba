@@ -126,7 +126,7 @@
   <data name="DATA" xml:space="preserve">
     <value>https://www.google.com/search?q=site:data.gov </value>
   </data>
-  <data name="DatabasePath" xml:space="preserve">
+  <data name="Database" xml:space="preserve">
     <value>Data\Stores\</value>
   </data>
   <data name="DOI" xml:space="preserve">
@@ -197,35 +197,5 @@
   </data>
   <data name="NSF" xml:space="preserve">
     <value>https://www.google.com/search?q=site:www.nsf.gov </value>
-  </data>
-  <data name="USDA" xml:space="preserve">
-    <value>https://www.google.com/search?q=site:www.usda.gov </value>
-  </data>
-  <data name="CSB" xml:space="preserve">
-    <value>https://www.google.com/search?q=site:www.csb.gov </value>
-  </data>
-  <data name="IRS" xml:space="preserve">
-    <value>https://www.google.com/search?q=site:www.irs.gov </value>
-  </data>
-  <data name="FDA" xml:space="preserve">
-    <value>https://www.google.com/search?q=site:www.fda.gov </value>
-  </data>
-  <data name="CDC" xml:space="preserve">
-    <value>https://www.google.com/search?q=site:www.cdc.gov </value>
-  </data>
-  <data name="ACE" xml:space="preserve">
-    <value>https://www.google.com/search?q=site:usace.army.mil </value>
-  </data>
-  <data name="DHS" xml:space="preserve">
-    <value>https://www.google.com/search?q=site:www.dhs.gov </value>
-  </data>
-  <data name="DOD" xml:space="preserve">
-    <value>https://www.google.com/search?q=site:www.defense.gov </value>
-  </data>
-  <data name="USNO" xml:space="preserve">
-    <value>https://www.google.com/search?q=site:usno.navy.mil </value>
-  </data>
-  <data name="NWS" xml:space="preserve">
-    <value>https://www.google.com/search?q=site:www.weather.gov </value>
   </data>
 </root>

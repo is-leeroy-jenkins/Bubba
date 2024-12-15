@@ -590,12 +590,17 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Update="Resources\SystemInstructions.Designer.cs">
+    <Compile Update="Properties\AI.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>AI.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Properties\SystemInstructions.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
       <DependentUpon>SystemInstructions.resx</DependentUpon>
     </Compile>
-    <Compile Update="Resources\SearchEngine.Designer.cs">
+    <Compile Update="Properties\SearchEngine.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
       <DependentUpon>SearchEngine.resx</DependentUpon>
@@ -603,17 +608,26 @@
   </ItemGroup>
 
   <ItemGroup>
+    <EmbeddedResource Update="Properties\AI.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>AI.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Update="ResourceLocations.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>ResourceLocations.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Update="Resources\SystemInstructions.resx">
+    <EmbeddedResource Update="Properties\Locations.resx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Properties\SystemInstructions.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>SystemInstructions.Designer.cs</LastGenOutput>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </EmbeddedResource>
-    <EmbeddedResource Update="Resources\SearchEngine.resx">
+    <EmbeddedResource Update="Properties\SearchEngine.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>SearchEngine.Designer.cs</LastGenOutput>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </EmbeddedResource>
   </ItemGroup>
 
