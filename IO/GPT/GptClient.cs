@@ -69,6 +69,8 @@ namespace Bubba
             + "S2u6tzNR39HFYKlC0kz0iUvXoJtSACw49E1laKaT3BlbkFJIORKROk_"
             + "EirH8g8KoWX7fyhM3oQcd9KqILMBo1rEVFlruTMOsDQ3bHt7mNBjvlZw8DLfYbckQA";
 
+        private protected GptParam _param;
+
         /// <summary>
         /// The data
         /// </summary>
@@ -84,13 +86,7 @@ namespace Bubba
         {
             _entry = new object( );
             _apiKey = KEY;
-            _presence = 0.0;
-            _frequency = 0.0;
-            _topPercent = 1.0;
-            _temperature = 1.0;
-            _maximumCompletionTokens = 2048;
-            _model = "gpt-4o";
-            _endPoint = "https://api.openai.com/v1/chat/completions";
+            _param = new GptParam( );
             _endPoints = GetEndPoints( );
             _models = GetModels( );
         }

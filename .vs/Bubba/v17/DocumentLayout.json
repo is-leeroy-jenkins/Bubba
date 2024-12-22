@@ -3,40 +3,36 @@
   "WorkspaceRootPath": "C:\\Users\\terry\\source\\repos\\Bubba\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{08012640-3765-4051-B5EB-4FF782150AEC}|Bubba.csproj|c:\\users\\terry\\source\\repos\\bubba\\ui\\views\\chatwindow\\chatwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{08012640-3765-4051-B5EB-4FF782150AEC}|Bubba.csproj|solutionrelative:ui\\views\\chatwindow\\chatwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{08012640-3765-4051-B5EB-4FF782150AEC}|Bubba.csproj|c:\\users\\terry\\source\\repos\\bubba\\ui\\themes\\combobox\\combobox.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{08012640-3765-4051-B5EB-4FF782150AEC}|Bubba.csproj|solutionrelative:ui\\themes\\combobox\\combobox.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{08012640-3765-4051-B5EB-4FF782150AEC}|Bubba.csproj|c:\\users\\terry\\source\\repos\\bubba\\ui\\views\\chatwindow\\chatwindow.xaml.cs||{8B382828-6202-11D1-8870-0000F87579D2}|",
       "RelativeMoniker": "D:0:0:{08012640-3765-4051-B5EB-4FF782150AEC}|Bubba.csproj|solutionrelative:ui\\views\\chatwindow\\chatwindow.xaml.cs||{8B382828-6202-11D1-8870-0000F87579D2}|"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{08012640-3765-4051-B5EB-4FF782150AEC}|Bubba.csproj|c:\\users\\terry\\source\\repos\\bubba\\ui\\views\\webbrowser\\webbrowser.xaml.cs||{8B382828-6202-11D1-8870-0000F87579D2}|",
-      "RelativeMoniker": "D:0:0:{08012640-3765-4051-B5EB-4FF782150AEC}|Bubba.csproj|solutionrelative:ui\\views\\webbrowser\\webbrowser.xaml.cs||{8B382828-6202-11D1-8870-0000F87579D2}|"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{08012640-3765-4051-B5EB-4FF782150AEC}|Bubba.csproj|c:\\users\\terry\\source\\repos\\bubba\\io\\gpt\\gptconfig.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{08012640-3765-4051-B5EB-4FF782150AEC}|Bubba.csproj|solutionrelative:io\\gpt\\gptconfig.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{08012640-3765-4051-B5EB-4FF782150AEC}|Bubba.csproj|c:\\users\\terry\\source\\repos\\bubba\\io\\gpt\\gptclient.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{08012640-3765-4051-B5EB-4FF782150AEC}|Bubba.csproj|solutionrelative:io\\gpt\\gptclient.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{08012640-3765-4051-B5EB-4FF782150AEC}|Bubba.csproj|c:\\users\\terry\\source\\repos\\bubba\\io\\gpt\\gptrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{08012640-3765-4051-B5EB-4FF782150AEC}|Bubba.csproj|solutionrelative:io\\gpt\\gptrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{08012640-3765-4051-B5EB-4FF782150AEC}|Bubba.csproj|c:\\users\\terry\\source\\repos\\bubba\\io\\gpt\\gptparam.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{08012640-3765-4051-B5EB-4FF782150AEC}|Bubba.csproj|solutionrelative:io\\gpt\\gptparam.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{08012640-3765-4051-B5EB-4FF782150AEC}|Bubba.csproj|c:\\users\\terry\\source\\repos\\bubba\\io\\gpt\\gptmessage.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{08012640-3765-4051-B5EB-4FF782150AEC}|Bubba.csproj|solutionrelative:io\\gpt\\gptmessage.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{08012640-3765-4051-B5EB-4FF782150AEC}|Bubba.csproj|c:\\users\\terry\\source\\repos\\bubba\\io\\abstractions\\gptrequestbase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{08012640-3765-4051-B5EB-4FF782150AEC}|Bubba.csproj|solutionrelative:io\\abstractions\\gptrequestbase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{08012640-3765-4051-B5EB-4FF782150AEC}|Bubba.csproj|c:\\users\\terry\\source\\repos\\bubba\\io\\gpt\\gptbody.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{08012640-3765-4051-B5EB-4FF782150AEC}|Bubba.csproj|solutionrelative:io\\gpt\\gptbody.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{08012640-3765-4051-B5EB-4FF782150AEC}|Bubba.csproj|c:\\users\\terry\\source\\repos\\bubba\\io\\gpt\\gptclient.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{08012640-3765-4051-B5EB-4FF782150AEC}|Bubba.csproj|solutionrelative:io\\gpt\\gptclient.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{08012640-3765-4051-B5EB-4FF782150AEC}|Bubba.csproj|c:\\users\\terry\\source\\repos\\bubba\\io\\gpt\\payload.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{08012640-3765-4051-B5EB-4FF782150AEC}|Bubba.csproj|solutionrelative:io\\gpt\\payload.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{08012640-3765-4051-B5EB-4FF782150AEC}|Bubba.csproj|c:\\users\\terry\\source\\repos\\bubba\\io\\email\\emailcredential.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{08012640-3765-4051-B5EB-4FF782150AEC}|Bubba.csproj|solutionrelative:io\\email\\emailcredential.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{08012640-3765-4051-B5EB-4FF782150AEC}|Bubba.csproj|c:\\users\\terry\\source\\repos\\bubba\\io\\abstractions\\payloadbase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{08012640-3765-4051-B5EB-4FF782150AEC}|Bubba.csproj|solutionrelative:io\\abstractions\\payloadbase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -46,7 +42,7 @@
       "DocumentGroups": [
         {
           "DockedHeight": 332,
-          "SelectedChildIndex": 13,
+          "SelectedChildIndex": 14,
           "Children": [
             {
               "$type": "Bookmark",
@@ -82,10 +78,6 @@
             },
             {
               "$type": "Bookmark",
-              "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
-            },
-            {
-              "$type": "Bookmark",
               "Name": "ST:0:0:{eefa5220-e298-11d0-8f78-00a0c9110057}"
             },
             {
@@ -94,117 +86,106 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "ComboBox.xaml",
-              "DocumentMoniker": "C:\\Users\\terry\\source\\repos\\Bubba\\UI\\Themes\\ComboBox\\ComboBox.xaml",
-              "RelativeDocumentMoniker": "UI\\Themes\\ComboBox\\ComboBox.xaml",
-              "ToolTip": "C:\\Users\\terry\\source\\repos\\Bubba\\UI\\Themes\\ComboBox\\ComboBox.xaml",
-              "RelativeToolTip": "UI\\Themes\\ComboBox\\ComboBox.xaml",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2024-12-15T14:50:11.407Z",
+              "DocumentIndex": 6,
+              "Title": "EmailCredential.cs",
+              "DocumentMoniker": "C:\\Users\\terry\\source\\repos\\Bubba\\IO\\Email\\EmailCredential.cs",
+              "RelativeDocumentMoniker": "IO\\Email\\EmailCredential.cs",
+              "ToolTip": "C:\\Users\\terry\\source\\repos\\Bubba\\IO\\Email\\EmailCredential.cs",
+              "RelativeToolTip": "IO\\Email\\EmailCredential.cs",
+              "ViewState": "AgIAAH0AAAAAAAAAAAAAAJkAAAAWAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-21T14:14:23.961Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 3,
-              "Title": "WebBrowser.xaml.cs",
-              "DocumentMoniker": "C:\\Users\\terry\\source\\repos\\Bubba\\UI\\Views\\WebBrowser\\WebBrowser.xaml.cs",
-              "RelativeDocumentMoniker": "UI\\Views\\WebBrowser\\WebBrowser.xaml.cs",
-              "ToolTip": "C:\\Users\\terry\\source\\repos\\Bubba\\UI\\Views\\WebBrowser\\WebBrowser.xaml.cs",
-              "RelativeToolTip": "UI\\Views\\WebBrowser\\WebBrowser.xaml.cs",
-              "ViewState": "AgIAAPQFAAAAAAAAAADwvw4GAAASAAAAAAAAAA==",
+              "Title": "GptBody.cs",
+              "DocumentMoniker": "C:\\Users\\terry\\source\\repos\\Bubba\\IO\\GPT\\GptBody.cs",
+              "RelativeDocumentMoniker": "IO\\GPT\\GptBody.cs",
+              "ToolTip": "C:\\Users\\terry\\source\\repos\\Bubba\\IO\\GPT\\GptBody.cs",
+              "RelativeToolTip": "IO\\GPT\\GptBody.cs",
+              "ViewState": "AgIAAOQAAAAAAAAAAAAAAHMAAAAqAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-15T14:17:06.824Z",
+              "WhenOpened": "2024-12-18T13:43:55.018Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "PayloadBase.cs",
+              "DocumentMoniker": "C:\\Users\\terry\\source\\repos\\Bubba\\IO\\Abstractions\\PayloadBase.cs",
+              "RelativeDocumentMoniker": "IO\\Abstractions\\PayloadBase.cs",
+              "ToolTip": "C:\\Users\\terry\\source\\repos\\Bubba\\IO\\Abstractions\\PayloadBase.cs",
+              "RelativeToolTip": "IO\\Abstractions\\PayloadBase.cs",
+              "ViewState": "AgIAAE0AAAAAAAAAAAAAAGwAAAAWAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-18T13:23:45.223Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Payload.cs",
+              "DocumentMoniker": "C:\\Users\\terry\\source\\repos\\Bubba\\IO\\GPT\\Payload.cs",
+              "RelativeDocumentMoniker": "IO\\GPT\\Payload.cs",
+              "ToolTip": "C:\\Users\\terry\\source\\repos\\Bubba\\IO\\GPT\\Payload.cs",
+              "RelativeToolTip": "IO\\GPT\\Payload.cs",
+              "ViewState": "AgIAAC4AAAAAAAAAAAAAAEUAAAAoAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-17T23:32:07.19Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "ChatWindow.xaml",
-              "DocumentMoniker": "C:\\Users\\terry\\source\\repos\\Bubba\\UI\\Views\\ChatWindow\\ChatWindow.xaml",
-              "RelativeDocumentMoniker": "UI\\Views\\ChatWindow\\ChatWindow.xaml",
-              "ToolTip": "C:\\Users\\terry\\source\\repos\\Bubba\\UI\\Views\\ChatWindow\\ChatWindow.xaml",
-              "RelativeToolTip": "UI\\Views\\ChatWindow\\ChatWindow.xaml",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2024-12-15T02:44:06.341Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
               "Title": "ChatWindow.xaml.cs",
               "DocumentMoniker": "C:\\Users\\terry\\source\\repos\\Bubba\\UI\\Views\\ChatWindow\\ChatWindow.xaml.cs",
               "RelativeDocumentMoniker": "UI\\Views\\ChatWindow\\ChatWindow.xaml.cs",
               "ToolTip": "C:\\Users\\terry\\source\\repos\\Bubba\\UI\\Views\\ChatWindow\\ChatWindow.xaml.cs",
               "RelativeToolTip": "UI\\Views\\ChatWindow\\ChatWindow.xaml.cs",
-              "ViewState": "AgIAAKoCAAAAAAAAAADwv8UCAAAxAAAAAAAAAA==",
+              "ViewState": "AgIAAKoFAAAAAAAAAAAMwLUFAAAoAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-12-14T22:54:59.359Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "GptRequestBase.cs",
-              "DocumentMoniker": "C:\\Users\\terry\\source\\repos\\Bubba\\IO\\Abstractions\\GptRequestBase.cs",
-              "RelativeDocumentMoniker": "IO\\Abstractions\\GptRequestBase.cs",
-              "ToolTip": "C:\\Users\\terry\\source\\repos\\Bubba\\IO\\Abstractions\\GptRequestBase.cs",
-              "RelativeToolTip": "IO\\Abstractions\\GptRequestBase.cs",
-              "ViewState": "AgIAADkAAAAAAAAAAAAmwE4AAAATAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-14T15:15:48.393Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 2,
               "Title": "GptMessage.cs",
               "DocumentMoniker": "C:\\Users\\terry\\source\\repos\\Bubba\\IO\\GPT\\GptMessage.cs",
               "RelativeDocumentMoniker": "IO\\GPT\\GptMessage.cs",
               "ToolTip": "C:\\Users\\terry\\source\\repos\\Bubba\\IO\\GPT\\GptMessage.cs",
               "RelativeToolTip": "IO\\GPT\\GptMessage.cs",
-              "ViewState": "AgIAABYAAAAAAAAAAAAswCsAAAARAAAAAAAAAA==",
+              "ViewState": "AgIAACcAAAAAAAAAAAAAADMAAAArAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-12-14T14:16:04.112Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "GptRequest.cs",
-              "DocumentMoniker": "C:\\Users\\terry\\source\\repos\\Bubba\\IO\\GPT\\GptRequest.cs",
-              "RelativeDocumentMoniker": "IO\\GPT\\GptRequest.cs",
-              "ToolTip": "C:\\Users\\terry\\source\\repos\\Bubba\\IO\\GPT\\GptRequest.cs",
-              "RelativeToolTip": "IO\\GPT\\GptRequest.cs",
-              "ViewState": "AgIAAHsAAAAAAAAAAADwv5AAAAAxAAAAAAAAAA==",
+              "DocumentIndex": 1,
+              "Title": "GptParam.cs",
+              "DocumentMoniker": "C:\\Users\\terry\\source\\repos\\Bubba\\IO\\GPT\\GptParam.cs",
+              "RelativeDocumentMoniker": "IO\\GPT\\GptParam.cs",
+              "ToolTip": "C:\\Users\\terry\\source\\repos\\Bubba\\IO\\GPT\\GptParam.cs",
+              "RelativeToolTip": "IO\\GPT\\GptParam.cs",
+              "ViewState": "AgIAAFIBAAAAAAAAAAAMwHABAAANAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-13T15:29:10.853Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "GptClient.cs",
-              "DocumentMoniker": "C:\\Users\\terry\\source\\repos\\Bubba\\IO\\GPT\\GptClient.cs",
-              "RelativeDocumentMoniker": "IO\\GPT\\GptClient.cs",
-              "ToolTip": "C:\\Users\\terry\\source\\repos\\Bubba\\IO\\GPT\\GptClient.cs",
-              "RelativeToolTip": "IO\\GPT\\GptClient.cs",
-              "ViewState": "AgIAAHEAAAAAAAAAAAAowIQAAAARAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-09T15:04:56.125Z",
+              "WhenOpened": "2024-12-09T15:01:05.258Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 4,
-              "Title": "GptConfig.cs",
-              "DocumentMoniker": "C:\\Users\\terry\\source\\repos\\Bubba\\IO\\GPT\\GptConfig.cs",
-              "RelativeDocumentMoniker": "IO\\GPT\\GptConfig.cs",
-              "ToolTip": "C:\\Users\\terry\\source\\repos\\Bubba\\IO\\GPT\\GptConfig.cs",
-              "RelativeToolTip": "IO\\GPT\\GptConfig.cs",
-              "ViewState": "AgIAAIoAAAAAAAAAAAAYwJsAAAAcAAAAAAAAAA==",
+              "Title": "GptClient.cs",
+              "DocumentMoniker": "C:\\Users\\terry\\source\\repos\\Bubba\\IO\\GPT\\GptClient.cs",
+              "RelativeDocumentMoniker": "IO\\GPT\\GptClient.cs",
+              "ToolTip": "C:\\Users\\terry\\source\\repos\\Bubba\\IO\\GPT\\GptClient.cs",
+              "RelativeToolTip": "IO\\GPT\\GptClient.cs",
+              "ViewState": "AgIAABQCAAAAAAAAAAAAAAwCAAAbAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-09T15:01:05.258Z",
+              "WhenOpened": "2024-12-09T15:04:56.125Z",
               "EditorCaption": ""
             }
           ]

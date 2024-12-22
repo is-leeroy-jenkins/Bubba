@@ -50,7 +50,7 @@ namespace Bubba
     [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
     [ SuppressMessage( "ReSharper", "FieldCanBeMadeReadOnly.Global" ) ]
     [ SuppressMessage( "ReSharper", "MemberCanBeProtected.Global" ) ]
-    public class GptRequest : GptRequestBase
+    public class GptRequest : GptRequestBase, IGptRequest
     {
         /// <inheritdoc />
         /// <summary>

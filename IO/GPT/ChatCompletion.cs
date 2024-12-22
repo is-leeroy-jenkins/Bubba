@@ -75,7 +75,7 @@ namespace Bubba
         /// <see cref="ChatCompletion"/> class.
         /// </summary>
         /// <param name="config">The configuration.</param>
-        public ChatCompletion( GptConfig config )
+        public ChatCompletion( GptParam config )
         {
             _header = new GptHeader();
             _endPoint = new GptEndPoint( ).TextGeneration;

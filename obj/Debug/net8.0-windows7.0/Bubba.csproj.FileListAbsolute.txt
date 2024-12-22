@@ -169,6 +169,8 @@ C:\Users\terry\source\repos\Bubba\bin\Debug\net8.0-windows7.0\runtimes\win-arm64
 C:\Users\terry\source\repos\Bubba\bin\Debug\net8.0-windows7.0\runtimes\win-arm64\native\locales\zh-TW.pak
 C:\Users\terry\source\repos\Bubba\bin\Debug\net8.0-windows7.0\runtimes\win-arm64\native\CefSharp.dll
 C:\Users\terry\source\repos\Bubba\bin\Debug\net8.0-windows7.0\runtimes\win-arm64\native\Ijwhost.dll
+C:\Users\terry\source\repos\Bubba\bin\Debug\net8.0-windows7.0\Properties\CustomSearchEngine.resx
+C:\Users\terry\source\repos\Bubba\bin\Debug\net8.0-windows7.0\Properties\SystemInstructions.resx
 C:\Users\terry\source\repos\Bubba\bin\Debug\net8.0-windows7.0\Bubba.exe
 C:\Users\terry\source\repos\Bubba\bin\Debug\net8.0-windows7.0\Bubba.dll.config
 C:\Users\terry\source\repos\Bubba\bin\Debug\net8.0-windows7.0\Bubba.deps.json
@@ -628,6 +630,7 @@ C:\Users\terry\source\repos\Bubba\obj\Debug\net8.0-windows7.0\UI\Themes\RadioBut
 C:\Users\terry\source\repos\Bubba\obj\Debug\net8.0-windows7.0\UI\Themes\RichTextBox\RichTextBox.baml
 C:\Users\terry\source\repos\Bubba\obj\Debug\net8.0-windows7.0\UI\Themes\Scrolling\ScrollBar.baml
 C:\Users\terry\source\repos\Bubba\obj\Debug\net8.0-windows7.0\UI\Themes\Scrolling\ScrollViewer.baml
+C:\Users\terry\source\repos\Bubba\obj\Debug\net8.0-windows7.0\UI\Themes\Slider\Slider.baml
 C:\Users\terry\source\repos\Bubba\obj\Debug\net8.0-windows7.0\UI\Themes\TabControl\BrowserTabItem.baml
 C:\Users\terry\source\repos\Bubba\obj\Debug\net8.0-windows7.0\UI\Themes\TabControl\TabControl.baml
 C:\Users\terry\source\repos\Bubba\obj\Debug\net8.0-windows7.0\UI\Themes\TextBox\TextBox.baml
@@ -644,6 +647,10 @@ C:\Users\terry\source\repos\Bubba\obj\Debug\net8.0-windows7.0\UI\Views\SplashWin
 C:\Users\terry\source\repos\Bubba\obj\Debug\net8.0-windows7.0\UI\Views\Upload\GptUpload.baml
 C:\Users\terry\source\repos\Bubba\obj\Debug\net8.0-windows7.0\UI\Views\WebBrowser\WebBrowser.baml
 C:\Users\terry\source\repos\Bubba\obj\Debug\net8.0-windows7.0\Bubba.g.resources
+C:\Users\terry\source\repos\Bubba\obj\Debug\net8.0-windows7.0\Bubba.Properties.CustomSearchEngine.resources
+C:\Users\terry\source\repos\Bubba\obj\Debug\net8.0-windows7.0\Bubba.Properties.Locations.resources
+C:\Users\terry\source\repos\Bubba\obj\Debug\net8.0-windows7.0\Bubba.Properties.OpenAI.resources
+C:\Users\terry\source\repos\Bubba\obj\Debug\net8.0-windows7.0\Bubba.Properties.SystemInstructions.resources
 C:\Users\terry\source\repos\Bubba\obj\Debug\net8.0-windows7.0\Bubba.csproj.GenerateResource.cache
 C:\Users\terry\source\repos\Bubba\obj\Debug\net8.0-windows7.0\Bubba.GeneratedMSBuildEditorConfig.editorconfig
 C:\Users\terry\source\repos\Bubba\obj\Debug\net8.0-windows7.0\Bubba.AssemblyInfoInputs.cache
@@ -656,11 +663,3 @@ C:\Users\terry\source\repos\Bubba\obj\Debug\net8.0-windows7.0\refint\Bubba.dll
 C:\Users\terry\source\repos\Bubba\obj\Debug\net8.0-windows7.0\Bubba.xml
 C:\Users\terry\source\repos\Bubba\obj\Debug\net8.0-windows7.0\Bubba.genruntimeconfig.cache
 C:\Users\terry\source\repos\Bubba\obj\Debug\net8.0-windows7.0\ref\Bubba.dll
-C:\Users\terry\source\repos\Bubba\bin\Debug\net8.0-windows7.0\Properties\Locations.resx
-C:\Users\terry\source\repos\Bubba\bin\Debug\net8.0-windows7.0\Properties\SearchEngine.resx
-C:\Users\terry\source\repos\Bubba\bin\Debug\net8.0-windows7.0\Properties\SystemInstructions.resx
-C:\Users\terry\source\repos\Bubba\obj\Debug\net8.0-windows7.0\Bubba.Properties.AI.resources
-C:\Users\terry\source\repos\Bubba\obj\Debug\net8.0-windows7.0\Bubba.Properties.Locations.resources
-C:\Users\terry\source\repos\Bubba\obj\Debug\net8.0-windows7.0\Bubba.Properties.SearchEngine.resources
-C:\Users\terry\source\repos\Bubba\obj\Debug\net8.0-windows7.0\Bubba.Properties.SystemInstructions.resources
-C:\Users\terry\source\repos\Bubba\obj\Debug\net8.0-windows7.0\UI\Themes\Slider\Slider.baml

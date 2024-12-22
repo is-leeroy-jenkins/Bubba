@@ -5,9 +5,7 @@
 
     <!--  *********************************************** TextBox*****************************************************  -->
 
-    <Style
-        x:Key="MetroTextBoxStyle"
-        TargetType="{x:Type TextBox}">
+    <Style x:Key="MetroTextBoxStyle" TargetType="{x:Type TextBox}">
         <Setter Property="Background" Value="{StaticResource ControlInteriorBrush}" />
         <Setter Property="BorderBrush" Value="{StaticResource BlueBorderBrush}" />
         <Setter Property="Foreground" Value="{StaticResource WhiteForeground}" />

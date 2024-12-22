@@ -149,7 +149,8 @@ namespace Bubba
         /// Pads the quotes.
         /// </summary>
         /// <param name="input">The input.</param>
-        /// <returns></returns>
+        /// <returns>
+        /// </returns>
         private protected string PadQuotes( string input )
         {
             try

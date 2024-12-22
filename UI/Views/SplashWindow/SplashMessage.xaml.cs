@@ -213,7 +213,7 @@ namespace Bubba
             Margin = new Thickness( 3 );
             Padding = new Thickness( 1 );
             WindowStyle = WindowStyle.None;
-            WindowStartupLocation = WindowStartupLocation.CenterOwner;
+            WindowStartupLocation = WindowStartupLocation.CenterScreen;
             HorizontalAlignment = HorizontalAlignment.Stretch;
             VerticalAlignment = VerticalAlignment.Stretch;
             Background = new SolidColorBrush( _backColor );
@@ -221,9 +221,9 @@ namespace Bubba
 
             // Event Wiring
             IsVisibleChanged += OnVisibleChanged;
+            Loaded += OnLoad;
             MouseLeftButtonDown += OnClick;
             MouseRightButtonDown += OnClick;
-            Loaded += OnLoad;
         }
 
         /// <inheritdoc />
@@ -236,6 +236,7 @@ namespace Bubba
             : this( )
         {
             _message = message;
+            MessageText.Content = message;
             _title = "";
         }
 
@@ -250,6 +251,8 @@ namespace Bubba
         {
             _message = message;
             _title = title;
+            MessageText.Content = message;
+            TitleLabel.Content = title;
         }
 
         /// <summary>
@@ -395,15 +398,6 @@ namespace Bubba
         {
             try
             {
-                if( !string.IsNullOrEmpty( _message ) )
-                {
-                    MessageText.Content = _message;
-                }
-
-                if( !string.IsNullOrEmpty( _title ) )
-                {
-                    TitleLabel.Content = _title;
-                }
             }
             catch( Exception ex )
             {

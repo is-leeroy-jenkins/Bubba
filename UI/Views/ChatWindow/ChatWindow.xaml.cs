@@ -60,6 +60,7 @@ namespace Bubba
     using System.Threading;
     using System.Threading.Tasks;
     using System.Windows;
+    using System.Windows.Controls;
     using System.Windows.Input;
     using CefSharp;
     using Microsoft.Office.Interop.Outlook;
@@ -83,6 +84,7 @@ namespace Bubba
     [ SuppressMessage( "ReSharper", "FieldCanBeMadeReadOnly.Local" ) ]
     [ SuppressMessage( "ReSharper", "LoopCanBePartlyConvertedToQuery" ) ]
     [ SuppressMessage( "ReSharper", "RedundantExtendsListEntry" ) ]
+    [ SuppressMessage( "ReSharper", "AssignNullToNotNullAttribute" ) ]
     public partial class ChatWindow : Window, INotifyPropertyChanged
     {
         private const string KEY = "sk-proj-eTIELWTlG8lKT3hpqgq7a3vmB6lBVKo"
@@ -612,32 +614,32 @@ namespace Bubba
         {
             try
             {
-                ToolStripTextBox.GotMouseCapture += OnToolStripTextBoxMouseEnter;
+                ToolStripTextBox.TextChanged += OnToolStripTextBoxTextChanged;
                 FirstButton.Click += OnFirstButtonClick;
                 PreviousButton.Click += OnPreviousButtonClick;
                 NextButton.Click += OnNextButtonClick;
                 LastButton.Click += OnLastButtonClick;
-                LookupButton.Click += OnLookupButtonClick;
                 RefreshButton.Click += OnRefreshButtonClick;
                 MenuButton.Click += OnToggleButtonClick;
                 BrowserButton.Click += OnWebBrowserButtonClick;
-                ToolStripTextBox.GotMouseCapture += OnToolStripTextBoxClick;
-                TemperatureTextBox.TextChanged += OnTextBoxInputChanged;
-                PresenceTextBox.TextChanged += OnTextBoxInputChanged;
-                FrequencyTextBox.TextChanged += OnTextBoxInputChanged;
-                TopPercentTextBox.TextChanged += OnTextBoxInputChanged;
+                TemperatureTextBox.TextChanged += OnParameterTextBoxChanged;
+                PresenceTextBox.TextChanged += OnParameterTextBoxChanged;
+                FrequencyTextBox.TextChanged += OnParameterTextBoxChanged;
+                TopPercentTextBox.TextChanged += OnParameterTextBoxChanged;
                 DeleteButton.Click += OnDeleteButtonClick;
                 ClearButton.Click += OnClearButtonClick;
                 SendButton.Click += OnSendButtonClick;
-                LanguageListBox.SelectionChanged += OnLanguageSelectionChanged;
+                LanguageListBox.SelectionChanged += OnSelectedLanguageChanged;
                 ListenCheckBox.Checked += OnListenCheckedChanged;
                 MuteCheckBox.Checked += OnMuteCheckedBoxChanged;
                 StoreCheckBox.Checked += OnStoreBoxChecked;
                 StreamCheckBox.Checked += OnStreamBoxChecked;
-                GenerationComboBox.SelectionChanged += OnGenerationChanged;
-                ModelComboBox.SelectionChanged += OnModelSelectionChanged;
-                GenerationComboBox.SelectionChanged += OnGenerationChanged;
+                GenerationComboBox.SelectionChanged += OnSelectedGenerationChanged;
+                ModelComboBox.SelectionChanged += OnSelectedModelChanged;
+                GenerationComboBox.SelectionChanged += OnSelectedGenerationChanged;
                 ImageSizeComboBox.SelectionChanged += OnSelectedImageSizeChanged;
+                RefreshButton.Click += OnRefreshButtonClick;
+                LookupButton.Click += OnGoButtonClicked;
             }
             catch( Exception ex )
             {
@@ -652,20 +654,19 @@ namespace Bubba
         {
             try
             {
-                ToolStripTextBox.GotMouseCapture -= OnToolStripTextBoxClick;
                 FirstButton.Click -= OnFirstButtonClick;
                 PreviousButton.Click -= OnPreviousButtonClick;
                 NextButton.Click -= OnNextButtonClick;
                 LastButton.Click -= OnLastButtonClick;
-                LookupButton.Click -= OnLookupButtonClick;
                 RefreshButton.Click -= OnRefreshButtonClick;
-                ModelComboBox.SelectionChanged -= OnModelSelectionChanged;
+                ModelComboBox.SelectionChanged -= OnSelectedModelChanged;
                 MenuButton.Click -= OnToggleButtonClick;
-                TemperatureTextBox.TextChanged -= OnTextBoxInputChanged;
-                PresenceTextBox.TextChanged -= OnTextBoxInputChanged;
-                FrequencyTextBox.TextChanged -= OnTextBoxInputChanged;
-                TopPercentTextBox.TextChanged -= OnTextBoxInputChanged;
+                TemperatureTextBox.TextChanged -= OnParameterTextBoxChanged;
+                PresenceTextBox.TextChanged -= OnParameterTextBoxChanged;
+                FrequencyTextBox.TextChanged -= OnParameterTextBoxChanged;
+                TopPercentTextBox.TextChanged -= OnParameterTextBoxChanged;
                 BrowserButton.Click -= OnWebBrowserButtonClick;
+                LookupButton.Click -= OnGoButtonClicked;
             }
             catch( Exception ex )
             {
@@ -696,24 +697,11 @@ namespace Bubba
         {
             try
             {
-                ChatEditor.Text = _userPrompt;
-                ToolStripTextBox.Text = "";
-                PresenceSlider.Value = 0D;
-                FrequencySlider.Value = 0D;
-                TemperatureSlider.Value = 1D;
-                TopPercentSlider.Value = 1D;
-                MaxTokenSlider.Value = 2048;
-                NumberSlider.Value = 1D;
-                GenerationComboBox.SelectedIndex = -1;
-                ModelComboBox.SelectedIndex = -1;
-                LanguageListBox.SelectedIndex = -1;
-                VoiceComboBox.SelectedIndex = -1;
-                ImageSizeComboBox.SelectedIndex = -1;
-                MuteCheckBox.IsChecked = false;
-                ListenCheckBox.IsChecked = false;
-                StoreCheckBox.IsChecked = false;
-                StreamCheckBox.IsChecked = false;
-                LanguageListBox.SelectedValue = "Text";
+                ClearTextBoxes( );
+                ClearSliders( );
+                ClearComboBoxes( );
+                ClearCheckBoxes( );
+                ClearListBoxes( );
             }
             catch( Exception ex )
             {
@@ -724,7 +712,7 @@ namespace Bubba
         /// <summary>
         /// Clears the parameters.
         /// </summary>
-        private void ClearParameters()
+        private void ClearParameters( )
         {
             try
             {
@@ -779,38 +767,14 @@ namespace Bubba
         /// <summary>
         /// Clears the filter.
         /// </summary>
-        private void ClearFilters( )
+        private void ClearCheckBoxes( )
         {
             try
             {
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
-            }
-        }
-
-        /// <summary>
-        /// Clears the selections.
-        /// </summary>
-        private void ClearSelections( )
-        {
-            try
-            {
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
-            }
-        }
-
-        /// <summary>
-        /// Clears the collections.
-        /// </summary>
-        private void ClearCollections( )
-        {
-            try
-            {
+                MuteCheckBox.IsChecked = false;
+                ListenCheckBox.IsChecked = false;
+                StoreCheckBox.IsChecked = false;
+                StreamCheckBox.IsChecked = false;
             }
             catch( Exception ex )
             {
@@ -821,10 +785,16 @@ namespace Bubba
         /// <summary>
         /// Clears the list boxes.
         /// </summary>
-        private void ClearListBoxes( )
+        private void ClearSliders( )
         {
             try
             {
+                PresenceSlider.Value = 0D;
+                FrequencySlider.Value = 0D;
+                TemperatureSlider.Value = 1D;
+                TopPercentSlider.Value = 1D;
+                MaxTokenSlider.Value = 2048;
+                NumberSlider.Value = 1D;
             }
             catch( Exception ex )
             {
@@ -839,10 +809,29 @@ namespace Bubba
         {
             try
             {
+                GenerationComboBox.SelectedIndex = -1;
+                ModelComboBox.SelectedIndex = -1;
+                VoiceComboBox.SelectedIndex = -1;
+                ImageSizeComboBox.SelectedIndex = -1;
             }
             catch( Exception ex )
             {
                 Fail( ex );
+            }
+        }
+
+        /// <summary>
+        /// Clears the list boxes.
+        /// </summary>
+        private void ClearListBoxes( )
+        {
+            try
+            {
+                LanguageListBox.SelectedValue = "Text";
+            }
+            catch( Exception ex )
+            {
+                Fail(ex);
             }
         }
 
@@ -853,10 +842,40 @@ namespace Bubba
         {
             try
             {
+                ChatEditor.Text = _userPrompt;
+                ToolStripTextBox.Text = "";
             }
             catch( Exception ex )
             {
                 Fail( ex );
+            }
+        }
+
+        /// <summary>
+        /// Clears the selections.
+        /// </summary>
+        private void ClearSelections()
+        {
+            try
+            {
+            }
+            catch(Exception ex)
+            {
+                Fail(ex);
+            }
+        }
+
+        /// <summary>
+        /// Clears the collections.
+        /// </summary>
+        private void ClearCollections()
+        {
+            try
+            {
+            }
+            catch(Exception ex)
+            {
+                Fail(ex);
             }
         }
 
@@ -869,8 +888,9 @@ namespace Bubba
             try
             {
                 var _position = new PrimaryScreenPositionProvider( Corner.BottomRight, 10, 10 );
-                var _lifeTime = new TimeAndCountBasedLifetimeSupervisor( TimeSpan.FromSeconds( 5 ),
-                    MaximumNotificationCount.UnlimitedNotifications( ) );
+                var _count = MaximumNotificationCount.UnlimitedNotifications( );
+                var _lifeTime = 
+                    new TimeAndCountBasedLifetimeSupervisor( TimeSpan.FromSeconds( 5 ), _count );
 
                 return new Notifier( cfg =>
                 {
@@ -990,33 +1010,6 @@ namespace Bubba
         }
 
         /// <summary>
-        /// Gets the hyper parameter.
-        /// </summary>
-        /// <param name="input">The input.</param>
-        /// <returns></returns>
-        private protected HyperParameter GetHyperParameter( string input )
-        {
-            try
-            {
-                ThrowIf.Empty( input, nameof( input ) );
-                var _names = Enum.GetNames( typeof( HyperParameter ) );
-                if( _names.Contains( input ) )
-                {
-                    return ( HyperParameter )Enum.Parse( typeof( HyperParameter ), input );
-                }
-                else
-                {
-                    return default( HyperParameter );
-                }
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
-                return default( HyperParameter );
-            }
-        }
-
-        /// <summary>
         /// Sends the message.
         /// </summary>
         /// <param name="message">The message.</param>
@@ -1026,6 +1019,7 @@ namespace Bubba
             {
                 ThrowIf.Null( message, nameof( message ) );
                 var _splashMessage = new SplashMessage( message );
+                _splashMessage.WindowStartupLocation = WindowStartupLocation.CenterScreen;
                 _splashMessage.Show( );
             }
             catch( Exception ex )
@@ -1414,7 +1408,9 @@ namespace Bubba
             _request.ContentType = "application/json";
             _request.Headers.Add( "Authorization", "Bearer " + KEY );
             var _maxTokens = int.Parse( MaxTokenTextBox.Text ); // 2048
-            var _temp = double.Parse( TemperatureTextBox.Text );// 0.5
+
+            // 0.5
+            var _temp = double.Parse( TemperatureTextBox.Text );
             if( ( _temp < 0d ) | ( _temp > 1d ) )
             {
                 var _msg = "Randomness has to be between 0 and 2"
@@ -2189,21 +2185,15 @@ namespace Bubba
         /// <param name="sender">The sender.</param>
         /// <param name="e">The <see cref="MouseEventArgs"/>
         /// instance containing the event data.</param>
-        private protected void OnToolStripTextBoxClick( object sender, MouseEventArgs e )
+        private protected void OnToolStripTextBoxTextChanged( object sender, TextChangedEventArgs e )
         {
             try
             {
-                ToolStripTextBox.SelectAll( );
-                var _psn = e.GetPosition( this );
-                var _searchDialog = new SearchDialog
+                var _text = ToolStripTextBox.Text;
+                if( !string.IsNullOrEmpty( _text ) )
                 {
-                    Owner = this,
-                    Left = _psn.X,
-                    Top = _psn.Y - 50
-                };
-
-                _searchDialog.Show( );
-                _searchDialog.SearchPanelTextBox.Focus( );
+                    ChatEditor.Text = _text;
+                }
             }
             catch( Exception ex )
             {
@@ -2538,8 +2528,7 @@ namespace Bubba
         {
             try
             {
-                var _message = "NOT YET IMPLEMENTED!";
-                SendMessage( _message );
+                ClearChatControls( );
             }
             catch( Exception ex )
             {
@@ -2816,7 +2805,7 @@ namespace Bubba
         /// <param name="sender">The sender.</param>
         /// <param name="e">The <see cref="RoutedEventArgs"/>
         /// instance containing the event data.</param>
-        private void OnModelSelectionChanged( object sender, RoutedEventArgs e )
+        private void OnSelectedModelChanged( object sender, RoutedEventArgs e )
         {
             try
             {
@@ -2837,7 +2826,7 @@ namespace Bubba
         /// <param name="sender">The sender.</param>
         /// <param name="e">The <see cref="RoutedEventArgs"/>
         /// instance containing the event data.</param>
-        private void OnLanguageSelectionChanged( object sender, RoutedEventArgs e )
+        private void OnSelectedLanguageChanged( object sender, RoutedEventArgs e )
         {
             try
             {
@@ -2859,7 +2848,7 @@ namespace Bubba
         /// <param name="sender">The sender.</param>
         /// <param name="e">The <see cref="RoutedEventArgs"/>
         /// instance containing the event data.</param>
-        private void OnGenerationChanged( object sender, RoutedEventArgs e )
+        private void OnSelectedGenerationChanged( object sender, RoutedEventArgs e )
         {
             try
             {
@@ -2881,7 +2870,7 @@ namespace Bubba
         /// <param name="sender">The sender.</param>
         /// <param name="e">The <see cref="RoutedEventArgs"/>
         /// instance containing the event data.</param>
-        private protected void OnTextBoxInputChanged( object sender, RoutedEventArgs e )
+        private protected void OnParameterTextBoxChanged( object sender, RoutedEventArgs e )
         {
             try
             {
@@ -2940,6 +2929,24 @@ namespace Bubba
             catch( Exception ex )
             {
                 Fail( ex );
+            }
+        }
+
+        /// <summary>
+        /// Called when [go button clicked].
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The <see cref="RoutedEventArgs"/>
+        /// instance containing the event data.</param>
+        private void OnGoButtonClicked( object sender, RoutedEventArgs e )
+        {
+            try
+            {
+                SendMessage( ToolStripTextBox.Text );
+            }
+            catch(Exception ex)
+            {
+                Fail(ex);
             }
         }
 

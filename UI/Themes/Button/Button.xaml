@@ -11,9 +11,7 @@
 
     <!--  *********************************************** STYLE *****************************************************  -->
 
-    <Style
-        x:Key="MetroButtonStyle"
-        TargetType="{x:Type Button}">
+    <Style x:Key="MetroButtonStyle" TargetType="{x:Type Button}">
 
         <Setter Property="Background" Value="{StaticResource ControlInteriorColor}" />
         <Setter Property="BorderBrush" Value="{StaticResource BlueBorderBrush}" />

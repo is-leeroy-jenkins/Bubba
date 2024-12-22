@@ -11,9 +11,7 @@
 
     <!--  *********************************************** TextBox*****************************************************  -->
 
-    <Style
-        x:Key="MetroRichTextBoxStyle"
-        TargetType="{x:Type RichTextBox}">
+    <Style x:Key="MetroRichTextBoxStyle" TargetType="{x:Type RichTextBox}">
         <Setter Property="Background" Value="{StaticResource ControlInteriorBrush}" />
         <Setter Property="BorderBrush" Value="{StaticResource BlueBorderBrush}" />
         <Setter Property="Foreground" Value="{StaticResource WhiteForeground}" />

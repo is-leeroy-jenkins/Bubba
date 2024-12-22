@@ -590,43 +590,49 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Update="Properties\AI.Designer.cs">
+    <Compile Update="Properties\Locations.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
-      <DependentUpon>AI.resx</DependentUpon>
+      <DependentUpon>Locations.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Properties\OpenAI.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>OpenAI.resx</DependentUpon>
     </Compile>
     <Compile Update="Properties\SystemInstructions.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
       <DependentUpon>SystemInstructions.resx</DependentUpon>
     </Compile>
-    <Compile Update="Properties\SearchEngine.Designer.cs">
+    <Compile Update="Properties\CustomSearchEngine.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
-      <DependentUpon>SearchEngine.resx</DependentUpon>
+      <DependentUpon>CustomSearchEngine.resx</DependentUpon>
     </Compile>
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Update="Properties\AI.resx">
+    <EmbeddedResource Update="Properties\Locations.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>AI.Designer.cs</LastGenOutput>
+      <LastGenOutput>Locations.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Properties\OpenAI.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>OpenAI.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Update="ResourceLocations.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>ResourceLocations.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Properties\Locations.resx">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </EmbeddedResource>
     <EmbeddedResource Update="Properties\SystemInstructions.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>SystemInstructions.Designer.cs</LastGenOutput>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </EmbeddedResource>
-    <EmbeddedResource Update="Properties\SearchEngine.resx">
+    <EmbeddedResource Update="Properties\CustomSearchEngine.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>SearchEngine.Designer.cs</LastGenOutput>
+      <LastGenOutput>CustomSearchEngine.Designer.cs</LastGenOutput>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </EmbeddedResource>
   </ItemGroup>

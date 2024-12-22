@@ -44,6 +44,7 @@ namespace Bubba
     using System;
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
+    using Exception = System.Exception;
     using JsonSerializer = System.Text.Json.JsonSerializer;
 
     /// <inheritdoc />
@@ -54,7 +55,8 @@ namespace Bubba
     [ SuppressMessage( "ReSharper", "UnusedType.Global" ) ]
     [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
     [ SuppressMessage( "ReSharper", "FieldCanBeMadeReadOnly.Global" ) ]
-    public class Payload : PayloadBase
+    [ SuppressMessage( "ReSharper", "RedundantExtendsListEntry" ) ]
+    public class Payload : PayloadBase, IPayload
     {
         /// <inheritdoc />
         /// <summary>
@@ -63,6 +65,13 @@ namespace Bubba
         /// </summary>
         public Payload( )
         {
+            _id = 1;
+            _temperature = 0.7;
+            _maxCompletionTokens = 2048;
+            _frequency = 0.0;
+            _presence = 0.0;
+            _store = false;
+            _stream = false;
             _stopSequences = new List<string>( );
             _stopSequences.Add( "#" );
             _stopSequences.Add( ";" );
@@ -75,27 +84,36 @@ namespace Bubba
         /// Initializes a new instance of the
         /// <see cref="T:Bubba.Payload" /> class.
         /// </summary>
-        /// <param name="prompt"> The ChatGPT prompt</param>
+        /// <param name="systemPrompt">The system prompt.</param>
+        /// <param name="userPrompt">The user prompt.</param>
+        /// <param name="model">The model.</param>
         /// <param name="id">The identifier.</param>
         /// <param name="frequency">The frequency.</param>
         /// <param name="presence">The presence.</param>
         /// <param name="temperature">The temperature.</param>
-        /// <param name="maxTokens">The tokens.</param>
-        public Payload( string prompt, int id = 1, double frequency = 0.0,
-            double presence = 0.0, double temperature = 0.7, int maxTokens = 2048 ) 
+        /// <param name="maxTokens">The maximum tokens.</param>
+        /// <param name="store">if set to <c>true</c> [store].</param>
+        /// <param name="stream">if set to <c>true</c> [stream].</param>
+        public Payload( string systemPrompt, string userPrompt, string model, 
+            int id = 1, double frequency = 0.0, double presence = 0.0, 
+            double temperature = 0.7, int maxTokens = 2048,
+            bool store = false, bool stream = false ) 
             : this( )
         {
             _id = id;
+            _model = "gpt-4o";
             _temperature = temperature;
             _maxCompletionTokens = maxTokens;
             _frequency = frequency;
             _presence = presence;
-            _prompt = prompt;
+            _systemPrompt = systemPrompt;
+            _store = store;
+            _stream = stream;
             _data.Add( "id", id );
             _data.Add( "max_completion_tokens", maxTokens );
             _data.Add( "frequency", frequency );
             _data.Add( "presence", presence );
-            _data.Add( "content", prompt );
+            _data.Add( "content", systemPrompt );
         }
 
         /// <inheritdoc />
@@ -111,27 +129,83 @@ namespace Bubba
             _maxCompletionTokens = payload.MaxCompletionTokens;
             _frequency = payload.Frequency;
             _presence = payload.Presence;
-            _prompt = payload.Prompt;
+            _systemPrompt = payload.Prompt;
+            _model = payload.Model;
+            _store = payload.Store;
+            _stream = payload.Stream;
         }
 
         /// <summary>
-        /// Deconstructs the specified user identifier.
+        /// Deconstructs the specified prompt.
         /// </summary>
-        /// <param name = "prompt" > </param>
+        /// <param name="prompt">The prompt.</param>
         /// <param name="userId">The user identifier.</param>
+        /// <param name="model">The model.</param>
         /// <param name="frequency">The frequency.</param>
         /// <param name="presence">The presence.</param>
         /// <param name="temperature">The temperature.</param>
         /// <param name="maximumTokens">The maximum tokens.</param>
-        public void Deconstruct( out string prompt, out int userId, out double frequency,
-            out double presence, out double temperature, out int maximumTokens )
+        /// <param name="store">if set to <c>true</c> [store].</param>
+        /// <param name="stream">if set to <c>true</c> [stream].</param>
+        public void Deconstruct( out string prompt, out int userId, out string model,
+            out double frequency, out double presence, out double temperature, 
+            out int maximumTokens, out bool store, out bool stream )
         {
+            prompt = _systemPrompt;
             userId = _id;
+            model = _model;
             temperature = _temperature;
             frequency = _frequency;
             presence = _presence;
             maximumTokens = _maxCompletionTokens;
-            prompt = _prompt;
+            store = _store;
+            stream = _stream;
+        }
+        
+        /// <summary>
+        /// Gets or sets a value indicating whether this
+        /// <see cref="GptParam"/> is store.
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if store; otherwise, <c>false</c>.
+        /// </value>
+        public bool Store
+        {
+            get
+            {
+                return _store;
+            }
+            set
+            {
+                if( _store != value )
+                {
+                    _store = value;
+                    OnPropertyChanged( nameof( Store ) );
+                }
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether this
+        /// <see cref="GptParam"/> is stream.
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if stream; otherwise, <c>false</c>.
+        /// </value>
+        public bool Stream
+        {
+            get
+            {
+                return _stream;
+            }
+            set
+            {
+                if( _stream != value )
+                {
+                    _stream = value;
+                    OnPropertyChanged( nameof( Stream ) );
+                }
+            }
         }
 
         /// <summary>
@@ -146,10 +220,10 @@ namespace Bubba
             return new Payload
             {
                 Model = _model,
-                Prompt = _prompt,
+                Prompt = _systemPrompt,
                 MaxCompletionTokens = _maxCompletionTokens,
                 Temperature = _temperature,
-                ResponseFormat = "url" 
+                ResponseFormat = "text" 
             };
         }
 
@@ -157,18 +231,16 @@ namespace Bubba
         /// <summary>
         /// Fors the image generation.
         /// </summary>
-        /// <param name="prompt">The prompt.</param>
-        /// <param name="size">The size.</param>
-        /// <param name="numberOfImages">The number of images.</param>
-        /// <returns></returns>
-        public static Payload ForImageGeneration( string prompt, string size = "512x512", int numberOfImages = 1 )
+        /// <returns>
+        /// </returns>
+        public Payload ForImageGeneration( )
         {
             return new Payload
             {
-                Prompt = prompt,
-                ImageSize = size,
-                Number = numberOfImages,
-                ResponseFormat = "url"
+                Prompt = _systemPrompt,
+                ImageSize = _imageSize,
+                Number = _number,
+                ResponseFormat = _responseFormat
             };
         }
     
@@ -190,7 +262,7 @@ namespace Bubba
                             new
                             {
                                 role = "user",
-                                content = _prompt
+                                content = _systemPrompt
                             }
                         }
                     } );
@@ -200,7 +272,7 @@ namespace Bubba
                     return JsonSerializer.Serialize( new
                     {
                         model = _model,
-                        _prompt,
+                        _prompt = _systemPrompt,
                         max_completion_tokens = _maxCompletionTokens,
                         user = _id,
                         _temperature,
@@ -230,6 +302,7 @@ namespace Bubba
         {
             try
             {
+                ThrowIf.Null( prompt, nameof( prompt ) );
                 if( _model.Contains( "gpt-3.5-turbo" ) )
                 {
                     return JsonSerializer.Serialize( new
@@ -240,7 +313,7 @@ namespace Bubba
                             new
                             {
                                 role = "user",
-                                content = _prompt
+                                content = _systemPrompt
                             }
                         }
                     } );
@@ -250,7 +323,7 @@ namespace Bubba
                     return JsonSerializer.Serialize( new
                     {
                         model = _model,
-                        _prompt,
+                        prompt,
                         max_completion_tokens = _maxCompletionTokens,
                         user = _id,
                         _temperature,

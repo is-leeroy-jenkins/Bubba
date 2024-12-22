@@ -51,7 +51,7 @@ namespace Bubba
     /// <summary>
     /// </summary>
     [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
-    public abstract class PayloadBase : INotifyPropertyChanged
+    public abstract class PayloadBase : INotifyPropertyChanged, IPayload
     {
         /// <summary>
         /// The user identifier
@@ -75,7 +75,8 @@ namespace Bubba
         private protected double _temperature;
 
         /// <summary>
-        /// An upper bound for the number of tokens that can be generated for a completion
+        /// An upper bound for the number of tokens
+        /// that can be generated for a completion
         /// </summary>
         private protected int _maxCompletionTokens;
 
@@ -102,6 +103,16 @@ namespace Bubba
         /// ncreasing the model's likelihood to talk about new topics.
         /// </summary>
         private protected double _presence;
+        
+        /// <summary>
+        /// Whether or not to store the responses in the Chat Log
+        /// </summary>
+        private protected bool _store;
+
+        /// <summary>
+        /// Stream the response in chuncks.
+        /// </summary>
+        private protected bool _stream;
 
         /// <summary>
         /// The size
@@ -111,7 +122,12 @@ namespace Bubba
         /// <summary>
         /// The string provided to GPT
         /// </summary>
-        private protected string _prompt;
+        private protected string _systemPrompt;
+
+        /// <summary>
+        /// The user prompt
+        /// </summary>
+        private protected string _userPrompt;
 
         /// <summary>
         /// The response format
@@ -165,6 +181,7 @@ namespace Bubba
             }
         }
 
+        /// <inheritdoc />
         /// <summary>
         /// Gets the maximum tokens.
         /// </summary>
@@ -187,6 +204,7 @@ namespace Bubba
             }
         }
 
+        /// <inheritdoc />
         /// <summary>
         /// Gets or sets the temperature.
         /// </summary>
@@ -209,6 +227,7 @@ namespace Bubba
             }
         }
 
+        /// <inheritdoc />
         /// <summary>
         /// Gets the frequency.
         /// </summary>
@@ -231,6 +250,7 @@ namespace Bubba
             }
         }
 
+        /// <inheritdoc />
         /// <summary>
         /// Gets or sets the number.
         /// </summary>
@@ -253,6 +273,7 @@ namespace Bubba
             }
         }
 
+        /// <inheritdoc />
         /// <summary>
         /// Gets the presence.
         /// </summary>
@@ -275,6 +296,7 @@ namespace Bubba
             }
         }
 
+        /// <inheritdoc />
         /// <summary>
         /// Gets the chat model.
         /// </summary>
@@ -297,6 +319,7 @@ namespace Bubba
             }
         }
 
+        /// <inheritdoc />
         /// <summary>
         /// Gets or sets the size of the image.
         /// </summary>
@@ -319,6 +342,7 @@ namespace Bubba
             }
         }
 
+        /// <inheritdoc />
         /// <summary>
         /// Gets the prompt.
         /// </summary>
@@ -329,18 +353,19 @@ namespace Bubba
         {
             get
             {
-                return _prompt;
+                return _systemPrompt;
             }
             set
             {
-                if( _prompt != value )
+                if( _systemPrompt != value )
                 {
-                    _prompt = value;
+                    _systemPrompt = value;
                     OnPropertyChanged( nameof( Prompt ) );
                 }
             }
         }
 
+        /// <inheritdoc />
         /// <summary>
         /// Gets or sets the response format.
         /// </summary>
@@ -359,6 +384,29 @@ namespace Bubba
                 {
                     _responseFormat = value;
                     OnPropertyChanged( nameof( ResponseFormat ) );
+                }
+            }
+        }
+
+        /// <inheritdoc />
+        /// <summary>
+        /// Gets or sets the data.
+        /// </summary>
+        /// <value>
+        /// The data.
+        /// </value>
+        public IDictionary<string, object> Data
+        {
+            get
+            {
+                return _data;
+            }
+            set
+            {
+                if( _data != value )
+                {
+                    _data = value;
+                    OnPropertyChanged( nameof( Data ) );
                 }
             }
         }

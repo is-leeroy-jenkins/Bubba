@@ -13,8 +13,8 @@
     MinHeight="255"
     Background="{StaticResource DarkBlueBackground}"
     BorderBrush="{StaticResource LightBlueBrush}"
-    Foreground="{StaticResource WhiteForeground}"
     BorderThickness="1"
+    Foreground="{StaticResource WhiteForeground}"
     ResizeMode="NoResize"
     WindowStartupLocation="CenterScreen"
     WindowStyle="None"
@@ -65,7 +65,7 @@
             Height="262"
             HorizontalAlignment="Center"
             VerticalAlignment="Top"
-            Content="Label"
+            Content=""
             FontSize="16"
             Foreground="{StaticResource LightBlueBrush}" />
 

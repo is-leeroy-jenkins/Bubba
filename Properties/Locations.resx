@@ -117,17 +117,41 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="ACE" xml:space="preserve">
+    <value>https://www.google.com/search?q=site:usace.army.mil </value>
+  </data>
+  <data name="BubbaWeb" xml:space="preserve">
+    <value>UI\Pages\index.html</value>
+  </data>
+  <data name="CDC" xml:space="preserve">
+    <value>https://www.google.com/search?q=site:www.cdc.gov </value>
+  </data>
   <data name="Chrome" xml:space="preserve">
     <value>C:\Program Files\Google\Chrome\Application\chrome.exe</value>
   </data>
   <data name="CRS" xml:space="preserve">
     <value>https://www.google.com/search?q=site:crsreports.congress.gov </value>
   </data>
+  <data name="CSB" xml:space="preserve">
+    <value>https://www.google.com/search?q=site:www.csb.gov </value>
+  </data>
   <data name="DATA" xml:space="preserve">
     <value>https://www.google.com/search?q=site:data.gov </value>
   </data>
-  <data name="Database" xml:space="preserve">
+  <data name="DatabaseDirectory" xml:space="preserve">
     <value>Data\Stores\</value>
+  </data>
+  <data name="DHS" xml:space="preserve">
+    <value>https://www.google.com/search?q=site:www.dhs.gov </value>
+  </data>
+  <data name="DOC" xml:space="preserve">
+    <value>https://www.google.com/search?q=site:www.commerce.gov </value>
+  </data>
+  <data name="DOD" xml:space="preserve">
+    <value>https://www.google.com/search?q=site:www.defense.gov </value>
+  </data>
+  <data name="DOE" xml:space="preserve">
+    <value>https://www.google.com/search?q=site:www.energy.gov </value>
   </data>
   <data name="DOI" xml:space="preserve">
     <value>https://www.google.com/search?q=site:www.doi.gov </value>
@@ -136,16 +160,13 @@
     <value>C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe</value>
   </data>
   <data name="EPA" xml:space="preserve">
-    <value>https://www.google.com/search?q=site:www.epa.gov </value>
+    <value>"https://www.google.com/search?q=site:www.epa.gov </value>
+  </data>
+  <data name="FDA" xml:space="preserve">
+    <value>https://www.google.com/search?q=site:www.fda.gov </value>
   </data>
   <data name="FireFox" xml:space="preserve">
     <value>C:\Program Files\Mozilla Firefox\firefox.exe</value>
-  </data>
-  <data name="GOOG" xml:space="preserve">
-    <value>https://www.google.com/search?q=</value>
-  </data>
-  <data name="Google" xml:space="preserve">
-    <value>https://www.google.com</value>
   </data>
   <data name="GPO" xml:space="preserve">
     <value>https://www.google.com/search?q=site:www.gpo.gov </value>
@@ -153,8 +174,14 @@
   <data name="GSA" xml:space="preserve">
     <value>https://www.google.com/search?q=site:www.gsa.gov </value>
   </data>
-  <data name="HomePage" xml:space="preserve">
-    <value>UI/Pages/index.html</value>
+  <data name="HHS" xml:space="preserve">
+    <value>https://www.google.com/search?q=site:www.hhs.gov </value>
+  </data>
+  <data name="IRS" xml:space="preserve">
+    <value>https://www.google.com/search?q=site:www.irs.gov </value>
+  </data>
+  <data name="Loading" xml:space="preserve">
+    <value>Resources\Assets\LoaderImages\Loading.gif</value>
   </data>
   <data name="LOC" xml:space="preserve">
     <value>https://www.google.com/search?q=site:catalog.loc.gov </value>
@@ -165,11 +192,23 @@
   <data name="NASA" xml:space="preserve">
     <value>https://www.google.com/search?q=site:www.nasa.gov </value>
   </data>
+  <data name="NewTab" xml:space="preserve">
+    <value>https://www.google.com</value>
+  </data>
   <data name="NOAA" xml:space="preserve">
     <value>https://www.google.com/search?q=site:www.noaa.gov </value>
   </data>
   <data name="NPS" xml:space="preserve">
     <value>https://www.google.com/search?q=site:www.nps.gov </value>
+  </data>
+  <data name="NRC" xml:space="preserve">
+    <value>https://www.google.com/search?q=site:www.nrc.gov </value>
+  </data>
+  <data name="NSF" xml:space="preserve">
+    <value>https://www.google.com/search?q=site:www.nsf.gov </value>
+  </data>
+  <data name="NWS" xml:space="preserve">
+    <value>https://www.google.com/search?q=site:www.weather.gov </value>
   </data>
   <data name="OMB" xml:space="preserve">
     <value>https://www.google.com/search?q=site:www.whitehouse.gov </value>
@@ -177,25 +216,19 @@
   <data name="PathPrefix" xml:space="preserve">
     <value>C:\Users\terry\source\repos\Bubba\</value>
   </data>
-  <data name="UST" xml:space="preserve">
-    <value>https://www.google.com/search?q=site:fiscal.treasury.gov </value>
+  <data name="Reports" xml:space="preserve">
+    <value>Resources\Reports\Report.xlsx</value>
+  </data>
+  <data name="USDA" xml:space="preserve">
+    <value>https://www.google.com/search?q=site:www.usda.gov </value>
   </data>
   <data name="USGI" xml:space="preserve">
     <value>https://www.google.com/search?q=site:www.govinfo.gov </value>
   </data>
-  <data name="DOC" xml:space="preserve">
-    <value>https://www.google.com/search?q=site:www.commerce.gov </value>
+  <data name="USNO" xml:space="preserve">
+    <value>https://www.google.com/search?q=site:usno.navy.mil </value>
   </data>
-  <data name="HHS" xml:space="preserve">
-    <value>https://www.google.com/search?q=site:www.hhs.gov </value>
-  </data>
-  <data name="NRC" xml:space="preserve">
-    <value>https://www.google.com/search?q=site:www.nrc.gov </value>
-  </data>
-  <data name="DOE" xml:space="preserve">
-    <value>https://www.google.com/search?q=site:www.energy.gov </value>
-  </data>
-  <data name="NSF" xml:space="preserve">
-    <value>https://www.google.com/search?q=site:www.nsf.gov </value>
+  <data name="UST" xml:space="preserve">
+    <value>https://www.google.com/search?q=site:fiscal.treasury.gov </value>
   </data>
 </root>

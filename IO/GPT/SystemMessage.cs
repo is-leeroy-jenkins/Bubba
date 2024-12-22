@@ -44,14 +44,14 @@ namespace Bubba
     using System;
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
-    using Newtonsoft.Json;
+    using Properties;
 
     /// <inheritdoc />
     /// <summary>
     /// </summary>
     /// <seealso cref="T:Bubba.GptMessage" />
     /// <seealso cref="T:Bubba.IGptMessage" />
-    [SuppressMessage( "ReSharper", "UnusedType.Global" ) ]
+    [ SuppressMessage( "ReSharper", "UnusedType.Global" ) ]
     [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
     [ SuppressMessage( "ReSharper", "FieldCanBeMadeReadOnly.Global" ) ]
     [ SuppressMessage( "ReSharper", "ClassCanBeSealed.Global" ) ]
@@ -62,10 +62,7 @@ namespace Bubba
         /// <summary>
         /// The system prompt
         /// </summary>
-        private const string _systemPrompt = 
-            "You are the most knowledgeable Budget Analyst in the federal government."
-            + " You provide detailed responses based on your vast" 
-            + " knowledge of regulations and federal appropriations.";
+        private protected string _systemPrompt = OpenAI.BubbaPrompt;
 
         /// <summary>
         /// Initializes a new instance of the

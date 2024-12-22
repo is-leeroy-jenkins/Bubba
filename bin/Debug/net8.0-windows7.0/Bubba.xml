@@ -15399,6 +15399,127 @@
             A string that represents the current object.
             </returns>
         </member>
+        <member name="P:Bubba.IGptRequest.HttpClient">
+            <inheritdoc />
+            <summary>
+            Gets or sets a value indicating whether this
+            <see cref="P:Bubba.GptRequest.HttpClient" /> is store.
+            </summary>
+            <value>
+              <c>true</c> if store; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:Bubba.IGptRequest.Body">
+            <inheritdoc />
+            <summary>
+            Gets the chat model.
+            </summary>
+            <value>
+            The chat model.
+            </value>
+        </member>
+        <member name="P:Bubba.IGptRequest.ApiKey">
+            <summary>
+            Gets the API key.
+            </summary>
+            <value>
+            The API key.
+            </value>
+        </member>
+        <member name="P:Bubba.IGptRequest.Data">
+            <inheritdoc />
+            <summary>
+            Gets or sets the data.
+            </summary>
+            <value>
+            The data.
+            </value>
+        </member>
+        <member name="P:Bubba.IGptRequest.EndPoint">
+            <inheritdoc />
+            <summary>
+            Gets the end point.
+            </summary>
+            <value>
+            The end point.
+            </value>
+        </member>
+        <member name="P:Bubba.IGptRequest.Number">
+            <summary>
+            THe number 'n' of responses returned by the API.
+            </summary>
+            <value>
+            The user identifier.
+            </value>
+        </member>
+        <member name="P:Bubba.IGptRequest.MaximumCompletionTokens">
+            <summary>
+            Gets the maximum tokens.
+            </summary>
+            <value>
+            The maximum tokens.
+            </value>
+        </member>
+        <member name="P:Bubba.IGptRequest.Store">
+            <summary>
+            Gets or sets a value indicating whether this
+            <see cref="T:Bubba.GptRequest"/> is store.
+            </summary>
+            <value>
+              <c>true</c> if store; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:Bubba.IGptRequest.Stream">
+            <summary>
+            Gets or sets a value indicating whether this
+            <see cref="P:Bubba.IGptRequest.Stream"/> is stream.
+            </summary>
+            <value>
+              <c>true</c> if stream; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:Bubba.IGptRequest.Temperature">
+            <summary>
+            A number between -2.0 and 2.0 Positive value decrease the
+            model's likelihood to repeat the same line verbatim.
+            </summary>
+            <value>
+            The temperature.
+            </value>
+        </member>
+        <member name="P:Bubba.IGptRequest.TopPercent">
+            <summary>
+            An alternative to sampling with temperature,
+            called nucleus sampling, where the model considers
+            the results of the tokens with top_p probability mass.
+            So 0.1 means only the tokens comprising the top 10% probability
+            mass are considered. We generally recommend altering this
+            or temperature but not both.
+            </summary>
+            <value>
+            The top percent.
+            </value>
+        </member>
+        <member name="P:Bubba.IGptRequest.Frequency">
+            <summary>
+            Number between -2.0 and 2.0. Positive values penalize new tokens
+            based on whether they appear in the text so far,
+            ncreasing the model's likelihood to talk about new topics.
+            </summary>
+            <value>
+            The frequency.
+            </value>
+        </member>
+        <member name="P:Bubba.IGptRequest.Presence">
+            <summary>
+            Number between -2.0 and 2.0. Positive values penalize new tokens
+            based on whether they appear in the text so far,
+            ncreasing the model's likelihood to talk about new topics.
+            </summary>
+            <value>
+            The presence.
+            </value>
+        </member>
         <member name="T:Bubba.IPath">
             <summary>
             
@@ -15524,6 +15645,83 @@
             </summary>
             <value>
             The invalid name chars.
+            </value>
+        </member>
+        <member name="T:Bubba.IPayload">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Bubba.IPayload.MaxCompletionTokens">
+            <summary>
+            Gets the maximum tokens.
+            </summary>
+            <value>
+            The maximum tokens.
+            </value>
+        </member>
+        <member name="P:Bubba.IPayload.Temperature">
+            <summary>
+            Gets or sets the temperature.
+            </summary>
+            <value>
+            The temperature.
+            </value>
+        </member>
+        <member name="P:Bubba.IPayload.Frequency">
+            <summary>
+            Gets the frequency.
+            </summary>
+            <value>
+            The frequency.
+            </value>
+        </member>
+        <member name="P:Bubba.IPayload.Number">
+            <summary>
+            Gets or sets the number.
+            </summary>
+            <value>
+            The number.
+            </value>
+        </member>
+        <member name="P:Bubba.IPayload.Presence">
+            <summary>
+            Gets the presence.
+            </summary>
+            <value>
+            The presence.
+            </value>
+        </member>
+        <member name="P:Bubba.IPayload.Model">
+            <summary>
+            Gets the chat model.
+            </summary>
+            <value>
+            The chat model.
+            </value>
+        </member>
+        <member name="P:Bubba.IPayload.ImageSize">
+            <summary>
+            Gets or sets the size of the image.
+            </summary>
+            <value>
+            The size of the image.
+            </value>
+        </member>
+        <member name="P:Bubba.IPayload.Prompt">
+            <summary>
+            Gets the prompt.
+            </summary>
+            <value>
+            The prompt.
+            </value>
+        </member>
+        <member name="P:Bubba.IPayload.ResponseFormat">
+            <summary>
+            Gets or sets the response format.
+            </summary>
+            <value>
+            The response format.
             </value>
         </member>
         <member name="T:Bubba.PathBase">
@@ -15720,7 +15918,8 @@
         </member>
         <member name="F:Bubba.PayloadBase._maxCompletionTokens">
             <summary>
-            An upper bound for the number of tokens that can be generated for a completion
+            An upper bound for the number of tokens
+            that can be generated for a completion
             </summary>
         </member>
         <member name="F:Bubba.PayloadBase._frequency">
@@ -15747,14 +15946,29 @@
             ncreasing the model's likelihood to talk about new topics.
             </summary>
         </member>
+        <member name="F:Bubba.PayloadBase._store">
+            <summary>
+            Whether or not to store the responses in the Chat Log
+            </summary>
+        </member>
+        <member name="F:Bubba.PayloadBase._stream">
+            <summary>
+            Stream the response in chuncks.
+            </summary>
+        </member>
         <member name="F:Bubba.PayloadBase._imageSize">
             <summary>
             The size
             </summary>
         </member>
-        <member name="F:Bubba.PayloadBase._prompt">
+        <member name="F:Bubba.PayloadBase._systemPrompt">
             <summary>
             The string provided to GPT
+            </summary>
+        </member>
+        <member name="F:Bubba.PayloadBase._userPrompt">
+            <summary>
+            The user prompt
             </summary>
         </member>
         <member name="F:Bubba.PayloadBase._responseFormat">
@@ -15793,6 +16007,7 @@
             </value>
         </member>
         <member name="P:Bubba.PayloadBase.MaxCompletionTokens">
+            <inheritdoc />
             <summary>
             Gets the maximum tokens.
             </summary>
@@ -15801,6 +16016,7 @@
             </value>
         </member>
         <member name="P:Bubba.PayloadBase.Temperature">
+            <inheritdoc />
             <summary>
             Gets or sets the temperature.
             </summary>
@@ -15809,6 +16025,7 @@
             </value>
         </member>
         <member name="P:Bubba.PayloadBase.Frequency">
+            <inheritdoc />
             <summary>
             Gets the frequency.
             </summary>
@@ -15817,6 +16034,7 @@
             </value>
         </member>
         <member name="P:Bubba.PayloadBase.Number">
+            <inheritdoc />
             <summary>
             Gets or sets the number.
             </summary>
@@ -15825,6 +16043,7 @@
             </value>
         </member>
         <member name="P:Bubba.PayloadBase.Presence">
+            <inheritdoc />
             <summary>
             Gets the presence.
             </summary>
@@ -15833,6 +16052,7 @@
             </value>
         </member>
         <member name="P:Bubba.PayloadBase.Model">
+            <inheritdoc />
             <summary>
             Gets the chat model.
             </summary>
@@ -15841,6 +16061,7 @@
             </value>
         </member>
         <member name="P:Bubba.PayloadBase.ImageSize">
+            <inheritdoc />
             <summary>
             Gets or sets the size of the image.
             </summary>
@@ -15849,6 +16070,7 @@
             </value>
         </member>
         <member name="P:Bubba.PayloadBase.Prompt">
+            <inheritdoc />
             <summary>
             Gets the prompt.
             </summary>
@@ -15857,11 +16079,21 @@
             </value>
         </member>
         <member name="P:Bubba.PayloadBase.ResponseFormat">
+            <inheritdoc />
             <summary>
             Gets or sets the response format.
             </summary>
             <value>
             The response format.
+            </value>
+        </member>
+        <member name="P:Bubba.PayloadBase.Data">
+            <inheritdoc />
+            <summary>
+            Gets or sets the data.
+            </summary>
+            <value>
+            The data.
             </value>
         </member>
         <member name="T:Bubba.PropertyChangedBase">
@@ -18430,7 +18662,7 @@
             <see cref="T:Bubba.ChatCompletion" /> class.
             </summary>
         </member>
-        <member name="M:Bubba.ChatCompletion.#ctor(Bubba.GptConfig)">
+        <member name="M:Bubba.ChatCompletion.#ctor(Bubba.GptParam)">
             <summary>
             Initializes a new instance of the
             <see cref="T:Bubba.ChatCompletion"/> class.
@@ -19081,269 +19313,6 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="T:Bubba.GptConfig">
-            <inheritdoc />
-            <summary>
-            </summary>
-            <seealso cref="T:Bubba.PropertyChangedBase" />
-        </member>
-        <member name="F:Bubba.GptConfig._number">
-            <summary>
-            The number responses to generate
-            </summary>
-        </member>
-        <member name="F:Bubba.GptConfig._store">
-            <summary>
-            Whether or not to store the responses
-            </summary>
-        </member>
-        <member name="F:Bubba.GptConfig._stream">
-            <summary>
-            The stream
-            </summary>
-        </member>
-        <member name="F:Bubba.GptConfig._topPercent">
-            <summary>
-            An alternative to sampling with temperature,
-            called nucleus sampling, where the model considers
-            the results of the tokens with top_p probability mass.
-            So 0.1 means only the tokens comprising the top 10% probability
-            mass are considered. We generally recommend altering this
-            or temperature but not both.
-            </summary>
-        </member>
-        <member name="F:Bubba.GptConfig._temperature">
-            <summary>
-            A number between 0.0 and 2.0   between 0 and 2.
-            Higher values like 0.8 will make the output more random,
-            while lower values like 0.2 will make it more focused and deterministic.
-            </summary>
-        </member>
-        <member name="F:Bubba.GptConfig._maximumTokens">
-            <summary>
-            An upper bound for the number of tokens
-            that can be generated for a completion
-            </summary>
-        </member>
-        <member name="F:Bubba.GptConfig._frequency">
-            <summary>
-            A number between -2.0 and 2.0. Positive values penalize new
-            tokens based on their existing frequency in the text so far,
-            decreasing the model's likelihood to repeat the same line verbatim.
-            </summary>
-        </member>
-        <member name="F:Bubba.GptConfig._presence">
-            <summary>
-            Number between -2.0 and 2.0. Positive values penalize new tokens
-            based on whether they appear in the text so far,
-            ncreasing the model's likelihood to talk about new topics.
-            </summary>
-        </member>
-        <member name="F:Bubba.GptConfig._systemPrompt">
-            <summary>
-            The system instructions
-            </summary>
-        </member>
-        <member name="F:Bubba.GptConfig._userPrompt">
-            <summary>
-            The user prompt
-            </summary>
-        </member>
-        <member name="F:Bubba.GptConfig._assistantPrompt">
-            <summary>
-            The assistant prompt
-            </summary>
-        </member>
-        <member name="F:Bubba.GptConfig._model">
-            <summary>
-            The chat model
-            </summary>
-        </member>
-        <member name="F:Bubba.GptConfig._endPoint">
-            <summary>
-            The end point
-            </summary>
-        </member>
-        <member name="F:Bubba.GptConfig._imageSize">
-            <summary>
-            The image size
-            </summary>
-        </member>
-        <member name="E:Bubba.GptConfig.PropertyChanged">
-            <inheritdoc />
-            <summary>
-            Occurs when a property value changes.
-            </summary>
-        </member>
-        <member name="M:Bubba.GptConfig.#ctor">
-            <inheritdoc />
-            <summary>
-            Initializes a new instance of the
-            <see cref="T:Bubba.GptConfig" /> class.
-            </summary>
-        </member>
-        <member name="M:Bubba.GptConfig.#ctor(System.String,System.String)">
-            <inheritdoc />
-            <summary>
-            Initializes a new instance of the <see cref="T:Bubba.GptConfig" /> class.
-            </summary>
-            <param name="system">The system prompt.</param>
-            <param name="user">The user prompt.</param>
-        </member>
-        <member name="M:Bubba.GptConfig.#ctor(Bubba.GptConfig)">
-            <inheritdoc />
-            <summary>
-            Initializes a new instance of the
-            <see cref="T:Bubba.GptConfig" /> class.
-            </summary>
-            <param name="config">The prompt model.</param>
-        </member>
-        <member name="M:Bubba.GptConfig.Decontruct(System.String@,System.String@,System.Int32@,System.Double@,System.Double@,System.Double@,System.Boolean@,System.Boolean@)">
-            <summary>
-            Decontructs the specified system prompt.
-            </summary>
-            <param name="system">The system prompt.</param>
-            <param name="user">The user prompt.</param>
-            <param name="tokens">The maximum tokens.</param>
-            <param name="temperature">The temperature.</param>
-            <param name="frequency">The frequency.</param>
-            <param name="presense">The presense.</param>
-            <param name = "store" > </param>
-            <param name = "stream" > </param>
-        </member>
-        <member name="M:Bubba.GptConfig.OnPropertyChanged(System.String)">
-            <summary>
-            Called when [property changed].
-            </summary>
-            <param name="propertyName">Name of the property.</param>
-        </member>
-        <member name="P:Bubba.GptConfig.EndPoint">
-            <summary>
-            Gets or sets the end point.
-            </summary>
-            <value>
-            The end point.
-            </value>
-        </member>
-        <member name="P:Bubba.GptConfig.Store">
-            <summary>
-            Gets or sets a value indicating whether this
-            <see cref="T:Bubba.GptConfig"/> is store.
-            </summary>
-            <value>
-              <c>true</c> if store; otherwise, <c>false</c>.
-            </value>
-        </member>
-        <member name="P:Bubba.GptConfig.Stream">
-            <summary>
-            Gets or sets a value indicating whether this
-            <see cref="T:Bubba.GptConfig"/> is stream.
-            </summary>
-            <value>
-              <c>true</c> if stream; otherwise, <c>false</c>.
-            </value>
-        </member>
-        <member name="P:Bubba.GptConfig.Model">
-            <inheritdoc />
-            <summary>
-            Gets the chat model.
-            </summary>
-            <value>
-            The chat model.
-            </value>
-        </member>
-        <member name="P:Bubba.GptConfig.MaximumTokens">
-            <summary>
-            An upper bound for the number of tokens
-            that can be generated for a completion
-            </summary>
-            <value>
-            The maximum tokens.
-            </value>
-        </member>
-        <member name="P:Bubba.GptConfig.Temperature">
-            <summary>
-            A number between 0.0 and 2.0   between 0 and 2.
-            Higher values like 0.8 will make the output more random,
-            while lower values like 0.2 will make it more focused and deterministic.
-            </summary>
-            <value>
-            The temperature.
-            </value>
-        </member>
-        <member name="P:Bubba.GptConfig.Frequency">
-            <summary>
-            A number between -2.0 and 2.0. Positive values penalize new
-            tokens based on their existing frequency in the text so far,
-            decreasing the model's likelihood to repeat the same line verbatim.
-            </summary>
-            <value>
-            The frequency.
-            </value>
-        </member>
-        <member name="P:Bubba.GptConfig.Presence">
-            <summary>
-            Number between -2.0 and 2.0. Positive values penalize new tokens
-            based on whether they appear in the text so far,
-            ncreasing the model's likelihood to talk about new topics.
-            </summary>
-            <value>
-            The presence.
-            </value>
-        </member>
-        <member name="P:Bubba.GptConfig.TopPercent">
-            <summary>
-            An alternative to sampling with temperature,
-            called nucleus sampling, where the model considers
-            the results of the tokens with top_p probability mass.
-            So 0.1 means only the tokens comprising the top 10% probability
-            mass are considered. We generally recommend altering this
-            or temperature but not both.
-            </summary>
-            <value>
-            The top percent.
-            </value>
-        </member>
-        <member name="P:Bubba.GptConfig.Number">
-            <summary>
-            THe number 'n' of responses generatred.
-            </summary>
-            <value>
-            The user identifier.
-            </value>
-        </member>
-        <member name="P:Bubba.GptConfig.ImageSize">
-            <summary>
-            Gets or sets the size of the image.
-            </summary>
-            <value>
-            The size of the image.
-            </value>
-        </member>
-        <member name="P:Bubba.GptConfig.SystemPrompt">
-            <summary>
-            Gets or sets the system prompt.
-            </summary>
-            <value>
-            The system prompt.
-            </value>
-        </member>
-        <member name="P:Bubba.GptConfig.UserPrompt">
-            <summary>
-            Gets or sets the user prompt.
-            </summary>
-            <value>
-            The user prompt.
-            </value>
-        </member>
-        <member name="P:Bubba.GptConfig.AssistantPrompt">
-            <summary>
-            Gets or sets the assistant prompt.
-            </summary>
-            <value>
-            The assistant prompt.
-            </value>
-        </member>
         <member name="T:Bubba.GptEndPoint">
             <inheritdoc />
             <summary>
@@ -19711,7 +19680,8 @@
             Pads the quotes.
             </summary>
             <param name="input">The input.</param>
-            <returns></returns>
+            <returns>
+            </returns>
         </member>
         <member name="M:Bubba.GptMessage.ToString">
             <inheritdoc />
@@ -19727,6 +19697,271 @@
             Fails the specified ex.
             </summary>
             <param name="ex">The ex.</param>
+        </member>
+        <member name="T:Bubba.GptParam">
+            <inheritdoc />
+            <summary>
+            </summary>
+            <seealso cref="T:Bubba.PropertyChangedBase" />
+        </member>
+        <member name="F:Bubba.GptParam._number">
+            <summary>
+            The number responses to generate
+            </summary>
+        </member>
+        <member name="F:Bubba.GptParam._store">
+            <summary>
+            Whether or not to store the responses
+            </summary>
+        </member>
+        <member name="F:Bubba.GptParam._stream">
+            <summary>
+            The stream
+            </summary>
+        </member>
+        <member name="F:Bubba.GptParam._topPercent">
+            <summary>
+            An alternative to sampling with temperature,
+            called nucleus sampling, where the model considers
+            the results of the tokens with top_p probability mass.
+            So 0.1 means only the tokens comprising the top 10% probability
+            mass are considered. We generally recommend altering this
+            or temperature but not both.
+            </summary>
+        </member>
+        <member name="F:Bubba.GptParam._temperature">
+            <summary>
+            A number between 0.0 and 2.0   between 0 and 2.
+            Higher values like 0.8 will make the output more random,
+            while lower values like 0.2 will make it more focused and deterministic.
+            </summary>
+        </member>
+        <member name="F:Bubba.GptParam._maximumTokens">
+            <summary>
+            An upper bound for the number of tokens
+            that can be generated for a completion
+            </summary>
+        </member>
+        <member name="F:Bubba.GptParam._frequency">
+            <summary>
+            A number between -2.0 and 2.0. Positive values penalize new
+            tokens based on their existing frequency in the text so far,
+            decreasing the model's likelihood to repeat the same line verbatim.
+            </summary>
+        </member>
+        <member name="F:Bubba.GptParam._presence">
+            <summary>
+            Number between -2.0 and 2.0. Positive values penalize new tokens
+            based on whether they appear in the text so far,
+            ncreasing the model's likelihood to talk about new topics.
+            </summary>
+        </member>
+        <member name="F:Bubba.GptParam._systemPrompt">
+            <summary>
+            The system instructions
+            </summary>
+        </member>
+        <member name="F:Bubba.GptParam._userPrompt">
+            <summary>
+            The user prompt
+            </summary>
+        </member>
+        <member name="F:Bubba.GptParam._assistantPrompt">
+            <summary>
+            The assistant prompt
+            </summary>
+        </member>
+        <member name="F:Bubba.GptParam._model">
+            <summary>
+            The chat model
+            </summary>
+        </member>
+        <member name="F:Bubba.GptParam._endPoint">
+            <summary>
+            The end point
+            </summary>
+        </member>
+        <member name="F:Bubba.GptParam._imageSize">
+            <summary>
+            The image size
+            </summary>
+        </member>
+        <member name="E:Bubba.GptParam.PropertyChanged">
+            <inheritdoc />
+            <summary>
+            Occurs when a property value changes.
+            </summary>
+        </member>
+        <member name="M:Bubba.GptParam.#ctor">
+            <inheritdoc />
+            <summary>
+            Initializes a new instance of the
+            <see cref="T:Bubba.GptParam" /> class.
+            </summary>
+        </member>
+        <member name="M:Bubba.GptParam.#ctor(System.String,System.String)">
+            <inheritdoc />
+            <summary>
+            Initializes a new instance of the <see cref="T:Bubba.GptParam" /> class.
+            </summary>
+            <param name="system">The system prompt.</param>
+            <param name="user">The user prompt.</param>
+        </member>
+        <member name="M:Bubba.GptParam.#ctor(Bubba.GptParam)">
+            <inheritdoc />
+            <summary>
+            Initializes a new instance of the
+            <see cref="T:Bubba.GptParam" /> class.
+            </summary>
+            <param name="param">The prompt model.</param>
+        </member>
+        <member name="M:Bubba.GptParam.Decontruct(System.String@,System.String@,System.String@,System.Int32@,System.Double@,System.Double@,System.Double@,System.Int32@,System.Boolean@,System.Boolean@)">
+            <summary>
+            Decontructs the specified system.
+            </summary>
+            <param name="system">The system.</param>
+            <param name="user">The user.</param>
+            <param name="model">The model.</param>
+            <param name="number">The number.</param>
+            <param name="frequency">The frequency.</param>
+            <param name="temperature">The temperature.</param>
+            <param name="presense">The presense.</param>
+            <param name="tokens">The tokens.</param>
+            <param name="store">if set to <c>true</c> [store].</param>
+            <param name="stream">if set to <c>true</c> [stream].</param>
+        </member>
+        <member name="M:Bubba.GptParam.OnPropertyChanged(System.String)">
+            <summary>
+            Called when [property changed].
+            </summary>
+            <param name="propertyName">Name of the property.</param>
+        </member>
+        <member name="P:Bubba.GptParam.EndPoint">
+            <summary>
+            Gets or sets the end point.
+            </summary>
+            <value>
+            The end point.
+            </value>
+        </member>
+        <member name="P:Bubba.GptParam.Store">
+            <summary>
+            Gets or sets a value indicating whether this
+            <see cref="T:Bubba.GptParam"/> is store.
+            </summary>
+            <value>
+              <c>true</c> if store; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:Bubba.GptParam.Stream">
+            <summary>
+            Gets or sets a value indicating whether this
+            <see cref="T:Bubba.GptParam"/> is stream.
+            </summary>
+            <value>
+              <c>true</c> if stream; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:Bubba.GptParam.Model">
+            <inheritdoc />
+            <summary>
+            Gets the chat model.
+            </summary>
+            <value>
+            The chat model.
+            </value>
+        </member>
+        <member name="P:Bubba.GptParam.MaximumTokens">
+            <summary>
+            An upper bound for the number of tokens
+            that can be generated for a completion
+            </summary>
+            <value>
+            The maximum tokens.
+            </value>
+        </member>
+        <member name="P:Bubba.GptParam.Temperature">
+            <summary>
+            A number between 0.0 and 2.0   between 0 and 2.
+            Higher values like 0.8 will make the output more random,
+            while lower values like 0.2 will make it more focused and deterministic.
+            </summary>
+            <value>
+            The temperature.
+            </value>
+        </member>
+        <member name="P:Bubba.GptParam.Frequency">
+            <summary>
+            A number between -2.0 and 2.0. Positive values penalize new
+            tokens based on their existing frequency in the text so far,
+            decreasing the model's likelihood to repeat the same line verbatim.
+            </summary>
+            <value>
+            The frequency.
+            </value>
+        </member>
+        <member name="P:Bubba.GptParam.Presence">
+            <summary>
+            Number between -2.0 and 2.0. Positive values penalize new tokens
+            based on whether they appear in the text so far,
+            ncreasing the model's likelihood to talk about new topics.
+            </summary>
+            <value>
+            The presence.
+            </value>
+        </member>
+        <member name="P:Bubba.GptParam.TopPercent">
+            <summary>
+            An alternative to sampling with temperature,
+            called nucleus sampling, where the model considers
+            the results of the tokens with top_p probability mass.
+            So 0.1 means only the tokens comprising the top 10% probability
+            mass are considered. We generally recommend altering this
+            or temperature but not both.
+            </summary>
+            <value>
+            The top percent.
+            </value>
+        </member>
+        <member name="P:Bubba.GptParam.Number">
+            <summary>
+            THe number 'n' of responses generatred.
+            </summary>
+            <value>
+            The user identifier.
+            </value>
+        </member>
+        <member name="P:Bubba.GptParam.ImageSize">
+            <summary>
+            Gets or sets the size of the image.
+            </summary>
+            <value>
+            The size of the image.
+            </value>
+        </member>
+        <member name="P:Bubba.GptParam.SystemPrompt">
+            <summary>
+            Gets or sets the system prompt.
+            </summary>
+            <value>
+            The system prompt.
+            </value>
+        </member>
+        <member name="P:Bubba.GptParam.UserPrompt">
+            <summary>
+            Gets or sets the user prompt.
+            </summary>
+            <value>
+            The user prompt.
+            </value>
+        </member>
+        <member name="P:Bubba.GptParam.AssistantPrompt">
+            <summary>
+            Gets or sets the assistant prompt.
+            </summary>
+            <value>
+            The assistant prompt.
+            </value>
         </member>
         <member name="T:Bubba.GptRequest">
             <inheritdoc />
@@ -19955,18 +20190,22 @@
             <see cref="T:Bubba.Payload" /> class.
             </summary>
         </member>
-        <member name="M:Bubba.Payload.#ctor(System.String,System.Int32,System.Double,System.Double,System.Double,System.Int32)">
+        <member name="M:Bubba.Payload.#ctor(System.String,System.String,System.String,System.Int32,System.Double,System.Double,System.Double,System.Int32,System.Boolean,System.Boolean)">
             <inheritdoc />
             <summary>
             Initializes a new instance of the
             <see cref="T:Bubba.Payload" /> class.
             </summary>
-            <param name="prompt"> The ChatGPT prompt</param>
+            <param name="systemPrompt">The system prompt.</param>
+            <param name="userPrompt">The user prompt.</param>
+            <param name="model">The model.</param>
             <param name="id">The identifier.</param>
             <param name="frequency">The frequency.</param>
             <param name="presence">The presence.</param>
             <param name="temperature">The temperature.</param>
-            <param name="maxTokens">The tokens.</param>
+            <param name="maxTokens">The maximum tokens.</param>
+            <param name="store">if set to <c>true</c> [store].</param>
+            <param name="stream">if set to <c>true</c> [stream].</param>
         </member>
         <member name="M:Bubba.Payload.#ctor(Bubba.Payload)">
             <inheritdoc />
@@ -19976,16 +20215,37 @@
             </summary>
             <param name="payload">The payload.</param>
         </member>
-        <member name="M:Bubba.Payload.Deconstruct(System.String@,System.Int32@,System.Double@,System.Double@,System.Double@,System.Int32@)">
+        <member name="M:Bubba.Payload.Deconstruct(System.String@,System.Int32@,System.String@,System.Double@,System.Double@,System.Double@,System.Int32@,System.Boolean@,System.Boolean@)">
             <summary>
-            Deconstructs the specified user identifier.
+            Deconstructs the specified prompt.
             </summary>
-            <param name = "prompt" > </param>
+            <param name="prompt">The prompt.</param>
             <param name="userId">The user identifier.</param>
+            <param name="model">The model.</param>
             <param name="frequency">The frequency.</param>
             <param name="presence">The presence.</param>
             <param name="temperature">The temperature.</param>
             <param name="maximumTokens">The maximum tokens.</param>
+            <param name="store">if set to <c>true</c> [store].</param>
+            <param name="stream">if set to <c>true</c> [stream].</param>
+        </member>
+        <member name="P:Bubba.Payload.Store">
+            <summary>
+            Gets or sets a value indicating whether this
+            <see cref="T:Bubba.GptParam"/> is store.
+            </summary>
+            <value>
+              <c>true</c> if store; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:Bubba.Payload.Stream">
+            <summary>
+            Gets or sets a value indicating whether this
+            <see cref="T:Bubba.GptParam"/> is stream.
+            </summary>
+            <value>
+              <c>true</c> if stream; otherwise, <c>false</c>.
+            </value>
         </member>
         <member name="M:Bubba.Payload.ForTextGeneration">
             <summary>
@@ -19996,14 +20256,12 @@
             Payload
             </returns>
         </member>
-        <member name="M:Bubba.Payload.ForImageGeneration(System.String,System.String,System.Int32)">
+        <member name="M:Bubba.Payload.ForImageGeneration">
             <summary>
             Fors the image generation.
             </summary>
-            <param name="prompt">The prompt.</param>
-            <param name="size">The size.</param>
-            <param name="numberOfImages">The number of images.</param>
-            <returns></returns>
+            <returns>
+            </returns>
         </member>
         <member name="M:Bubba.Payload.Serialize">
             <summary>
@@ -21277,86 +21535,307 @@
             The drive separator.
             </value>
         </member>
-        <member name="T:Bubba.Properties.AI">
+        <member name="T:Bubba.Properties.CustomSearchEngine">
             <summary>
               A strongly-typed resource class, for looking up localized strings, etc.
             </summary>
         </member>
-        <member name="P:Bubba.Properties.AI.ResourceManager">
+        <member name="P:Bubba.Properties.CustomSearchEngine.ResourceManager">
             <summary>
               Returns the cached ResourceManager instance used by this class.
             </summary>
         </member>
-        <member name="P:Bubba.Properties.AI.Culture">
+        <member name="P:Bubba.Properties.CustomSearchEngine.Culture">
             <summary>
               Overrides the current thread's CurrentUICulture property for all
               resource lookups using this strongly typed resource class.
             </summary>
         </member>
-        <member name="P:Bubba.Properties.AI.BubbaAppropriations">
-            <summary>
-              Looks up a localized string similar to vs_8fEoYp1zVvk5D8atfWLbEupN.
-            </summary>
-        </member>
-        <member name="P:Bubba.Properties.AI.BubbaInstructions">
-            <summary>
-              Looks up a localized string similar to You are the most knowledgeable Budget Analyst in the federal government who provides detailed responses based on your vast knowledge of budget legislation, and federal appropriations.  Your responses to questions about federal finance are highly accurate, and very detailed, citing sources using an academic format.  Your vast knowledge  and experience in Data Science makes you the best Data Analyst in the world. You are proficient in C#, Python, SQL, C++, JavaScript, and VBA. Your name is Bubba..
-            </summary>
-        </member>
-        <member name="P:Bubba.Properties.AI.BubbaKey">
-            <summary>
-              Looks up a localized string similar to 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.
-            </summary>
-        </member>
-        <member name="P:Bubba.Properties.AI.BubbaProject">
-            <summary>
-              Looks up a localized string similar to proj_4OQYEZava5a8a5AfFDmRtggo.
-            </summary>
-        </member>
-        <member name="P:Bubba.Properties.AI.BubbaRegulations">
-            <summary>
-              Looks up a localized string similar to vs_dx5IIjBuEw5M0j5S2FTo9lRS.
-            </summary>
-        </member>
-        <member name="T:Bubba.Properties.SearchEngine">
-            <summary>
-              A strongly-typed resource class, for looking up localized strings, etc.
-            </summary>
-        </member>
-        <member name="P:Bubba.Properties.SearchEngine.ResourceManager">
-            <summary>
-              Returns the cached ResourceManager instance used by this class.
-            </summary>
-        </member>
-        <member name="P:Bubba.Properties.SearchEngine.Culture">
-            <summary>
-              Overrides the current thread's CurrentUICulture property for all
-              resource lookups using this strongly typed resource class.
-            </summary>
-        </member>
-        <member name="P:Bubba.Properties.SearchEngine.ID">
+        <member name="P:Bubba.Properties.CustomSearchEngine.ID">
             <summary>
               Looks up a localized string similar to e78aa3dcb21474bf4.
             </summary>
         </member>
-        <member name="P:Bubba.Properties.SearchEngine.KEY">
+        <member name="P:Bubba.Properties.CustomSearchEngine.KEY">
             <summary>
               Looks up a localized string similar to AIzaSyBsfbY19GJMzr3MXqr6MhJ4YKDfhv4QNkw.
             </summary>
         </member>
-        <member name="P:Bubba.Properties.SearchEngine.ProjectID">
+        <member name="P:Bubba.Properties.CustomSearchEngine.ProjectID">
             <summary>
               Looks up a localized string similar to budgetsearchengi-1681042238302.
             </summary>
         </member>
-        <member name="P:Bubba.Properties.SearchEngine.ProjectNumber">
+        <member name="P:Bubba.Properties.CustomSearchEngine.ProjectNumber">
             <summary>
               Looks up a localized string similar to 789831279238.
             </summary>
         </member>
-        <member name="P:Bubba.Properties.SearchEngine.URL">
+        <member name="P:Bubba.Properties.CustomSearchEngine.URL">
             <summary>
               Looks up a localized string similar to https://cse.google.com/cse?cx=e78aa3dcb21474bf4.
+            </summary>
+        </member>
+        <member name="T:Bubba.Properties.Locations">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:Bubba.Properties.Locations.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:Bubba.Properties.Locations.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="P:Bubba.Properties.Locations.ACE">
+            <summary>
+              Looks up a localized string similar to https://www.google.com/search?q=site:usace.army.mil .
+            </summary>
+        </member>
+        <member name="P:Bubba.Properties.Locations.BubbaWeb">
+            <summary>
+              Looks up a localized string similar to UI\Pages\index.html.
+            </summary>
+        </member>
+        <member name="P:Bubba.Properties.Locations.CDC">
+            <summary>
+              Looks up a localized string similar to https://www.google.com/search?q=site:www.cdc.gov .
+            </summary>
+        </member>
+        <member name="P:Bubba.Properties.Locations.Chrome">
+            <summary>
+              Looks up a localized string similar to C:\Program Files\Google\Chrome\Application\chrome.exe.
+            </summary>
+        </member>
+        <member name="P:Bubba.Properties.Locations.CRS">
+            <summary>
+              Looks up a localized string similar to https://www.google.com/search?q=site:crsreports.congress.gov .
+            </summary>
+        </member>
+        <member name="P:Bubba.Properties.Locations.CSB">
+            <summary>
+              Looks up a localized string similar to https://www.google.com/search?q=site:www.csb.gov .
+            </summary>
+        </member>
+        <member name="P:Bubba.Properties.Locations.DATA">
+            <summary>
+              Looks up a localized string similar to https://www.google.com/search?q=site:data.gov .
+            </summary>
+        </member>
+        <member name="P:Bubba.Properties.Locations.DatabaseDirectory">
+            <summary>
+              Looks up a localized string similar to Data\Stores\.
+            </summary>
+        </member>
+        <member name="P:Bubba.Properties.Locations.DHS">
+            <summary>
+              Looks up a localized string similar to https://www.google.com/search?q=site:www.dhs.gov .
+            </summary>
+        </member>
+        <member name="P:Bubba.Properties.Locations.DOC">
+            <summary>
+              Looks up a localized string similar to https://www.google.com/search?q=site:www.commerce.gov .
+            </summary>
+        </member>
+        <member name="P:Bubba.Properties.Locations.DOD">
+            <summary>
+              Looks up a localized string similar to https://www.google.com/search?q=site:www.defense.gov .
+            </summary>
+        </member>
+        <member name="P:Bubba.Properties.Locations.DOE">
+            <summary>
+              Looks up a localized string similar to https://www.google.com/search?q=site:www.energy.gov .
+            </summary>
+        </member>
+        <member name="P:Bubba.Properties.Locations.DOI">
+            <summary>
+              Looks up a localized string similar to https://www.google.com/search?q=site:www.doi.gov .
+            </summary>
+        </member>
+        <member name="P:Bubba.Properties.Locations.Edge">
+            <summary>
+              Looks up a localized string similar to C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe.
+            </summary>
+        </member>
+        <member name="P:Bubba.Properties.Locations.EPA">
+            <summary>
+              Looks up a localized string similar to &quot;https://www.google.com/search?q=site:www.epa.gov .
+            </summary>
+        </member>
+        <member name="P:Bubba.Properties.Locations.FDA">
+            <summary>
+              Looks up a localized string similar to https://www.google.com/search?q=site:www.fda.gov .
+            </summary>
+        </member>
+        <member name="P:Bubba.Properties.Locations.FireFox">
+            <summary>
+              Looks up a localized string similar to C:\Program Files\Mozilla Firefox\firefox.exe.
+            </summary>
+        </member>
+        <member name="P:Bubba.Properties.Locations.GPO">
+            <summary>
+              Looks up a localized string similar to https://www.google.com/search?q=site:www.gpo.gov .
+            </summary>
+        </member>
+        <member name="P:Bubba.Properties.Locations.GSA">
+            <summary>
+              Looks up a localized string similar to https://www.google.com/search?q=site:www.gsa.gov .
+            </summary>
+        </member>
+        <member name="P:Bubba.Properties.Locations.HHS">
+            <summary>
+              Looks up a localized string similar to https://www.google.com/search?q=site:www.hhs.gov .
+            </summary>
+        </member>
+        <member name="P:Bubba.Properties.Locations.IRS">
+            <summary>
+              Looks up a localized string similar to https://www.google.com/search?q=site:www.irs.gov .
+            </summary>
+        </member>
+        <member name="P:Bubba.Properties.Locations.Loading">
+            <summary>
+              Looks up a localized string similar to Resources\Assets\LoaderImages\Loading.gif.
+            </summary>
+        </member>
+        <member name="P:Bubba.Properties.Locations.LOC">
+            <summary>
+              Looks up a localized string similar to https://www.google.com/search?q=site:catalog.loc.gov .
+            </summary>
+        </member>
+        <member name="P:Bubba.Properties.Locations.NARA">
+            <summary>
+              Looks up a localized string similar to https://www.google.com/search?q=site:www.archives.gov .
+            </summary>
+        </member>
+        <member name="P:Bubba.Properties.Locations.NASA">
+            <summary>
+              Looks up a localized string similar to https://www.google.com/search?q=site:www.nasa.gov .
+            </summary>
+        </member>
+        <member name="P:Bubba.Properties.Locations.NewTab">
+            <summary>
+              Looks up a localized string similar to https://www.google.com.
+            </summary>
+        </member>
+        <member name="P:Bubba.Properties.Locations.NOAA">
+            <summary>
+              Looks up a localized string similar to https://www.google.com/search?q=site:www.noaa.gov .
+            </summary>
+        </member>
+        <member name="P:Bubba.Properties.Locations.NPS">
+            <summary>
+              Looks up a localized string similar to https://www.google.com/search?q=site:www.nps.gov .
+            </summary>
+        </member>
+        <member name="P:Bubba.Properties.Locations.NRC">
+            <summary>
+              Looks up a localized string similar to https://www.google.com/search?q=site:www.nrc.gov .
+            </summary>
+        </member>
+        <member name="P:Bubba.Properties.Locations.NSF">
+            <summary>
+              Looks up a localized string similar to https://www.google.com/search?q=site:www.nsf.gov .
+            </summary>
+        </member>
+        <member name="P:Bubba.Properties.Locations.NWS">
+            <summary>
+              Looks up a localized string similar to https://www.google.com/search?q=site:www.weather.gov .
+            </summary>
+        </member>
+        <member name="P:Bubba.Properties.Locations.OMB">
+            <summary>
+              Looks up a localized string similar to https://www.google.com/search?q=site:www.whitehouse.gov .
+            </summary>
+        </member>
+        <member name="P:Bubba.Properties.Locations.PathPrefix">
+            <summary>
+              Looks up a localized string similar to C:\Users\terry\source\repos\Bubba\.
+            </summary>
+        </member>
+        <member name="P:Bubba.Properties.Locations.Reports">
+            <summary>
+              Looks up a localized string similar to Resources\Reports\Report.xlsx.
+            </summary>
+        </member>
+        <member name="P:Bubba.Properties.Locations.USDA">
+            <summary>
+              Looks up a localized string similar to https://www.google.com/search?q=site:www.usda.gov .
+            </summary>
+        </member>
+        <member name="P:Bubba.Properties.Locations.USGI">
+            <summary>
+              Looks up a localized string similar to https://www.google.com/search?q=site:www.govinfo.gov .
+            </summary>
+        </member>
+        <member name="P:Bubba.Properties.Locations.USNO">
+            <summary>
+              Looks up a localized string similar to https://www.google.com/search?q=site:usno.navy.mil .
+            </summary>
+        </member>
+        <member name="P:Bubba.Properties.Locations.UST">
+            <summary>
+              Looks up a localized string similar to https://www.google.com/search?q=site:fiscal.treasury.gov .
+            </summary>
+        </member>
+        <member name="T:Bubba.Properties.OpenAI">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:Bubba.Properties.OpenAI.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:Bubba.Properties.OpenAI.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="P:Bubba.Properties.OpenAI.BubbaAppropriations">
+            <summary>
+              Looks up a localized string similar to vs_8fEoYp1zVvk5D8atfWLbEupN.
+            </summary>
+        </member>
+        <member name="P:Bubba.Properties.OpenAI.BubbaFiles">
+            <summary>
+              Looks up a localized string similar to file-Bauvjn4JRo31ERGDfqUyjy.
+            </summary>
+        </member>
+        <member name="P:Bubba.Properties.OpenAI.BubbaID">
+            <summary>
+              Looks up a localized string similar to vs_8fEoYp1zVvk5D8atfWLbEupN.
+            </summary>
+        </member>
+        <member name="P:Bubba.Properties.OpenAI.BubbaInstructions">
+            <summary>
+              Looks up a localized string similar to You are the most knowledgeable Budget Analyst in the federal government who provides detailed responses based on your vast knowledge of budget legislation, and federal appropriations.  Your responses to questions about federal finance are highly accurate, and very detailed, citing sources using an academic format.  Your vast knowledge  and experience in Data Science makes you the best Data Analyst in the world. You are proficient in C#, Python, SQL, C++, JavaScript, and VBA. Your name is Bubba..
+            </summary>
+        </member>
+        <member name="P:Bubba.Properties.OpenAI.BubbaKey">
+            <summary>
+              Looks up a localized string similar to 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.
+            </summary>
+        </member>
+        <member name="P:Bubba.Properties.OpenAI.BubbaProject">
+            <summary>
+              Looks up a localized string similar to proj_4OQYEZava5a8a5AfFDmRtggo.
+            </summary>
+        </member>
+        <member name="P:Bubba.Properties.OpenAI.BubbaPrompt">
+            <summary>
+              Looks up a localized string similar to You are the most knowledgeable Budget Analyst in the federal government who provides detailed responses based on your vast knowledge of budget legislation, and federal appropriations.  Your responses to questions about federal finance are very detailed using an academic format.  Your vast knowledge of and experience in Data Science makes you the best Data Analyst in the world. You are proficient in C#, Python, SQL, C++, JavaScript, and VBA. Your name is Bubba..
+            </summary>
+        </member>
+        <member name="P:Bubba.Properties.OpenAI.BubbaRegulations">
+            <summary>
+              Looks up a localized string similar to vs_dx5IIjBuEw5M0j5S2FTo9lRS.
             </summary>
         </member>
         <member name="T:Bubba.Properties.SystemInstructions">
@@ -25803,9 +26282,29 @@
             <param name="url">The URL.</param>
             <returns></returns>
         </member>
-        <member name="M:Bubba.ChatWindow.ClearFilters">
+        <member name="M:Bubba.ChatWindow.ClearCheckBoxes">
             <summary>
             Clears the filter.
+            </summary>
+        </member>
+        <member name="M:Bubba.ChatWindow.ClearSliders">
+            <summary>
+            Clears the list boxes.
+            </summary>
+        </member>
+        <member name="M:Bubba.ChatWindow.ClearComboBoxes">
+            <summary>
+            Clears the combo boxes.
+            </summary>
+        </member>
+        <member name="M:Bubba.ChatWindow.ClearListBoxes">
+            <summary>
+            Clears the list boxes.
+            </summary>
+        </member>
+        <member name="M:Bubba.ChatWindow.ClearTextBoxes">
+            <summary>
+            Clears the text boxes.
             </summary>
         </member>
         <member name="M:Bubba.ChatWindow.ClearSelections">
@@ -25816,21 +26315,6 @@
         <member name="M:Bubba.ChatWindow.ClearCollections">
             <summary>
             Clears the collections.
-            </summary>
-        </member>
-        <member name="M:Bubba.ChatWindow.ClearListBoxes">
-            <summary>
-            Clears the list boxes.
-            </summary>
-        </member>
-        <member name="M:Bubba.ChatWindow.ClearComboBoxes">
-            <summary>
-            Clears the combo boxes.
-            </summary>
-        </member>
-        <member name="M:Bubba.ChatWindow.ClearTextBoxes">
-            <summary>
-            Clears the text boxes.
             </summary>
         </member>
         <member name="M:Bubba.ChatWindow.CreateNotifier">
@@ -25873,13 +26357,6 @@
             </summary>
             <param name="fileName">Name of the file.</param>
             <param name="nameSpace">if set to <c>true</c> [name space].</param>
-            <returns></returns>
-        </member>
-        <member name="M:Bubba.ChatWindow.GetHyperParameter(System.String)">
-            <summary>
-            Gets the hyper parameter.
-            </summary>
-            <param name="input">The input.</param>
             <returns></returns>
         </member>
         <member name="M:Bubba.ChatWindow.SendMessage(System.String)">
@@ -26124,7 +26601,7 @@
             <param name="e">The <see cref="T:System.Windows.Input.MouseEventArgs"/>
             instance containing the event data.</param>
         </member>
-        <member name="M:Bubba.ChatWindow.OnToolStripTextBoxClick(System.Object,System.Windows.Input.MouseEventArgs)">
+        <member name="M:Bubba.ChatWindow.OnToolStripTextBoxTextChanged(System.Object,System.Windows.Controls.TextChangedEventArgs)">
             <summary>
             Called when [tool strip text box click].
             </summary>
@@ -26373,7 +26850,7 @@
             <param name="e">The <see cref="T:System.Windows.RoutedEventArgs"/>
             instance containing the event data.</param>
         </member>
-        <member name="M:Bubba.ChatWindow.OnModelSelectionChanged(System.Object,System.Windows.RoutedEventArgs)">
+        <member name="M:Bubba.ChatWindow.OnSelectedModelChanged(System.Object,System.Windows.RoutedEventArgs)">
             <summary>
             Called when [model ComboBox selection changed].
             </summary>
@@ -26381,7 +26858,7 @@
             <param name="e">The <see cref="T:System.Windows.RoutedEventArgs"/>
             instance containing the event data.</param>
         </member>
-        <member name="M:Bubba.ChatWindow.OnLanguageSelectionChanged(System.Object,System.Windows.RoutedEventArgs)">
+        <member name="M:Bubba.ChatWindow.OnSelectedLanguageChanged(System.Object,System.Windows.RoutedEventArgs)">
             <summary>
             Called when [language selection changed].
             </summary>
@@ -26389,7 +26866,7 @@
             <param name="e">The <see cref="T:System.Windows.RoutedEventArgs"/>
             instance containing the event data.</param>
         </member>
-        <member name="M:Bubba.ChatWindow.OnGenerationChanged(System.Object,System.Windows.RoutedEventArgs)">
+        <member name="M:Bubba.ChatWindow.OnSelectedGenerationChanged(System.Object,System.Windows.RoutedEventArgs)">
             <summary>
             Called when [task selection changed].
             </summary>
@@ -26397,7 +26874,7 @@
             <param name="e">The <see cref="T:System.Windows.RoutedEventArgs"/>
             instance containing the event data.</param>
         </member>
-        <member name="M:Bubba.ChatWindow.OnTextBoxInputChanged(System.Object,System.Windows.RoutedEventArgs)">
+        <member name="M:Bubba.ChatWindow.OnParameterTextBoxChanged(System.Object,System.Windows.RoutedEventArgs)">
             <summary>
             Called when [text box input changed].
             </summary>
@@ -26408,6 +26885,14 @@
         <member name="M:Bubba.ChatWindow.OnSelectedImageSizeChanged(System.Object,System.Windows.RoutedEventArgs)">
             <summary>
             Called when [selected image size changed].
+            </summary>
+            <param name="sender">The sender.</param>
+            <param name="e">The <see cref="T:System.Windows.RoutedEventArgs"/>
+            instance containing the event data.</param>
+        </member>
+        <member name="M:Bubba.ChatWindow.OnGoButtonClicked(System.Object,System.Windows.RoutedEventArgs)">
+            <summary>
+            Called when [go button clicked].
             </summary>
             <param name="sender">The sender.</param>
             <param name="e">The <see cref="T:System.Windows.RoutedEventArgs"/>

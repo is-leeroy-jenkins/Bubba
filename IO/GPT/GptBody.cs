@@ -92,8 +92,6 @@ namespace Bubba
         {
             _responseFormat = "text";
             _model = "gpt-4o";
-            _systemMessage = new SystemMessage( );
-            _userMessage = new UserMessage( );
             _messages = new List<IGptMessage>( );
             _data = new Dictionary<string, object>( );
         }
