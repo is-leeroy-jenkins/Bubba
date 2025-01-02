@@ -85,6 +85,9 @@ namespace Bubba
     [ SuppressMessage( "ReSharper", "LoopCanBePartlyConvertedToQuery" ) ]
     [ SuppressMessage( "ReSharper", "RedundantExtendsListEntry" ) ]
     [ SuppressMessage( "ReSharper", "AssignNullToNotNullAttribute" ) ]
+    [ SuppressMessage( "ReSharper", "UnusedParameter.Global" ) ]
+    [ SuppressMessage( "ReSharper", "LocalVariableHidesMember" ) ]
+    [ SuppressMessage( "ReSharper", "CanSimplifyDictionaryLookupWithTryGetValue" ) ]
     public partial class ChatWindow : Window, INotifyPropertyChanged
     {
         private const string KEY = "sk-proj-eTIELWTlG8lKT3hpqgq7a3vmB6lBVKo"
@@ -868,21 +871,22 @@ namespace Bubba
         /// <summary>
         /// Clears the collections.
         /// </summary>
-        private void ClearCollections()
+        private void ClearCollections( )
         {
             try
             {
             }
-            catch(Exception ex)
+            catch( Exception ex )
             {
-                Fail(ex);
+                Fail( ex );
             }
         }
 
         /// <summary>
         /// Creates the notifier.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>
+        /// </returns>
         private Notifier CreateNotifier( )
         {
             try
@@ -1572,7 +1576,9 @@ namespace Bubba
         /// Pads the quotes.
         /// </summary>
         /// <param name="input">The input.</param>
-        /// <returns></returns>
+        /// <returns>
+        /// string
+        /// </returns>
         private string PadQuotes( string input )
         {
             if( input.IndexOf( "\\" ) != -1 )
@@ -2944,9 +2950,9 @@ namespace Bubba
             {
                 SendMessage( ToolStripTextBox.Text );
             }
-            catch(Exception ex)
+            catch( Exception ex )
             {
-                Fail(ex);
+                Fail( ex );
             }
         }
 

@@ -600,11 +600,6 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>OpenAI.resx</DependentUpon>
     </Compile>
-    <Compile Update="Properties\SystemInstructions.Designer.cs">
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-      <DependentUpon>SystemInstructions.resx</DependentUpon>
-    </Compile>
     <Compile Update="Properties\CustomSearchEngine.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
@@ -624,11 +619,6 @@
     <EmbeddedResource Update="ResourceLocations.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>ResourceLocations.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Properties\SystemInstructions.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>SystemInstructions.Designer.cs</LastGenOutput>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </EmbeddedResource>
     <EmbeddedResource Update="Properties\CustomSearchEngine.resx">
       <Generator>ResXFileCodeGenerator</Generator>

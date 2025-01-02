@@ -22,6 +22,7 @@
 //    subject to the following conditions:
 // 
 //    The above copyright notice and this permission notice shall be included in all
+
 //    copies or substantial portions of the Software.
 // 
 //    THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,
@@ -96,7 +97,7 @@ namespace Bubba
         private protected bool _stream;
 
         /// <summary>
-        /// a number between -2.0 and 2.0.
+        /// A number between -2.0 and 2.0.
         /// Positive values penalize new tokens
         /// based on whether they appear in the text so far,
         /// increasing the model's likelihood to talk about new topics.

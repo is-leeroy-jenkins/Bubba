@@ -44,19 +44,18 @@ namespace Bubba
     using System;
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
+    using Properties;
 
-    [ SuppressMessage( "ReSharper", "UnusedType.Global" ) ]
+    /// <inheritdoc />
+    /// <summary>
+    /// </summary>
+    /// <seealso cref="T:Bubba.PropertyChangedBase" />
+    [SuppressMessage( "ReSharper", "UnusedType.Global" ) ]
     [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
     [ SuppressMessage( "ReSharper", "FieldCanBeMadeReadOnly.Global" ) ]
     [ SuppressMessage( "ReSharper", "ClassCanBeSealed.Global" ) ]
     public class GptHeader : PropertyChangedBase
     {
-        /// <summary>
-        /// </summary>
-        private const string KEY = "sk-proj-qW9o_PoT2CleBXOErbGxe2UlOeHtgJ9K-"
-            + "rVFooUImScUvXn44e4R9ivYZtbYh5OIObWepnxCGET3BlbkFJykj4Dt9MDZT2GQg"
-            + "NarXOifdSxGwmodYtevUniudDGt8vkUNmxurKO9DkULeAUVz3rdY9g_-OsA";
-
         /// <summary>
         /// The content type
         /// </summary>
@@ -84,9 +83,9 @@ namespace Bubba
         /// </summary>
         public GptHeader( )
         {
-            _apiKey = KEY;
+            _apiKey = OpenAI.BubbaKey;
             _contentType = "application/json";
-            _authorization = "Bearer " + KEY;
+            _authorization = "Bearer " + OpenAI.BubbaKey;
             _data.Add( "content-type", _contentType );
             _data.Add( "authorization", _authorization );
         }
@@ -98,9 +97,9 @@ namespace Bubba
         /// <param name="header">The header.</param>
         public GptHeader( GptHeader header )
         {
-            _apiKey = KEY;
+            _apiKey = OpenAI.BubbaKey;
             _contentType = "application/json";
-            _authorization = "Bearer " + KEY;
+            _authorization = "Bearer " + OpenAI.BubbaKey;
             _data = header.Data;
         }
 

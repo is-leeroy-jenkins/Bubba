@@ -14768,7 +14768,7 @@
         </member>
         <member name="F:Bubba.GptBase._presence">
             <summary>
-            a number between -2.0 and 2.0.
+            A number between -2.0 and 2.0.
             Positive values penalize new tokens
             based on whether they appear in the text so far,
             increasing the model's likelihood to talk about new topics.
@@ -19055,11 +19055,6 @@
             <seealso cref="T:Bubba.GptBase" />
             <seealso cref="T:Bubba.IGptClient" />
         </member>
-        <member name="F:Bubba.GptClient._data">
-            <summary>
-            The data
-            </summary>
-        </member>
         <member name="M:Bubba.GptClient.#ctor">
             <inheritdoc />
             <summary>
@@ -21836,22 +21831,6 @@
         <member name="P:Bubba.Properties.OpenAI.BubbaRegulations">
             <summary>
               Looks up a localized string similar to vs_dx5IIjBuEw5M0j5S2FTo9lRS.
-            </summary>
-        </member>
-        <member name="T:Bubba.Properties.SystemInstructions">
-            <summary>
-              A strongly-typed resource class, for looking up localized strings, etc.
-            </summary>
-        </member>
-        <member name="P:Bubba.Properties.SystemInstructions.ResourceManager">
-            <summary>
-              Returns the cached ResourceManager instance used by this class.
-            </summary>
-        </member>
-        <member name="P:Bubba.Properties.SystemInstructions.Culture">
-            <summary>
-              Overrides the current thread's CurrentUICulture property for all
-              resource lookups using this strongly typed resource class.
             </summary>
         </member>
         <member name="T:Bubba.DataMinion">
@@ -26321,7 +26300,8 @@
             <summary>
             Creates the notifier.
             </summary>
-            <returns></returns>
+            <returns>
+            </returns>
         </member>
         <member name="M:Bubba.ChatWindow.FadeInAsync(System.Windows.Window,System.Int32)">
             <summary>
@@ -26442,7 +26422,9 @@
             Pads the quotes.
             </summary>
             <param name="input">The input.</param>
-            <returns></returns>
+            <returns>
+            string
+            </returns>
         </member>
         <member name="M:Bubba.ChatWindow.PopulateModelsAsync">
             <summary>
@@ -30410,36 +30392,6 @@
         <member name="M:Bubba.WebBrowser.InitializeComponent">
             <summary>
             InitializeComponent
-            </summary>
-        </member>
-        <member name="T:XamlGeneratedNamespace.GeneratedInternalTypeHelper">
-            <summary>
-            GeneratedInternalTypeHelper
-            </summary>
-        </member>
-        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.CreateInstance(System.Type,System.Globalization.CultureInfo)">
-            <summary>
-            CreateInstance
-            </summary>
-        </member>
-        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.GetPropertyValue(System.Reflection.PropertyInfo,System.Object,System.Globalization.CultureInfo)">
-            <summary>
-            GetPropertyValue
-            </summary>
-        </member>
-        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.SetPropertyValue(System.Reflection.PropertyInfo,System.Object,System.Object,System.Globalization.CultureInfo)">
-            <summary>
-            SetPropertyValue
-            </summary>
-        </member>
-        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.CreateDelegate(System.Type,System.Object,System.String)">
-            <summary>
-            CreateDelegate
-            </summary>
-        </member>
-        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.AddEventHandler(System.Reflection.EventInfo,System.Object,System.Delegate)">
-            <summary>
-            AddEventHandler
             </summary>
         </member>
     </members>

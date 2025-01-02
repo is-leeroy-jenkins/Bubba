@@ -54,6 +54,7 @@ namespace Bubba
     using Newtonsoft.Json;
     using Exception = System.Exception;
     using JsonSerializer = System.Text.Json.JsonSerializer;
+    using Properties;
 
     /// <inheritdoc />
     /// <summary>
@@ -65,16 +66,10 @@ namespace Bubba
     [ SuppressMessage( "ReSharper", "InternalOrPrivateMemberNotDocumented" ) ]
     public class GptClient : GptBase, IGptClient
     {
-        private const string KEY = "sk-proj-m1FNMEEpSuwC32xZedCfozYsGkCEhaVSCEv"
-            + "S2u6tzNR39HFYKlC0kz0iUvXoJtSACw49E1laKaT3BlbkFJIORKROk_"
-            + "EirH8g8KoWX7fyhM3oQcd9KqILMBo1rEVFlruTMOsDQ3bHt7mNBjvlZw8DLfYbckQA";
-
-        private protected GptParam _param;
-
         /// <summary>
-        /// The data
+        /// The parameter
         /// </summary>
-        private protected IDictionary<string, object> _data;
+        private protected GptParam _param;
 
         /// <inheritdoc />
         /// <summary>
@@ -85,7 +80,7 @@ namespace Bubba
             : base( )
         {
             _entry = new object( );
-            _apiKey = KEY;
+            _apiKey = OpenAI.BubbaKey;
             _param = new GptParam( );
             _endPoints = GetEndPoints( );
             _models = GetModels( );
@@ -580,7 +575,7 @@ namespace Bubba
             {
                 using var _client = new HttpClient( );
                 _client.DefaultRequestHeaders.Authorization =
-                    new AuthenticationHeaderValue( "Bearer", KEY );
+                    new AuthenticationHeaderValue( "Bearer", OpenAI.BubbaKey );
 
                 var _content = new StringContent( _payload, Encoding.UTF8, "application/json" );
                 var _response = await _client.PostAsync( _url, _content );
