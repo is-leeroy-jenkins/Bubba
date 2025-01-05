@@ -1,14 +1,14 @@
 ﻿// ******************************************************************************************
 //     Assembly:                Bubba
 //     Author:                  Terry D. Eppler
-//     Created:                 11-15-2024
+//     Created:                 01-05-2025
 // 
 //     Last Modified By:        Terry D. Eppler
-//     Last Modified On:        11-15-2024
+//     Last Modified On:        01-05-2025
 // ******************************************************************************************
-// <copyright file="PropertyChangedBase.cs" company="Terry D. Eppler">
-//    Bubba is an open source windows (wpf) application for interacting with OpenAI GPT
-//    that is based on NET 7 and written in C-Sharp.
+// <copyright file="ImageParameter.cs" company="Terry D. Eppler">
+//    Bubba is a small and simple windows (wpf) application for interacting with the OpenAI API
+//    that's developed in C-Sharp under the MIT license.C#.
 // 
 //    Copyright ©  2020-2024 Terry D. Eppler
 // 
@@ -35,36 +35,85 @@
 //    You can contact me at:  terryeppler@gmail.com or eppler.terry@epa.gov
 // </copyright>
 // <summary>
-//   PropertyChangedBase.cs
+//   ImageParameter.cs
 // </summary>
 // ******************************************************************************************
 
 namespace Bubba
 {
-    using System.ComponentModel;
+    using System;
+    using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
-    using System.Runtime.CompilerServices;
+    using System.Linq;
+    using System.Text;
+    using System.Threading.Tasks;
 
     /// <inheritdoc />
     /// <summary>
     /// </summary>
-    /// <seealso cref="T:System.ComponentModel.INotifyPropertyChanged" />
     [ SuppressMessage( "ReSharper", "UnusedType.Global" ) ]
-    public abstract class PropertyChangedBase : INotifyPropertyChanged
+    [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
+    public class ImageParameter : GptParam
     {
+        /// <summary>
+        /// The image size
+        /// </summary>
+        private protected string _imageSize;
+
         /// <inheritdoc />
         /// <summary>
-        /// Occurs when a property value changes.
+        /// Initializes a new instance of the
+        /// <see cref="T:Bubba.ImageParameter" /> class.
         /// </summary>
-        public virtual event PropertyChangedEventHandler PropertyChanged;
+        public ImageParameter( )
+        {
+            _number = 1;
+            _imageSize = "250X250";
+            _responseFormat = "url";
+        }
 
         /// <summary>
-        /// Called when [property changed].
+        /// Gets or sets the size of the image.
         /// </summary>
-        /// <param name="propertyName">Name of the property.</param>
-        public virtual void OnPropertyChanged( [ CallerMemberName ] string propertyName = null )
+        /// <value>
+        /// The size of the image.
+        /// </value>
+        public string ImageSize
         {
-            PropertyChanged?.Invoke( this, new PropertyChangedEventArgs( propertyName ) );
+            get
+            {
+                return _imageSize;
+            }
+            set
+            {
+                if( _imageSize != value )
+                {
+                    _imageSize = value;
+                    OnPropertyChanged( nameof( ImageSize ) );
+                }
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the response format.
+        /// </summary>
+        /// <value>
+        /// The response format.
+        /// </value>
+        public string ResponseFormat
+        {
+            get
+            {
+                return _responseFormat;
+            }
+            set
+            {
+                if( _responseFormat != value )
+                {
+                    _responseFormat = value;
+                    OnPropertyChanged( nameof( ResponseFormat ) );
+                }
+            }
         }
     }
 }

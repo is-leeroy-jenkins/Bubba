@@ -81,7 +81,6 @@ namespace Bubba
         {
             _entry = new object( );
             _apiKey = OpenAI.BubbaKey;
-            _param = new GptParam( );
             _endPoints = GetEndPoints( );
             _models = GetModels( );
         }

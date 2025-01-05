@@ -373,7 +373,7 @@
                     FontFamily="Roboto"
                     FontSize="12"
                     Foreground="{StaticResource LightBlueBrush}"
-                    Header="Probability Mass" />
+                    Header="Nucleus Sampling" />
 
                 <GroupBox
                     Canvas.Left="428"
@@ -387,7 +387,7 @@
                     FontFamily="Roboto"
                     FontSize="12"
                     Foreground="{StaticResource LightBlueBrush}"
-                    Header="Presence" />
+                    Header="Presence Penalty" />
 
                 <GroupBox
                     Canvas.Left="632"
@@ -401,7 +401,7 @@
                     FontFamily="Roboto"
                     FontSize="12"
                     Foreground="{StaticResource LightBlueBrush}"
-                    Header="Frequency" />
+                    Header="Frequency Penalty" />
 
                 <wpf:DoubleTextBox
                     x:Name="TemperatureTextBox"
@@ -443,6 +443,7 @@
                     VerticalAlignment="Center"
                     ActiveMinorTickStroke="{StaticResource LightBlueBrush}"
                     ActiveTickStroke="{StaticResource BlueBorderBrush}"
+                    Background="{StaticResource BlueBorderBrush}"
                     BorderBrush="{StaticResource GroupBoxBackground}"
                     ClipToBounds="True"
                     FontFamily="Roboto"
@@ -507,6 +508,7 @@
                     ActiveMinorTickStroke="{StaticResource BlueBorderBrush}"
                     ActiveTickStroke="{StaticResource BlueBorderBrush}"
                     BorderBrush="{StaticResource GroupBoxBackground}"
+                    Background="{StaticResource BlueBorderBrush}"
                     ClipToBounds="True"
                     FontFamily="Roboto"
                     LabelPlacement="BottomRight"
@@ -566,7 +568,7 @@
                     VerticalAlignment="Center"
                     ActiveMinorTickStroke="{StaticResource BlueBorderBrush}"
                     ActiveTickStroke="{StaticResource BlueBorderBrush}"
-                    Background="{StaticResource GroupBoxBackground}"
+                    Background="{StaticResource BlueBorderBrush}"
                     Foreground="{StaticResource WhiteForeground}"
                     LabelPlacement="BottomRight"
                     LargeChange="0.10"
@@ -706,7 +708,7 @@
                     Height="45"
                     ActiveMinorTickStroke="{StaticResource BlueBorderBrush}"
                     ActiveTickStroke="{StaticResource BlueBorderBrush}"
-                    Background="{StaticResource GroupBoxBackground}"
+                    Background="{StaticResource BlueBorderBrush}"
                     ClipToBounds="True"
                     FontFamily="Roboto"
                     Foreground="{StaticResource WhiteForeground}"
@@ -930,7 +932,7 @@
                     VerticalAlignment="Top"
                     ActiveMinorTickStroke="{StaticResource BlueBorderBrush}"
                     ActiveTickStroke="{StaticResource BlueBorderBrush}"
-                    Background="{StaticResource GroupBoxBackground}"
+                    Background="{StaticResource BlueBorderBrush}"
                     Foreground="{StaticResource WhiteForeground}"
                     LabelPlacement="BottomRight"
                     LargeChange="500"

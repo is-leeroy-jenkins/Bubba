@@ -74,6 +74,7 @@ namespace Bubba
     using ToastNotifications.Position;
     using Action = System.Action;
     using Exception = System.Exception;
+    using Properties;
 
     /// <inheritdoc />
     /// <summary>
@@ -90,11 +91,6 @@ namespace Bubba
     [ SuppressMessage( "ReSharper", "CanSimplifyDictionaryLookupWithTryGetValue" ) ]
     public partial class ChatWindow : Window, INotifyPropertyChanged
     {
-        private const string KEY = "sk-proj-eTIELWTlG8lKT3hpqgq7a3vmB6lBVKo"
-            + "GBlkoHhu0KqWqsnxyRq9bpEz0N1xZKcOxlyDbLJFCu"
-            + "YT3BlbkFJiQGzglbEgyZB7O9FsBi4bJTO0WEg-"
-            + "xddgKbywZr1o4bbn0HtNQlSU3OALS0pfMuifvMcy2XPAA";
-
         /// <summary>
         /// The system prompt
         /// </summary>
@@ -1410,7 +1406,7 @@ namespace Bubba
             var _request = WebRequest.Create( _url );
             _request.Method = "POST";
             _request.ContentType = "application/json";
-            _request.Headers.Add( "Authorization", "Bearer " + KEY );
+            _request.Headers.Add( "Authorization", "Bearer " + OpenAI.BubbaKey );
             var _maxTokens = int.Parse( MaxTokenTextBox.Text ); // 2048
 
             // 0.5
@@ -1627,7 +1623,7 @@ namespace Bubba
                 _httpClient = new HttpClient( );
                 _httpClient.Timeout = new TimeSpan( 0, 0, 3 );
                 _httpClient.DefaultRequestHeaders.Authorization =
-                    new AuthenticationHeaderValue( "Bearer", KEY );
+                    new AuthenticationHeaderValue( "Bearer", OpenAI.BubbaKey );
 
                 var _responseMessage = await _httpClient.GetAsync( _url );
                 _responseMessage.EnsureSuccessStatusCode( );
@@ -2042,6 +2038,7 @@ namespace Bubba
                 ClearChatControls( );
                 InitializeChatEditor( );
                 App.ActiveWindows.Add( "ChatWindow", this );
+                _systemPrompt = OpenAI.BubbaPrompt;
             }
             catch( Exception ex )
             {
