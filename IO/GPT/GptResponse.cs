@@ -53,21 +53,6 @@ namespace Bubba
     public class GptResponse : GptResponseBase
     {
         /// <summary>
-        /// The identifier
-        /// </summary>
-        private protected string _id;
-
-        /// <summary>
-        /// The object
-        /// </summary>
-        private protected string _object;
-
-        /// <summary>
-        /// The created
-        /// </summary>
-        private protected DateTime _created;
-
-        /// <summary>
         /// The choices
         /// </summary>
         private protected IList<GptChoice> _choices;
@@ -90,7 +75,7 @@ namespace Bubba
             _frequency = 0.0;
             _topPercent = 1.0;
             _temperature = 1.0;
-            _maximumCompletionTokens = 2048;
+            _maximumTokens = 2048;
             _model = "gpt-4o";
             _endPoint = "https://api.openai.com/v1/chat/completions";
             _number = 1;

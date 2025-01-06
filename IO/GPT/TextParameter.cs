@@ -42,11 +42,7 @@
 namespace Bubba
 {
     using System;
-    using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
-    using System.Linq;
-    using System.Text;
-    using System.Threading.Tasks;
 
     /// <inheritdoc />
     /// <summary>
@@ -55,47 +51,6 @@ namespace Bubba
     [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
     public class TextParameter : GptParam
     {
-        /// <summary>
-        /// Whether or not to store the responses
-        /// </summary>
-        private protected bool _store;
-
-        /// <summary>
-        /// The stream
-        /// </summary>
-        private protected bool _stream;
-
-        /// <summary>
-        /// An alternative to sampling with temperature,
-        /// called nucleus sampling, where the model considers
-        /// the results of the tokens with top_p probability mass.
-        /// So 0.1 means only the tokens comprising the top 10% probability
-        /// mass are considered. We generally recommend altering this
-        /// or temperature but not both.
-        /// </summary>
-        private protected double _topPercent;
-
-        /// <summary>
-        /// A number between 0.0 and 2.0   between 0 and 2.
-        /// Higher values like 0.8 will make the output more random,
-        /// while lower values like 0.2 will make it more focused and deterministic.
-        /// </summary>
-        private protected double _temperature;
-
-        /// <summary>
-        /// A number between -2.0 and 2.0. Positive values penalize new
-        /// tokens based on their existing frequency in the text so far,
-        /// decreasing the model's likelihood to repeat the same line verbatim.
-        /// </summary>
-        private protected double _frequencyPenalty;
-
-        /// <summary>
-        /// Number between -2.0 and 2.0. Positive values penalize new tokens
-        /// based on whether they appear in the text so far,
-        /// ncreasing the model's likelihood to talk about new topics.
-        /// </summary>
-        private protected double _presencePenalty;
-
         /// <inheritdoc />
         /// <summary>
         /// Initializes a new instance of the
@@ -111,17 +66,19 @@ namespace Bubba
             _topPercent = 1.0;
             _frequencyPenalty = 0.0;
             _presencePenalty = 0.0;
+            _maximumTokens = 2048;
             _responseFormat = "text";
         }
 
+        /// <inheritdoc />
         /// <summary>
         /// Gets or sets a value indicating whether this
-        /// <see cref="GptParam"/> is store.
+        /// <see cref="T:Bubba.GptParam" /> is store.
         /// </summary>
         /// <value>
         ///   <c>true</c> if store; otherwise, <c>false</c>.
         /// </value>
-        public bool Store
+        public override bool Store
         {
             get
             {
@@ -137,14 +94,15 @@ namespace Bubba
             }
         }
 
+        /// <inheritdoc />
         /// <summary>
         /// Gets or sets a value indicating whether this
-        /// <see cref="GptParam"/> is stream.
+        /// <see cref="T:Bubba.GptParam" /> is stream.
         /// </summary>
         /// <value>
         ///   <c>true</c> if stream; otherwise, <c>false</c>.
         /// </value>
-        public bool Stream
+        public override bool Stream
         {
             get
             {
@@ -160,6 +118,7 @@ namespace Bubba
             }
         }
 
+        /// <inheritdoc />
         /// <summary>
         /// A number between 0.0 and 2.0   between 0 and 2.
         /// Higher values like 0.8 will make the output more random,
@@ -168,7 +127,7 @@ namespace Bubba
         /// <value>
         /// The temperature.
         /// </value>
-        public double Temperature
+        public override double Temperature
         {
             get
             {
@@ -184,6 +143,7 @@ namespace Bubba
             }
         }
 
+        /// <inheritdoc />
         /// <summary>
         /// A number between -2.0 and 2.0. Positive values penalize new
         /// tokens based on their existing frequency in the text so far,
@@ -192,7 +152,7 @@ namespace Bubba
         /// <value>
         /// The frequency.
         /// </value>
-        public double FrequencyPenalty
+        public override double FrequencyPenalty
         {
             get
             {
@@ -208,6 +168,7 @@ namespace Bubba
             }
         }
 
+        /// <inheritdoc />
         /// <summary>
         /// Number between -2.0 and 2.0. Positive values penalize new tokens
         /// based on whether they appear in the text so far,
@@ -216,7 +177,7 @@ namespace Bubba
         /// <value>
         /// The presence.
         /// </value>
-        public double PresencePenalty
+        public override double PresencePenalty
         {
             get
             {
@@ -232,6 +193,7 @@ namespace Bubba
             }
         }
 
+        /// <inheritdoc />
         /// <summary>
         /// An alternative to sampling with temperature,
         /// called nucleus sampling, where the model considers
@@ -243,7 +205,7 @@ namespace Bubba
         /// <value>
         /// The top percent.
         /// </value>
-        public double TopPercent
+        public override double TopPercent
         {
             get
             {

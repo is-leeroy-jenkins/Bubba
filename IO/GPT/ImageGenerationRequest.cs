@@ -1,12 +1,12 @@
 ﻿// ******************************************************************************************
 //     Assembly:                Bubba
 //     Author:                  Terry D. Eppler
-//     Created:                 01-05-2025
+//     Created:                 01-06-2025
 // 
 //     Last Modified By:        Terry D. Eppler
-//     Last Modified On:        01-05-2025
+//     Last Modified On:        01-06-2025
 // ******************************************************************************************
-// <copyright file="ImageParameter.cs" company="Terry D. Eppler">
+// <copyright file="ImageGenerationRequest.cs" company="Terry D. Eppler">
 //    Bubba is a small and simple windows (wpf) application for interacting with the OpenAI API
 //    that's developed in C-Sharp under the MIT license.C#.
 // 
@@ -35,91 +35,33 @@
 //    You can contact me at:  terryeppler@gmail.com or eppler.terry@epa.gov
 // </copyright>
 // <summary>
-//   ImageParameter.cs
+//   ImageGenerationRequest.cs
 // </summary>
 // ******************************************************************************************
 
 namespace Bubba
 {
     using System;
+    using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
+    using System.Linq;
+    using System.Text;
+    using System.Threading.Tasks;
 
     /// <inheritdoc />
     /// <summary>
     /// </summary>
     [ SuppressMessage( "ReSharper", "UnusedType.Global" ) ]
-    [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
-    public class ImageParameter : GptParam
+    public class ImageGenerationRequest : GptRequest
     {
-        /// <summary>
-        /// The image size
-        /// </summary>
-        private protected string _imageSize;
-
         /// <inheritdoc />
         /// <summary>
         /// Initializes a new instance of the
-        /// <see cref="T:Bubba.ImageParameter" /> class.
+        /// <see cref="T:Bubba.ImageGenerationRequest" /> class.
         /// </summary>
-        public ImageParameter( )
+        public ImageGenerationRequest( )
+            : base( )
         {
-            _model = "dall-e";
-            _number = 1;
-            _imageSize = "250X250";
-            _store = false;
-            _stream = false;
-            _number = 1;
-            _temperature = 1.0;
-            _topPercent = 1.0;
-            _frequencyPenalty = 0.0;
-            _presencePenalty = 0.0;
-            _maximumTokens = 2048;
-            _responseFormat = "url";
-        }
-
-        /// <summary>
-        /// Gets or sets the size of the image.
-        /// </summary>
-        /// <value>
-        /// The size of the image.
-        /// </value>
-        public string ImageSize
-        {
-            get
-            {
-                return _imageSize;
-            }
-            set
-            {
-                if( _imageSize != value )
-                {
-                    _imageSize = value;
-                    OnPropertyChanged( nameof( ImageSize ) );
-                }
-            }
-        }
-
-        /// <inheritdoc />
-        /// <summary>
-        /// Gets or sets the response format.
-        /// </summary>
-        /// <value>
-        /// The response format.
-        /// </value>
-        public override string ResponseFormat
-        {
-            get
-            {
-                return _responseFormat;
-            }
-            set
-            {
-                if( _responseFormat != value )
-                {
-                    _responseFormat = value;
-                    OnPropertyChanged( nameof( ResponseFormat ) );
-                }
-            }
         }
     }
 }

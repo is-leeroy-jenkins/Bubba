@@ -1,10 +1,10 @@
 ﻿// ******************************************************************************************
 //     Assembly:                Bubba
 //     Author:                  Terry D. Eppler
-//     Created:                 01-05-2025
+//     Created:                 01-06-2025
 // 
 //     Last Modified By:        Terry D. Eppler
-//     Last Modified On:        01-05-2025
+//     Last Modified On:        01-06-2025
 // ******************************************************************************************
 // <copyright file="GptParam.cs" company="Terry D. Eppler">
 //    Bubba is a small and simple windows (wpf) application for interacting with the OpenAI API
@@ -71,6 +71,47 @@ namespace Bubba
         /// The end point
         /// </summary>
         private protected string _endPoint;
+
+        /// <summary>
+        /// Whether or not to store the responses
+        /// </summary>
+        private protected bool _store;
+
+        /// <summary>
+        /// The stream
+        /// </summary>
+        private protected bool _stream;
+
+        /// <summary>
+        /// An alternative to sampling with temperature,
+        /// called nucleus sampling, where the model considers
+        /// the results of the tokens with top_p probability mass.
+        /// So 0.1 means only the tokens comprising the top 10% probability
+        /// mass are considered. We generally recommend altering this
+        /// or temperature but not both.
+        /// </summary>
+        private protected double _topPercent;
+
+        /// <summary>
+        /// A number between 0.0 and 2.0   between 0 and 2.
+        /// Higher values like 0.8 will make the output more random,
+        /// while lower values like 0.2 will make it more focused and deterministic.
+        /// </summary>
+        private protected double _temperature;
+
+        /// <summary>
+        /// A number between -2.0 and 2.0. Positive values penalize new
+        /// tokens based on their existing frequency in the text so far,
+        /// decreasing the model's likelihood to repeat the same line verbatim.
+        /// </summary>
+        private protected double _frequencyPenalty;
+
+        /// <summary>
+        /// Number between -2.0 and 2.0. Positive values penalize new tokens
+        /// based on whether they appear in the text so far,
+        /// ncreasing the model's likelihood to talk about new topics.
+        /// </summary>
+        private protected double _presencePenalty;
 
         /// <summary>
         /// An upper bound for the number of tokens
@@ -184,6 +225,151 @@ namespace Bubba
                 {
                     _number = value;
                     OnPropertyChanged( nameof( Number ) );
+                }
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether this
+        /// <see cref="GptParam"/> is store.
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if store; otherwise, <c>false</c>.
+        /// </value>
+        public virtual bool Store
+        {
+            get
+            {
+                return _store;
+            }
+            set
+            {
+                if( _store != value )
+                {
+                    _store = value;
+                    OnPropertyChanged( nameof( Store ) );
+                }
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether this
+        /// <see cref="GptParam"/> is stream.
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if stream; otherwise, <c>false</c>.
+        /// </value>
+        public virtual bool Stream
+        {
+            get
+            {
+                return _stream;
+            }
+            set
+            {
+                if( _stream != value )
+                {
+                    _stream = value;
+                    OnPropertyChanged( nameof( Stream ) );
+                }
+            }
+        }
+
+        /// <summary>
+        /// A number between 0.0 and 2.0   between 0 and 2.
+        /// Higher values like 0.8 will make the output more random,
+        /// while lower values like 0.2 will make it more focused and deterministic.
+        /// </summary>
+        /// <value>
+        /// The temperature.
+        /// </value>
+        public virtual double Temperature
+        {
+            get
+            {
+                return _temperature;
+            }
+            set
+            {
+                if( _temperature != value )
+                {
+                    _temperature = value;
+                    OnPropertyChanged( nameof( Temperature ) );
+                }
+            }
+        }
+
+        /// <summary>
+        /// A number between -2.0 and 2.0. Positive values penalize new
+        /// tokens based on their existing frequency in the text so far,
+        /// decreasing the model's likelihood to repeat the same line verbatim.
+        /// </summary>
+        /// <value>
+        /// The frequency.
+        /// </value>
+        public virtual double FrequencyPenalty
+        {
+            get
+            {
+                return _frequencyPenalty;
+            }
+            set
+            {
+                if( _frequencyPenalty != value )
+                {
+                    _frequencyPenalty = value;
+                    OnPropertyChanged( nameof( FrequencyPenalty ) );
+                }
+            }
+        }
+
+        /// <summary>
+        /// Number between -2.0 and 2.0. Positive values penalize new tokens
+        /// based on whether they appear in the text so far,
+        /// ncreasing the model's likelihood to talk about new topics.
+        /// </summary>
+        /// <value>
+        /// The presence.
+        /// </value>
+        public virtual double PresencePenalty
+        {
+            get
+            {
+                return _presencePenalty;
+            }
+            set
+            {
+                if( _presencePenalty != value )
+                {
+                    _presencePenalty = value;
+                    OnPropertyChanged( nameof( PresencePenalty ) );
+                }
+            }
+        }
+
+        /// <summary>
+        /// An alternative to sampling with temperature,
+        /// called nucleus sampling, where the model considers
+        /// the results of the tokens with top_p probability mass.
+        /// So 0.1 means only the tokens comprising the top 10% probability
+        /// mass are considered. We generally recommend altering this
+        /// or temperature but not both.
+        /// </summary>
+        /// <value>
+        /// The top percent.
+        /// </value>
+        public virtual double TopPercent
+        {
+            get
+            {
+                return _topPercent;
+            }
+            set
+            {
+                if( _topPercent != value )
+                {
+                    _topPercent = value;
+                    OnPropertyChanged( nameof( TopPercent ) );
                 }
             }
         }

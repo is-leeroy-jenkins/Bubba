@@ -54,7 +54,7 @@ namespace Bubba
         /// <value>
         /// The maximum tokens.
         /// </value>
-        int MaxCompletionTokens { get; set; }
+        int MaximumTokens { get; set; }
 
         /// <summary>
         /// Gets or sets the temperature.

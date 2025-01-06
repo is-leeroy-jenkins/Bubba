@@ -14953,6 +14953,47 @@
             The end point
             </summary>
         </member>
+        <member name="F:Bubba.GptParam._store">
+            <summary>
+            Whether or not to store the responses
+            </summary>
+        </member>
+        <member name="F:Bubba.GptParam._stream">
+            <summary>
+            The stream
+            </summary>
+        </member>
+        <member name="F:Bubba.GptParam._topPercent">
+            <summary>
+            An alternative to sampling with temperature,
+            called nucleus sampling, where the model considers
+            the results of the tokens with top_p probability mass.
+            So 0.1 means only the tokens comprising the top 10% probability
+            mass are considered. We generally recommend altering this
+            or temperature but not both.
+            </summary>
+        </member>
+        <member name="F:Bubba.GptParam._temperature">
+            <summary>
+            A number between 0.0 and 2.0   between 0 and 2.
+            Higher values like 0.8 will make the output more random,
+            while lower values like 0.2 will make it more focused and deterministic.
+            </summary>
+        </member>
+        <member name="F:Bubba.GptParam._frequencyPenalty">
+            <summary>
+            A number between -2.0 and 2.0. Positive values penalize new
+            tokens based on their existing frequency in the text so far,
+            decreasing the model's likelihood to repeat the same line verbatim.
+            </summary>
+        </member>
+        <member name="F:Bubba.GptParam._presencePenalty">
+            <summary>
+            Number between -2.0 and 2.0. Positive values penalize new tokens
+            based on whether they appear in the text so far,
+            ncreasing the model's likelihood to talk about new topics.
+            </summary>
+        </member>
         <member name="F:Bubba.GptParam._maximumTokens">
             <summary>
             An upper bound for the number of tokens
@@ -15011,6 +15052,67 @@
             </summary>
             <value>
             The user identifier.
+            </value>
+        </member>
+        <member name="P:Bubba.GptParam.Store">
+            <summary>
+            Gets or sets a value indicating whether this
+            <see cref="T:Bubba.GptParam"/> is store.
+            </summary>
+            <value>
+              <c>true</c> if store; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:Bubba.GptParam.Stream">
+            <summary>
+            Gets or sets a value indicating whether this
+            <see cref="T:Bubba.GptParam"/> is stream.
+            </summary>
+            <value>
+              <c>true</c> if stream; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:Bubba.GptParam.Temperature">
+            <summary>
+            A number between 0.0 and 2.0   between 0 and 2.
+            Higher values like 0.8 will make the output more random,
+            while lower values like 0.2 will make it more focused and deterministic.
+            </summary>
+            <value>
+            The temperature.
+            </value>
+        </member>
+        <member name="P:Bubba.GptParam.FrequencyPenalty">
+            <summary>
+            A number between -2.0 and 2.0. Positive values penalize new
+            tokens based on their existing frequency in the text so far,
+            decreasing the model's likelihood to repeat the same line verbatim.
+            </summary>
+            <value>
+            The frequency.
+            </value>
+        </member>
+        <member name="P:Bubba.GptParam.PresencePenalty">
+            <summary>
+            Number between -2.0 and 2.0. Positive values penalize new tokens
+            based on whether they appear in the text so far,
+            ncreasing the model's likelihood to talk about new topics.
+            </summary>
+            <value>
+            The presence.
+            </value>
+        </member>
+        <member name="P:Bubba.GptParam.TopPercent">
+            <summary>
+            An alternative to sampling with temperature,
+            called nucleus sampling, where the model considers
+            the results of the tokens with top_p probability mass.
+            So 0.1 means only the tokens comprising the top 10% probability
+            mass are considered. We generally recommend altering this
+            or temperature but not both.
+            </summary>
+            <value>
+            The top percent.
             </value>
         </member>
         <member name="P:Bubba.GptParam.SystemPrompt">
@@ -18962,47 +19064,6 @@
             <summary>
             </summary>
         </member>
-        <member name="F:Bubba.EmbeddingParameter._store">
-            <summary>
-            Whether or not to store the responses
-            </summary>
-        </member>
-        <member name="F:Bubba.EmbeddingParameter._stream">
-            <summary>
-            The stream
-            </summary>
-        </member>
-        <member name="F:Bubba.EmbeddingParameter._topPercent">
-            <summary>
-            An alternative to sampling with temperature,
-            called nucleus sampling, where the model considers
-            the results of the tokens with top_p probability mass.
-            So 0.1 means only the tokens comprising the top 10% probability
-            mass are considered. We generally recommend altering this
-            or temperature but not both.
-            </summary>
-        </member>
-        <member name="F:Bubba.EmbeddingParameter._temperature">
-            <summary>
-            A number between 0.0 and 2.0   between 0 and 2.
-            Higher values like 0.8 will make the output more random,
-            while lower values like 0.2 will make it more focused and deterministic.
-            </summary>
-        </member>
-        <member name="F:Bubba.EmbeddingParameter._frequencyPenalty">
-            <summary>
-            A number between -2.0 and 2.0. Positive values penalize new
-            tokens based on their existing frequency in the text so far,
-            decreasing the model's likelihood to repeat the same line verbatim.
-            </summary>
-        </member>
-        <member name="F:Bubba.EmbeddingParameter._presencePenalty">
-            <summary>
-            Number between -2.0 and 2.0. Positive values penalize new tokens
-            based on whether they appear in the text so far,
-            ncreasing the model's likelihood to talk about new topics.
-            </summary>
-        </member>
         <member name="M:Bubba.EmbeddingParameter.#ctor">
             <inheritdoc />
             <summary>
@@ -19011,24 +19072,27 @@
             </summary>
         </member>
         <member name="P:Bubba.EmbeddingParameter.Store">
+            <inheritdoc />
             <summary>
             Gets or sets a value indicating whether this
-            <see cref="T:Bubba.GptParam"/> is store.
+            <see cref="T:Bubba.GptParam" /> is store.
             </summary>
             <value>
               <c>true</c> if store; otherwise, <c>false</c>.
             </value>
         </member>
         <member name="P:Bubba.EmbeddingParameter.Stream">
+            <inheritdoc />
             <summary>
             Gets or sets a value indicating whether this
-            <see cref="T:Bubba.GptParam"/> is stream.
+            <see cref="T:Bubba.GptParam" /> is stream.
             </summary>
             <value>
               <c>true</c> if stream; otherwise, <c>false</c>.
             </value>
         </member>
         <member name="P:Bubba.EmbeddingParameter.Temperature">
+            <inheritdoc />
             <summary>
             A number between 0.0 and 2.0   between 0 and 2.
             Higher values like 0.8 will make the output more random,
@@ -19039,6 +19103,7 @@
             </value>
         </member>
         <member name="P:Bubba.EmbeddingParameter.FrequencyPenalty">
+            <inheritdoc />
             <summary>
             A number between -2.0 and 2.0. Positive values penalize new
             tokens based on their existing frequency in the text so far,
@@ -19049,6 +19114,7 @@
             </value>
         </member>
         <member name="P:Bubba.EmbeddingParameter.PresencePenalty">
+            <inheritdoc />
             <summary>
             Number between -2.0 and 2.0. Positive values penalize new tokens
             based on whether they appear in the text so far,
@@ -19059,6 +19125,7 @@
             </value>
         </member>
         <member name="P:Bubba.EmbeddingParameter.TopPercent">
+            <inheritdoc />
             <summary>
             An alternative to sampling with temperature,
             called nucleus sampling, where the model considers
@@ -19072,6 +19139,7 @@
             </value>
         </member>
         <member name="P:Bubba.EmbeddingParameter.ResponseFormat">
+            <inheritdoc />
             <summary>
             Gets or sets the response format.
             </summary>
@@ -19244,7 +19312,7 @@
             <see cref="T:Bubba.GptBody"/> class.
             </summary>
         </member>
-        <member name="M:Bubba.GptBody.#ctor(System.String,System.String,System.String)">
+        <member name="M:Bubba.GptBody.#ctor(System.String,System.String,System.String,System.String)">
             <inheritdoc />
             <summary>
             Initializes a new instance of the
@@ -19253,6 +19321,7 @@
             <param name = "userPrompt" > </param>
             <param name="model">The model.</param>
             <param name = "systemPrompt" > </param>
+            <param name = "format" > </param>
         </member>
         <member name="M:Bubba.GptBody.#ctor(Bubba.GptBody)">
             <inheritdoc />
@@ -20318,6 +20387,7 @@
             </value>
         </member>
         <member name="P:Bubba.ImageParameter.ResponseFormat">
+            <inheritdoc />
             <summary>
             Gets or sets the response format.
             </summary>
@@ -20513,47 +20583,6 @@
             <summary>
             </summary>
         </member>
-        <member name="F:Bubba.TextParameter._store">
-            <summary>
-            Whether or not to store the responses
-            </summary>
-        </member>
-        <member name="F:Bubba.TextParameter._stream">
-            <summary>
-            The stream
-            </summary>
-        </member>
-        <member name="F:Bubba.TextParameter._topPercent">
-            <summary>
-            An alternative to sampling with temperature,
-            called nucleus sampling, where the model considers
-            the results of the tokens with top_p probability mass.
-            So 0.1 means only the tokens comprising the top 10% probability
-            mass are considered. We generally recommend altering this
-            or temperature but not both.
-            </summary>
-        </member>
-        <member name="F:Bubba.TextParameter._temperature">
-            <summary>
-            A number between 0.0 and 2.0   between 0 and 2.
-            Higher values like 0.8 will make the output more random,
-            while lower values like 0.2 will make it more focused and deterministic.
-            </summary>
-        </member>
-        <member name="F:Bubba.TextParameter._frequencyPenalty">
-            <summary>
-            A number between -2.0 and 2.0. Positive values penalize new
-            tokens based on their existing frequency in the text so far,
-            decreasing the model's likelihood to repeat the same line verbatim.
-            </summary>
-        </member>
-        <member name="F:Bubba.TextParameter._presencePenalty">
-            <summary>
-            Number between -2.0 and 2.0. Positive values penalize new tokens
-            based on whether they appear in the text so far,
-            ncreasing the model's likelihood to talk about new topics.
-            </summary>
-        </member>
         <member name="M:Bubba.TextParameter.#ctor">
             <inheritdoc />
             <summary>
@@ -20562,24 +20591,27 @@
             </summary>
         </member>
         <member name="P:Bubba.TextParameter.Store">
+            <inheritdoc />
             <summary>
             Gets or sets a value indicating whether this
-            <see cref="T:Bubba.GptParam"/> is store.
+            <see cref="T:Bubba.GptParam" /> is store.
             </summary>
             <value>
               <c>true</c> if store; otherwise, <c>false</c>.
             </value>
         </member>
         <member name="P:Bubba.TextParameter.Stream">
+            <inheritdoc />
             <summary>
             Gets or sets a value indicating whether this
-            <see cref="T:Bubba.GptParam"/> is stream.
+            <see cref="T:Bubba.GptParam" /> is stream.
             </summary>
             <value>
               <c>true</c> if stream; otherwise, <c>false</c>.
             </value>
         </member>
         <member name="P:Bubba.TextParameter.Temperature">
+            <inheritdoc />
             <summary>
             A number between 0.0 and 2.0   between 0 and 2.
             Higher values like 0.8 will make the output more random,
@@ -20590,6 +20622,7 @@
             </value>
         </member>
         <member name="P:Bubba.TextParameter.FrequencyPenalty">
+            <inheritdoc />
             <summary>
             A number between -2.0 and 2.0. Positive values penalize new
             tokens based on their existing frequency in the text so far,
@@ -20600,6 +20633,7 @@
             </value>
         </member>
         <member name="P:Bubba.TextParameter.PresencePenalty">
+            <inheritdoc />
             <summary>
             Number between -2.0 and 2.0. Positive values penalize new tokens
             based on whether they appear in the text so far,
@@ -20610,6 +20644,7 @@
             </value>
         </member>
         <member name="P:Bubba.TextParameter.TopPercent">
+            <inheritdoc />
             <summary>
             An alternative to sampling with temperature,
             called nucleus sampling, where the model considers
@@ -30660,36 +30695,6 @@
         <member name="M:Bubba.WebBrowser.InitializeComponent">
             <summary>
             InitializeComponent
-            </summary>
-        </member>
-        <member name="T:XamlGeneratedNamespace.GeneratedInternalTypeHelper">
-            <summary>
-            GeneratedInternalTypeHelper
-            </summary>
-        </member>
-        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.CreateInstance(System.Type,System.Globalization.CultureInfo)">
-            <summary>
-            CreateInstance
-            </summary>
-        </member>
-        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.GetPropertyValue(System.Reflection.PropertyInfo,System.Object,System.Globalization.CultureInfo)">
-            <summary>
-            GetPropertyValue
-            </summary>
-        </member>
-        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.SetPropertyValue(System.Reflection.PropertyInfo,System.Object,System.Object,System.Globalization.CultureInfo)">
-            <summary>
-            SetPropertyValue
-            </summary>
-        </member>
-        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.CreateDelegate(System.Type,System.Object,System.String)">
-            <summary>
-            CreateDelegate
-            </summary>
-        </member>
-        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.AddEventHandler(System.Reflection.EventInfo,System.Object,System.Delegate)">
-            <summary>
-            AddEventHandler
             </summary>
         </member>
     </members>

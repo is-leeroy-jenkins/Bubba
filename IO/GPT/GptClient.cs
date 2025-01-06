@@ -98,7 +98,7 @@ namespace Bubba
         {
             _model = model;
             _temperature = temperature;
-            _maximumCompletionTokens = tokens;
+            _maximumTokens = tokens;
         }
 
         /// <summary>
@@ -225,18 +225,18 @@ namespace Bubba
         /// <value>
         /// The maximum tokens.
         /// </value>
-        public int MaxCompletionTokens
+        public int MaxTokens
         {
             get
             {
-                return _maximumCompletionTokens;
+                return _maximumTokens;
             }
             private set
             {
-                if( _maximumCompletionTokens != value )
+                if( _maximumTokens != value )
                 {
-                    _maximumCompletionTokens = value;
-                    OnPropertyChanged( nameof( MaxCompletionTokens ) );
+                    _maximumTokens = value;
+                    OnPropertyChanged( nameof( MaxTokens ) );
                 }
             }
         }
@@ -463,7 +463,7 @@ namespace Bubba
                 {
                     model = _model,
                     prompt,
-                    max_tokens = _maximumCompletionTokens,
+                    max_tokens = _maximumTokens,
                     user = _user,
                     _temperature,
                     frequency_penalty = 0.0,
@@ -557,7 +557,7 @@ namespace Bubba
                 {
                     model = _model,
                     prompt = ProcessQuotes( userPrompt ),
-                    max_tokens = _maximumCompletionTokens,
+                    max_tokens = _maximumTokens,
                     temperature = _temp,
                     user = _user,
                     frequency_penalty = 0.0,

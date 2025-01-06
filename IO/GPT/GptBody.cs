@@ -104,14 +104,16 @@ namespace Bubba
         /// <param name = "userPrompt" > </param>
         /// <param name="model">The model.</param>
         /// <param name = "systemPrompt" > </param>
-        public GptBody( string systemPrompt, string userPrompt, string model = "gpt-4o" )
+        /// <param name = "format" > </param>
+        public GptBody( string systemPrompt, string userPrompt, 
+            string model = "gpt-4o", string format = "text" )
             : this( )
         {
             _model = model;
             _systemMessage = new SystemMessage( systemPrompt );
             _userMessage = new UserMessage( userPrompt );
-            _data.Add( "response_format", _responseFormat );
-            _data.Add( "model", _model );
+            _data.Add( "response_format", format );
+            _data.Add( "model", model );
             _messages.Add( _systemMessage );
             _messages.Add( _userMessage );
         }

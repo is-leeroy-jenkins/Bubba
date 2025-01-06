@@ -1,10 +1,10 @@
 ﻿// ******************************************************************************************
 //     Assembly:                Bubba
 //     Author:                  Terry D. Eppler
-//     Created:                 12-11-2024
+//     Created:                 01-05-2025
 // 
 //     Last Modified By:        Terry D. Eppler
-//     Last Modified On:        12-11-2024
+//     Last Modified On:        01-05-2025
 // ******************************************************************************************
 // <copyright file="GptBase.cs" company="Terry D. Eppler">
 //    Bubba is a small and simple windows (wpf) application for interacting with the OpenAI API
@@ -22,6 +22,22 @@
 //    subject to the following conditions:
 // 
 //    The above copyright notice and this permission notice shall be included in all
+//    copies or substantial portions of the Software.
+// 
+//    THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,
+//    INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+//    FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT.
+//    IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
+//    DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,
+//    ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
+//    DEALINGS IN THE SOFTWARE.
+// 
+//    You can contact me at:  terryeppler@gmail.com or eppler.terry@epa.gov
+// </copyright>
+// <summary>
+//   GptBase.cs
+// </summary>
+// ******************************************************************************************
 
 //    copies or substantial portions of the Software.
 // 
@@ -59,7 +75,7 @@ namespace Bubba
     [ SuppressMessage( "ReSharper", "FieldCanBeMadeReadOnly.Global" ) ]
     [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
     [ SuppressMessage( "ReSharper", "VirtualMemberNeverOverridden.Global" ) ]
-    public abstract class GptBase : PropertyChangedBase 
+    public abstract class GptBase : PropertyChangedBase
     {
         /// <summary>
         /// The busy
@@ -156,7 +172,7 @@ namespace Bubba
         /// <summary>
         /// The maximum tokens
         /// </summary>
-        private protected int _maximumCompletionTokens;
+        private protected int _maximumTokens;
 
         /// <summary>
         /// The role
@@ -229,10 +245,10 @@ namespace Bubba
             }
             set
             {
-                if(_data != value)
+                if( _data != value )
                 {
                     _data = value;
-                    OnPropertyChanged(nameof(Data));
+                    OnPropertyChanged( nameof( Data ) );
                 }
             }
         }
@@ -289,10 +305,10 @@ namespace Bubba
             }
             set
             {
-                if(_httpClient != value)
+                if( _httpClient != value )
                 {
                     _httpClient = value;
-                    OnPropertyChanged(nameof(HttpClient));
+                    OnPropertyChanged( nameof( HttpClient ) );
                 }
             }
         }
@@ -304,18 +320,19 @@ namespace Bubba
         /// <param name="payload">The payload.</param>
         /// <returns></returns>
         /// <exception cref="System.Net.Http.HttpRequestException">Error: {_response.StatusCode}, {_error}</exception>
-        private protected virtual async Task<string> PostJsonAsync(string endpoint, object payload)
+        private protected virtual async Task<string> PostJsonAsync( string endpoint,
+            object payload )
         {
             var _url = new GptEndPoint( ).BaseUrl;
-            _httpClient.DefaultRequestHeaders.Clear();
-            _httpClient.DefaultRequestHeaders.Add("Authorization", $"Bearer {ApiKey}");
+            _httpClient.DefaultRequestHeaders.Clear( );
+            _httpClient.DefaultRequestHeaders.Add( "Authorization", $"Bearer {ApiKey}" );
             var _json = JsonConvert.SerializeObject( payload );
             var _content = new StringContent( _json, Encoding.UTF8, "application/json" );
             var _response = await _httpClient.PostAsync( $"{_url}/{endpoint}", _content );
-            if(!_response.IsSuccessStatusCode )
+            if( !_response.IsSuccessStatusCode )
             {
-                var _error = await _response.Content.ReadAsStringAsync();
-                throw new HttpRequestException($"Error: {_response.StatusCode}, {_error}");
+                var _error = await _response.Content.ReadAsStringAsync( );
+                throw new HttpRequestException( $"Error: {_response.StatusCode}, {_error}" );
             }
 
             return await _response.Content.ReadAsStringAsync( );

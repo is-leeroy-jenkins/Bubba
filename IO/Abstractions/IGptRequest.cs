@@ -105,7 +105,7 @@ namespace Bubba
         /// <value>
         /// The maximum tokens.
         /// </value>
-        int MaximumCompletionTokens { get; set; }
+        int MaximumTokens { get; set; }
 
         /// <summary>
         /// Gets or sets a value indicating whether this

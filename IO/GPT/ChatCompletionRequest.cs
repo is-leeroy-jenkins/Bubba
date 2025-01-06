@@ -6,7 +6,7 @@
 //     Last Modified By:        Terry D. Eppler
 //     Last Modified On:        12-10-2024
 // ******************************************************************************************
-// <copyright file="ChatCompletion.cs" company="Terry D. Eppler">
+// <copyright file="ChatCompletionRequest.cs" company="Terry D. Eppler">
 //    Bubba is a small and simple windows (wpf) application for interacting with the OpenAI API
 //    that's developed in C-Sharp under the MIT license.C#.
 // 
@@ -35,7 +35,7 @@
 //    You can contact me at:  terryeppler@gmail.com or eppler.terry@epa.gov
 // </copyright>
 // <summary>
-//   ChatCompletion.cs
+//   ChatCompletionRequest.cs
 // </summary>
 // ******************************************************************************************
 
@@ -48,34 +48,30 @@ namespace Bubba
     /// <summary>
     /// </summary>
     [ SuppressMessage( "ReSharper", "UnusedType.Global" ) ]
-    public class ChatCompletion : GptRequestBase
+    public class ChatCompletionRequest : GptRequest
     {
         /// <summary>
         /// Developer-defined tags and values used for filtering completions
         /// </summary>
         private protected IDictionary<string, object> _metaData;
 
-        /// <summary>
-        /// The data
-        /// </summary>
-        private protected IDictionary<string, object> _data;
-
         /// <inheritdoc />
         /// <summary>
         /// Initializes a new instance of the
-        /// <see cref="T:Bubba.ChatCompletion" /> class.
+        /// <see cref="T:Bubba.ChatCompletionRequest" /> class.
         /// </summary>
-        public ChatCompletion( )
+        public ChatCompletionRequest( )
             : base( )
         {
         }
 
+        /// <inheritdoc />
         /// <summary>
         /// Initializes a new instance of the
-        /// <see cref="ChatCompletion"/> class.
+        /// <see cref="T:Bubba.ChatCompletionRequest" /> class.
         /// </summary>
         /// <param name="config">The configuration.</param>
-        public ChatCompletion( GptParam config )
+        public ChatCompletionRequest( GptParam config )
         {
             _header = new GptHeader();
             _endPoint = new GptEndPoint( ).TextGeneration;
@@ -84,7 +80,7 @@ namespace Bubba
         /// <inheritdoc />
         /// <summary>
         /// Initializes a new instance of the
-        /// <see cref="T:Bubba.ChatCompletion" /> class.
+        /// <see cref="T:Bubba.ChatCompletionRequest" /> class.
         /// </summary>
         /// <param name="user">The user.</param>
         /// <param name="system">The system.</param>
@@ -97,11 +93,11 @@ namespace Bubba
         /// <param name="presence">The presence.</param>
         /// <param name="topPercent">The top percent.</param>
         /// <param name="temperature">The temperature.</param>
-        /// <param name="completionTokens">The completion tokens.</param>
-        public ChatCompletion( string user, string system, string model = "gpt-4o",
+        /// <param name="tokens">The completion tokens.</param>
+        public ChatCompletionRequest( string user, string system, string model = "gpt-4o",
             string format = "text", bool store = false, bool stream = false,
             int number = 1, double frequency = 0.0, double presence = 0.0,
-            double topPercent = 1.0, double temperature = 1.0, int completionTokens = 2048 )
+            double topPercent = 1.0, double temperature = 1.0, int tokens = 2048 )
         {
             _header = new GptHeader( );
             _endPoint = new GptEndPoint( ).TextGeneration;
@@ -112,27 +108,27 @@ namespace Bubba
             _frequency = frequency;
             _temperature = temperature;
             _topPercent = topPercent;
-            _maximumCompletionTokens = completionTokens;
+            _maximumTokens = tokens;
         }
 
         /// <inheritdoc />
         /// <summary>
         /// Initializes a new instance of the
-        /// <see cref="T:Bubba.ChatCompletion" /> class.
+        /// <see cref="T:Bubba.ChatCompletionRequest" /> class.
         /// </summary>
-        /// <param name="chatCompletion">The chatCompletion.</param>
-        public ChatCompletion( ChatCompletion chatCompletion )
+        /// <param name="chatCompletionRequest">The chatCompletionRequest.</param>
+        public ChatCompletionRequest( ChatCompletionRequest chatCompletionRequest )
         {
             _header = new GptHeader( );
-            _endPoint = chatCompletion.EndPoint;
-            _store = chatCompletion.Store;
-            _stream = chatCompletion.Stream;
-            _number = chatCompletion.Number;
-            _presence = chatCompletion.Presence;
-            _frequency = chatCompletion.Frequency;
-            _temperature = chatCompletion.Temperature;
-            _topPercent = chatCompletion.TopPercent;
-            _maximumCompletionTokens = chatCompletion.MaximumCompletionTokens;
+            _endPoint = chatCompletionRequest.EndPoint;
+            _store = chatCompletionRequest.Store;
+            _stream = chatCompletionRequest.Stream;
+            _number = chatCompletionRequest.Number;
+            _presence = chatCompletionRequest.Presence;
+            _frequency = chatCompletionRequest.Frequency;
+            _temperature = chatCompletionRequest.Temperature;
+            _topPercent = chatCompletionRequest.TopPercent;
+            _maximumTokens = chatCompletionRequest.MaximumTokens;
         }
 
         /// <summary>
@@ -164,7 +160,7 @@ namespace Bubba
             frequency = _frequency;
             temperature = _temperature;
             topPercent = _topPercent;
-            tokens = _maximumCompletionTokens;
+            tokens = _maximumTokens;
         }
 
         /// <inheritdoc />
@@ -243,18 +239,18 @@ namespace Bubba
         /// <value>
         /// The maximum tokens.
         /// </value>
-        public override int MaximumCompletionTokens
+        public override int MaximumTokens
         {
             get
             {
-                return _maximumCompletionTokens;
+                return _maximumTokens;
             }
             set
             {
-                if( _maximumCompletionTokens != value )
+                if( _maximumTokens != value )
                 {
-                    _maximumCompletionTokens = value;
-                    OnPropertyChanged( nameof( MaximumCompletionTokens ) );
+                    _maximumTokens = value;
+                    OnPropertyChanged( nameof( MaximumTokens ) );
                 }
             }
         }
@@ -286,7 +282,7 @@ namespace Bubba
         /// <inheritdoc />
         /// <summary>
         /// Gets or sets a value indicating whether this
-        /// <see cref="P:Bubba.ChatCompletion.Stream" /> is stream.
+        /// <see cref="P:Bubba.ChatCompletionRequest.Stream" /> is stream.
         /// </summary>
         /// <value>
         ///   <c>true</c> if stream; otherwise, <c>false</c>.

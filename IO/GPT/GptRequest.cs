@@ -65,7 +65,7 @@ namespace Bubba
             _frequency = 0.0;
             _topPercent = 1.0;
             _temperature = 1.0;
-            _maximumCompletionTokens = 2048;
+            _maximumTokens = 2048;
             _model = "gpt-4o";
             _endPoint = "https://api.openai.com/v1/chat/completions";
             _number = 1;
@@ -87,11 +87,11 @@ namespace Bubba
         /// <param name="presence">The presence.</param>
         /// <param name = "topPercent" > </param>
         /// <param name="temperature">The temperature.</param>
-        /// <param name="completionTokens" </param>/param>
+        /// <param name="tokens" </param>/param>
         public GptRequest( string system, string user, string model,
             string endpoint, int number = 1, bool store = false,
             bool stream = false, double frequency = 0.0, double presence = 0.0, 
-            double topPercent = 1.0, double temperature = 1.0, int completionTokens = 2048 )
+            double topPercent = 1.0, double temperature = 1.0, int tokens = 2048 )
         {
             _header = new GptHeader( );
             _body = new GptBody( system, user, model );
@@ -103,7 +103,7 @@ namespace Bubba
             _presence = presence;
             _topPercent = topPercent;
             _temperature = temperature;
-            _maximumCompletionTokens = completionTokens;
+            _maximumTokens = tokens;
         }
 
         /// <inheritdoc />
@@ -125,7 +125,7 @@ namespace Bubba
             _presence = request.Presence;
             _topPercent = request.TopPercent;
             _temperature = request.Temperature;
-            _maximumCompletionTokens = request.MaximumCompletionTokens;
+            _maximumTokens = request.MaximumTokens;
         }
 
         /// <summary>
@@ -162,7 +162,7 @@ namespace Bubba
             frequency = _frequency;
             temperature = _temperature;
             topPercent = _topPercent;
-            tokens = _maximumCompletionTokens;
+            tokens = _maximumTokens;
         }
 
         /// <inheritdoc />

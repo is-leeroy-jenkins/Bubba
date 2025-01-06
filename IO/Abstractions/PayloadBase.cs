@@ -78,7 +78,7 @@ namespace Bubba
         /// An upper bound for the number of tokens
         /// that can be generated for a completion
         /// </summary>
-        private protected int _maxCompletionTokens;
+        private protected int _maximumTokens;
 
         /// <summary>
         /// TNumber between -2.0 and 2.0. Positive values penalize new
@@ -188,18 +188,18 @@ namespace Bubba
         /// <value>
         /// The maximum tokens.
         /// </value>
-        public int MaxCompletionTokens
+        public int MaximumTokens
         {
             get
             {
-                return _maxCompletionTokens;
+                return _maximumTokens;
             }
             set
             {
-                if( _maxCompletionTokens != value )
+                if( _maximumTokens != value )
                 {
-                    _maxCompletionTokens = value;
-                    OnPropertyChanged( nameof( MaxCompletionTokens ) );
+                    _maximumTokens = value;
+                    OnPropertyChanged( nameof( MaximumTokens ) );
                 }
             }
         }

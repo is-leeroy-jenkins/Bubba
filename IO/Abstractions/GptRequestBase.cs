@@ -145,18 +145,18 @@ namespace Bubba
         /// <value>
         /// The maximum tokens.
         /// </value>
-        public virtual int MaximumCompletionTokens
+        public virtual int MaximumTokens
         {
             get
             {
-                return _maximumCompletionTokens;
+                return _maximumTokens;
             }
             set
             {
-                if( _maximumCompletionTokens != value )
+                if( _maximumTokens != value )
                 {
-                    _maximumCompletionTokens = value;
-                    OnPropertyChanged( nameof( MaximumCompletionTokens ) );
+                    _maximumTokens = value;
+                    OnPropertyChanged( nameof( MaximumTokens ) );
                 }
             }
         }

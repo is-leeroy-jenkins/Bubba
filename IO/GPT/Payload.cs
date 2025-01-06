@@ -67,7 +67,7 @@ namespace Bubba
         {
             _id = 1;
             _temperature = 0.7;
-            _maxCompletionTokens = 2048;
+            _maximumTokens = 2048;
             _frequency = 0.0;
             _presence = 0.0;
             _store = false;
@@ -103,7 +103,7 @@ namespace Bubba
             _id = id;
             _model = "gpt-4o";
             _temperature = temperature;
-            _maxCompletionTokens = maxTokens;
+            _maximumTokens = maxTokens;
             _frequency = frequency;
             _presence = presence;
             _systemPrompt = systemPrompt;
@@ -126,7 +126,7 @@ namespace Bubba
         {
             _id = payload.Id;
             _temperature = payload.Temperature;
-            _maxCompletionTokens = payload.MaxCompletionTokens;
+            _maximumTokens = payload.MaximumTokens;
             _frequency = payload.Frequency;
             _presence = payload.Presence;
             _systemPrompt = payload.Prompt;
@@ -157,7 +157,7 @@ namespace Bubba
             temperature = _temperature;
             frequency = _frequency;
             presence = _presence;
-            maximumTokens = _maxCompletionTokens;
+            maximumTokens = _maximumTokens;
             store = _store;
             stream = _stream;
         }
@@ -221,7 +221,7 @@ namespace Bubba
             {
                 Model = _model,
                 Prompt = _systemPrompt,
-                MaxCompletionTokens = _maxCompletionTokens,
+                MaximumTokens = _maximumTokens,
                 Temperature = _temperature,
                 ResponseFormat = "text" 
             };
@@ -273,7 +273,7 @@ namespace Bubba
                     {
                         model = _model,
                         _prompt = _systemPrompt,
-                        max_completion_tokens = _maxCompletionTokens,
+                        max_completion_tokens = _maximumTokens,
                         user = _id,
                         _temperature,
                         frequency_penalty = _frequency,
@@ -324,7 +324,7 @@ namespace Bubba
                     {
                         model = _model,
                         prompt,
-                        max_completion_tokens = _maxCompletionTokens,
+                        max_completion_tokens = _maximumTokens,
                         user = _id,
                         _temperature,
                         frequency_penalty = _frequency,
