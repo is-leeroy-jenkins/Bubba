@@ -50,23 +50,24 @@ namespace Bubba
     [ SuppressMessage( "ReSharper", "InternalOrPrivateMemberNotDocumented" ) ]
     [ SuppressMessage( "ReSharper", "UnusedType.Global" ) ]
     [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
-    public class FineTuningParameter : GptParam
+    public class FineTuningParameter : GptParameter 
     {
         /// <inheritdoc />
         /// <summary>
         /// Initializes a new instance of the
         /// <see cref="T:Bubba.FineTuningParameter" /> class.
         /// </summary>
-        public FineTuningParameter( )
+        public FineTuningParameter( ) 
+            : base( )
         {
             _model = "gpt-4o-mini";
             _store = false;
             _stream = false;
             _number = 1;
-            _temperature = 1.0;
-            _topPercent = 1.0;
-            _frequencyPenalty = 0.0;
-            _presencePenalty = 0.0;
+            _temperature = 0.18;
+            _topPercent = 0.11;
+            _frequencyPenalty = 0.00;
+            _presencePenalty = 0.00;
             _maximumTokens = 2048;
             _responseFormat = "text";
         }
@@ -74,7 +75,7 @@ namespace Bubba
         /// <inheritdoc />
         /// <summary>
         /// Gets or sets a value indicating whether this
-        /// <see cref="T:Bubba.GptParam" /> is store.
+        /// <see cref="T:Bubba.ParameterBase" /> is store.
         /// </summary>
         /// <value>
         ///   <c>true</c> if store; otherwise, <c>false</c>.
@@ -98,7 +99,7 @@ namespace Bubba
         /// <inheritdoc />
         /// <summary>
         /// Gets or sets a value indicating whether this
-        /// <see cref="T:Bubba.GptParam" /> is stream.
+        /// <see cref="T:Bubba.ParameterBase" /> is stream.
         /// </summary>
         /// <value>
         ///   <c>true</c> if stream; otherwise, <c>false</c>.

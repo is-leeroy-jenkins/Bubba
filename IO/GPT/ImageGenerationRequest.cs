@@ -42,11 +42,8 @@
 namespace Bubba
 {
     using System;
-    using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
-    using System.Linq;
-    using System.Text;
-    using System.Threading.Tasks;
+    using System.Net.Http;
 
     /// <inheritdoc />
     /// <summary>
@@ -62,6 +59,40 @@ namespace Bubba
         public ImageGenerationRequest( )
             : base( )
         {
+            _entry = new object( );
+            _httpClient = new HttpClient( );
+            _presence = 0.00;
+            _frequency = 0.00;
+            _topPercent = 0.11;
+            _temperature = 0.18;
+            _maximumTokens = 2048;
+            _model = "dall-e";
+            _endPoint = new GptEndPoint( ).ImageGeneration;
+            _number = 1;
+        }
+
+        /// <inheritdoc />
+        /// <summary>
+        /// Gets or sets a value indicating whether this
+        /// <see cref="P:Bubba.GptRequest.HttpClient" /> is store.
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if store; otherwise, <c>false</c>.
+        /// </value>
+        public override HttpClient HttpClient
+        {
+            get
+            {
+                return _httpClient;
+            }
+            set
+            {
+                if(_httpClient != value)
+                {
+                    _httpClient = value;
+                    OnPropertyChanged(nameof(HttpClient));
+                }
+            }
         }
     }
 }

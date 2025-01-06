@@ -73,8 +73,8 @@ namespace Bubba
             _entry = new object( );
             _presence = 0.0;
             _frequency = 0.0;
-            _topPercent = 1.0;
-            _temperature = 1.0;
+            _topPercent = 0.11;
+            _temperature = 0.18;
             _maximumTokens = 2048;
             _model = "gpt-4o";
             _endPoint = "https://api.openai.com/v1/chat/completions";
@@ -175,7 +175,7 @@ namespace Bubba
         /// <value>
         /// The choices.
         /// </value>
-        public IList<GptChoice> Choices
+        public virtual IList<GptChoice> Choices
         {
             get
             {

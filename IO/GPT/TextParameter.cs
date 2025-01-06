@@ -1,10 +1,10 @@
 ﻿// ******************************************************************************************
 //     Assembly:                Bubba
 //     Author:                  Terry D. Eppler
-//     Created:                 01-05-2025
+//     Created:                 01-06-2025
 // 
 //     Last Modified By:        Terry D. Eppler
-//     Last Modified On:        01-05-2025
+//     Last Modified On:        01-06-2025
 // ******************************************************************************************
 // <copyright file="TextParameter.cs" company="Terry D. Eppler">
 //    Bubba is a small and simple windows (wpf) application for interacting with the OpenAI API
@@ -48,32 +48,78 @@ namespace Bubba
     /// <summary>
     /// </summary>
     [ SuppressMessage( "ReSharper", "UnusedType.Global" ) ]
-    [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
-    public class TextParameter : GptParam
+    public class TextParameter : GptParameter
     {
-        /// <inheritdoc />
         /// <summary>
         /// Initializes a new instance of the
-        /// <see cref="T:Bubba.TextParameter" /> class.
+        /// <see cref="TextParameter"/> class.
         /// </summary>
+        /// <inheritdoc />
         public TextParameter( )
+            : base( )
         {
             _model = "gpt-4o";
             _store = false;
             _stream = false;
             _number = 1;
-            _temperature = 1.0;
-            _topPercent = 1.0;
-            _frequencyPenalty = 0.0;
-            _presencePenalty = 0.0;
+            _temperature = 0.18;
+            _topPercent = 0.11;
+            _frequencyPenalty = 0.00;
+            _presencePenalty = 0.00;
             _maximumTokens = 2048;
             _responseFormat = "text";
+        }
+        
+        /// <inheritdoc />
+        /// <summary>
+        /// THe number 'n' of responses generatred.
+        /// </summary>
+        /// <value>
+        /// The user identifier.
+        /// </value>
+        public override int Number
+        {
+            get
+            {
+                return _number;
+            }
+            set
+            {
+                if( _number != value )
+                {
+                    _number = value;
+                    OnPropertyChanged( nameof( Number ) );
+                }
+            }
+        }
+
+        /// <summary>
+        /// Gets the chat model.
+        /// </summary>
+        /// <value>
+        /// The chat model.
+        /// </value>
+        /// <inheritdoc />
+        public override string Model
+        {
+            get
+            {
+                return _model;
+            }
+            set
+            {
+                if( _model != value )
+                {
+                    _model = value;
+                    OnPropertyChanged( nameof( Model ) );
+                }
+            }
         }
 
         /// <inheritdoc />
         /// <summary>
         /// Gets or sets a value indicating whether this
-        /// <see cref="T:Bubba.GptParam" /> is store.
+        /// <see cref="T:Bubba.ParameterBase" /> is store.
         /// </summary>
         /// <value>
         ///   <c>true</c> if store; otherwise, <c>false</c>.
@@ -97,7 +143,7 @@ namespace Bubba
         /// <inheritdoc />
         /// <summary>
         /// Gets or sets a value indicating whether this
-        /// <see cref="T:Bubba.GptParam" /> is stream.
+        /// <see cref="T:Bubba.ParameterBase" /> is stream.
         /// </summary>
         /// <value>
         ///   <c>true</c> if stream; otherwise, <c>false</c>.
@@ -217,6 +263,29 @@ namespace Bubba
                 {
                     _topPercent = value;
                     OnPropertyChanged( nameof( TopPercent ) );
+                }
+            }
+        }
+
+        /// <inheritdoc />
+        /// <summary>
+        /// Gets or sets the response format.
+        /// </summary>
+        /// <value>
+        /// The response format.
+        /// </value>
+        public override string ResponseFormat
+        {
+            get
+            {
+                return _responseFormat;
+            }
+            set
+            {
+                if( _responseFormat != value )
+                {
+                    _responseFormat = value;
+                    OnPropertyChanged( nameof( ResponseFormat ) );
                 }
             }
         }

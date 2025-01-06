@@ -49,7 +49,7 @@ namespace Bubba
     /// </summary>
     [ SuppressMessage( "ReSharper", "UnusedType.Global" ) ]
     [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
-    public class EmbeddingParameter : GptParam
+    public class EmbeddingParameter : GptParameter 
     {
         /// <inheritdoc />
         /// <summary>
@@ -57,15 +57,16 @@ namespace Bubba
         /// <see cref="T:Bubba.EmbeddingParameter" /> class.
         /// </summary>
         public EmbeddingParameter( )
+            : base( )
         {
             _model = "text-embedding-ada-002";
             _store = false;
             _stream = false;
             _number = 1;
-            _temperature = 1.0;
-            _topPercent = 1.0;
-            _frequencyPenalty = 0.0;
-            _presencePenalty = 0.0;
+            _temperature = 0.18;
+            _topPercent = 0.11;
+            _frequencyPenalty = 0.00;
+            _presencePenalty = 0.00;
             _maximumTokens = 2048;
             _responseFormat = "text";
         }
@@ -73,7 +74,7 @@ namespace Bubba
         /// <inheritdoc />
         /// <summary>
         /// Gets or sets a value indicating whether this
-        /// <see cref="T:Bubba.GptParam" /> is store.
+        /// <see cref="T:Bubba.ParameterBase" /> is store.
         /// </summary>
         /// <value>
         ///   <c>true</c> if store; otherwise, <c>false</c>.
@@ -97,7 +98,7 @@ namespace Bubba
         /// <inheritdoc />
         /// <summary>
         /// Gets or sets a value indicating whether this
-        /// <see cref="T:Bubba.GptParam" /> is stream.
+        /// <see cref="T:Bubba.ParameterBase" /> is stream.
         /// </summary>
         /// <value>
         ///   <c>true</c> if stream; otherwise, <c>false</c>.

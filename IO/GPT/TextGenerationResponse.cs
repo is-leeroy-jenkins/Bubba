@@ -44,16 +44,24 @@ namespace Bubba
     using System;
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
-    using System.Linq;
-    using System.Text;
-    using System.Threading.Tasks;
 
     /// <inheritdoc />
     /// <summary>
     /// </summary>
     [ SuppressMessage( "ReSharper", "UnusedType.Global" ) ]
+    [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
     public class TextGenerationResponse : GptResponse
     {
+        /// <summary>
+        /// The transcribed text
+        /// </summary>
+        private protected string _generatedText;
+
+        /// <summary>
+        /// The raw response
+        /// </summary>
+        private protected string _rawResponse;
+
         /// <summary>
         /// Initializes a new instance of the
         /// <see cref="TextGenerationResponse"/> class.
@@ -62,6 +70,190 @@ namespace Bubba
         public TextGenerationResponse( )
             : base( )
         {
+            _created = DateTime.Now;
+        }
+
+        /// <summary>
+        /// Gets or sets the generated text.
+        /// </summary>
+        /// <value>
+        /// The generated text.
+        /// </value>
+        /// 
+        public string GeneratedText
+        {
+            get
+            {
+                return _generatedText;
+            }
+            set
+            {
+                if( _generatedText != value )
+                {
+                    _generatedText = value;
+                    OnPropertyChanged( nameof( GeneratedText ) );
+                }
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the raw response.
+        /// </summary>
+        /// <value>
+        /// The raw response.
+        /// </value>
+        public string RawResponse
+        {
+            get
+            {
+                return _rawResponse;
+            }
+            set
+            {
+                if( _rawResponse != value )
+                {
+                    _rawResponse = value;
+                    OnPropertyChanged( nameof( RawResponse ) );
+                }
+            }
+        }
+
+        /// <inheritdoc />
+        /// <summary>
+        /// Gets or sets the identifier.
+        /// </summary>
+        /// <value>
+        /// The identifier.
+        /// </value>
+        public override string Id
+        {
+            get
+            {
+                return _id;
+            }
+            set
+            {
+                if( _id != value )
+                {
+                    _id = value;
+                    OnPropertyChanged( nameof( Id ) );
+                }
+            }
+        }
+
+        /// <inheritdoc />
+        /// <summary>
+        /// Gets or sets the object.
+        /// </summary>
+        /// <value>
+        /// The object.
+        /// </value>
+        public override string Object
+        {
+            get
+            {
+                return _object;
+            }
+            set
+            {
+                if( _object != value )
+                {
+                    _object = value;
+                    OnPropertyChanged( nameof( Object ) );
+                }
+            }
+        }
+
+        /// <inheritdoc />
+        /// <summary>
+        /// Gets or sets the created.
+        /// </summary>
+        /// <value>
+        /// The created.
+        /// </value>
+        public override DateTime Created
+        {
+            get
+            {
+                return _created;
+            }
+            set
+            {
+                if( _created != value )
+                {
+                    _created = value;
+                    OnPropertyChanged( nameof( Created ) );
+                }
+            }
+        }
+
+        /// <inheritdoc />
+        /// <summary>
+        /// Gets or sets the model.
+        /// </summary>
+        /// <value>
+        /// The model.
+        /// </value>
+        public override string Model
+        {
+            get
+            {
+                return _model;
+            }
+            set
+            {
+                if( _model != value )
+                {
+                    _model = value;
+                    OnPropertyChanged( nameof( Model ) );
+                }
+            }
+        }
+
+        /// <inheritdoc />
+        /// <summary>
+        /// Gets or sets the choices.
+        /// </summary>
+        /// <value>
+        /// The choices.
+        /// </value>
+        public override IList<GptChoice> Choices
+        {
+            get
+            {
+                return _choices;
+            }
+            set
+            {
+                if( _choices != value )
+                {
+                    _choices = value;
+                    OnPropertyChanged( nameof( Choices ) );
+                }
+            }
+        }
+
+        /// <inheritdoc />
+        /// <summary>
+        /// Gets or sets the usage.
+        /// </summary>
+        /// <value>
+        /// The usage.
+        /// </value>
+        public override GptUsage Usage
+        {
+            get
+            {
+                return _usage;
+            }
+            set
+            {
+                if( _usage != value )
+                {
+                    _usage = value;
+                    OnPropertyChanged( nameof( Usage ) );
+                }
+            }
         }
     }
 }

@@ -1,12 +1,12 @@
 ﻿// ******************************************************************************************
 //     Assembly:                Bubba
 //     Author:                  Terry D. Eppler
-//     Created:                 01-06-2025
+//     Created:                 12-12-2024
 // 
 //     Last Modified By:        Terry D. Eppler
-//     Last Modified On:        01-06-2025
+//     Last Modified On:        12-12-2024
 // ******************************************************************************************
-// <copyright file="TranscriptionResponse.cs" company="Terry D. Eppler">
+// <copyright file="RequestTypes.cs" company="Terry D. Eppler">
 //    Bubba is a small and simple windows (wpf) application for interacting with the OpenAI API
 //    that's developed in C-Sharp under the MIT license.C#.
 // 
@@ -35,7 +35,7 @@
 //    You can contact me at:  terryeppler@gmail.com or eppler.terry@epa.gov
 // </copyright>
 // <summary>
-//   TranscriptionResponse.cs
+//   RequestTypes.cs
 // </summary>
 // ******************************************************************************************
 
@@ -44,18 +44,35 @@ namespace Bubba
     using System;
     using System.Diagnostics.CodeAnalysis;
 
-    /// <inheritdoc />
     /// <summary>
+    /// 
     /// </summary>
     [ SuppressMessage( "ReSharper", "UnusedType.Global" ) ]
-    public class TranscriptionResponse : GptResponse
+    public enum RequestTypes
     {
-        /// <inheritdoc />
         /// <summary>
+        /// The chat completion
         /// </summary>
-        public TranscriptionResponse( )
-            : base( )
-        {
-        }
+        ChatCompletion,
+
+        /// <summary>
+        /// The text generation
+        /// </summary>
+        TextGeneration,
+
+        /// <summary>
+        /// The image generation
+        /// </summary>
+        ImageGeneration,
+
+        /// <summary>
+        /// The speech generation
+        /// </summary>
+        SpeechGeneration,
+
+        /// <summary>
+        /// The sound generation
+        /// </summary>
+        SpeechTranscription
     }
 }

@@ -6,7 +6,7 @@
 //     Last Modified By:        Terry D. Eppler
 //     Last Modified On:        01-06-2025
 // ******************************************************************************************
-// <copyright file="GptParam.cs" company="Terry D. Eppler">
+// <copyright file="ParameterBase.cs" company="Terry D. Eppler">
 //    Bubba is a small and simple windows (wpf) application for interacting with the OpenAI API
 //    that's developed in C-Sharp under the MIT license.C#.
 // 
@@ -35,17 +35,14 @@
 //    You can contact me at:  terryeppler@gmail.com or eppler.terry@epa.gov
 // </copyright>
 // <summary>
-//   GptParam.cs
+//   ParameterBase.cs
 // </summary>
 // ******************************************************************************************
 
 namespace Bubba
 {
     using System;
-    using System.ComponentModel;
     using System.Diagnostics.CodeAnalysis;
-    using System.Runtime.CompilerServices;
-    using OpenAI.Chat;
 
     /// <inheritdoc />
     /// <summary>
@@ -55,7 +52,7 @@ namespace Bubba
     [ SuppressMessage( "ReSharper", "UnusedType.Global" ) ]
     [ SuppressMessage( "ReSharper", "ClassCanBeSealed.Global" ) ]
     [ SuppressMessage( "ReSharper", "MemberCanBeProtected.Global" ) ]
-    public abstract class GptParam : PropertyChangedBase
+    public abstract class ParameterBase : PropertyChangedBase
     {
         /// <summary>
         /// The number responses to generate
@@ -145,7 +142,7 @@ namespace Bubba
         /// <value>
         /// The end point.
         /// </value>
-        public string EndPoint
+        public virtual string EndPoint
         {
             get
             {
@@ -231,7 +228,7 @@ namespace Bubba
 
         /// <summary>
         /// Gets or sets a value indicating whether this
-        /// <see cref="GptParam"/> is store.
+        /// <see cref="ParameterBase"/> is store.
         /// </summary>
         /// <value>
         ///   <c>true</c> if store; otherwise, <c>false</c>.
@@ -254,7 +251,7 @@ namespace Bubba
 
         /// <summary>
         /// Gets or sets a value indicating whether this
-        /// <see cref="GptParam"/> is stream.
+        /// <see cref="ParameterBase"/> is stream.
         /// </summary>
         /// <value>
         ///   <c>true</c> if stream; otherwise, <c>false</c>.

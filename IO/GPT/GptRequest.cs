@@ -61,10 +61,10 @@ namespace Bubba
         {
             _entry = new object( );
             _httpClient = new HttpClient( );
-            _presence = 0.0;
-            _frequency = 0.0;
-            _topPercent = 1.0;
-            _temperature = 1.0;
+            _presence = 0.00;
+            _frequency = 0.00;
+            _topPercent = 0.11;
+            _temperature = 0.18;
             _maximumTokens = 2048;
             _model = "gpt-4o";
             _endPoint = "https://api.openai.com/v1/chat/completions";
@@ -90,8 +90,8 @@ namespace Bubba
         /// <param name="tokens" </param>/param>
         public GptRequest( string system, string user, string model,
             string endpoint, int number = 1, bool store = false,
-            bool stream = false, double frequency = 0.0, double presence = 0.0, 
-            double topPercent = 1.0, double temperature = 1.0, int tokens = 2048 )
+            bool stream = false, double frequency = 0.00, double presence = 0.00, 
+            double topPercent = 0.11, double temperature = 0.18, int tokens = 2048 )
         {
             _header = new GptHeader( );
             _body = new GptBody( system, user, model );

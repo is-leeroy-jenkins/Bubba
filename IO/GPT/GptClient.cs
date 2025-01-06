@@ -69,7 +69,7 @@ namespace Bubba
         /// <summary>
         /// The parameter
         /// </summary>
-        private protected GptParam _param;
+        private protected ParameterBase _param;
 
         /// <inheritdoc />
         /// <summary>

@@ -42,17 +42,13 @@
 namespace Bubba
 {
     using System;
-    using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
-    using System.Linq;
-    using System.Text;
-    using System.Threading.Tasks;
 
     /// <inheritdoc />
     /// <summary>
     /// </summary>
     [ SuppressMessage( "ReSharper", "UnusedType.Global" ) ]
-    public class AudioParameter : GptParam
+    public class AudioParameter : GptParameter 
     {
         /// <inheritdoc />
         /// <summary>
@@ -60,9 +56,19 @@ namespace Bubba
         /// <see cref="T:Bubba.AudioParameter" /> class.
         /// </summary>
         public AudioParameter( )
+            : base( )
         {
             _model = "whisper-1";
             _number = 1;
+            _store = false;
+            _stream = false;
+            _number = 1;
+            _temperature = 0.18;
+            _topPercent = 0.11;
+            _frequencyPenalty = 0.00;
+            _presencePenalty = 0.00;
+            _maximumTokens = 2048;
+            _responseFormat = "url";
         }
 
         /// <inheritdoc />

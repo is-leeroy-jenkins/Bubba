@@ -42,14 +42,31 @@
 namespace Bubba
 {
     using System;
+    using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
 
     /// <inheritdoc />
     /// <summary>
     /// </summary>
     [ SuppressMessage( "ReSharper", "UnusedType.Global" ) ]
+    [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
     public class ImageGenerationResponse : GptResponse
     {
+        /// <summary>
+        /// The resource locations
+        /// </summary>
+        private protected IList<string> _resourceLocations;
+
+        /// <summary>
+        /// The transcribed text
+        /// </summary>
+        private protected string _transcribedText;
+
+        /// <summary>
+        /// The raw response
+        /// </summary>
+        private protected string _rawResponse;
+
         /// <summary>
         /// Initializes a new instance of the
         /// <see cref="ImageGenerationResponse"/> class.
@@ -58,6 +75,211 @@ namespace Bubba
         public ImageGenerationResponse( )
             : base( )
         {
+            _created = DateTime.Now;
+        }
+
+        /// <summary>
+        /// Gets or sets the image urls.
+        /// </summary>
+        /// <value>
+        /// The image urls.
+        /// </value>
+        public IList<string> ResourceLocations
+        {
+            get
+            {
+                return _resourceLocations;
+            }
+            set
+            {
+                if( _resourceLocations != value )
+                {
+                    _resourceLocations = value;
+                    OnPropertyChanged( nameof( ResourceLocations ) );
+                }
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the transcribed text.
+        /// </summary>
+        /// <value>
+        /// The transcribed text.
+        /// </value>
+        public string TranscribedText
+        {
+            get
+            {
+                return _transcribedText;
+            }
+            set
+            {
+                if( _transcribedText != value )
+                {
+                    _transcribedText = value;
+                    OnPropertyChanged( nameof( TranscribedText ) );
+                }
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the raw response.
+        /// </summary>
+        /// <value>
+        /// The raw response.
+        /// </value>
+        public string RawResponse
+        {
+            get
+            {
+                return _rawResponse;
+            }
+            set
+            {
+                if( _rawResponse != value )
+                {
+                    _rawResponse = value;
+                    OnPropertyChanged( nameof( RawResponse ) );
+                }
+            }
+        }
+
+        /// <inheritdoc />
+        /// <summary>
+        /// Gets or sets the identifier.
+        /// </summary>
+        /// <value>
+        /// The identifier.
+        /// </value>
+        public override string Id
+        {
+            get
+            {
+                return _id;
+            }
+            set
+            {
+                if( _id != value )
+                {
+                    _id = value;
+                    OnPropertyChanged( nameof( Id ) );
+                }
+            }
+        }
+
+        /// <inheritdoc />
+        /// <summary>
+        /// Gets or sets the object.
+        /// </summary>
+        /// <value>
+        /// The object.
+        /// </value>
+        public override string Object
+        {
+            get
+            {
+                return _object;
+            }
+            set
+            {
+                if( _object != value )
+                {
+                    _object = value;
+                    OnPropertyChanged( nameof( Object ) );
+                }
+            }
+        }
+
+        /// <inheritdoc />
+        /// <summary>
+        /// Gets or sets the created.
+        /// </summary>
+        /// <value>
+        /// The created.
+        /// </value>
+        public override DateTime Created
+        {
+            get
+            {
+                return _created;
+            }
+            set
+            {
+                if( _created != value )
+                {
+                    _created = value;
+                    OnPropertyChanged( nameof( Created ) );
+                }
+            }
+        }
+
+        /// <inheritdoc />
+        /// <summary>
+        /// Gets or sets the model.
+        /// </summary>
+        /// <value>
+        /// The model.
+        /// </value>
+        public override string Model
+        {
+            get
+            {
+                return _model;
+            }
+            set
+            {
+                if( _model != value )
+                {
+                    _model = value;
+                    OnPropertyChanged( nameof( Model ) );
+                }
+            }
+        }
+
+        /// <inheritdoc />
+        /// <summary>
+        /// Gets or sets the choices.
+        /// </summary>
+        /// <value>
+        /// The choices.
+        /// </value>
+        public override IList<GptChoice> Choices
+        {
+            get
+            {
+                return _choices;
+            }
+            set
+            {
+                if( _choices != value )
+                {
+                    _choices = value;
+                    OnPropertyChanged( nameof( Choices ) );
+                }
+            }
+        }
+
+        /// <inheritdoc />
+        /// <summary>
+        /// Gets or sets the usage.
+        /// </summary>
+        /// <value>
+        /// The usage.
+        /// </value>
+        public override GptUsage Usage
+        {
+            get
+            {
+                return _usage;
+            }
+            set
+            {
+                if( _usage != value )
+                {
+                    _usage = value;
+                    OnPropertyChanged( nameof( Usage ) );
+                }
+            }
         }
     }
 }

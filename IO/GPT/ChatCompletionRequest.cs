@@ -43,6 +43,7 @@ namespace Bubba
 {
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
+    using System.Net.Http;
 
     /// <inheritdoc />
     /// <summary>
@@ -63,6 +64,16 @@ namespace Bubba
         public ChatCompletionRequest( )
             : base( )
         {
+            _entry = new object( );
+            _httpClient = new HttpClient( );
+            _presence = 0.00;
+            _frequency = 0.00;
+            _topPercent = 0.11;
+            _temperature = 0.18;
+            _maximumTokens = 2048;
+            _model = "gpt-4o";
+            _endPoint = "https://api.openai.com/v1/chat/completions";
+            _number = 1;
         }
 
         /// <inheritdoc />
@@ -71,9 +82,9 @@ namespace Bubba
         /// <see cref="T:Bubba.ChatCompletionRequest" /> class.
         /// </summary>
         /// <param name="config">The configuration.</param>
-        public ChatCompletionRequest( GptParam config )
+        public ChatCompletionRequest( ParameterBase config )
         {
-            _header = new GptHeader();
+            _header = new GptHeader( );
             _endPoint = new GptEndPoint( ).TextGeneration;
         }
 
@@ -96,8 +107,8 @@ namespace Bubba
         /// <param name="tokens">The completion tokens.</param>
         public ChatCompletionRequest( string user, string system, string model = "gpt-4o",
             string format = "text", bool store = false, bool stream = false,
-            int number = 1, double frequency = 0.0, double presence = 0.0,
-            double topPercent = 1.0, double temperature = 1.0, int tokens = 2048 )
+            int number = 1, double frequency = 0.00, double presence = 0.00,
+            double topPercent = 0.11, double temperature = 0.18, int tokens = 2048 )
         {
             _header = new GptHeader( );
             _endPoint = new GptEndPoint( ).TextGeneration;
