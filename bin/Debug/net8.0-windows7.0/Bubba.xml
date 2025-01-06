@@ -20621,6 +20621,16 @@
             <see cref="T:Bubba.ImageGenerationRequest" /> class.
             </summary>
         </member>
+        <member name="P:Bubba.ImageGenerationRequest.HttpClient">
+            <inheritdoc />
+            <summary>
+            Gets or sets a value indicating whether this
+            <see cref="P:Bubba.GptRequest.HttpClient" /> is store.
+            </summary>
+            <value>
+              <c>true</c> if store; otherwise, <c>false</c>.
+            </value>
+        </member>
         <member name="T:Bubba.ImageGenerationResponse">
             <inheritdoc />
             <summary>
@@ -20963,6 +20973,127 @@
             </summary>
             <inheritdoc />
         </member>
+        <member name="P:Bubba.SpeechGenerationReqeust.HttpClient">
+            <inheritdoc />
+            <summary>
+            Gets or sets a value indicating whether this
+            <see cref="P:Bubba.GptRequest.HttpClient" /> is store.
+            </summary>
+            <value>
+              <c>true</c> if store; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:Bubba.SpeechGenerationReqeust.Messages">
+            <inheritdoc />
+            <summary>
+            Gets or sets the messages.
+            </summary>
+            <value>
+            The messages.
+            </value>
+        </member>
+        <member name="P:Bubba.SpeechGenerationReqeust.EndPoint">
+            <inheritdoc />
+            <summary>
+            Gets the end point.
+            </summary>
+            <value>
+            The end point.
+            </value>
+        </member>
+        <member name="P:Bubba.SpeechGenerationReqeust.Number">
+            <inheritdoc />
+            <summary>
+            THe number 'n' of responses returned by the API.
+            </summary>
+            <value>
+            The user identifier.
+            </value>
+        </member>
+        <member name="P:Bubba.SpeechGenerationReqeust.MaximumTokens">
+            <inheritdoc />
+            <summary>
+            Gets the maximum tokens.
+            </summary>
+            <value>
+            The maximum tokens.
+            </value>
+        </member>
+        <member name="P:Bubba.SpeechGenerationReqeust.Store">
+            <inheritdoc />
+            <summary>
+            Gets or sets a value indicating whether this
+            <see cref="T:Bubba.GptRequest" /> is store.
+            </summary>
+            <value>
+              <c>true</c> if store; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:Bubba.SpeechGenerationReqeust.Stream">
+            <inheritdoc />
+            <summary>
+            Gets or sets a value indicating whether this
+            <see cref="P:Bubba.ChatCompletionRequest.Stream" /> is stream.
+            </summary>
+            <value>
+              <c>true</c> if stream; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:Bubba.SpeechGenerationReqeust.Temperature">
+            <inheritdoc />
+            <summary>
+            A number between -2.0 and 2.0 Positive value decrease the
+            model's likelihood to repeat the same line verbatim.
+            </summary>
+            <value>
+            The temperature.
+            </value>
+        </member>
+        <member name="P:Bubba.SpeechGenerationReqeust.TopPercent">
+            <inheritdoc />
+            <summary>
+            An alternative to sampling with temperature,
+            called nucleus sampling, where the model considers
+            the results of the tokens with top_p probability mass.
+            So 0.1 means only the tokens comprising the top 10% probability
+            mass are considered. We generally recommend altering this
+            or temperature but not both.
+            </summary>
+            <value>
+            The top percent.
+            </value>
+        </member>
+        <member name="P:Bubba.SpeechGenerationReqeust.Frequency">
+            <inheritdoc />
+            <summary>
+            Number between -2.0 and 2.0. Positive values penalize new tokens
+            based on whether they appear in the text so far,
+            ncreasing the model's likelihood to talk about new topics.
+            </summary>
+            <value>
+            The frequency.
+            </value>
+        </member>
+        <member name="P:Bubba.SpeechGenerationReqeust.Presence">
+            <inheritdoc />
+            <summary>
+            Number between -2.0 and 2.0. Positive values penalize new tokens
+            based on whether they appear in the text so far,
+            ncreasing the model's likelihood to talk about new topics.
+            </summary>
+            <value>
+            The presence.
+            </value>
+        </member>
+        <member name="P:Bubba.SpeechGenerationReqeust.Body">
+            <inheritdoc />
+            <summary>
+            Gets the chat model.
+            </summary>
+            <value>
+            The chat model.
+            </value>
+        </member>
         <member name="T:Bubba.SpeechGenerationResponse">
             <inheritdoc />
             <summary>
@@ -21062,6 +21193,127 @@
         </member>
         <member name="M:Bubba.SpeechTranscriptionRequest.#ctor">
             <inheritdoc />
+        </member>
+        <member name="P:Bubba.SpeechTranscriptionRequest.HttpClient">
+            <inheritdoc />
+            <summary>
+            Gets or sets a value indicating whether this
+            <see cref="P:Bubba.GptRequest.HttpClient" /> is store.
+            </summary>
+            <value>
+              <c>true</c> if store; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:Bubba.SpeechTranscriptionRequest.Messages">
+            <inheritdoc />
+            <summary>
+            Gets or sets the messages.
+            </summary>
+            <value>
+            The messages.
+            </value>
+        </member>
+        <member name="P:Bubba.SpeechTranscriptionRequest.EndPoint">
+            <inheritdoc />
+            <summary>
+            Gets the end point.
+            </summary>
+            <value>
+            The end point.
+            </value>
+        </member>
+        <member name="P:Bubba.SpeechTranscriptionRequest.Number">
+            <inheritdoc />
+            <summary>
+            THe number 'n' of responses returned by the API.
+            </summary>
+            <value>
+            The user identifier.
+            </value>
+        </member>
+        <member name="P:Bubba.SpeechTranscriptionRequest.MaximumTokens">
+            <inheritdoc />
+            <summary>
+            Gets the maximum tokens.
+            </summary>
+            <value>
+            The maximum tokens.
+            </value>
+        </member>
+        <member name="P:Bubba.SpeechTranscriptionRequest.Store">
+            <inheritdoc />
+            <summary>
+            Gets or sets a value indicating whether this
+            <see cref="T:Bubba.GptRequest" /> is store.
+            </summary>
+            <value>
+              <c>true</c> if store; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:Bubba.SpeechTranscriptionRequest.Stream">
+            <inheritdoc />
+            <summary>
+            Gets or sets a value indicating whether this
+            <see cref="P:Bubba.ChatCompletionRequest.Stream" /> is stream.
+            </summary>
+            <value>
+              <c>true</c> if stream; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:Bubba.SpeechTranscriptionRequest.Temperature">
+            <inheritdoc />
+            <summary>
+            A number between -2.0 and 2.0 Positive value decrease the
+            model's likelihood to repeat the same line verbatim.
+            </summary>
+            <value>
+            The temperature.
+            </value>
+        </member>
+        <member name="P:Bubba.SpeechTranscriptionRequest.TopPercent">
+            <inheritdoc />
+            <summary>
+            An alternative to sampling with temperature,
+            called nucleus sampling, where the model considers
+            the results of the tokens with top_p probability mass.
+            So 0.1 means only the tokens comprising the top 10% probability
+            mass are considered. We generally recommend altering this
+            or temperature but not both.
+            </summary>
+            <value>
+            The top percent.
+            </value>
+        </member>
+        <member name="P:Bubba.SpeechTranscriptionRequest.Frequency">
+            <inheritdoc />
+            <summary>
+            Number between -2.0 and 2.0. Positive values penalize new tokens
+            based on whether they appear in the text so far,
+            ncreasing the model's likelihood to talk about new topics.
+            </summary>
+            <value>
+            The frequency.
+            </value>
+        </member>
+        <member name="P:Bubba.SpeechTranscriptionRequest.Presence">
+            <inheritdoc />
+            <summary>
+            Number between -2.0 and 2.0. Positive values penalize new tokens
+            based on whether they appear in the text so far,
+            ncreasing the model's likelihood to talk about new topics.
+            </summary>
+            <value>
+            The presence.
+            </value>
+        </member>
+        <member name="P:Bubba.SpeechTranscriptionRequest.Body">
+            <inheritdoc />
+            <summary>
+            Gets the chat model.
+            </summary>
+            <value>
+            The chat model.
+            </value>
         </member>
         <member name="T:Bubba.SpeechTranscriptionResponse">
             <inheritdoc />
@@ -21241,6 +21493,127 @@
             <see cref="T:Bubba.TextGenerationRequest"/> class.
             </summary>
             <inheritdoc />
+        </member>
+        <member name="P:Bubba.TextGenerationRequest.HttpClient">
+            <inheritdoc />
+            <summary>
+            Gets or sets a value indicating whether this
+            <see cref="P:Bubba.GptRequest.HttpClient" /> is store.
+            </summary>
+            <value>
+              <c>true</c> if store; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:Bubba.TextGenerationRequest.Messages">
+            <inheritdoc />
+            <summary>
+            Gets or sets the messages.
+            </summary>
+            <value>
+            The messages.
+            </value>
+        </member>
+        <member name="P:Bubba.TextGenerationRequest.EndPoint">
+            <inheritdoc />
+            <summary>
+            Gets the end point.
+            </summary>
+            <value>
+            The end point.
+            </value>
+        </member>
+        <member name="P:Bubba.TextGenerationRequest.Number">
+            <inheritdoc />
+            <summary>
+            THe number 'n' of responses returned by the API.
+            </summary>
+            <value>
+            The user identifier.
+            </value>
+        </member>
+        <member name="P:Bubba.TextGenerationRequest.MaximumTokens">
+            <inheritdoc />
+            <summary>
+            Gets the maximum tokens.
+            </summary>
+            <value>
+            The maximum tokens.
+            </value>
+        </member>
+        <member name="P:Bubba.TextGenerationRequest.Store">
+            <inheritdoc />
+            <summary>
+            Gets or sets a value indicating whether this
+            <see cref="T:Bubba.GptRequest" /> is store.
+            </summary>
+            <value>
+              <c>true</c> if store; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:Bubba.TextGenerationRequest.Stream">
+            <inheritdoc />
+            <summary>
+            Gets or sets a value indicating whether this
+            <see cref="P:Bubba.ChatCompletionRequest.Stream" /> is stream.
+            </summary>
+            <value>
+              <c>true</c> if stream; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:Bubba.TextGenerationRequest.Temperature">
+            <inheritdoc />
+            <summary>
+            A number between -2.0 and 2.0 Positive value decrease the
+            model's likelihood to repeat the same line verbatim.
+            </summary>
+            <value>
+            The temperature.
+            </value>
+        </member>
+        <member name="P:Bubba.TextGenerationRequest.TopPercent">
+            <inheritdoc />
+            <summary>
+            An alternative to sampling with temperature,
+            called nucleus sampling, where the model considers
+            the results of the tokens with top_p probability mass.
+            So 0.1 means only the tokens comprising the top 10% probability
+            mass are considered. We generally recommend altering this
+            or temperature but not both.
+            </summary>
+            <value>
+            The top percent.
+            </value>
+        </member>
+        <member name="P:Bubba.TextGenerationRequest.Frequency">
+            <inheritdoc />
+            <summary>
+            Number between -2.0 and 2.0. Positive values penalize new tokens
+            based on whether they appear in the text so far,
+            ncreasing the model's likelihood to talk about new topics.
+            </summary>
+            <value>
+            The frequency.
+            </value>
+        </member>
+        <member name="P:Bubba.TextGenerationRequest.Presence">
+            <inheritdoc />
+            <summary>
+            Number between -2.0 and 2.0. Positive values penalize new tokens
+            based on whether they appear in the text so far,
+            ncreasing the model's likelihood to talk about new topics.
+            </summary>
+            <value>
+            The presence.
+            </value>
+        </member>
+        <member name="P:Bubba.TextGenerationRequest.Body">
+            <inheritdoc />
+            <summary>
+            Gets the chat model.
+            </summary>
+            <value>
+            The chat model.
+            </value>
         </member>
         <member name="T:Bubba.TextGenerationResponse">
             <inheritdoc />
