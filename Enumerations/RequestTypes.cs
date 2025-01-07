@@ -66,13 +66,43 @@ namespace Bubba
         ImageGeneration,
 
         /// <summary>
-        /// The speech generation
+        /// The speech translation
         /// </summary>
-        SpeechGeneration,
+        Translations,
 
         /// <summary>
-        /// The sound generation
+        /// The sound transcribing
         /// </summary>
-        SpeechTranscription
+        Transcriptions,
+
+        /// <summary>
+        /// The files
+        /// </summary>
+        Files,
+
+        /// <summary>
+        /// The uploads
+        /// </summary>
+        Uploads,
+
+        /// <summary>
+        /// The fine tuning
+        /// </summary>
+        FineTuning,
+
+        /// <summary>
+        /// The vector embeddings
+        /// </summary>
+        VectorEmbeddings,
+
+        /// <summary>
+        /// The vector stores
+        /// </summary>
+        VectorStores,
+
+        /// <summary>
+        /// The projects
+        /// </summary>
+        Projects
     }
 }

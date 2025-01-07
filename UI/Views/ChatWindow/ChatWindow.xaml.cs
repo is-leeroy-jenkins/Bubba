@@ -289,10 +289,10 @@ namespace Bubba
             // GPT Parameters
             _store = false;
             _stream = false;
-            _temperature = 1;
-            _topPercent = 1.0D;
-            _presence = 0.0D;
-            _frequency = 0.0D;
+            _temperature = 0.18;
+            _topPercent = 0.11;
+            _presence = 0.00D;
+            _frequency = 0.00D;
             _maxCompletionTokens = 2048;
 
             // Event Wiring
@@ -788,10 +788,10 @@ namespace Bubba
         {
             try
             {
-                PresenceSlider.Value = 0D;
-                FrequencySlider.Value = 0D;
-                TemperatureSlider.Value = 1D;
-                TopPercentSlider.Value = 1D;
+                PresenceSlider.Value = 0.00;
+                FrequencySlider.Value = 0.00;
+                TemperatureSlider.Value = 0.18;
+                TopPercentSlider.Value = 0.11;
                 MaxTokenSlider.Value = 2048;
                 NumberSlider.Value = 1D;
             }
@@ -1163,7 +1163,7 @@ namespace Bubba
         {
             try
             {
-                var _endpoints = new GptEndPoint( );
+                var _endpoints = new GptEndpoints( );
                 var _domain = _endpoints.BaseUrl;
                 switch( _generation )
                 {
@@ -1171,11 +1171,11 @@ namespace Bubba
                     {
                         PopulateTextModels( );
                         _endpoint = _endpoints.TextGeneration;
-                        TemperatureSlider.Value = 0.6;
-                        TopPercentSlider.Value = 0.95;
-                        MaxTokenSlider.Value = 200;
-                        FrequencySlider.Value = 0.4;
-                        PresenceSlider.Value = 0.1;
+                        TemperatureSlider.Value = 0.18;
+                        TopPercentSlider.Value = 0.11;
+                        MaxTokenSlider.Value = 2048;
+                        FrequencySlider.Value = 0.00;
+                        PresenceSlider.Value = 0.00;
                         NumberSlider.Value = 1;
                         break;
                     }
@@ -1183,8 +1183,8 @@ namespace Bubba
                     {
                         PopulateTranslationModels( );
                         _endpoint = _endpoints.Translations;
-                        TemperatureSlider.Value = 0.7;
-                        MaxTokenSlider.Value = 150;
+                        TemperatureSlider.Value = 018;
+                        MaxTokenSlider.Value = 2048;
                         NumberSlider.Value = 1;
                         break;
                     }
@@ -1192,8 +1192,8 @@ namespace Bubba
                     {
                         PopulateImageModels( );
                         _endpoint = _endpoints.ImageGeneration;
-                        TopPercentSlider.Value = 1.0;
-                        TemperatureSlider.Value = 1.0;
+                        TopPercentSlider.Value = 0.11;
+                        TemperatureSlider.Value = 0.18;
                         NumberSlider.Value = 1;
                         break;
                     }
@@ -1208,8 +1208,8 @@ namespace Bubba
                     {
                         PopulateTranscriptionModels( );
                         _endpoint = _endpoints.Transcriptions;
-                        TemperatureSlider.Value = 0.7;
-                        MaxTokenSlider.Value = 150;
+                        TemperatureSlider.Value = 0.1;
+                        MaxTokenSlider.Value = 2048;
                         NumberSlider.Value = 1;
                         break;
                     }
@@ -1236,7 +1236,13 @@ namespace Bubba
                     case "Files":
                     {
                         PopulateTextModels( );
-                        _endpoint = _endpoints.Files;
+                        _endpoint = _endpoints.TextGeneration;
+                        TemperatureSlider.Value = 0.18;
+                        TopPercentSlider.Value = 0.11;
+                        MaxTokenSlider.Value = 2048;
+                        FrequencySlider.Value = 0.00;
+                        PresenceSlider.Value = 0.00;
+                        NumberSlider.Value = 1;
                         break;
                     }
                     case "Uploads":
@@ -1697,7 +1703,8 @@ namespace Bubba
         {
             try
             {
-                var _ept = new GptEndPoint( );
+                var _generations = GptEndPoint.TextGeneration;
+                var _ept = new GptEndpoints( );
                 var _urls = _ept.Data.Keys.ToList( );
                 GenerationComboBox.Items.Clear( );
                 foreach( var _path in _urls )

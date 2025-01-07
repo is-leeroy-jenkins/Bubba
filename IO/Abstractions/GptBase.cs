@@ -323,7 +323,7 @@ namespace Bubba
         private protected virtual async Task<string> PostJsonAsync( string endpoint,
             object payload )
         {
-            var _url = new GptEndPoint( ).BaseUrl;
+            var _url = new GptEndpoints( ).BaseUrl;
             _httpClient.DefaultRequestHeaders.Clear( );
             _httpClient.DefaultRequestHeaders.Add( "Authorization", $"Bearer {ApiKey}" );
             var _json = JsonConvert.SerializeObject( payload );

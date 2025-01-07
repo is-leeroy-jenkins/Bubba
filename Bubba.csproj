@@ -590,6 +590,11 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="Properties\GptEndPoint.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>GptEndPoint.resx</DependentUpon>
+    </Compile>
     <Compile Update="Properties\Locations.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
@@ -608,6 +613,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <EmbeddedResource Update="Properties\GptEndPoint.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>GptEndPoint.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Update="Properties\Locations.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Locations.Designer.cs</LastGenOutput>
