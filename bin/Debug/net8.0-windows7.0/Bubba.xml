@@ -14846,7 +14846,7 @@
             The stream
             </summary>
         </member>
-        <member name="F:Bubba.GptBase._presence">
+        <member name="F:Bubba.GptBase._presencePenalty">
             <summary>
             A number between -2.0 and 2.0.
             Positive values penalize new tokens
@@ -14854,7 +14854,7 @@
             increasing the model's likelihood to talk about new topics.
             </summary>
         </member>
-        <member name="F:Bubba.GptBase._frequency">
+        <member name="F:Bubba.GptBase._frequencyPenalty">
             <summary>
             Number between -2.0 and 2.0. Positive values penalize new tokens
             based on their existing frequency in the text so far,
@@ -15054,6 +15054,15 @@
             The chat model.
             </value>
         </member>
+        <member name="P:Bubba.GptRequestBase.Model">
+            <summary>
+            Gets the chat model.
+            </summary>
+            <value>
+            The chat model.
+            </value>
+            <inheritdoc />
+        </member>
         <member name="P:Bubba.GptRequestBase.Number">
             <summary>
             THe number 'n' of responses returned by the API.
@@ -15110,7 +15119,7 @@
             The top percent.
             </value>
         </member>
-        <member name="P:Bubba.GptRequestBase.Frequency">
+        <member name="P:Bubba.GptRequestBase.FrequencyPenalty">
             <summary>
             Number between -2.0 and 2.0. Positive values penalize new tokens
             based on whether they appear in the text so far,
@@ -15120,7 +15129,7 @@
             The frequency.
             </value>
         </member>
-        <member name="P:Bubba.GptRequestBase.Presence">
+        <member name="P:Bubba.GptRequestBase.PresencePenalty">
             <summary>
             Number between -2.0 and 2.0. Positive values penalize new tokens
             based on whether they appear in the text so far,
@@ -15343,7 +15352,7 @@
             
             </summary>
         </member>
-        <member name="P:Bubba.IGptClient.Frequency">
+        <member name="P:Bubba.IGptClient.FrequencyPenalty">
             <summary>
             Number between -2.0 and 2.0. Positive values penalize new tokens
             based on their existing frequency in the text so far,
@@ -15357,7 +15366,7 @@
             while lower values like 0.2 will make it more focused and deterministic.
             </summary>
         </member>
-        <member name="P:Bubba.IGptClient.Presence">
+        <member name="P:Bubba.IGptClient.PresencePenalty">
             <summary>
             a number between -2.0 and 2.0.
             Positive values penalize new tokens
@@ -15694,7 +15703,7 @@
             The top percent.
             </value>
         </member>
-        <member name="P:Bubba.IGptRequest.Frequency">
+        <member name="P:Bubba.IGptRequest.FrequencyPenalty">
             <summary>
             Number between -2.0 and 2.0. Positive values penalize new tokens
             based on whether they appear in the text so far,
@@ -15704,7 +15713,7 @@
             The frequency.
             </value>
         </member>
-        <member name="P:Bubba.IGptRequest.Presence">
+        <member name="P:Bubba.IGptRequest.PresencePenalty">
             <summary>
             Number between -2.0 and 2.0. Positive values penalize new tokens
             based on whether they appear in the text so far,
@@ -19099,6 +19108,18 @@
             The data.
             </value>
         </member>
+        <member name="M:Bubba.GptBody.GetData">
+            <summary>
+            Gets the data.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Bubba.GptBody.GetMessages">
+            <summary>
+            Gets the messages.
+            </summary>
+            <returns></returns>
+        </member>
         <member name="M:Bubba.GptBody.ToString">
             <inheritdoc />
             <summary>
@@ -19247,7 +19268,7 @@
               <c>true</c> if stream; otherwise, <c>false</c>.
             </value>
         </member>
-        <member name="P:Bubba.GptClient.Frequency">
+        <member name="P:Bubba.GptClient.FrequencyPenalty">
             <inheritdoc />
             <summary>
             Number between -2.0 and 2.0. Positive values penalize new tokens
@@ -19267,7 +19288,7 @@
             The temperature.
             </value>
         </member>
-        <member name="P:Bubba.GptClient.Presence">
+        <member name="P:Bubba.GptClient.PresencePenalty">
             <inheritdoc />
             <summary>
             Gets the presence.
@@ -19370,8 +19391,8 @@
             <returns></returns>
         </member>
         <member name="T:Bubba.GptClientFactory">
+            <inheritdoc />
             <summary>
-            
             </summary>
             <seealso cref="T:Bubba.GptBase" />
         </member>
@@ -20270,6 +20291,24 @@
             <see cref="T:Bubba.FineTuningParameter" /> class.
             </summary>
         </member>
+        <member name="P:Bubba.FineTuningParameter.Number">
+            <inheritdoc />
+            <summary>
+            THe number 'n' of responses generatred.
+            </summary>
+            <value>
+            The user identifier.
+            </value>
+        </member>
+        <member name="P:Bubba.FineTuningParameter.Model">
+            <summary>
+            Gets the chat model.
+            </summary>
+            <value>
+            The chat model.
+            </value>
+            <inheritdoc />
+        </member>
         <member name="P:Bubba.FineTuningParameter.Store">
             <inheritdoc />
             <summary>
@@ -21114,6 +21153,11 @@
             Developer-defined tags and values used for filtering completions
             </summary>
         </member>
+        <member name="F:Bubba.ChatCompletionRequest._responseFormat">
+            <summary>
+            The response format
+            </summary>
+        </member>
         <member name="M:Bubba.ChatCompletionRequest.#ctor">
             <inheritdoc />
             <summary>
@@ -21129,25 +21173,7 @@
             </summary>
             <param name="config">The configuration.</param>
         </member>
-        <member name="M:Bubba.ChatCompletionRequest.#ctor(System.String,System.String,System.String,System.String,System.Boolean,System.Boolean,System.Int32,System.Double,System.Double,System.Double,System.Double,System.Int32)">
-            <inheritdoc />
-            <summary>
-            Initializes a new instance of the
-            <see cref="T:Bubba.ChatCompletionRequest" /> class.
-            </summary>
-            <param name="user">The user.</param>
-            <param name="system">The system.</param>
-            <param name="model">The model.</param>
-            <param name="format">The format.</param>
-            <param name="store">if set to <c>true</c> [store].</param>
-            <param name="stream">if set to <c>true</c> [stream].</param>
-            <param name="number">The number.</param>
-            <param name="frequency">The frequency.</param>
-            <param name="presence">The presence.</param>
-            <param name="topPercent">The top percent.</param>
-            <param name="temperature">The temperature.</param>
-            <param name="tokens">The completion tokens.</param>
-        </member>
+        <!-- Badly formed XML comment ignored for member "M:Bubba.ChatCompletionRequest.#ctor(System.String,System.String,System.String,System.String,System.Boolean,System.Boolean,System.Int32,System.Double,System.Double,System.Double,System.Double,System.Int32)" -->
         <member name="M:Bubba.ChatCompletionRequest.#ctor(Bubba.ChatCompletionRequest)">
             <inheritdoc />
             <summary>
@@ -21252,7 +21278,7 @@
             The top percent.
             </value>
         </member>
-        <member name="P:Bubba.ChatCompletionRequest.Frequency">
+        <member name="P:Bubba.ChatCompletionRequest.FrequencyPenalty">
             <inheritdoc />
             <summary>
             Number between -2.0 and 2.0. Positive values penalize new tokens
@@ -21263,7 +21289,7 @@
             The frequency.
             </value>
         </member>
-        <member name="P:Bubba.ChatCompletionRequest.Presence">
+        <member name="P:Bubba.ChatCompletionRequest.PresencePenalty">
             <inheritdoc />
             <summary>
             Number between -2.0 and 2.0. Positive values penalize new tokens
@@ -21272,6 +21298,15 @@
             </summary>
             <value>
             The presence.
+            </value>
+        </member>
+        <member name="P:Bubba.ChatCompletionRequest.ResponseFormat">
+            <inheritdoc />
+            <summary>
+            Gets or sets the response format.
+            </summary>
+            <value>
+            The response format.
             </value>
         </member>
         <member name="P:Bubba.ChatCompletionRequest.Body">
@@ -21288,6 +21323,11 @@
             <summary>
             </summary>
             <seealso cref="T:Bubba.GptRequest" />
+        </member>
+        <member name="F:Bubba.FineTuningRequest._responseFormat">
+            <summary>
+            The response format
+            </summary>
         </member>
         <member name="M:Bubba.FineTuningRequest.#ctor">
             <summary>
@@ -21386,7 +21426,7 @@
             The top percent.
             </value>
         </member>
-        <member name="P:Bubba.FineTuningRequest.Frequency">
+        <member name="P:Bubba.FineTuningRequest.FrequencyPenalty">
             <inheritdoc />
             <summary>
             Number between -2.0 and 2.0. Positive values penalize new tokens
@@ -21397,7 +21437,7 @@
             The frequency.
             </value>
         </member>
-        <member name="P:Bubba.FineTuningRequest.Presence">
+        <member name="P:Bubba.FineTuningRequest.PresencePenalty">
             <inheritdoc />
             <summary>
             Number between -2.0 and 2.0. Positive values penalize new tokens
@@ -21408,11 +21448,25 @@
             The presence.
             </value>
         </member>
+        <member name="P:Bubba.FineTuningRequest.ResponseFormat">
+            <inheritdoc />
+            <summary>
+            Gets or sets the response format.
+            </summary>
+            <value>
+            The response format.
+            </value>
+        </member>
         <member name="T:Bubba.GptFileRequest">
             <inheritdoc />
             <summary>
             </summary>
             <seealso cref="T:Bubba.GptRequest" />
+        </member>
+        <member name="F:Bubba.GptFileRequest._responseFormat">
+            <summary>
+            The response format
+            </summary>
         </member>
         <member name="M:Bubba.GptFileRequest.#ctor">
             <summary>
@@ -21430,6 +21484,15 @@
             <value>
               <c>true</c> if store; otherwise, <c>false</c>.
             </value>
+        </member>
+        <member name="P:Bubba.GptFileRequest.Model">
+            <summary>
+            Gets the chat model.
+            </summary>
+            <value>
+            The chat model.
+            </value>
+            <inheritdoc />
         </member>
         <member name="P:Bubba.GptFileRequest.Messages">
             <inheritdoc />
@@ -21487,51 +21550,42 @@
               <c>true</c> if stream; otherwise, <c>false</c>.
             </value>
         </member>
-        <member name="P:Bubba.GptFileRequest.Temperature">
+        <member name="P:Bubba.GptFileRequest.ResponseFormat">
             <inheritdoc />
             <summary>
-            A number between -2.0 and 2.0 Positive value decrease the
-            model's likelihood to repeat the same line verbatim.
+            Gets or sets the response format.
             </summary>
             <value>
-            The temperature.
+            The response format.
             </value>
         </member>
-        <member name="P:Bubba.GptFileRequest.TopPercent">
-            <inheritdoc />
+        <member name="M:Bubba.GptFileRequest.UploadFileAsync(System.String,System.String)">
             <summary>
-            An alternative to sampling with temperature,
-            called nucleus sampling, where the model considers
-            the results of the tokens with top_p probability mass.
-            So 0.1 means only the tokens comprising the top 10% probability
-            mass are considered. We generally recommend altering this
-            or temperature but not both.
+            Uploads the file asynchronous.
             </summary>
-            <value>
-            The top percent.
-            </value>
+            <param name="filePath">The file path.</param>
+            <param name="purpose">The purpose.</param>
+            <returns></returns>
         </member>
-        <member name="P:Bubba.GptFileRequest.Frequency">
-            <inheritdoc />
+        <member name="M:Bubba.GptFileRequest.ListFilesAsync">
             <summary>
-            Number between -2.0 and 2.0. Positive values penalize new tokens
-            based on whether they appear in the text so far,
-            ncreasing the model's likelihood to talk about new topics.
+            Lists the files asynchronous.
             </summary>
-            <value>
-            The frequency.
-            </value>
+            <returns></returns>
         </member>
-        <member name="P:Bubba.GptFileRequest.Presence">
-            <inheritdoc />
+        <member name="M:Bubba.GptFileRequest.RetrieveFileAsync(System.String)">
             <summary>
-            Number between -2.0 and 2.0. Positive values penalize new tokens
-            based on whether they appear in the text so far,
-            ncreasing the model's likelihood to talk about new topics.
+            Retrieves the file asynchronous.
             </summary>
-            <value>
-            The presence.
-            </value>
+            <param name="fileId">The file identifier.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Bubba.GptFileRequest.DeleteFileAsync(System.String)">
+            <summary>
+            Deletes the file asynchronous.
+            </summary>
+            <param name="fileId">The file identifier.</param>
+            <returns></returns>
         </member>
         <member name="T:Bubba.GptRequest">
             <inheritdoc />
@@ -21595,6 +21649,11 @@
             </summary>
             <seealso cref="T:Bubba.GptRequest" />
         </member>
+        <member name="F:Bubba.GptUploadRequest._responseFormat">
+            <summary>
+            The response format
+            </summary>
+        </member>
         <member name="M:Bubba.GptUploadRequest.#ctor">
             <summary>
             Initializes a new instance of the
@@ -21611,6 +21670,15 @@
             <value>
               <c>true</c> if store; otherwise, <c>false</c>.
             </value>
+        </member>
+        <member name="P:Bubba.GptUploadRequest.Model">
+            <summary>
+            Gets the chat model.
+            </summary>
+            <value>
+            The chat model.
+            </value>
+            <inheritdoc />
         </member>
         <member name="P:Bubba.GptUploadRequest.Messages">
             <inheritdoc />
@@ -21692,7 +21760,7 @@
             The top percent.
             </value>
         </member>
-        <member name="P:Bubba.GptUploadRequest.Frequency">
+        <member name="P:Bubba.GptUploadRequest.FrequencyPenalty">
             <inheritdoc />
             <summary>
             Number between -2.0 and 2.0. Positive values penalize new tokens
@@ -21703,7 +21771,7 @@
             The frequency.
             </value>
         </member>
-        <member name="P:Bubba.GptUploadRequest.Presence">
+        <member name="P:Bubba.GptUploadRequest.PresencePenalty">
             <inheritdoc />
             <summary>
             Number between -2.0 and 2.0. Positive values penalize new tokens
@@ -21714,9 +21782,23 @@
             The presence.
             </value>
         </member>
+        <member name="P:Bubba.GptUploadRequest.ResponseFormat">
+            <inheritdoc />
+            <summary>
+            Gets or sets the response format.
+            </summary>
+            <value>
+            The response format.
+            </value>
+        </member>
         <member name="T:Bubba.ImageGenerationRequest">
             <inheritdoc />
             <summary>
+            </summary>
+        </member>
+        <member name="F:Bubba.ImageGenerationRequest._responseFormat">
+            <summary>
+            The response format
             </summary>
         </member>
         <member name="M:Bubba.ImageGenerationRequest.#ctor">
@@ -21816,7 +21898,7 @@
             The top percent.
             </value>
         </member>
-        <member name="P:Bubba.ImageGenerationRequest.Frequency">
+        <member name="P:Bubba.ImageGenerationRequest.FrequencyPenalty">
             <inheritdoc />
             <summary>
             Number between -2.0 and 2.0. Positive values penalize new tokens
@@ -21827,7 +21909,7 @@
             The frequency.
             </value>
         </member>
-        <member name="P:Bubba.ImageGenerationRequest.Presence">
+        <member name="P:Bubba.ImageGenerationRequest.PresencePenalty">
             <inheritdoc />
             <summary>
             Number between -2.0 and 2.0. Positive values penalize new tokens
@@ -21838,9 +21920,23 @@
             The presence.
             </value>
         </member>
+        <member name="P:Bubba.ImageGenerationRequest.ResponseFormat">
+            <inheritdoc />
+            <summary>
+            Gets or sets the response format.
+            </summary>
+            <value>
+            The response format.
+            </value>
+        </member>
         <member name="T:Bubba.SpeechGenerationReqeust">
             <inheritdoc />
             <summary>
+            </summary>
+        </member>
+        <member name="F:Bubba.SpeechGenerationReqeust._responseFormat">
+            <summary>
+            The response format
             </summary>
         </member>
         <member name="M:Bubba.SpeechGenerationReqeust.#ctor">
@@ -21940,7 +22036,7 @@
             The top percent.
             </value>
         </member>
-        <member name="P:Bubba.SpeechGenerationReqeust.Frequency">
+        <member name="P:Bubba.SpeechGenerationReqeust.FrequencyPenalty">
             <inheritdoc />
             <summary>
             Number between -2.0 and 2.0. Positive values penalize new tokens
@@ -21951,7 +22047,7 @@
             The frequency.
             </value>
         </member>
-        <member name="P:Bubba.SpeechGenerationReqeust.Presence">
+        <member name="P:Bubba.SpeechGenerationReqeust.PresencePenalty">
             <inheritdoc />
             <summary>
             Number between -2.0 and 2.0. Positive values penalize new tokens
@@ -21960,6 +22056,15 @@
             </summary>
             <value>
             The presence.
+            </value>
+        </member>
+        <member name="P:Bubba.SpeechGenerationReqeust.ResponseFormat">
+            <inheritdoc />
+            <summary>
+            Gets or sets the response format.
+            </summary>
+            <value>
+            The response format.
             </value>
         </member>
         <member name="P:Bubba.SpeechGenerationReqeust.Body">
@@ -21974,6 +22079,11 @@
         <member name="T:Bubba.TextGenerationRequest">
             <inheritdoc />
             <summary>
+            </summary>
+        </member>
+        <member name="F:Bubba.TextGenerationRequest._responseFormat">
+            <summary>
+            The response format
             </summary>
         </member>
         <member name="M:Bubba.TextGenerationRequest.#ctor">
@@ -21992,6 +22102,15 @@
             <value>
               <c>true</c> if store; otherwise, <c>false</c>.
             </value>
+        </member>
+        <member name="P:Bubba.TextGenerationRequest.Model">
+            <summary>
+            Gets the chat model.
+            </summary>
+            <value>
+            The chat model.
+            </value>
+            <inheritdoc />
         </member>
         <member name="P:Bubba.TextGenerationRequest.Messages">
             <inheritdoc />
@@ -22073,7 +22192,7 @@
             The top percent.
             </value>
         </member>
-        <member name="P:Bubba.TextGenerationRequest.Frequency">
+        <member name="P:Bubba.TextGenerationRequest.FrequencyPenalty">
             <inheritdoc />
             <summary>
             Number between -2.0 and 2.0. Positive values penalize new tokens
@@ -22084,7 +22203,7 @@
             The frequency.
             </value>
         </member>
-        <member name="P:Bubba.TextGenerationRequest.Presence">
+        <member name="P:Bubba.TextGenerationRequest.PresencePenalty">
             <inheritdoc />
             <summary>
             Number between -2.0 and 2.0. Positive values penalize new tokens
@@ -22093,6 +22212,15 @@
             </summary>
             <value>
             The presence.
+            </value>
+        </member>
+        <member name="P:Bubba.TextGenerationRequest.ResponseFormat">
+            <inheritdoc />
+            <summary>
+            Gets or sets the response format.
+            </summary>
+            <value>
+            The response format.
             </value>
         </member>
         <member name="P:Bubba.TextGenerationRequest.Body">
@@ -22109,7 +22237,16 @@
             <summary>
             </summary>
         </member>
+        <member name="F:Bubba.TranscriptionRequest._responseFormat">
+            <summary>
+            The response format
+            </summary>
+        </member>
         <member name="M:Bubba.TranscriptionRequest.#ctor">
+            <summary>
+            Initializes a new instance of the
+            <see cref="T:Bubba.TranscriptionRequest"/> class.
+            </summary>
             <inheritdoc />
         </member>
         <member name="P:Bubba.TranscriptionRequest.HttpClient">
@@ -22121,6 +22258,15 @@
             <value>
               <c>true</c> if store; otherwise, <c>false</c>.
             </value>
+        </member>
+        <member name="P:Bubba.TranscriptionRequest.Model">
+            <summary>
+            Gets the chat model.
+            </summary>
+            <value>
+            The chat model.
+            </value>
+            <inheritdoc />
         </member>
         <member name="P:Bubba.TranscriptionRequest.Messages">
             <inheritdoc />
@@ -22202,7 +22348,7 @@
             The top percent.
             </value>
         </member>
-        <member name="P:Bubba.TranscriptionRequest.Frequency">
+        <member name="P:Bubba.TranscriptionRequest.FrequencyPenalty">
             <inheritdoc />
             <summary>
             Number between -2.0 and 2.0. Positive values penalize new tokens
@@ -22213,7 +22359,7 @@
             The frequency.
             </value>
         </member>
-        <member name="P:Bubba.TranscriptionRequest.Presence">
+        <member name="P:Bubba.TranscriptionRequest.PresencePenalty">
             <inheritdoc />
             <summary>
             Number between -2.0 and 2.0. Positive values penalize new tokens
@@ -22222,6 +22368,15 @@
             </summary>
             <value>
             The presence.
+            </value>
+        </member>
+        <member name="P:Bubba.TranscriptionRequest.ResponseFormat">
+            <inheritdoc />
+            <summary>
+            Gets or sets the response format.
+            </summary>
+            <value>
+            The response format.
             </value>
         </member>
         <member name="P:Bubba.TranscriptionRequest.Body">
@@ -22239,6 +22394,11 @@
             </summary>
             <seealso cref="T:Bubba.GptRequest" />
         </member>
+        <member name="F:Bubba.TranslationRequest._responseFormat">
+            <summary>
+            The response format
+            </summary>
+        </member>
         <member name="M:Bubba.TranslationRequest.#ctor">
             <summary>
             Initializes a new instance of the
@@ -22255,6 +22415,15 @@
             <value>
               <c>true</c> if store; otherwise, <c>false</c>.
             </value>
+        </member>
+        <member name="P:Bubba.TranslationRequest.Model">
+            <summary>
+            Gets the chat model.
+            </summary>
+            <value>
+            The chat model.
+            </value>
+            <inheritdoc />
         </member>
         <member name="P:Bubba.TranslationRequest.Messages">
             <inheritdoc />
@@ -22336,7 +22505,7 @@
             The top percent.
             </value>
         </member>
-        <member name="P:Bubba.TranslationRequest.Frequency">
+        <member name="P:Bubba.TranslationRequest.FrequencyPenalty">
             <inheritdoc />
             <summary>
             Number between -2.0 and 2.0. Positive values penalize new tokens
@@ -22347,7 +22516,7 @@
             The frequency.
             </value>
         </member>
-        <member name="P:Bubba.TranslationRequest.Presence">
+        <member name="P:Bubba.TranslationRequest.PresencePenalty">
             <inheritdoc />
             <summary>
             Number between -2.0 and 2.0. Positive values penalize new tokens
@@ -22358,17 +22527,191 @@
             The presence.
             </value>
         </member>
+        <member name="P:Bubba.TranslationRequest.ResponseFormat">
+            <inheritdoc />
+            <summary>
+            Gets or sets the response format.
+            </summary>
+            <value>
+            The response format.
+            </value>
+        </member>
         <member name="T:Bubba.VectorEmbeddingRequest">
             <inheritdoc />
             <summary>
             </summary>
             <seealso cref="T:Bubba.GptRequest" />
         </member>
+        <member name="F:Bubba.VectorEmbeddingRequest._responseFormat">
+            <summary>
+            The response format
+            </summary>
+        </member>
+        <member name="M:Bubba.VectorEmbeddingRequest.#ctor">
+            <summary>
+            Initializes a new instance of the
+            <see cref="T:Bubba.VectorEmbeddingRequest"/> class.
+            </summary>
+            <inheritdoc />
+        </member>
+        <member name="P:Bubba.VectorEmbeddingRequest.HttpClient">
+            <inheritdoc />
+            <summary>
+            Gets or sets a value indicating whether this
+            <see cref="P:Bubba.GptRequest.HttpClient" /> is store.
+            </summary>
+            <value>
+              <c>true</c> if store; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:Bubba.VectorEmbeddingRequest.Number">
+            <inheritdoc />
+            <summary>
+            THe number 'n' of responses generatred.
+            </summary>
+            <value>
+            The user identifier.
+            </value>
+        </member>
+        <member name="P:Bubba.VectorEmbeddingRequest.Model">
+            <summary>
+            Gets the chat model.
+            </summary>
+            <value>
+            The chat model.
+            </value>
+            <inheritdoc />
+        </member>
+        <member name="P:Bubba.VectorEmbeddingRequest.Store">
+            <inheritdoc />
+            <summary>
+            Gets or sets a value indicating whether this
+            <see cref="T:Bubba.ParameterBase" /> is store.
+            </summary>
+            <value>
+              <c>true</c> if store; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:Bubba.VectorEmbeddingRequest.Stream">
+            <inheritdoc />
+            <summary>
+            Gets or sets a value indicating whether this
+            <see cref="T:Bubba.ParameterBase" /> is stream.
+            </summary>
+            <value>
+              <c>true</c> if stream; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:Bubba.VectorEmbeddingRequest.Temperature">
+            <inheritdoc />
+            <summary>
+            A number between 0.0 and 2.0   between 0 and 2.
+            Higher values like 0.8 will make the output more random,
+            while lower values like 0.2 will make it more focused and deterministic.
+            </summary>
+            <value>
+            The temperature.
+            </value>
+        </member>
+        <member name="P:Bubba.VectorEmbeddingRequest.FrequencyPenalty">
+            <inheritdoc />
+            <summary>
+            A number between -2.0 and 2.0. Positive values penalize new
+            tokens based on their existing frequency in the text so far,
+            decreasing the model's likelihood to repeat the same line verbatim.
+            </summary>
+            <value>
+            The frequency.
+            </value>
+        </member>
+        <member name="P:Bubba.VectorEmbeddingRequest.PresencePenalty">
+            <inheritdoc />
+            <summary>
+            Number between -2.0 and 2.0. Positive values penalize new tokens
+            based on whether they appear in the text so far,
+            ncreasing the model's likelihood to talk about new topics.
+            </summary>
+            <value>
+            The presence.
+            </value>
+        </member>
+        <member name="P:Bubba.VectorEmbeddingRequest.TopPercent">
+            <inheritdoc />
+            <summary>
+            An alternative to sampling with temperature,
+            called nucleus sampling, where the model considers
+            the results of the tokens with top_p probability mass.
+            So 0.1 means only the tokens comprising the top 10% probability
+            mass are considered. We generally recommend altering this
+            or temperature but not both.
+            </summary>
+            <value>
+            The top percent.
+            </value>
+        </member>
+        <member name="P:Bubba.VectorEmbeddingRequest.ResponseFormat">
+            <inheritdoc />
+            <summary>
+            Gets or sets the response format.
+            </summary>
+            <value>
+            The response format.
+            </value>
+        </member>
         <member name="T:Bubba.VectorStoreRequest">
             <inheritdoc />
             <summary>
             </summary>
             <seealso cref="T:Bubba.GptRequest" />
+        </member>
+        <member name="F:Bubba.VectorStoreRequest._responseFormat">
+            <summary>
+            The response format
+            </summary>
+        </member>
+        <member name="M:Bubba.VectorStoreRequest.#ctor">
+            <summary>
+            Initializes a new instance of the
+            <see cref="T:Bubba.VectorStoreRequest"/> class.
+            </summary>
+            <inheritdoc />
+        </member>
+        <member name="P:Bubba.VectorStoreRequest.HttpClient">
+            <inheritdoc />
+            <summary>
+            Gets or sets a value indicating whether this
+            <see cref="P:Bubba.GptRequest.HttpClient" /> is store.
+            </summary>
+            <value>
+              <c>true</c> if store; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:Bubba.VectorStoreRequest.Number">
+            <inheritdoc />
+            <summary>
+            THe number 'n' of responses generatred.
+            </summary>
+            <value>
+            The user identifier.
+            </value>
+        </member>
+        <member name="P:Bubba.VectorStoreRequest.Model">
+            <summary>
+            Gets the chat model.
+            </summary>
+            <value>
+            The chat model.
+            </value>
+            <inheritdoc />
+        </member>
+        <member name="P:Bubba.VectorStoreRequest.ResponseFormat">
+            <inheritdoc />
+            <summary>
+            Gets or sets the response format.
+            </summary>
+            <value>
+            The response format.
+            </value>
         </member>
         <member name="T:Bubba.ChatCompletionResponse">
             <inheritdoc />
@@ -22461,6 +22804,21 @@
             <value>
             The usage.
             </value>
+        </member>
+        <member name="M:Bubba.ChatCompletionResponse.ExtractText(System.String)">
+            <summary>
+            Extracts the text completion.
+            </summary>
+            <param name="jsonResponse">The json response.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Bubba.ChatCompletionResponse.ExtractResponseData(System.String,System.String)">
+            <summary>
+            Extracts the message from response.
+            </summary>
+            <param name="jsonResponse">The json response.</param>
+            <param name="chatModel">The chat model.</param>
+            <returns></returns>
         </member>
         <member name="T:Bubba.FineTuningResponse">
             <inheritdoc />
@@ -22644,6 +23002,21 @@
             The usage.
             </value>
         </member>
+        <member name="M:Bubba.GptFileResponse.ExtractFile(System.String)">
+            <summary>
+            Extracts the file.
+            </summary>
+            <param name="jsonResponse">The json response.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Bubba.GptFileResponse.ExtractResponseData(System.String,System.String)">
+            <summary>
+            Extracts the message from response.
+            </summary>
+            <param name="jsonResponse">The json response.</param>
+            <param name="chatModel">The chat model.</param>
+            <returns></returns>
+        </member>
         <member name="T:Bubba.GptResponse">
             <inheritdoc />
             <summary>
@@ -22812,6 +23185,13 @@
             The usage.
             </value>
         </member>
+        <member name="M:Bubba.GptUploadResponse.ExtractUpload(System.String)">
+            <summary>
+            Extracts the upload.
+            </summary>
+            <param name="jsonResponse">The json response.</param>
+            <returns></returns>
+        </member>
         <member name="T:Bubba.ImageGenerationResponse">
             <inheritdoc />
             <summary>
@@ -22917,6 +23297,21 @@
             The usage.
             </value>
         </member>
+        <member name="M:Bubba.ImageGenerationResponse.ExtractImage(System.String)">
+            <summary>
+            Extracts the image.
+            </summary>
+            <param name="jsonResponse">The json response.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Bubba.ImageGenerationResponse.ExtractResponseData(System.String,System.String)">
+            <summary>
+            Extracts the message from response.
+            </summary>
+            <param name="jsonResponse">The json response.</param>
+            <param name="chatModel">The chat model.</param>
+            <returns></returns>
+        </member>
         <member name="T:Bubba.SpeechGenerationResponse">
             <inheritdoc />
             <summary>
@@ -23008,6 +23403,21 @@
             <value>
             The usage.
             </value>
+        </member>
+        <member name="M:Bubba.SpeechGenerationResponse.ExtractAudioText(System.String)">
+            <summary>
+            Extracts the audio text.
+            </summary>
+            <param name="jsonResponse">The json response.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Bubba.SpeechGenerationResponse.ExtractResponseData(System.String,System.String)">
+            <summary>
+            Extracts the message from response.
+            </summary>
+            <param name="jsonResponse">The json response.</param>
+            <param name="chatModel">The chat model.</param>
+            <returns></returns>
         </member>
         <member name="T:Bubba.TextGenerationResponse">
             <inheritdoc />
@@ -23102,6 +23512,21 @@
             The usage.
             </value>
         </member>
+        <member name="M:Bubba.TextGenerationResponse.ExtractText(System.String)">
+            <summary>
+            Extracts the text.
+            </summary>
+            <param name="jsonResponse">The json response.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Bubba.TextGenerationResponse.ExtractResponseData(System.String,System.String)">
+            <summary>
+            Extracts the message from response.
+            </summary>
+            <param name="jsonResponse">The json response.</param>
+            <param name="chatModel">The chat model.</param>
+            <returns></returns>
+        </member>
         <member name="T:Bubba.TranscriptionResponse">
             <inheritdoc />
             <summary>
@@ -23192,6 +23617,14 @@
             The usage.
             </value>
         </member>
+        <member name="M:Bubba.TranscriptionResponse.ExtractResponseData(System.String,System.String)">
+            <summary>
+            Extracts the message from response.
+            </summary>
+            <param name="jsonResponse">The json response.</param>
+            <param name="chatModel">The chat model.</param>
+            <returns></returns>
+        </member>
         <member name="T:Bubba.TranslationResponse">
             <inheritdoc />
             <summary>
@@ -23277,17 +23710,207 @@
             The usage.
             </value>
         </member>
+        <member name="M:Bubba.TranslationResponse.ExtractTranslation(System.String)">
+            <summary>
+            Extracts the text completion.
+            </summary>
+            <param name="jsonResponse">The json response.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Bubba.TranslationResponse.ExtractResponseData(System.String,System.String)">
+            <summary>
+            Extracts the message from response.
+            </summary>
+            <param name="jsonResponse">The json response.</param>
+            <param name="chatModel">The chat model.</param>
+            <returns></returns>
+        </member>
         <member name="T:Bubba.VectorEmbeddingResponse">
             <inheritdoc />
             <summary>
             </summary>
             <seealso cref="T:Bubba.GptResponse" />
         </member>
+        <member name="F:Bubba.VectorEmbeddingResponse._filePath">
+            <summary>
+            The file path
+            </summary>
+        </member>
+        <member name="F:Bubba.VectorEmbeddingResponse._generatedFile">
+            <summary>
+            The file path
+            </summary>
+        </member>
+        <member name="F:Bubba.VectorEmbeddingResponse._rawResponse">
+            <summary>
+            The raw response
+            </summary>
+        </member>
+        <member name="M:Bubba.VectorEmbeddingResponse.#ctor">
+            <summary>
+            Initializes a new instance of the
+            <see cref="T:Bubba.VectorEmbeddingResponse"/> class.
+            </summary>
+            <inheritdoc />
+        </member>
+        <member name="P:Bubba.VectorEmbeddingResponse.RawResponse">
+            <summary>
+            Gets or sets the raw response.
+            </summary>
+            <value>
+            The raw response.
+            </value>
+        </member>
+        <member name="P:Bubba.VectorEmbeddingResponse.Id">
+            <inheritdoc />
+            <summary>
+            Gets or sets the identifier.
+            </summary>
+            <value>
+            The identifier.
+            </value>
+        </member>
+        <member name="P:Bubba.VectorEmbeddingResponse.Object">
+            <inheritdoc />
+            <summary>
+            Gets or sets the object.
+            </summary>
+            <value>
+            The object.
+            </value>
+        </member>
+        <member name="P:Bubba.VectorEmbeddingResponse.Created">
+            <inheritdoc />
+            <summary>
+            Gets or sets the created.
+            </summary>
+            <value>
+            The created.
+            </value>
+        </member>
+        <member name="P:Bubba.VectorEmbeddingResponse.Model">
+            <inheritdoc />
+            <summary>
+            Gets or sets the model.
+            </summary>
+            <value>
+            The model.
+            </value>
+        </member>
+        <member name="P:Bubba.VectorEmbeddingResponse.Choices">
+            <inheritdoc />
+            <summary>
+            Gets or sets the choices.
+            </summary>
+            <value>
+            The choices.
+            </value>
+        </member>
+        <member name="P:Bubba.VectorEmbeddingResponse.Usage">
+            <inheritdoc />
+            <summary>
+            Gets or sets the usage.
+            </summary>
+            <value>
+            The usage.
+            </value>
+        </member>
         <member name="T:Bubba.VectorStoreResponse">
             <inheritdoc />
             <summary>
             </summary>
             <seealso cref="T:Bubba.GptResponse" />
+        </member>
+        <member name="F:Bubba.VectorStoreResponse._filePath">
+            <summary>
+            The file path
+            </summary>
+        </member>
+        <member name="F:Bubba.VectorStoreResponse._generatedFile">
+            <summary>
+            The file path
+            </summary>
+        </member>
+        <member name="F:Bubba.VectorStoreResponse._rawResponse">
+            <summary>
+            The raw response
+            </summary>
+        </member>
+        <member name="M:Bubba.VectorStoreResponse.#ctor">
+            <summary>
+            Initializes a new instance of the
+            <see cref="T:Bubba.VectorStoreResponse"/> class.
+            </summary>
+            <inheritdoc />
+        </member>
+        <member name="P:Bubba.VectorStoreResponse.RawResponse">
+            <summary>
+            Gets or sets the raw response.
+            </summary>
+            <value>
+            The raw response.
+            </value>
+        </member>
+        <member name="P:Bubba.VectorStoreResponse.Id">
+            <inheritdoc />
+            <summary>
+            Gets or sets the identifier.
+            </summary>
+            <value>
+            The identifier.
+            </value>
+        </member>
+        <member name="P:Bubba.VectorStoreResponse.Object">
+            <inheritdoc />
+            <summary>
+            Gets or sets the object.
+            </summary>
+            <value>
+            The object.
+            </value>
+        </member>
+        <member name="P:Bubba.VectorStoreResponse.Created">
+            <inheritdoc />
+            <summary>
+            Gets or sets the created.
+            </summary>
+            <value>
+            The created.
+            </value>
+        </member>
+        <member name="P:Bubba.VectorStoreResponse.Model">
+            <inheritdoc />
+            <summary>
+            Gets or sets the model.
+            </summary>
+            <value>
+            The model.
+            </value>
+        </member>
+        <member name="P:Bubba.VectorStoreResponse.Choices">
+            <inheritdoc />
+            <summary>
+            Gets or sets the choices.
+            </summary>
+            <value>
+            The choices.
+            </value>
+        </member>
+        <member name="P:Bubba.VectorStoreResponse.Usage">
+            <inheritdoc />
+            <summary>
+            Gets or sets the usage.
+            </summary>
+            <value>
+            The usage.
+            </value>
+        </member>
+        <member name="M:Bubba.VectorStoreResponse.ExtractVectorStore(System.String)">
+            <summary>
+            Extracts the vector store.
+            </summary>
+            <param name="jsonResponse">The json response.</param>
+            <returns></returns>
         </member>
         <member name="T:Bubba.BabyBoy">
             <inheritdoc />

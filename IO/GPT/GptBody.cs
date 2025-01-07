@@ -44,6 +44,7 @@ namespace Bubba
     using System;
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
+    using System.Linq;
 
     /// <inheritdoc />
     /// <summary>
@@ -337,7 +338,9 @@ namespace Bubba
         /// </returns>
         public override string ToString( )
         {
-            return _data.ToJson( );
+            return ( _data?.Any( ) == true )
+                ? _data.ToJson( )
+                : string.Empty;
         }
 
         /// <summary>
