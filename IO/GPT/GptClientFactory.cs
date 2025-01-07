@@ -1,14 +1,14 @@
 ﻿// ******************************************************************************************
 //     Assembly:                Bubba
 //     Author:                  Terry D. Eppler
-//     Created:                 11-22-2024
+//     Created:                 01-07-2025
 // 
 //     Last Modified By:        Terry D. Eppler
-//     Last Modified On:        11-22-2024
+//     Last Modified On:        01-07-2025
 // ******************************************************************************************
 // <copyright file="GptClientFactory.cs" company="Terry D. Eppler">
-//    Bubba is a small windows (wpf) application for interacting with
-//    Chat GPT that's developed in C-Sharp under the MIT license
+//    Bubba is a small and simple windows (wpf) application for interacting with the OpenAI API
+//    that's developed in C-Sharp under the MIT license.C#.
 // 
 //    Copyright ©  2020-2024 Terry D. Eppler
 // 
@@ -52,19 +52,16 @@ namespace Bubba
     using OpenAI.VectorStores;
     using System;
     using System.Threading.Tasks;
+    using Properties;
 
+    /// <inheritdoc />
     /// <summary>
-    /// 
     /// </summary>
-    /// <seealso cref="Bubba.GptBase" />
+    /// <seealso cref="T:Bubba.GptBase" />
     [ SuppressMessage( "ReSharper", "UnusedType.Global" ) ]
     [ SuppressMessage( "ReSharper", "MergeConditionalExpression" ) ]
     public class GptClientFactory : GptBase
     {
-        private const string KEY = "sk-proj-m1FNMEEpSuwC32xZedCfozYsGkCEhaVSCEv" 
-            + "S2u6tzNR39HFYKlC0kz0iUvXoJtSACw49E1laKaT3BlbkFJIORKROk_" 
-            + "EirH8g8KoWX7fyhM3oQcd9KqILMBo1rEVFlruTMOsDQ3bHt7mNBjvlZw8DLfYbckQA";
-
         /// <summary>
         /// The client
         /// </summary>
@@ -84,9 +81,9 @@ namespace Bubba
             : base( )
         {
             _entry = new object( );
-            _apiKey = KEY;
+            _apiKey = OpenAI.BubbaKey;
             _model = "gpt-3.5-turbo";
-            _client = new OpenAIClient( _apiKey );
+            _client = new OpenAIClient( OpenAI.BubbaKey );
         }
 
         /// <inheritdoc />
@@ -98,7 +95,7 @@ namespace Bubba
         public GptClientFactory( string model )
         {
             _entry = new object( );
-            _apiKey = KEY;
+            _apiKey = OpenAI.BubbaKey;
             _model = model;
             _client = new OpenAIClient( _apiKey );
         }

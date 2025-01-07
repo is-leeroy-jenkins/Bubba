@@ -1,10 +1,10 @@
 ﻿// ******************************************************************************************
 //     Assembly:                Bubba
 //     Author:                  Terry D. Eppler
-//     Created:                 12-18-2024
+//     Created:                 01-07-2025
 // 
 //     Last Modified By:        Terry D. Eppler
-//     Last Modified On:        12-18-2024
+//     Last Modified On:        01-07-2025
 // ******************************************************************************************
 // <copyright file="IGptRequest.cs" company="Terry D. Eppler">
 //    Bubba is a small and simple windows (wpf) application for interacting with the OpenAI API
@@ -155,7 +155,7 @@ namespace Bubba
         /// <value>
         /// The frequency.
         /// </value>
-        double Frequency { get; set; }
+        double FrequencyPenalty { get; set; }
 
         /// <summary>
         /// Number between -2.0 and 2.0. Positive values penalize new tokens
@@ -165,6 +165,6 @@ namespace Bubba
         /// <value>
         /// The presence.
         /// </value>
-        double Presence { get; set; }
+        double PresencePenalty { get; set; }
     }
 }

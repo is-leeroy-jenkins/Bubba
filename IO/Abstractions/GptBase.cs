@@ -1,10 +1,10 @@
 ﻿// ******************************************************************************************
 //     Assembly:                Bubba
 //     Author:                  Terry D. Eppler
-//     Created:                 01-05-2025
+//     Created:                 01-07-2025
 // 
 //     Last Modified By:        Terry D. Eppler
-//     Last Modified On:        01-05-2025
+//     Last Modified On:        01-07-2025
 // ******************************************************************************************
 // <copyright file="GptBase.cs" company="Terry D. Eppler">
 //    Bubba is a small and simple windows (wpf) application for interacting with the OpenAI API
@@ -118,14 +118,14 @@ namespace Bubba
         /// based on whether they appear in the text so far,
         /// increasing the model's likelihood to talk about new topics.
         /// </summary>
-        private protected double _presence;
+        private protected double _presencePenalty;
 
         /// <summary>
         /// Number between -2.0 and 2.0. Positive values penalize new tokens
         /// based on their existing frequency in the text so far,
         /// decreasing the model's likelihood to repeat the same line verbatim.
         /// </summary>
-        private protected double _frequency;
+        private protected double _frequencyPenalty;
 
         /// <summary>
         /// The API key

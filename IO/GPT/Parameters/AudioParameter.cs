@@ -1,19 +1,19 @@
-Ôªø// ******************************************************************************************
+// ******************************************************************************************
 //     Assembly:                Bubba
 //     Author:                  Terry D. Eppler
-//     Created:                 01-05-2025
+//     Created:                 01-07-2025
 // 
 //     Last Modified By:        Terry D. Eppler
-//     Last Modified On:        01-05-2025
+//     Last Modified On:        01-07-2025
 // ******************************************************************************************
 // <copyright file="AudioParameter.cs" company="Terry D. Eppler">
 //    Bubba is a small and simple windows (wpf) application for interacting with the OpenAI API
 //    that's developed in C-Sharp under the MIT license.C#.
 // 
-//    Copyright ¬©  2020-2024 Terry D. Eppler
+//    Copyright ©  2020-2024 Terry D. Eppler
 // 
 //    Permission is hereby granted, free of charge, to any person obtaining a copy
-//    of this software and associated documentation files (the ‚ÄúSoftware‚Äù),
+//    of this software and associated documentation files (the ìSoftwareî),
 //    to deal in the Software without restriction,
 //    including without limitation the rights to use,
 //    copy, modify, merge, publish, distribute, sublicense,
@@ -24,7 +24,7 @@
 //    The above copyright notice and this permission notice shall be included in all
 //    copies or substantial portions of the Software.
 // 
-//    THE SOFTWARE IS PROVIDED ‚ÄúAS IS‚Äù, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,
+//    THE SOFTWARE IS PROVIDED ìAS ISî, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,
 //    INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
 //    FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT.
 //    IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
@@ -48,7 +48,7 @@ namespace Bubba
     /// <summary>
     /// </summary>
     [ SuppressMessage( "ReSharper", "UnusedType.Global" ) ]
-    public class AudioParameter : GptParameter 
+    public class AudioParameter : GptParameter
     {
         /// <inheritdoc />
         /// <summary>

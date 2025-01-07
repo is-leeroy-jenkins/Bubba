@@ -1,14 +1,14 @@
 // ******************************************************************************************
 //     Assembly:                Bubba
 //     Author:                  Terry D. Eppler
-//     Created:                 11-20-2024
+//     Created:                 01-07-2025
 // 
 //     Last Modified By:        Terry D. Eppler
-//     Last Modified On:        11-20-2024
+//     Last Modified On:        01-07-2025
 // ******************************************************************************************
 // <copyright file="IGptClient.cs" company="Terry D. Eppler">
-//    Bubba is a small windows (wpf) application for interacting with
-//    Chat GPT that's developed in C-Sharp under the MIT license
+//    Bubba is a small and simple windows (wpf) application for interacting with the OpenAI API
+//    that's developed in C-Sharp under the MIT license.C#.
 // 
 //    Copyright ©  2020-2024 Terry D. Eppler
 // 
@@ -56,7 +56,7 @@ namespace Bubba
         /// based on their existing frequency in the text so far,
         /// decreasing the model's likelihood to repeat the same line verbatim.
         /// </summary>
-        double Frequency { get; }
+        double FrequencyPenalty { get; }
 
         /// <summary>
         /// A number between 0 and 2.
@@ -71,7 +71,7 @@ namespace Bubba
         /// based on whether they appear in the text so far,
         /// increasing the model's likelihood to talk about new topics.
         /// </summary>
-        double Presence { get; }
+        double PresencePenalty { get; }
 
         /// <summary>
         /// Gets the maximum number of tokens.

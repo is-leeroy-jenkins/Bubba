@@ -1,10 +1,10 @@
 ﻿// ******************************************************************************************
 //     Assembly:                Bubba
 //     Author:                  Terry D. Eppler
-//     Created:                 01-06-2025
+//     Created:                 01-07-2025
 // 
 //     Last Modified By:        Terry D. Eppler
-//     Last Modified On:        01-06-2025
+//     Last Modified On:        01-07-2025
 // ******************************************************************************************
 // <copyright file="GptFileRequest.cs" company="Terry D. Eppler">
 //    Bubba is a small and simple windows (wpf) application for interacting with the OpenAI API
@@ -44,7 +44,10 @@ namespace Bubba
     using System;
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
+    using System.IO;
     using System.Net.Http;
+    using System.Net.Http.Headers;
+    using System.Threading.Tasks;
     using Properties;
 
     /// <inheritdoc />
@@ -55,6 +58,11 @@ namespace Bubba
     public class GptFileRequest : GptRequest
     {
         /// <summary>
+        /// The response format
+        /// </summary>
+        private protected string _responseFormat;
+
+        /// <summary>
         /// Initializes a new instance of the
         /// <see cref="GptFileRequest"/> class.
         /// </summary>
@@ -64,8 +72,8 @@ namespace Bubba
         {
             _entry = new object( );
             _httpClient = new HttpClient( );
-            _presence = 0.00;
-            _frequency = 0.00;
+            _presencePenalty = 0.00;
+            _frequencyPenalty = 0.00;
             _topPercent = 0.11;
             _temperature = 0.18;
             _maximumTokens = 2048;
@@ -94,6 +102,29 @@ namespace Bubba
                 {
                     _httpClient = value;
                     OnPropertyChanged( nameof( HttpClient ) );
+                }
+            }
+        }
+
+        /// <summary>
+        /// Gets the chat model.
+        /// </summary>
+        /// <value>
+        /// The chat model.
+        /// </value>
+        /// <inheritdoc />
+        public override string Model
+        {
+            get
+            {
+                return _model;
+            }
+            set
+            {
+                if( _model != value )
+                {
+                    _model = value;
+                    OnPropertyChanged( nameof( Model ) );
                 }
             }
         }
@@ -240,104 +271,107 @@ namespace Bubba
 
         /// <inheritdoc />
         /// <summary>
-        /// A number between -2.0 and 2.0 Positive value decrease the
-        /// model's likelihood to repeat the same line verbatim.
+        /// Gets or sets the response format.
         /// </summary>
         /// <value>
-        /// The temperature.
+        /// The response format.
         /// </value>
-        public override double Temperature
+        public string ResponseFormat
         {
             get
             {
-                return _temperature;
+                return _responseFormat;
             }
             set
             {
-                if( _temperature != value )
+                if( _responseFormat != value )
                 {
-                    _temperature = value;
-                    OnPropertyChanged( nameof( Temperature ) );
+                    _responseFormat = value;
+                    OnPropertyChanged( nameof( ResponseFormat ) );
                 }
             }
         }
 
-        /// <inheritdoc />
         /// <summary>
-        /// An alternative to sampling with temperature,
-        /// called nucleus sampling, where the model considers
-        /// the results of the tokens with top_p probability mass.
-        /// So 0.1 means only the tokens comprising the top 10% probability
-        /// mass are considered. We generally recommend altering this
-        /// or temperature but not both.
+        /// Uploads the file asynchronous.
         /// </summary>
-        /// <value>
-        /// The top percent.
-        /// </value>
-        public override double TopPercent
+        /// <param name="filePath">The file path.</param>
+        /// <param name="purpose">The purpose.</param>
+        /// <returns></returns>
+        public async Task<string> UploadFileAsync( string filePath, string purpose = "fine-tune" )
         {
-            get
+            using var _client = new HttpClient( );
+            _client.DefaultRequestHeaders.Authorization =
+                new AuthenticationHeaderValue( "Bearer", _apiKey );
+
+            using var _fileStream = new FileStream( filePath, FileMode.Open, FileAccess.Read );
+            var _fileContent = new StreamContent( _fileStream );
+            _fileContent.Headers.ContentType = new MediaTypeHeaderValue( "application/json" );
+            var _formData = new MultipartFormDataContent
             {
-                return _topPercent;
-            }
-            set
-            {
-                if( _topPercent != value )
                 {
-                    _topPercent = value;
-                    OnPropertyChanged( nameof( TopPercent ) );
+                    _fileContent, "file", Path.GetFileName( filePath )
+                },
+                {
+                    new StringContent( purpose ), "purpose"
                 }
-            }
+            };
+
+            // Send the POST request
+            var _response = await _client.PostAsync( _endPoint, _formData );
+            _response.EnsureSuccessStatusCode( );
+            var _responseContent = await _response.Content.ReadAsStringAsync( );
+            return _responseContent;
         }
 
-        /// <inheritdoc />
         /// <summary>
-        /// Number between -2.0 and 2.0. Positive values penalize new tokens
-        /// based on whether they appear in the text so far,
-        /// ncreasing the model's likelihood to talk about new topics.
+        /// Lists the files asynchronous.
         /// </summary>
-        /// <value>
-        /// The frequency.
-        /// </value>
-        public override double Frequency
+        /// <returns></returns>
+        public async Task<string> ListFilesAsync( )
         {
-            get
-            {
-                return _frequency;
-            }
-            set
-            {
-                if( _frequency != value )
-                {
-                    _frequency = value;
-                    OnPropertyChanged( nameof( Frequency ) );
-                }
-            }
+            using var _client = new HttpClient( );
+            _client.DefaultRequestHeaders.Authorization =
+                new AuthenticationHeaderValue( "Bearer", _apiKey );
+
+            var _response = await _client.GetAsync( _endPoint );
+            _response.EnsureSuccessStatusCode( );
+            var _responseContent = await _response.Content.ReadAsStringAsync( );
+            return _responseContent;
         }
 
-        /// <inheritdoc />
         /// <summary>
-        /// Number between -2.0 and 2.0. Positive values penalize new tokens
-        /// based on whether they appear in the text so far,
-        /// ncreasing the model's likelihood to talk about new topics.
+        /// Retrieves the file asynchronous.
         /// </summary>
-        /// <value>
-        /// The presence.
-        /// </value>
-        public override double Presence
+        /// <param name="fileId">The file identifier.</param>
+        /// <returns></returns>
+        public async Task<string> RetrieveFileAsync( string fileId )
         {
-            get
-            {
-                return _presence;
-            }
-            set
-            {
-                if( _presence != value )
-                {
-                    _presence = value;
-                    OnPropertyChanged( nameof( Presence ) );
-                }
-            }
+            using var _client = new HttpClient( );
+            _client.DefaultRequestHeaders.Authorization =
+                new AuthenticationHeaderValue( "Bearer", _apiKey );
+
+            var _response = await _client.GetAsync( $"{_endPoint}/{fileId}" );
+            _response.EnsureSuccessStatusCode( );
+            var _responseContent = await _response.Content.ReadAsStringAsync( );
+            return _responseContent;
+        }
+
+        /// <summary>
+        /// Deletes the file asynchronous.
+        /// </summary>
+        /// <param name="fileId">The file identifier.</param>
+        /// <returns></returns>
+        public async Task<string> DeleteFileAsync( string fileId )
+        {
+            using var _client = new HttpClient( );
+            _client.DefaultRequestHeaders.Authorization =
+                new AuthenticationHeaderValue( "Bearer", _apiKey );
+
+            var _response = await _client.DeleteAsync( $"{_endPoint}/{fileId}" );
+            _response.EnsureSuccessStatusCode( );
+            var _responseContent = await _response.Content.ReadAsStringAsync( );
+            return _responseContent;
         }
     }
 }

@@ -1,10 +1,10 @@
 ﻿// ******************************************************************************************
 //     Assembly:                Bubba
 //     Author:                  Terry D. Eppler
-//     Created:                 01-06-2025
+//     Created:                 01-07-2025
 // 
 //     Last Modified By:        Terry D. Eppler
-//     Last Modified On:        01-06-2025
+//     Last Modified On:        01-07-2025
 // ******************************************************************************************
 // <copyright file="ImageGenerationRequest.cs" company="Terry D. Eppler">
 //    Bubba is a small and simple windows (wpf) application for interacting with the OpenAI API
@@ -52,6 +52,11 @@ namespace Bubba
     [ SuppressMessage( "ReSharper", "UnusedType.Global" ) ]
     public class ImageGenerationRequest : GptRequest
     {
+        /// <summary>
+        /// The response format
+        /// </summary>
+        private protected string _responseFormat;
+
         /// <inheritdoc />
         /// <summary>
         /// Initializes a new instance of the
@@ -62,8 +67,8 @@ namespace Bubba
         {
             _entry = new object( );
             _httpClient = new HttpClient( );
-            _presence = 0.00;
-            _frequency = 0.00;
+            _presencePenalty = 0.00;
+            _frequencyPenalty = 0.00;
             _topPercent = 0.11;
             _temperature = 0.18;
             _maximumTokens = 2048;
@@ -88,14 +93,14 @@ namespace Bubba
             }
             set
             {
-                if(_httpClient != value)
+                if( _httpClient != value )
                 {
                     _httpClient = value;
-                    OnPropertyChanged(nameof(HttpClient));
+                    OnPropertyChanged( nameof( HttpClient ) );
                 }
             }
         }
-        
+
         /// <inheritdoc />
         /// <summary>
         /// Gets or sets the messages.
@@ -297,18 +302,18 @@ namespace Bubba
         /// <value>
         /// The frequency.
         /// </value>
-        public override double Frequency
+        public override double FrequencyPenalty
         {
             get
             {
-                return _frequency;
+                return _frequencyPenalty;
             }
             set
             {
-                if( _frequency != value )
+                if( _frequencyPenalty != value )
                 {
-                    _frequency = value;
-                    OnPropertyChanged( nameof( Frequency ) );
+                    _frequencyPenalty = value;
+                    OnPropertyChanged( nameof( FrequencyPenalty ) );
                 }
             }
         }
@@ -322,18 +327,41 @@ namespace Bubba
         /// <value>
         /// The presence.
         /// </value>
-        public override double Presence
+        public override double PresencePenalty
         {
             get
             {
-                return _presence;
+                return _presencePenalty;
             }
             set
             {
-                if( _presence != value )
+                if( _presencePenalty != value )
                 {
-                    _presence = value;
-                    OnPropertyChanged( nameof( Presence ) );
+                    _presencePenalty = value;
+                    OnPropertyChanged( nameof( PresencePenalty ) );
+                }
+            }
+        }
+
+        /// <inheritdoc />
+        /// <summary>
+        /// Gets or sets the response format.
+        /// </summary>
+        /// <value>
+        /// The response format.
+        /// </value>
+        public string ResponseFormat
+        {
+            get
+            {
+                return _responseFormat;
+            }
+            set
+            {
+                if( _responseFormat != value )
+                {
+                    _responseFormat = value;
+                    OnPropertyChanged( nameof( ResponseFormat ) );
                 }
             }
         }

@@ -1,10 +1,10 @@
 ﻿// ******************************************************************************************
 //     Assembly:                Bubba
 //     Author:                  Terry D. Eppler
-//     Created:                 12-13-2024
+//     Created:                 01-07-2025
 // 
 //     Last Modified By:        Terry D. Eppler
-//     Last Modified On:        12-13-2024
+//     Last Modified On:        01-07-2025
 // ******************************************************************************************
 // <copyright file="Payload.cs" company="Terry D. Eppler">
 //    Bubba is a small and simple windows (wpf) application for interacting with the OpenAI API
@@ -94,10 +94,10 @@ namespace Bubba
         /// <param name="maxTokens">The maximum tokens.</param>
         /// <param name="store">if set to <c>true</c> [store].</param>
         /// <param name="stream">if set to <c>true</c> [stream].</param>
-        public Payload( string systemPrompt, string userPrompt, string model, 
-            int id = 1, double frequency = 0.0, double presence = 0.0, 
-            double temperature = 0.7, int maxTokens = 2048,
-            bool store = false, bool stream = false ) 
+        public Payload( string systemPrompt, string userPrompt, string model,
+            int id = 1, double frequency = 0.0, double presence = 0.0,
+            double temperature = 0.7, int maxTokens = 2048, bool store = false,
+            bool stream = false )
             : this( )
         {
             _id = id;
@@ -148,7 +148,7 @@ namespace Bubba
         /// <param name="store">if set to <c>true</c> [store].</param>
         /// <param name="stream">if set to <c>true</c> [stream].</param>
         public void Deconstruct( out string prompt, out int userId, out string model,
-            out double frequency, out double presence, out double temperature, 
+            out double frequency, out double presence, out double temperature,
             out int maximumTokens, out bool store, out bool stream )
         {
             prompt = _systemPrompt;
@@ -161,7 +161,7 @@ namespace Bubba
             store = _store;
             stream = _stream;
         }
-        
+
         /// <summary>
         /// Gets or sets a value indicating whether this
         /// <see cref="ParameterBase"/> is store.
@@ -223,7 +223,7 @@ namespace Bubba
                 Prompt = _systemPrompt,
                 MaximumTokens = _maximumTokens,
                 Temperature = _temperature,
-                ResponseFormat = "text" 
+                ResponseFormat = "text"
             };
         }
 
@@ -243,7 +243,7 @@ namespace Bubba
                 ResponseFormat = _responseFormat
             };
         }
-    
+
         /// <summary>
         /// Serializes the specified prompt.
         /// </summary>

@@ -1,10 +1,10 @@
 ﻿// ******************************************************************************************
 //     Assembly:                Bubba
 //     Author:                  Terry D. Eppler
-//     Created:                 12-11-2024
+//     Created:                 01-07-2025
 // 
 //     Last Modified By:        Terry D. Eppler
-//     Last Modified On:        12-11-2024
+//     Last Modified On:        01-07-2025
 // ******************************************************************************************
 // <copyright file="GptRequest.cs" company="Terry D. Eppler">
 //    Bubba is a small and simple windows (wpf) application for interacting with the OpenAI API
@@ -61,8 +61,8 @@ namespace Bubba
         {
             _entry = new object( );
             _httpClient = new HttpClient( );
-            _presence = 0.00;
-            _frequency = 0.00;
+            _presencePenalty = 0.00;
+            _frequencyPenalty = 0.00;
             _topPercent = 0.11;
             _temperature = 0.18;
             _maximumTokens = 2048;
@@ -83,14 +83,14 @@ namespace Bubba
         /// <param name="number">The identifier.</param>
         /// <param name = "store" > </param>
         /// <param name = "stream" > </param>
-        /// <param name="frequency">The frequency.</param>
-        /// <param name="presence">The presence.</param>
+        /// <param name="frequencyPenaltyrequency.</param>
+        /// <param name="presencePenaltyresence.</param>
         /// <param name = "topPercent" > </param>
         /// <param name="temperature">The temperature.</param>
         /// <param name="tokens" </param>/param>
         public GptRequest( string system, string user, string model,
             string endpoint, int number = 1, bool store = false,
-            bool stream = false, double frequency = 0.00, double presence = 0.00, 
+            bool stream = false, double frequencyPenalty = 0.00, double presencePenalty = 0.00,
             double topPercent = 0.11, double temperature = 0.18, int tokens = 2048 )
         {
             _header = new GptHeader( );
@@ -99,8 +99,8 @@ namespace Bubba
             _number = number;
             _store = store;
             _stream = stream;
-            _frequency = frequency;
-            _presence = presence;
+            _frequencyPenalty = frequencyPenalty;
+            _presencePenalty = presencePenalty;
             _topPercent = topPercent;
             _temperature = temperature;
             _maximumTokens = tokens;
@@ -121,8 +121,8 @@ namespace Bubba
             _number = request.Number;
             _stream = request.Stream;
             _store = request.Store;
-            _frequency = request.Frequency;
-            _presence = request.Presence;
+            _frequencyPenalty = request.FrequencyPenalty;
+            _presencePenalty = request.PresencePenalty;
             _topPercent = request.TopPercent;
             _temperature = request.Temperature;
             _maximumTokens = request.MaximumTokens;
@@ -144,11 +144,11 @@ namespace Bubba
         /// <param name="temperature">The temperature.</param>
         /// <param name = "topPercent" > </param>
         /// <param name="tokens">The maximum tokens.</param>
-        public void Deconstruct( out GptHeader header, out string endPoint, out string user, 
+        public void Deconstruct( out GptHeader header, out string endPoint, out string user,
             out string system, out bool store, out bool stream,
-            out string model, out int number, out double presence, 
-            out double frequency, out double temperature,
-            out double topPercent, out int tokens )
+            out string model, out int number, out double presence,
+            out double frequency, out double temperature, out double topPercent,
+            out int tokens )
         {
             header = _header;
             system = _body.SystemMessage.Content;
@@ -158,8 +158,8 @@ namespace Bubba
             stream = _stream;
             model = _model;
             number = _number;
-            presence = _presence;
-            frequency = _frequency;
+            presence = _presencePenalty;
+            frequency = _frequencyPenalty;
             temperature = _temperature;
             topPercent = _topPercent;
             tokens = _maximumTokens;

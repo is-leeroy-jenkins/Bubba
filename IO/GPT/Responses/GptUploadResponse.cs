@@ -1,10 +1,10 @@
 ﻿// ******************************************************************************************
 //     Assembly:                Bubba
 //     Author:                  Terry D. Eppler
-//     Created:                 01-06-2025
+//     Created:                 01-07-2025
 // 
 //     Last Modified By:        Terry D. Eppler
-//     Last Modified On:        01-06-2025
+//     Last Modified On:        01-07-2025
 // ******************************************************************************************
 // <copyright file="GptUploadResponse.cs" company="Terry D. Eppler">
 //    Bubba is a small and simple windows (wpf) application for interacting with the OpenAI API
@@ -44,6 +44,7 @@ namespace Bubba
     using System;
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
+    using System.Text.Json;
 
     /// <inheritdoc />
     /// <summary>
@@ -259,6 +260,18 @@ namespace Bubba
                     OnPropertyChanged( nameof( Usage ) );
                 }
             }
+        }
+
+        /// <summary>
+        /// Extracts the upload.
+        /// </summary>
+        /// <param name="jsonResponse">The json response.</param>
+        /// <returns></returns>
+        private string ExtractUpload( string jsonResponse )
+        {
+            using var _document = JsonDocument.Parse( jsonResponse );
+            return _document.RootElement.GetProperty( "choices" )[ 0 ].GetProperty( "text" )
+                .GetString( );
         }
     }
 }

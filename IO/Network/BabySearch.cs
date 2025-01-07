@@ -1,14 +1,14 @@
 ﻿// ******************************************************************************************
 //     Assembly:                Bubba
 //     Author:                  Terry D. Eppler
-//     Created:                 11-21-2024
+//     Created:                 01-07-2025
 // 
 //     Last Modified By:        Terry D. Eppler
-//     Last Modified On:        11-21-2024
+//     Last Modified On:        01-07-2025
 // ******************************************************************************************
 // <copyright file="BabySearch.cs" company="Terry D. Eppler">
-//    Bubba is a small windows (wpf) application for interacting with
-//    Chat GPT that's developed in C-Sharp under the MIT license
+//    Bubba is a small and simple windows (wpf) application for interacting with the OpenAI API
+//    that's developed in C-Sharp under the MIT license.C#.
 // 
 //    Copyright ©  2020-2024 Terry D. Eppler
 // 
@@ -203,10 +203,7 @@ namespace Bubba
                     _searchRequest.Q = _keyWords;
                     _searchRequest.Cx = _engineId;
                     _searchRequest.Start = _count;
-                    var _list = _searchRequest.Execute( )
-                        ?.Items
-                        ?.ToList( );
-
+                    var _list = _searchRequest.Execute( )?.Items?.ToList( );
                     if( _list?.Any( ) == true )
                     {
                         for( var _i = 0; _i < _list.Count; _i++ )

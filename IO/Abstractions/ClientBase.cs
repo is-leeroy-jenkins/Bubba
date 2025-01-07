@@ -1,14 +1,14 @@
 ﻿// ******************************************************************************************
 //     Assembly:                Bubba
 //     Author:                  Terry D. Eppler
-//     Created:                 11-15-2024
+//     Created:                 01-07-2025
 // 
 //     Last Modified By:        Terry D. Eppler
-//     Last Modified On:        11-15-2024
+//     Last Modified On:        01-07-2025
 // ******************************************************************************************
 // <copyright file="ClientBase.cs" company="Terry D. Eppler">
-//    Bubba is an open source windows (wpf) application for interacting with OpenAI GPT
-//    that is based on NET 7 and written in C-Sharp.
+//    Bubba is a small and simple windows (wpf) application for interacting with the OpenAI API
+//    that's developed in C-Sharp under the MIT license.C#.
 // 
 //    Copyright ©  2020-2024 Terry D. Eppler
 // 
@@ -371,11 +371,11 @@ namespace Bubba
         /// Fails the specified ex.
         /// </summary>
         /// <param name="ex">The ex.</param>
-        private protected void Fail(Exception ex)
+        private protected void Fail( Exception ex )
         {
-            var _error = new ErrorWindow(ex);
-            _error?.SetText();
-            _error?.ShowDialog();
+            var _error = new ErrorWindow( ex );
+            _error?.SetText( );
+            _error?.ShowDialog( );
         }
     }
 }

@@ -1,10 +1,10 @@
 ﻿// ******************************************************************************************
 //     Assembly:                Bubba
 //     Author:                  Terry D. Eppler
-//     Created:                 01-06-2025
+//     Created:                 01-07-2025
 // 
 //     Last Modified By:        Terry D. Eppler
-//     Last Modified On:        01-06-2025
+//     Last Modified On:        01-07-2025
 // ******************************************************************************************
 // <copyright file="TextGenerationResponse.cs" company="Terry D. Eppler">
 //    Bubba is a small and simple windows (wpf) application for interacting with the OpenAI API
@@ -44,6 +44,7 @@ namespace Bubba
     using System;
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
+    using System.Text.Json;
 
     /// <inheritdoc />
     /// <summary>
@@ -253,6 +254,56 @@ namespace Bubba
                     _usage = value;
                     OnPropertyChanged( nameof( Usage ) );
                 }
+            }
+        }
+
+        /// <summary>
+        /// Extracts the text.
+        /// </summary>
+        /// <param name="jsonResponse">The json response.</param>
+        /// <returns></returns>
+        private string ExtractText( string jsonResponse )
+        {
+            using var _document = JsonDocument.Parse( jsonResponse );
+            return _document.RootElement.GetProperty( "choices" )[ 0 ].GetProperty( "text" )
+                .GetString( );
+        }
+
+        /// <summary>
+        /// Extracts the message from response.
+        /// </summary>
+        /// <param name="jsonResponse">The json response.</param>
+        /// <param name="chatModel">The chat model.</param>
+        /// <returns></returns>
+        private string ExtractResponseData( string jsonResponse, string chatModel )
+        {
+            try
+            {
+                ThrowIf.Empty( jsonResponse, nameof( jsonResponse ) );
+                ThrowIf.Empty( chatModel, nameof( chatModel ) );
+                using var _document = JsonDocument.Parse( jsonResponse );
+                var _root = _document.RootElement;
+                if( chatModel.Contains( "gpt-3.5-turbo" ) )
+                {
+                    var _element = _root.GetProperty( "choices" );
+                    if( _element.ValueKind == JsonValueKind.Array
+                        && _element.GetArrayLength( ) > 0 )
+                    {
+                        var _messageElement = _element[ 0 ].GetProperty( "message" );
+                        return _messageElement.GetProperty( "content" ).GetString( );
+                    }
+                }
+                else
+                {
+                    return _root.GetProperty( "choices" )[ 0 ].GetProperty( "text" ).GetString( );
+                }
+
+                return string.Empty;
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+                return string.Empty;
             }
         }
     }

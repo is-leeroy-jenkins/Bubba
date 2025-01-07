@@ -1,17 +1,16 @@
 ﻿// ******************************************************************************************
-//     Assembly:                Baby
+//     Assembly:                Bubba
 //     Author:                  Terry D. Eppler
-//     Created:                 09-09-2024
+//     Created:                 01-07-2025
 // 
 //     Last Modified By:        Terry D. Eppler
-//     Last Modified On:        09-09-2024
+//     Last Modified On:        01-07-2025
 // ******************************************************************************************
 // <copyright file="UrlDecoder.cs" company="Terry D. Eppler">
-//     Baby is a light-weight, full-featured, web-browser built with .NET 6 and is written
-//     in C#.  The baby browser is designed for budget execution and data analysis.
-//     A tool for EPA analysts and a component that can be used for general browsing.
+//    Bubba is a small and simple windows (wpf) application for interacting with the OpenAI API
+//    that's developed in C-Sharp under the MIT license.C#.
 // 
-//     Copyright ©  2020 Terry D. Eppler
+//    Copyright ©  2020-2024 Terry D. Eppler
 // 
 //    Permission is hereby granted, free of charge, to any person obtaining a copy
 //    of this software and associated documentation files (the “Software”),

@@ -647,6 +647,7 @@ C:\Users\terry\source\repos\Bubba\obj\Debug\net8.0-windows7.0\UI\Views\Upload\Gp
 C:\Users\terry\source\repos\Bubba\obj\Debug\net8.0-windows7.0\UI\Views\WebBrowser\WebBrowser.baml
 C:\Users\terry\source\repos\Bubba\obj\Debug\net8.0-windows7.0\Bubba.g.resources
 C:\Users\terry\source\repos\Bubba\obj\Debug\net8.0-windows7.0\Bubba.Properties.CustomSearchEngine.resources
+C:\Users\terry\source\repos\Bubba\obj\Debug\net8.0-windows7.0\Bubba.Properties.GptEndPoint.resources
 C:\Users\terry\source\repos\Bubba\obj\Debug\net8.0-windows7.0\Bubba.Properties.Locations.resources
 C:\Users\terry\source\repos\Bubba\obj\Debug\net8.0-windows7.0\Bubba.Properties.OpenAI.resources
 C:\Users\terry\source\repos\Bubba\obj\Debug\net8.0-windows7.0\Bubba.csproj.GenerateResource.cache
@@ -661,4 +662,3 @@ C:\Users\terry\source\repos\Bubba\obj\Debug\net8.0-windows7.0\refint\Bubba.dll
 C:\Users\terry\source\repos\Bubba\obj\Debug\net8.0-windows7.0\Bubba.xml
 C:\Users\terry\source\repos\Bubba\obj\Debug\net8.0-windows7.0\Bubba.genruntimeconfig.cache
 C:\Users\terry\source\repos\Bubba\obj\Debug\net8.0-windows7.0\ref\Bubba.dll
-C:\Users\terry\source\repos\Bubba\obj\Debug\net8.0-windows7.0\Bubba.Properties.GptEndpoint.resources

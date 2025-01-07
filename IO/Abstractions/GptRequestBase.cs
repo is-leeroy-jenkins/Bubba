@@ -1,10 +1,10 @@
 ﻿// ******************************************************************************************
 //     Assembly:                Bubba
 //     Author:                  Terry D. Eppler
-//     Created:                 12-13-2024
+//     Created:                 01-07-2025
 // 
 //     Last Modified By:        Terry D. Eppler
-//     Last Modified On:        12-13-2024
+//     Last Modified On:        01-07-2025
 // ******************************************************************************************
 // <copyright file="GptRequestBase.cs" company="Terry D. Eppler">
 //    Bubba is a small and simple windows (wpf) application for interacting with the OpenAI API
@@ -113,6 +113,29 @@ namespace Bubba
                 {
                     _body = value;
                     OnPropertyChanged( nameof( Body ) );
+                }
+            }
+        }
+
+        /// <summary>
+        /// Gets the chat model.
+        /// </summary>
+        /// <value>
+        /// The chat model.
+        /// </value>
+        /// <inheritdoc />
+        public virtual string Model
+        {
+            get
+            {
+                return _model;
+            }
+            set
+            {
+                if( _model != value )
+                {
+                    _model = value;
+                    OnPropertyChanged( nameof( Model ) );
                 }
             }
         }
@@ -265,18 +288,18 @@ namespace Bubba
         /// <value>
         /// The frequency.
         /// </value>
-        public virtual double Frequency
+        public virtual double FrequencyPenalty
         {
             get
             {
-                return _frequency;
+                return _frequencyPenalty;
             }
             set
             {
-                if( _frequency != value )
+                if( _frequencyPenalty != value )
                 {
-                    _frequency = value;
-                    OnPropertyChanged( nameof( Frequency ) );
+                    _frequencyPenalty = value;
+                    OnPropertyChanged( nameof( FrequencyPenalty ) );
                 }
             }
         }
@@ -289,18 +312,18 @@ namespace Bubba
         /// <value>
         /// The presence.
         /// </value>
-        public virtual double Presence
+        public virtual double PresencePenalty
         {
             get
             {
-                return _presence;
+                return _presencePenalty;
             }
             set
             {
-                if( _presence != value )
+                if( _presencePenalty != value )
                 {
-                    _presence = value;
-                    OnPropertyChanged( nameof( Presence ) );
+                    _presencePenalty = value;
+                    OnPropertyChanged( nameof( PresencePenalty ) );
                 }
             }
         }

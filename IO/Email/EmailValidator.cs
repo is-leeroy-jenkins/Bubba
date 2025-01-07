@@ -1,17 +1,16 @@
 ﻿// ******************************************************************************************
-//     Assembly:                Ninja
+//     Assembly:                Bubba
 //     Author:                  Terry D. Eppler
-//     Created:                 09-23-2024
+//     Created:                 01-07-2025
 // 
 //     Last Modified By:        Terry D. Eppler
-//     Last Modified On:        09-23-2024
+//     Last Modified On:        01-07-2025
 // ******************************************************************************************
 // <copyright file="EmailValidator.cs" company="Terry D. Eppler">
+//    Bubba is a small and simple windows (wpf) application for interacting with the OpenAI API
+//    that's developed in C-Sharp under the MIT license.C#.
 // 
-//    Ninja is a network toolkit, support iperf, tcp, udp, websocket, mqtt,
-//    sniffer, pcap, port scan, listen, ip scan .etc.
-// 
-//    Copyright ©  2019-2024 Terry D. Eppler
+//    Copyright ©  2020-2024 Terry D. Eppler
 // 
 //    Permission is hereby granted, free of charge, to any person obtaining a copy
 //    of this software and associated documentation files (the “Software”),
@@ -69,8 +68,7 @@ namespace Bubba
             {
                 ThrowIf.Null( text, nameof( text ) );
                 ThrowIf.Negative( index, nameof( index ) );
-                if( !SkipSubDomain( text, ref index, allowInternational,
-                    out var _type ) )
+                if( !SkipSubDomain( text, ref index, allowInternational, out var _type ) )
                 {
                     return false;
                 }
@@ -86,8 +84,7 @@ namespace Bubba
                             return false;
                         }
 
-                        if( !SkipSubDomain( text, ref index, allowInternational,
-                            out _type ) )
+                        if( !SkipSubDomain( text, ref index, allowInternational, out _type ) )
                         {
                             return false;
                         }
@@ -424,8 +421,7 @@ namespace Bubba
 
                 if( email[ _index ] != '[' )
                 {
-                    if( !SkipDomain( email, ref _index, allowTopLevelDomains,
-                        allowInternational ) )
+                    if( !SkipDomain( email, ref _index, allowTopLevelDomains, allowInternational ) )
                     {
                         return false;
                     }

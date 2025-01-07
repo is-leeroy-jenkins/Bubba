@@ -1,10 +1,10 @@
 ﻿// ******************************************************************************************
 //     Assembly:                Bubba
 //     Author:                  Terry D. Eppler
-//     Created:                 12-10-2024
+//     Created:                 01-07-2025
 // 
 //     Last Modified By:        Terry D. Eppler
-//     Last Modified On:        12-10-2024
+//     Last Modified On:        01-07-2025
 // ******************************************************************************************
 // <copyright file="ChatCompletionRequest.cs" company="Terry D. Eppler">
 //    Bubba is a small and simple windows (wpf) application for interacting with the OpenAI API
@@ -49,12 +49,18 @@ namespace Bubba
     /// <summary>
     /// </summary>
     [ SuppressMessage( "ReSharper", "UnusedType.Global" ) ]
+    [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
     public class ChatCompletionRequest : GptRequest
     {
         /// <summary>
         /// Developer-defined tags and values used for filtering completions
         /// </summary>
         private protected IDictionary<string, object> _metaData;
+
+        /// <summary>
+        /// The response format
+        /// </summary>
+        private protected string _responseFormat;
 
         /// <inheritdoc />
         /// <summary>
@@ -66,8 +72,8 @@ namespace Bubba
         {
             _entry = new object( );
             _httpClient = new HttpClient( );
-            _presence = 0.00;
-            _frequency = 0.00;
+            _presencePenalty = 0.00;
+            _frequencyPenalty = 0.00;
             _topPercent = 0.11;
             _temperature = 0.18;
             _maximumTokens = 2048;
@@ -100,14 +106,14 @@ namespace Bubba
         /// <param name="store">if set to <c>true</c> [store].</param>
         /// <param name="stream">if set to <c>true</c> [stream].</param>
         /// <param name="number">The number.</param>
-        /// <param name="frequency">The frequency.</param>
-        /// <param name="presence">The presence.</param>
+        /// <param name="frequencyPenalty.</param>
+        /// <param name="presencePenalty.</param>
         /// <param name="topPercent">The top percent.</param>
         /// <param name="temperature">The temperature.</param>
         /// <param name="tokens">The completion tokens.</param>
         public ChatCompletionRequest( string user, string system, string model = "gpt-4o",
             string format = "text", bool store = false, bool stream = false,
-            int number = 1, double frequency = 0.00, double presence = 0.00,
+            int number = 1, double frequencyPenalty = 0.00, double presencePenalty = 0.00,
             double topPercent = 0.11, double temperature = 0.18, int tokens = 2048 )
         {
             _header = new GptHeader( );
@@ -115,8 +121,8 @@ namespace Bubba
             _store = store;
             _stream = stream;
             _number = number;
-            _presence = presence;
-            _frequency = frequency;
+            _presencePenalty = presencePenalty;
+            _frequencyPenalty = frequencyPenalty;
             _temperature = temperature;
             _topPercent = topPercent;
             _maximumTokens = tokens;
@@ -135,8 +141,8 @@ namespace Bubba
             _store = chatCompletionRequest.Store;
             _stream = chatCompletionRequest.Stream;
             _number = chatCompletionRequest.Number;
-            _presence = chatCompletionRequest.Presence;
-            _frequency = chatCompletionRequest.Frequency;
+            _presencePenalty = chatCompletionRequest.PresencePenalty;
+            _frequencyPenalty = chatCompletionRequest.FrequencyPenalty;
             _temperature = chatCompletionRequest.Temperature;
             _topPercent = chatCompletionRequest.TopPercent;
             _maximumTokens = chatCompletionRequest.MaximumTokens;
@@ -156,7 +162,7 @@ namespace Bubba
         /// <param name="temperature">The temperature.</param>
         /// <param name="topPercent">The top percent.</param>
         /// <param name="tokens">The tokens.</param>
-        public void Decontruct( out GptHeader header, out string endPoint, out bool store, 
+        public void Decontruct( out GptHeader header, out string endPoint, out bool store,
             out bool stream, out string model, out int number,
             out double presence, out double frequency, out double temperature,
             out double topPercent, out int tokens )
@@ -167,8 +173,8 @@ namespace Bubba
             stream = _stream;
             model = _model;
             number = _number;
-            presence = _presence;
-            frequency = _frequency;
+            presence = _presencePenalty;
+            frequency = _frequencyPenalty;
             temperature = _temperature;
             topPercent = _topPercent;
             tokens = _maximumTokens;
@@ -375,18 +381,18 @@ namespace Bubba
         /// <value>
         /// The frequency.
         /// </value>
-        public override double Frequency
+        public override double FrequencyPenalty
         {
             get
             {
-                return _frequency;
+                return _frequencyPenalty;
             }
             set
             {
-                if( _frequency != value )
+                if( _frequencyPenalty != value )
                 {
-                    _frequency = value;
-                    OnPropertyChanged( nameof( Frequency ) );
+                    _frequencyPenalty = value;
+                    OnPropertyChanged( nameof( FrequencyPenalty ) );
                 }
             }
         }
@@ -400,18 +406,41 @@ namespace Bubba
         /// <value>
         /// The presence.
         /// </value>
-        public override double Presence
+        public override double PresencePenalty
         {
             get
             {
-                return _presence;
+                return _presencePenalty;
             }
             set
             {
-                if( _presence != value )
+                if( _presencePenalty != value )
                 {
-                    _presence = value;
-                    OnPropertyChanged( nameof( Presence ) );
+                    _presencePenalty = value;
+                    OnPropertyChanged( nameof( PresencePenalty ) );
+                }
+            }
+        }
+
+        /// <inheritdoc />
+        /// <summary>
+        /// Gets or sets the response format.
+        /// </summary>
+        /// <value>
+        /// The response format.
+        /// </value>
+        public string ResponseFormat
+        {
+            get
+            {
+                return _responseFormat;
+            }
+            set
+            {
+                if( _responseFormat != value )
+                {
+                    _responseFormat = value;
+                    OnPropertyChanged( nameof( ResponseFormat ) );
                 }
             }
         }

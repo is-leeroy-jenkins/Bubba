@@ -1,10 +1,10 @@
 ﻿// ******************************************************************************************
 //     Assembly:                Bubba
 //     Author:                  Terry D. Eppler
-//     Created:                 01-06-2025
+//     Created:                 01-07-2025
 // 
 //     Last Modified By:        Terry D. Eppler
-//     Last Modified On:        01-06-2025
+//     Last Modified On:        01-07-2025
 // ******************************************************************************************
 // <copyright file="FineTuningParameter.cs" company="Terry D. Eppler">
 //    Bubba is a small and simple windows (wpf) application for interacting with the OpenAI API
@@ -50,14 +50,14 @@ namespace Bubba
     [ SuppressMessage( "ReSharper", "InternalOrPrivateMemberNotDocumented" ) ]
     [ SuppressMessage( "ReSharper", "UnusedType.Global" ) ]
     [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
-    public class FineTuningParameter : GptParameter 
+    public class FineTuningParameter : GptParameter
     {
         /// <inheritdoc />
         /// <summary>
         /// Initializes a new instance of the
         /// <see cref="T:Bubba.FineTuningParameter" /> class.
         /// </summary>
-        public FineTuningParameter( ) 
+        public FineTuningParameter( )
             : base( )
         {
             _model = "gpt-4o-mini";
@@ -70,6 +70,52 @@ namespace Bubba
             _presencePenalty = 0.00;
             _maximumTokens = 2048;
             _responseFormat = "text";
+        }
+
+        /// <inheritdoc />
+        /// <summary>
+        /// THe number 'n' of responses generatred.
+        /// </summary>
+        /// <value>
+        /// The user identifier.
+        /// </value>
+        public override int Number
+        {
+            get
+            {
+                return _number;
+            }
+            set
+            {
+                if( _number != value )
+                {
+                    _number = value;
+                    OnPropertyChanged( nameof( Number ) );
+                }
+            }
+        }
+
+        /// <summary>
+        /// Gets the chat model.
+        /// </summary>
+        /// <value>
+        /// The chat model.
+        /// </value>
+        /// <inheritdoc />
+        public override string Model
+        {
+            get
+            {
+                return _model;
+            }
+            set
+            {
+                if( _model != value )
+                {
+                    _model = value;
+                    OnPropertyChanged( nameof( Model ) );
+                }
+            }
         }
 
         /// <inheritdoc />

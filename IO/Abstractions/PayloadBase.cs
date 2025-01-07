@@ -1,10 +1,10 @@
 ﻿// ******************************************************************************************
 //     Assembly:                Bubba
 //     Author:                  Terry D. Eppler
-//     Created:                 12-14-2024
+//     Created:                 01-07-2025
 // 
 //     Last Modified By:        Terry D. Eppler
-//     Last Modified On:        12-14-2024
+//     Last Modified On:        01-07-2025
 // ******************************************************************************************
 // <copyright file="PayloadBase.cs" company="Terry D. Eppler">
 //    Bubba is a small and simple windows (wpf) application for interacting with the OpenAI API
@@ -103,7 +103,7 @@ namespace Bubba
         /// ncreasing the model's likelihood to talk about new topics.
         /// </summary>
         private protected double _presence;
-        
+
         /// <summary>
         /// Whether or not to store the responses in the Chat Log
         /// </summary>

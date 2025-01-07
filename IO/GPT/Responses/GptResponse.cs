@@ -1,10 +1,10 @@
 ﻿// ******************************************************************************************
 //     Assembly:                Bubba
 //     Author:                  Terry D. Eppler
-//     Created:                 12-10-2024
+//     Created:                 01-07-2025
 // 
 //     Last Modified By:        Terry D. Eppler
-//     Last Modified On:        12-10-2024
+//     Last Modified On:        01-07-2025
 // ******************************************************************************************
 // <copyright file="GptResponse.cs" company="Terry D. Eppler">
 //    Bubba is a small and simple windows (wpf) application for interacting with the OpenAI API
@@ -71,8 +71,8 @@ namespace Bubba
             : base( )
         {
             _entry = new object( );
-            _presence = 0.0;
-            _frequency = 0.0;
+            _presencePenalty = 0.0;
+            _frequencyPenalty = 0.0;
             _topPercent = 0.11;
             _temperature = 0.18;
             _maximumTokens = 2048;

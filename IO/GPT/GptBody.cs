@@ -1,10 +1,10 @@
 ﻿// ******************************************************************************************
 //     Assembly:                Bubba
 //     Author:                  Terry D. Eppler
-//     Created:                 12-09-2024
+//     Created:                 01-07-2025
 // 
 //     Last Modified By:        Terry D. Eppler
-//     Last Modified On:        12-09-2024
+//     Last Modified On:        01-07-2025
 // ******************************************************************************************
 // <copyright file="GptBody.cs" company="Terry D. Eppler">
 //    Bubba is a small and simple windows (wpf) application for interacting with the OpenAI API
@@ -52,6 +52,7 @@ namespace Bubba
     [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
     [ SuppressMessage( "ReSharper", "ClassNeverInstantiated.Global" ) ]
     [ SuppressMessage( "ReSharper", "ClassCanBeSealed.Global" ) ]
+    [ SuppressMessage( "ReSharper", "PreferConcreteValueOverDefault" ) ]
     public class GptBody : PropertyChangedBase, IGptBody
     {
         /// <summary>
@@ -105,8 +106,8 @@ namespace Bubba
         /// <param name="model">The model.</param>
         /// <param name = "systemPrompt" > </param>
         /// <param name = "format" > </param>
-        public GptBody( string systemPrompt, string userPrompt, 
-            string model = "gpt-4o", string format = "text" )
+        public GptBody( string systemPrompt, string userPrompt, string model = "gpt-4o",
+            string format = "text" )
             : this( )
         {
             _model = model;
@@ -147,8 +148,8 @@ namespace Bubba
         /// <param name = "data" > </param>
         /// <param name = "messages" > </param>
         public void Deconstruct( out string model, out string responseFormat,
-            out SystemMessage system, out UserMessage user, 
-            out IDictionary<string, object> data, out IList<IGptMessage> messages )
+            out SystemMessage system, out UserMessage user, out IDictionary<string, object> data,
+            out IList<IGptMessage> messages )
         {
             model = _model;
             responseFormat = _responseFormat;
@@ -290,6 +291,40 @@ namespace Bubba
                     _data = value;
                     OnPropertyChanged( nameof( Data ) );
                 }
+            }
+        }
+
+        /// <summary>
+        /// Gets the data.
+        /// </summary>
+        /// <returns></returns>
+        public IDictionary<string, object> GetData( )
+        {
+            try
+            {
+                return default(IDictionary<string, object>);
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+                return default( IDictionary<string, object> );
+            }
+        }
+
+        /// <summary>
+        /// Gets the messages.
+        /// </summary>
+        /// <returns></returns>
+        public IList<IGptMessage> GetMessages( )
+        {
+            try
+            {
+                return default(IList<IGptMessage>);
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+                return default( IList<IGptMessage> );
             }
         }
 

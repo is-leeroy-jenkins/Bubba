@@ -1,10 +1,10 @@
 ﻿// ******************************************************************************************
 //     Assembly:                Bubba
 //     Author:                  Terry D. Eppler
-//     Created:                 01-05-2025
+//     Created:                 01-07-2025
 // 
 //     Last Modified By:        Terry D. Eppler
-//     Last Modified On:        01-05-2025
+//     Last Modified On:        01-07-2025
 // ******************************************************************************************
 // <copyright file="ImageParameter.cs" company="Terry D. Eppler">
 //    Bubba is a small and simple windows (wpf) application for interacting with the OpenAI API
@@ -49,7 +49,7 @@ namespace Bubba
     /// </summary>
     [ SuppressMessage( "ReSharper", "UnusedType.Global" ) ]
     [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
-    public class ImageParameter : GptParameter 
+    public class ImageParameter : GptParameter
     {
         /// <summary>
         /// The image size
@@ -99,7 +99,7 @@ namespace Bubba
                 }
             }
         }
-        
+
         /// <inheritdoc />
         /// <summary>
         /// THe number 'n' of responses generatred.

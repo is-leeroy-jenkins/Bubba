@@ -1,14 +1,14 @@
 ﻿// ******************************************************************************************
 //     Assembly:                Bubba
 //     Author:                  Terry D. Eppler
-//     Created:                 11-19-2024
+//     Created:                 01-07-2025
 // 
 //     Last Modified By:        Terry D. Eppler
-//     Last Modified On:        11-19-2024
+//     Last Modified On:        01-07-2025
 // ******************************************************************************************
 // <copyright file="GptClient.cs" company="Terry D. Eppler">
-//    Bubba is a small windows (wpf) application for interacting with
-//    Chat GPT that's developed in C-Sharp under the MIT license
+//    Bubba is a small and simple windows (wpf) application for interacting with the OpenAI API
+//    that's developed in C-Sharp under the MIT license.C#.
 // 
 //    Copyright ©  2020-2024 Terry D. Eppler
 // 
@@ -156,18 +156,18 @@ namespace Bubba
         /// <value>
         /// The frequency.
         /// </value>
-        public double Frequency
+        public double FrequencyPenalty
         {
             get
             {
-                return _frequency;
+                return _frequencyPenalty;
             }
             private set
             {
-                if( _frequency != value )
+                if( _frequencyPenalty != value )
                 {
-                    _frequency = value;
-                    OnPropertyChanged( nameof( Frequency ) );
+                    _frequencyPenalty = value;
+                    OnPropertyChanged( nameof( FrequencyPenalty ) );
                 }
             }
         }
@@ -202,18 +202,18 @@ namespace Bubba
         /// <value>
         /// The presence.
         /// </value>
-        public double Presence
+        public double PresencePenalty
         {
             get
             {
-                return _presence;
+                return _presencePenalty;
             }
             private set
             {
-                if( _presence != value )
+                if( _presencePenalty != value )
                 {
-                    _presence = value;
-                    OnPropertyChanged( nameof( Presence ) );
+                    _presencePenalty = value;
+                    OnPropertyChanged( nameof( PresencePenalty ) );
                 }
             }
         }
@@ -585,8 +585,7 @@ namespace Bubba
                     using var _doc = JsonDocument.Parse( _responseText );
                     var _root = _doc.RootElement;
                     var _choice = _root.GetProperty( "choices" )[ 0 ];
-                    var _message = _choice.GetProperty( "message" )
-                        .GetProperty( "content" )
+                    var _message = _choice.GetProperty( "message" ).GetProperty( "content" )
                         .GetString( );
 
                     return _message ?? string.Empty;
