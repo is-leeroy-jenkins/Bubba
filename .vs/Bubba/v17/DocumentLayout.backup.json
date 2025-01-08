@@ -3,8 +3,48 @@
   "WorkspaceRootPath": "C:\\Users\\terry\\source\\repos\\Bubba\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{08012640-3765-4051-B5EB-4FF782150AEC}|Bubba.csproj|c:\\users\\terry\\source\\repos\\bubba\\io\\gpt\\gptbody.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{08012640-3765-4051-B5EB-4FF782150AEC}|Bubba.csproj|solutionrelative:io\\gpt\\gptbody.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{08012640-3765-4051-B5EB-4FF782150AEC}|Bubba.csproj|c:\\users\\terry\\source\\repos\\bubba\\io\\gpt\\parameters\\vectorembeddingparameter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{08012640-3765-4051-B5EB-4FF782150AEC}|Bubba.csproj|solutionrelative:io\\gpt\\parameters\\vectorembeddingparameter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{08012640-3765-4051-B5EB-4FF782150AEC}|Bubba.csproj|c:\\users\\terry\\source\\repos\\bubba\\io\\gpt\\parameters\\vectorstoreparameter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{08012640-3765-4051-B5EB-4FF782150AEC}|Bubba.csproj|solutionrelative:io\\gpt\\parameters\\vectorstoreparameter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{08012640-3765-4051-B5EB-4FF782150AEC}|Bubba.csproj|c:\\users\\terry\\source\\repos\\bubba\\io\\gpt\\parameters\\finetuningparameter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{08012640-3765-4051-B5EB-4FF782150AEC}|Bubba.csproj|solutionrelative:io\\gpt\\parameters\\finetuningparameter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{08012640-3765-4051-B5EB-4FF782150AEC}|Bubba.csproj|c:\\users\\terry\\source\\repos\\bubba\\io\\gpt\\parameters\\transcriptionparameter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{08012640-3765-4051-B5EB-4FF782150AEC}|Bubba.csproj|solutionrelative:io\\gpt\\parameters\\transcriptionparameter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{08012640-3765-4051-B5EB-4FF782150AEC}|Bubba.csproj|c:\\users\\terry\\source\\repos\\bubba\\io\\gpt\\parameters\\audioparameter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{08012640-3765-4051-B5EB-4FF782150AEC}|Bubba.csproj|solutionrelative:io\\gpt\\parameters\\audioparameter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{08012640-3765-4051-B5EB-4FF782150AEC}|Bubba.csproj|c:\\users\\terry\\source\\repos\\bubba\\io\\gpt\\parameters\\translationparameter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{08012640-3765-4051-B5EB-4FF782150AEC}|Bubba.csproj|solutionrelative:io\\gpt\\parameters\\translationparameter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{08012640-3765-4051-B5EB-4FF782150AEC}|Bubba.csproj|c:\\users\\terry\\source\\repos\\bubba\\io\\gpt\\parameters\\textparameter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{08012640-3765-4051-B5EB-4FF782150AEC}|Bubba.csproj|solutionrelative:io\\gpt\\parameters\\textparameter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{08012640-3765-4051-B5EB-4FF782150AEC}|Bubba.csproj|c:\\users\\terry\\source\\repos\\bubba\\io\\gpt\\parameters\\imageparameter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{08012640-3765-4051-B5EB-4FF782150AEC}|Bubba.csproj|solutionrelative:io\\gpt\\parameters\\imageparameter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{08012640-3765-4051-B5EB-4FF782150AEC}|Bubba.csproj|c:\\users\\terry\\source\\repos\\bubba\\io\\gpt\\payload.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{08012640-3765-4051-B5EB-4FF782150AEC}|Bubba.csproj|solutionrelative:io\\gpt\\payload.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{08012640-3765-4051-B5EB-4FF782150AEC}|Bubba.csproj|c:\\users\\terry\\source\\repos\\bubba\\io\\gpt\\parameters\\gptparameter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{08012640-3765-4051-B5EB-4FF782150AEC}|Bubba.csproj|solutionrelative:io\\gpt\\parameters\\gptparameter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{08012640-3765-4051-B5EB-4FF782150AEC}|Bubba.csproj|c:\\users\\terry\\source\\repos\\bubba\\io\\gpt\\requests\\gptrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{08012640-3765-4051-B5EB-4FF782150AEC}|Bubba.csproj|solutionrelative:io\\gpt\\requests\\gptrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -14,7 +54,7 @@
       "DocumentGroups": [
         {
           "DockedHeight": 332,
-          "SelectedChildIndex": 10,
+          "SelectedChildIndex": 14,
           "Children": [
             {
               "$type": "Bookmark",
@@ -58,15 +98,149 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "GptBody.cs",
-              "DocumentMoniker": "C:\\Users\\terry\\source\\repos\\Bubba\\IO\\GPT\\GptBody.cs",
-              "RelativeDocumentMoniker": "IO\\GPT\\GptBody.cs",
-              "ToolTip": "C:\\Users\\terry\\source\\repos\\Bubba\\IO\\GPT\\GptBody.cs",
-              "RelativeToolTip": "IO\\GPT\\GptBody.cs",
-              "ViewState": "AgIAAC4BAAAAAAAAAAAIwEABAAAPAAAAAAAAAA==",
+              "DocumentIndex": 5,
+              "Title": "TranslationParameter.cs",
+              "DocumentMoniker": "C:\\Users\\terry\\source\\repos\\Bubba\\IO\\GPT\\Parameters\\TranslationParameter.cs",
+              "RelativeDocumentMoniker": "IO\\GPT\\Parameters\\TranslationParameter.cs",
+              "ToolTip": "C:\\Users\\terry\\source\\repos\\Bubba\\IO\\GPT\\Parameters\\TranslationParameter.cs",
+              "RelativeToolTip": "IO\\GPT\\Parameters\\TranslationParameter.cs",
+              "ViewState": "AgIAABcAAAAAAAAAAAAAAD0AAAAVAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-07T17:10:09.122Z",
+              "WhenOpened": "2025-01-08T13:58:22.925Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "TranscriptionParameter.cs",
+              "DocumentMoniker": "C:\\Users\\terry\\source\\repos\\Bubba\\IO\\GPT\\Parameters\\TranscriptionParameter.cs",
+              "RelativeDocumentMoniker": "IO\\GPT\\Parameters\\TranscriptionParameter.cs",
+              "ToolTip": "C:\\Users\\terry\\source\\repos\\Bubba\\IO\\GPT\\Parameters\\TranscriptionParameter.cs",
+              "RelativeToolTip": "IO\\GPT\\Parameters\\TranscriptionParameter.cs",
+              "ViewState": "AgIAAGQAAAAAAAAAAADwv3QAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-08T13:58:21.548Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "TextParameter.cs",
+              "DocumentMoniker": "C:\\Users\\terry\\source\\repos\\Bubba\\IO\\GPT\\Parameters\\TextParameter.cs",
+              "RelativeDocumentMoniker": "IO\\GPT\\Parameters\\TextParameter.cs",
+              "ToolTip": "C:\\Users\\terry\\source\\repos\\Bubba\\IO\\GPT\\Parameters\\TextParameter.cs",
+              "RelativeToolTip": "IO\\GPT\\Parameters\\TextParameter.cs",
+              "ViewState": "AgIAAEsAAAAAAAAAAAAAwEwAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-08T13:58:20.552Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "AudioParameter.cs",
+              "DocumentMoniker": "C:\\Users\\terry\\source\\repos\\Bubba\\IO\\GPT\\Parameters\\AudioParameter.cs",
+              "RelativeDocumentMoniker": "IO\\GPT\\Parameters\\AudioParameter.cs",
+              "ToolTip": "C:\\Users\\terry\\source\\repos\\Bubba\\IO\\GPT\\Parameters\\AudioParameter.cs",
+              "RelativeToolTip": "IO\\GPT\\Parameters\\AudioParameter.cs",
+              "ViewState": "AgIAAFsAAAAAAAAAAAAswF4AAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-08T13:58:15.303Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "VectorEmbeddingParameter.cs",
+              "DocumentMoniker": "C:\\Users\\terry\\source\\repos\\Bubba\\IO\\GPT\\Parameters\\VectorEmbeddingParameter.cs",
+              "RelativeDocumentMoniker": "IO\\GPT\\Parameters\\VectorEmbeddingParameter.cs",
+              "ToolTip": "C:\\Users\\terry\\source\\repos\\Bubba\\IO\\GPT\\Parameters\\VectorEmbeddingParameter.cs",
+              "RelativeToolTip": "IO\\GPT\\Parameters\\VectorEmbeddingParameter.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-08T13:58:16.471Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "FineTuningParameter.cs",
+              "DocumentMoniker": "C:\\Users\\terry\\source\\repos\\Bubba\\IO\\GPT\\Parameters\\FineTuningParameter.cs",
+              "RelativeDocumentMoniker": "IO\\GPT\\Parameters\\FineTuningParameter.cs",
+              "ToolTip": "C:\\Users\\terry\\source\\repos\\Bubba\\IO\\GPT\\Parameters\\FineTuningParameter.cs",
+              "RelativeToolTip": "IO\\GPT\\Parameters\\FineTuningParameter.cs",
+              "ViewState": "AgIAAEMAAAAAAAAAAADwv1wAAAAPAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-08T13:58:17.504Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "VectorStoreParameter.cs",
+              "DocumentMoniker": "C:\\Users\\terry\\source\\repos\\Bubba\\IO\\GPT\\Parameters\\VectorStoreParameter.cs",
+              "RelativeDocumentMoniker": "IO\\GPT\\Parameters\\VectorStoreParameter.cs",
+              "ToolTip": "C:\\Users\\terry\\source\\repos\\Bubba\\IO\\GPT\\Parameters\\VectorStoreParameter.cs",
+              "RelativeToolTip": "IO\\GPT\\Parameters\\VectorStoreParameter.cs",
+              "ViewState": "AgIAAEMAAAAAAAAAAADwv10AAAAhAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-08T13:58:19.528Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "ImageParameter.cs",
+              "DocumentMoniker": "C:\\Users\\terry\\source\\repos\\Bubba\\IO\\GPT\\Parameters\\ImageParameter.cs",
+              "RelativeDocumentMoniker": "IO\\GPT\\Parameters\\ImageParameter.cs",
+              "ToolTip": "C:\\Users\\terry\\source\\repos\\Bubba\\IO\\GPT\\Parameters\\ImageParameter.cs",
+              "RelativeToolTip": "IO\\GPT\\Parameters\\ImageParameter.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-08T13:58:18.528Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "Payload.cs",
+              "DocumentMoniker": "C:\\Users\\terry\\source\\repos\\Bubba\\IO\\GPT\\Payload.cs",
+              "RelativeDocumentMoniker": "IO\\GPT\\Payload.cs",
+              "ToolTip": "C:\\Users\\terry\\source\\repos\\Bubba\\IO\\GPT\\Payload.cs",
+              "RelativeToolTip": "IO\\GPT\\Payload.cs",
+              "ViewState": "AgIAACEAAAAAAAAAAAAAAC4AAAAnAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-08T15:20:23.254Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{e5c86464-96be-4d7c-9a8b-abcb3bbf5f92}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "GptParameter.cs",
+              "DocumentMoniker": "C:\\Users\\terry\\source\\repos\\Bubba\\IO\\GPT\\Parameters\\GptParameter.cs",
+              "RelativeDocumentMoniker": "IO\\GPT\\Parameters\\GptParameter.cs",
+              "ToolTip": "C:\\Users\\terry\\source\\repos\\Bubba\\IO\\GPT\\Parameters\\GptParameter.cs",
+              "RelativeToolTip": "IO\\GPT\\Parameters\\GptParameter.cs",
+              "ViewState": "AgIAACgBAAAAAAAAAAAowC4BAAANAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-08T13:53:53.998Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "GptRequest.cs",
+              "DocumentMoniker": "C:\\Users\\terry\\source\\repos\\Bubba\\IO\\GPT\\Requests\\GptRequest.cs",
+              "RelativeDocumentMoniker": "IO\\GPT\\Requests\\GptRequest.cs",
+              "ToolTip": "C:\\Users\\terry\\source\\repos\\Bubba\\IO\\GPT\\Requests\\GptRequest.cs",
+              "RelativeToolTip": "IO\\GPT\\Requests\\GptRequest.cs",
+              "ViewState": "AgIAAH8AAAAAAAAAAAAkwJwAAAAVAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-08T13:49:02.475Z",
               "EditorCaption": ""
             }
           ]

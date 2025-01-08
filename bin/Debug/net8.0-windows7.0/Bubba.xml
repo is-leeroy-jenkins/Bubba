@@ -15032,11 +15032,6 @@
             The header
             </summary>
         </member>
-        <member name="F:Bubba.GptRequestBase._config">
-            <summary>
-            The configuration
-            </summary>
-        </member>
         <member name="P:Bubba.GptRequestBase.EndPoint">
             <inheritdoc />
             <summary>
@@ -16015,6 +16010,11 @@
             The assistant prompt
             </summary>
         </member>
+        <member name="F:Bubba.ParameterBase._data">
+            <summary>
+            The data
+            </summary>
+        </member>
         <member name="P:Bubba.ParameterBase.EndPoint">
             <summary>
             Gets or sets the end point.
@@ -16141,6 +16141,12 @@
             <value>
             The response format.
             </value>
+        </member>
+        <member name="M:Bubba.ParameterBase.Fail(System.Exception)">
+            <summary>
+            Wraps error
+            </summary>
+            <param name="ex">The ex.</param>
         </member>
         <member name="T:Bubba.PathBase">
             <inheritdoc />
@@ -19025,16 +19031,15 @@
             <see cref="T:Bubba.GptBody"/> class.
             </summary>
         </member>
-        <member name="M:Bubba.GptBody.#ctor(System.String,System.String,System.String,System.String)">
+        <member name="M:Bubba.GptBody.#ctor(System.String,System.String,Bubba.IGptParameter)">
             <inheritdoc />
             <summary>
             Initializes a new instance of the
             <see cref="T:Bubba.GptBody" /> class.
             </summary>
             <param name = "userPrompt" > </param>
-            <param name="model">The model.</param>
             <param name = "systemPrompt" > </param>
-            <param name = "format" > </param>
+            <param name = "param" > </param>
         </member>
         <member name="M:Bubba.GptBody.#ctor(Bubba.GptBody)">
             <inheritdoc />
@@ -20175,12 +20180,51 @@
             <summary>
             </summary>
         </member>
+        <member name="F:Bubba.AudioParameter._language">
+            <summary>
+            The language
+            </summary>
+        </member>
+        <member name="F:Bubba.AudioParameter._filePath">
+            <summary>
+            The file path
+            </summary>
+        </member>
+        <member name="F:Bubba.AudioParameter._audioData">
+            <summary>
+            The audio data
+            </summary>
+        </member>
         <member name="M:Bubba.AudioParameter.#ctor">
             <inheritdoc />
             <summary>
             Initializes a new instance of the
             <see cref="T:Bubba.AudioParameter" /> class.
             </summary>
+        </member>
+        <member name="P:Bubba.AudioParameter.Language">
+            <summary>
+            Gets or sets the language.
+            </summary>
+            <value>
+            The language.
+            </value>
+        </member>
+        <member name="P:Bubba.AudioParameter.FilePath">
+            <summary>
+            Gets or sets the file path.
+            </summary>
+            <value>
+            The file path.
+            </value>
+        </member>
+        <member name="P:Bubba.AudioParameter.AudioData">
+            <summary>
+            Gets or sets the audio data.
+            </summary>
+            <value>
+            The audio data.
+            </value>
         </member>
         <member name="P:Bubba.AudioParameter.ResponseFormat">
             <inheritdoc />
@@ -20191,97 +20235,30 @@
             The response format.
             </value>
         </member>
-        <member name="T:Bubba.EmbeddingParameter">
+        <member name="M:Bubba.AudioParameter.GetData">
             <inheritdoc />
             <summary>
+            Gets the data.
             </summary>
+            <returns>
+            </returns>
         </member>
-        <member name="M:Bubba.EmbeddingParameter.#ctor">
-            <inheritdoc />
+        <member name="M:Bubba.AudioParameter.ToString">
             <summary>
-            Initializes a new instance of the
-            <see cref="T:Bubba.EmbeddingParameter" /> class.
+            Converts to string.
             </summary>
-        </member>
-        <member name="P:Bubba.EmbeddingParameter.Store">
-            <inheritdoc />
-            <summary>
-            Gets or sets a value indicating whether this
-            <see cref="T:Bubba.ParameterBase" /> is store.
-            </summary>
-            <value>
-              <c>true</c> if store; otherwise, <c>false</c>.
-            </value>
-        </member>
-        <member name="P:Bubba.EmbeddingParameter.Stream">
-            <inheritdoc />
-            <summary>
-            Gets or sets a value indicating whether this
-            <see cref="T:Bubba.ParameterBase" /> is stream.
-            </summary>
-            <value>
-              <c>true</c> if stream; otherwise, <c>false</c>.
-            </value>
-        </member>
-        <member name="P:Bubba.EmbeddingParameter.Temperature">
-            <inheritdoc />
-            <summary>
-            A number between 0.0 and 2.0   between 0 and 2.
-            Higher values like 0.8 will make the output more random,
-            while lower values like 0.2 will make it more focused and deterministic.
-            </summary>
-            <value>
-            The temperature.
-            </value>
-        </member>
-        <member name="P:Bubba.EmbeddingParameter.FrequencyPenalty">
-            <inheritdoc />
-            <summary>
-            A number between -2.0 and 2.0. Positive values penalize new
-            tokens based on their existing frequency in the text so far,
-            decreasing the model's likelihood to repeat the same line verbatim.
-            </summary>
-            <value>
-            The frequency.
-            </value>
-        </member>
-        <member name="P:Bubba.EmbeddingParameter.PresencePenalty">
-            <inheritdoc />
-            <summary>
-            Number between -2.0 and 2.0. Positive values penalize new tokens
-            based on whether they appear in the text so far,
-            ncreasing the model's likelihood to talk about new topics.
-            </summary>
-            <value>
-            The presence.
-            </value>
-        </member>
-        <member name="P:Bubba.EmbeddingParameter.TopPercent">
-            <inheritdoc />
-            <summary>
-            An alternative to sampling with temperature,
-            called nucleus sampling, where the model considers
-            the results of the tokens with top_p probability mass.
-            So 0.1 means only the tokens comprising the top 10% probability
-            mass are considered. We generally recommend altering this
-            or temperature but not both.
-            </summary>
-            <value>
-            The top percent.
-            </value>
-        </member>
-        <member name="P:Bubba.EmbeddingParameter.ResponseFormat">
-            <inheritdoc />
-            <summary>
-            Gets or sets the response format.
-            </summary>
-            <value>
-            The response format.
-            </value>
+            <returns>
+            A <see cref="T:System.String" /> that represents this instance.
+            </returns>
         </member>
         <member name="T:Bubba.FineTuningParameter">
             <inheritdoc />
             <summary>
+            </summary>
+        </member>
+        <member name="F:Bubba.FineTuningParameter._filePath">
+            <summary>
+            The file path
             </summary>
         </member>
         <member name="M:Bubba.FineTuningParameter.#ctor">
@@ -20290,6 +20267,14 @@
             Initializes a new instance of the
             <see cref="T:Bubba.FineTuningParameter" /> class.
             </summary>
+        </member>
+        <member name="P:Bubba.FineTuningParameter.FilePath">
+            <summary>
+            Gets or sets the file path.
+            </summary>
+            <value>
+            The file path.
+            </value>
         </member>
         <member name="P:Bubba.FineTuningParameter.Number">
             <inheritdoc />
@@ -20384,6 +20369,22 @@
             <value>
             The response format.
             </value>
+        </member>
+        <member name="M:Bubba.FineTuningParameter.GetData">
+            <inheritdoc />
+            <summary>
+            Gets the data.
+            </summary>
+            <returns>
+            </returns>
+        </member>
+        <member name="M:Bubba.FineTuningParameter.ToString">
+            <summary>
+            Converts to string.
+            </summary>
+            <returns>
+            A <see cref="T:System.String" /> that represents this instance.
+            </returns>
         </member>
         <member name="T:Bubba.GptParameter">
             <inheritdoc />
@@ -20490,6 +20491,12 @@
             <value>
             The response format.
             </value>
+        </member>
+        <member name="M:Bubba.GptParameter.GetData">
+            <summary>
+            Gets the data.
+            </summary>
+            <returns></returns>
         </member>
         <member name="T:Bubba.ImageParameter">
             <inheritdoc />
@@ -20610,113 +20617,6 @@
             The response format.
             </value>
         </member>
-        <member name="T:Bubba.StoreParameter">
-            <inheritdoc />
-            <summary>
-            </summary>
-            <seealso cref="T:Bubba.GptParameter" />
-        </member>
-        <member name="M:Bubba.StoreParameter.#ctor">
-            <summary>
-            Initializes a new instance of the
-            <see cref="T:Bubba.StoreParameter"/> class.
-            </summary>
-            <inheritdoc />
-        </member>
-        <member name="P:Bubba.StoreParameter.Number">
-            <inheritdoc />
-            <summary>
-            THe number 'n' of responses generatred.
-            </summary>
-            <value>
-            The user identifier.
-            </value>
-        </member>
-        <member name="P:Bubba.StoreParameter.Model">
-            <summary>
-            Gets the chat model.
-            </summary>
-            <value>
-            The chat model.
-            </value>
-            <inheritdoc />
-        </member>
-        <member name="P:Bubba.StoreParameter.Store">
-            <inheritdoc />
-            <summary>
-            Gets or sets a value indicating whether this
-            <see cref="T:Bubba.ParameterBase" /> is store.
-            </summary>
-            <value>
-              <c>true</c> if store; otherwise, <c>false</c>.
-            </value>
-        </member>
-        <member name="P:Bubba.StoreParameter.Stream">
-            <inheritdoc />
-            <summary>
-            Gets or sets a value indicating whether this
-            <see cref="T:Bubba.ParameterBase" /> is stream.
-            </summary>
-            <value>
-              <c>true</c> if stream; otherwise, <c>false</c>.
-            </value>
-        </member>
-        <member name="P:Bubba.StoreParameter.Temperature">
-            <inheritdoc />
-            <summary>
-            A number between 0.0 and 2.0   between 0 and 2.
-            Higher values like 0.8 will make the output more random,
-            while lower values like 0.2 will make it more focused and deterministic.
-            </summary>
-            <value>
-            The temperature.
-            </value>
-        </member>
-        <member name="P:Bubba.StoreParameter.FrequencyPenalty">
-            <inheritdoc />
-            <summary>
-            A number between -2.0 and 2.0. Positive values penalize new
-            tokens based on their existing frequency in the text so far,
-            decreasing the model's likelihood to repeat the same line verbatim.
-            </summary>
-            <value>
-            The frequency.
-            </value>
-        </member>
-        <member name="P:Bubba.StoreParameter.PresencePenalty">
-            <inheritdoc />
-            <summary>
-            Number between -2.0 and 2.0. Positive values penalize new tokens
-            based on whether they appear in the text so far,
-            ncreasing the model's likelihood to talk about new topics.
-            </summary>
-            <value>
-            The presence.
-            </value>
-        </member>
-        <member name="P:Bubba.StoreParameter.TopPercent">
-            <inheritdoc />
-            <summary>
-            An alternative to sampling with temperature,
-            called nucleus sampling, where the model considers
-            the results of the tokens with top_p probability mass.
-            So 0.1 means only the tokens comprising the top 10% probability
-            mass are considered. We generally recommend altering this
-            or temperature but not both.
-            </summary>
-            <value>
-            The top percent.
-            </value>
-        </member>
-        <member name="P:Bubba.StoreParameter.ResponseFormat">
-            <inheritdoc />
-            <summary>
-            Gets or sets the response format.
-            </summary>
-            <value>
-            The response format.
-            </value>
-        </member>
         <member name="T:Bubba.TextParameter">
             <inheritdoc />
             <summary>
@@ -20823,11 +20723,42 @@
             The response format.
             </value>
         </member>
+        <member name="M:Bubba.TextParameter.GetData">
+            <inheritdoc />
+            <summary>
+            Gets the data.
+            </summary>
+            <returns>
+            </returns>
+        </member>
+        <member name="M:Bubba.TextParameter.ToString">
+            <summary>
+            Converts to string.
+            </summary>
+            <returns>
+            A <see cref="T:System.String" /> that represents this instance.
+            </returns>
+        </member>
         <member name="T:Bubba.TranscriptionParameter">
             <inheritdoc />
             <summary>
             </summary>
             <seealso cref="T:Bubba.GptParameter" />
+        </member>
+        <member name="F:Bubba.TranscriptionParameter._language">
+            <summary>
+            The language
+            </summary>
+        </member>
+        <member name="F:Bubba.TranscriptionParameter._filePath">
+            <summary>
+            The file path
+            </summary>
+        </member>
+        <member name="F:Bubba.TranscriptionParameter._audioData">
+            <summary>
+            The audio data
+            </summary>
         </member>
         <member name="M:Bubba.TranscriptionParameter.#ctor">
             <summary>
@@ -20835,6 +20766,30 @@
             <see cref="T:Bubba.TranslationParameter"/> class.
             </summary>
             <inheritdoc />
+        </member>
+        <member name="P:Bubba.TranscriptionParameter.Language">
+            <summary>
+            Gets or sets the language.
+            </summary>
+            <value>
+            The language.
+            </value>
+        </member>
+        <member name="P:Bubba.TranscriptionParameter.FilePath">
+            <summary>
+            Gets or sets the file path.
+            </summary>
+            <value>
+            The file path.
+            </value>
+        </member>
+        <member name="P:Bubba.TranscriptionParameter.AudioData">
+            <summary>
+            Gets or sets the audio data.
+            </summary>
+            <value>
+            The audio data.
+            </value>
         </member>
         <member name="P:Bubba.TranscriptionParameter.Number">
             <inheritdoc />
@@ -20930,11 +20885,42 @@
             The response format.
             </value>
         </member>
+        <member name="M:Bubba.TranscriptionParameter.GetData">
+            <inheritdoc />
+            <summary>
+            Gets the data.
+            </summary>
+            <returns>
+            </returns>
+        </member>
+        <member name="M:Bubba.TranscriptionParameter.ToString">
+            <summary>
+            Converts to string.
+            </summary>
+            <returns>
+            A <see cref="T:System.String" /> that represents this instance.
+            </returns>
+        </member>
         <member name="T:Bubba.TranslationParameter">
             <inheritdoc />
             <summary>
             </summary>
             <seealso cref="T:Bubba.GptParameter" />
+        </member>
+        <member name="F:Bubba.TranslationParameter._language">
+            <summary>
+            The language
+            </summary>
+        </member>
+        <member name="F:Bubba.TranslationParameter._filePath">
+            <summary>
+            The file path
+            </summary>
+        </member>
+        <member name="F:Bubba.TranslationParameter._audioData">
+            <summary>
+            The audio data
+            </summary>
         </member>
         <member name="M:Bubba.TranslationParameter.#ctor">
             <summary>
@@ -20942,6 +20928,30 @@
             <see cref="T:Bubba.TranslationParameter"/> class.
             </summary>
             <inheritdoc />
+        </member>
+        <member name="P:Bubba.TranslationParameter.Language">
+            <summary>
+            Gets or sets the language.
+            </summary>
+            <value>
+            The language.
+            </value>
+        </member>
+        <member name="P:Bubba.TranslationParameter.FilePath">
+            <summary>
+            Gets or sets the file path.
+            </summary>
+            <value>
+            The file path.
+            </value>
+        </member>
+        <member name="P:Bubba.TranslationParameter.AudioData">
+            <summary>
+            Gets or sets the audio data.
+            </summary>
+            <value>
+            The audio data.
+            </value>
         </member>
         <member name="P:Bubba.TranslationParameter.Number">
             <inheritdoc />
@@ -21036,6 +21046,275 @@
             <value>
             The response format.
             </value>
+        </member>
+        <member name="M:Bubba.TranslationParameter.GetData">
+            <inheritdoc />
+            <summary>
+            Gets the data.
+            </summary>
+            <returns>
+            </returns>
+        </member>
+        <member name="M:Bubba.TranslationParameter.ToString">
+            <summary>
+            Converts to string.
+            </summary>
+            <returns>
+            A <see cref="T:System.String" /> that represents this instance.
+            </returns>
+        </member>
+        <member name="T:Bubba.VectorEmbeddingParameter">
+            <inheritdoc />
+            <summary>
+            </summary>
+        </member>
+        <member name="F:Bubba.VectorEmbeddingParameter._filePath">
+            <summary>
+            The file path
+            </summary>
+        </member>
+        <member name="M:Bubba.VectorEmbeddingParameter.#ctor">
+            <inheritdoc />
+            <summary>
+            Initializes a new instance of the
+            <see cref="T:Bubba.VectorEmbeddingParameter" /> class.
+            </summary>
+        </member>
+        <member name="P:Bubba.VectorEmbeddingParameter.FilePath">
+            <summary>
+            Gets or sets the file path.
+            </summary>
+            <value>
+            The file path.
+            </value>
+        </member>
+        <member name="P:Bubba.VectorEmbeddingParameter.Store">
+            <inheritdoc />
+            <summary>
+            Gets or sets a value indicating whether this
+            <see cref="T:Bubba.ParameterBase" /> is store.
+            </summary>
+            <value>
+              <c>true</c> if store; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:Bubba.VectorEmbeddingParameter.Stream">
+            <inheritdoc />
+            <summary>
+            Gets or sets a value indicating whether this
+            <see cref="T:Bubba.ParameterBase" /> is stream.
+            </summary>
+            <value>
+              <c>true</c> if stream; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:Bubba.VectorEmbeddingParameter.Temperature">
+            <inheritdoc />
+            <summary>
+            A number between 0.0 and 2.0   between 0 and 2.
+            Higher values like 0.8 will make the output more random,
+            while lower values like 0.2 will make it more focused and deterministic.
+            </summary>
+            <value>
+            The temperature.
+            </value>
+        </member>
+        <member name="P:Bubba.VectorEmbeddingParameter.FrequencyPenalty">
+            <inheritdoc />
+            <summary>
+            A number between -2.0 and 2.0. Positive values penalize new
+            tokens based on their existing frequency in the text so far,
+            decreasing the model's likelihood to repeat the same line verbatim.
+            </summary>
+            <value>
+            The frequency.
+            </value>
+        </member>
+        <member name="P:Bubba.VectorEmbeddingParameter.PresencePenalty">
+            <inheritdoc />
+            <summary>
+            Number between -2.0 and 2.0. Positive values penalize new tokens
+            based on whether they appear in the text so far,
+            ncreasing the model's likelihood to talk about new topics.
+            </summary>
+            <value>
+            The presence.
+            </value>
+        </member>
+        <member name="P:Bubba.VectorEmbeddingParameter.TopPercent">
+            <inheritdoc />
+            <summary>
+            An alternative to sampling with temperature,
+            called nucleus sampling, where the model considers
+            the results of the tokens with top_p probability mass.
+            So 0.1 means only the tokens comprising the top 10% probability
+            mass are considered. We generally recommend altering this
+            or temperature but not both.
+            </summary>
+            <value>
+            The top percent.
+            </value>
+        </member>
+        <member name="P:Bubba.VectorEmbeddingParameter.ResponseFormat">
+            <inheritdoc />
+            <summary>
+            Gets or sets the response format.
+            </summary>
+            <value>
+            The response format.
+            </value>
+        </member>
+        <member name="M:Bubba.VectorEmbeddingParameter.GetData">
+            <inheritdoc />
+            <summary>
+            Gets the data.
+            </summary>
+            <returns>
+            </returns>
+        </member>
+        <member name="M:Bubba.VectorEmbeddingParameter.ToString">
+            <summary>
+            Converts to string.
+            </summary>
+            <returns>
+            A <see cref="T:System.String" /> that represents this instance.
+            </returns>
+        </member>
+        <member name="T:Bubba.VectorStoreParameter">
+            <inheritdoc />
+            <summary>
+            </summary>
+            <seealso cref="T:Bubba.GptParameter" />
+        </member>
+        <member name="F:Bubba.VectorStoreParameter._filePath">
+            <summary>
+            The file path
+            </summary>
+        </member>
+        <member name="M:Bubba.VectorStoreParameter.#ctor">
+            <summary>
+            Initializes a new instance of the
+            <see cref="T:Bubba.VectorStoreParameter"/> class.
+            </summary>
+            <inheritdoc />
+        </member>
+        <member name="P:Bubba.VectorStoreParameter.FilePath">
+            <summary>
+            Gets or sets the file path.
+            </summary>
+            <value>
+            The file path.
+            </value>
+        </member>
+        <member name="P:Bubba.VectorStoreParameter.Number">
+            <inheritdoc />
+            <summary>
+            THe number 'n' of responses generatred.
+            </summary>
+            <value>
+            The user identifier.
+            </value>
+        </member>
+        <member name="P:Bubba.VectorStoreParameter.Model">
+            <summary>
+            Gets the chat model.
+            </summary>
+            <value>
+            The chat model.
+            </value>
+            <inheritdoc />
+        </member>
+        <member name="P:Bubba.VectorStoreParameter.Store">
+            <inheritdoc />
+            <summary>
+            Gets or sets a value indicating whether this
+            <see cref="T:Bubba.ParameterBase" /> is store.
+            </summary>
+            <value>
+              <c>true</c> if store; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:Bubba.VectorStoreParameter.Stream">
+            <inheritdoc />
+            <summary>
+            Gets or sets a value indicating whether this
+            <see cref="T:Bubba.ParameterBase" /> is stream.
+            </summary>
+            <value>
+              <c>true</c> if stream; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:Bubba.VectorStoreParameter.Temperature">
+            <inheritdoc />
+            <summary>
+            A number between 0.0 and 2.0   between 0 and 2.
+            Higher values like 0.8 will make the output more random,
+            while lower values like 0.2 will make it more focused and deterministic.
+            </summary>
+            <value>
+            The temperature.
+            </value>
+        </member>
+        <member name="P:Bubba.VectorStoreParameter.FrequencyPenalty">
+            <inheritdoc />
+            <summary>
+            A number between -2.0 and 2.0. Positive values penalize new
+            tokens based on their existing frequency in the text so far,
+            decreasing the model's likelihood to repeat the same line verbatim.
+            </summary>
+            <value>
+            The frequency.
+            </value>
+        </member>
+        <member name="P:Bubba.VectorStoreParameter.PresencePenalty">
+            <inheritdoc />
+            <summary>
+            Number between -2.0 and 2.0. Positive values penalize new tokens
+            based on whether they appear in the text so far,
+            ncreasing the model's likelihood to talk about new topics.
+            </summary>
+            <value>
+            The presence.
+            </value>
+        </member>
+        <member name="P:Bubba.VectorStoreParameter.TopPercent">
+            <inheritdoc />
+            <summary>
+            An alternative to sampling with temperature,
+            called nucleus sampling, where the model considers
+            the results of the tokens with top_p probability mass.
+            So 0.1 means only the tokens comprising the top 10% probability
+            mass are considered. We generally recommend altering this
+            or temperature but not both.
+            </summary>
+            <value>
+            The top percent.
+            </value>
+        </member>
+        <member name="P:Bubba.VectorStoreParameter.ResponseFormat">
+            <inheritdoc />
+            <summary>
+            Gets or sets the response format.
+            </summary>
+            <value>
+            The response format.
+            </value>
+        </member>
+        <member name="M:Bubba.VectorStoreParameter.GetData">
+            <inheritdoc />
+            <summary>
+            Gets the data.
+            </summary>
+            <returns>
+            </returns>
+        </member>
+        <member name="M:Bubba.VectorStoreParameter.ToString">
+            <summary>
+            Converts to string.
+            </summary>
+            <returns>
+            A <see cref="T:System.String" /> that represents this instance.
+            </returns>
         </member>
         <member name="T:Bubba.Payload">
             <inheritdoc />
@@ -21597,7 +21876,16 @@
             <see cref="T:Bubba.GptRequest" /> class.
             </summary>
         </member>
-        <!-- Badly formed XML comment ignored for member "M:Bubba.GptRequest.#ctor(System.String,System.String,System.String,System.String,System.Int32,System.Boolean,System.Boolean,System.Double,System.Double,System.Double,System.Double,System.Int32)" -->
+        <member name="M:Bubba.GptRequest.#ctor(System.String,System.String,Bubba.IGptParameter)">
+            <inheritdoc />
+            <summary>
+            Initializes a new instance of the
+            <see cref="T:Bubba.GptRequest" /> class.
+            </summary>
+            <param name = "system" > </param>
+            <param name = "user" > </param>
+            <param name = "parameter" > </param>
+        </member>
         <member name="M:Bubba.GptRequest.#ctor(Bubba.GptRequest)">
             <inheritdoc />
             <summary>

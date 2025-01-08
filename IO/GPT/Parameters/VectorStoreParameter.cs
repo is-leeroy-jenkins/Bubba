@@ -1,12 +1,12 @@
 ﻿// ******************************************************************************************
 //     Assembly:                Bubba
 //     Author:                  Terry D. Eppler
-//     Created:                 01-07-2025
+//     Created:                 01-08-2025
 // 
 //     Last Modified By:        Terry D. Eppler
-//     Last Modified On:        01-07-2025
+//     Last Modified On:        01-08-2025
 // ******************************************************************************************
-// <copyright file="EmbeddingParameter.cs" company="Terry D. Eppler">
+// <copyright file="VectorStoreParameter.cs" company="Terry D. Eppler">
 //    Bubba is a small and simple windows (wpf) application for interacting with the OpenAI API
 //    that's developed in C-Sharp under the MIT license.C#.
 // 
@@ -35,31 +35,41 @@
 //    You can contact me at:  terryeppler@gmail.com or eppler.terry@epa.gov
 // </copyright>
 // <summary>
-//   EmbeddingParameter.cs
+//   VectorStoreParameter.cs
 // </summary>
 // ******************************************************************************************
 
 namespace Bubba
 {
     using System;
+    using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
+    using System.Linq;
+    using Properties;
 
     /// <inheritdoc />
     /// <summary>
     /// </summary>
+    /// <seealso cref="T:Bubba.GptParameter" />
     [ SuppressMessage( "ReSharper", "UnusedType.Global" ) ]
-    [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
-    public class EmbeddingParameter : GptParameter
+    [ SuppressMessage( "ReSharper", "PreferConcreteValueOverDefault" ) ]
+    public class VectorStoreParameter : GptParameter
     {
-        /// <inheritdoc />
+        /// <summary>
+        /// The file path
+        /// </summary>
+        private protected string _filePath;
+
         /// <summary>
         /// Initializes a new instance of the
-        /// <see cref="T:Bubba.EmbeddingParameter" /> class.
+        /// <see cref="VectorStoreParameter"/> class.
         /// </summary>
-        public EmbeddingParameter( )
+        /// <inheritdoc />
+        public VectorStoreParameter( )
             : base( )
         {
-            _model = "text-embedding-ada-002";
+            _model = "gpt-4o";
+            _endPoint = GptEndPoint.VectorStores;
             _store = false;
             _stream = false;
             _number = 1;
@@ -69,6 +79,74 @@ namespace Bubba
             _presencePenalty = 0.00;
             _maximumTokens = 2048;
             _responseFormat = "text";
+        }
+
+        /// <summary>
+        /// Gets or sets the file path.
+        /// </summary>
+        /// <value>
+        /// The file path.
+        /// </value>
+        public string FilePath
+        {
+            get
+            {
+                return _filePath;
+            }
+            set
+            {
+                if(_filePath != value)
+                {
+                    _filePath = value;
+                    OnPropertyChanged(nameof(FilePath));
+                }
+            }
+        }
+
+        /// <inheritdoc />
+        /// <summary>
+        /// THe number 'n' of responses generatred.
+        /// </summary>
+        /// <value>
+        /// The user identifier.
+        /// </value>
+        public override int Number
+        {
+            get
+            {
+                return _number;
+            }
+            set
+            {
+                if( _number != value )
+                {
+                    _number = value;
+                    OnPropertyChanged( nameof( Number ) );
+                }
+            }
+        }
+
+        /// <summary>
+        /// Gets the chat model.
+        /// </summary>
+        /// <value>
+        /// The chat model.
+        /// </value>
+        /// <inheritdoc />
+        public override string Model
+        {
+            get
+            {
+                return _model;
+            }
+            set
+            {
+                if( _model != value )
+                {
+                    _model = value;
+                    OnPropertyChanged( nameof( Model ) );
+                }
+            }
         }
 
         /// <inheritdoc />
@@ -242,6 +320,65 @@ namespace Bubba
                     _responseFormat = value;
                     OnPropertyChanged( nameof( ResponseFormat ) );
                 }
+            }
+        }
+
+        /// <inheritdoc />
+        /// <summary>
+        /// Gets the data.
+        /// </summary>
+        /// <returns>
+        /// </returns>
+        public override IDictionary<string, object> GetData( )
+        {
+            try
+            {
+                _data.Add( "model", _model );
+                _data.Add( "endpoint", _endPoint );
+                _data.Add( "number", _number );
+                _data.Add( "max_completion_tokens", _maximumTokens );
+                _data.Add( "store", _store );
+                _data.Add( "stream", _stream );
+                _data.Add( "temperature", _temperature );
+                _data.Add( "frequency_penalty", _frequencyPenalty );
+                _data.Add( "presence_penalty", _presencePenalty );
+                _data.Add( "top_p", _topPercent );
+                _data.Add( "response_format", _responseFormat );
+                _data.Add( "endpoint", _endPoint );
+                if( !string.IsNullOrEmpty( _filePath ) )
+                {
+                    _data.Add( "filepath", _filePath );
+                }
+
+                return _data?.Any( ) == true
+                    ? _data
+                    : default( IDictionary<string, object> );
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+                return default( IDictionary<string, object> );
+            }
+        }
+
+        /// <summary>
+        /// Converts to string.
+        /// </summary>
+        /// <returns>
+        /// A <see cref="System.String" /> that represents this instance.
+        /// </returns>
+        public override string ToString( )
+        {
+            try
+            {
+                return _data?.Any( ) == true
+                    ? _data.ToJson( )
+                    : string.Empty;
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+                return string.Empty;
             }
         }
     }

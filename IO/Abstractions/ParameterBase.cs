@@ -42,6 +42,7 @@
 namespace Bubba
 {
     using System;
+    using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
 
     /// <inheritdoc />
@@ -135,6 +136,11 @@ namespace Bubba
         /// The assistant prompt
         /// </summary>
         private protected string _assistantPrompt;
+
+        /// <summary>
+        /// The data
+        /// </summary>
+        private protected IDictionary<string, object> _data;
 
         /// <summary>
         /// Gets or sets the end point.
@@ -457,6 +463,17 @@ namespace Bubba
                     OnPropertyChanged( nameof( ResponseFormat ) );
                 }
             }
+        }
+
+        /// <summary>
+        /// Wraps error
+        /// </summary>
+        /// <param name="ex">The ex.</param>
+        private protected void Fail(Exception ex)
+        {
+            var _error = new ErrorWindow(ex);
+            _error?.SetText();
+            _error?.ShowDialog();
         }
     }
 }

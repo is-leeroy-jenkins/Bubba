@@ -104,20 +104,15 @@ namespace Bubba
         /// <see cref="T:Bubba.GptBody" /> class.
         /// </summary>
         /// <param name = "userPrompt" > </param>
-        /// <param name="model">The model.</param>
         /// <param name = "systemPrompt" > </param>
-        /// <param name = "format" > </param>
-        public GptBody( string systemPrompt, string userPrompt, string model = "gpt-4o",
-            string format = "text" )
+        /// <param name = "param" > </param>
+        public GptBody( string systemPrompt, string userPrompt, IGptParameter param )
             : this( )
         {
-            _model = model;
+            _responseFormat = param.ResponseFormat;
+            _model = param.Model;
             _systemMessage = new SystemMessage( systemPrompt );
             _userMessage = new UserMessage( userPrompt );
-            _data.Add( "response_format", format );
-            _data.Add( "model", model );
-            _messages.Add( _systemMessage );
-            _messages.Add( _userMessage );
         }
 
         /// <inheritdoc />
@@ -303,7 +298,24 @@ namespace Bubba
         {
             try
             {
-                return default(IDictionary<string, object>);
+                if( !string.IsNullOrEmpty( _model ) )
+                {
+                    _data.Add( "model", _model );
+                }
+
+                if( !string.IsNullOrEmpty( _responseFormat ) )
+                {
+                    _data.Add( "response_format", _responseFormat );
+                }
+
+                if( _messages?.Any( ) == true )
+                {
+                    _data.Add( "messages", _messages );
+                }
+
+                return _data?.Any( ) == true
+                    ? _data
+                    : default( IDictionary<string, object> );
             }
             catch( Exception ex )
             {
@@ -320,7 +332,19 @@ namespace Bubba
         {
             try
             {
-                return default(IList<IGptMessage>);
+                if( _systemMessage != null )
+                {
+                    _messages.Add( _systemMessage );
+                }
+
+                if( _userMessage != null )
+                {
+                    _messages.Add( _userMessage );
+                }
+
+                return _messages?.Any( ) == true
+                    ? _messages
+                    : default( IList<IGptMessage> );
             }
             catch( Exception ex )
             {
@@ -338,7 +362,7 @@ namespace Bubba
         /// </returns>
         public override string ToString( )
         {
-            return ( _data?.Any( ) == true )
+            return _data?.Any( ) == true
                 ? _data.ToJson( )
                 : string.Empty;
         }

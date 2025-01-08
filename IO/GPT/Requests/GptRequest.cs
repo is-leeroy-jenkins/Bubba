@@ -78,32 +78,20 @@ namespace Bubba
         /// </summary>
         /// <param name = "system" > </param>
         /// <param name = "user" > </param>
-        /// <param name = "model" > </param>
-        /// <param name = "endpoint" > </param>
-        /// <param name="number">The identifier.</param>
-        /// <param name = "store" > </param>
-        /// <param name = "stream" > </param>
-        /// <param name="frequencyPenaltyrequency.</param>
-        /// <param name="presencePenaltyresence.</param>
-        /// <param name = "topPercent" > </param>
-        /// <param name="temperature">The temperature.</param>
-        /// <param name="tokens" </param>/param>
-        public GptRequest( string system, string user, string model,
-            string endpoint, int number = 1, bool store = false,
-            bool stream = false, double frequencyPenalty = 0.00, double presencePenalty = 0.00,
-            double topPercent = 0.11, double temperature = 0.18, int tokens = 2048 )
+        /// <param name = "parameter" > </param>
+        public GptRequest( string system, string user, IGptParameter parameter )
         {
             _header = new GptHeader( );
-            _body = new GptBody( system, user, model );
-            _endPoint = endpoint;
-            _number = number;
-            _store = store;
-            _stream = stream;
-            _frequencyPenalty = frequencyPenalty;
-            _presencePenalty = presencePenalty;
-            _topPercent = topPercent;
-            _temperature = temperature;
-            _maximumTokens = tokens;
+            _body = new GptBody( system, user, parameter );
+            _endPoint = parameter.EndPoint;
+            _number = parameter.Number;
+            _store = parameter.Store;
+            _stream = parameter.Stream;
+            _frequencyPenalty = parameter.FrequencyPenalty;
+            _presencePenalty = parameter.PresencePenalty;
+            _topPercent = parameter.TopPercent;
+            _temperature = parameter.Temperature;
+            _maximumTokens = parameter.MaximumTokens;
         }
 
         /// <inheritdoc />

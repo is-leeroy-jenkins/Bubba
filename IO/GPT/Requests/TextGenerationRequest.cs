@@ -51,6 +51,7 @@ namespace Bubba
     /// <summary>
     /// </summary>
     [ SuppressMessage( "ReSharper", "UnusedType.Global" ) ]
+    [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
     public class TextGenerationRequest : GptRequest
     {
         /// <summary>

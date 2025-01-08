@@ -67,11 +67,6 @@ namespace Bubba
         /// </summary>
         private protected GptHeader _header;
 
-        /// <summary>
-        /// The configuration
-        /// </summary>
-        private protected ParameterBase _config;
-
         /// <inheritdoc />
         /// <summary>
         /// Gets the end point.

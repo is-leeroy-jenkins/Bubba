@@ -52,6 +52,7 @@ namespace Bubba
     /// </summary>
     /// <seealso cref="T:Bubba.GptRequest" />
     [ SuppressMessage( "ReSharper", "UnusedType.Global" ) ]
+    [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
     public class FineTuningRequest : GptRequest
     {
         /// <summary>

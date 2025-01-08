@@ -1,10 +1,10 @@
 ﻿// ******************************************************************************************
 //     Assembly:                Bubba
 //     Author:                  Terry D. Eppler
-//     Created:                 01-07-2025
+//     Created:                 01-08-2025
 // 
 //     Last Modified By:        Terry D. Eppler
-//     Last Modified On:        01-07-2025
+//     Last Modified On:        01-08-2025
 // ******************************************************************************************
 // <copyright file="TextParameter.cs" company="Terry D. Eppler">
 //    Bubba is a small and simple windows (wpf) application for interacting with the OpenAI API
@@ -42,12 +42,16 @@
 namespace Bubba
 {
     using System;
+    using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
+    using System.Linq;
+    using Properties;
 
     /// <inheritdoc />
     /// <summary>
     /// </summary>
     [ SuppressMessage( "ReSharper", "UnusedType.Global" ) ]
+    [ SuppressMessage( "ReSharper", "PreferConcreteValueOverDefault" ) ]
     public class TextParameter : GptParameter
     {
         /// <summary>
@@ -59,6 +63,7 @@ namespace Bubba
             : base( )
         {
             _model = "gpt-4o";
+            _endPoint = GptEndPoint.TextGeneration;
             _store = false;
             _stream = false;
             _number = 1;
@@ -287,6 +292,60 @@ namespace Bubba
                     _responseFormat = value;
                     OnPropertyChanged( nameof( ResponseFormat ) );
                 }
+            }
+        }
+
+        /// <inheritdoc />
+        /// <summary>
+        /// Gets the data.
+        /// </summary>
+        /// <returns>
+        /// </returns>
+        public override IDictionary<string, object> GetData( )
+        {
+            try
+            {
+                _data.Add( "model", _model );
+                _data.Add( "endpoint", _endPoint );
+                _data.Add( "number", _number );
+                _data.Add( "max_completion_tokens", _maximumTokens );
+                _data.Add( "store", _store );
+                _data.Add( "stream", _stream );
+                _data.Add( "temperature", _temperature );
+                _data.Add( "frequency_penalty", _frequencyPenalty );
+                _data.Add( "presence_penalty", _presencePenalty );
+                _data.Add( "top_p", _topPercent );
+                _data.Add( "response_format", _responseFormat );
+                _data.Add( "endpoint", _endPoint );
+                return _data?.Any( ) == true
+                    ? _data
+                    : default( IDictionary<string, object> );
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+                return default( IDictionary<string, object> );
+            }
+        }
+
+        /// <summary>
+        /// Converts to string.
+        /// </summary>
+        /// <returns>
+        /// A <see cref="System.String" /> that represents this instance.
+        /// </returns>
+        public override string ToString( )
+        {
+            try
+            {
+                return _data?.Any( ) == true
+                    ? _data.ToJson( )
+                    : string.Empty;
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+                return string.Empty;
             }
         }
     }

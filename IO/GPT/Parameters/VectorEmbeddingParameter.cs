@@ -1,12 +1,12 @@
 ﻿// ******************************************************************************************
 //     Assembly:                Bubba
 //     Author:                  Terry D. Eppler
-//     Created:                 01-07-2025
+//     Created:                 01-08-2025
 // 
 //     Last Modified By:        Terry D. Eppler
-//     Last Modified On:        01-07-2025
+//     Last Modified On:        01-08-2025
 // ******************************************************************************************
-// <copyright file="StoreParameter.cs" company="Terry D. Eppler">
+// <copyright file="VectorEmbeddingParameter.cs" company="Terry D. Eppler">
 //    Bubba is a small and simple windows (wpf) application for interacting with the OpenAI API
 //    that's developed in C-Sharp under the MIT license.C#.
 // 
@@ -35,31 +35,40 @@
 //    You can contact me at:  terryeppler@gmail.com or eppler.terry@epa.gov
 // </copyright>
 // <summary>
-//   StoreParameter.cs
+//   VectorEmbeddingParameter.cs
 // </summary>
 // ******************************************************************************************
 
 namespace Bubba
 {
     using System;
+    using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
+    using System.Linq;
+    using Properties;
 
     /// <inheritdoc />
     /// <summary>
     /// </summary>
-    /// <seealso cref="T:Bubba.GptParameter" />
     [ SuppressMessage( "ReSharper", "UnusedType.Global" ) ]
-    public class StoreParameter : GptParameter
+    [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
+    public class VectorEmbeddingParameter : GptParameter
     {
         /// <summary>
-        /// Initializes a new instance of the
-        /// <see cref="StoreParameter"/> class.
+        /// The file path
         /// </summary>
+        private protected string _filePath;
+
         /// <inheritdoc />
-        public StoreParameter( )
+        /// <summary>
+        /// Initializes a new instance of the
+        /// <see cref="T:Bubba.VectorEmbeddingParameter" /> class.
+        /// </summary>
+        public VectorEmbeddingParameter( )
             : base( )
         {
-            _model = "gpt-4o";
+            _model = "text-embedding-ada-002";
+            _endPoint = GptEndPoint.VectorEmbeddings;
             _store = false;
             _stream = false;
             _number = 1;
@@ -71,48 +80,24 @@ namespace Bubba
             _responseFormat = "text";
         }
 
-        /// <inheritdoc />
         /// <summary>
-        /// THe number 'n' of responses generatred.
+        /// Gets or sets the file path.
         /// </summary>
         /// <value>
-        /// The user identifier.
+        /// The file path.
         /// </value>
-        public override int Number
+        public string FilePath
         {
             get
             {
-                return _number;
+                return _filePath;
             }
             set
             {
-                if( _number != value )
+                if( _filePath != value )
                 {
-                    _number = value;
-                    OnPropertyChanged( nameof( Number ) );
-                }
-            }
-        }
-
-        /// <summary>
-        /// Gets the chat model.
-        /// </summary>
-        /// <value>
-        /// The chat model.
-        /// </value>
-        /// <inheritdoc />
-        public override string Model
-        {
-            get
-            {
-                return _model;
-            }
-            set
-            {
-                if( _model != value )
-                {
-                    _model = value;
-                    OnPropertyChanged( nameof( Model ) );
+                    _filePath = value;
+                    OnPropertyChanged( nameof( FilePath ) );
                 }
             }
         }
@@ -288,6 +273,65 @@ namespace Bubba
                     _responseFormat = value;
                     OnPropertyChanged( nameof( ResponseFormat ) );
                 }
+            }
+        }
+
+        /// <inheritdoc />
+        /// <summary>
+        /// Gets the data.
+        /// </summary>
+        /// <returns>
+        /// </returns>
+        public override IDictionary<string, object> GetData( )
+        {
+            try
+            {
+                _data.Add( "model", _model );
+                _data.Add( "endpoint", _endPoint );
+                _data.Add( "number", _number );
+                _data.Add( "max_completion_tokens", _maximumTokens );
+                _data.Add( "store", _store );
+                _data.Add( "stream", _stream );
+                _data.Add( "temperature", _temperature );
+                _data.Add( "frequency_penalty", _frequencyPenalty );
+                _data.Add( "presence_penalty", _presencePenalty );
+                _data.Add( "top_p", _topPercent );
+                _data.Add( "response_format", _responseFormat );
+                _data.Add( "endpoint", _endPoint );
+                if( !string.IsNullOrEmpty( _filePath ) )
+                {
+                    _data.Add( "filepath", _filePath );
+                }
+
+                return _data?.Any( ) == true
+                    ? _data
+                    : default( IDictionary<string, object> );
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+                return default( IDictionary<string, object> );
+            }
+        }
+
+        /// <summary>
+        /// Converts to string.
+        /// </summary>
+        /// <returns>
+        /// A <see cref="System.String" /> that represents this instance.
+        /// </returns>
+        public override string ToString( )
+        {
+            try
+            {
+                return _data?.Any( ) == true
+                    ? _data.ToJson( )
+                    : string.Empty;
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+                return string.Empty;
             }
         }
     }
