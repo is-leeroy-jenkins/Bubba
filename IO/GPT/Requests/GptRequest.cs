@@ -250,7 +250,7 @@ namespace Bubba
         /// </summary>
         /// <param name="jsonResponse">The json response.</param>
         /// <returns></returns>
-        private protected string ExtractResponseContent( string jsonResponse )
+        private protected string ExtractResponseText( string jsonResponse )
         {
             try
             {
@@ -296,7 +296,7 @@ namespace Bubba
         {
             try
             {
-                _data.Add( "number", _number );
+                _data.Add( "n", _number );
                 _data.Add( "max_completion_tokens", _maximumTokens );
                 _data.Add( "store", _store );
                 _data.Add( "stream", _stream );
