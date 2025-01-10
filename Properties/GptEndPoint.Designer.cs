@@ -70,6 +70,15 @@ namespace Bubba.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to https://api.openai.com/v1/embeddings.
+        /// </summary>
+        internal static string Embeddings {
+            get {
+                return ResourceManager.GetString("Embeddings", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to https://api.openai.com/v1/files.
         /// </summary>
         internal static string Files {
@@ -147,15 +156,6 @@ namespace Bubba.Properties {
         internal static string Uploads {
             get {
                 return ResourceManager.GetString("Uploads", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to https://api.openai.com/v1/embeddings.
-        /// </summary>
-        internal static string VectorEmbeddings {
-            get {
-                return ResourceManager.GetString("VectorEmbeddings", resourceCulture);
             }
         }
         

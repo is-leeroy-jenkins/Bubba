@@ -62,7 +62,7 @@ namespace Bubba
         public TextParameter( )
             : base( )
         {
-            _model = "gpt-4o";
+            _model = "gpt-4o-mini";
             _endPoint = GptEndPoint.TextGeneration;
             _store = false;
             _stream = false;
@@ -316,7 +316,6 @@ namespace Bubba
                 _data.Add( "presence_penalty", _presencePenalty );
                 _data.Add( "top_p", _topPercent );
                 _data.Add( "response_format", _responseFormat );
-                _data.Add( "endpoint", _endPoint );
                 return _data?.Any( ) == true
                     ? _data
                     : default( IDictionary<string, object> );

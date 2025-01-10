@@ -61,16 +61,14 @@ namespace Bubba
         /// </summary>
         protected GptParameter( )
         {
-            _model = "gpt-4o";
             _store = false;
-            _stream = false;
+            _stream = true;
             _number = 1;
             _temperature = 0.18;
             _topPercent = 0.11;
             _frequencyPenalty = 0.00;
             _presencePenalty = 0.00;
             _maximumTokens = 2048;
-            _responseFormat = "text";
         }
 
         /// <inheritdoc />
@@ -270,29 +268,6 @@ namespace Bubba
             }
         }
 
-        /// <inheritdoc />
-        /// <summary>
-        /// Gets or sets the response format.
-        /// </summary>
-        /// <value>
-        /// The response format.
-        /// </value>
-        public override string ResponseFormat
-        {
-            get
-            {
-                return _responseFormat;
-            }
-            set
-            {
-                if( _responseFormat != value )
-                {
-                    _responseFormat = value;
-                    OnPropertyChanged( nameof( ResponseFormat ) );
-                }
-            }
-        }
-
         /// <summary>
         /// Gets the data.
         /// </summary>
@@ -301,7 +276,6 @@ namespace Bubba
         {
             try
             {
-                _data.Add( "model", _model );
                 _data.Add( "number", _number );
                 _data.Add( "max_completion_tokens", _maximumTokens );
                 _data.Add( "store", _store );
@@ -310,8 +284,6 @@ namespace Bubba
                 _data.Add( "frequency_penalty", _frequencyPenalty );
                 _data.Add( "presence_penalty", _presencePenalty );
                 _data.Add( "top_p", _topPercent );
-                _data.Add( "response_format", _responseFormat );
-                _data.Add( "endpoint", _endPoint );
                 return _data?.Any( ) == true
                     ? _data
                     : default( IDictionary<string, object> );

@@ -67,9 +67,9 @@ namespace Bubba
     public class GptClient : GptBase, IGptClient
     {
         /// <summary>
-        /// The parameter
+        /// The HTTP client
         /// </summary>
-        private protected ParameterBase _param;
+        private protected HttpClient _httpClient;
 
         /// <inheritdoc />
         /// <summary>

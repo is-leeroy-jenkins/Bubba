@@ -1,10 +1,10 @@
 // ******************************************************************************************
 //     Assembly:                Bubba
 //     Author:                  Terry D. Eppler
-//     Created:                 01-08-2025
+//     Created:                 01-09-2025
 // 
 //     Last Modified By:        Terry D. Eppler
-//     Last Modified On:        01-08-2025
+//     Last Modified On:        01-09-2025
 // ******************************************************************************************
 // <copyright file="AudioParameter.cs" company="Terry D. Eppler">
 //    Bubba is a small and simple windows (wpf) application for interacting with the OpenAI API
@@ -54,6 +54,7 @@ namespace Bubba
     [ SuppressMessage( "ReSharper", "PreferConcreteValueOverDefault" ) ]
     [ SuppressMessage( "ReSharper", "FunctionComplexityOverflow" ) ]
     [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
+    [ SuppressMessage( "ReSharper", "FieldCanBeMadeReadOnly.Global" ) ]
     public class AudioParameter : GptParameter
     {
         /// <summary>
@@ -64,12 +65,32 @@ namespace Bubba
         /// <summary>
         /// The file path
         /// </summary>
-        private protected string _filePath;
+        private protected string _file;
 
         /// <summary>
         /// The audio data
         /// </summary>
         private protected byte[ ] _audioData;
+
+        /// <summary>
+        /// The modalities
+        /// </summary>
+        private protected IList<string> _modalities;
+
+        /// <summary>
+        /// The voice
+        /// </summary>
+        private protected string _voice;
+
+        /// <summary>
+        /// The speed
+        /// </summary>
+        private protected int _speed;
+
+        /// <summary>
+        /// The input
+        /// </summary>
+        private protected string _input;
 
         /// <inheritdoc />
         /// <summary>
@@ -81,17 +102,10 @@ namespace Bubba
         {
             _model = "whisper-1";
             _endPoint = GptEndPoint.SpeechGeneration;
-            _number = 1;
-            _store = false;
-            _stream = false;
-            _number = 1;
-            _temperature = 0.18;
-            _topPercent = 0.11;
-            _frequencyPenalty = 0.00;
-            _presencePenalty = 0.00;
-            _maximumTokens = 2048;
             _language = "en";
-            _responseFormat = "url";
+            _responseFormat = "mp3";
+            _modalities = new List<string>( );
+            _voice = "fable";
         }
 
         /// <summary>
@@ -117,23 +131,89 @@ namespace Bubba
         }
 
         /// <summary>
+        /// Gets or sets the input.
+        /// </summary>
+        /// <value>
+        /// The input.
+        /// </value>
+        public string Input
+        {
+            get
+            {
+                return _input;
+            }
+            set
+            {
+                if( _input != value )
+                {
+                    _input = value;
+                    OnPropertyChanged( nameof( Input ) );
+                }
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the voice.
+        /// </summary>
+        /// <value>
+        /// The voice.
+        /// </value>
+        public string Voice
+        {
+            get
+            {
+                return _voice;
+            }
+            set
+            {
+                if( _voice != value )
+                {
+                    _voice = value;
+                    OnPropertyChanged( nameof( Voice ) );
+                }
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the speed.
+        /// </summary>
+        /// <value>
+        /// The speed.
+        /// </value>
+        public int Speed
+        {
+            get
+            {
+                return _speed;
+            }
+            set
+            {
+                if( _speed != value )
+                {
+                    _speed = value;
+                    OnPropertyChanged( nameof( Speed ) );
+                }
+            }
+        }
+
+        /// <summary>
         /// Gets or sets the file path.
         /// </summary>
         /// <value>
         /// The file path.
         /// </value>
-        public string FilePath
+        public string File
         {
             get
             {
-                return _filePath;
+                return _file;
             }
             set
             {
-                if( _filePath != value )
+                if( _file != value )
                 {
-                    _filePath = value;
-                    OnPropertyChanged( nameof( FilePath ) );
+                    _file = value;
+                    OnPropertyChanged( nameof( File ) );
                 }
             }
         }
@@ -204,9 +284,17 @@ namespace Bubba
                 _data.Add( "top_p", _topPercent );
                 _data.Add( "response_format", _responseFormat );
                 _data.Add( "endpoint", _endPoint );
-                if( !string.IsNullOrEmpty( _filePath ) )
+                _modalities.Add( "text" );
+                _modalities.Add( "audio" );
+                _data.Add( "modalities", _modalities );
+                if( !string.IsNullOrEmpty( _file ) )
                 {
-                    _data.Add( "filepath", _filePath );
+                    _data.Add( "file", _file );
+                }
+
+                if( !string.IsNullOrEmpty( _input ) )
+                {
+                    _data.Add( "input", _input );
                 }
 
                 if( !string.IsNullOrEmpty( _language ) )

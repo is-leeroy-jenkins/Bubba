@@ -93,7 +93,7 @@ namespace Bubba
         /// <summary>
         /// The vector embeddings
         /// </summary>
-        VectorEmbeddings,
+        Embeddings,
 
         /// <summary>
         /// The vector stores

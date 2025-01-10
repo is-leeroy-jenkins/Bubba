@@ -1,10 +1,10 @@
 ﻿// ******************************************************************************************
 //     Assembly:                Bubba
 //     Author:                  Terry D. Eppler
-//     Created:                 01-07-2025
+//     Created:                 01-09-2025
 // 
 //     Last Modified By:        Terry D. Eppler
-//     Last Modified On:        01-07-2025
+//     Last Modified On:        01-09-2025
 // ******************************************************************************************
 // <copyright file="ChatCompletionRequest.cs" company="Terry D. Eppler">
 //    Bubba is a small and simple windows (wpf) application for interacting with the OpenAI API
@@ -41,15 +41,21 @@
 
 namespace Bubba
 {
+    using System;
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
+    using System.Linq;
     using System.Net.Http;
+    using Newtonsoft.Json;
+    using Properties;
 
     /// <inheritdoc />
     /// <summary>
     /// </summary>
     [ SuppressMessage( "ReSharper", "UnusedType.Global" ) ]
     [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
+    [ SuppressMessage( "ReSharper", "PreferConcreteValueOverDefault" ) ]
+    [ SuppressMessage( "ReSharper", "ClassCanBeSealed.Global" ) ]
     public class ChatCompletionRequest : GptRequest
     {
         /// <summary>
@@ -70,16 +76,11 @@ namespace Bubba
         public ChatCompletionRequest( )
             : base( )
         {
+            _header = new GptHeader( );
             _entry = new object( );
             _httpClient = new HttpClient( );
-            _presencePenalty = 0.00;
-            _frequencyPenalty = 0.00;
-            _topPercent = 0.11;
-            _temperature = 0.18;
-            _maximumTokens = 2048;
-            _model = "gpt-4o";
-            _endPoint = "https://api.openai.com/v1/chat/completions";
-            _number = 1;
+            _endPoint = GptEndPoint.TextGeneration;
+            _model = "gpt-4o-mini";
         }
 
         /// <inheritdoc />
@@ -88,10 +89,9 @@ namespace Bubba
         /// <see cref="T:Bubba.ChatCompletionRequest" /> class.
         /// </summary>
         /// <param name="config">The configuration.</param>
-        public ChatCompletionRequest( ParameterBase config )
+        public ChatCompletionRequest( GptParameter config )
         {
             _header = new GptHeader( );
-            _endPoint = new GptEndpoints( ).TextGeneration;
         }
 
         /// <inheritdoc />
@@ -106,8 +106,8 @@ namespace Bubba
         /// <param name="store">if set to <c>true</c> [store].</param>
         /// <param name="stream">if set to <c>true</c> [stream].</param>
         /// <param name="number">The number.</param>
-        /// <param name="frequencyPenalty.</param>
-        /// <param name="presencePenalty.</param>
+        /// <param name = "frequencyPenalty" > </param>
+        /// <param name = "presencePenalty" > </param>
         /// <param name="topPercent">The top percent.</param>
         /// <param name="temperature">The temperature.</param>
         /// <param name="tokens">The completion tokens.</param>
@@ -133,19 +133,11 @@ namespace Bubba
         /// Initializes a new instance of the
         /// <see cref="T:Bubba.ChatCompletionRequest" /> class.
         /// </summary>
-        /// <param name="chatCompletionRequest">The chatCompletionRequest.</param>
-        public ChatCompletionRequest( ChatCompletionRequest chatCompletionRequest )
+        /// <param name="completionRequest">The completionRequest.</param>
+        public ChatCompletionRequest( ChatCompletionRequest completionRequest )
         {
             _header = new GptHeader( );
-            _endPoint = chatCompletionRequest.EndPoint;
-            _store = chatCompletionRequest.Store;
-            _stream = chatCompletionRequest.Stream;
-            _number = chatCompletionRequest.Number;
-            _presencePenalty = chatCompletionRequest.PresencePenalty;
-            _frequencyPenalty = chatCompletionRequest.FrequencyPenalty;
-            _temperature = chatCompletionRequest.Temperature;
-            _topPercent = chatCompletionRequest.TopPercent;
-            _maximumTokens = chatCompletionRequest.MaximumTokens;
+            _endPoint = completionRequest.EndPoint;
         }
 
         /// <summary>
@@ -187,6 +179,7 @@ namespace Bubba
         /// <value>
         /// The messages.
         /// </value>
+        [ JsonProperty( "messages" ) ]
         public IList<IGptMessage> Messages
         {
             get
@@ -225,6 +218,30 @@ namespace Bubba
                 }
             }
         }
+        
+        /// <summary>
+        /// Gets the chat model.
+        /// </summary>
+        /// <value>
+        /// The chat model.
+        /// </value>
+        /// <inheritdoc />
+        [ JsonProperty( "model" ) ]
+        public override string Model
+        {
+            get
+            {
+                return _model;
+            }
+            set
+            {
+                if( _model != value )
+                {
+                    _model = value;
+                    OnPropertyChanged( nameof( Model ) );
+                }
+            }
+        }
 
         /// <inheritdoc />
         /// <summary>
@@ -233,6 +250,7 @@ namespace Bubba
         /// <value>
         /// The user identifier.
         /// </value>
+        [ JsonProperty( "n" ) ]
         public override int Number
         {
             get
@@ -256,6 +274,7 @@ namespace Bubba
         /// <value>
         /// The maximum tokens.
         /// </value>
+        [ JsonProperty( "max_completion_tokens" ) ]
         public override int MaximumTokens
         {
             get
@@ -280,6 +299,7 @@ namespace Bubba
         /// <value>
         ///   <c>true</c> if store; otherwise, <c>false</c>.
         /// </value>
+        [ JsonProperty( "store" ) ]
         public override bool Store
         {
             get
@@ -304,6 +324,7 @@ namespace Bubba
         /// <value>
         ///   <c>true</c> if stream; otherwise, <c>false</c>.
         /// </value>
+        [ JsonProperty( "store" ) ]
         public override bool Stream
         {
             get
@@ -328,6 +349,7 @@ namespace Bubba
         /// <value>
         /// The temperature.
         /// </value>
+        [ JsonProperty( "temperature" ) ]
         public override double Temperature
         {
             get
@@ -356,6 +378,7 @@ namespace Bubba
         /// <value>
         /// The top percent.
         /// </value>
+        [ JsonProperty( "top_p" ) ]
         public override double TopPercent
         {
             get
@@ -381,6 +404,7 @@ namespace Bubba
         /// <value>
         /// The frequency.
         /// </value>
+        [ JsonProperty( "frequency_penalty" ) ]
         public override double FrequencyPenalty
         {
             get
@@ -406,6 +430,7 @@ namespace Bubba
         /// <value>
         /// The presence.
         /// </value>
+        [ JsonProperty( "presence_penalty" ) ]
         public override double PresencePenalty
         {
             get
@@ -429,6 +454,7 @@ namespace Bubba
         /// <value>
         /// The response format.
         /// </value>
+        [ JsonProperty( "respone_format" ) ]
         public string ResponseFormat
         {
             get
@@ -465,6 +491,38 @@ namespace Bubba
                     _body = value;
                     OnPropertyChanged( nameof( Body ) );
                 }
+            }
+        }
+
+        /// <inheritdoc />
+        /// <summary>
+        /// Gets the data.
+        /// </summary>
+        /// <returns>
+        /// </returns>
+        public override IDictionary<string, object> GetData( )
+        {
+            try
+            {
+                _data.Add( "model", _model );
+                _data.Add( "endpoint", _endPoint );
+                _data.Add( "number", _number );
+                _data.Add( "max_completion_tokens", _maximumTokens );
+                _data.Add( "store", _store );
+                _data.Add( "stream", _stream );
+                _data.Add( "temperature", _temperature );
+                _data.Add( "frequency_penalty", _frequencyPenalty );
+                _data.Add( "presence_penalty", _presencePenalty );
+                _data.Add( "top_p", _topPercent );
+                _data.Add( "response_format", _responseFormat );
+                return _data?.Any( ) == true
+                    ? _data
+                    : default( IDictionary<string, object> );
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+                return default( IDictionary<string, object> );
             }
         }
     }

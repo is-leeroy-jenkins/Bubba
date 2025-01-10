@@ -1,10 +1,10 @@
 ﻿// ******************************************************************************************
 //     Assembly:                Bubba
 //     Author:                  Terry D. Eppler
-//     Created:                 01-07-2025
+//     Created:                 01-09-2025
 // 
 //     Last Modified By:        Terry D. Eppler
-//     Last Modified On:        01-07-2025
+//     Last Modified On:        01-09-2025
 // ******************************************************************************************
 // <copyright file="FineTuningRequest.cs" company="Terry D. Eppler">
 //    Bubba is a small and simple windows (wpf) application for interacting with the OpenAI API
@@ -45,6 +45,7 @@ namespace Bubba
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
     using System.Net.Http;
+    using Newtonsoft.Json;
     using Properties;
 
     /// <inheritdoc />
@@ -53,6 +54,7 @@ namespace Bubba
     /// <seealso cref="T:Bubba.GptRequest" />
     [ SuppressMessage( "ReSharper", "UnusedType.Global" ) ]
     [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
+    [ SuppressMessage( "ReSharper", "ClassCanBeSealed.Global" ) ]
     public class FineTuningRequest : GptRequest
     {
         /// <summary>
@@ -111,6 +113,7 @@ namespace Bubba
         /// <value>
         /// The messages.
         /// </value>
+        [ JsonProperty( "messages" ) ]
         public IList<IGptMessage> Messages
         {
             get
@@ -157,6 +160,7 @@ namespace Bubba
         /// <value>
         /// The user identifier.
         /// </value>
+        [ JsonProperty( "n" ) ]
         public override int Number
         {
             get
@@ -180,6 +184,7 @@ namespace Bubba
         /// <value>
         /// The maximum tokens.
         /// </value>
+        [ JsonProperty( "max_completion_tokens" ) ]
         public override int MaximumTokens
         {
             get
@@ -204,6 +209,7 @@ namespace Bubba
         /// <value>
         ///   <c>true</c> if store; otherwise, <c>false</c>.
         /// </value>
+        [ JsonProperty( "store" ) ]
         public override bool Store
         {
             get
@@ -228,6 +234,7 @@ namespace Bubba
         /// <value>
         ///   <c>true</c> if stream; otherwise, <c>false</c>.
         /// </value>
+        [ JsonProperty( "stream" ) ]
         public override bool Stream
         {
             get
@@ -252,6 +259,7 @@ namespace Bubba
         /// <value>
         /// The temperature.
         /// </value>
+        [ JsonProperty( "temperature" ) ]
         public override double Temperature
         {
             get
@@ -280,6 +288,7 @@ namespace Bubba
         /// <value>
         /// The top percent.
         /// </value>
+        [ JsonProperty( "top_p" ) ]
         public override double TopPercent
         {
             get
@@ -305,6 +314,7 @@ namespace Bubba
         /// <value>
         /// The frequency.
         /// </value>
+        [ JsonProperty( "frequency_penalty" ) ]
         public override double FrequencyPenalty
         {
             get
@@ -330,6 +340,7 @@ namespace Bubba
         /// <value>
         /// The presence.
         /// </value>
+        [ JsonProperty( "presence_penalty" ) ]
         public override double PresencePenalty
         {
             get
@@ -353,6 +364,7 @@ namespace Bubba
         /// <value>
         /// The response format.
         /// </value>
+        [ JsonProperty( "response_format" ) ]
         public string ResponseFormat
         {
             get

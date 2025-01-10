@@ -1,12 +1,12 @@
 ﻿// ******************************************************************************************
 //     Assembly:                Bubba
 //     Author:                  Terry D. Eppler
-//     Created:                 01-08-2025
+//     Created:                 01-09-2025
 // 
 //     Last Modified By:        Terry D. Eppler
-//     Last Modified On:        01-08-2025
+//     Last Modified On:        01-09-2025
 // ******************************************************************************************
-// <copyright file="VectorStoreParameter.cs" company="Terry D. Eppler">
+// <copyright file="AudioGenerationReqeust.cs" company="Terry D. Eppler">
 //    Bubba is a small and simple windows (wpf) application for interacting with the OpenAI API
 //    that's developed in C-Sharp under the MIT license.C#.
 // 
@@ -35,7 +35,7 @@
 //    You can contact me at:  terryeppler@gmail.com or eppler.terry@epa.gov
 // </copyright>
 // <summary>
-//   VectorStoreParameter.cs
+//   AudioGenerationReqeust.cs
 // </summary>
 // ******************************************************************************************
 
@@ -45,257 +45,145 @@ namespace Bubba
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
     using System.Linq;
+    using System.Net.Http;
+    using Newtonsoft.Json;
     using Properties;
 
     /// <inheritdoc />
     /// <summary>
     /// </summary>
-    /// <seealso cref="T:Bubba.GptParameter" />
     [ SuppressMessage( "ReSharper", "UnusedType.Global" ) ]
+    [ SuppressMessage( "ReSharper", "FieldCanBeMadeReadOnly.Global" ) ]
+    [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
     [ SuppressMessage( "ReSharper", "PreferConcreteValueOverDefault" ) ]
-    public class VectorStoreParameter : GptParameter
+    [ SuppressMessage( "ReSharper", "ClassCanBeSealed.Global" ) ]
+    public class AudioGenerationReqeust : GptRequest
     {
         /// <summary>
-        /// The file path
+        /// The file
         /// </summary>
-        private protected string _filePath;
+        private protected string _file;
+
+        /// <summary>
+        /// The voice
+        /// </summary>
+        private protected string _voice;
+
+        /// <summary>
+        /// The modalities
+        /// </summary>
+        private protected IList<string> _modalities;
+
+        /// <summary>
+        /// The response format
+        /// </summary>
+        private protected string _responseFormat;
+
+        /// <summary>
+        /// The language
+        /// </summary>
+        private protected string _language;
+
+        /// <summary>
+        /// The speed
+        /// </summary>
+        private protected int _speed;
+
+        /// <summary>
+        /// The input
+        /// </summary>
+        private protected string _input;
+
+        /// <summary>
+        /// The audio data
+        /// </summary>
+        private protected byte[ ] _audioData;
 
         /// <summary>
         /// Initializes a new instance of the
-        /// <see cref="VectorStoreParameter"/> class.
+        /// <see cref="AudioGenerationReqeust"/> class.
         /// </summary>
         /// <inheritdoc />
-        public VectorStoreParameter( )
+        public AudioGenerationReqeust( )
             : base( )
         {
-            _model = "gpt-4o";
-            _endPoint = GptEndPoint.VectorStores;
-            _store = false;
-            _stream = false;
-            _number = 1;
-            _temperature = 0.18;
-            _topPercent = 0.11;
-            _frequencyPenalty = 0.00;
-            _presencePenalty = 0.00;
-            _maximumTokens = 2048;
-            _responseFormat = "text";
-        }
-
-        /// <summary>
-        /// Gets or sets the file path.
-        /// </summary>
-        /// <value>
-        /// The file path.
-        /// </value>
-        public string FilePath
-        {
-            get
-            {
-                return _filePath;
-            }
-            set
-            {
-                if(_filePath != value)
-                {
-                    _filePath = value;
-                    OnPropertyChanged(nameof(FilePath));
-                }
-            }
-        }
-
-        /// <inheritdoc />
-        /// <summary>
-        /// THe number 'n' of responses generatred.
-        /// </summary>
-        /// <value>
-        /// The user identifier.
-        /// </value>
-        public override int Number
-        {
-            get
-            {
-                return _number;
-            }
-            set
-            {
-                if( _number != value )
-                {
-                    _number = value;
-                    OnPropertyChanged( nameof( Number ) );
-                }
-            }
-        }
-
-        /// <summary>
-        /// Gets the chat model.
-        /// </summary>
-        /// <value>
-        /// The chat model.
-        /// </value>
-        /// <inheritdoc />
-        public override string Model
-        {
-            get
-            {
-                return _model;
-            }
-            set
-            {
-                if( _model != value )
-                {
-                    _model = value;
-                    OnPropertyChanged( nameof( Model ) );
-                }
-            }
+            _entry = new object( );
+            _httpClient = new HttpClient( );
+            _modalities = new List<string>( );
+            _model = "gpt-4o-mini";
+            _endPoint = GptEndPoint.SpeechGeneration;
+            _speed = 1;
+            _language = "en";
+            _responseFormat = "mp3";
         }
 
         /// <inheritdoc />
         /// <summary>
         /// Gets or sets a value indicating whether this
-        /// <see cref="T:Bubba.ParameterBase" /> is store.
+        /// <see cref="P:Bubba.GptRequest.HttpClient" /> is store.
         /// </summary>
         /// <value>
         ///   <c>true</c> if store; otherwise, <c>false</c>.
         /// </value>
-        public override bool Store
+        public override HttpClient HttpClient
         {
             get
             {
-                return _store;
+                return _httpClient;
             }
             set
             {
-                if( _store != value )
+                if( _httpClient != value )
                 {
-                    _store = value;
-                    OnPropertyChanged( nameof( Store ) );
+                    _httpClient = value;
+                    OnPropertyChanged( nameof( HttpClient ) );
                 }
             }
         }
 
         /// <inheritdoc />
         /// <summary>
-        /// Gets or sets a value indicating whether this
-        /// <see cref="T:Bubba.ParameterBase" /> is stream.
+        /// Gets or sets the messages.
         /// </summary>
         /// <value>
-        ///   <c>true</c> if stream; otherwise, <c>false</c>.
+        /// The messages.
         /// </value>
-        public override bool Stream
+        [ JsonProperty( "messages" ) ]
+        public IList<IGptMessage> Messages
         {
             get
             {
-                return _stream;
+                return _messages;
             }
             set
             {
-                if( _stream != value )
+                if( _messages != value )
                 {
-                    _stream = value;
-                    OnPropertyChanged( nameof( Stream ) );
+                    _messages = value;
+                    OnPropertyChanged( nameof( Messages ) );
                 }
             }
         }
 
         /// <inheritdoc />
         /// <summary>
-        /// A number between 0.0 and 2.0   between 0 and 2.
-        /// Higher values like 0.8 will make the output more random,
-        /// while lower values like 0.2 will make it more focused and deterministic.
+        /// Gets the end point.
         /// </summary>
         /// <value>
-        /// The temperature.
+        /// The end point.
         /// </value>
-        public override double Temperature
+        public override string EndPoint
         {
             get
             {
-                return _temperature;
+                return _endPoint;
             }
             set
             {
-                if( _temperature != value )
+                if( _endPoint != value )
                 {
-                    _temperature = value;
-                    OnPropertyChanged( nameof( Temperature ) );
-                }
-            }
-        }
-
-        /// <inheritdoc />
-        /// <summary>
-        /// A number between -2.0 and 2.0. Positive values penalize new
-        /// tokens based on their existing frequency in the text so far,
-        /// decreasing the model's likelihood to repeat the same line verbatim.
-        /// </summary>
-        /// <value>
-        /// The frequency.
-        /// </value>
-        public override double FrequencyPenalty
-        {
-            get
-            {
-                return _frequencyPenalty;
-            }
-            set
-            {
-                if( _frequencyPenalty != value )
-                {
-                    _frequencyPenalty = value;
-                    OnPropertyChanged( nameof( FrequencyPenalty ) );
-                }
-            }
-        }
-
-        /// <inheritdoc />
-        /// <summary>
-        /// Number between -2.0 and 2.0. Positive values penalize new tokens
-        /// based on whether they appear in the text so far,
-        /// ncreasing the model's likelihood to talk about new topics.
-        /// </summary>
-        /// <value>
-        /// The presence.
-        /// </value>
-        public override double PresencePenalty
-        {
-            get
-            {
-                return _presencePenalty;
-            }
-            set
-            {
-                if( _presencePenalty != value )
-                {
-                    _presencePenalty = value;
-                    OnPropertyChanged( nameof( PresencePenalty ) );
-                }
-            }
-        }
-
-        /// <inheritdoc />
-        /// <summary>
-        /// An alternative to sampling with temperature,
-        /// called nucleus sampling, where the model considers
-        /// the results of the tokens with top_p probability mass.
-        /// So 0.1 means only the tokens comprising the top 10% probability
-        /// mass are considered. We generally recommend altering this
-        /// or temperature but not both.
-        /// </summary>
-        /// <value>
-        /// The top percent.
-        /// </value>
-        public override double TopPercent
-        {
-            get
-            {
-                return _topPercent;
-            }
-            set
-            {
-                if( _topPercent != value )
-                {
-                    _topPercent = value;
-                    OnPropertyChanged( nameof( TopPercent ) );
+                    _endPoint = value;
+                    OnPropertyChanged( nameof( EndPoint ) );
                 }
             }
         }
@@ -307,7 +195,8 @@ namespace Bubba
         /// <value>
         /// The response format.
         /// </value>
-        public override string ResponseFormat
+        [ JsonProperty( "response_format" ) ]
+        public string ResponseFormat
         {
             get
             {
@@ -323,6 +212,167 @@ namespace Bubba
             }
         }
 
+        /// <summary>
+        /// Gets or sets the language.
+        /// </summary>
+        /// <value>
+        /// The language.
+        /// </value>
+        [ JsonProperty( "language" ) ]
+        public string Language
+        {
+            get
+            {
+                return _language;
+            }
+            set
+            {
+                if( _language != value )
+                {
+                    _language = value;
+                    OnPropertyChanged( nameof( Language ) );
+                }
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the input.
+        /// </summary>
+        /// <value>
+        /// The input.
+        /// </value>
+        [ JsonProperty( "input" ) ]
+        public string Input
+        {
+            get
+            {
+                return _input;
+            }
+            set
+            {
+                if( _input != value )
+                {
+                    _input = value;
+                    OnPropertyChanged( nameof( Input ) );
+                }
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the voice.
+        /// </summary>
+        /// <value>
+        /// The voice.
+        /// </value>
+        [ JsonProperty( "voice" ) ]
+        public string Voice
+        {
+            get
+            {
+                return _voice;
+            }
+            set
+            {
+                if( _voice != value )
+                {
+                    _voice = value;
+                    OnPropertyChanged( nameof( Voice ) );
+                }
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the speed.
+        /// </summary>
+        /// <value>
+        /// The speed.
+        /// </value>
+        [ JsonProperty( "speed" ) ]
+        public int Speed
+        {
+            get
+            {
+                return _speed;
+            }
+            set
+            {
+                if( _speed != value )
+                {
+                    _speed = value;
+                    OnPropertyChanged( nameof( Speed ) );
+                }
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the file path.
+        /// </summary>
+        /// <value>
+        /// The file path.
+        /// </value>
+        [ JsonProperty( "file" ) ]
+        public string File
+        {
+            get
+            {
+                return _file;
+            }
+            set
+            {
+                if( _file != value )
+                {
+                    _file = value;
+                    OnPropertyChanged( nameof( File ) );
+                }
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the audio data.
+        /// </summary>
+        /// <value>
+        /// The audio data.
+        /// </value>
+        [ JsonProperty( "audio_data" ) ]
+        public byte[ ] AudioData
+        {
+            get
+            {
+                return _audioData;
+            }
+            set
+            {
+                if( _audioData != value )
+                {
+                    _audioData = value;
+                    OnPropertyChanged( nameof( AudioData ) );
+                }
+            }
+        }
+
+        /// <inheritdoc />
+        /// <summary>
+        /// Gets the chat model.
+        /// </summary>
+        /// <value>
+        /// The chat model.
+        /// </value>
+        public override GptBody Body
+        {
+            get
+            {
+                return _body;
+            }
+            set
+            {
+                if( _body != value )
+                {
+                    _body = value;
+                    OnPropertyChanged( nameof( Body ) );
+                }
+            }
+        }
+
         /// <inheritdoc />
         /// <summary>
         /// Gets the data.
@@ -334,7 +384,6 @@ namespace Bubba
             try
             {
                 _data.Add( "model", _model );
-                _data.Add( "endpoint", _endPoint );
                 _data.Add( "number", _number );
                 _data.Add( "max_completion_tokens", _maximumTokens );
                 _data.Add( "store", _store );
@@ -345,9 +394,17 @@ namespace Bubba
                 _data.Add( "top_p", _topPercent );
                 _data.Add( "response_format", _responseFormat );
                 _data.Add( "endpoint", _endPoint );
-                if( !string.IsNullOrEmpty( _filePath ) )
+                _modalities.Add( "text" );
+                _modalities.Add( "audio" );
+                _data.Add( "modalities", _modalities );
+                if( !string.IsNullOrEmpty( _file ) )
                 {
-                    _data.Add( "filepath", _filePath );
+                    _data.Add( "file", _file );
+                }
+
+                if( !string.IsNullOrEmpty( _language ) )
+                {
+                    _data.Add( "language", _language );
                 }
 
                 return _data?.Any( ) == true
@@ -358,27 +415,6 @@ namespace Bubba
             {
                 Fail( ex );
                 return default( IDictionary<string, object> );
-            }
-        }
-
-        /// <summary>
-        /// Converts to string.
-        /// </summary>
-        /// <returns>
-        /// A <see cref="System.String" /> that represents this instance.
-        /// </returns>
-        public override string ToString( )
-        {
-            try
-            {
-                return _data?.Any( ) == true
-                    ? _data.ToJson( )
-                    : string.Empty;
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
-                return string.Empty;
             }
         }
     }

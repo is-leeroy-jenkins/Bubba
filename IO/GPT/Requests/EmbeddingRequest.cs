@@ -6,7 +6,7 @@
 //     Last Modified By:        Terry D. Eppler
 //     Last Modified On:        01-07-2025
 // ******************************************************************************************
-// <copyright file="VectorEmbeddingRequest.cs" company="Terry D. Eppler">
+// <copyright file="EmbeddingRequest.cs" company="Terry D. Eppler">
 //    Bubba is a small and simple windows (wpf) application for interacting with the OpenAI API
 //    that's developed in C-Sharp under the MIT license.C#.
 // 
@@ -35,7 +35,7 @@
 //    You can contact me at:  terryeppler@gmail.com or eppler.terry@epa.gov
 // </copyright>
 // <summary>
-//   VectorEmbeddingRequest.cs
+//   EmbeddingRequest.cs
 // </summary>
 // ******************************************************************************************
 
@@ -44,6 +44,7 @@ namespace Bubba
     using System.Diagnostics.CodeAnalysis;
     using System;
     using System.Net.Http;
+    using Newtonsoft.Json;
     using Properties;
 
     /// <inheritdoc />
@@ -51,8 +52,14 @@ namespace Bubba
     /// </summary>
     /// <seealso cref="T:Bubba.GptRequest" />
     [ SuppressMessage( "ReSharper", "UnusedType.Global" ) ]
-    public class VectorEmbeddingRequest : GptRequest
+    [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
+    public class EmbeddingRequest : GptRequest
     {
+        /// <summary>
+        /// The file path
+        /// </summary>
+        private protected string _filePath;
+
         /// <summary>
         /// The response format
         /// </summary>
@@ -60,22 +67,16 @@ namespace Bubba
 
         /// <summary>
         /// Initializes a new instance of the
-        /// <see cref="VectorEmbeddingRequest"/> class.
+        /// <see cref="EmbeddingRequest"/> class.
         /// </summary>
         /// <inheritdoc />
-        public VectorEmbeddingRequest( )
+        public EmbeddingRequest( )
             : base( )
         {
             _entry = new object( );
             _httpClient = new HttpClient( );
-            _presencePenalty = 0.00;
-            _frequencyPenalty = 0.00;
-            _topPercent = 0.11;
-            _temperature = 0.18;
-            _maximumTokens = 2048;
             _model = "gpt-4o-mini";
-            _endPoint = GptEndPoint.VectorEmbeddings;
-            _number = 1;
+            _endPoint = GptEndPoint.Embeddings;
         }
 
         /// <inheritdoc />
@@ -147,6 +148,28 @@ namespace Bubba
                 }
             }
         }
+        
+        /// <summary>
+        /// Gets or sets the file path.
+        /// </summary>
+        /// <value>
+        /// The file path.
+        /// </value>
+        public string FilePath
+        {
+            get
+            {
+                return _filePath;
+            }
+            set
+            {
+                if( _filePath != value )
+                {
+                    _filePath = value;
+                    OnPropertyChanged( nameof( FilePath ) );
+                }
+            }
+        }
 
         /// <inheritdoc />
         /// <summary>
@@ -156,6 +179,7 @@ namespace Bubba
         /// <value>
         ///   <c>true</c> if store; otherwise, <c>false</c>.
         /// </value>
+        [ JsonProperty( "store" ) ]
         public override bool Store
         {
             get
@@ -180,6 +204,7 @@ namespace Bubba
         /// <value>
         ///   <c>true</c> if stream; otherwise, <c>false</c>.
         /// </value>
+        [ JsonProperty( "stream" ) ]
         public override bool Stream
         {
             get
@@ -205,6 +230,7 @@ namespace Bubba
         /// <value>
         /// The temperature.
         /// </value>
+        [ JsonProperty( "temperature" ) ]
         public override double Temperature
         {
             get
@@ -230,7 +256,8 @@ namespace Bubba
         /// <value>
         /// The frequency.
         /// </value>
-        public double FrequencyPenalty
+        [ JsonProperty( "frequency_penalty" ) ]
+        public override double FrequencyPenalty
         {
             get
             {
@@ -255,7 +282,8 @@ namespace Bubba
         /// <value>
         /// The presence.
         /// </value>
-        public double PresencePenalty
+        [ JsonProperty( "presence_penalty" ) ]
+        public override double PresencePenalty
         {
             get
             {
@@ -283,6 +311,7 @@ namespace Bubba
         /// <value>
         /// The top percent.
         /// </value>
+        [ JsonProperty( "top_p" ) ]
         public override double TopPercent
         {
             get
@@ -306,6 +335,7 @@ namespace Bubba
         /// <value>
         /// The response format.
         /// </value>
+        [ JsonProperty( "response_format" ) ]
         public string ResponseFormat
         {
             get

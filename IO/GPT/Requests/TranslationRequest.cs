@@ -52,6 +52,7 @@ namespace Bubba
     /// </summary>
     /// <seealso cref="T:Bubba.GptRequest" />
     [ SuppressMessage( "ReSharper", "UnusedType.Global" ) ]
+    [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
     public class TranslationRequest : GptRequest
     {
         /// <summary>
@@ -68,15 +69,10 @@ namespace Bubba
             : base( )
         {
             _entry = new object( );
-            _httpClient = new HttpClient( );
-            _presencePenalty = 0.00;
-            _frequencyPenalty = 0.00;
-            _topPercent = 0.11;
-            _temperature = 0.18;
-            _maximumTokens = 2048;
-            _model = "gpt-4o-mini";
-            _endPoint = GptEndPoint.Translations;
-            _number = 1;
+            _httpClient = new HttpClient();
+            _model = "tts-1";
+            _endPoint = GptEndPoint.SpeechGeneration;
+            _responseFormat = "mp3";
         }
 
         /// <inheritdoc />

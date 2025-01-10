@@ -52,8 +52,8 @@ namespace Bubba
     /// </summary>
     /// <seealso cref="T:Bubba.GptParameter" />
     [ SuppressMessage( "ReSharper", "UnusedType.Global" ) ]
-    [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
     [ SuppressMessage( "ReSharper", "PreferConcreteValueOverDefault" ) ]
+    [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
     public class TranscriptionParameter : GptParameter
     {
         /// <summary>
@@ -64,31 +64,39 @@ namespace Bubba
         /// <summary>
         /// The file path
         /// </summary>
-        private protected string _filePath;
+        private protected string _file;
 
         /// <summary>
         /// The audio data
         /// </summary>
-        private protected byte[ ] _audioData;
+        private protected byte[] _audioData;
+
+        /// <summary>
+        /// The modalities
+        /// </summary>
+        private protected IList<string> _modalities;
+
+        /// <summary>
+        /// The speed
+        /// </summary>
+        private protected int _speed;
+
+        /// <summary>
+        /// The input
+        /// </summary>
+        private protected string _input;
 
         /// <summary>
         /// Initializes a new instance of the
-        /// <see cref="TranslationParameter"/> class.
+        /// <see cref="TranscriptionParameter"/> class.
         /// </summary>
         /// <inheritdoc />
         public TranscriptionParameter( )
             : base( )
         {
             _model = "whisper-1";
-            _endPoint = GptEndPoint.Transcriptions;
-            _store = false;
-            _stream = false;
-            _number = 1;
-            _temperature = 0.18;
-            _topPercent = 0.11;
-            _frequencyPenalty = 0.00;
-            _presencePenalty = 0.00;
-            _maximumTokens = 2048;
+            _endPoint = GptEndPoint.Translations;
+            _speed = 1;
             _language = "en";
             _responseFormat = "text";
         }
@@ -121,18 +129,18 @@ namespace Bubba
         /// <value>
         /// The file path.
         /// </value>
-        public string FilePath
+        public string File
         {
             get
             {
-                return _filePath;
+                return _file;
             }
             set
             {
-                if(_filePath != value)
+                if(_file != value)
                 {
-                    _filePath = value;
-                    OnPropertyChanged(nameof(FilePath));
+                    _file = value;
+                    OnPropertyChanged(nameof(File));
                 }
             }
         }
@@ -205,153 +213,46 @@ namespace Bubba
             }
         }
 
-        /// <inheritdoc />
         /// <summary>
-        /// Gets or sets a value indicating whether this
-        /// <see cref="T:Bubba.ParameterBase" /> is store.
+        /// Gets or sets the input.
         /// </summary>
         /// <value>
-        ///   <c>true</c> if store; otherwise, <c>false</c>.
+        /// The input.
         /// </value>
-        public override bool Store
+        public string Input
         {
             get
             {
-                return _store;
+                return _input;
             }
             set
             {
-                if( _store != value )
+                if(_input != value)
                 {
-                    _store = value;
-                    OnPropertyChanged( nameof( Store ) );
+                    _input = value;
+                    OnPropertyChanged(nameof(Input));
                 }
             }
         }
 
-        /// <inheritdoc />
         /// <summary>
-        /// Gets or sets a value indicating whether this
-        /// <see cref="T:Bubba.ParameterBase" /> is stream.
+        /// Gets or sets the speed.
         /// </summary>
         /// <value>
-        ///   <c>true</c> if stream; otherwise, <c>false</c>.
+        /// The speed.
         /// </value>
-        public override bool Stream
+        public int Speed
         {
             get
             {
-                return _stream;
+                return _speed;
             }
             set
             {
-                if( _stream != value )
+                if(_speed != value)
                 {
-                    _stream = value;
-                    OnPropertyChanged( nameof( Stream ) );
-                }
-            }
-        }
-
-        /// <inheritdoc />
-        /// <summary>
-        /// A number between 0.0 and 2.0   between 0 and 2.
-        /// Higher values like 0.8 will make the output more random,
-        /// while lower values like 0.2 will make it more focused and deterministic.
-        /// </summary>
-        /// <value>
-        /// The temperature.
-        /// </value>
-        public override double Temperature
-        {
-            get
-            {
-                return _temperature;
-            }
-            set
-            {
-                if( _temperature != value )
-                {
-                    _temperature = value;
-                    OnPropertyChanged( nameof( Temperature ) );
-                }
-            }
-        }
-
-        /// <inheritdoc />
-        /// <summary>
-        /// A number between -2.0 and 2.0. Positive values penalize new
-        /// tokens based on their existing frequency in the text so far,
-        /// decreasing the model's likelihood to repeat the same line verbatim.
-        /// </summary>
-        /// <value>
-        /// The frequency.
-        /// </value>
-        public override double FrequencyPenalty
-        {
-            get
-            {
-                return _frequencyPenalty;
-            }
-            set
-            {
-                if( _frequencyPenalty != value )
-                {
-                    _frequencyPenalty = value;
-                    OnPropertyChanged( nameof( FrequencyPenalty ) );
-                }
-            }
-        }
-
-        /// <inheritdoc />
-        /// <summary>
-        /// Number between -2.0 and 2.0. Positive values penalize new tokens
-        /// based on whether they appear in the text so far,
-        /// ncreasing the model's likelihood to talk about new topics.
-        /// </summary>
-        /// <value>
-        /// The presence.
-        /// </value>
-        public override double PresencePenalty
-        {
-            get
-            {
-                return _presencePenalty;
-            }
-            set
-            {
-                if( _presencePenalty != value )
-                {
-                    _presencePenalty = value;
-                    OnPropertyChanged( nameof( PresencePenalty ) );
-                }
-            }
-        }
-
-        /// <inheritdoc />
-        /// <summary>
-        /// An alternative to sampling with temperature,
-        /// called nucleus sampling, where the model considers
-        /// the results of the tokens with top_p probability mass.
-        /// So 0.1 means only the tokens comprising the top 10% probability
-        /// mass are considered. We generally recommend altering this
-        /// or temperature but not both.
-        /// </summary>
-        /// <value>
-        /// The top percent.
-        /// </value>
-        public override double TopPercent
-        {
-            get
-            {
-                return _topPercent;
-            }
-            set
-            {
-                if( _topPercent != value )
-                {
-                    _topPercent = value;
-                    OnPropertyChanged( nameof( TopPercent ) );
+                    _speed = value;
+                    OnPropertyChanged(nameof(Speed));
                 }
             }
         }
@@ -400,10 +301,15 @@ namespace Bubba
                 _data.Add( "presence_penalty", _presencePenalty );
                 _data.Add( "top_p", _topPercent );
                 _data.Add( "response_format", _responseFormat );
-                _data.Add( "endpoint", _endPoint );
-                if( !string.IsNullOrEmpty( _filePath ) )
+                _data.Add("endpoint", _endPoint);
+                _data.Add("speed", _speed);
+                _data.Add("language", _language);
+                _modalities.Add("text");
+                _modalities.Add("audio");
+                _data.Add("modalities", _modalities);
+                if( !string.IsNullOrEmpty( _file ) )
                 {
-                    _data.Add( "filepath", _filePath );
+                    _data.Add( "filepath", _file );
                 }
 
                 if( !string.IsNullOrEmpty( _language ) )
@@ -433,7 +339,7 @@ namespace Bubba
         /// <returns>
         /// A <see cref="System.String" /> that represents this instance.
         /// </returns>
-        public override string ToString( )
+        public override string ToString()
         {
             try
             {

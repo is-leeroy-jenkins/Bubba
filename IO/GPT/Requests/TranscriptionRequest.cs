@@ -54,6 +54,21 @@ namespace Bubba
     public class TranscriptionRequest : GptRequest
     {
         /// <summary>
+        /// The language
+        /// </summary>
+        private protected string _language;
+
+        /// <summary>
+        /// The file path
+        /// </summary>
+        private protected string _file;
+
+        /// <summary>
+        /// The audio data
+        /// </summary>
+        private protected byte[] _audioData;
+
+        /// <summary>
         /// The response format
         /// </summary>
         private protected string _responseFormat;
@@ -68,13 +83,10 @@ namespace Bubba
         {
             _entry = new object( );
             _httpClient = new HttpClient( );
-            _presencePenalty = 0.00;
-            _frequencyPenalty = 0.00;
-            _topPercent = 0.11;
-            _temperature = 0.18;
-            _maximumTokens = 2048;
-            _model = "gpt-4o";
+            _language = "en";
+            _model = "whisper-1";
             _endPoint = GptEndPoint.Transcriptions;
+            _responseFormat = "text";
             _number = 1;
         }
 
@@ -190,179 +202,6 @@ namespace Bubba
                 {
                     _number = value;
                     OnPropertyChanged( nameof( Number ) );
-                }
-            }
-        }
-
-        /// <inheritdoc />
-        /// <summary>
-        /// Gets the maximum tokens.
-        /// </summary>
-        /// <value>
-        /// The maximum tokens.
-        /// </value>
-        public override int MaximumTokens
-        {
-            get
-            {
-                return _maximumTokens;
-            }
-            set
-            {
-                if( _maximumTokens != value )
-                {
-                    _maximumTokens = value;
-                    OnPropertyChanged( nameof( MaximumTokens ) );
-                }
-            }
-        }
-
-        /// <inheritdoc />
-        /// <summary>
-        /// Gets or sets a value indicating whether this
-        /// <see cref="T:Bubba.GptRequest" /> is store.
-        /// </summary>
-        /// <value>
-        ///   <c>true</c> if store; otherwise, <c>false</c>.
-        /// </value>
-        public override bool Store
-        {
-            get
-            {
-                return _store;
-            }
-            set
-            {
-                if( _store != value )
-                {
-                    _store = value;
-                    OnPropertyChanged( nameof( Store ) );
-                }
-            }
-        }
-
-        /// <inheritdoc />
-        /// <summary>
-        /// Gets or sets a value indicating whether this
-        /// <see cref="P:Bubba.ChatCompletionRequest.Stream" /> is stream.
-        /// </summary>
-        /// <value>
-        ///   <c>true</c> if stream; otherwise, <c>false</c>.
-        /// </value>
-        public override bool Stream
-        {
-            get
-            {
-                return _stream;
-            }
-            set
-            {
-                if( _stream != value )
-                {
-                    _stream = value;
-                    OnPropertyChanged( nameof( Stream ) );
-                }
-            }
-        }
-
-        /// <inheritdoc />
-        /// <summary>
-        /// A number between -2.0 and 2.0 Positive value decrease the
-        /// model's likelihood to repeat the same line verbatim.
-        /// </summary>
-        /// <value>
-        /// The temperature.
-        /// </value>
-        public override double Temperature
-        {
-            get
-            {
-                return _temperature;
-            }
-            set
-            {
-                if( _temperature != value )
-                {
-                    _temperature = value;
-                    OnPropertyChanged( nameof( Temperature ) );
-                }
-            }
-        }
-
-        /// <inheritdoc />
-        /// <summary>
-        /// An alternative to sampling with temperature,
-        /// called nucleus sampling, where the model considers
-        /// the results of the tokens with top_p probability mass.
-        /// So 0.1 means only the tokens comprising the top 10% probability
-        /// mass are considered. We generally recommend altering this
-        /// or temperature but not both.
-        /// </summary>
-        /// <value>
-        /// The top percent.
-        /// </value>
-        public override double TopPercent
-        {
-            get
-            {
-                return _topPercent;
-            }
-            set
-            {
-                if( _topPercent != value )
-                {
-                    _topPercent = value;
-                    OnPropertyChanged( nameof( TopPercent ) );
-                }
-            }
-        }
-
-        /// <inheritdoc />
-        /// <summary>
-        /// Number between -2.0 and 2.0. Positive values penalize new tokens
-        /// based on whether they appear in the text so far,
-        /// ncreasing the model's likelihood to talk about new topics.
-        /// </summary>
-        /// <value>
-        /// The frequency.
-        /// </value>
-        public override double FrequencyPenalty
-        {
-            get
-            {
-                return _frequencyPenalty;
-            }
-            set
-            {
-                if( _frequencyPenalty != value )
-                {
-                    _frequencyPenalty = value;
-                    OnPropertyChanged( nameof( FrequencyPenalty ) );
-                }
-            }
-        }
-
-        /// <inheritdoc />
-        /// <summary>
-        /// Number between -2.0 and 2.0. Positive values penalize new tokens
-        /// based on whether they appear in the text so far,
-        /// ncreasing the model's likelihood to talk about new topics.
-        /// </summary>
-        /// <value>
-        /// The presence.
-        /// </value>
-        public override double PresencePenalty
-        {
-            get
-            {
-                return _presencePenalty;
-            }
-            set
-            {
-                if( _presencePenalty != value )
-                {
-                    _presencePenalty = value;
-                    OnPropertyChanged( nameof( PresencePenalty ) );
                 }
             }
         }

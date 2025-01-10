@@ -1,10 +1,10 @@
 ﻿// ******************************************************************************************
 //     Assembly:                Bubba
 //     Author:                  Terry D. Eppler
-//     Created:                 01-08-2025
+//     Created:                 01-09-2025
 // 
 //     Last Modified By:        Terry D. Eppler
-//     Last Modified On:        01-08-2025
+//     Last Modified On:        01-09-2025
 // ******************************************************************************************
 // <copyright file="FineTuningParameter.cs" company="Terry D. Eppler">
 //    Bubba is a small and simple windows (wpf) application for interacting with the OpenAI API
@@ -45,6 +45,7 @@ namespace Bubba
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
     using System.Linq;
+    using Newtonsoft.Json;
     using Properties;
 
     /// <inheritdoc />
@@ -54,12 +55,53 @@ namespace Bubba
     [ SuppressMessage( "ReSharper", "UnusedType.Global" ) ]
     [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
     [ SuppressMessage( "ReSharper", "PreferConcreteValueOverDefault" ) ]
+    [ SuppressMessage( "ReSharper", "FieldCanBeMadeReadOnly.Global" ) ]
     public class FineTuningParameter : GptParameter
     {
         /// <summary>
+        /// The log probs
+        /// </summary>
+        private protected bool _logProbs;
+
+        /// <summary>
+        /// The echo
+        /// </summary>
+        private protected bool _echo;
+
+        /// <summary>
+        /// The best of
+        /// </summary>
+        private protected int _bestOf;
+
+        /// <summary>
+        /// The logit bias
+        /// </summary>
+        private protected IDictionary<string, object> _logitBias;
+
+        /// <summary>
         /// The file path
         /// </summary>
-        private protected string _filePath;
+        private protected string _trainingFile;
+
+        /// <summary>
+        /// The suffix
+        /// </summary>
+        private protected string _suffix;
+
+        /// <summary>
+        /// The seed
+        /// </summary>
+        private protected int _seed;
+
+        /// <summary>
+        /// The validation file
+        /// </summary>
+        private protected string _validationFile;
+
+        /// <summary>
+        /// The method
+        /// </summary>
+        private protected IDictionary<string, object> _method;
 
         /// <inheritdoc />
         /// <summary>
@@ -71,35 +113,199 @@ namespace Bubba
         {
             _model = "gpt-4o-mini";
             _endPoint = GptEndPoint.FineTuning;
-            _store = false;
-            _stream = false;
-            _number = 1;
-            _temperature = 0.18;
-            _topPercent = 0.11;
-            _frequencyPenalty = 0.00;
-            _presencePenalty = 0.00;
-            _maximumTokens = 2048;
+            _method = new Dictionary<string, object>( );
+            _logitBias = new Dictionary<string, object>( );
+            _echo = true;
+            _logProbs = true;
+            _bestOf = 3;
             _responseFormat = "text";
         }
 
         /// <summary>
-        /// Gets or sets the file path.
+        /// Gets or sets the log probs.
+        /// </summary>
+        /// <value>
+        /// The log probs.
+        /// </value>
+        [ JsonProperty( "logprobs" ) ]
+        public bool LogProbs
+        {
+            get
+            {
+                return _logProbs;
+            }
+            set
+            {
+                if( _logProbs != value )
+                {
+                    _logProbs = value;
+                    OnPropertyChanged( nameof( LogProbs ) );
+                }
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether this
+        /// <see cref="FineTuningParameter"/> is echo.
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if echo; otherwise, <c>false</c>.
+        /// </value>
+        [ JsonProperty( "echo" ) ]
+        public bool Echo
+        {
+            get
+            {
+                return _echo;
+            }
+            set
+            {
+                if( _echo != value )
+                {
+                    _echo = value;
+                    OnPropertyChanged( nameof( Echo ) );
+                }
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the best of.
+        /// </summary>
+        /// <value>
+        /// The best of.
+        /// </value>
+        [ JsonProperty( "best_of" ) ]
+        public int BestOf
+        {
+            get
+            {
+                return _bestOf;
+            }
+            set
+            {
+                if( _bestOf != value )
+                {
+                    _bestOf = value;
+                    OnPropertyChanged( nameof( BestOf ) );
+                }
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the logit bias.
+        /// </summary>
+        /// <value>
+        /// The logit bias.
+        /// </value>
+        [ JsonProperty( "logit_bias" ) ]
+        public IDictionary<string, object> LogitBias
+        {
+            get
+            {
+                return _logitBias;
+            }
+            set
+            {
+                if( _logitBias != value )
+                {
+                    _logitBias = value;
+                    OnPropertyChanged( nameof( LogitBias ) );
+                }
+            }
+        }
+
+        /// <summary>
+        /// A string of up to 64 characters that will be added to your fine-tuned model name.
+        /// </summary>
+        /// <value>
+        /// The suffix.
+        /// </value>
+        [ JsonProperty( "suffix" ) ]
+        public string Suffix
+        {
+            get
+            {
+                return _suffix;
+            }
+            set
+            {
+                if( _suffix != value )
+                {
+                    _suffix = value;
+                    OnPropertyChanged( nameof( Suffix ) );
+                }
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the seed.
+        /// </summary>
+        /// <value>
+        /// The seed.
+        /// </value>
+        [ JsonProperty( "seed" ) ]
+        public int Seed
+        {
+            get
+            {
+                return _seed;
+            }
+            set
+            {
+                if( _seed != value )
+                {
+                    _seed = value;
+                    OnPropertyChanged( nameof( Seed ) );
+                }
+            }
+        }
+
+        /// <summary>
+        /// The ID of an uploaded file that contains training data.
+        /// Your dataset must be formatted as a JSONL file.
+        /// Additionally, you must upload your file with the purpose fine-tune.
         /// </summary>
         /// <value>
         /// The file path.
         /// </value>
-        public string FilePath
+        [ JsonProperty( "training_file" ) ]
+        public string TrainingFile
         {
             get
             {
-                return _filePath;
+                return _trainingFile;
             }
             set
             {
-                if( _filePath != value )
+                if( _trainingFile != value )
                 {
-                    _filePath = value;
-                    OnPropertyChanged( nameof( FilePath ) );
+                    _trainingFile = value;
+                    OnPropertyChanged( nameof( TrainingFile ) );
+                }
+            }
+        }
+
+        /// <summary>
+        /// The ID of an uploaded file that contains validation data.
+        /// Your dataset must be formatted as a JSONL file.
+        /// Additionally, you must upload your file with the purpose fine-tune.
+        /// </summary>
+        /// <value>
+        /// The validation file.
+        /// </value>
+        [ JsonProperty( "validation_file" ) ]
+        public string ValidationFile
+        {
+            get
+            {
+                return _validationFile;
+            }
+            set
+            {
+                if( _validationFile != value )
+                {
+                    _validationFile = value;
+                    OnPropertyChanged( nameof( ValidationFile ) );
                 }
             }
         }
@@ -111,6 +317,7 @@ namespace Bubba
         /// <value>
         /// The user identifier.
         /// </value>
+        [ JsonProperty( "n" ) ]
         public override int Number
         {
             get
@@ -134,6 +341,7 @@ namespace Bubba
         /// The chat model.
         /// </value>
         /// <inheritdoc />
+        [ JsonProperty( "model" ) ]
         public override string Model
         {
             get
@@ -152,162 +360,12 @@ namespace Bubba
 
         /// <inheritdoc />
         /// <summary>
-        /// Gets or sets a value indicating whether this
-        /// <see cref="T:Bubba.ParameterBase" /> is store.
-        /// </summary>
-        /// <value>
-        ///   <c>true</c> if store; otherwise, <c>false</c>.
-        /// </value>
-        public override bool Store
-        {
-            get
-            {
-                return _store;
-            }
-            set
-            {
-                if( _store != value )
-                {
-                    _store = value;
-                    OnPropertyChanged( nameof( Store ) );
-                }
-            }
-        }
-
-        /// <inheritdoc />
-        /// <summary>
-        /// Gets or sets a value indicating whether this
-        /// <see cref="T:Bubba.ParameterBase" /> is stream.
-        /// </summary>
-        /// <value>
-        ///   <c>true</c> if stream; otherwise, <c>false</c>.
-        /// </value>
-        public override bool Stream
-        {
-            get
-            {
-                return _stream;
-            }
-            set
-            {
-                if( _stream != value )
-                {
-                    _stream = value;
-                    OnPropertyChanged( nameof( Stream ) );
-                }
-            }
-        }
-
-        /// <inheritdoc />
-        /// <summary>
-        /// A number between 0.0 and 2.0   between 0 and 2.
-        /// Higher values like 0.8 will make the output more random,
-        /// while lower values like 0.2 will make it more focused and deterministic.
-        /// </summary>
-        /// <value>
-        /// The temperature.
-        /// </value>
-        public override double Temperature
-        {
-            get
-            {
-                return _temperature;
-            }
-            set
-            {
-                if( _temperature != value )
-                {
-                    _temperature = value;
-                    OnPropertyChanged( nameof( Temperature ) );
-                }
-            }
-        }
-
-        /// <inheritdoc />
-        /// <summary>
-        /// A number between -2.0 and 2.0. Positive values penalize new
-        /// tokens based on their existing frequency in the text so far,
-        /// decreasing the model's likelihood to repeat the same line verbatim.
-        /// </summary>
-        /// <value>
-        /// The frequency.
-        /// </value>
-        public override double FrequencyPenalty
-        {
-            get
-            {
-                return _frequencyPenalty;
-            }
-            set
-            {
-                if( _frequencyPenalty != value )
-                {
-                    _frequencyPenalty = value;
-                    OnPropertyChanged( nameof( FrequencyPenalty ) );
-                }
-            }
-        }
-
-        /// <inheritdoc />
-        /// <summary>
-        /// Number between -2.0 and 2.0. Positive values penalize new tokens
-        /// based on whether they appear in the text so far,
-        /// ncreasing the model's likelihood to talk about new topics.
-        /// </summary>
-        /// <value>
-        /// The presence.
-        /// </value>
-        public override double PresencePenalty
-        {
-            get
-            {
-                return _presencePenalty;
-            }
-            set
-            {
-                if( _presencePenalty != value )
-                {
-                    _presencePenalty = value;
-                    OnPropertyChanged( nameof( PresencePenalty ) );
-                }
-            }
-        }
-
-        /// <inheritdoc />
-        /// <summary>
-        /// An alternative to sampling with temperature,
-        /// called nucleus sampling, where the model considers
-        /// the results of the tokens with top_p probability mass.
-        /// So 0.1 means only the tokens comprising the top 10% probability
-        /// mass are considered. We generally recommend altering this
-        /// or temperature but not both.
-        /// </summary>
-        /// <value>
-        /// The top percent.
-        /// </value>
-        public override double TopPercent
-        {
-            get
-            {
-                return _topPercent;
-            }
-            set
-            {
-                if( _topPercent != value )
-                {
-                    _topPercent = value;
-                    OnPropertyChanged( nameof( TopPercent ) );
-                }
-            }
-        }
-
-        /// <inheritdoc />
-        /// <summary>
         /// Gets or sets the response format.
         /// </summary>
         /// <value>
         /// The response format.
         /// </value>
+        [ JsonProperty( "response_format" ) ]
         public override string ResponseFormat
         {
             get
@@ -346,9 +404,14 @@ namespace Bubba
                 _data.Add( "top_p", _topPercent );
                 _data.Add( "response_format", _responseFormat );
                 _data.Add( "endpoint", _endPoint );
-                if( !string.IsNullOrEmpty( _filePath ) )
+                _method.Add( "type", "supervised" );
+                _data.Add( "method", _method );
+                _data.Add( "logprobs", _logProbs );
+                _data.Add( "echo", _echo );
+                _data.Add( "best_of", _bestOf );
+                if( !string.IsNullOrEmpty( _trainingFile ) )
                 {
-                    _data.Add( "filepath", _filePath );
+                    _data.Add( "filepath", _trainingFile );
                 }
 
                 return _data?.Any( ) == true

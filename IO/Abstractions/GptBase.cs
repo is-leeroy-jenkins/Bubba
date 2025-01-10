@@ -83,11 +83,6 @@ namespace Bubba
         private protected bool _busy;
 
         /// <summary>
-        /// The HTTP client
-        /// </summary>
-        private protected HttpClient _httpClient;
-
-        /// <summary>
         /// The path
         /// </summary>
         private protected object _entry;
@@ -287,55 +282,6 @@ namespace Bubba
             {
                 Fail( ex );
             }
-        }
-
-        /// <inheritdoc />
-        /// <summary>
-        /// Gets or sets a value indicating whether this
-        /// <see cref="P:Bubba.GptRequest.HttpClient" /> is store.
-        /// </summary>
-        /// <value>
-        ///   <c>true</c> if store; otherwise, <c>false</c>.
-        /// </value>
-        public virtual HttpClient HttpClient
-        {
-            get
-            {
-                return _httpClient;
-            }
-            set
-            {
-                if( _httpClient != value )
-                {
-                    _httpClient = value;
-                    OnPropertyChanged( nameof( HttpClient ) );
-                }
-            }
-        }
-
-        /// <summary>
-        /// Posts the json asynchronous.
-        /// </summary>
-        /// <param name="endpoint">The endpoint.</param>
-        /// <param name="payload">The payload.</param>
-        /// <returns></returns>
-        /// <exception cref="System.Net.Http.HttpRequestException">Error: {_response.StatusCode}, {_error}</exception>
-        private protected virtual async Task<string> PostJsonAsync( string endpoint,
-            object payload )
-        {
-            var _url = new GptEndpoints( ).BaseUrl;
-            _httpClient.DefaultRequestHeaders.Clear( );
-            _httpClient.DefaultRequestHeaders.Add( "Authorization", $"Bearer {ApiKey}" );
-            var _json = JsonConvert.SerializeObject( payload );
-            var _content = new StringContent( _json, Encoding.UTF8, "application/json" );
-            var _response = await _httpClient.PostAsync( $"{_url}/{endpoint}", _content );
-            if( !_response.IsSuccessStatusCode )
-            {
-                var _error = await _response.Content.ReadAsStringAsync( );
-                throw new HttpRequestException( $"Error: {_response.StatusCode}, {_error}" );
-            }
-
-            return await _response.Content.ReadAsStringAsync( );
         }
 
         /// <summary>

@@ -1,10 +1,10 @@
 ﻿// ******************************************************************************************
 //     Assembly:                Bubba
 //     Author:                  Terry D. Eppler
-//     Created:                 01-07-2025
+//     Created:                 01-09-2025
 // 
 //     Last Modified By:        Terry D. Eppler
-//     Last Modified On:        01-07-2025
+//     Last Modified On:        01-09-2025
 // ******************************************************************************************
 // <copyright file="TextGenerationRequest.cs" company="Terry D. Eppler">
 //    Bubba is a small and simple windows (wpf) application for interacting with the OpenAI API
@@ -44,7 +44,9 @@ namespace Bubba
     using System;
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
+    using System.Linq;
     using System.Net.Http;
+    using Newtonsoft.Json;
     using Properties;
 
     /// <inheritdoc />
@@ -52,6 +54,7 @@ namespace Bubba
     /// </summary>
     [ SuppressMessage( "ReSharper", "UnusedType.Global" ) ]
     [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
+    [ SuppressMessage( "ReSharper", "PreferConcreteValueOverDefault" ) ]
     public class TextGenerationRequest : GptRequest
     {
         /// <summary>
@@ -69,14 +72,9 @@ namespace Bubba
         {
             _entry = new object( );
             _httpClient = new HttpClient( );
-            _presencePenalty = 0.00;
-            _frequencyPenalty = 0.00;
-            _topPercent = 0.11;
-            _temperature = 0.18;
-            _maximumTokens = 2048;
-            _model = "gpt-4o";
+            _model = "gpt-4o-mini";
             _endPoint = GptEndPoint.TextGeneration;
-            _number = 1;
+            _responseFormat = "text";
         }
 
         /// <inheritdoc />
@@ -110,6 +108,7 @@ namespace Bubba
         /// The chat model.
         /// </value>
         /// <inheritdoc />
+        [ JsonProperty( "model" ) ]
         public override string Model
         {
             get
@@ -133,6 +132,7 @@ namespace Bubba
         /// <value>
         /// The messages.
         /// </value>
+        [ JsonProperty( "messages" ) ]
         public IList<IGptMessage> Messages
         {
             get
@@ -179,6 +179,7 @@ namespace Bubba
         /// <value>
         /// The user identifier.
         /// </value>
+        [ JsonProperty( "n" ) ]
         public override int Number
         {
             get
@@ -202,6 +203,7 @@ namespace Bubba
         /// <value>
         /// The maximum tokens.
         /// </value>
+        [ JsonProperty( "max_completion_tokens" ) ]
         public override int MaximumTokens
         {
             get
@@ -226,6 +228,7 @@ namespace Bubba
         /// <value>
         ///   <c>true</c> if store; otherwise, <c>false</c>.
         /// </value>
+        [ JsonProperty( "store" ) ]
         public override bool Store
         {
             get
@@ -250,6 +253,7 @@ namespace Bubba
         /// <value>
         ///   <c>true</c> if stream; otherwise, <c>false</c>.
         /// </value>
+        [ JsonProperty( "store" ) ]
         public override bool Stream
         {
             get
@@ -274,6 +278,7 @@ namespace Bubba
         /// <value>
         /// The temperature.
         /// </value>
+        [ JsonProperty( "temperature" ) ]
         public override double Temperature
         {
             get
@@ -302,6 +307,7 @@ namespace Bubba
         /// <value>
         /// The top percent.
         /// </value>
+        [ JsonProperty( "top_p" ) ]
         public override double TopPercent
         {
             get
@@ -327,6 +333,7 @@ namespace Bubba
         /// <value>
         /// The frequency.
         /// </value>
+        [ JsonProperty( "frequency_penalty" ) ]
         public override double FrequencyPenalty
         {
             get
@@ -352,6 +359,7 @@ namespace Bubba
         /// <value>
         /// The presence.
         /// </value>
+        [ JsonProperty( "presence_penalty" ) ]
         public override double PresencePenalty
         {
             get
@@ -375,6 +383,7 @@ namespace Bubba
         /// <value>
         /// The response format.
         /// </value>
+        [ JsonProperty( "respone_format" ) ]
         public string ResponseFormat
         {
             get
@@ -411,6 +420,38 @@ namespace Bubba
                     _body = value;
                     OnPropertyChanged( nameof( Body ) );
                 }
+            }
+        }
+
+        /// <inheritdoc />
+        /// <summary>
+        /// Gets the data.
+        /// </summary>
+        /// <returns>
+        /// </returns>
+        public override IDictionary<string, object> GetData( )
+        {
+            try
+            {
+                _data.Add( "model", _model );
+                _data.Add( "endpoint", _endPoint );
+                _data.Add( "number", _number );
+                _data.Add( "max_completion_tokens", _maximumTokens );
+                _data.Add( "store", _store );
+                _data.Add( "stream", _stream );
+                _data.Add( "temperature", _temperature );
+                _data.Add( "frequency_penalty", _frequencyPenalty );
+                _data.Add( "presence_penalty", _presencePenalty );
+                _data.Add( "top_p", _topPercent );
+                _data.Add( "response_format", _responseFormat );
+                return _data?.Any( ) == true
+                    ? _data
+                    : default( IDictionary<string, object> );
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+                return default( IDictionary<string, object> );
             }
         }
     }

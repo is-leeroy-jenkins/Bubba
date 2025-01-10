@@ -153,7 +153,7 @@
     <value>https://api.openai.com/v1/uploads</value>
     <comment>url to the openai uploads api</comment>
   </data>
-  <data name="VectorEmbeddings" xml:space="preserve">
+  <data name="Embeddings" xml:space="preserve">
     <value>https://api.openai.com/v1/embeddings</value>
     <comment>url to the openai embeddings api</comment>
   </data>

@@ -1,10 +1,10 @@
 ﻿// ******************************************************************************************
 //     Assembly:                Bubba
 //     Author:                  Terry D. Eppler
-//     Created:                 01-07-2025
+//     Created:                 01-09-2025
 // 
 //     Last Modified By:        Terry D. Eppler
-//     Last Modified On:        01-07-2025
+//     Last Modified On:        01-09-2025
 // ******************************************************************************************
 // <copyright file="VectorStoreRequest.cs" company="Terry D. Eppler">
 //    Bubba is a small and simple windows (wpf) application for interacting with the OpenAI API
@@ -46,8 +46,6 @@ namespace Bubba
     using System.Diagnostics.CodeAnalysis;
     using System.Linq;
     using System.Net.Http;
-    using System.Text;
-    using System.Threading.Tasks;
     using Properties;
 
     /// <inheritdoc />
@@ -55,12 +53,44 @@ namespace Bubba
     /// </summary>
     /// <seealso cref="T:Bubba.GptRequest" />
     [ SuppressMessage( "ReSharper", "UnusedType.Global" ) ]
+    [ SuppressMessage( "ReSharper", "PreferConcreteValueOverDefault" ) ]
+    [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
     public class VectorStoreRequest : GptRequest
     {
         /// <summary>
         /// The response format
         /// </summary>
         private protected string _responseFormat;
+
+        /// <summary>
+        /// The file path
+        /// </summary>
+        private protected string _filePath;
+
+        /// <summary>
+        /// The vector store identifier
+        /// </summary>
+        private protected string _vectorStoreId;
+
+        /// <summary>
+        /// The file ids
+        /// </summary>
+        private protected IList<string> _fileIds;
+
+        /// <summary>
+        /// The name
+        /// </summary>
+        private protected string _name;
+
+        /// <summary>
+        /// The limit
+        /// </summary>
+        private protected int _limit;
+
+        /// <summary>
+        /// The meta data
+        /// </summary>
+        private protected IDictionary<string, object> _metaData;
 
         /// <summary>
         /// Initializes a new instance of the
@@ -72,14 +102,8 @@ namespace Bubba
         {
             _entry = new object( );
             _httpClient = new HttpClient( );
-            _presencePenalty = 0.00;
-            _frequencyPenalty = 0.00;
-            _topPercent = 0.11;
-            _temperature = 0.18;
-            _maximumTokens = 2048;
             _model = "gpt-4o-mini";
             _endPoint = GptEndPoint.VectorStores;
-            _number = 1;
         }
 
         /// <inheritdoc />
@@ -102,29 +126,6 @@ namespace Bubba
                 {
                     _httpClient = value;
                     OnPropertyChanged( nameof( HttpClient ) );
-                }
-            }
-        }
-
-        /// <inheritdoc />
-        /// <summary>
-        /// THe number 'n' of responses generatred.
-        /// </summary>
-        /// <value>
-        /// The user identifier.
-        /// </value>
-        public override int Number
-        {
-            get
-            {
-                return _number;
-            }
-            set
-            {
-                if( _number != value )
-                {
-                    _number = value;
-                    OnPropertyChanged( nameof( Number ) );
                 }
             }
         }
@@ -172,6 +173,60 @@ namespace Bubba
                     _responseFormat = value;
                     OnPropertyChanged( nameof( ResponseFormat ) );
                 }
+            }
+        }
+
+        /// <inheritdoc />
+        /// <summary>
+        /// Gets the data.
+        /// </summary>
+        /// <returns>
+        /// </returns>
+        public override IDictionary<string, object> GetData( )
+        {
+            try
+            {
+                _data.Add( "model", _model );
+                _data.Add( "endpoint", _endPoint );
+                _data.Add( "number", _number );
+                _data.Add( "max_completion_tokens", _maximumTokens );
+                _data.Add( "store", _store );
+                _data.Add( "stream", _stream );
+                _data.Add( "temperature", _temperature );
+                _data.Add( "frequency_penalty", _frequencyPenalty );
+                _data.Add( "presence_penalty", _presencePenalty );
+                _data.Add( "top_p", _topPercent );
+                _data.Add( "response_format", _responseFormat );
+                _data.Add( "endpoint", _endPoint );
+                _data.Add( "limit", _limit );
+                if( !string.IsNullOrEmpty( _filePath ) )
+                {
+                    _data.Add( "filepath", _filePath );
+                }
+
+                if( !string.IsNullOrEmpty( _name ) )
+                {
+                    _data.Add( "name", _name );
+                }
+
+                if( _fileIds?.Any( ) == true )
+                {
+                    _data.Add( "file_ids", _fileIds );
+                }
+
+                if( _metaData?.Any( ) == true )
+                {
+                    _data.Add( "file_ids", _metaData );
+                }
+
+                return _data?.Any( ) == true
+                    ? _data
+                    : default( IDictionary<string, object> );
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+                return default( IDictionary<string, object> );
             }
         }
     }

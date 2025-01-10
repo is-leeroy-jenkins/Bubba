@@ -1,10 +1,10 @@
 ﻿// ******************************************************************************************
 //     Assembly:                Bubba
 //     Author:                  Terry D. Eppler
-//     Created:                 01-07-2025
+//     Created:                 01-09-2025
 // 
 //     Last Modified By:        Terry D. Eppler
-//     Last Modified On:        01-07-2025
+//     Last Modified On:        01-09-2025
 // ******************************************************************************************
 // <copyright file="GptRequest.cs" company="Terry D. Eppler">
 //    Bubba is a small and simple windows (wpf) application for interacting with the OpenAI API
@@ -42,16 +42,30 @@
 namespace Bubba
 {
     using System;
+    using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
+    using System.Linq;
     using System.Net.Http;
+    using System.Text;
+    using System.Text.Json;
+    using System.Threading.Tasks;
+    using Newtonsoft.Json;
+    using Properties;
 
     /// <inheritdoc />
     [ SuppressMessage( "ReSharper", "UnusedType.Global" ) ]
     [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
     [ SuppressMessage( "ReSharper", "FieldCanBeMadeReadOnly.Global" ) ]
     [ SuppressMessage( "ReSharper", "MemberCanBeProtected.Global" ) ]
+    [ SuppressMessage( "ReSharper", "PreferConcreteValueOverDefault" ) ]
+    [ SuppressMessage( "ReSharper", "PossibleNullReferenceException" ) ]
     public class GptRequest : GptRequestBase, IGptRequest
     {
+        /// <summary>
+        /// The HTTP client
+        /// </summary>
+        private protected HttpClient _httpClient;
+
         /// <inheritdoc />
         /// <summary>
         /// Initializes a new instance of the
@@ -59,15 +73,14 @@ namespace Bubba
         /// </summary>
         public GptRequest( )
         {
-            _entry = new object( );
-            _httpClient = new HttpClient( );
+            _apiKey = OpenAI.BubbaKey;
+            _store = false;
+            _stream = true;
             _presencePenalty = 0.00;
             _frequencyPenalty = 0.00;
             _topPercent = 0.11;
             _temperature = 0.18;
             _maximumTokens = 2048;
-            _model = "gpt-4o";
-            _endPoint = "https://api.openai.com/v1/chat/completions";
             _number = 1;
         }
 
@@ -81,9 +94,6 @@ namespace Bubba
         /// <param name = "parameter" > </param>
         public GptRequest( string system, string user, IGptParameter parameter )
         {
-            _header = new GptHeader( );
-            _body = new GptBody( system, user, parameter );
-            _endPoint = parameter.EndPoint;
             _number = parameter.Number;
             _store = parameter.Store;
             _stream = parameter.Stream;
@@ -102,10 +112,7 @@ namespace Bubba
         /// <param name="request">The GPT request.</param>
         public GptRequest( GptRequest request )
         {
-            _header = new GptHeader( );
-            _httpClient = request.HttpClient;
             _body = request.Body;
-            _endPoint = request.EndPoint;
             _number = request.Number;
             _stream = request.Stream;
             _store = request.Store;
@@ -161,7 +168,7 @@ namespace Bubba
         /// <value>
         ///   <c>true</c> if store; otherwise, <c>false</c>.
         /// </value>
-        public override HttpClient HttpClient
+        public virtual HttpClient HttpClient
         {
             get
             {
@@ -184,7 +191,7 @@ namespace Bubba
         /// <value>
         /// The chat model.
         /// </value>
-        public override GptBody Body
+        public virtual GptBody Body
         {
             get
             {
@@ -198,6 +205,143 @@ namespace Bubba
                     OnPropertyChanged( nameof( Body ) );
                 }
             }
+        }
+
+        /// <summary>
+        /// Posts the json asynchronous.
+        /// </summary>
+        /// <param name="endpoint">The endpoint.</param>
+        /// <param name="payload">The payload.</param>
+        /// <returns></returns>
+        /// <exception cref="HttpRequestException">
+        /// Error: {_response.StatusCode}, {_error}
+        /// </exception>
+        private protected virtual async Task<string> PostJsonAsync( string endpoint,
+            object payload )
+        {
+            try
+            {
+                ThrowIf.Empty( endpoint, nameof( endpoint ) );
+                ThrowIf.Null( payload, nameof( payload ) );
+                var _url = GptEndPoint.TextGeneration;
+                var _gpt = new GptHeader( );
+                _httpClient.DefaultRequestHeaders.Clear( );
+                _httpClient.DefaultRequestHeaders.Add( "Authorization", $"Bearer {_gpt.ApiKey}" );
+                var _json = JsonConvert.SerializeObject( payload );
+                var _content = new StringContent( _json, Encoding.UTF8, "application/json" );
+                var _response = await _httpClient.PostAsync( $"{_url}/{endpoint}", _content );
+                if( !_response.IsSuccessStatusCode )
+                {
+                    var _error = await _response.Content.ReadAsStringAsync( );
+                    throw new HttpRequestException( $"Error: {_response.StatusCode}, {_error}" );
+                }
+
+                return await _response.Content.ReadAsStringAsync( );
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+                return await default( Task<string> );
+            }
+        }
+
+        /// <summary>
+        /// Extracts the content of the response.
+        /// </summary>
+        /// <param name="jsonResponse">The json response.</param>
+        /// <returns></returns>
+        private protected string ExtractResponseContent( string jsonResponse )
+        {
+            try
+            {
+                ThrowIf.Empty( jsonResponse, nameof( jsonResponse ) );
+                using var _jsonDocument = JsonDocument.Parse( jsonResponse );
+                var _root = _jsonDocument.RootElement;
+                if( _model.Contains( "gpt-3.5-turbo" ) )
+                {
+                    var _choices = _root.GetProperty( "choices" );
+                    if( _choices.ValueKind == JsonValueKind.Array
+                        && _choices.GetArrayLength( ) > 0 )
+                    {
+                        var _msg = _choices[ 0 ].GetProperty( "message" );
+                        var _cnt = _msg.GetProperty( "content" );
+                        var _txt = _cnt.GetString( );
+                        return _txt;
+                    }
+
+                    var _message = _choices[ 0 ].GetProperty( "message" );
+                    var _text = _message.GetString( );
+                    return _text;
+                }
+                else
+                {
+                    var _choice = _root.GetProperty( "choices" )[ 0 ];
+                    var _property = _choice.GetProperty( "text" );
+                    var _text = _property.GetString( );
+                    return _text;
+                }
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+                return string.Empty;
+            }
+        }
+
+        /// <summary>
+        /// Gets the data.
+        /// </summary>
+        /// <returns></returns>
+        public virtual IDictionary<string, object> GetData( )
+        {
+            try
+            {
+                _data.Add( "number", _number );
+                _data.Add( "max_completion_tokens", _maximumTokens );
+                _data.Add( "store", _store );
+                _data.Add( "stream", _stream );
+                _data.Add( "temperature", _temperature );
+                _data.Add( "frequency_penalty", _frequencyPenalty );
+                _data.Add( "presence_penalty", _presencePenalty );
+                _data.Add( "top_p", _topPercent );
+                return _data?.Any( ) == true
+                    ? _data
+                    : default( IDictionary<string, object> );
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+                return default( IDictionary<string, object> );
+            }
+        }
+
+        /// <summary>
+        /// Releases unmanaged and - optionally - managed resources.
+        /// </summary>
+        /// <param name="disposing">
+        /// <c>true</c>
+        /// to release both managed
+        /// and unmanaged resources;
+        /// <c>false</c> to release only unmanaged resources.
+        /// </param>
+        public virtual void Dispose( bool disposing )
+        {
+            if( disposing )
+            {
+                _httpClient?.Dispose( );
+            }
+        }
+
+        /// <inheritdoc />
+        /// <summary>
+        /// Performs application-defined tasks
+        /// associated with freeing, releasing,
+        /// or resetting unmanaged resources.
+        /// </summary>
+        public void Dispose( )
+        {
+            Dispose( true );
+            GC.SuppressFinalize( this );
         }
     }
 }

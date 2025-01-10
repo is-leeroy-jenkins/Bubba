@@ -1,12 +1,12 @@
 ﻿// ******************************************************************************************
 //     Assembly:                Bubba
 //     Author:                  Terry D. Eppler
-//     Created:                 01-07-2025
+//     Created:                 01-09-2025
 // 
 //     Last Modified By:        Terry D. Eppler
-//     Last Modified On:        01-07-2025
+//     Last Modified On:        01-09-2025
 // ******************************************************************************************
-// <copyright file="SpeechGenerationReqeust.cs" company="Terry D. Eppler">
+// <copyright file="EmbeddingParameter.cs" company="Terry D. Eppler">
 //    Bubba is a small and simple windows (wpf) application for interacting with the OpenAI API
 //    that's developed in C-Sharp under the MIT license.C#.
 // 
@@ -35,7 +35,7 @@
 //    You can contact me at:  terryeppler@gmail.com or eppler.terry@epa.gov
 // </copyright>
 // <summary>
-//   SpeechGenerationReqeust.cs
+//   EmbeddingParameter.cs
 // </summary>
 // ******************************************************************************************
 
@@ -44,151 +44,67 @@ namespace Bubba
     using System;
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
-    using System.Net.Http;
+    using System.Linq;
+    using Newtonsoft.Json;
+    using Properties;
 
     /// <inheritdoc />
     /// <summary>
     /// </summary>
     [ SuppressMessage( "ReSharper", "UnusedType.Global" ) ]
-    public class SpeechGenerationReqeust : GptRequest
+    [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
+    [ SuppressMessage( "ReSharper", "FieldCanBeMadeReadOnly.Global" ) ]
+    [ SuppressMessage( "ReSharper", "PreferConcreteValueOverDefault" ) ]
+    public class EmbeddingParameter : GptParameter
     {
         /// <summary>
-        /// The response format
+        /// The file path
         /// </summary>
-        private protected string _responseFormat;
+        private protected string _filePath;
 
+        /// <summary>
+        /// The input
+        /// </summary>
+        private protected IList<string> _input;
+
+        /// <summary>
+        /// The encoding format
+        /// </summary>
+        private protected string _encodingFormat;
+
+        /// <inheritdoc />
         /// <summary>
         /// Initializes a new instance of the
-        /// <see cref="SpeechGenerationReqeust"/> class.
+        /// <see cref="T:Bubba.EmbeddingParameter" /> class.
         /// </summary>
-        /// <inheritdoc />
-        public SpeechGenerationReqeust( )
+        public EmbeddingParameter( )
             : base( )
         {
-            _entry = new object( );
-            _httpClient = new HttpClient( );
-            _presencePenalty = 0.00;
-            _frequencyPenalty = 0.00;
-            _topPercent = 0.11;
-            _temperature = 0.18;
-            _maximumTokens = 2048;
-            _model = "gpt-4o";
-            _endPoint = "https://api.openai.com/v1/chat/completions";
-            _number = 1;
+            _model = "text-embedding-ada-002";
+            _endPoint = GptEndPoint.Embeddings;
+            _responseFormat = "text";
+            _input = new List<string>( );
+            _encodingFormat = "float";
         }
 
-        /// <inheritdoc />
         /// <summary>
-        /// Gets or sets a value indicating whether this
-        /// <see cref="P:Bubba.GptRequest.HttpClient" /> is store.
+        /// Gets or sets the file path.
         /// </summary>
         /// <value>
-        ///   <c>true</c> if store; otherwise, <c>false</c>.
+        /// The file path.
         /// </value>
-        public override HttpClient HttpClient
+        public string FilePath
         {
             get
             {
-                return _httpClient;
+                return _filePath;
             }
             set
             {
-                if( _httpClient != value )
+                if( _filePath != value )
                 {
-                    _httpClient = value;
-                    OnPropertyChanged( nameof( HttpClient ) );
-                }
-            }
-        }
-
-        /// <inheritdoc />
-        /// <summary>
-        /// Gets or sets the messages.
-        /// </summary>
-        /// <value>
-        /// The messages.
-        /// </value>
-        public IList<IGptMessage> Messages
-        {
-            get
-            {
-                return _messages;
-            }
-            set
-            {
-                if( _messages != value )
-                {
-                    _messages = value;
-                    OnPropertyChanged( nameof( Messages ) );
-                }
-            }
-        }
-
-        /// <inheritdoc />
-        /// <summary>
-        /// Gets the end point.
-        /// </summary>
-        /// <value>
-        /// The end point.
-        /// </value>
-        public override string EndPoint
-        {
-            get
-            {
-                return _endPoint;
-            }
-            set
-            {
-                if( _endPoint != value )
-                {
-                    _endPoint = value;
-                    OnPropertyChanged( nameof( EndPoint ) );
-                }
-            }
-        }
-
-        /// <inheritdoc />
-        /// <summary>
-        /// THe number 'n' of responses returned by the API.
-        /// </summary>
-        /// <value>
-        /// The user identifier.
-        /// </value>
-        public override int Number
-        {
-            get
-            {
-                return _number;
-            }
-            set
-            {
-                if( _number != value )
-                {
-                    _number = value;
-                    OnPropertyChanged( nameof( Number ) );
-                }
-            }
-        }
-
-        /// <inheritdoc />
-        /// <summary>
-        /// Gets the maximum tokens.
-        /// </summary>
-        /// <value>
-        /// The maximum tokens.
-        /// </value>
-        public override int MaximumTokens
-        {
-            get
-            {
-                return _maximumTokens;
-            }
-            set
-            {
-                if( _maximumTokens != value )
-                {
-                    _maximumTokens = value;
-                    OnPropertyChanged( nameof( MaximumTokens ) );
+                    _filePath = value;
+                    OnPropertyChanged( nameof( FilePath ) );
                 }
             }
         }
@@ -196,11 +112,12 @@ namespace Bubba
         /// <inheritdoc />
         /// <summary>
         /// Gets or sets a value indicating whether this
-        /// <see cref="T:Bubba.GptRequest" /> is store.
+        /// <see cref="T:Bubba.ParameterBase" /> is store.
         /// </summary>
         /// <value>
         ///   <c>true</c> if store; otherwise, <c>false</c>.
         /// </value>
+        [ JsonProperty( "store" ) ]
         public override bool Store
         {
             get
@@ -220,11 +137,12 @@ namespace Bubba
         /// <inheritdoc />
         /// <summary>
         /// Gets or sets a value indicating whether this
-        /// <see cref="P:Bubba.ChatCompletionRequest.Stream" /> is stream.
+        /// <see cref="T:Bubba.ParameterBase" /> is stream.
         /// </summary>
         /// <value>
         ///   <c>true</c> if stream; otherwise, <c>false</c>.
         /// </value>
+        [ JsonProperty( "stream" ) ]
         public override bool Stream
         {
             get
@@ -243,12 +161,14 @@ namespace Bubba
 
         /// <inheritdoc />
         /// <summary>
-        /// A number between -2.0 and 2.0 Positive value decrease the
-        /// model's likelihood to repeat the same line verbatim.
+        /// A number between 0.0 and 2.0   between 0 and 2.
+        /// Higher values like 0.8 will make the output more random,
+        /// while lower values like 0.2 will make it more focused and deterministic.
         /// </summary>
         /// <value>
         /// The temperature.
         /// </value>
+        [ JsonProperty( "temperature" ) ]
         public override double Temperature
         {
             get
@@ -267,41 +187,14 @@ namespace Bubba
 
         /// <inheritdoc />
         /// <summary>
-        /// An alternative to sampling with temperature,
-        /// called nucleus sampling, where the model considers
-        /// the results of the tokens with top_p probability mass.
-        /// So 0.1 means only the tokens comprising the top 10% probability
-        /// mass are considered. We generally recommend altering this
-        /// or temperature but not both.
-        /// </summary>
-        /// <value>
-        /// The top percent.
-        /// </value>
-        public override double TopPercent
-        {
-            get
-            {
-                return _topPercent;
-            }
-            set
-            {
-                if( _topPercent != value )
-                {
-                    _topPercent = value;
-                    OnPropertyChanged( nameof( TopPercent ) );
-                }
-            }
-        }
-
-        /// <inheritdoc />
-        /// <summary>
-        /// Number between -2.0 and 2.0. Positive values penalize new tokens
-        /// based on whether they appear in the text so far,
-        /// ncreasing the model's likelihood to talk about new topics.
+        /// A number between -2.0 and 2.0. Positive values penalize new
+        /// tokens based on their existing frequency in the text so far,
+        /// decreasing the model's likelihood to repeat the same line verbatim.
         /// </summary>
         /// <value>
         /// The frequency.
         /// </value>
+        [ JsonProperty( "frequency_penalty" ) ]
         public override double FrequencyPenalty
         {
             get
@@ -327,6 +220,7 @@ namespace Bubba
         /// <value>
         /// The presence.
         /// </value>
+        [ JsonProperty( "presence_penalty" ) ]
         public override double PresencePenalty
         {
             get
@@ -345,12 +239,42 @@ namespace Bubba
 
         /// <inheritdoc />
         /// <summary>
+        /// An alternative to sampling with temperature,
+        /// called nucleus sampling, where the model considers
+        /// the results of the tokens with top_p probability mass.
+        /// So 0.1 means only the tokens comprising the top 10% probability
+        /// mass are considered. We generally recommend altering this
+        /// or temperature but not both.
+        /// </summary>
+        /// <value>
+        /// The top percent.
+        /// </value>
+        [ JsonProperty( "top_p" ) ]
+        public override double TopPercent
+        {
+            get
+            {
+                return _topPercent;
+            }
+            set
+            {
+                if( _topPercent != value )
+                {
+                    _topPercent = value;
+                    OnPropertyChanged( nameof( TopPercent ) );
+                }
+            }
+        }
+
+        /// <inheritdoc />
+        /// <summary>
         /// Gets or sets the response format.
         /// </summary>
         /// <value>
         /// The response format.
         /// </value>
-        public string ResponseFormat
+        [ JsonProperty( "response_format" ) ]
+        public override string ResponseFormat
         {
             get
             {
@@ -368,24 +292,66 @@ namespace Bubba
 
         /// <inheritdoc />
         /// <summary>
-        /// Gets the chat model.
+        /// Gets the data.
         /// </summary>
-        /// <value>
-        /// The chat model.
-        /// </value>
-        public override GptBody Body
+        /// <returns>
+        /// </returns>
+        public override IDictionary<string, object> GetData( )
         {
-            get
+            try
             {
-                return _body;
-            }
-            set
-            {
-                if( _body != value )
+                _data.Add( "model", _model );
+                _data.Add( "endpoint", _endPoint );
+                _data.Add( "number", _number );
+                _data.Add( "max_completion_tokens", _maximumTokens );
+                _data.Add( "store", _store );
+                _data.Add( "stream", _stream );
+                _data.Add( "temperature", _temperature );
+                _data.Add( "frequency_penalty", _frequencyPenalty );
+                _data.Add( "presence_penalty", _presencePenalty );
+                _data.Add( "top_p", _topPercent );
+                _data.Add( "response_format", _responseFormat );
+                _data.Add( "endpoint", _endPoint );
+                _data.Add( "encoding_format", _encodingFormat );
+                if( !string.IsNullOrEmpty( _filePath ) )
                 {
-                    _body = value;
-                    OnPropertyChanged( nameof( Body ) );
+                    _data.Add( "filepath", _filePath );
                 }
+
+                if( _input?.Any( ) == true )
+                {
+                    _data.Add( "input", _input );
+                }
+
+                return _data?.Any( ) == true
+                    ? _data
+                    : default( IDictionary<string, object> );
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+                return default( IDictionary<string, object> );
+            }
+        }
+
+        /// <summary>
+        /// Converts to string.
+        /// </summary>
+        /// <returns>
+        /// A <see cref="System.String" /> that represents this instance.
+        /// </returns>
+        public override string ToString( )
+        {
+            try
+            {
+                return _data?.Any( ) == true
+                    ? _data.ToJson( )
+                    : string.Empty;
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+                return string.Empty;
             }
         }
     }
