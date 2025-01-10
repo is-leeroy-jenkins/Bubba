@@ -100,7 +100,7 @@ namespace Bubba
         public AudioParameter( )
             : base( )
         {
-            _model = "whisper-1";
+            _model = "tts-1-hd";
             _endPoint = GptEndPoint.SpeechGeneration;
             _language = "en";
             _responseFormat = "mp3";

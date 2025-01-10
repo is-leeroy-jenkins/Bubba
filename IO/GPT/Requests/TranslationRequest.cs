@@ -44,8 +44,11 @@ namespace Bubba
     using System;
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
+    using System.IO;
     using System.Linq;
     using System.Net.Http;
+    using System.Net.Http.Headers;
+    using System.Threading.Tasks;
     using Newtonsoft.Json;
     using Properties;
 
@@ -56,6 +59,7 @@ namespace Bubba
     [ SuppressMessage( "ReSharper", "UnusedType.Global" ) ]
     [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
     [ SuppressMessage( "ReSharper", "ClassCanBeSealed.Global" ) ]
+    [ SuppressMessage( "ReSharper", "PreferConcreteValueOverDefault" ) ]
     public class TranslationRequest : GptRequest
     {
         /// <summary>
@@ -107,7 +111,7 @@ namespace Bubba
                 }
             }
         }
-        
+
         /// <summary>
         /// The path to the audio file object (not file name) to transcribe,
         /// in one of these formats: flac, mp3, mp4, mpeg, mpga, m4a, ogg, wav, or webm.
@@ -247,41 +251,82 @@ namespace Bubba
             }
         }
 
+        /// <summary>
+        /// Translates the audio asynchronous.
+        /// </summary>
+        /// <param name="path">The file path.</param>
+        /// <returns></returns>
+        public async Task<string> TranslateAudioAsync( string path )
+        {
+            try
+            {
+                ThrowIf.Empty( path, nameof( path ) );
+                using var _client = new HttpClient( );
+                _client.DefaultRequestHeaders.Authorization =
+                    new AuthenticationHeaderValue( "Bearer", _apiKey );
+
+                using var _fileStream = new FileStream( path, FileMode.Open, FileAccess.Read );
+                var _content = new StreamContent( _fileStream );
+                _content.Headers.ContentType = new MediaTypeHeaderValue( "audio/mpeg" );
+                var _form = new MultipartFormDataContent
+                {
+                    {
+                        _content, "file", Path.GetFileName( path )
+                    },
+                    {
+                        new StringContent( "tts-1-hd" ), "model"
+                    }
+                };
+
+                _form.Add( new StringContent( "0.5" ), "temperature" );
+                _form.Add( new StringContent( "en" ), "language" );
+                var _response = await _client.PostAsync( _endPoint, _form );
+                _response.EnsureSuccessStatusCode( );
+                var _responseContent = await _response.Content.ReadAsStringAsync( );
+                return _responseContent;
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+                return string.Empty;
+            }
+        }
+
         /// <inheritdoc />
         /// <summary>
         /// Gets the data.
         /// </summary>
         /// <returns>
         /// </returns>
-        public override IDictionary<string, object> GetData()
+        public override IDictionary<string, object> GetData( )
         {
             try
             {
-                _data.Add("model", _model);
-                _data.Add("endpoint", _endPoint);
-                _data.Add("number", _number);
-                _data.Add("max_completion_tokens", _maximumTokens);
-                _data.Add("store", _store);
-                _data.Add("stream", _stream);
-                _data.Add("temperature", _temperature);
-                _data.Add("frequency_penalty", _frequencyPenalty);
-                _data.Add("presence_penalty", _presencePenalty);
-                _data.Add("top_p", _topPercent);
-                _data.Add("response_format", _responseFormat);
-                _data.Add("endpoint", _endPoint);
-                if(!string.IsNullOrEmpty(_file))
+                _data.Add( "model", _model );
+                _data.Add( "endpoint", _endPoint );
+                _data.Add( "number", _number );
+                _data.Add( "max_completion_tokens", _maximumTokens );
+                _data.Add( "store", _store );
+                _data.Add( "stream", _stream );
+                _data.Add( "temperature", _temperature );
+                _data.Add( "frequency_penalty", _frequencyPenalty );
+                _data.Add( "presence_penalty", _presencePenalty );
+                _data.Add( "top_p", _topPercent );
+                _data.Add( "response_format", _responseFormat );
+                _data.Add( "endpoint", _endPoint );
+                if( !string.IsNullOrEmpty( _file ) )
                 {
-                    _data.Add("filepath", _file);
+                    _data.Add( "filepath", _file );
                 }
 
-                return _data?.Any() == true
+                return _data?.Any( ) == true
                     ? _data
-                    : default(IDictionary<string, object>);
+                    : default( IDictionary<string, object> );
             }
-            catch(Exception ex)
+            catch( Exception ex )
             {
-                Fail(ex);
-                return default(IDictionary<string, object>);
+                Fail( ex );
+                return default( IDictionary<string, object> );
             }
         }
 
@@ -291,17 +336,17 @@ namespace Bubba
         /// <returns>
         /// A <see cref="System.String" /> that represents this instance.
         /// </returns>
-        public override string ToString()
+        public override string ToString( )
         {
             try
             {
-                return _data?.Any() == true
-                    ? _data.ToJson()
+                return _data?.Any( ) == true
+                    ? _data.ToJson( )
                     : string.Empty;
             }
-            catch(Exception ex)
+            catch( Exception ex )
             {
-                Fail(ex);
+                Fail( ex );
                 return string.Empty;
             }
         }

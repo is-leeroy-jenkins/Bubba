@@ -70,7 +70,7 @@ namespace Bubba
         /// <value>
         /// The frequency.
         /// </value>
-        double Frequency { get; set; }
+        double FrequencyPenalty { get; set; }
 
         /// <summary>
         /// Gets or sets the number.
@@ -86,7 +86,7 @@ namespace Bubba
         /// <value>
         /// The presence.
         /// </value>
-        double Presence { get; set; }
+        double PresencePenalty { get; set; }
 
         /// <summary>
         /// Gets the chat model.
@@ -110,7 +110,7 @@ namespace Bubba
         /// <value>
         /// The prompt.
         /// </value>
-        string Prompt { get; set; }
+        string UserPrompt { get; set; }
 
         /// <summary>
         /// Gets or sets the response format.

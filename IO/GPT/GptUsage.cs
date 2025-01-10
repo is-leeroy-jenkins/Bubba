@@ -1,10 +1,10 @@
 ﻿// ******************************************************************************************
 //     Assembly:                Bubba
 //     Author:                  Terry D. Eppler
-//     Created:                 01-07-2025
+//     Created:                 01-10-2025
 // 
 //     Last Modified By:        Terry D. Eppler
-//     Last Modified On:        01-07-2025
+//     Last Modified On:        01-10-2025
 // ******************************************************************************************
 // <copyright file="GptUsage.cs" company="Terry D. Eppler">
 //    Bubba is a small and simple windows (wpf) application for interacting with the OpenAI API
@@ -44,11 +44,16 @@ namespace Bubba
     using System;
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
+    using System.Linq;
+    using Newtonsoft.Json;
 
     /// <inheritdoc />
     /// <summary>
     /// </summary>
     [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
+    [ SuppressMessage( "ReSharper", "ClassNeverInstantiated.Global" ) ]
+    [ SuppressMessage( "ReSharper", "ClassCanBeSealed.Global" ) ]
+    [ SuppressMessage( "ReSharper", "PreferConcreteValueOverDefault" ) ]
     public class GptUsage : PropertyChangedBase
     {
         /// <summary>
@@ -82,14 +87,26 @@ namespace Bubba
         /// <summary>
         /// Initializes a new instance of the <see cref="GptUsage"/> class.
         /// </summary>
-        /// <param name="promptTokens">The prompt tokens.</param>
-        /// <param name="completionTokens">The completion tokens.</param>
-        /// <param name="totalTokens">The total tokens.</param>
-        public GptUsage( int promptTokens, int completionTokens, int totalTokens )
+        /// <param name="prompt">The prompt.</param>
+        /// <param name="completion">The completion.</param>
+        /// <param name="total">The total.</param>
+        public GptUsage( int prompt, int completion, int total )
         {
-            _promptTokens = promptTokens;
-            _completionTokens = completionTokens;
-            _totalTokens = totalTokens;
+            _promptTokens = prompt;
+            _completionTokens = completion;
+            _totalTokens = total;
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the
+        /// <see cref="GptUsage"/> class.
+        /// </summary>
+        /// <param name="usage">The usage.</param>
+        public GptUsage( GptUsage usage )
+        {
+            _promptTokens = usage.PromptTokens;
+            _completionTokens = usage.CompletionTokens;
+            _totalTokens = usage.TotalTokens;
         }
 
         /// <summary>
@@ -112,7 +129,7 @@ namespace Bubba
         /// <value>
         /// The prompt tokens.
         /// </value>
-        /// 
+        [ JsonProperty( "prompt_tokens" ) ]
         public int PromptTokens
         {
             get
@@ -135,6 +152,7 @@ namespace Bubba
         /// <value>
         /// The completion tokens.
         /// </value>
+        [ JsonProperty( "completion_tokens" ) ]
         public int CompletionTokens
         {
             get
@@ -157,6 +175,7 @@ namespace Bubba
         /// <value>
         /// The total tokens.
         /// </value>
+        [ JsonProperty( "total_tokens" ) ]
         public int TotalTokens
         {
             get
@@ -171,6 +190,63 @@ namespace Bubba
                     OnPropertyChanged( nameof( TotalTokens ) );
                 }
             }
+        }
+
+        /// <inheritdoc />
+        /// <summary>
+        /// Gets the data.
+        /// </summary>
+        /// <returns>
+        /// </returns>
+        public IDictionary<string, object> GetData( )
+        {
+            try
+            {
+                _data.Add( "prompt_tokens", _promptTokens);
+                _data.Add( "completion_tokens", _completionTokens );
+                _data.Add( "total_tokens", _totalTokens );
+                return _data?.Any( ) == true
+                    ? _data
+                    : default( IDictionary<string, object> );
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+                return default( IDictionary<string, object> );
+            }
+        }
+
+        /// <inheritdoc />
+        /// <summary>
+        /// Converts to string.
+        /// </summary>
+        /// <returns>
+        /// A <see cref="T:System.String" /> that represents this instance.
+        /// </returns>
+        public override string ToString( )
+        {
+            try
+            {
+                return _data?.Any( ) == true
+                    ? _data.ToJson( )
+                    : string.Empty;
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+                return string.Empty;
+            }
+        }
+
+        /// <summary>
+        /// Fails the specified ex.
+        /// </summary>
+        /// <param name="ex">The ex.</param>
+        private protected void Fail( Exception ex )
+        {
+            var _error = new ErrorWindow( ex );
+            _error?.SetText( );
+            _error?.ShowDialog( );
         }
     }
 }

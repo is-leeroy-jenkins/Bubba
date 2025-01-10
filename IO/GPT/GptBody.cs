@@ -45,6 +45,8 @@ namespace Bubba
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
     using System.Linq;
+    using System.Runtime.InteropServices.JavaScript;
+    using Newtonsoft.Json;
 
     /// <inheritdoc />
     /// <summary>
@@ -162,6 +164,7 @@ namespace Bubba
         /// <value>
         /// The model.
         /// </value>
+        [ JsonProperty( "model" ) ]
         public string Model
         {
             get
@@ -184,6 +187,7 @@ namespace Bubba
         /// <value>
         /// The response format.
         /// </value>
+        [JsonProperty("response_format")]
         public string ResponseFormat
         {
             get
@@ -207,6 +211,7 @@ namespace Bubba
         /// <value>
         /// The messages.
         /// </value>
+        [JsonProperty("messages")]
         public IList<IGptMessage> Messages
         {
             get

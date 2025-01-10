@@ -1,10 +1,10 @@
 ﻿// ******************************************************************************************
 //     Assembly:                Bubba
 //     Author:                  Terry D. Eppler
-//     Created:                 01-09-2025
+//     Created:                 01-10-2025
 // 
 //     Last Modified By:        Terry D. Eppler
-//     Last Modified On:        01-09-2025
+//     Last Modified On:        01-10-2025
 // ******************************************************************************************
 // <copyright file="CompletionRequest.cs" company="Terry D. Eppler">
 //    Bubba is a small and simple windows (wpf) application for interacting with the OpenAI API
@@ -44,8 +44,12 @@ namespace Bubba
     using System;
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
+    using System.IO;
     using System.Linq;
     using System.Net.Http;
+    using System.Net.Http.Headers;
+    using System.Text;
+    using System.Threading.Tasks;
     using Newtonsoft.Json;
     using Properties;
 
@@ -56,7 +60,8 @@ namespace Bubba
     [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
     [ SuppressMessage( "ReSharper", "PreferConcreteValueOverDefault" ) ]
     [ SuppressMessage( "ReSharper", "ClassCanBeSealed.Global" ) ]
-    public class CompletionRequest : GptRequest
+    [ SuppressMessage( "ReSharper", "PossibleUnintendedReferenceComparison" ) ]
+    public class CompletionRequest : TextGenerationRequest
     {
         /// <summary>
         /// Developer-defined tags and values used for filtering completions
@@ -64,9 +69,34 @@ namespace Bubba
         private protected IDictionary<string, object> _metaData;
 
         /// <summary>
-        /// The response format
+        /// The reasoning effort
         /// </summary>
-        private protected string _responseFormat;
+        private protected string _reasoningEffort;
+
+        /// <summary>
+        /// The stop
+        /// </summary>
+        private protected IList<string> _stop;
+
+        /// <summary>
+        /// The seed
+        /// </summary>
+        private protected int _seed;
+
+        /// <summary>
+        /// The modalities
+        /// </summary>
+        private protected IList<string> _modalities;
+
+        /// <summary>
+        /// The user prompt
+        /// </summary>
+        private protected string _userPrompt;
+
+        /// <summary>
+        /// The system prompt
+        /// </summary>
+        private protected string _systemPrompt;
 
         /// <inheritdoc />
         /// <summary>
@@ -79,19 +109,8 @@ namespace Bubba
             _header = new GptHeader( );
             _entry = new object( );
             _httpClient = new HttpClient( );
-            _endPoint = GptEndPoint.TextGeneration;
+            _endPoint = GptEndPoint.Completions;
             _model = "gpt-4o-mini";
-        }
-
-        /// <inheritdoc />
-        /// <summary>
-        /// Initializes a new instance of the
-        /// <see cref="T:Bubba.CompletionRequest" /> class.
-        /// </summary>
-        /// <param name="config">The configuration.</param>
-        public CompletionRequest( GptParameter config )
-        {
-            _header = new GptHeader( );
         }
 
         /// <inheritdoc />
@@ -101,31 +120,20 @@ namespace Bubba
         /// </summary>
         /// <param name="user">The user.</param>
         /// <param name="system">The system.</param>
-        /// <param name="model">The model.</param>
-        /// <param name="format">The format.</param>
-        /// <param name="store">if set to <c>true</c> [store].</param>
-        /// <param name="stream">if set to <c>true</c> [stream].</param>
-        /// <param name="number">The number.</param>
-        /// <param name = "frequencyPenalty" > </param>
-        /// <param name = "presencePenalty" > </param>
-        /// <param name="topPercent">The top percent.</param>
-        /// <param name="temperature">The temperature.</param>
-        /// <param name="tokens">The completion tokens.</param>
-        public CompletionRequest( string user, string system, string model = "gpt-4o-mini",
-            string format = "text", bool store = false, bool stream = false,
-            int number = 1, double frequencyPenalty = 0.00, double presencePenalty = 0.00,
-            double topPercent = 0.11, double temperature = 0.18, int tokens = 2048 )
+        /// <param name = "config" > </param>
+        public CompletionRequest( string user, string system, GptParameter config ) 
+            : base( )
         {
             _header = new GptHeader( );
-            _endPoint = new GptEndpoints( ).TextGeneration;
-            _store = store;
-            _stream = stream;
-            _number = number;
-            _presencePenalty = presencePenalty;
-            _frequencyPenalty = frequencyPenalty;
-            _temperature = temperature;
-            _topPercent = topPercent;
-            _maximumTokens = tokens;
+            _endPoint = GptEndPoint.Completions;
+            _store = config.Store;
+            _stream = config.Stream;
+            _number = config.Number;
+            _presencePenalty = config.PresencePenalty;
+            _frequencyPenalty = config.FrequencyPenalty;
+            _temperature = config.Temperature;
+            _topPercent = config.TopPercent;
+            _maximumTokens = config.MaximumTokens;
         }
 
         /// <inheritdoc />
@@ -133,11 +141,20 @@ namespace Bubba
         /// Initializes a new instance of the
         /// <see cref="T:Bubba.CompletionRequest" /> class.
         /// </summary>
-        /// <param name="completionRequest">The completionRequest.</param>
-        public CompletionRequest( CompletionRequest completionRequest )
+        /// <param name="request">The request.</param>
+        public CompletionRequest( CompletionRequest request ) 
+            : base( )
         {
             _header = new GptHeader( );
-            _endPoint = completionRequest.EndPoint;
+            _endPoint = request.EndPoint;
+            _store = request.Store;
+            _stream = request.Stream;
+            _number = request.Number;
+            _presencePenalty = request.PresencePenalty;
+            _frequencyPenalty = request.FrequencyPenalty;
+            _temperature = request.Temperature;
+            _topPercent = request.TopPercent;
+            _maximumTokens = request.MaximumTokens;
         }
 
         /// <summary>
@@ -174,30 +191,6 @@ namespace Bubba
 
         /// <inheritdoc />
         /// <summary>
-        /// Gets or sets the messages.
-        /// </summary>
-        /// <value>
-        /// The messages.
-        /// </value>
-        [ JsonProperty( "messages" ) ]
-        public IList<IGptMessage> Messages
-        {
-            get
-            {
-                return _messages;
-            }
-            set
-            {
-                if( _messages != value )
-                {
-                    _messages = value;
-                    OnPropertyChanged( nameof( Messages ) );
-                }
-            }
-        }
-
-        /// <inheritdoc />
-        /// <summary>
         /// Gets the end point.
         /// </summary>
         /// <value>
@@ -218,99 +211,72 @@ namespace Bubba
                 }
             }
         }
-        
+
         /// <summary>
-        /// Gets the chat model.
+        /// Gets or sets the reasoning effort.
         /// </summary>
         /// <value>
-        /// The chat model.
+        /// The reasoning effort.
         /// </value>
-        /// <inheritdoc />
-        [ JsonProperty( "model" ) ]
-        public override string Model
+        [ JsonProperty( "reasoning_effort" ) ]
+        public string ReasoningEffort
         {
             get
             {
-                return _model;
+                return _reasoningEffort;
             }
             set
             {
-                if( _model != value )
+                if( _reasoningEffort != value )
                 {
-                    _model = value;
-                    OnPropertyChanged( nameof( Model ) );
+                    _reasoningEffort = value;
+                    OnPropertyChanged( nameof( ReasoningEffort ) );
                 }
             }
         }
 
-        /// <inheritdoc />
         /// <summary>
-        /// THe number 'n' of responses returned by the API.
+        /// Gets or sets the stop.
         /// </summary>
         /// <value>
-        /// The user identifier.
+        /// The stop.
         /// </value>
-        [ JsonProperty( "n" ) ]
-        public override int Number
+        [ JsonProperty( "stop" ) ]
+        public IList<string> Stop
         {
             get
             {
-                return _number;
+                return _stop;
             }
             set
             {
-                if( _number != value )
+                if( _stop != value )
                 {
-                    _number = value;
-                    OnPropertyChanged( nameof( Number ) );
+                    _stop = value;
+                    OnPropertyChanged( nameof( Stop ) );
                 }
             }
         }
 
-        /// <inheritdoc />
         /// <summary>
-        /// Gets the maximum tokens.
+        /// Gets or sets the meta data.
         /// </summary>
         /// <value>
-        /// The maximum tokens.
+        /// The meta data.
         /// </value>
-        [ JsonProperty( "max_completion_tokens" ) ]
-        public override int MaximumTokens
+        [ JsonProperty( "meta_data" ) ]
+        public IDictionary<string, object> MetaData
         {
             get
             {
-                return _maximumTokens;
+                return _metaData;
             }
             set
             {
-                if( _maximumTokens != value )
+                if( _metaData != value )
                 {
-                    _maximumTokens = value;
-                    OnPropertyChanged( nameof( MaximumTokens ) );
-                }
-            }
-        }
-
-        /// <inheritdoc />
-        /// <summary>
-        /// Gets or sets the response format.
-        /// </summary>
-        /// <value>
-        /// The response format.
-        /// </value>
-        [ JsonProperty( "response_format" ) ]
-        public string ResponseFormat
-        {
-            get
-            {
-                return _responseFormat;
-            }
-            set
-            {
-                if( _responseFormat != value )
-                {
-                    _responseFormat = value;
-                    OnPropertyChanged( nameof( ResponseFormat ) );
+                    _metaData = value;
+                    OnPropertyChanged( nameof( MetaData ) );
                 }
             }
         }
@@ -338,6 +304,43 @@ namespace Bubba
             }
         }
 
+        /// <summary>
+        /// Gets the chat response asynchronous.
+        /// </summary>
+        /// <returns></returns>
+        public async Task<string> CreateResponseAsync( )
+        {
+            try
+            {
+                using var _client = new HttpClient( );
+                _client.DefaultRequestHeaders.Authorization =
+                    new AuthenticationHeaderValue( "Bearer", _apiKey );
+
+                var _payload = new Payload
+                {
+                    Model = _model,
+                    Temperature = _temperature,
+                    Store = _store,
+                    Stream = _stream,
+                    StopSequences = _stop,
+                    TopPercent = _topPercent,
+                    FrequencyPenalty = _frequencyPenalty,
+                    PresencePenalty = _presencePenalty
+                };
+
+                var _jsonPayload = _payload.Serialize( );
+                var _content = new StringContent( _jsonPayload, Encoding.UTF8, "application/json" );
+                var _response = await _client.PostAsync( _endPoint, _content );
+                _response.EnsureSuccessStatusCode( );
+                return await _response.Content.ReadAsStringAsync( );
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+                return string.Empty;
+            }
+        }
+
         /// <inheritdoc />
         /// <summary>
         /// Gets the data.
@@ -359,6 +362,9 @@ namespace Bubba
                 _data.Add( "presence_penalty", _presencePenalty );
                 _data.Add( "top_p", _topPercent );
                 _data.Add( "response_format", _responseFormat );
+                _modalities.Add( "text" );
+                _modalities.Add( "audio" );
+                _data.Add( "modalities", _modalities );
                 return _data?.Any( ) == true
                     ? _data
                     : default( IDictionary<string, object> );
@@ -370,11 +376,12 @@ namespace Bubba
             }
         }
 
+        /// <inheritdoc />
         /// <summary>
         /// Converts to string.
         /// </summary>
         /// <returns>
-        /// A <see cref="System.String" /> that represents this instance.
+        /// A <see cref="T:System.String" /> that represents this instance.
         /// </returns>
         public override string ToString( )
         {
@@ -384,9 +391,9 @@ namespace Bubba
                     ? _data.ToJson( )
                     : string.Empty;
             }
-            catch(Exception ex)
+            catch( Exception ex )
             {
-                Fail(ex);
+                Fail( ex );
                 return string.Empty;
             }
         }

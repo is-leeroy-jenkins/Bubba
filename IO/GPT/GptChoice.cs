@@ -1,10 +1,10 @@
 ﻿// ******************************************************************************************
 //     Assembly:                Bubba
 //     Author:                  Terry D. Eppler
-//     Created:                 01-07-2025
+//     Created:                 01-10-2025
 // 
 //     Last Modified By:        Terry D. Eppler
-//     Last Modified On:        01-07-2025
+//     Last Modified On:        01-10-2025
 // ******************************************************************************************
 // <copyright file="GptChoice.cs" company="Terry D. Eppler">
 //    Bubba is a small and simple windows (wpf) application for interacting with the OpenAI API
@@ -44,18 +44,17 @@ namespace Bubba
     using System;
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
+    using System.Linq;
+    using Newtonsoft.Json;
 
     /// <inheritdoc />
     /// <summary>
     /// </summary>
     [ SuppressMessage( "ReSharper", "ClassNeverInstantiated.Global" ) ]
+    [ SuppressMessage( "ReSharper", "ClassCanBeSealed.Global" ) ]
+    [ SuppressMessage( "ReSharper", "PreferConcreteValueOverDefault" ) ]
     public class GptChoice : PropertyChangedBase
     {
-        /// <summary>
-        /// The text
-        /// </summary>
-        private protected string _text;
-
         /// <summary>
         /// The index
         /// </summary>
@@ -70,6 +69,11 @@ namespace Bubba
         /// The finish reason
         /// </summary>
         private protected string _finishReason;
+
+        /// <summary>
+        /// The message
+        /// </summary>
+        private protected string _message;
 
         /// <summary>
         /// The data
@@ -95,9 +99,21 @@ namespace Bubba
             string finishReason )
         {
             _index = index;
-            _text = text;
+            _message = text;
             _logprobs = logprobs;
             _finishReason = finishReason;
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="GptChoice"/> class.
+        /// </summary>
+        /// <param name="choice">The choice.</param>
+        public GptChoice( GptChoice choice )
+        {
+            _index = choice.Index;
+            _message = choice.Message;
+            _logprobs = choice.Logprobs;
+            _finishReason = choice.FinishReason;
         }
 
         /// <summary>
@@ -111,7 +127,7 @@ namespace Bubba
             out string finishReason )
         {
             index = _index;
-            text = _text;
+            text = _message;
             logprobs = _logprobs;
             finishReason = _finishReason;
         }
@@ -122,18 +138,19 @@ namespace Bubba
         /// <value>
         /// The text.
         /// </value>
-        public string Text
+        [ JsonProperty( "message" ) ]
+        public string Message
         {
             get
             {
-                return _text;
+                return _message;
             }
             set
             {
-                if( _text != value )
+                if( _message != value )
                 {
-                    _text = value;
-                    OnPropertyChanged( nameof( Text ) );
+                    _message = value;
+                    OnPropertyChanged( nameof( Message ) );
                 }
             }
         }
@@ -144,6 +161,7 @@ namespace Bubba
         /// <value>
         /// The index.
         /// </value>
+        [ JsonProperty( "index" ) ]
         public int Index
         {
             get
@@ -161,11 +179,12 @@ namespace Bubba
         }
 
         /// <summary>
-        /// This might be a more complex object in reality
+        /// Log probability information for the choice.
         /// </summary>
         /// <value>
         /// The logprobs.
         /// </value>
+        [ JsonProperty( "logprobs" ) ]
         public string Logprobs
         {
             get
@@ -183,11 +202,18 @@ namespace Bubba
         }
 
         /// <summary>
-        /// Gets or sets the finish reason.
+        /// The reason the model stopped generating tokens.
+        /// This will be stop if the model hit a natural stop point or a
+        /// provided stop sequence, length if the maximum number of tokens
+        /// specified in the request was reached, content_filter if
+        /// content was omitted due to a flag from our content filters,
+        /// tool_calls if the model called a tool, or function_call
+        /// (deprecated) if the model called a function.
         /// </summary>
         /// <value>
         /// The finish reason.
         /// </value>
+        [ JsonProperty( "finish_reason" ) ]
         public string FinishReason
         {
             get
@@ -202,6 +228,64 @@ namespace Bubba
                     OnPropertyChanged( nameof( FinishReason ) );
                 }
             }
+        }
+
+        /// <inheritdoc />
+        /// <summary>
+        /// Gets the data.
+        /// </summary>
+        /// <returns>
+        /// </returns>
+        public IDictionary<string, object> GetData( )
+        {
+            try
+            {
+                _data.Add( "index", _index );
+                _data.Add( "message", _message );
+                _data.Add( "logprobs", _logprobs );
+                _data.Add( "finish_reason", _finishReason );
+                return _data?.Any( ) == true
+                    ? _data
+                    : default( IDictionary<string, object> );
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+                return default( IDictionary<string, object> );
+            }
+        }
+
+        /// <inheritdoc />
+        /// <summary>
+        /// Converts to string.
+        /// </summary>
+        /// <returns>
+        /// A <see cref="T:System.String" /> that represents this instance.
+        /// </returns>
+        public override string ToString( )
+        {
+            try
+            {
+                return _data?.Any( ) == true
+                    ? _data.ToJson( )
+                    : string.Empty;
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+                return string.Empty;
+            }
+        }
+
+        /// <summary>
+        /// Fails the specified ex.
+        /// </summary>
+        /// <param name="ex">The ex.</param>
+        private protected void Fail( Exception ex )
+        {
+            var _error = new ErrorWindow( ex );
+            _error?.SetText( );
+            _error?.ShowDialog( );
         }
     }
 }

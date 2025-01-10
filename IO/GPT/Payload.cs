@@ -1,10 +1,10 @@
 ﻿// ******************************************************************************************
 //     Assembly:                Bubba
 //     Author:                  Terry D. Eppler
-//     Created:                 01-07-2025
+//     Created:                 01-10-2025
 // 
 //     Last Modified By:        Terry D. Eppler
-//     Last Modified On:        01-07-2025
+//     Last Modified On:        01-10-2025
 // ******************************************************************************************
 // <copyright file="Payload.cs" company="Terry D. Eppler">
 //    Bubba is a small and simple windows (wpf) application for interacting with the OpenAI API
@@ -44,8 +44,10 @@ namespace Bubba
     using System;
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
+    using System.Linq;
     using Exception = System.Exception;
     using JsonSerializer = System.Text.Json.JsonSerializer;
+    using Properties;
 
     /// <inheritdoc />
     /// <summary>
@@ -56,6 +58,7 @@ namespace Bubba
     [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
     [ SuppressMessage( "ReSharper", "FieldCanBeMadeReadOnly.Global" ) ]
     [ SuppressMessage( "ReSharper", "RedundantExtendsListEntry" ) ]
+    [ SuppressMessage( "ReSharper", "PreferConcreteValueOverDefault" ) ]
     public class Payload : PayloadBase, IPayload
     {
         /// <inheritdoc />
@@ -65,55 +68,90 @@ namespace Bubba
         /// </summary>
         public Payload( )
         {
-            _id = 1;
-            _temperature = 0.7;
+            _id = Environment.UserName;
+            _systemPrompt = OpenAI.BubbaPrompt;
+            _temperature = 0.18;
+            _topPercent = 0.11;
             _maximumTokens = 2048;
-            _frequency = 0.0;
-            _presence = 0.0;
+            _frequencyPenalty = 0.00;
+            _presencePenalty = 0.00;
             _store = false;
             _stream = false;
             _stopSequences = new List<string>( );
-            _stopSequences.Add( "#" );
-            _stopSequences.Add( ";" );
             _data = new Dictionary<string, object>( );
-            _data.Add( "stop", _stopSequences );
         }
 
-        /// <inheritdoc />
         /// <summary>
-        /// Initializes a new instance of the
-        /// <see cref="T:Bubba.Payload" /> class.
+        /// Initializes a new instance of the <see cref="Payload"/> class.
         /// </summary>
-        /// <param name="systemPrompt">The system prompt.</param>
-        /// <param name="userPrompt">The user prompt.</param>
+        /// <param name = "userPrompt" > </param>
         /// <param name="model">The model.</param>
         /// <param name="id">The identifier.</param>
-        /// <param name="frequency">The frequency.</param>
-        /// <param name="presence">The presence.</param>
+        /// <param name="frequency">The frequency penalty.</param>
+        /// <param name="presence">The presence penalty.</param>
         /// <param name="temperature">The temperature.</param>
+        /// <param name="topPercent">The top percent.</param>
         /// <param name="maxTokens">The maximum tokens.</param>
         /// <param name="store">if set to <c>true</c> [store].</param>
         /// <param name="stream">if set to <c>true</c> [stream].</param>
-        public Payload( string systemPrompt, string userPrompt, string model,
-            int id = 1, double frequency = 0.0, double presence = 0.0,
-            double temperature = 0.7, int maxTokens = 2048, bool store = false,
-            bool stream = false )
-            : this( )
+        public Payload( string userPrompt, string model = "gpt-4o-mini", 
+            double frequency = 0.00, double presence = 0.00, double temperature = 0.18, 
+            double topPercent = 0.11, int maxTokens = 2048, bool store = false, 
+            bool stream = true )
         {
-            _id = id;
-            _model = "gpt-4o";
+            _model = model;
+            _id = Environment.UserName;
+            _systemPrompt = OpenAI.BubbaPrompt;
             _temperature = temperature;
             _maximumTokens = maxTokens;
-            _frequency = frequency;
-            _presence = presence;
-            _systemPrompt = systemPrompt;
+            _frequencyPenalty = frequency;
+            _presencePenalty = presence;
             _store = store;
             _stream = stream;
-            _data.Add( "id", id );
-            _data.Add( "max_completion_tokens", maxTokens );
-            _data.Add( "frequency", frequency );
-            _data.Add( "presence", presence );
-            _data.Add( "content", systemPrompt );
+            _stopSequences = new List<string>( );
+            _data = new Dictionary<string, object>( );
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the
+        /// <see cref="Payload"/> class.
+        /// </summary>
+        /// <param name="userPrompt">The user prompt.</param>
+        /// <param name="config">The configuration.</param>
+        public Payload( string userPrompt, GptParameter config )
+        {
+            _model = config.Model;
+            _id = Environment.UserName;
+            _systemPrompt = OpenAI.BubbaPrompt;
+            _userPrompt = userPrompt;
+            _temperature = config.Temperature;
+            _maximumTokens = config.MaximumTokens;
+            _frequencyPenalty = config.FrequencyPenalty;
+            _presencePenalty = config.PresencePenalty;
+            _store = config.Store;
+            _stream = config.Stream;
+            _stopSequences = new List<string>( );
+            _data = new Dictionary<string, object>( );
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Payload"/> class.
+        /// </summary>
+        /// <param name="systemPrompt">The system prompt.</param>
+        /// <param name="userPrompt">The user prompt.</param>
+        /// <param name="config">The configuration.</param>
+        public Payload( string userPrompt, string systemPrompt, GptParameter config )
+        {
+            _id = Environment.UserName;
+            _systemPrompt = systemPrompt;
+            _userPrompt = userPrompt;
+            _model = config.Model;
+            _temperature = config.Temperature;
+            _maximumTokens = config.MaximumTokens;
+            _frequencyPenalty = config.FrequencyPenalty;
+            _presencePenalty = config.PresencePenalty;
+            _store = config.Store;
+            _stream = config.Stream;
         }
 
         /// <inheritdoc />
@@ -125,11 +163,13 @@ namespace Bubba
         public Payload( Payload payload )
         {
             _id = payload.Id;
+            _systemPrompt = payload.SystemPrompt;
+            _userPrompt = payload.UserPrompt;
             _temperature = payload.Temperature;
             _maximumTokens = payload.MaximumTokens;
-            _frequency = payload.Frequency;
-            _presence = payload.Presence;
-            _systemPrompt = payload.Prompt;
+            _frequencyPenalty = payload.FrequencyPenalty;
+            _presencePenalty = payload.PresencePenalty;
+            _systemPrompt = payload.UserPrompt;
             _model = payload.Model;
             _store = payload.Store;
             _stream = payload.Stream;
@@ -147,16 +187,16 @@ namespace Bubba
         /// <param name="maximumTokens">The maximum tokens.</param>
         /// <param name="store">if set to <c>true</c> [store].</param>
         /// <param name="stream">if set to <c>true</c> [stream].</param>
-        public void Deconstruct( out string prompt, out int userId, out string model,
+        public void Deconstruct( out string prompt, out string userId, out string model,
             out double frequency, out double presence, out double temperature,
             out int maximumTokens, out bool store, out bool stream )
         {
-            prompt = _systemPrompt;
+            prompt = _userPrompt;
             userId = _id;
             model = _model;
             temperature = _temperature;
-            frequency = _frequency;
-            presence = _presence;
+            frequency = _frequencyPenalty;
+            presence = _presencePenalty;
             maximumTokens = _maximumTokens;
             store = _store;
             stream = _stream;
@@ -220,7 +260,7 @@ namespace Bubba
             return new Payload
             {
                 Model = _model,
-                Prompt = _systemPrompt,
+                UserPrompt = _systemPrompt,
                 MaximumTokens = _maximumTokens,
                 Temperature = _temperature,
                 ResponseFormat = "text"
@@ -237,7 +277,7 @@ namespace Bubba
         {
             return new Payload
             {
-                Prompt = _systemPrompt,
+                UserPrompt = _systemPrompt,
                 ImageSize = _imageSize,
                 Number = _number,
                 ResponseFormat = _responseFormat
@@ -276,8 +316,8 @@ namespace Bubba
                         max_completion_tokens = _maximumTokens,
                         user = _id,
                         _temperature,
-                        frequency_penalty = _frequency,
-                        presence_penalty = _presence,
+                        frequency_penalty = _frequencyPenalty,
+                        presence_penalty = _presencePenalty,
                         stop = new[ ]
                         {
                             "#",
@@ -327,8 +367,8 @@ namespace Bubba
                         max_completion_tokens = _maximumTokens,
                         user = _id,
                         _temperature,
-                        frequency_penalty = _frequency,
-                        presence_penalty = _presence,
+                        frequency_penalty = _frequencyPenalty,
+                        presence_penalty = _presencePenalty,
                         stop = new[ ]
                         {
                             "#",
@@ -340,6 +380,63 @@ namespace Bubba
             catch( Exception ex )
             {
                 Fail( ex );
+                return string.Empty;
+            }
+        }
+
+        /// <inheritdoc />
+        /// <summary>
+        /// Gets the data.
+        /// </summary>
+        /// <returns>
+        /// </returns>
+        public IDictionary<string, object> GetData( )
+        {
+            try
+            {
+                _data.Add( "model", _model );
+                _data.Add( "number", _number );
+                _data.Add( "max_completion_tokens", _maximumTokens );
+                _data.Add( "store", _store );
+                _data.Add( "stream", _stream );
+                _data.Add( "temperature", _temperature );
+                _data.Add( "frequency_penalty", _frequencyPenalty );
+                _data.Add( "presence_penalty", _presencePenalty );
+                _data.Add( "top_p", _topPercent );
+                _data.Add( "response_format", _responseFormat );
+                _stopSequences.Add( "#" );
+                _stopSequences.Add( ";" );
+                _data.Add( "stop", _stopSequences );
+                return _data?.Any( ) == true
+                    ? _data
+                    : default( IDictionary<string, object> );
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+                return default( IDictionary<string, object> );
+            }
+        }
+
+        /// <inheritdoc />
+        /// <summary>
+        /// Converts to string.
+        /// </summary>
+        /// <returns>
+        /// A <see cref="T:System.String" />
+        /// that represents this instance.
+        /// </returns>
+        public override string ToString( )
+        {
+            try
+            {
+                return _data?.Any( ) == true
+                    ? _data.ToJson( )
+                    : string.Empty;
+            }
+            catch(Exception ex)
+            {
+                Fail(ex);
                 return string.Empty;
             }
         }

@@ -90,6 +90,11 @@ namespace Bubba
         private protected int _speed;
 
         /// <summary>
+        /// The seed
+        /// </summary>
+        private protected int _seed;
+
+        /// <summary>
         /// The input
         /// </summary>
         private protected string _input;
@@ -110,7 +115,7 @@ namespace Bubba
             _entry = new object( );
             _httpClient = new HttpClient( );
             _modalities = new List<string>( );
-            _model = "gpt-4o-mini";
+            _model = "tts-1-hd";
             _endPoint = GptEndPoint.SpeechGeneration;
             _speed = 1;
             _language = "en";
@@ -305,6 +310,29 @@ namespace Bubba
         }
 
         /// <summary>
+        /// Gets or sets the seed.
+        /// </summary>
+        /// <value>
+        /// The seed.
+        /// </value>
+        [ JsonProperty( "seed" ) ]
+        public int Seed
+        {
+            get
+            {
+                return _seed;
+            }
+            set
+            {
+                if(_seed != value)
+                {
+                    _seed = value;
+                    OnPropertyChanged(nameof(Seed));
+                }
+            }
+        }
+
+        /// <summary>
         /// Gets or sets the file path.
         /// </summary>
         /// <value>
@@ -405,6 +433,11 @@ namespace Bubba
                 if( !string.IsNullOrEmpty( _language ) )
                 {
                     _data.Add( "language", _language );
+                }
+
+                if( _seed > 0 )
+                {
+                    _data.Add("seed", _seed);
                 }
 
                 return _data?.Any( ) == true

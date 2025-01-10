@@ -1,10 +1,10 @@
 ﻿// ******************************************************************************************
 //     Assembly:                Bubba
 //     Author:                  Terry D. Eppler
-//     Created:                 01-07-2025
+//     Created:                 01-10-2025
 // 
 //     Last Modified By:        Terry D. Eppler
-//     Last Modified On:        01-07-2025
+//     Last Modified On:        01-10-2025
 // ******************************************************************************************
 // <copyright file="PayloadBase.cs" company="Terry D. Eppler">
 //    Bubba is a small and simple windows (wpf) application for interacting with the OpenAI API
@@ -46,17 +46,21 @@ namespace Bubba
     using System.ComponentModel;
     using System.Diagnostics.CodeAnalysis;
     using System.Runtime.CompilerServices;
+    using Newtonsoft.Json;
 
     /// <inheritdoc />
     /// <summary>
     /// </summary>
     [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
+    [ SuppressMessage( "ReSharper", "MemberCanBeProtected.Global" ) ]
+    [ SuppressMessage( "ReSharper", "PossibleUnintendedReferenceComparison" ) ]
+    [ SuppressMessage( "ReSharper", "BadParensSpaces" ) ]
     public abstract class PayloadBase : INotifyPropertyChanged, IPayload
     {
         /// <summary>
         /// The user identifier
         /// </summary>
-        private protected int _id;
+        private protected string _id;
 
         /// <summary>
         /// The number of images
@@ -85,7 +89,7 @@ namespace Bubba
         /// tokens based on their existing frequency in the text so far,
         /// decreasing the model's likelihood to repeat the same line verbatim.
         /// </summary>
-        private protected double _frequency;
+        private protected double _frequencyPenalty;
 
         /// <summary>
         /// The top percent
@@ -102,7 +106,7 @@ namespace Bubba
         /// based on whether they appear in the text so far,
         /// ncreasing the model's likelihood to talk about new topics.
         /// </summary>
-        private protected double _presence;
+        private protected double _presencePenalty;
 
         /// <summary>
         /// Whether or not to store the responses in the Chat Log
@@ -165,7 +169,8 @@ namespace Bubba
         /// <value>
         /// The user identifier.
         /// </value>
-        public int Id
+        [ JsonProperty( "id" ) ]
+        public string Id
         {
             get
             {
@@ -188,6 +193,7 @@ namespace Bubba
         /// <value>
         /// The maximum tokens.
         /// </value>
+        [ JsonProperty( "max_completion_tokens" ) ]
         public int MaximumTokens
         {
             get
@@ -211,6 +217,7 @@ namespace Bubba
         /// <value>
         /// The temperature.
         /// </value>
+        [ JsonProperty( "temperature" ) ]
         public double Temperature
         {
             get
@@ -234,18 +241,19 @@ namespace Bubba
         /// <value>
         /// The frequency.
         /// </value>
-        public double Frequency
+        [ JsonProperty( "frequency_penalty" ) ]
+        public double FrequencyPenalty
         {
             get
             {
-                return _frequency;
+                return _frequencyPenalty;
             }
             set
             {
-                if( _frequency != value )
+                if( _frequencyPenalty != value )
                 {
-                    _frequency = value;
-                    OnPropertyChanged( nameof( Frequency ) );
+                    _frequencyPenalty = value;
+                    OnPropertyChanged( nameof( FrequencyPenalty ) );
                 }
             }
         }
@@ -257,6 +265,7 @@ namespace Bubba
         /// <value>
         /// The number.
         /// </value>
+        [ JsonProperty( "n" ) ]
         public int Number
         {
             get
@@ -280,18 +289,42 @@ namespace Bubba
         /// <value>
         /// The presence.
         /// </value>
-        public double Presence
+        [ JsonProperty( "presence_penalty" ) ]
+        public double PresencePenalty
         {
             get
             {
-                return _presence;
+                return _presencePenalty;
             }
             set
             {
-                if( _presence != value )
+                if( _presencePenalty != value )
                 {
-                    _presence = value;
-                    OnPropertyChanged( nameof( Presence ) );
+                    _presencePenalty = value;
+                    OnPropertyChanged( nameof( PresencePenalty ) );
+                }
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the top percent.
+        /// </summary>
+        /// <value>
+        /// The top percent.
+        /// </value>
+        [ JsonProperty( "top_p" ) ]
+        public double TopPercent
+        {
+            get
+            {
+                return _topPercent;
+            }
+            set
+            {
+                if(_topPercent != value)
+                {
+                    _topPercent = value;
+                    OnPropertyChanged(nameof(TopPercent));
                 }
             }
         }
@@ -303,6 +336,7 @@ namespace Bubba
         /// <value>
         /// The chat model.
         /// </value>
+        [ JsonProperty( "models" ) ]
         public string Model
         {
             get
@@ -326,6 +360,7 @@ namespace Bubba
         /// <value>
         /// The size of the image.
         /// </value>
+        [ JsonProperty( "size" ) ]
         public string ImageSize
         {
             get
@@ -349,7 +384,30 @@ namespace Bubba
         /// <value>
         /// The prompt.
         /// </value>
-        public string Prompt
+        [ JsonProperty( "prompt" ) ]
+        public string UserPrompt
+        {
+            get
+            {
+                return _userPrompt;
+            }
+            set
+            {
+                if( _userPrompt != value )
+                {
+                    _userPrompt = value;
+                    OnPropertyChanged( nameof( UserPrompt ) );
+                }
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the system prompt.
+        /// </summary>
+        /// <value>
+        /// The system prompt.
+        /// </value>
+        public string SystemPrompt
         {
             get
             {
@@ -357,10 +415,10 @@ namespace Bubba
             }
             set
             {
-                if( _systemPrompt != value )
+                if(_systemPrompt != value)
                 {
                     _systemPrompt = value;
-                    OnPropertyChanged( nameof( Prompt ) );
+                    OnPropertyChanged(nameof(UserPrompt));
                 }
             }
         }
@@ -372,6 +430,7 @@ namespace Bubba
         /// <value>
         /// The response format.
         /// </value>
+        [ JsonProperty( "response_format" ) ]
         public string ResponseFormat
         {
             get
@@ -384,6 +443,29 @@ namespace Bubba
                 {
                     _responseFormat = value;
                     OnPropertyChanged( nameof( ResponseFormat ) );
+                }
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the stop sequences.
+        /// </summary>
+        /// <value>
+        /// The stop sequences.
+        /// </value>
+        [ JsonProperty( "stop" ) ]
+        public IList<string> StopSequences
+        {
+            get
+            {
+                return _stopSequences;
+            }
+            set
+            {
+                if(_stopSequences != value)
+                {
+                    _stopSequences = value;
+                    OnPropertyChanged(nameof(StopSequences));
                 }
             }
         }

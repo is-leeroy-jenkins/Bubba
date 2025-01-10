@@ -1,10 +1,10 @@
 ﻿// ******************************************************************************************
 //     Assembly:                Bubba
 //     Author:                  Terry D. Eppler
-//     Created:                 01-07-2025
+//     Created:                 01-10-2025
 // 
 //     Last Modified By:        Terry D. Eppler
-//     Last Modified On:        01-07-2025
+//     Last Modified On:        01-10-2025
 // ******************************************************************************************
 // <copyright file="CompletionResponse.cs" company="Terry D. Eppler">
 //    Bubba is a small and simple windows (wpf) application for interacting with the OpenAI API
@@ -44,7 +44,6 @@ namespace Bubba
     using System;
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
-    using System.Linq;
     using System.Text.Json;
     using Newtonsoft.Json;
 
@@ -127,7 +126,7 @@ namespace Bubba
         /// <value>
         /// The identifier.
         /// </value>
-        [JsonProperty("id")]
+        [ JsonProperty( "id" ) ]
         public override string Id
         {
             get
@@ -247,6 +246,7 @@ namespace Bubba
         /// <value>
         /// The usage.
         /// </value>
+        [ JsonProperty( "usage" ) ]
         public override GptUsage Usage
         {
             get
@@ -268,14 +268,18 @@ namespace Bubba
         /// </summary>
         /// <param name="jsonResponse">The json response.</param>
         /// <returns></returns>
-        private string ExtractContent( string jsonResponse )
+        private protected string ExtractText( string jsonResponse )
         {
             try
             {
                 ThrowIf.Empty( jsonResponse, nameof( jsonResponse ) );
                 using var _document = JsonDocument.Parse( jsonResponse );
-                return _document.RootElement.GetProperty( "choices" )[ 0 ].GetProperty( "text" )
+                var _root = _document.RootElement;
+                var _response = _root.GetProperty( "choices" )[ 0 ]
+                    .GetProperty( "text" )
                     .GetString( );
+
+                return _response;
             }
             catch( Exception ex )
             {
@@ -290,7 +294,7 @@ namespace Bubba
         /// <param name="jsonResponse">The json response.</param>
         /// <param name="chatModel">The chat model.</param>
         /// <returns></returns>
-        private string ExtractResponseData( string jsonResponse, string chatModel )
+        private protected string ExtractData( string jsonResponse, string chatModel )
         {
             try
             {
@@ -304,8 +308,11 @@ namespace Bubba
                     if( _element.ValueKind == JsonValueKind.Array
                         && _element.GetArrayLength( ) > 0 )
                     {
-                        var _messageElement = _element[ 0 ].GetProperty( "message" );
-                        return _messageElement.GetProperty( "content" ).GetString( );
+                        var _response = _element[ 0 ].GetProperty( "message" )
+                            .GetProperty( "content" )
+                            .GetString( );
+
+                        return _response;
                     }
                 }
                 else
