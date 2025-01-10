@@ -1,10 +1,10 @@
 ﻿// ******************************************************************************************
 //     Assembly:                Bubba
 //     Author:                  Terry D. Eppler
-//     Created:                 01-07-2025
+//     Created:                 01-10-2025
 // 
 //     Last Modified By:        Terry D. Eppler
-//     Last Modified On:        01-07-2025
+//     Last Modified On:        01-10-2025
 // ******************************************************************************************
 // <copyright file="UserMessage.cs" company="Terry D. Eppler">
 //    Bubba is a small and simple windows (wpf) application for interacting with the OpenAI API
@@ -44,6 +44,7 @@ namespace Bubba
     using System;
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
+    using Newtonsoft.Json;
 
     /// <inheritdoc />
     /// <summary>
@@ -55,6 +56,7 @@ namespace Bubba
     [ SuppressMessage( "ReSharper", "FieldCanBeMadeReadOnly.Global" ) ]
     [ SuppressMessage( "ReSharper", "ClassCanBeSealed.Global" ) ]
     [ SuppressMessage( "ReSharper", "InconsistentNaming" ) ]
+    [ SuppressMessage( "ReSharper", "PossibleUnintendedReferenceComparison" ) ]
     public class UserMessage : GptMessage, IGptMessage
     {
         /// <summary>
@@ -116,6 +118,7 @@ namespace Bubba
         /// <value>
         /// The role.
         /// </value>
+        [ JsonProperty( "role" ) ]
         public override string Role
         {
             get
@@ -131,6 +134,7 @@ namespace Bubba
         /// <value>
         /// The content.
         /// </value>
+        [ JsonProperty( "content" ) ]
         public override string Content
         {
             get
@@ -154,6 +158,7 @@ namespace Bubba
         /// <value>
         /// The data.
         /// </value>
+        [ JsonProperty( "messages" ) ]
         public override IDictionary<string, object> Messages
         {
             get

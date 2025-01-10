@@ -95,8 +95,9 @@ namespace Bubba
             : base( )
         {
             _model = "whisper-1";
-            _endPoint = GptEndPoint.Translations;
+            _endPoint = GptEndPoint.Transcriptions;
             _speed = 1;
+            _temperature = 0.18;
             _language = "en";
             _responseFormat = "text";
         }
@@ -119,6 +120,31 @@ namespace Bubba
                 {
                     _language = value;
                     OnPropertyChanged(nameof(Language));
+                }
+            }
+        }
+
+        /// <summary>
+        /// A number between 0.0 and 2.0   between 0 and 2.
+        /// Higher values like 0.8 will make the output more random,
+        /// while lower values like 0.2 will make it more focused and deterministic.
+        /// </summary>
+        /// <value>
+        /// The temperature.
+        /// </value>
+        /// <inheritdoc />
+        public override double Temperature
+        {
+            get
+            {
+                return _temperature;
+            }
+            set
+            {
+                if(_temperature != value)
+                {
+                    _temperature = value;
+                    OnPropertyChanged(nameof(Temperature));
                 }
             }
         }
@@ -277,80 +303,6 @@ namespace Bubba
                     _responseFormat = value;
                     OnPropertyChanged( nameof( ResponseFormat ) );
                 }
-            }
-        }
-
-        /// <inheritdoc />
-        /// <summary>
-        /// Gets the data.
-        /// </summary>
-        /// <returns>
-        /// </returns>
-        public override IDictionary<string, object> GetData( )
-        {
-            try
-            {
-                _data.Add( "model", _model );
-                _data.Add( "endpoint", _endPoint );
-                _data.Add( "number", _number );
-                _data.Add( "max_completion_tokens", _maximumTokens );
-                _data.Add( "store", _store );
-                _data.Add( "stream", _stream );
-                _data.Add( "temperature", _temperature );
-                _data.Add( "frequency_penalty", _frequencyPenalty );
-                _data.Add( "presence_penalty", _presencePenalty );
-                _data.Add( "top_p", _topPercent );
-                _data.Add( "response_format", _responseFormat );
-                _data.Add("endpoint", _endPoint);
-                _data.Add("speed", _speed);
-                _data.Add("language", _language);
-                _modalities.Add("text");
-                _modalities.Add("audio");
-                _data.Add("modalities", _modalities);
-                if( !string.IsNullOrEmpty( _file ) )
-                {
-                    _data.Add( "filepath", _file );
-                }
-
-                if( !string.IsNullOrEmpty( _language ) )
-                {
-                    _data.Add("language", _language);
-                }
-
-                if( _audioData?.Any( ) == true )
-                {
-                    _data.Add( "audio_data", _audioData );
-                }
-
-                return _data?.Any( ) == true
-                    ? _data
-                    : default( IDictionary<string, object> );
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
-                return default( IDictionary<string, object> );
-            }
-        }
-
-        /// <summary>
-        /// Converts to string.
-        /// </summary>
-        /// <returns>
-        /// A <see cref="System.String" /> that represents this instance.
-        /// </returns>
-        public override string ToString()
-        {
-            try
-            {
-                return (_data?.Any() == true)
-                    ? _data.ToJson()
-                    : string.Empty;
-            }
-            catch(Exception ex)
-            {
-                Fail(ex);
-                return string.Empty;
             }
         }
     }

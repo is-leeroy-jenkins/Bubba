@@ -1,10 +1,10 @@
 ﻿// ******************************************************************************************
 //     Assembly:                Bubba
 //     Author:                  Terry D. Eppler
-//     Created:                 01-08-2025
+//     Created:                 01-10-2025
 // 
 //     Last Modified By:        Terry D. Eppler
-//     Last Modified On:        01-08-2025
+//     Last Modified On:        01-10-2025
 // ******************************************************************************************
 // <copyright file="TranslationParameter.cs" company="Terry D. Eppler">
 //    Bubba is a small and simple windows (wpf) application for interacting with the OpenAI API
@@ -45,6 +45,7 @@ namespace Bubba
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
     using System.Linq;
+    using Newtonsoft.Json;
     using Properties;
 
     /// <inheritdoc />
@@ -65,22 +66,12 @@ namespace Bubba
         /// <summary>
         /// The input
         /// </summary>
-        private protected string _input;
+        private protected string _prompt;
 
         /// <summary>
         /// The file path
         /// </summary>
         private protected string _file;
-
-        /// <summary>
-        /// The audio data
-        /// </summary>
-        private protected byte[ ] _audioData;
-
-        /// <summary>
-        /// The modalities
-        /// </summary>
-        private protected IList<string> _modalities;
 
         /// <summary>
         /// The voice
@@ -100,10 +91,9 @@ namespace Bubba
         public TranslationParameter( )
             : base( )
         {
-            _model = "tts-1";
-            _endPoint = GptEndPoint.SpeechGeneration;
+            _model = "whisper-1";
+            _endPoint = GptEndPoint.Translations;
             _responseFormat = "mp3";
-            _modalities = new List<string>( );
             _voice = "fable";
             _language = "en";
         }
@@ -136,18 +126,18 @@ namespace Bubba
         /// <value>
         /// The input.
         /// </value>
-        public string Input
+        public string Prompt
         {
             get
             {
-                return _input;
+                return _prompt;
             }
             set
             {
-                if(_input != value)
+                if( _prompt != value )
                 {
-                    _input = value;
-                    OnPropertyChanged(nameof(Input));
+                    _prompt = value;
+                    OnPropertyChanged( nameof( Prompt ) );
                 }
             }
         }
@@ -225,6 +215,7 @@ namespace Bubba
         /// The chat model.
         /// </value>
         /// <inheritdoc />
+        [ JsonProperty( "model" ) ]
         public override string Model
         {
             get
@@ -248,6 +239,7 @@ namespace Bubba
         /// <value>
         /// The response format.
         /// </value>
+        [ JsonProperty( "response_format" ) ]
         public override string ResponseFormat
         {
             get
@@ -261,50 +253,6 @@ namespace Bubba
                     _responseFormat = value;
                     OnPropertyChanged( nameof( ResponseFormat ) );
                 }
-            }
-        }
-
-        /// <inheritdoc />
-        /// <summary>
-        /// Gets the data.
-        /// </summary>
-        /// <returns>
-        /// </returns>
-        public override IDictionary<string, object> GetData( )
-        {
-            try
-            {
-                _data.Add( "model", _model );
-                _data.Add( "endpoint", _endPoint );
-                _data.Add( "number", _number );
-                _data.Add( "max_completion_tokens", _maximumTokens );
-                _data.Add( "store", _store );
-                _data.Add( "stream", _stream );
-                _data.Add( "temperature", _temperature );
-                _data.Add( "frequency_penalty", _frequencyPenalty );
-                _data.Add( "presence_penalty", _presencePenalty );
-                _data.Add( "top_p", _topPercent );
-                _data.Add( "response_format", _responseFormat );
-                _data.Add( "endpoint", _endPoint );
-                _data.Add( "speed", _speed );
-                _data.Add( "voice", _voice );
-                _data.Add("language", _language);
-                _modalities.Add("text");
-                _modalities.Add("audio");
-                _data.Add("modalities", _modalities);
-                if( !string.IsNullOrEmpty( _file ) )
-                {
-                    _data.Add( "filepath", _file );
-                }
-
-                return _data?.Any( ) == true
-                    ? _data
-                    : default( IDictionary<string, object> );
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
-                return default( IDictionary<string, object> );
             }
         }
 

@@ -417,5 +417,26 @@ namespace Bubba
                 return default( IDictionary<string, object> );
             }
         }
+
+        /// <summary>
+        /// Converts to string.
+        /// </summary>
+        /// <returns>
+        /// A <see cref="System.String" /> that represents this instance.
+        /// </returns>
+        public override string ToString()
+        {
+            try
+            {
+                return _data?.Any() == true
+                    ? _data.ToJson()
+                    : string.Empty;
+            }
+            catch(Exception ex)
+            {
+                Fail(ex);
+                return string.Empty;
+            }
+        }
     }
 }

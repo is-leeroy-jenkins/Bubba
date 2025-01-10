@@ -1,10 +1,10 @@
 ﻿// ******************************************************************************************
 //     Assembly:                Bubba
 //     Author:                  Terry D. Eppler
-//     Created:                 01-07-2025
+//     Created:                 01-10-2025
 // 
 //     Last Modified By:        Terry D. Eppler
-//     Last Modified On:        01-07-2025
+//     Last Modified On:        01-10-2025
 // ******************************************************************************************
 // <copyright file="SystemMessage.cs" company="Terry D. Eppler">
 //    Bubba is a small and simple windows (wpf) application for interacting with the OpenAI API
@@ -44,6 +44,7 @@ namespace Bubba
     using System;
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
+    using Newtonsoft.Json;
     using Properties;
 
     /// <inheritdoc />
@@ -62,7 +63,7 @@ namespace Bubba
         /// <summary>
         /// The system prompt
         /// </summary>
-        private protected string _systemPrompt = OpenAI.BubbaPrompt;
+        private protected string _systemPrompt;
 
         /// <summary>
         /// Initializes a new instance of the
@@ -71,10 +72,9 @@ namespace Bubba
         public SystemMessage( )
         {
             _role = "system";
+            _systemPrompt = OpenAI.BubbaPrompt;
             _messages = new Dictionary<string, object>( );
-            _messages.Add( "role", _role );
             _content = _systemPrompt;
-            _messages.Add( "content", _content );
         }
 
         /// <inheritdoc />
@@ -125,6 +125,7 @@ namespace Bubba
         /// <value>
         /// The role.
         /// </value>
+        [ JsonProperty( "role" ) ]
         public override string Role
         {
             get
@@ -140,6 +141,7 @@ namespace Bubba
         /// <value>
         /// The content.
         /// </value>
+        [ JsonProperty( "content" ) ]
         public override string Content
         {
             get
@@ -159,6 +161,7 @@ namespace Bubba
         /// <value>
         /// The data.
         /// </value>
+        [ JsonProperty( "messages" ) ]
         public override IDictionary<string, object> Messages
         {
             get

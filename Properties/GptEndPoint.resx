@@ -165,4 +165,7 @@
     <value>https://api.openai.com/v1/audio/transcriptions</value>
     <comment>url to the openai transcriptions api</comment>
   </data>
+  <data name="Completions" xml:space="preserve">
+    <value>https://api.openai.com/v1/chat/completions</value>
+  </data>
 </root>

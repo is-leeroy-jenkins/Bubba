@@ -1,10 +1,10 @@
 ﻿// ******************************************************************************************
 //     Assembly:                Bubba
 //     Author:                  Terry D. Eppler
-//     Created:                 01-09-2025
+//     Created:                 01-10-2025
 // 
 //     Last Modified By:        Terry D. Eppler
-//     Last Modified On:        01-09-2025
+//     Last Modified On:        01-10-2025
 // ******************************************************************************************
 // <copyright file="GptFileRequest.cs" company="Terry D. Eppler">
 //    Bubba is a small and simple windows (wpf) application for interacting with the OpenAI API
@@ -45,6 +45,7 @@ namespace Bubba
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
     using System.IO;
+    using System.Linq;
     using System.Net.Http;
     using System.Net.Http.Headers;
     using System.Threading.Tasks;
@@ -111,9 +112,9 @@ namespace Bubba
         private protected string _fileName;
 
         /// <summary>
-        /// The response format
+        /// The MIME type
         /// </summary>
-        private protected string _responseFormat;
+        private protected string _mimeType;
 
         /// <summary>
         /// Initializes a new instance of the
@@ -127,7 +128,8 @@ namespace Bubba
             _httpClient = new HttpClient( );
             _model = "gpt-4o-mini";
             _endPoint = GptEndPoint.Files;
-            _responseFormat = "text";
+            _limit = 10000;
+            _order = "desc";
         }
 
         /// <inheritdoc />
@@ -347,54 +349,6 @@ namespace Bubba
             }
         }
 
-        /// <summary>
-        /// Gets the chat model.
-        /// </summary>
-        /// <value>
-        /// The chat model.
-        /// </value>
-        /// <inheritdoc />
-        [ JsonProperty( "model" ) ]
-        public override string Model
-        {
-            get
-            {
-                return _model;
-            }
-            set
-            {
-                if( _model != value )
-                {
-                    _model = value;
-                    OnPropertyChanged( nameof( Model ) );
-                }
-            }
-        }
-
-        /// <inheritdoc />
-        /// <summary>
-        /// Gets or sets the messages.
-        /// </summary>
-        /// <value>
-        /// The messages.
-        /// </value>
-        [ JsonProperty( "messages" ) ]
-        public IList<IGptMessage> Messages
-        {
-            get
-            {
-                return _messages;
-            }
-            set
-            {
-                if( _messages != value )
-                {
-                    _messages = value;
-                    OnPropertyChanged( nameof( Messages ) );
-                }
-            }
-        }
-
         /// <inheritdoc />
         /// <summary>
         /// Gets the end point.
@@ -414,30 +368,6 @@ namespace Bubba
                 {
                     _endPoint = value;
                     OnPropertyChanged( nameof( EndPoint ) );
-                }
-            }
-        }
-
-        /// <inheritdoc />
-        /// <summary>
-        /// Gets or sets the response format.
-        /// </summary>
-        /// <value>
-        /// The response format.
-        /// </value>
-        [ JsonProperty( "respose_format" ) ]
-        public string ResponseFormat
-        {
-            get
-            {
-                return _responseFormat;
-            }
-            set
-            {
-                if( _responseFormat != value )
-                {
-                    _responseFormat = value;
-                    OnPropertyChanged( nameof( ResponseFormat ) );
                 }
             }
         }
@@ -548,6 +478,58 @@ namespace Bubba
                 _response.EnsureSuccessStatusCode( );
                 var _responseContent = await _response.Content.ReadAsStringAsync( );
                 return _responseContent;
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+                return string.Empty;
+            }
+        }
+
+        /// <inheritdoc />
+        /// <summary>
+        /// Gets the data.
+        /// </summary>
+        /// <returns>
+        /// </returns>
+        public override IDictionary<string, object> GetData( )
+        {
+            try
+            {
+                _data.Add( "model", _model );
+                _data.Add( "endpoint", _endPoint );
+                _data.Add( "number", _number );
+                _data.Add( "max_completion_tokens", _maximumTokens );
+                _data.Add( "store", _store );
+                _data.Add( "stream", _stream );
+                _data.Add( "temperature", _temperature );
+                _data.Add( "frequency_penalty", _frequencyPenalty );
+                _data.Add( "presence_penalty", _presencePenalty );
+                _data.Add( "top_p", _topPercent );
+                return _data?.Any( ) == true
+                    ? _data
+                    : default( IDictionary<string, object> );
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+                return default( IDictionary<string, object> );
+            }
+        }
+
+        /// <summary>
+        /// Converts to string.
+        /// </summary>
+        /// <returns>
+        /// A <see cref="System.String" /> that represents this instance.
+        /// </returns>
+        public override string ToString( )
+        {
+            try
+            {
+                return _data?.Any( ) == true
+                    ? _data.ToJson( )
+                    : string.Empty;
             }
             catch( Exception ex )
             {

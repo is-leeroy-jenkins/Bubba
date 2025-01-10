@@ -1,10 +1,10 @@
 ﻿// ******************************************************************************************
 //     Assembly:                Bubba
 //     Author:                  Terry D. Eppler
-//     Created:                 01-09-2025
+//     Created:                 01-10-2025
 // 
 //     Last Modified By:        Terry D. Eppler
-//     Last Modified On:        01-09-2025
+//     Last Modified On:        01-10-2025
 // ******************************************************************************************
 // <copyright file="VectorStoreRequest.cs" company="Terry D. Eppler">
 //    Bubba is a small and simple windows (wpf) application for interacting with the OpenAI API
@@ -227,6 +227,27 @@ namespace Bubba
             {
                 Fail( ex );
                 return default( IDictionary<string, object> );
+            }
+        }
+
+        /// <summary>
+        /// Converts to string.
+        /// </summary>
+        /// <returns>
+        /// A <see cref="System.String" /> that represents this instance.
+        /// </returns>
+        public override string ToString( )
+        {
+            try
+            {
+                return _data?.Any( ) == true
+                    ? _data.ToJson( )
+                    : string.Empty;
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+                return string.Empty;
             }
         }
     }

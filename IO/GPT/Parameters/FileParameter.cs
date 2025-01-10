@@ -123,7 +123,6 @@ namespace Bubba
         /// <value>
         /// The identifier.
         /// </value>
-        [ JsonProperty( "id" ) ]
         public int Id
         {
             get
@@ -148,7 +147,6 @@ namespace Bubba
         /// <value>
         /// The purpose.
         /// </value>
-        [ JsonProperty( "purpose" ) ]
         public string Purpose
         {
             get
@@ -173,7 +171,6 @@ namespace Bubba
         /// <value>
         /// The limit.
         /// </value>
-        [ JsonProperty( "limit" ) ]
         public int Limit
         {
             get
@@ -197,7 +194,6 @@ namespace Bubba
         /// <value>
         /// The order.
         /// </value>
-        [ JsonProperty( "order" ) ]
         public string Order
         {
             get
@@ -224,7 +220,6 @@ namespace Bubba
         /// <value>
         /// The after.
         /// </value>
-        [ JsonProperty( "after" ) ]
         public string After
         {
             get
@@ -247,7 +242,6 @@ namespace Bubba
         /// <value>
         /// The created at.
         /// </value>
-        [ JsonProperty( "created_at" ) ]
         public int CreatedAt
         {
             get
@@ -270,7 +264,6 @@ namespace Bubba
         /// <value>
         /// The bytes.
         /// </value>
-        [ JsonProperty( "bytes" ) ]
         public int Bytes
         {
             get
@@ -293,7 +286,6 @@ namespace Bubba
         /// <value>
         /// The name of the file.
         /// </value>
-        [ JsonProperty( "filename" ) ]
         public string FileName
         {
             get

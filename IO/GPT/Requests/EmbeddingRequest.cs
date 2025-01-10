@@ -1,10 +1,10 @@
 ﻿// ******************************************************************************************
 //     Assembly:                Bubba
 //     Author:                  Terry D. Eppler
-//     Created:                 01-07-2025
+//     Created:                 01-10-2025
 // 
 //     Last Modified By:        Terry D. Eppler
-//     Last Modified On:        01-07-2025
+//     Last Modified On:        01-10-2025
 // ******************************************************************************************
 // <copyright file="EmbeddingRequest.cs" company="Terry D. Eppler">
 //    Bubba is a small and simple windows (wpf) application for interacting with the OpenAI API
@@ -43,6 +43,8 @@ namespace Bubba
 {
     using System.Diagnostics.CodeAnalysis;
     using System;
+    using System.Collections.Generic;
+    using System.Linq;
     using System.Net.Http;
     using Newtonsoft.Json;
     using Properties;
@@ -53,6 +55,7 @@ namespace Bubba
     /// <seealso cref="T:Bubba.GptRequest" />
     [ SuppressMessage( "ReSharper", "UnusedType.Global" ) ]
     [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
+    [ SuppressMessage( "ReSharper", "ClassCanBeSealed.Global" ) ]
     public class EmbeddingRequest : GptRequest
     {
         /// <summary>
@@ -66,6 +69,21 @@ namespace Bubba
         private protected string _responseFormat;
 
         /// <summary>
+        /// The input
+        /// </summary>
+        private protected IList<string> _input;
+
+        /// <summary>
+        /// The encoding format
+        /// </summary>
+        private protected string _encodingFormat;
+
+        /// <summary>
+        /// The dimensions
+        /// </summary>
+        private protected int _dimensions;
+
+        /// <summary>
         /// Initializes a new instance of the
         /// <see cref="EmbeddingRequest"/> class.
         /// </summary>
@@ -75,8 +93,9 @@ namespace Bubba
         {
             _entry = new object( );
             _httpClient = new HttpClient( );
-            _model = "gpt-4o-mini";
+            _model = "text-embedding-3";
             _endPoint = GptEndPoint.Embeddings;
+            _encodingFormat = "float";
         }
 
         /// <inheritdoc />
@@ -103,6 +122,81 @@ namespace Bubba
             }
         }
 
+        /// <summary>
+        /// The format to return the embeddings in. Can be either float or base64.
+        /// </summary>
+        /// <value>
+        /// The encoding format.
+        /// </value>
+        [ JsonProperty( "encoding_format" ) ]
+        public string EncodingFormat
+        {
+            get
+            {
+                return _encodingFormat;
+            }
+            set
+            {
+                if( _encodingFormat != value )
+                {
+                    _encodingFormat = value;
+                    OnPropertyChanged( nameof( EncodingFormat ) );
+                }
+            }
+        }
+
+        /// <summary>
+        /// Input text to embed, encoded as a string or array of tokens.
+        /// To embed multiple inputs in a single request, pass an array
+        /// of strings or array of token arrays. The input must not exceed
+        /// the max input tokens for the model
+        /// (8192 tokens for text-embedding-ada-002), cannot be an empty string,
+        /// and any array must be 2048 dimensions or less.
+        /// </summary>
+        /// <value>
+        /// The input.
+        /// </value>
+        [ JsonProperty( "input" ) ]
+        public IList<string> Input
+        {
+            get
+            {
+                return _input;
+            }
+            set
+            {
+                if( _input != value )
+                {
+                    _input = value;
+                    OnPropertyChanged( nameof( Input ) );
+                }
+            }
+        }
+
+        /// <summary>
+        /// The number of dimensions the resulting output embeddings should have.
+        /// Only supported in text-embedding-3 and later models.
+        /// </summary>
+        /// <value>
+        /// The dimensions.
+        /// </value>
+        [ JsonProperty( "dimensions" ) ]
+        public int Dimensions
+        {
+            get
+            {
+                return _dimensions;
+            }
+            set
+            {
+                if( _dimensions != value )
+                {
+                    _dimensions = value;
+                    OnPropertyChanged( nameof( Dimensions ) );
+                }
+            }
+        }
+
         /// <inheritdoc />
         /// <summary>
         /// THe number 'n' of responses generatred.
@@ -110,6 +204,7 @@ namespace Bubba
         /// <value>
         /// The user identifier.
         /// </value>
+        [ JsonProperty( "n" ) ]
         public override int Number
         {
             get
@@ -133,6 +228,7 @@ namespace Bubba
         /// The chat model.
         /// </value>
         /// <inheritdoc />
+        [ JsonProperty( "model" ) ]
         public override string Model
         {
             get
@@ -148,7 +244,7 @@ namespace Bubba
                 }
             }
         }
-        
+
         /// <summary>
         /// Gets or sets the file path.
         /// </summary>
@@ -198,138 +294,6 @@ namespace Bubba
 
         /// <inheritdoc />
         /// <summary>
-        /// Gets or sets a value indicating whether this
-        /// <see cref="T:Bubba.ParameterBase" /> is stream.
-        /// </summary>
-        /// <value>
-        ///   <c>true</c> if stream; otherwise, <c>false</c>.
-        /// </value>
-        [ JsonProperty( "stream" ) ]
-        public override bool Stream
-        {
-            get
-            {
-                return _stream;
-            }
-            set
-            {
-                if( _stream != value )
-                {
-                    _stream = value;
-                    OnPropertyChanged( nameof( Stream ) );
-                }
-            }
-        }
-
-        /// <inheritdoc />
-        /// <summary>
-        /// A number between 0.0 and 2.0   between 0 and 2.
-        /// Higher values like 0.8 will make the output more random,
-        /// while lower values like 0.2 will make it more focused and deterministic.
-        /// </summary>
-        /// <value>
-        /// The temperature.
-        /// </value>
-        [ JsonProperty( "temperature" ) ]
-        public override double Temperature
-        {
-            get
-            {
-                return _temperature;
-            }
-            set
-            {
-                if( _temperature != value )
-                {
-                    _temperature = value;
-                    OnPropertyChanged( nameof( Temperature ) );
-                }
-            }
-        }
-
-        /// <inheritdoc />
-        /// <summary>
-        /// A number between -2.0 and 2.0. Positive values penalize new
-        /// tokens based on their existing frequency in the text so far,
-        /// decreasing the model's likelihood to repeat the same line verbatim.
-        /// </summary>
-        /// <value>
-        /// The frequency.
-        /// </value>
-        [ JsonProperty( "frequency_penalty" ) ]
-        public override double FrequencyPenalty
-        {
-            get
-            {
-                return _frequencyPenalty;
-            }
-            set
-            {
-                if( _frequencyPenalty != value )
-                {
-                    _frequencyPenalty = value;
-                    OnPropertyChanged( nameof( FrequencyPenalty ) );
-                }
-            }
-        }
-
-        /// <inheritdoc />
-        /// <summary>
-        /// Number between -2.0 and 2.0. Positive values penalize new tokens
-        /// based on whether they appear in the text so far,
-        /// ncreasing the model's likelihood to talk about new topics.
-        /// </summary>
-        /// <value>
-        /// The presence.
-        /// </value>
-        [ JsonProperty( "presence_penalty" ) ]
-        public override double PresencePenalty
-        {
-            get
-            {
-                return _presencePenalty;
-            }
-            set
-            {
-                if( _presencePenalty != value )
-                {
-                    _presencePenalty = value;
-                    OnPropertyChanged( nameof( PresencePenalty ) );
-                }
-            }
-        }
-
-        /// <inheritdoc />
-        /// <summary>
-        /// An alternative to sampling with temperature,
-        /// called nucleus sampling, where the model considers
-        /// the results of the tokens with top_p probability mass.
-        /// So 0.1 means only the tokens comprising the top 10% probability
-        /// mass are considered. We generally recommend altering this
-        /// or temperature but not both.
-        /// </summary>
-        /// <value>
-        /// The top percent.
-        /// </value>
-        [ JsonProperty( "top_p" ) ]
-        public override double TopPercent
-        {
-            get
-            {
-                return _topPercent;
-            }
-            set
-            {
-                if( _topPercent != value )
-                {
-                    _topPercent = value;
-                    OnPropertyChanged( nameof( TopPercent ) );
-                }
-            }
-        }
-
-        /// <inheritdoc />
-        /// <summary>
         /// Gets or sets the response format.
         /// </summary>
         /// <value>
@@ -349,6 +313,59 @@ namespace Bubba
                     _responseFormat = value;
                     OnPropertyChanged( nameof( ResponseFormat ) );
                 }
+            }
+        }
+
+        /// <inheritdoc />
+        /// <summary>
+        /// Gets the data.
+        /// </summary>
+        /// <returns>
+        /// </returns>
+        public override IDictionary<string, object> GetData( )
+        {
+            try
+            {
+                _data.Add( "model", _model );
+                _data.Add( "endpoint", _endPoint );
+                _data.Add( "number", _number );
+                _data.Add( "max_completion_tokens", _maximumTokens );
+                _data.Add( "store", _store );
+                _data.Add( "stream", _stream );
+                _data.Add( "temperature", _temperature );
+                _data.Add( "frequency_penalty", _frequencyPenalty );
+                _data.Add( "presence_penalty", _presencePenalty );
+                _data.Add( "top_p", _topPercent );
+                _data.Add( "response_format", _responseFormat );
+                return _data?.Any( ) == true
+                    ? _data
+                    : default( IDictionary<string, object> );
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+                return default( IDictionary<string, object> );
+            }
+        }
+
+        /// <summary>
+        /// Converts to string.
+        /// </summary>
+        /// <returns>
+        /// A <see cref="System.String" /> that represents this instance.
+        /// </returns>
+        public override string ToString( )
+        {
+            try
+            {
+                return _data?.Any( ) == true
+                    ? _data.ToJson( )
+                    : string.Empty;
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+                return string.Empty;
             }
         }
     }

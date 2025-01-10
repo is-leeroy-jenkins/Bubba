@@ -248,9 +248,11 @@ namespace Bubba
         /// <summary>
         /// Extracts the content of the response.
         /// </summary>
-        /// <param name="jsonResponse">The json response.</param>
+        /// <param name="jsonResponse">
+        /// The json response.
+        /// </param>
         /// <returns></returns>
-        private protected string ExtractResponseText( string jsonResponse )
+        private protected string ExtractResponseContent( string jsonResponse )
         {
             try
             {

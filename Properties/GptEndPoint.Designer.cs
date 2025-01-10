@@ -70,6 +70,15 @@ namespace Bubba.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to https://api.openai.com/v1/chat/completions.
+        /// </summary>
+        internal static string Completions {
+            get {
+                return ResourceManager.GetString("Completions", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to https://api.openai.com/v1/embeddings.
         /// </summary>
         internal static string Embeddings {

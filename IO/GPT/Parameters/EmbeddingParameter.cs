@@ -55,6 +55,7 @@ namespace Bubba
     [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
     [ SuppressMessage( "ReSharper", "FieldCanBeMadeReadOnly.Global" ) ]
     [ SuppressMessage( "ReSharper", "PreferConcreteValueOverDefault" ) ]
+    [ SuppressMessage( "ReSharper", "ClassCanBeSealed.Global" ) ]
     public class EmbeddingParameter : GptParameter
     {
         /// <summary>
@@ -72,6 +73,11 @@ namespace Bubba
         /// </summary>
         private protected string _encodingFormat;
 
+        /// <summary>
+        /// The dimensions
+        /// </summary>
+        private protected int _dimensions;
+
         /// <inheritdoc />
         /// <summary>
         /// Initializes a new instance of the
@@ -80,7 +86,7 @@ namespace Bubba
         public EmbeddingParameter( )
             : base( )
         {
-            _model = "text-embedding-ada-002";
+            _model = "text-embedding-3";
             _endPoint = GptEndPoint.Embeddings;
             _responseFormat = "text";
             _input = new List<string>( );

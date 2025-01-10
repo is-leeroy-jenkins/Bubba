@@ -1,10 +1,10 @@
 ﻿// ******************************************************************************************
 //     Assembly:                Bubba
 //     Author:                  Terry D. Eppler
-//     Created:                 01-07-2025
+//     Created:                 01-10-2025
 // 
 //     Last Modified By:        Terry D. Eppler
-//     Last Modified On:        01-07-2025
+//     Last Modified On:        01-10-2025
 // ******************************************************************************************
 // <copyright file="TranslationResponse.cs" company="Terry D. Eppler">
 //    Bubba is a small and simple windows (wpf) application for interacting with the OpenAI API
@@ -45,6 +45,7 @@ namespace Bubba
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
     using System.Text.Json;
+    using Newtonsoft.Json;
 
     /// <inheritdoc />
     /// <summary>
@@ -52,6 +53,7 @@ namespace Bubba
     /// <seealso cref="T:Bubba.GptResponse" />
     [ SuppressMessage( "ReSharper", "UnusedType.Global" ) ]
     [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
+    [ SuppressMessage( "ReSharper", "ClassCanBeSealed.Global" ) ]
     public class TranslationResponse : GptResponse
     {
         /// <summary>
@@ -104,6 +106,7 @@ namespace Bubba
         /// <value>
         /// The identifier.
         /// </value>
+        [ JsonProperty( "id" ) ]
         public override string Id
         {
             get
@@ -127,6 +130,7 @@ namespace Bubba
         /// <value>
         /// The object.
         /// </value>
+        [ JsonProperty( "object" ) ]
         public override string Object
         {
             get
@@ -150,6 +154,7 @@ namespace Bubba
         /// <value>
         /// The created.
         /// </value>
+        [ JsonProperty( "created" ) ]
         public override DateTime Created
         {
             get
@@ -173,6 +178,7 @@ namespace Bubba
         /// <value>
         /// The model.
         /// </value>
+        [ JsonProperty( "model" ) ]
         public override string Model
         {
             get
@@ -196,6 +202,7 @@ namespace Bubba
         /// <value>
         /// The choices.
         /// </value>
+        [ JsonProperty( "choices" ) ]
         public override IList<GptChoice> Choices
         {
             get
@@ -219,6 +226,7 @@ namespace Bubba
         /// <value>
         /// The usage.
         /// </value>
+        [ JsonProperty( "usage" ) ]
         public override GptUsage Usage
         {
             get

@@ -1,10 +1,10 @@
 ﻿// ******************************************************************************************
 //     Assembly:                Bubba
 //     Author:                  Terry D. Eppler
-//     Created:                 01-07-2025
+//     Created:                 01-10-2025
 // 
 //     Last Modified By:        Terry D. Eppler
-//     Last Modified On:        01-07-2025
+//     Last Modified On:        01-10-2025
 // ******************************************************************************************
 // <copyright file="TranscriptionResponse.cs" company="Terry D. Eppler">
 //    Bubba is a small and simple windows (wpf) application for interacting with the OpenAI API
@@ -45,12 +45,14 @@ namespace Bubba
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
     using System.Text.Json;
+    using Newtonsoft.Json;
 
     /// <inheritdoc />
     /// <summary>
     /// </summary>
     [ SuppressMessage( "ReSharper", "UnusedType.Global" ) ]
     [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
+    [ SuppressMessage( "ReSharper", "PossibleUnintendedReferenceComparison" ) ]
     public class TranscriptionResponse : GptResponse
     {
         /// <summary>
@@ -62,6 +64,31 @@ namespace Bubba
         /// The raw response
         /// </summary>
         private protected string _rawResponse;
+
+        /// <summary>
+        /// The language
+        /// </summary>
+        private protected string _language;
+
+        /// <summary>
+        /// The duration
+        /// </summary>
+        private protected string _duration;
+
+        /// <summary>
+        /// The text
+        /// </summary>
+        private protected string _text;
+
+        /// <summary>
+        /// The words
+        /// </summary>
+        private protected IList<string> _words;
+
+        /// <summary>
+        /// The segments
+        /// </summary>
+        private protected IList<string> _segments;
 
         /// <inheritdoc />
         /// <summary>
@@ -78,6 +105,7 @@ namespace Bubba
         /// <value>
         /// The transcribed text.
         /// </value>
+        [ JsonProperty( "text" ) ]
         public string TranscribedText
         {
             get
@@ -95,23 +123,70 @@ namespace Bubba
         }
 
         /// <summary>
+        /// Gets or sets the language.
+        /// </summary>
+        /// <value>
+        /// The language.
+        /// </value>
+        [ JsonProperty( "language" ) ]
+        public string Language
+        {
+            get
+            {
+                return _language;
+            }
+            set
+            {
+                if( _language != value )
+                {
+                    _language = value;
+                    OnPropertyChanged( nameof( Language ) );
+                }
+            }
+        }
+
+        /// <summary>
         /// Gets or sets the raw response.
         /// </summary>
         /// <value>
         /// The raw response.
         /// </value>
-        public string RawResponse
+        [ JsonProperty( "words" ) ]
+        public IList<string> Words
         {
             get
             {
-                return _rawResponse;
+                return _words;
             }
             set
             {
-                if( _rawResponse != value )
+                if( _words != value )
                 {
-                    _rawResponse = value;
-                    OnPropertyChanged( nameof( RawResponse ) );
+                    _words = value;
+                    OnPropertyChanged( nameof( Words ) );
+                }
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the segments.
+        /// </summary>
+        /// <value>
+        /// The segments.
+        /// </value>
+        [ JsonProperty( "segments" ) ]
+        public IList<string> Segments
+        {
+            get
+            {
+                return _segments;
+            }
+            set
+            {
+                if( _segments != value )
+                {
+                    _segments = value;
+                    OnPropertyChanged( nameof( Segments ) );
                 }
             }
         }
@@ -123,6 +198,7 @@ namespace Bubba
         /// <value>
         /// The identifier.
         /// </value>
+        [ JsonProperty( "id" ) ]
         public override string Id
         {
             get
@@ -146,6 +222,7 @@ namespace Bubba
         /// <value>
         /// The object.
         /// </value>
+        [ JsonProperty( "object" ) ]
         public override string Object
         {
             get
@@ -169,6 +246,7 @@ namespace Bubba
         /// <value>
         /// The created.
         /// </value>
+        [ JsonProperty( "created" ) ]
         public override DateTime Created
         {
             get
@@ -192,6 +270,7 @@ namespace Bubba
         /// <value>
         /// The model.
         /// </value>
+        [ JsonProperty( "model" ) ]
         public override string Model
         {
             get
@@ -215,6 +294,7 @@ namespace Bubba
         /// <value>
         /// The choices.
         /// </value>
+        [ JsonProperty( "choices" ) ]
         public override IList<GptChoice> Choices
         {
             get
@@ -238,6 +318,7 @@ namespace Bubba
         /// <value>
         /// The usage.
         /// </value>
+        [ JsonProperty( "usage" ) ]
         public override GptUsage Usage
         {
             get
