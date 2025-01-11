@@ -63,7 +63,7 @@ namespace Bubba
             _model = "gpt-4o-mini";
             _endPoint = GptEndPoint.Completions;
             _store = false;
-            _stream = false;
+            _stream = true;
             _number = 1;
             _temperature = 0.18;
             _topPercent = 0.11;

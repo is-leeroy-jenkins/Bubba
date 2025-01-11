@@ -1,14 +1,14 @@
 ﻿// ******************************************************************************************
-//     Assembly:                Bocifus
+//     Assembly:                Bubba
 //     Author:                  Terry D. Eppler
-//     Created:                 10-31-2024
+//     Created:                 01-11-2025
 // 
 //     Last Modified By:        Terry D. Eppler
-//     Last Modified On:        10-31-2024
+//     Last Modified On:        01-11-2025
 // ******************************************************************************************
 // <copyright file="DictionaryExtensions.cs" company="Terry D. Eppler">
-//   Bocifus is an open source windows (wpf) application that interacts with OpenAI GPT-3.5 Turbo API
-//   based on NET6 and written in C-Sharp.
+//    Bubba is a small and simple windows (wpf) application for interacting with the OpenAI API
+//    that's developed in C-Sharp under the MIT license.C#.
 // 
 //    Copyright ©  2020-2024 Terry D. Eppler
 // 
@@ -65,6 +65,7 @@ namespace Bubba
     [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
     [ SuppressMessage( "ReSharper", "InconsistentNaming" ) ]
     [ SuppressMessage( "ReSharper", "BadParensLineBreaks" ) ]
+    [ SuppressMessage( "ReSharper", "PreferConcreteValueOverDefault" ) ]
     public static class DictionaryExtensions
     {
         /// <summary>
@@ -405,20 +406,28 @@ namespace Bubba
         /// dictionary - Dictionary cannot be null</exception>
         public static string ToJson( this IDictionary<string, object> dict )
         {
-            if( dict?.Any( ) == false )
+            try
             {
-                var _msg = "Dictionary cannot be empty!";
-                throw new ArgumentNullException( nameof( dict ), _msg );
+                if( dict?.Any( ) == false )
+                {
+                    var _msg = "Dictionary cannot be empty!";
+                    throw new ArgumentNullException( nameof( dict ), _msg );
+                }
+
+                var _options = new JsonSerializerOptions
+                {
+                    WriteIndented = true,
+                    DictionaryKeyPolicy = JsonNamingPolicy.SnakeCaseLower
+                };
+
+                return JsonSerializer.Serialize( dict, typeof( Dictionary<string, object> ),
+                    _options );
             }
-
-            var _options = new JsonSerializerOptions
+            catch( Exception ex )
             {
-                WriteIndented = true,
-                DictionaryKeyPolicy = JsonNamingPolicy.SnakeCaseLower
-            };
-
-            return JsonSerializer.Serialize( dict, 
-                typeof( Dictionary<string, object> ), _options );
+                Fail( ex );
+                return string.Empty;
+            }
         }
 
         /// <summary>
@@ -430,20 +439,28 @@ namespace Bubba
         /// dict - Dictionary cannot be null</exception>
         public static string ToJson( this IDictionary<string, string> dict )
         {
-            if( dict?.Any( ) == false )
+            try
             {
-                var _msg = "Dictionary cannot be empty!";
-                throw new ArgumentNullException( nameof( dict ), _msg );
+                if( dict?.Any( ) == false )
+                {
+                    var _msg = "Dictionary cannot be empty!";
+                    throw new ArgumentNullException( nameof( dict ), _msg );
+                }
+
+                var _options = new JsonSerializerOptions
+                {
+                    WriteIndented = true,
+                    DictionaryKeyPolicy = JsonNamingPolicy.SnakeCaseLower
+                };
+
+                return JsonSerializer.Serialize( dict, typeof( Dictionary<string, object> ),
+                    _options );
             }
-
-            var _options = new JsonSerializerOptions
+            catch( Exception ex )
             {
-                WriteIndented = true,
-                DictionaryKeyPolicy = JsonNamingPolicy.SnakeCaseLower
-            };
-
-            return JsonSerializer.Serialize( dict,
-                typeof( Dictionary<string, object> ), _options );
+                Fail( ex );
+                return string.Empty;
+            }
         }
 
         /// <summary>
@@ -457,7 +474,7 @@ namespace Bubba
             if( dict.Count == 0 )
             {
                 var _msg = "NameValueCollection cannot be empty!";
-                throw new ArgumentNullException(nameof(dict), _msg);
+                throw new ArgumentNullException( nameof( dict ), _msg );
             }
 
             var _options = new JsonSerializerOptions
@@ -466,8 +483,7 @@ namespace Bubba
                 DictionaryKeyPolicy = JsonNamingPolicy.SnakeCaseLower
             };
 
-            return JsonSerializer.Serialize( dict,
-                typeof( NameValueCollection ), _options );
+            return JsonSerializer.Serialize( dict, typeof( NameValueCollection ), _options );
         }
 
         /// <summary>

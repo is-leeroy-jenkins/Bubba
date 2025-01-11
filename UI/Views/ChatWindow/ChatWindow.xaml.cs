@@ -1,10 +1,10 @@
 ﻿// ******************************************************************************************
 //     Assembly:                Bubba
 //     Author:                  Terry D. Eppler
-//     Created:                 12-11-2024
+//     Created:                 01-10-2025
 // 
 //     Last Modified By:        Terry D. Eppler
-//     Last Modified On:        12-11-2024
+//     Last Modified On:        01-10-2025
 // ******************************************************************************************
 // <copyright file="ChatWindow.xaml.cs" company="Terry D. Eppler">
 //    Bubba is a small and simple windows (wpf) application for interacting with the OpenAI API
@@ -63,9 +63,6 @@ namespace Bubba
     using System.Windows.Controls;
     using System.Windows.Input;
     using CefSharp;
-    using Microsoft.Office.Interop.Outlook;
-    using OpenTK.Platform.Windows;
-    using Syncfusion.PMML;
     using Syncfusion.SfSkinManager;
     using Syncfusion.Windows.Edit;
     using ToastNotifications;
@@ -109,7 +106,7 @@ namespace Bubba
         /// <summary>
         /// The role
         /// </summary>
-        private protected string _generation;
+        private protected RequestTypes _requestType;
 
         /// <summary>
         /// The role
@@ -179,7 +176,7 @@ namespace Bubba
         /// <summary>
         /// The image size
         /// </summary>
-        private protected string _imageSize;
+        private protected string _size;
 
         /// <summary>
         /// A number between 0 and 2.0
@@ -193,7 +190,7 @@ namespace Bubba
         /// An upper bound for the number of tokens
         /// that can be generated for a completion
         /// </summary>
-        private protected int _maxCompletionTokens;
+        private protected int _maximumTokens;
 
         /// <summary>
         /// A number between -2.0 and 2.0. Positive values penalize new
@@ -293,7 +290,7 @@ namespace Bubba
             _topPercent = 0.11;
             _presence = 0.00D;
             _frequency = 0.00D;
-            _maxCompletionTokens = 2048;
+            _maximumTokens = 2048;
 
             // Event Wiring
             Loaded += OnLoad;
@@ -353,18 +350,18 @@ namespace Bubba
         /// <value>
         /// The maximum tokens.
         /// </value>
-        public int MaxCompletionTokens
+        public int MaximumTokens
         {
             get
             {
-                return _maxCompletionTokens;
+                return _maximumTokens;
             }
             set
             {
-                if( _maxCompletionTokens != value )
+                if( _maximumTokens != value )
                 {
-                    _maxCompletionTokens = value;
-                    OnPropertyChanged( nameof( MaxCompletionTokens ) );
+                    _maximumTokens = value;
+                    OnPropertyChanged( nameof( MaximumTokens ) );
                 }
             }
         }
@@ -559,6 +556,119 @@ namespace Bubba
         }
 
         /// <summary>
+        /// Sets the end point.
+        /// </summary>
+        private void InitializeParameters( )
+        {
+            try
+            {
+                switch( _requestType )
+                {
+                    case RequestTypes.TextGeneration:
+                    {
+                        PopulateTextModels( );
+                        _endpoint = GptEndPoint.TextGeneration;
+                        TemperatureSlider.Value = 0.18;
+                        TopPercentSlider.Value = 0.11;
+                        MaxTokenSlider.Value = 2048;
+                        FrequencySlider.Value = 0.00;
+                        PresenceSlider.Value = 0.00;
+                        NumberSlider.Value = 1;
+                        break;
+                    }
+                    case RequestTypes.Translations:
+                    {
+                        PopulateTranslationModels( );
+                        _endpoint = GptEndPoint.Translations;
+                        TemperatureSlider.Value = 018;
+                        MaxTokenSlider.Value = 2048;
+                        NumberSlider.Value = 1;
+                        break;
+                    }
+                    case RequestTypes.ImageGeneration:
+                    {
+                        PopulateImageModels( );
+                        _endpoint = GptEndPoint.ImageGeneration;
+                        TopPercentSlider.Value = 0.11;
+                        TemperatureSlider.Value = 0.18;
+                        NumberSlider.Value = 1;
+                        break;
+                    }
+                    case RequestTypes.Embeddings:
+                    {
+                        PopulateEmbeddingModels( );
+                        _endpoint = GptEndPoint.Embeddings;
+                        NumberSlider.Value = 1;
+                        break;
+                    }
+                    case RequestTypes.Transcriptions:
+                    {
+                        PopulateTranscriptionModels( );
+                        _endpoint = GptEndPoint.Transcriptions;
+                        TemperatureSlider.Value = 0.1;
+                        MaxTokenSlider.Value = 2048;
+                        NumberSlider.Value = 1;
+                        break;
+                    }
+                    case RequestTypes.VectorStores:
+                    {
+                        PopulateEmbeddingModels( );
+                        _endpoint = GptEndPoint.VectorStores;
+                        break;
+                    }
+                    case RequestTypes.SpeechGeneration:
+                    {
+                        PopulateSpeechModels( );
+                        _endpoint = GptEndPoint.SpeechGeneration;
+                        TemperatureSlider.Value = 0.6;
+                        MaxTokenSlider.Value = 200;
+                        break;
+                    }
+                    case RequestTypes.FineTuning:
+                    {
+                        PopulateFineTuningModels( );
+                        _endpoint = GptEndPoint.FineTuning;
+                        break;
+                    }
+                    case RequestTypes.Files:
+                    {
+                        PopulateTextModels( );
+                        _endpoint = GptEndPoint.Files;
+                        TemperatureSlider.Value = 0.18;
+                        TopPercentSlider.Value = 0.11;
+                        MaxTokenSlider.Value = 2048;
+                        FrequencySlider.Value = 0.00;
+                        PresenceSlider.Value = 0.00;
+                        NumberSlider.Value = 1;
+                        break;
+                    }
+                    case RequestTypes.Uploads:
+                    {
+                        PopulateTextModels( );
+                        _endpoint = GptEndPoint.Uploads;
+                        break;
+                    }
+                    default:
+                    {
+                        PopulateTextModels( );
+                        _endpoint = GptEndPoint.Completions;
+                        TemperatureSlider.Value = 0.18;
+                        TopPercentSlider.Value = 0.11;
+                        MaxTokenSlider.Value = 2048;
+                        FrequencySlider.Value = 0.00;
+                        PresenceSlider.Value = 0.00;
+                        NumberSlider.Value = 1;
+                        break;
+                    }
+                }
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+            }
+        }
+
+        /// <summary>
         /// Invokes if.
         /// </summary>
         /// <param name="action">The action.</param>
@@ -718,20 +828,20 @@ namespace Bubba
                 _store = false;
                 _stream = false;
                 _model = "";
-                _imageSize = "";
+                _size = "";
                 _endpoint = "";
                 _number = 1;
-                _maxCompletionTokens = 2048;
-                _temperature = 1.0;
-                _topPercent = 1.0;
-                _frequency = 0.0;
-                _presence = 0.0;
+                _maximumTokens = 2048;
+                _temperature = 0.18;
+                _topPercent = 0.11;
+                _frequency = 0.00;
+                _presence = 0.00;
                 _language = "";
                 _voice = "";
             }
-            catch(Exception ex)
+            catch( Exception ex )
             {
-                Fail(ex);
+                Fail( ex );
             }
         }
 
@@ -830,7 +940,7 @@ namespace Bubba
             }
             catch( Exception ex )
             {
-                Fail(ex);
+                Fail( ex );
             }
         }
 
@@ -853,14 +963,14 @@ namespace Bubba
         /// <summary>
         /// Clears the selections.
         /// </summary>
-        private void ClearSelections()
+        private void ClearSelections( )
         {
             try
             {
             }
-            catch(Exception ex)
+            catch( Exception ex )
             {
-                Fail(ex);
+                Fail( ex );
             }
         }
 
@@ -889,7 +999,7 @@ namespace Bubba
             {
                 var _position = new PrimaryScreenPositionProvider( Corner.BottomRight, 10, 10 );
                 var _count = MaximumNotificationCount.UnlimitedNotifications( );
-                var _lifeTime = 
+                var _lifeTime =
                     new TimeAndCountBasedLifetimeSupervisor( TimeSpan.FromSeconds( 5 ), _count );
 
                 return new Notifier( cfg =>
@@ -1130,7 +1240,7 @@ namespace Bubba
             try
             {
                 var _input = ChatEditor.Text;
-                if( !string.IsNullOrEmpty( _generation ) )
+                if( Enum.IsDefined( _requestType ) )
                 {
                     var _msg = "Select a GPT Task!";
                     SendErrorMessage( _msg );
@@ -1144,119 +1254,10 @@ namespace Bubba
                     _topPercent = TopPercentSlider.Value;
                     _frequency = FrequencySlider.Value;
                     _number = int.Parse( NumberTextBox.Text );
-                    _maxCompletionTokens = Convert.ToInt32( MaxTokenTextBox.Value );
-                    _userPrompt = ( _language == "Text" )
+                    _maximumTokens = Convert.ToInt32( MaxTokenTextBox.Value );
+                    _userPrompt = _language == "Text"
                         ? ChatEditor.Text
                         : "";
-                }
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
-            }
-        }
-
-        /// <summary>
-        /// Sets the end point.
-        /// </summary>
-        private void SetEndpoints( )
-        {
-            try
-            {
-                var _endpoints = new GptEndpoints( );
-                var _domain = _endpoints.BaseUrl;
-                switch( _generation )
-                {
-                    case "Text Generation":
-                    {
-                        PopulateTextModels( );
-                        _endpoint = _endpoints.TextGeneration;
-                        TemperatureSlider.Value = 0.18;
-                        TopPercentSlider.Value = 0.11;
-                        MaxTokenSlider.Value = 2048;
-                        FrequencySlider.Value = 0.00;
-                        PresenceSlider.Value = 0.00;
-                        NumberSlider.Value = 1;
-                        break;
-                    }
-                    case "Translations":
-                    {
-                        PopulateTranslationModels( );
-                        _endpoint = _endpoints.Translations;
-                        TemperatureSlider.Value = 018;
-                        MaxTokenSlider.Value = 2048;
-                        NumberSlider.Value = 1;
-                        break;
-                    }
-                    case "Image Generation":
-                    {
-                        PopulateImageModels( );
-                        _endpoint = _endpoints.ImageGeneration;
-                        TopPercentSlider.Value = 0.11;
-                        TemperatureSlider.Value = 0.18;
-                        NumberSlider.Value = 1;
-                        break;
-                    }
-                    case "Vector Embedding":
-                    {
-                        PopulateEmbeddingModels( );
-                        _endpoint = _endpoints.VectorEmbeddings;
-                        NumberSlider.Value = 1;
-                        break;
-                    }
-                    case "Transcriptions":
-                    {
-                        PopulateTranscriptionModels( );
-                        _endpoint = _endpoints.Transcriptions;
-                        TemperatureSlider.Value = 0.1;
-                        MaxTokenSlider.Value = 2048;
-                        NumberSlider.Value = 1;
-                        break;
-                    }
-                    case "Vector Stores":
-                    {
-                        PopulateEmbeddingModels( );
-                        _endpoint = _endpoints.VectorStores;
-                        break;
-                    }
-                    case "Speech Generation":
-                    {
-                        PopulateSpeechModels( );
-                        _endpoint = _endpoints.SpeechGeneration;
-                        TemperatureSlider.Value = 0.6;
-                        MaxTokenSlider.Value = 200;
-                        break;
-                    }
-                    case "Fine-Tuning":
-                    {
-                        PopulateFineTuningModels( );
-                        _endpoint = _endpoints.FineTuning;
-                        break;
-                    }
-                    case "Files":
-                    {
-                        PopulateTextModels( );
-                        _endpoint = _endpoints.TextGeneration;
-                        TemperatureSlider.Value = 0.18;
-                        TopPercentSlider.Value = 0.11;
-                        MaxTokenSlider.Value = 2048;
-                        FrequencySlider.Value = 0.00;
-                        PresenceSlider.Value = 0.00;
-                        NumberSlider.Value = 1;
-                        break;
-                    }
-                    case "Uploads":
-                    {
-                        PopulateTextModels( );
-                        _endpoint = _endpoints.Uploads;
-                        break;
-                    }
-                    default:
-                    {
-                        PopulateTextModels( );
-                        _endpoint = _endpoints.TextGeneration;
-                        break;
-                    }
                 }
             }
             catch( Exception ex )
@@ -1413,7 +1414,7 @@ namespace Bubba
             _request.Method = "POST";
             _request.ContentType = "application/json";
             _request.Headers.Add( "Authorization", "Bearer " + OpenAI.BubbaKey );
-            var _maxTokens = int.Parse( MaxTokenTextBox.Text ); // 2048
+            var _maxTokens = int.Parse( MaxTokenTextBox.Text );// 2048
 
             // 0.5
             var _temp = double.Parse( TemperatureTextBox.Text );
@@ -1688,28 +1689,6 @@ namespace Bubba
                     {
                         ToolStripComboBox.Items.Add( _dom );
                     }
-                }
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
-            }
-        }
-
-        /// <summary>
-        /// Populates the GPT tasks.
-        /// </summary>
-        private void PopulateGenerations( )
-        {
-            try
-            {
-                var _generations = GptEndPoint.TextGeneration;
-                var _ept = new GptEndpoints( );
-                var _urls = _ept.Data.Keys.ToList( );
-                GenerationComboBox.Items.Clear( );
-                foreach( var _path in _urls )
-                {
-                    GenerationComboBox.Items.Add( _path );
                 }
             }
             catch( Exception ex )
@@ -2038,7 +2017,6 @@ namespace Bubba
                 InitializeToolStrip( );
                 InitializeLabel( );
                 PopulateModelsAsync( );
-                PopulateGenerations( );
                 PopulateLanguageListBox( );
                 PopulateVoices( );
                 SetGptParameters( );
@@ -2195,7 +2173,8 @@ namespace Bubba
         /// <param name="sender">The sender.</param>
         /// <param name="e">The <see cref="MouseEventArgs"/>
         /// instance containing the event data.</param>
-        private protected void OnToolStripTextBoxTextChanged( object sender, TextChangedEventArgs e )
+        private protected void OnToolStripTextBoxTextChanged( object sender,
+            TextChangedEventArgs e )
         {
             try
             {
@@ -2864,8 +2843,10 @@ namespace Bubba
             {
                 if( GenerationComboBox.SelectedIndex != -1 )
                 {
-                    _generation = GenerationComboBox.SelectedItem.ToString( );
-                    SetEndpoints( );
+                    var _item = GenerationComboBox.SelectedItem;
+                    var _request = ( ( ComboBoxItem )_item ).Tag.ToString( );
+                    _requestType = ( RequestTypes )Enum.Parse( typeof( RequestTypes ), _request );
+                    InitializeParameters( );
                 }
             }
             catch( Exception ex )
@@ -2933,7 +2914,7 @@ namespace Bubba
             {
                 if( ImageSizeComboBox.SelectedIndex != -1 )
                 {
-                    _imageSize = ImageSizeComboBox.SelectedValue.ToString( );
+                    _size = ImageSizeComboBox.SelectedValue.ToString( );
                 }
             }
             catch( Exception ex )

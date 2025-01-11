@@ -46,8 +46,13 @@ namespace Bubba
     using System.Diagnostics.CodeAnalysis;
     using System.Linq;
     using System.Net.Http;
+    using System.Net.Http.Headers;
+    using System.Text;
+    using System.Text.Json;
+    using System.Threading.Tasks;
     using Newtonsoft.Json;
     using Properties;
+    using JsonSerializer = System.Text.Json.JsonSerializer;
 
     /// <inheritdoc />
     /// <summary>
@@ -377,6 +382,48 @@ namespace Bubba
             }
         }
 
+        /// <summary>
+        /// Gets the text completion asynchronous.
+        /// </summary>
+        /// <param name="prompt">The prompt.</param>
+        /// <returns></returns>
+        public async Task<string> GetTextCompletionAsync( string prompt )
+        {
+            try
+            {
+                ThrowIf.Empty( prompt, nameof( prompt ) );
+                var _endpoint = GptEndPoint.TextGeneration;
+                using var _client = new HttpClient( );
+                _client.DefaultRequestHeaders.Authorization =
+                    new AuthenticationHeaderValue( "Bearer", _apiKey );
+
+                var _payload = new GptPayload
+                {
+                    Model = _model,
+                    UserPrompt = prompt,
+                    Temperature = _temperature,
+                    Store = _store,
+                    Stream = _stream,
+                    Stop = _stop,
+                    TopPercent = _topPercent,
+                    FrequencyPenalty = _frequencyPenalty,
+                    PresencePenalty = _presencePenalty
+                };
+
+                var _serialize = JsonSerializer.Serialize( _payload );
+                var _content = new StringContent( _serialize, Encoding.UTF8, "application/json" );
+                var _response = await _client.PostAsync( _endpoint, _content );
+                _response.EnsureSuccessStatusCode( );
+                var _responseContent = await _response.Content.ReadAsStringAsync( );
+                return ExtractText( _responseContent );
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+                return string.Empty;
+            }
+        }
+
         /// <inheritdoc />
         /// <summary>
         /// Gets or sets the response format.
@@ -424,6 +471,18 @@ namespace Bubba
             }
         }
 
+        /// <summary>
+        /// Extracts the content of the response.
+        /// </summary>
+        /// <param name="jsonResponse">The json response.</param>
+        /// <returns></returns>
+        private string ExtractText( string jsonResponse )
+        {
+            using var _document = JsonDocument.Parse( jsonResponse );
+            return _document.RootElement.GetProperty( "choices" )[ 0 ].GetProperty( "text" )
+                .GetString( );
+        }
+
         /// <inheritdoc />
         /// <summary>
         /// Gets the data.
@@ -445,6 +504,7 @@ namespace Bubba
                 _data.Add( "presence_penalty", _presencePenalty );
                 _data.Add( "top_p", _topPercent );
                 _data.Add( "response_format", _responseFormat );
+                _data.Add( "stop", _stop );
                 return _data?.Any( ) == true
                     ? _data
                     : default( IDictionary<string, object> );

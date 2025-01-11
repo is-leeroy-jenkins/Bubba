@@ -55,7 +55,7 @@ namespace Bubba
     [ SuppressMessage( "ReSharper", "MemberCanBeProtected.Global" ) ]
     [ SuppressMessage( "ReSharper", "PossibleUnintendedReferenceComparison" ) ]
     [ SuppressMessage( "ReSharper", "BadParensSpaces" ) ]
-    public abstract class PayloadBase : INotifyPropertyChanged, IPayload
+    public abstract class PayloadBase : INotifyPropertyChanged, IGptPayload
     {
         /// <summary>
         /// The user identifier
@@ -99,7 +99,7 @@ namespace Bubba
         /// <summary>
         /// The stop sequences
         /// </summary>
-        private protected IList<string> _stopSequences;
+        private protected IList<string> _stop;
 
         /// <summary>
         /// Number between -2.0 and 2.0. Positive values penalize new tokens
@@ -121,7 +121,7 @@ namespace Bubba
         /// <summary>
         /// The size
         /// </summary>
-        private protected string _imageSize;
+        private protected string _size;
 
         /// <summary>
         /// The string provided to GPT
@@ -141,7 +141,7 @@ namespace Bubba
         /// <summary>
         /// The messages
         /// </summary>
-        private protected List<IGptMessage> _messages;
+        private protected IList<IGptMessage> _messages;
 
         /// <summary>
         /// The data
@@ -306,6 +306,7 @@ namespace Bubba
             }
         }
 
+        /// <inheritdoc />
         /// <summary>
         /// Gets or sets the top percent.
         /// </summary>
@@ -361,18 +362,18 @@ namespace Bubba
         /// The size of the image.
         /// </value>
         [ JsonProperty( "size" ) ]
-        public string ImageSize
+        public string Size
         {
             get
             {
-                return _imageSize;
+                return _size;
             }
             set
             {
-                if( _imageSize != value )
+                if( _size != value )
                 {
-                    _imageSize = value;
-                    OnPropertyChanged( nameof( ImageSize ) );
+                    _size = value;
+                    OnPropertyChanged( nameof( Size ) );
                 }
             }
         }
@@ -401,24 +402,26 @@ namespace Bubba
             }
         }
 
+        /// <inheritdoc />
         /// <summary>
         /// Gets or sets the system prompt.
         /// </summary>
         /// <value>
         /// The system prompt.
         /// </value>
-        public string SystemPrompt
+        [JsonProperty("messages")]
+        public IList<IGptMessage> Messages
         {
             get
             {
-                return _systemPrompt;
+                return _messages;
             }
             set
             {
-                if(_systemPrompt != value)
+                if(_messages != value)
                 {
-                    _systemPrompt = value;
-                    OnPropertyChanged(nameof(UserPrompt));
+                    _messages = value;
+                    OnPropertyChanged(nameof(Messages));
                 }
             }
         }
@@ -447,6 +450,7 @@ namespace Bubba
             }
         }
 
+        /// <inheritdoc />
         /// <summary>
         /// Gets or sets the stop sequences.
         /// </summary>
@@ -454,18 +458,18 @@ namespace Bubba
         /// The stop sequences.
         /// </value>
         [ JsonProperty( "stop" ) ]
-        public IList<string> StopSequences
+        public IList<string> Stop
         {
             get
             {
-                return _stopSequences;
+                return _stop;
             }
             set
             {
-                if(_stopSequences != value)
+                if(_stop != value)
                 {
-                    _stopSequences = value;
-                    OnPropertyChanged(nameof(StopSequences));
+                    _stop = value;
+                    OnPropertyChanged(nameof(Stop));
                 }
             }
         }

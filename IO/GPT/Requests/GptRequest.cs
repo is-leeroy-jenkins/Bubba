@@ -66,6 +66,11 @@ namespace Bubba
         /// </summary>
         private protected HttpClient _httpClient;
 
+        /// <summary>
+        /// The stop sequence
+        /// </summary>
+        private protected IList<string> _stop;
+
         /// <inheritdoc />
         /// <summary>
         /// Initializes a new instance of the
@@ -74,6 +79,7 @@ namespace Bubba
         public GptRequest( )
         {
             _apiKey = OpenAI.BubbaKey;
+            _stop = new List<string>( );
             _store = false;
             _stream = true;
             _presencePenalty = 0.00;
@@ -94,6 +100,8 @@ namespace Bubba
         /// <param name = "parameter" > </param>
         public GptRequest( string system, string user, IGptParameter parameter )
         {
+            _apiKey = OpenAI.BubbaKey;
+            _stop = new List<string>();
             _number = parameter.Number;
             _store = parameter.Store;
             _stream = parameter.Stream;
@@ -112,7 +120,7 @@ namespace Bubba
         /// <param name="request">The GPT request.</param>
         public GptRequest( GptRequest request )
         {
-            _body = request.Body;
+            _apiKey = request.ApiKey;
             _number = request.Number;
             _stream = request.Stream;
             _store = request.Store;
@@ -121,6 +129,8 @@ namespace Bubba
             _topPercent = request.TopPercent;
             _temperature = request.Temperature;
             _maximumTokens = request.MaximumTokens;
+            _stop = request.Stop;
+            _body = request.Body;
         }
 
         /// <summary>
@@ -158,6 +168,29 @@ namespace Bubba
             temperature = _temperature;
             topPercent = _topPercent;
             tokens = _maximumTokens;
+        }
+
+        /// <summary>
+        /// Gets or sets the stop sequences.
+        /// </summary>
+        /// <value>
+        /// The stop sequences.
+        /// </value>
+        [JsonProperty("stop")]
+        public IList<string> Stop
+        {
+            get
+            {
+                return _stop;
+            }
+            set
+            {
+                if(_stop != value)
+                {
+                    _stop = value;
+                    OnPropertyChanged(nameof(Stop));
+                }
+            }
         }
 
         /// <inheritdoc />
@@ -306,6 +339,7 @@ namespace Bubba
                 _data.Add( "frequency_penalty", _frequencyPenalty );
                 _data.Add( "presence_penalty", _presencePenalty );
                 _data.Add( "top_p", _topPercent );
+                _data.Add( "stop", _stop );
                 return _data?.Any( ) == true
                     ? _data
                     : default( IDictionary<string, object> );

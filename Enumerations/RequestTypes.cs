@@ -66,6 +66,11 @@ namespace Bubba
         ImageGeneration,
 
         /// <summary>
+        /// The speech generation
+        /// </summary>
+        SpeechGeneration,
+
+        /// <summary>
         /// The speech translation
         /// </summary>
         Translations,

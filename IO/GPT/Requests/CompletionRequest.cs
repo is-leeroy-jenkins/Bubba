@@ -49,6 +49,7 @@ namespace Bubba
     using System.Net.Http;
     using System.Net.Http.Headers;
     using System.Text;
+    using System.Text.Json;
     using System.Threading.Tasks;
     using Newtonsoft.Json;
     using Properties;
@@ -121,11 +122,14 @@ namespace Bubba
         /// <param name="user">The user.</param>
         /// <param name="system">The system.</param>
         /// <param name = "config" > </param>
-        public CompletionRequest( string user, string system, GptParameter config ) 
+        public CompletionRequest( string user, string system, GptParameter config )
             : base( )
         {
             _header = new GptHeader( );
+            _entry = new object( );
+            _httpClient = new HttpClient( );
             _endPoint = GptEndPoint.Completions;
+            _model = config.Model;
             _store = config.Store;
             _stream = config.Stream;
             _number = config.Number;
@@ -142,11 +146,14 @@ namespace Bubba
         /// <see cref="T:Bubba.CompletionRequest" /> class.
         /// </summary>
         /// <param name="request">The request.</param>
-        public CompletionRequest( CompletionRequest request ) 
+        public CompletionRequest( CompletionRequest request )
             : base( )
         {
             _header = new GptHeader( );
+            _entry = new object( );
+            _httpClient = new HttpClient( );
             _endPoint = request.EndPoint;
+            _model = request.Model;
             _store = request.Store;
             _stream = request.Stream;
             _number = request.Number;
@@ -281,6 +288,29 @@ namespace Bubba
             }
         }
 
+        /// <summary>
+        /// Gets or sets the modalities.
+        /// </summary>
+        /// <value>
+        /// The modalities.
+        /// </value>
+        [ JsonProperty( "modalities" ) ]
+        public IList<string> Modalities
+        {
+            get
+            {
+                return _modalities;
+            }
+            set
+            {
+                if( _modalities != value )
+                {
+                    _modalities = value;
+                    OnPropertyChanged( nameof( Modalities ) );
+                }
+            }
+        }
+
         /// <inheritdoc />
         /// <summary>
         /// Gets the chat model.
@@ -316,23 +346,52 @@ namespace Bubba
                 _client.DefaultRequestHeaders.Authorization =
                     new AuthenticationHeaderValue( "Bearer", _apiKey );
 
-                var _payload = new Payload
+                var _payload = new GptPayload
                 {
                     Model = _model,
                     Temperature = _temperature,
                     Store = _store,
                     Stream = _stream,
-                    StopSequences = _stop,
+                    Stop = _stop,
                     TopPercent = _topPercent,
                     FrequencyPenalty = _frequencyPenalty,
                     PresencePenalty = _presencePenalty
                 };
 
-                var _jsonPayload = _payload.Serialize( );
-                var _content = new StringContent( _jsonPayload, Encoding.UTF8, "application/json" );
+                var _json = _payload.Serialize( );
+                var _content = new StringContent( _json, Encoding.UTF8, "application/json" );
                 var _response = await _client.PostAsync( _endPoint, _content );
                 _response.EnsureSuccessStatusCode( );
                 return await _response.Content.ReadAsStringAsync( );
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+                return string.Empty;
+            }
+        }
+
+        /// <summary>
+        /// Extracts the message from response.
+        /// </summary>
+        /// <param name="jsonResponse">The json response.</param>
+        /// <returns></returns>
+        public string ExtractResponseMessage( string jsonResponse )
+        {
+            try
+            {
+                using var _document = JsonDocument.Parse( jsonResponse );
+                var _root = _document.RootElement;
+                var _choices = _root.GetProperty( "choices" );
+                if( _choices.ValueKind == JsonValueKind.Array
+                    && _choices.GetArrayLength( ) > 0 )
+                {
+                    var _message = _choices[ 0 ].GetProperty( "message" );
+                    var _content = _message.GetProperty( "content" );
+                    return _content.GetString( );
+                }
+
+                return string.Empty;
             }
             catch( Exception ex )
             {

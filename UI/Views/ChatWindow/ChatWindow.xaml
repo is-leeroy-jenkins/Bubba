@@ -253,7 +253,111 @@
                     BorderBrush="{StaticResource BlueBorderBrush}"
                     BorderThickness="2"
                     Foreground="{StaticResource WhiteForeground}"
-                    ToolTip="Select GPT Task" />
+                    ToolTip="Select GPT Task">
+                    <ComboBoxItem
+                        Margin="3,3,3,0"
+                        Padding="10,1,4,2"
+                        Background="{DynamicResource ControlBackground}"
+                        BorderBrush="{DynamicResource ControlBackground}"
+                        Content="Completion Request"
+                        FontFamily="Roboto"
+                        Foreground="{DynamicResource LightBlueBrush}"
+                        Tag="CompletionRequest"
+                        ToolTip="Chat Completion" />
+                    <ComboBoxItem
+                        Margin="3,3,3,3"
+                        Padding="10,2,4,2"
+                        Background="{DynamicResource ControlBackground}"
+                        BorderBrush="{DynamicResource ControlBackground}"
+                        Content="Text Generation"
+                        FontFamily="Roboto"
+                        Foreground="{DynamicResource LightBlueBrush}"
+                        Tag="TextGeneration"
+                        ToolTip="Generate Text" />
+                    <ComboBoxItem
+                        Margin="3,3,3,3"
+                        Padding="10,2,4,2"
+                        Background="{DynamicResource ControlBackground}"
+                        BorderBrush="{DynamicResource ControlBackground}"
+                        Content="Image Generation"
+                        FontFamily="Roboto"
+                        Foreground="{DynamicResource LightBlueBrush}"
+                        Tag="ImageGeneration"
+                        ToolTip="Create Images" />
+                    <ComboBoxItem
+                        Margin="3,3,3,3"
+                        Background="{DynamicResource ControlBackground}"
+                        BorderBrush="{DynamicResource ControlBackground}"
+                        Content="Translations"
+                        FontFamily="Roboto"
+                        Foreground="{DynamicResource LightBlueBrush}"
+                        Tag="Translations"
+                        ToolTip="Text To Speech (TTS)" />
+                    <ComboBoxItem
+                        Margin="3,3,3,3"
+                        Background="{DynamicResource ControlBackground}"
+                        BorderBrush="{DynamicResource ControlBackground}"
+                        Content="Transcriptions"
+                        FontFamily="Roboto"
+                        Foreground="{DynamicResource LightBlueBrush}"
+                        Tag="Transcriptions"
+                        ToolTip="Speech To Text (STT)" />
+                    <ComboBoxItem
+                        Margin="3,3,3,3"
+                        Background="{DynamicResource ControlBackground}"
+                        BorderBrush="{DynamicResource ControlBackground}"
+                        Content="Files"
+                        FontFamily="Roboto"
+                        Foreground="{DynamicResource LightBlueBrush}"
+                        Tag="Files" />
+                    <ComboBoxItem
+                        Margin="3,3,3,3"
+                        Background="{DynamicResource ControlBackground}"
+                        BorderBrush="{DynamicResource ControlBackground}"
+                        Content="Uploads"
+                        FontFamily="Roboto"
+                        Foreground="{DynamicResource LightBlueBrush}"
+                        Tag="Uploads"
+                        ToolTip="Upload to the API" />
+                    <ComboBoxItem
+                        Margin="3,3,3,3"
+                        Padding="10,2,4,2"
+                        Background="{DynamicResource ControlBackground}"
+                        BorderBrush="{DynamicResource ControlBackground}"
+                        Content="Fine-Tuning"
+                        FontFamily="Roboto"
+                        Foreground="{DynamicResource LightBlueBrush}"
+                        Tag="FineTuning"
+                        ToolTip="Improve model" />
+                    <ComboBoxItem
+                        Margin="3,3,3,3"
+                        Background="{DynamicResource ControlBackground}"
+                        BorderBrush="{DynamicResource ControlBackground}"
+                        Content="Embeddings"
+                        FontFamily="Roboto"
+                        Foreground="{DynamicResource LightBlueBrush}"
+                        Tag="Embedding"
+                        ToolTip="Create Vector Embedding" />
+                    <ComboBoxItem
+                        Margin="3,3,3,3"
+                        Background="{DynamicResource ControlBackground}"
+                        BorderBrush="{DynamicResource ControlBackground}"
+                        Content="Vector Stores"
+                        FontFamily="Roboto"
+                        Foreground="{DynamicResource LightBlueBrush}"
+                        Tag="VectorStores"
+                        ToolTip="Persist Files/Data" />
+                    <ComboBoxItem
+                        Margin="3,3,3,3"
+                        Padding="10,2,4,2"
+                        Background="{DynamicResource ControlBackground}"
+                        BorderBrush="{DynamicResource ControlBackground}"
+                        Content="Projects"
+                        FontFamily="Roboto"
+                        Foreground="{DynamicResource LightBlueBrush}"
+                        Tag="Projects"
+                        ToolTip="Projects API" />
+                </ComboBox>
 
                 <ComboBox
                     x:Name="ModelComboBox"

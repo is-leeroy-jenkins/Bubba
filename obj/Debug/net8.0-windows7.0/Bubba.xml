@@ -10888,6 +10888,11 @@
             The image generation
             </summary>
         </member>
+        <member name="F:Bubba.RequestTypes.SpeechGeneration">
+            <summary>
+            The speech generation
+            </summary>
+        </member>
         <member name="F:Bubba.RequestTypes.Translations">
             <summary>
             The speech translation
@@ -26165,7 +26170,7 @@
         </member>
         <member name="P:Bubba.Properties.OpenAI.BubbaKey">
             <summary>
-              Looks up a localized string similar to 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.
+              Looks up a localized string similar to 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.
             </summary>
         </member>
         <member name="P:Bubba.Properties.OpenAI.BubbaProject">
@@ -30303,7 +30308,7 @@
             The role
             </summary>
         </member>
-        <member name="F:Bubba.ChatWindow._generation">
+        <member name="F:Bubba.ChatWindow._requestType">
             <summary>
             The role
             </summary>
@@ -30373,7 +30378,7 @@
             The stream
             </summary>
         </member>
-        <member name="F:Bubba.ChatWindow._imageSize">
+        <member name="F:Bubba.ChatWindow._size">
             <summary>
             The image size
             </summary>
@@ -30386,7 +30391,7 @@
             Default=1
             </summary>
         </member>
-        <member name="F:Bubba.ChatWindow._maxCompletionTokens">
+        <member name="F:Bubba.ChatWindow._maximumTokens">
             <summary>
             An upper bound for the number of tokens
             that can be generated for a completion
@@ -30492,7 +30497,7 @@
               <c>true</c> if stream; otherwise, <c>false</c>.
             </value>
         </member>
-        <member name="P:Bubba.ChatWindow.MaxCompletionTokens">
+        <member name="P:Bubba.ChatWindow.MaximumTokens">
             <summary>
             An upper bound for the number of tokens
             that can be generated for a completion
@@ -30565,6 +30570,11 @@
         <member name="M:Bubba.ChatWindow.InitializeChatEditor">
             <summary>
             Initializes the user system text box.
+            </summary>
+        </member>
+        <member name="M:Bubba.ChatWindow.InitializeParameters">
+            <summary>
+            Sets the end point.
             </summary>
         </member>
         <member name="M:Bubba.ChatWindow.InvokeIf(System.Action)">
@@ -30722,11 +30732,6 @@
             Sets the hyper parameters.
             </summary>
         </member>
-        <member name="M:Bubba.ChatWindow.SetEndpoints">
-            <summary>
-            Sets the end point.
-            </summary>
-        </member>
         <member name="M:Bubba.ChatWindow.SetUserDocumentLanguage">
             <summary>
             Sets the user document language.
@@ -30784,11 +30789,6 @@
         <member name="M:Bubba.ChatWindow.PopulateDomainDropDowns">
             <summary>
             Populates the domain drop downs.
-            </summary>
-        </member>
-        <member name="M:Bubba.ChatWindow.PopulateGenerations">
-            <summary>
-            Populates the GPT tasks.
             </summary>
         </member>
         <member name="M:Bubba.ChatWindow.PopulateTextModels">
