@@ -15551,6 +15551,107 @@
             The response format.
             </value>
         </member>
+        <member name="T:Bubba.IGptPayload">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Bubba.IGptPayload.MaximumTokens">
+            <summary>
+            Gets the maximum tokens.
+            </summary>
+            <value>
+            The maximum tokens.
+            </value>
+        </member>
+        <member name="P:Bubba.IGptPayload.Temperature">
+            <summary>
+            Gets or sets the temperature.
+            </summary>
+            <value>
+            The temperature.
+            </value>
+        </member>
+        <member name="P:Bubba.IGptPayload.FrequencyPenalty">
+            <summary>
+            Gets the frequency.
+            </summary>
+            <value>
+            The frequency.
+            </value>
+        </member>
+        <member name="P:Bubba.IGptPayload.TopPercent">
+            <summary>
+            Gets or sets the top percent.
+            </summary>
+            <value>
+            The top percent.
+            </value>
+        </member>
+        <member name="P:Bubba.IGptPayload.Number">
+            <summary>
+            Gets or sets the number.
+            </summary>
+            <value>
+            The number.
+            </value>
+        </member>
+        <member name="P:Bubba.IGptPayload.PresencePenalty">
+            <summary>
+            Gets the presence.
+            </summary>
+            <value>
+            The presence.
+            </value>
+        </member>
+        <member name="P:Bubba.IGptPayload.Model">
+            <summary>
+            Gets the chat model.
+            </summary>
+            <value>
+            The chat model.
+            </value>
+        </member>
+        <member name="P:Bubba.IGptPayload.Size">
+            <summary>
+            Gets or sets the size of the image.
+            </summary>
+            <value>
+            The size of the image.
+            </value>
+        </member>
+        <member name="P:Bubba.IGptPayload.UserPrompt">
+            <summary>
+            Gets the prompt.
+            </summary>
+            <value>
+            The prompt.
+            </value>
+        </member>
+        <member name="P:Bubba.IGptPayload.Stop">
+            <summary>
+            Gets or sets the stop.
+            </summary>
+            <value>
+            The stop.
+            </value>
+        </member>
+        <member name="P:Bubba.IGptPayload.Messages">
+            <summary>
+            Gets or sets the messages.
+            </summary>
+            <value>
+            The messages.
+            </value>
+        </member>
+        <member name="P:Bubba.IGptPayload.ResponseFormat">
+            <summary>
+            Gets or sets the response format.
+            </summary>
+            <value>
+            The response format.
+            </value>
+        </member>
         <member name="P:Bubba.IGptRequest.HttpClient">
             <inheritdoc />
             <summary>
@@ -15797,83 +15898,6 @@
             </summary>
             <value>
             The invalid name chars.
-            </value>
-        </member>
-        <member name="T:Bubba.IPayload">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="P:Bubba.IPayload.MaximumTokens">
-            <summary>
-            Gets the maximum tokens.
-            </summary>
-            <value>
-            The maximum tokens.
-            </value>
-        </member>
-        <member name="P:Bubba.IPayload.Temperature">
-            <summary>
-            Gets or sets the temperature.
-            </summary>
-            <value>
-            The temperature.
-            </value>
-        </member>
-        <member name="P:Bubba.IPayload.FrequencyPenalty">
-            <summary>
-            Gets the frequency.
-            </summary>
-            <value>
-            The frequency.
-            </value>
-        </member>
-        <member name="P:Bubba.IPayload.Number">
-            <summary>
-            Gets or sets the number.
-            </summary>
-            <value>
-            The number.
-            </value>
-        </member>
-        <member name="P:Bubba.IPayload.PresencePenalty">
-            <summary>
-            Gets the presence.
-            </summary>
-            <value>
-            The presence.
-            </value>
-        </member>
-        <member name="P:Bubba.IPayload.Model">
-            <summary>
-            Gets the chat model.
-            </summary>
-            <value>
-            The chat model.
-            </value>
-        </member>
-        <member name="P:Bubba.IPayload.ImageSize">
-            <summary>
-            Gets or sets the size of the image.
-            </summary>
-            <value>
-            The size of the image.
-            </value>
-        </member>
-        <member name="P:Bubba.IPayload.UserPrompt">
-            <summary>
-            Gets the prompt.
-            </summary>
-            <value>
-            The prompt.
-            </value>
-        </member>
-        <member name="P:Bubba.IPayload.ResponseFormat">
-            <summary>
-            Gets or sets the response format.
-            </summary>
-            <value>
-            The response format.
             </value>
         </member>
         <member name="T:Bubba.ParameterBase">
@@ -16312,7 +16336,7 @@
             The top percent
             </summary>
         </member>
-        <member name="F:Bubba.PayloadBase._stopSequences">
+        <member name="F:Bubba.PayloadBase._stop">
             <summary>
             The stop sequences
             </summary>
@@ -16334,7 +16358,7 @@
             Stream the response in chuncks.
             </summary>
         </member>
-        <member name="F:Bubba.PayloadBase._imageSize">
+        <member name="F:Bubba.PayloadBase._size">
             <summary>
             The size
             </summary>
@@ -16430,6 +16454,7 @@
             </value>
         </member>
         <member name="P:Bubba.PayloadBase.TopPercent">
+            <inheritdoc />
             <summary>
             Gets or sets the top percent.
             </summary>
@@ -16446,7 +16471,7 @@
             The chat model.
             </value>
         </member>
-        <member name="P:Bubba.PayloadBase.ImageSize">
+        <member name="P:Bubba.PayloadBase.Size">
             <inheritdoc />
             <summary>
             Gets or sets the size of the image.
@@ -16464,7 +16489,8 @@
             The prompt.
             </value>
         </member>
-        <member name="P:Bubba.PayloadBase.SystemPrompt">
+        <member name="P:Bubba.PayloadBase.Messages">
+            <inheritdoc />
             <summary>
             Gets or sets the system prompt.
             </summary>
@@ -16481,7 +16507,8 @@
             The response format.
             </value>
         </member>
-        <member name="P:Bubba.PayloadBase.StopSequences">
+        <member name="P:Bubba.PayloadBase.Stop">
+            <inheritdoc />
             <summary>
             Gets or sets the stop sequences.
             </summary>
@@ -21534,23 +21561,123 @@
             A <see cref="T:System.String" /> that represents this instance.
             </returns>
         </member>
-        <member name="T:Bubba.Payload">
+        <member name="T:Bubba.AudioPayload">
+            <inheritdoc />
+            <summary>
+            </summary>
+        </member>
+        <member name="M:Bubba.AudioPayload.#ctor">
+            <summary>
+            Initializes a new instance of the
+            <see cref="T:Bubba.AudioPayload"/> class.
+            </summary>
+            <inheritdoc />
+        </member>
+        <member name="M:Bubba.AudioPayload.GetData">
+            <inheritdoc />
+            <summary>
+            Gets the data.
+            </summary>
+            <returns>
+            </returns>
+        </member>
+        <member name="T:Bubba.ChatPayload">
+            <inheritdoc />
+            <summary>
+            </summary>
+        </member>
+        <member name="M:Bubba.ChatPayload.#ctor">
+            <summary>
+            Initializes a new instance of the
+            <see cref="T:Bubba.ChatPayload"/> class.
+            </summary>
+            <inheritdoc />
+        </member>
+        <member name="M:Bubba.ChatPayload.GetData">
+            <inheritdoc />
+            <summary>
+            Gets the data.
+            </summary>
+            <returns>
+            </returns>
+        </member>
+        <member name="T:Bubba.EmbeddingPayload">
+            <inheritdoc />
+            <summary>
+            </summary>
+        </member>
+        <member name="M:Bubba.EmbeddingPayload.#ctor">
+            <summary>
+            Initializes a new instance of the
+            <see cref="T:Bubba.EmbeddingPayload"/> class.
+            </summary>
+            <inheritdoc />
+        </member>
+        <member name="M:Bubba.EmbeddingPayload.GetData">
+            <inheritdoc />
+            <summary>
+            Gets the data.
+            </summary>
+            <returns>
+            </returns>
+        </member>
+        <member name="T:Bubba.FilePayload">
+            <inheritdoc />
+            <summary>
+            </summary>
+        </member>
+        <member name="M:Bubba.FilePayload.#ctor">
+            <summary>
+            Initializes a new instance of the
+            <see cref="T:Bubba.FilePayload"/> class.
+            </summary>
+            <inheritdoc />
+        </member>
+        <member name="M:Bubba.FilePayload.GetData">
+            <inheritdoc />
+            <summary>
+            Gets the data.
+            </summary>
+            <returns>
+            </returns>
+        </member>
+        <member name="T:Bubba.FineTuningPayload">
+            <inheritdoc />
+            <summary>
+            </summary>
+        </member>
+        <member name="M:Bubba.FineTuningPayload.#ctor">
+            <summary>
+            Initializes a new instance of the
+            <see cref="T:Bubba.FineTuningPayload"/> class.
+            </summary>
+            <inheritdoc />
+        </member>
+        <member name="M:Bubba.FineTuningPayload.GetData">
+            <inheritdoc />
+            <summary>
+            Gets the data.
+            </summary>
+            <returns>
+            </returns>
+        </member>
+        <member name="T:Bubba.GptPayload">
             <inheritdoc />
             <summary>
             </summary>
             <seealso cref="T:OpenAI.Chat.ChatCompletionOptions" />
             <seealso cref="T:System.ComponentModel.INotifyPropertyChanged" />
         </member>
-        <member name="M:Bubba.Payload.#ctor">
+        <member name="M:Bubba.GptPayload.#ctor">
             <inheritdoc />
             <summary>
             Initializes a new instance of the
             <see cref="T:Bubba.Payload" /> class.
             </summary>
         </member>
-        <member name="M:Bubba.Payload.#ctor(System.String,System.String,System.Double,System.Double,System.Double,System.Double,System.Int32,System.Boolean,System.Boolean)">
+        <member name="M:Bubba.GptPayload.#ctor(System.String,System.String,System.Double,System.Double,System.Double,System.Double,System.Int32,System.Boolean,System.Boolean)">
             <summary>
-            Initializes a new instance of the <see cref="T:Bubba.Payload"/> class.
+            Initializes a new instance of the <see cref="T:Bubba.GptPayload"/> class.
             </summary>
             <param name = "userPrompt" > </param>
             <param name="model">The model.</param>
@@ -21563,31 +21690,23 @@
             <param name="store">if set to <c>true</c> [store].</param>
             <param name="stream">if set to <c>true</c> [stream].</param>
         </member>
-        <member name="M:Bubba.Payload.#ctor(System.String,Bubba.GptParameter)">
+        <member name="M:Bubba.GptPayload.#ctor(System.String,Bubba.GptParameter)">
             <summary>
             Initializes a new instance of the
-            <see cref="T:Bubba.Payload"/> class.
+            <see cref="T:Bubba.GptPayload"/> class.
             </summary>
             <param name="userPrompt">The user prompt.</param>
             <param name="config">The configuration.</param>
         </member>
-        <member name="M:Bubba.Payload.#ctor(System.String,System.String,Bubba.GptParameter)">
-            <summary>
-            Initializes a new instance of the <see cref="T:Bubba.Payload"/> class.
-            </summary>
-            <param name="systemPrompt">The system prompt.</param>
-            <param name="userPrompt">The user prompt.</param>
-            <param name="config">The configuration.</param>
-        </member>
-        <member name="M:Bubba.Payload.#ctor(Bubba.Payload)">
+        <member name="M:Bubba.GptPayload.#ctor(Bubba.GptPayload)">
             <inheritdoc />
             <summary>
             Initializes a new instance of the
             <see cref="T:Bubba.Payload" /> class.
             </summary>
-            <param name="payload">The payload.</param>
+            <param name="gptPayload">The payload.</param>
         </member>
-        <member name="M:Bubba.Payload.Deconstruct(System.String@,System.String@,System.String@,System.Double@,System.Double@,System.Double@,System.Int32@,System.Boolean@,System.Boolean@)">
+        <member name="M:Bubba.GptPayload.Deconstruct(System.String@,System.String@,System.String@,System.Double@,System.Double@,System.Double@,System.Int32@,System.Boolean@,System.Boolean@)">
             <summary>
             Deconstructs the specified prompt.
             </summary>
@@ -21601,7 +21720,7 @@
             <param name="store">if set to <c>true</c> [store].</param>
             <param name="stream">if set to <c>true</c> [stream].</param>
         </member>
-        <member name="P:Bubba.Payload.Store">
+        <member name="P:Bubba.GptPayload.Store">
             <summary>
             Gets or sets a value indicating whether this
             <see cref="T:Bubba.ParameterBase"/> is store.
@@ -21610,7 +21729,7 @@
               <c>true</c> if store; otherwise, <c>false</c>.
             </value>
         </member>
-        <member name="P:Bubba.Payload.Stream">
+        <member name="P:Bubba.GptPayload.Stream">
             <summary>
             Gets or sets a value indicating whether this
             <see cref="T:Bubba.ParameterBase"/> is stream.
@@ -21619,7 +21738,7 @@
               <c>true</c> if stream; otherwise, <c>false</c>.
             </value>
         </member>
-        <member name="M:Bubba.Payload.ForTextGeneration">
+        <member name="M:Bubba.GptPayload.ForTextGeneration">
             <summary>
             Fors the text generation.
             A method to construct other reusable default payloads if required
@@ -21628,27 +21747,27 @@
             Payload
             </returns>
         </member>
-        <member name="M:Bubba.Payload.ForImageGeneration">
+        <member name="M:Bubba.GptPayload.ForImageGeneration">
             <summary>
             Fors the image generation.
             </summary>
             <returns>
             </returns>
         </member>
-        <member name="M:Bubba.Payload.Serialize">
+        <member name="M:Bubba.GptPayload.Serialize">
             <summary>
             Serializes the specified prompt.
             </summary>
             <returns></returns>
         </member>
-        <member name="M:Bubba.Payload.Serialize(System.String)">
+        <member name="M:Bubba.GptPayload.Serialize(System.String)">
             <summary>
             Serializes the specified prompt.
             </summary>
             <param name="prompt">The prompt.</param>
             <returns></returns>
         </member>
-        <member name="M:Bubba.Payload.GetData">
+        <member name="M:Bubba.GptPayload.GetData">
             <inheritdoc />
             <summary>
             Gets the data.
@@ -21656,7 +21775,7 @@
             <returns>
             </returns>
         </member>
-        <member name="M:Bubba.Payload.ToString">
+        <member name="M:Bubba.GptPayload.ToString">
             <inheritdoc />
             <summary>
             Converts to string.
@@ -21666,11 +21785,70 @@
             that represents this instance.
             </returns>
         </member>
-        <member name="M:Bubba.Payload.Fail(System.Exception)">
+        <member name="M:Bubba.GptPayload.Fail(System.Exception)">
             <summary>
             Fails the specified ex.
             </summary>
             <param name="ex">The ex.</param>
+        </member>
+        <member name="T:Bubba.ImagePayload">
+            <inheritdoc />
+            <summary>
+            </summary>
+        </member>
+        <member name="M:Bubba.ImagePayload.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Bubba.ImagePayload"/> class.
+            </summary>
+            <inheritdoc />
+        </member>
+        <member name="M:Bubba.ImagePayload.GetData">
+            <inheritdoc />
+            <summary>
+            Gets the data.
+            </summary>
+            <returns>
+            </returns>
+        </member>
+        <member name="T:Bubba.TextPayload">
+            <inheritdoc />
+            <summary>
+            </summary>
+        </member>
+        <member name="M:Bubba.TextPayload.#ctor">
+            <summary>
+            Initializes a new instance of the
+            <see cref="T:Bubba.TextPayload"/> class.
+            </summary>
+            <inheritdoc />
+        </member>
+        <member name="M:Bubba.TextPayload.GetData">
+            <inheritdoc />
+            <summary>
+            Gets the data.
+            </summary>
+            <returns>
+            </returns>
+        </member>
+        <member name="T:Bubba.VectorStorePayload">
+            <inheritdoc />
+            <summary>
+            </summary>
+        </member>
+        <member name="M:Bubba.VectorStorePayload.#ctor">
+            <summary>
+            Initializes a new instance of the
+            <see cref="T:Bubba.VectorStorePayload"/> class.
+            </summary>
+            <inheritdoc />
+        </member>
+        <member name="M:Bubba.VectorStorePayload.GetData">
+            <inheritdoc />
+            <summary>
+            Gets the data.
+            </summary>
+            <returns>
+            </returns>
         </member>
         <member name="T:Bubba.AudioGenerationReqeust">
             <inheritdoc />
@@ -21961,6 +22139,14 @@
             The meta data.
             </value>
         </member>
+        <member name="P:Bubba.CompletionRequest.Modalities">
+            <summary>
+            Gets or sets the modalities.
+            </summary>
+            <value>
+            The modalities.
+            </value>
+        </member>
         <member name="P:Bubba.CompletionRequest.Body">
             <inheritdoc />
             <summary>
@@ -21974,6 +22160,13 @@
             <summary>
             Gets the chat response asynchronous.
             </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Bubba.CompletionRequest.ExtractResponseMessage(System.String)">
+            <summary>
+            Extracts the message from response.
+            </summary>
+            <param name="jsonResponse">The json response.</param>
             <returns></returns>
         </member>
         <member name="M:Bubba.CompletionRequest.GetData">
@@ -22498,6 +22691,11 @@
             The HTTP client
             </summary>
         </member>
+        <member name="F:Bubba.GptRequest._stop">
+            <summary>
+            The stop sequence
+            </summary>
+        </member>
         <member name="M:Bubba.GptRequest.#ctor">
             <inheritdoc />
             <summary>
@@ -22540,6 +22738,14 @@
             <param name="temperature">The temperature.</param>
             <param name = "topPercent" > </param>
             <param name="tokens">The maximum tokens.</param>
+        </member>
+        <member name="P:Bubba.GptRequest.Stop">
+            <summary>
+            Gets or sets the stop sequences.
+            </summary>
+            <value>
+            The stop sequences.
+            </value>
         </member>
         <member name="P:Bubba.GptRequest.HttpClient">
             <inheritdoc />
@@ -23042,6 +23248,13 @@
             The presence.
             </value>
         </member>
+        <member name="M:Bubba.TextGenerationRequest.GetTextCompletionAsync(System.String)">
+            <summary>
+            Gets the text completion asynchronous.
+            </summary>
+            <param name="prompt">The prompt.</param>
+            <returns></returns>
+        </member>
         <member name="P:Bubba.TextGenerationRequest.ResponseFormat">
             <inheritdoc />
             <summary>
@@ -23059,6 +23272,13 @@
             <value>
             The chat model.
             </value>
+        </member>
+        <member name="M:Bubba.TextGenerationRequest.ExtractText(System.String)">
+            <summary>
+            Extracts the content of the response.
+            </summary>
+            <param name="jsonResponse">The json response.</param>
+            <returns></returns>
         </member>
         <member name="M:Bubba.TextGenerationRequest.GetData">
             <inheritdoc />
