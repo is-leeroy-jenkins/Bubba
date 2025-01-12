@@ -328,7 +328,6 @@
     <PackageReference Include="SystemExtensions.NetCore" Version="1.6.11" />
     <PackageReference Include="ToastNotifications.Messages.Net6" Version="1.0.4" />
     <PackageReference Include="ToastNotifications.Net6" Version="1.0.4" />
-    <PackageReference Include="WebEye.Controls.Wpf.WebCameraControl" Version="1.0.3" />
   </ItemGroup>
 
   <ItemGroup>
@@ -596,6 +595,16 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="Properties\Models.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Models.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Properties\Definitions.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Definitions.resx</DependentUpon>
+    </Compile>
     <Compile Update="Properties\GptEndPoint.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
@@ -611,14 +620,22 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>OpenAI.resx</DependentUpon>
     </Compile>
-    <Compile Update="Properties\CustomSearchEngine.Designer.cs">
+    <Compile Update="Properties\SearchEngine.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
-      <DependentUpon>CustomSearchEngine.resx</DependentUpon>
+      <DependentUpon>SearchEngine.resx</DependentUpon>
     </Compile>
   </ItemGroup>
 
   <ItemGroup>
+    <EmbeddedResource Update="Properties\Models.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Models.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Properties\Definitions.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Definitions.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Update="Properties\GptEndPoint.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>GptEndPoint.Designer.cs</LastGenOutput>
@@ -635,9 +652,9 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>ResourceLocations.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Update="Properties\CustomSearchEngine.resx">
+    <EmbeddedResource Update="Properties\SearchEngine.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>CustomSearchEngine.Designer.cs</LastGenOutput>
+      <LastGenOutput>SearchEngine.Designer.cs</LastGenOutput>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </EmbeddedResource>
   </ItemGroup>

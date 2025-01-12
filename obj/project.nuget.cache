@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "cjIxoCj4eFs=",
+  "dgSpecHash": "W2U912LUX8I=",
   "success": true,
   "projectFilePath": "C:\\Users\\terry\\source\\repos\\Bubba\\Bubba.csproj",
   "expectedPackageFiles": [
@@ -119,8 +119,7 @@
     "C:\\Users\\terry\\.nuget\\packages\\systemextensions.netcore\\1.6.11\\systemextensions.netcore.1.6.11.nupkg.sha512",
     "C:\\Users\\terry\\.nuget\\packages\\systemextensions.netstandard\\1.6.11\\systemextensions.netstandard.1.6.11.nupkg.sha512",
     "C:\\Users\\terry\\.nuget\\packages\\toastnotifications.messages.net6\\1.0.4\\toastnotifications.messages.net6.1.0.4.nupkg.sha512",
-    "C:\\Users\\terry\\.nuget\\packages\\toastnotifications.net6\\1.0.4\\toastnotifications.net6.1.0.4.nupkg.sha512",
-    "C:\\Users\\terry\\.nuget\\packages\\webeye.controls.wpf.webcameracontrol\\1.0.3\\webeye.controls.wpf.webcameracontrol.1.0.3.nupkg.sha512"
+    "C:\\Users\\terry\\.nuget\\packages\\toastnotifications.net6\\1.0.4\\toastnotifications.net6.1.0.4.nupkg.sha512"
   ],
   "logs": [
     {
@@ -129,16 +128,6 @@
       "warningLevel": 1,
       "message": "Package 'ModernUI.WPF 1.0.9' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1' instead of the project target framework 'net8.0-windows7.0'. This package may not be fully compatible with your project.",
       "libraryId": "ModernUI.WPF",
-      "targetGraphs": [
-        "net8.0-windows7.0"
-      ]
-    },
-    {
-      "code": "NU1701",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Package 'WebEye.Controls.Wpf.WebCameraControl 1.0.3' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1' instead of the project target framework 'net8.0-windows7.0'. This package may not be fully compatible with your project.",
-      "libraryId": "WebEye.Controls.Wpf.WebCameraControl",
       "targetGraphs": [
         "net8.0-windows7.0"
       ]

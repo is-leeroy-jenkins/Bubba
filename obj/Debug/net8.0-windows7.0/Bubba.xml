@@ -15988,6 +15988,11 @@
             The assistant prompt
             </summary>
         </member>
+        <member name="F:Bubba.ParameterBase._stop">
+            <summary>
+            The stop
+            </summary>
+        </member>
         <member name="F:Bubba.ParameterBase._data">
             <summary>
             The data
@@ -16025,6 +16030,14 @@
             </summary>
             <value>
             The user identifier.
+            </value>
+        </member>
+        <member name="P:Bubba.ParameterBase.Stop">
+            <summary>
+            Gets or sets the stop.
+            </summary>
+            <value>
+            The stop.
             </value>
         </member>
         <member name="P:Bubba.ParameterBase.Store">
@@ -20291,6 +20304,23 @@
             <see cref="T:Bubba.AudioParameter" /> class.
             </summary>
         </member>
+        <member name="P:Bubba.AudioParameter.Model">
+            <summary>
+            Gets the chat model.
+            </summary>
+            <value>
+            The chat model.
+            </value>
+            <inheritdoc />
+        </member>
+        <member name="P:Bubba.AudioParameter.Modalities">
+            <summary>
+            Gets or sets the modalities.
+            </summary>
+            <value>
+            The modalities.
+            </value>
+        </member>
         <member name="P:Bubba.AudioParameter.Language">
             <summary>
             Gets or sets the language.
@@ -20331,14 +20361,6 @@
             The file path.
             </value>
         </member>
-        <member name="P:Bubba.AudioParameter.AudioData">
-            <summary>
-            Gets or sets the audio data.
-            </summary>
-            <value>
-            The audio data.
-            </value>
-        </member>
         <member name="P:Bubba.AudioParameter.ResponseFormat">
             <inheritdoc />
             <summary>
@@ -20347,22 +20369,6 @@
             <value>
             The response format.
             </value>
-        </member>
-        <member name="M:Bubba.AudioParameter.GetData">
-            <inheritdoc />
-            <summary>
-            Gets the data.
-            </summary>
-            <returns>
-            </returns>
-        </member>
-        <member name="M:Bubba.AudioParameter.ToString">
-            <summary>
-            Converts to string.
-            </summary>
-            <returns>
-            A <see cref="T:System.String" /> that represents this instance.
-            </returns>
         </member>
         <member name="T:Bubba.ChatParameter">
             <inheritdoc />
@@ -20510,71 +20516,13 @@
             The file path.
             </value>
         </member>
-        <member name="P:Bubba.EmbeddingParameter.Store">
+        <member name="P:Bubba.EmbeddingParameter.EndPoint">
             <inheritdoc />
             <summary>
-            Gets or sets a value indicating whether this
-            <see cref="T:Bubba.ParameterBase" /> is store.
+            Gets or sets the end point.
             </summary>
             <value>
-              <c>true</c> if store; otherwise, <c>false</c>.
-            </value>
-        </member>
-        <member name="P:Bubba.EmbeddingParameter.Stream">
-            <inheritdoc />
-            <summary>
-            Gets or sets a value indicating whether this
-            <see cref="T:Bubba.ParameterBase" /> is stream.
-            </summary>
-            <value>
-              <c>true</c> if stream; otherwise, <c>false</c>.
-            </value>
-        </member>
-        <member name="P:Bubba.EmbeddingParameter.Temperature">
-            <inheritdoc />
-            <summary>
-            A number between 0.0 and 2.0   between 0 and 2.
-            Higher values like 0.8 will make the output more random,
-            while lower values like 0.2 will make it more focused and deterministic.
-            </summary>
-            <value>
-            The temperature.
-            </value>
-        </member>
-        <member name="P:Bubba.EmbeddingParameter.FrequencyPenalty">
-            <inheritdoc />
-            <summary>
-            A number between -2.0 and 2.0. Positive values penalize new
-            tokens based on their existing frequency in the text so far,
-            decreasing the model's likelihood to repeat the same line verbatim.
-            </summary>
-            <value>
-            The frequency.
-            </value>
-        </member>
-        <member name="P:Bubba.EmbeddingParameter.PresencePenalty">
-            <inheritdoc />
-            <summary>
-            Number between -2.0 and 2.0. Positive values penalize new tokens
-            based on whether they appear in the text so far,
-            ncreasing the model's likelihood to talk about new topics.
-            </summary>
-            <value>
-            The presence.
-            </value>
-        </member>
-        <member name="P:Bubba.EmbeddingParameter.TopPercent">
-            <inheritdoc />
-            <summary>
-            An alternative to sampling with temperature,
-            called nucleus sampling, where the model considers
-            the results of the tokens with top_p probability mass.
-            So 0.1 means only the tokens comprising the top 10% probability
-            mass are considered. We generally recommend altering this
-            or temperature but not both.
-            </summary>
-            <value>
-            The top percent.
+            The end point.
             </value>
         </member>
         <member name="P:Bubba.EmbeddingParameter.ResponseFormat">
@@ -20586,21 +20534,22 @@
             The response format.
             </value>
         </member>
-        <member name="M:Bubba.EmbeddingParameter.GetData">
+        <member name="P:Bubba.EmbeddingParameter.Model">
+            <summary>
+            Gets the chat model.
+            </summary>
+            <value>
+            The chat model.
+            </value>
             <inheritdoc />
-            <summary>
-            Gets the data.
-            </summary>
-            <returns>
-            </returns>
         </member>
-        <member name="M:Bubba.EmbeddingParameter.ToString">
+        <member name="P:Bubba.EmbeddingParameter.Input">
             <summary>
-            Converts to string.
+            Gets or sets the input.
             </summary>
-            <returns>
-            A <see cref="T:System.String" /> that represents this instance.
-            </returns>
+            <value>
+            The input.
+            </value>
         </member>
         <member name="T:Bubba.FileParameter">
             <inheritdoc />
@@ -20911,6 +20860,11 @@
             <summary>
             </summary>
         </member>
+        <member name="F:Bubba.GptParameter._modalities">
+            <summary>
+            The modalities
+            </summary>
+        </member>
         <member name="M:Bubba.GptParameter.#ctor">
             <inheritdoc />
             <summary>
@@ -20925,6 +20879,14 @@
             </summary>
             <value>
             The user identifier.
+            </value>
+        </member>
+        <member name="P:Bubba.GptParameter.Modalities">
+            <summary>
+            Gets the modalities.
+            </summary>
+            <value>
+            The modalities.
             </value>
         </member>
         <member name="P:Bubba.GptParameter.Model">
@@ -20965,6 +20927,16 @@
             </summary>
             <value>
             The temperature.
+            </value>
+        </member>
+        <member name="P:Bubba.GptParameter.MaximumTokens">
+            <inheritdoc />
+            <summary>
+            An upper bound for the number of tokens
+            that can be generated for a completion
+            </summary>
+            <value>
+            The maximum tokens.
             </value>
         </member>
         <member name="P:Bubba.GptParameter.FrequencyPenalty">
@@ -21031,7 +21003,10 @@
         </member>
         <member name="F:Bubba.ImageParameter._style">
             <summary>
-            The style
+            The style of the generated images. Must be one of vivid or natural.
+            Vivid causes the model to lean towards generating hyper-real and
+            dramatic images. Natural causes the model to produce more natural,
+            less hyper-real looking images. This param is only supported for dall-e-3.
             </summary>
         </member>
         <member name="M:Bubba.ImageParameter.#ctor">
@@ -21076,7 +21051,10 @@
         </member>
         <member name="P:Bubba.ImageParameter.Style">
             <summary>
-            Gets or sets the style.
+            The style of the generated images. Must be one of vivid or natural.
+            Vivid causes the model to lean towards generating hyper-real and
+            dramatic images. Natural causes the model to produce more natural,
+            less hyper-real looking images. This param is only supported for dall-e-3.
             </summary>
             <value>
             The style.
@@ -21099,6 +21077,13 @@
             The chat model.
             </value>
             <inheritdoc />
+        </member>
+        <member name="M:Bubba.ImageParameter.GetData">
+            <inheritdoc />
+            <summary>
+            Gets the data.
+            </summary>
+            <returns></returns>
         </member>
         <member name="T:Bubba.TextParameter">
             <inheritdoc />
@@ -21129,6 +21114,14 @@
             The chat model.
             </value>
             <inheritdoc />
+        </member>
+        <member name="P:Bubba.TextParameter.EndPoint">
+            <summary>
+            Gets or sets the end point.
+            </summary>
+            <value>
+            The end point.
+            </value>
         </member>
         <member name="P:Bubba.TextParameter.Store">
             <inheritdoc />
@@ -21206,6 +21199,13 @@
             The response format.
             </value>
         </member>
+        <member name="M:Bubba.TextParameter.GetData">
+            <inheritdoc />
+            <summary>
+            Gets the data.
+            </summary>
+            <returns></returns>
+        </member>
         <member name="T:Bubba.TranscriptionParameter">
             <inheritdoc />
             <summary>
@@ -21232,12 +21232,7 @@
             The modalities
             </summary>
         </member>
-        <member name="F:Bubba.TranscriptionParameter._speed">
-            <summary>
-            The speed
-            </summary>
-        </member>
-        <member name="F:Bubba.TranscriptionParameter._input">
+        <member name="F:Bubba.TranscriptionParameter._prompt">
             <summary>
             The input
             </summary>
@@ -21276,23 +21271,6 @@
             The file path.
             </value>
         </member>
-        <member name="P:Bubba.TranscriptionParameter.AudioData">
-            <summary>
-            Gets or sets the audio data.
-            </summary>
-            <value>
-            The audio data.
-            </value>
-        </member>
-        <member name="P:Bubba.TranscriptionParameter.Number">
-            <inheritdoc />
-            <summary>
-            THe number 'n' of responses generatred.
-            </summary>
-            <value>
-            The user identifier.
-            </value>
-        </member>
         <member name="P:Bubba.TranscriptionParameter.Model">
             <summary>
             Gets the chat model.
@@ -21302,20 +21280,12 @@
             </value>
             <inheritdoc />
         </member>
-        <member name="P:Bubba.TranscriptionParameter.Input">
+        <member name="P:Bubba.TranscriptionParameter.Prompt">
             <summary>
             Gets or sets the input.
             </summary>
             <value>
             The input.
-            </value>
-        </member>
-        <member name="P:Bubba.TranscriptionParameter.Speed">
-            <summary>
-            Gets or sets the speed.
-            </summary>
-            <value>
-            The speed.
             </value>
         </member>
         <member name="P:Bubba.TranscriptionParameter.ResponseFormat">
@@ -21333,11 +21303,6 @@
             </summary>
             <seealso cref="T:Bubba.GptParameter" />
         </member>
-        <member name="F:Bubba.TranslationParameter._language">
-            <summary>
-            The language
-            </summary>
-        </member>
         <member name="F:Bubba.TranslationParameter._prompt">
             <summary>
             The input
@@ -21348,16 +21313,6 @@
             The file path
             </summary>
         </member>
-        <member name="F:Bubba.TranslationParameter._voice">
-            <summary>
-            The voice
-            </summary>
-        </member>
-        <member name="F:Bubba.TranslationParameter._speed">
-            <summary>
-            The speed
-            </summary>
-        </member>
         <member name="M:Bubba.TranslationParameter.#ctor">
             <summary>
             Initializes a new instance of the
@@ -21365,36 +21320,12 @@
             </summary>
             <inheritdoc />
         </member>
-        <member name="P:Bubba.TranslationParameter.Language">
-            <summary>
-            Gets or sets the language.
-            </summary>
-            <value>
-            The language.
-            </value>
-        </member>
         <member name="P:Bubba.TranslationParameter.Prompt">
             <summary>
             Gets or sets the input.
             </summary>
             <value>
             The input.
-            </value>
-        </member>
-        <member name="P:Bubba.TranslationParameter.Voice">
-            <summary>
-            Gets or sets the voice.
-            </summary>
-            <value>
-            The voice.
-            </value>
-        </member>
-        <member name="P:Bubba.TranslationParameter.Speed">
-            <summary>
-            Gets or sets the speed.
-            </summary>
-            <value>
-            The speed.
             </value>
         </member>
         <member name="P:Bubba.TranslationParameter.File">
@@ -21423,6 +21354,13 @@
             The response format.
             </value>
         </member>
+        <member name="M:Bubba.TranslationParameter.GetData">
+            <inheritdoc />
+            <summary>
+            Gets the data.
+            </summary>
+            <returns></returns>
+        </member>
         <member name="M:Bubba.TranslationParameter.ToString">
             <summary>
             Converts to string.
@@ -21431,50 +21369,50 @@
             A <see cref="T:System.String" /> that represents this instance.
             </returns>
         </member>
-        <member name="T:Bubba.VectorStoreParameter">
+        <member name="T:Bubba.VectorParameter">
             <inheritdoc />
             <summary>
             </summary>
             <seealso cref="T:Bubba.GptParameter" />
         </member>
-        <member name="F:Bubba.VectorStoreParameter._filePath">
+        <member name="F:Bubba.VectorParameter._filePath">
             <summary>
             The file path
             </summary>
         </member>
-        <member name="F:Bubba.VectorStoreParameter._vectorStoreId">
+        <member name="F:Bubba.VectorParameter._vectorStoreId">
             <summary>
             The vector store identifier
             </summary>
         </member>
-        <member name="F:Bubba.VectorStoreParameter._fileIds">
+        <member name="F:Bubba.VectorParameter._fileIds">
             <summary>
             The file ids
             </summary>
         </member>
-        <member name="F:Bubba.VectorStoreParameter._name">
+        <member name="F:Bubba.VectorParameter._name">
             <summary>
             The name
             </summary>
         </member>
-        <member name="F:Bubba.VectorStoreParameter._limit">
+        <member name="F:Bubba.VectorParameter._limit">
             <summary>
             The limit
             </summary>
         </member>
-        <member name="F:Bubba.VectorStoreParameter._metaData">
+        <member name="F:Bubba.VectorParameter._metaData">
             <summary>
             The meta data
             </summary>
         </member>
-        <member name="M:Bubba.VectorStoreParameter.#ctor">
+        <member name="M:Bubba.VectorParameter.#ctor">
             <summary>
             Initializes a new instance of the
-            <see cref="T:Bubba.VectorStoreParameter"/> class.
+            <see cref="T:Bubba.VectorParameter"/> class.
             </summary>
             <inheritdoc />
         </member>
-        <member name="P:Bubba.VectorStoreParameter.FilePath">
+        <member name="P:Bubba.VectorParameter.FilePath">
             <summary>
             Gets or sets the file path.
             </summary>
@@ -21482,7 +21420,7 @@
             The file path.
             </value>
         </member>
-        <member name="P:Bubba.VectorStoreParameter.VectorStoreId">
+        <member name="P:Bubba.VectorParameter.VectorStoreId">
             <summary>
             Gets or sets the vector store identifier.
             </summary>
@@ -21490,7 +21428,7 @@
             The vector store identifier.
             </value>
         </member>
-        <member name="P:Bubba.VectorStoreParameter.Limit">
+        <member name="P:Bubba.VectorParameter.Limit">
             <inheritdoc />
             <summary>
             THe number 'n' of responses generatred.
@@ -21499,7 +21437,7 @@
             The user identifier.
             </value>
         </member>
-        <member name="P:Bubba.VectorStoreParameter.Model">
+        <member name="P:Bubba.VectorParameter.Model">
             <summary>
             Gets the chat model.
             </summary>
@@ -21508,7 +21446,7 @@
             </value>
             <inheritdoc />
         </member>
-        <member name="P:Bubba.VectorStoreParameter.FileIds">
+        <member name="P:Bubba.VectorParameter.FileIds">
             <inheritdoc />
             <summary>
             Gets or sets a value indicating whether this
@@ -21518,7 +21456,7 @@
               <c>true</c> if store; otherwise, <c>false</c>.
             </value>
         </member>
-        <member name="P:Bubba.VectorStoreParameter.Name">
+        <member name="P:Bubba.VectorParameter.Name">
             <inheritdoc />
             <summary>
             Gets or sets a value indicating whether this
@@ -21528,7 +21466,7 @@
               <c>true</c> if stream; otherwise, <c>false</c>.
             </value>
         </member>
-        <member name="P:Bubba.VectorStoreParameter.MetaData">
+        <member name="P:Bubba.VectorParameter.MetaData">
             <summary>
             Gets or sets the meta data.
             </summary>
@@ -21536,7 +21474,7 @@
             The meta data.
             </value>
         </member>
-        <member name="P:Bubba.VectorStoreParameter.ResponseFormat">
+        <member name="P:Bubba.VectorParameter.ResponseFormat">
             <inheritdoc />
             <summary>
             Gets or sets the response format.
@@ -21544,42 +21482,6 @@
             <value>
             The response format.
             </value>
-        </member>
-        <member name="M:Bubba.VectorStoreParameter.GetData">
-            <inheritdoc />
-            <summary>
-            Gets the data.
-            </summary>
-            <returns>
-            </returns>
-        </member>
-        <member name="M:Bubba.VectorStoreParameter.ToString">
-            <summary>
-            Converts to string.
-            </summary>
-            <returns>
-            A <see cref="T:System.String" /> that represents this instance.
-            </returns>
-        </member>
-        <member name="T:Bubba.AudioPayload">
-            <inheritdoc />
-            <summary>
-            </summary>
-        </member>
-        <member name="M:Bubba.AudioPayload.#ctor">
-            <summary>
-            Initializes a new instance of the
-            <see cref="T:Bubba.AudioPayload"/> class.
-            </summary>
-            <inheritdoc />
-        </member>
-        <member name="M:Bubba.AudioPayload.GetData">
-            <inheritdoc />
-            <summary>
-            Gets the data.
-            </summary>
-            <returns>
-            </returns>
         </member>
         <member name="T:Bubba.ChatPayload">
             <inheritdoc />
@@ -21593,17 +21495,152 @@
             </summary>
             <inheritdoc />
         </member>
+        <member name="P:Bubba.ChatPayload.Number">
+            <inheritdoc />
+            <summary>
+            THe number 'n' of responses generatred.
+            </summary>
+            <value>
+            The user identifier.
+            </value>
+        </member>
+        <member name="P:Bubba.ChatPayload.Model">
+            <summary>
+            Gets the chat model.
+            </summary>
+            <value>
+            The chat model.
+            </value>
+            <inheritdoc />
+        </member>
+        <member name="P:Bubba.ChatPayload.EndPoint">
+            <summary>
+            Gets or sets the end point.
+            </summary>
+            <value>
+            The end point.
+            </value>
+        </member>
+        <member name="P:Bubba.ChatPayload.Store">
+            <inheritdoc />
+            <summary>
+            Gets or sets a value indicating whether this
+            <see cref="T:Bubba.ParameterBase" /> is store.
+            </summary>
+            <value>
+              <c>true</c> if store; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:Bubba.ChatPayload.Stream">
+            <inheritdoc />
+            <summary>
+            Gets or sets a value indicating whether this
+            <see cref="T:Bubba.ParameterBase" /> is stream.
+            </summary>
+            <value>
+              <c>true</c> if stream; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:Bubba.ChatPayload.Temperature">
+            <inheritdoc />
+            <summary>
+            A number between 0.0 and 2.0   between 0 and 2.
+            Higher values like 0.8 will make the output more random,
+            while lower values like 0.2 will make it more focused and deterministic.
+            </summary>
+            <value>
+            The temperature.
+            </value>
+        </member>
+        <member name="P:Bubba.ChatPayload.FrequencyPenalty">
+            <inheritdoc />
+            <summary>
+            A number between -2.0 and 2.0. Positive values penalize new
+            tokens based on their existing frequency in the text so far,
+            decreasing the model's likelihood to repeat the same line verbatim.
+            </summary>
+            <value>
+            The frequency.
+            </value>
+        </member>
+        <member name="P:Bubba.ChatPayload.PresencePenalty">
+            <inheritdoc />
+            <summary>
+            Number between -2.0 and 2.0. Positive values penalize new tokens
+            based on whether they appear in the text so far,
+            ncreasing the model's likelihood to talk about new topics.
+            </summary>
+            <value>
+            The presence.
+            </value>
+        </member>
+        <member name="P:Bubba.ChatPayload.TopPercent">
+            <inheritdoc />
+            <summary>
+            An alternative to sampling with temperature,
+            called nucleus sampling, where the model considers
+            the results of the tokens with top_p probability mass.
+            So 0.1 means only the tokens comprising the top 10% probability
+            mass are considered. We generally recommend altering this
+            or temperature but not both.
+            </summary>
+            <value>
+            The top percent.
+            </value>
+        </member>
+        <member name="P:Bubba.ChatPayload.ResponseFormat">
+            <inheritdoc />
+            <summary>
+            Gets or sets the response format.
+            </summary>
+            <value>
+            The response format.
+            </value>
+        </member>
         <member name="M:Bubba.ChatPayload.GetData">
             <inheritdoc />
             <summary>
             Gets the data.
             </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Bubba.ChatPayload.ToString">
+            <inheritdoc />
+            <summary>
+            Converts to string.
+            </summary>
             <returns>
+            A <see cref="T:System.String" /> that represents this instance.
             </returns>
         </member>
         <member name="T:Bubba.EmbeddingPayload">
             <inheritdoc />
             <summary>
+            </summary>
+        </member>
+        <member name="F:Bubba.EmbeddingPayload._filePath">
+            <summary>
+            The file path
+            </summary>
+        </member>
+        <member name="F:Bubba.EmbeddingPayload._input">
+            <summary>
+            The input
+            </summary>
+        </member>
+        <member name="F:Bubba.EmbeddingPayload._encodingFormat">
+            <summary>
+            The encoding format
+            </summary>
+        </member>
+        <member name="F:Bubba.EmbeddingPayload._dimensions">
+            <summary>
+            The dimensions
+            </summary>
+        </member>
+        <member name="F:Bubba.EmbeddingPayload._endPoint">
+            <summary>
+            The end point
             </summary>
         </member>
         <member name="M:Bubba.EmbeddingPayload.#ctor">
@@ -21612,6 +21649,49 @@
             <see cref="T:Bubba.EmbeddingPayload"/> class.
             </summary>
             <inheritdoc />
+        </member>
+        <member name="P:Bubba.EmbeddingPayload.FilePath">
+            <summary>
+            Gets or sets the file path.
+            </summary>
+            <value>
+            The file path.
+            </value>
+        </member>
+        <member name="P:Bubba.EmbeddingPayload.EndPoint">
+            <inheritdoc />
+            <summary>
+            Gets or sets the end point.
+            </summary>
+            <value>
+            The end point.
+            </value>
+        </member>
+        <member name="P:Bubba.EmbeddingPayload.ResponseFormat">
+            <inheritdoc />
+            <summary>
+            Gets or sets the response format.
+            </summary>
+            <value>
+            The response format.
+            </value>
+        </member>
+        <member name="P:Bubba.EmbeddingPayload.Model">
+            <summary>
+            Gets the chat model.
+            </summary>
+            <value>
+            The chat model.
+            </value>
+            <inheritdoc />
+        </member>
+        <member name="P:Bubba.EmbeddingPayload.Input">
+            <summary>
+            Gets or sets the input.
+            </summary>
+            <value>
+            The input.
+            </value>
         </member>
         <member name="M:Bubba.EmbeddingPayload.GetData">
             <inheritdoc />
@@ -21626,12 +21706,140 @@
             <summary>
             </summary>
         </member>
+        <member name="F:Bubba.FilePayload._id">
+            <summary>
+            The file identifier, which can be referenced in the API endpoints.
+            </summary>
+        </member>
+        <member name="F:Bubba.FilePayload._endPoint">
+            <summary>
+            The end point
+            </summary>
+        </member>
+        <member name="F:Bubba.FilePayload._purpose">
+            <summary>
+            The intended purpose of the file.
+            Supported values are assistants, assistants_output,
+            batch, batch_output, fine-tune, fine-tune-results and vision.
+            </summary>
+        </member>
+        <member name="F:Bubba.FilePayload._limit">
+            <summary>
+            A limit on the number of objects to be returned.
+            Limit can range between 1 and 10,000,
+            and the default is 10,000.
+            </summary>
+        </member>
+        <member name="F:Bubba.FilePayload._order">
+            <summary>
+            Sort order by the created_at timestamp of the objects.
+            asc for ascending order and desc for descending order
+            </summary>
+        </member>
+        <member name="F:Bubba.FilePayload._after">
+            <summary>
+            A cursor for use in pagination. after is an object ID
+            defines your place in the list. For instance, if you
+            make a list request and receive 100 objects, ending with
+            obj_foo, your subsequent call can include after=obj_foo
+            in order to fetch the next page of the list
+            </summary>
+        </member>
+        <member name="F:Bubba.FilePayload._createdAt">
+            <summary>
+            The Unix timestamp (in seconds) for when the file was created.
+            </summary>
+        </member>
+        <member name="F:Bubba.FilePayload._bytes">
+            <summary>
+            The size of the file, in bytes.
+            </summary>
+        </member>
+        <member name="F:Bubba.FilePayload._fileName">
+            <summary>
+            The file name
+            </summary>
+        </member>
         <member name="M:Bubba.FilePayload.#ctor">
             <summary>
             Initializes a new instance of the
             <see cref="T:Bubba.FilePayload"/> class.
             </summary>
             <inheritdoc />
+        </member>
+        <member name="P:Bubba.FilePayload.Id">
+            <inheritdoc />
+            <summary>
+            The file identifier, which can be referenced in the API endpoints.
+            </summary>
+            <value>
+            The identifier.
+            </value>
+        </member>
+        <member name="P:Bubba.FilePayload.Purpose">
+            <summary>
+            The intended purpose of the file.
+            Supported values are assistants, assistants_output,
+            batch, batch_output, fine-tune, fine-tune-results and vision.
+            </summary>
+            <value>
+            The purpose.
+            </value>
+        </member>
+        <member name="P:Bubba.FilePayload.Limit">
+            <summary>
+            A limit on the number of objects to be returned.
+            Limit can range between 1 and 10,000,
+            and the default is 10,000.
+            </summary>
+            <value>
+            The limit.
+            </value>
+        </member>
+        <member name="P:Bubba.FilePayload.Order">
+            <summary>
+            Sort order by the created_at timestamp of the objects.
+            asc for ascending order and desc for descending order
+            </summary>
+            <value>
+            The order.
+            </value>
+        </member>
+        <member name="P:Bubba.FilePayload.After">
+            <summary>
+            A cursor for use in pagination. after is an object ID
+            defines your place in the list. For instance, if you
+            make a list request and receive 100 objects, ending with
+            obj_foo, your subsequent call can include after=obj_foo
+            in order to fetch the next page of the list
+            </summary>
+            <value>
+            The after.
+            </value>
+        </member>
+        <member name="P:Bubba.FilePayload.CreatedAt">
+            <summary>
+            The Unix timestamp (in seconds) for when the file was created.
+            </summary>
+            <value>
+            The created at.
+            </value>
+        </member>
+        <member name="P:Bubba.FilePayload.Bytes">
+            <summary>
+            The size of the file, in bytes.
+            </summary>
+            <value>
+            The bytes.
+            </value>
+        </member>
+        <member name="P:Bubba.FilePayload.FileName">
+            <summary>
+            Gets or sets the name of the file.
+            </summary>
+            <value>
+            The name of the file.
+            </value>
         </member>
         <member name="M:Bubba.FilePayload.GetData">
             <inheritdoc />
@@ -21641,9 +21849,68 @@
             <returns>
             </returns>
         </member>
+        <member name="M:Bubba.FilePayload.ToString">
+            <inheritdoc />
+            <summary>
+            Converts to string.
+            </summary>
+            <returns>
+            A <see cref="T:System.String" /> that represents this instance.
+            </returns>
+        </member>
         <member name="T:Bubba.FineTuningPayload">
             <inheritdoc />
             <summary>
+            </summary>
+        </member>
+        <member name="F:Bubba.FineTuningPayload._logProbs">
+            <summary>
+            The log probs
+            </summary>
+        </member>
+        <member name="F:Bubba.FineTuningPayload._echo">
+            <summary>
+            The echo
+            </summary>
+        </member>
+        <member name="F:Bubba.FineTuningPayload._bestOf">
+            <summary>
+            The best of
+            </summary>
+        </member>
+        <member name="F:Bubba.FineTuningPayload._logitBias">
+            <summary>
+            The logit bias
+            </summary>
+        </member>
+        <member name="F:Bubba.FineTuningPayload._trainingFile">
+            <summary>
+            The file path
+            </summary>
+        </member>
+        <member name="F:Bubba.FineTuningPayload._suffix">
+            <summary>
+            The suffix
+            </summary>
+        </member>
+        <member name="F:Bubba.FineTuningPayload._seed">
+            <summary>
+            The seed
+            </summary>
+        </member>
+        <member name="F:Bubba.FineTuningPayload._validationFile">
+            <summary>
+            The validation file
+            </summary>
+        </member>
+        <member name="F:Bubba.FineTuningPayload._endPoint">
+            <summary>
+            The end point
+            </summary>
+        </member>
+        <member name="F:Bubba.FineTuningPayload._method">
+            <summary>
+            The method
             </summary>
         </member>
         <member name="M:Bubba.FineTuningPayload.#ctor">
@@ -21653,12 +21920,117 @@
             </summary>
             <inheritdoc />
         </member>
+        <member name="P:Bubba.FineTuningPayload.LogProbs">
+            <summary>
+            Gets or sets the log probs.
+            </summary>
+            <value>
+            The log probs.
+            </value>
+        </member>
+        <member name="P:Bubba.FineTuningPayload.Echo">
+            <summary>
+            Gets or sets a value indicating whether this
+            <see cref="T:Bubba.FineTuningParameter"/> is echo.
+            </summary>
+            <value>
+              <c>true</c> if echo; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:Bubba.FineTuningPayload.BestOf">
+            <summary>
+            Gets or sets the best of.
+            </summary>
+            <value>
+            The best of.
+            </value>
+        </member>
+        <member name="P:Bubba.FineTuningPayload.LogitBias">
+            <summary>
+            Gets or sets the logit bias.
+            </summary>
+            <value>
+            The logit bias.
+            </value>
+        </member>
+        <member name="P:Bubba.FineTuningPayload.Suffix">
+            <summary>
+            A string of up to 64 characters that will be added to your fine-tuned model name.
+            </summary>
+            <value>
+            The suffix.
+            </value>
+        </member>
+        <member name="P:Bubba.FineTuningPayload.Seed">
+            <summary>
+            Gets or sets the seed.
+            </summary>
+            <value>
+            The seed.
+            </value>
+        </member>
+        <member name="P:Bubba.FineTuningPayload.TrainingFile">
+            <summary>
+            The ID of an uploaded file that contains training data.
+            Your dataset must be formatted as a JSONL file.
+            Additionally, you must upload your file with the purpose fine-tune.
+            </summary>
+            <value>
+            The file path.
+            </value>
+        </member>
+        <member name="P:Bubba.FineTuningPayload.ValidationFile">
+            <summary>
+            The ID of an uploaded file that contains validation data.
+            Your dataset must be formatted as a JSONL file.
+            Additionally, you must upload your file with the purpose fine-tune.
+            </summary>
+            <value>
+            The validation file.
+            </value>
+        </member>
+        <member name="P:Bubba.FineTuningPayload.Number">
+            <inheritdoc />
+            <summary>
+            THe number 'n' of responses generatred.
+            </summary>
+            <value>
+            The user identifier.
+            </value>
+        </member>
+        <member name="P:Bubba.FineTuningPayload.Model">
+            <summary>
+            Gets the chat model.
+            </summary>
+            <value>
+            The chat model.
+            </value>
+            <inheritdoc />
+        </member>
+        <member name="P:Bubba.FineTuningPayload.ResponseFormat">
+            <inheritdoc />
+            <summary>
+            Gets or sets the response format.
+            </summary>
+            <value>
+            The response format.
+            </value>
+        </member>
         <member name="M:Bubba.FineTuningPayload.GetData">
             <inheritdoc />
             <summary>
             Gets the data.
             </summary>
             <returns>
+            </returns>
+        </member>
+        <member name="M:Bubba.FineTuningPayload.ToString">
+            <inheritdoc />
+            <summary>
+            Converts to string.
+            </summary>
+            <returns>
+            A <see cref="T:System.String" /> that represents this instance.
             </returns>
         </member>
         <member name="T:Bubba.GptPayload">
@@ -21668,6 +22040,11 @@
             <seealso cref="T:OpenAI.Chat.ChatCompletionOptions" />
             <seealso cref="T:System.ComponentModel.INotifyPropertyChanged" />
         </member>
+        <member name="F:Bubba.GptPayload._modalities">
+            <summary>
+            The modalities
+            </summary>
+        </member>
         <member name="M:Bubba.GptPayload.#ctor">
             <inheritdoc />
             <summary>
@@ -21675,13 +22052,11 @@
             <see cref="T:Bubba.Payload" /> class.
             </summary>
         </member>
-        <member name="M:Bubba.GptPayload.#ctor(System.String,System.String,System.Double,System.Double,System.Double,System.Double,System.Int32,System.Boolean,System.Boolean)">
+        <member name="M:Bubba.GptPayload.#ctor(System.String,System.Double,System.Double,System.Double,System.Double,System.Int32,System.Boolean,System.Boolean)">
             <summary>
             Initializes a new instance of the <see cref="T:Bubba.GptPayload"/> class.
             </summary>
             <param name = "userPrompt" > </param>
-            <param name="model">The model.</param>
-            <param name="id">The identifier.</param>
             <param name="frequency">The frequency penalty.</param>
             <param name="presence">The presence penalty.</param>
             <param name="temperature">The temperature.</param>
@@ -21720,39 +22095,100 @@
             <param name="store">if set to <c>true</c> [store].</param>
             <param name="stream">if set to <c>true</c> [stream].</param>
         </member>
+        <member name="P:Bubba.GptPayload.Model">
+            <summary>
+            Gets the chat model.
+            </summary>
+            <value>
+            The chat model.
+            </value>
+            <inheritdoc />
+        </member>
         <member name="P:Bubba.GptPayload.Store">
+            <inheritdoc />
             <summary>
             Gets or sets a value indicating whether this
-            <see cref="T:Bubba.ParameterBase"/> is store.
+            <see cref="T:Bubba.ParameterBase" /> is store.
             </summary>
             <value>
               <c>true</c> if store; otherwise, <c>false</c>.
             </value>
         </member>
         <member name="P:Bubba.GptPayload.Stream">
+            <inheritdoc />
             <summary>
             Gets or sets a value indicating whether this
-            <see cref="T:Bubba.ParameterBase"/> is stream.
+            <see cref="T:Bubba.ParameterBase" /> is stream.
             </summary>
             <value>
               <c>true</c> if stream; otherwise, <c>false</c>.
             </value>
         </member>
-        <member name="M:Bubba.GptPayload.ForTextGeneration">
+        <member name="P:Bubba.GptPayload.Temperature">
+            <inheritdoc />
             <summary>
-            Fors the text generation.
-            A method to construct other reusable default payloads if required
+            A number between 0.0 and 2.0   between 0 and 2.
+            Higher values like 0.8 will make the output more random,
+            while lower values like 0.2 will make it more focused and deterministic.
             </summary>
-            <returns>
-            Payload
-            </returns>
+            <value>
+            The temperature.
+            </value>
         </member>
-        <member name="M:Bubba.GptPayload.ForImageGeneration">
+        <member name="P:Bubba.GptPayload.MaximumTokens">
+            <inheritdoc />
             <summary>
-            Fors the image generation.
+            An upper bound for the number of tokens
+            that can be generated for a completion
             </summary>
-            <returns>
-            </returns>
+            <value>
+            The maximum tokens.
+            </value>
+        </member>
+        <member name="P:Bubba.GptPayload.FrequencyPenalty">
+            <inheritdoc />
+            <summary>
+            A number between -2.0 and 2.0. Positive values penalize new
+            tokens based on their existing frequency in the text so far,
+            decreasing the model's likelihood to repeat the same line verbatim.
+            </summary>
+            <value>
+            The frequency.
+            </value>
+        </member>
+        <member name="P:Bubba.GptPayload.PresencePenalty">
+            <inheritdoc />
+            <summary>
+            Number between -2.0 and 2.0. Positive values penalize new tokens
+            based on whether they appear in the text so far,
+            ncreasing the model's likelihood to talk about new topics.
+            </summary>
+            <value>
+            The presence.
+            </value>
+        </member>
+        <member name="P:Bubba.GptPayload.TopPercent">
+            <inheritdoc />
+            <summary>
+            An alternative to sampling with temperature,
+            called nucleus sampling, where the model considers
+            the results of the tokens with top_p probability mass.
+            So 0.1 means only the tokens comprising the top 10% probability
+            mass are considered. We generally recommend altering this
+            or temperature but not both.
+            </summary>
+            <value>
+            The top percent.
+            </value>
+        </member>
+        <member name="P:Bubba.GptPayload.Messages">
+            <inheritdoc />
+            <summary>
+            Gets or sets the system prompt.
+            </summary>
+            <value>
+            The system prompt.
+            </value>
         </member>
         <member name="M:Bubba.GptPayload.Serialize">
             <summary>
@@ -21796,10 +22232,93 @@
             <summary>
             </summary>
         </member>
+        <member name="F:Bubba.ImagePayload._style">
+            <summary>
+            The style
+            </summary>
+        </member>
+        <member name="F:Bubba.ImagePayload._quality">
+            <summary>
+            The quality
+            </summary>
+        </member>
+        <member name="F:Bubba.ImagePayload._endPoint">
+            <summary>
+            The end point
+            </summary>
+        </member>
+        <member name="F:Bubba.ImagePayload._prompt">
+            <summary>
+            The prompt
+            </summary>
+        </member>
         <member name="M:Bubba.ImagePayload.#ctor">
             <summary>
             Initializes a new instance of the <see cref="T:Bubba.ImagePayload"/> class.
             </summary>
+            <inheritdoc />
+        </member>
+        <member name="P:Bubba.ImagePayload.Size">
+            <inheritdoc />
+            <summary>
+            Gets or sets the size of the image.
+            </summary>
+            <value>
+            The size of the image.
+            </value>
+        </member>
+        <member name="P:Bubba.ImagePayload.ResponseFormat">
+            <inheritdoc />
+            <summary>
+            Gets or sets the response format.
+            </summary>
+            <value>
+            The response format.
+            </value>
+        </member>
+        <member name="P:Bubba.ImagePayload.Prompt">
+            <summary>
+            Gets or sets the prompt.
+            </summary>
+            <value>
+            The prompt.
+            </value>
+        </member>
+        <member name="P:Bubba.ImagePayload.Quality">
+            <summary>
+            Gets or sets the quality.
+            </summary>
+            <value>
+            The quality.
+            </value>
+        </member>
+        <member name="P:Bubba.ImagePayload.Style">
+            <summary>
+            The style of the generated images. Must be one of vivid or natural.
+            Vivid causes the model to lean towards generating hyper-real and
+            dramatic images. Natural causes the model to produce more natural,
+            less hyper-real looking images. This param is only supported for dall-e-3.
+            </summary>
+            <value>
+            The style.
+            </value>
+        </member>
+        <member name="P:Bubba.ImagePayload.Number">
+            <inheritdoc />
+            <summary>
+            THe number 'n' of responses generatred.
+            </summary>
+            <value>
+            The user identifier.
+            </value>
+        </member>
+        <member name="P:Bubba.ImagePayload.Model">
+            <summary>
+            Gets the chat model.
+            </summary>
+            <value>
+            The chat model.
+            </value>
             <inheritdoc />
         </member>
         <member name="M:Bubba.ImagePayload.GetData">
@@ -21810,9 +22329,153 @@
             <returns>
             </returns>
         </member>
+        <member name="M:Bubba.ImagePayload.ToString">
+            <inheritdoc />
+            <summary>
+            Converts to string.
+            </summary>
+            <returns>
+            A <see cref="T:System.String" /> that represents this instance.
+            </returns>
+        </member>
+        <member name="T:Bubba.SpeechPayload">
+            <inheritdoc />
+            <summary>
+            </summary>
+        </member>
+        <member name="F:Bubba.SpeechPayload._language">
+            <summary>
+            The language
+            </summary>
+        </member>
+        <member name="F:Bubba.SpeechPayload._file">
+            <summary>
+            The file path
+            </summary>
+        </member>
+        <member name="F:Bubba.SpeechPayload._audioData">
+            <summary>
+            The audio data
+            </summary>
+        </member>
+        <member name="F:Bubba.SpeechPayload._voice">
+            <summary>
+            The voice
+            </summary>
+        </member>
+        <member name="F:Bubba.SpeechPayload._speed">
+            <summary>
+            The speed
+            </summary>
+        </member>
+        <member name="F:Bubba.SpeechPayload._input">
+            <summary>
+            The input
+            </summary>
+        </member>
+        <member name="F:Bubba.SpeechPayload._endPoint">
+            <summary>
+            The end point
+            </summary>
+        </member>
+        <member name="M:Bubba.SpeechPayload.#ctor">
+            <summary>
+            Initializes a new instance of the
+            <see cref="T:Bubba.SpeechPayload"/> class.
+            </summary>
+            <inheritdoc />
+        </member>
+        <member name="P:Bubba.SpeechPayload.Model">
+            <summary>
+            Gets the chat model.
+            </summary>
+            <value>
+            The chat model.
+            </value>
+            <inheritdoc />
+        </member>
+        <member name="P:Bubba.SpeechPayload.Language">
+            <summary>
+            Gets or sets the language.
+            </summary>
+            <value>
+            The language.
+            </value>
+        </member>
+        <member name="P:Bubba.SpeechPayload.Input">
+            <summary>
+            Gets or sets the input.
+            </summary>
+            <value>
+            The input.
+            </value>
+        </member>
+        <member name="P:Bubba.SpeechPayload.Voice">
+            <summary>
+            Gets or sets the voice.
+            </summary>
+            <value>
+            The voice.
+            </value>
+        </member>
+        <member name="P:Bubba.SpeechPayload.Speed">
+            <summary>
+            Gets or sets the speed.
+            </summary>
+            <value>
+            The speed.
+            </value>
+        </member>
+        <member name="P:Bubba.SpeechPayload.File">
+            <summary>
+            Gets or sets the file path.
+            </summary>
+            <value>
+            The file path.
+            </value>
+        </member>
+        <member name="P:Bubba.SpeechPayload.Modalities">
+            <summary>
+            Gets or sets the modalities.
+            </summary>
+            <value>
+            The modalities.
+            </value>
+        </member>
+        <member name="P:Bubba.SpeechPayload.ResponseFormat">
+            <inheritdoc />
+            <summary>
+            Gets or sets the response format.
+            </summary>
+            <value>
+            The response format.
+            </value>
+        </member>
+        <member name="M:Bubba.SpeechPayload.GetData">
+            <inheritdoc />
+            <summary>
+            Gets the data.
+            </summary>
+            <returns>
+            </returns>
+        </member>
+        <member name="M:Bubba.SpeechPayload.ToString">
+            <inheritdoc />
+            <summary>
+            Converts to string.
+            </summary>
+            <returns>
+            A <see cref="T:System.String" /> that represents this instance.
+            </returns>
+        </member>
         <member name="T:Bubba.TextPayload">
             <inheritdoc />
             <summary>
+            </summary>
+        </member>
+        <member name="F:Bubba.TextPayload._endPoint">
+            <summary>
+            The end point
             </summary>
         </member>
         <member name="M:Bubba.TextPayload.#ctor">
@@ -21822,120 +22485,100 @@
             </summary>
             <inheritdoc />
         </member>
-        <member name="M:Bubba.TextPayload.GetData">
+        <member name="P:Bubba.TextPayload.Number">
             <inheritdoc />
             <summary>
-            Gets the data.
-            </summary>
-            <returns>
-            </returns>
-        </member>
-        <member name="T:Bubba.VectorStorePayload">
-            <inheritdoc />
-            <summary>
-            </summary>
-        </member>
-        <member name="M:Bubba.VectorStorePayload.#ctor">
-            <summary>
-            Initializes a new instance of the
-            <see cref="T:Bubba.VectorStorePayload"/> class.
-            </summary>
-            <inheritdoc />
-        </member>
-        <member name="M:Bubba.VectorStorePayload.GetData">
-            <inheritdoc />
-            <summary>
-            Gets the data.
-            </summary>
-            <returns>
-            </returns>
-        </member>
-        <member name="T:Bubba.AudioGenerationReqeust">
-            <inheritdoc />
-            <summary>
-            </summary>
-        </member>
-        <member name="F:Bubba.AudioGenerationReqeust._file">
-            <summary>
-            The file
-            </summary>
-        </member>
-        <member name="F:Bubba.AudioGenerationReqeust._voice">
-            <summary>
-            The voice
-            </summary>
-        </member>
-        <member name="F:Bubba.AudioGenerationReqeust._modalities">
-            <summary>
-            The modalities
-            </summary>
-        </member>
-        <member name="F:Bubba.AudioGenerationReqeust._responseFormat">
-            <summary>
-            The response format
-            </summary>
-        </member>
-        <member name="F:Bubba.AudioGenerationReqeust._language">
-            <summary>
-            The language
-            </summary>
-        </member>
-        <member name="F:Bubba.AudioGenerationReqeust._speed">
-            <summary>
-            The speed
-            </summary>
-        </member>
-        <member name="F:Bubba.AudioGenerationReqeust._seed">
-            <summary>
-            The seed
-            </summary>
-        </member>
-        <member name="F:Bubba.AudioGenerationReqeust._input">
-            <summary>
-            The input
-            </summary>
-        </member>
-        <member name="F:Bubba.AudioGenerationReqeust._audioData">
-            <summary>
-            The audio data
-            </summary>
-        </member>
-        <member name="M:Bubba.AudioGenerationReqeust.#ctor">
-            <summary>
-            Initializes a new instance of the
-            <see cref="T:Bubba.AudioGenerationReqeust"/> class.
-            </summary>
-            <inheritdoc />
-        </member>
-        <member name="P:Bubba.AudioGenerationReqeust.HttpClient">
-            <inheritdoc />
-            <summary>
-            Gets or sets a value indicating whether this
-            <see cref="P:Bubba.GptRequest.HttpClient" /> is store.
+            THe number 'n' of responses generatred.
             </summary>
             <value>
-              <c>true</c> if store; otherwise, <c>false</c>.
+            The user identifier.
             </value>
         </member>
-        <member name="P:Bubba.AudioGenerationReqeust.Messages">
-            <inheritdoc />
+        <member name="P:Bubba.TextPayload.Model">
             <summary>
-            Gets or sets the messages.
+            Gets the chat model.
             </summary>
             <value>
-            The messages.
+            The chat model.
             </value>
-        </member>
-        <member name="P:Bubba.AudioGenerationReqeust.EndPoint">
             <inheritdoc />
+        </member>
+        <member name="P:Bubba.TextPayload.EndPoint">
             <summary>
-            Gets the end point.
+            Gets or sets the end point.
             </summary>
             <value>
             The end point.
             </value>
         </member>
-        <member name="P:Bubba.AudioGenerationReqeust.ResponseFormat">
+        <member name="P:Bubba.TextPayload.Store">
+            <inheritdoc />
+            <summary>
+            Gets or sets a value indicating whether this
+            <see cref="T:Bubba.ParameterBase" /> is store.
+            </summary>
+            <value>
+              <c>true</c> if store; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:Bubba.TextPayload.Stream">
+            <inheritdoc />
+            <summary>
+            Gets or sets a value indicating whether this
+            <see cref="T:Bubba.ParameterBase" /> is stream.
+            </summary>
+            <value>
+              <c>true</c> if stream; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:Bubba.TextPayload.Temperature">
+            <inheritdoc />
+            <summary>
+            A number between 0.0 and 2.0   between 0 and 2.
+            Higher values like 0.8 will make the output more random,
+            while lower values like 0.2 will make it more focused and deterministic.
+            </summary>
+            <value>
+            The temperature.
+            </value>
+        </member>
+        <member name="P:Bubba.TextPayload.FrequencyPenalty">
+            <inheritdoc />
+            <summary>
+            A number between -2.0 and 2.0. Positive values penalize new
+            tokens based on their existing frequency in the text so far,
+            decreasing the model's likelihood to repeat the same line verbatim.
+            </summary>
+            <value>
+            The frequency.
+            </value>
+        </member>
+        <member name="P:Bubba.TextPayload.PresencePenalty">
+            <inheritdoc />
+            <summary>
+            Number between -2.0 and 2.0. Positive values penalize new tokens
+            based on whether they appear in the text so far,
+            ncreasing the model's likelihood to talk about new topics.
+            </summary>
+            <value>
+            The presence.
+            </value>
+        </member>
+        <member name="P:Bubba.TextPayload.TopPercent">
+            <inheritdoc />
+            <summary>
+            An alternative to sampling with temperature,
+            called nucleus sampling, where the model considers
+            the results of the tokens with top_p probability mass.
+            So 0.1 means only the tokens comprising the top 10% probability
+            mass are considered. We generally recommend altering this
+            or temperature but not both.
+            </summary>
+            <value>
+            The top percent.
+            </value>
+        </member>
+        <member name="P:Bubba.TextPayload.ResponseFormat">
             <inheritdoc />
             <summary>
             Gets or sets the response format.
@@ -21944,72 +22587,7 @@
             The response format.
             </value>
         </member>
-        <member name="P:Bubba.AudioGenerationReqeust.Language">
-            <summary>
-            Gets or sets the language.
-            </summary>
-            <value>
-            The language.
-            </value>
-        </member>
-        <member name="P:Bubba.AudioGenerationReqeust.Input">
-            <summary>
-            Gets or sets the input.
-            </summary>
-            <value>
-            The input.
-            </value>
-        </member>
-        <member name="P:Bubba.AudioGenerationReqeust.Voice">
-            <summary>
-            Gets or sets the voice.
-            </summary>
-            <value>
-            The voice.
-            </value>
-        </member>
-        <member name="P:Bubba.AudioGenerationReqeust.Speed">
-            <summary>
-            Gets or sets the speed.
-            </summary>
-            <value>
-            The speed.
-            </value>
-        </member>
-        <member name="P:Bubba.AudioGenerationReqeust.Seed">
-            <summary>
-            Gets or sets the seed.
-            </summary>
-            <value>
-            The seed.
-            </value>
-        </member>
-        <member name="P:Bubba.AudioGenerationReqeust.File">
-            <summary>
-            Gets or sets the file path.
-            </summary>
-            <value>
-            The file path.
-            </value>
-        </member>
-        <member name="P:Bubba.AudioGenerationReqeust.AudioData">
-            <summary>
-            Gets or sets the audio data.
-            </summary>
-            <value>
-            The audio data.
-            </value>
-        </member>
-        <member name="P:Bubba.AudioGenerationReqeust.Body">
-            <inheritdoc />
-            <summary>
-            Gets the chat model.
-            </summary>
-            <value>
-            The chat model.
-            </value>
-        </member>
-        <member name="M:Bubba.AudioGenerationReqeust.GetData">
+        <member name="M:Bubba.TextPayload.GetData">
             <inheritdoc />
             <summary>
             Gets the data.
@@ -22017,7 +22595,8 @@
             <returns>
             </returns>
         </member>
-        <member name="M:Bubba.AudioGenerationReqeust.ToString">
+        <member name="M:Bubba.TextPayload.ToString">
+            <inheritdoc />
             <summary>
             Converts to string.
             </summary>
@@ -22025,54 +22604,409 @@
             A <see cref="T:System.String" /> that represents this instance.
             </returns>
         </member>
-        <member name="T:Bubba.CompletionRequest">
+        <member name="T:Bubba.TranscriptionPayload">
+            <inheritdoc />
+            <summary>
+            </summary>
+            <seealso cref="T:Bubba.GptPayload" />
+        </member>
+        <member name="F:Bubba.TranscriptionPayload._language">
+            <summary>
+            The language
+            </summary>
+        </member>
+        <member name="F:Bubba.TranscriptionPayload._file">
+            <summary>
+            The file path
+            </summary>
+        </member>
+        <member name="F:Bubba.TranscriptionPayload._audioData">
+            <summary>
+            The audio data
+            </summary>
+        </member>
+        <member name="F:Bubba.TranscriptionPayload._prompt">
+            <summary>
+            The input
+            </summary>
+        </member>
+        <member name="F:Bubba.TranscriptionPayload._endPoint">
+            <summary>
+            The end point
+            </summary>
+        </member>
+        <member name="F:Bubba.TranscriptionPayload._speed">
+            <summary>
+            The speed
+            </summary>
+        </member>
+        <member name="M:Bubba.TranscriptionPayload.#ctor">
+            <summary>
+            Initializes a new instance of the
+            <see cref="T:Bubba.TranscriptionPayload"/> class.
+            </summary>
+            <inheritdoc />
+        </member>
+        <member name="P:Bubba.TranscriptionPayload.Messages">
+            <summary>
+            Gets or sets the system prompt.
+            </summary>
+            <value>
+            The system prompt.
+            </value>
+            <inheritdoc />
+        </member>
+        <member name="P:Bubba.TranscriptionPayload.Language">
+            <summary>
+            Gets or sets the language.
+            </summary>
+            <value>
+            The language.
+            </value>
+        </member>
+        <member name="P:Bubba.TranscriptionPayload.Temperature">
+            <summary>
+            A number between 0.0 and 2.0   between 0 and 2.
+            Higher values like 0.8 will make the output more random,
+            while lower values like 0.2 will make it more focused and deterministic.
+            </summary>
+            <value>
+            The temperature.
+            </value>
+            <inheritdoc />
+        </member>
+        <member name="P:Bubba.TranscriptionPayload.File">
+            <summary>
+            Gets or sets the file path.
+            </summary>
+            <value>
+            The file path.
+            </value>
+        </member>
+        <member name="P:Bubba.TranscriptionPayload.Model">
+            <summary>
+            Gets the chat model.
+            </summary>
+            <value>
+            The chat model.
+            </value>
+            <inheritdoc />
+        </member>
+        <member name="P:Bubba.TranscriptionPayload.Prompt">
+            <summary>
+            Gets or sets the input.
+            </summary>
+            <value>
+            The input.
+            </value>
+        </member>
+        <member name="P:Bubba.TranscriptionPayload.ResponseFormat">
+            <inheritdoc />
+            <summary>
+            Gets or sets the response format.
+            </summary>
+            <value>
+            The response format.
+            </value>
+        </member>
+        <member name="M:Bubba.TranscriptionPayload.GetData">
+            <inheritdoc />
+            <summary>
+            Gets the data.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Bubba.TranscriptionPayload.ToString">
+            <inheritdoc />
+            <summary>
+            Converts to string.
+            </summary>
+            <returns>
+            A <see cref="T:System.String" /> that represents this instance.
+            </returns>
+        </member>
+        <member name="T:Bubba.TranslationPayload">
+            <inheritdoc />
+            <summary>
+            </summary>
+            <seealso cref="T:Bubba.GptPayload" />
+        </member>
+        <member name="F:Bubba.TranslationPayload._prompt">
+            <summary>
+            The prompt
+            </summary>
+        </member>
+        <member name="F:Bubba.TranslationPayload._file">
+            <summary>
+            The file
+            </summary>
+        </member>
+        <member name="F:Bubba.TranslationPayload._endPoint">
+            <summary>
+            The end point
+            </summary>
+        </member>
+        <member name="M:Bubba.TranslationPayload.#ctor">
+            <summary>
+            Initializes a new instance of the
+            <see cref="T:Bubba.TranslationPayload"/> class.
+            </summary>
+            <inheritdoc />
+        </member>
+        <member name="P:Bubba.TranslationPayload.Prompt">
+            <summary>
+            Gets or sets the input.
+            </summary>
+            <value>
+            The input.
+            </value>
+        </member>
+        <member name="P:Bubba.TranslationPayload.File">
+            <summary>
+            Gets or sets the file path.
+            </summary>
+            <value>
+            The file path.
+            </value>
+        </member>
+        <member name="P:Bubba.TranslationPayload.Model">
+            <summary>
+            Gets the chat model.
+            </summary>
+            <value>
+            The chat model.
+            </value>
+            <inheritdoc />
+        </member>
+        <member name="P:Bubba.TranslationPayload.ResponseFormat">
+            <inheritdoc />
+            <summary>
+            Gets or sets the response format.
+            </summary>
+            <value>
+            The response format.
+            </value>
+        </member>
+        <member name="M:Bubba.TranslationPayload.GetData">
+            <inheritdoc />
+            <summary>
+            Gets the data.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Bubba.TranslationPayload.ToString">
+            <inheritdoc />
+            <summary>
+            Converts to string.
+            </summary>
+            <returns>
+            A <see cref="T:System.String" /> that represents this instance.
+            </returns>
+        </member>
+        <member name="T:Bubba.VectorPayload">
             <inheritdoc />
             <summary>
             </summary>
         </member>
-        <member name="F:Bubba.CompletionRequest._metaData">
+        <member name="F:Bubba.VectorPayload._filePath">
+            <summary>
+            The file path
+            </summary>
+        </member>
+        <member name="F:Bubba.VectorPayload._vectorStoreId">
+            <summary>
+            The vector store identifier
+            </summary>
+        </member>
+        <member name="F:Bubba.VectorPayload._fileIds">
+            <summary>
+            The file ids
+            </summary>
+        </member>
+        <member name="F:Bubba.VectorPayload._name">
+            <summary>
+            The name
+            </summary>
+        </member>
+        <member name="F:Bubba.VectorPayload._limit">
+            <summary>
+            The limit
+            </summary>
+        </member>
+        <member name="F:Bubba.VectorPayload._before">
+            <summary>
+            The before
+            </summary>
+        </member>
+        <member name="F:Bubba.VectorPayload._after">
+            <summary>
+            The after
+            </summary>
+        </member>
+        <member name="F:Bubba.VectorPayload._order">
+            <summary>
+            The order
+            </summary>
+        </member>
+        <member name="F:Bubba.VectorPayload._endPoint">
+            <summary>
+            The end point
+            </summary>
+        </member>
+        <member name="F:Bubba.VectorPayload._metaData">
+            <summary>
+            The meta data
+            </summary>
+        </member>
+        <member name="M:Bubba.VectorPayload.#ctor">
+            <summary>
+            Initializes a new instance of the
+            <see cref="T:Bubba.VectorPayload"/> class.
+            </summary>
+            <inheritdoc />
+        </member>
+        <member name="P:Bubba.VectorPayload.FilePath">
+            <summary>
+            Gets or sets the file path.
+            </summary>
+            <value>
+            The file path.
+            </value>
+        </member>
+        <member name="P:Bubba.VectorPayload.VectorStoreId">
+            <summary>
+            Gets or sets the vector store identifier.
+            </summary>
+            <value>
+            The vector store identifier.
+            </value>
+        </member>
+        <member name="P:Bubba.VectorPayload.Before">
+            <summary>
+            Gets or sets the before.
+            </summary>
+            <value>
+            The before.
+            </value>
+        </member>
+        <member name="P:Bubba.VectorPayload.After">
+            <summary>
+            Gets or sets the after.
+            </summary>
+            <value>
+            The after.
+            </value>
+        </member>
+        <member name="P:Bubba.VectorPayload.Order">
+            <summary>
+            Gets or sets the order.
+            </summary>
+            <value>
+            The order.
+            </value>
+        </member>
+        <member name="P:Bubba.VectorPayload.Limit">
+            <inheritdoc />
+            <summary>
+            THe number 'n' of responses generatred.
+            </summary>
+            <value>
+            The user identifier.
+            </value>
+        </member>
+        <member name="P:Bubba.VectorPayload.FileIds">
+            <summary>
+            Gets or sets the file ids.
+            </summary>
+            <value>
+            The file ids.
+            </value>
+        </member>
+        <member name="P:Bubba.VectorPayload.Model">
+            <summary>
+            Gets the chat model.
+            </summary>
+            <value>
+            The chat model.
+            </value>
+            <inheritdoc />
+        </member>
+        <member name="P:Bubba.VectorPayload.Name">
+            <inheritdoc />
+            <summary>
+            Gets or sets a value indicating whether this
+            <see cref="T:Bubba.ParameterBase" /> is stream.
+            </summary>
+            <value>
+              <c>true</c> if stream; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:Bubba.VectorPayload.MetaData">
+            <summary>
+            Set of 16 key-value pairs that can be attached to an object.
+            This can be useful for storing additional information about the
+            object in a structured format. Keys can be a maximum of 64 characters
+            long and values can be a maximum of 512 characters long
+            </summary>
+            <value>
+            The meta data.
+            </value>
+        </member>
+        <member name="P:Bubba.VectorPayload.ResponseFormat">
+            <inheritdoc />
+            <summary>
+            Gets or sets the response format.
+            </summary>
+            <value>
+            The response format.
+            </value>
+        </member>
+        <member name="M:Bubba.VectorPayload.GetData">
+            <inheritdoc />
+            <summary>
+            Gets the data.
+            </summary>
+            <returns>
+            </returns>
+        </member>
+        <member name="T:Bubba.ChatRequest">
+            <inheritdoc />
+            <summary>
+            </summary>
+        </member>
+        <member name="F:Bubba.ChatRequest._metaData">
             <summary>
             Developer-defined tags and values used for filtering completions
             </summary>
         </member>
-        <member name="F:Bubba.CompletionRequest._reasoningEffort">
+        <member name="F:Bubba.ChatRequest._reasoningEffort">
             <summary>
             The reasoning effort
             </summary>
         </member>
-        <member name="F:Bubba.CompletionRequest._stop">
-            <summary>
-            The stop
-            </summary>
-        </member>
-        <member name="F:Bubba.CompletionRequest._seed">
+        <member name="F:Bubba.ChatRequest._seed">
             <summary>
             The seed
             </summary>
         </member>
-        <member name="F:Bubba.CompletionRequest._modalities">
-            <summary>
-            The modalities
-            </summary>
-        </member>
-        <member name="F:Bubba.CompletionRequest._userPrompt">
+        <member name="F:Bubba.ChatRequest._userPrompt">
             <summary>
             The user prompt
             </summary>
         </member>
-        <member name="F:Bubba.CompletionRequest._systemPrompt">
+        <member name="F:Bubba.ChatRequest._systemPrompt">
             <summary>
             The system prompt
             </summary>
         </member>
-        <member name="M:Bubba.CompletionRequest.#ctor">
+        <member name="M:Bubba.ChatRequest.#ctor">
             <inheritdoc />
             <summary>
             Initializes a new instance of the
             <see cref="T:Bubba.CompletionRequest" /> class.
             </summary>
         </member>
-        <member name="M:Bubba.CompletionRequest.#ctor(System.String,System.String,Bubba.GptParameter)">
+        <member name="M:Bubba.ChatRequest.#ctor(System.String,System.String,Bubba.GptParameter)">
             <inheritdoc />
             <summary>
             Initializes a new instance of the
@@ -22082,7 +23016,7 @@
             <param name="system">The system.</param>
             <param name = "config" > </param>
         </member>
-        <member name="M:Bubba.CompletionRequest.#ctor(Bubba.CompletionRequest)">
+        <member name="M:Bubba.ChatRequest.#ctor(Bubba.ChatRequest)">
             <inheritdoc />
             <summary>
             Initializes a new instance of the
@@ -22090,7 +23024,7 @@
             </summary>
             <param name="request">The request.</param>
         </member>
-        <member name="M:Bubba.CompletionRequest.Decontruct(Bubba.GptHeader@,System.String@,System.Boolean@,System.Boolean@,System.String@,System.Int32@,System.Double@,System.Double@,System.Double@,System.Double@,System.Int32@)">
+        <member name="M:Bubba.ChatRequest.Decontruct(Bubba.GptHeader@,System.String@,System.Boolean@,System.Boolean@,System.String@,System.Int32@,System.Double@,System.Double@,System.Double@,System.Double@,System.Int32@)">
             <summary>
             Decontructs the specified header.
             </summary>
@@ -22106,7 +23040,7 @@
             <param name="topPercent">The top percent.</param>
             <param name="tokens">The tokens.</param>
         </member>
-        <member name="P:Bubba.CompletionRequest.EndPoint">
+        <member name="P:Bubba.ChatRequest.EndPoint">
             <inheritdoc />
             <summary>
             Gets the end point.
@@ -22115,7 +23049,7 @@
             The end point.
             </value>
         </member>
-        <member name="P:Bubba.CompletionRequest.ReasoningEffort">
+        <member name="P:Bubba.ChatRequest.ReasoningEffort">
             <summary>
             Gets or sets the reasoning effort.
             </summary>
@@ -22123,15 +23057,7 @@
             The reasoning effort.
             </value>
         </member>
-        <member name="P:Bubba.CompletionRequest.Stop">
-            <summary>
-            Gets or sets the stop.
-            </summary>
-            <value>
-            The stop.
-            </value>
-        </member>
-        <member name="P:Bubba.CompletionRequest.MetaData">
+        <member name="P:Bubba.ChatRequest.MetaData">
             <summary>
             Gets or sets the meta data.
             </summary>
@@ -22139,15 +23065,7 @@
             The meta data.
             </value>
         </member>
-        <member name="P:Bubba.CompletionRequest.Modalities">
-            <summary>
-            Gets or sets the modalities.
-            </summary>
-            <value>
-            The modalities.
-            </value>
-        </member>
-        <member name="P:Bubba.CompletionRequest.Body">
+        <member name="P:Bubba.ChatRequest.Body">
             <inheritdoc />
             <summary>
             Gets the chat model.
@@ -22156,20 +23074,20 @@
             The chat model.
             </value>
         </member>
-        <member name="M:Bubba.CompletionRequest.CreateResponseAsync">
+        <member name="M:Bubba.ChatRequest.CreateResponseAsync">
             <summary>
             Gets the chat response asynchronous.
             </summary>
             <returns></returns>
         </member>
-        <member name="M:Bubba.CompletionRequest.ExtractResponseMessage(System.String)">
+        <member name="M:Bubba.ChatRequest.ExtractResponseMessage(System.String)">
             <summary>
             Extracts the message from response.
             </summary>
             <param name="jsonResponse">The json response.</param>
             <returns></returns>
         </member>
-        <member name="M:Bubba.CompletionRequest.GetData">
+        <member name="M:Bubba.ChatRequest.GetData">
             <inheritdoc />
             <summary>
             Gets the data.
@@ -22177,7 +23095,7 @@
             <returns>
             </returns>
         </member>
-        <member name="M:Bubba.CompletionRequest.ToString">
+        <member name="M:Bubba.ChatRequest.ToString">
             <inheritdoc />
             <summary>
             Converts to string.
@@ -22195,11 +23113,6 @@
         <member name="F:Bubba.EmbeddingRequest._filePath">
             <summary>
             The file path
-            </summary>
-        </member>
-        <member name="F:Bubba.EmbeddingRequest._responseFormat">
-            <summary>
-            The response format
             </summary>
         </member>
         <member name="F:Bubba.EmbeddingRequest._input">
@@ -22300,14 +23213,19 @@
               <c>true</c> if store; otherwise, <c>false</c>.
             </value>
         </member>
-        <member name="P:Bubba.EmbeddingRequest.ResponseFormat">
-            <inheritdoc />
+        <member name="M:Bubba.EmbeddingRequest.CreateQueryAsync(System.String)">
             <summary>
-            Gets or sets the response format.
+            Generates the query embedding asynchronous.
             </summary>
-            <value>
-            The response format.
-            </value>
+            <param name="query">The query.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Bubba.EmbeddingRequest.ExtractData(System.String)">
+            <summary>
+            Extracts the embedding.
+            </summary>
+            <param name="jsonResponse">The json response.</param>
+            <returns></returns>
         </member>
         <member name="M:Bubba.EmbeddingRequest.GetData">
             <inheritdoc />
@@ -22696,6 +23614,16 @@
             The stop sequence
             </summary>
         </member>
+        <member name="F:Bubba.GptRequest._modalities">
+            <summary>
+            The modalities
+            </summary>
+        </member>
+        <member name="F:Bubba.GptRequest._responseFormat">
+            <summary>
+            The response format
+            </summary>
+        </member>
         <member name="M:Bubba.GptRequest.#ctor">
             <inheritdoc />
             <summary>
@@ -22755,6 +23683,22 @@
             </summary>
             <value>
               <c>true</c> if store; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:Bubba.GptRequest.Modalities">
+            <summary>
+            Gets or sets the modalities.
+            </summary>
+            <value>
+            The modalities.
+            </value>
+        </member>
+        <member name="P:Bubba.GptRequest.ResponseFormat">
+            <summary>
+            Gets or sets the response format.
+            </summary>
+            <value>
+            The response format.
             </value>
         </member>
         <member name="P:Bubba.GptRequest.Body">
@@ -22959,6 +23903,20 @@
             The response format.
             </value>
         </member>
+        <member name="M:Bubba.GptUploadRequest.UploadTrainingFileAsync(System.String)">
+            <summary>
+            Uploads the training file asynchronous.
+            </summary>
+            <param name="filePath">The file path.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Bubba.GptUploadRequest.CreateFineTuneAsync(System.String)">
+            <summary>
+            Creates the fine tune asynchronous.
+            </summary>
+            <param name="fileId">The file identifier.</param>
+            <returns></returns>
+        </member>
         <member name="M:Bubba.GptUploadRequest.GetData">
             <inheritdoc />
             <summary>
@@ -23103,6 +24061,184 @@
             </returns>
         </member>
         <member name="M:Bubba.ImageGenerationRequest.ToString">
+            <summary>
+            Converts to string.
+            </summary>
+            <returns>
+            A <see cref="T:System.String" /> that represents this instance.
+            </returns>
+        </member>
+        <member name="M:Bubba.ImageGenerationRequest.GenerateImagesAsync(System.String,System.Int32)">
+            <summary>
+            Generates the images asynchronous.
+            </summary>
+            <param name="prompt">The prompt.</param>
+            <param name="imageCount">The image count.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Bubba.ImageGenerationRequest.ExtractImageData(System.String)">
+            <summary>
+            Extracts the image urls.
+            </summary>
+            <param name="jsonResponse">The json response.</param>
+            <returns></returns>
+        </member>
+        <member name="T:Bubba.SpeechGenerationReqeust">
+            <inheritdoc />
+            <summary>
+            </summary>
+        </member>
+        <member name="F:Bubba.SpeechGenerationReqeust._file">
+            <summary>
+            The file
+            </summary>
+        </member>
+        <member name="F:Bubba.SpeechGenerationReqeust._voice">
+            <summary>
+            The voice
+            </summary>
+        </member>
+        <member name="F:Bubba.SpeechGenerationReqeust._language">
+            <summary>
+            The language
+            </summary>
+        </member>
+        <member name="F:Bubba.SpeechGenerationReqeust._speed">
+            <summary>
+            The speed
+            </summary>
+        </member>
+        <member name="F:Bubba.SpeechGenerationReqeust._seed">
+            <summary>
+            The seed
+            </summary>
+        </member>
+        <member name="F:Bubba.SpeechGenerationReqeust._input">
+            <summary>
+            The input
+            </summary>
+        </member>
+        <member name="F:Bubba.SpeechGenerationReqeust._audioData">
+            <summary>
+            The audio data
+            </summary>
+        </member>
+        <member name="M:Bubba.SpeechGenerationReqeust.#ctor">
+            <summary>
+            Initializes a new instance of the
+            <see cref="T:Bubba.SpeechGenerationReqeust"/> class.
+            </summary>
+            <inheritdoc />
+        </member>
+        <member name="P:Bubba.SpeechGenerationReqeust.HttpClient">
+            <inheritdoc />
+            <summary>
+            Gets or sets a value indicating whether this
+            <see cref="P:Bubba.GptRequest.HttpClient" /> is store.
+            </summary>
+            <value>
+              <c>true</c> if store; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:Bubba.SpeechGenerationReqeust.Messages">
+            <inheritdoc />
+            <summary>
+            Gets or sets the messages.
+            </summary>
+            <value>
+            The messages.
+            </value>
+        </member>
+        <member name="P:Bubba.SpeechGenerationReqeust.Language">
+            <summary>
+            Gets or sets the language.
+            </summary>
+            <value>
+            The language.
+            </value>
+        </member>
+        <member name="P:Bubba.SpeechGenerationReqeust.Input">
+            <summary>
+            Gets or sets the input.
+            </summary>
+            <value>
+            The input.
+            </value>
+        </member>
+        <member name="P:Bubba.SpeechGenerationReqeust.Voice">
+            <summary>
+            Gets or sets the voice.
+            </summary>
+            <value>
+            The voice.
+            </value>
+        </member>
+        <member name="P:Bubba.SpeechGenerationReqeust.Speed">
+            <summary>
+            Gets or sets the speed.
+            </summary>
+            <value>
+            The speed.
+            </value>
+        </member>
+        <member name="P:Bubba.SpeechGenerationReqeust.Seed">
+            <summary>
+            Gets or sets the seed.
+            </summary>
+            <value>
+            The seed.
+            </value>
+        </member>
+        <member name="P:Bubba.SpeechGenerationReqeust.File">
+            <summary>
+            Gets or sets the file path.
+            </summary>
+            <value>
+            The file path.
+            </value>
+        </member>
+        <member name="P:Bubba.SpeechGenerationReqeust.AudioData">
+            <summary>
+            Gets or sets the audio data.
+            </summary>
+            <value>
+            The audio data.
+            </value>
+        </member>
+        <member name="M:Bubba.SpeechGenerationReqeust.GetData">
+            <inheritdoc />
+            <summary>
+            Gets the data.
+            </summary>
+            <returns>
+            </returns>
+        </member>
+        <member name="M:Bubba.SpeechGenerationReqeust.GenerateSpeechAsync(System.String)">
+            <summary>
+            Generates the speech asynchronous.
+            </summary>
+            <param name="text">The text.</param>
+            <returns>
+            Task
+            </returns>
+        </member>
+        <member name="M:Bubba.SpeechGenerationReqeust.ExtractSpeech(System.String)">
+            <summary>
+            Parses the generated speech.
+            </summary>
+            <param name="jsonResponse">The json response.</param>
+            <returns>
+            string
+            </returns>
+        </member>
+        <member name="M:Bubba.SpeechGenerationReqeust.SaveSpeechAsync(System.String,System.String)">
+            <summary>
+            Saves the speech asynchronous.
+            </summary>
+            <param name="text">The text.</param>
+            <param name="filePath">The file path.</param>
+        </member>
+        <member name="M:Bubba.SpeechGenerationReqeust.ToString">
             <summary>
             Converts to string.
             </summary>
@@ -23316,16 +24452,6 @@
             The audio data
             </summary>
         </member>
-        <member name="F:Bubba.TranscriptionRequest._responseFormat">
-            <summary>
-            The response format
-            </summary>
-        </member>
-        <member name="F:Bubba.TranscriptionRequest._modalities">
-            <summary>
-            The modalities
-            </summary>
-        </member>
         <member name="F:Bubba.TranscriptionRequest._speed">
             <summary>
             The speed
@@ -23393,34 +24519,6 @@
             The messages.
             </value>
         </member>
-        <member name="P:Bubba.TranscriptionRequest.EndPoint">
-            <inheritdoc />
-            <summary>
-            Gets the end point.
-            </summary>
-            <value>
-            The end point.
-            </value>
-        </member>
-        <member name="P:Bubba.TranscriptionRequest.Number">
-            <inheritdoc />
-            <summary>
-            THe number 'n' of responses returned by the API.
-            </summary>
-            <value>
-            The user identifier.
-            </value>
-        </member>
-        <member name="P:Bubba.TranscriptionRequest.ResponseFormat">
-            <inheritdoc />
-            <summary>
-            The format of the output, in one of these options:
-            json, text, srt, verbose_json, or vtt.
-            </summary>
-            <value>
-            The response format.
-            </value>
-        </member>
         <member name="P:Bubba.TranscriptionRequest.Prompt">
             <summary>
             Gets or sets the input.
@@ -23458,6 +24556,21 @@
             <value>
             The chat model.
             </value>
+        </member>
+        <member name="M:Bubba.TranscriptionRequest.TranscribeAudioAsync(System.String)">
+            <summary>
+            Transcribes the audio asynchronous.
+            </summary>
+            <param name="filePath">
+            The file path.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Bubba.TranscriptionRequest.ParseTranscription(System.String)">
+            <summary>
+            Parses the transcription.
+            </summary>
+            <param name="jsonResponse">The json response.</param>
+            <returns></returns>
         </member>
         <member name="M:Bubba.TranscriptionRequest.GetData">
             <inheritdoc />
@@ -23535,16 +24648,6 @@
             The end point.
             </value>
         </member>
-        <member name="P:Bubba.TranslationRequest.ResponseFormat">
-            <inheritdoc />
-            <summary>
-            The format of the output, in one of these options:
-            json, text, srt, verbose_json, or vtt.
-            </summary>
-            <value>
-            The response format.
-            </value>
-        </member>
         <member name="P:Bubba.TranslationRequest.Prompt">
             <summary>
             Gets or sets the input.
@@ -23553,24 +24656,18 @@
             The input.
             </value>
         </member>
-        <member name="P:Bubba.TranslationRequest.Temperature">
-            <inheritdoc />
-            <summary>
-            The sampling temperature, between 0 and 1.
-            Higher values like 0.8 will make the output more random,
-            while lower values like 0.2 will make it more focused and deterministic.
-            If set to 0, the model will use log probability to automatically increase
-            the temperature until certain thresholds are hit.
-            </summary>
-            <value>
-            The temperature.
-            </value>
-        </member>
         <member name="M:Bubba.TranslationRequest.TranslateAudioAsync(System.String)">
             <summary>
             Translates the audio asynchronous.
             </summary>
             <param name="path">The file path.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Bubba.TranslationRequest.ParseTranslation(System.String)">
+            <summary>
+            Parses the translation.
+            </summary>
+            <param name="jsonResponse">The json response.</param>
             <returns></returns>
         </member>
         <member name="M:Bubba.TranslationRequest.GetData">
@@ -23589,55 +24686,70 @@
             A <see cref="T:System.String" /> that represents this instance.
             </returns>
         </member>
-        <member name="T:Bubba.VectorStoreRequest">
+        <member name="T:Bubba.VectorRequest">
             <inheritdoc />
             <summary>
             </summary>
             <seealso cref="T:Bubba.GptRequest" />
         </member>
-        <member name="F:Bubba.VectorStoreRequest._responseFormat">
+        <member name="F:Bubba.VectorRequest._responseFormat">
             <summary>
             The response format
             </summary>
         </member>
-        <member name="F:Bubba.VectorStoreRequest._filePath">
+        <member name="F:Bubba.VectorRequest._filePath">
             <summary>
             The file path
             </summary>
         </member>
-        <member name="F:Bubba.VectorStoreRequest._vectorStoreId">
+        <member name="F:Bubba.VectorRequest._vectorStoreId">
             <summary>
             The vector store identifier
             </summary>
         </member>
-        <member name="F:Bubba.VectorStoreRequest._fileIds">
+        <member name="F:Bubba.VectorRequest._fileIds">
             <summary>
             The file ids
             </summary>
         </member>
-        <member name="F:Bubba.VectorStoreRequest._name">
+        <member name="F:Bubba.VectorRequest._name">
             <summary>
             The name
             </summary>
         </member>
-        <member name="F:Bubba.VectorStoreRequest._limit">
+        <member name="F:Bubba.VectorRequest._limit">
             <summary>
             The limit
             </summary>
         </member>
-        <member name="F:Bubba.VectorStoreRequest._metaData">
+        <member name="F:Bubba.VectorRequest._before">
+            <summary>
+            The before
+            </summary>
+        </member>
+        <member name="F:Bubba.VectorRequest._after">
+            <summary>
+            The after
+            </summary>
+        </member>
+        <member name="F:Bubba.VectorRequest._order">
+            <summary>
+            The order
+            </summary>
+        </member>
+        <member name="F:Bubba.VectorRequest._metaData">
             <summary>
             The meta data
             </summary>
         </member>
-        <member name="M:Bubba.VectorStoreRequest.#ctor">
+        <member name="M:Bubba.VectorRequest.#ctor">
             <summary>
             Initializes a new instance of the
-            <see cref="T:Bubba.VectorStoreRequest"/> class.
+            <see cref="T:Bubba.VectorRequest"/> class.
             </summary>
             <inheritdoc />
         </member>
-        <member name="P:Bubba.VectorStoreRequest.HttpClient">
+        <member name="P:Bubba.VectorRequest.HttpClient">
             <inheritdoc />
             <summary>
             Gets or sets a value indicating whether this
@@ -23647,25 +24759,58 @@
               <c>true</c> if store; otherwise, <c>false</c>.
             </value>
         </member>
-        <member name="P:Bubba.VectorStoreRequest.Model">
+        <member name="P:Bubba.VectorRequest.FileIds">
             <summary>
-            Gets the chat model.
+            Gets or sets the file ids.
             </summary>
             <value>
-            The chat model.
+            The file ids.
             </value>
-            <inheritdoc />
         </member>
-        <member name="P:Bubba.VectorStoreRequest.ResponseFormat">
-            <inheritdoc />
+        <member name="P:Bubba.VectorRequest.VectorStoreId">
             <summary>
-            Gets or sets the response format.
+            Gets or sets the vector store identifier.
             </summary>
             <value>
-            The response format.
+            The vector store identifier.
             </value>
         </member>
-        <member name="M:Bubba.VectorStoreRequest.GetData">
+        <member name="P:Bubba.VectorRequest.Before">
+            <summary>
+            Gets or sets the before.
+            </summary>
+            <value>
+            The before.
+            </value>
+        </member>
+        <member name="P:Bubba.VectorRequest.After">
+            <summary>
+            Gets or sets the after.
+            </summary>
+            <value>
+            The after.
+            </value>
+        </member>
+        <member name="P:Bubba.VectorRequest.Order">
+            <summary>
+            Gets or sets the order.
+            </summary>
+            <value>
+            The order.
+            </value>
+        </member>
+        <member name="P:Bubba.VectorRequest.MetaData">
+            <summary>
+            Set of 16 key-value pairs that can be attached to an object.
+            This can be useful for storing additional information about the
+            object in a structured format. Keys can be a maximum of 64 characters
+            long and values can be a maximum of 512 characters long
+            </summary>
+            <value>
+            The meta data.
+            </value>
+        </member>
+        <member name="M:Bubba.VectorRequest.GetData">
             <inheritdoc />
             <summary>
             Gets the data.
@@ -23673,13 +24818,35 @@
             <returns>
             </returns>
         </member>
-        <member name="M:Bubba.VectorStoreRequest.ToString">
+        <member name="M:Bubba.VectorRequest.ToString">
             <summary>
             Converts to string.
             </summary>
             <returns>
             A <see cref="T:System.String" /> that represents this instance.
             </returns>
+        </member>
+        <member name="M:Bubba.VectorRequest.UploadFileByIdAsync(System.String)">
+            <summary>
+            Uploads the training file asynchronous.
+            </summary>
+            <param name="filePath">The file path.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Bubba.VectorRequest.CalculateCosineSimilarity(System.Single[],System.Single[])">
+            <summary>
+            Calculates the cosine similarity.
+            </summary>
+            <param name="vectorA">The vector a.</param>
+            <param name="vectorB">The vector b.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Bubba.VectorRequest.LoadVectorStore(System.String)">
+            <summary>
+            Loads the vector store.
+            </summary>
+            <param name="connectionString">The connection string.</param>
+            <returns></returns>
         </member>
         <member name="T:Bubba.CompletionResponse">
             <inheritdoc />
@@ -24824,35 +25991,35 @@
             The usage.
             </value>
         </member>
-        <member name="T:Bubba.VectorStoreResponse">
+        <member name="T:Bubba.VectorResponse">
             <inheritdoc />
             <summary>
             </summary>
             <seealso cref="T:Bubba.GptResponse" />
         </member>
-        <member name="F:Bubba.VectorStoreResponse._filePath">
+        <member name="F:Bubba.VectorResponse._filePath">
             <summary>
             The file path
             </summary>
         </member>
-        <member name="F:Bubba.VectorStoreResponse._generatedFile">
+        <member name="F:Bubba.VectorResponse._generatedFile">
             <summary>
             The file path
             </summary>
         </member>
-        <member name="F:Bubba.VectorStoreResponse._rawResponse">
+        <member name="F:Bubba.VectorResponse._rawResponse">
             <summary>
             The raw response
             </summary>
         </member>
-        <member name="M:Bubba.VectorStoreResponse.#ctor">
+        <member name="M:Bubba.VectorResponse.#ctor">
             <summary>
             Initializes a new instance of the
-            <see cref="T:Bubba.VectorStoreResponse"/> class.
+            <see cref="T:Bubba.VectorResponse"/> class.
             </summary>
             <inheritdoc />
         </member>
-        <member name="P:Bubba.VectorStoreResponse.RawResponse">
+        <member name="P:Bubba.VectorResponse.RawResponse">
             <summary>
             Gets or sets the raw response.
             </summary>
@@ -24860,7 +26027,7 @@
             The raw response.
             </value>
         </member>
-        <member name="P:Bubba.VectorStoreResponse.Id">
+        <member name="P:Bubba.VectorResponse.Id">
             <inheritdoc />
             <summary>
             Gets or sets the identifier.
@@ -24869,7 +26036,7 @@
             The identifier.
             </value>
         </member>
-        <member name="P:Bubba.VectorStoreResponse.Object">
+        <member name="P:Bubba.VectorResponse.Object">
             <inheritdoc />
             <summary>
             Gets or sets the object.
@@ -24878,7 +26045,7 @@
             The object.
             </value>
         </member>
-        <member name="P:Bubba.VectorStoreResponse.Created">
+        <member name="P:Bubba.VectorResponse.Created">
             <inheritdoc />
             <summary>
             Gets or sets the created.
@@ -24887,7 +26054,7 @@
             The created.
             </value>
         </member>
-        <member name="P:Bubba.VectorStoreResponse.Model">
+        <member name="P:Bubba.VectorResponse.Model">
             <inheritdoc />
             <summary>
             Gets or sets the model.
@@ -24896,7 +26063,7 @@
             The model.
             </value>
         </member>
-        <member name="P:Bubba.VectorStoreResponse.Choices">
+        <member name="P:Bubba.VectorResponse.Choices">
             <inheritdoc />
             <summary>
             Gets or sets the choices.
@@ -24905,7 +26072,7 @@
             The choices.
             </value>
         </member>
-        <member name="P:Bubba.VectorStoreResponse.Usage">
+        <member name="P:Bubba.VectorResponse.Usage">
             <inheritdoc />
             <summary>
             Gets or sets the usage.
@@ -24914,11 +26081,11 @@
             The usage.
             </value>
         </member>
-        <member name="M:Bubba.VectorStoreResponse.ExtractVectorStore(System.String)">
+        <member name="M:Bubba.VectorResponse.ExtractStores(System.String)">
             <summary>
             Extracts the vector store.
             </summary>
-            <param name="jsonResponse">The json response.</param>
+            <param name="response">The json response.</param>
             <returns></returns>
         </member>
         <member name="T:Bubba.BabyBoy">
@@ -26024,45 +27191,210 @@
             The drive separator.
             </value>
         </member>
-        <member name="T:Bubba.Properties.CustomSearchEngine">
+        <member name="T:Bubba.Properties.Definitions">
             <summary>
               A strongly-typed resource class, for looking up localized strings, etc.
             </summary>
         </member>
-        <member name="P:Bubba.Properties.CustomSearchEngine.ResourceManager">
+        <member name="P:Bubba.Properties.Definitions.ResourceManager">
             <summary>
               Returns the cached ResourceManager instance used by this class.
             </summary>
         </member>
-        <member name="P:Bubba.Properties.CustomSearchEngine.Culture">
+        <member name="P:Bubba.Properties.Definitions.Culture">
             <summary>
               Overrides the current thread's CurrentUICulture property for all
               resource lookups using this strongly typed resource class.
             </summary>
         </member>
-        <member name="P:Bubba.Properties.CustomSearchEngine.ID">
+        <member name="P:Bubba.Properties.Definitions.After">
             <summary>
-              Looks up a localized string similar to e78aa3dcb21474bf4.
+              Looks up a localized string similar to A cursor for use in pagination. after is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after=obj_foo in order to fetch the next page of the list..
             </summary>
         </member>
-        <member name="P:Bubba.Properties.CustomSearchEngine.KEY">
+        <member name="P:Bubba.Properties.Definitions.Choices">
             <summary>
-              Looks up a localized string similar to AIzaSyBsfbY19GJMzr3MXqr6MhJ4YKDfhv4QNkw.
+              Looks up a localized string similar to A list of chat completion choices. Can contain more than one elements if n is greater than 1. Can also be empty for the last chunk if you set stream_options: {&quot;include_usage&quot;: true}..
             </summary>
         </member>
-        <member name="P:Bubba.Properties.CustomSearchEngine.ProjectID">
+        <member name="P:Bubba.Properties.Definitions.Created">
             <summary>
-              Looks up a localized string similar to budgetsearchengi-1681042238302.
+              Looks up a localized string similar to The Unix timestamp (in seconds) of when the chat completion was created..
             </summary>
         </member>
-        <member name="P:Bubba.Properties.CustomSearchEngine.ProjectNumber">
+        <member name="P:Bubba.Properties.Definitions.Dimensions">
             <summary>
-              Looks up a localized string similar to 789831279238.
+              Looks up a localized string similar to The number of dimensions the resulting output embeddings should have. Only supported in text-embedding-3 and later models..
             </summary>
         </member>
-        <member name="P:Bubba.Properties.CustomSearchEngine.URL">
+        <member name="P:Bubba.Properties.Definitions.Embedding">
             <summary>
-              Looks up a localized string similar to https://cse.google.com/cse?cx=e78aa3dcb21474bf4.
+              Looks up a localized string similar to The embedding vector: a list of floats. .
+            </summary>
+        </member>
+        <member name="P:Bubba.Properties.Definitions.EncodingFormat">
+            <summary>
+              Looks up a localized string similar to The format to return the embeddings in. Can be either float or base64..
+            </summary>
+        </member>
+        <member name="P:Bubba.Properties.Definitions.File">
+            <summary>
+              Looks up a localized string similar to The File object (not file name) to be uploaded.  Upload a file that can be used across various endpoints. Individual files can be up to 512 MB, and the size of all files uploaded by one organization can be up to 100 GB.  For audio: the audio file object (not file name) to transcribe, in one of these formats: flac, mp3, mp4, mpeg, mpga, m4a, ogg, wav, or webm..
+            </summary>
+        </member>
+        <member name="P:Bubba.Properties.Definitions.FileName">
+            <summary>
+              Looks up a localized string similar to The name of the file..
+            </summary>
+        </member>
+        <member name="P:Bubba.Properties.Definitions.FinishReason">
+            <summary>
+              Looks up a localized string similar to The reason the model stopped generating tokens. This will be stop if the model hit a natural stop point or a provided stop sequence, length if the maximum number of tokens specified in the request was reached, content_filter if content was omitted due to a flag from our content filters, tool_calls if the model called a tool, or function_call (deprecated) if the model called a function..
+            </summary>
+        </member>
+        <member name="P:Bubba.Properties.Definitions.FrequencyPenalty">
+            <summary>
+              Looks up a localized string similar to Number between -2.0 and 2.0. Positive values penalize new tokens based on their existing frequency in the text so far, decreasing the model&apos;s likelihood to repeat the same line verbatim..
+            </summary>
+        </member>
+        <member name="P:Bubba.Properties.Definitions.Input">
+            <summary>
+              Looks up a localized string similar to Input text to embed, encoded as a string or array of tokens. To embed multiple inputs in a single request, pass an array of strings or array of token arrays. The input must not exceed the max input tokens for the model (8192 tokens for text-embedding-ada-002), cannot be an empty string, and any array must be 2048 dimensions or less. Example Python code for counting tokens. Some models may also impose a limit on total number of tokens summed across inputs..
+            </summary>
+        </member>
+        <member name="P:Bubba.Properties.Definitions.Limit">
+            <summary>
+              Looks up a localized string similar to A limit on the number of objects to be returned. Limit can range between 1 and 10,000, and the default is 10,000..
+            </summary>
+        </member>
+        <member name="P:Bubba.Properties.Definitions.LogitBias">
+            <summary>
+              Looks up a localized string similar to Modify the likelihood of specified tokens appearing in the completion. Accepts a JSON object that maps tokens (specified by their token ID in the tokenizer) to an associated bias value from -100 to 100. Mathematically, the bias is added to the logits generated by the model prior to sampling. The exact effect will vary per model, but values between -1 and 1 should decrease or increase likelihood of selection; values like -100 or 100 should result in a ban or exclusive selection of the relevant token..
+            </summary>
+        </member>
+        <member name="P:Bubba.Properties.Definitions.LogProbs">
+            <summary>
+              Looks up a localized string similar to Whether to return log probabilities of the output tokens or not. If true, returns the log probabilities of each output token returned in the content of message..
+            </summary>
+        </member>
+        <member name="P:Bubba.Properties.Definitions.MaxCompletionTokens">
+            <summary>
+              Looks up a localized string similar to An upper bound for the number of tokens that can be generated for a completion, including visible output tokens and reasoning tokens..
+            </summary>
+        </member>
+        <member name="P:Bubba.Properties.Definitions.Messages">
+            <summary>
+              Looks up a localized string similar to A list of messages comprising the conversation so far. Depending on the model you use, different message types (modalities) are supported, like text, images, and audio..
+            </summary>
+        </member>
+        <member name="P:Bubba.Properties.Definitions.MimeType">
+            <summary>
+              Looks up a localized string similar to This must fall within the supported MIME types for your file purpose. See the supported MIME types for assistants and vision..
+            </summary>
+        </member>
+        <member name="P:Bubba.Properties.Definitions.Modalities">
+            <summary>
+              Looks up a localized string similar to Output types that you would like the model to generate for this request. Most models are capable of generating text, which is the default: [&quot;text&quot;]; To request that this model generate both text and audio responses, you can use: [&quot;text&quot;, &quot;audio&quot;].
+            </summary>
+        </member>
+        <member name="P:Bubba.Properties.Definitions.Number">
+            <summary>
+              Looks up a localized string similar to For images: the number of images to generate. Must be between 1 and 10. For dall-e-3, only n=1 is supported.  For text: How many chat completion choices to generate for each input message. Note that you will be charged based on the number of generated tokens across all of the choices. Keep n as 1 to minimize costs..
+            </summary>
+        </member>
+        <member name="P:Bubba.Properties.Definitions.Order">
+            <summary>
+              Looks up a localized string similar to Sort order by the created_at timestamp of the objects. asc for ascending order and desc for descending order..
+            </summary>
+        </member>
+        <member name="P:Bubba.Properties.Definitions.PresencePenalty">
+            <summary>
+              Looks up a localized string similar to Number between -2.0 and 2.0. Positive values penalize new tokens based on whether they appear in the text so far, increasing the model&apos;s likelihood to talk about new topics..
+            </summary>
+        </member>
+        <member name="P:Bubba.Properties.Definitions.Prompt">
+            <summary>
+              Looks up a localized string similar to For images: A text description of the desired image(s). The maximum length is 1000 characters..
+            </summary>
+        </member>
+        <member name="P:Bubba.Properties.Definitions.ReasoningEffort">
+            <summary>
+              Looks up a localized string similar to Constrains effort on reasoning for reasoning models. Currently supported values are low, medium, and high. Reducing reasoning effort can result in faster responses and fewer tokens used on reasoning in a response..
+            </summary>
+        </member>
+        <member name="P:Bubba.Properties.Definitions.ResponseFormat">
+            <summary>
+              Looks up a localized string similar to An object specifying the format that the model must output. Setting to { &quot;type&quot;: &quot;json_schema&quot;, &quot;json_schema&quot;: {...} } enables Structured Outputs which ensures the model will match your supplied JSON schema.  Setting to { &quot;type&quot;: &quot;json_object&quot; } enables JSON mode, which ensures the message the model generates is valid JSON.  For images: the format in which the generated images are returned. Must be one of url or b64_json. URLs are only valid for 60 minutes after the image has been generated.  For audio: the [rest of string was truncated]&quot;;.
+            </summary>
+        </member>
+        <member name="P:Bubba.Properties.Definitions.Seed">
+            <summary>
+              Looks up a localized string similar to  If specified, our system will make a best effort to sample deterministically, such that repeated requests with the same seed and parameters should return the same result. Determinism is not guaranteed, and you should refer to the system_fingerprint response parameter to monitor changes in the backend..
+            </summary>
+        </member>
+        <member name="P:Bubba.Properties.Definitions.Size">
+            <summary>
+              Looks up a localized string similar to The size of the generated images. Must be one of 256x256, 512x512, or 1024x1024 for dall-e-2. Must be one of 1024x1024, 1792x1024, or 1024x1792 for dall-e-3 models..
+            </summary>
+        </member>
+        <member name="P:Bubba.Properties.Definitions.Speed">
+            <summary>
+              Looks up a localized string similar to The speed of the generated audio. Select a value from 0.25 to 4.0. 1.0 is the default..
+            </summary>
+        </member>
+        <member name="P:Bubba.Properties.Definitions.Stop">
+            <summary>
+              Looks up a localized string similar to Up to 4 sequences where the API will stop generating further tokens..
+            </summary>
+        </member>
+        <member name="P:Bubba.Properties.Definitions.Store">
+            <summary>
+              Looks up a localized string similar to Whether or not to store the output of this chat completion request for use in our model distillation or evals products..
+            </summary>
+        </member>
+        <member name="P:Bubba.Properties.Definitions.Stream">
+            <summary>
+              Looks up a localized string similar to A true or false value that, if set, partial message deltas will be sent like in ChatGPT. .
+            </summary>
+        </member>
+        <member name="P:Bubba.Properties.Definitions.Style">
+            <summary>
+              Looks up a localized string similar to The style of the generated images. Must be one of vivid or natural. Vivid causes the model to lean towards generating hyper-real and dramatic images. Natural causes the model to produce more natural, less hyper-real looking images. This param is only supported for dall-e-3..
+            </summary>
+        </member>
+        <member name="P:Bubba.Properties.Definitions.Suffix">
+            <summary>
+              Looks up a localized string similar to A string of up to 64 characters that will be added to your fine-tuned model name..
+            </summary>
+        </member>
+        <member name="P:Bubba.Properties.Definitions.Temperature">
+            <summary>
+              Looks up a localized string similar to A number between 0 and 2. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic. We generally recommend altering this or top_p but not both..
+            </summary>
+        </member>
+        <member name="P:Bubba.Properties.Definitions.TopLogProbs">
+            <summary>
+              Looks up a localized string similar to An integer between 0 and 20 specifying the number of most likely tokens to return at each token position, each with an associated log probability. logprobs must be set to true if this parameter is used..
+            </summary>
+        </member>
+        <member name="P:Bubba.Properties.Definitions.TopPercent">
+            <summary>
+              Looks up a localized string similar to An alternative to sampling with temperature, called nucleus sampling, where the model considers the results of the tokens with top_p probability mass. So 0.1 means only the tokens comprising the top 10% probability mass are considered. We generally recommend altering this or temperature but not both..
+            </summary>
+        </member>
+        <member name="P:Bubba.Properties.Definitions.TrainingFile">
+            <summary>
+              Looks up a localized string similar to The ID of an uploaded file that contains training data.  Your dataset must be formatted as a JSONL file. Additionally, you must upload your file with the purpose fine-tune..
+            </summary>
+        </member>
+        <member name="P:Bubba.Properties.Definitions.ValidationFile">
+            <summary>
+              Looks up a localized string similar to The ID of an uploaded file that contains validation data..
+            </summary>
+        </member>
+        <member name="P:Bubba.Properties.Definitions.Voice">
+            <summary>
+              Looks up a localized string similar to The voice to use when generating the audio. Supported voices are alloy, ash, coral, echo, fable, onyx, nova, sage and shimmer. .
             </summary>
         </member>
         <member name="T:Bubba.Properties.GptEndPoint">
@@ -26352,6 +27684,232 @@
               Looks up a localized string similar to https://www.google.com/search?q=site:fiscal.treasury.gov .
             </summary>
         </member>
+        <member name="T:Bubba.Properties.Models">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:Bubba.Properties.Models.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:Bubba.Properties.Models.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="P:Bubba.Properties.Models.babbage_002">
+            <summary>
+              Looks up a localized string similar to babbage-002Replacement for the GPT-3 ada and babbage base models. GPT base models can understand and generate natural language or code but are not trained with instruction following. These models are made to be replacements for the original GPT-3 base models and use the legacy Completions API. .
+            </summary>
+        </member>
+        <member name="P:Bubba.Properties.Models.chatgpt_4o_latest">
+            <summary>
+              Looks up a localized string similar to Model continuously points to the version of GPT-4o used in ChatGPT. It is updated frequently, when there are significant changes to ChatGPT&apos;s GPT-4o model. The knowledge cutoff for GPT-4o models is October, 2023..
+            </summary>
+        </member>
+        <member name="P:Bubba.Properties.Models.dall_e_2">
+            <summary>
+              Looks up a localized string similar to dall-e-2;  DALL·E is a AI system that can create realistic images and art from a description in natural language. DALL·E 3 currently supports the ability, given a prompt, to create a new image with a specific size. DALL·E 2 also support the ability to edit an existing image, or create variations of a user provided image.   .
+            </summary>
+        </member>
+        <member name="P:Bubba.Properties.Models.dall_e_3">
+            <summary>
+              Looks up a localized string similar to dall-e-3;  DALL·E is a AI system that can create realistic images and art from a description in natural language. DALL·E 3 currently supports the ability, given a prompt, to create a new image with a specific size. DALL·E 2 also support the ability to edit an existing image, or create variations of a user provided image..
+            </summary>
+        </member>
+        <member name="P:Bubba.Properties.Models.davinci_002">
+            <summary>
+              Looks up a localized string similar to davinci-002;  GPT base models can understand and generate natural language or code but are not trained with instruction following. These models are made to be replacements for the original GPT-3 base models and use the legacy Completions API. .
+            </summary>
+        </member>
+        <member name="P:Bubba.Properties.Models.gpt_3_5_turbo">
+            <summary>
+              Looks up a localized string similar to gpt-3.5-turbo; Currently points to gpt-3.5-turbo-0125..
+            </summary>
+        </member>
+        <member name="P:Bubba.Properties.Models.gpt_3_5_turbo_0125">
+            <summary>
+              Looks up a localized string similar to gpt-3.5-turbo-0125; GPT-3.5 Turbo models can understand and generate natural language or code and have been optimized for chat using the Chat Completions API but work well for non-chat tasks as well..
+            </summary>
+        </member>
+        <member name="P:Bubba.Properties.Models.gpt_4">
+            <summary>
+              Looks up a localized string similar to ;  GPT-4 is an older version of a high-intelligence GPT model, usable in Chat Completions. .
+            </summary>
+        </member>
+        <member name="P:Bubba.Properties.Models.gpt_4_0125_preview">
+            <summary>
+              Looks up a localized string similar to gpt-4-0125-preview;  GPT-4 is an older version of a high-intelligence GPT model, usable in Chat Completions. .
+            </summary>
+        </member>
+        <member name="P:Bubba.Properties.Models.gpt_4_0314">
+            <summary>
+              Looks up a localized string similar to gpt-4-0314;  GPT-4 is an older version of a high-intelligence GPT model, usable in Chat Completions. .
+            </summary>
+        </member>
+        <member name="P:Bubba.Properties.Models.gpt_4_0613">
+            <summary>
+              Looks up a localized string similar to ;  GPT-4 is an older version of a high-intelligence GPT model, usable in Chat Completions. .
+            </summary>
+        </member>
+        <member name="P:Bubba.Properties.Models.gpt_4_1106_preview">
+            <summary>
+              Looks up a localized string similar to gpt-4-1106-preview; GPT-4 is an older version of a high-intelligence GPT model, usable in Chat Completions. .
+            </summary>
+        </member>
+        <member name="P:Bubba.Properties.Models.gpt_4_turbo">
+            <summary>
+              Looks up a localized string similar to gpt-4-turbo;  GPT-4 is an older version of a high-intelligence GPT model, usable in Chat Completions. Image inputs via the o1, gpt-4o, gpt-4o-mini, chatgpt-4o-latest, or gpt-4-turbo models (or previously gpt-4-vision-preview) are not eligible for zero retention..
+            </summary>
+        </member>
+        <member name="P:Bubba.Properties.Models.gpt_4_turbo_2024_04_09">
+            <summary>
+              Looks up a localized string similar to gpt-4-turbo-2024-04-09.  GPT-4 is an older version of a high-intelligence GPT model, usable in Chat Completions. Image inputs via the o1, gpt-4o, gpt-4o-mini, chatgpt-4o-latest, or gpt-4-turbo models (or previously gpt-4-vision-preview) are not eligible for zero retention..
+            </summary>
+        </member>
+        <member name="P:Bubba.Properties.Models.gpt_4_turbo_preview">
+            <summary>
+              Looks up a localized string similar to gpt-4-turbo-preview;  GPT-4 is an older version of a high-intelligence GPT model, usable in Chat Completions. Image inputs via the o1, gpt-4o, gpt-4o-mini, chatgpt-4o-latest, or gpt-4-turbo models (or previously gpt-4-vision-preview) are not eligible for zero retention..
+            </summary>
+        </member>
+        <member name="P:Bubba.Properties.Models.gpt_4o">
+            <summary>
+              Looks up a localized string similar to gpt-4o (“o” for “omni”) a versatile, high-intelligence flagship model. It accepts both text and image inputs, and produces text outputs (including Structured Outputs).  Image inputs via the o1, gpt-4o, gpt-4o-mini, chatgpt-4o-latest, or gpt-4-turbo models (or previously gpt-4-vision-preview) are not eligible for zero retention..
+            </summary>
+        </member>
+        <member name="P:Bubba.Properties.Models.gpt_4o_2024_05_13">
+            <summary>
+              Looks up a localized string similar to gpt-4o-2024-05-13 (“o” for “omni”) a versatile, high-intelligence flagship model. It accepts both text and image inputs, and produces text outputs (including Structured Outputs).  Image inputs via the o1, gpt-4o, gpt-4o-mini, chatgpt-4o-latest, or gpt-4-turbo models (or previously gpt-4-vision-preview) are not eligible for zero retention..
+            </summary>
+        </member>
+        <member name="P:Bubba.Properties.Models.gpt_4o_2024_08_06">
+            <summary>
+              Looks up a localized string similar to gpt-4o-2024-08-06 (“o” for “omni”) a versatile, high-intelligence flagship model. It accepts both text and image inputs, and produces text outputs (including Structured Outputs). Image inputs via the o1, gpt-4o, gpt-4o-mini, chatgpt-4o-latest, or gpt-4-turbo models (or previously gpt-4-vision-preview) are not eligible for zero retention..
+            </summary>
+        </member>
+        <member name="P:Bubba.Properties.Models.gpt_4o_2024_11_20">
+            <summary>
+              Looks up a localized string similar to GPT-4o-2024-11-20 (“o” for “omni”) is a versatile, high-intelligence flagship model. It accepts both text and image inputs, and produces text outputs (including Structured Outputs). Image inputs via the o1, gpt-4o, gpt-4o-mini, chatgpt-4o-latest, or gpt-4-turbo models (or previously gpt-4-vision-preview) are not eligible for zero retention..
+            </summary>
+        </member>
+        <member name="P:Bubba.Properties.Models.gpt_4o_audio_preview">
+            <summary>
+              Looks up a localized string similar to gpt-4o-audio-preview; These models accept audio inputs and outputs, and can be used in the Chat Completions REST API..
+            </summary>
+        </member>
+        <member name="P:Bubba.Properties.Models.gpt_4o_audio_preview_2024_10_01">
+            <summary>
+              Looks up a localized string similar to gpt-4o-audio-preview-2024-10-01;  These models accept audio inputs and outputs, and can be used in the Chat Completions REST API.
+            </summary>
+        </member>
+        <member name="P:Bubba.Properties.Models.gpt_4o_audio_preview_2024_12_17">
+            <summary>
+              Looks up a localized string similar to gpt-4o-audio-preview-2024-12-17;  These models accept audio inputs and outputs, and can be used in the Chat Completions REST API..
+            </summary>
+        </member>
+        <member name="P:Bubba.Properties.Models.gpt_4o_mini">
+            <summary>
+              Looks up a localized string similar to gpt-4o-mini (“o” for “omni”) is a versatile, high-intelligence flagship model. It accepts both text and image inputs, and produces text outputs (including Structured Outputs). Image inputs via the o1, gpt-4o, gpt-4o-mini, chatgpt-4o-latest, or gpt-4-turbo models (or previously gpt-4-vision-preview) are not eligible for zero retention..
+            </summary>
+        </member>
+        <member name="P:Bubba.Properties.Models.gpt_4o_mini_2024_07_18">
+            <summary>
+              Looks up a localized string similar to gpt-4o-mini-2024-07-18 (“o” for “omni”) is a versatile, high-intelligence flagship model. It accepts both text and image inputs, and produces text outputs (including Structured Outputs). Image inputs via the o1, gpt-4o, gpt-4o-mini, chatgpt-4o-latest, or gpt-4-turbo models (or previously gpt-4-vision-preview) are not eligible for zero retention..
+            </summary>
+        </member>
+        <member name="P:Bubba.Properties.Models.gpt_4o_mini_realtime_preview">
+            <summary>
+              Looks up a localized string similar to gpt-4o-mini-realtime-preview;  These models are capable of responding to audio and text inputs in realtime over WebRTC or a WebSocket interface. The knowledge cutoff for GPT-4o Realtime models is October, 2023..
+            </summary>
+        </member>
+        <member name="P:Bubba.Properties.Models.gpt_4o_mini_realtime_preview_2024_12_17">
+            <summary>
+              Looks up a localized string similar to gpt-4o-mini-realtime-preview-2024-12-17;  These models are capable of responding to audio and text inputs in realtime over WebRTC or a WebSocket interface. The knowledge cutoff for GPT-4o Realtime models is October, 2023..
+            </summary>
+        </member>
+        <member name="P:Bubba.Properties.Models.gpt_4o_realtime_preview">
+            <summary>
+              Looks up a localized string similar to gpt-4o-realtime-preview;   These models are capable of responding to audio and text inputs in realtime over WebRTC or a WebSocket interface. The knowledge cutoff for GPT-4o Realtime models is October, 2023..
+            </summary>
+        </member>
+        <member name="P:Bubba.Properties.Models.gpt_4o_realtime_preview_2024_10_01">
+            <summary>
+              Looks up a localized string similar to gpt-4o-realtime-preview-2024-10-01;  These models are capable of responding to audio and text inputs in realtime over WebRTC or a WebSocket interface. The knowledge cutoff for GPT-4o Realtime models is October, 2023..
+            </summary>
+        </member>
+        <member name="P:Bubba.Properties.Models.gpt_4o_realtime_preview_2024_12_17">
+            <summary>
+              Looks up a localized string similar to gpt-4o-realtime-preview-2024-12-17;  These models are capable of responding to audio and text inputs in realtime over WebRTC or a WebSocket interface. The knowledge cutoff for GPT-4o Realtime models is October, 2023..
+            </summary>
+        </member>
+        <member name="P:Bubba.Properties.Models.o1">
+            <summary>
+              Looks up a localized string similar to The o1 series of models are trained with reinforcement learning to perform complex reasoning. o1 models think before they answer, producing a long internal chain of thought before responding to the user. .
+            </summary>
+        </member>
+        <member name="P:Bubba.Properties.Models.o1_2024_12_17">
+            <summary>
+              Looks up a localized string similar to The o1 series of models are trained with reinforcement learning to perform complex reasoning. o1 models think before they answer, producing a long internal chain of thought. o1: reasoning model designed to solve hard problems across domains user..
+            </summary>
+        </member>
+        <member name="P:Bubba.Properties.Models.o1_mini">
+            <summary>
+              Looks up a localized string similar to The o1 series of models are trained with reinforcement learning to perform complex reasoning. o1 models think before they answer, producing a long internal chain of thought before responding to the user..
+            </summary>
+        </member>
+        <member name="P:Bubba.Properties.Models.o1_mini_2024_09_12">
+            <summary>
+              Looks up a localized string similar to o1-mini-2024-09-12; The o1 series of models are trained with reinforcement learning to perform complex reasoning. o1 models think before they answer, producing a long internal chain of thought before responding to the user..
+            </summary>
+        </member>
+        <member name="P:Bubba.Properties.Models.o1_preview">
+            <summary>
+              Looks up a localized string similar to o1-preview;  The o1 series of models are trained with reinforcement learning to perform complex reasoning. o1 models think before they answer, producing a long internal chain of thought before responding to the user..
+            </summary>
+        </member>
+        <member name="P:Bubba.Properties.Models.o1_preview_2024_09_12">
+            <summary>
+              Looks up a localized string similar to o1-preview-2024-09-12;  The o1 series of models are trained with reinforcement learning to perform complex reasoning. o1 models think before they answer, producing a long internal chain of thought before responding to the user..
+            </summary>
+        </member>
+        <member name="P:Bubba.Properties.Models.text_embedding_3_large">
+            <summary>
+              Looks up a localized string similar to text-embedding-3-large;  Embeddings are a numerical representation of text that can be used to measure the relatedness between two pieces of text. Embeddings are useful for search, clustering, recommendations, anomaly detection, and classification tasks.
+            </summary>
+        </member>
+        <member name="P:Bubba.Properties.Models.text_embedding_3_small">
+            <summary>
+              Looks up a localized string similar to text-embedding-3-small;  Embeddings are a numerical representation of text that can be used to measure the relatedness between two pieces of text. Embeddings are useful for search, clustering, recommendations, anomaly detection, and classification tasks..
+            </summary>
+        </member>
+        <member name="P:Bubba.Properties.Models.text_embedding_ada_002">
+            <summary>
+              Looks up a localized string similar to text-embedding-ada-002; Embeddings are a numerical representation of text that can be used to measure the relatedness between two pieces of text. Embeddings are useful for search, clustering, recommendations, anomaly detection, and classification tasks..
+            </summary>
+        </member>
+        <member name="P:Bubba.Properties.Models.tts_1">
+            <summary>
+              Looks up a localized string similar to tts-1;  TTS is an AI model that converts text to natural sounding spoken text. We offer two different model variates, tts-1 is optimized for real time text to speech use cases and tts-1-hd is optimized for quality. These models can be used with the Speech endpoint in the Audio API. Audio outputs are stored for 1 hour to enable multi-turn conversations, and are not currently eligible for zero retention..
+            </summary>
+        </member>
+        <member name="P:Bubba.Properties.Models.tts_1_hd">
+            <summary>
+              Looks up a localized string similar to tts-1-hd; TTS is an AI model that converts text to natural sounding spoken text. We offer two different model variates, tts-1 is optimized for real time text to speech use cases and tts-1-hd is optimized for quality. These models can be used with the Speech endpoint in the Audio API. Audio outputs are stored for 1 hour to enable multi-turn conversations, and are not currently eligible for zero retention..
+            </summary>
+        </member>
+        <member name="P:Bubba.Properties.Models.whisper_1">
+            <summary>
+              Looks up a localized string similar to ;  Whisper is a general-purpose speech recognition model. It is trained on a large dataset of diverse audio and is also a multi-task model that can perform multilingual speech recognition as well as speech translation and language identification. The Whisper v2-large model is currently available through our API with the whisper-1 model name. Audio outputs are stored for 1 hour to enable multi-turn conversations, and are not currently eligible for zero retention..
+            </summary>
+        </member>
+        <member name="P:Bubba.Properties.Models.whisper_2">
+            <summary>
+              Looks up a localized string similar to whisper-2;  Whisper is a general-purpose speech recognition model. It is trained on a large dataset of diverse audio and is also a multi-task model that can perform multilingual speech recognition as well as speech translation and language identification. The Whisper v2-large model is currently available through our API with the whisper-1 model name. Audio outputs are stored for 1 hour to enable multi-turn conversations, and are not currently eligible for zero retention..
+            </summary>
+        </member>
         <member name="T:Bubba.Properties.OpenAI">
             <summary>
               A strongly-typed resource class, for looking up localized strings, etc.
@@ -26406,6 +27964,47 @@
         <member name="P:Bubba.Properties.OpenAI.BubbaRegulations">
             <summary>
               Looks up a localized string similar to vs_dx5IIjBuEw5M0j5S2FTo9lRS.
+            </summary>
+        </member>
+        <member name="T:Bubba.Properties.SearchEngine">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:Bubba.Properties.SearchEngine.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:Bubba.Properties.SearchEngine.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="P:Bubba.Properties.SearchEngine.ID">
+            <summary>
+              Looks up a localized string similar to e78aa3dcb21474bf4.
+            </summary>
+        </member>
+        <member name="P:Bubba.Properties.SearchEngine.KEY">
+            <summary>
+              Looks up a localized string similar to AIzaSyBsfbY19GJMzr3MXqr6MhJ4YKDfhv4QNkw.
+            </summary>
+        </member>
+        <member name="P:Bubba.Properties.SearchEngine.ProjectID">
+            <summary>
+              Looks up a localized string similar to budgetsearchengi-1681042238302.
+            </summary>
+        </member>
+        <member name="P:Bubba.Properties.SearchEngine.ProjectNumber">
+            <summary>
+              Looks up a localized string similar to 789831279238.
+            </summary>
+        </member>
+        <member name="P:Bubba.Properties.SearchEngine.URL">
+            <summary>
+              Looks up a localized string similar to https://cse.google.com/cse?cx=e78aa3dcb21474bf4.
             </summary>
         </member>
         <member name="T:Bubba.DataMinion">

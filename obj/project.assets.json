@@ -3133,19 +3133,6 @@
         "frameworkReferences": [
           "Microsoft.WindowsDesktop.App"
         ]
-      },
-      "WebEye.Controls.Wpf.WebCameraControl/1.0.3": {
-        "type": "package",
-        "compile": {
-          "lib/net40/WebEye.Controls.Wpf.WebCameraControl.dll": {
-            "related": ".pdb"
-          }
-        },
-        "runtime": {
-          "lib/net40/WebEye.Controls.Wpf.WebCameraControl.dll": {
-            "related": ".pdb"
-          }
-        }
       }
     }
   },
@@ -8018,19 +8005,6 @@
         "toastnotifications.net6.1.0.4.nupkg.sha512",
         "toastnotifications.net6.nuspec"
       ]
-    },
-    "WebEye.Controls.Wpf.WebCameraControl/1.0.3": {
-      "sha512": "El5tkh6xsDhhVlMgMPWAyzuTCmI34vG3kzDMH2RTpKjWTMck4aN5T/Y6TqjzNIJIy6DbbDoUIm2QhRKKRwZKww==",
-      "type": "package",
-      "path": "webeye.controls.wpf.webcameracontrol/1.0.3",
-      "files": [
-        ".nupkg.metadata",
-        ".signature.p7s",
-        "lib/net40/WebEye.Controls.Wpf.WebCameraControl.dll",
-        "lib/net40/WebEye.Controls.Wpf.WebCameraControl.pdb",
-        "webeye.controls.wpf.webcameracontrol.1.0.3.nupkg.sha512",
-        "webeye.controls.wpf.webcameracontrol.nuspec"
-      ]
     }
   },
   "projectFileDependencyGroups": {
@@ -8080,7 +8054,6 @@
       "SystemExtensions.NetCore >= 1.6.11",
       "ToastNotifications.Messages.Net6 >= 1.0.4",
       "ToastNotifications.Net6 >= 1.0.4",
-      "WebEye.Controls.Wpf.WebCameraControl >= 1.0.3",
       "chromiumembeddedframework.runtime.win-arm64 >= 131.2.7",
       "chromiumembeddedframework.runtime.win-x64 >= 131.2.7",
       "chromiumembeddedframework.runtime.win-x86 >= 131.2.7"
@@ -8322,10 +8295,6 @@
             "target": "Package",
             "version": "[1.0.4, )"
           },
-          "WebEye.Controls.Wpf.WebCameraControl": {
-            "target": "Package",
-            "version": "[1.0.3, )"
-          },
           "chromiumembeddedframework.runtime.win-arm64": {
             "target": "Package",
             "version": "[131.2.7, )"
@@ -8369,16 +8338,6 @@
       "warningLevel": 1,
       "message": "Package 'ModernUI.WPF 1.0.9' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1' instead of the project target framework 'net8.0-windows7.0'. This package may not be fully compatible with your project.",
       "libraryId": "ModernUI.WPF",
-      "targetGraphs": [
-        "net8.0-windows7.0"
-      ]
-    },
-    {
-      "code": "NU1701",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Package 'WebEye.Controls.Wpf.WebCameraControl 1.0.3' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1' instead of the project target framework 'net8.0-windows7.0'. This package may not be fully compatible with your project.",
-      "libraryId": "WebEye.Controls.Wpf.WebCameraControl",
       "targetGraphs": [
         "net8.0-windows7.0"
       ]

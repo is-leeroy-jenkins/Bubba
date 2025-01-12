@@ -22,14 +22,14 @@ namespace Bubba.Properties {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class CustomSearchEngine {
+    internal class SearchEngine {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal CustomSearchEngine() {
+        internal SearchEngine() {
         }
         
         /// <summary>
@@ -39,7 +39,7 @@ namespace Bubba.Properties {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Bubba.Properties.CustomSearchEngine", typeof(CustomSearchEngine).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Bubba.Properties.SearchEngine", typeof(SearchEngine).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;

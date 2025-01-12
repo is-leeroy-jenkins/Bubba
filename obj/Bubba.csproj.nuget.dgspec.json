@@ -235,10 +235,6 @@
               "target": "Package",
               "version": "[1.0.4, )"
             },
-            "WebEye.Controls.Wpf.WebCameraControl": {
-              "target": "Package",
-              "version": "[1.0.3, )"
-            },
             "chromiumembeddedframework.runtime.win-arm64": {
               "target": "Package",
               "version": "[131.2.7, )"

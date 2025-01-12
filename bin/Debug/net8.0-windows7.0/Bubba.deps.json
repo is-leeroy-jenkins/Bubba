@@ -53,7 +53,6 @@
           "SystemExtensions.NetCore": "1.6.11",
           "ToastNotifications.Messages.Net6": "1.0.4",
           "ToastNotifications.Net6": "1.0.4",
-          "WebEye.Controls.Wpf.WebCameraControl": "1.0.3",
           "chromiumembeddedframework.runtime.win-arm64": "131.2.7",
           "chromiumembeddedframework.runtime.win-x64": "131.2.7",
           "chromiumembeddedframework.runtime.win-x86": "131.2.7",
@@ -2386,14 +2385,6 @@
           }
         }
       },
-      "WebEye.Controls.Wpf.WebCameraControl/1.0.3": {
-        "runtime": {
-          "lib/net40/WebEye.Controls.Wpf.WebCameraControl.dll": {
-            "assemblyVersion": "1.0.0.0",
-            "fileVersion": "1.0.0.0"
-          }
-        }
-      },
       "LinqStatistics/2.2.0.0": {
         "runtime": {
           "LinqStatistics.dll": {
@@ -3229,13 +3220,6 @@
       "sha512": "sha512-MzzlXWirEPJwPeD8tMnRhcFKfgiq4CBS/jjGOMjUwMw5ooQvxDBM2AyPX8UuvHZjNhGpyw+rn1GNr2RKc96Rrw==",
       "path": "toastnotifications.net6/1.0.4",
       "hashPath": "toastnotifications.net6.1.0.4.nupkg.sha512"
-    },
-    "WebEye.Controls.Wpf.WebCameraControl/1.0.3": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "sha512-El5tkh6xsDhhVlMgMPWAyzuTCmI34vG3kzDMH2RTpKjWTMck4aN5T/Y6TqjzNIJIy6DbbDoUIm2QhRKKRwZKww==",
-      "path": "webeye.controls.wpf.webcameracontrol/1.0.3",
-      "hashPath": "webeye.controls.wpf.webcameracontrol.1.0.3.nupkg.sha512"
     },
     "LinqStatistics/2.2.0.0": {
       "type": "reference",
