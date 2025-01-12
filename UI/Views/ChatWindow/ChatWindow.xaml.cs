@@ -564,6 +564,18 @@ namespace Bubba
             {
                 switch( _requestType )
                 {
+                    case RequestTypes.ChatCompletion:
+                    {
+                        PopulateTextModels();
+                        _endpoint = GptEndPoint.Completions;
+                        TemperatureSlider.Value = 0.18;
+                        TopPercentSlider.Value = 0.11;
+                        MaxTokenSlider.Value = 2048;
+                        FrequencySlider.Value = 0.00;
+                        PresenceSlider.Value = 0.00;
+                        NumberSlider.Value = 1;
+                        break;
+                    }
                     case RequestTypes.TextGeneration:
                     {
                         PopulateTextModels( );
@@ -576,21 +588,21 @@ namespace Bubba
                         NumberSlider.Value = 1;
                         break;
                     }
+                    case RequestTypes.ImageGeneration:
+                    {
+                        PopulateImageModels();
+                        _endpoint = GptEndPoint.ImageGeneration;
+                        TopPercentSlider.Value = 0.11;
+                        TemperatureSlider.Value = 0.18;
+                        NumberSlider.Value = 1;
+                        break;
+                    }
                     case RequestTypes.Translations:
                     {
                         PopulateTranslationModels( );
                         _endpoint = GptEndPoint.Translations;
-                        TemperatureSlider.Value = 018;
-                        MaxTokenSlider.Value = 2048;
-                        NumberSlider.Value = 1;
-                        break;
-                    }
-                    case RequestTypes.ImageGeneration:
-                    {
-                        PopulateImageModels( );
-                        _endpoint = GptEndPoint.ImageGeneration;
-                        TopPercentSlider.Value = 0.11;
                         TemperatureSlider.Value = 0.18;
+                        MaxTokenSlider.Value = 2048;
                         NumberSlider.Value = 1;
                         break;
                     }
@@ -605,7 +617,7 @@ namespace Bubba
                     {
                         PopulateTranscriptionModels( );
                         _endpoint = GptEndPoint.Transcriptions;
-                        TemperatureSlider.Value = 0.1;
+                        TemperatureSlider.Value = 0.18;
                         MaxTokenSlider.Value = 2048;
                         NumberSlider.Value = 1;
                         break;
@@ -646,6 +658,12 @@ namespace Bubba
                     {
                         PopulateTextModels( );
                         _endpoint = GptEndPoint.Uploads;
+                        break;
+                    }
+                    case RequestTypes.Projects:
+                    {
+                        PopulateTextModels( );
+                        _endpoint = GptEndPoint.Projects;
                         break;
                     }
                     default:
@@ -883,7 +901,7 @@ namespace Bubba
                 MuteCheckBox.IsChecked = false;
                 ListenCheckBox.IsChecked = false;
                 StoreCheckBox.IsChecked = false;
-                StreamCheckBox.IsChecked = false;
+                StreamCheckBox.IsChecked = true;
             }
             catch( Exception ex )
             {
@@ -2019,11 +2037,13 @@ namespace Bubba
                 PopulateModelsAsync( );
                 PopulateLanguageListBox( );
                 PopulateVoices( );
-                SetGptParameters( );
                 ClearChatControls( );
                 InitializeChatEditor( );
                 App.ActiveWindows.Add( "ChatWindow", this );
                 _systemPrompt = OpenAI.BubbaPrompt;
+                StreamCheckBox.IsChecked = true;
+                SetGptParameters( );
+                UserLabel.Content = $@"User ID: {Environment.UserName}";
             }
             catch( Exception ex )
             {
@@ -2517,7 +2537,9 @@ namespace Bubba
         {
             try
             {
-                ClearChatControls( );
+                ClearChatControls();
+                ClearParameters( );
+                PopulateModelsAsync();
             }
             catch( Exception ex )
             {

@@ -1,12 +1,12 @@
 ﻿// ******************************************************************************************
 //     Assembly:                Bubba
 //     Author:                  Terry D. Eppler
-//     Created:                 01-08-2025
+//     Created:                 01-11-2025
 // 
 //     Last Modified By:        Terry D. Eppler
-//     Last Modified On:        01-08-2025
+//     Last Modified On:        01-11-2025
 // ******************************************************************************************
-// <copyright file="TextParameter.cs" company="Terry D. Eppler">
+// <copyright file="ChatParameter.cs" company="Terry D. Eppler">
 //    Bubba is a small and simple windows (wpf) application for interacting with the OpenAI API
 //    that's developed in C-Sharp under the MIT license.C#.
 // 
@@ -35,14 +35,16 @@
 //    You can contact me at:  terryeppler@gmail.com or eppler.terry@epa.gov
 // </copyright>
 // <summary>
-//   TextParameter.cs
+//   ChatParameter.cs
 // </summary>
 // ******************************************************************************************
 
 namespace Bubba
 {
     using System;
+    using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
+    using System.Linq;
     using Properties;
 
     /// <inheritdoc />
@@ -71,6 +73,7 @@ namespace Bubba
             _presencePenalty = 0.00;
             _maximumTokens = 2048;
             _responseFormat = "text";
+            _modalities = "['text', 'audio']";
         }
 
         /// <inheritdoc />

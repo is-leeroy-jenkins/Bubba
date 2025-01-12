@@ -1,10 +1,10 @@
 ﻿// ******************************************************************************************
 //     Assembly:                Bubba
 //     Author:                  Terry D. Eppler
-//     Created:                 01-09-2025
+//     Created:                 01-11-2025
 // 
 //     Last Modified By:        Terry D. Eppler
-//     Last Modified On:        01-09-2025
+//     Last Modified On:        01-11-2025
 // ******************************************************************************************
 // <copyright file="FineTuningParameter.cs" company="Terry D. Eppler">
 //    Bubba is a small and simple windows (wpf) application for interacting with the OpenAI API
@@ -56,6 +56,7 @@ namespace Bubba
     [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
     [ SuppressMessage( "ReSharper", "PreferConcreteValueOverDefault" ) ]
     [ SuppressMessage( "ReSharper", "FieldCanBeMadeReadOnly.Global" ) ]
+    [ SuppressMessage( "ReSharper", "ClassCanBeSealed.Global" ) ]
     public class FineTuningParameter : GptParameter
     {
         /// <summary>
@@ -396,6 +397,9 @@ namespace Bubba
                 _data.Add( "endpoint", _endPoint );
                 _data.Add( "number", _number );
                 _data.Add( "max_completion_tokens", _maximumTokens );
+                _stop.Add( "#" );
+                _stop.Add( ";" );
+                _data.Add( "stop", _stop );
                 _data.Add( "store", _store );
                 _data.Add( "stream", _stream );
                 _data.Add( "temperature", _temperature );
@@ -409,6 +413,9 @@ namespace Bubba
                 _data.Add( "logprobs", _logProbs );
                 _data.Add( "echo", _echo );
                 _data.Add( "best_of", _bestOf );
+                _stop.Add( "#" );
+                _stop.Add( ";" );
+                _data.Add( "stop", _stop );
                 if( !string.IsNullOrEmpty( _trainingFile ) )
                 {
                     _data.Add( "filepath", _trainingFile );

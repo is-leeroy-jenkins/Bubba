@@ -97,7 +97,7 @@ namespace Bubba.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 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.
+        ///   Looks up a localized string similar to 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.
         /// </summary>
         internal static string BubbaKey {
             get {

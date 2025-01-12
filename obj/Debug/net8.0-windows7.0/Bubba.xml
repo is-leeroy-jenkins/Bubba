@@ -21100,136 +21100,6 @@
             </value>
             <inheritdoc />
         </member>
-        <member name="T:Bubba.StoreParameter">
-            <inheritdoc />
-            <summary>
-            </summary>
-            <seealso cref="T:Bubba.GptParameter" />
-        </member>
-        <member name="F:Bubba.StoreParameter._filePath">
-            <summary>
-            The file path
-            </summary>
-        </member>
-        <member name="F:Bubba.StoreParameter._vectorStoreId">
-            <summary>
-            The vector store identifier
-            </summary>
-        </member>
-        <member name="F:Bubba.StoreParameter._fileIds">
-            <summary>
-            The file ids
-            </summary>
-        </member>
-        <member name="F:Bubba.StoreParameter._name">
-            <summary>
-            The name
-            </summary>
-        </member>
-        <member name="F:Bubba.StoreParameter._limit">
-            <summary>
-            The limit
-            </summary>
-        </member>
-        <member name="F:Bubba.StoreParameter._metaData">
-            <summary>
-            The meta data
-            </summary>
-        </member>
-        <member name="M:Bubba.StoreParameter.#ctor">
-            <summary>
-            Initializes a new instance of the
-            <see cref="T:Bubba.StoreParameter"/> class.
-            </summary>
-            <inheritdoc />
-        </member>
-        <member name="P:Bubba.StoreParameter.FilePath">
-            <summary>
-            Gets or sets the file path.
-            </summary>
-            <value>
-            The file path.
-            </value>
-        </member>
-        <member name="P:Bubba.StoreParameter.VectorStoreId">
-            <summary>
-            Gets or sets the vector store identifier.
-            </summary>
-            <value>
-            The vector store identifier.
-            </value>
-        </member>
-        <member name="P:Bubba.StoreParameter.Limit">
-            <inheritdoc />
-            <summary>
-            THe number 'n' of responses generatred.
-            </summary>
-            <value>
-            The user identifier.
-            </value>
-        </member>
-        <member name="P:Bubba.StoreParameter.Model">
-            <summary>
-            Gets the chat model.
-            </summary>
-            <value>
-            The chat model.
-            </value>
-            <inheritdoc />
-        </member>
-        <member name="P:Bubba.StoreParameter.FileIds">
-            <inheritdoc />
-            <summary>
-            Gets or sets a value indicating whether this
-            <see cref="T:Bubba.ParameterBase" /> is store.
-            </summary>
-            <value>
-              <c>true</c> if store; otherwise, <c>false</c>.
-            </value>
-        </member>
-        <member name="P:Bubba.StoreParameter.Name">
-            <inheritdoc />
-            <summary>
-            Gets or sets a value indicating whether this
-            <see cref="T:Bubba.ParameterBase" /> is stream.
-            </summary>
-            <value>
-              <c>true</c> if stream; otherwise, <c>false</c>.
-            </value>
-        </member>
-        <member name="P:Bubba.StoreParameter.MetaData">
-            <summary>
-            Gets or sets the meta data.
-            </summary>
-            <value>
-            The meta data.
-            </value>
-        </member>
-        <member name="P:Bubba.StoreParameter.ResponseFormat">
-            <inheritdoc />
-            <summary>
-            Gets or sets the response format.
-            </summary>
-            <value>
-            The response format.
-            </value>
-        </member>
-        <member name="M:Bubba.StoreParameter.GetData">
-            <inheritdoc />
-            <summary>
-            Gets the data.
-            </summary>
-            <returns>
-            </returns>
-        </member>
-        <member name="M:Bubba.StoreParameter.ToString">
-            <summary>
-            Converts to string.
-            </summary>
-            <returns>
-            A <see cref="T:System.String" /> that represents this instance.
-            </returns>
-        </member>
         <member name="T:Bubba.TextParameter">
             <inheritdoc />
             <summary>
@@ -21554,6 +21424,136 @@
             </value>
         </member>
         <member name="M:Bubba.TranslationParameter.ToString">
+            <summary>
+            Converts to string.
+            </summary>
+            <returns>
+            A <see cref="T:System.String" /> that represents this instance.
+            </returns>
+        </member>
+        <member name="T:Bubba.VectorStoreParameter">
+            <inheritdoc />
+            <summary>
+            </summary>
+            <seealso cref="T:Bubba.GptParameter" />
+        </member>
+        <member name="F:Bubba.VectorStoreParameter._filePath">
+            <summary>
+            The file path
+            </summary>
+        </member>
+        <member name="F:Bubba.VectorStoreParameter._vectorStoreId">
+            <summary>
+            The vector store identifier
+            </summary>
+        </member>
+        <member name="F:Bubba.VectorStoreParameter._fileIds">
+            <summary>
+            The file ids
+            </summary>
+        </member>
+        <member name="F:Bubba.VectorStoreParameter._name">
+            <summary>
+            The name
+            </summary>
+        </member>
+        <member name="F:Bubba.VectorStoreParameter._limit">
+            <summary>
+            The limit
+            </summary>
+        </member>
+        <member name="F:Bubba.VectorStoreParameter._metaData">
+            <summary>
+            The meta data
+            </summary>
+        </member>
+        <member name="M:Bubba.VectorStoreParameter.#ctor">
+            <summary>
+            Initializes a new instance of the
+            <see cref="T:Bubba.VectorStoreParameter"/> class.
+            </summary>
+            <inheritdoc />
+        </member>
+        <member name="P:Bubba.VectorStoreParameter.FilePath">
+            <summary>
+            Gets or sets the file path.
+            </summary>
+            <value>
+            The file path.
+            </value>
+        </member>
+        <member name="P:Bubba.VectorStoreParameter.VectorStoreId">
+            <summary>
+            Gets or sets the vector store identifier.
+            </summary>
+            <value>
+            The vector store identifier.
+            </value>
+        </member>
+        <member name="P:Bubba.VectorStoreParameter.Limit">
+            <inheritdoc />
+            <summary>
+            THe number 'n' of responses generatred.
+            </summary>
+            <value>
+            The user identifier.
+            </value>
+        </member>
+        <member name="P:Bubba.VectorStoreParameter.Model">
+            <summary>
+            Gets the chat model.
+            </summary>
+            <value>
+            The chat model.
+            </value>
+            <inheritdoc />
+        </member>
+        <member name="P:Bubba.VectorStoreParameter.FileIds">
+            <inheritdoc />
+            <summary>
+            Gets or sets a value indicating whether this
+            <see cref="T:Bubba.ParameterBase" /> is store.
+            </summary>
+            <value>
+              <c>true</c> if store; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:Bubba.VectorStoreParameter.Name">
+            <inheritdoc />
+            <summary>
+            Gets or sets a value indicating whether this
+            <see cref="T:Bubba.ParameterBase" /> is stream.
+            </summary>
+            <value>
+              <c>true</c> if stream; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:Bubba.VectorStoreParameter.MetaData">
+            <summary>
+            Gets or sets the meta data.
+            </summary>
+            <value>
+            The meta data.
+            </value>
+        </member>
+        <member name="P:Bubba.VectorStoreParameter.ResponseFormat">
+            <inheritdoc />
+            <summary>
+            Gets or sets the response format.
+            </summary>
+            <value>
+            The response format.
+            </value>
+        </member>
+        <member name="M:Bubba.VectorStoreParameter.GetData">
+            <inheritdoc />
+            <summary>
+            Gets the data.
+            </summary>
+            <returns>
+            </returns>
+        </member>
+        <member name="M:Bubba.VectorStoreParameter.ToString">
             <summary>
             Converts to string.
             </summary>
@@ -26390,7 +26390,7 @@
         </member>
         <member name="P:Bubba.Properties.OpenAI.BubbaKey">
             <summary>
-              Looks up a localized string similar to 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.
+              Looks up a localized string similar to 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.
             </summary>
         </member>
         <member name="P:Bubba.Properties.OpenAI.BubbaProject">
@@ -33377,128 +33377,129 @@
             InitializeComponent
             </summary>
         </member>
-        <member name="T:Bubba.GptUpload">
+        <member name="T:Bubba.GptFileDialog">
             <inheritdoc />
             <summary>
-            Interaction logic for GptUpload.xaml
+            Interaction logic for GptFileDialog.xaml
             </summary>
             <summary>
-            GptUpload
+            GptFileDialog
             </summary>
         </member>
-        <member name="F:Bubba.GptUpload._busy">
+        <member name="F:Bubba.GptFileDialog._busy">
             <summary>
             The busy
             </summary>
         </member>
-        <member name="F:Bubba.GptUpload._count">
+        <member name="F:Bubba.GptFileDialog._count">
             <summary>
             The count
             </summary>
         </member>
-        <member name="F:Bubba.GptUpload._data">
+        <member name="F:Bubba.GptFileDialog._data">
             <summary>
             The data
             </summary>
         </member>
-        <member name="F:Bubba.GptUpload._duration">
+        <member name="F:Bubba.GptFileDialog._duration">
             <summary>
             The duration
             </summary>
         </member>
-        <member name="F:Bubba.GptUpload._extension">
+        <member name="F:Bubba.GptFileDialog._extension">
             <summary>
             The extension
             </summary>
         </member>
-        <member name="F:Bubba.GptUpload._fileExtension">
+        <member name="F:Bubba.GptFileDialog._fileExtension">
             <summary>
             The file extension
             </summary>
         </member>
-        <member name="F:Bubba.GptUpload._filePaths">
+        <member name="F:Bubba.GptFileDialog._filePaths">
             <summary>
             The file paths
             </summary>
         </member>
-        <member name="F:Bubba.GptUpload._image">
+        <member name="F:Bubba.GptFileDialog._image">
             <summary>
             The image
             </summary>
         </member>
-        <member name="F:Bubba.GptUpload._initialDirectory">
+        <member name="F:Bubba.GptFileDialog._initialDirectory">
             <summary>
             The initial directory
             </summary>
         </member>
-        <member name="F:Bubba.GptUpload._initialPaths">
+        <member name="F:Bubba.GptFileDialog._initialPaths">
             <summary>
             The initial dir paths
             </summary>
         </member>
-        <member name="F:Bubba.GptUpload._entry">
+        <member name="F:Bubba.GptFileDialog._entry">
             <summary>
             The locked object
             </summary>
         </member>
-        <member name="F:Bubba.GptUpload._radioButtons">
+        <member name="F:Bubba.GptFileDialog._radioButtons">
             <summary>
             The radio buttons
             </summary>
         </member>
-        <member name="F:Bubba.GptUpload._seconds">
+        <member name="F:Bubba.GptFileDialog._seconds">
             <summary>
             The seconds
             </summary>
         </member>
-        <member name="F:Bubba.GptUpload._selectedFile">
+        <member name="F:Bubba.GptFileDialog._selectedFile">
             <summary>
             The selected file
             </summary>
         </member>
-        <member name="F:Bubba.GptUpload._selectedPath">
+        <member name="F:Bubba.GptFileDialog._selectedPath">
             <summary>
             The selected path
             </summary>
         </member>
-        <member name="F:Bubba.GptUpload._statusUpdate">
+        <member name="F:Bubba.GptFileDialog._statusUpdate">
             <summary>
             The status update
             </summary>
         </member>
-        <member name="F:Bubba.GptUpload._theme">
+        <member name="F:Bubba.GptFileDialog._theme">
             <summary>
             The theme
             </summary>
         </member>
-        <member name="F:Bubba.GptUpload._time">
+        <member name="F:Bubba.GptFileDialog._time">
             <summary>
             The time
             </summary>
         </member>
-        <member name="F:Bubba.GptUpload._timer">
+        <member name="F:Bubba.GptFileDialog._timer">
             <summary>
             The timer
             </summary>
         </member>
-        <member name="F:Bubba.GptUpload._timerCallback">
+        <member name="F:Bubba.GptFileDialog._timerCallback">
             <summary>
             The timer
             </summary>
         </member>
-        <member name="E:Bubba.GptUpload.PropertyChanged">
+        <member name="E:Bubba.GptFileDialog.PropertyChanged">
             <inheritdoc />
             <summary>
             Occurs when a property value changes.
             </summary>
         </member>
-        <member name="M:Bubba.GptUpload.#ctor">
+        <member name="M:Bubba.GptFileDialog.#ctor">
+            <inheritdoc />
             <summary>
             Initializes a new instance of the
-            <see cref="T:Bubba.GptUpload"/> class.
+            <see cref="T:Bubba.GptFileDialog" /> class.
             </summary>
         </member>
-        <member name="P:Bubba.GptUpload.SelectedPath">
+        <member name="P:Bubba.GptFileDialog.SelectedPath">
             <summary>
             Gets or sets the selected path.
             </summary>
@@ -33506,7 +33507,7 @@
             The selected path.
             </value>
         </member>
-        <member name="P:Bubba.GptUpload.SelectedFile">
+        <member name="P:Bubba.GptFileDialog.SelectedFile">
             <summary>
             Gets or sets the selected file.
             </summary>
@@ -33514,7 +33515,7 @@
             The selected file.
             </value>
         </member>
-        <member name="P:Bubba.GptUpload.IsBusy">
+        <member name="P:Bubba.GptFileDialog.IsBusy">
             <summary>
             Gets a value indicating whether this instance is busy.
             </summary>
@@ -33524,64 +33525,64 @@
             <c> false </c>
             </value>
         </member>
-        <member name="M:Bubba.GptUpload.RegisterCallbacks">
+        <member name="M:Bubba.GptFileDialog.RegisterCallbacks">
             <summary>
             Initializes the callbacks.
             </summary>
         </member>
-        <member name="M:Bubba.GptUpload.InitializeDelegates">
+        <member name="M:Bubba.GptFileDialog.InitializeDelegates">
             <summary>
             Initializes the delegates.
             </summary>
         </member>
-        <member name="M:Bubba.GptUpload.InitializeLabels">
+        <member name="M:Bubba.GptFileDialog.InitializeLabels">
             <summary>
             Initializes the labels.
             </summary>
         </member>
-        <member name="M:Bubba.GptUpload.InitializeTimer">
+        <member name="M:Bubba.GptFileDialog.InitializeTimer">
             <summary>
             Initializes the timer.
             </summary>
         </member>
-        <member name="M:Bubba.GptUpload.InitializeButtons">
+        <member name="M:Bubba.GptFileDialog.InitializeButtons">
             <summary>
             Initializes the buttons.
             </summary>
         </member>
-        <member name="M:Bubba.GptUpload.InvokeIf(System.Action)">
+        <member name="M:Bubba.GptFileDialog.InvokeIf(System.Action)">
             <summary>
             Invokes if needed.
             </summary>
             <param name="action">The action.</param>
         </member>
-        <member name="M:Bubba.GptUpload.InvokeIf(System.Action{System.Object})">
+        <member name="M:Bubba.GptFileDialog.InvokeIf(System.Action{System.Object})">
             <summary>
             Invokes if.
             </summary>
             <param name="action">The action.</param>
         </member>
-        <member name="M:Bubba.GptUpload.Busy">
+        <member name="M:Bubba.GptFileDialog.Busy">
             <summary>
             Begins the initialize.
             </summary>
         </member>
-        <member name="M:Bubba.GptUpload.Chill">
+        <member name="M:Bubba.GptFileDialog.Chill">
             <summary>
             Ends the initialize.
             </summary>
         </member>
-        <member name="M:Bubba.GptUpload.ClearCallbacks">
+        <member name="M:Bubba.GptFileDialog.ClearCallbacks">
             <summary>
             Clears the callbacks.
             </summary>
         </member>
-        <member name="M:Bubba.GptUpload.ClearDelegates">
+        <member name="M:Bubba.GptFileDialog.ClearDelegates">
             <summary>
             Clears the delegates.
             </summary>
         </member>
-        <member name="M:Bubba.GptUpload.SendNotification(System.String)">
+        <member name="M:Bubba.GptFileDialog.SendNotification(System.String)">
             <summary>
             Sends the notification.
             </summary>
@@ -33589,32 +33590,32 @@
             The message.
             </param>
         </member>
-        <member name="M:Bubba.GptUpload.SendMessage(System.String)">
+        <member name="M:Bubba.GptFileDialog.SendMessage(System.String)">
             <summary>
             Shows the splash message.
             </summary>
         </member>
-        <member name="M:Bubba.GptUpload.UpdateStatus">
+        <member name="M:Bubba.GptFileDialog.UpdateStatus">
             <summary>
             Updates the status.
             </summary>
         </member>
-        <member name="M:Bubba.GptUpload.UpdateStatus(System.Object)">
+        <member name="M:Bubba.GptFileDialog.UpdateStatus(System.Object)">
             <summary>
             Updates the status.
             </summary>
         </member>
-        <member name="M:Bubba.GptUpload.SetImage">
+        <member name="M:Bubba.GptFileDialog.SetImage">
             <summary>
             Sets the extension.
             </summary>
         </member>
-        <member name="M:Bubba.GptUpload.RegisterRadioButtonEvents">
+        <member name="M:Bubba.GptFileDialog.RegisterRadioButtonEvents">
             <summary>
             Sets the RadioButton events.
             </summary>
         </member>
-        <member name="M:Bubba.GptUpload.GetCheckBoxes">
+        <member name="M:Bubba.GptFileDialog.GetCheckBoxes">
             <summary>
             Gets the radio buttons.
             </summary>
@@ -33622,30 +33623,30 @@
             List( MetroRadioButton )
             </returns>
         </member>
-        <member name="M:Bubba.GptUpload.PopulateListBox">
+        <member name="M:Bubba.GptFileDialog.PopulateListBox">
             <summary>
             Populates the ListBox.
             </summary>
         </member>
-        <member name="M:Bubba.GptUpload.PopulateListBox(System.Collections.Generic.IEnumerable{System.String})">
+        <member name="M:Bubba.GptFileDialog.PopulateListBox(System.Collections.Generic.IEnumerable{System.String})">
             <summary>
             Populates the ListBox.
             </summary>
             <param name="filePaths">The file paths.</param>
         </member>
-        <member name="M:Bubba.GptUpload.CreateListViewFilePaths">
+        <member name="M:Bubba.GptFileDialog.CreateListViewFilePaths">
             <summary>
             Gets the ListView paths.
             </summary>
             <returns></returns>
         </member>
-        <member name="M:Bubba.GptUpload.GetFilePaths">
+        <member name="M:Bubba.GptFileDialog.GetFilePaths">
             <summary>
             Gets the file paths.
             </summary>
             <returns></returns>
         </member>
-        <member name="M:Bubba.GptUpload.CreateInitialDirectoryPaths">
+        <member name="M:Bubba.GptFileDialog.CreateInitialDirectoryPaths">
             <summary>
             Gets the initial dir paths.
             </summary>
@@ -33653,7 +33654,7 @@
             IList(string)
             </returns>
         </member>
-        <member name="M:Bubba.GptUpload.OnLoaded(System.Object,System.EventArgs)">
+        <member name="M:Bubba.GptFileDialog.OnLoaded(System.Object,System.EventArgs)">
             <summary>
             Called when [load].
             </summary>
@@ -33661,27 +33662,27 @@
             <param name="e">The <see cref="T:System.EventArgs"/>
             instance containing the event data.</param>
         </member>
-        <member name="M:Bubba.GptUpload.OnRadioButtonSelected(System.Object,System.EventArgs)">
+        <member name="M:Bubba.GptFileDialog.OnRadioButtonSelected(System.Object,System.EventArgs)">
             <summary>
             Called when [RadioButton selected].
             </summary>
             <param name="sender">The sender.</param>
             <param name = "e" > </param>
         </member>
-        <member name="M:Bubba.GptUpload.OnClosing(System.Object,System.ComponentModel.CancelEventArgs)">
+        <member name="M:Bubba.GptFileDialog.OnClosing(System.Object,System.ComponentModel.CancelEventArgs)">
             <summary>
             Called when [closing].
             </summary>
             <param name="sender">The sender.</param>
             <param name="e">The <see cref="T:System.Windows.RoutedEventArgs"/> instance containing the event data.</param>
         </member>
-        <member name="M:Bubba.GptUpload.OnPropertyChanged(System.String)">
+        <member name="M:Bubba.GptFileDialog.OnPropertyChanged(System.String)">
             <summary>
             Called when [property changed].
             </summary>
             <param name="propertyName">Name of the property.</param>
         </member>
-        <member name="M:Bubba.GptUpload.Dispose">
+        <member name="M:Bubba.GptFileDialog.Dispose">
             <inheritdoc />
             <summary>
             Performs application-defined tasks
@@ -33689,7 +33690,7 @@
             or resetting unmanaged resources.
             </summary>
         </member>
-        <member name="M:Bubba.GptUpload.Dispose(System.Boolean)">
+        <member name="M:Bubba.GptFileDialog.Dispose(System.Boolean)">
             <summary>
             Releases unmanaged and - optionally - managed resources.
             </summary>
@@ -33700,13 +33701,13 @@
             <c>false</c> to release only unmanaged resources.
             </param>
         </member>
-        <member name="M:Bubba.GptUpload.Fail(System.Exception)">
+        <member name="M:Bubba.GptFileDialog.Fail(System.Exception)">
             <summary>
             Fails the specified ex.
             </summary>
             <param name="ex">The ex.</param>
         </member>
-        <member name="M:Bubba.GptUpload.InitializeComponent">
+        <member name="M:Bubba.GptFileDialog.InitializeComponent">
             <summary>
             InitializeComponent
             </summary>

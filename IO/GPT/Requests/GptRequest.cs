@@ -1,10 +1,10 @@
 ﻿// ******************************************************************************************
 //     Assembly:                Bubba
 //     Author:                  Terry D. Eppler
-//     Created:                 01-09-2025
+//     Created:                 01-12-2025
 // 
 //     Last Modified By:        Terry D. Eppler
-//     Last Modified On:        01-09-2025
+//     Last Modified On:        01-12-2025
 // ******************************************************************************************
 // <copyright file="GptRequest.cs" company="Terry D. Eppler">
 //    Bubba is a small and simple windows (wpf) application for interacting with the OpenAI API
@@ -71,6 +71,16 @@ namespace Bubba
         /// </summary>
         private protected IList<string> _stop;
 
+        /// <summary>
+        /// The modalities
+        /// </summary>
+        private protected string _modalities;
+
+        /// <summary>
+        /// The response format
+        /// </summary>
+        private protected string _responseFormat;
+
         /// <inheritdoc />
         /// <summary>
         /// Initializes a new instance of the
@@ -88,6 +98,8 @@ namespace Bubba
             _temperature = 0.18;
             _maximumTokens = 2048;
             _number = 1;
+            _responseFormat = "text";
+            _modalities = "['text','audio']";
         }
 
         /// <inheritdoc />
@@ -101,7 +113,7 @@ namespace Bubba
         public GptRequest( string system, string user, IGptParameter parameter )
         {
             _apiKey = OpenAI.BubbaKey;
-            _stop = new List<string>();
+            _stop = new List<string>( );
             _number = parameter.Number;
             _store = parameter.Store;
             _stream = parameter.Stream;
@@ -110,6 +122,7 @@ namespace Bubba
             _topPercent = parameter.TopPercent;
             _temperature = parameter.Temperature;
             _maximumTokens = parameter.MaximumTokens;
+            _responseFormat = parameter.ResponseFormat;
         }
 
         /// <inheritdoc />
@@ -176,7 +189,7 @@ namespace Bubba
         /// <value>
         /// The stop sequences.
         /// </value>
-        [JsonProperty("stop")]
+        [ JsonProperty( "stop" ) ]
         public IList<string> Stop
         {
             get
@@ -185,10 +198,10 @@ namespace Bubba
             }
             set
             {
-                if(_stop != value)
+                if( _stop != value )
                 {
                     _stop = value;
-                    OnPropertyChanged(nameof(Stop));
+                    OnPropertyChanged( nameof( Stop ) );
                 }
             }
         }
@@ -213,6 +226,52 @@ namespace Bubba
                 {
                     _httpClient = value;
                     OnPropertyChanged( nameof( HttpClient ) );
+                }
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the modalities.
+        /// </summary>
+        /// <value>
+        /// The modalities.
+        /// </value>
+        [ JsonProperty( "modalities" ) ]
+        public string Modalities
+        {
+            get
+            {
+                return _modalities;
+            }
+            set
+            {
+                if( _modalities != value )
+                {
+                    _modalities = value;
+                    OnPropertyChanged( nameof( Modalities ) );
+                }
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the response format.
+        /// </summary>
+        /// <value>
+        /// The response format.
+        /// </value>
+        [ JsonProperty( "response_format" ) ]
+        public string ResponseFormat
+        {
+            get
+            {
+                return _responseFormat;
+            }
+            set
+            {
+                if( _responseFormat != value )
+                {
+                    _responseFormat = value;
+                    OnPropertyChanged( nameof( ResponseFormat ) );
                 }
             }
         }
@@ -331,6 +390,7 @@ namespace Bubba
         {
             try
             {
+                _data.Add( "model", _model );
                 _data.Add( "n", _number );
                 _data.Add( "max_completion_tokens", _maximumTokens );
                 _data.Add( "store", _store );
@@ -339,7 +399,11 @@ namespace Bubba
                 _data.Add( "frequency_penalty", _frequencyPenalty );
                 _data.Add( "presence_penalty", _presencePenalty );
                 _data.Add( "top_p", _topPercent );
+                _data.Add( "response_format", _responseFormat );
+                _stop.Add( "#" );
+                _stop.Add( ";" );
                 _data.Add( "stop", _stop );
+                _data.Add( "modalities", _modalities );
                 return _data?.Any( ) == true
                     ? _data
                     : default( IDictionary<string, object> );

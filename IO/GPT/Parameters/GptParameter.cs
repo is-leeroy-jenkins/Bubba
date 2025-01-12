@@ -1,10 +1,10 @@
 ﻿// ******************************************************************************************
 //     Assembly:                Bubba
 //     Author:                  Terry D. Eppler
-//     Created:                 01-08-2025
+//     Created:                 01-11-2025
 // 
 //     Last Modified By:        Terry D. Eppler
-//     Last Modified On:        01-08-2025
+//     Last Modified On:        01-11-2025
 // ******************************************************************************************
 // <copyright file="GptParameter.cs" company="Terry D. Eppler">
 //    Bubba is a small and simple windows (wpf) application for interacting with the OpenAI API
@@ -45,6 +45,7 @@ namespace Bubba
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
     using System.Linq;
+    using Newtonsoft.Json;
 
     /// <inheritdoc />
     /// <summary>
@@ -54,6 +55,11 @@ namespace Bubba
     [ SuppressMessage( "ReSharper", "PreferConcreteValueOverDefault" ) ]
     public class GptParameter : ParameterBase, IGptParameter
     {
+        /// <summary>
+        /// The modalities
+        /// </summary>
+        private protected string _modalities;
+
         /// <inheritdoc />
         /// <summary>
         /// Initializes a new instance of the
@@ -69,6 +75,7 @@ namespace Bubba
             _frequencyPenalty = 0.00;
             _presencePenalty = 0.00;
             _maximumTokens = 2048;
+            _stop = new List<string>( );
         }
 
         /// <inheritdoc />
@@ -95,12 +102,35 @@ namespace Bubba
         }
 
         /// <summary>
+        /// Gets the modalities.
+        /// </summary>
+        /// <value>
+        /// The modalities.
+        /// </value>
+        public string Modalities
+        {
+            get
+            {
+                return _modalities;
+            }
+            set
+            {
+                if(_modalities != value)
+                {
+                    _modalities = value;
+                    OnPropertyChanged(nameof(Modalities));
+                }
+            }
+        }
+
+        /// <summary>
         /// Gets the chat model.
         /// </summary>
         /// <value>
         /// The chat model.
         /// </value>
         /// <inheritdoc />
+        [ JsonProperty( "model" ) ]
         public override string Model
         {
             get
@@ -125,6 +155,7 @@ namespace Bubba
         /// <value>
         ///   <c>true</c> if store; otherwise, <c>false</c>.
         /// </value>
+        [ JsonProperty( "store" ) ]
         public override bool Store
         {
             get
@@ -149,6 +180,7 @@ namespace Bubba
         /// <value>
         ///   <c>true</c> if stream; otherwise, <c>false</c>.
         /// </value>
+        [ JsonProperty( "stream" ) ]
         public override bool Stream
         {
             get
@@ -174,6 +206,7 @@ namespace Bubba
         /// <value>
         /// The temperature.
         /// </value>
+        [ JsonProperty( "temperature" ) ]
         public override double Temperature
         {
             get
@@ -192,6 +225,31 @@ namespace Bubba
 
         /// <inheritdoc />
         /// <summary>
+        /// An upper bound for the number of tokens
+        /// that can be generated for a completion
+        /// </summary>
+        /// <value>
+        /// The maximum tokens.
+        /// </value>
+        [ JsonProperty( "max_completion_tokens" ) ]
+        public override int MaximumTokens
+        {
+            get
+            {
+                return _maximumTokens;
+            }
+            set
+            {
+                if( _maximumTokens != value )
+                {
+                    _maximumTokens = value;
+                    OnPropertyChanged( nameof( MaximumTokens ) );
+                }
+            }
+        }
+
+        /// <inheritdoc />
+        /// <summary>
         /// A number between -2.0 and 2.0. Positive values penalize new
         /// tokens based on their existing frequency in the text so far,
         /// decreasing the model's likelihood to repeat the same line verbatim.
@@ -199,6 +257,7 @@ namespace Bubba
         /// <value>
         /// The frequency.
         /// </value>
+        [ JsonProperty( "frequency_penalty" ) ]
         public override double FrequencyPenalty
         {
             get
@@ -224,6 +283,7 @@ namespace Bubba
         /// <value>
         /// The presence.
         /// </value>
+        [ JsonProperty( "presence_penalty" ) ]
         public override double PresencePenalty
         {
             get
@@ -252,6 +312,7 @@ namespace Bubba
         /// <value>
         /// The top percent.
         /// </value>
+        [ JsonProperty( "top_p" ) ]
         public override double TopPercent
         {
             get
@@ -276,7 +337,7 @@ namespace Bubba
         {
             try
             {
-                _data.Add( "number", _number );
+                _data.Add( "n", _number );
                 _data.Add( "max_completion_tokens", _maximumTokens );
                 _data.Add( "store", _store );
                 _data.Add( "stream", _stream );
@@ -284,6 +345,9 @@ namespace Bubba
                 _data.Add( "frequency_penalty", _frequencyPenalty );
                 _data.Add( "presence_penalty", _presencePenalty );
                 _data.Add( "top_p", _topPercent );
+                _stop.Add( "#" );
+                _stop.Add( ";" );
+                _data.Add( "stop", _stop );
                 return _data?.Any( ) == true
                     ? _data
                     : default( IDictionary<string, object> );

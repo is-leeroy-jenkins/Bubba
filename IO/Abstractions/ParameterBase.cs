@@ -138,6 +138,11 @@ namespace Bubba
         private protected string _assistantPrompt;
 
         /// <summary>
+        /// The stop
+        /// </summary>
+        private protected IList<string> _stop;
+
+        /// <summary>
         /// The data
         /// </summary>
         private protected IDictionary<string, object> _data;
@@ -228,6 +233,28 @@ namespace Bubba
                 {
                     _number = value;
                     OnPropertyChanged( nameof( Number ) );
+                }
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the stop.
+        /// </summary>
+        /// <value>
+        /// The stop.
+        /// </value>
+        public virtual IList<string> Stop
+        {
+            get
+            {
+                return _stop;
+            }
+            set
+            {
+                if(_stop != value)
+                {
+                    _stop = value;
+                    OnPropertyChanged(nameof(Stop));
                 }
             }
         }

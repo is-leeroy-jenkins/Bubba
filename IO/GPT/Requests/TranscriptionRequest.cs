@@ -1,10 +1,10 @@
 ﻿// ******************************************************************************************
 //     Assembly:                Bubba
 //     Author:                  Terry D. Eppler
-//     Created:                 01-10-2025
+//     Created:                 01-12-2025
 // 
 //     Last Modified By:        Terry D. Eppler
-//     Last Modified On:        01-10-2025
+//     Last Modified On:        01-12-2025
 // ******************************************************************************************
 // <copyright file="TranscriptionRequest.cs" company="Terry D. Eppler">
 //    Bubba is a small and simple windows (wpf) application for interacting with the OpenAI API
@@ -44,8 +44,12 @@ namespace Bubba
     using System;
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
+    using System.IO;
     using System.Linq;
     using System.Net.Http;
+    using System.Net.Http.Headers;
+    using System.Text.Json;
+    using System.Threading.Tasks;
     using Newtonsoft.Json;
     using Properties;
 
@@ -58,6 +62,7 @@ namespace Bubba
     [ SuppressMessage( "ReSharper", "PossibleUnintendedReferenceComparison" ) ]
     [ SuppressMessage( "ReSharper", "FieldCanBeMadeReadOnly.Global" ) ]
     [ SuppressMessage( "ReSharper", "ClassCanBeSealed.Global" ) ]
+    [ SuppressMessage( "ReSharper", "UseAwaitUsing" ) ]
     public class TranscriptionRequest : GptRequest
     {
         /// <summary>
@@ -74,16 +79,6 @@ namespace Bubba
         /// The audio data
         /// </summary>
         private protected byte[ ] _audioData;
-
-        /// <summary>
-        /// The response format
-        /// </summary>
-        private protected string _responseFormat;
-
-        /// <summary>
-        /// The modalities
-        /// </summary>
-        private protected IList<string> _modalities;
 
         /// <summary>
         /// The speed
@@ -107,6 +102,7 @@ namespace Bubba
             _temperature = 0.18;
             _number = 1;
             _speed = 1;
+            _modalities = "['text','audio']";
         }
 
         /// <inheritdoc />
@@ -252,78 +248,6 @@ namespace Bubba
             }
         }
 
-        /// <inheritdoc />
-        /// <summary>
-        /// Gets the end point.
-        /// </summary>
-        /// <value>
-        /// The end point.
-        /// </value>
-        public override string EndPoint
-        {
-            get
-            {
-                return _endPoint;
-            }
-            set
-            {
-                if( _endPoint != value )
-                {
-                    _endPoint = value;
-                    OnPropertyChanged( nameof( EndPoint ) );
-                }
-            }
-        }
-
-        /// <inheritdoc />
-        /// <summary>
-        /// THe number 'n' of responses returned by the API.
-        /// </summary>
-        /// <value>
-        /// The user identifier.
-        /// </value>
-        [ JsonProperty( "n" ) ]
-        public override int Number
-        {
-            get
-            {
-                return _number;
-            }
-            set
-            {
-                if( _number != value )
-                {
-                    _number = value;
-                    OnPropertyChanged( nameof( Number ) );
-                }
-            }
-        }
-
-        /// <inheritdoc />
-        /// <summary>
-        /// The format of the output, in one of these options:
-        /// json, text, srt, verbose_json, or vtt.
-        /// </summary>
-        /// <value>
-        /// The response format.
-        /// </value>
-        [ JsonProperty( "response_format" ) ]
-        public string ResponseFormat
-        {
-            get
-            {
-                return _responseFormat;
-            }
-            set
-            {
-                if( _responseFormat != value )
-                {
-                    _responseFormat = value;
-                    OnPropertyChanged( nameof( ResponseFormat ) );
-                }
-            }
-        }
-
         /// <summary>
         /// Gets or sets the input.
         /// </summary>
@@ -413,6 +337,48 @@ namespace Bubba
             }
         }
 
+        /// <summary>
+        /// Transcribes the audio asynchronous.
+        /// </summary>
+        /// <param name="filePath">
+        /// The file path.</param>
+        /// <returns></returns>
+        public async Task<string> TranscribeAudioAsync( string filePath )
+        {
+            using var _client = new HttpClient( );
+            _client.DefaultRequestHeaders.Authorization =
+                new AuthenticationHeaderValue( "Bearer", OpenAI.BubbaKey );
+
+            using var _fileStream = new FileStream( filePath, FileMode.Open, FileAccess.Read );
+            var _fileContent = new StreamContent( _fileStream );
+            _fileContent.Headers.ContentType = new MediaTypeHeaderValue( "audio/mpeg" );
+            var _formData = new MultipartFormDataContent
+            {
+                {
+                    _fileContent, "file", Path.GetFileName( filePath )
+                },
+                {
+                    new StringContent( "whisper-1" ), "model"
+                }
+            };
+
+            var _response = await _client.PostAsync( _endPoint, _formData );
+            _response.EnsureSuccessStatusCode( );
+            var _responseContent = await _response.Content.ReadAsStringAsync( );
+            return ParseTranscription( _responseContent );
+        }
+
+        /// <summary>
+        /// Parses the transcription.
+        /// </summary>
+        /// <param name="jsonResponse">The json response.</param>
+        /// <returns></returns>
+        private string ParseTranscription( string jsonResponse )
+        {
+            using var _document = JsonDocument.Parse( jsonResponse );
+            return _document.RootElement.GetProperty( "text" ).GetString( );
+        }
+
         /// <inheritdoc />
         /// <summary>
         /// Gets the data.
@@ -437,8 +403,6 @@ namespace Bubba
                 _data.Add( "endpoint", _endPoint );
                 _data.Add( "speed", _speed );
                 _data.Add( "language", _language );
-                _modalities.Add( "text" );
-                _modalities.Add( "audio" );
                 _data.Add( "modalities", _modalities );
                 if( !string.IsNullOrEmpty( _file ) )
                 {

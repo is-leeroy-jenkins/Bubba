@@ -65,7 +65,7 @@ namespace Bubba
         /// <summary>
         /// The file path
         /// </summary>
-        private protected string _file;
+        private protected object _file;
 
         /// <summary>
         /// The audio data
@@ -75,7 +75,7 @@ namespace Bubba
         /// <summary>
         /// The modalities
         /// </summary>
-        private protected IList<string> _modalities;
+        private protected string _modalities;
 
         /// <summary>
         /// The voice
@@ -104,8 +104,54 @@ namespace Bubba
             _endPoint = GptEndPoint.SpeechGeneration;
             _language = "en";
             _responseFormat = "mp3";
-            _modalities = new List<string>( );
+            _modalities = "['text', 'audio']";
             _voice = "fable";
+            _speed = 1;
+        }
+
+        /// <summary>
+        /// Gets the chat model.
+        /// </summary>
+        /// <value>
+        /// The chat model.
+        /// </value>
+        /// <inheritdoc />
+        public override string Model
+        {
+            get
+            {
+                return _model;
+            }
+            set
+            {
+                if(_model != value)
+                {
+                    _model = value;
+                    OnPropertyChanged(nameof(Model));
+                }
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the modalities.
+        /// </summary>
+        /// <value>
+        /// The modalities.
+        /// </value>
+        public string Modalities
+        {
+            get
+            {
+                return _modalities;
+            }
+            set
+            {
+                if(_modalities != value)
+                {
+                    _modalities = value;
+                    OnPropertyChanged(nameof(Modalities));
+                }
+            }
         }
 
         /// <summary>
@@ -202,7 +248,7 @@ namespace Bubba
         /// <value>
         /// The file path.
         /// </value>
-        public string File
+        public object File
         {
             get
             {
@@ -214,28 +260,6 @@ namespace Bubba
                 {
                     _file = value;
                     OnPropertyChanged( nameof( File ) );
-                }
-            }
-        }
-
-        /// <summary>
-        /// Gets or sets the audio data.
-        /// </summary>
-        /// <value>
-        /// The audio data.
-        /// </value>
-        public byte[ ] AudioData
-        {
-            get
-            {
-                return _audioData;
-            }
-            set
-            {
-                if( _audioData != value )
-                {
-                    _audioData = value;
-                    OnPropertyChanged( nameof( AudioData ) );
                 }
             }
         }
@@ -260,82 +284,6 @@ namespace Bubba
                     _responseFormat = value;
                     OnPropertyChanged( nameof( ResponseFormat ) );
                 }
-            }
-        }
-
-        /// <inheritdoc />
-        /// <summary>
-        /// Gets the data.
-        /// </summary>
-        /// <returns>
-        /// </returns>
-        public override IDictionary<string, object> GetData( )
-        {
-            try
-            {
-                _data.Add( "model", _model );
-                _data.Add( "number", _number );
-                _data.Add( "max_completion_tokens", _maximumTokens );
-                _data.Add( "store", _store );
-                _data.Add( "stream", _stream );
-                _data.Add( "temperature", _temperature );
-                _data.Add( "frequency_penalty", _frequencyPenalty );
-                _data.Add( "presence_penalty", _presencePenalty );
-                _data.Add( "top_p", _topPercent );
-                _data.Add( "response_format", _responseFormat );
-                _data.Add( "endpoint", _endPoint );
-                _modalities.Add( "text" );
-                _modalities.Add( "audio" );
-                _data.Add( "modalities", _modalities );
-                if( !string.IsNullOrEmpty( _file ) )
-                {
-                    _data.Add( "file", _file );
-                }
-
-                if( !string.IsNullOrEmpty( _input ) )
-                {
-                    _data.Add( "input", _input );
-                }
-
-                if( !string.IsNullOrEmpty( _language ) )
-                {
-                    _data.Add( "language", _language );
-                }
-
-                if( _audioData?.Any( ) == true )
-                {
-                    _data.Add( "audio_data", _audioData );
-                }
-
-                return _data?.Any( ) == true
-                    ? _data
-                    : default( IDictionary<string, object> );
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
-                return default( IDictionary<string, object> );
-            }
-        }
-
-        /// <summary>
-        /// Converts to string.
-        /// </summary>
-        /// <returns>
-        /// A <see cref="System.String" /> that represents this instance.
-        /// </returns>
-        public override string ToString( )
-        {
-            try
-            {
-                return _data?.Any( ) == true
-                    ? _data.ToJson( )
-                    : string.Empty;
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
-                return string.Empty;
             }
         }
     }

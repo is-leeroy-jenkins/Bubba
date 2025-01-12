@@ -47,14 +47,43 @@ namespace Bubba
     using System.Linq;
     using System.Text;
     using System.Threading.Tasks;
+    using Newtonsoft.Json;
+    using Properties;
 
     /// <inheritdoc />
     /// <summary>
     /// </summary>
     [ SuppressMessage( "ReSharper", "UnusedType.Global" ) ]
     [ SuppressMessage( "ReSharper", "PreferConcreteValueOverDefault" ) ]
+    [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
+    [ SuppressMessage( "ReSharper", "ClassCanBeSealed.Global" ) ]
     public class EmbeddingPayload : GptPayload
     {
+        /// <summary>
+        /// The file path
+        /// </summary>
+        private protected string _filePath;
+
+        /// <summary>
+        /// The input
+        /// </summary>
+        private protected string _input;
+
+        /// <summary>
+        /// The encoding format
+        /// </summary>
+        private protected string _encodingFormat;
+
+        /// <summary>
+        /// The dimensions
+        /// </summary>
+        private protected int _dimensions;
+
+        /// <summary>
+        /// The end point
+        /// </summary>
+        private protected string _endPoint;
+
         /// <summary>
         /// Initializes a new instance of the
         /// <see cref="EmbeddingPayload"/> class.
@@ -63,6 +92,127 @@ namespace Bubba
         public EmbeddingPayload( )
             : base( )
         {
+            _model = "text-embedding-3";
+            _endPoint = GptEndPoint.Embeddings;
+            _responseFormat = "text";
+            _encodingFormat = "float";
+        }
+
+        /// <summary>
+        /// Gets or sets the file path.
+        /// </summary>
+        /// <value>
+        /// The file path.
+        /// </value>
+        [ JsonProperty( "filepath" ) ]
+        public string FilePath
+        {
+            get
+            {
+                return _filePath;
+            }
+            set
+            {
+                if( _filePath != value )
+                {
+                    _filePath = value;
+                    OnPropertyChanged( nameof( FilePath ) );
+                }
+            }
+        }
+
+        /// <inheritdoc />
+        /// <summary>
+        /// Gets or sets the end point.
+        /// </summary>
+        /// <value>
+        /// The end point.
+        /// </value>
+        public string EndPoint
+        {
+            get
+            {
+                return _endPoint;
+            }
+            set
+            {
+                if( _endPoint != value )
+                {
+                    _endPoint = value;
+                    OnPropertyChanged( nameof( EndPoint ) );
+                }
+            }
+        }
+
+        /// <inheritdoc />
+        /// <summary>
+        /// Gets or sets the response format.
+        /// </summary>
+        /// <value>
+        /// The response format.
+        /// </value>
+        [ JsonProperty( "response_format" ) ]
+        public override string ResponseFormat
+        {
+            get
+            {
+                return _responseFormat;
+            }
+            set
+            {
+                if( _responseFormat != value )
+                {
+                    _responseFormat = value;
+                    OnPropertyChanged( nameof( ResponseFormat ) );
+                }
+            }
+        }
+
+        /// <summary>
+        /// Gets the chat model.
+        /// </summary>
+        /// <value>
+        /// The chat model.
+        /// </value>
+        /// <inheritdoc />
+        [ JsonProperty( "model" ) ]
+        public override string Model
+        {
+            get
+            {
+                return _model;
+            }
+            set
+            {
+                if( _model != value )
+                {
+                    _model = value;
+                    OnPropertyChanged( nameof( Model ) );
+                }
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the input.
+        /// </summary>
+        /// <value>
+        /// The input.
+        /// </value>
+        [ JsonProperty( "input" ) ]
+        public string Input
+        {
+            get
+            {
+                return _input;
+            }
+            set
+            {
+                if( _input != value )
+                {
+                    _input = value;
+                    OnPropertyChanged( nameof( Input ) );
+                }
+            }
         }
 
         /// <inheritdoc />

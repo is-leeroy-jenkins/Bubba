@@ -1,10 +1,10 @@
 ﻿// ******************************************************************************************
 //     Assembly:                Bubba
 //     Author:                  Terry D. Eppler
-//     Created:                 01-10-2025
+//     Created:                 01-12-2025
 // 
 //     Last Modified By:        Terry D. Eppler
-//     Last Modified On:        01-10-2025
+//     Last Modified On:        01-12-2025
 // ******************************************************************************************
 // <copyright file="ImageGenerationRequest.cs" company="Terry D. Eppler">
 //    Bubba is a small and simple windows (wpf) application for interacting with the OpenAI API
@@ -46,8 +46,13 @@ namespace Bubba
     using System.Diagnostics.CodeAnalysis;
     using System.Linq;
     using System.Net.Http;
+    using System.Net.Http.Headers;
+    using System.Text;
+    using System.Text.Json;
+    using System.Threading.Tasks;
     using Newtonsoft.Json;
     using Properties;
+    using JsonSerializer = System.Text.Json.JsonSerializer;
 
     /// <inheritdoc />
     /// <summary>
@@ -88,11 +93,11 @@ namespace Bubba
         {
             _entry = new object( );
             _httpClient = new HttpClient( );
-            _model = "dall-e-3";
+            _model = "dall-e-2";
             _style = "natural";
             _quality = "hd";
             _endPoint = GptEndPoint.ImageGeneration;
-            _size = "250X250";
+            _size = "512X512";
             _number = 1;
         }
 
@@ -351,16 +356,9 @@ namespace Bubba
                 _data.Add( "presence_penalty", _presencePenalty );
                 _data.Add( "top_p", _topPercent );
                 _data.Add( "response_format", _responseFormat );
-                if( !string.IsNullOrEmpty( _style ) )
-                {
-                    _data.Add( "style", _style );
-                }
-
-                if( !string.IsNullOrEmpty( _quality ) )
-                {
-                    _data.Add( "quality", _quality );
-                }
-
+                _data.Add( "style", _style );
+                _data.Add( "size", _size );
+                _data.Add( "quality", _quality );
                 if( !string.IsNullOrEmpty( _prompt ) )
                 {
                     _data.Add( "prompt", _prompt );
@@ -396,6 +394,51 @@ namespace Bubba
                 Fail( ex );
                 return string.Empty;
             }
+        }
+
+        /// <summary>
+        /// Generates the images asynchronous.
+        /// </summary>
+        /// <param name="prompt">The prompt.</param>
+        /// <param name="imageCount">The image count.</param>
+        /// <returns></returns>
+        public async Task<string[ ]> GenerateImagesAsync( string prompt, int imageCount = 1 )
+        {
+            using var _client = new HttpClient( );
+            _client.DefaultRequestHeaders.Authorization =
+                new AuthenticationHeaderValue( "Bearer", OpenAI.BubbaKey );
+
+            var _payload = new
+            {
+                prompt,
+                n = imageCount,
+                size = "512x512"
+            };
+
+            var _jsonPayload = JsonSerializer.Serialize( _payload );
+            var _content = new StringContent( _jsonPayload, Encoding.UTF8, "application/json" );
+            var _response = await _client.PostAsync( _endPoint, _content );
+            _response.EnsureSuccessStatusCode( );
+            var _responseContent = await _response.Content.ReadAsStringAsync( );
+            return ExtractImageData( _responseContent );
+        }
+
+        /// <summary>
+        /// Extracts the image urls.
+        /// </summary>
+        /// <param name="jsonResponse">The json response.</param>
+        /// <returns></returns>
+        private string[ ] ExtractImageData( string jsonResponse )
+        {
+            using var _document = JsonDocument.Parse( jsonResponse );
+            var _root = _document.RootElement.GetProperty( "data" );
+            var _urls = new List<string>( );
+            foreach( var _item in _root.EnumerateArray( ) )
+            {
+                _urls.Add( _item.GetProperty( "url" ).GetString( ) );
+            }
+
+            return _urls.ToArray( );
         }
     }
 }

@@ -7,7 +7,7 @@
     </ApplicationDefinition>
   </ItemGroup>
   <ItemGroup>
-    <Compile Update="UI\Views\Upload\GptUpload.xaml.cs">
+    <Compile Update="UI\Views\Upload\GptFileDialog.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="UI\Views\ChatWindow\ChatWindow.xaml.cs">
@@ -27,7 +27,7 @@
     <Page Update="UI\Themes\Slider\Slider.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="UI\Views\Upload\GptUpload.xaml">
+    <Page Update="UI\Views\Upload\GptFileDialog.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="UI\Views\Document\DocumentWindow.xaml">

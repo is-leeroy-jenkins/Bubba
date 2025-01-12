@@ -6,7 +6,7 @@
 //     Last Modified By:        Terry D. Eppler
 //     Last Modified On:        01-11-2025
 // ******************************************************************************************
-// <copyright file="Payload.cs" company="Terry D. Eppler">
+// <copyright file="GptPayload.cs" company="Terry D. Eppler">
 //    Bubba is a small and simple windows (wpf) application for interacting with the OpenAI API
 //    that's developed in C-Sharp under the MIT license.C#.
 // 
@@ -35,7 +35,7 @@
 //    You can contact me at:  terryeppler@gmail.com or eppler.terry@epa.gov
 // </copyright>
 // <summary>
-//   Payload.cs
+//   GptPayload.cs
 // </summary>
 // ******************************************************************************************
 
@@ -63,6 +63,11 @@ namespace Bubba
     [ SuppressMessage( "ReSharper", "ClassCanBeSealed.Global" ) ]
     public class GptPayload : PayloadBase, IGptPayload
     {
+        /// <summary>
+        /// The modalities
+        /// </summary>
+        private protected string _modalities;
+
         /// <inheritdoc />
         /// <summary>
         /// Initializes a new instance of the
@@ -80,6 +85,7 @@ namespace Bubba
             _stream = true;
             _stop = new List<string>( );
             _messages = new List<IGptMessage>( );
+            _modalities = "['text','audio']";
             _data = new Dictionary<string, object>( );
         }
 
@@ -87,8 +93,6 @@ namespace Bubba
         /// Initializes a new instance of the <see cref="GptPayload"/> class.
         /// </summary>
         /// <param name = "userPrompt" > </param>
-        /// <param name="model">The model.</param>
-        /// <param name="id">The identifier.</param>
         /// <param name="frequency">The frequency penalty.</param>
         /// <param name="presence">The presence penalty.</param>
         /// <param name="temperature">The temperature.</param>
@@ -96,11 +100,10 @@ namespace Bubba
         /// <param name="maxTokens">The maximum tokens.</param>
         /// <param name="store">if set to <c>true</c> [store].</param>
         /// <param name="stream">if set to <c>true</c> [stream].</param>
-        public GptPayload( string userPrompt, string model = "gpt-4o-mini", double frequency = 0.00,
-            double presence = 0.00, double temperature = 0.18, double topPercent = 0.11,
-            int maxTokens = 2048, bool store = false, bool stream = true )
+        public GptPayload( string userPrompt, double frequency = 0.00, double presence = 0.00,
+            double temperature = 0.18, double topPercent = 0.11, int maxTokens = 2048,
+            bool store = false, bool stream = true )
         {
-            _model = model;
             _userPrompt = userPrompt;
             _temperature = temperature;
             _maximumTokens = maxTokens;
@@ -108,8 +111,9 @@ namespace Bubba
             _presencePenalty = presence;
             _store = store;
             _stream = stream;
-            _stop = new List<string>();
-            _messages = new List<IGptMessage>();
+            _topPercent = topPercent;
+            _stop = new List<string>( );
+            _messages = new List<IGptMessage>( );
             _data = new Dictionary<string, object>( );
         }
 
@@ -121,7 +125,6 @@ namespace Bubba
         /// <param name="config">The configuration.</param>
         public GptPayload( string userPrompt, GptParameter config )
         {
-            _model = config.Model;
             _userPrompt = userPrompt;
             _temperature = config.Temperature;
             _maximumTokens = config.MaximumTokens;
@@ -129,6 +132,7 @@ namespace Bubba
             _presencePenalty = config.PresencePenalty;
             _store = config.Store;
             _stream = config.Stream;
+            _topPercent = config.TopPercent;
             _stop = new List<string>( );
             _data = new Dictionary<string, object>( );
         }
@@ -141,7 +145,6 @@ namespace Bubba
         /// <param name="gptPayload">The payload.</param>
         public GptPayload( GptPayload gptPayload )
         {
-            _model = gptPayload.Model;
             _userPrompt = gptPayload.UserPrompt;
             _temperature = gptPayload.Temperature;
             _maximumTokens = gptPayload.MaximumTokens;
@@ -181,14 +184,39 @@ namespace Bubba
         }
 
         /// <summary>
+        /// Gets the chat model.
+        /// </summary>
+        /// <value>
+        /// The chat model.
+        /// </value>
+        /// <inheritdoc />
+        [ JsonProperty( "model" ) ]
+        public override string Model
+        {
+            get
+            {
+                return _model;
+            }
+            set
+            {
+                if( _model != value )
+                {
+                    _model = value;
+                    OnPropertyChanged( nameof( Model ) );
+                }
+            }
+        }
+
+        /// <inheritdoc />
+        /// <summary>
         /// Gets or sets a value indicating whether this
-        /// <see cref="ParameterBase"/> is store.
+        /// <see cref="T:Bubba.ParameterBase" /> is store.
         /// </summary>
         /// <value>
         ///   <c>true</c> if store; otherwise, <c>false</c>.
         /// </value>
         [ JsonProperty( "store" ) ]
-        public bool Store
+        public virtual bool Store
         {
             get
             {
@@ -204,15 +232,16 @@ namespace Bubba
             }
         }
 
+        /// <inheritdoc />
         /// <summary>
         /// Gets or sets a value indicating whether this
-        /// <see cref="ParameterBase"/> is stream.
+        /// <see cref="T:Bubba.ParameterBase" /> is stream.
         /// </summary>
         /// <value>
         ///   <c>true</c> if stream; otherwise, <c>false</c>.
         /// </value>
         [ JsonProperty( "stream" ) ]
-        public bool Stream
+        public virtual bool Stream
         {
             get
             {
@@ -228,44 +257,160 @@ namespace Bubba
             }
         }
 
+        /// <inheritdoc />
         /// <summary>
-        /// Fors the text generation.
-        /// A method to construct other reusable default payloads if required
+        /// A number between 0.0 and 2.0   between 0 and 2.
+        /// Higher values like 0.8 will make the output more random,
+        /// while lower values like 0.2 will make it more focused and deterministic.
         /// </summary>
-        /// <returns>
-        /// Payload
-        /// </returns>
-        public GptPayload ForTextGeneration( )
+        /// <value>
+        /// The temperature.
+        /// </value>
+        [ JsonProperty( "temperature" ) ]
+        public override double Temperature
         {
-            return new GptPayload
+            get
             {
-                Model = _model,
-                UserPrompt = _systemPrompt,
-                MaximumTokens = _maximumTokens,
-                Temperature = _temperature,
-                FrequencyPenalty = _frequencyPenalty,
-                PresencePenalty = _presencePenalty,
-                Store = _store,
-                Stream = _stream,
-                ResponseFormat = "text"
-            };
+                return _temperature;
+            }
+            set
+            {
+                if( _temperature != value )
+                {
+                    _temperature = value;
+                    OnPropertyChanged( nameof( Temperature ) );
+                }
+            }
         }
 
-        // A method to easily set up image generation specifics
+        /// <inheritdoc />
         /// <summary>
-        /// Fors the image generation.
+        /// An upper bound for the number of tokens
+        /// that can be generated for a completion
         /// </summary>
-        /// <returns>
-        /// </returns>
-        public GptPayload ForImageGeneration( )
+        /// <value>
+        /// The maximum tokens.
+        /// </value>
+        [ JsonProperty( "max_completion_tokens" ) ]
+        public override int MaximumTokens
         {
-            return new GptPayload
+            get
             {
-                UserPrompt = _systemPrompt,
-                Size = _size,
-                Number = _number,
-                ResponseFormat = "url"
-            };
+                return _maximumTokens;
+            }
+            set
+            {
+                if( _maximumTokens != value )
+                {
+                    _maximumTokens = value;
+                    OnPropertyChanged( nameof( MaximumTokens ) );
+                }
+            }
+        }
+
+        /// <inheritdoc />
+        /// <summary>
+        /// A number between -2.0 and 2.0. Positive values penalize new
+        /// tokens based on their existing frequency in the text so far,
+        /// decreasing the model's likelihood to repeat the same line verbatim.
+        /// </summary>
+        /// <value>
+        /// The frequency.
+        /// </value>
+        [ JsonProperty( "frequency_penalty" ) ]
+        public override double FrequencyPenalty
+        {
+            get
+            {
+                return _frequencyPenalty;
+            }
+            set
+            {
+                if( _frequencyPenalty != value )
+                {
+                    _frequencyPenalty = value;
+                    OnPropertyChanged( nameof( FrequencyPenalty ) );
+                }
+            }
+        }
+
+        /// <inheritdoc />
+        /// <summary>
+        /// Number between -2.0 and 2.0. Positive values penalize new tokens
+        /// based on whether they appear in the text so far,
+        /// ncreasing the model's likelihood to talk about new topics.
+        /// </summary>
+        /// <value>
+        /// The presence.
+        /// </value>
+        [ JsonProperty( "presence_penalty" ) ]
+        public override double PresencePenalty
+        {
+            get
+            {
+                return _presencePenalty;
+            }
+            set
+            {
+                if( _presencePenalty != value )
+                {
+                    _presencePenalty = value;
+                    OnPropertyChanged( nameof( PresencePenalty ) );
+                }
+            }
+        }
+
+        /// <inheritdoc />
+        /// <summary>
+        /// An alternative to sampling with temperature,
+        /// called nucleus sampling, where the model considers
+        /// the results of the tokens with top_p probability mass.
+        /// So 0.1 means only the tokens comprising the top 10% probability
+        /// mass are considered. We generally recommend altering this
+        /// or temperature but not both.
+        /// </summary>
+        /// <value>
+        /// The top percent.
+        /// </value>
+        [ JsonProperty( "top_p" ) ]
+        public override double TopPercent
+        {
+            get
+            {
+                return _topPercent;
+            }
+            set
+            {
+                if( _topPercent != value )
+                {
+                    _topPercent = value;
+                    OnPropertyChanged( nameof( TopPercent ) );
+                }
+            }
+        }
+
+        /// <inheritdoc />
+        /// <summary>
+        /// Gets or sets the system prompt.
+        /// </summary>
+        /// <value>
+        /// The system prompt.
+        /// </value>
+        [ JsonProperty( "messages" ) ]
+        public override IList<IGptMessage> Messages
+        {
+            get
+            {
+                return _messages;
+            }
+            set
+            {
+                if( _messages != value )
+                {
+                    _messages = value;
+                    OnPropertyChanged( nameof( Messages ) );
+                }
+            }
         }
 
         /// <summary>
@@ -378,7 +523,7 @@ namespace Bubba
             try
             {
                 _data.Add( "model", _model );
-                _data.Add( "number", _number );
+                _data.Add( "n", _number );
                 _data.Add( "max_completion_tokens", _maximumTokens );
                 _data.Add( "store", _store );
                 _data.Add( "stream", _stream );
@@ -390,6 +535,7 @@ namespace Bubba
                 _stop.Add( "#" );
                 _stop.Add( ";" );
                 _data.Add( "stop", _stop );
+                _data.Add( "modalities", _modalities );
                 return _data?.Any( ) == true
                     ? _data
                     : default( IDictionary<string, object> );

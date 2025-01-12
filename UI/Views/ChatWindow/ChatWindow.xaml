@@ -22,7 +22,7 @@
     Background="{StaticResource FormBackground}"
     BorderBrush="{StaticResource BlueBorderBrush}"
     Foreground="{StaticResource FormForeground}"
-    Icon="/Resources/Assets/ApplicationImages/Bubba.png"
+    Icon="/Resources/Assets/DialogImages/openai.png"
     WindowStartupLocation="CenterScreen"
     mc:Ignorable="d">
 
@@ -180,6 +180,7 @@
                     Foreground="{StaticResource LightBlueBrush}"
                     Header="Voices" />
 
+
                 <GroupBox
                     Canvas.Left="322"
                     Canvas.Top="19"
@@ -252,109 +253,82 @@
                     Background="{StaticResource ControlInteriorBrush}"
                     BorderBrush="{StaticResource BlueBorderBrush}"
                     BorderThickness="2"
-                    Foreground="{StaticResource WhiteForeground}"
+                    Foreground="{StaticResource FormForeground}"
                     ToolTip="Select GPT Task">
                     <ComboBoxItem
-                        Margin="3,3,3,0"
+                        Margin="3,3,3,3"
                         Padding="10,1,4,2"
-                        Background="{DynamicResource ControlBackground}"
-                        BorderBrush="{DynamicResource ControlBackground}"
                         Content="Completion Request"
                         FontFamily="Roboto"
-                        Foreground="{DynamicResource LightBlueBrush}"
                         Tag="CompletionRequest"
                         ToolTip="Chat Completion" />
                     <ComboBoxItem
                         Margin="3,3,3,3"
                         Padding="10,2,4,2"
-                        Background="{DynamicResource ControlBackground}"
-                        BorderBrush="{DynamicResource ControlBackground}"
                         Content="Text Generation"
                         FontFamily="Roboto"
-                        Foreground="{DynamicResource LightBlueBrush}"
                         Tag="TextGeneration"
                         ToolTip="Generate Text" />
                     <ComboBoxItem
                         Margin="3,3,3,3"
                         Padding="10,2,4,2"
-                        Background="{DynamicResource ControlBackground}"
-                        BorderBrush="{DynamicResource ControlBackground}"
                         Content="Image Generation"
                         FontFamily="Roboto"
-                        Foreground="{DynamicResource LightBlueBrush}"
                         Tag="ImageGeneration"
                         ToolTip="Create Images" />
                     <ComboBoxItem
                         Margin="3,3,3,3"
-                        Background="{DynamicResource ControlBackground}"
-                        BorderBrush="{DynamicResource ControlBackground}"
+                        Padding="10,1,4,2"
                         Content="Translations"
                         FontFamily="Roboto"
-                        Foreground="{DynamicResource LightBlueBrush}"
                         Tag="Translations"
                         ToolTip="Text To Speech (TTS)" />
                     <ComboBoxItem
                         Margin="3,3,3,3"
-                        Background="{DynamicResource ControlBackground}"
-                        BorderBrush="{DynamicResource ControlBackground}"
+                        Padding="10,1,4,2"
                         Content="Transcriptions"
                         FontFamily="Roboto"
-                        Foreground="{DynamicResource LightBlueBrush}"
                         Tag="Transcriptions"
                         ToolTip="Speech To Text (STT)" />
                     <ComboBoxItem
                         Margin="3,3,3,3"
-                        Background="{DynamicResource ControlBackground}"
-                        BorderBrush="{DynamicResource ControlBackground}"
+                        Padding="10,1,4,2"
                         Content="Files"
                         FontFamily="Roboto"
-                        Foreground="{DynamicResource LightBlueBrush}"
                         Tag="Files" />
                     <ComboBoxItem
                         Margin="3,3,3,3"
-                        Background="{DynamicResource ControlBackground}"
-                        BorderBrush="{DynamicResource ControlBackground}"
+                        Padding="10,1,4,2"
                         Content="Uploads"
                         FontFamily="Roboto"
-                        Foreground="{DynamicResource LightBlueBrush}"
                         Tag="Uploads"
                         ToolTip="Upload to the API" />
                     <ComboBoxItem
                         Margin="3,3,3,3"
                         Padding="10,2,4,2"
-                        Background="{DynamicResource ControlBackground}"
-                        BorderBrush="{DynamicResource ControlBackground}"
                         Content="Fine-Tuning"
                         FontFamily="Roboto"
-                        Foreground="{DynamicResource LightBlueBrush}"
                         Tag="FineTuning"
                         ToolTip="Improve model" />
                     <ComboBoxItem
                         Margin="3,3,3,3"
-                        Background="{DynamicResource ControlBackground}"
-                        BorderBrush="{DynamicResource ControlBackground}"
+                        Padding="10,1,4,2"
                         Content="Embeddings"
                         FontFamily="Roboto"
-                        Foreground="{DynamicResource LightBlueBrush}"
                         Tag="Embedding"
                         ToolTip="Create Vector Embedding" />
                     <ComboBoxItem
                         Margin="3,3,3,3"
-                        Background="{DynamicResource ControlBackground}"
-                        BorderBrush="{DynamicResource ControlBackground}"
+                        Padding="10,1,4,2"
                         Content="Vector Stores"
                         FontFamily="Roboto"
-                        Foreground="{DynamicResource LightBlueBrush}"
                         Tag="VectorStores"
                         ToolTip="Persist Files/Data" />
                     <ComboBoxItem
                         Margin="3,3,3,3"
                         Padding="10,2,4,2"
-                        Background="{DynamicResource ControlBackground}"
-                        BorderBrush="{DynamicResource ControlBackground}"
                         Content="Projects"
                         FontFamily="Roboto"
-                        Foreground="{DynamicResource LightBlueBrush}"
                         Tag="Projects"
                         ToolTip="Projects API" />
                 </ComboBox>
@@ -528,7 +502,7 @@
                     MaximumNumberDecimalDigits="2"
                     MinimumNumberDecimalDigits="1"
                     NegativeForeground="{StaticResource RedForeground}"
-                    NumberDecimalDigits="1"
+                    NumberDecimalDigits="2"
                     SelectionOpacity="1"
                     SnapsToDevicePixels="True"
                     Tag="Temperature"
@@ -567,7 +541,7 @@
                     TickStroke="{StaticResource WhiteForeground}"
                     ToolTip="A ratio between 0 and 1 (%). Default=0"
                     ValuePlacement="TopLeft"
-                    Value="1.0" />
+                    Value="1.00" />
 
                 <wpf:DoubleTextBox
                     x:Name="TopPercentTextBox"
@@ -632,7 +606,7 @@
                     ToolTip="A number between -2 and 2 (Frequency). Default=0"
                     ToolTipFormat="N1"
                     ValuePlacement="TopLeft"
-                    Value="0" />
+                    Value="0.00" />
 
                 <wpf:DoubleTextBox
                     x:Name="PresenceTextBox"
@@ -688,7 +662,8 @@
                     TickStroke="{StaticResource WhiteForeground}"
                     ToolTip="A number between -2 and 2 (Frequency). Default=0"
                     ToolTipFormat="N1"
-                    ValuePlacement="TopLeft" />
+                    ValuePlacement="TopLeft"
+                    Value="0.00" />
 
                 <wpf:DoubleTextBox
                     x:Name="FrequencyTextBox"
@@ -816,7 +791,7 @@
                     ClipToBounds="True"
                     FontFamily="Roboto"
                     Foreground="{StaticResource WhiteForeground}"
-                    LargeChange="0.25"
+                    LargeChange="0.1"
                     Maximum="2.0"
                     Minimum="0.0"
                     MinorTickFrequency="0.1"
@@ -824,20 +799,23 @@
                     MinorTickStroke="{StaticResource WhiteForeground}"
                     SnapsToDevicePixels="True"
                     ThumbToolTipPlacement="BottomRight"
-                    TickFrequency="0.25"
+                    TickFrequency="0.2"
                     TickLength="10"
                     TickStroke="{StaticResource WhiteForeground}"
                     ToolTip="A number between 0 and 2 (Temperature). Default=1"
-                    Value="1.0" />
+                    Value="1.00" />
 
                 <b:MetroTile
                     x:Name="SendButton"
                     Title=""
-                    Canvas.Left="1095"
-                    Canvas.Top="285"
-                    Width="100"
-                    Height="80"
+                    Canvas.Left="1096"
+                    Canvas.Top="270"
+                    Width="90"
+                    Height="50"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Top"
                     BorderBrush="{StaticResource BlueBorderBrush}"
+                    BorderThickness="2"
                     Header=""
                     ImageSource="/Resources/Assets/ToolStripImages/ChatButton.png"
                     ToolTip="Send GPT Reqeust" />
@@ -845,13 +823,14 @@
                 <b:MetroTile
                     x:Name="ClearButton"
                     Title=""
-                    Canvas.Left="1095"
-                    Canvas.Top="400"
-                    Width="100"
-                    Height="80"
+                    Canvas.Left="1097"
+                    Canvas.Top="350"
+                    Width="90"
+                    Height="50"
                     HorizontalAlignment="Left"
                     VerticalAlignment="Top"
                     BorderBrush="{StaticResource BlueBorderBrush}"
+                    BorderThickness="2"
                     Header=""
                     ImageSource="/Resources/Assets/ToolStripImages/RefreshButton.png"
                     ToolTip="Reset GPT Parameters" />
@@ -935,7 +914,7 @@
                     Foreground="{StaticResource WhiteForeground}"
                     LabelPlacement="BottomRight"
                     LargeChange="4"
-                    Maximum="40"
+                    Maximum="20"
                     Minimum="1"
                     MinorTickFrequency="1"
                     MinorTickLength="4"
@@ -953,7 +932,6 @@
 
 
             </Canvas>
-
             <Canvas
                 x:Name="UserCanvas"
                 Grid.Row="2"
@@ -1044,7 +1022,7 @@
                     Minimum="1"
                     MinorTickLength="4"
                     MinorTickStroke="{StaticResource WhiteForeground}"
-                    SmallChange="250"
+                    SmallChange="100"
                     SnapsTo="Ticks"
                     TickFrequency="500"
                     TickLength="10"
@@ -1072,6 +1050,21 @@
                     Foreground="{StaticResource WhiteForeground}"
                     OutliningAreaWidth="15"
                     VerticalScrollBarVisibility="Visible" />
+
+                <b:MetroTile
+                    x:Name="GptFileButton"
+                    Title=""
+                    Canvas.Left="1096"
+                    Canvas.Top="197"
+                    Width="90"
+                    Height="50"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Center"
+                    BorderBrush="{StaticResource BlueBorderBrush}"
+                    BorderThickness="2"
+                    Header=""
+                    ImageSource="/Resources/Assets/ToolStripImages/UploadButton.png"
+                    ToolTip="Upload file to the GPT File API" />
 
             </Canvas>
         </Grid>

@@ -1,10 +1,10 @@
 ﻿// ******************************************************************************************
 //     Assembly:                Bubba
 //     Author:                  Terry D. Eppler
-//     Created:                 01-11-2025
+//     Created:                 01-12-2025
 // 
 //     Last Modified By:        Terry D. Eppler
-//     Last Modified On:        01-11-2025
+//     Last Modified On:        01-12-2025
 // ******************************************************************************************
 // <copyright file="FineTuningPayload.cs" company="Terry D. Eppler">
 //    Bubba is a small and simple windows (wpf) application for interacting with the OpenAI API
@@ -47,14 +47,68 @@ namespace Bubba
     using System.Linq;
     using System.Text;
     using System.Threading.Tasks;
+    using Newtonsoft.Json;
+    using Properties;
 
     /// <inheritdoc />
     /// <summary>
     /// </summary>
     [ SuppressMessage( "ReSharper", "UnusedType.Global" ) ]
     [ SuppressMessage( "ReSharper", "PreferConcreteValueOverDefault" ) ]
+    [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
+    [ SuppressMessage( "ReSharper", "FieldCanBeMadeReadOnly.Global" ) ]
     public class FineTuningPayload : GptPayload
     {
+        /// <summary>
+        /// The log probs
+        /// </summary>
+        private protected bool _logProbs;
+
+        /// <summary>
+        /// The echo
+        /// </summary>
+        private protected bool _echo;
+
+        /// <summary>
+        /// The best of
+        /// </summary>
+        private protected int _bestOf;
+
+        /// <summary>
+        /// The logit bias
+        /// </summary>
+        private protected IDictionary<string, object> _logitBias;
+
+        /// <summary>
+        /// The file path
+        /// </summary>
+        private protected string _trainingFile;
+
+        /// <summary>
+        /// The suffix
+        /// </summary>
+        private protected string _suffix;
+
+        /// <summary>
+        /// The seed
+        /// </summary>
+        private protected int _seed;
+
+        /// <summary>
+        /// The validation file
+        /// </summary>
+        private protected string _validationFile;
+
+        /// <summary>
+        /// The end point
+        /// </summary>
+        private protected string _endPoint;
+
+        /// <summary>
+        /// The method
+        /// </summary>
+        private protected IDictionary<string, object> _method;
+
         /// <summary>
         /// Initializes a new instance of the
         /// <see cref="FineTuningPayload"/> class.
@@ -63,6 +117,275 @@ namespace Bubba
         public FineTuningPayload( )
             : base( )
         {
+            _model = "gpt-4o-mini";
+            _endPoint = GptEndPoint.FineTuning;
+            _method = new Dictionary<string, object>( );
+            _logitBias = new Dictionary<string, object>( );
+            _echo = true;
+            _logProbs = true;
+            _bestOf = 3;
+            _responseFormat = "text";
+        }
+
+        /// <summary>
+        /// Gets or sets the log probs.
+        /// </summary>
+        /// <value>
+        /// The log probs.
+        /// </value>
+        [ JsonProperty( "logprobs" ) ]
+        public bool LogProbs
+        {
+            get
+            {
+                return _logProbs;
+            }
+            set
+            {
+                if( _logProbs != value )
+                {
+                    _logProbs = value;
+                    OnPropertyChanged( nameof( LogProbs ) );
+                }
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether this
+        /// <see cref="FineTuningParameter"/> is echo.
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if echo; otherwise, <c>false</c>.
+        /// </value>
+        [ JsonProperty( "echo" ) ]
+        public bool Echo
+        {
+            get
+            {
+                return _echo;
+            }
+            set
+            {
+                if( _echo != value )
+                {
+                    _echo = value;
+                    OnPropertyChanged( nameof( Echo ) );
+                }
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the best of.
+        /// </summary>
+        /// <value>
+        /// The best of.
+        /// </value>
+        [ JsonProperty( "best_of" ) ]
+        public int BestOf
+        {
+            get
+            {
+                return _bestOf;
+            }
+            set
+            {
+                if( _bestOf != value )
+                {
+                    _bestOf = value;
+                    OnPropertyChanged( nameof( BestOf ) );
+                }
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the logit bias.
+        /// </summary>
+        /// <value>
+        /// The logit bias.
+        /// </value>
+        [ JsonProperty( "logit_bias" ) ]
+        public IDictionary<string, object> LogitBias
+        {
+            get
+            {
+                return _logitBias;
+            }
+            set
+            {
+                if( _logitBias != value )
+                {
+                    _logitBias = value;
+                    OnPropertyChanged( nameof( LogitBias ) );
+                }
+            }
+        }
+
+        /// <summary>
+        /// A string of up to 64 characters that will be added to your fine-tuned model name.
+        /// </summary>
+        /// <value>
+        /// The suffix.
+        /// </value>
+        [ JsonProperty( "suffix" ) ]
+        public string Suffix
+        {
+            get
+            {
+                return _suffix;
+            }
+            set
+            {
+                if( _suffix != value )
+                {
+                    _suffix = value;
+                    OnPropertyChanged( nameof( Suffix ) );
+                }
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the seed.
+        /// </summary>
+        /// <value>
+        /// The seed.
+        /// </value>
+        [ JsonProperty( "seed" ) ]
+        public int Seed
+        {
+            get
+            {
+                return _seed;
+            }
+            set
+            {
+                if( _seed != value )
+                {
+                    _seed = value;
+                    OnPropertyChanged( nameof( Seed ) );
+                }
+            }
+        }
+
+        /// <summary>
+        /// The ID of an uploaded file that contains training data.
+        /// Your dataset must be formatted as a JSONL file.
+        /// Additionally, you must upload your file with the purpose fine-tune.
+        /// </summary>
+        /// <value>
+        /// The file path.
+        /// </value>
+        [ JsonProperty( "training_file" ) ]
+        public string TrainingFile
+        {
+            get
+            {
+                return _trainingFile;
+            }
+            set
+            {
+                if( _trainingFile != value )
+                {
+                    _trainingFile = value;
+                    OnPropertyChanged( nameof( TrainingFile ) );
+                }
+            }
+        }
+
+        /// <summary>
+        /// The ID of an uploaded file that contains validation data.
+        /// Your dataset must be formatted as a JSONL file.
+        /// Additionally, you must upload your file with the purpose fine-tune.
+        /// </summary>
+        /// <value>
+        /// The validation file.
+        /// </value>
+        [ JsonProperty( "validation_file" ) ]
+        public string ValidationFile
+        {
+            get
+            {
+                return _validationFile;
+            }
+            set
+            {
+                if( _validationFile != value )
+                {
+                    _validationFile = value;
+                    OnPropertyChanged( nameof( ValidationFile ) );
+                }
+            }
+        }
+
+        /// <inheritdoc />
+        /// <summary>
+        /// THe number 'n' of responses generatred.
+        /// </summary>
+        /// <value>
+        /// The user identifier.
+        /// </value>
+        [ JsonProperty( "n" ) ]
+        public override int Number
+        {
+            get
+            {
+                return _number;
+            }
+            set
+            {
+                if( _number != value )
+                {
+                    _number = value;
+                    OnPropertyChanged( nameof( Number ) );
+                }
+            }
+        }
+
+        /// <summary>
+        /// Gets the chat model.
+        /// </summary>
+        /// <value>
+        /// The chat model.
+        /// </value>
+        /// <inheritdoc />
+        [ JsonProperty( "model" ) ]
+        public override string Model
+        {
+            get
+            {
+                return _model;
+            }
+            set
+            {
+                if( _model != value )
+                {
+                    _model = value;
+                    OnPropertyChanged( nameof( Model ) );
+                }
+            }
+        }
+
+        /// <inheritdoc />
+        /// <summary>
+        /// Gets or sets the response format.
+        /// </summary>
+        /// <value>
+        /// The response format.
+        /// </value>
+        [ JsonProperty( "response_format" ) ]
+        public override string ResponseFormat
+        {
+            get
+            {
+                return _responseFormat;
+            }
+            set
+            {
+                if( _responseFormat != value )
+                {
+                    _responseFormat = value;
+                    OnPropertyChanged( nameof( ResponseFormat ) );
+                }
+            }
         }
 
         /// <inheritdoc />
@@ -76,7 +399,7 @@ namespace Bubba
             try
             {
                 _data.Add( "model", _model );
-                _data.Add( "number", _number );
+                _data.Add( "n", _number );
                 _data.Add( "max_completion_tokens", _maximumTokens );
                 _data.Add( "store", _store );
                 _data.Add( "stream", _stream );
@@ -85,6 +408,33 @@ namespace Bubba
                 _data.Add( "presence_penalty", _presencePenalty );
                 _data.Add( "top_p", _topPercent );
                 _data.Add( "response_format", _responseFormat );
+                _data.Add( "modalities", _modalities );
+                _data.Add( "log_probs", _logProbs );
+                _data.Add( "best_of", _bestOf );
+                _method.Add( "type", "supervised" );
+                _data.Add( "echo", _echo );
+                _data.Add( "suffix", _suffix );
+                _data.Add( "seed", _seed );
+                if( !string.IsNullOrEmpty( _trainingFile ) )
+                {
+                    _data.Add( "training_file", _trainingFile );
+                }
+
+                if( !string.IsNullOrEmpty( _validationFile ) )
+                {
+                    _data.Add( "validation_file", _validationFile );
+                }
+
+                if( _method?.Any( ) == true )
+                {
+                    _data.Add( "method", _method );
+                }
+
+                if( _logitBias?.Any( ) == true )
+                {
+                    _logitBias.Add( "method", _logitBias );
+                }
+
                 _stop.Add( "#" );
                 _stop.Add( ";" );
                 _data.Add( "stop", _stop );
@@ -96,6 +446,28 @@ namespace Bubba
             {
                 Fail( ex );
                 return default( IDictionary<string, object> );
+            }
+        }
+
+        /// <inheritdoc />
+        /// <summary>
+        /// Converts to string.
+        /// </summary>
+        /// <returns>
+        /// A <see cref="T:System.String" /> that represents this instance.
+        /// </returns>
+        public override string ToString( )
+        {
+            try
+            {
+                return _data?.Any( ) == true
+                    ? _data.ToJson( )
+                    : string.Empty;
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+                return string.Empty;
             }
         }
     }

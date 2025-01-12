@@ -596,7 +596,6 @@ C:\Users\terry\source\repos\Bubba\obj\Debug\net8.0-windows7.0\UI\Views\Folder\Fo
 C:\Users\terry\source\repos\Bubba\obj\Debug\net8.0-windows7.0\UI\Views\Notification\Notification.g.cs
 C:\Users\terry\source\repos\Bubba\obj\Debug\net8.0-windows7.0\UI\Views\SearchDialog\SearchDialog.g.cs
 C:\Users\terry\source\repos\Bubba\obj\Debug\net8.0-windows7.0\UI\Views\SplashWindow\SplashMessage.g.cs
-C:\Users\terry\source\repos\Bubba\obj\Debug\net8.0-windows7.0\UI\Views\Upload\GptUpload.g.cs
 C:\Users\terry\source\repos\Bubba\obj\Debug\net8.0-windows7.0\UI\Views\WebBrowser\WebBrowser.g.cs
 C:\Users\terry\source\repos\Bubba\obj\Debug\net8.0-windows7.0\App.g.cs
 C:\Users\terry\source\repos\Bubba\obj\Debug\net8.0-windows7.0\Bubba_Content.g.cs
@@ -643,7 +642,6 @@ C:\Users\terry\source\repos\Bubba\obj\Debug\net8.0-windows7.0\UI\Views\FileBrows
 C:\Users\terry\source\repos\Bubba\obj\Debug\net8.0-windows7.0\UI\Views\Folder\FolderBrowser.baml
 C:\Users\terry\source\repos\Bubba\obj\Debug\net8.0-windows7.0\UI\Views\SearchDialog\SearchDialog.baml
 C:\Users\terry\source\repos\Bubba\obj\Debug\net8.0-windows7.0\UI\Views\SplashWindow\SplashMessage.baml
-C:\Users\terry\source\repos\Bubba\obj\Debug\net8.0-windows7.0\UI\Views\Upload\GptUpload.baml
 C:\Users\terry\source\repos\Bubba\obj\Debug\net8.0-windows7.0\UI\Views\WebBrowser\WebBrowser.baml
 C:\Users\terry\source\repos\Bubba\obj\Debug\net8.0-windows7.0\Bubba.g.resources
 C:\Users\terry\source\repos\Bubba\obj\Debug\net8.0-windows7.0\Bubba.Properties.CustomSearchEngine.resources
@@ -662,3 +660,5 @@ C:\Users\terry\source\repos\Bubba\obj\Debug\net8.0-windows7.0\refint\Bubba.dll
 C:\Users\terry\source\repos\Bubba\obj\Debug\net8.0-windows7.0\Bubba.xml
 C:\Users\terry\source\repos\Bubba\obj\Debug\net8.0-windows7.0\Bubba.genruntimeconfig.cache
 C:\Users\terry\source\repos\Bubba\obj\Debug\net8.0-windows7.0\ref\Bubba.dll
+C:\Users\terry\source\repos\Bubba\obj\Debug\net8.0-windows7.0\UI\Views\Upload\GptFileDialog.g.cs
+C:\Users\terry\source\repos\Bubba\obj\Debug\net8.0-windows7.0\UI\Views\Upload\GptFileDialog.baml

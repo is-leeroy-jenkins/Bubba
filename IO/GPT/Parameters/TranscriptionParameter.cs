@@ -1,10 +1,10 @@
 ﻿// ******************************************************************************************
 //     Assembly:                Bubba
 //     Author:                  Terry D. Eppler
-//     Created:                 01-08-2025
+//     Created:                 01-11-2025
 // 
 //     Last Modified By:        Terry D. Eppler
-//     Last Modified On:        01-08-2025
+//     Last Modified On:        01-11-2025
 // ******************************************************************************************
 // <copyright file="TranscriptionParameter.cs" company="Terry D. Eppler">
 //    Bubba is a small and simple windows (wpf) application for interacting with the OpenAI API
@@ -64,12 +64,12 @@ namespace Bubba
         /// <summary>
         /// The file path
         /// </summary>
-        private protected string _file;
+        private protected object _file;
 
         /// <summary>
         /// The audio data
         /// </summary>
-        private protected byte[] _audioData;
+        private protected byte[ ] _audioData;
 
         /// <summary>
         /// The modalities
@@ -77,14 +77,9 @@ namespace Bubba
         private protected IList<string> _modalities;
 
         /// <summary>
-        /// The speed
-        /// </summary>
-        private protected int _speed;
-
-        /// <summary>
         /// The input
         /// </summary>
-        private protected string _input;
+        private protected string _prompt;
 
         /// <summary>
         /// Initializes a new instance of the
@@ -96,7 +91,6 @@ namespace Bubba
         {
             _model = "whisper-1";
             _endPoint = GptEndPoint.Transcriptions;
-            _speed = 1;
             _temperature = 0.18;
             _language = "en";
             _responseFormat = "text";
@@ -116,10 +110,10 @@ namespace Bubba
             }
             set
             {
-                if(_language != value)
+                if( _language != value )
                 {
                     _language = value;
-                    OnPropertyChanged(nameof(Language));
+                    OnPropertyChanged( nameof( Language ) );
                 }
             }
         }
@@ -141,10 +135,10 @@ namespace Bubba
             }
             set
             {
-                if(_temperature != value)
+                if( _temperature != value )
                 {
                     _temperature = value;
-                    OnPropertyChanged(nameof(Temperature));
+                    OnPropertyChanged( nameof( Temperature ) );
                 }
             }
         }
@@ -155,7 +149,7 @@ namespace Bubba
         /// <value>
         /// The file path.
         /// </value>
-        public string File
+        public object File
         {
             get
             {
@@ -163,55 +157,10 @@ namespace Bubba
             }
             set
             {
-                if(_file != value)
+                if( _file != value )
                 {
                     _file = value;
-                    OnPropertyChanged(nameof(File));
-                }
-            }
-        }
-
-        /// <summary>
-        /// Gets or sets the audio data.
-        /// </summary>
-        /// <value>
-        /// The audio data.
-        /// </value>
-        public byte[] AudioData
-        {
-            get
-            {
-                return _audioData;
-            }
-            set
-            {
-                if(_audioData != value)
-                {
-                    _audioData = value;
-                    OnPropertyChanged(nameof(AudioData));
-                }
-            }
-        }
-
-        /// <inheritdoc />
-        /// <summary>
-        /// THe number 'n' of responses generatred.
-        /// </summary>
-        /// <value>
-        /// The user identifier.
-        /// </value>
-        public override int Number
-        {
-            get
-            {
-                return _number;
-            }
-            set
-            {
-                if( _number != value )
-                {
-                    _number = value;
-                    OnPropertyChanged( nameof( Number ) );
+                    OnPropertyChanged( nameof( File ) );
                 }
             }
         }
@@ -245,40 +194,18 @@ namespace Bubba
         /// <value>
         /// The input.
         /// </value>
-        public string Input
+        public string Prompt
         {
             get
             {
-                return _input;
+                return _prompt;
             }
             set
             {
-                if(_input != value)
+                if( _prompt != value )
                 {
-                    _input = value;
-                    OnPropertyChanged(nameof(Input));
-                }
-            }
-        }
-
-        /// <summary>
-        /// Gets or sets the speed.
-        /// </summary>
-        /// <value>
-        /// The speed.
-        /// </value>
-        public int Speed
-        {
-            get
-            {
-                return _speed;
-            }
-            set
-            {
-                if(_speed != value)
-                {
-                    _speed = value;
-                    OnPropertyChanged(nameof(Speed));
+                    _prompt = value;
+                    OnPropertyChanged( nameof( Prompt ) );
                 }
             }
         }

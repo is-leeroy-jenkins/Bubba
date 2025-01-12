@@ -1,10 +1,10 @@
 ﻿// ******************************************************************************************
 //     Assembly:                Bubba
 //     Author:                  Terry D. Eppler
-//     Created:                 01-10-2025
+//     Created:                 01-11-2025
 // 
 //     Last Modified By:        Terry D. Eppler
-//     Last Modified On:        01-10-2025
+//     Last Modified On:        01-11-2025
 // ******************************************************************************************
 // <copyright file="ImageParameter.cs" company="Terry D. Eppler">
 //    Bubba is a small and simple windows (wpf) application for interacting with the OpenAI API
@@ -42,7 +42,9 @@
 namespace Bubba
 {
     using System;
+    using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
+    using System.Linq;
     using Properties;
 
     /// <inheritdoc />
@@ -50,6 +52,7 @@ namespace Bubba
     /// </summary>
     [ SuppressMessage( "ReSharper", "UnusedType.Global" ) ]
     [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
+    [ SuppressMessage( "ReSharper", "PreferConcreteValueOverDefault" ) ]
     public class ImageParameter : GptParameter
     {
         /// <summary>
@@ -68,7 +71,10 @@ namespace Bubba
         private protected string _quality;
 
         /// <summary>
-        /// The style
+        /// The style of the generated images. Must be one of vivid or natural.
+        /// Vivid causes the model to lean towards generating hyper-real and
+        /// dramatic images. Natural causes the model to produce more natural,
+        /// less hyper-real looking images. This param is only supported for dall-e-3.
         /// </summary>
         private protected string _style;
 
@@ -179,7 +185,10 @@ namespace Bubba
         }
 
         /// <summary>
-        /// Gets or sets the style.
+        /// The style of the generated images. Must be one of vivid or natural.
+        /// Vivid causes the model to lean towards generating hyper-real and
+        /// dramatic images. Natural causes the model to produce more natural,
+        /// less hyper-real looking images. This param is only supported for dall-e-3.
         /// </summary>
         /// <value>
         /// The style.
@@ -243,6 +252,37 @@ namespace Bubba
                     _model = value;
                     OnPropertyChanged( nameof( Model ) );
                 }
+            }
+        }
+
+        /// <inheritdoc />
+        /// <summary>
+        /// Gets the data.
+        /// </summary>
+        /// <returns></returns>
+        public override IDictionary<string, object> GetData( )
+        {
+            try
+            {
+                _data.Add( "n", _number );
+                _data.Add( "max_completion_tokens", _maximumTokens );
+                _data.Add( "store", _store );
+                _data.Add( "stream", _stream );
+                _data.Add( "temperature", _temperature );
+                _data.Add( "frequency_penalty", _frequencyPenalty );
+                _data.Add( "presence_penalty", _presencePenalty );
+                _data.Add( "top_p", _topPercent );
+                _stop.Add( "#" );
+                _stop.Add( ";" );
+                _data.Add( "stop", _stop );
+                return _data?.Any( ) == true
+                    ? _data
+                    : default( IDictionary<string, object> );
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+                return default( IDictionary<string, object> );
             }
         }
     }

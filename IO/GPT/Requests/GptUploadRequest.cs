@@ -1,10 +1,10 @@
 ﻿// ******************************************************************************************
 //     Assembly:                Bubba
 //     Author:                  Terry D. Eppler
-//     Created:                 01-10-2025
+//     Created:                 01-11-2025
 // 
 //     Last Modified By:        Terry D. Eppler
-//     Last Modified On:        01-10-2025
+//     Last Modified On:        01-11-2025
 // ******************************************************************************************
 // <copyright file="GptUploadRequest.cs" company="Terry D. Eppler">
 //    Bubba is a small and simple windows (wpf) application for interacting with the OpenAI API
@@ -44,10 +44,16 @@ namespace Bubba
     using System;
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
+    using System.IO;
     using System.Linq;
     using System.Net.Http;
+    using System.Net.Http.Headers;
+    using System.Text;
+    using System.Text.Json;
+    using System.Threading.Tasks;
     using Newtonsoft.Json;
     using Properties;
+    using JsonSerializer = Newtonsoft.Json.JsonSerializer;
 
     /// <inheritdoc />
     /// <summary>
@@ -405,6 +411,63 @@ namespace Bubba
                     OnPropertyChanged( nameof( ResponseFormat ) );
                 }
             }
+        }
+
+        /// <summary>
+        /// Uploads the training file asynchronous.
+        /// </summary>
+        /// <param name="filePath">The file path.</param>
+        /// <returns></returns>
+        public async Task<string> UploadTrainingFileAsync( string filePath )
+        {
+            using var _client = new HttpClient( );
+            _client.DefaultRequestHeaders.Authorization =
+                new AuthenticationHeaderValue( "Bearer", ApiKey );
+
+            var _fileContent = new ByteArrayContent( File.ReadAllBytes( filePath ) );
+            var _formData = new MultipartFormDataContent
+            {
+                {
+                    _fileContent, "file", Path.GetFileName( filePath )
+                },
+                {
+                    new StringContent( "fine-tune" ), "purpose"
+                }
+            };
+
+            var _response = await _client.PostAsync( _endPoint, _formData );
+            _response.EnsureSuccessStatusCode( );
+            var _responseContent = await _response.Content.ReadAsStringAsync( );
+            var _document = JsonDocument.Parse( _responseContent );
+            var _fileId = _document.RootElement.GetProperty( "id" ).GetString( );
+            return _fileId;
+        }
+
+        /// <summary>
+        /// Creates the fine tune asynchronous.
+        /// </summary>
+        /// <param name="fileId">The file identifier.</param>
+        /// <returns></returns>
+        public async Task<string> CreateFineTuneAsync( string fileId )
+        {
+            using var _client = new HttpClient( );
+            _client.DefaultRequestHeaders.Authorization =
+                new AuthenticationHeaderValue( "Bearer", ApiKey );
+
+            var _payload = new
+            {
+                training_file = fileId,
+                model = "curie"
+            };
+
+            var _jsonPayload = System.Text.Json.JsonSerializer.Serialize( _payload );
+            var _content = new StringContent( _jsonPayload, Encoding.UTF8, "application/json" );
+            var _response = await _client.PostAsync( _endPoint, _content );
+            _response.EnsureSuccessStatusCode( );
+            var _responseContent = await _response.Content.ReadAsStringAsync( );
+            var _document = JsonDocument.Parse( _responseContent );
+            var _jobId = _document.RootElement.GetProperty( "id" ).GetString( );
+            return _jobId;
         }
 
         /// <inheritdoc />

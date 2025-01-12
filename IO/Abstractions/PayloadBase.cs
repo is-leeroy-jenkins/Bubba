@@ -170,7 +170,7 @@ namespace Bubba
         /// The user identifier.
         /// </value>
         [ JsonProperty( "id" ) ]
-        public string Id
+        public virtual string Id
         {
             get
             {
@@ -194,7 +194,7 @@ namespace Bubba
         /// The maximum tokens.
         /// </value>
         [ JsonProperty( "max_completion_tokens" ) ]
-        public int MaximumTokens
+        public virtual int MaximumTokens
         {
             get
             {
@@ -218,7 +218,7 @@ namespace Bubba
         /// The temperature.
         /// </value>
         [ JsonProperty( "temperature" ) ]
-        public double Temperature
+        public virtual double Temperature
         {
             get
             {
@@ -242,7 +242,7 @@ namespace Bubba
         /// The frequency.
         /// </value>
         [ JsonProperty( "frequency_penalty" ) ]
-        public double FrequencyPenalty
+        public virtual double FrequencyPenalty
         {
             get
             {
@@ -266,7 +266,7 @@ namespace Bubba
         /// The number.
         /// </value>
         [ JsonProperty( "n" ) ]
-        public int Number
+        public virtual int Number
         {
             get
             {
@@ -290,7 +290,7 @@ namespace Bubba
         /// The presence.
         /// </value>
         [ JsonProperty( "presence_penalty" ) ]
-        public double PresencePenalty
+        public virtual double PresencePenalty
         {
             get
             {
@@ -314,7 +314,7 @@ namespace Bubba
         /// The top percent.
         /// </value>
         [ JsonProperty( "top_p" ) ]
-        public double TopPercent
+        public virtual double TopPercent
         {
             get
             {
@@ -338,7 +338,7 @@ namespace Bubba
         /// The chat model.
         /// </value>
         [ JsonProperty( "models" ) ]
-        public string Model
+        public virtual string Model
         {
             get
             {
@@ -362,7 +362,7 @@ namespace Bubba
         /// The size of the image.
         /// </value>
         [ JsonProperty( "size" ) ]
-        public string Size
+        public virtual string Size
         {
             get
             {
@@ -410,7 +410,7 @@ namespace Bubba
         /// The system prompt.
         /// </value>
         [JsonProperty("messages")]
-        public IList<IGptMessage> Messages
+        public virtual IList<IGptMessage> Messages
         {
             get
             {
@@ -433,8 +433,8 @@ namespace Bubba
         /// <value>
         /// The response format.
         /// </value>
-        [ JsonProperty( "response_format" ) ]
-        public string ResponseFormat
+        [JsonProperty( "response_format" ) ]
+        public virtual string ResponseFormat
         {
             get
             {

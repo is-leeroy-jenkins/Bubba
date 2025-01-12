@@ -1,10 +1,10 @@
 ﻿// ******************************************************************************************
 //     Assembly:                Bubba
 //     Author:                  Terry D. Eppler
-//     Created:                 01-09-2025
+//     Created:                 01-11-2025
 // 
 //     Last Modified By:        Terry D. Eppler
-//     Last Modified On:        01-09-2025
+//     Last Modified On:        01-11-2025
 // ******************************************************************************************
 // <copyright file="FileParameter.cs" company="Terry D. Eppler">
 //    Bubba is a small and simple windows (wpf) application for interacting with the OpenAI API
@@ -42,7 +42,9 @@
 namespace Bubba
 {
     using System;
+    using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
+    using System.Linq;
     using Newtonsoft.Json;
     using Properties;
 
@@ -52,12 +54,13 @@ namespace Bubba
     /// <seealso cref="T:Bubba.GptParameter" />
     [ SuppressMessage( "ReSharper", "UnusedType.Global" ) ]
     [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
+    [ SuppressMessage( "ReSharper", "PreferConcreteValueOverDefault" ) ]
     public class FileParameter : GptParameter
     {
         /// <summary>
         /// The file identifier, which can be referenced in the API endpoints.
         /// </summary>
-        private protected int _id;
+        private protected string _id;
 
         /// <summary>
         /// The intended purpose of the file.
@@ -123,7 +126,7 @@ namespace Bubba
         /// <value>
         /// The identifier.
         /// </value>
-        public int Id
+        public string Id
         {
             get
             {

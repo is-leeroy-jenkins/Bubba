@@ -45,16 +45,37 @@ namespace Bubba
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
     using System.Linq;
-    using System.Text;
-    using System.Threading.Tasks;
+    using Newtonsoft.Json;
+    using Properties;
 
     /// <inheritdoc />
     /// <summary>
     /// </summary>
     [ SuppressMessage( "ReSharper", "UnusedType.Global" ) ]
     [ SuppressMessage( "ReSharper", "PreferConcreteValueOverDefault" ) ]
+    [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
     public class ImagePayload : GptPayload
     {
+        /// <summary>
+        /// The style
+        /// </summary>
+        private protected string _style;
+
+        /// <summary>
+        /// The quality
+        /// </summary>
+        private protected string _quality;
+
+        /// <summary>
+        /// The end point
+        /// </summary>
+        private protected string _endPoint;
+
+        /// <summary>
+        /// The prompt
+        /// </summary>
+        private protected string _prompt;
+
         /// <summary>
         /// Initializes a new instance of the <see cref="ImagePayload"/> class.
         /// </summary>
@@ -62,6 +83,181 @@ namespace Bubba
         public ImagePayload( )
             : base( )
         {
+            _model = "dall-e-3";
+            _size = "512X512";
+            _number = 1;
+            _responseFormat = "url";
+            _style = "natural";
+            _quality = "hd";
+            _endPoint = GptEndPoint.ImageGeneration;
+        }
+
+        /// <inheritdoc />
+        /// <summary>
+        /// Gets or sets the size of the image.
+        /// </summary>
+        /// <value>
+        /// The size of the image.
+        /// </value>
+        [ JsonProperty( "size" ) ]
+        public override string Size
+        {
+            get
+            {
+                return _size;
+            }
+            set
+            {
+                if( _size != value )
+                {
+                    _size = value;
+                    OnPropertyChanged( nameof( Size ) );
+                }
+            }
+        }
+
+        /// <inheritdoc />
+        /// <summary>
+        /// Gets or sets the response format.
+        /// </summary>
+        /// <value>
+        /// The response format.
+        /// </value>
+        [ JsonProperty( "response_format" ) ]
+        public override string ResponseFormat
+        {
+            get
+            {
+                return _responseFormat;
+            }
+            set
+            {
+                if( _responseFormat != value )
+                {
+                    _responseFormat = value;
+                    OnPropertyChanged( nameof( ResponseFormat ) );
+                }
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the prompt.
+        /// </summary>
+        /// <value>
+        /// The prompt.
+        /// </value>
+        [ JsonProperty( "prompt" ) ]
+        public string Prompt
+        {
+            get
+            {
+                return _prompt;
+            }
+            set
+            {
+                if( _prompt != value )
+                {
+                    _prompt = value;
+                    OnPropertyChanged( nameof( Prompt ) );
+                }
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the quality.
+        /// </summary>
+        /// <value>
+        /// The quality.
+        /// </value>
+        [ JsonProperty( "quality" ) ]
+        public string Quality
+        {
+            get
+            {
+                return _quality;
+            }
+            set
+            {
+                if( _quality != value )
+                {
+                    _quality = value;
+                    OnPropertyChanged( nameof( Quality ) );
+                }
+            }
+        }
+
+        /// <summary>
+        /// The style of the generated images. Must be one of vivid or natural.
+        /// Vivid causes the model to lean towards generating hyper-real and
+        /// dramatic images. Natural causes the model to produce more natural,
+        /// less hyper-real looking images. This param is only supported for dall-e-3.
+        /// </summary>
+        /// <value>
+        /// The style.
+        /// </value>
+        [ JsonProperty( "style" ) ]
+        public string Style
+        {
+            get
+            {
+                return _style;
+            }
+            set
+            {
+                if( _style != value )
+                {
+                    _style = value;
+                    OnPropertyChanged( nameof( Style ) );
+                }
+            }
+        }
+
+        /// <inheritdoc />
+        /// <summary>
+        /// THe number 'n' of responses generatred.
+        /// </summary>
+        /// <value>
+        /// The user identifier.
+        /// </value>
+        [ JsonProperty( "n" ) ]
+        public override int Number
+        {
+            get
+            {
+                return _number;
+            }
+            set
+            {
+                if( _number != value )
+                {
+                    _number = value;
+                    OnPropertyChanged( nameof( Number ) );
+                }
+            }
+        }
+
+        /// <summary>
+        /// Gets the chat model.
+        /// </summary>
+        /// <value>
+        /// The chat model.
+        /// </value>
+        /// <inheritdoc />
+        [ JsonProperty( "model" ) ]
+        public override string Model
+        {
+            get
+            {
+                return _model;
+            }
+            set
+            {
+                if( _model != value )
+                {
+                    _model = value;
+                    OnPropertyChanged( nameof( Model ) );
+                }
+            }
         }
 
         /// <inheritdoc />
@@ -75,7 +271,7 @@ namespace Bubba
             try
             {
                 _data.Add( "model", _model );
-                _data.Add( "number", _number );
+                _data.Add( "n", _number );
                 _data.Add( "max_completion_tokens", _maximumTokens );
                 _data.Add( "store", _store );
                 _data.Add( "stream", _stream );
@@ -84,6 +280,9 @@ namespace Bubba
                 _data.Add( "presence_penalty", _presencePenalty );
                 _data.Add( "top_p", _topPercent );
                 _data.Add( "response_format", _responseFormat );
+                _data.Add( "modalities", _modalities );
+                _data.Add( "size", _size );
+                _data.Add( "quality", _quality );
                 _stop.Add( "#" );
                 _stop.Add( ";" );
                 _data.Add( "stop", _stop );
@@ -95,6 +294,28 @@ namespace Bubba
             {
                 Fail( ex );
                 return default( IDictionary<string, object> );
+            }
+        }
+
+        /// <inheritdoc />
+        /// <summary>
+        /// Converts to string.
+        /// </summary>
+        /// <returns>
+        /// A <see cref="T:System.String" /> that represents this instance.
+        /// </returns>
+        public override string ToString( )
+        {
+            try
+            {
+                return _data?.Any( ) == true
+                    ? _data.ToJson( )
+                    : string.Empty;
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+                return string.Empty;
             }
         }
     }

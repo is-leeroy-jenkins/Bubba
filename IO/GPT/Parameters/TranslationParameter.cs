@@ -1,10 +1,10 @@
 ﻿// ******************************************************************************************
 //     Assembly:                Bubba
 //     Author:                  Terry D. Eppler
-//     Created:                 01-10-2025
+//     Created:                 01-11-2025
 // 
 //     Last Modified By:        Terry D. Eppler
-//     Last Modified On:        01-10-2025
+//     Last Modified On:        01-11-2025
 // ******************************************************************************************
 // <copyright file="TranslationParameter.cs" company="Terry D. Eppler">
 //    Bubba is a small and simple windows (wpf) application for interacting with the OpenAI API
@@ -56,13 +56,9 @@ namespace Bubba
     [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
     [ SuppressMessage( "ReSharper", "PreferConcreteValueOverDefault" ) ]
     [ SuppressMessage( "ReSharper", "FieldCanBeMadeReadOnly.Global" ) ]
+    [ SuppressMessage( "ReSharper", "ClassCanBeSealed.Global" ) ]
     public class TranslationParameter : GptParameter
     {
-        /// <summary>
-        /// The language
-        /// </summary>
-        private protected string _language;
-
         /// <summary>
         /// The input
         /// </summary>
@@ -71,17 +67,7 @@ namespace Bubba
         /// <summary>
         /// The file path
         /// </summary>
-        private protected string _file;
-
-        /// <summary>
-        /// The voice
-        /// </summary>
-        private protected string _voice;
-
-        /// <summary>
-        /// The speed
-        /// </summary>
-        private protected int _speed;
+        private protected object _file;
 
         /// <summary>
         /// Initializes a new instance of the
@@ -93,31 +79,7 @@ namespace Bubba
         {
             _model = "whisper-1";
             _endPoint = GptEndPoint.Translations;
-            _responseFormat = "mp3";
-            _voice = "fable";
-            _language = "en";
-        }
-
-        /// <summary>
-        /// Gets or sets the language.
-        /// </summary>
-        /// <value>
-        /// The language.
-        /// </value>
-        public string Language
-        {
-            get
-            {
-                return _language;
-            }
-            set
-            {
-                if( _language != value )
-                {
-                    _language = value;
-                    OnPropertyChanged( nameof( Language ) );
-                }
-            }
+            _responseFormat = "text";
         }
 
         /// <summary>
@@ -143,56 +105,12 @@ namespace Bubba
         }
 
         /// <summary>
-        /// Gets or sets the voice.
-        /// </summary>
-        /// <value>
-        /// The voice.
-        /// </value>
-        public string Voice
-        {
-            get
-            {
-                return _voice;
-            }
-            set
-            {
-                if( _voice != value )
-                {
-                    _voice = value;
-                    OnPropertyChanged( nameof( Voice ) );
-                }
-            }
-        }
-
-        /// <summary>
-        /// Gets or sets the speed.
-        /// </summary>
-        /// <value>
-        /// The speed.
-        /// </value>
-        public int Speed
-        {
-            get
-            {
-                return _speed;
-            }
-            set
-            {
-                if( _speed != value )
-                {
-                    _speed = value;
-                    OnPropertyChanged( nameof( Speed ) );
-                }
-            }
-        }
-
-        /// <summary>
         /// Gets or sets the file path.
         /// </summary>
         /// <value>
         /// The file path.
         /// </value>
-        public string File
+        public object File
         {
             get
             {
@@ -215,7 +133,6 @@ namespace Bubba
         /// The chat model.
         /// </value>
         /// <inheritdoc />
-        [ JsonProperty( "model" ) ]
         public override string Model
         {
             get
@@ -239,7 +156,6 @@ namespace Bubba
         /// <value>
         /// The response format.
         /// </value>
-        [ JsonProperty( "response_format" ) ]
         public override string ResponseFormat
         {
             get
@@ -253,6 +169,37 @@ namespace Bubba
                     _responseFormat = value;
                     OnPropertyChanged( nameof( ResponseFormat ) );
                 }
+            }
+        }
+
+        /// <inheritdoc />
+        /// <summary>
+        /// Gets the data.
+        /// </summary>
+        /// <returns></returns>
+        public override IDictionary<string, object> GetData( )
+        {
+            try
+            {
+                _data.Add( "n", _number );
+                _data.Add( "max_completion_tokens", _maximumTokens );
+                _data.Add( "store", _store );
+                _data.Add( "stream", _stream );
+                _data.Add( "temperature", _temperature );
+                _data.Add( "frequency_penalty", _frequencyPenalty );
+                _data.Add( "presence_penalty", _presencePenalty );
+                _data.Add( "top_p", _topPercent );
+                _stop.Add( "#" );
+                _stop.Add( ";" );
+                _data.Add( "stop", _stop );
+                return _data?.Any( ) == true
+                    ? _data
+                    : default( IDictionary<string, object> );
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+                return default( IDictionary<string, object> );
             }
         }
 

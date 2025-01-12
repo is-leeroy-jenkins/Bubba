@@ -46,8 +46,13 @@ namespace Bubba
     using System.Collections.Generic;
     using System.Linq;
     using System.Net.Http;
+    using System.Net.Http.Headers;
+    using System.Text;
+    using System.Text.Json;
+    using System.Threading.Tasks;
     using Newtonsoft.Json;
     using Properties;
+    using JsonSerializer = Newtonsoft.Json.JsonSerializer;
 
     /// <inheritdoc />
     /// <summary>
@@ -56,6 +61,7 @@ namespace Bubba
     [ SuppressMessage( "ReSharper", "UnusedType.Global" ) ]
     [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
     [ SuppressMessage( "ReSharper", "ClassCanBeSealed.Global" ) ]
+    [ SuppressMessage( "ReSharper", "PreferConcreteValueOverDefault" ) ]
     public class EmbeddingRequest : GptRequest
     {
         /// <summary>
@@ -64,14 +70,9 @@ namespace Bubba
         private protected string _filePath;
 
         /// <summary>
-        /// The response format
-        /// </summary>
-        private protected string _responseFormat;
-
-        /// <summary>
         /// The input
         /// </summary>
-        private protected IList<string> _input;
+        private protected string _input;
 
         /// <summary>
         /// The encoding format
@@ -157,7 +158,7 @@ namespace Bubba
         /// The input.
         /// </value>
         [ JsonProperty( "input" ) ]
-        public IList<string> Input
+        public string Input
         {
             get
             {
@@ -292,28 +293,50 @@ namespace Bubba
             }
         }
 
-        /// <inheritdoc />
         /// <summary>
-        /// Gets or sets the response format.
+        /// Generates the query embedding asynchronous.
         /// </summary>
-        /// <value>
-        /// The response format.
-        /// </value>
-        [ JsonProperty( "response_format" ) ]
-        public string ResponseFormat
+        /// <param name="query">The query.</param>
+        /// <returns></returns>
+        public async Task<float[]> CreateQueryAsync( string query )
         {
-            get
+            using var _client = new HttpClient();
+            _client.DefaultRequestHeaders.Authorization =
+                new AuthenticationHeaderValue("Bearer", OpenAI.BubbaKey );
+            
+            var _payload = new EmbeddingPayload( )
             {
-                return _responseFormat;
-            }
-            set
+                Model = "text-embedding-ada-002",
+                Input = query
+            };
+
+            var _jsonPayload = System.Text.Json.JsonSerializer.Serialize(_payload);
+            var _content = new StringContent(_jsonPayload, Encoding.UTF8, "application/json");
+            var _response = await _client.PostAsync( _endPoint, _content);
+            _response.EnsureSuccessStatusCode( );
+            var _responseContent = await _response.Content.ReadAsStringAsync();
+            return ExtractData(_responseContent);
+        }
+
+        /// <summary>
+        /// Extracts the embedding.
+        /// </summary>
+        /// <param name="jsonResponse">The json response.</param>
+        /// <returns></returns>
+        private float[] ExtractData(string jsonResponse)
+        {
+            using var _document = JsonDocument.Parse(jsonResponse);
+            var _embedding = _document.RootElement
+                .GetProperty("data")[0]
+                .GetProperty("embedding");
+
+            var _embeddingList = new System.Collections.Generic.List<float>();
+            foreach(var _value in _embedding.EnumerateArray())
             {
-                if( _responseFormat != value )
-                {
-                    _responseFormat = value;
-                    OnPropertyChanged( nameof( ResponseFormat ) );
-                }
+                _embeddingList.Add(_value.GetSingle());
             }
+
+            return _embeddingList.ToArray();
         }
 
         /// <inheritdoc />

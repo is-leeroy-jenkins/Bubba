@@ -73,6 +73,7 @@
     <None Remove="Resources\Assets\DialogImages\MenuDialog.png" />
     <None Remove="Resources\Assets\DialogImages\Message.ico" />
     <None Remove="Resources\Assets\DialogImages\Message.png" />
+    <None Remove="Resources\Assets\DialogImages\openai.png" />
     <None Remove="Resources\Assets\DialogImages\SplashNotification.png" />
     <None Remove="Resources\Assets\DialogImages\TextDialog.png" />
     <None Remove="Resources\Assets\ExtensionImages\ACCDB.png" />
@@ -222,6 +223,7 @@
     <None Remove="Resources\Assets\ToolStripImages\AddRecordButton.png" />
     <None Remove="Resources\Assets\ToolStripImages\AddTabButton.png" />
     <None Remove="Resources\Assets\ToolStripImages\AreaButton.png" />
+    <None Remove="Resources\Assets\ToolStripImages\AttachmentButton.png" />
     <None Remove="Resources\Assets\ToolStripImages\BackButton.png" />
     <None Remove="Resources\Assets\ToolStripImages\BarButton.png" />
     <None Remove="Resources\Assets\ToolStripImages\BrowseButton.png" />
@@ -270,6 +272,7 @@
     <None Remove="Resources\Assets\ToolStripImages\SunButton.png" />
     <None Remove="Resources\Assets\ToolStripImages\ToggleButton.png" />
     <None Remove="Resources\Assets\ToolStripImages\ToolsButton.png" />
+    <None Remove="Resources\Assets\ToolStripImages\UploadButton.png" />
     <None Remove="Resources\Assets\ToolStripImages\WebDownload.png" />
     <None Remove="Resources\Assets\ToolStripImages\WebDownloadButton.png" />
     <None Remove="Resources\Assets\ToolStripImages\WebSearchButton.png" />
@@ -367,6 +370,7 @@
     <Resource Include="Resources\Assets\DialogImages\MenuDialog.png" />
     <Resource Include="Resources\Assets\DialogImages\Message.ico" />
     <Resource Include="Resources\Assets\DialogImages\Message.png" />
+    <Resource Include="Resources\Assets\DialogImages\openai.png" />
     <Resource Include="Resources\Assets\DialogImages\SplashNotification.png" />
     <Resource Include="Resources\Assets\DialogImages\TextDialog.png" />
     <Resource Include="Resources\Assets\ExtensionImages\ACCDB.png" />
@@ -516,6 +520,7 @@
     <Resource Include="Resources\Assets\ToolStripImages\AddRecordButton.png" />
     <Resource Include="Resources\Assets\ToolStripImages\AddTabButton.png" />
     <Resource Include="Resources\Assets\ToolStripImages\AreaButton.png" />
+    <Resource Include="Resources\Assets\ToolStripImages\AttachmentButton.png" />
     <Resource Include="Resources\Assets\ToolStripImages\BackButton.png" />
     <Resource Include="Resources\Assets\ToolStripImages\BarButton.png" />
     <Resource Include="Resources\Assets\ToolStripImages\BrowseButton.png" />
@@ -563,6 +568,7 @@
     <Resource Include="Resources\Assets\ToolStripImages\SunButton.png" />
     <Resource Include="Resources\Assets\ToolStripImages\ToggleButton.png" />
     <Resource Include="Resources\Assets\ToolStripImages\ToolsButton.png" />
+    <Resource Include="Resources\Assets\ToolStripImages\UploadButton.png" />
     <Resource Include="Resources\Assets\ToolStripImages\WebDownload.png" />
     <Resource Include="Resources\Assets\ToolStripImages\WebDownloadButton.png" />
     <Resource Include="Resources\Assets\ToolStripImages\WebSearchButton.png" />

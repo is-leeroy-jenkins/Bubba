@@ -1,10 +1,10 @@
 ﻿// ******************************************************************************************
 //     Assembly:                Bubba
 //     Author:                  Terry D. Eppler
-//     Created:                 01-10-2025
+//     Created:                 01-12-2025
 // 
 //     Last Modified By:        Terry D. Eppler
-//     Last Modified On:        01-10-2025
+//     Last Modified On:        01-12-2025
 // ******************************************************************************************
 // <copyright file="TranslationRequest.cs" company="Terry D. Eppler">
 //    Bubba is a small and simple windows (wpf) application for interacting with the OpenAI API
@@ -48,6 +48,7 @@ namespace Bubba
     using System.Linq;
     using System.Net.Http;
     using System.Net.Http.Headers;
+    using System.Text.Json;
     using System.Threading.Tasks;
     using Newtonsoft.Json;
     using Properties;
@@ -183,31 +184,6 @@ namespace Bubba
             }
         }
 
-        /// <inheritdoc />
-        /// <summary>
-        /// The format of the output, in one of these options:
-        /// json, text, srt, verbose_json, or vtt.
-        /// </summary>
-        /// <value>
-        /// The response format.
-        /// </value>
-        [ JsonProperty( "response_format" ) ]
-        public string ResponseFormat
-        {
-            get
-            {
-                return _responseFormat;
-            }
-            set
-            {
-                if( _responseFormat != value )
-                {
-                    _responseFormat = value;
-                    OnPropertyChanged( nameof( ResponseFormat ) );
-                }
-            }
-        }
-
         /// <summary>
         /// Gets or sets the input.
         /// </summary>
@@ -228,26 +204,6 @@ namespace Bubba
                     _prompt = value;
                     OnPropertyChanged( nameof( Prompt ) );
                 }
-            }
-        }
-
-        /// <inheritdoc />
-        /// <summary>
-        /// The sampling temperature, between 0 and 1.
-        /// Higher values like 0.8 will make the output more random,
-        /// while lower values like 0.2 will make it more focused and deterministic.
-        /// If set to 0, the model will use log probability to automatically increase
-        /// the temperature until certain thresholds are hit.
-        /// </summary>
-        /// <value>
-        /// The temperature.
-        /// </value>
-        [ JsonProperty( "temperature" ) ]
-        public override double Temperature
-        {
-            get
-            {
-                return _temperature;
             }
         }
 
@@ -283,7 +239,30 @@ namespace Bubba
                 var _response = await _client.PostAsync( _endPoint, _form );
                 _response.EnsureSuccessStatusCode( );
                 var _responseContent = await _response.Content.ReadAsStringAsync( );
-                return _responseContent;
+                var _parsed = ParseTranslation( _responseContent );
+                return !string.IsNullOrEmpty( _parsed )
+                    ? _parsed
+                    : string.Empty;
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+                return string.Empty;
+            }
+        }
+
+        /// <summary>
+        /// Parses the translation.
+        /// </summary>
+        /// <param name="jsonResponse">The json response.</param>
+        /// <returns></returns>
+        private string ParseTranslation( string jsonResponse )
+        {
+            try
+            {
+                ThrowIf.Empty( jsonResponse, nameof( jsonResponse ) );
+                using var _document = JsonDocument.Parse( jsonResponse );
+                return _document.RootElement.GetProperty( "text" ).GetString( );
             }
             catch( Exception ex )
             {
