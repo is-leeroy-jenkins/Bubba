@@ -1,13 +1,11 @@
-
 <div align="left">
   <p>
     <a href="https://github.com/is-leeroy-jenkins/Bubba/tree/master/Resources/Github/Users.md">Download</a> •  <a href="">Documentation</a> •<a href="https://github.com/is-leeroy-jenkins/Bubba/tree/master/Resources/Github/Compilation.md">Build</a> • <a href="#-license">License</a>
   </p>
   <p>
-    
   </p>
 </div>
-_
+
 ![](https://github.com/is-leeroy-jenkins/Bubba/blob/master/Resources/Assets/GitHubImages/project_bubba.png)
 
 
