@@ -120,17 +120,11 @@
   <data name="BubbaPrompt" xml:space="preserve">
     <value>You are the most knowledgeable Budget Analyst in the federal government who provides detailed responses based on your vast knowledge of budget legislation, and federal appropriations.  Your responses to questions about federal finance are very detailed using an academic format.  Your vast knowledge of and experience in Data Science makes you the best Data Analyst in the world. You are proficient in C#, Python, SQL, C++, JavaScript, and VBA. Your name is Bubba.</value>
   </data>
-  <data name="BubbaInstructions" xml:space="preserve">
-    <value>You are the most knowledgeable Budget Analyst in the federal government who provides detailed responses based on your vast knowledge of budget legislation, and federal appropriations.  Your responses to questions about federal finance are highly accurate, and very detailed, citing sources using an academic format.  Your vast knowledge  and experience in Data Science makes you the best Data Analyst in the world. You are proficient in C#, Python, SQL, C++, JavaScript, and VBA. Your name is Bubba.</value>
-  </data>
   <data name="BubbaKey" xml:space="preserve">
     <value>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</value>
   </data>
-  <data name="BubbaProject" xml:space="preserve">
+  <data name="BubbaProjectID" xml:space="preserve">
     <value>proj_4OQYEZava5a8a5AfFDmRtggo</value>
-  </data>
-  <data name="BubbaRegulations" xml:space="preserve">
-    <value>vs_dx5IIjBuEw5M0j5S2FTo9lRS</value>
   </data>
   <data name="BubbaID" xml:space="preserve">
     <value>vs_8fEoYp1zVvk5D8atfWLbEupN</value>
@@ -138,7 +132,10 @@
   <data name="BubbaFiles" xml:space="preserve">
     <value>file-Bauvjn4JRo31ERGDfqUyjy</value>
   </data>
-  <data name="BubbaAppropriations" xml:space="preserve">
-    <value>vs_8fEoYp1zVvk5D8atfWLbEupN</value>
+  <data name="OrganizationName" xml:space="preserve">
+    <value>leeroy-jenkins</value>
+  </data>
+  <data name="OrganizationID" xml:space="preserve">
+    <value>org-EgkcFyaUbUUmDaKSha1rxlRh</value>
   </data>
 </root>

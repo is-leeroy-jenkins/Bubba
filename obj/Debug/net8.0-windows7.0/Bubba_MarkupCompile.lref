@@ -1,4 +1,4 @@
-﻿C:\Users\terry\source\repos\Bubba\obj\Debug\net8.0-windows7.0\GeneratedInternalTypeHelper.g.cs
+﻿
 FC:\Users\terry\source\repos\Bubba\App.xaml;;
 FC:\Users\terry\source\repos\Bubba\UI\Controls\Frame\MetroComboFrame.xaml;;
 FC:\Users\terry\source\repos\Bubba\UI\Controls\Frame\MetroTextInput.xaml;;
@@ -33,12 +33,15 @@ FC:\Users\terry\source\repos\Bubba\UI\Themes\Tile\Tile.xaml;;
 FC:\Users\terry\source\repos\Bubba\UI\Themes\Window\Window.xaml;;
 FC:\Users\terry\source\repos\Bubba\UI\Views\Calculator\CalculatorWindow.xaml;;
 FC:\Users\terry\source\repos\Bubba\UI\Views\ChatWindow\ChatWindow.xaml;;
+FC:\Users\terry\source\repos\Bubba\UI\Views\Configuration\ConfigurationDialog.xaml;;
 FC:\Users\terry\source\repos\Bubba\UI\Views\Document\DocumentWindow.xaml;;
 FC:\Users\terry\source\repos\Bubba\UI\Views\ErrorWindow\ErrorWindow.xaml;;
 FC:\Users\terry\source\repos\Bubba\UI\Views\FileBrowser\FileBrowser.xaml;;
 FC:\Users\terry\source\repos\Bubba\UI\Views\Folder\FolderBrowser.xaml;;
+FC:\Users\terry\source\repos\Bubba\UI\Views\GptImage\GptImageDialog.xaml;;
 FC:\Users\terry\source\repos\Bubba\UI\Views\SearchDialog\SearchDialog.xaml;;
 FC:\Users\terry\source\repos\Bubba\UI\Views\SplashWindow\SplashMessage.xaml;;
-FC:\Users\terry\source\repos\Bubba\UI\Views\Upload\GptFileDialog.xaml;;
+FC:\Users\terry\source\repos\Bubba\UI\Views\SystemDialog\SystemDialog.xaml;;
 FC:\Users\terry\source\repos\Bubba\UI\Views\WebBrowser\WebBrowser.xaml;;
+FC:\Users\terry\source\repos\Bubba\UI\Views\GptFile\GptFileDialog.xaml;;
 

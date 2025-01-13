@@ -19,6 +19,7 @@
     [ SuppressMessage( "ReSharper", "FieldCanBeMadeReadOnly.Local" ) ]
     [ SuppressMessage( "ReSharper", "RedundantExtendsListEntry" ) ]
     [ SuppressMessage( "ReSharper", "MemberCanBeProtected.Global" ) ]
+    [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
     public partial class SearchDialog : Window, IDisposable
     {
         /// <summary>
@@ -153,7 +154,6 @@
                 SearchPanelCancelButton.Click += OnCloseButtonClick;
                 SearchPanelRefreshButton.Click += OnClearButtonClick;
                 SearchPanelTextBox.TextChanged += OnInputTextChanged;
-                SearchPanelComboBox.SelectionChanged += OnSelectedDomainChanged;
             }
             catch( Exception ex )
             {
@@ -182,7 +182,6 @@
         {
             try
             {
-                SearchPanelDomainLabel.Content = _domainLabelPrefix + " " + "Google";
                 SearchPanelQueryLabel.Content = _keywordLabelPrefix + " " + "0";
             }
             catch( Exception ex )
@@ -269,30 +268,6 @@
         }
 
         /// <summary>
-        /// Sets the tool strip properties.
-        /// </summary>
-        private void PopulateDomainDropDowns( ) 
-        {
-            try
-            {
-                SearchPanelComboBox.Items?.Clear( );
-                var _domains = Enum.GetNames( typeof( Domains ) );
-                for( var _i = 0; _i < _domains.Length; _i++ )
-                {
-                    var _domain = _domains[ _i ];
-                    if( !string.IsNullOrEmpty( _domain ) )
-                    {
-                        SearchPanelComboBox.Items.Add( _domain );
-                    }
-                }
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
-            }
-        }
-
-        /// <summary>
         /// Clears the callbacks.
         /// </summary>
         private void ClearCallbacks( )
@@ -303,7 +278,6 @@
                 SearchPanelCancelButton.Click -= OnCloseButtonClick;
                 SearchPanelRefreshButton.Click -= OnClearButtonClick;
                 SearchPanelTextBox.TextChanged -= OnInputTextChanged;
-                SearchPanelComboBox.SelectionChanged -= OnSelectedDomainChanged;
             }
             catch(Exception ex)
             {
@@ -328,7 +302,6 @@
                 InitializeButtons( );
                 InitializeComboBox( );
                 InitializeLabels( );
-                PopulateDomainDropDowns( );
             }
             catch( Exception ex )
             {
@@ -399,8 +372,6 @@
             {
                 _keywordInput = string.Empty;
                 _results = string.Empty;
-                _queryPrefix = ConfigurationManager.AppSettings[ "Google" ];
-                SearchPanelDomainLabel.Content = _domainLabelPrefix;
                 SearchPanelQueryLabel.Content = _keywordLabelPrefix;
             }
             catch( Exception ex )

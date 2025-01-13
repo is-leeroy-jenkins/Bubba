@@ -199,7 +199,7 @@
     <value>;  GPT-4 is an older version of a high-intelligence GPT model, usable in Chat Completions. </value>
   </data>
   <data name="gpt-4-0613" xml:space="preserve">
-    <value>;  GPT-4 is an older version of a high-intelligence GPT model, usable in Chat Completions. </value>
+    <value>gpt-4 is an older version of a high-intelligence GPT model, usable in Chat Completions. </value>
   </data>
   <data name="gpt-4-0314" xml:space="preserve">
     <value>gpt-4-0314;  GPT-4 is an older version of a high-intelligence GPT model, usable in Chat Completions. </value>
@@ -223,7 +223,7 @@
     <value>tts-1-hd; TTS is an AI model that converts text to natural sounding spoken text. We offer two different model variates, tts-1 is optimized for real time text to speech use cases and tts-1-hd is optimized for quality. These models can be used with the Speech endpoint in the Audio API. Audio outputs are stored for 1 hour to enable multi-turn conversations, and are not currently eligible for zero retention.</value>
   </data>
   <data name="whisper-1" xml:space="preserve">
-    <value>;  Whisper is a general-purpose speech recognition model. It is trained on a large dataset of diverse audio and is also a multi-task model that can perform multilingual speech recognition as well as speech translation and language identification. The Whisper v2-large model is currently available through our API with the whisper-1 model name. Audio outputs are stored for 1 hour to enable multi-turn conversations, and are not currently eligible for zero retention.</value>
+    <value>Whisper is a general-purpose speech recognition model. It is trained on a large dataset of diverse audio and is also a multi-task model that can perform multilingual speech recognition as well as speech translation and language identification. The Whisper v2-large model is currently available through our API with the whisper-1 model name. Audio outputs are stored for 1 hour to enable multi-turn conversations, and are not currently eligible for zero retention.</value>
   </data>
   <data name="whisper-2" xml:space="preserve">
     <value>whisper-2;  Whisper is a general-purpose speech recognition model. It is trained on a large dataset of diverse audio and is also a multi-task model that can perform multilingual speech recognition as well as speech translation and language identification. The Whisper v2-large model is currently available through our API with the whisper-1 model name. Audio outputs are stored for 1 hour to enable multi-turn conversations, and are not currently eligible for zero retention.</value>

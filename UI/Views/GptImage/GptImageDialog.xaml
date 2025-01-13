@@ -1,0 +1,34 @@
+﻿<Window
+    x:Class="Bubba.GptImageDialog"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:Bubba"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:skin="clr-namespace:Syncfusion.SfSkinManager;assembly=Syncfusion.SfSkinManager.WPF"
+    xmlns:ui="http://schemas.modernwpf.com/2019"
+    xmlns:wpf="http://schemas.syncfusion.com/wpf"
+    Title="GPT Image"
+    Width="750"
+    Height="450"
+    wpf:SfSkinManager.Theme="{wpf:SkinManager ThemeName=FluentDark}"
+    Background="{StaticResource FormBackground}"
+    BorderBrush="{StaticResource BlueBorderBrush}"
+    Foreground="{StaticResource FormForeground}"
+    Icon="/Resources/Assets/ApplicationImages/Bubba.png"
+    WindowStartupLocation="CenterScreen"
+    mc:Ignorable="d">
+    <Canvas>
+        <wpf:SfImageEditor
+            x:Name="Editor"
+            Canvas.Left="45"
+            Canvas.Top="20"
+            Width="660"
+            Height="369"
+            Padding="3,3,3,3"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            FontFamily="Roboto"
+            UseLayoutRounding="True" />
+    </Canvas>
+</Window>

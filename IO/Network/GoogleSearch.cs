@@ -49,6 +49,7 @@ namespace Bubba
     using System.Diagnostics.CodeAnalysis;
     using System.Linq;
     using System.Threading.Tasks;
+    using Properties;
 
     /// <inheritdoc />
     /// <summary>
@@ -63,6 +64,7 @@ namespace Bubba
     [ SuppressMessage( "ReSharper", "AutoPropertyCanBeMadeGetOnly.Global" ) ]
     [ SuppressMessage( "ReSharper", "RedundantBaseConstructorCall" ) ]
     [ SuppressMessage( "ReSharper", "UnusedType.Global" ) ]
+    [ SuppressMessage( "ReSharper", "PreferConcreteValueOverDefault" ) ]
     public class GoogleSearch : WebSearch
     {
         /// <summary>
@@ -83,8 +85,11 @@ namespace Bubba
         public GoogleSearch( )
             : base( )
         {
-            _key = ConfigurationManager.AppSettings[ "ApiKey" ];
-            _engineId = ConfigurationManager.AppSettings[ "SearchEngineId" ];
+            _key = SearchEngine.KEY;
+            _engineId = SearchEngine.ID;
+            _projectId = SearchEngine.ProjectID;
+            _projectNumber = SearchEngine.ProjectNumber;
+            _url = SearchEngine.URL;
         }
 
         /// <inheritdoc />
@@ -145,7 +150,10 @@ namespace Bubba
                     _searchRequest.Q = _keyWords;
                     _searchRequest.Cx = _engineId;
                     _searchRequest.Start = _count;
-                    var _list = _searchRequest.Execute( )?.Items?.ToList( );
+                    var _list = _searchRequest.Execute( )
+                        ?.Items
+                        ?.ToList( );
+
                     if( _list?.Any( ) == true )
                     {
                         for( var _i = 0; _i < _list.Count; _i++ )

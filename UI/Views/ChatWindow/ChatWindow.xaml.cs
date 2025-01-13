@@ -1,10 +1,10 @@
 ﻿// ******************************************************************************************
 //     Assembly:                Bubba
 //     Author:                  Terry D. Eppler
-//     Created:                 01-10-2025
+//     Created:                 01-12-2025
 // 
 //     Last Modified By:        Terry D. Eppler
-//     Last Modified On:        01-10-2025
+//     Last Modified On:        01-12-2025
 // ******************************************************************************************
 // <copyright file="ChatWindow.xaml.cs" company="Terry D. Eppler">
 //    Bubba is a small and simple windows (wpf) application for interacting with the OpenAI API
@@ -86,6 +86,7 @@ namespace Bubba
     [ SuppressMessage( "ReSharper", "UnusedParameter.Global" ) ]
     [ SuppressMessage( "ReSharper", "LocalVariableHidesMember" ) ]
     [ SuppressMessage( "ReSharper", "CanSimplifyDictionaryLookupWithTryGetValue" ) ]
+    [ SuppressMessage( "ReSharper", "PreferConcreteValueOverDefault" ) ]
     public partial class ChatWindow : Window, INotifyPropertyChanged
     {
         /// <summary>
@@ -566,7 +567,7 @@ namespace Bubba
                 {
                     case RequestTypes.ChatCompletion:
                     {
-                        PopulateTextModels();
+                        PopulateTextModels( );
                         _endpoint = GptEndPoint.Completions;
                         TemperatureSlider.Value = 0.18;
                         TopPercentSlider.Value = 0.11;
@@ -590,7 +591,7 @@ namespace Bubba
                     }
                     case RequestTypes.ImageGeneration:
                     {
-                        PopulateImageModels();
+                        PopulateImageModels( );
                         _endpoint = GptEndPoint.ImageGeneration;
                         TopPercentSlider.Value = 0.11;
                         TemperatureSlider.Value = 0.18;
@@ -2537,9 +2538,9 @@ namespace Bubba
         {
             try
             {
-                ClearChatControls();
+                ClearChatControls( );
                 ClearParameters( );
-                PopulateModelsAsync();
+                PopulateModelsAsync( );
             }
             catch( Exception ex )
             {

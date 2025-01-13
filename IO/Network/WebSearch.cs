@@ -1,10 +1,10 @@
 ﻿// ******************************************************************************************
 //     Assembly:                Bubba
 //     Author:                  Terry D. Eppler
-//     Created:                 01-07-2025
+//     Created:                 01-12-2025
 // 
 //     Last Modified By:        Terry D. Eppler
-//     Last Modified On:        01-07-2025
+//     Last Modified On:        01-12-2025
 // ******************************************************************************************
 // <copyright file="WebSearch.cs" company="Terry D. Eppler">
 //    Bubba is a small and simple windows (wpf) application for interacting with the OpenAI API
@@ -89,6 +89,21 @@ namespace Bubba
         private protected string _title;
 
         /// <summary>
+        /// The project identifier
+        /// </summary>
+        private protected string _projectId;
+
+        /// <summary>
+        /// The project number
+        /// </summary>
+        private protected string _projectNumber;
+
+        /// <summary>
+        /// The URL
+        /// </summary>
+        private protected string _url;
+
+        /// <summary>
         /// Gets a value indicating whether this instance is busy.
         /// </summary>
         /// <value>
@@ -143,7 +158,7 @@ namespace Bubba
         /// <value>
         /// The link.
         /// </value>
-        public virtual string Link
+        public string Link
         {
             get
             {
@@ -160,12 +175,78 @@ namespace Bubba
         }
 
         /// <summary>
+        /// Gets or sets the project identifier.
+        /// </summary>
+        /// <value>
+        /// The project identifier.
+        /// </value>
+        public string ProjectId
+        {
+            get
+            {
+                return _projectId;
+            }
+            set
+            {
+                if( _link != value )
+                {
+                    _projectId = value;
+                    OnPropertyChanged( nameof( ProjectId ) );
+                }
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the project number.
+        /// </summary>
+        /// <value>
+        /// The project number.
+        /// </value>
+        public string ProjectNumber
+        {
+            get
+            {
+                return _projectNumber;
+            }
+            set
+            {
+                if(_projectNumber != value)
+                {
+                    _projectNumber = value;
+                    OnPropertyChanged(nameof(ProjectNumber));
+                }
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the URL.
+        /// </summary>
+        /// <value>
+        /// The URL.
+        /// </value>
+        public string Url
+        {
+            get
+            {
+                return _url;
+            }
+            set
+            {
+                if( _url != value )
+                {
+                    _url = value;
+                    OnPropertyChanged( nameof( Url ) );
+                }
+            }
+        }
+
+        /// <summary>
         /// Gets or sets the name.
         /// </summary>
         /// <value>
         /// The name.
         /// </value>
-        public virtual string Name
+        public string Name
         {
             get
             {
@@ -187,7 +268,7 @@ namespace Bubba
         /// <value>
         /// The content.
         /// </value>
-        public virtual string Content
+        public string Content
         {
             get
             {
@@ -209,7 +290,7 @@ namespace Bubba
         /// <value>
         /// The title.
         /// </value>
-        public virtual string Title
+        public string Title
         {
             get
             {

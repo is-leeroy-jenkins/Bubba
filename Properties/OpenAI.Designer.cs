@@ -61,15 +61,6 @@ namespace Bubba.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to vs_8fEoYp1zVvk5D8atfWLbEupN.
-        /// </summary>
-        internal static string BubbaAppropriations {
-            get {
-                return ResourceManager.GetString("BubbaAppropriations", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to file-Bauvjn4JRo31ERGDfqUyjy.
         /// </summary>
         internal static string BubbaFiles {
@@ -88,15 +79,6 @@ namespace Bubba.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to You are the most knowledgeable Budget Analyst in the federal government who provides detailed responses based on your vast knowledge of budget legislation, and federal appropriations.  Your responses to questions about federal finance are highly accurate, and very detailed, citing sources using an academic format.  Your vast knowledge  and experience in Data Science makes you the best Data Analyst in the world. You are proficient in C#, Python, SQL, C++, JavaScript, and VBA. Your name is Bubba..
-        /// </summary>
-        internal static string BubbaInstructions {
-            get {
-                return ResourceManager.GetString("BubbaInstructions", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to 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.
         /// </summary>
         internal static string BubbaKey {
@@ -108,9 +90,9 @@ namespace Bubba.Properties {
         /// <summary>
         ///   Looks up a localized string similar to proj_4OQYEZava5a8a5AfFDmRtggo.
         /// </summary>
-        internal static string BubbaProject {
+        internal static string BubbaProjectID {
             get {
-                return ResourceManager.GetString("BubbaProject", resourceCulture);
+                return ResourceManager.GetString("BubbaProjectID", resourceCulture);
             }
         }
         
@@ -124,11 +106,20 @@ namespace Bubba.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to vs_dx5IIjBuEw5M0j5S2FTo9lRS.
+        ///   Looks up a localized string similar to org-EgkcFyaUbUUmDaKSha1rxlRh.
         /// </summary>
-        internal static string BubbaRegulations {
+        internal static string OrganizationID {
             get {
-                return ResourceManager.GetString("BubbaRegulations", resourceCulture);
+                return ResourceManager.GetString("OrganizationID", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to leeroy-jenkins.
+        /// </summary>
+        internal static string OrganizationName {
+            get {
+                return ResourceManager.GetString("OrganizationName", resourceCulture);
             }
         }
     }

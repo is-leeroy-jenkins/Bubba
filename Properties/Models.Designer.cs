@@ -151,7 +151,7 @@ namespace Bubba.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ;  GPT-4 is an older version of a high-intelligence GPT model, usable in Chat Completions. .
+        ///   Looks up a localized string similar to gpt-4 is an older version of a high-intelligence GPT model, usable in Chat Completions. .
         /// </summary>
         internal static string gpt_4_0613 {
             get {
@@ -421,7 +421,7 @@ namespace Bubba.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ;  Whisper is a general-purpose speech recognition model. It is trained on a large dataset of diverse audio and is also a multi-task model that can perform multilingual speech recognition as well as speech translation and language identification. The Whisper v2-large model is currently available through our API with the whisper-1 model name. Audio outputs are stored for 1 hour to enable multi-turn conversations, and are not currently eligible for zero retention..
+        ///   Looks up a localized string similar to Whisper is a general-purpose speech recognition model. It is trained on a large dataset of diverse audio and is also a multi-task model that can perform multilingual speech recognition as well as speech translation and language identification. The Whisper v2-large model is currently available through our API with the whisper-1 model name. Audio outputs are stored for 1 hour to enable multi-turn conversations, and are not currently eligible for zero retention..
         /// </summary>
         internal static string whisper_1 {
             get {
