@@ -52,7 +52,7 @@
 - Real-world analysis on pre-trained, vectorized appropriations data that would typically require analysts considerable time in a matter of seconds. 
 - Semantic Search on federal budget guidance with Vector Embeddings.
 
-
+- Ex. gpt-40-mini test run below
 ## ![](https://github.com/is-leeroy-jenkins/Bubba/blob/master/Resources/Assets/GitHubImages/Bubba.gif) 
 
 
