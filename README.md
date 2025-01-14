@@ -58,10 +58,10 @@
 
 ### Ex. gpt-40-mini test run below
 
-- #### Bubba is prompted to review 10 years of appropriation data
-- #### Extrapolate the appropriated amounts.
-- #### Total the amount for a fiscal year. 
-- #### Present the calculated data in the form of a table. 
+- Bubba is prompted to review 10 years of appropriation data
+- Extrapolate the appropriated amounts.
+- Total the amount for a fiscal year. 
+- Present the calculated data in the form of a table. 
 
 ## ![](https://github.com/is-leeroy-jenkins/Bubba/blob/master/Resources/Assets/GitHubImages/Bubba.gif) 
 
