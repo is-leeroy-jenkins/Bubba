@@ -1,10 +1,10 @@
 ﻿// ******************************************************************************************
 //     Assembly:                Bubba
 //     Author:                  Terry D. Eppler
-//     Created:                 01-10-2025
+//     Created:                 01-13-2025
 // 
 //     Last Modified By:        Terry D. Eppler
-//     Last Modified On:        01-10-2025
+//     Last Modified On:        01-13-2025
 // ******************************************************************************************
 // <copyright file="GptFileRequest.cs" company="Terry D. Eppler">
 //    Bubba is a small and simple windows (wpf) application for interacting with the OpenAI API
@@ -130,6 +130,7 @@ namespace Bubba
             _endPoint = GptEndPoint.Files;
             _limit = 10000;
             _order = "desc";
+            _purpose = "assistants";
         }
 
         /// <inheritdoc />
@@ -356,6 +357,7 @@ namespace Bubba
         /// <value>
         /// The end point.
         /// </value>
+        [ JsonProperty( "endpoint" ) ]
         public override string EndPoint
         {
             get
@@ -378,7 +380,7 @@ namespace Bubba
         /// <param name="filePath">The file path.</param>
         /// <param name="purpose">The purpose.</param>
         /// <returns></returns>
-        public async Task<string> UploadFileAsync( string filePath, string purpose = "fine-tune" )
+        public async Task<string> UploadFileAsync( string filePath )
         {
             try
             {
@@ -395,7 +397,7 @@ namespace Bubba
                         _fileContent, "file", Path.GetFileName( filePath )
                     },
                     {
-                        new StringContent( purpose ), "purpose"
+                        new StringContent( _purpose ), "purpose"
                     }
                 };
 

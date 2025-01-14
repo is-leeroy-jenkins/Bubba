@@ -81,9 +81,7 @@ namespace Bubba
             : base( )
         {
             _entry = new object( );
-            _apiKey = OpenAI.BubbaKey;
-            _model = "gpt-3.5-turbo";
-            _client = new OpenAIClient( OpenAI.BubbaKey );
+            _apiKey = App.OpenAiKey;
         }
 
         /// <inheritdoc />
@@ -92,10 +90,9 @@ namespace Bubba
         /// <see cref="T:Bubba.GptClient" /> class.
         /// </summary>
         /// <param name="model">The chat model.</param>
-        public GptClientFactory( string model )
+        public GptClientFactory( string model ) 
+            : this( )
         {
-            _entry = new object( );
-            _apiKey = OpenAI.BubbaKey;
             _model = model;
             _client = new OpenAIClient( _apiKey );
         }

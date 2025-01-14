@@ -49,7 +49,6 @@ namespace Bubba
     /// <summary>
     /// 
     /// </summary>
-    [ SuppressMessage( "ReSharper", "InconsistentNaming" ) ]
     [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
     [ SuppressMessage( "ReSharper", "LoopCanBePartlyConvertedToQuery" ) ]
     [ SuppressMessage( "ReSharper", "RedundantAssignment" ) ]
@@ -97,11 +96,11 @@ namespace Bubba
             {
                 try
                 {
-                    foreach( var item in _folderItems )
+                    foreach( var _item in _folderItems )
                     {
-                        var mailitem = ( Office.MailItem )item;
-                        var body = mailitem.Body.ToLower( );
-                        if( body.Contains( search.ToLower( ) ) )
+                        var _mailItem = ( Office.MailItem )_item;
+                        var _body = _mailItem.Body.ToLower( );
+                        if( _body.Contains( search.ToLower( ) ) )
                         {
                         }
                         else

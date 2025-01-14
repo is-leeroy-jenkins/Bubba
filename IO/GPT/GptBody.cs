@@ -1,10 +1,10 @@
 ﻿// ******************************************************************************************
 //     Assembly:                Bubba
 //     Author:                  Terry D. Eppler
-//     Created:                 01-07-2025
+//     Created:                 01-13-2025
 // 
 //     Last Modified By:        Terry D. Eppler
-//     Last Modified On:        01-07-2025
+//     Last Modified On:        01-13-2025
 // ******************************************************************************************
 // <copyright file="GptBody.cs" company="Terry D. Eppler">
 //    Bubba is a small and simple windows (wpf) application for interacting with the OpenAI API
@@ -95,7 +95,7 @@ namespace Bubba
         public GptBody( )
         {
             _responseFormat = "text";
-            _model = "gpt-4o";
+            _model = "gpt-4o-mini";
             _messages = new List<IGptMessage>( );
             _data = new Dictionary<string, object>( );
         }
@@ -187,7 +187,7 @@ namespace Bubba
         /// <value>
         /// The response format.
         /// </value>
-        [JsonProperty("response_format")]
+        [ JsonProperty( "response_format" ) ]
         public string ResponseFormat
         {
             get
@@ -211,7 +211,7 @@ namespace Bubba
         /// <value>
         /// The messages.
         /// </value>
-        [JsonProperty("messages")]
+        [ JsonProperty( "messages" ) ]
         public IList<IGptMessage> Messages
         {
             get

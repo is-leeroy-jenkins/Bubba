@@ -72,16 +72,6 @@ namespace Bubba
         private protected WindowPlace _windowPlace;
 
         /// <summary>
-        /// The open ai API key
-        /// </summary>
-        private protected string _openAiApiKey;
-
-        /// <summary>
-        /// The google API key
-        /// </summary>
-        private protected string _googleApiKey;
-
-        /// <summary>
         /// The active windows
         /// </summary>
         public static IDictionary<string, Window> ActiveWindows { get; private set; }
@@ -163,50 +153,24 @@ namespace Bubba
             InitializeDelegates( );
             var _key = ConfigurationManager.AppSettings[ "UI" ];
             SyncfusionLicenseProvider.RegisterLicense( _key );
-            _openAiApiKey = Environment.GetEnvironmentVariable( "OPENAI_API_KEY" );
-            _googleApiKey = Environment.GetEnvironmentVariable("GOOGLE_API_KEY");
+            OpenAiKey = Environment.GetEnvironmentVariable( "OPENAI_API_KEY" );
+            GoogleKey = Environment.GetEnvironmentVariable("GOOGLE_API_KEY");
             ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
             RegisterTheme();
             ActiveWindows = new Dictionary<string, Window>( );
         }
 
         /// <summary>
-        /// Gets or sets the open ai API key.
+        /// The open ai API key
         /// </summary>
-        /// <value>
-        /// The open ai API key.
-        /// </value>
-        public string OpenAiApiKey
-        {
-            get
-            {
-                return _openAiApiKey;
-            }
-            set
-            {
-                _openAiApiKey = value;
-            }
-        }
+        public static string OpenAiKey;
 
         /// <summary>
-        /// Gets or sets the google API key.
+        /// The google API key
         /// </summary>
-        /// <value>
-        /// The google API key.
-        /// </value>
-        public string GoogleApiKey
-        {
-            get
-            {
-                return _googleApiKey;
-            }
-            set
-            {
-                _googleApiKey = value;
-            }
-        }
-        
-        // <summary>
+        public static string GoogleKey;
+
+        /// <summary>
         /// Initializes the delegates.
         /// </summary>
         private void InitializeDelegates( )

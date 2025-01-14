@@ -80,7 +80,7 @@ namespace Bubba
             : base( )
         {
             _entry = new object( );
-            _apiKey = OpenAI.BubbaKey;
+            _apiKey = App.OpenAiKey;
             _endPoints = GetEndPoints( );
             _models = GetModels( );
         }
