@@ -52,12 +52,15 @@
 - Real-world analysis on pre-trained, vectorized appropriations data that would typically require analysts considerable time in a matter of seconds. 
 - Semantic Search on federal budget guidance with Vector Embeddings.
 
+
 ## ![](https://github.com/is-leeroy-jenkins/Bubba/blob/master/Resources/Assets/GitHubImages/Bubba.gif) 
+
 
 ## ![](https://github.com/is-leeroy-jenkins/Badger/blob/main/Resources/Assets/GitHubImages/graph.png) Maching Learning
 
-- Large-Language Models used for Embedding & fine-tuning:  gpt-4-turbo
-- Large-Language Models used used for Budget-reasonsing:  gpt-4o-mini, o1, and davinci
+- Bubba uses gpt-4-turbo for Embedding & fine-tuning.  
+- Large-Language Models gpt-4o-mini, o1, and davinci are used for Budget-reasonsing:  
+
   
 
 ## ![](https://github.com/is-leeroy-jenkins/Bubba/blob/master/Resources/Assets/GitHubImages/tools.png) Build
