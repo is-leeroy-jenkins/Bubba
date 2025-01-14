@@ -1,10 +1,10 @@
 ﻿// ******************************************************************************************
 //     Assembly:                Bubba
 //     Author:                  Terry D. Eppler
-//     Created:                 01-07-2025
+//     Created:                 01-14-2025
 // 
 //     Last Modified By:        Terry D. Eppler
-//     Last Modified On:        01-07-2025
+//     Last Modified On:        01-14-2025
 // ******************************************************************************************
 // <copyright file="GptHeader.cs" company="Terry D. Eppler">
 //    Bubba is a small and simple windows (wpf) application for interacting with the OpenAI API
@@ -44,6 +44,7 @@ namespace Bubba
     using System;
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
+    using System.Linq;
     using Properties;
 
     /// <inheritdoc />
@@ -54,6 +55,7 @@ namespace Bubba
     [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
     [ SuppressMessage( "ReSharper", "FieldCanBeMadeReadOnly.Global" ) ]
     [ SuppressMessage( "ReSharper", "ClassCanBeSealed.Global" ) ]
+    [ SuppressMessage( "ReSharper", "PreferConcreteValueOverDefault" ) ]
     public class GptHeader : PropertyChangedBase
     {
         /// <summary>
@@ -83,11 +85,9 @@ namespace Bubba
         /// </summary>
         public GptHeader( )
         {
-            _apiKey = OpenAI.BubbaKey;
+            _apiKey = App.OpenAiKey;
             _contentType = "application/json";
-            _authorization = "Bearer " + OpenAI.BubbaKey;
-            _data.Add( "content-type", _contentType );
-            _data.Add( "authorization", _authorization );
+            _authorization = "Bearer " + App.OpenAiKey;
         }
 
         /// <summary>
@@ -97,9 +97,9 @@ namespace Bubba
         /// <param name="header">The header.</param>
         public GptHeader( GptHeader header )
         {
-            _apiKey = OpenAI.BubbaKey;
+            _apiKey = App.OpenAiKey;
             _contentType = "application/json";
-            _authorization = "Bearer " + OpenAI.BubbaKey;
+            _authorization = "Bearer " + App.OpenAiKey;
             _data = header.Data;
         }
 
@@ -167,6 +167,29 @@ namespace Bubba
             }
         }
 
+        /// <inheritdoc />
+        /// <summary>
+        /// Gets the data.
+        /// </summary>
+        /// <returns>
+        /// </returns>
+        public IDictionary<string, object> GetData( )
+        {
+            try
+            {
+                _data.Add( "content-type", _contentType );
+                _data.Add( "authorization", _authorization );
+                return _data?.Any( ) == true
+                    ? _data
+                    : default( IDictionary<string, object> );
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+                return default( IDictionary<string, object> );
+            }
+        }
+
         /// <summary>
         /// Returns a string that represents the current object.
         /// </summary>
@@ -175,7 +198,20 @@ namespace Bubba
         /// </returns>
         public override string ToString( )
         {
-            return _data.ToJson( );
+            return _data?.Any( ) == true
+                ? _data.ToJson( )
+                : string.Empty;
+        }
+
+        /// <summary>
+        /// Fails the specified ex.
+        /// </summary>
+        /// <param name="ex">The ex.</param>
+        private protected static void Fail( Exception ex )
+        {
+            using var _error = new ErrorWindow( ex );
+            _error?.SetText( );
+            _error?.ShowDialog( );
         }
     }
 }

@@ -88,7 +88,8 @@ namespace Bubba
         /// </summary>
         public GptRequest( )
         {
-            _apiKey = OpenAI.BubbaKey;
+            _header = new GptHeader( );
+            _apiKey = _header.ApiKey;
             _stop = new List<string>( );
             _store = false;
             _stream = true;
@@ -112,7 +113,8 @@ namespace Bubba
         /// <param name = "parameter" > </param>
         public GptRequest( string system, string user, IGptParameter parameter )
         {
-            _apiKey = OpenAI.BubbaKey;
+            _header = new GptHeader( );
+            _apiKey = _header.ApiKey;
             _stop = new List<string>( );
             _number = parameter.Number;
             _store = parameter.Store;
