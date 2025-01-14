@@ -50,7 +50,7 @@
 - [Federal Appropriations](https://github.com/is-leeroy-jenkins/Bubba/blob/master/Resources/Github/Appropriations.md) - vectorized dataset of federal appropriations available for fine-tuning machine learning models
 - [Federal Regulations](https://github.com/is-leeroy-jenkins/Bubba/blob/master/Resources/Github/Regulations.md) - vectorized dataset of federal finance regulations available for fine-tuning machine learning models
 - Real-world analysis on pre-trained, vectorized appropriations data that would typically require analysts considerable time in a matter of seconds. 
-- Semantic Search on federal budget guidance with Vector Embeddings.
+- [Semantic Search](https://www.elastic.co/improving-digital-customer-experiences/semantic-search-bringing-search-experiences-into-the-ai-era?utm_campaign=Google-NB-Search-GAI-AMER-NA&utm_content=Search-Semantic-Exact&utm_source=google&utm_medium=cpc&device=c&utm_term=semantic%20search&utm_id=7018X000001WateQAC&gad_source=1&gclid=Cj0KCQiAs5i8BhDmARIsAGE4xHw1C7Bi0nsNZo3WbRtbUITPfKU0_T9RB-hGTkiC6M6ZvW0ksyDgqhYaArnZEALw_wcB) on federal budget guidance with Vector Embeddings.
 
 - Ex. gpt-40-mini test run below
 ## ![](https://github.com/is-leeroy-jenkins/Bubba/blob/master/Resources/Assets/GitHubImages/Bubba.gif) 
