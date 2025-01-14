@@ -45,7 +45,7 @@
 
 
 
-## ![](https://github.com/is-leeroy-jenkins/Bubba/blob/master/Resources/Assets/GitHubImages/openai.png)  Machine & Deep Learning
+## ![](https://github.com/is-leeroy-jenkins/Bubba/blob/master/Resources/Assets/GitHubImages/openai.png)  Generative AI
 
 - [Federal Appropriations](https://github.com/is-leeroy-jenkins/Bubba/blob/master/Resources/Github/Appropriations.md) - vectorized dataset of federal appropriations available for fine-tuning machine learning models
 - [Federal Regulations](https://github.com/is-leeroy-jenkins/Bubba/blob/master/Resources/Github/Regulations.md) - vectorized dataset of federal finance regulations available for fine-tuning machine learning models
@@ -54,8 +54,11 @@
 
 ## ![](https://github.com/is-leeroy-jenkins/Bubba/blob/master/Resources/Assets/GitHubImages/Bubba.gif) 
 
+## ![](https://github.com/is-leeroy-jenkins/Badger/blob/main/Resources/Assets/GitHubImages/graph.png) Maching Learning
+
 - Large-Language Models used for Embedding & fine-tuning:  gpt-4-turbo
 - Large-Language Models used used for Budget-reasonsing:  gpt-4o-mini, o1, and davinci
+  
 
 ## ![](https://github.com/is-leeroy-jenkins/Bubba/blob/master/Resources/Assets/GitHubImages/tools.png) Build
 
