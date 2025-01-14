@@ -1,11 +1,10 @@
 # Bubba's AI layer provides access to the OpenAI VectorStores
 
-
-## Bubba's AI layer provides access to the OpenAI VectorStores for fine-tuning using the OpenAI API
+- #### Bubba's AI layer provides access to the OpenAI Large Language models.
+- #### Customized vector stores for fine-tuning custom models in the Budget Execution context
 
 ## ![]()Federal Regulations
  
-
 - Federal Trust Fund Accounting Guide
 - Fiscal Responsibility Act
 - Government Auditing Standards
