@@ -85,19 +85,127 @@ namespace Bubba
         private string _hostName;
 
         /// <summary>
+        /// Initializes a new instance of the
+        /// <see cref="OutlookMail"/> class.
+        /// </summary>
+        public OutlookMail( )
+        {
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="emailCredentials"></param>
+        /// <param name="emailConfig"></param>
+        /// <param name="emailContent"></param>
+        public OutlookMail( EmailCredential emailCredentials, EmailConfig emailConfig,
+            EmailContent emailContent )
+        {
+            _hostName = emailConfig.HostName;
+            _emailCredential = emailCredentials;
+            _emailConfig = emailConfig;
+            _emailContent = emailContent;
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the
+        /// <see cref="OutlookMail"/> class.
+        /// </summary>
+        /// <param name="outlook">The outlook.</param>
+        public OutlookMail( OutlookMail outlook )
+        {
+            _emailCredential = outlook.Credentials;
+            _emailConfig = outlook.Configuration;
+            _emailContent = outlook.Content;
+            _hostName = outlook.HostName;
+        }
+
+        /// <summary>
+        /// Gets the address.
+        /// </summary>
+        /// <value>
+        /// The address.
+        /// </value>
+        public string HostName
+        {
+            get
+            {
+                return _hostName;
+            }
+            set
+            {
+                _hostName = value;
+            }
+        }
+
+        /// <summary>
+        /// Gets the credentials.
+        /// </summary>
+        /// <value>
+        /// The credentials.
+        /// </value>
+        public EmailCredential Credentials
+        {
+            get
+            {
+                return _emailCredential;
+            }
+            set
+            {
+                _emailCredential = value;
+            }
+        }
+
+        /// <summary>
+        /// Gets the configuration.
+        /// </summary>
+        /// <value>
+        /// The configuration.
+        /// </value>
+        public EmailConfig Configuration
+        {
+            get
+            {
+                return _emailConfig;
+            }
+            set
+            {
+                _emailConfig = value;
+            }
+        }
+
+        /// <summary>
+        /// Gets the content.
+        /// </summary>
+        /// <value>
+        /// The content.
+        /// </value>
+        public EmailContent Content
+        {
+            get
+            {
+                return _emailContent;
+            }
+            set
+            {
+                _emailContent = value;
+            }
+        }
+        
+        /// <summary>
         /// Deconstructs the specified email credentials.
         /// </summary>
-        /// <param name="emailCredentials">The email credentials.</param>
-        /// <param name="emailConfig">The email configuration.</param>
-        /// <param name="emailContent">Content of the email.</param>
+        /// <param name="credentials">The email credentials.</param>
+        /// <param name="config">The email configuration.</param>
+        /// <param name="content">Content of the email.</param>
         /// <param name="hostName">Name of the host.</param>
-        public void Deconstruct( out EmailCredential emailCredentials, out EmailConfig emailConfig,
-            out EmailContent emailContent, out string hostName )
+        public void Deconstruct( out EmailCredential credentials, out EmailConfig config,
+            out EmailContent content, out string hostName )
         {
             hostName = _hostName;
-            emailCredentials = _emailCredential;
-            emailConfig = _emailConfig;
-            emailContent = _emailContent;
+            credentials = _emailCredential;
+            config = _emailConfig;
+            content = _emailContent;
         }
 
         /// <summary>
@@ -226,12 +334,12 @@ namespace Bubba
 
                 return _message != null
                     ? _message
-                    : default( MailMessage );
+                    : null;
             }
             catch( Exception ex )
             {
                 Fail( ex );
-                return default( MailMessage );
+                return null;
             }
         }
 
@@ -307,114 +415,6 @@ namespace Bubba
             {
                 Fail( ex );
                 return string.Empty;
-            }
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the
-        /// <see cref="OutlookMail"/> class.
-        /// </summary>
-        public OutlookMail( )
-        {
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="emailCredentials"></param>
-        /// <param name="emailConfig"></param>
-        /// <param name="emailContent"></param>
-        public OutlookMail( EmailCredential emailCredentials, EmailConfig emailConfig,
-            EmailContent emailContent )
-        {
-            _hostName = emailConfig.HostName;
-            _emailCredential = emailCredentials;
-            _emailConfig = emailConfig;
-            _emailContent = emailContent;
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the
-        /// <see cref="OutlookMail"/> class.
-        /// </summary>
-        /// <param name="outlook">The outlook.</param>
-        public OutlookMail( OutlookMail outlook )
-        {
-            _emailCredential = outlook.Credentials;
-            _emailConfig = outlook.Configuration;
-            _emailContent = outlook.Content;
-            _hostName = outlook.HostName;
-        }
-
-        /// <summary>
-        /// Gets the address.
-        /// </summary>
-        /// <value>
-        /// The address.
-        /// </value>
-        public string HostName
-        {
-            get
-            {
-                return _hostName;
-            }
-            private protected set
-            {
-                _hostName = value;
-            }
-        }
-
-        /// <summary>
-        /// Gets the credentials.
-        /// </summary>
-        /// <value>
-        /// The credentials.
-        /// </value>
-        public EmailCredential Credentials
-        {
-            get
-            {
-                return _emailCredential;
-            }
-            private set
-            {
-                _emailCredential = value;
-            }
-        }
-
-        /// <summary>
-        /// Gets the configuration.
-        /// </summary>
-        /// <value>
-        /// The configuration.
-        /// </value>
-        public EmailConfig Configuration
-        {
-            get
-            {
-                return _emailConfig;
-            }
-            private set
-            {
-                _emailConfig = value;
-            }
-        }
-
-        /// <summary>
-        /// Gets the content.
-        /// </summary>
-        /// <value>
-        /// The content.
-        /// </value>
-        public EmailContent Content
-        {
-            get
-            {
-                return _emailContent;
-            }
-            private set
-            {
-                _emailContent = value;
             }
         }
     }

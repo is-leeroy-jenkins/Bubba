@@ -1214,7 +1214,7 @@
         <Label
             x:Name="SpeechLabel"
             Grid.Row="0"
-            Margin="0,2,652,12"
+            Margin="0,2,782,12"
             HorizontalContentAlignment="Right"
             Content="SpeechGeneration..."
             Foreground="{StaticResource BlueBorderBrush}" />
@@ -1223,7 +1223,7 @@
             x:Name="UserLabel"
             Grid.Row="0"
             Height="26"
-            Margin="807,4,30,0"
+            Margin="757,4,30,0"
             VerticalAlignment="Top"
             HorizontalContentAlignment="Right"
             Content="User ID:"
