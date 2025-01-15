@@ -45,6 +45,7 @@ namespace Bubba
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
     using System.Linq;
+    using System.Text.Json.Serialization;
     using Newtonsoft.Json;
     using Properties;
 
@@ -90,7 +91,7 @@ namespace Bubba
         /// <value>
         /// The user identifier.
         /// </value>
-        [ JsonProperty( "n" ) ]
+        [ JsonPropertyName( "n" ) ]
         public override int Number
         {
             get
@@ -114,7 +115,7 @@ namespace Bubba
         /// The chat model.
         /// </value>
         /// <inheritdoc />
-        [ JsonProperty( "model" ) ]
+        [ JsonPropertyName( "model" ) ]
         public override string Model
         {
             get
@@ -161,7 +162,7 @@ namespace Bubba
         /// <value>
         ///   <c>true</c> if store; otherwise, <c>false</c>.
         /// </value>
-        [ JsonProperty( "store" ) ]
+        [ JsonPropertyName( "store" ) ]
         public override bool Store
         {
             get
@@ -186,7 +187,7 @@ namespace Bubba
         /// <value>
         ///   <c>true</c> if stream; otherwise, <c>false</c>.
         /// </value>
-        [ JsonProperty( "stream" ) ]
+        [ JsonPropertyName( "stream" ) ]
         public override bool Stream
         {
             get
@@ -212,7 +213,7 @@ namespace Bubba
         /// <value>
         /// The temperature.
         /// </value>
-        [ JsonProperty( "temperature" ) ]
+        [ JsonPropertyName( "temperature" ) ]
         public override double Temperature
         {
             get
@@ -238,7 +239,7 @@ namespace Bubba
         /// <value>
         /// The frequency.
         /// </value>
-        [ JsonProperty( "frequency_penalty" ) ]
+        [ JsonPropertyName( "frequency_penalty" ) ]
         public override double FrequencyPenalty
         {
             get
@@ -264,7 +265,7 @@ namespace Bubba
         /// <value>
         /// The presence.
         /// </value>
-        [ JsonProperty( "presence_penalty" ) ]
+        [ JsonPropertyName( "presence_penalty" ) ]
         public override double PresencePenalty
         {
             get
@@ -293,7 +294,7 @@ namespace Bubba
         /// <value>
         /// The top percent.
         /// </value>
-        [ JsonProperty( "top_p" ) ]
+        [ JsonPropertyName( "top_p" ) ]
         public override double TopPercent
         {
             get
@@ -317,7 +318,7 @@ namespace Bubba
         /// <value>
         /// The response format.
         /// </value>
-        [ JsonProperty( "response_format" ) ]
+        [ JsonPropertyName( "response_format" ) ]
         public override string ResponseFormat
         {
             get

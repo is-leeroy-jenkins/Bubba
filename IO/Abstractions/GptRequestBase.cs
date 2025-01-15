@@ -44,6 +44,7 @@ namespace Bubba
     using System;
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
+    using System.Text.Json.Serialization;
     using Newtonsoft.Json;
 
     /// <inheritdoc />
@@ -68,6 +69,11 @@ namespace Bubba
         /// </summary>
         private protected GptHeader _header;
 
+        /// <summary>
+        /// The seed
+        /// </summary>
+        private protected int _seed;
+
         /// <inheritdoc />
         /// <summary>
         /// Gets the end point.
@@ -75,6 +81,7 @@ namespace Bubba
         /// <value>
         /// The end point.
         /// </value>
+        [ JsonPropertyName( "endpoint" ) ]
         public virtual string EndPoint
         {
             get
@@ -98,7 +105,7 @@ namespace Bubba
         /// The chat model.
         /// </value>
         /// <inheritdoc />
-        [ JsonProperty( "model" ) ]
+        [ JsonPropertyName( "model" ) ]
         public virtual string Model
         {
             get
@@ -116,12 +123,14 @@ namespace Bubba
         }
 
         /// <summary>
-        /// THe number 'n' of responses returned by the API.
+        /// How many chat completion choices to generate for each input message.
+        /// Note that you will be charged based on the number of generated tokens across
+        /// all of the choices. Keep n as 1 to minimize costs.
         /// </summary>
         /// <value>
         /// The user identifier.
         /// </value>
-        [ JsonProperty( "n" ) ]
+        [JsonPropertyName( "n" ) ]
         public virtual int Number
         {
             get
@@ -144,7 +153,7 @@ namespace Bubba
         /// <value>
         /// The maximum tokens.
         /// </value>
-        [ JsonProperty( "max_completion_tokens" ) ]
+        [ JsonPropertyName( "max_completion_tokens" ) ]
         public virtual int MaximumTokens
         {
             get
@@ -162,13 +171,40 @@ namespace Bubba
         }
 
         /// <summary>
+        /// The system will make a best effort to sample deterministically,
+        /// such that repeated requests with the same seed and parameters
+        /// should return the same result. Determinism is not guaranteed,
+        /// and you should refer to the system_fingerprint response
+        /// parameter to monitor changes in the backend.
+        /// </summary>
+        /// <value>
+        /// The seed.
+        /// </value>
+        [JsonPropertyName("seed")]
+        public virtual int Seed
+        {
+            get
+            {
+                return _seed;
+            }
+            set
+            {
+                if( _seed != value )
+                {
+                    _seed = value;
+                    OnPropertyChanged( nameof( Seed ) );
+                }
+            }
+        }
+
+        /// <summary>
         /// Gets or sets a value indicating whether this
         /// <see cref="GptRequest"/> is store.
         /// </summary>
         /// <value>
         ///   <c>true</c> if store; otherwise, <c>false</c>.
         /// </value>
-        [ JsonProperty( "store" ) ]
+        [ JsonPropertyName( "store" ) ]
         public virtual bool Store
         {
             get
@@ -192,7 +228,7 @@ namespace Bubba
         /// <value>
         ///   <c>true</c> if stream; otherwise, <c>false</c>.
         /// </value>
-        [ JsonProperty( "stream" ) ]
+        [ JsonPropertyName( "stream" ) ]
         public virtual bool Stream
         {
             get
@@ -216,7 +252,7 @@ namespace Bubba
         /// <value>
         /// The temperature.
         /// </value>
-        [ JsonProperty( "temperature" ) ]
+        [ JsonPropertyName( "temperature" ) ]
         public virtual double Temperature
         {
             get
@@ -244,7 +280,7 @@ namespace Bubba
         /// <value>
         /// The top percent.
         /// </value>
-        [ JsonProperty( "top_p" ) ]
+        [ JsonPropertyName( "top_p" ) ]
         public virtual double TopPercent
         {
             get
@@ -269,7 +305,7 @@ namespace Bubba
         /// <value>
         /// The frequency.
         /// </value>
-        [ JsonProperty( "frequency_penalty" ) ]
+        [ JsonPropertyName( "frequency_penalty" ) ]
         public virtual double FrequencyPenalty
         {
             get
@@ -294,7 +330,7 @@ namespace Bubba
         /// <value>
         /// The presence.
         /// </value>
-        [ JsonProperty( "presence_penalty" ) ]
+        [ JsonPropertyName( "presence_penalty" ) ]
         public virtual double PresencePenalty
         {
             get

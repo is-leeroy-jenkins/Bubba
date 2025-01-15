@@ -45,6 +45,7 @@ namespace Bubba
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
     using System.Linq;
+    using System.Text.Json.Serialization;
     using Newtonsoft.Json;
     using Properties;
 
@@ -99,7 +100,7 @@ namespace Bubba
         /// <value>
         /// The size of the image.
         /// </value>
-        [ JsonProperty( "size" ) ]
+        [ JsonPropertyName( "size" ) ]
         public override string Size
         {
             get
@@ -123,7 +124,7 @@ namespace Bubba
         /// <value>
         /// The response format.
         /// </value>
-        [ JsonProperty( "response_format" ) ]
+        [ JsonPropertyName( "response_format" ) ]
         public override string ResponseFormat
         {
             get
@@ -146,7 +147,7 @@ namespace Bubba
         /// <value>
         /// The prompt.
         /// </value>
-        [ JsonProperty( "prompt" ) ]
+        [ JsonPropertyName( "prompt" ) ]
         public string Prompt
         {
             get
@@ -169,7 +170,7 @@ namespace Bubba
         /// <value>
         /// The quality.
         /// </value>
-        [ JsonProperty( "quality" ) ]
+        [ JsonPropertyName( "quality" ) ]
         public string Quality
         {
             get
@@ -195,7 +196,7 @@ namespace Bubba
         /// <value>
         /// The style.
         /// </value>
-        [ JsonProperty( "style" ) ]
+        [ JsonPropertyName( "style" ) ]
         public string Style
         {
             get
@@ -219,7 +220,7 @@ namespace Bubba
         /// <value>
         /// The user identifier.
         /// </value>
-        [ JsonProperty( "n" ) ]
+        [ JsonPropertyName( "n" ) ]
         public override int Number
         {
             get
@@ -243,7 +244,7 @@ namespace Bubba
         /// The chat model.
         /// </value>
         /// <inheritdoc />
-        [ JsonProperty( "model" ) ]
+        [ JsonPropertyName( "model" ) ]
         public override string Model
         {
             get

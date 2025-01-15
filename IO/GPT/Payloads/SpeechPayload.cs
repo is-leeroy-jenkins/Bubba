@@ -1,10 +1,10 @@
 ﻿// ******************************************************************************************
 //     Assembly:                Bubba
 //     Author:                  Terry D. Eppler
-//     Created:                 01-12-2025
+//     Created:                 01-15-2025
 // 
 //     Last Modified By:        Terry D. Eppler
-//     Last Modified On:        01-12-2025
+//     Last Modified On:        01-15-2025
 // ******************************************************************************************
 // <copyright file="SpeechPayload.cs" company="Terry D. Eppler">
 //    Bubba is a small and simple windows (wpf) application for interacting with the OpenAI API
@@ -45,6 +45,7 @@ namespace Bubba
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
     using System.Linq;
+    using System.Text.Json.Serialization;
     using Newtonsoft.Json;
     using Properties;
 
@@ -117,7 +118,7 @@ namespace Bubba
         /// The chat model.
         /// </value>
         /// <inheritdoc />
-        [ JsonProperty( "model" ) ]
+        [ JsonPropertyName( "model" ) ]
         public override string Model
         {
             get
@@ -140,7 +141,7 @@ namespace Bubba
         /// <value>
         /// The language.
         /// </value>
-        [ JsonProperty( "language" ) ]
+        [ JsonPropertyName( "language" ) ]
         public string Language
         {
             get
@@ -163,7 +164,7 @@ namespace Bubba
         /// <value>
         /// The input.
         /// </value>
-        [ JsonProperty( "input" ) ]
+        [ JsonPropertyName( "input" ) ]
         public string Input
         {
             get
@@ -186,7 +187,7 @@ namespace Bubba
         /// <value>
         /// The voice.
         /// </value>
-        [ JsonProperty( "voice" ) ]
+        [ JsonPropertyName( "voice" ) ]
         public string Voice
         {
             get
@@ -209,7 +210,7 @@ namespace Bubba
         /// <value>
         /// The speed.
         /// </value>
-        [ JsonProperty( "size" ) ]
+        [ JsonPropertyName( "size" ) ]
         public int Speed
         {
             get
@@ -232,7 +233,7 @@ namespace Bubba
         /// <value>
         /// The file path.
         /// </value>
-        [ JsonProperty( "file" ) ]
+        [ JsonPropertyName( "file" ) ]
         public object File
         {
             get
@@ -255,7 +256,7 @@ namespace Bubba
         /// <value>
         /// The modalities.
         /// </value>
-        [ JsonProperty( "modalities" ) ]
+        [ JsonPropertyName( "modalities" ) ]
         public string Modalities
         {
             get
@@ -279,7 +280,7 @@ namespace Bubba
         /// <value>
         /// The response format.
         /// </value>
-        [ JsonProperty( "response_format" ) ]
+        [ JsonPropertyName( "response_format" ) ]
         public override string ResponseFormat
         {
             get
@@ -307,6 +308,7 @@ namespace Bubba
             try
             {
                 _data.Add( "model", _model );
+                _data.Add( "endpoint", _endPoint );
                 _data.Add( "n", _number );
                 _data.Add( "max_completion_tokens", _maximumTokens );
                 _data.Add( "store", _store );
@@ -316,7 +318,6 @@ namespace Bubba
                 _data.Add( "presence_penalty", _presencePenalty );
                 _data.Add( "top_p", _topPercent );
                 _data.Add( "response_format", _responseFormat );
-                _data.Add( "endpoint", _endPoint );
                 _stop.Add( "#" );
                 _stop.Add( ";" );
                 _data.Add( "stop", _stop );

@@ -40,6 +40,16 @@
             <see cref="T:Bubba.App" /> class.
             </summary>
         </member>
+        <member name="F:Bubba.App.OpenAiKey">
+            <summary>
+            The open ai API key
+            </summary>
+        </member>
+        <member name="F:Bubba.App.GoogleKey">
+            <summary>
+            The google API key
+            </summary>
+        </member>
         <member name="M:Bubba.App.InitializeDelegates">
             <summary>
             Initializes the delegates.
@@ -15013,6 +15023,11 @@
             The header
             </summary>
         </member>
+        <member name="F:Bubba.GptRequestBase._seed">
+            <summary>
+            The seed
+            </summary>
+        </member>
         <member name="P:Bubba.GptRequestBase.EndPoint">
             <inheritdoc />
             <summary>
@@ -15033,7 +15048,9 @@
         </member>
         <member name="P:Bubba.GptRequestBase.Number">
             <summary>
-            THe number 'n' of responses returned by the API.
+            How many chat completion choices to generate for each input message.
+            Note that you will be charged based on the number of generated tokens across
+            all of the choices. Keep n as 1 to minimize costs.
             </summary>
             <value>
             The user identifier.
@@ -15045,6 +15062,18 @@
             </summary>
             <value>
             The maximum tokens.
+            </value>
+        </member>
+        <member name="P:Bubba.GptRequestBase.Seed">
+            <summary>
+            The system will make a best effort to sample deterministically,
+            such that repeated requests with the same seed and parameters
+            should return the same result. Determinism is not guaranteed,
+            and you should refer to the system_fingerprint response
+            parameter to monitor changes in the backend.
+            </summary>
+            <value>
+            The seed.
             </value>
         </member>
         <member name="P:Bubba.GptRequestBase.Store">
@@ -15365,12 +15394,12 @@
             <c> false </c>
             </value>
         </member>
-        <member name="M:Bubba.IGptClient.GetResponseAsync(System.Collections.Generic.List{System.Object},System.String,System.Int32,System.Double)">
+        <member name="M:Bubba.IGptClient.GetResponseAsync(System.Collections.Generic.IList{Bubba.IGptMessage},Bubba.GptParameter)">
             <summary>
             Sends a request to the Chat (Assistant) API.
             </summary>
         </member>
-        <member name="M:Bubba.IGptClient.SendRequestAsync(System.String,System.Object)">
+        <member name="M:Bubba.IGptClient.SendRequestAsync(Bubba.GptPayload)">
             <summary>
             Handles POST requests and response parsing.
             </summary>
@@ -16325,6 +16354,11 @@
             ID of the model to use.
             </summary>
         </member>
+        <member name="F:Bubba.PayloadBase._endPoint">
+            <summary>
+            The end point
+            </summary>
+        </member>
         <member name="F:Bubba.PayloadBase._temperature">
             <summary>
             A number between -2.0 and 2.0  Positive value decrease the
@@ -16424,7 +16458,8 @@
         <member name="P:Bubba.PayloadBase.MaximumTokens">
             <inheritdoc />
             <summary>
-            Gets the maximum tokens.
+            An upper bound for the number of tokens that can be generated
+            for a completion, including visible output tokens and reasoning tokens.
             </summary>
             <value>
             The maximum tokens.
@@ -16433,7 +16468,9 @@
         <member name="P:Bubba.PayloadBase.Temperature">
             <inheritdoc />
             <summary>
-            Gets or sets the temperature.
+            A number between 0 and 2. Higher values like 0.8 will make the output more random,
+            while lower values like 0.2 will make it more focused and deterministic.
+            Recommend altering this or top_p but not both.
             </summary>
             <value>
             The temperature.
@@ -16442,7 +16479,9 @@
         <member name="P:Bubba.PayloadBase.FrequencyPenalty">
             <inheritdoc />
             <summary>
-            Gets the frequency.
+            Number between -2.0 and 2.0. Positive values penalize new tokens based
+            on their existing frequency in the text so far, decreasing the model's
+            likelihood to repeat the same line verbatim.
             </summary>
             <value>
             The frequency.
@@ -16451,7 +16490,9 @@
         <member name="P:Bubba.PayloadBase.Number">
             <inheritdoc />
             <summary>
-            Gets or sets the number.
+            How many chat completion choices to generate for each input message.
+            Note that you will be charged based on the number of generated tokens across
+            all of the choices. Keep n as 1 to minimize costs.
             </summary>
             <value>
             The number.
@@ -16460,7 +16501,9 @@
         <member name="P:Bubba.PayloadBase.PresencePenalty">
             <inheritdoc />
             <summary>
-            Gets the presence.
+            Number between -2.0 and 2.0.
+            Positive values penalize new tokens based on whether they appear
+            in the text so far, increasing the model's likelihood to talk about new topics.
             </summary>
             <value>
             The presence.
@@ -16469,7 +16512,10 @@
         <member name="P:Bubba.PayloadBase.TopPercent">
             <inheritdoc />
             <summary>
-            Gets or sets the top percent.
+            An alternative to sampling with temperature, called nucleus sampling,
+            where the model considers the results of 
+            the tokens with top_p probability mass. So 0.1 means only
+            the tokens comprising the top 10% probability mass are considered.
             </summary>
             <value>
             The top percent.
@@ -16505,7 +16551,9 @@
         <member name="P:Bubba.PayloadBase.Messages">
             <inheritdoc />
             <summary>
-            Gets or sets the system prompt.
+            A list of messages comprising the conversation so far.
+            Depending on the model you use, different message types
+            (modalities) are supported, like text, images, and audio.
             </summary>
             <value>
             The system prompt.
@@ -16514,16 +16562,28 @@
         <member name="P:Bubba.PayloadBase.ResponseFormat">
             <inheritdoc />
             <summary>
-            Gets or sets the response format.
+            An object specifying the format that the model must output.
+            Setting to { "type": "json_schema", "json_schema": {...} } enables
+            Structured Outputs which ensures the model will match your supplied JSON schema
+            Default = "text"
             </summary>
             <value>
             The response format.
             </value>
         </member>
+        <member name="P:Bubba.PayloadBase.EndPoint">
+            <inheritdoc />
+            <summary>
+            Gets the end point.
+            </summary>
+            <value>
+            The end point.
+            </value>
+        </member>
         <member name="P:Bubba.PayloadBase.Stop">
             <inheritdoc />
             <summary>
-            Gets or sets the stop sequences.
+            Up to 4 sequences where the API will stop generating further tokens.
             </summary>
             <value>
             The stop sequences.
@@ -17906,64 +17966,6 @@
             The host name
             </summary>
         </member>
-        <member name="M:Bubba.OutlookMail.Deconstruct(Bubba.EmailCredential@,Bubba.EmailConfig@,Bubba.EmailContent@,System.String@)">
-            <summary>
-            Deconstructs the specified email credentials.
-            </summary>
-            <param name="emailCredentials">The email credentials.</param>
-            <param name="emailConfig">The email configuration.</param>
-            <param name="emailContent">Content of the email.</param>
-            <param name="hostName">Name of the host.</param>
-        </member>
-        <member name="M:Bubba.OutlookMail.Send(System.Net.Mail.MailMessage)">
-            <summary>
-            Sends the email.
-            </summary>
-            <param name="message">The message.</param>
-        </member>
-        <member name="M:Bubba.OutlookMail.ReadInboxItems">
-            <summary>
-            Reads the email inbox items.
-            </summary>
-        </member>
-        <member name="M:Bubba.OutlookMail.SendEmail">
-            <summary>
-            Sends the email.
-            </summary>
-        </member>
-        <member name="M:Bubba.OutlookMail.CreateMessage">
-            <summary>
-            Creates the message.
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:Bubba.OutlookMail.AddRecipient(System.String)">
-            <summary>
-            Adds the recipient.
-            </summary>
-            <param name="address">The address.</param>
-        </member>
-        <member name="M:Bubba.OutlookMail.AddCopy(System.String)">
-            <summary>
-            Adds the copy.
-            </summary>
-            <param name="address">The address.</param>
-        </member>
-        <member name="M:Bubba.OutlookMail.AddAttachment(System.String)">
-            <summary>
-            Adds the attachment.
-            </summary>
-            <param name="filePath">The file path.</param>
-        </member>
-        <member name="M:Bubba.OutlookMail.ToString">
-            <summary>
-            Converts to string.
-            </summary>
-            <returns>
-            A <see cref="T:System.String" />
-            that represents this instance.
-            </returns>
-        </member>
         <member name="M:Bubba.OutlookMail.#ctor">
             <summary>
             Initializes a new instance of the
@@ -18016,6 +18018,64 @@
             <value>
             The content.
             </value>
+        </member>
+        <member name="M:Bubba.OutlookMail.Deconstruct(Bubba.EmailCredential@,Bubba.EmailConfig@,Bubba.EmailContent@,System.String@)">
+            <summary>
+            Deconstructs the specified email credentials.
+            </summary>
+            <param name="credentials">The email credentials.</param>
+            <param name="config">The email configuration.</param>
+            <param name="content">Content of the email.</param>
+            <param name="hostName">Name of the host.</param>
+        </member>
+        <member name="M:Bubba.OutlookMail.Send(System.Net.Mail.MailMessage)">
+            <summary>
+            Sends the email.
+            </summary>
+            <param name="message">The message.</param>
+        </member>
+        <member name="M:Bubba.OutlookMail.ReadInboxItems">
+            <summary>
+            Reads the email inbox items.
+            </summary>
+        </member>
+        <member name="M:Bubba.OutlookMail.SendEmail">
+            <summary>
+            Sends the email.
+            </summary>
+        </member>
+        <member name="M:Bubba.OutlookMail.CreateMessage">
+            <summary>
+            Creates the message.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Bubba.OutlookMail.AddRecipient(System.String)">
+            <summary>
+            Adds the recipient.
+            </summary>
+            <param name="address">The address.</param>
+        </member>
+        <member name="M:Bubba.OutlookMail.AddCopy(System.String)">
+            <summary>
+            Adds the copy.
+            </summary>
+            <param name="address">The address.</param>
+        </member>
+        <member name="M:Bubba.OutlookMail.AddAttachment(System.String)">
+            <summary>
+            Adds the attachment.
+            </summary>
+            <param name="filePath">The file path.</param>
+        </member>
+        <member name="M:Bubba.OutlookMail.ToString">
+            <summary>
+            Converts to string.
+            </summary>
+            <returns>
+            A <see cref="T:System.String" />
+            that represents this instance.
+            </returns>
         </member>
         <member name="T:Bubba.ExcelGrid">
             <inheritdoc />
@@ -19448,6 +19508,11 @@
             The HTTP client
             </summary>
         </member>
+        <member name="F:Bubba.GptClient._messages">
+            <summary>
+            The messages
+            </summary>
+        </member>
         <member name="M:Bubba.GptClient.#ctor">
             <inheritdoc />
             <summary>
@@ -19455,15 +19520,12 @@
             <see cref="T:Bubba.GptClient" /> class.
             </summary>
         </member>
-        <member name="M:Bubba.GptClient.#ctor(System.String,System.Double,System.Int32)">
+        <member name="M:Bubba.GptClient.#ctor(Bubba.GptParameter)">
             <inheritdoc />
             <summary>
             Initializes a new instance of the
             <see cref="T:Bubba.GptClient" /> class.
             </summary>
-            <param name="temperature">The temperature.</param>
-            <param name="tokens">The tokens.</param>
-            <param name="model">The chat model.</param>
         </member>
         <member name="P:Bubba.GptClient.Store">
             <summary>
@@ -19552,6 +19614,14 @@
             The chat model.
             </value>
         </member>
+        <member name="P:Bubba.GptClient.Messages">
+            <summary>
+            Gets the messages.
+            </summary>
+            <value>
+            The messages.
+            </value>
+        </member>
         <member name="P:Bubba.GptClient.Prompt">
             <inheritdoc />
             <summary>
@@ -19561,13 +19631,13 @@
             The prompt.
             </value>
         </member>
-        <member name="M:Bubba.GptClient.GetResponseAsync(System.Collections.Generic.List{System.Object},System.String,System.Int32,System.Double)">
+        <member name="M:Bubba.GptClient.GetResponseAsync(System.Collections.Generic.IList{Bubba.IGptMessage},Bubba.GptParameter)">
             <inheritdoc />
             <summary>
             Sends a request to the Chat (Assistant) API.
             </summary>
         </member>
-        <member name="M:Bubba.GptClient.SendRequestAsync(System.String,System.Object)">
+        <member name="M:Bubba.GptClient.SendRequestAsync(Bubba.GptPayload)">
             <inheritdoc />
             <summary>
             Handles POST requests and response parsing.
@@ -19603,102 +19673,6 @@
             Sends the HTTP message asynchronous.
             </summary>
             <param name="userPrompt">The prompt.</param>
-            <returns></returns>
-        </member>
-        <member name="T:Bubba.GptClientFactory">
-            <inheritdoc />
-            <summary>
-            </summary>
-            <seealso cref="T:Bubba.GptBase" />
-        </member>
-        <member name="F:Bubba.GptClientFactory._client">
-            <summary>
-            The client
-            </summary>
-        </member>
-        <member name="F:Bubba.GptClientFactory._userPrompt">
-            <summary>
-            The user prompt
-            </summary>
-        </member>
-        <member name="M:Bubba.GptClientFactory.#ctor">
-            <inheritdoc />
-            <summary>
-            Initializes a new instance of the
-            <see cref="T:Bubba.GptClient" /> class.
-            </summary>
-        </member>
-        <member name="M:Bubba.GptClientFactory.#ctor(System.String)">
-            <inheritdoc />
-            <summary>
-            Initializes a new instance of the
-            <see cref="T:Bubba.GptClient" /> class.
-            </summary>
-            <param name="model">The chat model.</param>
-        </member>
-        <member name="P:Bubba.GptClientFactory.Model">
-            <inheritdoc />
-            <summary>
-            Gets the chat model.
-            </summary>
-            <value>
-            The chat model.
-            </value>
-        </member>
-        <member name="P:Bubba.GptClientFactory.UserPrompt">
-            <inheritdoc />
-            <summary>
-            Gets the prompt.
-            </summary>
-            <value>
-            The prompt.
-            </value>
-        </member>
-        <member name="M:Bubba.GptClientFactory.CreateChatClient">
-            <summary>
-            Creates the chat client.
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:Bubba.GptClientFactory.CreateChatStreamAsync">
-            <summary>
-            Creates the chat stream asynchronous.
-            </summary>
-        </member>
-        <member name="M:Bubba.GptClientFactory.CreateAssistantClient">
-            <summary>
-            Creates the assistant client.
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:Bubba.GptClientFactory.CreateFineTuningClient">
-            <summary>
-            Creates the fine tuning client.
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:Bubba.GptClientFactory.CreateVectorStoreClient">
-            <summary>
-            Creates the vector store client.
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:Bubba.GptClientFactory.CreateImageClient">
-            <summary>
-            Creates the image client.
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:Bubba.GptClientFactory.CreateFileClient">
-            <summary>
-            Creates the file client.
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:Bubba.GptClientFactory.CreateAudioClient">
-            <summary>
-            Creates the audio client.
-            </summary>
             <returns></returns>
         </member>
         <member name="T:Bubba.GptEndpoints">
@@ -19926,6 +19900,107 @@
             </summary>
             <param name="ex">The ex.</param>
         </member>
+        <member name="T:Bubba.GptFactory">
+            <inheritdoc />
+            <summary>
+            </summary>
+            <seealso cref="T:Bubba.GptBase" />
+        </member>
+        <member name="F:Bubba.GptFactory._client">
+            <summary>
+            The client
+            </summary>
+        </member>
+        <member name="F:Bubba.GptFactory._userPrompt">
+            <summary>
+            The user prompt
+            </summary>
+        </member>
+        <member name="F:Bubba.GptFactory._systemPrompt">
+            <summary>
+            The system prompt
+            </summary>
+        </member>
+        <member name="M:Bubba.GptFactory.#ctor">
+            <inheritdoc />
+            <summary>
+            Initializes a new instance of the
+            <see cref="T:Bubba.GptClient" /> class.
+            </summary>
+        </member>
+        <member name="M:Bubba.GptFactory.#ctor(System.String)">
+            <inheritdoc />
+            <summary>
+            Initializes a new instance of the
+            <see cref="T:Bubba.GptClient" /> class.
+            </summary>
+            <param name="model">The chat model.</param>
+        </member>
+        <member name="P:Bubba.GptFactory.Model">
+            <inheritdoc />
+            <summary>
+            Gets the chat model.
+            </summary>
+            <value>
+            The chat model.
+            </value>
+        </member>
+        <member name="P:Bubba.GptFactory.UserPrompt">
+            <inheritdoc />
+            <summary>
+            Gets the prompt.
+            </summary>
+            <value>
+            The prompt.
+            </value>
+        </member>
+        <member name="M:Bubba.GptFactory.CreateChatClient">
+            <summary>
+            Creates the chat client.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Bubba.GptFactory.CreateChatStreamAsync">
+            <summary>
+            Creates the chat stream asynchronous.
+            </summary>
+        </member>
+        <member name="M:Bubba.GptFactory.CreateAssistantClient">
+            <summary>
+            Creates the assistant client.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Bubba.GptFactory.CreateFineTuningClient">
+            <summary>
+            Creates the fine tuning client.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Bubba.GptFactory.CreateVectorStoreClient">
+            <summary>
+            Creates the vector store client.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Bubba.GptFactory.CreateImageClient">
+            <summary>
+            Creates the image client.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Bubba.GptFactory.CreateFileClient">
+            <summary>
+            Creates the file client.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Bubba.GptFactory.CreateAudioClient">
+            <summary>
+            Creates the audio client.
+            </summary>
+            <returns></returns>
+        </member>
         <member name="T:Bubba.GptHeader">
             <inheritdoc />
             <summary>
@@ -19998,6 +20073,14 @@
             The data.
             </value>
         </member>
+        <member name="M:Bubba.GptHeader.GetData">
+            <inheritdoc />
+            <summary>
+            Gets the data.
+            </summary>
+            <returns>
+            </returns>
+        </member>
         <member name="M:Bubba.GptHeader.ToString">
             <summary>
             Returns a string that represents the current object.
@@ -20005,6 +20088,12 @@
             <returns>
             A string that represents the current object.
             </returns>
+        </member>
+        <member name="M:Bubba.GptHeader.Fail(System.Exception)">
+            <summary>
+            Fails the specified ex.
+            </summary>
+            <param name="ex">The ex.</param>
         </member>
         <member name="T:Bubba.GptUsage">
             <inheritdoc />
@@ -21640,19 +21729,19 @@
             The response format.
             </value>
         </member>
-        <member name="T:Bubba.ChatPayload">
+        <member name="T:Bubba.AssistantPayload">
             <inheritdoc />
             <summary>
             </summary>
         </member>
-        <member name="M:Bubba.ChatPayload.#ctor">
+        <member name="M:Bubba.AssistantPayload.#ctor">
             <summary>
             Initializes a new instance of the
-            <see cref="T:Bubba.ChatPayload"/> class.
+            <see cref="T:Bubba.AssistantPayload"/> class.
             </summary>
             <inheritdoc />
         </member>
-        <member name="P:Bubba.ChatPayload.Number">
+        <member name="P:Bubba.AssistantPayload.Number">
             <inheritdoc />
             <summary>
             THe number 'n' of responses generatred.
@@ -21661,7 +21750,7 @@
             The user identifier.
             </value>
         </member>
-        <member name="P:Bubba.ChatPayload.Model">
+        <member name="P:Bubba.AssistantPayload.Model">
             <summary>
             Gets the chat model.
             </summary>
@@ -21670,7 +21759,7 @@
             </value>
             <inheritdoc />
         </member>
-        <member name="P:Bubba.ChatPayload.EndPoint">
+        <member name="P:Bubba.AssistantPayload.EndPoint">
             <summary>
             Gets or sets the end point.
             </summary>
@@ -21678,7 +21767,7 @@
             The end point.
             </value>
         </member>
-        <member name="P:Bubba.ChatPayload.Store">
+        <member name="P:Bubba.AssistantPayload.Store">
             <inheritdoc />
             <summary>
             Gets or sets a value indicating whether this
@@ -21688,7 +21777,7 @@
               <c>true</c> if store; otherwise, <c>false</c>.
             </value>
         </member>
-        <member name="P:Bubba.ChatPayload.Stream">
+        <member name="P:Bubba.AssistantPayload.Stream">
             <inheritdoc />
             <summary>
             Gets or sets a value indicating whether this
@@ -21698,7 +21787,7 @@
               <c>true</c> if stream; otherwise, <c>false</c>.
             </value>
         </member>
-        <member name="P:Bubba.ChatPayload.Temperature">
+        <member name="P:Bubba.AssistantPayload.Temperature">
             <inheritdoc />
             <summary>
             A number between 0.0 and 2.0   between 0 and 2.
@@ -21709,7 +21798,7 @@
             The temperature.
             </value>
         </member>
-        <member name="P:Bubba.ChatPayload.FrequencyPenalty">
+        <member name="P:Bubba.AssistantPayload.FrequencyPenalty">
             <inheritdoc />
             <summary>
             A number between -2.0 and 2.0. Positive values penalize new
@@ -21720,7 +21809,7 @@
             The frequency.
             </value>
         </member>
-        <member name="P:Bubba.ChatPayload.PresencePenalty">
+        <member name="P:Bubba.AssistantPayload.PresencePenalty">
             <inheritdoc />
             <summary>
             Number between -2.0 and 2.0. Positive values penalize new tokens
@@ -21731,7 +21820,7 @@
             The presence.
             </value>
         </member>
-        <member name="P:Bubba.ChatPayload.TopPercent">
+        <member name="P:Bubba.AssistantPayload.TopPercent">
             <inheritdoc />
             <summary>
             An alternative to sampling with temperature,
@@ -21745,7 +21834,7 @@
             The top percent.
             </value>
         </member>
-        <member name="P:Bubba.ChatPayload.ResponseFormat">
+        <member name="P:Bubba.AssistantPayload.ResponseFormat">
             <inheritdoc />
             <summary>
             Gets or sets the response format.
@@ -21754,14 +21843,14 @@
             The response format.
             </value>
         </member>
-        <member name="M:Bubba.ChatPayload.GetData">
+        <member name="M:Bubba.AssistantPayload.GetData">
             <inheritdoc />
             <summary>
             Gets the data.
             </summary>
             <returns></returns>
         </member>
-        <member name="M:Bubba.ChatPayload.ToString">
+        <member name="M:Bubba.AssistantPayload.ToString">
             <inheritdoc />
             <summary>
             Converts to string.
@@ -23126,44 +23215,39 @@
             <returns>
             </returns>
         </member>
-        <member name="T:Bubba.ChatRequest">
+        <member name="T:Bubba.AssistantRequest">
             <inheritdoc />
             <summary>
             </summary>
         </member>
-        <member name="F:Bubba.ChatRequest._metaData">
+        <member name="F:Bubba.AssistantRequest._metaData">
             <summary>
             Developer-defined tags and values used for filtering completions
             </summary>
         </member>
-        <member name="F:Bubba.ChatRequest._reasoningEffort">
+        <member name="F:Bubba.AssistantRequest._reasoningEffort">
             <summary>
             The reasoning effort
             </summary>
         </member>
-        <member name="F:Bubba.ChatRequest._seed">
-            <summary>
-            The seed
-            </summary>
-        </member>
-        <member name="F:Bubba.ChatRequest._userPrompt">
+        <member name="F:Bubba.AssistantRequest._userPrompt">
             <summary>
             The user prompt
             </summary>
         </member>
-        <member name="F:Bubba.ChatRequest._systemPrompt">
+        <member name="F:Bubba.AssistantRequest._systemPrompt">
             <summary>
             The system prompt
             </summary>
         </member>
-        <member name="M:Bubba.ChatRequest.#ctor">
+        <member name="M:Bubba.AssistantRequest.#ctor">
             <inheritdoc />
             <summary>
             Initializes a new instance of the
             <see cref="T:Bubba.CompletionRequest" /> class.
             </summary>
         </member>
-        <member name="M:Bubba.ChatRequest.#ctor(System.String,System.String,Bubba.GptParameter)">
+        <member name="M:Bubba.AssistantRequest.#ctor(System.String,System.String,Bubba.GptParameter)">
             <inheritdoc />
             <summary>
             Initializes a new instance of the
@@ -23173,7 +23257,7 @@
             <param name="system">The system.</param>
             <param name = "config" > </param>
         </member>
-        <member name="M:Bubba.ChatRequest.#ctor(Bubba.ChatRequest)">
+        <member name="M:Bubba.AssistantRequest.#ctor(Bubba.AssistantRequest)">
             <inheritdoc />
             <summary>
             Initializes a new instance of the
@@ -23181,7 +23265,7 @@
             </summary>
             <param name="request">The request.</param>
         </member>
-        <member name="M:Bubba.ChatRequest.Decontruct(Bubba.GptHeader@,System.String@,System.Boolean@,System.Boolean@,System.String@,System.Int32@,System.Double@,System.Double@,System.Double@,System.Double@,System.Int32@)">
+        <member name="M:Bubba.AssistantRequest.Decontruct(Bubba.GptHeader@,System.String@,System.Boolean@,System.Boolean@,System.String@,System.Int32@,System.Double@,System.Double@,System.Double@,System.Double@,System.Int32@)">
             <summary>
             Decontructs the specified header.
             </summary>
@@ -23197,7 +23281,7 @@
             <param name="topPercent">The top percent.</param>
             <param name="tokens">The tokens.</param>
         </member>
-        <member name="P:Bubba.ChatRequest.EndPoint">
+        <member name="P:Bubba.AssistantRequest.EndPoint">
             <inheritdoc />
             <summary>
             Gets the end point.
@@ -23206,7 +23290,16 @@
             The end point.
             </value>
         </member>
-        <member name="P:Bubba.ChatRequest.ReasoningEffort">
+        <member name="P:Bubba.AssistantRequest.Modalities">
+            <inheritdoc />
+            <summary>
+            Gets or sets the modalities.
+            </summary>
+            <value>
+            The modalities.
+            </value>
+        </member>
+        <member name="P:Bubba.AssistantRequest.ReasoningEffort">
             <summary>
             Gets or sets the reasoning effort.
             </summary>
@@ -23214,7 +23307,7 @@
             The reasoning effort.
             </value>
         </member>
-        <member name="P:Bubba.ChatRequest.MetaData">
+        <member name="P:Bubba.AssistantRequest.MetaData">
             <summary>
             Gets or sets the meta data.
             </summary>
@@ -23222,7 +23315,7 @@
             The meta data.
             </value>
         </member>
-        <member name="P:Bubba.ChatRequest.Body">
+        <member name="P:Bubba.AssistantRequest.Body">
             <inheritdoc />
             <summary>
             Gets the chat model.
@@ -23231,20 +23324,20 @@
             The chat model.
             </value>
         </member>
-        <member name="M:Bubba.ChatRequest.CreateResponseAsync">
+        <member name="M:Bubba.AssistantRequest.CreateResponseAsync">
             <summary>
             Gets the chat response asynchronous.
             </summary>
             <returns></returns>
         </member>
-        <member name="M:Bubba.ChatRequest.ExtractResponseMessage(System.String)">
+        <member name="M:Bubba.AssistantRequest.ExtractResponseMessage(System.String)">
             <summary>
             Extracts the message from response.
             </summary>
             <param name="jsonResponse">The json response.</param>
             <returns></returns>
         </member>
-        <member name="M:Bubba.ChatRequest.GetData">
+        <member name="M:Bubba.AssistantRequest.GetData">
             <inheritdoc />
             <summary>
             Gets the data.
@@ -23252,7 +23345,7 @@
             <returns>
             </returns>
         </member>
-        <member name="M:Bubba.ChatRequest.ToString">
+        <member name="M:Bubba.AssistantRequest.ToString">
             <inheritdoc />
             <summary>
             Converts to string.
@@ -23400,16 +23493,234 @@
             A <see cref="T:System.String" /> that represents this instance.
             </returns>
         </member>
-        <member name="T:Bubba.FineTuningRequest">
+        <member name="T:Bubba.FileApiRequest">
             <inheritdoc />
             <summary>
             </summary>
             <seealso cref="T:Bubba.GptRequest" />
         </member>
-        <member name="F:Bubba.FineTuningRequest._responseFormat">
+        <member name="F:Bubba.FileApiRequest._id">
             <summary>
-            The response format
+            The file identifier, which can be referenced in the API endpoints.
             </summary>
+        </member>
+        <member name="F:Bubba.FileApiRequest._fileId">
+            <summary>
+            The file identifier
+            </summary>
+        </member>
+        <member name="F:Bubba.FileApiRequest._purpose">
+            <summary>
+            The intended purpose of the file.
+            Supported values are assistants, assistants_output,
+            batch, batch_output, fine-tune, fine-tune-results and vision.
+            </summary>
+        </member>
+        <member name="F:Bubba.FileApiRequest._limit">
+            <summary>
+            A limit on the number of objects to be returned.
+            Limit can range between 1 and 10,000,
+            and the default is 10,000.
+            </summary>
+        </member>
+        <member name="F:Bubba.FileApiRequest._order">
+            <summary>
+            Sort order by the created_at timestamp of the objects.
+            asc for ascending order and desc for descending order
+            </summary>
+        </member>
+        <member name="F:Bubba.FileApiRequest._after">
+            <summary>
+            A cursor for use in pagination. after is an object ID
+            defines your place in the list. For instance, if you
+            make a list request and receive 100 objects, ending with
+            obj_foo, your subsequent call can include after=obj_foo
+            in order to fetch the next page of the list
+            </summary>
+        </member>
+        <member name="F:Bubba.FileApiRequest._createdAt">
+            <summary>
+            The Unix timestamp (in seconds) for when the file was created.
+            </summary>
+        </member>
+        <member name="F:Bubba.FileApiRequest._bytes">
+            <summary>
+            The size of the file, in bytes.
+            </summary>
+        </member>
+        <member name="F:Bubba.FileApiRequest._fileName">
+            <summary>
+            The file name
+            </summary>
+        </member>
+        <member name="F:Bubba.FileApiRequest._mimeType">
+            <summary>
+            The MIME type
+            </summary>
+        </member>
+        <member name="M:Bubba.FileApiRequest.#ctor">
+            <summary>
+            Initializes a new instance of the
+            <see cref="T:Bubba.FileApiRequest"/> class.
+            </summary>
+            <inheritdoc />
+        </member>
+        <member name="P:Bubba.FileApiRequest.HttpClient">
+            <inheritdoc />
+            <summary>
+            Gets or sets a value indicating whether this
+            <see cref="P:Bubba.GptRequest.HttpClient" /> is store.
+            </summary>
+            <value>
+              <c>true</c> if store; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:Bubba.FileApiRequest.Id">
+            <summary>
+            The file identifier, which can be referenced in the API endpoints.
+            </summary>
+            <value>
+            The identifier.
+            </value>
+        </member>
+        <member name="P:Bubba.FileApiRequest.Purpose">
+            <summary>
+            The intended purpose of the file.
+            Supported values are assistants, assistants_output,
+            batch, batch_output, fine-tune, fine-tune-results and vision.
+            </summary>
+            <value>
+            The purpose.
+            </value>
+        </member>
+        <member name="P:Bubba.FileApiRequest.Limit">
+            <summary>
+            A limit on the number of objects to be returned.
+            Limit can range between 1 and 10,000,
+            and the default is 10,000.
+            </summary>
+            <value>
+            The limit.
+            </value>
+        </member>
+        <member name="P:Bubba.FileApiRequest.Order">
+            <summary>
+            Sort order by the created_at timestamp of the objects.
+            asc for ascending order and desc for descending order
+            </summary>
+            <value>
+            The order.
+            </value>
+        </member>
+        <member name="P:Bubba.FileApiRequest.After">
+            <summary>
+            A cursor for use in pagination. after is an object ID
+            defines your place in the list. For instance, if you
+            make a list request and receive 100 objects, ending with
+            obj_foo, your subsequent call can include after=obj_foo
+            in order to fetch the next page of the list
+            </summary>
+            <value>
+            The after.
+            </value>
+        </member>
+        <member name="P:Bubba.FileApiRequest.CreatedAt">
+            <summary>
+            The Unix timestamp (in seconds) for when the file was created.
+            </summary>
+            <value>
+            The created at.
+            </value>
+        </member>
+        <member name="P:Bubba.FileApiRequest.Bytes">
+            <summary>
+            The size of the file, in bytes.
+            </summary>
+            <value>
+            The bytes.
+            </value>
+        </member>
+        <member name="P:Bubba.FileApiRequest.FileId">
+            <summary>
+            Gets or sets the file identifier.
+            </summary>
+            <value>
+            The file identifier.
+            </value>
+        </member>
+        <member name="P:Bubba.FileApiRequest.FileName">
+            <summary>
+            Gets or sets the name of the file.
+            </summary>
+            <value>
+            The name of the file.
+            </value>
+        </member>
+        <member name="P:Bubba.FileApiRequest.MimeType">
+            <summary>
+            Gets or sets the type of the MIME.
+            </summary>
+            <value>
+            The type of the MIME.
+            </value>
+        </member>
+        <member name="P:Bubba.FileApiRequest.EndPoint">
+            <inheritdoc />
+            <summary>
+            Gets the end point.
+            </summary>
+            <value>
+            The end point.
+            </value>
+        </member>
+        <member name="M:Bubba.FileApiRequest.UploadAsync(System.String)">
+            <summary>
+            Uploads the file asynchronous.
+            </summary>
+            <param name="filePath">The file path.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Bubba.FileApiRequest.GetListAsync">
+            <summary>
+            Lists the files asynchronous.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Bubba.FileApiRequest.RetrieveAsync(System.String)">
+            <summary>
+            Retrieves the file asynchronous.
+            </summary>
+            <param name="fileId">The file identifier.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Bubba.FileApiRequest.DeleteAsync(System.String)">
+            <summary>
+            Deletes the file asynchronous.
+            </summary>
+            <param name="fileId">The file identifier.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Bubba.FileApiRequest.GetData">
+            <inheritdoc />
+            <summary>
+            Gets the data.
+            </summary>
+            <returns>
+            </returns>
+        </member>
+        <member name="M:Bubba.FileApiRequest.ToString">
+            <summary>
+            Converts to string.
+            </summary>
+            <returns>
+            A <see cref="T:System.String" /> that represents this instance.
+            </returns>
+        </member>
+        <member name="T:Bubba.FineTuningRequest">
+            <inheritdoc />
+            <summary>
+            </summary>
+            <seealso cref="T:Bubba.GptRequest" />
         </member>
         <member name="M:Bubba.FineTuningRequest.#ctor">
             <summary>
@@ -23530,15 +23841,6 @@
             The presence.
             </value>
         </member>
-        <member name="P:Bubba.FineTuningRequest.ResponseFormat">
-            <inheritdoc />
-            <summary>
-            Gets or sets the response format.
-            </summary>
-            <value>
-            The response format.
-            </value>
-        </member>
         <member name="M:Bubba.FineTuningRequest.GetData">
             <inheritdoc />
             <summary>
@@ -23548,209 +23850,6 @@
             </returns>
         </member>
         <member name="M:Bubba.FineTuningRequest.ToString">
-            <summary>
-            Converts to string.
-            </summary>
-            <returns>
-            A <see cref="T:System.String" /> that represents this instance.
-            </returns>
-        </member>
-        <member name="T:Bubba.GptFileRequest">
-            <inheritdoc />
-            <summary>
-            </summary>
-            <seealso cref="T:Bubba.GptRequest" />
-        </member>
-        <member name="F:Bubba.GptFileRequest._id">
-            <summary>
-            The file identifier, which can be referenced in the API endpoints.
-            </summary>
-        </member>
-        <member name="F:Bubba.GptFileRequest._purpose">
-            <summary>
-            The intended purpose of the file.
-            Supported values are assistants, assistants_output,
-            batch, batch_output, fine-tune, fine-tune-results and vision.
-            </summary>
-        </member>
-        <member name="F:Bubba.GptFileRequest._limit">
-            <summary>
-            A limit on the number of objects to be returned.
-            Limit can range between 1 and 10,000,
-            and the default is 10,000.
-            </summary>
-        </member>
-        <member name="F:Bubba.GptFileRequest._order">
-            <summary>
-            Sort order by the created_at timestamp of the objects.
-            asc for ascending order and desc for descending order
-            </summary>
-        </member>
-        <member name="F:Bubba.GptFileRequest._after">
-            <summary>
-            A cursor for use in pagination. after is an object ID
-            defines your place in the list. For instance, if you
-            make a list request and receive 100 objects, ending with
-            obj_foo, your subsequent call can include after=obj_foo
-            in order to fetch the next page of the list
-            </summary>
-        </member>
-        <member name="F:Bubba.GptFileRequest._createdAt">
-            <summary>
-            The Unix timestamp (in seconds) for when the file was created.
-            </summary>
-        </member>
-        <member name="F:Bubba.GptFileRequest._bytes">
-            <summary>
-            The size of the file, in bytes.
-            </summary>
-        </member>
-        <member name="F:Bubba.GptFileRequest._fileName">
-            <summary>
-            The file name
-            </summary>
-        </member>
-        <member name="F:Bubba.GptFileRequest._mimeType">
-            <summary>
-            The MIME type
-            </summary>
-        </member>
-        <member name="M:Bubba.GptFileRequest.#ctor">
-            <summary>
-            Initializes a new instance of the
-            <see cref="T:Bubba.GptFileRequest"/> class.
-            </summary>
-            <inheritdoc />
-        </member>
-        <member name="P:Bubba.GptFileRequest.HttpClient">
-            <inheritdoc />
-            <summary>
-            Gets or sets a value indicating whether this
-            <see cref="P:Bubba.GptRequest.HttpClient" /> is store.
-            </summary>
-            <value>
-              <c>true</c> if store; otherwise, <c>false</c>.
-            </value>
-        </member>
-        <member name="P:Bubba.GptFileRequest.Id">
-            <summary>
-            The file identifier, which can be referenced in the API endpoints.
-            </summary>
-            <value>
-            The identifier.
-            </value>
-        </member>
-        <member name="P:Bubba.GptFileRequest.Purpose">
-            <summary>
-            The intended purpose of the file.
-            Supported values are assistants, assistants_output,
-            batch, batch_output, fine-tune, fine-tune-results and vision.
-            </summary>
-            <value>
-            The purpose.
-            </value>
-        </member>
-        <member name="P:Bubba.GptFileRequest.Limit">
-            <summary>
-            A limit on the number of objects to be returned.
-            Limit can range between 1 and 10,000,
-            and the default is 10,000.
-            </summary>
-            <value>
-            The limit.
-            </value>
-        </member>
-        <member name="P:Bubba.GptFileRequest.Order">
-            <summary>
-            Sort order by the created_at timestamp of the objects.
-            asc for ascending order and desc for descending order
-            </summary>
-            <value>
-            The order.
-            </value>
-        </member>
-        <member name="P:Bubba.GptFileRequest.After">
-            <summary>
-            A cursor for use in pagination. after is an object ID
-            defines your place in the list. For instance, if you
-            make a list request and receive 100 objects, ending with
-            obj_foo, your subsequent call can include after=obj_foo
-            in order to fetch the next page of the list
-            </summary>
-            <value>
-            The after.
-            </value>
-        </member>
-        <member name="P:Bubba.GptFileRequest.CreatedAt">
-            <summary>
-            The Unix timestamp (in seconds) for when the file was created.
-            </summary>
-            <value>
-            The created at.
-            </value>
-        </member>
-        <member name="P:Bubba.GptFileRequest.Bytes">
-            <summary>
-            The size of the file, in bytes.
-            </summary>
-            <value>
-            The bytes.
-            </value>
-        </member>
-        <member name="P:Bubba.GptFileRequest.FileName">
-            <summary>
-            Gets or sets the name of the file.
-            </summary>
-            <value>
-            The name of the file.
-            </value>
-        </member>
-        <member name="P:Bubba.GptFileRequest.EndPoint">
-            <inheritdoc />
-            <summary>
-            Gets the end point.
-            </summary>
-            <value>
-            The end point.
-            </value>
-        </member>
-        <member name="M:Bubba.GptFileRequest.UploadFileAsync(System.String,System.String)">
-            <summary>
-            Uploads the file asynchronous.
-            </summary>
-            <param name="filePath">The file path.</param>
-            <param name="purpose">The purpose.</param>
-            <returns></returns>
-        </member>
-        <member name="M:Bubba.GptFileRequest.ListFilesAsync">
-            <summary>
-            Lists the files asynchronous.
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:Bubba.GptFileRequest.RetrieveFileAsync(System.String)">
-            <summary>
-            Retrieves the file asynchronous.
-            </summary>
-            <param name="fileId">The file identifier.</param>
-            <returns></returns>
-        </member>
-        <member name="M:Bubba.GptFileRequest.DeleteFileAsync(System.String)">
-            <summary>
-            Deletes the file asynchronous.
-            </summary>
-            <param name="fileId">The file identifier.</param>
-            <returns></returns>
-        </member>
-        <member name="M:Bubba.GptFileRequest.GetData">
-            <inheritdoc />
-            <summary>
-            Gets the data.
-            </summary>
-            <returns>
-            </returns>
-        </member>
-        <member name="M:Bubba.GptFileRequest.ToString">
             <summary>
             Converts to string.
             </summary>
@@ -24095,11 +24194,6 @@
             <summary>
             </summary>
         </member>
-        <member name="F:Bubba.ImageGenerationRequest._responseFormat">
-            <summary>
-            The response format
-            </summary>
-        </member>
         <member name="F:Bubba.ImageGenerationRequest._size">
             <summary>
             The image size
@@ -24198,15 +24292,6 @@
             </summary>
             <value>
             The maximum tokens.
-            </value>
-        </member>
-        <member name="P:Bubba.ImageGenerationRequest.ResponseFormat">
-            <inheritdoc />
-            <summary>
-            Gets or sets the response format.
-            </summary>
-            <value>
-            The response format.
             </value>
         </member>
         <member name="M:Bubba.ImageGenerationRequest.GetData">
@@ -24370,7 +24455,7 @@
             <returns>
             </returns>
         </member>
-        <member name="M:Bubba.SpeechGenerationReqeust.GenerateSpeechAsync(System.String)">
+        <member name="M:Bubba.SpeechGenerationReqeust.GenerateAsync(System.String)">
             <summary>
             Generates the speech asynchronous.
             </summary>
@@ -24388,7 +24473,7 @@
             string
             </returns>
         </member>
-        <member name="M:Bubba.SpeechGenerationReqeust.SaveSpeechAsync(System.String,System.String)">
+        <member name="M:Bubba.SpeechGenerationReqeust.SaveFileAsync(System.String,System.String)">
             <summary>
             Saves the speech asynchronous.
             </summary>
@@ -24406,11 +24491,6 @@
         <member name="T:Bubba.TextGenerationRequest">
             <inheritdoc />
             <summary>
-            </summary>
-        </member>
-        <member name="F:Bubba.TextGenerationRequest._responseFormat">
-            <summary>
-            The response format
             </summary>
         </member>
         <member name="M:Bubba.TextGenerationRequest.#ctor">
@@ -24751,7 +24831,7 @@
             </summary>
             <seealso cref="T:Bubba.GptRequest" />
         </member>
-        <member name="F:Bubba.TranslationRequest._responseFormat">
+        <member name="F:Bubba.TranslationRequest._language">
             <summary>
             The response format
             </summary>
@@ -24848,11 +24928,6 @@
             <summary>
             </summary>
             <seealso cref="T:Bubba.GptRequest" />
-        </member>
-        <member name="F:Bubba.VectorRequest._responseFormat">
-            <summary>
-            The response format
-            </summary>
         </member>
         <member name="F:Bubba.VectorRequest._filePath">
             <summary>
@@ -25005,29 +25080,29 @@
             <param name="connectionString">The connection string.</param>
             <returns></returns>
         </member>
-        <member name="T:Bubba.CompletionResponse">
+        <member name="T:Bubba.AsstistantResponse">
             <inheritdoc />
             <summary>
             </summary>
         </member>
-        <member name="F:Bubba.CompletionResponse._responseMessage">
+        <member name="F:Bubba.AsstistantResponse._responseMessage">
             <summary>
             The transcribed text
             </summary>
         </member>
-        <member name="F:Bubba.CompletionResponse._rawResponse">
+        <member name="F:Bubba.AsstistantResponse._rawResponse">
             <summary>
             The raw response
             </summary>
         </member>
-        <member name="M:Bubba.CompletionResponse.#ctor">
+        <member name="M:Bubba.AsstistantResponse.#ctor">
             <inheritdoc />
             <summary>
             Initializes a new instance of the
-            <see cref="T:Bubba.CompletionResponse"/> class.
+            <see cref="T:Bubba.AsstistantResponse"/> class.
             </summary>
         </member>
-        <member name="P:Bubba.CompletionResponse.ResponseMessage">
+        <member name="P:Bubba.AsstistantResponse.ResponseMessage">
             <summary>
             Gets or sets the response message.
             </summary>
@@ -25035,7 +25110,7 @@
             The response message.
             </value>
         </member>
-        <member name="P:Bubba.CompletionResponse.RawResponse">
+        <member name="P:Bubba.AsstistantResponse.RawResponse">
             <summary>
             Gets or sets the raw response.
             </summary>
@@ -25043,7 +25118,7 @@
             The raw response.
             </value>
         </member>
-        <member name="P:Bubba.CompletionResponse.Id">
+        <member name="P:Bubba.AsstistantResponse.Id">
             <inheritdoc />
             <summary>
             Gets or sets the identifier.
@@ -25052,7 +25127,7 @@
             The identifier.
             </value>
         </member>
-        <member name="P:Bubba.CompletionResponse.Object">
+        <member name="P:Bubba.AsstistantResponse.Object">
             <inheritdoc />
             <summary>
             Gets or sets the object.
@@ -25061,7 +25136,7 @@
             The object.
             </value>
         </member>
-        <member name="P:Bubba.CompletionResponse.Created">
+        <member name="P:Bubba.AsstistantResponse.Created">
             <inheritdoc />
             <summary>
             Gets or sets the created.
@@ -25070,7 +25145,7 @@
             The created.
             </value>
         </member>
-        <member name="P:Bubba.CompletionResponse.Model">
+        <member name="P:Bubba.AsstistantResponse.Model">
             <inheritdoc />
             <summary>
             Gets or sets the model.
@@ -25079,7 +25154,7 @@
             The model.
             </value>
         </member>
-        <member name="P:Bubba.CompletionResponse.Choices">
+        <member name="P:Bubba.AsstistantResponse.Choices">
             <inheritdoc />
             <summary>
             Gets or sets the choices.
@@ -25088,7 +25163,7 @@
             The choices.
             </value>
         </member>
-        <member name="P:Bubba.CompletionResponse.Usage">
+        <member name="P:Bubba.AsstistantResponse.Usage">
             <inheritdoc />
             <summary>
             Gets or sets the usage.
@@ -25097,19 +25172,18 @@
             The usage.
             </value>
         </member>
-        <member name="M:Bubba.CompletionResponse.ExtractText(System.String)">
+        <member name="M:Bubba.AsstistantResponse.ExtractText(System.String)">
             <summary>
             Extracts the text completion.
             </summary>
             <param name="jsonResponse">The json response.</param>
             <returns></returns>
         </member>
-        <member name="M:Bubba.CompletionResponse.ExtractData(System.String,System.String)">
+        <member name="M:Bubba.AsstistantResponse.ExtractData(System.String)">
             <summary>
             Extracts the message from response.
             </summary>
             <param name="jsonResponse">The json response.</param>
-            <param name="chatModel">The chat model.</param>
             <returns></returns>
         </member>
         <member name="T:Bubba.FineTuningResponse">
@@ -25950,12 +26024,11 @@
             The usage.
             </value>
         </member>
-        <member name="M:Bubba.TranscriptionResponse.ExtractResponseData(System.String,System.String)">
+        <member name="M:Bubba.TranscriptionResponse.ExtractData(System.String)">
             <summary>
             Extracts the message from response.
             </summary>
             <param name="jsonResponse">The json response.</param>
-            <param name="chatModel">The chat model.</param>
             <returns></returns>
         </member>
         <member name="T:Bubba.TranslationResponse">
@@ -27387,6 +27460,89 @@
             The drive separator.
             </value>
         </member>
+        <member name="T:Bubba.QuickResponse">
+            <inheritdoc />
+            <summary>
+            </summary>
+        </member>
+        <member name="F:Bubba.QuickResponse._codeGenerator">
+            <summary>
+            The code generator
+            </summary>
+        </member>
+        <member name="M:Bubba.QuickResponse.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Bubba.QuickResponse"/> class.
+            </summary>
+        </member>
+        <member name="M:Bubba.QuickResponse.GenerateCode(System.String,System.Int32,System.Nullable{System.Drawing.Color},System.Nullable{System.Drawing.Color})">
+            <summary>
+            Generates the code.
+            </summary>
+            <param name="text">The text.</param>
+            <param name="pixelsPerModule">The pixels per module.</param>
+            <param name="darkColor">Color of the dark.</param>
+            <param name="lightColor">Color of the light.</param>
+            <returns></returns>
+            <exception cref="T:System.ArgumentException">Text cannot be null or empty. - text</exception>
+        </member>
+        <member name="M:Bubba.QuickResponse.SaveToFile(System.String,System.String,System.Drawing.Imaging.ImageFormat,System.Int32,System.Nullable{System.Drawing.Color},System.Nullable{System.Drawing.Color})">
+            <summary>
+            Saves to file.
+            </summary>
+            <param name="text">The text.</param>
+            <param name="filePath">The file path.</param>
+            <param name="format">The image format.</param>
+            <param name="pixelsPerModule">The pixels per module.</param>
+            <param name="darkColor">Color of the dark.</param>
+            <param name="lightColor">Color of the light.</param>
+        </member>
+        <member name="M:Bubba.QuickResponse.CreateByteArray(System.String,System.Drawing.Imaging.ImageFormat,System.Int32,System.Nullable{System.Drawing.Color},System.Nullable{System.Drawing.Color})">
+            <summary>
+            Creates the byte array.
+            </summary>
+            <param name="text">The text.</param>
+            <param name="format">The image format.</param>
+            <param name="pixelsPerModule">The pixels per module.</param>
+            <param name="darkColor">Color of the dark.</param>
+            <param name="lightColor">Color of the light.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Bubba.QuickResponse.CreateStream(System.String,System.Drawing.Imaging.ImageFormat,System.Int32,System.Nullable{System.Drawing.Color},System.Nullable{System.Drawing.Color})">
+            <summary>
+            Creates the stream.
+            </summary>
+            <param name="text">The text.</param>
+            <param name="format">The image format.</param>
+            <param name="pixelsPerModule">The pixels per module.</param>
+            <param name="darkColor">Color of the dark.</param>
+            <param name="lightColor">Color of the light.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Bubba.QuickResponse.CreateBase64(System.String,System.Drawing.Imaging.ImageFormat,System.Int32,System.Nullable{System.Drawing.Color},System.Nullable{System.Drawing.Color})">
+            <summary>
+            Creates the base64.
+            </summary>
+            <param name="text">The text.</param>
+            <param name="imageFormat">The image format.</param>
+            <param name="pixelsPerModule">The pixels per module.</param>
+            <param name="darkColor">Color of the dark.</param>
+            <param name="lightColor">Color of the light.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Bubba.QuickResponse.Dispose">
+            <inheritdoc />
+            <summary>
+            Performs application-defined tasks associated with freeing,
+            releasing, or resetting unmanaged resources.
+            </summary>
+        </member>
+        <member name="M:Bubba.QuickResponse.Fail(System.Exception)">
+            <summary>
+            Fails the specified ex.
+            </summary>
+            <param name="ex">The ex.</param>
+        </member>
         <member name="T:Bubba.Properties.Definitions">
             <summary>
               A strongly-typed resource class, for looking up localized strings, etc.
@@ -27948,7 +28104,7 @@
         </member>
         <member name="P:Bubba.Properties.Models.gpt_4_0613">
             <summary>
-              Looks up a localized string similar to ;  GPT-4 is an older version of a high-intelligence GPT model, usable in Chat Completions. .
+              Looks up a localized string similar to gpt-4 is an older version of a high-intelligence GPT model, usable in Chat Completions. .
             </summary>
         </member>
         <member name="P:Bubba.Properties.Models.gpt_4_1106_preview">
@@ -28098,7 +28254,7 @@
         </member>
         <member name="P:Bubba.Properties.Models.whisper_1">
             <summary>
-              Looks up a localized string similar to ;  Whisper is a general-purpose speech recognition model. It is trained on a large dataset of diverse audio and is also a multi-task model that can perform multilingual speech recognition as well as speech translation and language identification. The Whisper v2-large model is currently available through our API with the whisper-1 model name. Audio outputs are stored for 1 hour to enable multi-turn conversations, and are not currently eligible for zero retention..
+              Looks up a localized string similar to Whisper is a general-purpose speech recognition model. It is trained on a large dataset of diverse audio and is also a multi-task model that can perform multilingual speech recognition as well as speech translation and language identification. The Whisper v2-large model is currently available through our API with the whisper-1 model name. Audio outputs are stored for 1 hour to enable multi-turn conversations, and are not currently eligible for zero retention..
             </summary>
         </member>
         <member name="P:Bubba.Properties.Models.whisper_2">
@@ -28122,11 +28278,6 @@
               resource lookups using this strongly typed resource class.
             </summary>
         </member>
-        <member name="P:Bubba.Properties.OpenAI.BubbaAppropriations">
-            <summary>
-              Looks up a localized string similar to vs_8fEoYp1zVvk5D8atfWLbEupN.
-            </summary>
-        </member>
         <member name="P:Bubba.Properties.OpenAI.BubbaFiles">
             <summary>
               Looks up a localized string similar to file-Bauvjn4JRo31ERGDfqUyjy.
@@ -28137,17 +28288,12 @@
               Looks up a localized string similar to vs_8fEoYp1zVvk5D8atfWLbEupN.
             </summary>
         </member>
-        <member name="P:Bubba.Properties.OpenAI.BubbaInstructions">
-            <summary>
-              Looks up a localized string similar to You are the most knowledgeable Budget Analyst in the federal government who provides detailed responses based on your vast knowledge of budget legislation, and federal appropriations.  Your responses to questions about federal finance are highly accurate, and very detailed, citing sources using an academic format.  Your vast knowledge  and experience in Data Science makes you the best Data Analyst in the world. You are proficient in C#, Python, SQL, C++, JavaScript, and VBA. Your name is Bubba..
-            </summary>
-        </member>
         <member name="P:Bubba.Properties.OpenAI.BubbaKey">
             <summary>
               Looks up a localized string similar to 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.
             </summary>
         </member>
-        <member name="P:Bubba.Properties.OpenAI.BubbaProject">
+        <member name="P:Bubba.Properties.OpenAI.BubbaProjectID">
             <summary>
               Looks up a localized string similar to proj_4OQYEZava5a8a5AfFDmRtggo.
             </summary>
@@ -28157,9 +28303,14 @@
               Looks up a localized string similar to You are the most knowledgeable Budget Analyst in the federal government who provides detailed responses based on your vast knowledge of budget legislation, and federal appropriations.  Your responses to questions about federal finance are very detailed using an academic format.  Your vast knowledge of and experience in Data Science makes you the best Data Analyst in the world. You are proficient in C#, Python, SQL, C++, JavaScript, and VBA. Your name is Bubba..
             </summary>
         </member>
-        <member name="P:Bubba.Properties.OpenAI.BubbaRegulations">
+        <member name="P:Bubba.Properties.OpenAI.OrganizationID">
             <summary>
-              Looks up a localized string similar to vs_dx5IIjBuEw5M0j5S2FTo9lRS.
+              Looks up a localized string similar to org-EgkcFyaUbUUmDaKSha1rxlRh.
+            </summary>
+        </member>
+        <member name="P:Bubba.Properties.OpenAI.OrganizationName">
+            <summary>
+              Looks up a localized string similar to leeroy-jenkins.
             </summary>
         </member>
         <member name="T:Bubba.Properties.SearchEngine">
@@ -28186,6 +28337,11 @@
         <member name="P:Bubba.Properties.SearchEngine.KEY">
             <summary>
               Looks up a localized string similar to AIzaSyBsfbY19GJMzr3MXqr6MhJ4YKDfhv4QNkw.
+            </summary>
+        </member>
+        <member name="P:Bubba.Properties.SearchEngine.Name">
+            <summary>
+              Looks up a localized string similar to Bubba.
             </summary>
         </member>
         <member name="P:Bubba.Properties.SearchEngine.ProjectID">
@@ -33271,6 +33427,19 @@
             InitializeComponent
             </summary>
         </member>
+        <member name="T:Bubba.ConfigurationDialog">
+            <summary>
+            Interaction logic for ConfigurationDialog.xaml
+            </summary>
+            <summary>
+            ConfigurationDialog
+            </summary>
+        </member>
+        <member name="M:Bubba.ConfigurationDialog.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
         <member name="T:Bubba.DocumentWindow">
             <inheritdoc />
             <summary>
@@ -34573,6 +34742,371 @@
             InitializeComponent
             </summary>
         </member>
+        <member name="T:Bubba.GptFileDialog">
+            <inheritdoc />
+            <summary>
+            Interaction logic for GptFileDialog.xaml
+            </summary>
+            <summary>
+            GptFileDialog
+            </summary>
+        </member>
+        <member name="F:Bubba.GptFileDialog._busy">
+            <summary>
+            The busy
+            </summary>
+        </member>
+        <member name="F:Bubba.GptFileDialog._count">
+            <summary>
+            The count
+            </summary>
+        </member>
+        <member name="F:Bubba.GptFileDialog._data">
+            <summary>
+            The data
+            </summary>
+        </member>
+        <member name="F:Bubba.GptFileDialog._duration">
+            <summary>
+            The duration
+            </summary>
+        </member>
+        <member name="F:Bubba.GptFileDialog._extension">
+            <summary>
+            The extension
+            </summary>
+        </member>
+        <member name="F:Bubba.GptFileDialog._fileExtension">
+            <summary>
+            The file extension
+            </summary>
+        </member>
+        <member name="F:Bubba.GptFileDialog._filePaths">
+            <summary>
+            The file paths
+            </summary>
+        </member>
+        <member name="F:Bubba.GptFileDialog._image">
+            <summary>
+            The image
+            </summary>
+        </member>
+        <member name="F:Bubba.GptFileDialog._initialDirectory">
+            <summary>
+            The initial directory
+            </summary>
+        </member>
+        <member name="F:Bubba.GptFileDialog._initialPaths">
+            <summary>
+            The initial dir paths
+            </summary>
+        </member>
+        <member name="F:Bubba.GptFileDialog._entry">
+            <summary>
+            The locked object
+            </summary>
+        </member>
+        <member name="F:Bubba.GptFileDialog._radioButtons">
+            <summary>
+            The radio buttons
+            </summary>
+        </member>
+        <member name="F:Bubba.GptFileDialog._seconds">
+            <summary>
+            The seconds
+            </summary>
+        </member>
+        <member name="F:Bubba.GptFileDialog._selectedFile">
+            <summary>
+            The selected file
+            </summary>
+        </member>
+        <member name="F:Bubba.GptFileDialog._selectedPath">
+            <summary>
+            The selected path
+            </summary>
+        </member>
+        <member name="F:Bubba.GptFileDialog._statusUpdate">
+            <summary>
+            The status update
+            </summary>
+        </member>
+        <member name="F:Bubba.GptFileDialog._theme">
+            <summary>
+            The theme
+            </summary>
+        </member>
+        <member name="F:Bubba.GptFileDialog._time">
+            <summary>
+            The time
+            </summary>
+        </member>
+        <member name="F:Bubba.GptFileDialog._timer">
+            <summary>
+            The timer
+            </summary>
+        </member>
+        <member name="F:Bubba.GptFileDialog._timerCallback">
+            <summary>
+            The timer
+            </summary>
+        </member>
+        <member name="E:Bubba.GptFileDialog.PropertyChanged">
+            <inheritdoc />
+            <summary>
+            Occurs when a property value changes.
+            </summary>
+        </member>
+        <member name="F:Bubba.GptFileDialog._httpClient">
+            <summary>
+            The HTTP client
+            </summary>
+        </member>
+        <member name="M:Bubba.GptFileDialog.#ctor">
+            <inheritdoc />
+            <summary>
+            Initializes a new instance of the
+            <see cref="T:Bubba.GptFileDialog" /> class.
+            </summary>
+        </member>
+        <member name="P:Bubba.GptFileDialog.SelectedPath">
+            <summary>
+            Gets or sets the selected path.
+            </summary>
+            <value>
+            The selected path.
+            </value>
+        </member>
+        <member name="P:Bubba.GptFileDialog.SelectedFile">
+            <summary>
+            Gets or sets the selected file.
+            </summary>
+            <value>
+            The selected file.
+            </value>
+        </member>
+        <member name="P:Bubba.GptFileDialog.IsBusy">
+            <summary>
+            Gets a value indicating whether this instance is busy.
+            </summary>
+            <value>
+            <c> true </c>
+            if this instance is busy; otherwise,
+            <c> false </c>
+            </value>
+        </member>
+        <member name="M:Bubba.GptFileDialog.RegisterCallbacks">
+            <summary>
+            Initializes the callbacks.
+            </summary>
+        </member>
+        <member name="M:Bubba.GptFileDialog.InitializeDelegates">
+            <summary>
+            Initializes the delegates.
+            </summary>
+        </member>
+        <member name="M:Bubba.GptFileDialog.InitializeLabels">
+            <summary>
+            Initializes the labels.
+            </summary>
+        </member>
+        <member name="M:Bubba.GptFileDialog.InitializeTimer">
+            <summary>
+            Initializes the timer.
+            </summary>
+        </member>
+        <member name="M:Bubba.GptFileDialog.InitializeButtons">
+            <summary>
+            Initializes the buttons.
+            </summary>
+        </member>
+        <member name="M:Bubba.GptFileDialog.InvokeIf(System.Action)">
+            <summary>
+            Invokes if needed.
+            </summary>
+            <param name="action">The action.</param>
+        </member>
+        <member name="M:Bubba.GptFileDialog.InvokeIf(System.Action{System.Object})">
+            <summary>
+            Invokes if.
+            </summary>
+            <param name="action">The action.</param>
+        </member>
+        <member name="M:Bubba.GptFileDialog.Busy">
+            <summary>
+            Begins the initialize.
+            </summary>
+        </member>
+        <member name="M:Bubba.GptFileDialog.Chill">
+            <summary>
+            Ends the initialize.
+            </summary>
+        </member>
+        <member name="M:Bubba.GptFileDialog.ClearCallbacks">
+            <summary>
+            Clears the callbacks.
+            </summary>
+        </member>
+        <member name="M:Bubba.GptFileDialog.ClearDelegates">
+            <summary>
+            Clears the delegates.
+            </summary>
+        </member>
+        <member name="M:Bubba.GptFileDialog.SendNotification(System.String)">
+            <summary>
+            Sends the notification.
+            </summary>
+            <param name="message">
+            The message.
+            </param>
+        </member>
+        <member name="M:Bubba.GptFileDialog.SendMessage(System.String)">
+            <summary>
+            Shows the splash message.
+            </summary>
+        </member>
+        <member name="M:Bubba.GptFileDialog.UpdateStatus">
+            <summary>
+            Updates the status.
+            </summary>
+        </member>
+        <member name="M:Bubba.GptFileDialog.UpdateStatus(System.Object)">
+            <summary>
+            Updates the status.
+            </summary>
+        </member>
+        <member name="M:Bubba.GptFileDialog.SetImage">
+            <summary>
+            Sets the extension.
+            </summary>
+        </member>
+        <member name="M:Bubba.GptFileDialog.RegisterRadioButtonEvents">
+            <summary>
+            Sets the RadioButton events.
+            </summary>
+        </member>
+        <member name="M:Bubba.GptFileDialog.GetCheckBoxes">
+            <summary>
+            Gets the radio buttons.
+            </summary>
+            <returns>
+            List( MetroRadioButton )
+            </returns>
+        </member>
+        <member name="M:Bubba.GptFileDialog.PopulateListBox">
+            <summary>
+            Populates the ListBox.
+            </summary>
+        </member>
+        <member name="M:Bubba.GptFileDialog.PopulateListBox(System.Collections.Generic.IEnumerable{System.String})">
+            <summary>
+            Populates the ListBox.
+            </summary>
+            <param name="filePaths">The file paths.</param>
+        </member>
+        <member name="M:Bubba.GptFileDialog.PopulateFilesAsync">
+            <summary>
+            Sets the models.
+            </summary>
+        </member>
+        <member name="M:Bubba.GptFileDialog.CreateListViewFilePaths">
+            <summary>
+            Gets the ListView paths.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Bubba.GptFileDialog.GetFilePaths">
+            <summary>
+            Gets the file paths.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Bubba.GptFileDialog.GetFilePathsAsync">
+            <summary>
+            Gets the file paths asynchronous.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Bubba.GptFileDialog.CreateInitialDirectoryPaths">
+            <summary>
+            Gets the initial dir paths.
+            </summary>
+            <returns>
+            IList(string)
+            </returns>
+        </member>
+        <member name="M:Bubba.GptFileDialog.OnLoaded(System.Object,System.EventArgs)">
+            <summary>
+            Called when [load].
+            </summary>
+            <param name="sender">The sender.</param>
+            <param name="e">The <see cref="T:System.EventArgs"/>
+            instance containing the event data.</param>
+        </member>
+        <member name="M:Bubba.GptFileDialog.OnRadioButtonSelected(System.Object,System.EventArgs)">
+            <summary>
+            Called when [RadioButton selected].
+            </summary>
+            <param name="sender">The sender.</param>
+            <param name = "e" > </param>
+        </member>
+        <member name="M:Bubba.GptFileDialog.OnClosing(System.Object,System.ComponentModel.CancelEventArgs)">
+            <summary>
+            Called when [closing].
+            </summary>
+            <param name="sender">The sender.</param>
+            <param name="e">The <see cref="T:System.Windows.RoutedEventArgs"/>
+            instance containing the event data.</param>
+        </member>
+        <member name="M:Bubba.GptFileDialog.OnPropertyChanged(System.String)">
+            <summary>
+            Called when [property changed].
+            </summary>
+            <param name="propertyName">Name of the property.</param>
+        </member>
+        <member name="M:Bubba.GptFileDialog.Dispose">
+            <inheritdoc />
+            <summary>
+            Performs application-defined tasks
+            associated with freeing, releasing,
+            or resetting unmanaged resources.
+            </summary>
+        </member>
+        <member name="M:Bubba.GptFileDialog.Dispose(System.Boolean)">
+            <summary>
+            Releases unmanaged and - optionally - managed resources.
+            </summary>
+            <param name="disposing">
+            <c>true</c>
+            to release both managed
+            and unmanaged resources;
+            <c>false</c> to release only unmanaged resources.
+            </param>
+        </member>
+        <member name="M:Bubba.GptFileDialog.Fail(System.Exception)">
+            <summary>
+            Fails the specified ex.
+            </summary>
+            <param name="ex">The ex.</param>
+        </member>
+        <member name="M:Bubba.GptFileDialog.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:Bubba.GptImageDialog">
+            <summary>
+            Interaction logic for GptImageDialog.xaml
+            </summary>
+            <summary>
+            GptImageDialog
+            </summary>
+        </member>
+        <member name="M:Bubba.GptImageDialog.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
         <member name="T:Bubba.Notification">
             <inheritdoc />
             <summary>
@@ -34882,11 +35416,6 @@
             <param name="form">The o.</param>
             <param name="interval">The interval.</param>
         </member>
-        <member name="M:Bubba.SearchDialog.PopulateDomainDropDowns">
-            <summary>
-            Sets the tool strip properties.
-            </summary>
-        </member>
         <member name="M:Bubba.SearchDialog.ClearCallbacks">
             <summary>
             Clears the callbacks.
@@ -35172,337 +35701,192 @@
             InitializeComponent
             </summary>
         </member>
-        <member name="T:Bubba.GptFileDialog">
+        <member name="T:Bubba.SystemDialog">
             <inheritdoc />
             <summary>
-            Interaction logic for GptFileDialog.xaml
+            Interaction logic for SystemDialog.xaml
             </summary>
             <summary>
-            GptFileDialog
+            SystemDialog
             </summary>
         </member>
-        <member name="F:Bubba.GptFileDialog._busy">
+        <member name="F:Bubba.SystemDialog._busy">
             <summary>
             The busy
             </summary>
         </member>
-        <member name="F:Bubba.GptFileDialog._count">
+        <member name="F:Bubba.SystemDialog._entry">
             <summary>
-            The count
+            The entry
             </summary>
         </member>
-        <member name="F:Bubba.GptFileDialog._data">
-            <summary>
-            The data
-            </summary>
-        </member>
-        <member name="F:Bubba.GptFileDialog._duration">
-            <summary>
-            The duration
-            </summary>
-        </member>
-        <member name="F:Bubba.GptFileDialog._extension">
-            <summary>
-            The extension
-            </summary>
-        </member>
-        <member name="F:Bubba.GptFileDialog._fileExtension">
-            <summary>
-            The file extension
-            </summary>
-        </member>
-        <member name="F:Bubba.GptFileDialog._filePaths">
-            <summary>
-            The file paths
-            </summary>
-        </member>
-        <member name="F:Bubba.GptFileDialog._image">
-            <summary>
-            The image
-            </summary>
-        </member>
-        <member name="F:Bubba.GptFileDialog._initialDirectory">
-            <summary>
-            The initial directory
-            </summary>
-        </member>
-        <member name="F:Bubba.GptFileDialog._initialPaths">
-            <summary>
-            The initial dir paths
-            </summary>
-        </member>
-        <member name="F:Bubba.GptFileDialog._entry">
-            <summary>
-            The locked object
-            </summary>
-        </member>
-        <member name="F:Bubba.GptFileDialog._radioButtons">
-            <summary>
-            The radio buttons
-            </summary>
-        </member>
-        <member name="F:Bubba.GptFileDialog._seconds">
-            <summary>
-            The seconds
-            </summary>
-        </member>
-        <member name="F:Bubba.GptFileDialog._selectedFile">
-            <summary>
-            The selected file
-            </summary>
-        </member>
-        <member name="F:Bubba.GptFileDialog._selectedPath">
-            <summary>
-            The selected path
-            </summary>
-        </member>
-        <member name="F:Bubba.GptFileDialog._statusUpdate">
+        <member name="F:Bubba.SystemDialog._statusUpdate">
             <summary>
             The status update
             </summary>
         </member>
-        <member name="F:Bubba.GptFileDialog._theme">
+        <member name="F:Bubba.SystemDialog._theme">
             <summary>
             The theme
             </summary>
         </member>
-        <member name="F:Bubba.GptFileDialog._time">
-            <summary>
-            The time
-            </summary>
-        </member>
-        <member name="F:Bubba.GptFileDialog._timer">
+        <member name="F:Bubba.SystemDialog._timer">
             <summary>
             The timer
             </summary>
         </member>
-        <member name="F:Bubba.GptFileDialog._timerCallback">
+        <member name="F:Bubba.SystemDialog._queryPrefix">
             <summary>
-            The timer
+            The domain
             </summary>
         </member>
-        <member name="E:Bubba.GptFileDialog.PropertyChanged">
-            <inheritdoc />
+        <member name="F:Bubba.SystemDialog._results">
             <summary>
-            Occurs when a property value changes.
+            The results
             </summary>
         </member>
-        <member name="M:Bubba.GptFileDialog.#ctor">
+        <member name="F:Bubba.SystemDialog._input">
+            <summary>
+            The input
+            </summary>
+        </member>
+        <member name="F:Bubba.SystemDialog._stopWatch">
+            <summary>
+            The stop watch
+            </summary>
+        </member>
+        <member name="M:Bubba.SystemDialog.#ctor">
             <inheritdoc />
             <summary>
             Initializes a new instance of the
-            <see cref="T:Bubba.GptFileDialog" /> class.
+            <see cref="T:Bubba.SystemDialog" /> class.
             </summary>
         </member>
-        <member name="P:Bubba.GptFileDialog.SelectedPath">
+        <member name="P:Bubba.SystemDialog.Results">
             <summary>
-            Gets or sets the selected path.
+            Gets or sets the results.
             </summary>
             <value>
-            The selected path.
+            The results.
             </value>
         </member>
-        <member name="P:Bubba.GptFileDialog.SelectedFile">
+        <member name="P:Bubba.SystemDialog.Input">
             <summary>
-            Gets or sets the selected file.
+            Gets the input.
             </summary>
             <value>
-            The selected file.
+            The input.
             </value>
         </member>
-        <member name="P:Bubba.GptFileDialog.IsBusy">
+        <member name="M:Bubba.SystemDialog.RegisterCallbacks">
             <summary>
-            Gets a value indicating whether this instance is busy.
-            </summary>
-            <value>
-            <c> true </c>
-            if this instance is busy; otherwise,
-            <c> false </c>
-            </value>
-        </member>
-        <member name="M:Bubba.GptFileDialog.RegisterCallbacks">
-            <summary>
-            Initializes the callbacks.
+            Registers the callbacks.
             </summary>
         </member>
-        <member name="M:Bubba.GptFileDialog.InitializeDelegates">
-            <summary>
-            Initializes the delegates.
-            </summary>
-        </member>
-        <member name="M:Bubba.GptFileDialog.InitializeLabels">
-            <summary>
-            Initializes the labels.
-            </summary>
-        </member>
-        <member name="M:Bubba.GptFileDialog.InitializeTimer">
-            <summary>
-            Initializes the timer.
-            </summary>
-        </member>
-        <member name="M:Bubba.GptFileDialog.InitializeButtons">
+        <member name="M:Bubba.SystemDialog.InitializeButtons">
             <summary>
             Initializes the buttons.
             </summary>
         </member>
-        <member name="M:Bubba.GptFileDialog.InvokeIf(System.Action)">
+        <member name="M:Bubba.SystemDialog.InitializeTextBox">
             <summary>
-            Invokes if needed.
-            </summary>
-            <param name="action">The action.</param>
-        </member>
-        <member name="M:Bubba.GptFileDialog.InvokeIf(System.Action{System.Object})">
-            <summary>
-            Invokes if.
-            </summary>
-            <param name="action">The action.</param>
-        </member>
-        <member name="M:Bubba.GptFileDialog.Busy">
-            <summary>
-            Begins the initialize.
+            Initializes the buttons.
             </summary>
         </member>
-        <member name="M:Bubba.GptFileDialog.Chill">
+        <member name="M:Bubba.SystemDialog.InitializeComboBox">
             <summary>
-            Ends the initialize.
+            Initializes the ComboBox.
             </summary>
         </member>
-        <member name="M:Bubba.GptFileDialog.ClearCallbacks">
+        <member name="M:Bubba.SystemDialog.FadeInAsync(System.Windows.Window,System.Int32)">
+            <summary>
+            Fades the in asynchronous.
+            </summary>
+            <param name="form">The o.</param>
+            <param name="interval">The interval.</param>
+        </member>
+        <member name="M:Bubba.SystemDialog.FadeOutAsync(System.Windows.Window,System.Int32)">
+            <summary>
+            Fades the out asynchronous.
+            </summary>
+            <param name="form">The o.</param>
+            <param name="interval">The interval.</param>
+        </member>
+        <member name="M:Bubba.SystemDialog.ClearCallbacks">
             <summary>
             Clears the callbacks.
             </summary>
         </member>
-        <member name="M:Bubba.GptFileDialog.ClearDelegates">
-            <summary>
-            Clears the delegates.
-            </summary>
-        </member>
-        <member name="M:Bubba.GptFileDialog.SendNotification(System.String)">
-            <summary>
-            Sends the notification.
-            </summary>
-            <param name="message">
-            The message.
-            </param>
-        </member>
-        <member name="M:Bubba.GptFileDialog.SendMessage(System.String)">
-            <summary>
-            Shows the splash message.
-            </summary>
-        </member>
-        <member name="M:Bubba.GptFileDialog.UpdateStatus">
-            <summary>
-            Updates the status.
-            </summary>
-        </member>
-        <member name="M:Bubba.GptFileDialog.UpdateStatus(System.Object)">
-            <summary>
-            Updates the status.
-            </summary>
-        </member>
-        <member name="M:Bubba.GptFileDialog.SetImage">
-            <summary>
-            Sets the extension.
-            </summary>
-        </member>
-        <member name="M:Bubba.GptFileDialog.RegisterRadioButtonEvents">
-            <summary>
-            Sets the RadioButton events.
-            </summary>
-        </member>
-        <member name="M:Bubba.GptFileDialog.GetCheckBoxes">
-            <summary>
-            Gets the radio buttons.
-            </summary>
-            <returns>
-            List( MetroRadioButton )
-            </returns>
-        </member>
-        <member name="M:Bubba.GptFileDialog.PopulateListBox">
-            <summary>
-            Populates the ListBox.
-            </summary>
-        </member>
-        <member name="M:Bubba.GptFileDialog.PopulateListBox(System.Collections.Generic.IEnumerable{System.String})">
-            <summary>
-            Populates the ListBox.
-            </summary>
-            <param name="filePaths">The file paths.</param>
-        </member>
-        <member name="M:Bubba.GptFileDialog.CreateListViewFilePaths">
-            <summary>
-            Gets the ListView paths.
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:Bubba.GptFileDialog.GetFilePaths">
-            <summary>
-            Gets the file paths.
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:Bubba.GptFileDialog.CreateInitialDirectoryPaths">
-            <summary>
-            Gets the initial dir paths.
-            </summary>
-            <returns>
-            IList(string)
-            </returns>
-        </member>
-        <member name="M:Bubba.GptFileDialog.OnLoaded(System.Object,System.EventArgs)">
+        <member name="M:Bubba.SystemDialog.OnLoad(System.Object,System.Windows.RoutedEventArgs)">
             <summary>
             Called when [load].
+            </summary>
+            <param name="sender">
+            The sender.
+            </param>
+            <param name="e">
+            instance containing the event data.
+            </param>
+        </member>
+        <member name="M:Bubba.SystemDialog.OnCloseButtonClick(System.Object,System.Windows.RoutedEventArgs)">
+            <summary>
+            Called when [close button clicked].
+            </summary>
+            <param name="sender">
+            The sender.
+            </param>
+            <param name="e">
+            The
+            <see cref="T:System.EventArgs"/>
+            instance containing the event data.
+            </param>
+        </member>
+        <member name="M:Bubba.SystemDialog.OnGoButtonClick(System.Object,System.Windows.RoutedEventArgs)">
+            <summary>
+            Called when [okay button click].
             </summary>
             <param name="sender">The sender.</param>
             <param name="e">The <see cref="T:System.EventArgs"/>
             instance containing the event data.</param>
         </member>
-        <member name="M:Bubba.GptFileDialog.OnRadioButtonSelected(System.Object,System.EventArgs)">
+        <member name="M:Bubba.SystemDialog.OnClearButtonClick(System.Object,System.Windows.RoutedEventArgs)">
             <summary>
-            Called when [RadioButton selected].
+            Called when [clear button click].
             </summary>
             <param name="sender">The sender.</param>
-            <param name = "e" > </param>
+            <param name="e">The <see cref="T:System.EventArgs"/>
+            instance containing the event data.</param>
         </member>
-        <member name="M:Bubba.GptFileDialog.OnClosing(System.Object,System.ComponentModel.CancelEventArgs)">
+        <member name="M:Bubba.SystemDialog.OnInputTextChanged(System.Object,System.Windows.RoutedEventArgs)">
             <summary>
-            Called when [closing].
+            Called when [input text changed].
             </summary>
             <param name="sender">The sender.</param>
-            <param name="e">The <see cref="T:System.Windows.RoutedEventArgs"/> instance containing the event data.</param>
+            <param name="e">The <see cref="T:System.EventArgs"/>
+            instance containing the event data.</param>
         </member>
-        <member name="M:Bubba.GptFileDialog.OnPropertyChanged(System.String)">
-            <summary>
-            Called when [property changed].
-            </summary>
-            <param name="propertyName">Name of the property.</param>
-        </member>
-        <member name="M:Bubba.GptFileDialog.Dispose">
+        <member name="M:Bubba.SystemDialog.Dispose">
             <inheritdoc />
-            <summary>
-            Performs application-defined tasks
-            associated with freeing, releasing,
-            or resetting unmanaged resources.
-            </summary>
-        </member>
-        <member name="M:Bubba.GptFileDialog.Dispose(System.Boolean)">
             <summary>
             Releases unmanaged and - optionally - managed resources.
             </summary>
-            <param name="disposing">
-            <c>true</c>
-            to release both managed
-            and unmanaged resources;
+        </member>
+        <member name="M:Bubba.SystemDialog.Dispose(System.Boolean)">
+            <summary>
+            Releases unmanaged and - optionally - managed resources.
+            </summary>
+            <param name="disposing"><c>true</c>
+            to release both managed and unmanaged resources;
             <c>false</c> to release only unmanaged resources.
             </param>
         </member>
-        <member name="M:Bubba.GptFileDialog.Fail(System.Exception)">
+        <member name="M:Bubba.SystemDialog.Fail(System.Exception)">
             <summary>
             Fails the specified ex.
             </summary>
             <param name="ex">The ex.</param>
         </member>
-        <member name="M:Bubba.GptFileDialog.InitializeComponent">
+        <member name="M:Bubba.SystemDialog.InitializeComponent">
             <summary>
             InitializeComponent
             </summary>

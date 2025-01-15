@@ -50,6 +50,7 @@ namespace Bubba
     using System.Net.Http.Headers;
     using System.Text;
     using System.Text.Json;
+    using System.Text.Json.Serialization;
     using System.Threading.Tasks;
     using Newtonsoft.Json;
     using Properties;
@@ -112,6 +113,7 @@ namespace Bubba
             : base( )
         {
             _entry = new object( );
+            _header = new GptHeader( );
             _httpClient = new HttpClient( );
             _model = "tts-1-hd";
             _endPoint = GptEndPoint.SpeechGeneration;
@@ -119,6 +121,7 @@ namespace Bubba
             _language = "en";
             _responseFormat = "mp3";
             _modalities = "['text', 'audio']";
+            _voice = "fable";
         }
 
         /// <inheritdoc />
@@ -152,7 +155,7 @@ namespace Bubba
         /// <value>
         /// The messages.
         /// </value>
-        [ JsonProperty( "messages" ) ]
+        [ JsonPropertyName( "messages" ) ]
         public IList<IGptMessage> Messages
         {
             get
@@ -175,7 +178,7 @@ namespace Bubba
         /// <value>
         /// The language.
         /// </value>
-        [ JsonProperty( "language" ) ]
+        [ JsonPropertyName( "language" ) ]
         public string Language
         {
             get
@@ -198,7 +201,7 @@ namespace Bubba
         /// <value>
         /// The input.
         /// </value>
-        [ JsonProperty( "input" ) ]
+        [ JsonPropertyName( "input" ) ]
         public string Input
         {
             get
@@ -221,7 +224,7 @@ namespace Bubba
         /// <value>
         /// The voice.
         /// </value>
-        [ JsonProperty( "voice" ) ]
+        [ JsonPropertyName( "voice" ) ]
         public string Voice
         {
             get
@@ -244,7 +247,7 @@ namespace Bubba
         /// <value>
         /// The speed.
         /// </value>
-        [ JsonProperty( "speed" ) ]
+        [ JsonPropertyName( "speed" ) ]
         public int Speed
         {
             get
@@ -267,7 +270,7 @@ namespace Bubba
         /// <value>
         /// The seed.
         /// </value>
-        [ JsonProperty( "seed" ) ]
+        [ JsonPropertyName( "seed" ) ]
         public int Seed
         {
             get
@@ -290,7 +293,7 @@ namespace Bubba
         /// <value>
         /// The file path.
         /// </value>
-        [ JsonProperty( "file" ) ]
+        [ JsonPropertyName( "file" ) ]
         public string File
         {
             get
@@ -313,7 +316,7 @@ namespace Bubba
         /// <value>
         /// The audio data.
         /// </value>
-        [ JsonProperty( "audio_data" ) ]
+        [ JsonPropertyName( "audio_data" ) ]
         public byte[ ] AudioData
         {
             get
@@ -393,11 +396,11 @@ namespace Bubba
         /// <returns>
         /// Task
         /// </returns>
-        public async Task<string> GenerateSpeechAsync( string text )
+        public async Task<string> GenerateAsync( string text )
         {
             using var _client = new HttpClient( );
             _client.DefaultRequestHeaders.Authorization =
-                new AuthenticationHeaderValue( "Bearer", OpenAI.BubbaKey );
+                new AuthenticationHeaderValue( "Bearer", _apiKey );
 
             var _payload = new SpeechPayload
             {
@@ -407,7 +410,7 @@ namespace Bubba
             };
 
             var _serialize = JsonSerializer.Serialize( _payload );
-            var _content = new StringContent( _serialize, Encoding.UTF8, "application/json" );
+            var _content = new StringContent( _serialize, Encoding.UTF8, _header.ContentType );
             var _response = await _client.PostAsync( _endPoint, _content );
             _response.EnsureSuccessStatusCode( );
             var _responseContent = await _response.Content.ReadAsStringAsync( );
@@ -427,8 +430,13 @@ namespace Bubba
             {
                 ThrowIf.Empty( jsonResponse, nameof( jsonResponse ) );
                 using var _document = JsonDocument.Parse( jsonResponse );
-                var _text = _document.RootElement.GetProperty( "text" ).GetString( );
-                return _text ?? "Speech generation failed.";
+                var _text = _document.RootElement
+                    .GetProperty( "text" )
+                    .GetString( );
+
+                return !string.IsNullOrEmpty( _text )
+                    ? _text
+                    : "Speech Generation Failed!";
             }
             catch( Exception ex )
             {
@@ -442,7 +450,7 @@ namespace Bubba
         /// </summary>
         /// <param name="text">The text.</param>
         /// <param name="filePath">The file path.</param>
-        public async Task SaveSpeechAsync( string text, string filePath )
+        public async Task SaveFileAsync( string text, string filePath )
         {
             try
             {
@@ -450,7 +458,7 @@ namespace Bubba
                 ThrowIf.Empty( filePath, nameof( filePath ) );
                 using var _client = new HttpClient( );
                 _client.DefaultRequestHeaders.Authorization =
-                    new AuthenticationHeaderValue( "Bearer", OpenAI.BubbaKey );
+                    new AuthenticationHeaderValue( "Bearer", _apiKey );
 
                 var _payload = new SpeechPayload
                 {

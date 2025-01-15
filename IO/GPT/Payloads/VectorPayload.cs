@@ -45,6 +45,7 @@ namespace Bubba
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
     using System.Linq;
+    using System.Text.Json.Serialization;
     using Newtonsoft.Json;
     using Properties;
 
@@ -150,7 +151,7 @@ namespace Bubba
         /// <value>
         /// The vector store identifier.
         /// </value>
-        [ JsonProperty( "vector_store_id" ) ]
+        [ JsonPropertyName( "vector_store_id" ) ]
         public string VectorStoreId
         {
             get
@@ -173,7 +174,7 @@ namespace Bubba
         /// <value>
         /// The before.
         /// </value>
-        [ JsonProperty( "before" ) ]
+        [ JsonPropertyName( "before" ) ]
         public string Before
         {
             get
@@ -196,7 +197,7 @@ namespace Bubba
         /// <value>
         /// The after.
         /// </value>
-        [ JsonProperty( "after" ) ]
+        [ JsonPropertyName( "after" ) ]
         public string After
         {
             get
@@ -219,7 +220,7 @@ namespace Bubba
         /// <value>
         /// The order.
         /// </value>
-        [ JsonProperty( "order" ) ]
+        [ JsonPropertyName( "order" ) ]
         public string Order
         {
             get
@@ -243,7 +244,7 @@ namespace Bubba
         /// <value>
         /// The user identifier.
         /// </value>
-        [ JsonProperty( "limit" ) ]
+        [ JsonPropertyName( "limit" ) ]
         public int Limit
         {
             get
@@ -266,7 +267,7 @@ namespace Bubba
         /// <value>
         /// The file ids.
         /// </value>
-        [ JsonProperty( "file_ids" ) ]
+        [ JsonPropertyName( "file_ids" ) ]
         public IList<string> FileIds
         {
             get
@@ -290,7 +291,7 @@ namespace Bubba
         /// The chat model.
         /// </value>
         /// <inheritdoc />
-        [ JsonProperty( "model" ) ]
+        [ JsonPropertyName( "model" ) ]
         public override string Model
         {
             get
@@ -315,7 +316,7 @@ namespace Bubba
         /// <value>
         ///   <c>true</c> if stream; otherwise, <c>false</c>.
         /// </value>
-        [ JsonProperty( "name" ) ]
+        [ JsonPropertyName( "name" ) ]
         public string Name
         {
             get
@@ -341,7 +342,7 @@ namespace Bubba
         /// <value>
         /// The meta data.
         /// </value>
-        [ JsonProperty( "meta_data" ) ]
+        [ JsonPropertyName( "meta_data" ) ]
         public IDictionary<string, object> MetaData
         {
             get
@@ -365,7 +366,7 @@ namespace Bubba
         /// <value>
         /// The response format.
         /// </value>
-        [ JsonProperty( "response_format" ) ]
+        [ JsonPropertyName( "response_format" ) ]
         public override string ResponseFormat
         {
             get

@@ -45,6 +45,7 @@ namespace Bubba
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
     using System.Linq;
+    using System.Text.Json.Serialization;
     using Newtonsoft.Json;
 
     /// <inheritdoc />
@@ -138,7 +139,7 @@ namespace Bubba
         /// <value>
         /// The text.
         /// </value>
-        [ JsonProperty( "message" ) ]
+        [ JsonPropertyName( "message" ) ]
         public string Message
         {
             get
@@ -161,7 +162,7 @@ namespace Bubba
         /// <value>
         /// The index.
         /// </value>
-        [ JsonProperty( "index" ) ]
+        [ JsonPropertyName( "index" ) ]
         public int Index
         {
             get
@@ -184,7 +185,7 @@ namespace Bubba
         /// <value>
         /// The logprobs.
         /// </value>
-        [ JsonProperty( "logprobs" ) ]
+        [ JsonPropertyName( "logprobs" ) ]
         public string Logprobs
         {
             get
@@ -213,7 +214,7 @@ namespace Bubba
         /// <value>
         /// The finish reason.
         /// </value>
-        [ JsonProperty( "finish_reason" ) ]
+        [ JsonPropertyName( "finish_reason" ) ]
         public string FinishReason
         {
             get

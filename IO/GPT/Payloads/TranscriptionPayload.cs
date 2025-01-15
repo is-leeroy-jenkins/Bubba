@@ -45,6 +45,7 @@ namespace Bubba
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
     using System.Linq;
+    using System.Text.Json.Serialization;
     using Newtonsoft.Json;
     using Properties;
 
@@ -114,7 +115,7 @@ namespace Bubba
         /// The system prompt.
         /// </value>
         /// <inheritdoc />
-        [ JsonProperty( "messages" ) ]
+        [ JsonPropertyName( "messages" ) ]
         public override IList<IGptMessage> Messages
         {
             get
@@ -137,7 +138,7 @@ namespace Bubba
         /// <value>
         /// The language.
         /// </value>
-        [ JsonProperty( "language" ) ]
+        [ JsonPropertyName( "language" ) ]
         public string Language
         {
             get
@@ -163,7 +164,7 @@ namespace Bubba
         /// The temperature.
         /// </value>
         /// <inheritdoc />
-        [ JsonProperty( "temperature" ) ]
+        [ JsonPropertyName( "temperature" ) ]
         public override double Temperature
         {
             get
@@ -186,7 +187,7 @@ namespace Bubba
         /// <value>
         /// The file path.
         /// </value>
-        [ JsonProperty( "file" ) ]
+        [ JsonPropertyName( "file" ) ]
         public object File
         {
             get
@@ -210,7 +211,7 @@ namespace Bubba
         /// The chat model.
         /// </value>
         /// <inheritdoc />
-        [ JsonProperty( "model" ) ]
+        [ JsonPropertyName( "model" ) ]
         public override string Model
         {
             get
@@ -233,7 +234,7 @@ namespace Bubba
         /// <value>
         /// The input.
         /// </value>
-        [ JsonProperty( "prompt" ) ]
+        [ JsonPropertyName( "prompt" ) ]
         public string Prompt
         {
             get
@@ -257,7 +258,7 @@ namespace Bubba
         /// <value>
         /// The response format.
         /// </value>
-        [ JsonProperty( "response_format" ) ]
+        [ JsonPropertyName( "response_format" ) ]
         public override string ResponseFormat
         {
             get

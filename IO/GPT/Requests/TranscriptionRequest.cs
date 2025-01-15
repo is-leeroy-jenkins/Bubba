@@ -49,6 +49,7 @@ namespace Bubba
     using System.Net.Http;
     using System.Net.Http.Headers;
     using System.Text.Json;
+    using System.Text.Json.Serialization;
     using System.Threading.Tasks;
     using Newtonsoft.Json;
     using Properties;
@@ -136,7 +137,7 @@ namespace Bubba
         /// <value>
         /// The file.
         /// </value>
-        [ JsonProperty( "file" ) ]
+        [ JsonPropertyName( "file" ) ]
         public string File
         {
             get
@@ -160,7 +161,7 @@ namespace Bubba
         /// The chat model.
         /// </value>
         /// <inheritdoc />
-        [ JsonProperty( "model" ) ]
+        [ JsonPropertyName( "model" ) ]
         public override string Model
         {
             get
@@ -207,7 +208,7 @@ namespace Bubba
         /// <value>
         /// The language.
         /// </value>
-        [ JsonProperty( "language" ) ]
+        [ JsonPropertyName( "language" ) ]
         public string Language
         {
             get
@@ -231,7 +232,7 @@ namespace Bubba
         /// <value>
         /// The messages.
         /// </value>
-        [ JsonProperty( "messages" ) ]
+        [ JsonPropertyName( "messages" ) ]
         public IList<IGptMessage> Messages
         {
             get
@@ -254,7 +255,7 @@ namespace Bubba
         /// <value>
         /// The input.
         /// </value>
-        [ JsonProperty( "prompt" ) ]
+        [ JsonPropertyName( "prompt" ) ]
         public string Prompt
         {
             get
@@ -277,7 +278,7 @@ namespace Bubba
         /// <value>
         /// The speed.
         /// </value>
-        [ JsonProperty( "speed" ) ]
+        [ JsonPropertyName( "speed" ) ]
         public int Speed
         {
             get
@@ -305,7 +306,7 @@ namespace Bubba
         /// <value>
         /// The temperature.
         /// </value>
-        [ JsonProperty( "temperature" ) ]
+        [ JsonPropertyName( "temperature" ) ]
         public override double Temperature
         {
             get
@@ -345,27 +346,39 @@ namespace Bubba
         /// <returns></returns>
         public async Task<string> TranscribeAudioAsync( string filePath )
         {
-            using var _client = new HttpClient( );
-            _client.DefaultRequestHeaders.Authorization =
-                new AuthenticationHeaderValue( "Bearer", OpenAI.BubbaKey );
-
-            using var _fileStream = new FileStream( filePath, FileMode.Open, FileAccess.Read );
-            var _fileContent = new StreamContent( _fileStream );
-            _fileContent.Headers.ContentType = new MediaTypeHeaderValue( "audio/mpeg" );
-            var _formData = new MultipartFormDataContent
+            try
             {
-                {
-                    _fileContent, "file", Path.GetFileName( filePath )
-                },
-                {
-                    new StringContent( "whisper-1" ), "model"
-                }
-            };
+                ThrowIf.Empty( filePath, nameof( filePath ) );
+                using var _client = new HttpClient( );
+                _client.DefaultRequestHeaders.Authorization =
+                    new AuthenticationHeaderValue( "Bearer", OpenAI.BubbaKey );
 
-            var _response = await _client.PostAsync( _endPoint, _formData );
-            _response.EnsureSuccessStatusCode( );
-            var _responseContent = await _response.Content.ReadAsStringAsync( );
-            return ParseTranscription( _responseContent );
+                using var _fileStream = new FileStream( filePath, FileMode.Open, FileAccess.Read );
+                var _fileContent = new StreamContent( _fileStream );
+                _fileContent.Headers.ContentType = new MediaTypeHeaderValue( "audio/mpeg" );
+                var _formData = new MultipartFormDataContent
+                {
+                    {
+                        _fileContent, "file", Path.GetFileName( filePath )
+                    },
+                    {
+                        new StringContent( "whisper-1" ), "model"
+                    }
+                };
+
+                var _response = await _client.PostAsync( _endPoint, _formData );
+                _response.EnsureSuccessStatusCode( );
+                var _responseContent = await _response.Content.ReadAsStringAsync( );
+                var _transcription = ParseTranscription( _responseContent );
+                return !string.IsNullOrEmpty( _transcription ) 
+                    ? _transcription
+                    : string.Empty;
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+                return string.Empty;
+            }
         }
 
         /// <summary>
@@ -375,8 +388,23 @@ namespace Bubba
         /// <returns></returns>
         private string ParseTranscription( string jsonResponse )
         {
-            using var _document = JsonDocument.Parse( jsonResponse );
-            return _document.RootElement.GetProperty( "text" ).GetString( );
+            try
+            {
+                ThrowIf.Empty( jsonResponse, nameof( jsonResponse ) );
+                using var _document = JsonDocument.Parse( jsonResponse );
+                var _transcription = _document.RootElement
+                    .GetProperty( "text" )
+                    .GetString( );
+
+                return !string.IsNullOrEmpty( _transcription )
+                    ? _transcription
+                    : string.Empty;
+            }
+            catch( Exception e )
+            {
+                Fail( e );
+                return string.Empty;
+            }
         }
 
         /// <inheritdoc />
@@ -391,7 +419,7 @@ namespace Bubba
             {
                 _data.Add( "model", _model );
                 _data.Add( "endpoint", _endPoint );
-                _data.Add( "number", _number );
+                _data.Add( "n", _number );
                 _data.Add( "max_completion_tokens", _maximumTokens );
                 _data.Add( "store", _store );
                 _data.Add( "stream", _stream );

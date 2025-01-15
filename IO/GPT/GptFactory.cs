@@ -6,7 +6,7 @@
 //     Last Modified By:        Terry D. Eppler
 //     Last Modified On:        01-07-2025
 // ******************************************************************************************
-// <copyright file="GptClientFactory.cs" company="Terry D. Eppler">
+// <copyright file="GptFactory.cs" company="Terry D. Eppler">
 //    Bubba is a small and simple windows (wpf) application for interacting with the OpenAI API
 //    that's developed in C-Sharp under the MIT license.C#.
 // 
@@ -35,7 +35,7 @@
 //    You can contact me at:  terryeppler@gmail.com or eppler.terry@epa.gov
 // </copyright>
 // <summary>
-//   GptClientFactory.cs
+//   GptFactory.cs
 // </summary>
 // ******************************************************************************************
 
@@ -60,7 +60,8 @@ namespace Bubba
     /// <seealso cref="T:Bubba.GptBase" />
     [ SuppressMessage( "ReSharper", "UnusedType.Global" ) ]
     [ SuppressMessage( "ReSharper", "MergeConditionalExpression" ) ]
-    public class GptClientFactory : GptBase
+    [ SuppressMessage( "ReSharper", "PreferConcreteValueOverDefault" ) ]
+    public class GptFactory : GptBase
     {
         /// <summary>
         /// The client
@@ -72,16 +73,22 @@ namespace Bubba
         /// </summary>
         private string _userPrompt;
 
+        /// <summary>
+        /// The system prompt
+        /// </summary>
+        private string _systemPrompt;
+
         /// <inheritdoc />
         /// <summary>
         /// Initializes a new instance of the
         /// <see cref="T:Bubba.GptClient" /> class.
         /// </summary>
-        public GptClientFactory( )
+        public GptFactory( )
             : base( )
         {
             _entry = new object( );
             _apiKey = App.OpenAiKey;
+            _systemPrompt = OpenAI.BubbaPrompt;
         }
 
         /// <inheritdoc />
@@ -90,7 +97,7 @@ namespace Bubba
         /// <see cref="T:Bubba.GptClient" /> class.
         /// </summary>
         /// <param name="model">The chat model.</param>
-        public GptClientFactory( string model ) 
+        public GptFactory( string model ) 
             : this( )
         {
             _model = model;

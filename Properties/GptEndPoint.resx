@@ -123,49 +123,50 @@
   </data>
   <data name="Files" xml:space="preserve">
     <value>https://api.openai.com/v1/files</value>
-    <comment>url to the openai files api</comment>
+    <comment>URL to the openai files api</comment>
   </data>
   <data name="FineTuning" xml:space="preserve">
     <value>https://api.openai.com/v1/fine_tuning/jobs</value>
-    <comment>url to the openai fine-tuning api</comment>
+    <comment>URL to the openai fine-tuning api</comment>
   </data>
   <data name="ImageGeneration" xml:space="preserve">
     <value>https://api.openai.com/v1/images/generations</value>
-    <comment>url to the openai image-generation api</comment>
+    <comment>URL to the openai image-generation api</comment>
   </data>
   <data name="Projects" xml:space="preserve">
     <value>https://api.openai.com/v1/organization/projects</value>
-    <comment>url to the openai projects api</comment>
+    <comment>URL to the openai projects api</comment>
   </data>
   <data name="SpeechGeneration" xml:space="preserve">
     <value>https://api.openai.com/v1/audio/speech</value>
-    <comment>url to the openai speech api</comment>
+    <comment>URL to the openai speech api</comment>
   </data>
   <data name="Translations" xml:space="preserve">
     <value>https://api.openai.com/v1/audio/translations</value>
-    <comment>url to the openai translations api</comment>
+    <comment>URL to the openai translations api</comment>
   </data>
   <data name="TextGeneration" xml:space="preserve">
     <value>https://api.openai.com/v1/chat/completions</value>
-    <comment>url to the openai chat-completions api</comment>
+    <comment>URL to the openai chat-completions api</comment>
   </data>
   <data name="Uploads" xml:space="preserve">
     <value>https://api.openai.com/v1/uploads</value>
-    <comment>url to the openai uploads api</comment>
+    <comment>URL to the openai uploads api</comment>
   </data>
   <data name="Embeddings" xml:space="preserve">
     <value>https://api.openai.com/v1/embeddings</value>
-    <comment>url to the openai embeddings api</comment>
+    <comment>URL to the openai embeddings api</comment>
   </data>
   <data name="VectorStores" xml:space="preserve">
     <value>https://api.openai.com/v1/vector_stores</value>
-    <comment>url to the openai vector_stores api</comment>
+    <comment>URL to the openai vector_stores api</comment>
   </data>
   <data name="Transcriptions" xml:space="preserve">
     <value>https://api.openai.com/v1/audio/transcriptions</value>
-    <comment>url to the openai transcriptions api</comment>
+    <comment>URL to the openai transcriptions api</comment>
   </data>
   <data name="Completions" xml:space="preserve">
     <value>https://api.openai.com/v1/chat/completions</value>
+    <comment>URL to the openai chat completions api </comment>
   </data>
 </root>

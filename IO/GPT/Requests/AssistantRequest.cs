@@ -44,14 +44,13 @@ namespace Bubba
     using System;
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
-    using System.IO;
     using System.Linq;
     using System.Net.Http;
     using System.Net.Http.Headers;
     using System.Text;
     using System.Text.Json;
+    using System.Text.Json.Serialization;
     using System.Threading.Tasks;
-    using Newtonsoft.Json;
     using Properties;
 
     /// <inheritdoc />
@@ -62,7 +61,7 @@ namespace Bubba
     [ SuppressMessage( "ReSharper", "PreferConcreteValueOverDefault" ) ]
     [ SuppressMessage( "ReSharper", "ClassCanBeSealed.Global" ) ]
     [ SuppressMessage( "ReSharper", "PossibleUnintendedReferenceComparison" ) ]
-    public class ChatRequest : TextGenerationRequest
+    public class AssistantRequest : TextGenerationRequest
     {
         /// <summary>
         /// Developer-defined tags and values used for filtering completions
@@ -73,11 +72,6 @@ namespace Bubba
         /// The reasoning effort
         /// </summary>
         private protected string _reasoningEffort;
-
-        /// <summary>
-        /// The seed
-        /// </summary>
-        private protected int _seed;
 
         /// <summary>
         /// The user prompt
@@ -94,7 +88,7 @@ namespace Bubba
         /// Initializes a new instance of the
         /// <see cref="T:Bubba.CompletionRequest" /> class.
         /// </summary>
-        public ChatRequest( )
+        public AssistantRequest( )
             : base( )
         {
             _header = new GptHeader( );
@@ -103,6 +97,7 @@ namespace Bubba
             _endPoint = GptEndPoint.Completions;
             _model = "gpt-4o-mini";
             _stop = new List<string>( );
+            _seed = 1;
             _modalities = "['text', 'audio']";
         }
 
@@ -114,7 +109,7 @@ namespace Bubba
         /// <param name="user">The user.</param>
         /// <param name="system">The system.</param>
         /// <param name = "config" > </param>
-        public ChatRequest( string user, string system, GptParameter config )
+        public AssistantRequest( string user, string system, GptParameter config )
             : base( )
         {
             _header = new GptHeader( );
@@ -140,7 +135,7 @@ namespace Bubba
         /// <see cref="T:Bubba.CompletionRequest" /> class.
         /// </summary>
         /// <param name="request">The request.</param>
-        public ChatRequest( ChatRequest request )
+        public AssistantRequest( AssistantRequest request )
             : base( )
         {
             _header = new GptHeader( );
@@ -199,7 +194,7 @@ namespace Bubba
         /// <value>
         /// The end point.
         /// </value>
-        [ JsonProperty( "endpoint" ) ]
+        [ JsonPropertyName( "endpoint" ) ]
         public override string EndPoint
         {
             get
@@ -216,13 +211,37 @@ namespace Bubba
             }
         }
 
+        /// <inheritdoc />
+        /// <summary>
+        /// Gets or sets the modalities.
+        /// </summary>
+        /// <value>
+        /// The modalities.
+        /// </value>
+        [ JsonPropertyName( "modalities" ) ]
+        public override string Modalities
+        {
+            get
+            {
+                return _modalities;
+            }
+            set
+            {
+                if( _modalities != value )
+                {
+                    _modalities = value;
+                    OnPropertyChanged( nameof( Modalities ) );
+                }
+            }
+        }
+
         /// <summary>
         /// Gets or sets the reasoning effort.
         /// </summary>
         /// <value>
         /// The reasoning effort.
         /// </value>
-        [ JsonProperty( "reasoning_effort" ) ]
+        [ JsonPropertyName( "reasoning_effort" ) ]
         public string ReasoningEffort
         {
             get
@@ -245,7 +264,7 @@ namespace Bubba
         /// <value>
         /// The meta data.
         /// </value>
-        [ JsonProperty( "meta_data" ) ]
+        [ JsonPropertyName( "meta_data" ) ]
         public IDictionary<string, object> MetaData
         {
             get
@@ -297,7 +316,7 @@ namespace Bubba
                 _client.DefaultRequestHeaders.Authorization =
                     new AuthenticationHeaderValue( "Bearer", _apiKey );
 
-                var _payload = new ChatPayload( )
+                var _payload = new AssistantPayload( )
                 {
                     Model = _model,
                     Temperature = _temperature,

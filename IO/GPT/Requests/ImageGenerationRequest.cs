@@ -1,10 +1,10 @@
 ﻿// ******************************************************************************************
 //     Assembly:                Bubba
 //     Author:                  Terry D. Eppler
-//     Created:                 01-12-2025
+//     Created:                 01-15-2025
 // 
 //     Last Modified By:        Terry D. Eppler
-//     Last Modified On:        01-12-2025
+//     Last Modified On:        01-15-2025
 // ******************************************************************************************
 // <copyright file="ImageGenerationRequest.cs" company="Terry D. Eppler">
 //    Bubba is a small and simple windows (wpf) application for interacting with the OpenAI API
@@ -49,6 +49,7 @@ namespace Bubba
     using System.Net.Http.Headers;
     using System.Text;
     using System.Text.Json;
+    using System.Text.Json.Serialization;
     using System.Threading.Tasks;
     using Newtonsoft.Json;
     using Properties;
@@ -63,11 +64,6 @@ namespace Bubba
     [ SuppressMessage( "ReSharper", "ClassCanBeSealed.Global" ) ]
     public class ImageGenerationRequest : GptRequest
     {
-        /// <summary>
-        /// The response format
-        /// </summary>
-        private protected string _responseFormat;
-
         /// <summary>
         /// The image size
         /// </summary>
@@ -131,6 +127,7 @@ namespace Bubba
         /// <value>
         /// The size of the image.
         /// </value>
+        [JsonPropertyName("size")]
         public string Size
         {
             get
@@ -153,7 +150,7 @@ namespace Bubba
         /// <value>
         /// The prompt.
         /// </value>
-        [ JsonProperty( "prompt" ) ]
+        [ JsonPropertyName( "prompt" ) ]
         public string Prompt
         {
             get
@@ -176,7 +173,7 @@ namespace Bubba
         /// <value>
         /// The quality.
         /// </value>
-        [ JsonProperty( "quality" ) ]
+        [ JsonPropertyName( "quality" ) ]
         public string Quality
         {
             get
@@ -199,7 +196,7 @@ namespace Bubba
         /// <value>
         /// The style.
         /// </value>
-        [ JsonProperty( "style" ) ]
+        [ JsonPropertyName( "style" ) ]
         public string Style
         {
             get
@@ -223,7 +220,7 @@ namespace Bubba
         /// <value>
         /// The messages.
         /// </value>
-        [ JsonProperty( "messages" ) ]
+        [ JsonPropertyName( "messages" ) ]
         public IList<IGptMessage> Messages
         {
             get
@@ -270,7 +267,7 @@ namespace Bubba
         /// <value>
         /// The user identifier.
         /// </value>
-        [ JsonProperty( "n" ) ]
+        [ JsonPropertyName( "n" ) ]
         public override int Number
         {
             get
@@ -294,7 +291,7 @@ namespace Bubba
         /// <value>
         /// The maximum tokens.
         /// </value>
-        [ JsonProperty( "max_completion_tokens" ) ]
+        [ JsonPropertyName( "max_completion_tokens" ) ]
         public override int MaximumTokens
         {
             get
@@ -313,30 +310,6 @@ namespace Bubba
 
         /// <inheritdoc />
         /// <summary>
-        /// Gets or sets the response format.
-        /// </summary>
-        /// <value>
-        /// The response format.
-        /// </value>
-        [ JsonProperty( "response_format" ) ]
-        public string ResponseFormat
-        {
-            get
-            {
-                return _responseFormat;
-            }
-            set
-            {
-                if( _responseFormat != value )
-                {
-                    _responseFormat = value;
-                    OnPropertyChanged( nameof( ResponseFormat ) );
-                }
-            }
-        }
-
-        /// <inheritdoc />
-        /// <summary>
         /// Gets the data.
         /// </summary>
         /// <returns>
@@ -347,7 +320,7 @@ namespace Bubba
             {
                 _data.Add( "model", _model );
                 _data.Add( "endpoint", _endPoint );
-                _data.Add( "number", _number );
+                _data.Add( "n", _number );
                 _data.Add( "max_completion_tokens", _maximumTokens );
                 _data.Add( "store", _store );
                 _data.Add( "stream", _stream );
@@ -404,23 +377,34 @@ namespace Bubba
         /// <returns></returns>
         public async Task<string[ ]> GenerateImagesAsync( string prompt, int imageCount = 1 )
         {
-            using var _client = new HttpClient( );
-            _client.DefaultRequestHeaders.Authorization =
-                new AuthenticationHeaderValue( "Bearer", OpenAI.BubbaKey );
-
-            var _payload = new
+            try
             {
-                prompt,
-                n = imageCount,
-                size = "512x512"
-            };
+                using var _client = new HttpClient( );
+                _client.DefaultRequestHeaders.Authorization =
+                    new AuthenticationHeaderValue( "Bearer", _apiKey );
 
-            var _jsonPayload = JsonSerializer.Serialize( _payload );
-            var _content = new StringContent( _jsonPayload, Encoding.UTF8, "application/json" );
-            var _response = await _client.PostAsync( _endPoint, _content );
-            _response.EnsureSuccessStatusCode( );
-            var _responseContent = await _response.Content.ReadAsStringAsync( );
-            return ExtractImageData( _responseContent );
+                var _payload = new
+                {
+                    prompt,
+                    n = imageCount,
+                    size = "512x512"
+                };
+
+                var _json = JsonSerializer.Serialize( _payload );
+                var _content = new StringContent( _json, Encoding.UTF8, "application/json" );
+                var _response = await _client.PostAsync( _endPoint, _content );
+                _response.EnsureSuccessStatusCode( );
+                var _responseContent = await _response.Content.ReadAsStringAsync( );
+                var _imageData = ExtractImageData( _responseContent );
+                return _imageData?.Any( ) == true
+                    ? _imageData
+                    : default( string[ ] );
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+                return default( string[ ] );
+            }
         }
 
         /// <summary>
@@ -430,15 +414,27 @@ namespace Bubba
         /// <returns></returns>
         private string[ ] ExtractImageData( string jsonResponse )
         {
-            using var _document = JsonDocument.Parse( jsonResponse );
-            var _root = _document.RootElement.GetProperty( "data" );
-            var _urls = new List<string>( );
-            foreach( var _item in _root.EnumerateArray( ) )
+            try
             {
-                _urls.Add( _item.GetProperty( "url" ).GetString( ) );
-            }
+                ThrowIf.Empty( jsonResponse, nameof( jsonResponse ) );
+                using var _document = JsonDocument.Parse( jsonResponse );
+                var _root = _document.RootElement.GetProperty( "data" );
+                var _urls = new List<string>( );
+                foreach( var _item in _root.EnumerateArray( ) )
+                {
+                    _urls.Add( _item.GetProperty( "url" ).GetString( ) );
+                }
 
-            return _urls.ToArray( );
+                var _list = _urls.ToArray( );
+                return _list?.Any( ) == true
+                    ? _list
+                    : default( string[ ] );
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+                return default( string[ ] );
+            }
         }
     }
 }

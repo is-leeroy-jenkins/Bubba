@@ -6,7 +6,7 @@
 //     Last Modified By:        Terry D. Eppler
 //     Last Modified On:        01-13-2025
 // ******************************************************************************************
-// <copyright file="GptFileRequest.cs" company="Terry D. Eppler">
+// <copyright file="FileApiRequest.cs" company="Terry D. Eppler">
 //    Bubba is a small and simple windows (wpf) application for interacting with the OpenAI API
 //    that's developed in C-Sharp under the MIT license.C#.
 // 
@@ -35,7 +35,7 @@
 //    You can contact me at:  terryeppler@gmail.com or eppler.terry@epa.gov
 // </copyright>
 // <summary>
-//   GptFileRequest.cs
+//   FileApiRequest.cs
 // </summary>
 // ******************************************************************************************
 
@@ -48,6 +48,7 @@ namespace Bubba
     using System.Linq;
     using System.Net.Http;
     using System.Net.Http.Headers;
+    using System.Text.Json.Serialization;
     using System.Threading.Tasks;
     using Properties;
     using Newtonsoft.Json;
@@ -60,12 +61,17 @@ namespace Bubba
     [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
     [ SuppressMessage( "ReSharper", "ClassCanBeSealed.Global" ) ]
     [ SuppressMessage( "ReSharper", "PreferConcreteValueOverDefault" ) ]
-    public class GptFileRequest : GptRequest
+    public class FileApiRequest : GptRequest
     {
         /// <summary>
         /// The file identifier, which can be referenced in the API endpoints.
         /// </summary>
         private protected int _id;
+
+        /// <summary>
+        /// The file identifier
+        /// </summary>
+        private protected string _fileId;
 
         /// <summary>
         /// The intended purpose of the file.
@@ -118,13 +124,14 @@ namespace Bubba
 
         /// <summary>
         /// Initializes a new instance of the
-        /// <see cref="GptFileRequest"/> class.
+        /// <see cref="FileApiRequest"/> class.
         /// </summary>
         /// <inheritdoc />
-        public GptFileRequest( )
+        public FileApiRequest( )
             : base( )
         {
             _entry = new object( );
+            _header = new GptHeader( );
             _httpClient = new HttpClient( );
             _model = "gpt-4o-mini";
             _endPoint = GptEndPoint.Files;
@@ -163,7 +170,7 @@ namespace Bubba
         /// <value>
         /// The identifier.
         /// </value>
-        [ JsonProperty( "id" ) ]
+        [ JsonPropertyName( "id" ) ]
         public int Id
         {
             get
@@ -188,7 +195,7 @@ namespace Bubba
         /// <value>
         /// The purpose.
         /// </value>
-        [ JsonProperty( "purpose" ) ]
+        [ JsonPropertyName( "purpose" ) ]
         public string Purpose
         {
             get
@@ -213,7 +220,7 @@ namespace Bubba
         /// <value>
         /// The limit.
         /// </value>
-        [ JsonProperty( "limit" ) ]
+        [ JsonPropertyName( "limit" ) ]
         public int Limit
         {
             get
@@ -237,7 +244,7 @@ namespace Bubba
         /// <value>
         /// The order.
         /// </value>
-        [ JsonProperty( "order" ) ]
+        [ JsonPropertyName( "order" ) ]
         public string Order
         {
             get
@@ -264,7 +271,7 @@ namespace Bubba
         /// <value>
         /// The after.
         /// </value>
-        [ JsonProperty( "after" ) ]
+        [ JsonPropertyName( "after" ) ]
         public string After
         {
             get
@@ -287,7 +294,7 @@ namespace Bubba
         /// <value>
         /// The created at.
         /// </value>
-        [ JsonProperty( "created_at" ) ]
+        [ JsonPropertyName( "created_at" ) ]
         public int CreatedAt
         {
             get
@@ -310,7 +317,7 @@ namespace Bubba
         /// <value>
         /// The bytes.
         /// </value>
-        [ JsonProperty( "bytes" ) ]
+        [ JsonPropertyName( "bytes" ) ]
         public int Bytes
         {
             get
@@ -328,12 +335,35 @@ namespace Bubba
         }
 
         /// <summary>
+        /// Gets or sets the file identifier.
+        /// </summary>
+        /// <value>
+        /// The file identifier.
+        /// </value>
+        [ JsonPropertyName( "file_id" ) ]
+        public string FileId
+        {
+            get
+            {
+                return _fileId;
+            }
+            set
+            {
+                if(_fileId != value)
+                {
+                    _fileId = value;
+                    OnPropertyChanged(nameof(FileId));
+                }
+            }
+        }
+
+        /// <summary>
         /// Gets or sets the name of the file.
         /// </summary>
         /// <value>
         /// The name of the file.
         /// </value>
-        [ JsonProperty( "filename" ) ]
+        [ JsonPropertyName( "filename" ) ]
         public string FileName
         {
             get
@@ -350,6 +380,29 @@ namespace Bubba
             }
         }
 
+        /// <summary>
+        /// Gets or sets the type of the MIME.
+        /// </summary>
+        /// <value>
+        /// The type of the MIME.
+        /// </value>
+        [ JsonPropertyName( "mimetype" ) ]
+        public string MimeType
+        {
+            get
+            {
+                return _mimeType;
+            }
+            set
+            {
+                if(_mimeType != value)
+                {
+                    _mimeType = value;
+                    OnPropertyChanged( nameof( MimeType ) );
+                }
+            }
+        }
+
         /// <inheritdoc />
         /// <summary>
         /// Gets the end point.
@@ -357,7 +410,7 @@ namespace Bubba
         /// <value>
         /// The end point.
         /// </value>
-        [ JsonProperty( "endpoint" ) ]
+        [ JsonPropertyName( "endpoint" ) ]
         public override string EndPoint
         {
             get
@@ -378,9 +431,8 @@ namespace Bubba
         /// Uploads the file asynchronous.
         /// </summary>
         /// <param name="filePath">The file path.</param>
-        /// <param name="purpose">The purpose.</param>
         /// <returns></returns>
-        public async Task<string> UploadFileAsync( string filePath )
+        public async Task<string> UploadAsync( string filePath )
         {
             try
             {
@@ -390,7 +442,7 @@ namespace Bubba
 
                 using var _fileStream = new FileStream( filePath, FileMode.Open, FileAccess.Read );
                 var _fileContent = new StreamContent( _fileStream );
-                _fileContent.Headers.ContentType = new MediaTypeHeaderValue( "application/json" );
+                _fileContent.Headers.ContentType = new MediaTypeHeaderValue( _header.ContentType );
                 var _formData = new MultipartFormDataContent
                 {
                     {
@@ -401,7 +453,6 @@ namespace Bubba
                     }
                 };
 
-                // Send the POST request
                 var _response = await _client.PostAsync( _endPoint, _formData );
                 _response.EnsureSuccessStatusCode( );
                 var _responseContent = await _response.Content.ReadAsStringAsync( );
@@ -418,7 +469,7 @@ namespace Bubba
         /// Lists the files asynchronous.
         /// </summary>
         /// <returns></returns>
-        public async Task<string> ListFilesAsync( )
+        public async Task<string> GetListAsync( )
         {
             try
             {
@@ -429,7 +480,9 @@ namespace Bubba
                 var _response = await _client.GetAsync( _endPoint );
                 _response.EnsureSuccessStatusCode( );
                 var _responseContent = await _response.Content.ReadAsStringAsync( );
-                return _responseContent;
+                return !string.IsNullOrEmpty( _responseContent )
+                    ? _responseContent
+                    : string.Empty;
             }
             catch( Exception ex )
             {
@@ -443,18 +496,21 @@ namespace Bubba
         /// </summary>
         /// <param name="fileId">The file identifier.</param>
         /// <returns></returns>
-        public async Task<string> RetrieveFileAsync( string fileId )
+        public async Task<string> RetrieveAsync( string fileId )
         {
             try
             {
+                ThrowIf.Empty( fileId, nameof( fileId ) );
                 using var _client = new HttpClient( );
                 _client.DefaultRequestHeaders.Authorization =
                     new AuthenticationHeaderValue( "Bearer", _apiKey );
 
                 var _response = await _client.GetAsync( $"{_endPoint}/{fileId}" );
                 _response.EnsureSuccessStatusCode( );
-                var _responseContent = await _response.Content.ReadAsStringAsync( );
-                return _responseContent;
+                var _responseContent = await _response.Content.ReadAsStringAsync();
+                return !string.IsNullOrEmpty(_responseContent)
+                    ? _responseContent
+                    : string.Empty;
             }
             catch( Exception ex )
             {
@@ -468,7 +524,7 @@ namespace Bubba
         /// </summary>
         /// <param name="fileId">The file identifier.</param>
         /// <returns></returns>
-        public async Task<string> DeleteFileAsync( string fileId )
+        public async Task<string> DeleteAsync( string fileId )
         {
             try
             {
@@ -478,8 +534,10 @@ namespace Bubba
 
                 var _response = await _client.DeleteAsync( $"{_endPoint}/{fileId}" );
                 _response.EnsureSuccessStatusCode( );
-                var _responseContent = await _response.Content.ReadAsStringAsync( );
-                return _responseContent;
+                var _responseContent = await _response.Content.ReadAsStringAsync();
+                return !string.IsNullOrEmpty(_responseContent)
+                    ? _responseContent
+                    : string.Empty;
             }
             catch( Exception ex )
             {
@@ -500,7 +558,7 @@ namespace Bubba
             {
                 _data.Add( "model", _model );
                 _data.Add( "endpoint", _endPoint );
-                _data.Add( "number", _number );
+                _data.Add( "n", _number );
                 _data.Add( "max_completion_tokens", _maximumTokens );
                 _data.Add( "store", _store );
                 _data.Add( "stream", _stream );

@@ -1258,7 +1258,6 @@ namespace Bubba
         {
             try
             {
-                var _input = ChatEditor.Text;
                 if( Enum.IsDefined( _requestType ) )
                 {
                     var _msg = "Select a GPT Task!";

@@ -46,6 +46,7 @@ namespace Bubba
     using System.Diagnostics.CodeAnalysis;
     using System.Linq;
     using System.Text;
+    using System.Text.Json.Serialization;
     using System.Threading.Tasks;
     using Newtonsoft.Json;
     using Properties;
@@ -104,7 +105,7 @@ namespace Bubba
         /// <value>
         /// The file path.
         /// </value>
-        [ JsonProperty( "filepath" ) ]
+        [ JsonPropertyName( "filepath" ) ]
         public string FilePath
         {
             get
@@ -151,7 +152,7 @@ namespace Bubba
         /// <value>
         /// The response format.
         /// </value>
-        [ JsonProperty( "response_format" ) ]
+        [ JsonPropertyName( "response_format" ) ]
         public override string ResponseFormat
         {
             get
@@ -175,7 +176,7 @@ namespace Bubba
         /// The chat model.
         /// </value>
         /// <inheritdoc />
-        [ JsonProperty( "model" ) ]
+        [ JsonPropertyName( "model" ) ]
         public override string Model
         {
             get
@@ -198,7 +199,7 @@ namespace Bubba
         /// <value>
         /// The input.
         /// </value>
-        [ JsonProperty( "input" ) ]
+        [ JsonPropertyName( "input" ) ]
         public string Input
         {
             get

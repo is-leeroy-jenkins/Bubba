@@ -1,10 +1,10 @@
 ﻿// ******************************************************************************************
 //     Assembly:                Bubba
 //     Author:                  Terry D. Eppler
-//     Created:                 01-12-2025
+//     Created:                 01-15-2025
 // 
 //     Last Modified By:        Terry D. Eppler
-//     Last Modified On:        01-12-2025
+//     Last Modified On:        01-15-2025
 // ******************************************************************************************
 // <copyright file="TranslationRequest.cs" company="Terry D. Eppler">
 //    Bubba is a small and simple windows (wpf) application for interacting with the OpenAI API
@@ -49,6 +49,7 @@ namespace Bubba
     using System.Net.Http;
     using System.Net.Http.Headers;
     using System.Text.Json;
+    using System.Text.Json.Serialization;
     using System.Threading.Tasks;
     using Newtonsoft.Json;
     using Properties;
@@ -66,7 +67,7 @@ namespace Bubba
         /// <summary>
         /// The response format
         /// </summary>
-        private protected string _responseFormat;
+        private protected string _language;
 
         /// <summary>
         /// The file path
@@ -84,6 +85,7 @@ namespace Bubba
             _entry = new object( );
             _httpClient = new HttpClient( );
             _model = "whisper-1";
+            _language = "en";
             _endPoint = GptEndPoint.Translations;
             _responseFormat = "mp3";
             _temperature = 0.18;
@@ -120,7 +122,7 @@ namespace Bubba
         /// <value>
         /// The file.
         /// </value>
-        [ JsonProperty( "file" ) ]
+        [ JsonPropertyName( "file" ) ]
         public string File
         {
             get
@@ -144,7 +146,7 @@ namespace Bubba
         /// The chat model.
         /// </value>
         /// <inheritdoc />
-        [ JsonProperty( "model" ) ]
+        [ JsonPropertyName( "model" ) ]
         public override string Model
         {
             get
@@ -168,6 +170,7 @@ namespace Bubba
         /// <value>
         /// The end point.
         /// </value>
+        [ JsonPropertyName( "endpoint" ) ]
         public override string EndPoint
         {
             get
@@ -190,7 +193,7 @@ namespace Bubba
         /// <value>
         /// The input.
         /// </value>
-        [ JsonProperty( "prompt" ) ]
+        [ JsonPropertyName( "prompt" ) ]
         public string Prompt
         {
             get
@@ -230,12 +233,12 @@ namespace Bubba
                         _content, "file", Path.GetFileName( path )
                     },
                     {
-                        new StringContent( "tts-1-hd" ), "model"
+                        new StringContent( _model ), "model"
                     }
                 };
 
-                _form.Add( new StringContent( "0.5" ), "temperature" );
-                _form.Add( new StringContent( "en" ), "language" );
+                _form.Add( new StringContent( _temperature.ToString( ) ), "temperature" );
+                _form.Add( new StringContent( _language ), "language" );
                 var _response = await _client.PostAsync( _endPoint, _form );
                 _response.EnsureSuccessStatusCode( );
                 var _responseContent = await _response.Content.ReadAsStringAsync( );
@@ -262,7 +265,10 @@ namespace Bubba
             {
                 ThrowIf.Empty( jsonResponse, nameof( jsonResponse ) );
                 using var _document = JsonDocument.Parse( jsonResponse );
-                return _document.RootElement.GetProperty( "text" ).GetString( );
+                var _translation = _document.RootElement.GetProperty( "text" ).GetString( );
+                return !string.IsNullOrEmpty( _translation )
+                    ? _translation
+                    : string.Empty;
             }
             catch( Exception ex )
             {
@@ -283,7 +289,7 @@ namespace Bubba
             {
                 _data.Add( "model", _model );
                 _data.Add( "endpoint", _endPoint );
-                _data.Add( "number", _number );
+                _data.Add( "n", _number );
                 _data.Add( "max_completion_tokens", _maximumTokens );
                 _data.Add( "store", _store );
                 _data.Add( "stream", _stream );
@@ -292,7 +298,6 @@ namespace Bubba
                 _data.Add( "presence_penalty", _presencePenalty );
                 _data.Add( "top_p", _topPercent );
                 _data.Add( "response_format", _responseFormat );
-                _data.Add( "endpoint", _endPoint );
                 if( !string.IsNullOrEmpty( _file ) )
                 {
                     _data.Add( "filepath", _file );

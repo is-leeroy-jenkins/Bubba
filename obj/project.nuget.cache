@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "W2U912LUX8I=",
+  "dgSpecHash": "ufgqMJ9Ex28=",
   "success": true,
   "projectFilePath": "C:\\Users\\terry\\source\\repos\\Bubba\\Bubba.csproj",
   "expectedPackageFiles": [
@@ -57,6 +57,7 @@
     "C:\\Users\\terry\\.nuget\\packages\\opentk.windowing.common\\4.3.0\\opentk.windowing.common.4.3.0.nupkg.sha512",
     "C:\\Users\\terry\\.nuget\\packages\\opentk.windowing.desktop\\4.3.0\\opentk.windowing.desktop.4.3.0.nupkg.sha512",
     "C:\\Users\\terry\\.nuget\\packages\\opentk.windowing.graphicslibraryframework\\4.3.0\\opentk.windowing.graphicslibraryframework.4.3.0.nupkg.sha512",
+    "C:\\Users\\terry\\.nuget\\packages\\qrcoder\\1.6.0\\qrcoder.1.6.0.nupkg.sha512",
     "C:\\Users\\terry\\.nuget\\packages\\restorewindowplace\\2.1.0\\restorewindowplace.2.1.0.nupkg.sha512",
     "C:\\Users\\terry\\.nuget\\packages\\runtime.native.system.data.sqlclient.sni\\4.4.0\\runtime.native.system.data.sqlclient.sni.4.4.0.nupkg.sha512",
     "C:\\Users\\terry\\.nuget\\packages\\runtime.win-arm64.runtime.native.system.data.sqlclient.sni\\4.4.0\\runtime.win-arm64.runtime.native.system.data.sqlclient.sni.4.4.0.nupkg.sha512",

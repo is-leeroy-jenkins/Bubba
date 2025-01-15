@@ -46,6 +46,7 @@ namespace Bubba
     using System.ComponentModel;
     using System.Diagnostics.CodeAnalysis;
     using System.Runtime.CompilerServices;
+    using System.Text.Json.Serialization;
     using Newtonsoft.Json;
 
     /// <inheritdoc />
@@ -71,6 +72,11 @@ namespace Bubba
         /// ID of the model to use.
         /// </summary>
         private protected string _model;
+
+        /// <summary>
+        /// The end point
+        /// </summary>
+        private protected string _endPoint;
 
         /// <summary>
         /// A number between -2.0 and 2.0  Positive value decrease the
@@ -169,7 +175,7 @@ namespace Bubba
         /// <value>
         /// The user identifier.
         /// </value>
-        [ JsonProperty( "id" ) ]
+        [ JsonPropertyName( "id" ) ]
         public virtual string Id
         {
             get
@@ -188,12 +194,13 @@ namespace Bubba
 
         /// <inheritdoc />
         /// <summary>
-        /// Gets the maximum tokens.
+        /// An upper bound for the number of tokens that can be generated
+        /// for a completion, including visible output tokens and reasoning tokens.
         /// </summary>
         /// <value>
         /// The maximum tokens.
         /// </value>
-        [ JsonProperty( "max_completion_tokens" ) ]
+        [ JsonPropertyName( "max_completion_tokens" ) ]
         public virtual int MaximumTokens
         {
             get
@@ -212,12 +219,14 @@ namespace Bubba
 
         /// <inheritdoc />
         /// <summary>
-        /// Gets or sets the temperature.
+        /// A number between 0 and 2. Higher values like 0.8 will make the output more random,
+        /// while lower values like 0.2 will make it more focused and deterministic.
+        /// Recommend altering this or top_p but not both.
         /// </summary>
         /// <value>
         /// The temperature.
         /// </value>
-        [ JsonProperty( "temperature" ) ]
+        [ JsonPropertyName( "temperature" ) ]
         public virtual double Temperature
         {
             get
@@ -236,12 +245,14 @@ namespace Bubba
 
         /// <inheritdoc />
         /// <summary>
-        /// Gets the frequency.
+        /// Number between -2.0 and 2.0. Positive values penalize new tokens based
+        /// on their existing frequency in the text so far, decreasing the model's
+        /// likelihood to repeat the same line verbatim.
         /// </summary>
         /// <value>
         /// The frequency.
         /// </value>
-        [ JsonProperty( "frequency_penalty" ) ]
+        [ JsonPropertyName( "frequency_penalty" ) ]
         public virtual double FrequencyPenalty
         {
             get
@@ -260,12 +271,14 @@ namespace Bubba
 
         /// <inheritdoc />
         /// <summary>
-        /// Gets or sets the number.
+        /// How many chat completion choices to generate for each input message.
+        /// Note that you will be charged based on the number of generated tokens across
+        /// all of the choices. Keep n as 1 to minimize costs.
         /// </summary>
         /// <value>
         /// The number.
         /// </value>
-        [ JsonProperty( "n" ) ]
+        [ JsonPropertyName( "n" ) ]
         public virtual int Number
         {
             get
@@ -284,12 +297,14 @@ namespace Bubba
 
         /// <inheritdoc />
         /// <summary>
-        /// Gets the presence.
+        /// Number between -2.0 and 2.0.
+        /// Positive values penalize new tokens based on whether they appear
+        /// in the text so far, increasing the model's likelihood to talk about new topics.
         /// </summary>
         /// <value>
         /// The presence.
         /// </value>
-        [ JsonProperty( "presence_penalty" ) ]
+        [ JsonPropertyName( "presence_penalty" ) ]
         public virtual double PresencePenalty
         {
             get
@@ -308,12 +323,15 @@ namespace Bubba
 
         /// <inheritdoc />
         /// <summary>
-        /// Gets or sets the top percent.
+        /// An alternative to sampling with temperature, called nucleus sampling,
+        /// where the model considers the results of 
+        /// the tokens with top_p probability mass. So 0.1 means only
+        /// the tokens comprising the top 10% probability mass are considered.
         /// </summary>
         /// <value>
         /// The top percent.
         /// </value>
-        [ JsonProperty( "top_p" ) ]
+        [ JsonPropertyName( "top_p" ) ]
         public virtual double TopPercent
         {
             get
@@ -337,7 +355,7 @@ namespace Bubba
         /// <value>
         /// The chat model.
         /// </value>
-        [ JsonProperty( "models" ) ]
+        [ JsonPropertyName( "models" ) ]
         public virtual string Model
         {
             get
@@ -361,7 +379,7 @@ namespace Bubba
         /// <value>
         /// The size of the image.
         /// </value>
-        [ JsonProperty( "size" ) ]
+        [ JsonPropertyName( "size" ) ]
         public virtual string Size
         {
             get
@@ -385,7 +403,7 @@ namespace Bubba
         /// <value>
         /// The prompt.
         /// </value>
-        [ JsonProperty( "prompt" ) ]
+        [ JsonPropertyName( "prompt" ) ]
         public string UserPrompt
         {
             get
@@ -404,12 +422,14 @@ namespace Bubba
 
         /// <inheritdoc />
         /// <summary>
-        /// Gets or sets the system prompt.
+        /// A list of messages comprising the conversation so far.
+        /// Depending on the model you use, different message types
+        /// (modalities) are supported, like text, images, and audio.
         /// </summary>
         /// <value>
         /// The system prompt.
         /// </value>
-        [JsonProperty("messages")]
+        [ JsonPropertyName( "messages" ) ]
         public virtual IList<IGptMessage> Messages
         {
             get
@@ -428,12 +448,15 @@ namespace Bubba
 
         /// <inheritdoc />
         /// <summary>
-        /// Gets or sets the response format.
+        /// An object specifying the format that the model must output.
+        /// Setting to { "type": "json_schema", "json_schema": {...} } enables
+        /// Structured Outputs which ensures the model will match your supplied JSON schema
+        /// Default = "text"
         /// </summary>
         /// <value>
         /// The response format.
         /// </value>
-        [JsonProperty( "response_format" ) ]
+        [ JsonPropertyName( "response_format" ) ]
         public virtual string ResponseFormat
         {
             get
@@ -452,12 +475,36 @@ namespace Bubba
 
         /// <inheritdoc />
         /// <summary>
-        /// Gets or sets the stop sequences.
+        /// Gets the end point.
+        /// </summary>
+        /// <value>
+        /// The end point.
+        /// </value>
+        [ JsonPropertyName( "endpoint" ) ]
+        public virtual string EndPoint
+        {
+            get
+            {
+                return _endPoint;
+            }
+            set
+            {
+                if(_endPoint != value)
+                {
+                    _endPoint = value;
+                    OnPropertyChanged(nameof(EndPoint));
+                }
+            }
+        }
+
+        /// <inheritdoc />
+        /// <summary>
+        /// Up to 4 sequences where the API will stop generating further tokens.
         /// </summary>
         /// <value>
         /// The stop sequences.
         /// </value>
-        [ JsonProperty( "stop" ) ]
+        [JsonPropertyName( "stop" ) ]
         public IList<string> Stop
         {
             get

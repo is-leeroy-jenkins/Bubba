@@ -45,6 +45,7 @@ namespace Bubba
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
     using System.Linq;
+    using System.Text.Json.Serialization;
     using Newtonsoft.Json;
     using Properties;
 
@@ -131,7 +132,7 @@ namespace Bubba
         /// <value>
         /// The identifier.
         /// </value>
-        [ JsonProperty( "id" ) ]
+        [ JsonPropertyName( "id" ) ]
         public override string Id
         {
             get
@@ -156,7 +157,7 @@ namespace Bubba
         /// <value>
         /// The purpose.
         /// </value>
-        [ JsonProperty( "purpose" ) ]
+        [ JsonPropertyName( "purpose" ) ]
         public string Purpose
         {
             get
@@ -181,7 +182,7 @@ namespace Bubba
         /// <value>
         /// The limit.
         /// </value>
-        [ JsonProperty( "limit" ) ]
+        [ JsonPropertyName( "limit" ) ]
         public int Limit
         {
             get
@@ -205,7 +206,7 @@ namespace Bubba
         /// <value>
         /// The order.
         /// </value>
-        [ JsonProperty( "order" ) ]
+        [ JsonPropertyName( "order" ) ]
         public string Order
         {
             get
@@ -232,7 +233,7 @@ namespace Bubba
         /// <value>
         /// The after.
         /// </value>
-        [ JsonProperty( "after" ) ]
+        [ JsonPropertyName( "after" ) ]
         public string After
         {
             get
@@ -255,7 +256,7 @@ namespace Bubba
         /// <value>
         /// The created at.
         /// </value>
-        [ JsonProperty( "created_at" ) ]
+        [ JsonPropertyName( "created_at" ) ]
         public int CreatedAt
         {
             get
@@ -278,7 +279,7 @@ namespace Bubba
         /// <value>
         /// The bytes.
         /// </value>
-        [ JsonProperty( "bytes" ) ]
+        [ JsonPropertyName( "bytes" ) ]
         public int Bytes
         {
             get
@@ -301,7 +302,7 @@ namespace Bubba
         /// <value>
         /// The name of the file.
         /// </value>
-        [ JsonProperty( "filename" ) ]
+        [ JsonPropertyName( "filename" ) ]
         public string FileName
         {
             get

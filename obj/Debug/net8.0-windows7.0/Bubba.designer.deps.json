@@ -1309,6 +1309,17 @@
           }
         }
       },
+      "QRCoder/1.6.0": {
+        "dependencies": {
+          "System.Drawing.Common": "8.0.4"
+        },
+        "runtime": {
+          "lib/net6.0-windows7.0/QRCoder.dll": {
+            "assemblyVersion": "1.6.0.0",
+            "fileVersion": "1.6.0.0"
+          }
+        }
+      },
       "RestoreWindowPlace/2.1.0": {
         "runtime": {
           "lib/netcoreapp3.0/RestoreWindowPlace.dll": {
@@ -2835,6 +2846,13 @@
       "sha512": "sha512-R8H4ynmYUYuow/QNx4pnvPGR8Z6KUP54rVlnsH5tRkDYBU/m6bWmvFFvAA492rRyM5nt+6zAqGjv8GXY+8sylA==",
       "path": "opentk.windowing.graphicslibraryframework/4.3.0",
       "hashPath": "opentk.windowing.graphicslibraryframework.4.3.0.nupkg.sha512"
+    },
+    "QRCoder/1.6.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-XmPA81eo+oRxBuyVdswsSkTGTE1d3thfF11Z1PdD7oB56A6HU4G4AAOdySmGRMb/cljwlFTMWUtosGEnwpS6GA==",
+      "path": "qrcoder/1.6.0",
+      "hashPath": "qrcoder.1.6.0.nupkg.sha512"
     },
     "RestoreWindowPlace/2.1.0": {
       "type": "package",

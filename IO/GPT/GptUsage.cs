@@ -45,7 +45,7 @@ namespace Bubba
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
     using System.Linq;
-    using Newtonsoft.Json;
+    using System.Text.Json.Serialization;
 
     /// <inheritdoc />
     /// <summary>
@@ -129,7 +129,7 @@ namespace Bubba
         /// <value>
         /// The prompt tokens.
         /// </value>
-        [ JsonProperty( "prompt_tokens" ) ]
+        [ JsonPropertyName( "prompt_tokens" ) ]
         public int PromptTokens
         {
             get
@@ -152,7 +152,7 @@ namespace Bubba
         /// <value>
         /// The completion tokens.
         /// </value>
-        [ JsonProperty( "completion_tokens" ) ]
+        [ JsonPropertyName( "completion_tokens" ) ]
         public int CompletionTokens
         {
             get
@@ -175,7 +175,7 @@ namespace Bubba
         /// <value>
         /// The total tokens.
         /// </value>
-        [ JsonProperty( "total_tokens" ) ]
+        [ JsonPropertyName( "total_tokens" ) ]
         public int TotalTokens
         {
             get
@@ -202,7 +202,7 @@ namespace Bubba
         {
             try
             {
-                _data.Add( "prompt_tokens", _promptTokens);
+                _data.Add( "prompt_tokens", _promptTokens );
                 _data.Add( "completion_tokens", _completionTokens );
                 _data.Add( "total_tokens", _totalTokens );
                 return _data?.Any( ) == true

@@ -46,6 +46,7 @@ namespace Bubba
     using System.Diagnostics.CodeAnalysis;
     using System.Linq;
     using System.Text;
+    using System.Text.Json.Serialization;
     using System.Threading.Tasks;
     using Newtonsoft.Json;
     using Properties;
@@ -133,7 +134,7 @@ namespace Bubba
         /// <value>
         /// The log probs.
         /// </value>
-        [ JsonProperty( "logprobs" ) ]
+        [ JsonPropertyName( "logprobs" ) ]
         public bool LogProbs
         {
             get
@@ -157,7 +158,7 @@ namespace Bubba
         /// <value>
         ///   <c>true</c> if echo; otherwise, <c>false</c>.
         /// </value>
-        [ JsonProperty( "echo" ) ]
+        [ JsonPropertyName( "echo" ) ]
         public bool Echo
         {
             get
@@ -180,7 +181,7 @@ namespace Bubba
         /// <value>
         /// The best of.
         /// </value>
-        [ JsonProperty( "best_of" ) ]
+        [ JsonPropertyName( "best_of" ) ]
         public int BestOf
         {
             get
@@ -203,7 +204,7 @@ namespace Bubba
         /// <value>
         /// The logit bias.
         /// </value>
-        [ JsonProperty( "logit_bias" ) ]
+        [ JsonPropertyName( "logit_bias" ) ]
         public IDictionary<string, object> LogitBias
         {
             get
@@ -226,7 +227,7 @@ namespace Bubba
         /// <value>
         /// The suffix.
         /// </value>
-        [ JsonProperty( "suffix" ) ]
+        [ JsonPropertyName( "suffix" ) ]
         public string Suffix
         {
             get
@@ -249,7 +250,7 @@ namespace Bubba
         /// <value>
         /// The seed.
         /// </value>
-        [ JsonProperty( "seed" ) ]
+        [ JsonPropertyName( "seed" ) ]
         public int Seed
         {
             get
@@ -274,7 +275,7 @@ namespace Bubba
         /// <value>
         /// The file path.
         /// </value>
-        [ JsonProperty( "training_file" ) ]
+        [ JsonPropertyName( "training_file" ) ]
         public string TrainingFile
         {
             get
@@ -299,7 +300,7 @@ namespace Bubba
         /// <value>
         /// The validation file.
         /// </value>
-        [ JsonProperty( "validation_file" ) ]
+        [ JsonPropertyName( "validation_file" ) ]
         public string ValidationFile
         {
             get
@@ -323,7 +324,7 @@ namespace Bubba
         /// <value>
         /// The user identifier.
         /// </value>
-        [ JsonProperty( "n" ) ]
+        [ JsonPropertyName( "n" ) ]
         public override int Number
         {
             get
@@ -347,7 +348,7 @@ namespace Bubba
         /// The chat model.
         /// </value>
         /// <inheritdoc />
-        [ JsonProperty( "model" ) ]
+        [ JsonPropertyName( "model" ) ]
         public override string Model
         {
             get
@@ -371,7 +372,7 @@ namespace Bubba
         /// <value>
         /// The response format.
         /// </value>
-        [ JsonProperty( "response_format" ) ]
+        [ JsonPropertyName( "response_format" ) ]
         public override string ResponseFormat
         {
             get

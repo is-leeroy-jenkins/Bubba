@@ -6,7 +6,7 @@
 //     Last Modified By:        Terry D. Eppler
 //     Last Modified On:        01-10-2025
 // ******************************************************************************************
-// <copyright file="CompletionResponse.cs" company="Terry D. Eppler">
+// <copyright file="AsstistantResponse.cs" company="Terry D. Eppler">
 //    Bubba is a small and simple windows (wpf) application for interacting with the OpenAI API
 //    that's developed in C-Sharp under the MIT license.C#.
 // 
@@ -35,7 +35,7 @@
 //    You can contact me at:  terryeppler@gmail.com or eppler.terry@epa.gov
 // </copyright>
 // <summary>
-//   CompletionResponse.cs
+//   AsstistantResponse.cs
 // </summary>
 // ******************************************************************************************
 
@@ -45,7 +45,7 @@ namespace Bubba
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
     using System.Text.Json;
-    using Newtonsoft.Json;
+    using System.Text.Json.Serialization;
 
     /// <inheritdoc />
     /// <summary>
@@ -53,7 +53,7 @@ namespace Bubba
     [ SuppressMessage( "ReSharper", "UnusedType.Global" ) ]
     [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
     [ SuppressMessage( "ReSharper", "ClassCanBeSealed.Global" ) ]
-    public class CompletionResponse : GptResponse
+    public class AsstistantResponse : GptResponse
     {
         /// <summary>
         /// The transcribed text
@@ -68,9 +68,9 @@ namespace Bubba
         /// <inheritdoc />
         /// <summary>
         /// Initializes a new instance of the
-        /// <see cref="CompletionResponse"/> class.
+        /// <see cref="AsstistantResponse"/> class.
         /// </summary>
-        public CompletionResponse( )
+        public AsstistantResponse( )
         {
             _created = DateTime.Now;
         }
@@ -126,7 +126,7 @@ namespace Bubba
         /// <value>
         /// The identifier.
         /// </value>
-        [ JsonProperty( "id" ) ]
+        [ JsonPropertyName( "id" ) ]
         public override string Id
         {
             get
@@ -150,7 +150,7 @@ namespace Bubba
         /// <value>
         /// The object.
         /// </value>
-        [ JsonProperty( "object" ) ]
+        [ JsonPropertyName( "object" ) ]
         public override string Object
         {
             get
@@ -174,7 +174,7 @@ namespace Bubba
         /// <value>
         /// The created.
         /// </value>
-        [ JsonProperty( "created" ) ]
+        [ JsonPropertyName( "created" ) ]
         public override DateTime Created
         {
             get
@@ -198,7 +198,7 @@ namespace Bubba
         /// <value>
         /// The model.
         /// </value>
-        [ JsonProperty( "model" ) ]
+        [ JsonPropertyName( "model" ) ]
         public override string Model
         {
             get
@@ -222,7 +222,7 @@ namespace Bubba
         /// <value>
         /// The choices.
         /// </value>
-        [ JsonProperty( "choices" ) ]
+        [ JsonPropertyName( "choices" ) ]
         public override IList<GptChoice> Choices
         {
             get
@@ -246,7 +246,7 @@ namespace Bubba
         /// <value>
         /// The usage.
         /// </value>
-        [ JsonProperty( "usage" ) ]
+        [ JsonPropertyName( "usage" ) ]
         public override GptUsage Usage
         {
             get
@@ -292,17 +292,15 @@ namespace Bubba
         /// Extracts the message from response.
         /// </summary>
         /// <param name="jsonResponse">The json response.</param>
-        /// <param name="chatModel">The chat model.</param>
         /// <returns></returns>
-        private protected string ExtractData( string jsonResponse, string chatModel )
+        private protected string ExtractData( string jsonResponse )
         {
             try
             {
                 ThrowIf.Empty( jsonResponse, nameof( jsonResponse ) );
-                ThrowIf.Empty( chatModel, nameof( chatModel ) );
                 using var _document = JsonDocument.Parse( jsonResponse );
                 var _root = _document.RootElement;
-                if( chatModel.Contains( "gpt-3.5-turbo" ) )
+                if( _model.Contains( "gpt-3.5-turbo" ) )
                 {
                     var _element = _root.GetProperty( "choices" );
                     if( _element.ValueKind == JsonValueKind.Array

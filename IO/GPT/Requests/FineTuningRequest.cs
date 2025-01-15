@@ -46,6 +46,7 @@ namespace Bubba
     using System.Diagnostics.CodeAnalysis;
     using System.Linq;
     using System.Net.Http;
+    using System.Text.Json.Serialization;
     using Newtonsoft.Json;
     using Properties;
 
@@ -59,11 +60,6 @@ namespace Bubba
     [ SuppressMessage( "ReSharper", "PreferConcreteValueOverDefault" ) ]
     public class FineTuningRequest : GptRequest
     {
-        /// <summary>
-        /// The response format
-        /// </summary>
-        private protected string _responseFormat;
-
         /// <summary>
         /// Initializes a new instance of the
         /// <see cref="FineTuningRequest"/> class.
@@ -115,7 +111,7 @@ namespace Bubba
         /// <value>
         /// The messages.
         /// </value>
-        [ JsonProperty( "messages" ) ]
+        [ JsonPropertyName( "messages" ) ]
         public IList<IGptMessage> Messages
         {
             get
@@ -162,7 +158,7 @@ namespace Bubba
         /// <value>
         /// The user identifier.
         /// </value>
-        [ JsonProperty( "n" ) ]
+        [ JsonPropertyName( "n" ) ]
         public override int Number
         {
             get
@@ -186,7 +182,7 @@ namespace Bubba
         /// <value>
         /// The maximum tokens.
         /// </value>
-        [ JsonProperty( "max_completion_tokens" ) ]
+        [ JsonPropertyName( "max_completion_tokens" ) ]
         public override int MaximumTokens
         {
             get
@@ -211,7 +207,7 @@ namespace Bubba
         /// <value>
         ///   <c>true</c> if store; otherwise, <c>false</c>.
         /// </value>
-        [ JsonProperty( "store" ) ]
+        [ JsonPropertyName( "store" ) ]
         public override bool Store
         {
             get
@@ -236,7 +232,7 @@ namespace Bubba
         /// <value>
         ///   <c>true</c> if stream; otherwise, <c>false</c>.
         /// </value>
-        [ JsonProperty( "stream" ) ]
+        [ JsonPropertyName( "stream" ) ]
         public override bool Stream
         {
             get
@@ -261,7 +257,7 @@ namespace Bubba
         /// <value>
         /// The temperature.
         /// </value>
-        [ JsonProperty( "temperature" ) ]
+        [ JsonPropertyName( "temperature" ) ]
         public override double Temperature
         {
             get
@@ -290,7 +286,7 @@ namespace Bubba
         /// <value>
         /// The top percent.
         /// </value>
-        [ JsonProperty( "top_p" ) ]
+        [ JsonPropertyName( "top_p" ) ]
         public override double TopPercent
         {
             get
@@ -316,7 +312,7 @@ namespace Bubba
         /// <value>
         /// The frequency.
         /// </value>
-        [ JsonProperty( "frequency_penalty" ) ]
+        [ JsonPropertyName( "frequency_penalty" ) ]
         public override double FrequencyPenalty
         {
             get
@@ -342,7 +338,7 @@ namespace Bubba
         /// <value>
         /// The presence.
         /// </value>
-        [ JsonProperty( "presence_penalty" ) ]
+        [ JsonPropertyName( "presence_penalty" ) ]
         public override double PresencePenalty
         {
             get
@@ -361,30 +357,6 @@ namespace Bubba
 
         /// <inheritdoc />
         /// <summary>
-        /// Gets or sets the response format.
-        /// </summary>
-        /// <value>
-        /// The response format.
-        /// </value>
-        [ JsonProperty( "response_format" ) ]
-        public string ResponseFormat
-        {
-            get
-            {
-                return _responseFormat;
-            }
-            set
-            {
-                if( _responseFormat != value )
-                {
-                    _responseFormat = value;
-                    OnPropertyChanged( nameof( ResponseFormat ) );
-                }
-            }
-        }
-
-        /// <inheritdoc />
-        /// <summary>
         /// Gets the data.
         /// </summary>
         /// <returns>
@@ -395,7 +367,7 @@ namespace Bubba
             {
                 _data.Add( "model", _model );
                 _data.Add( "endpoint", _endPoint );
-                _data.Add( "number", _number );
+                _data.Add( "n", _number );
                 _data.Add( "max_completion_tokens", _maximumTokens );
                 _data.Add( "store", _store );
                 _data.Add( "stream", _stream );

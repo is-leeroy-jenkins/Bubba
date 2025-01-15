@@ -50,6 +50,7 @@ namespace Bubba
     using System.Net.Http;
     using System.Net.Http.Headers;
     using System.Text.Json;
+    using System.Text.Json.Serialization;
     using System.Threading.Tasks;
     using Newtonsoft.Json;
     using Properties;
@@ -65,11 +66,6 @@ namespace Bubba
     [ SuppressMessage( "ReSharper", "ClassCanBeSealed.Global" ) ]
     public class VectorRequest : GptRequest
     {
-        /// <summary>
-        /// The response format
-        /// </summary>
-        private protected string _responseFormat;
-
         /// <summary>
         /// The file path
         /// </summary>
@@ -159,7 +155,7 @@ namespace Bubba
         /// <value>
         /// The file ids.
         /// </value>
-        [ JsonProperty( "file_ids" ) ]
+        [ JsonPropertyName( "file_ids" ) ]
         public IList<string> FileIds
         {
             get
@@ -182,7 +178,7 @@ namespace Bubba
         /// <value>
         /// The vector store identifier.
         /// </value>
-        [ JsonProperty( "vector_store_id" ) ]
+        [ JsonPropertyName( "vector_store_id" ) ]
         public string VectorStoreId
         {
             get
@@ -205,7 +201,7 @@ namespace Bubba
         /// <value>
         /// The before.
         /// </value>
-        [ JsonProperty( "before" ) ]
+        [ JsonPropertyName( "before" ) ]
         public string Before
         {
             get
@@ -228,7 +224,7 @@ namespace Bubba
         /// <value>
         /// The after.
         /// </value>
-        [ JsonProperty( "after" ) ]
+        [ JsonPropertyName( "after" ) ]
         public string After
         {
             get
@@ -251,7 +247,7 @@ namespace Bubba
         /// <value>
         /// The order.
         /// </value>
-        [ JsonProperty( "order" ) ]
+        [ JsonPropertyName( "order" ) ]
         public string Order
         {
             get
@@ -277,7 +273,7 @@ namespace Bubba
         /// <value>
         /// The meta data.
         /// </value>
-        [ JsonProperty( "meta_data" ) ]
+        [ JsonPropertyName( "meta_data" ) ]
         public IDictionary<string, object> MetaData
         {
             get
@@ -306,7 +302,7 @@ namespace Bubba
             {
                 _data.Add( "model", _model );
                 _data.Add( "endpoint", _endPoint );
-                _data.Add( "number", _number );
+                _data.Add( "n", _number );
                 _data.Add( "max_completion_tokens", _maximumTokens );
                 _data.Add( "store", _store );
                 _data.Add( "stream", _stream );
@@ -315,7 +311,6 @@ namespace Bubba
                 _data.Add( "presence_penalty", _presencePenalty );
                 _data.Add( "top_p", _topPercent );
                 _data.Add( "response_format", _responseFormat );
-                _data.Add( "endpoint", _endPoint );
                 _data.Add( "limit", _limit );
                 if( !string.IsNullOrEmpty( _filePath ) )
                 {

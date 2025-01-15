@@ -48,6 +48,7 @@ namespace Bubba
     using System.Net.Http;
     using System.Text;
     using System.Text.Json;
+    using System.Text.Json.Serialization;
     using System.Threading.Tasks;
     using Newtonsoft.Json;
     using Properties;
@@ -191,8 +192,8 @@ namespace Bubba
         /// <value>
         /// The stop sequences.
         /// </value>
-        [ JsonProperty( "stop" ) ]
-        public IList<string> Stop
+        [ JsonPropertyName( "stop" ) ]
+        public virtual IList<string> Stop
         {
             get
             {
@@ -238,8 +239,8 @@ namespace Bubba
         /// <value>
         /// The modalities.
         /// </value>
-        [ JsonProperty( "modalities" ) ]
-        public string Modalities
+        [ JsonPropertyName( "modalities" ) ]
+        public virtual string Modalities
         {
             get
             {
@@ -261,8 +262,8 @@ namespace Bubba
         /// <value>
         /// The response format.
         /// </value>
-        [ JsonProperty( "response_format" ) ]
-        public string ResponseFormat
+        [ JsonPropertyName( "response_format" ) ]
+        public virtual string ResponseFormat
         {
             get
             {

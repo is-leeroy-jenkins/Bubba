@@ -1,10 +1,10 @@
 ﻿// ******************************************************************************************
 //     Assembly:                Bubba
 //     Author:                  Terry D. Eppler
-//     Created:                 12-09-2024
+//     Created:                 01-15-2025
 // 
 //     Last Modified By:        Terry D. Eppler
-//     Last Modified On:        12-09-2024
+//     Last Modified On:        01-15-2025
 // ******************************************************************************************
 // <copyright file="GptFileDialog.xaml.cs" company="Terry D. Eppler">
 //    Bubba is a small and simple windows (wpf) application for interacting with the OpenAI API
@@ -48,8 +48,11 @@ namespace Bubba
     using System.Diagnostics.CodeAnalysis;
     using System.IO;
     using System.Linq;
+    using System.Net.Http;
+    using System.Net.Http.Headers;
     using System.Runtime.CompilerServices;
     using System.Text;
+    using System.Text.Json;
     using System.Threading;
     using System.Threading.Tasks;
     using System.Windows;
@@ -64,6 +67,7 @@ namespace Bubba
     using HorizontalAlignment = System.Windows.HorizontalAlignment;
     using RadioButton = System.Windows.Controls.RadioButton;
     using Timer = System.Threading.Timer;
+    using Properties;
 
     /// <inheritdoc />
     /// <summary>
@@ -71,7 +75,9 @@ namespace Bubba
     /// </summary>
     [ SuppressMessage( "ReSharper", "UnusedType.Global" ) ]
     [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
-    public partial class GptFileDialog : Window
+    [ SuppressMessage( "ReSharper", "RedundantExtendsListEntry" ) ]
+    [ SuppressMessage( "ReSharper", "PreferConcreteValueOverDefault" ) ]
+    public partial class GptFileDialog : Window, IDisposable
     {
         /// <summary>
         /// The busy
@@ -178,6 +184,11 @@ namespace Bubba
         /// Occurs when a property value changes.
         /// </summary>
         public event PropertyChangedEventHandler PropertyChanged;
+
+        /// <summary>
+        /// The HTTP client
+        /// </summary>
+        private protected HttpClient _httpClient;
 
         /// <inheritdoc />
         /// <summary>
@@ -509,8 +520,8 @@ namespace Bubba
         {
             try
             {
-                //TimeLabel.Content = DateTime.Now.ToShortTimeString( );
-                //DateLabel.Content = DateTime.Now.ToShortDateString( );
+                TimeLabel.Content = DateTime.Now.ToShortTimeString( );
+                DateLabel.Content = DateTime.Now.ToShortDateString( );
             }
             catch( Exception ex )
             {
@@ -544,8 +555,7 @@ namespace Bubba
                 var _file = $@"/Resources/Assets/ExtensionImages/{_extn}.png";
                 var _uri = new Uri( _file, UriKind.Relative );
                 _image = new BitmapImage( _uri );
-
-                //PictureBox.Source = _image;
+                PictureBox.Source = _image;
             }
             catch( Exception ex )
             {
@@ -583,17 +593,17 @@ namespace Bubba
             {
                 var _list = new List<RadioButton>
                 {
-                    //PdfRadioButton,
-                    //AccessCheckBox,
-                    //SqLiteCheckBox,
-                    //SqlServerCheckBox,
-                    //ExcelCheckBox,
-                    //CsvCheckBox,
-                    //TextCheckBox,
-                    //PowerPointCheckBox,
-                    //WordCheckBox,
-                    //ExecutableCheckBox,
-                    //LibraryCheckBox
+                    PdfRadioButton,
+                    PyRadioButton,
+                    CRadioButton,
+                    CppRadioButton,
+                    HtmlRadioButton,
+                    CssRadioButton,
+                    DocRadioButton,
+                    DocxRadioButton,
+                    TextRadioButton,
+                    JsRadioButton,
+                    JsonRadioButton
                 };
 
                 return _list?.Any( ) == true
@@ -614,12 +624,12 @@ namespace Bubba
         {
             try
             {
-                //ListBox.Items?.Clear( );
+                ListBox.Items?.Clear( );
                 if( _filePaths?.Any( ) == true )
                 {
                     foreach( var _item in _filePaths )
                     {
-                        //ListBox.Items.Add( _item );
+                        ListBox.Items.Add( _item );
                     }
                 }
             }
@@ -638,17 +648,66 @@ namespace Bubba
             try
             {
                 ThrowIf.Null( filePaths, nameof( filePaths ) );
-
-                //ListBox.Items?.Clear( );
+                ListBox.Items?.Clear( );
                 var _paths = filePaths.ToArray( );
                 for( var _i = 0; _i < _paths.Length; _i++ )
                 {
                     var _item = _paths[ _i ];
                     if( !string.IsNullOrEmpty( _item ) )
                     {
-                        //ListBox?.Items?.Add( _item );
+                        ListBox?.Items?.Add( _item );
                     }
                 }
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+            }
+        }
+
+        /// <summary>
+        /// Sets the models.
+        /// </summary>
+        private async void PopulateFilesAsync( )
+        {
+            try
+            {
+                var _url = "https://api.openai.com/v1/files";
+                _httpClient = new HttpClient( );
+                _httpClient.Timeout = new TimeSpan( 0, 0, 3 );
+                _httpClient.DefaultRequestHeaders.Authorization =
+                    new AuthenticationHeaderValue( "Bearer", OpenAI.BubbaKey );
+
+                var _responseMessage = await _httpClient.GetAsync( _url );
+                _responseMessage.EnsureSuccessStatusCode( );
+                var _body = await _responseMessage.Content.ReadAsStringAsync( );
+                _filePaths?.Clear( );
+                using var _document = JsonDocument.Parse( _body );
+                var _root = _document.RootElement;
+                if( _root.TryGetProperty( "data", out var _value )
+                    && _value.ValueKind == JsonValueKind.Array )
+                {
+                    foreach( var _item in _value.EnumerateArray( ) )
+                    {
+                        if( _item.TryGetProperty( "filename", out var _element ) )
+                        {
+                            _filePaths?.Add( _element.GetString( ) );
+                        }
+                    }
+                }
+
+                Dispatcher.BeginInvoke( ( ) =>
+                {
+                    for( var _index = 0; _index < _filePaths.Count; _index++ )
+                    {
+                        var _fileName = _filePaths[ _index ];
+                        ListBox.Items.Add( _fileName );
+                    }
+                } );
+            }
+            catch( HttpRequestException ex )
+            {
+                Fail( ex );
             }
             catch( Exception ex )
             {
@@ -694,11 +753,9 @@ namespace Bubba
                 Chill( );
                 _watch.Stop( );
                 _count = _filePaths?.Count ?? 0;
-
-                //CountLabel.Content = $"{_count:N0}";
+                CountLabel.Content = $"{_count:N0}";
                 _duration = _watch.Elapsed.TotalMilliseconds;
-
-                //DurationLabel.Content = $"{_duration:N0} ms";
+                DurationLabel.Content = $"{_duration:N0} ms";
             }
             catch( Exception ex )
             {
@@ -745,12 +802,60 @@ namespace Bubba
                 Chill( );
                 _watch.Stop( );
                 _count = _list.Count;
-
-                //CountLabel.Content = $"{_count:N0}";
+                CountLabel.Content = $"{_count:N0}";
                 _duration = _watch.Elapsed.TotalMilliseconds;
-
-                //DurationLabel.Content = $"{_duration:N0}";
+                DurationLabel.Content = $"{_duration:N0}";
                 return _list;
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+                return default( IList<string> );
+            }
+        }
+
+        /// <summary>
+        /// Gets the file paths asynchronous.
+        /// </summary>
+        /// <returns></returns>
+        private protected async Task<IList<string>> GetFilePathsAsync( )
+        {
+            try
+            {
+                Busy( );
+                var _url = GptEndPoint.Files;
+                _httpClient = new HttpClient( );
+                _httpClient.Timeout = new TimeSpan( 0, 0, 3 );
+                _httpClient.DefaultRequestHeaders.Authorization =
+                    new AuthenticationHeaderValue( "Bearer", OpenAI.BubbaKey );
+
+                var _list = new List<string>( );
+                var _responseMessage = await _httpClient.GetAsync( _url );
+                _responseMessage.EnsureSuccessStatusCode( );
+                var _body = await _responseMessage.Content.ReadAsStringAsync( );
+                using var _document = JsonDocument.Parse( _body );
+                var _root = _document.RootElement;
+                if( _root.TryGetProperty( "data", out var _files )
+                    && _files.ValueKind == JsonValueKind.Array )
+                {
+                    foreach( var _item in _files.EnumerateArray( ) )
+                    {
+                        if( _item.TryGetProperty( "purpose", out var _purposeElement ) )
+                        {
+                            var _purpose = _purposeElement.ToString( );
+                            if( _purpose.Equals( "assistants" )
+                                && _item.TryGetProperty( "filename", out var _name ) )
+                            {
+                                _list.Add( _name.GetString( ) );
+                            }
+                        }
+                    }
+                }
+
+                Chill( );
+                return _list?.Any( ) == true
+                    ? _list
+                    : default( IList<string> );
             }
             catch( Exception ex )
             {
@@ -800,15 +905,15 @@ namespace Bubba
         {
             try
             {
-                //ExcelCheckBox.IsChecked = true;
-                _filePaths = GetFilePaths( );
-                _count = _filePaths.Count;
+                PdfRadioButton.IsChecked = true;
                 InitializeTimer( );
                 PopulateListBox( );
                 InitializeLabels( );
                 InitializeButtons( );
                 RegisterRadioButtonEvents( );
                 SetImage( );
+                _filePaths = GetFilePathsAsync().Result;
+                _count = _filePaths.Count;
             }
             catch( Exception ex )
             {
@@ -838,15 +943,13 @@ namespace Bubba
                 _filePaths = GetFilePaths( );
                 _count = _filePaths.Count;
                 _duration = _watch.ElapsedMilliseconds;
-
-                //CountLabel.Content = $"{_count:N0}";
-                //DurationLabel.Content = $"{_duration:N0}";
+                CountLabel.Content = $"{_count:N0}";
+                DurationLabel.Content = $"{_duration:N0}";
                 PopulateListBox( _filePaths );
                 var _file = $@"/Resources/Assets/ExtensionImages/{_fileExtension?.ToUpper( )}.png";
                 var _uri = new Uri( _file, UriKind.Relative );
                 _image = new BitmapImage( _uri );
-
-                //PictureBox.Source = _image;
+                PictureBox.Source = _image;
                 Chill( );
             }
             catch( Exception ex )
@@ -859,7 +962,8 @@ namespace Bubba
         /// Called when [closing].
         /// </summary>
         /// <param name="sender">The sender.</param>
-        /// <param name="e">The <see cref="RoutedEventArgs"/> instance containing the event data.</param>
+        /// <param name="e">The <see cref="RoutedEventArgs"/>
+        /// instance containing the event data.</param>
         private void OnClosing( object sender, CancelEventArgs e )
         {
             try

@@ -1495,6 +1495,18 @@
           }
         }
       },
+      "QRCoder/1.6.0": {
+        "type": "package",
+        "dependencies": {
+          "System.Drawing.Common": "6.0.0"
+        },
+        "compile": {
+          "lib/net6.0-windows7.0/QRCoder.dll": {}
+        },
+        "runtime": {
+          "lib/net6.0-windows7.0/QRCoder.dll": {}
+        }
+      },
       "RestoreWindowPlace/2.1.0": {
         "type": "package",
         "compile": {
@@ -5873,6 +5885,27 @@
         "opentk.windowing.graphicslibraryframework.nuspec"
       ]
     },
+    "QRCoder/1.6.0": {
+      "sha512": "XmPA81eo+oRxBuyVdswsSkTGTE1d3thfF11Z1PdD7oB56A6HU4G4AAOdySmGRMb/cljwlFTMWUtosGEnwpS6GA==",
+      "type": "package",
+      "path": "qrcoder/1.6.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/net35/QRCoder.dll",
+        "lib/net40/QRCoder.dll",
+        "lib/net5.0-windows7.0/QRCoder.dll",
+        "lib/net5.0/QRCoder.dll",
+        "lib/net6.0-windows7.0/QRCoder.dll",
+        "lib/net6.0/QRCoder.dll",
+        "lib/netstandard1.3/QRCoder.dll",
+        "lib/netstandard2.0/QRCoder.dll",
+        "nuget-icon.png",
+        "nuget-readme.md",
+        "qrcoder.1.6.0.nupkg.sha512",
+        "qrcoder.nuspec"
+      ]
+    },
     "RestoreWindowPlace/2.1.0": {
       "sha512": "AzPJ4Am2rmZ7DncLDNV/SFbAG03CIqP4utXyfqUwqg9MVfDePWsIxX3x52qh6n+IklAygl9D88hWAXjusjSqdA==",
       "type": "package",
@@ -8023,6 +8056,7 @@
       "ModernWpfUI >= 0.9.6",
       "Newtonsoft.Json >= 13.0.3",
       "OpenAI >= 2.1.0",
+      "QRCoder >= 1.6.0",
       "RestoreWindowPlace >= 2.1.0",
       "ScottPlot.WPF >= 5.0.47",
       "SkiaSharp >= 3.116.1",
@@ -8170,6 +8204,10 @@
           "OpenAI": {
             "target": "Package",
             "version": "[2.1.0, )"
+          },
+          "QRCoder": {
+            "target": "Package",
+            "version": "[1.6.0, )"
           },
           "RestoreWindowPlace": {
             "target": "Package",

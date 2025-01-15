@@ -45,6 +45,7 @@ namespace Bubba
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
     using System.Linq;
+    using System.Text.Json.Serialization;
     using Newtonsoft.Json;
 
     /// <inheritdoc />
@@ -130,7 +131,6 @@ namespace Bubba
         /// The chat model.
         /// </value>
         /// <inheritdoc />
-        [ JsonProperty( "model" ) ]
         public override string Model
         {
             get
@@ -155,7 +155,6 @@ namespace Bubba
         /// <value>
         ///   <c>true</c> if store; otherwise, <c>false</c>.
         /// </value>
-        [ JsonProperty( "store" ) ]
         public override bool Store
         {
             get
@@ -180,7 +179,6 @@ namespace Bubba
         /// <value>
         ///   <c>true</c> if stream; otherwise, <c>false</c>.
         /// </value>
-        [ JsonProperty( "stream" ) ]
         public override bool Stream
         {
             get
@@ -206,7 +204,6 @@ namespace Bubba
         /// <value>
         /// The temperature.
         /// </value>
-        [ JsonProperty( "temperature" ) ]
         public override double Temperature
         {
             get
@@ -231,7 +228,6 @@ namespace Bubba
         /// <value>
         /// The maximum tokens.
         /// </value>
-        [ JsonProperty( "max_completion_tokens" ) ]
         public override int MaximumTokens
         {
             get
@@ -257,7 +253,6 @@ namespace Bubba
         /// <value>
         /// The frequency.
         /// </value>
-        [ JsonProperty( "frequency_penalty" ) ]
         public override double FrequencyPenalty
         {
             get
@@ -283,7 +278,6 @@ namespace Bubba
         /// <value>
         /// The presence.
         /// </value>
-        [ JsonProperty( "presence_penalty" ) ]
         public override double PresencePenalty
         {
             get
@@ -312,7 +306,6 @@ namespace Bubba
         /// <value>
         /// The top percent.
         /// </value>
-        [ JsonProperty( "top_p" ) ]
         public override double TopPercent
         {
             get

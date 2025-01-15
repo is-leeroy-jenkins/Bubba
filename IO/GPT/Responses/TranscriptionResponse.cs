@@ -45,6 +45,7 @@ namespace Bubba
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
     using System.Text.Json;
+    using System.Text.Json.Serialization;
     using Newtonsoft.Json;
 
     /// <inheritdoc />
@@ -53,7 +54,7 @@ namespace Bubba
     [ SuppressMessage( "ReSharper", "UnusedType.Global" ) ]
     [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
     [ SuppressMessage( "ReSharper", "PossibleUnintendedReferenceComparison" ) ]
-    public class TranscriptionResponse : GptResponse
+    public class TranscriptionResponse : GptResponse 
     {
         /// <summary>
         /// The transcribed text
@@ -105,7 +106,7 @@ namespace Bubba
         /// <value>
         /// The transcribed text.
         /// </value>
-        [ JsonProperty( "text" ) ]
+        [ JsonPropertyName( "text" ) ]
         public string TranscribedText
         {
             get
@@ -128,7 +129,7 @@ namespace Bubba
         /// <value>
         /// The language.
         /// </value>
-        [ JsonProperty( "language" ) ]
+        [ JsonPropertyName( "language" ) ]
         public string Language
         {
             get
@@ -151,7 +152,7 @@ namespace Bubba
         /// <value>
         /// The raw response.
         /// </value>
-        [ JsonProperty( "words" ) ]
+        [ JsonPropertyName( "words" ) ]
         public IList<string> Words
         {
             get
@@ -174,7 +175,7 @@ namespace Bubba
         /// <value>
         /// The segments.
         /// </value>
-        [ JsonProperty( "segments" ) ]
+        [ JsonPropertyName( "segments" ) ]
         public IList<string> Segments
         {
             get
@@ -198,7 +199,7 @@ namespace Bubba
         /// <value>
         /// The identifier.
         /// </value>
-        [ JsonProperty( "id" ) ]
+        [ JsonPropertyName( "id" ) ]
         public override string Id
         {
             get
@@ -222,7 +223,7 @@ namespace Bubba
         /// <value>
         /// The object.
         /// </value>
-        [ JsonProperty( "object" ) ]
+        [ JsonPropertyName( "object" ) ]
         public override string Object
         {
             get
@@ -246,7 +247,7 @@ namespace Bubba
         /// <value>
         /// The created.
         /// </value>
-        [ JsonProperty( "created" ) ]
+        [ JsonPropertyName( "created" ) ]
         public override DateTime Created
         {
             get
@@ -270,7 +271,7 @@ namespace Bubba
         /// <value>
         /// The model.
         /// </value>
-        [ JsonProperty( "model" ) ]
+        [ JsonPropertyName( "model" ) ]
         public override string Model
         {
             get
@@ -294,7 +295,7 @@ namespace Bubba
         /// <value>
         /// The choices.
         /// </value>
-        [ JsonProperty( "choices" ) ]
+        [ JsonPropertyName( "choices" ) ]
         public override IList<GptChoice> Choices
         {
             get
@@ -318,7 +319,7 @@ namespace Bubba
         /// <value>
         /// The usage.
         /// </value>
-        [ JsonProperty( "usage" ) ]
+        [ JsonPropertyName( "usage" ) ]
         public override GptUsage Usage
         {
             get
@@ -339,29 +340,33 @@ namespace Bubba
         /// Extracts the message from response.
         /// </summary>
         /// <param name="jsonResponse">The json response.</param>
-        /// <param name="chatModel">The chat model.</param>
         /// <returns></returns>
-        private string ExtractResponseData( string jsonResponse, string chatModel )
+        private string ExtractData( string jsonResponse )
         {
             try
             {
                 ThrowIf.Empty( jsonResponse, nameof( jsonResponse ) );
-                ThrowIf.Empty( chatModel, nameof( chatModel ) );
                 using var _document = JsonDocument.Parse( jsonResponse );
                 var _root = _document.RootElement;
-                if( chatModel.Contains( "gpt-3.5-turbo" ) )
+                if( _model.Contains( "gpt-3.5-turbo" ) )
                 {
                     var _element = _root.GetProperty( "choices" );
                     if( _element.ValueKind == JsonValueKind.Array
                         && _element.GetArrayLength( ) > 0 )
                     {
-                        var _messageElement = _element[ 0 ].GetProperty( "message" );
-                        return _messageElement.GetProperty( "content" ).GetString( );
+                        var _message = _element[ 0 ].GetProperty( "message" );
+                        var _content = _message.GetProperty( "content" ); 
+                        var _response = _content.GetString( );
+                        return !string.IsNullOrEmpty( _response )
+                            ? _response
+                            : string.Empty;
                     }
                 }
                 else
                 {
-                    return _root.GetProperty( "choices" )[ 0 ].GetProperty( "text" ).GetString( );
+                    return _root.GetProperty( "choices" )[ 0 ]
+                        .GetProperty( "text" )
+                        .GetString( );
                 }
 
                 return string.Empty;

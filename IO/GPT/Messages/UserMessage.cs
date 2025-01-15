@@ -44,7 +44,7 @@ namespace Bubba
     using System;
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
-    using Newtonsoft.Json;
+    using System.Text.Json.Serialization;
 
     /// <inheritdoc />
     /// <summary>
@@ -118,7 +118,7 @@ namespace Bubba
         /// <value>
         /// The role.
         /// </value>
-        [ JsonProperty( "role" ) ]
+        [ JsonPropertyName( "role" ) ]
         public override string Role
         {
             get
@@ -134,7 +134,7 @@ namespace Bubba
         /// <value>
         /// The content.
         /// </value>
-        [ JsonProperty( "content" ) ]
+        [ JsonPropertyName( "content" ) ]
         public override string Content
         {
             get
@@ -158,7 +158,7 @@ namespace Bubba
         /// <value>
         /// The data.
         /// </value>
-        [ JsonProperty( "messages" ) ]
+        [ JsonPropertyName( "messages" ) ]
         public override IDictionary<string, object> Messages
         {
             get

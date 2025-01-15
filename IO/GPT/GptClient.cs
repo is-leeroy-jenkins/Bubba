@@ -1,10 +1,10 @@
 ﻿// ******************************************************************************************
 //     Assembly:                Bubba
 //     Author:                  Terry D. Eppler
-//     Created:                 01-07-2025
+//     Created:                 01-15-2025
 // 
 //     Last Modified By:        Terry D. Eppler
-//     Last Modified On:        01-07-2025
+//     Last Modified On:        01-15-2025
 // ******************************************************************************************
 // <copyright file="GptClient.cs" company="Terry D. Eppler">
 //    Bubba is a small and simple windows (wpf) application for interacting with the OpenAI API
@@ -50,11 +50,12 @@ namespace Bubba
     using System.Net.Http.Headers;
     using System.Text;
     using System.Text.Json;
+    using System.Text.Json.Serialization;
     using System.Threading.Tasks;
     using Newtonsoft.Json;
     using Exception = System.Exception;
-    using JsonSerializer = System.Text.Json.JsonSerializer;
     using Properties;
+    using JsonSerializer = System.Text.Json.JsonSerializer;
 
     /// <inheritdoc />
     /// <summary>
@@ -71,6 +72,11 @@ namespace Bubba
         /// </summary>
         private protected HttpClient _httpClient;
 
+        /// <summary>
+        /// The messages
+        /// </summary>
+        private protected IList<IGptMessage> _messages;
+
         /// <inheritdoc />
         /// <summary>
         /// Initializes a new instance of the
@@ -81,8 +87,6 @@ namespace Bubba
         {
             _entry = new object( );
             _apiKey = App.OpenAiKey;
-            _endPoints = GetEndPoints( );
-            _models = GetModels( );
         }
 
         /// <inheritdoc />
@@ -90,15 +94,12 @@ namespace Bubba
         /// Initializes a new instance of the
         /// <see cref="T:Bubba.GptClient" /> class.
         /// </summary>
-        /// <param name="temperature">The temperature.</param>
-        /// <param name="tokens">The tokens.</param>
-        /// <param name="model">The chat model.</param>
-        public GptClient( string model, double temperature = 1.0, int tokens = 2048 )
+        public GptClient( GptParameter config )
             : this( )
         {
-            _model = model;
-            _temperature = temperature;
-            _maximumTokens = tokens;
+            _model = config.Model;
+            _temperature = config.Temperature;
+            _maximumTokens = config.MaximumTokens;
         }
 
         /// <summary>
@@ -108,6 +109,7 @@ namespace Bubba
         /// <value>
         ///   <c>true</c> if store; otherwise, <c>false</c>.
         /// </value>
+        [ JsonPropertyName( "store" ) ]
         public bool Store
         {
             get
@@ -131,6 +133,7 @@ namespace Bubba
         /// <value>
         ///   <c>true</c> if stream; otherwise, <c>false</c>.
         /// </value>
+        [ JsonPropertyName( "stream" ) ]
         public bool Stream
         {
             get
@@ -156,6 +159,7 @@ namespace Bubba
         /// <value>
         /// The frequency.
         /// </value>
+        [ JsonPropertyName( "frequency_penalty" ) ]
         public double FrequencyPenalty
         {
             get
@@ -179,6 +183,7 @@ namespace Bubba
         /// <value>
         /// The temperature.
         /// </value>
+        [ JsonPropertyName( "temperature" ) ]
         public double Temperature
         {
             get
@@ -202,6 +207,7 @@ namespace Bubba
         /// <value>
         /// The presence.
         /// </value>
+        [ JsonPropertyName( "presence_penalty" ) ]
         public double PresencePenalty
         {
             get
@@ -225,6 +231,7 @@ namespace Bubba
         /// <value>
         /// The maximum tokens.
         /// </value>
+        [ JsonPropertyName( "max_completion_tokens" ) ]
         public int MaxTokens
         {
             get
@@ -252,6 +259,7 @@ namespace Bubba
         /// <value>
         /// The top percent.
         /// </value>
+        [ JsonPropertyName( "top_p" ) ]
         public double TopPercent
         {
             get
@@ -275,6 +283,7 @@ namespace Bubba
         /// <value>
         /// The end point.
         /// </value>
+        [ JsonPropertyName( "endpoint" ) ]
         public string EndPoint
         {
             get
@@ -298,6 +307,7 @@ namespace Bubba
         /// <value>
         /// The chat model.
         /// </value>
+        [ JsonPropertyName( "model" ) ]
         public string Model
         {
             get
@@ -314,6 +324,29 @@ namespace Bubba
             }
         }
 
+        /// <summary>
+        /// Gets the messages.
+        /// </summary>
+        /// <value>
+        /// The messages.
+        /// </value>
+        [ JsonPropertyName( "messages" ) ]
+        public IList<IGptMessage> Messages
+        {
+            get
+            {
+                return _messages;
+            }
+            private set
+            {
+                if(_messages != value)
+                {
+                    _messages = value;
+                    OnPropertyChanged(nameof(Messages));
+                }
+            }
+        }
+
         /// <inheritdoc />
         /// <summary>
         /// Gets the prompt.
@@ -321,6 +354,7 @@ namespace Bubba
         /// <value>
         /// The prompt.
         /// </value>
+        [ JsonPropertyName( "prompt" ) ]
         public string Prompt
         {
             get
@@ -341,31 +375,31 @@ namespace Bubba
         /// <summary>
         /// Sends a request to the Chat (Assistant) API.
         /// </summary>
-        public async Task<string> GetResponseAsync( List<dynamic> messages, string model = "gpt-4o",
-            int maxTokens = 157, double temperature = 1.0 )
+        public async Task<string> GetResponseAsync( IList<IGptMessage> messages, GptParameter config )
         {
-            var _payload = new
+            var _payload = new GptPayload( )
             {
-                model,
-                messages,
-                max_tokens = maxTokens,
-                temperature
+                Model = config.Model,
+                Messages = messages,
+                MaximumTokens = config.MaximumTokens,
+                Temperature = config.Temperature
             };
 
-            return await SendRequestAsync( $"{_endPoint}/chat/completions", _payload );
+            return await SendRequestAsync( _payload );
         }
 
         /// <inheritdoc />
         /// <summary>
         /// Handles POST requests and response parsing.
         /// </summary>
-        public async Task<string> SendRequestAsync( string url, object payload )
+        public async Task<string> SendRequestAsync( GptPayload payload )
         {
-            var _serial = JsonConvert.SerializeObject( payload );
+            var _url = payload.EndPoint;
+            var _serial = payload.Serialize( );
             var _content = new StringContent( _serial, Encoding.UTF8, "application/json" );
             _httpClient.DefaultRequestHeaders.Clear( );
             _httpClient.DefaultRequestHeaders.Add( "Authorization", $"Bearer {_apiKey}" );
-            var _response = await _httpClient.PostAsync( url, _content );
+            var _response = await _httpClient.PostAsync( _url, _content );
             if( !_response.IsSuccessStatusCode )
             {
                 var _message =
@@ -376,13 +410,15 @@ namespace Bubba
 
             var _json = await _response.Content.ReadAsStringAsync( );
             dynamic _result = JsonConvert.DeserializeObject( _json );
-            if( url.Contains( "/completions" ) )
+            if( _url.Contains( "/completions" ) )
             {
                 return _result?.choices[ 0 ]?.text ?? "No response.";
             }
-            else if( url.Contains( "/chat/completions" ) )
+            else if( _url.Contains( "/chat/completions" ) )
             {
-                return _result?.choices[ 0 ]?.message?.content ?? "No response.";
+                return _result?.choices[ 0 ]
+                    ?.message
+                    ?.content ?? "No response.";
             }
 
             return "Unexpected response format.";
@@ -407,7 +443,11 @@ namespace Bubba
                     : "https://api.openai.com/v1/completions";
 
                 // Validate randomness (temperature)
-                var _payload = CreatePayload( prompt );
+                var _payload = new GptPayload
+                {
+                    UserPrompt = prompt
+                };
+
                 var _request = WebRequest.Create( _url );
                 _request.Method = "POST";
                 _request.ContentType = "application/json";

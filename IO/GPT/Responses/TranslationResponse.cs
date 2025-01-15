@@ -45,6 +45,7 @@ namespace Bubba
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
     using System.Text.Json;
+    using System.Text.Json.Serialization;
     using Newtonsoft.Json;
 
     /// <inheritdoc />
@@ -106,7 +107,7 @@ namespace Bubba
         /// <value>
         /// The identifier.
         /// </value>
-        [ JsonProperty( "id" ) ]
+        [ JsonPropertyName( "id" ) ]
         public override string Id
         {
             get
@@ -130,7 +131,7 @@ namespace Bubba
         /// <value>
         /// The object.
         /// </value>
-        [ JsonProperty( "object" ) ]
+        [ JsonPropertyName( "object" ) ]
         public override string Object
         {
             get
@@ -154,7 +155,7 @@ namespace Bubba
         /// <value>
         /// The created.
         /// </value>
-        [ JsonProperty( "created" ) ]
+        [ JsonPropertyName( "created" ) ]
         public override DateTime Created
         {
             get
@@ -178,7 +179,7 @@ namespace Bubba
         /// <value>
         /// The model.
         /// </value>
-        [ JsonProperty( "model" ) ]
+        [ JsonPropertyName( "model" ) ]
         public override string Model
         {
             get
@@ -202,7 +203,7 @@ namespace Bubba
         /// <value>
         /// The choices.
         /// </value>
-        [ JsonProperty( "choices" ) ]
+        [ JsonPropertyName( "choices" ) ]
         public override IList<GptChoice> Choices
         {
             get
@@ -226,7 +227,7 @@ namespace Bubba
         /// <value>
         /// The usage.
         /// </value>
-        [ JsonProperty( "usage" ) ]
+        [ JsonPropertyName( "usage" ) ]
         public override GptUsage Usage
         {
             get

@@ -49,6 +49,7 @@ namespace Bubba
     using System.Net.Http.Headers;
     using System.Text;
     using System.Text.Json;
+    using System.Text.Json.Serialization;
     using System.Threading.Tasks;
     using Newtonsoft.Json;
     using Properties;
@@ -129,7 +130,7 @@ namespace Bubba
         /// <value>
         /// The encoding format.
         /// </value>
-        [ JsonProperty( "encoding_format" ) ]
+        [ JsonPropertyName( "encoding_format" ) ]
         public string EncodingFormat
         {
             get
@@ -157,7 +158,7 @@ namespace Bubba
         /// <value>
         /// The input.
         /// </value>
-        [ JsonProperty( "input" ) ]
+        [ JsonPropertyName( "input" ) ]
         public string Input
         {
             get
@@ -181,7 +182,7 @@ namespace Bubba
         /// <value>
         /// The dimensions.
         /// </value>
-        [ JsonProperty( "dimensions" ) ]
+        [ JsonPropertyName( "dimensions" ) ]
         public int Dimensions
         {
             get
@@ -205,7 +206,7 @@ namespace Bubba
         /// <value>
         /// The user identifier.
         /// </value>
-        [ JsonProperty( "n" ) ]
+        [ JsonPropertyName( "n" ) ]
         public override int Number
         {
             get
@@ -229,7 +230,7 @@ namespace Bubba
         /// The chat model.
         /// </value>
         /// <inheritdoc />
-        [ JsonProperty( "model" ) ]
+        [ JsonPropertyName( "model" ) ]
         public override string Model
         {
             get
@@ -276,7 +277,7 @@ namespace Bubba
         /// <value>
         ///   <c>true</c> if store; otherwise, <c>false</c>.
         /// </value>
-        [ JsonProperty( "store" ) ]
+        [ JsonPropertyName( "store" ) ]
         public override bool Store
         {
             get
