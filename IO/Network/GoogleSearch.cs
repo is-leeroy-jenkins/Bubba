@@ -160,10 +160,10 @@ namespace Bubba
                         {
                             var _snippet = _list[ _i ].Snippet ?? string.Empty;
                             var _lines = _list[ _i ].Link ?? string.Empty;
-                            var _titles = _list[ _i ].Title ?? string.Empty;
+                            var Titles = _list[ _i ].Title ?? string.Empty;
                             var _htmlTitle = _list[ _i ].HtmlTitle ?? string.Empty;
                             var _searchResults = new SearchResult( _snippet, _lines,
-                                _titles, _htmlTitle );
+                                Titles, _htmlTitle );
 
                             _results.Add( _searchResults );
                         }
@@ -218,10 +218,10 @@ namespace Bubba
                         {
                             var _snippet = _list[ _i ].Snippet ?? string.Empty;
                             var _line = _list[ _i ].Link ?? string.Empty;
-                            var _titles = _list[ _i ].Title ?? string.Empty;
+                            var Titles = _list[ _i ].Title ?? string.Empty;
                             var _htmlTitle = _list[ _i ].HtmlTitle ?? string.Empty;
                             var _searchResults =
-                                new SearchResult( _snippet, _line, _titles, _htmlTitle );
+                                new SearchResult( _snippet, _line, Titles, _htmlTitle );
 
                             _results.Add( _searchResults );
                         }

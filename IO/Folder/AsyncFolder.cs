@@ -376,19 +376,19 @@ namespace Bubba
                 var _subfolders = _folder.FileCount;
                 var _bytes = ( _folder.Size.ToString( "N0" ) ?? "0" ) + " bytes";
                 var _nl = Environment.NewLine;
-                var _tb = char.ToString( '\t' );
-                var _text = _nl + _tb + "Folder Name: " + _tb + _name + _nl + _nl + _tb
-                    + "Folder Path: " + _tb + _path + _nl + _nl + _tb + "Parent Path: " + _tb
-                    + _dirPath + _nl + _nl + _tb + "Sub-Files: " + _tb + _subfiles + _nl + _nl + _tb
-                    + "Sub-Folders: " + _tb + _subfolders + _nl + _nl + _tb + "File Size: " + _tb
-                    + _bytes + _nl + _nl + _tb + "Created On: " + _tb + _create.ToShortDateString( )
-                    + _nl + _nl + _tb + "Modified On: " + _tb + _modify.ToShortDateString( ) + _nl
-                    + _nl + _tb + "Path Separator: " + _tb + _pathsep + _nl + _nl + _tb
-                    + "Drive Separator: " + _tb + _drivesep + _nl + _nl + _tb + "Folder Separator: "
-                    + _tb + _foldersep + _nl + _nl;
+                var Tb = char.ToString( '\t' );
+                var Text = _nl + Tb + "Folder Name: " + Tb + _name + _nl + _nl + Tb
+                    + "Folder Path: " + Tb + _path + _nl + _nl + Tb + "Parent Path: " + Tb
+                    + _dirPath + _nl + _nl + Tb + "Sub-Files: " + Tb + _subfiles + _nl + _nl + Tb
+                    + "Sub-Folders: " + Tb + _subfolders + _nl + _nl + Tb + "File Size: " + Tb
+                    + _bytes + _nl + _nl + Tb + "Created On: " + Tb + _create.ToShortDateString( )
+                    + _nl + _nl + Tb + "Modified On: " + Tb + _modify.ToShortDateString( ) + _nl
+                    + _nl + Tb + "Path Separator: " + Tb + _pathsep + _nl + _nl + Tb
+                    + "Drive Separator: " + Tb + _drivesep + _nl + _nl + Tb + "Folder Separator: "
+                    + Tb + _foldersep + _nl + _nl;
 
-                return !string.IsNullOrEmpty( _text )
-                    ? _text
+                return !string.IsNullOrEmpty( Text )
+                    ? Text
                     : string.Empty;
             }
             catch( IOException ex )

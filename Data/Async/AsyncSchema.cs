@@ -167,14 +167,14 @@ namespace Bubba
                 try
                 {
                     var _set = new DataSet( $"{_source}" );
-                    var _table = new DataTable( $"{_source}" );
-                    _table.TableName = _source.ToString( );
-                    _set.Tables.Add( _table );
+                    var Table = new DataTable( $"{_source}" );
+                    Table.TableName = _source.ToString( );
+                    _set.Tables.Add( Table );
                     var _adapter = _query.DataAdapter;
-                    _adapter.Fill( _set, _table.TableName );
-                    SetColumnCaptions( _table );
-                    return _table?.Rows?.Count > 0
-                        ? _table
+                    _adapter.Fill( _set, Table.TableName );
+                    SetColumnCaptions( Table );
+                    return Table?.Rows?.Count > 0
+                        ? Table
                         : default( DataTable );
                 }
                 catch( Exception ex )
@@ -200,14 +200,14 @@ namespace Bubba
                 try
                 {
                     var _set = new DataSet( $"{_source}" );
-                    var _table = new DataTable( $"{_source}" );
-                    _table.TableName = _source.ToString( );
-                    _set.Tables.Add( _table );
+                    var Table = new DataTable( $"{_source}" );
+                    Table.TableName = _source.ToString( );
+                    _set.Tables.Add( Table );
                     var _adapter = _query.DataAdapter;
-                    _adapter.Fill( _set, _table.TableName );
-                    SetColumnCaptions( _table );
-                    _async.SetResult( _table );
-                    return _table.Rows.Count > 0
+                    _adapter.Fill( _set, Table.TableName );
+                    SetColumnCaptions( Table );
+                    _async.SetResult( Table );
+                    return Table.Rows.Count > 0
                         ? _async.Task
                         : default( Task<DataTable> );
                 }
@@ -231,8 +231,8 @@ namespace Bubba
         {
             try
             {
-                var _table = GetDataTable( );
-                var _data = _table.AsEnumerable( );
+                var Table = GetDataTable( );
+                var _data = Table.AsEnumerable( );
                 var _row = _data.FirstOrDefault( );
                 return _row?.ItemArray?.Length > 0
                     ? _row
@@ -255,8 +255,8 @@ namespace Bubba
             var _async = new TaskCompletionSource<DataRow>( );
             try
             {
-                var _table = GetDataTable( );
-                var _data = _table.AsEnumerable( );
+                var Table = GetDataTable( );
+                var _data = Table.AsEnumerable( );
                 var _row = _data.FirstOrDefault( );
                 _async.SetResult( _row );
                 return _row?.ItemArray?.Length > 0
@@ -280,24 +280,24 @@ namespace Bubba
         {
             if( _query != null )
             {
-                var _task = new TaskCompletionSource<DataSet>( );
+                var Task = new TaskCompletionSource<DataSet>( );
                 try
                 {
                     var _set = new DataSet( $"{_source}" );
-                    var _table = new DataTable( $"{_source}" );
-                    _table.TableName = _source.ToString( );
-                    _set.Tables.Add( _table );
+                    var Table = new DataTable( $"{_source}" );
+                    Table.TableName = _source.ToString( );
+                    _set.Tables.Add( Table );
                     var _adapter = _query.DataAdapter;
-                    _adapter.Fill( _set, _table.TableName );
-                    SetColumnCaptions( _table );
-                    _task.SetResult( _set );
+                    _adapter.Fill( _set, Table.TableName );
+                    SetColumnCaptions( Table );
+                    Task.SetResult( _set );
                     return _set.Tables?.Count > 0
-                        ? _task.Task
+                        ? Task.Task
                         : default( Task<DataSet> );
                 }
                 catch( Exception ex )
                 {
-                    _task.SetException( ex );
+                    Task.SetException( ex );
                     Fail( ex );
                     return default( Task<DataSet> );
                 }
@@ -345,8 +345,8 @@ namespace Bubba
             try
             {
                 var _list = new List<string>( );
-                var _table = GetDataTable( );
-                foreach( DataColumn _col in _table.Columns )
+                var Table = GetDataTable( );
+                foreach( DataColumn _col in Table.Columns )
                 {
                     if( _col.DataType == typeof( string ) )
                     {
@@ -379,8 +379,8 @@ namespace Bubba
             try
             {
                 var _list = new List<string>( );
-                var _table = GetDataTable( );
-                foreach( DataColumn _col in _table.Columns )
+                var Table = GetDataTable( );
+                foreach( DataColumn _col in Table.Columns )
                 {
                     if( ( !_col.ColumnName.EndsWith( "Id" ) && _col.Ordinal > 0
                             && _col.DataType == typeof( double ) )
@@ -418,8 +418,8 @@ namespace Bubba
             try
             {
                 var _list = new List<string>( );
-                var _table = GetDataTable( );
-                foreach( DataColumn _col in _table.Columns )
+                var Table = GetDataTable( );
+                foreach( DataColumn _col in Table.Columns )
                 {
                     if( _col.Ordinal > 0
                         && ( _col.DataType == typeof( DateTime )
@@ -455,8 +455,8 @@ namespace Bubba
             var _async = new TaskCompletionSource<IList<int>>( );
             try
             {
-                var _table = GetDataTable( );
-                var _values = _table?.AsEnumerable( )?.Select( c => c.Field<int>( 0 ) )
+                var Table = GetDataTable( );
+                var _values = Table?.AsEnumerable( )?.Select( c => c.Field<int>( 0 ) )
                     ?.Distinct( );
 
                 var _list = _values?.ToList( );

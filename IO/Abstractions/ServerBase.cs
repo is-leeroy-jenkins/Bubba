@@ -89,8 +89,8 @@ namespace Bubba
                 ThrowIf.Null( ipAddress, nameof( ipAddress ) );
                 using var _ping = new Ping( );
                 var _buffer = Encoding.ASCII.GetBytes( "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa" );
-                var _timeout = 5000;// 5 sec
-                var _reply = _ping.Send( ipAddress, _timeout, _buffer );
+                var Timeout = 5000;// 5 sec
+                var _reply = _ping.Send( ipAddress, Timeout, _buffer );
                 if( _reply != null )
                 {
                     _status = _reply.Status == IPStatus.Success;

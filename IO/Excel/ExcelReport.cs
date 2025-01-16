@@ -104,7 +104,7 @@ namespace Bubba
                     _excelWorkbook.Worksheets[ _i ].PrinterSettings.RightMargin = _rightMargin;
                     _excelWorkbook.Worksheets[ _i ].PrinterSettings.HeaderMargin = _headerMargin;
                     _excelWorkbook.Worksheets[ _i ].PrinterSettings.FooterMargin = _footerMargin;
-                    _excelWorkbook.Worksheets[ _i ].PrinterSettings.TopMargin = _topMargin;
+                    _excelWorkbook.Worksheets[ _i ].PrinterSettings.TopMargin = TopMargin;
                     _excelWorkbook.Worksheets[ _i ].PrinterSettings.BottomMargin = _bottomMargin;
                     _excelWorkbook.Worksheets[ _i ].PrinterSettings.Orientation =
                         eOrientation.Landscape;
@@ -230,13 +230,13 @@ namespace Bubba
             _startColumn = 1;
             _fontColor = Color.Black;
             _font = new Font( "Segoe UI", 8, FontStyle.Regular );
-            _titleFont = new Font( "Segoe UI", 9 );
+            TitleFont = new Font( "Segoe UI", 9 );
             _fileName = "Budget.xlsx";
             _rowHeight = 0.27d;
             _columnWidth = 0.69d;
             _leftMargin = .25m;
             _rightMargin = .25m;
-            _topMargin = 1m;
+            TopMargin = 1m;
             _bottomMargin = 1m;
             _headerMargin = 0.4m;
             _footerMargin = 0.4m;
@@ -276,12 +276,12 @@ namespace Bubba
             _startColumn = 1;
             _fontColor = Color.Black;
             _font = new Font( "Segoe UI", 8, FontStyle.Regular );
-            _titleFont = new Font( "Segoe UI", 9 );
+            TitleFont = new Font( "Segoe UI", 9 );
             _rowHeight = 0.27d;
             _columnWidth = 0.69d;
             _leftMargin = .25m;
             _rightMargin = .25m;
-            _topMargin = 1m;
+            TopMargin = 1m;
             _bottomMargin = 1m;
             _headerMargin = 0.4m;
             _footerMargin = 0.4m;
@@ -323,12 +323,12 @@ namespace Bubba
             _startColumn = 1;
             _fontColor = Color.Black;
             _font = new Font( "Segoe UI", 8, FontStyle.Regular );
-            _titleFont = new Font( "Segoe UI", 9, FontStyle.Regular );
+            TitleFont = new Font( "Segoe UI", 9, FontStyle.Regular );
             _rowHeight = 0.27d;
             _columnWidth = 0.69d;
             _leftMargin = .25m;
             _rightMargin = .25m;
-            _topMargin = 1m;
+            TopMargin = 1m;
             _bottomMargin = 1m;
             _headerMargin = 0.4m;
             _footerMargin = 0.4m;

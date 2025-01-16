@@ -128,10 +128,10 @@ namespace Bubba
             {
                 ThrowIf.Null( text, nameof( text ) );
                 var _fontStyle = ToSkFontStyle( font.Style );
-                var _typeface = SKTypeface.FromFamilyName( font.FontFamily, _fontStyle );
+                var Typeface = SKTypeface.FromFamilyName( font.FontFamily, _fontStyle );
                 using var _paint = new SKPaint( );
                 _paint.TextSize = font.Size;
-                _paint.Typeface = _typeface;
+                _paint.Typeface = Typeface;
                 var _rect = SKRect.Empty;
                 _paint.MeasureText( text.AsSpan( ), ref _rect );
                 var _width = _rect.Width / 0.7282505F + 0.444444444F * font.Size;

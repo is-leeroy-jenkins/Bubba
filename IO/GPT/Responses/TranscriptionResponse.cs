@@ -111,13 +111,13 @@ namespace Bubba
         {
             get
             {
-                return _transcribedText;
+                return TranscribedText;
             }
             set
             {
-                if( _transcribedText != value )
+                if( TranscribedText != value )
                 {
-                    _transcribedText = value;
+                    TranscribedText = value;
                     OnPropertyChanged( nameof( TranscribedText ) );
                 }
             }

@@ -131,13 +131,13 @@ namespace Bubba
         {
             get
             {
-                return _temperature;
+                return Temperature;
             }
             set
             {
-                if( _temperature != value )
+                if( Temperature != value )
                 {
-                    _temperature = value;
+                    Temperature = value;
                     OnPropertyChanged( nameof( Temperature ) );
                 }
             }

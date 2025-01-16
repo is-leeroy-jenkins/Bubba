@@ -1349,7 +1349,7 @@ previous fiscal year and/or a different TAFS to provide a starting point for you
 After you have created a template and updated it to reflect the proper information for your request, use the 
 Validate Request screen to do two things: check for any math or formatting errors, and if there are no errors, 
 create a new file that is ready to be submitted to OMB. This file will have several Excel tabs that were not 
-in your original template. It will have the tab called Appor_Req_to_OMB with the primary apportionment 
+in your original template. It will have the tab called Appor_ReqTo_OMB with the primary apportionment 
 information. It will have a tab to hold any footnotes that OMB may wish to include with the apportionment. 
 If any of the TAFSs in your file have warrants, transfers, or SF 133 data (excluding parent or child allocation 
 accounts) for the fiscal year of your requests, the validated file will also have tabs to display these items. 

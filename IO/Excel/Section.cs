@@ -102,7 +102,7 @@ namespace Bubba
             out ExcelAddress excelAddress )
         {
             from = _from;
-            to = _to;
+            to = To;
             excelWorksheet = _excelWorksheet;
             excelRange = _excelRange;
             excelAddress = _excelAddress;

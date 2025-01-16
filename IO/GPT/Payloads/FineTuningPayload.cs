@@ -280,13 +280,13 @@ namespace Bubba
         {
             get
             {
-                return _trainingFile;
+                return TrainingFile;
             }
             set
             {
-                if( _trainingFile != value )
+                if( TrainingFile != value )
                 {
-                    _trainingFile = value;
+                    TrainingFile = value;
                     OnPropertyChanged( nameof( TrainingFile ) );
                 }
             }
@@ -401,13 +401,13 @@ namespace Bubba
             {
                 _data.Add( "model", _model );
                 _data.Add( "n", _number );
-                _data.Add( "max_completion_tokens", _maximumTokens );
+                _data.Add( "max_completionTokens", _maximumTokens );
                 _data.Add( "store", _store );
                 _data.Add( "stream", _stream );
-                _data.Add( "temperature", _temperature );
+                _data.Add( "temperature", Temperature );
                 _data.Add( "frequency_penalty", _frequencyPenalty );
                 _data.Add( "presence_penalty", _presencePenalty );
-                _data.Add( "top_p", _topPercent );
+                _data.Add( "top_p", TopPercent );
                 _data.Add( "response_format", _responseFormat );
                 _data.Add( "modalities", _modalities );
                 _data.Add( "log_probs", _logProbs );
@@ -416,9 +416,9 @@ namespace Bubba
                 _data.Add( "echo", _echo );
                 _data.Add( "suffix", _suffix );
                 _data.Add( "seed", _seed );
-                if( !string.IsNullOrEmpty( _trainingFile ) )
+                if( !string.IsNullOrEmpty( TrainingFile ) )
                 {
-                    _data.Add( "training_file", _trainingFile );
+                    _data.Add( "training_file", TrainingFile );
                 }
 
                 if( !string.IsNullOrEmpty( _validationFile ) )

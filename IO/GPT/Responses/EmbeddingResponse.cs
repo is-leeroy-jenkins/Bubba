@@ -6,7 +6,7 @@
 //     Last Modified By:        Terry D. Eppler
 //     Last Modified On:        01-07-2025
 // ******************************************************************************************
-// <copyright file="VectorEmbeddingResponse.cs" company="Terry D. Eppler">
+// <copyright file="EmbeddingResponse.cs" company="Terry D. Eppler">
 //    Bubba is a small and simple windows (wpf) application for interacting with the OpenAI API
 //    that's developed in C-Sharp under the MIT license.C#.
 // 
@@ -35,7 +35,7 @@
 //    You can contact me at:  terryeppler@gmail.com or eppler.terry@epa.gov
 // </copyright>
 // <summary>
-//   VectorEmbeddingResponse.cs
+//   EmbeddingResponse.cs
 // </summary>
 // ******************************************************************************************
 
@@ -55,7 +55,7 @@ namespace Bubba
     /// <seealso cref="T:Bubba.GptResponse" />
     [ SuppressMessage( "ReSharper", "UnusedType.Global" ) ]
     [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
-    public class VectorEmbeddingResponse : GptResponse
+    public class EmbeddingResponse : GptResponse
     {
         /// <summary>
         /// The file path
@@ -74,10 +74,10 @@ namespace Bubba
 
         /// <summary>
         /// Initializes a new instance of the
-        /// <see cref="VectorEmbeddingResponse"/> class.
+        /// <see cref="EmbeddingResponse"/> class.
         /// </summary>
         /// <inheritdoc />
-        public VectorEmbeddingResponse( )
+        public EmbeddingResponse( )
             : base( )
         {
             _created = DateTime.Now;

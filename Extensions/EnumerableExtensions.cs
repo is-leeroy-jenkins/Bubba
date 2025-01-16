@@ -243,8 +243,8 @@ namespace Bubba
             {
                 try
                 {
-                    var _table = dataRow.CopyToDataTable( );
-                    var _rows = _table?.Select( where.ToCriteria( ) );
+                    var Table = dataRow.CopyToDataTable( );
+                    var _rows = Table?.Select( where.ToCriteria( ) );
                     return _rows?.Any( ) == true
                         ? _rows
                         : default( IEnumerable<DataRow> );

@@ -189,7 +189,7 @@ namespace Bubba
         /// </returns>
         private protected Task<DataTable> GetTableAsync( )
         {
-            var _tcs = new TaskCompletionSource<DataTable>( );
+            var Tcs = new TaskCompletionSource<DataTable>( );
             try
             {
                 BeginInit( );
@@ -202,14 +202,14 @@ namespace Bubba
                 using var _adapter = _query.DataAdapter;
                 _adapter.Fill( _dataSet, _dataTable.TableName );
                 SetColumnCaptions( _dataTable );
-                _tcs.SetResult( _dataTable );
+                Tcs.SetResult( _dataTable );
                 _duration = _clock.Elapsed;
                 EndInit( );
-                return _tcs?.Task;
+                return Tcs?.Task;
             }
             catch( Exception ex )
             {
-                _tcs.SetException( ex );
+                Tcs.SetException( ex );
                 Fail( ex );
                 return default( Task<DataTable> );
             }

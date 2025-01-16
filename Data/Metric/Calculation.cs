@@ -237,7 +237,7 @@ namespace Bubba
             {
                 ThrowIfNotCriteria( where );
                 ThrowIf.Null( numeric, nameof( numeric ) );
-                var _total = _dataTable
+                var Total = _dataTable
                     ?.AsEnumerable( )
                     ?.Select( p => p.Field<double>( numeric ) )
                     ?.Sum( );
@@ -247,7 +247,7 @@ namespace Bubba
                     ?.Select( p => p.Field<double>( numeric ) )
                     ?.Sum( );
 
-                var _ratio = ( _select / _total ) * 100d;
+                var _ratio = ( _select / Total ) * 100d;
                 return _ratio ?? 0.0d;
             }
             catch( Exception ex )

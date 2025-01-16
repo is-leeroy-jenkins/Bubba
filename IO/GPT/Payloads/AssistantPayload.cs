@@ -211,13 +211,13 @@ namespace Bubba
         {
             get
             {
-                return _temperature;
+                return Temperature;
             }
             set
             {
-                if( _temperature != value )
+                if( Temperature != value )
                 {
-                    _temperature = value;
+                    Temperature = value;
                     OnPropertyChanged( nameof( Temperature ) );
                 }
             }
@@ -292,13 +292,13 @@ namespace Bubba
         {
             get
             {
-                return _topPercent;
+                return TopPercent;
             }
             set
             {
-                if( _topPercent != value )
+                if( TopPercent != value )
                 {
-                    _topPercent = value;
+                    TopPercent = value;
                     OnPropertyChanged( nameof( TopPercent ) );
                 }
             }
@@ -338,13 +338,13 @@ namespace Bubba
             try
             {
                 _data.Add( "n", _number );
-                _data.Add( "max_completion_tokens", _maximumTokens );
+                _data.Add( "max_completionTokens", _maximumTokens );
                 _data.Add( "store", _store );
                 _data.Add( "stream", _stream );
-                _data.Add( "temperature", _temperature );
+                _data.Add( "temperature", Temperature );
                 _data.Add( "frequency_penalty", _frequencyPenalty );
                 _data.Add( "presence_penalty", _presencePenalty );
-                _data.Add( "top_p", _topPercent );
+                _data.Add( "top_p", TopPercent );
                 _stop.Add( "#" );
                 _stop.Add( ";" );
                 _data.Add( "stop", _stop );

@@ -51,6 +51,7 @@ namespace Bubba
     /// </summary>
     /// <seealso cref="T:System.Windows.Controls.ContentControl" />
     [ SuppressMessage( "ReSharper", "UnusedType.Global" ) ]
+    [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
     public class MetroContent : ContentControl
     {
         /// <summary>

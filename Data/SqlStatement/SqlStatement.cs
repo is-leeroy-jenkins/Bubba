@@ -234,11 +234,11 @@ namespace Bubba
         {
             get
             {
-                return _tableName;
+                return TableName;
             }
             private protected set
             {
-                _tableName = value;
+                TableName = value;
             }
         }
 
@@ -330,7 +330,7 @@ namespace Bubba
             _commandType = commandType;
             _source = source;
             _provider = provider;
-            _tableName = source.ToString( );
+            TableName = source.ToString( );
             _commandText = $"SELECT * FROM {source}";
         }
 
@@ -352,7 +352,7 @@ namespace Bubba
             _commandType = commandType;
             _source = source;
             _provider = provider;
-            _tableName = source.ToString( );
+            TableName = source.ToString( );
             _commandText = sqlText;
         }
 
@@ -375,7 +375,7 @@ namespace Bubba
             _commandType = commandType;
             _source = source;
             _provider = provider;
-            _tableName = source.ToString( );
+            TableName = source.ToString( );
             _updates = updates;
             _criteria = where;
             _fields = updates.Keys.ToList( );
@@ -400,7 +400,7 @@ namespace Bubba
             _commandType = commandType;
             _source = source;
             _provider = provider;
-            _tableName = source.ToString( );
+            TableName = source.ToString( );
             _criteria = where;
             _commandText = $@"SELECT * FROM {source} WHERE {where.ToCriteria( )}";
         }
@@ -424,7 +424,7 @@ namespace Bubba
             _commandType = commandType;
             _source = source;
             _provider = provider;
-            _tableName = source.ToString( );
+            TableName = source.ToString( );
             _criteria = where;
             _fields = columns.ToList( );
             _commandText = GetCommandText( );
@@ -451,7 +451,7 @@ namespace Bubba
             _commandType = commandType;
             _source = source;
             _provider = provider;
-            _tableName = source.ToString( );
+            TableName = source.ToString( );
             _criteria = having;
             _fields = fields.ToList( );
             _numerics = numerics.ToList( );

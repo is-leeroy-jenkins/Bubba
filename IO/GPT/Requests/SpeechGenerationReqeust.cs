@@ -345,13 +345,13 @@ namespace Bubba
             {
                 _data.Add( "model", _model );
                 _data.Add( "n", _number );
-                _data.Add( "max_completion_tokens", _maximumTokens );
+                _data.Add( "max_completionTokens", _maximumTokens );
                 _data.Add( "store", _store );
                 _data.Add( "stream", _stream );
-                _data.Add( "temperature", _temperature );
+                _data.Add( "temperature", Temperature );
                 _data.Add( "frequency_penalty", _frequencyPenalty );
                 _data.Add( "presence_penalty", _presencePenalty );
-                _data.Add( "top_p", _topPercent );
+                _data.Add( "top_p", TopPercent );
                 _data.Add( "response_format", _responseFormat );
                 _data.Add( "endpoint", _endPoint );
                 _stop.Add( "#" );
@@ -438,12 +438,12 @@ namespace Bubba
             {
                 ThrowIf.Empty( jsonResponse, nameof( jsonResponse ) );
                 using var _document = JsonDocument.Parse( jsonResponse );
-                var _text = _document.RootElement
+                var Text = _document.RootElement
                     .GetProperty( "text" )
                     .GetString( );
 
-                return !string.IsNullOrEmpty( _text )
-                    ? _text
+                return !string.IsNullOrEmpty( Text )
+                    ? Text
                     : "Speech Generation Failed!";
             }
             catch( Exception ex )

@@ -97,7 +97,7 @@ namespace Bubba.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to https://api.openai.com/v1/fine_tuning/jobs.
+        ///   Looks up a localized string similar to https://api.openai.com/v1/fineTuning/jobs.
         /// </summary>
         internal static string FineTuning {
             get {

@@ -106,13 +106,13 @@ namespace Bubba
             bool store = false, bool stream = true )
         {
             _userPrompt = userPrompt;
-            _temperature = temperature;
+            Temperature = temperature;
             _maximumTokens = maxTokens;
             _frequencyPenalty = frequency;
             _presencePenalty = presence;
             _store = store;
             _stream = stream;
-            _topPercent = topPercent;
+            TopPercent = topPercent;
             _stop = new List<string>( );
             _messages = new List<IGptMessage>( );
             _data = new Dictionary<string, object>( );
@@ -127,13 +127,13 @@ namespace Bubba
         public GptPayload( string userPrompt, GptParameter config )
         {
             _userPrompt = userPrompt;
-            _temperature = config.Temperature;
+            Temperature = config.Temperature;
             _maximumTokens = config.MaximumTokens;
             _frequencyPenalty = config.FrequencyPenalty;
             _presencePenalty = config.PresencePenalty;
             _store = config.Store;
             _stream = config.Stream;
-            _topPercent = config.TopPercent;
+            TopPercent = config.TopPercent;
             _stop = new List<string>( );
             _data = new Dictionary<string, object>( );
         }
@@ -147,7 +147,7 @@ namespace Bubba
         public GptPayload( GptPayload gptPayload )
         {
             _userPrompt = gptPayload.UserPrompt;
-            _temperature = gptPayload.Temperature;
+            Temperature = gptPayload.Temperature;
             _maximumTokens = gptPayload.MaximumTokens;
             _frequencyPenalty = gptPayload.FrequencyPenalty;
             _presencePenalty = gptPayload.PresencePenalty;
@@ -176,7 +176,7 @@ namespace Bubba
             prompt = _userPrompt;
             userId = _id;
             model = _model;
-            temperature = _temperature;
+            temperature = Temperature;
             frequency = _frequencyPenalty;
             presence = _presencePenalty;
             maximumTokens = _maximumTokens;
@@ -272,13 +272,13 @@ namespace Bubba
         {
             get
             {
-                return _temperature;
+                return Temperature;
             }
             set
             {
-                if( _temperature != value )
+                if( Temperature != value )
                 {
-                    _temperature = value;
+                    Temperature = value;
                     OnPropertyChanged( nameof( Temperature ) );
                 }
             }
@@ -292,7 +292,7 @@ namespace Bubba
         /// <value>
         /// The maximum tokens.
         /// </value>
-        [ JsonPropertyName( "max_completion_tokens" ) ]
+        [ JsonPropertyName( "max_completionTokens" ) ]
         public override int MaximumTokens
         {
             get
@@ -378,13 +378,13 @@ namespace Bubba
         {
             get
             {
-                return _topPercent;
+                return TopPercent;
             }
             set
             {
-                if( _topPercent != value )
+                if( TopPercent != value )
                 {
-                    _topPercent = value;
+                    TopPercent = value;
                     OnPropertyChanged( nameof( TopPercent ) );
                 }
             }
@@ -444,7 +444,7 @@ namespace Bubba
                         Model = _model,
                         UserPrompt = _userPrompt,
                         MaximumTokens = _maximumTokens,
-                        Temperature = _temperature,
+                        Temperature = Temperature,
                         FrequencyPenalty = _frequencyPenalty,
                         PresencePenalty = _presencePenalty,
                         stop = new[ ]
@@ -493,9 +493,9 @@ namespace Bubba
                     {
                         model = _model,
                         prompt,
-                        max_completion_tokens = _maximumTokens,
+                        max_completionTokens = _maximumTokens,
                         user = _id,
-                        _temperature,
+                        Temperature,
                         frequency_penalty = _frequencyPenalty,
                         presence_penalty = _presencePenalty,
                         stop = new[ ]
@@ -525,13 +525,13 @@ namespace Bubba
             {
                 _data.Add( "model", _model );
                 _data.Add( "n", _number );
-                _data.Add( "max_completion_tokens", _maximumTokens );
+                _data.Add( "max_completionTokens", _maximumTokens );
                 _data.Add( "store", _store );
                 _data.Add( "stream", _stream );
-                _data.Add( "temperature", _temperature );
+                _data.Add( "temperature", Temperature );
                 _data.Add( "frequency_penalty", _frequencyPenalty );
                 _data.Add( "presence_penalty", _presencePenalty );
-                _data.Add( "top_p", _topPercent );
+                _data.Add( "top_p", TopPercent );
                 _data.Add( "response_format", _responseFormat );
                 _stop.Add( "#" );
                 _stop.Add( ";" );

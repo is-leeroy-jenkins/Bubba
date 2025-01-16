@@ -430,7 +430,7 @@
                         </Grid.RowDefinitions>
                         <Border CornerRadius="1">
                             <Grid
-                                x:Name="PART_TitleGrid"
+                                x:Name="PARTTitleGrid"
                                 Margin="8,12,0,0">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="3*" />
@@ -438,7 +438,7 @@
                                     <ColumnDefinition Width="3*" />
                                     <ColumnDefinition Width="4*" />
                                 </Grid.ColumnDefinitions>
-                                <Grid x:Name="PART_TitleContentGrid">
+                                <Grid x:Name="PARTTitleContentGrid">
                                     <syncfusion:RibbonButton
                                         x:Name="PART_RibbonFind"
                                         Grid.Column="2"

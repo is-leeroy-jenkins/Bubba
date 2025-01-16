@@ -377,13 +377,13 @@ namespace Bubba
         {
             get
             {
-                return _temperature;
+                return Temperature;
             }
             set
             {
-                if( _temperature != value )
+                if( Temperature != value )
                 {
-                    _temperature = value;
+                    Temperature = value;
                     OnPropertyChanged( nameof( Temperature ) );
                 }
             }
@@ -1440,7 +1440,7 @@ namespace Bubba
                 return "";
             }
 
-            var _userId = UserLabel.Content;// 1        
+            var _userId = UserLabel.Content;         
             var _data = "";
             if( _model.IndexOf( "gpt-3.5-turbo" ) != -1 )
             {
@@ -1456,7 +1456,7 @@ namespace Bubba
                 _data = "{";
                 _data += " \"model\":\"" + _model + "\",";
                 _data += " \"prompt\": \"" + PadQuotes( question ) + "\",";
-                _data += " \"max_completion_tokens\": " + _maxTokens + ",";
+                _data += " \"max_completionTokens\": " + _maxTokens + ",";
                 _data += " \"user\": \"" + _userId + "\", ";
                 _data += " \"temperature\": " + _temp + ", ";
                 _data += " \"frequency_penalty\": 0.0" + ", ";
@@ -1648,7 +1648,7 @@ namespace Bubba
                 var _responseMessage = await _httpClient.GetAsync( _url );
                 _responseMessage.EnsureSuccessStatusCode( );
                 var _body = await _responseMessage.Content.ReadAsStringAsync( );
-                var _llms = new List<string>( );
+                var _models = new List<string>( );
                 using var _document = JsonDocument.Parse( _body );
                 var _root = _document.RootElement;
                 if( _root.TryGetProperty( "data", out var _data )
@@ -1658,16 +1658,16 @@ namespace Bubba
                     {
                         if( _item.TryGetProperty( "id", out var _element ) )
                         {
-                            _llms.Add( _element.GetString( ) );
+                            _models.Add( _element.GetString( ) );
                         }
                     }
                 }
 
-                _llms.Sort( );
+                _models.Sort( );
                 ModelComboBox.Items.Clear( );
                 Dispatcher.BeginInvoke( ( ) =>
                 {
-                    foreach( var _lm in _llms )
+                    foreach( var _lm in _models )
                     {
                         if( !_lm.StartsWith( "ft" ) )
                         {

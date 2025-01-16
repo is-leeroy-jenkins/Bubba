@@ -237,8 +237,8 @@ namespace Bubba
         {
             try
             {
-                var _time = Math.Round( timeSpan.Ticks / ( double )interval.Ticks, rounding );
-                return new TimeSpan( Convert.ToInt64( Math.Round( _time ) * interval.Ticks ) );
+                var Time = Math.Round( timeSpan.Ticks / ( double )interval.Ticks, rounding );
+                return new TimeSpan( Convert.ToInt64( Math.Round( Time ) * interval.Ticks ) );
             }
             catch( Exception _ex )
             {

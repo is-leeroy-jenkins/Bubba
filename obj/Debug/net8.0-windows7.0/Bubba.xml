@@ -30,7 +30,7 @@
         </member>
         <member name="M:Bubba.App.RegisterTheme">
             <summary>
-            Registers the theme.
+            Registers the _theme.
             </summary>
         </member>
         <member name="M:Bubba.App.#ctor">
@@ -318,12 +318,12 @@
             My form
             </summary>
         </member>
-        <member name="F:Bubba.ContextMenuCallback.SHOW_DEV_TOOLS">
+        <member name="F:Bubba.ContextMenuCallback.SHOW_DEVTOOLS">
             <summary>
             The show dev tools
             </summary>
         </member>
-        <member name="F:Bubba.ContextMenuCallback.CLOSE_DEV_TOOLS">
+        <member name="F:Bubba.ContextMenuCallback.CLOSE_DEVTOOLS">
             <summary>
             The close dev tools
             </summary>
@@ -348,17 +348,17 @@
             The copy link address
             </summary>
         </member>
-        <member name="F:Bubba.ContextMenuCallback.OPEN_LINK_IN_NEW_TAB">
+        <member name="F:Bubba.ContextMenuCallback.OPEN_LINK_IN_NEWTAB">
             <summary>
             The open link in new tab
             </summary>
         </member>
-        <member name="F:Bubba.ContextMenuCallback.CLOSE_TAB">
+        <member name="F:Bubba.ContextMenuCallback.CLOSETAB">
             <summary>
             The close tab
             </summary>
         </member>
-        <member name="F:Bubba.ContextMenuCallback.REFRESH_TAB">
+        <member name="F:Bubba.ContextMenuCallback.REFRESHTAB">
             <summary>
             The refresh tab
             </summary>
@@ -400,7 +400,7 @@
         </member>
         <member name="M:Bubba.ContextMenuCallback.OnContextMenuCommand(CefSharp.IWebBrowser,CefSharp.IBrowser,CefSharp.IFrame,CefSharp.IContextMenuParams,CefSharp.CefMenuCommand,CefSharp.CefEventFlags)">
             <summary>
-            Called to execute a command selected from the context menu. See cef_menu_id_t
+            Called to execute a command selected from the context menu. See cef_menu_idT
             for the command ids that have default implementations. All user-defined command
             ids should be between MENU_ID_USER_FIRST and MENU_ID_USER_LAST.
             </summary>
@@ -3471,7 +3471,7 @@
             The groups
             </summary>
         </member>
-        <member name="F:Bubba.SqlBase._tableName">
+        <member name="F:Bubba.SqlBase.TableName">
             <summary>
             The table name
             </summary>
@@ -12583,7 +12583,7 @@
             <summary>
             Adds if.
             </summary>
-            <typeparam name="_t"></typeparam>
+            <typeparam name="T"></typeparam>
             <param name="collection">The collection.</param>
             <param name="predicate">The predicate.</param>
             <param name="value">The value.</param>
@@ -13554,7 +13554,7 @@
             <summary>
             The specified predicate.
             </summary>
-            <typeparam name="_t">The type of the source.</typeparam>
+            <typeparam name="T">The type of the source.</typeparam>
             <param name="source">The source.</param>
             <param name="predicate">The predicate.</param>
             <returns></returns>
@@ -13563,7 +13563,7 @@
             <summary>
             Determines whether [has at least] [the specified minimum count].
             </summary>
-            <typeparam name="_t">The type of the source.</typeparam>
+            <typeparam name="T">The type of the source.</typeparam>
             <param name="source">The source.</param>
             <param name="minCount">The minimum count.</param>
             <returns>
@@ -13577,7 +13577,7 @@
             <summary>
             Determines whether [has at least] [the specified minimum count].
             </summary>
-            <typeparam name="_t">The type of the source.</typeparam>
+            <typeparam name="T">The type of the source.</typeparam>
             <param name="source">The source.</param>
             <param name="minCount">The minimum count.</param>
             <param name="predicate">The predicate.</param>
@@ -13592,7 +13592,7 @@
             <summary>
             Determines whether the specified count has exactly.
             </summary>
-            <typeparam name="_t">The type of the source.</typeparam>
+            <typeparam name="T">The type of the source.</typeparam>
             <param name="source">The source.</param>
             <param name="count">The count.</param>
             <returns>
@@ -13606,7 +13606,7 @@
             <summary>
             Determines whether the specified count has exactly.
             </summary>
-            <typeparam name="_t">The type of the source.</typeparam>
+            <typeparam name="T">The type of the source.</typeparam>
             <param name="source">The source.</param>
             <param name="count">The count.</param>
             <param name="predicate">The predicate.</param>
@@ -13621,7 +13621,7 @@
             <summary>
             Determines whether [has at most] [the specified limit].
             </summary>
-            <typeparam name="_t">The type of the source.</typeparam>
+            <typeparam name="T">The type of the source.</typeparam>
             <param name="source">The source.</param>
             <param name="limit">The limit.</param>
             <returns>
@@ -13635,7 +13635,7 @@
             <summary>
             Determines whether [has at most] [the specified limit].
             </summary>
-            <typeparam name="_t">The type of the source.</typeparam>
+            <typeparam name="T">The type of the source.</typeparam>
             <param name="source">The source.</param>
             <param name="limit">The limit.</param>
             <param name="predicate">The predicate.</param>
@@ -13674,12 +13674,12 @@
             <param name="predicate">The predicate.</param>
             <returns></returns>
         </member>
-        <member name="M:Bubba.OptionExtensions.SelectOptional``2(System.Collections.Generic.IEnumerable{``0},System.Func{``0,Bubba.Option{``1}})">
+        <member name="M:Bubba.OptionExtensions.SelectOptional``2(System.Collections.Generic.IEnumerable{``0},System.Func{``0,Bubba.Option{``0}})">
             <summary>
             Selects the optional.
             </summary>
-            <typeparam name="_t"></typeparam>
-            <typeparam name="_result">The type of the result.</typeparam>
+            <typeparam name="T"></typeparam>
+            <typeparam name="TResult">The type of the result.</typeparam>
             <param name="enumerable">The enumerable.</param>
             <param name="map">The map.</param>
             <returns></returns>
@@ -13699,7 +13699,7 @@
             <summary>
             Adds the specified item.
             </summary>
-            <typeparam name="_t"></typeparam>
+            <typeparam name="T"></typeparam>
             <param name="queue">The queue.</param>
             <param name="item">The item.</param>
         </member>
@@ -15807,6 +15807,39 @@
             The presence.
             </value>
         </member>
+        <member name="T:Bubba.ILanguageProcessor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Bubba.ILanguageProcessor.Tokenize(System.String)">
+            <summary>
+            Tokenizes the specified text.
+            </summary>
+            <param name="text">The text.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Bubba.ILanguageProcessor.NormalizeText(System.String)">
+            <summary>
+            Normalizes the text.
+            </summary>
+            <param name="text">The text.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Bubba.ILanguageProcessor.RemoveStopWords(System.String[])">
+            <summary>
+            Removes the stop words.
+            </summary>
+            <param name="tokens">The tokens.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Bubba.ILanguageProcessor.StemWord(System.String)">
+            <summary>
+            Stems the word.
+            </summary>
+            <param name="word">The word.</param>
+            <returns></returns>
+        </member>
         <member name="T:Bubba.IPath">
             <summary>
             
@@ -15933,6 +15966,30 @@
             <value>
             The invalid name chars.
             </value>
+        </member>
+        <member name="T:Bubba.ISentimentAnalyzer">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Bubba.ISentimentAnalyzer.AnalyzeSentiment(System.String)">
+            <summary>
+            Analyzes the sentiment.
+            </summary>
+            <param name="text">The text.</param>
+            <returns></returns>
+        </member>
+        <member name="T:Bubba.ITextClassifier">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Bubba.ITextClassifier.ClassifyText(System.String)">
+            <summary>
+            Classifies the text.
+            </summary>
+            <param name="text">The text.</param>
+            <returns></returns>
         </member>
         <member name="T:Bubba.ParameterBase">
             <inheritdoc />
@@ -16831,17 +16888,17 @@
             The row index
             </summary>
         </member>
-        <member name="F:Bubba.ReportBase._themePath">
+        <member name="F:Bubba.ReportBase.ThemePath">
             <summary>
             The theme path
             </summary>
         </member>
-        <member name="F:Bubba.ReportBase._titleFont">
+        <member name="F:Bubba.ReportBase.TitleFont">
             <summary>
             The title font
             </summary>
         </member>
-        <member name="F:Bubba.ReportBase._topMargin">
+        <member name="F:Bubba.ReportBase.TopMargin">
             <summary>
             The top margin
             </summary>
@@ -25400,6 +25457,96 @@
             <param name="jsonResponse">The json response.</param>
             <returns></returns>
         </member>
+        <member name="T:Bubba.EmbeddingResponse">
+            <inheritdoc />
+            <summary>
+            </summary>
+            <seealso cref="T:Bubba.GptResponse" />
+        </member>
+        <member name="F:Bubba.EmbeddingResponse._filePath">
+            <summary>
+            The file path
+            </summary>
+        </member>
+        <member name="F:Bubba.EmbeddingResponse._generatedFile">
+            <summary>
+            The file path
+            </summary>
+        </member>
+        <member name="F:Bubba.EmbeddingResponse._rawResponse">
+            <summary>
+            The raw response
+            </summary>
+        </member>
+        <member name="M:Bubba.EmbeddingResponse.#ctor">
+            <summary>
+            Initializes a new instance of the
+            <see cref="T:Bubba.EmbeddingResponse"/> class.
+            </summary>
+            <inheritdoc />
+        </member>
+        <member name="P:Bubba.EmbeddingResponse.RawResponse">
+            <summary>
+            Gets or sets the raw response.
+            </summary>
+            <value>
+            The raw response.
+            </value>
+        </member>
+        <member name="P:Bubba.EmbeddingResponse.Id">
+            <inheritdoc />
+            <summary>
+            Gets or sets the identifier.
+            </summary>
+            <value>
+            The identifier.
+            </value>
+        </member>
+        <member name="P:Bubba.EmbeddingResponse.Object">
+            <inheritdoc />
+            <summary>
+            Gets or sets the object.
+            </summary>
+            <value>
+            The object.
+            </value>
+        </member>
+        <member name="P:Bubba.EmbeddingResponse.Created">
+            <inheritdoc />
+            <summary>
+            Gets or sets the created.
+            </summary>
+            <value>
+            The created.
+            </value>
+        </member>
+        <member name="P:Bubba.EmbeddingResponse.Model">
+            <inheritdoc />
+            <summary>
+            Gets or sets the model.
+            </summary>
+            <value>
+            The model.
+            </value>
+        </member>
+        <member name="P:Bubba.EmbeddingResponse.Choices">
+            <inheritdoc />
+            <summary>
+            Gets or sets the choices.
+            </summary>
+            <value>
+            The choices.
+            </value>
+        </member>
+        <member name="P:Bubba.EmbeddingResponse.Usage">
+            <inheritdoc />
+            <summary>
+            Gets or sets the usage.
+            </summary>
+            <value>
+            The usage.
+            </value>
+        </member>
         <member name="T:Bubba.FineTuningResponse">
             <inheritdoc />
             <summary>
@@ -25612,6 +25759,11 @@
             The usage
             </summary>
         </member>
+        <member name="F:Bubba.GptResponse._httpClient">
+            <summary>
+            The HTTP client
+            </summary>
+        </member>
         <member name="M:Bubba.GptResponse.#ctor">
             <inheritdoc />
             <summary>
@@ -25666,6 +25818,21 @@
             <value>
             The usage.
             </value>
+        </member>
+        <member name="M:Bubba.GptResponse.Dispose">
+            <inheritdoc />
+            <summary>
+            Releases unmanaged and - optionally - managed resources.
+            </summary>
+        </member>
+        <member name="M:Bubba.GptResponse.Dispose(System.Boolean)">
+            <summary>
+            Releases unmanaged and - optionally - managed resources.
+            </summary>
+            <param name="disposing"><c>true</c>
+            to release both managed and unmanaged resources;
+            <c>false</c> to release only unmanaged resources.
+            </param>
         </member>
         <member name="T:Bubba.GptUploadResponse">
             <inheritdoc />
@@ -26345,96 +26512,6 @@
             <param name="chatModel">The chat model.</param>
             <returns></returns>
         </member>
-        <member name="T:Bubba.VectorEmbeddingResponse">
-            <inheritdoc />
-            <summary>
-            </summary>
-            <seealso cref="T:Bubba.GptResponse" />
-        </member>
-        <member name="F:Bubba.VectorEmbeddingResponse._filePath">
-            <summary>
-            The file path
-            </summary>
-        </member>
-        <member name="F:Bubba.VectorEmbeddingResponse._generatedFile">
-            <summary>
-            The file path
-            </summary>
-        </member>
-        <member name="F:Bubba.VectorEmbeddingResponse._rawResponse">
-            <summary>
-            The raw response
-            </summary>
-        </member>
-        <member name="M:Bubba.VectorEmbeddingResponse.#ctor">
-            <summary>
-            Initializes a new instance of the
-            <see cref="T:Bubba.VectorEmbeddingResponse"/> class.
-            </summary>
-            <inheritdoc />
-        </member>
-        <member name="P:Bubba.VectorEmbeddingResponse.RawResponse">
-            <summary>
-            Gets or sets the raw response.
-            </summary>
-            <value>
-            The raw response.
-            </value>
-        </member>
-        <member name="P:Bubba.VectorEmbeddingResponse.Id">
-            <inheritdoc />
-            <summary>
-            Gets or sets the identifier.
-            </summary>
-            <value>
-            The identifier.
-            </value>
-        </member>
-        <member name="P:Bubba.VectorEmbeddingResponse.Object">
-            <inheritdoc />
-            <summary>
-            Gets or sets the object.
-            </summary>
-            <value>
-            The object.
-            </value>
-        </member>
-        <member name="P:Bubba.VectorEmbeddingResponse.Created">
-            <inheritdoc />
-            <summary>
-            Gets or sets the created.
-            </summary>
-            <value>
-            The created.
-            </value>
-        </member>
-        <member name="P:Bubba.VectorEmbeddingResponse.Model">
-            <inheritdoc />
-            <summary>
-            Gets or sets the model.
-            </summary>
-            <value>
-            The model.
-            </value>
-        </member>
-        <member name="P:Bubba.VectorEmbeddingResponse.Choices">
-            <inheritdoc />
-            <summary>
-            Gets or sets the choices.
-            </summary>
-            <value>
-            The choices.
-            </value>
-        </member>
-        <member name="P:Bubba.VectorEmbeddingResponse.Usage">
-            <inheritdoc />
-            <summary>
-            Gets or sets the usage.
-            </summary>
-            <value>
-            The usage.
-            </value>
-        </member>
         <member name="T:Bubba.VectorResponse">
             <inheritdoc />
             <summary>
@@ -26530,6 +26607,174 @@
             Extracts the vector store.
             </summary>
             <param name="response">The json response.</param>
+            <returns></returns>
+        </member>
+        <member name="T:Bubba.HtmlAttribute">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Bubba.HtmlAttribute.#ctor">
+            <summary>
+            Initializes a new instance of the
+            <see cref="T:Bubba.HtmlAttribute"/> class.
+            </summary>
+        </member>
+        <member name="M:Bubba.HtmlAttribute.#ctor(System.String,System.String)">
+            <summary>
+            Initializes a new instance of the
+            <see cref="T:Bubba.HtmlAttribute"/> class.
+            </summary>
+            <param name="name">The name.</param>
+            <param name="value">The value.</param>
+        </member>
+        <member name="P:Bubba.HtmlAttribute.Name">
+            <summary>
+            Gets or sets the name.
+            </summary>
+            <value>
+            The name.
+            </value>
+        </member>
+        <member name="P:Bubba.HtmlAttribute.Value">
+            <summary>
+            Gets or sets the value.
+            </summary>
+            <value>
+            The value.
+            </value>
+        </member>
+        <member name="T:Bubba.HtmlElement">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Bubba.HtmlElement._element">
+            <summary>
+            The element
+            </summary>
+        </member>
+        <member name="M:Bubba.HtmlElement.#ctor(AngleSharp.Dom.IElement)">
+            <summary>
+            Initializes a new instance of the
+            <see cref="T:Bubba.HtmlElement"/> class.
+            </summary>
+            <param name="element">The element.</param>
+        </member>
+        <member name="P:Bubba.HtmlElement.TagName">
+            <summary>
+            Gets the name of the tag.
+            </summary>
+            <value>
+            The name of the tag.
+            </value>
+        </member>
+        <member name="P:Bubba.HtmlElement.InnerText">
+            <summary>
+            Gets or sets the inner text.
+            </summary>
+            <value>
+            The inner text.
+            </value>
+        </member>
+        <member name="P:Bubba.HtmlElement.InnerHtml">
+            <summary>
+            Gets or sets the inner HTML.
+            </summary>
+            <value>
+            The inner HTML.
+            </value>
+        </member>
+        <member name="P:Bubba.HtmlElement.Attributes">
+            <summary>
+            Gets the attributes.
+            </summary>
+            <value>
+            The attributes.
+            </value>
+        </member>
+        <member name="P:Bubba.HtmlElement.Children">
+            <summary>
+            Gets the children.
+            </summary>
+            <value>
+            The children.
+            </value>
+        </member>
+        <member name="M:Bubba.HtmlElement.AddAttribute(System.String,System.String)">
+            <summary>
+            Adds the attribute.
+            </summary>
+            <param name="name">The name.</param>
+            <param name="value">The value.</param>
+        </member>
+        <member name="M:Bubba.HtmlElement.AddChild(Bubba.HtmlElement)">
+            <summary>
+            Adds the child.
+            </summary>
+            <param name="child">The child.</param>
+        </member>
+        <member name="M:Bubba.HtmlElement.RemoveChild(Bubba.HtmlElement)">
+            <summary>
+            Removes the child.
+            </summary>
+            <param name="child">The child.</param>
+        </member>
+        <member name="M:Bubba.HtmlElement.QuerySelector(System.String)">
+            <summary>
+            Queries the selector.
+            </summary>
+            <param name="selector">The selector.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Bubba.HtmlElement.QuerySelectorAll(System.String)">
+            <summary>
+            Queries the selector all.
+            </summary>
+            <param name="selector">The selector.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Bubba.HtmlElement.ToString">
+            <summary>
+            Converts to string.
+            </summary>
+            <returns>
+            A <see cref="T:System.String" /> that represents this instance.
+            </returns>
+        </member>
+        <member name="F:Bubba.HtmlReader._parser">
+            <summary>
+            The parser
+            </summary>
+        </member>
+        <member name="M:Bubba.HtmlReader.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Bubba.HtmlReader"/> class.
+            </summary>
+        </member>
+        <member name="M:Bubba.HtmlReader.Parse(System.String)">
+            <summary>
+            Parses an HTML string and returns the root element of the document.
+            </summary>
+            <param name="html">The HTML string to parse.</param>
+            <returns>The root element of the parsed document.</returns>
+        </member>
+        <member name="T:Bubba.HtmlWriter">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Bubba.HtmlWriter.#ctor">
+            <summary>
+            Initializes a new instance of the
+            <see cref="T:Bubba.HtmlWriter"/> class.
+            </summary>
+        </member>
+        <member name="M:Bubba.HtmlWriter.Write(Bubba.HtmlDocument)">
+            <summary>
+            Writes the specified document.
+            </summary>
+            <param name="document">The document.</param>
             <returns></returns>
         </member>
         <member name="T:Bubba.BabyBoy">
@@ -27241,7 +27486,7 @@
             <summary>
             Serializes an object to a JSON string.
             </summary>
-            <typeparam name="_t">The type of the object to serialize.</typeparam>
+            <typeparam name="T">The type of the object to serialize.</typeparam>
             <param name="data">The object to serialize.</param>
             <returns>JSON string representation of the object.</returns>
         </member>
@@ -27249,7 +27494,7 @@
             <summary>
             Deserializes a JSON string to an object of the specified type.
             </summary>
-            <typeparam name="_t">The type of the object to deserialize to.</typeparam>
+            <typeparam name="T">The type of the object to deserialize to.</typeparam>
             <param name="json">The JSON string to deserialize.</param>
             <returns>Deserialized object of the specified type.</returns>
         </member>
@@ -27257,8 +27502,8 @@
             <summary>
             Sends a POST request with a JSON payload and receives the JSON response.
             </summary>
-            <typeparam name="_tRequest">Type of the request object to serialize.</typeparam>
-            <typeparam name="_tResponse">Type of the response object to deserialize.</typeparam>
+            <typeparam name="TRequest">Type of the request object to serialize.</typeparam>
+            <typeparam name="TResponse">Type of the response object to deserialize.</typeparam>
             <param name="url">The URL to send the request to.</param>
             <param name="requestData">The object to be serialized and sent as JSON.</param>
             <returns>Deserialized response object.</returns>
@@ -27267,68 +27512,11 @@
             <summary>
             Sends a GET request and receives the JSON response.
             </summary>
-            <typeparam name="_tResponse">
+            <typeparam name="T">
             Type of the response object to deserialize.
             </typeparam>
             <param name="url">The URL to send the request to.</param>
             <returns>Deserialized response object.</returns>
-        </member>
-        <member name="T:Bubba.ILanguageProcessor">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="M:Bubba.ILanguageProcessor.Tokenize(System.String)">
-            <summary>
-            Tokenizes the specified text.
-            </summary>
-            <param name="text">The text.</param>
-            <returns></returns>
-        </member>
-        <member name="M:Bubba.ILanguageProcessor.NormalizeText(System.String)">
-            <summary>
-            Normalizes the text.
-            </summary>
-            <param name="text">The text.</param>
-            <returns></returns>
-        </member>
-        <member name="M:Bubba.ILanguageProcessor.RemoveStopWords(System.String[])">
-            <summary>
-            Removes the stop words.
-            </summary>
-            <param name="tokens">The tokens.</param>
-            <returns></returns>
-        </member>
-        <member name="M:Bubba.ILanguageProcessor.StemWord(System.String)">
-            <summary>
-            Stems the word.
-            </summary>
-            <param name="word">The word.</param>
-            <returns></returns>
-        </member>
-        <member name="T:Bubba.ISentimentAnalyzer">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="M:Bubba.ISentimentAnalyzer.AnalyzeSentiment(System.String)">
-            <summary>
-            Analyzes the sentiment.
-            </summary>
-            <param name="text">The text.</param>
-            <returns></returns>
-        </member>
-        <member name="T:Bubba.ITextClassifier">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="M:Bubba.ITextClassifier.ClassifyText(System.String)">
-            <summary>
-            Classifies the text.
-            </summary>
-            <param name="text">The text.</param>
-            <returns></returns>
         </member>
         <member name="T:Bubba.LanguagePipeline">
             <summary>
@@ -27960,6 +28148,380 @@
             </summary>
             <param name="ex">The ex.</param>
         </member>
+        <member name="T:Bubba.XmlCallback">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Bubba.XmlCallback._timer">
+            <summary>
+            The timer
+            </summary>
+        </member>
+        <member name="F:Bubba.XmlCallback._element">
+            <summary>
+            The element
+            </summary>
+        </member>
+        <member name="M:Bubba.XmlCallback.#ctor(System.Xml.Linq.XElement)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Bubba.XmlCallback"/> class.
+            </summary>
+            <param name="element">The element.</param>
+            <exception cref="T:System.ArgumentNullException">element</exception>
+        </member>
+        <member name="M:Bubba.XmlCallback.GetAttribute(System.String)">
+            <summary>
+            Gets the attribute.
+            </summary>
+            <param name="attributeName">Name of the attribute.</param>
+            <returns>
+            string
+            </returns>
+        </member>
+        <member name="M:Bubba.XmlCallback.SetAttribute(System.String,System.String)">
+            <summary>
+            Sets the attribute.
+            </summary>
+            <param name="attributeName">Name of the attribute.</param>
+            <param name="value">The value.</param>
+        </member>
+        <member name="M:Bubba.XmlCallback.GetChildElements(System.String)">
+            <summary>
+            Gets the child elements.
+            </summary>
+            <param name="elementName">Name of the element.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Bubba.XmlCallback.AddChildElement(System.Xml.Linq.XElement)">
+            <summary>
+            Adds the child element.
+            </summary>
+            <param name="childElement">The child element.</param>
+        </member>
+        <member name="M:Bubba.XmlCallback.RemoveChildElement(System.Xml.Linq.XElement)">
+            <summary>
+            Removes the child element.
+            </summary>
+            <param name="childElement">The child element.</param>
+        </member>
+        <member name="M:Bubba.XmlCallback.SetValue(System.String)">
+            <summary>
+            Sets the value.
+            </summary>
+            <param name="value">The value.</param>
+        </member>
+        <member name="M:Bubba.XmlCallback.GetParentElement">
+            <summary>
+            Gets the parent element.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Bubba.XmlCallback.FindElementsByXPath(System.String)">
+            <summary>
+            Finds the elements by x path.
+            </summary>
+            <param name="xpath">The xpath.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Bubba.XmlCallback.FindElementByXPath(System.String)">
+            <summary>
+            Finds the element by x path.
+            </summary>
+            <param name="xpath">The xpath.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Bubba.XmlCallback.Dispose">
+            <inheritdoc />
+            <summary>
+            Releases unmanaged and - optionally - managed resources.
+            </summary>
+        </member>
+        <member name="M:Bubba.XmlCallback.Dispose(System.Boolean)">
+            <summary>
+            Releases unmanaged and - optionally - managed resources.
+            </summary>
+            <param name="disposing"><c>true</c>
+            to release both managed and unmanaged resources;
+            <c>false</c> to release only unmanaged resources.
+            </param>
+        </member>
+        <member name="M:Bubba.XmlCallback.Fail(System.Exception)">
+            <summary>
+            Fails the specified ex.
+            </summary>
+            <param name="ex">The ex.</param>
+        </member>
+        <member name="T:Bubba.XmlManager">
+            <inheritdoc />
+            <summary>
+            </summary>
+            <seealso cref="T:Bubba.PropertyChangedBase" />
+        </member>
+        <member name="F:Bubba.XmlManager._busy">
+            <summary>
+            The busy
+            </summary>
+        </member>
+        <member name="F:Bubba.XmlManager._timer">
+            <summary>
+            The timer
+            </summary>
+        </member>
+        <member name="F:Bubba.XmlManager._document">
+            <summary>
+            The document
+            </summary>
+        </member>
+        <member name="M:Bubba.XmlManager.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the
+            <see cref="T:Bubba.XmlManager"/> class.
+            </summary>
+            <param name="filePath">The file path.</param>
+        </member>
+        <member name="M:Bubba.XmlManager.CreateDocument(System.String,System.String)">
+            <summary>
+            Creates the new document.
+            </summary>
+            <param name="rootElementName">
+            Name of the root element.
+            </param>
+            <param name="namespaceUri">
+            The namespace URI.
+            </param>
+        </member>
+        <member name="M:Bubba.XmlManager.Load(System.String)">
+            <summary>
+            Loads the specified file path.
+            </summary>
+            <param name="filePath">
+            The file path.
+            </param>
+        </member>
+        <member name="M:Bubba.XmlManager.Save(System.String)">
+            <summary>
+            Saves the specified file path.
+            </summary>
+            <param name="filePath">
+            The file path.
+            </param>
+        </member>
+        <member name="M:Bubba.XmlManager.GetRootElement">
+            <summary>
+            Gets the root element.
+            </summary>
+            <returns>
+            </returns>
+        </member>
+        <member name="M:Bubba.XmlManager.AddRootElement(System.Xml.Linq.XElement)">
+            <summary>
+            Adds the root element.
+            </summary>
+            <param name="rootElement">
+            The root element.
+            </param>
+        </member>
+        <member name="M:Bubba.XmlManager.RemoveElement(System.Xml.Linq.XElement)">
+            <summary>
+            Removes the element.
+            </summary>
+            <param name="element">
+            The element.
+            </param>
+        </member>
+        <member name="M:Bubba.XmlManager.ValidateSchema(System.String)">
+            <summary>
+            Validates the schema.
+            </summary>
+            <param name="schemaPath">
+            The schema path.
+            </param>
+        </member>
+        <member name="M:Bubba.XmlManager.Dispose">
+            <inheritdoc />
+            <summary>
+            Releases unmanaged and - optionally - managed resources.
+            </summary>
+        </member>
+        <member name="M:Bubba.XmlManager.Dispose(System.Boolean)">
+            <summary>
+            Releases unmanaged and - optionally - managed resources.
+            </summary>
+            <param name="disposing"><c>true</c>
+            to release both managed and unmanaged resources;
+            <c>false</c> to release only unmanaged resources.
+            </param>
+        </member>
+        <member name="M:Bubba.XmlManager.Fail(System.Exception)">
+            <summary>
+            Fails the specified ex.
+            </summary>
+            <param name="ex">The ex.</param>
+        </member>
+        <member name="T:Bubba.XmlReader">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Bubba.XmlReader._busy">
+            <summary>
+            The busy
+            </summary>
+        </member>
+        <member name="F:Bubba.XmlReader._timer">
+            <summary>
+            The timer
+            </summary>
+        </member>
+        <member name="M:Bubba.XmlReader.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Bubba.XmlReader"/> class.
+            </summary>
+        </member>
+        <member name="M:Bubba.XmlReader.ReadElementValue(System.String,System.String)">
+            <summary>
+            Reads the element value.
+            </summary>
+            <param name="filePath">The file path.</param>
+            <param name="elementName">Name of the element.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Bubba.XmlReader.ReadAttributes(System.String,System.String)">
+            <summary>
+            Reads the attributes.
+            </summary>
+            <param name="filePath">The file path.</param>
+            <param name="elementName">Name of the element.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Bubba.XmlReader.ReadAllElements(System.String,System.String)">
+            <summary>
+            Reads all elements.
+            </summary>
+            <param name="filePath">The file path.</param>
+            <param name="elementName">Name of the element.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Bubba.XmlReader.Dispose">
+            <inheritdoc />
+            <summary>
+            Releases unmanaged and - optionally - managed resources.
+            </summary>
+        </member>
+        <member name="M:Bubba.XmlReader.Dispose(System.Boolean)">
+            <summary>
+            Releases unmanaged and - optionally - managed resources.
+            </summary>
+            <param name="disposing"><c>true</c>
+            to release both managed and unmanaged resources;
+            <c>false</c> to release only unmanaged resources.
+            </param>
+        </member>
+        <member name="M:Bubba.XmlReader.Fail(System.Exception)">
+            <summary>
+            Fails the specified ex.
+            </summary>
+            <param name="ex">The ex.</param>
+        </member>
+        <member name="T:Bubba.XmlUtility">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Bubba.XmlUtility.CreateElement(System.String,System.String,System.Collections.Generic.Dictionary{System.String,System.String},System.String)">
+            <summary>
+            Creates the element.
+            </summary>
+            <param name="name">The name.</param>
+            <param name="value">The value.</param>
+            <param name="attributes">The attributes.</param>
+            <param name="namespaceUri">The namespace URI.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Bubba.XmlUtility.SerializeToXml``1(``0)">
+            <summary>
+            Serializes to XML.
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="obj">The object.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Bubba.XmlUtility.DeserializeFromXml``1(System.String)">
+            <summary>
+            Deserializes from XML.
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="xml">The XML.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Bubba.XmlUtility.Fail(System.Exception)">
+            <summary>
+            Fails the specified ex.
+            </summary>
+            <param name="ex">The ex.</param>
+        </member>
+        <member name="T:Bubba.XmlWriter">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Bubba.XmlWriter._timer">
+            <summary>
+            The timer
+            </summary>
+        </member>
+        <member name="M:Bubba.XmlWriter.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Bubba.XmlWriter"/> class.
+            </summary>
+        </member>
+        <member name="M:Bubba.XmlWriter.WriteElementValue(System.String,System.String,System.String)">
+            <summary>
+            Writes the element value.
+            </summary>
+            <param name="filePath">The file path.</param>
+            <param name="elementName">Name of the element.</param>
+            <param name="value">The value.</param>
+        </member>
+        <member name="M:Bubba.XmlWriter.AddElement(System.String,System.Xml.Linq.XElement,System.String)">
+            <summary>
+            Adds the element.
+            </summary>
+            <param name="filePath">The file path.</param>
+            <param name="elementToAdd">The element to add.</param>
+            <param name="parentElementName">Name of the parent element.</param>
+        </member>
+        <member name="M:Bubba.XmlWriter.UpdateAttribute(System.String,System.String,System.String,System.String)">
+            <summary>
+            Updates the attribute.
+            </summary>
+            <param name="filePath">The file path.</param>
+            <param name="elementName">Name of the element.</param>
+            <param name="attributeName">Name of the attribute.</param>
+            <param name="newValue">The new value.</param>
+        </member>
+        <member name="M:Bubba.XmlWriter.Dispose">
+            <inheritdoc />
+            <summary>
+            Releases unmanaged and - optionally - managed resources.
+            </summary>
+        </member>
+        <member name="M:Bubba.XmlWriter.Dispose(System.Boolean)">
+            <summary>
+            Releases unmanaged and - optionally - managed resources.
+            </summary>
+            <param name="disposing"><c>true</c>
+            to release both managed and unmanaged resources;
+            <c>false</c> to release only unmanaged resources.
+            </param>
+        </member>
+        <member name="M:Bubba.XmlWriter.Fail(System.Exception)">
+            <summary>
+            Fails the specified ex.
+            </summary>
+            <param name="ex">The ex.</param>
+        </member>
         <member name="T:Bubba.Properties.Definitions">
             <summary>
               A strongly-typed resource class, for looking up localized strings, etc.
@@ -28204,7 +28766,7 @@
         </member>
         <member name="P:Bubba.Properties.GptEndPoint.FineTuning">
             <summary>
-              Looks up a localized string similar to https://api.openai.com/v1/fine_tuning/jobs.
+              Looks up a localized string similar to https://api.openai.com/v1/fineTuning/jobs.
             </summary>
         </member>
         <member name="P:Bubba.Properties.GptEndPoint.ImageGeneration">
@@ -28494,12 +29056,12 @@
               Looks up a localized string similar to davinci-002;  GPT base models can understand and generate natural language or code but are not trained with instruction following. These models are made to be replacements for the original GPT-3 base models and use the legacy Completions API. .
             </summary>
         </member>
-        <member name="P:Bubba.Properties.Models.gpt_3_5_turbo">
+        <member name="P:Bubba.Properties.Models.gpt_3_5Turbo">
             <summary>
               Looks up a localized string similar to gpt-3.5-turbo; Currently points to gpt-3.5-turbo-0125..
             </summary>
         </member>
-        <member name="P:Bubba.Properties.Models.gpt_3_5_turbo_0125">
+        <member name="P:Bubba.Properties.Models.gpt_3_5Turbo_0125">
             <summary>
               Looks up a localized string similar to gpt-3.5-turbo-0125; GPT-3.5 Turbo models can understand and generate natural language or code and have been optimized for chat using the Chat Completions API but work well for non-chat tasks as well..
             </summary>
@@ -28529,17 +29091,17 @@
               Looks up a localized string similar to gpt-4-1106-preview; GPT-4 is an older version of a high-intelligence GPT model, usable in Chat Completions. .
             </summary>
         </member>
-        <member name="P:Bubba.Properties.Models.gpt_4_turbo">
+        <member name="P:Bubba.Properties.Models.gpt_4Turbo">
             <summary>
               Looks up a localized string similar to gpt-4-turbo;  GPT-4 is an older version of a high-intelligence GPT model, usable in Chat Completions. Image inputs via the o1, gpt-4o, gpt-4o-mini, chatgpt-4o-latest, or gpt-4-turbo models (or previously gpt-4-vision-preview) are not eligible for zero retention..
             </summary>
         </member>
-        <member name="P:Bubba.Properties.Models.gpt_4_turbo_2024_04_09">
+        <member name="P:Bubba.Properties.Models.gpt_4Turbo_2024_04_09">
             <summary>
               Looks up a localized string similar to gpt-4-turbo-2024-04-09.  GPT-4 is an older version of a high-intelligence GPT model, usable in Chat Completions. Image inputs via the o1, gpt-4o, gpt-4o-mini, chatgpt-4o-latest, or gpt-4-turbo models (or previously gpt-4-vision-preview) are not eligible for zero retention..
             </summary>
         </member>
-        <member name="P:Bubba.Properties.Models.gpt_4_turbo_preview">
+        <member name="P:Bubba.Properties.Models.gpt_4Turbo_preview">
             <summary>
               Looks up a localized string similar to gpt-4-turbo-preview;  GPT-4 is an older version of a high-intelligence GPT model, usable in Chat Completions. Image inputs via the o1, gpt-4o, gpt-4o-mini, chatgpt-4o-latest, or gpt-4-turbo models (or previously gpt-4-vision-preview) are not eligible for zero retention..
             </summary>
@@ -30203,7 +30765,7 @@
             The maroon
             </summary>
         </member>
-        <member name="F:Bubba.Palette._transparentColor">
+        <member name="F:Bubba.Palette.TransparentColor">
             <summary>
             The transparent color
             </summary>
@@ -32043,12 +32605,12 @@
             <seealso cref="T:Badger.MetroTabControl" />
             <seealso cref="T:System.ComponentModel.ISupportInitialize" />
         </member>
-        <member name="F:Bubba.WebControl._TEXT_LEFT_MARGIN">
+        <member name="F:Bubba.WebControl.TEXT_LEFT_MARGIN">
             <summary>
             The text left margin
             </summary>
         </member>
-        <member name="F:Bubba.WebControl._TEXT_RIGHT_MARGIN">
+        <member name="F:Bubba.WebControl.TEXT_RIGHT_MARGIN">
             <summary>
             The text right margin
             </summary>
@@ -32369,7 +32931,7 @@
             The input text
             </summary>
         </member>
-        <member name="F:Bubba.MetroTextBox._tempText">
+        <member name="F:Bubba.MetroTextBox.TempText">
             <summary>
             The temporary text
             </summary>
@@ -36002,7 +36564,7 @@
             The time
             </summary>
         </member>
-        <member name="F:Bubba.SplashMessage._titleColor">
+        <member name="F:Bubba.SplashMessage.TitleColor">
             <summary>
             The fore color
             </summary>
@@ -36455,7 +37017,7 @@
             The downloads
             </summary>
         </member>
-        <member name="F:Bubba.WebBrowser._tabPages">
+        <member name="F:Bubba.WebBrowser.TabPages">
             <summary>
             The tab pages
             </summary>

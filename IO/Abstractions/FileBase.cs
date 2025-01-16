@@ -291,15 +291,15 @@ namespace Bubba
             {
                 try
                 {
-                    var _text = string.Empty;
+                    var Text = string.Empty;
                     var _list = ReadLines( );
                     for( var _i = 0; _i < _list.Count; _i++ )
                     {
-                        _text += _list[ _i ];
+                        Text += _list[ _i ];
                     }
 
-                    return !string.IsNullOrEmpty( _text )
-                        ? _text
+                    return !string.IsNullOrEmpty( Text )
+                        ? Text
                         : string.Empty;
                 }
                 catch( IOException ex )

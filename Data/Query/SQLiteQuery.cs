@@ -224,16 +224,16 @@ namespace Bubba
                     var _excelQuery = new ExcelQuery( _filePath, _sql );
                     var _connection = _excelQuery.DataConnection as OleDbConnection;
                     _connection?.Open( );
-                    var _table = _connection?.GetOleDbSchemaTable( OleDbSchemaGuid.Tables, null );
-                    if( ( _table?.Rows.Count > 0 )
-                        && CheckIfSheetNameExists( sheetName, _table ) )
+                    var Table = _connection?.GetOleDbSchemaTable( OleDbSchemaGuid.Tables, null );
+                    if( ( Table?.Rows.Count > 0 )
+                        && CheckIfSheetNameExists( sheetName, Table ) )
                     {
                         var _message = new SplashMessage( _msg );
                         _message?.ShowDialog( );
                     }
                     else
                     {
-                        sheetName = _table?.Rows[ 0 ][ "TABLENAME" ].ToString( );
+                        sheetName = Table?.Rows[ 0 ][ "TABLENAME" ].ToString( );
                     }
 
                     var _adapter = new OleDbDataAdapter( _sql, _connection );

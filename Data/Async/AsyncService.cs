@@ -481,9 +481,9 @@ namespace Bubba
             var _async = new TaskCompletionSource<IDictionary<string, IEnumerable<string>>>( );
             try
             {
-                var _table = GetDataTable( );
-                var _columns = _table?.Columns;
-                var _rows = _table?.AsEnumerable( );
+                var Table = GetDataTable( );
+                var _columns = Table?.Columns;
+                var _rows = Table?.AsEnumerable( );
                 var _dict = new Dictionary<string, IEnumerable<string>>( );
                 for( var _i = 0; _i < _columns?.Count; _i++ )
                 {

@@ -300,11 +300,11 @@ namespace Bubba
         {
             get
             {
-                return _tableName;
+                return TableName;
             }
             private protected set
             {
-                _tableName = value;
+                TableName = value;
             }
         }
 

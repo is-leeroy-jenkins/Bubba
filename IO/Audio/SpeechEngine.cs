@@ -101,8 +101,8 @@ namespace Bubba
                 throw new FileNotFoundException( "The specified file does not exist." );
             }
 
-            var _text = File.ReadAllText( filePath );
-            _synthesizer.SpeakAsync( _text );
+            var Text = File.ReadAllText( filePath );
+            _synthesizer.SpeakAsync( Text );
         }
 
         /// <summary>
@@ -135,8 +135,8 @@ namespace Bubba
                 throw new FileNotFoundException( "The specified input file does not exist." );
             }
 
-            var _text = File.ReadAllText( inputFilePath );
-            SaveToAudioFile( _text, outputPath );
+            var Text = File.ReadAllText( inputFilePath );
+            SaveToAudioFile( Text, outputPath );
         }
 
         /// <summary>

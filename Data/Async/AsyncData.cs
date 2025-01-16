@@ -97,11 +97,11 @@ namespace Bubba
             var _async = new TaskCompletionSource<IList<int>>( );
             try
             {
-                var _table = GetDataTable( );
+                var Table = GetDataTable( );
                 var _ordinals = new List<int>( );
-                if( _table != null )
+                if( Table != null )
                 {
-                    foreach( DataColumn _column in _table?.Columns )
+                    foreach( DataColumn _column in Table?.Columns )
                     {
                         _ordinals?.Add( _column.Ordinal );
                     }
@@ -130,8 +130,8 @@ namespace Bubba
             var _async = new TaskCompletionSource<IDictionary<string, object>>( );
             try
             {
-                var _table = GetDataTable( );
-                var _rows = _table?.AsEnumerable( );
+                var Table = GetDataTable( );
+                var _rows = Table?.AsEnumerable( );
                 var _record = _rows?.FirstOrDefault( );
                 var _map = _record.ToDictionary( );
                 _async.SetResult( _map );
@@ -159,11 +159,11 @@ namespace Bubba
             var _async = new TaskCompletionSource<IDictionary<string, Type>>( );
             try
             {
-                var _table = GetDataTable( );
-                if( _table != null )
+                var Table = GetDataTable( );
+                if( Table != null )
                 {
                     var _schema = new Dictionary<string, Type>( );
-                    foreach( DataColumn _col in _table.Columns )
+                    foreach( DataColumn _col in Table.Columns )
                     {
                         _schema.Add( _col.ColumnName, _col.DataType );
                     }
@@ -198,11 +198,11 @@ namespace Bubba
             var _async = new TaskCompletionSource<IList<DataColumn>>( );
             try
             {
-                var _table = GetDataTable( );
-                if( _table != null )
+                var Table = GetDataTable( );
+                if( Table != null )
                 {
                     var _columns = new List<DataColumn>( );
-                    foreach( DataColumn _column in _table.Columns )
+                    foreach( DataColumn _column in Table.Columns )
                     {
                         if( _column != null )
                         {
@@ -241,11 +241,11 @@ namespace Bubba
             var _async = new TaskCompletionSource<IList<string>>( );
             try
             {
-                var _table = GetDataTable( );
-                if( _table != null )
+                var Table = GetDataTable( );
+                if( Table != null )
                 {
                     var _names = new List<string>( );
-                    foreach( DataColumn _column in _table.Columns )
+                    foreach( DataColumn _column in Table.Columns )
                     {
                         if( !string.IsNullOrEmpty( _column?.ColumnName ) )
                         {

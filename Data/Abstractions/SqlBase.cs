@@ -102,7 +102,7 @@ namespace Bubba
         /// <summary>
         /// The table name
         /// </summary>
-        private protected string _tableName;
+        private protected string TableName;
 
         /// <summary>
         /// The file name

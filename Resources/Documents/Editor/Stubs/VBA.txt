@@ -20,7 +20,7 @@ Private m_Record As ADODB.Record
 
 '----------------------------------------------------------------------------------
 '   Type        Contructor/Finalizer
-'   Name        Class_Initialize()/Class_Terminate
+'   Name        Class_Initialize()/ClassTerminate
 '   Parameters  Void
 '   Retval      AccessData
 '   Purpose
@@ -30,7 +30,7 @@ Private Sub Class_Initialize()
     Set m_DataConnection = New ADODB.Connection
 End Sub
 
-Private Sub Class_Terminate()
+Private Sub ClassTerminate()
     KillFiles
     KillDataConnection
     KillReferenceConnection

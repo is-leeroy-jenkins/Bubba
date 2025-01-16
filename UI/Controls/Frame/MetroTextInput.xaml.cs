@@ -148,7 +148,7 @@ namespace Bubba
             }
             set
             {
-                _tag = value;
+                Tag = value;
             }
         }
 

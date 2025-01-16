@@ -168,8 +168,8 @@ namespace Bubba
         {
             try
             {
-                var _test = c.ToString( );
-                ThrowIf.Null( _test, nameof( c ) );
+                var Test = c.ToString( );
+                ThrowIf.Null( Test, nameof( c ) );
                 return c >= '0' && c <= '9';
             }
             catch( Exception ex )
@@ -190,8 +190,8 @@ namespace Bubba
         {
             try
             {
-                var _test = c.ToString( );
-                ThrowIf.Null( _test, nameof( c ) );
+                var Test = c.ToString( );
+                ThrowIf.Null( Test, nameof( c ) );
                 return ( c >= 'A' && c <= 'Z' ) || ( c >= 'a' && c <= 'z' );
             }
             catch( Exception ex )
@@ -211,8 +211,8 @@ namespace Bubba
         {
             try
             {
-                var _test = c.ToString( );
-                ThrowIf.Null( _test, nameof( c ) );
+                var Test = c.ToString( );
+                ThrowIf.Null( Test, nameof( c ) );
                 return IsLetter( c ) || IsDigit( c );
             }
             catch( Exception ex )
@@ -233,8 +233,8 @@ namespace Bubba
         {
             try
             {
-                var _test = c.ToString( );
-                ThrowIf.Null( _test, nameof( c ) );
+                var Test = c.ToString( );
+                ThrowIf.Null( Test, nameof( c ) );
                 if( IsControl( c ) )
                 {
                     return false;
@@ -263,8 +263,8 @@ namespace Bubba
         {
             try
             {
-                var _test = c.ToString( );
-                ThrowIf.Null( _test, nameof( c ) );
+                var Test = c.ToString( );
+                ThrowIf.Null( Test, nameof( c ) );
                 if( c < 128 )
                 {
                     if( IsLetter( c )
@@ -309,8 +309,8 @@ namespace Bubba
         {
             try
             {
-                var _test = c.ToString( );
-                ThrowIf.Null( _test, nameof( c ) );
+                var Test = c.ToString( );
+                ThrowIf.Null( Test, nameof( c ) );
                 if( c < 128 )
                 {
                     if( IsLetter( c ) )

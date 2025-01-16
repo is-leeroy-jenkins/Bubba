@@ -81,8 +81,8 @@ namespace Bubba
                 _dataRange = ( ExcelRange )_dataWorksheet.Cells[ "A2" ]
                     ?.LoadFromDataTable( dataTable, true, TableStyles.Light1 );
 
-                var _title = _dataTable.TableName.SplitPascal( ) ?? "Badger";
-                _dataWorksheet.HeaderFooter.OddHeader.CenteredText = _title;
+                var Title = _dataTable.TableName.SplitPascal( ) ?? "Badger";
+                _dataWorksheet.HeaderFooter.OddHeader.CenteredText = Title;
                 _dataRange.Style.Font.Name = "Segoe UI";
                 _dataRange.Style.Font.Size = 8;
                 _dataRange.Style.Font.Bold = false;
@@ -120,7 +120,7 @@ namespace Bubba
         {
             try
             {
-                var _table = new DataTable( );
+                var Table = new DataTable( );
                 _startRow = startRow;
                 _startColumn = startColumn;
                 _dataRange = _dataWorksheet.Cells[ startRow, startColumn, endRow, endColumn ];
@@ -131,9 +131,9 @@ namespace Bubba
                 _options.ExcelErrorParsingStrategy =
                     ExcelErrorParsingStrategy.HandleExcelErrorsAsBlankCells;
 
-                _table = _dataRange?.ToDataTable( _options );
-                return _table?.Rows.Count > 0
-                    ? _table
+                Table = _dataRange?.ToDataTable( _options );
+                return Table?.Rows.Count > 0
+                    ? Table
                     : default( DataTable );
             }
             catch( Exception ex )
@@ -207,8 +207,8 @@ namespace Bubba
                 }
 
                 _pivotTable.DataOnRows = true;
-                var _title = _dataTable.TableName.SplitPascal( ) ?? "Badger";
-                _pivotWorksheet.HeaderFooter.OddHeader.CenteredText = _title;
+                var Title = _dataTable.TableName.SplitPascal( ) ?? "Badger";
+                _pivotWorksheet.HeaderFooter.OddHeader.CenteredText = Title;
                 _pivotTable.EnableDrill = true;
                 _pivotTable.ShowDrill = true;
                 _pivotTable.PivotTableStyle = PivotTableStyles.Light15;

@@ -164,7 +164,7 @@
                             BorderBrush="{TemplateBinding BorderBrush}"
                             BorderThickness="{TemplateBinding BorderThickness}" />
                         <Track
-                            x:Name="PART_Track"
+                            x:Name="PARTTrack"
                             Width="8"
                             IsDirectionReversed="true"
                             IsEnabled="{TemplateBinding IsMouseOver}">
@@ -207,7 +207,7 @@
                                     BorderBrush="{TemplateBinding BorderBrush}"
                                     BorderThickness="{TemplateBinding BorderThickness}" />
                                 <Track
-                                    x:Name="PART_Track"
+                                    x:Name="PARTTrack"
                                     IsEnabled="{TemplateBinding IsMouseOver}">
                                     <Track.DecreaseRepeatButton>
                                         <RepeatButton

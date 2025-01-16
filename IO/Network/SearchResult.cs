@@ -119,11 +119,11 @@ namespace Bubba
         {
             get
             {
-                return _title;
+                return Title;
             }
             private set
             {
-                _title = value;
+                Title = value;
             }
         }
 
@@ -151,7 +151,7 @@ namespace Bubba
             _link = link;
             _name = name;
             _content = content;
-            _title = title;
+            Title = title;
         }
 
         /// <inheritdoc />
@@ -165,7 +165,7 @@ namespace Bubba
             _link = result.Link;
             _name = result.Name;
             _content = result.Content;
-            _title = result.Title;
+            Title = result.Title;
         }
 
         /// <summary>
@@ -181,7 +181,7 @@ namespace Bubba
             link = _link;
             name = _name;
             content = _content;
-            title = _title;
+            title = Title;
         }
 
         /// <summary>

@@ -387,7 +387,7 @@ namespace Bubba
                 _endPoints.Add( "https://api.openai.com/v1/assistants" );
                 _endPoints.Add( "https://api.openai.com/v1/audio/speech" );
                 _endPoints.Add( "https://api.openai.com/v1/audio/translations" );
-                _endPoints.Add( "https://api.openai.com/v1/fine_tuning/jobs" );
+                _endPoints.Add( "https://api.openai.com/v1/fineTuning/jobs" );
                 _endPoints.Add( "https://api.openai.com/v1/files" );
                 _endPoints.Add( "https://api.openai.com/v1/uploads" );
                 _endPoints.Add( "https://api.openai.com/v1/images/generations" );

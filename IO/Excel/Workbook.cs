@@ -335,12 +335,12 @@ namespace Bubba
         {
             get
             {
-                return _titleFont;
+                return TitleFont;
             }
 
             private protected set
             {
-                _titleFont = value;
+                TitleFont = value;
             }
         }
     }

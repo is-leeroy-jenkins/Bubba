@@ -73,8 +73,8 @@ namespace Bubba
         {
             try
             {
-                var _textColumns = _dataTable?.GetTextColumns( );
-                var _list = _textColumns?.Select( c => c.ColumnName )?.ToList( );
+                var TextColumns = _dataTable?.GetTextColumns( );
+                var _list = TextColumns?.Select( c => c.ColumnName )?.ToList( );
                 return _list?.Any( ) == true
                     ? _list
                     : default( IList<string> );

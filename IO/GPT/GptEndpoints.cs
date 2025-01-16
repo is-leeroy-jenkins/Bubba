@@ -144,7 +144,7 @@ namespace Bubba
             _speechGeneration = "https://api.openai.com/v1/audio/speech";
             _translations = "https://api.openai.com/v1/audio/translations";
             _transcriptions = "https://api.openai.com/v1/audio/transcriptions";
-            _fineTuning = "https://api.openai.com/v1/fine_tuning/jobs";
+            _fineTuning = "https://api.openai.com/v1/fineTuning/jobs";
             _files = "https://api.openai.com/v1/files";
             _uploads = "https://api.openai.com/v1/uploads";
             _vectorEmbeddings = "https://api.openai.com/v1/embeddings";
@@ -207,7 +207,7 @@ namespace Bubba
         {
             get
             {
-                return _textGeneration;
+                return TextGeneration;
             }
         }
 
@@ -249,7 +249,7 @@ namespace Bubba
         {
             get
             {
-                return _translations;
+                return Translations;
             }
         }
 
@@ -263,7 +263,7 @@ namespace Bubba
         {
             get
             {
-                return _transcriptions;
+                return Transcriptions;
             }
         }
 
@@ -374,11 +374,11 @@ namespace Bubba
             try
             {
                 var _urls = new Dictionary<string, string>( );
-                _urls.Add( "Text Generation", _textGeneration );
-                _urls.Add( "Translations", _translations );
+                _urls.Add( "Text Generation", TextGeneration );
+                _urls.Add( "Translations", Translations );
                 _urls.Add( "Image Generation", _imageGeneration );
                 _urls.Add( "Vector Embeddings", _vectorEmbeddings );
-                _urls.Add( "Transcriptions", _transcriptions );
+                _urls.Add( "Transcriptions", Transcriptions );
                 _urls.Add( "Vector Stores", _vectorStores );
                 _urls.Add( "Speech Generation", _speechGeneration );
                 _urls.Add( "Fine Tuning", _fineTuning );
@@ -405,7 +405,7 @@ namespace Bubba
             _all.Add( "v1/assistants" );
             _all.Add( "v1/audio/speech" );
             _all.Add( "v1/audio/translations" );
-            _all.Add( "v1/fine_tuning/jobs" );
+            _all.Add( "v1/fineTuning/jobs" );
             _all.Add( "v1/files" );
             _all.Add( "v1/uploads" );
             _all.Add( "v1/images/generations" );

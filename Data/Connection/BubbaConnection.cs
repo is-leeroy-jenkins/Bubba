@@ -86,7 +86,7 @@ namespace Bubba
             _source = Source.External;
             _filePath = fullPath;
             _fileName = Path.GetFileNameWithoutExtension( fullPath );
-            _tableName = _fileName;
+            TableName = _fileName;
             _pathExtension = Path.GetExtension( fullPath )?.Replace( ".", "" );
             if( !string.IsNullOrEmpty( _pathExtension ) )
             {
@@ -112,7 +112,7 @@ namespace Bubba
             _provider = provider;
             _filePath = fullPath;
             _fileName = Path.GetFileNameWithoutExtension( fullPath );
-            _tableName = _fileName;
+            TableName = _fileName;
             _pathExtension = Path.GetExtension( fullPath )?.Replace( ".", "" );
             if( !string.IsNullOrEmpty( _pathExtension ) )
             {
@@ -135,7 +135,7 @@ namespace Bubba
         {
             _source = source;
             _provider = provider;
-            _tableName = source.ToString( );
+            TableName = source.ToString( );
             _filePath = GetClientPath( provider );
             _connectionString = CreateConnectionString( provider );
             _pathExtension = Path.GetExtension( _filePath )?.Replace( ".", "" );

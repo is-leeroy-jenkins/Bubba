@@ -159,7 +159,7 @@ namespace Bubba
 
             // Event Wiring
             Loaded += OnLoaded;
-            _title = "Abnormal Termination!";
+            Title = "Abnormal Termination!";
             MouseLeftButtonDown += OnClick;
             MouseRightButtonDown += OnClick;
         }
@@ -175,11 +175,11 @@ namespace Bubba
             : this( )
         {
             _exception = exception;
-            _title = "Abnormal Termination!";
+            Title = "Abnormal Termination!";
             _stackTrace = exception.StackTrace;
             _message = exception.Message;
-            _text = exception.ToLogString( _title );
-            Header.Content = _title;
+            _text = exception.ToLogString( Title );
+            Header.Content = Title;
             MessageText.Text = _text;
         }
 
@@ -194,11 +194,11 @@ namespace Bubba
             : this( exception )
         {
             _exception = exception;
-            _title = title;
+            Title = title;
             _stackTrace = exception.StackTrace;
             _message = exception.Message;
-            _text = exception.ToLogString( _title );
-            Header.Content = _title;
+            _text = exception.ToLogString( Title );
+            Header.Content = Title;
             MessageText.Text = _text;
         }
 
@@ -280,7 +280,7 @@ namespace Bubba
             {
                 if( string.IsNullOrEmpty( Header.Content.ToString( ) ) )
                 {
-                    Header.Content = _title;
+                    Header.Content = Title;
                 }
 
                 if( string.IsNullOrEmpty( MessageText.Text ) )
@@ -302,7 +302,7 @@ namespace Bubba
             try
             {
                 _timerCallback += UpdateStatus;
-                _timer = new Timer(_timerCallback, null, 0, 260);
+                _timer = new Timer( _timerCallback, null, 0, 260);
             }
             catch( Exception ex )
             {

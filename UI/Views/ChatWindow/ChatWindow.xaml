@@ -12,7 +12,6 @@
     xmlns:web="clr-namespace:CefSharp.Wpf;assembly=CefSharp.Wpf"
     xmlns:wpf="http://schemas.syncfusion.com/wpf"
     Title="Bubba GPT"
-
     Width="1260"
     Height="810"
     MinWidth="1000"

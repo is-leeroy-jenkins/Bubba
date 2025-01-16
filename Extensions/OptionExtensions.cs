@@ -1,14 +1,14 @@
 ﻿// ******************************************************************************************
-//     Assembly:                Bocifus
+//     Assembly:                Bubba
 //     Author:                  Terry D. Eppler
-//     Created:                 10-31-2024
+//     Created:                 01-16-2025
 // 
 //     Last Modified By:        Terry D. Eppler
-//     Last Modified On:        10-31-2024
+//     Last Modified On:        01-16-2025
 // ******************************************************************************************
 // <copyright file="OptionExtensions.cs" company="Terry D. Eppler">
-//   Bocifus is an open source windows (wpf) application that interacts with OpenAI GPT-3.5 Turbo API
-//   based on NET6 and written in C-Sharp.
+//    Bubba is a small and simple windows (wpf) application for interacting with the OpenAI API
+//    that's developed in C-Sharp under the MIT license.C#.
 // 
 //    Copyright ©  2020-2024 Terry D. Eppler
 // 
@@ -42,6 +42,7 @@
 namespace Bubba
 {
     using System;
+    using System.Collections;
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
     using System.Linq;
@@ -51,6 +52,7 @@ namespace Bubba
     /// </summary>
     [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
     [ SuppressMessage( "ReSharper", "UnusedType.Global" ) ]
+    [ SuppressMessage( "ReSharper", "PreferConcreteValueOverDefault" ) ]
     public static class OptionExtensions
     {
         /// <summary>
@@ -59,16 +61,16 @@ namespace Bubba
         /// <typeparam name="_"></typeparam>
         /// <param name="enumerable">The enumerable.</param>
         /// <returns></returns>
-        public static Option<_t> FirstOrNone<_t>( this IEnumerable<_t> enumerable )
+        public static Option<T> FirstOrNone<T>( this IEnumerable<T> enumerable )
         {
             try
             {
-                return enumerable.Select( x => ( Option<_t> )new Some<_t>( x ) ).FirstOrDefault( );
+                return enumerable.Select( x => ( Option<T> )new Some<T>( x ) ).FirstOrDefault( );
             }
             catch( Exception ex )
             {
                 Fail( ex );
-                return default( Option<_t> );
+                return default( Option<T> );
             }
         }
 
@@ -79,40 +81,39 @@ namespace Bubba
         /// <param name="enumerable">The enumerable.</param>
         /// <param name="predicate">The predicate.</param>
         /// <returns></returns>
-        public static Option<_t> FirstOrNone<_t>( this IEnumerable<_t> enumerable,
-            Func<_t, bool> predicate )
+        public static Option<T> FirstOrNone<T>( this IEnumerable<T> enumerable, Func<T, bool> predicate )
         {
             try
             {
-                return enumerable.Where( predicate ).FirstOrNone( );
+                return enumerable.Where( predicate ).FirstOrNone<T>( );
             }
             catch( Exception ex )
             {
                 Fail( ex );
-                return default( Option<_t> );
+                return default( Option<T> );
             }
         }
 
         /// <summary>
         /// Selects the optional.
         /// </summary>
-        /// <typeparam name="_t"></typeparam>
-        /// <typeparam name="_result">The type of the result.</typeparam>
+        /// <typeparam name="T"></typeparam>
+        /// <typeparam name="TResult">The type of the result.</typeparam>
         /// <param name="enumerable">The enumerable.</param>
         /// <param name="map">The map.</param>
         /// <returns></returns>
-        public static IEnumerable<_tResult> SelectOptional<_t, _tResult>(
-            this IEnumerable<_t> enumerable, Func<_t, Option<_tResult>> map )
+        public static IEnumerable<T> SelectOptional<T, TResult>( this IEnumerable<T> enumerable,
+            Func<T, Option<T>> map )
         {
             try
             {
-                return ( IEnumerable<_tResult> )enumerable.Select( map ).OfType<Some<_tResult>>( )
+                return ( IEnumerable<T> )enumerable.Select( map ).OfType<Some<T>>( )
                     .Select( s => s.IsSome );
             }
             catch( Exception ex )
             {
                 Fail( ex );
-                return default( IEnumerable<_tResult> );
+                return default( IEnumerable<T> );
             }
         }
 
@@ -128,3 +129,4 @@ namespace Bubba
         }
     }
 }
+

@@ -1,10 +1,10 @@
 ﻿// ******************************************************************************************
 //     Assembly:                Bubba
 //     Author:                  Terry D. Eppler
-//     Created:                 01-07-2025
+//     Created:                 01-16-2025
 // 
 //     Last Modified By:        Terry D. Eppler
-//     Last Modified On:        01-07-2025
+//     Last Modified On:        01-16-2025
 // ******************************************************************************************
 // <copyright file="GptResponse.cs" company="Terry D. Eppler">
 //    Bubba is a small and simple windows (wpf) application for interacting with the OpenAI API
@@ -44,13 +44,15 @@ namespace Bubba
     using System;
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
+    using System.Net.Http;
 
     /// <inheritdoc />
     /// <summary>
     /// </summary>
     [ SuppressMessage( "ReSharper", "UnusedType.Global" ) ]
     [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
-    public class GptResponse : GptResponseBase
+    [ SuppressMessage( "ReSharper", "MemberCanBeProtected.Global" ) ]
+    public class GptResponse : GptResponseBase, IDisposable
     {
         /// <summary>
         /// The choices
@@ -61,6 +63,11 @@ namespace Bubba
         /// The usage
         /// </summary>
         private protected GptUsage _usage;
+
+        /// <summary>
+        /// The HTTP client
+        /// </summary>
+        private protected HttpClient _httpClient;
 
         /// <inheritdoc />
         /// <summary>
@@ -73,8 +80,6 @@ namespace Bubba
             _entry = new object( );
             _presencePenalty = 0.0;
             _frequencyPenalty = 0.0;
-            _topPercent = 0.11;
-            _temperature = 0.18;
             _maximumTokens = 2048;
             _model = "gpt-4o";
             _endPoint = "https://api.openai.com/v1/chat/completions";
@@ -210,6 +215,31 @@ namespace Bubba
                     _usage = value;
                     OnPropertyChanged( nameof( Usage ) );
                 }
+            }
+        }
+
+        /// <inheritdoc />
+        /// <summary>
+        /// Releases unmanaged and - optionally - managed resources.
+        /// </summary>
+        public void Dispose( )
+        {
+            Dispose( true );
+            GC.SuppressFinalize( this );
+        }
+
+        /// <summary>
+        /// Releases unmanaged and - optionally - managed resources.
+        /// </summary>
+        /// <param name="disposing"><c>true</c>
+        /// to release both managed and unmanaged resources;
+        /// <c>false</c> to release only unmanaged resources.
+        /// </param>
+        private protected void Dispose( bool disposing )
+        {
+            if( disposing )
+            {
+                _httpClient?.Dispose( );
             }
         }
     }

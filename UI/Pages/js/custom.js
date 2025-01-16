@@ -172,7 +172,7 @@
         var $share_dialog = widgets.createCustomDialog( {
             selector: "#share-dialog",
             full_width_button: true,
-            action_text: "Copy to clipboard",
+            actionText: "Copy to clipboard",
             close_dialog_on_action: false,
             show_cancel_btn: false,
             action_callback: function( )
@@ -220,7 +220,7 @@
                     "Item 1", "Item 2", "Item 3", "Item 4", "Item 5"
                 ],
                 //init_index: 0, // You can use this parameter to set the initial item for displaying
-                init_text: "Dropdown Menu (With JavaScript)",
+                initText: "Dropdown Menu (With JavaScript)",
                 on_item_click_callback: function( $ui )
                 {
                     console.log( $ui.text( ) );
@@ -232,7 +232,7 @@
                     "Item 1", "Item 2", "Item 3", "Item 4", "Item 5"
                 ],
                 //init_index: 0, // You can use this parameter to set the initial item for displaying
-                init_text: "Large Dropdown Menu (With JavaScript)",
+                initText: "Large Dropdown Menu (With JavaScript)",
                 on_item_click_callback: function( $ui )
                 {
                     console.log( $ui.text( ) );
@@ -293,14 +293,14 @@
         // Set custom dialog type 4
         const _dialog4 = widgets.createCustomDialog( {
             selector: "#dialog-4",
-            action_text: "Action",
+            actionText: "Action",
             reverse_button_positions: true,
             full_width_button: true,
             action_callback: function( )
             {
                 console.log( "action" );
             },
-            cancel_text: "Back",
+            cancelText: "Back",
             cancel_callback: function( )
             {
                 console.log( "back" );

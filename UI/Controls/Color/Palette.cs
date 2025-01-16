@@ -208,7 +208,7 @@ namespace Bubba
         /// <summary>
         /// The transparent color
         /// </summary>
-        private protected Color _transparentColor = new Color( )
+        private protected Color TransparentColor = new Color( )
         {
             A = 0,
             R = 0,

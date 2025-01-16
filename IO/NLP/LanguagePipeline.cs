@@ -84,11 +84,11 @@ namespace Bubba
         public void ProcessText( string text )
         {
             var _normalizedText = _processor.NormalizeText( text );
-            var _tokens = _processor.Tokenize( _normalizedText );
-            var _cleanTokens = _processor.RemoveStopWords( _tokens );
-            foreach( var _token in _cleanTokens )
+            var Tokens = _processor.Tokenize( _normalizedText );
+            var _cleanTokens = _processor.RemoveStopWords( Tokens );
+            foreach( var Token in _cleanTokens )
             {
-                Console.WriteLine( _processor.StemWord( _token ) );
+                Console.WriteLine( _processor.StemWord( Token ) );
             }
 
             var _sentiment = _sentimentAnalyzer.AnalyzeSentiment( _normalizedText );

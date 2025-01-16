@@ -200,7 +200,7 @@ namespace Bubba
         /// <value>
         /// The maximum tokens.
         /// </value>
-        [ JsonPropertyName( "max_completion_tokens" ) ]
+        [ JsonPropertyName( "max_completionTokens" ) ]
         public virtual int MaximumTokens
         {
             get
@@ -231,13 +231,13 @@ namespace Bubba
         {
             get
             {
-                return _temperature;
+                return Temperature;
             }
             set
             {
-                if( _temperature != value )
+                if( Temperature != value )
                 {
-                    _temperature = value;
+                    Temperature = value;
                     OnPropertyChanged( nameof( Temperature ) );
                 }
             }
@@ -336,13 +336,13 @@ namespace Bubba
         {
             get
             {
-                return _topPercent;
+                return TopPercent;
             }
             set
             {
-                if(_topPercent != value)
+                if(TopPercent != value)
                 {
-                    _topPercent = value;
+                    TopPercent = value;
                     OnPropertyChanged(nameof(TopPercent));
                 }
             }

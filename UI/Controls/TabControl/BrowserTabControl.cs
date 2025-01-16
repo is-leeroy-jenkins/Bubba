@@ -32,9 +32,9 @@
     public class BrowserTabControl : MetroTabControl, ISupportInitialize
 
     {
-        private const int _TEXT_LEFT_MARGIN = 15;
+        private const int TEXT_LEFT_MARGIN = 15;
 
-        private const int _TEXT_RIGHT_MARGIN = 10;
+        private const int TEXT_RIGHT_MARGIN = 10;
 
         private const int _DEF_HEADER_HEIGHT = 28;
 
@@ -282,18 +282,18 @@
 
         private void OnCollectionChanged( object sender, CollectionChangeEventArgs e )
         {
-            var _tab = ( BrowserTabItem )e.Element;
+            var Tab = ( BrowserTabItem )e.Element;
             if( e.Action == CollectionChangeAction.Add )
             {
-                OnBrowserTabItemChanged( new BrowserTabChangedEventArgs( _tab, ChangeType.Added ) );
+                OnBrowserTabItemChanged( new BrowserTabChangedEventArgs( Tab, ChangeType.Added ) );
             }
             else if( e.Action == CollectionChangeAction.Remove )
             {
-                OnBrowserTabItemChanged( new BrowserTabChangedEventArgs( _tab, ChangeType.Removed ) );
+                OnBrowserTabItemChanged( new BrowserTabChangedEventArgs( Tab, ChangeType.Removed ) );
             }
             else
             {
-                OnBrowserTabItemChanged( new BrowserTabChangedEventArgs( _tab, ChangeType.Changed ) );
+                OnBrowserTabItemChanged( new BrowserTabChangedEventArgs( Tab, ChangeType.Changed ) );
             }
 
             UpdateLayout( );

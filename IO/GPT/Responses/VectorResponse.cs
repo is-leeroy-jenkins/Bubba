@@ -251,13 +251,13 @@ namespace Bubba
             {
                 ThrowIf.Empty( response, nameof( response ) );
                 using var _document = JsonDocument.Parse( response );
-                var _text = _document.RootElement
+                var Text = _document.RootElement
                     .GetProperty( "choices" )[ 0 ]
                     .GetProperty( "text" )
                     .GetString( );
 
-                return !string.IsNullOrEmpty( _text )
-                    ? _text
+                return !string.IsNullOrEmpty( Text )
+                    ? Text
                     : string.Empty;
             }
             catch( Exception ex )

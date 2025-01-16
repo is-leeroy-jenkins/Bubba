@@ -74,8 +74,8 @@ namespace Bubba
                 try
                 {
                     {
-                        var _table = dataRow.Table;
-                        var _columns = _table?.Columns;
+                        var Table = dataRow.Table;
+                        var _columns = Table?.Columns;
                         var _values = dataRow.ItemArray;
                         switch( provider )
                         {

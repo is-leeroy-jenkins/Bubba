@@ -256,13 +256,13 @@ namespace Bubba
         {
             get
             {
-                return _treasuryAccountCode;
+                return TreasuryAccountCode;
             }
             private protected set
             {
-                if(_treasuryAccountCode != value)
+                if(TreasuryAccountCode != value)
                 {
-                    _treasuryAccountCode = value;
+                    TreasuryAccountCode = value;
                     OnPropertyChanged(nameof(TreasuryAccountCode));
                 }
             }
@@ -279,13 +279,13 @@ namespace Bubba
         {
             get
             {
-                return _treasuryAccountName;
+                return TreasuryAccountName;
             }
             private protected set
             {
-                if(_treasuryAccountName != value)
+                if(TreasuryAccountName != value)
                 {
-                    _treasuryAccountName = value;
+                    TreasuryAccountName = value;
                     OnPropertyChanged(nameof(TreasuryAccountName));
                 }
             }
@@ -369,8 +369,8 @@ namespace Bubba
             _fundCode = _record[ "FundCode" ]?.ToString( );
             _fundName = _record[ "FundName" ]?.ToString( );
             _mainAccount = _record[ "MainAccount" ]?.ToString( );
-            _treasuryAccountCode = _record[ "TreasuryAccountCode" ]?.ToString( );
-            _treasuryAccountName = _record[ "TreasuryAccountName" ]?.ToString( );
+            TreasuryAccountCode = _record[ "TreasuryAccountCode" ]?.ToString( );
+            TreasuryAccountName = _record[ "TreasuryAccountName" ]?.ToString( );
             _budgetAccountCode = _record[ "BudgetAccountCode" ]?.ToString( );
             _budgetAccountName = _record[ "BudgetAccountName" ]?.ToString( );
         }
@@ -391,8 +391,8 @@ namespace Bubba
             _fundCode = _record[ "FundCode" ]?.ToString( );
             _fundName = _record[ "FundName" ]?.ToString( );
             _mainAccount = _record[ "MainAccount" ]?.ToString( );
-            _treasuryAccountCode = _record[ "TreasuryAccountCode" ]?.ToString( );
-            _treasuryAccountName = _record[ "TreasuryAccountName" ]?.ToString( );
+            TreasuryAccountCode = _record[ "TreasuryAccountCode" ]?.ToString( );
+            TreasuryAccountName = _record[ "TreasuryAccountName" ]?.ToString( );
             _budgetAccountCode = _record[ "BudgetAccountCode" ]?.ToString( );
             _budgetAccountName = _record[ "BudgetAccountName" ]?.ToString( );
         }
@@ -413,8 +413,8 @@ namespace Bubba
             _fundCode = dataRow[ "FundCode" ]?.ToString( );
             _fundName = dataRow[ "FundName" ]?.ToString( );
             _mainAccount = dataRow[ "MainAccount" ]?.ToString( );
-            _treasuryAccountCode = dataRow[ "TreasuryAccountCode" ]?.ToString( );
-            _treasuryAccountName = dataRow[ "TreasuryAccountName" ]?.ToString( );
+            TreasuryAccountCode = dataRow[ "TreasuryAccountCode" ]?.ToString( );
+            TreasuryAccountName = dataRow[ "TreasuryAccountName" ]?.ToString( );
             _budgetAccountCode = dataRow[ "BudgetAccountCode" ]?.ToString( );
             _budgetAccountName = dataRow[ "BudgetAccountName" ]?.ToString( );
         }

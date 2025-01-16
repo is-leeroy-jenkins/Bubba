@@ -294,13 +294,13 @@ namespace Bubba
         {
             get
             {
-                return _title;
+                return Title;
             }
             set
             {
-                if( _title != value )
+                if( Title != value )
                 {
-                    _title = value;
+                    Title = value;
                     OnPropertyChanged( nameof( Title ) );
                 }
             }
@@ -323,8 +323,8 @@ namespace Bubba
                 ThrowIf.Null( ipAddress, nameof( ipAddress ) );
                 using var _ping = new Ping( );
                 var _buffer = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"u8.ToArray( );
-                var _timeout = 5000;// 5sg
-                var _reply = _ping.Send( ipAddress, _timeout, _buffer );
+                var Timeout = 5000;// 5sg
+                var _reply = _ping.Send( ipAddress, Timeout, _buffer );
                 if( _reply != null )
                 {
                     _status = _reply.Status == IPStatus.Success;

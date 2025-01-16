@@ -97,7 +97,7 @@ namespace Bubba
         {
             get
             {
-                return _type;
+                return Type;
             }
         }
 

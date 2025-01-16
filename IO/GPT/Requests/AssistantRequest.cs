@@ -122,8 +122,8 @@ namespace Bubba
             _number = config.Number;
             _presencePenalty = config.PresencePenalty;
             _frequencyPenalty = config.FrequencyPenalty;
-            _temperature = config.Temperature;
-            _topPercent = config.TopPercent;
+            Temperature = config.Temperature;
+            TopPercent = config.TopPercent;
             _maximumTokens = config.MaximumTokens;
             _stop = config.Stop;
             _modalities = config.Modalities;
@@ -148,8 +148,8 @@ namespace Bubba
             _number = request.Number;
             _presencePenalty = request.PresencePenalty;
             _frequencyPenalty = request.FrequencyPenalty;
-            _temperature = request.Temperature;
-            _topPercent = request.TopPercent;
+            Temperature = request.Temperature;
+            TopPercent = request.TopPercent;
             _maximumTokens = request.MaximumTokens;
             _stop = request.Stop;
             _modalities = request.Modalities;
@@ -182,8 +182,8 @@ namespace Bubba
             number = _number;
             presence = _presencePenalty;
             frequency = _frequencyPenalty;
-            temperature = _temperature;
-            topPercent = _topPercent;
+            temperature = Temperature;
+            topPercent = TopPercent;
             tokens = _maximumTokens;
         }
 
@@ -312,25 +312,25 @@ namespace Bubba
         {
             try
             {
-                using var _client = new HttpClient( );
-                _client.DefaultRequestHeaders.Authorization =
-                    new AuthenticationHeaderValue( "Bearer", _apiKey );
+                _httpClient = new HttpClient( );
+                _httpClient.DefaultRequestHeaders.Authorization =
+                    new AuthenticationHeaderValue( "Bearer", App.OpenAiKey );
 
                 var _payload = new AssistantPayload( )
                 {
                     Model = _model,
-                    Temperature = _temperature,
+                    Temperature = Temperature,
                     Store = _store,
                     Stream = _stream,
                     Stop = _stop,
-                    TopPercent = _topPercent,
+                    TopPercent = TopPercent,
                     FrequencyPenalty = _frequencyPenalty,
                     PresencePenalty = _presencePenalty
                 };
 
                 var _json = _payload.Serialize( );
                 var _content = new StringContent( _json, Encoding.UTF8, _header.ContentType );
-                var _response = await _client.PostAsync( _endPoint, _content );
+                var _response = await _httpClient.PostAsync( _endPoint, _content );
                 _response.EnsureSuccessStatusCode( );
                 var _chat = await _response.Content.ReadAsStringAsync( );
                 var _chatResponse = ExtractResponse( _chat );
@@ -387,13 +387,13 @@ namespace Bubba
                 _data.Add( "model", _model );
                 _data.Add( "endpoint", _endPoint );
                 _data.Add( "n", _number );
-                _data.Add( "max_completion_tokens", _maximumTokens );
+                _data.Add( "max_completionTokens", _maximumTokens );
                 _data.Add( "store", _store );
                 _data.Add( "stream", _stream );
-                _data.Add( "temperature", _temperature );
+                _data.Add( "temperature", Temperature );
                 _data.Add( "frequency_penalty", _frequencyPenalty );
                 _data.Add( "presence_penalty", _presencePenalty );
-                _data.Add( "top_p", _topPercent );
+                _data.Add( "top_p", TopPercent );
                 _data.Add( "response_format", _responseFormat );
                 _data.Add( "modalities", _modalities );
                 return _data?.Any( ) == true

@@ -121,11 +121,11 @@ namespace Bubba
         };
 
         /// <summary>
-        /// Registers the theme.
+        /// Registers the _theme.
         /// </summary>
         private void RegisterTheme( )
         {
-            var _theme = new FluentDarkThemeSettings
+            var Theme = new FluentDarkThemeSettings
             {
                 PrimaryBackground = new SolidColorBrush( Color.FromRgb( 20, 20, 20 ) ),
                 PrimaryColorForeground = new SolidColorBrush( Color.FromRgb( 0, 120, 212 ) ),
@@ -139,7 +139,7 @@ namespace Bubba
                 FontFamily = new FontFamily( "Roboto" )
             };
 
-            SfSkinManager.RegisterThemeSettings( "FluentDark", _theme );
+            SfSkinManager.RegisterThemeSettings( "FluentDark", Theme );
             SfSkinManager.ApplyStylesOnApplication = true;
         }
 

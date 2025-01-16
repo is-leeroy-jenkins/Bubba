@@ -275,17 +275,17 @@ namespace Bubba
         /// <summary>
         /// The theme path
         /// </summary>
-        private protected string _themePath;
+        private protected string ThemePath;
 
         /// <summary>
         /// The title font
         /// </summary>
-        private protected Font _titleFont;
+        private protected Font TitleFont;
 
         /// <summary>
         /// The top margin
         /// </summary>
-        private protected decimal _topMargin;
+        private protected decimal TopMargin;
 
         /// <summary>
         /// The zoom level
@@ -383,7 +383,7 @@ namespace Bubba
             try
             {
                 _font?.Dispose( );
-                _titleFont?.Dispose( );
+                TitleFont?.Dispose( );
                 _dataConnection?.Dispose( );
                 _dataCommand?.Dispose( );
                 _dataAdapter?.Dispose( );

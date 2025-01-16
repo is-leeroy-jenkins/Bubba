@@ -145,7 +145,7 @@ namespace Bubba
         /// <summary>
         /// The fore color
         /// </summary>
-        private protected Color _titleColor = new Color( )
+        private protected Color TitleColor = new Color( )
         {
             A = 255,
             R = 106,
@@ -217,7 +217,7 @@ namespace Bubba
             HorizontalAlignment = HorizontalAlignment.Stretch;
             VerticalAlignment = VerticalAlignment.Stretch;
             Background = new SolidColorBrush( _backColor );
-            Foreground = new SolidColorBrush( _titleColor );
+            Foreground = new SolidColorBrush( TitleColor );
 
             // Event Wiring
             IsVisibleChanged += OnVisibleChanged;
@@ -237,7 +237,7 @@ namespace Bubba
         {
             _message = message;
             MessageText.Content = message;
-            _title = "";
+            Title = "";
         }
 
         /// <inheritdoc />
@@ -250,7 +250,7 @@ namespace Bubba
             : this( )
         {
             _message = message;
-            _title = title;
+            Title = title;
             MessageText.Content = message;
             TitleLabel.Content = title;
         }

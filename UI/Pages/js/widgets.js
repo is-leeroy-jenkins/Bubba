@@ -117,15 +117,15 @@
             // Create a button for taking actions (e.g., confirm that users get the message)
             // The default text for the button is "Confirm"
             var has_action_callback = ( typeof settings[ "action_callback" ] === "function" );
-            var action_text = safeGet( settings[ "action_text" ], "Confirm" );
+            var actionText = safeGet( settings[ "actionText" ], "Confirm" );
             // Create a button for cancellation
             // The default text for the button is "Cancel" when there is an action button
             // The default text for the button is "Ok" when there is no action button
             var has_cancel_callback = ( typeof settings[ "cancel_callback" ] === "function" );
-            var cancel_text = has_action_callback
+            var cancelText = has_action_callback
                 ? "Cancel"
                 : "Ok";
-            cancel_text = safeGet( settings[ "cancel_text" ], cancel_text );
+            cancelText = safeGet( settings[ "cancelText" ], cancelText );
             // Hide the cancel button or not
             var show_cancel_btn = safeGet( settings[ "show_cancel_btn" ], true );
             // Specify the style
@@ -160,7 +160,7 @@
                 }
                 buttons.push( {
                     class: btn_class,
-                    text: cancel_text,
+                    text: cancelText,
                     click: function( event )
                     {
                         if( close_dialog_on_cancel )
@@ -187,7 +187,7 @@
                 }
                 buttons.push( {
                     class: btn_class,
-                    text: action_text,
+                    text: actionText,
                     click: function( event )
                     {
                         if( close_dialog_on_action )
@@ -371,22 +371,22 @@
         {
             const items = settings[ "items" ]; // the text that will appear for each item
             const init_index = settings[ "init_index" ];
-            const init_text = settings[ "init_text" ];
+            const initText = settings[ "initText" ];
             var on_item_click_callback = settings[ "on_item_click_callback" ];
             const on_item_create_callback = settings[ "on_item_create_callback" ];
             var $menu = $ui.find( "div" ).empty( );
-            var $button_text = $ui.find( "a > span" ).text( "" );
+            var $buttonText = $ui.find( "a > span" ).text( "" );
             var $selected_item;
             // Set initial button text
-            if( typeof init_text !== "undefined" )
+            if( typeof initText !== "undefined" )
             {
-                $button_text.text( init_text );
+                $buttonText.text( initText );
             }
             else
             {
                 if( typeof init_index !== "undefined" && typeof items !== "undefined" )
                 {
-                    $button_text.text( items[ init_index ] );
+                    $buttonText.text( items[ init_index ] );
                 }
             }
             // Set button event
@@ -401,7 +401,7 @@
                         // Find which item is hovered, and then simulate the click
                         if( typeof $selected_item !== "undefined" )
                         {
-                            $button_text.text(
+                            $buttonText.text(
                                 $selected_item.text( ) ); // update the text on the button
                             if( typeof on_item_click_callback === "function" )
                             {
@@ -569,7 +569,7 @@
             // Create dialog
             var $imagePickerDialog = createCustomDialog( {
                 "selector": `#${ uniqueId }`,
-                "action_text": "Select",
+                "actionText": "Select",
                 "width": 290,
                 "class": "dialog-photo-picker",
                 "show_cancel_btn": false,

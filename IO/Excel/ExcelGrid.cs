@@ -109,7 +109,7 @@ namespace Bubba
             out ExcelAddress excelAddress, out IList<ExcelRangeBase> cells )
         {
             from = _from;
-            to = _to;
+            to = To;
             excelWorksheet = _excelWorksheet;
             excelRange = _excelRange;
             excelAddress = _excelAddress;
@@ -160,9 +160,9 @@ namespace Bubba
                         {
                             switch( _vals[ _c ] )
                             {
-                                case string _text:
+                                case string Text:
                                 {
-                                    _data[ _c ].Value = _text;
+                                    _data[ _c ].Value = Text;
                                     break;
                                 }
                                 case int _index:
@@ -232,7 +232,7 @@ namespace Bubba
             _excelWorksheet = excel.Workbook.Worksheets[ 0 ];
             _excelRange = range;
             _from = ( range.Start.Row, range.Start.Column );
-            _to = ( range.End.Row, range.End.Column );
+            To = ( range.End.Row, range.End.Column );
             _excelAddress = new ExcelAddress( range.Start.Row, range.Start.Column, range.End.Row,
                 range.End.Column );
 
@@ -249,8 +249,8 @@ namespace Bubba
         {
             _excelWorksheet = excel.Workbook.Worksheets[ 0 ];
             _from = ( address.Start.Row, address.Start.Column );
-            _to = ( address.End.Row, address.End.Column );
-            _excelRange = _excelWorksheet.Cells[ _from.Row, _from.Column, _to.Row, _to.Column ];
+            To = ( address.End.Row, address.End.Column );
+            _excelRange = _excelWorksheet.Cells[ _from.Row, _from.Column, To.Row, To.Column ];
             _excelAddress = address;
             _cells = GetCells( );
         }
@@ -268,7 +268,7 @@ namespace Bubba
         {
             _excelWorksheet = excel.Workbook.Worksheets[ 0 ];
             _from = ( startRow, startColumn );
-            _to = ( endRow, endColumn );
+            To = ( endRow, endColumn );
             _excelRange = _excelWorksheet.Cells[ startRow, startColumn, endRow, endColumn ];
             _excelAddress = new ExcelAddress( startRow, startColumn, endRow, endColumn );
             _cells = GetCells( );
@@ -284,7 +284,7 @@ namespace Bubba
         {
             _excelWorksheet = excel.Workbook.Worksheets[ 0 ];
             _from = ( cell[ 0 ], cell[ 1 ] );
-            _to = ( cell[ 2 ], cell[ 3 ] );
+            To = ( cell[ 2 ], cell[ 3 ] );
             _excelRange = _excelWorksheet.Cells[ cell[ 0 ], cell[ 1 ], cell[ 2 ], cell[ 3 ] ];
             _excelAddress = new ExcelAddress( cell[ 0 ], cell[ 1 ], cell[ 2 ], cell[ 3 ] );
             _cells = GetCells( );
@@ -302,7 +302,7 @@ namespace Bubba
             _excelWorksheet = excel.Workbook.Worksheets[ 0 ];
             _excelRange = _excelWorksheet.Cells[ from.Row, from.Column, to.Row, to.Column ];
             _from = from;
-            _to = to;
+            To = to;
             _excelAddress = new ExcelAddress( from.Row, from.Column, to.Row, to.Column );
             _cells = GetCells( );
         }
@@ -318,7 +318,7 @@ namespace Bubba
             _excelWorksheet = excel.Workbook.Worksheets[ 0 ];
             _excelRange = _excelWorksheet.Cells[ from.Row, from.Column ];
             _from = from;
-            _to = from;
+            To = from;
             _excelAddress = new ExcelAddress( from.Row, from.Column, from.Row, from.Column );
             _cells = GetCells( );
         }
@@ -333,7 +333,7 @@ namespace Bubba
             _excelWorksheet = excelGrid.ExcelWorksheet;
             _excelRange = excelGrid.ExcelRange;
             _from = excelGrid.From;
-            _to = excelGrid.To;
+            To = excelGrid.To;
             _excelAddress = excelGrid._excelAddress;
             _cells = GetCells( );
         }
@@ -420,11 +420,11 @@ namespace Bubba
         {
             get
             {
-                return _to;
+                return To;
             }
             private protected set
             {
-                _to = value;
+                To = value;
             }
         }
 

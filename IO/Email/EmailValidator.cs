@@ -68,7 +68,7 @@ namespace Bubba
             {
                 ThrowIf.Null( text, nameof( text ) );
                 ThrowIf.Negative( index, nameof( index ) );
-                if( !SkipSubDomain( text, ref index, allowInternational, out var _type ) )
+                if( !SkipSubDomain( text, ref index, allowInternational, out var Type ) )
                 {
                     return false;
                 }
@@ -84,7 +84,7 @@ namespace Bubba
                             return false;
                         }
 
-                        if( !SkipSubDomain( text, ref index, allowInternational, out _type ) )
+                        if( !SkipSubDomain( text, ref index, allowInternational, out Type ) )
                         {
                             return false;
                         }
@@ -97,7 +97,7 @@ namespace Bubba
                     return false;
                 }
 
-                return _type != SubDomainType.Numeric;
+                return Type != SubDomainType.Numeric;
             }
             catch( Exception ex )
             {
@@ -223,8 +223,8 @@ namespace Bubba
         {
             try
             {
-                var _test = c.ToString( );
-                ThrowIf.Null( _test, nameof( c ) );
+                var Test = c.ToString( );
+                ThrowIf.Null( Test, nameof( c ) );
                 return ( c >= 'A' && c <= 'F' ) || ( c >= 'a' && c <= 'f' )
                     || ( c >= '0' && c <= '9' );
             }

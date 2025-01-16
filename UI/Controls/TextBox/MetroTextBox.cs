@@ -32,7 +32,7 @@
         /// <summary>
         /// The temporary text
         /// </summary>
-        private protected string _tempText;
+        private protected string TempText;
 
         /// <inheritdoc />
         /// <summary>
@@ -53,7 +53,7 @@
             BorderBrush = _theme.BorderBrush;
             SelectionBrush = _theme.SteelBlueBrush;
             _inputText = "";
-            _tempText = "";
+            TempText = "";
 
             // Event Wiring
             MouseEnter += OnMouseEnter;
@@ -134,7 +134,7 @@
                 if( !string.IsNullOrEmpty( Text ) 
                     && Text != "" )
                 {
-                    _tempText = Text;
+                    TempText = Text;
                 }
             }
             catch(Exception ex)
@@ -153,10 +153,10 @@
         {
             try
             {
-                if(!string.IsNullOrEmpty(_tempText) 
-                    && _tempText != _inputText ) 
+                if(!string.IsNullOrEmpty(TempText) 
+                    && TempText != _inputText ) 
                 {
-                    _tempText = _inputText;
+                    TempText = _inputText;
                 }
             }
             catch(Exception ex)

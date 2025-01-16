@@ -10,7 +10,7 @@
     "downloads": 16569,
     "exif": {
       "aperture": "1.8",
-      "exposure_time": "1/125",
+      "exposureTime": "1/125",
       "focal_length": "35.0",
       "iso": 4000,
       "make": "NIKON CORPORATION",
@@ -53,7 +53,7 @@
         "https://images.unsplash.com/photo-1586671267731-da2cf3ceeb80?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwyMjcxMzl8MHwxfHJhbmRvbXx8fHx8fHx8fDE2MjMwNjU2NjY&ixlib=rb-1.2.1&q=80&w=200"
     },
     "user": {
-      "accepted_tos": true,
+      "acceptedTos": true,
       "bio": "Hi, I'm Taylor.\r\nOpen for commissions.",
       "first_name": "Taylor",
       "for_hire": true,
@@ -101,7 +101,7 @@
     "downloads": 18675,
     "exif": {
       "aperture": "1.2",
-      "exposure_time": "1/2000",
+      "exposureTime": "1/2000",
       "focal_length": "43.0",
       "iso": 200,
       "make": "Panasonic",
@@ -144,7 +144,7 @@
         "https://images.unsplash.com/photo-1554079501-a254f876fc77?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwyMjcxMzl8MHwxfHJhbmRvbXx8fHx8fHx8fDE2MjMwNjU2NjY&ixlib=rb-1.2.1&q=80&w=200"
     },
     "user": {
-      "accepted_tos": true,
+      "acceptedTos": true,
       "bio":
         "Building @togetheo \ud83d\udc68\ud83c\udffc\u200d\ud83d\udcbb\r\nFollow me on instagram @Jamie452, let's go shoot something \ud83d\udcf8 ",
       "first_name": "Jamie",
@@ -194,7 +194,7 @@
     "downloads": 23044,
     "exif": {
       "aperture": "2.8",
-      "exposure_time": "1/60",
+      "exposureTime": "1/60",
       "focal_length": "70.0",
       "iso": 320,
       "make": "Canon",
@@ -237,7 +237,7 @@
         "https://images.unsplash.com/photo-1546447147-3fc2b8181a74?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwyMjcxMzl8MHwxfHJhbmRvbXx8fHx8fHx8fDE2MjMwNjU2NjY&ixlib=rb-1.2.1&q=80&w=200"
     },
     "user": {
-      "accepted_tos": true,
+      "acceptedTos": true,
       "bio":
         "I am a designer & entrepreneur currently focused on building apps for iOS: DesignLab, Swipemix, Tone Studio, MuseCam, etc. \r\n If you find my photos useful please consider subscribing to me on YouTube for occasional photography tutorials & more.",
       "first_name": "Roberto",
@@ -286,7 +286,7 @@
     "downloads": 23073,
     "exif": {
       "aperture": "1.8",
-      "exposure_time": "1/4000",
+      "exposureTime": "1/4000",
       "focal_length": "43.0",
       "iso": 200,
       "make": "Panasonic",
@@ -329,7 +329,7 @@
         "https://images.unsplash.com/photo-1595876171225-463c72774783?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwyMjcxMzl8MHwxfHJhbmRvbXx8fHx8fHx8fDE2MjMwNjU2NjY&ixlib=rb-1.2.1&q=80&w=200"
     },
     "user": {
-      "accepted_tos": true,
+      "acceptedTos": true,
       "bio":
         "Building @togetheo \ud83d\udc68\ud83c\udffc\u200d\ud83d\udcbb\r\nFollow me on instagram @Jamie452, let's go shoot something \ud83d\udcf8 ",
       "first_name": "Jamie",
@@ -378,7 +378,7 @@
     "downloads": 18361,
     "exif": {
       "aperture": "3.0",
-      "exposure_time": "1/125",
+      "exposureTime": "1/125",
       "focal_length": "105.0",
       "iso": 400,
       "make": "NIKON CORPORATION",
@@ -421,7 +421,7 @@
         "https://images.unsplash.com/photo-1553882809-a4f57e59501d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwyMjcxMzl8MHwxfHJhbmRvbXx8fHx8fHx8fDE2MjMwNjU2NjY&ixlib=rb-1.2.1&q=80&w=200"
     },
     "user": {
-      "accepted_tos": true,
+      "acceptedTos": true,
       "bio":
         "Hey there thank you for visiting my page!\r\nIf you like my photos you can support me with a little donation on my PayPal.",
       "first_name": "Max",
@@ -470,7 +470,7 @@
     "downloads": 1728,
     "exif": {
       "aperture": "1.4",
-      "exposure_time": "1/250",
+      "exposureTime": "1/250",
       "focal_length": "35.0",
       "iso": 250,
       "make": "Canon",
@@ -513,7 +513,7 @@
         "https://images.unsplash.com/photo-1577380725595-ba33a006c994?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwyMjcxMzl8MHwxfHJhbmRvbXx8fHx8fHx8fDE2MjMwNjU2NjY&ixlib=rb-1.2.1&q=80&w=200"
     },
     "user": {
-      "accepted_tos": true,
+      "acceptedTos": true,
       "bio": "Life photographer",
       "first_name": "Josh",
       "for_hire": false,
@@ -561,7 +561,7 @@
     "downloads": 21705,
     "exif": {
       "aperture": null,
-      "exposure_time": "1/3000",
+      "exposureTime": "1/3000",
       "focal_length": null,
       "iso": 100,
       "make": "SONY",
@@ -604,7 +604,7 @@
         "https://images.unsplash.com/photo-1576201836106-db1758fd1c97?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwyMjcxMzl8MHwxfHJhbmRvbXx8fHx8fHx8fDE2MjMwNjU2NjY&ixlib=rb-1.2.1&q=80&w=200"
     },
     "user": {
-      "accepted_tos": true,
+      "acceptedTos": true,
       "bio": "Arrogance is the Death of Men\r\n",
       "first_name": "Cristian",
       "for_hire": true,
@@ -652,7 +652,7 @@
     "downloads": 14330,
     "exif": {
       "aperture": "4.5",
-      "exposure_time": "1/500",
+      "exposureTime": "1/500",
       "focal_length": "38.0",
       "iso": 800,
       "make": "RICOH IMAGING COMPANY, LTD.",
@@ -695,7 +695,7 @@
         "https://images.unsplash.com/photo-1537151769678-eb003fb3a153?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwyMjcxMzl8MHwxfHJhbmRvbXx8fHx8fHx8fDE2MjMwNjU2NjY&ixlib=rb-1.2.1&q=80&w=200"
     },
     "user": {
-      "accepted_tos": true,
+      "acceptedTos": true,
       "bio": "I really love unsplash\uff01\uff01\uff01\uff01\uff01",
       "first_name": "Alvan",
       "for_hire": false,
@@ -743,7 +743,7 @@
     "downloads": 48225,
     "exif": {
       "aperture": "3.5",
-      "exposure_time": "1/160",
+      "exposureTime": "1/160",
       "focal_length": "85.0",
       "iso": 800,
       "make": "SONY",
@@ -786,7 +786,7 @@
         "https://images.unsplash.com/photo-1583511655857-d19b40a7a54e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwyMjcxMzl8MHwxfHJhbmRvbXx8fHx8fHx8fDE2MjMwNjU2NjY&ixlib=rb-1.2.1&q=80&w=200"
     },
     "user": {
-      "accepted_tos": true,
+      "acceptedTos": true,
       "bio": "IG - @karsten116",
       "first_name": "Karsten",
       "for_hire": true,
@@ -834,7 +834,7 @@
     "downloads": 13169,
     "exif": {
       "aperture": "2.2",
-      "exposure_time": "1/200",
+      "exposureTime": "1/200",
       "focal_length": "18.0",
       "iso": 2500,
       "make": "Canon",
@@ -877,7 +877,7 @@
         "https://images.unsplash.com/photo-1567529684892-09290a1b2d05?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwyMjcxMzl8MHwxfHJhbmRvbXx8fHx8fHx8fDE2MjMwNjU2NjY&ixlib=rb-1.2.1&q=80&w=200"
     },
     "user": {
-      "accepted_tos": true,
+      "acceptedTos": true,
       "bio": "Student at Boise State University\r\ninsta @noahavstin",
       "first_name": "Noah",
       "for_hire": false,
@@ -925,7 +925,7 @@
     "downloads": 3827,
     "exif": {
       "aperture": "1.4",
-      "exposure_time": "1/500",
+      "exposureTime": "1/500",
       "focal_length": "35.0",
       "iso": 100,
       "make": "FUJIFILM",
@@ -968,7 +968,7 @@
         "https://images.unsplash.com/photo-1522039824777-f813e0c1448f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwyMjcxMzl8MHwxfHJhbmRvbXx8fHx8fHx8fDE2MjMwNjU2NjY&ixlib=rb-1.2.1&q=80&w=200"
     },
     "user": {
-      "accepted_tos": true,
+      "acceptedTos": true,
       "bio": null,
       "first_name": "Thirteen",
       "for_hire": false,
@@ -1016,7 +1016,7 @@
     "downloads": 4856,
     "exif": {
       "aperture": "2.8",
-      "exposure_time": "1/500",
+      "exposureTime": "1/500",
       "focal_length": "35.0",
       "iso": 100,
       "make": "Canon",
@@ -1059,7 +1059,7 @@
         "https://images.unsplash.com/photo-1523171067267-bb96f975c4bb?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwyMjcxMzl8MHwxfHJhbmRvbXx8fHx8fHx8fDE2MjMwNjU2NjY&ixlib=rb-1.2.1&q=80&w=200"
     },
     "user": {
-      "accepted_tos": true,
+      "acceptedTos": true,
       "bio": "Uncalculated.",
       "first_name": "Vincent",
       "for_hire": false,
@@ -1107,7 +1107,7 @@
     "downloads": 22274,
     "exif": {
       "aperture": "1.2",
-      "exposure_time": "1/200",
+      "exposureTime": "1/200",
       "focal_length": "43.0",
       "iso": 200,
       "make": "Panasonic",
@@ -1150,7 +1150,7 @@
         "https://images.unsplash.com/photo-1524511751214-b0a384dd9afe?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwyMjcxMzl8MHwxfHJhbmRvbXx8fHx8fHx8fDE2MjMwNjU2NjY&ixlib=rb-1.2.1&q=80&w=200"
     },
     "user": {
-      "accepted_tos": true,
+      "acceptedTos": true,
       "bio":
         "Building @togetheo \ud83d\udc68\ud83c\udffc\u200d\ud83d\udcbb\r\nFollow me on instagram @Jamie452, let's go shoot something \ud83d\udcf8 ",
       "first_name": "Jamie",
@@ -1199,7 +1199,7 @@
     "downloads": 17382,
     "exif": {
       "aperture": "20.0",
-      "exposure_time": "1/20",
+      "exposureTime": "1/20",
       "focal_length": "70.0",
       "iso": 100,
       "make": "SONY",
@@ -1242,7 +1242,7 @@
         "https://images.unsplash.com/photo-1535745049887-3cd1c8aef237?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwyMjcxMzl8MHwxfHJhbmRvbXx8fHx8fHx8fDE2MjMwNjU2NjY&ixlib=rb-1.2.1&q=80&w=200"
     },
     "user": {
-      "accepted_tos": true,
+      "acceptedTos": true,
       "bio": "Photo enthusiast. Teaching programming",
       "first_name": "Sereja",
       "for_hire": true,
@@ -1290,7 +1290,7 @@
     "downloads": 214,
     "exif": {
       "aperture": null,
-      "exposure_time": null,
+      "exposureTime": null,
       "focal_length": null,
       "iso": null,
       "make": null,
@@ -1333,7 +1333,7 @@
         "https://images.unsplash.com/photo-1616781296073-65d3f087de41?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwyMjcxMzl8MHwxfHJhbmRvbXx8fHx8fHx8fDE2MjMwNjU2NjY&ixlib=rb-1.2.1&q=80&w=200"
     },
     "user": {
-      "accepted_tos": true,
+      "acceptedTos": true,
       "bio":
         "Argentinian in the U.K. \ud83c\udde6\ud83c\uddf7\ud83c\uddec\ud83c\udde7 \u2022 Content Creator @43clicksnorth \u2022 Documenting my journey behind the camera \ud83d\udcf8\r\nwww.43clicksnorth.co.uk",
       "first_name": "Chino",
@@ -1382,7 +1382,7 @@
     "downloads": 64558,
     "exif": {
       "aperture": "1.2",
-      "exposure_time": "1/1600",
+      "exposureTime": "1/1600",
       "focal_length": "43.0",
       "iso": 400,
       "make": "Panasonic",
@@ -1425,7 +1425,7 @@
         "https://images.unsplash.com/photo-1544568100-847a948585b9?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwyMjcxMzl8MHwxfHJhbmRvbXx8fHx8fHx8fDE2MjMwNjU2NjY&ixlib=rb-1.2.1&q=80&w=200"
     },
     "user": {
-      "accepted_tos": true,
+      "acceptedTos": true,
       "bio":
         "Building @togetheo \ud83d\udc68\ud83c\udffc\u200d\ud83d\udcbb\r\nFollow me on instagram @Jamie452, let's go shoot something \ud83d\udcf8 ",
       "first_name": "Jamie",
@@ -1474,7 +1474,7 @@
     "downloads": 60317,
     "exif": {
       "aperture": "4.0",
-      "exposure_time": "1/8",
+      "exposureTime": "1/8",
       "focal_length": "27.0",
       "iso": 3200,
       "make": "Canon",
@@ -1517,7 +1517,7 @@
         "https://images.unsplash.com/photo-1455103493930-a116f655b6c5?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwyMjcxMzl8MHwxfHJhbmRvbXx8fHx8fHx8fDE2MjMwNjU2NjY&ixlib=rb-1.2.1&q=80&w=200"
     },
     "user": {
-      "accepted_tos": true,
+      "acceptedTos": true,
       "bio":
         "Mike is a high school teacher by trade and passion but is developing new interests in photography, videography, and web design. His new interests are rapidly becoming passions as well.",
       "first_name": "Mike",
@@ -1566,7 +1566,7 @@
     "downloads": 31788,
     "exif": {
       "aperture": "2.8",
-      "exposure_time": "1/500",
+      "exposureTime": "1/500",
       "focal_length": "23.0",
       "iso": 800,
       "make": "FUJIFILM",
@@ -1609,7 +1609,7 @@
         "https://images.unsplash.com/photo-1516371535707-512a1e83bb9a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwyMjcxMzl8MHwxfHJhbmRvbXx8fHx8fHx8fDE2MjMwNjU2NjY&ixlib=rb-1.2.1&q=80&w=200"
     },
     "user": {
-      "accepted_tos": true,
+      "acceptedTos": true,
       "bio": "fredrikohlander@gmail.com\r\n\r\n",
       "first_name": "Fredrik",
       "for_hire": false,
@@ -1658,7 +1658,7 @@
     "downloads": 9623,
     "exif": {
       "aperture": "2.8",
-      "exposure_time": "1/640",
+      "exposureTime": "1/640",
       "focal_length": "35.0",
       "iso": 100,
       "make": "Canon",
@@ -1701,7 +1701,7 @@
         "https://images.unsplash.com/photo-1529831129093-0fa4866281ee?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwyMjcxMzl8MHwxfHJhbmRvbXx8fHx8fHx8fDE2MjMwNjU2NjY&ixlib=rb-1.2.1&q=80&w=200"
     },
     "user": {
-      "accepted_tos": false,
+      "acceptedTos": false,
       "bio": "Freelance Photographer based in the UK. Outdoors, Countryside and Defenders.",
       "first_name": "Samuel",
       "for_hire": false,
@@ -1749,7 +1749,7 @@
     "downloads": 72409,
     "exif": {
       "aperture": "8.0",
-      "exposure_time": "1/100",
+      "exposureTime": "1/100",
       "focal_length": "50.0",
       "iso": 100,
       "make": "Canon",
@@ -1792,7 +1792,7 @@
         "https://images.unsplash.com/photo-1477936432016-8172ed08637e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwyMjcxMzl8MHwxfHJhbmRvbXx8fHx8fHx8fDE2MjMwNjU2NjY&ixlib=rb-1.2.1&q=80&w=200"
     },
     "user": {
-      "accepted_tos": true,
+      "acceptedTos": true,
       "bio": "Say hi on instagram @freddiemarriage \ud83d\udc4b\ud83c\udffc",
       "first_name": "freddie",
       "for_hire": false,
@@ -1840,7 +1840,7 @@
     "downloads": 19638,
     "exif": {
       "aperture": "2.2",
-      "exposure_time": "1/1000",
+      "exposureTime": "1/1000",
       "focal_length": "24.0",
       "iso": 100,
       "make": "Canon",
@@ -1883,7 +1883,7 @@
         "https://images.unsplash.com/photo-1601758124277-f0086d5ab050?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwyMjcxMzl8MHwxfHJhbmRvbXx8fHx8fHx8fDE2MjMwNjU2NjY&ixlib=rb-1.2.1&q=80&w=200"
     },
     "user": {
-      "accepted_tos": true,
+      "acceptedTos": true,
       "bio": "There are endless ways #PetsBringUsTogether. We\u2019re just here to help.",
       "first_name": "Chewy",
       "for_hire": false,
@@ -1931,7 +1931,7 @@
     "downloads": 24667,
     "exif": {
       "aperture": null,
-      "exposure_time": null,
+      "exposureTime": null,
       "focal_length": null,
       "iso": null,
       "make": null,
@@ -1974,7 +1974,7 @@
         "https://images.unsplash.com/photo-1507660392550-9aff6e04c7e5?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwyMjcxMzl8MHwxfHJhbmRvbXx8fHx8fHx8fDE2MjMwNjU2NjY&ixlib=rb-1.2.1&q=80&w=200"
     },
     "user": {
-      "accepted_tos": true,
+      "acceptedTos": true,
       "bio": "instagram:vincentvanzalinge\r\n    ",
       "first_name": "Vincent",
       "for_hire": false,
@@ -2022,7 +2022,7 @@
     "downloads": 11184,
     "exif": {
       "aperture": "1.8",
-      "exposure_time": "1/1000",
+      "exposureTime": "1/1000",
       "focal_length": "75.0",
       "iso": 100,
       "make": "Canon",
@@ -2065,7 +2065,7 @@
         "https://images.unsplash.com/photo-1578133559556-9e83af5fc5f3?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwyMjcxMzl8MHwxfHJhbmRvbXx8fHx8fHx8fDE2MjMwNjU2NjY&ixlib=rb-1.2.1&q=80&w=200"
     },
     "user": {
-      "accepted_tos": true,
+      "acceptedTos": true,
       "bio": "A cute Shiba dog named \u9ebb\u9171",
       "first_name": "Jaycee",
       "for_hire": false,
@@ -2113,7 +2113,7 @@
     "downloads": 15753,
     "exif": {
       "aperture": "3.5",
-      "exposure_time": "1/80",
+      "exposureTime": "1/80",
       "focal_length": "5.4",
       "iso": 320,
       "make": "Panasonic",
@@ -2156,7 +2156,7 @@
         "https://images.unsplash.com/photo-1550953581-a75aa86fec20?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwyMjcxMzl8MHwxfHJhbmRvbXx8fHx8fHx8fDE2MjMwNjU2NjY&ixlib=rb-1.2.1&q=80&w=200"
     },
     "user": {
-      "accepted_tos": true,
+      "acceptedTos": true,
       "bio":
         "I'm a Teamologist, a team effectiveness expert, award-winning international conference speaker and creator of Team DyNAmics. ngagementworks.com. My passion outside work is photography and travel.",
       "first_name": "Nick",
@@ -2205,7 +2205,7 @@
     "downloads": 36804,
     "exif": {
       "aperture": "2.0",
-      "exposure_time": "1/250",
+      "exposureTime": "1/250",
       "focal_length": "50.0",
       "iso": 800,
       "make": "Canon",
@@ -2248,7 +2248,7 @@
         "https://images.unsplash.com/photo-1516366434321-728a48e6b7bf?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwyMjcxMzl8MHwxfHJhbmRvbXx8fHx8fHx8fDE2MjMwNjU2NjY&ixlib=rb-1.2.1&q=80&w=200"
     },
     "user": {
-      "accepted_tos": false,
+      "acceptedTos": false,
       "bio": null,
       "first_name": "Ryan",
       "for_hire": false,
@@ -2296,7 +2296,7 @@
     "downloads": 9333,
     "exif": {
       "aperture": "1.8",
-      "exposure_time": "1/160",
+      "exposureTime": "1/160",
       "focal_length": "35.0",
       "iso": 100,
       "make": "SONY",
@@ -2339,7 +2339,7 @@
         "https://images.unsplash.com/photo-1585734005590-802f9521d493?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwyMjcxMzl8MHwxfHJhbmRvbXx8fHx8fHx8fDE2MjMwNjU2NjY&ixlib=rb-1.2.1&q=80&w=200"
     },
     "user": {
-      "accepted_tos": true,
+      "acceptedTos": true,
       "bio": "look at the bright side and let's share thoughts through my instagram @lexyism :)",
       "first_name": "alexandra",
       "for_hire": false,
@@ -2387,7 +2387,7 @@
     "downloads": 7778,
     "exif": {
       "aperture": "4",
-      "exposure_time": "1/110",
+      "exposureTime": "1/110",
       "focal_length": "55.0",
       "iso": 800,
       "make": "FUJIFILM",
@@ -2430,7 +2430,7 @@
         "https://images.unsplash.com/photo-1585559700398-1385b3a8aeb6?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwyMjcxMzl8MHwxfHJhbmRvbXx8fHx8fHx8fDE2MjMwNjU2NjY&ixlib=rb-1.2.1&q=80&w=200"
     },
     "user": {
-      "accepted_tos": true,
+      "acceptedTos": true,
       "bio": "A girl with an addiction to coffee and design.\r\n",
       "first_name": "Lucrezia",
       "for_hire": true,
@@ -2478,7 +2478,7 @@
     "downloads": 17486,
     "exif": {
       "aperture": "1.8",
-      "exposure_time": "1/250",
+      "exposureTime": "1/250",
       "focal_length": "35.0",
       "iso": 640,
       "make": "NIKON CORPORATION",
@@ -2521,7 +2521,7 @@
         "https://images.unsplash.com/photo-1601758228006-964e41e5e8eb?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwyMjcxMzl8MHwxfHJhbmRvbXx8fHx8fHx8fDE2MjMwNjU2NjY&ixlib=rb-1.2.1&q=80&w=200"
     },
     "user": {
-      "accepted_tos": true,
+      "acceptedTos": true,
       "bio": "There are endless ways #PetsBringUsTogether. We\u2019re just here to help.",
       "first_name": "Chewy",
       "for_hire": false,
@@ -2569,7 +2569,7 @@
     "downloads": 19198,
     "exif": {
       "aperture": "1.2",
-      "exposure_time": "1/800",
+      "exposureTime": "1/800",
       "focal_length": "43.0",
       "iso": 400,
       "make": "Panasonic",
@@ -2612,7 +2612,7 @@
         "https://images.unsplash.com/photo-1544568104-5b7eb8189dd4?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwyMjcxMzl8MHwxfHJhbmRvbXx8fHx8fHx8fDE2MjMwNjU2NjY&ixlib=rb-1.2.1&q=80&w=200"
     },
     "user": {
-      "accepted_tos": true,
+      "acceptedTos": true,
       "bio":
         "Building @togetheo \ud83d\udc68\ud83c\udffc\u200d\ud83d\udcbb\r\nFollow me on instagram @Jamie452, let's go shoot something \ud83d\udcf8 ",
       "first_name": "Jamie",
@@ -2652,7 +2652,7 @@
   },
   {
     "alt_description": null,
-    "blur_hash": "LbO|Oyog_4IAM_tQt7M{xujZM{WW",
+    "blur_hash": "LbO|Oyog_4IAMTQt7M{xujZM{WW",
     "categories": [],
     "color": "#d9d9f3",
     "created_at": "2018-05-28T12:49:42-04:00",
@@ -2661,7 +2661,7 @@
     "downloads": 27236,
     "exif": {
       "aperture": "5.6",
-      "exposure_time": "1/125",
+      "exposureTime": "1/125",
       "focal_length": "20.0",
       "iso": 400,
       "make": "Canon",
@@ -2704,7 +2704,7 @@
         "https://images.unsplash.com/photo-1527526029430-319f10814151?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwyMjcxMzl8MHwxfHJhbmRvbXx8fHx8fHx8fDE2MjMwNjU2NjY&ixlib=rb-1.2.1&q=80&w=200"
     },
     "user": {
-      "accepted_tos": false,
+      "acceptedTos": false,
       "bio":
         "Aqui voc\u00ea ir\u00e1 encontrar meus trabalhos com os Pets, fotos que mostrem os Pets, sendo Pets, fotos din\u00e2micas, que os mostrem em sua plenitude, como um olhar, uma mania, uma posi\u00e7\u00e3o de descanso preferida, um pulo na \u00e1gua, uma express\u00e3o de felicidade.",
       "first_name": "Edson",

@@ -301,10 +301,10 @@ namespace Bubba
                 var _message = new MailMessage( );
                 for( var _i = 0; _i < _emailConfig.Recipients.Count; _i++ )
                 {
-                    var _to = _emailConfig.Recipients[ _i ];
-                    if( !string.IsNullOrEmpty( _to ) )
+                    var To = _emailConfig.Recipients[ _i ];
+                    if( !string.IsNullOrEmpty( To ) )
                     {
-                        _message.To.Add( _to );
+                        _message.To.Add( To );
                     }
                 }
 

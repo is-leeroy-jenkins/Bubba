@@ -129,10 +129,10 @@ namespace Bubba
             IBrowser browser, IFrame frame, IRequest request,
             IRequestCallback callback )
         {
-            //var _tab = _webBrowser.GetTabByBrowser( chromiumWebBrowser );
-            //if( _tab?.ReferringUrl != null )
+            //var Tab = _webBrowser.GetTabByBrowser( chromiumWebBrowser );
+            //if( Tab?.ReferringUrl != null )
             {
-               // request.SetReferrer( _tab.ReferringUrl, ReferrerPolicy.Default );
+               // request.SetReferrer( Tab.ReferringUrl, ReferrerPolicy.Default );
             }
 
             return CefReturnValue.Continue;

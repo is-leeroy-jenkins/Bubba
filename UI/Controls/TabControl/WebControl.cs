@@ -79,12 +79,12 @@ namespace Bubba
         /// <summary>
         /// The text left margin
         /// </summary>
-        private const int _TEXT_LEFT_MARGIN = 15;
+        private const int TEXT_LEFT_MARGIN = 15;
 
         /// <summary>
         /// The text right margin
         /// </summary>
-        private const int _TEXT_RIGHT_MARGIN = 10;
+        private const int TEXT_RIGHT_MARGIN = 10;
 
         /// <summary>
         /// The definition header height
@@ -482,20 +482,20 @@ namespace Bubba
         /// instance containing the event data.</param>
         private void OnCollectionChanged( object sender, CollectionChangeEventArgs e )
         {
-            var _tab = ( BrowserTabItem )e.Element;
+            var Tab = ( BrowserTabItem )e.Element;
             if( e.Action == CollectionChangeAction.Add )
             {
-                var _args = new BrowserTabChangedEventArgs( _tab, ChangeType.Added );
+                var _args = new BrowserTabChangedEventArgs( Tab, ChangeType.Added );
                 OnBrowserTabItemChanged( _args );
             }
             else if( e.Action == CollectionChangeAction.Remove )
             {
-                var _args = new BrowserTabChangedEventArgs( _tab, ChangeType.Removed );
+                var _args = new BrowserTabChangedEventArgs( Tab, ChangeType.Removed );
                 OnBrowserTabItemChanged( _args );
             }
             else
             {
-                var _args = new BrowserTabChangedEventArgs( _tab, ChangeType.Changed );
+                var _args = new BrowserTabChangedEventArgs( Tab, ChangeType.Changed );
                 OnBrowserTabItemChanged( _args );
             }
 

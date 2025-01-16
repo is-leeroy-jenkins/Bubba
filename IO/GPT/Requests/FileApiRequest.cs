@@ -1,10 +1,10 @@
 ﻿// ******************************************************************************************
 //     Assembly:                Bubba
 //     Author:                  Terry D. Eppler
-//     Created:                 01-13-2025
+//     Created:                 01-16-2025
 // 
 //     Last Modified By:        Terry D. Eppler
-//     Last Modified On:        01-13-2025
+//     Last Modified On:        01-16-2025
 // ******************************************************************************************
 // <copyright file="FileApiRequest.cs" company="Terry D. Eppler">
 //    Bubba is a small and simple windows (wpf) application for interacting with the OpenAI API
@@ -349,10 +349,10 @@ namespace Bubba
             }
             set
             {
-                if(_fileId != value)
+                if( _fileId != value )
                 {
                     _fileId = value;
-                    OnPropertyChanged(nameof(FileId));
+                    OnPropertyChanged( nameof( FileId ) );
                 }
             }
         }
@@ -395,7 +395,7 @@ namespace Bubba
             }
             set
             {
-                if(_mimeType != value)
+                if( _mimeType != value )
                 {
                     _mimeType = value;
                     OnPropertyChanged( nameof( MimeType ) );
@@ -436,8 +436,8 @@ namespace Bubba
         {
             try
             {
-                using var _client = new HttpClient( );
-                _client.DefaultRequestHeaders.Authorization =
+                _httpClient = new HttpClient( );
+                _httpClient.DefaultRequestHeaders.Authorization =
                     new AuthenticationHeaderValue( "Bearer", _apiKey );
 
                 using var _fileStream = new FileStream( filePath, FileMode.Open, FileAccess.Read );
@@ -453,7 +453,7 @@ namespace Bubba
                     }
                 };
 
-                var _response = await _client.PostAsync( _endPoint, _formData );
+                var _response = await _httpClient.PostAsync( _endPoint, _formData );
                 _response.EnsureSuccessStatusCode( );
                 var _responseContent = await _response.Content.ReadAsStringAsync( );
                 return _responseContent;
@@ -507,8 +507,8 @@ namespace Bubba
 
                 var _response = await _httpClient.GetAsync( $"{_endPoint}/{fileId}" );
                 _response.EnsureSuccessStatusCode( );
-                var _responseContent = await _response.Content.ReadAsStringAsync();
-                return !string.IsNullOrEmpty(_responseContent)
+                var _responseContent = await _response.Content.ReadAsStringAsync( );
+                return !string.IsNullOrEmpty( _responseContent )
                     ? _responseContent
                     : string.Empty;
             }
@@ -535,8 +535,8 @@ namespace Bubba
 
                 var _response = await _httpClient.DeleteAsync( $"{_endPoint}/{fileId}" );
                 _response.EnsureSuccessStatusCode( );
-                var _responseContent = await _response.Content.ReadAsStringAsync();
-                return !string.IsNullOrEmpty(_responseContent)
+                var _responseContent = await _response.Content.ReadAsStringAsync( );
+                return !string.IsNullOrEmpty( _responseContent )
                     ? _responseContent
                     : string.Empty;
             }
@@ -560,13 +560,13 @@ namespace Bubba
                 _data.Add( "model", _model );
                 _data.Add( "endpoint", _endPoint );
                 _data.Add( "n", _number );
-                _data.Add( "max_completion_tokens", _maximumTokens );
+                _data.Add( "max_completionTokens", _maximumTokens );
                 _data.Add( "store", _store );
                 _data.Add( "stream", _stream );
-                _data.Add( "temperature", _temperature );
+                _data.Add( "temperature", Temperature );
                 _data.Add( "frequency_penalty", _frequencyPenalty );
                 _data.Add( "presence_penalty", _presencePenalty );
-                _data.Add( "top_p", _topPercent );
+                _data.Add( "top_p", TopPercent );
                 return _data?.Any( ) == true
                     ? _data
                     : default( IDictionary<string, object> );

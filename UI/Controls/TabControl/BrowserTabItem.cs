@@ -331,7 +331,7 @@ namespace Bubba
         {
             get
             {
-                return _title;
+                return Title;
             }
         }
 
@@ -400,13 +400,13 @@ namespace Bubba
         {
             get
             {
-                return _title;
+                return Title;
             }
             set
             {
-                if( _title != value )
+                if( Title != value )
                 {
-                    _title = value;
+                    Title = value;
                     OnPropertyChanged( nameof( Title ) );
                 }
             }
@@ -460,13 +460,13 @@ namespace Bubba
         {
             get
             {
-                return _tab;
+                return Tab;
             }
             set
             {
-                if( _tab != value )
+                if( Tab != value )
                 {
-                    _tab = value;
+                    Tab = value;
                     OnPropertyChanged( nameof( Tab ) );
                 }
             }
@@ -512,7 +512,7 @@ namespace Bubba
         /// </returns>
         public override string ToString( )
         {
-            return _title;
+            return Title;
         }
 
         /// <summary>

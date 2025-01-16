@@ -98,7 +98,7 @@ namespace Bubba
             : this( )
         {
             _model = config.Model;
-            _temperature = config.Temperature;
+            Temperature = config.Temperature;
             _maximumTokens = config.MaximumTokens;
         }
 
@@ -188,13 +188,13 @@ namespace Bubba
         {
             get
             {
-                return _temperature;
+                return Temperature;
             }
             private set
             {
-                if( _temperature != value )
+                if( Temperature != value )
                 {
-                    _temperature = value;
+                    Temperature = value;
                     OnPropertyChanged( nameof( Temperature ) );
                 }
             }
@@ -231,7 +231,7 @@ namespace Bubba
         /// <value>
         /// The maximum tokens.
         /// </value>
-        [ JsonPropertyName( "max_completion_tokens" ) ]
+        [ JsonPropertyName( "max_completionTokens" ) ]
         public int MaxTokens
         {
             get
@@ -264,13 +264,13 @@ namespace Bubba
         {
             get
             {
-                return _topPercent;
+                return TopPercent;
             }
             set
             {
-                if( _topPercent != value )
+                if( TopPercent != value )
                 {
-                    _topPercent = value;
+                    TopPercent = value;
                     OnPropertyChanged( nameof( TopPercent ) );
                 }
             }
@@ -503,9 +503,9 @@ namespace Bubba
                 {
                     model = _model,
                     prompt,
-                    max_tokens = _maximumTokens,
+                    maxTokens = _maximumTokens,
                     user = _user,
-                    _temperature,
+                    Temperature,
                     frequency_penalty = 0.0,
                     presence_penalty = 0.0,
                     stop = new[ ]
@@ -538,20 +538,20 @@ namespace Bubba
                     {
                         var _msg = _choices[ 0 ].GetProperty( "message" );
                         var _cnt = _msg.GetProperty( "content" );
-                        var _txt = _cnt.GetString( );
-                        return _txt;
+                        var Txt = _cnt.GetString( );
+                        return Txt;
                     }
 
                     var _message = _choices[ 0 ].GetProperty( "message" );
-                    var _text = _message.GetString( );
-                    return _text;
+                    var Text = _message.GetString( );
+                    return Text;
                 }
                 else
                 {
                     var _choice = _root.GetProperty( "choices" )[ 0 ];
                     var _property = _choice.GetProperty( "text" );
-                    var _text = _property.GetString( );
-                    return _text;
+                    var Text = _property.GetString( );
+                    return Text;
                 }
             }
             catch( Exception ex )
@@ -569,7 +569,7 @@ namespace Bubba
         /// <returns></returns>
         public async Task<string> SendHttpMessageAsync( string userPrompt )
         {
-            var _temp = _temperature;
+            var Temp = Temperature;
             var _url = _model.Contains( "gpt-3.5-turbo" )
                 ? "https://api.openai.com/v1/chat/completions"
                 : "https://api.openai.com/v1/completions";
@@ -597,8 +597,8 @@ namespace Bubba
                 {
                     model = _model,
                     prompt = ProcessQuotes( userPrompt ),
-                    max_tokens = _maximumTokens,
-                    temperature = _temp,
+                    maxTokens = _maximumTokens,
+                    temperature = Temp,
                     user = _user,
                     frequency_penalty = 0.0,
                     presence_penalty = 0.0,
@@ -635,8 +635,8 @@ namespace Bubba
                     using var _doc = JsonDocument.Parse( _responseText );
                     var _root = _doc.RootElement;
                     var _choice = _root.GetProperty( "choices" )[ 0 ];
-                    var _text = _choice.GetProperty( "text" ).GetString( );
-                    return _text ?? string.Empty;
+                    var Text = _choice.GetProperty( "text" ).GetString( );
+                    return Text ?? string.Empty;
                 }
             }
             catch( HttpRequestException ex )

@@ -69,12 +69,12 @@ namespace Bubba
         /// <summary>
         /// The show dev tools
         /// </summary>
-        private const int SHOW_DEV_TOOLS = 26501;
+        private const int SHOW_DEVTOOLS = 26501;
 
         /// <summary>
         /// The close dev tools
         /// </summary>
-        private const int CLOSE_DEV_TOOLS = 26502;
+        private const int CLOSE_DEVTOOLS = 26502;
 
         /// <summary>
         /// The save image as
@@ -99,17 +99,17 @@ namespace Bubba
         /// <summary>
         /// The open link in new tab
         /// </summary>
-        private const int OPEN_LINK_IN_NEW_TAB = 26507;
+        private const int OPEN_LINK_IN_NEWTAB = 26507;
 
         /// <summary>
         /// The close tab
         /// </summary>
-        private const int CLOSE_TAB = 40007;
+        private const int CLOSETAB = 40007;
 
         /// <summary>
         /// The refresh tab
         /// </summary>
-        private const int REFRESH_TAB = 40008;
+        private const int REFRESHTAB = 40008;
 
         /// <summary>
         /// The print
@@ -160,7 +160,7 @@ namespace Bubba
 
             if( parameters.LinkUrl != "" )
             {
-                model.AddItem( ( CefMenuCommand )OPEN_LINK_IN_NEW_TAB, "Open link in new tab" );
+                model.AddItem( ( CefMenuCommand )OPEN_LINK_IN_NEWTAB, "Open link in new tab" );
                 model.AddItem( ( CefMenuCommand )COPY_LINK_ADDRESS, "Copy link" );
                 model.AddSeparator( );
             }
@@ -176,18 +176,18 @@ namespace Bubba
                 // TEXT IS SELECTED
             }
 
-            model.AddItem( ( CefMenuCommand )SHOW_DEV_TOOLS, "Developer tools" );
+            model.AddItem( ( CefMenuCommand )SHOW_DEVTOOLS, "Developer tools" );
             model.AddItem( CefMenuCommand.ViewSource, "View source" );
             model.AddSeparator( );
-            model.AddItem( ( CefMenuCommand )REFRESH_TAB, "Refresh tab" );
-            model.AddItem( ( CefMenuCommand )CLOSE_TAB, "Close tab" );
+            model.AddItem( ( CefMenuCommand )REFRESHTAB, "Refresh tab" );
+            model.AddItem( ( CefMenuCommand )CLOSETAB, "Close tab" );
             model.AddSeparator( );
             model.AddItem( ( CefMenuCommand )SAVE_AS_PDF, "Save as PDF" );
             model.AddItem( ( CefMenuCommand )PRINT, "Print Page" );
         }
 
         /// <summary>
-        /// Called to execute a command selected from the context menu. See cef_menu_id_t
+        /// Called to execute a command selected from the context menu. See cef_menu_idT
         /// for the command ids that have default implementations. All user-defined command
         /// ids should be between MENU_ID_USER_FIRST and MENU_ID_USER_LAST.
         /// </summary>
@@ -208,12 +208,12 @@ namespace Bubba
             var _id = ( int )commandId;
             switch( _id )
             {
-                case SHOW_DEV_TOOLS:
+                case SHOW_DEVTOOLS:
                 {
                     browser.ShowDevTools( );
                     break;
                 }
-                case CLOSE_DEV_TOOLS:
+                case CLOSE_DEVTOOLS:
                 {
                     browser.CloseDevTools( );
                     break;
@@ -228,9 +228,9 @@ namespace Bubba
                     browser.GetHost( ).StartDownload( parameters.LinkUrl );
                     break;
                 }
-                case OPEN_LINK_IN_NEW_TAB:
+                case OPEN_LINK_IN_NEWTAB:
                 {
-                    var _tab = _webBrowser.AddNewBrowserTab( parameters.LinkUrl, false,
+                    var Tab = _webBrowser.AddNewBrowserTab( parameters.LinkUrl, false,
                         browser.MainFrame.Url );
 
                     break;
@@ -240,12 +240,12 @@ namespace Bubba
                     Clipboard.SetText( parameters.LinkUrl );
                     break;
                 }
-                case CLOSE_TAB:
+                case CLOSETAB:
                 {
                     _webBrowser.CloseActiveTab( );
                     break;
                 }
-                case REFRESH_TAB:
+                case REFRESHTAB:
                 {
                     _webBrowser.RefreshActiveTab( );
                     break;

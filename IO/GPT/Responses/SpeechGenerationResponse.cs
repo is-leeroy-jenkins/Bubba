@@ -264,7 +264,9 @@ namespace Bubba
         private string ExtractAudioText( string jsonResponse )
         {
             using var _document = JsonDocument.Parse( jsonResponse );
-            return _document.RootElement.GetProperty( "choices" )[ 0 ].GetProperty( "text" )
+            return _document.RootElement
+                .GetProperty( "choices" )[ 0 ]
+                .GetProperty( "text" )
                 .GetString( );
         }
 
@@ -288,13 +290,16 @@ namespace Bubba
                     if( _element.ValueKind == JsonValueKind.Array
                         && _element.GetArrayLength( ) > 0 )
                     {
-                        var _messageElement = _element[ 0 ].GetProperty( "message" );
-                        return _messageElement.GetProperty( "content" ).GetString( );
+                        var _message = _element[ 0 ].GetProperty( "message" );
+                        return _message.GetProperty( "content" )
+                            .GetString( );
                     }
                 }
                 else
                 {
-                    return _root.GetProperty( "choices" )[ 0 ].GetProperty( "text" ).GetString( );
+                    return _root.GetProperty( "choices" )[ 0 ]
+                        .GetProperty( "text" )
+                        .GetString( );
                 }
 
                 return string.Empty;

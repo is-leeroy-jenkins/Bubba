@@ -228,15 +228,15 @@ namespace Bubba
                 var _async = new TaskCompletionSource<string>( );
                 try
                 {
-                    var _text = string.Empty;
+                    var Text = string.Empty;
                     var _list = File.ReadLines( _fullPath )?.ToList( );
                     for( var _i = 0; _i < _list.Count; _i++ )
                     {
-                        _text += _list[ _i ];
+                        Text += _list[ _i ];
                     }
 
-                    _async.SetResult( _text );
-                    return !string.IsNullOrEmpty( _text )
+                    _async.SetResult( Text );
+                    return !string.IsNullOrEmpty( Text )
                         ? _async.Task
                         : default( Task<string> );
                 }

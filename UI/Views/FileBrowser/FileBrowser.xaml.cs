@@ -680,10 +680,10 @@ namespace Bubba
                         ?.Where( s => s.Name.Contains( "My" ) == false )?.Select( s => s.FullName )
                         ?.ToList( );
 
-                    var _topLevelFiles = _parent.GetFiles( _pattern, SearchOption.TopDirectoryOnly )
+                    var TopLevelFiles = _parent.GetFiles( _pattern, SearchOption.TopDirectoryOnly )
                         ?.Select( f => f.FullName )?.ToArray( );
 
-                    _filePaths.AddRange( _topLevelFiles );
+                    _filePaths.AddRange( TopLevelFiles );
                     for( var _k = 0; _k < _folders.Count; _k++ )
                     {
                         var _folder = Directory.CreateDirectory( _folders[ _k ] );
@@ -729,10 +729,10 @@ namespace Bubba
                         ?.Where( s => s.Name.StartsWith( "My" ) == false )
                         ?.Select( s => s.FullName )?.ToList( );
 
-                    var _topLevelFiles = _parent.GetFiles( _pattern, SearchOption.TopDirectoryOnly )
+                    var TopLevelFiles = _parent.GetFiles( _pattern, SearchOption.TopDirectoryOnly )
                         ?.Select( f => f.FullName )?.ToArray( );
 
-                    _list.AddRange( _topLevelFiles );
+                    _list.AddRange( TopLevelFiles );
                     for( var _k = 0; _k < _folders.Count; _k++ )
                     {
                         var _folder = Directory.CreateDirectory( _folders[ _k ] );

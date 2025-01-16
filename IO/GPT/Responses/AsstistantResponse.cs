@@ -73,6 +73,7 @@ namespace Bubba
         public AsstistantResponse( )
         {
             _created = DateTime.Now;
+            _model = "gpt-4o";
         }
 
         /// <summary>

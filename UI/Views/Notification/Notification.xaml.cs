@@ -188,11 +188,11 @@ namespace Bubba
         {
             get
             {
-                return _text;
+                return Text;
             }
             private set
             {
-                _text = value;
+                Text = value;
             }
         }
 
@@ -223,7 +223,7 @@ namespace Bubba
         public Notification( string message )
             : this( )
         {
-            _text = message;
+            Text = message;
         }
 
         /// <summary>
@@ -362,7 +362,7 @@ namespace Bubba
             try
             {
                 InitializeLabels( );
-                MessageLabel.Content = _text;
+                MessageLabel.Content = Text;
                 Opacity = 0;
                 FadeInAsync( this );
             }

@@ -2,6 +2,19 @@
   "version": 3,
   "targets": {
     "net8.0-windows7.0": {
+      "AngleSharp/1.2.0": {
+        "type": "package",
+        "compile": {
+          "lib/net8.0/AngleSharp.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net8.0/AngleSharp.dll": {
+            "related": ".xml"
+          }
+        }
+      },
       "CefSharp.Common.NETCore/131.2.70": {
         "type": "package",
         "dependencies": {
@@ -3613,6 +3626,31 @@
     }
   },
   "libraries": {
+    "AngleSharp/1.2.0": {
+      "sha512": "uF/PzSCVcb+b2nqVvHZbOqexoJ9R6QLjonugPf0PQl+0h7YKaFZeXyspctbHe5HGlx7/Iuk5BErtk+t63ac/ZA==",
+      "type": "package",
+      "path": "anglesharp/1.2.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "README.md",
+        "anglesharp.1.2.0.nupkg.sha512",
+        "anglesharp.nuspec",
+        "lib/net462/AngleSharp.dll",
+        "lib/net462/AngleSharp.xml",
+        "lib/net472/AngleSharp.dll",
+        "lib/net472/AngleSharp.xml",
+        "lib/net6.0/AngleSharp.dll",
+        "lib/net6.0/AngleSharp.xml",
+        "lib/net7.0/AngleSharp.dll",
+        "lib/net7.0/AngleSharp.xml",
+        "lib/net8.0/AngleSharp.dll",
+        "lib/net8.0/AngleSharp.xml",
+        "lib/netstandard2.0/AngleSharp.dll",
+        "lib/netstandard2.0/AngleSharp.xml",
+        "logo.png"
+      ]
+    },
     "CefSharp.Common.NETCore/131.2.70": {
       "sha512": "/5vlEz31u+8x0d/a0jb+YXN/IHzXZUJyamgDUvZeltOWDttao3gBV9DGoNPBxzdz79h7K+4oPWPVKGoguhqkcA==",
       "type": "package",
@@ -9070,6 +9108,7 @@
   },
   "projectFileDependencyGroups": {
     "net8.0-windows7.0": [
+      "AngleSharp >= 1.2.0",
       "CefSharp.Common.NETCore >= 131.2.70",
       "CefSharp.OffScreen.NETCore >= 131.2.70",
       "CefSharp.WinForms.NETCore >= 131.2.70",
@@ -9177,6 +9216,10 @@
       "net8.0-windows7.0": {
         "targetAlias": "net8.0-windows7.0",
         "dependencies": {
+          "AngleSharp": {
+            "target": "Package",
+            "version": "[1.2.0, )"
+          },
           "CefSharp.Common.NETCore": {
             "target": "Package",
             "version": "[131.2.70, )"

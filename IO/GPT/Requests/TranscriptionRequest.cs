@@ -311,7 +311,7 @@ namespace Bubba
         {
             get
             {
-                return _temperature;
+                return Temperature;
             }
         }
 
@@ -369,9 +369,9 @@ namespace Bubba
                 var _response = await _client.PostAsync( _endPoint, _formData );
                 _response.EnsureSuccessStatusCode( );
                 var _responseContent = await _response.Content.ReadAsStringAsync( );
-                var _transcription = ParseTranscription( _responseContent );
-                return !string.IsNullOrEmpty( _transcription ) 
-                    ? _transcription
+                var Transcription = ParseTranscription( _responseContent );
+                return !string.IsNullOrEmpty( Transcription ) 
+                    ? Transcription
                     : string.Empty;
             }
             catch( Exception ex )
@@ -392,12 +392,12 @@ namespace Bubba
             {
                 ThrowIf.Empty( jsonResponse, nameof( jsonResponse ) );
                 using var _document = JsonDocument.Parse( jsonResponse );
-                var _transcription = _document.RootElement
+                var Transcription = _document.RootElement
                     .GetProperty( "text" )
                     .GetString( );
 
-                return !string.IsNullOrEmpty( _transcription )
-                    ? _transcription
+                return !string.IsNullOrEmpty( Transcription )
+                    ? Transcription
                     : string.Empty;
             }
             catch( Exception e )
@@ -420,13 +420,13 @@ namespace Bubba
                 _data.Add( "model", _model );
                 _data.Add( "endpoint", _endPoint );
                 _data.Add( "n", _number );
-                _data.Add( "max_completion_tokens", _maximumTokens );
+                _data.Add( "max_completionTokens", _maximumTokens );
                 _data.Add( "store", _store );
                 _data.Add( "stream", _stream );
-                _data.Add( "temperature", _temperature );
+                _data.Add( "temperature", Temperature );
                 _data.Add( "frequency_penalty", _frequencyPenalty );
                 _data.Add( "presence_penalty", _presencePenalty );
-                _data.Add( "top_p", _topPercent );
+                _data.Add( "top_p", TopPercent );
                 _data.Add( "response_format", _responseFormat );
                 _data.Add( "endpoint", _endPoint );
                 _data.Add( "speed", _speed );

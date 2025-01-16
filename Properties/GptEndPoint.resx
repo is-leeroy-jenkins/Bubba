@@ -126,7 +126,7 @@
     <comment>URL to the openai files api</comment>
   </data>
   <data name="FineTuning" xml:space="preserve">
-    <value>https://api.openai.com/v1/fine_tuning/jobs</value>
+    <value>https://api.openai.com/v1/fineTuning/jobs</value>
     <comment>URL to the openai fine-tuning api</comment>
   </data>
   <data name="ImageGeneration" xml:space="preserve">

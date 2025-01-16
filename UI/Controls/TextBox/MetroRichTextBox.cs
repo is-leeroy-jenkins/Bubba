@@ -62,11 +62,11 @@
         {
             try
             {
-                if( sender is MetroRichTextBox _textBox )
+                if( sender is MetroRichTextBox TextBox )
                 {
-                    _textBox.Background = _theme.DarkBlueBrush;
-                    _textBox.BorderBrush = _theme.LightBlueBrush;
-                    _textBox.Foreground = _theme.WhiteForeground;
+                    TextBox.Background = _theme.DarkBlueBrush;
+                    TextBox.BorderBrush = _theme.LightBlueBrush;
+                    TextBox.Foreground = _theme.WhiteForeground;
                 }
             }
             catch( Exception ex )
@@ -85,11 +85,11 @@
         {
             try
             {
-                if( sender is MetroRichTextBox _textBox )
+                if( sender is MetroRichTextBox TextBox )
                 {
-                    _textBox.Background = _theme.ControlInterior;
-                    _textBox.BorderBrush = _theme.SteelBlueBrush;
-                    _textBox.Foreground = _theme.LightBlueBrush;
+                    TextBox.Background = _theme.ControlInterior;
+                    TextBox.BorderBrush = _theme.SteelBlueBrush;
+                    TextBox.Foreground = _theme.LightBlueBrush;
                 }
             }
             catch( Exception ex )
