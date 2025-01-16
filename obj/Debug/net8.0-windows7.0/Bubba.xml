@@ -26610,8 +26610,23 @@
             <returns></returns>
         </member>
         <member name="T:Bubba.HtmlAttribute">
+            <inheritdoc />
             <summary>
-            
+            </summary>
+        </member>
+        <member name="F:Bubba.HtmlAttribute._timer">
+            <summary>
+            The timer
+            </summary>
+        </member>
+        <member name="F:Bubba.HtmlAttribute._name">
+            <summary>
+            The name
+            </summary>
+        </member>
+        <member name="F:Bubba.HtmlAttribute._value">
+            <summary>
+            The value
             </summary>
         </member>
         <member name="M:Bubba.HtmlAttribute.#ctor">
@@ -26644,14 +26659,125 @@
             The value.
             </value>
         </member>
+        <member name="M:Bubba.HtmlAttribute.Dispose">
+            <inheritdoc />
+            <summary>
+            Releases unmanaged and - optionally - managed resources.
+            </summary>
+        </member>
+        <member name="M:Bubba.HtmlAttribute.Dispose(System.Boolean)">
+            <summary>
+            Releases unmanaged and - optionally - managed resources.
+            </summary>
+            <param name="disposing"><c>true</c>
+            to release both managed and unmanaged resources;
+            <c>false</c> to release only unmanaged resources.
+            </param>
+        </member>
+        <member name="M:Bubba.HtmlAttribute.Fail(System.Exception)">
+            <summary>
+            Fails the specified ex.
+            </summary>
+            <param name="ex">The ex.</param>
+        </member>
+        <member name="T:Bubba.HtmlDocument">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Bubba.HtmlDocument._timer">
+            <summary>
+            The timer
+            </summary>
+        </member>
+        <member name="F:Bubba.HtmlDocument._document">
+            <summary>
+            The document
+            </summary>
+        </member>
+        <member name="M:Bubba.HtmlDocument.#ctor">
+            <summary>
+            Initializes a new instance of the
+            <see cref="T:Bubba.HtmlDocument"/> class.
+            </summary>
+        </member>
+        <member name="M:Bubba.HtmlDocument.#ctor(AngleSharp.Dom.IDocument)">
+            <summary>
+            Initializes a new instance of the
+            <see cref="T:Bubba.HtmlDocument"/> class.
+            </summary>
+            <param name="document">The document.</param>
+        </member>
+        <member name="P:Bubba.HtmlDocument.Root">
+            <summary>
+            Gets the root.
+            </summary>
+            <value>
+            The root.
+            </value>
+        </member>
+        <member name="M:Bubba.HtmlDocument.QuerySelector(System.String)">
+            <summary>
+            Queries the selector.
+            </summary>
+            <param name="selector">The selector.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Bubba.HtmlDocument.QuerySelectorAll(System.String)">
+            <summary>
+            Queries the selector all.
+            </summary>
+            <param name="selector">The selector.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Bubba.HtmlDocument.ToString">
+            <summary>
+            Converts to string.
+            </summary>
+            <returns>
+            A <see cref="T:System.String" /> that represents this instance.
+            </returns>
+        </member>
+        <member name="M:Bubba.HtmlDocument.Dispose">
+            <inheritdoc />
+            <summary>
+            Releases unmanaged and - optionally - managed resources.
+            </summary>
+        </member>
+        <member name="M:Bubba.HtmlDocument.Dispose(System.Boolean)">
+            <summary>
+            Releases unmanaged and - optionally - managed resources.
+            </summary>
+            <param name="disposing"><c>true</c>
+            to release both managed and unmanaged resources;
+            <c>false</c> to release only unmanaged resources.
+            </param>
+        </member>
+        <member name="M:Bubba.HtmlDocument.Fail(System.Exception)">
+            <summary>
+            Fails the specified ex.
+            </summary>
+            <param name="ex">The ex.</param>
+        </member>
         <member name="T:Bubba.HtmlElement">
             <summary>
             
             </summary>
         </member>
+        <member name="F:Bubba.HtmlElement._timer">
+            <summary>
+            The timer
+            </summary>
+        </member>
         <member name="F:Bubba.HtmlElement._element">
             <summary>
             The element
+            </summary>
+        </member>
+        <member name="M:Bubba.HtmlElement.#ctor">
+            <summary>
+            Initializes a new instance of the
+            <see cref="T:Bubba.HtmlElement"/> class.
             </summary>
         </member>
         <member name="M:Bubba.HtmlElement.#ctor(AngleSharp.Dom.IElement)">
@@ -26660,6 +26786,14 @@
             <see cref="T:Bubba.HtmlElement"/> class.
             </summary>
             <param name="element">The element.</param>
+        </member>
+        <member name="P:Bubba.HtmlElement.Element">
+            <summary>
+            Gets or sets the element.
+            </summary>
+            <value>
+            The element.
+            </value>
         </member>
         <member name="P:Bubba.HtmlElement.TagName">
             <summary>
@@ -26742,6 +26876,37 @@
             A <see cref="T:System.String" /> that represents this instance.
             </returns>
         </member>
+        <member name="M:Bubba.HtmlElement.Dispose">
+            <inheritdoc />
+            <summary>
+            Releases unmanaged and - optionally - managed resources.
+            </summary>
+        </member>
+        <member name="M:Bubba.HtmlElement.Dispose(System.Boolean)">
+            <summary>
+            Releases unmanaged and - optionally - managed resources.
+            </summary>
+            <param name="disposing"><c>true</c>
+            to release both managed and unmanaged resources;
+            <c>false</c> to release only unmanaged resources.
+            </param>
+        </member>
+        <member name="M:Bubba.HtmlElement.Fail(System.Exception)">
+            <summary>
+            Fails the specified ex.
+            </summary>
+            <param name="ex">The ex.</param>
+        </member>
+        <member name="T:Bubba.HtmlReader">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Bubba.HtmlReader._timer">
+            <summary>
+            The timer
+            </summary>
+        </member>
         <member name="F:Bubba.HtmlReader._parser">
             <summary>
             The parser
@@ -26759,9 +26924,53 @@
             <param name="html">The HTML string to parse.</param>
             <returns>The root element of the parsed document.</returns>
         </member>
+        <member name="P:Bubba.HtmlReader.Parser">
+            <summary>
+            Gets or sets the parser.
+            </summary>
+            <value>
+            The parser.
+            </value>
+        </member>
+        <member name="M:Bubba.HtmlReader.Dispose">
+            <inheritdoc />
+            <summary>
+            Releases unmanaged and - optionally - managed resources.
+            </summary>
+        </member>
+        <member name="M:Bubba.HtmlReader.Dispose(System.Boolean)">
+            <summary>
+            Releases unmanaged and - optionally - managed resources.
+            </summary>
+            <param name="disposing"><c>true</c>
+            to release both managed and unmanaged resources;
+            <c>false</c> to release only unmanaged resources.
+            </param>
+        </member>
+        <member name="M:Bubba.HtmlReader.Fail(System.Exception)">
+            <summary>
+            Fails the specified ex.
+            </summary>
+            <param name="ex">The ex.</param>
+        </member>
         <member name="T:Bubba.HtmlWriter">
             <summary>
             
+            </summary>
+        </member>
+        <member name="F:Bubba.HtmlWriter._timer">
+            <summary>
+            The timer
+            </summary>
+        </member>
+        <member name="F:Bubba.HtmlWriter._builder">
+            <summary>
+            The builder
+            </summary>
+        </member>
+        <member name="F:Bubba.HtmlWriter._openTags">
+            <summary>
+            The open tags
             </summary>
         </member>
         <member name="M:Bubba.HtmlWriter.#ctor">
@@ -26770,12 +26979,57 @@
             <see cref="T:Bubba.HtmlWriter"/> class.
             </summary>
         </member>
-        <member name="M:Bubba.HtmlWriter.Write(Bubba.HtmlDocument)">
+        <member name="M:Bubba.HtmlWriter.BeginElement(System.String,System.Collections.Generic.Dictionary{System.String,System.String})">
             <summary>
-            Writes the specified document.
+            Begins an HTML element with the specified tag name.
             </summary>
-            <param name="document">The document.</param>
-            <returns></returns>
+            <param name="tagName">The name of the HTML tag.</param>
+            <param name="attributes">Optional attributes for the element.</param>
+        </member>
+        <member name="M:Bubba.HtmlWriter.EndElement">
+            <summary>
+            Ends the most recently opened HTML element.
+            </summary>
+        </member>
+        <member name="M:Bubba.HtmlWriter.WriteText(System.String)">
+            <summary>
+            Writes text content inside the current element.
+            </summary>
+            <param name="text">The text content to write.</param>
+        </member>
+        <member name="M:Bubba.HtmlWriter.AddSelfClosingElement(System.String,System.Collections.Generic.Dictionary{System.String,System.String})">
+            <summary>
+            Adds a self-closing HTML element.
+            </summary>
+            <param name="tagName">The name of the self-closing tag.</param>
+            <param name="attributes">Optional attributes for the element.</param>
+        </member>
+        <member name="M:Bubba.HtmlWriter.ToString">
+            <summary>
+            Returns the generated HTML as a string.
+            </summary>
+            <returns>The generated HTML.</returns>
+        </member>
+        <member name="M:Bubba.HtmlWriter.Dispose">
+            <inheritdoc />
+            <summary>
+            Releases unmanaged and - optionally - managed resources.
+            </summary>
+        </member>
+        <member name="M:Bubba.HtmlWriter.Dispose(System.Boolean)">
+            <summary>
+            Releases unmanaged and - optionally - managed resources.
+            </summary>
+            <param name="disposing"><c>true</c>
+            to release both managed and unmanaged resources;
+            <c>false</c> to release only unmanaged resources.
+            </param>
+        </member>
+        <member name="M:Bubba.HtmlWriter.Fail(System.Exception)">
+            <summary>
+            Fails the specified ex.
+            </summary>
+            <param name="ex">The ex.</param>
         </member>
         <member name="T:Bubba.BabyBoy">
             <inheritdoc />
@@ -28064,6 +28318,329 @@
             <value>
             The drive separator.
             </value>
+        </member>
+        <member name="T:Bubba.PdfDocumentManager">
+            <inheritdoc />
+            <summary>
+            </summary>
+        </member>
+        <member name="F:Bubba.PdfDocumentManager._timer">
+            <summary>
+            The timer
+            </summary>
+        </member>
+        <member name="F:Bubba.PdfDocumentManager._pageCount">
+            <summary>
+            The page count
+            </summary>
+        </member>
+        <member name="F:Bubba.PdfDocumentManager._title">
+            <summary>
+            The title
+            </summary>
+        </member>
+        <member name="F:Bubba.PdfDocumentManager._author">
+            <summary>
+            The author
+            </summary>
+        </member>
+        <member name="F:Bubba.PdfDocumentManager._keywords">
+            <summary>
+            The keywords
+            </summary>
+        </member>
+        <member name="F:Bubba.PdfDocumentManager._version">
+            <summary>
+            The version
+            </summary>
+        </member>
+        <member name="F:Bubba.PdfDocumentManager._creationDate">
+            <summary>
+            The creation date
+            </summary>
+        </member>
+        <member name="F:Bubba.PdfDocumentManager._document">
+            <summary>
+            The document
+            </summary>
+        </member>
+        <member name="M:Bubba.PdfDocumentManager.#ctor">
+            <summary>
+            Initializes a new instance of the
+            <see cref="T:Bubba.PdfDocumentManager"/> class.
+            </summary>
+        </member>
+        <member name="M:Bubba.PdfDocumentManager.CreateNewDocument">
+            <summary>
+            Creates the new document.
+            </summary>
+        </member>
+        <member name="M:Bubba.PdfDocumentManager.LoadDocument(System.String)">
+            <summary>
+            Loads the document.
+            </summary>
+            <param name="path">The path.</param>
+        </member>
+        <member name="M:Bubba.PdfDocumentManager.SaveDocument(System.String)">
+            <summary>
+            Saves the document.
+            </summary>
+            <param name="path">The path.</param>
+            <exception cref="T:System.InvalidOperationException">
+            No document loaded.
+            </exception>
+        </member>
+        <member name="M:Bubba.PdfDocumentManager.GetDocument">
+            <summary>
+            Gets the document.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:Bubba.PdfDocumentManager.PageCount">
+            <summary>
+            Gets the page count.
+            </summary>
+            <value>
+            The page count.
+            </value>
+        </member>
+        <member name="P:Bubba.PdfDocumentManager.Title">
+            <summary>
+            Gets or sets the title.
+            </summary>
+            <value>
+            The title.
+            </value>
+        </member>
+        <member name="P:Bubba.PdfDocumentManager.Author">
+            <summary>
+            Gets or sets the author.
+            </summary>
+            <value>
+            The author.
+            </value>
+        </member>
+        <member name="P:Bubba.PdfDocumentManager.Subject">
+            <summary>
+            Gets or sets the subject.
+            </summary>
+            <value>
+            The subject.
+            </value>
+        </member>
+        <member name="P:Bubba.PdfDocumentManager.Keywords">
+            <summary>
+            Gets or sets the keywords.
+            </summary>
+            <value>
+            The keywords.
+            </value>
+        </member>
+        <member name="P:Bubba.PdfDocumentManager.Version">
+            <summary>
+            Gets the version.
+            </summary>
+            <value>
+            The version.
+            </value>
+        </member>
+        <member name="P:Bubba.PdfDocumentManager.CreationDate">
+            <summary>
+            Gets the creation date.
+            </summary>
+            <value>
+            The creation date.
+            </value>
+        </member>
+        <member name="M:Bubba.PdfDocumentManager.Dispose">
+            <inheritdoc />
+            <summary>
+            Releases unmanaged and - optionally - managed resources.
+            </summary>
+        </member>
+        <member name="M:Bubba.PdfDocumentManager.Dispose(System.Boolean)">
+            <summary>
+            Releases unmanaged and - optionally - managed resources.
+            </summary>
+            <param name="disposing"><c>true</c>
+            to release both managed and unmanaged resources;
+            <c>false</c> to release only unmanaged resources.
+            </param>
+        </member>
+        <member name="M:Bubba.PdfDocumentManager.Fail(System.Exception)">
+            <summary>
+            Fails the specified ex.
+            </summary>
+            <param name="ex">The ex.</param>
+        </member>
+        <member name="T:Bubba.PdfPageManager">
+            <inheritdoc />
+            <summary>
+            </summary>
+            <seealso cref="T:System.IDisposable" />
+        </member>
+        <member name="F:Bubba.PdfPageManager._timer">
+            <summary>
+            The timer
+            </summary>
+        </member>
+        <member name="F:Bubba.PdfPageManager._document">
+            <summary>
+            The document
+            </summary>
+        </member>
+        <member name="M:Bubba.PdfPageManager.#ctor">
+            <summary>
+            Initializes a new instance of the
+            <see cref="T:Bubba.PdfPageManager"/> class.
+            </summary>
+        </member>
+        <member name="M:Bubba.PdfPageManager.#ctor(PdfSharp.Pdf.PdfDocument)">
+            <summary>
+            Initializes a new instance of the
+            <see cref="T:Bubba.PdfPageManager"/> class.
+            </summary>
+            <param name="document">The document.</param>
+            <exception cref="T:System.ArgumentNullException">
+            document
+            </exception>
+        </member>
+        <member name="M:Bubba.PdfPageManager.AddPage">
+            <summary>
+            Adds the page.
+            </summary>
+            <returns></returns>
+            <exception cref="T:System.InvalidOperationException">
+            Document not initialized.</exception>
+        </member>
+        <member name="M:Bubba.PdfPageManager.GetPage(System.Int32)">
+            <summary>
+            Gets the page.
+            </summary>
+            <param name="index">The index.</param>
+            <returns></returns>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+            Invalid page index.</exception>
+        </member>
+        <member name="M:Bubba.PdfPageManager.RemovePage(System.Int32)">
+            <summary>
+            Removes the page.
+            </summary>
+            <param name="index">The index.</param>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+            Invalid page index.</exception>
+        </member>
+        <member name="M:Bubba.PdfPageManager.DuplicatePage(System.Int32)">
+            <summary>
+            Duplicates the page.
+            </summary>
+            <param name="index">The index.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Bubba.PdfPageManager.MovePage(System.Int32,System.Int32)">
+            <summary>
+            Moves the page.
+            </summary>
+            <param name="fromIndex">From index.</param>
+            <param name="toIndex">To index.</param>
+            <exception cref="T:System.ArgumentOutOfRangeException">Invalid page indices.</exception>
+        </member>
+        <member name="M:Bubba.PdfPageManager.Dispose">
+            <inheritdoc />
+            <summary>
+            Releases unmanaged and - optionally - managed resources.
+            </summary>
+        </member>
+        <member name="M:Bubba.PdfPageManager.Dispose(System.Boolean)">
+            <summary>
+            Releases unmanaged and - optionally - managed resources.
+            </summary>
+            <param name="disposing"><c>true</c>
+            to release both managed and unmanaged resources;
+            <c>false</c> to release only unmanaged resources.
+            </param>
+        </member>
+        <member name="M:Bubba.PdfPageManager.Fail(System.Exception)">
+            <summary>
+            Fails the specified ex.
+            </summary>
+            <param name="ex">The ex.</param>
+        </member>
+        <member name="T:Bubba.PdfRenderer">
+            <inheritdoc />
+            <summary>
+            </summary>
+        </member>
+        <member name="F:Bubba.PdfRenderer._timer">
+            <summary>
+            The timer
+            </summary>
+        </member>
+        <member name="M:Bubba.PdfRenderer.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Bubba.PdfRenderer"/> class.
+            </summary>
+        </member>
+        <member name="M:Bubba.PdfRenderer.DrawText(PdfSharp.Pdf.PdfPage,System.String,PdfSharp.Drawing.XFont,PdfSharp.Drawing.XPoint,PdfSharp.Drawing.XBrush)">
+            <summary>
+            Draws the text.
+            </summary>
+            <param name="page">The page.</param>
+            <param name="text">The text.</param>
+            <param name="font">The font.</param>
+            <param name="position">The position.</param>
+            <param name="brush">The brush.</param>
+            <exception cref="T:System.ArgumentNullException">page</exception>
+        </member>
+        <member name="M:Bubba.PdfRenderer.DrawImage(PdfSharp.Pdf.PdfPage,System.String,PdfSharp.Drawing.XRect)">
+            <summary>
+            Draws the image.
+            </summary>
+            <param name="page">The page.</param>
+            <param name="imagePath">The image path.</param>
+            <param name="rect">The rect.</param>
+            <exception cref="T:System.ArgumentNullException">page</exception>
+        </member>
+        <member name="M:Bubba.PdfRenderer.DrawRectangle(PdfSharp.Pdf.PdfPage,PdfSharp.Drawing.XRect,PdfSharp.Drawing.XPen,PdfSharp.Drawing.XBrush)">
+            <summary>
+            Draws the rectangle.
+            </summary>
+            <param name="page">The page.</param>
+            <param name="rect">The rect.</param>
+            <param name="pen">The pen.</param>
+            <param name="brush">The brush.</param>
+            <exception cref="T:System.ArgumentNullException">page</exception>
+        </member>
+        <member name="M:Bubba.PdfRenderer.DrawEllipse(PdfSharp.Pdf.PdfPage,PdfSharp.Drawing.XRect,PdfSharp.Drawing.XPen,PdfSharp.Drawing.XBrush)">
+            <summary>
+            Draws the ellipse.
+            </summary>
+            <param name="page">The page.</param>
+            <param name="rect">The rect.</param>
+            <param name="pen">The pen.</param>
+            <param name="brush">The brush.</param>
+            <exception cref="T:System.ArgumentNullException">page</exception>
+        </member>
+        <member name="M:Bubba.PdfRenderer.Dispose">
+            <inheritdoc />
+            <summary>
+            Releases unmanaged and - optionally - managed resources.
+            </summary>
+        </member>
+        <member name="M:Bubba.PdfRenderer.Dispose(System.Boolean)">
+            <summary>
+            Releases unmanaged and - optionally - managed resources.
+            </summary>
+            <param name="disposing"><c>true</c>
+            to release both managed and unmanaged resources;
+            <c>false</c> to release only unmanaged resources.
+            </param>
+        </member>
+        <member name="M:Bubba.PdfRenderer.Fail(System.Exception)">
+            <summary>
+            Fails the specified ex.
+            </summary>
+            <param name="ex">The ex.</param>
         </member>
         <member name="T:Bubba.QuickResponse">
             <inheritdoc />

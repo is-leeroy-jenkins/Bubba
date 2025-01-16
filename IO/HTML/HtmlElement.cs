@@ -44,17 +44,34 @@ namespace Bubba
     using AngleSharp.Dom;
     using System;
     using System.Collections.Generic;
+    using System.Diagnostics.CodeAnalysis;
     using System.Linq;
+    using System.Threading;
 
     /// <summary>
     /// 
     /// </summary>
+    [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
+    [ SuppressMessage( "ReSharper", "FieldCanBeMadeReadOnly.Global" ) ]
     public class HtmlElement
     {
         /// <summary>
+        /// The timer
+        /// </summary>
+        private protected Timer _timer;
+
+        /// <summary>
         /// The element
         /// </summary>
-        private readonly IElement _element;
+        private protected IElement _element;
+
+        /// <summary>
+        /// Initializes a new instance of the
+        /// <see cref="HtmlElement"/> class.
+        /// </summary>
+        public HtmlElement( )
+        {
+        }
 
         /// <summary>
         /// Initializes a new instance of the
@@ -64,6 +81,24 @@ namespace Bubba
         public HtmlElement( IElement element )
         {
             _element = element;
+        }
+
+        /// <summary>
+        /// Gets or sets the element.
+        /// </summary>
+        /// <value>
+        /// The element.
+        /// </value>
+        public IElement Element
+        {
+            get
+            {
+                return _element;
+            }
+            set
+            {
+                _element = value;
+            }
         }
 
         /// <summary>
@@ -126,8 +161,7 @@ namespace Bubba
         {
             get
             {
-                return _element.Attributes
-                    ?.Select( a => new HtmlAttribute( a.Name, a.Value ) )
+                return _element.Attributes?.Select( a => new HtmlAttribute( a.Name, a.Value ) )
                     .ToList( );
             }
         }
@@ -142,7 +176,7 @@ namespace Bubba
         {
             get
             {
-                return _element.Children.Select( child => new HtmlElement( child ) );
+                return _element.Children.Select( c => new HtmlElement( c ) );
             }
         }
 
@@ -193,7 +227,8 @@ namespace Bubba
         /// <returns></returns>
         public IEnumerable<HtmlElement> QuerySelectorAll( string selector )
         {
-            return _element.QuerySelectorAll( selector ).Select( e => new HtmlElement( e ) );
+            return _element.QuerySelectorAll( selector )
+                .Select( e => new HtmlElement( e ) );
         }
 
         /// <summary>
@@ -205,6 +240,42 @@ namespace Bubba
         public override string ToString( )
         {
             return _element.OuterHtml;
+        }
+
+        /// <inheritdoc />
+        /// <summary>
+        /// Releases unmanaged and - optionally - managed resources.
+        /// </summary>
+        public void Dispose( )
+        {
+            Dispose( true );
+            GC.SuppressFinalize( this );
+        }
+
+        /// <summary>
+        /// Releases unmanaged and - optionally - managed resources.
+        /// </summary>
+        /// <param name="disposing"><c>true</c>
+        /// to release both managed and unmanaged resources;
+        /// <c>false</c> to release only unmanaged resources.
+        /// </param>
+        protected virtual void Dispose( bool disposing )
+        {
+            if( disposing )
+            {
+                _timer?.Dispose( );
+            }
+        }
+
+        /// <summary>
+        /// Fails the specified ex.
+        /// </summary>
+        /// <param name="ex">The ex.</param>
+        private protected void Fail( Exception ex )
+        {
+            using var _error = new ErrorWindow( ex );
+            _error?.SetText( );
+            _error?.ShowDialog( );
         }
     }
 }

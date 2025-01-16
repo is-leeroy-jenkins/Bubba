@@ -42,12 +42,31 @@
 namespace Bubba
 {
     using System;
+    using System.Diagnostics.CodeAnalysis;
+    using System.Threading;
 
+    /// <inheritdoc />
     /// <summary>
-    /// 
     /// </summary>
-    public class HtmlAttribute
+    [ SuppressMessage( "ReSharper", "ClassCanBeSealed.Global" ) ]
+    [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
+    public class HtmlAttribute : PropertyChangedBase, IDisposable
     {
+        /// <summary>
+        /// The timer
+        /// </summary>
+        private protected Timer _timer;
+
+        /// <summary>
+        /// The name
+        /// </summary>
+        private protected string _name;
+
+        /// <summary>
+        /// The value
+        /// </summary>
+        private protected string _value;
+
         /// <summary>
         /// Initializes a new instance of the
         /// <see cref="HtmlAttribute"/> class.
@@ -64,8 +83,8 @@ namespace Bubba
         /// <param name="value">The value.</param>
         public HtmlAttribute( string name, string value )
         {
-            Name = name;
-            Value = value;
+            _name = name;
+            _value = value;
         }
 
         /// <summary>
@@ -74,7 +93,21 @@ namespace Bubba
         /// <value>
         /// The name.
         /// </value>
-        public string Name { get; set; }
+        public string Name
+        {
+            get
+            {
+                return _name;
+            }
+            set
+            {
+                if( _name != value )
+                {
+                    _name = value;
+                    OnPropertyChanged( Name );
+                }
+            }
+        }
 
         /// <summary>
         /// Gets or sets the value.
@@ -82,6 +115,56 @@ namespace Bubba
         /// <value>
         /// The value.
         /// </value>
-        public string Value { get; set; }
+        public string Value
+        {
+            get
+            {
+                return _value;
+            }
+            set
+            {
+                if( _value != value )
+                {
+                    _value = value;
+                    OnPropertyChanged( Value );
+                }
+            }
+        }
+
+        /// <inheritdoc />
+        /// <summary>
+        /// Releases unmanaged and - optionally - managed resources.
+        /// </summary>
+        public void Dispose( )
+        {
+            Dispose( true );
+            GC.SuppressFinalize( this );
+        }
+
+        /// <summary>
+        /// Releases unmanaged and - optionally - managed resources.
+        /// </summary>
+        /// <param name="disposing"><c>true</c>
+        /// to release both managed and unmanaged resources;
+        /// <c>false</c> to release only unmanaged resources.
+        /// </param>
+        protected virtual void Dispose( bool disposing )
+        {
+            if( disposing )
+            {
+                _timer?.Dispose( );
+            }
+        }
+
+        /// <summary>
+        /// Fails the specified ex.
+        /// </summary>
+        /// <param name="ex">The ex.</param>
+        private protected void Fail( Exception ex )
+        {
+            using var _error = new ErrorWindow( ex );
+            _error?.SetText( );
+            _error?.ShowDialog( );
+        }
     }
 }

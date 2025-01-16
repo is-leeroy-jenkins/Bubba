@@ -700,3 +700,14 @@ C:\Users\terry\source\repos\Bubba\obj\Debug\net8.0-windows7.0\refint\Bubba.dll
 C:\Users\terry\source\repos\Bubba\obj\Debug\net8.0-windows7.0\Bubba.xml
 C:\Users\terry\source\repos\Bubba\obj\Debug\net8.0-windows7.0\Bubba.genruntimeconfig.cache
 C:\Users\terry\source\repos\Bubba\obj\Debug\net8.0-windows7.0\ref\Bubba.dll
+C:\Users\terry\source\repos\Bubba\bin\Debug\net8.0-windows7.0\Microsoft.Extensions.DependencyInjection.dll
+C:\Users\terry\source\repos\Bubba\bin\Debug\net8.0-windows7.0\Microsoft.Extensions.Logging.dll
+C:\Users\terry\source\repos\Bubba\bin\Debug\net8.0-windows7.0\Microsoft.Extensions.Options.dll
+C:\Users\terry\source\repos\Bubba\bin\Debug\net8.0-windows7.0\PdfSharp.Charting.dll
+C:\Users\terry\source\repos\Bubba\bin\Debug\net8.0-windows7.0\PdfSharp.Quality.dll
+C:\Users\terry\source\repos\Bubba\bin\Debug\net8.0-windows7.0\PdfSharp.Snippets.dll
+C:\Users\terry\source\repos\Bubba\bin\Debug\net8.0-windows7.0\PdfSharp.System.dll
+C:\Users\terry\source\repos\Bubba\bin\Debug\net8.0-windows7.0\PdfSharp.WPFonts.dll
+C:\Users\terry\source\repos\Bubba\bin\Debug\net8.0-windows7.0\PdfSharp.dll
+C:\Users\terry\source\repos\Bubba\bin\Debug\net8.0-windows7.0\de\PdfSharp.Charting.resources.dll
+C:\Users\terry\source\repos\Bubba\bin\Debug\net8.0-windows7.0\de\PdfSharp.resources.dll

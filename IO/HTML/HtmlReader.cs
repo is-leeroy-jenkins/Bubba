@@ -42,14 +42,26 @@
 namespace Bubba
 {
     using System;
+    using System.Diagnostics.CodeAnalysis;
+    using System.Threading;
     using AngleSharp.Html.Parser;
 
+    /// <summary>
+    /// 
+    /// </summary>
+    [ SuppressMessage( "ReSharper", "PreferConcreteValueOverDefault" ) ]
+    [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
     public class HtmlReader
     {
         /// <summary>
+        /// The timer
+        /// </summary>
+        private protected Timer _timer;
+
+        /// <summary>
         /// The parser
         /// </summary>
-        private readonly IHtmlParser _parser;
+        private protected IHtmlParser _parser;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="HtmlReader"/> class.
@@ -66,8 +78,71 @@ namespace Bubba
         /// <returns>The root element of the parsed document.</returns>
         public HtmlElement Parse( string html )
         {
-            var _document = _parser.ParseDocument( html );
-            return new HtmlElement( _document.DocumentElement );
+            try
+            {
+                ThrowIf.Empty( html, nameof( html ) );
+                var _document = _parser.ParseDocument( html );
+                return new HtmlElement( _document.DocumentElement );
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+                return default( HtmlElement );
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the parser.
+        /// </summary>
+        /// <value>
+        /// The parser.
+        /// </value>
+        public IHtmlParser Parser
+        {
+            get
+            {
+                return _parser;
+            }
+            set
+            {
+                _parser = value;
+            }
+        }
+
+        /// <inheritdoc />
+        /// <summary>
+        /// Releases unmanaged and - optionally - managed resources.
+        /// </summary>
+        public void Dispose( )
+        {
+            Dispose( true );
+            GC.SuppressFinalize( this );
+        }
+
+        /// <summary>
+        /// Releases unmanaged and - optionally - managed resources.
+        /// </summary>
+        /// <param name="disposing"><c>true</c>
+        /// to release both managed and unmanaged resources;
+        /// <c>false</c> to release only unmanaged resources.
+        /// </param>
+        protected virtual void Dispose( bool disposing )
+        {
+            if( disposing )
+            {
+                _timer?.Dispose( );
+            }
+        }
+
+        /// <summary>
+        /// Fails the specified ex.
+        /// </summary>
+        /// <param name="ex">The ex.</param>
+        private protected void Fail( Exception ex )
+        {
+            using var _error = new ErrorWindow( ex );
+            _error?.SetText( );
+            _error?.ShowDialog( );
         }
     }
 }
