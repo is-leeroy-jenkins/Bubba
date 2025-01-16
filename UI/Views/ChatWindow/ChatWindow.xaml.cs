@@ -1,10 +1,10 @@
 ﻿// ******************************************************************************************
 //     Assembly:                Bubba
 //     Author:                  Terry D. Eppler
-//     Created:                 01-15-2025
+//     Created:                 01-16-2025
 // 
 //     Last Modified By:        Terry D. Eppler
-//     Last Modified On:        01-15-2025
+//     Last Modified On:        01-16-2025
 // ******************************************************************************************
 // <copyright file="ChatWindow.xaml.cs" company="Terry D. Eppler">
 //    Bubba is a small and simple windows (wpf) application for interacting with the OpenAI API
@@ -1879,7 +1879,7 @@ namespace Bubba
         /// <summary>
         /// Populates the voices.
         /// </summary>
-        private void PopulateVoices( )
+        private void PopulateInstalledVoices( )
         {
             try
             {
@@ -1890,6 +1890,30 @@ namespace Bubba
                     var _info = _voice.VoiceInfo;
                     VoiceComboBox.Items.Add( _info.Name );
                 }
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+            }
+        }
+
+        /// <summary>
+        /// Populates the open ai voices.
+        /// </summary>
+        private void PopulateOpenAiVoices( )
+        {
+            try
+            {
+                VoiceComboBox.Items?.Clear( );
+                VoiceComboBox.Items.Add( "alloy" );
+                VoiceComboBox.Items.Add( "ash" );
+                VoiceComboBox.Items.Add( "coral" );
+                VoiceComboBox.Items.Add( "echo" );
+                VoiceComboBox.Items.Add( "onyx" );
+                VoiceComboBox.Items.Add( "fable" );
+                VoiceComboBox.Items.Add( "nova" );
+                VoiceComboBox.Items.Add( "sage" );
+                VoiceComboBox.Items.Add( "shimmer" );
             }
             catch( Exception ex )
             {
@@ -2039,7 +2063,7 @@ namespace Bubba
                 InitializeLabel( );
                 PopulateModelsAsync( );
                 PopulateLanguageListBox( );
-                PopulateVoices( );
+                PopulateInstalledVoices( );
                 ClearChatControls( );
                 InitializeChatEditor( );
                 App.ActiveWindows.Add( "ChatWindow", this );

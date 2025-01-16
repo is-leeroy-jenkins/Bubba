@@ -1,10 +1,10 @@
 ﻿// ******************************************************************************************
 //     Assembly:                Bubba
 //     Author:                  Terry D. Eppler
-//     Created:                 01-15-2025
+//     Created:                 01-16-2025
 // 
 //     Last Modified By:        Terry D. Eppler
-//     Last Modified On:        01-15-2025
+//     Last Modified On:        01-16-2025
 // ******************************************************************************************
 // <copyright file="TextGenerationRequest.cs" company="Terry D. Eppler">
 //    Bubba is a small and simple windows (wpf) application for interacting with the OpenAI API
@@ -431,14 +431,14 @@ namespace Bubba
         /// </summary>
         /// <param name="prompt">The prompt.</param>
         /// <returns></returns>
-        public async Task<string> GenerateAsync(string prompt)
+        public async Task<string> GenerateAsync( string prompt )
         {
             try
             {
-                ThrowIf.Empty(prompt, nameof(prompt));
-                _httpClient = new HttpClient();
+                ThrowIf.Empty( prompt, nameof( prompt ) );
+                _httpClient = new HttpClient( );
                 _httpClient.DefaultRequestHeaders.Authorization =
-                    new AuthenticationHeaderValue("Bearer", App.OpenAiKey);
+                    new AuthenticationHeaderValue( "Bearer", App.OpenAiKey );
 
                 var _text = new TextPayload
                 {
@@ -453,16 +453,16 @@ namespace Bubba
                     PresencePenalty = _presencePenalty
                 };
 
-                var _serialize = JsonSerializer.Serialize(_text);
-                var _content = new StringContent(_serialize, Encoding.UTF8, _header.ContentType);
-                var _response = await _httpClient.PostAsync(_endPoint, _content);
-                _response.EnsureSuccessStatusCode();
-                var _responseContent = await _response.Content.ReadAsStringAsync();
-                return ExtractResponse(_responseContent);
+                var _serialize = JsonSerializer.Serialize( _text );
+                var _content = new StringContent( _serialize, Encoding.UTF8, _header.ContentType );
+                var _response = await _httpClient.PostAsync( _endPoint, _content );
+                _response.EnsureSuccessStatusCode( );
+                var _responseContent = await _response.Content.ReadAsStringAsync( );
+                return ExtractResponse( _responseContent );
             }
-            catch(Exception ex)
+            catch( Exception ex )
             {
-                Fail(ex);
+                Fail( ex );
                 return string.Empty;
             }
         }
@@ -478,10 +478,8 @@ namespace Bubba
             {
                 ThrowIf.Empty( jsonResponse, nameof( jsonResponse ) );
                 using var _document = JsonDocument.Parse( jsonResponse );
-                var _response = _document.RootElement
-                    .GetProperty( "choices" )[ 0 ]
-                    .GetProperty( "text" )
-                    .GetString( );
+                var _response = _document.RootElement.GetProperty( "choices" )[ 0 ]
+                    .GetProperty( "text" ).GetString( );
 
                 return !string.IsNullOrEmpty( _response )
                     ? _response

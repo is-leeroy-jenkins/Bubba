@@ -3,6 +3,18 @@
   "WorkspaceRootPath": "C:\\Users\\terry\\source\\repos\\Bubba\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{08012640-3765-4051-B5EB-4FF782150AEC}|Bubba.csproj|c:\\users\\terry\\source\\repos\\bubba\\io\\gpt\\requests\\textgenerationrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{08012640-3765-4051-B5EB-4FF782150AEC}|Bubba.csproj|solutionrelative:io\\gpt\\requests\\textgenerationrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{08012640-3765-4051-B5EB-4FF782150AEC}|Bubba.csproj|c:\\users\\terry\\source\\repos\\bubba\\io\\gpt\\requests\\speechgenerationreqeust.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{08012640-3765-4051-B5EB-4FF782150AEC}|Bubba.csproj|solutionrelative:io\\gpt\\requests\\speechgenerationreqeust.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{08012640-3765-4051-B5EB-4FF782150AEC}|Bubba.csproj|c:\\users\\terry\\source\\repos\\bubba\\io\\gpt\\gptbody.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{08012640-3765-4051-B5EB-4FF782150AEC}|Bubba.csproj|solutionrelative:io\\gpt\\gptbody.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{08012640-3765-4051-B5EB-4FF782150AEC}|Bubba.csproj|c:\\users\\terry\\source\\repos\\bubba\\ui\\views\\gptfile\\gptfiledialog.xaml.cs||{8B382828-6202-11D1-8870-0000F87579D2}|",
       "RelativeMoniker": "D:0:0:{08012640-3765-4051-B5EB-4FF782150AEC}|Bubba.csproj|solutionrelative:ui\\views\\gptfile\\gptfiledialog.xaml.cs||{8B382828-6202-11D1-8870-0000F87579D2}|"
     },
@@ -21,18 +33,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{08012640-3765-4051-B5EB-4FF782150AEC}|Bubba.csproj|c:\\users\\terry\\source\\repos\\bubba\\io\\gpt\\requests\\imagegenerationrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{08012640-3765-4051-B5EB-4FF782150AEC}|Bubba.csproj|solutionrelative:io\\gpt\\requests\\imagegenerationrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{08012640-3765-4051-B5EB-4FF782150AEC}|Bubba.csproj|c:\\users\\terry\\source\\repos\\bubba\\io\\gpt\\gptbody.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{08012640-3765-4051-B5EB-4FF782150AEC}|Bubba.csproj|solutionrelative:io\\gpt\\gptbody.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{08012640-3765-4051-B5EB-4FF782150AEC}|Bubba.csproj|c:\\users\\terry\\source\\repos\\bubba\\io\\gpt\\requests\\textgenerationrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{08012640-3765-4051-B5EB-4FF782150AEC}|Bubba.csproj|solutionrelative:io\\gpt\\requests\\textgenerationrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{08012640-3765-4051-B5EB-4FF782150AEC}|Bubba.csproj|c:\\users\\terry\\source\\repos\\bubba\\io\\gpt\\requests\\speechgenerationreqeust.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{08012640-3765-4051-B5EB-4FF782150AEC}|Bubba.csproj|solutionrelative:io\\gpt\\requests\\speechgenerationreqeust.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -42,7 +42,7 @@
       "DocumentGroups": [
         {
           "DockedHeight": 332,
-          "SelectedChildIndex": 16,
+          "SelectedChildIndex": 10,
           "Children": [
             {
               "$type": "Bookmark",
@@ -86,33 +86,33 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 0,
               "Title": "TextGenerationRequest.cs",
               "DocumentMoniker": "C:\\Users\\terry\\source\\repos\\Bubba\\IO\\GPT\\Requests\\TextGenerationRequest.cs",
               "RelativeDocumentMoniker": "IO\\GPT\\Requests\\TextGenerationRequest.cs",
               "ToolTip": "C:\\Users\\terry\\source\\repos\\Bubba\\IO\\GPT\\Requests\\TextGenerationRequest.cs",
               "RelativeToolTip": "IO\\GPT\\Requests\\TextGenerationRequest.cs",
-              "ViewState": "AgIAAKcBAAAAAAAAAAAwwKsBAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAL0BAAAAAAAAAAAcwNABAAAbAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-01-15T17:18:44.9Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 1,
               "Title": "SpeechGenerationReqeust.cs",
               "DocumentMoniker": "C:\\Users\\terry\\source\\repos\\Bubba\\IO\\GPT\\Requests\\SpeechGenerationReqeust.cs",
               "RelativeDocumentMoniker": "IO\\GPT\\Requests\\SpeechGenerationReqeust.cs",
               "ToolTip": "C:\\Users\\terry\\source\\repos\\Bubba\\IO\\GPT\\Requests\\SpeechGenerationReqeust.cs",
               "RelativeToolTip": "IO\\GPT\\Requests\\SpeechGenerationReqeust.cs",
-              "ViewState": "AgIAAIkBAAAAAAAAAAAgwJQBAAA5AAAAAAAAAA==",
+              "ViewState": "AgIAAC4BAAAAAAAAAAAswJEBAAANAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-01-15T17:18:43.992Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 7,
               "Title": "ImageGenerationRequest.cs",
               "DocumentMoniker": "C:\\Users\\terry\\source\\repos\\Bubba\\IO\\GPT\\Requests\\ImageGenerationRequest.cs",
               "RelativeDocumentMoniker": "IO\\GPT\\Requests\\ImageGenerationRequest.cs",
@@ -120,12 +120,11 @@
               "RelativeToolTip": "IO\\GPT\\Requests\\ImageGenerationRequest.cs",
               "ViewState": "AgIAACkBAAAAAAAAAAAwwDwBAAA6AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-15T17:18:43.004Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-01-15T17:18:43.004Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 6,
               "Title": "FineTuningRequest.cs",
               "DocumentMoniker": "C:\\Users\\terry\\source\\repos\\Bubba\\IO\\GPT\\Requests\\FineTuningRequest.cs",
               "RelativeDocumentMoniker": "IO\\GPT\\Requests\\FineTuningRequest.cs",
@@ -133,12 +132,11 @@
               "RelativeToolTip": "IO\\GPT\\Requests\\FineTuningRequest.cs",
               "ViewState": "AgIAAIYBAAAAAAAAAAAwwJUBAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-15T17:18:40.104Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-01-15T17:18:40.104Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 5,
               "Title": "AssistantRequest.cs",
               "DocumentMoniker": "C:\\Users\\terry\\source\\repos\\Bubba\\IO\\GPT\\Requests\\AssistantRequest.cs",
               "RelativeDocumentMoniker": "IO\\GPT\\Requests\\AssistantRequest.cs",
@@ -146,12 +144,11 @@
               "RelativeToolTip": "IO\\GPT\\Requests\\AssistantRequest.cs",
               "ViewState": "AgIAAHUBAAAAAAAAAAAcwIgBAAA5AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-15T17:06:04.916Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-01-15T17:06:04.916Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 4,
               "Title": "FileApiRequest.cs",
               "DocumentMoniker": "C:\\Users\\terry\\source\\repos\\Bubba\\IO\\GPT\\Requests\\FileApiRequest.cs",
               "RelativeDocumentMoniker": "IO\\GPT\\Requests\\FileApiRequest.cs",
@@ -159,12 +156,11 @@
               "RelativeToolTip": "IO\\GPT\\Requests\\FileApiRequest.cs",
               "ViewState": "AgIAAO8AAAAAAAAAAAAAABoCAAA+AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-15T15:52:29.597Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-01-15T15:52:29.597Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 3,
               "Title": "GptFileDialog.xaml.cs",
               "DocumentMoniker": "C:\\Users\\terry\\source\\repos\\Bubba\\UI\\Views\\GptFile\\GptFileDialog.xaml.cs",
               "RelativeDocumentMoniker": "UI\\Views\\GptFile\\GptFileDialog.xaml.cs",
@@ -172,18 +168,17 @@
               "RelativeToolTip": "UI\\Views\\GptFile\\GptFileDialog.xaml.cs",
               "ViewState": "AgIAACIAAAAAAAAAAAAwwDkAAAAnAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-15T14:25:06.42Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-01-15T14:25:06.42Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 2,
               "Title": "GptBody.cs",
               "DocumentMoniker": "C:\\Users\\terry\\source\\repos\\Bubba\\IO\\GPT\\GptBody.cs",
               "RelativeDocumentMoniker": "IO\\GPT\\GptBody.cs",
               "ToolTip": "C:\\Users\\terry\\source\\repos\\Bubba\\IO\\GPT\\GptBody.cs",
               "RelativeToolTip": "IO\\GPT\\GptBody.cs",
-              "ViewState": "AgIAAC4BAAAAAAAAAAAAAEABAAAsAAAAAAAAAA==",
+              "ViewState": "AgIAAC4BAAAAAAAAAAAAADkBAAARAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-01-16T01:52:58.382Z",
               "EditorCaption": ""

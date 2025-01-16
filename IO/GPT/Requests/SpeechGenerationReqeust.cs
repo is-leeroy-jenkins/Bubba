@@ -458,29 +458,29 @@ namespace Bubba
         /// </summary>
         /// <param name="text">The text.</param>
         /// <param name="filePath">The file path.</param>
-        public async Task SaveFileAsync( string text, string filePath )
+        public async Task SaveAsync( string text, string filePath )
         {
             try
             {
                 ThrowIf.Empty( text, nameof( text ) );
                 ThrowIf.Empty( filePath, nameof( filePath ) );
-                using var _client = new HttpClient( );
-                _client.DefaultRequestHeaders.Authorization =
-                    new AuthenticationHeaderValue( "Bearer", _apiKey );
+                _httpClient = new HttpClient( );
+                _httpClient.DefaultRequestHeaders.Authorization =
+                    new AuthenticationHeaderValue( "Bearer", App.OpenAiKey );
 
-                var _payload = new SpeechPayload
+                var _speech = new SpeechPayload
                 {
                     Model = _model,
                     Input = text,
                     Speed = _speed
                 };
 
-                var _serialize = JsonSerializer.Serialize( _payload );
-                var _content = new StringContent( _serialize, Encoding.UTF8, "application/json" );
-                var _response = await _client.PostAsync( _endPoint, _content );
+                var _serialize = JsonSerializer.Serialize( _speech );
+                var _content = new StringContent( _serialize, Encoding.UTF8, _header.ContentType );
+                var _response = await _httpClient.PostAsync( _endPoint, _content );
                 _response.EnsureSuccessStatusCode( );
                 using var _responseStream = await _response.Content.ReadAsStreamAsync( );
-                using var _fileStream =
+                using var _fileStream = 
                     new FileStream( filePath, FileMode.Create, FileAccess.Write );
 
                 await _responseStream.CopyToAsync( _fileStream );
