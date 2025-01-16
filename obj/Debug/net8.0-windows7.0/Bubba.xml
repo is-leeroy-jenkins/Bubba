@@ -318,52 +318,52 @@
             My form
             </summary>
         </member>
-        <member name="F:Bubba.ContextMenuCallback._SHOW_DEV_TOOLS">
+        <member name="F:Bubba.ContextMenuCallback.SHOW_DEV_TOOLS">
             <summary>
             The show dev tools
             </summary>
         </member>
-        <member name="F:Bubba.ContextMenuCallback._CLOSE_DEV_TOOLS">
+        <member name="F:Bubba.ContextMenuCallback.CLOSE_DEV_TOOLS">
             <summary>
             The close dev tools
             </summary>
         </member>
-        <member name="F:Bubba.ContextMenuCallback._SAVE_IMAGE_AS">
+        <member name="F:Bubba.ContextMenuCallback.SAVE_IMAGE_AS">
             <summary>
             The save image as
             </summary>
         </member>
-        <member name="F:Bubba.ContextMenuCallback._SAVE_AS_PDF">
+        <member name="F:Bubba.ContextMenuCallback.SAVE_AS_PDF">
             <summary>
             The save as PDF
             </summary>
         </member>
-        <member name="F:Bubba.ContextMenuCallback._SAVE_LINK_AS">
+        <member name="F:Bubba.ContextMenuCallback.SAVE_LINK_AS">
             <summary>
             The save link as
             </summary>
         </member>
-        <member name="F:Bubba.ContextMenuCallback._COPY_LINK_ADDRESS">
+        <member name="F:Bubba.ContextMenuCallback.COPY_LINK_ADDRESS">
             <summary>
             The copy link address
             </summary>
         </member>
-        <member name="F:Bubba.ContextMenuCallback._OPEN_LINK_IN_NEW_TAB">
+        <member name="F:Bubba.ContextMenuCallback.OPEN_LINK_IN_NEW_TAB">
             <summary>
             The open link in new tab
             </summary>
         </member>
-        <member name="F:Bubba.ContextMenuCallback._CLOSE_TAB">
+        <member name="F:Bubba.ContextMenuCallback.CLOSE_TAB">
             <summary>
             The close tab
             </summary>
         </member>
-        <member name="F:Bubba.ContextMenuCallback._REFRESH_TAB">
+        <member name="F:Bubba.ContextMenuCallback.REFRESH_TAB">
             <summary>
             The refresh tab
             </summary>
         </member>
-        <member name="F:Bubba.ContextMenuCallback._PRINT">
+        <member name="F:Bubba.ContextMenuCallback.PRINT">
             <summary>
             The print
             </summary>
@@ -12583,7 +12583,7 @@
             <summary>
             Adds if.
             </summary>
-            <typeparam name="T"></typeparam>
+            <typeparam name="_t"></typeparam>
             <param name="collection">The collection.</param>
             <param name="predicate">The predicate.</param>
             <param name="value">The value.</param>
@@ -13554,7 +13554,7 @@
             <summary>
             The specified predicate.
             </summary>
-            <typeparam name="T">The type of the source.</typeparam>
+            <typeparam name="_t">The type of the source.</typeparam>
             <param name="source">The source.</param>
             <param name="predicate">The predicate.</param>
             <returns></returns>
@@ -13563,7 +13563,7 @@
             <summary>
             Determines whether [has at least] [the specified minimum count].
             </summary>
-            <typeparam name="T">The type of the source.</typeparam>
+            <typeparam name="_t">The type of the source.</typeparam>
             <param name="source">The source.</param>
             <param name="minCount">The minimum count.</param>
             <returns>
@@ -13577,7 +13577,7 @@
             <summary>
             Determines whether [has at least] [the specified minimum count].
             </summary>
-            <typeparam name="T">The type of the source.</typeparam>
+            <typeparam name="_t">The type of the source.</typeparam>
             <param name="source">The source.</param>
             <param name="minCount">The minimum count.</param>
             <param name="predicate">The predicate.</param>
@@ -13592,7 +13592,7 @@
             <summary>
             Determines whether the specified count has exactly.
             </summary>
-            <typeparam name="T">The type of the source.</typeparam>
+            <typeparam name="_t">The type of the source.</typeparam>
             <param name="source">The source.</param>
             <param name="count">The count.</param>
             <returns>
@@ -13606,7 +13606,7 @@
             <summary>
             Determines whether the specified count has exactly.
             </summary>
-            <typeparam name="T">The type of the source.</typeparam>
+            <typeparam name="_t">The type of the source.</typeparam>
             <param name="source">The source.</param>
             <param name="count">The count.</param>
             <param name="predicate">The predicate.</param>
@@ -13621,7 +13621,7 @@
             <summary>
             Determines whether [has at most] [the specified limit].
             </summary>
-            <typeparam name="T">The type of the source.</typeparam>
+            <typeparam name="_t">The type of the source.</typeparam>
             <param name="source">The source.</param>
             <param name="limit">The limit.</param>
             <returns>
@@ -13635,7 +13635,7 @@
             <summary>
             Determines whether [has at most] [the specified limit].
             </summary>
-            <typeparam name="T">The type of the source.</typeparam>
+            <typeparam name="_t">The type of the source.</typeparam>
             <param name="source">The source.</param>
             <param name="limit">The limit.</param>
             <param name="predicate">The predicate.</param>
@@ -13678,7 +13678,7 @@
             <summary>
             Selects the optional.
             </summary>
-            <typeparam name="T"></typeparam>
+            <typeparam name="_t"></typeparam>
             <typeparam name="_result">The type of the result.</typeparam>
             <param name="enumerable">The enumerable.</param>
             <param name="map">The map.</param>
@@ -13699,7 +13699,7 @@
             <summary>
             Adds the specified item.
             </summary>
-            <typeparam name="T"></typeparam>
+            <typeparam name="_t"></typeparam>
             <param name="queue">The queue.</param>
             <param name="item">The item.</param>
         </member>
@@ -17279,6 +17279,202 @@
             <param name="ex">
             The ex.
             </param>
+        </member>
+        <member name="T:Bubba.AudioConverter">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Bubba.AudioConverter.ConvertMp3ToWav(System.String,System.String)">
+            <summary>
+            Converts the MP3 to wav.
+            </summary>
+            <param name="inputFile">The input file.</param>
+            <param name="outputFile">The output file.</param>
+        </member>
+        <member name="M:Bubba.AudioConverter.ConvertWavToMp3(System.String,System.String)">
+            <summary>
+            Converts the wav to MP3.
+            </summary>
+            <param name="inputFile">The input file.</param>
+            <param name="outputFile">The output file.</param>
+            <exception cref="T:System.NotImplementedException"></exception>
+        </member>
+        <member name="M:Bubba.AudioConverter.Fail(System.Exception)">
+            <summary>
+            Fails the specified ex.
+            </summary>
+            <param name="ex">The ex.</param>
+        </member>
+        <member name="T:Bubba.AudioPlayer">
+            <inheritdoc />
+            <summary>
+            </summary>
+            <seealso cref="T:System.IDisposable" />
+        </member>
+        <member name="F:Bubba.AudioPlayer._waveOut">
+            <summary>
+            The wave out
+            </summary>
+        </member>
+        <member name="F:Bubba.AudioPlayer._audioFile">
+            <summary>
+            The audio file
+            </summary>
+        </member>
+        <member name="P:Bubba.AudioPlayer.IsPlaying">
+            <summary>
+            Gets a value indicating whether this instance is playing.
+            </summary>
+            <value>
+              <c>true</c> if this instance is playing; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="M:Bubba.AudioPlayer.#ctor">
+            <summary>
+            Initializes a new instance of the
+            <see cref="T:Bubba.AudioPlayer"/> class.
+            </summary>
+        </member>
+        <member name="M:Bubba.AudioPlayer.Play(System.String)">
+            <summary>
+            Plays the specified file path.
+            </summary>
+            <param name="filePath">The file path.</param>
+        </member>
+        <member name="M:Bubba.AudioPlayer.Stop">
+            <summary>
+            Stops this instance.
+            </summary>
+        </member>
+        <member name="M:Bubba.AudioPlayer.Dispose">
+            <inheritdoc />
+            <summary>
+            Performs application-defined tasks associated with freeing,
+            releasing, or resetting unmanaged resources.
+            </summary>
+        </member>
+        <member name="M:Bubba.AudioPlayer.Fail(System.Exception)">
+            <summary>
+            Fails the specified ex.
+            </summary>
+            <param name="ex">The ex.</param>
+        </member>
+        <member name="T:Bubba.AudioRecorder">
+            <inheritdoc />
+            <summary>
+            </summary>
+            <seealso cref="T:System.IDisposable" />
+        </member>
+        <member name="F:Bubba.AudioRecorder._waveIn">
+            <summary>
+            The wave in
+            </summary>
+        </member>
+        <member name="F:Bubba.AudioRecorder._writer">
+            <summary>
+            The writer
+            </summary>
+        </member>
+        <member name="F:Bubba.AudioRecorder._isRecording">
+            <summary>
+            The is recording
+            </summary>
+        </member>
+        <member name="E:Bubba.AudioRecorder.OnVolumeLevelChanged">
+            <summary>
+            Occurs when [on volume level changed].
+            </summary>
+        </member>
+        <member name="M:Bubba.AudioRecorder.#ctor(System.Int32,System.Int32)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Bubba.AudioRecorder"/> class.
+            </summary>
+            <param name="sampleRate">The sample rate.</param>
+            <param name="channels">The channels.</param>
+        </member>
+        <member name="P:Bubba.AudioRecorder.IsRecording">
+            <summary>
+            Gets a value indicating whether this instance is recording.
+            </summary>
+            <value>
+              <c>true</c> if this instance is recording; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="M:Bubba.AudioRecorder.StartRecording(System.String)">
+            <summary>
+            Starts the recording.
+            </summary>
+            <param name="outputFilePath">The output file path.</param>
+            <exception cref="T:System.InvalidOperationException">
+            Already recording.
+            </exception>
+        </member>
+        <member name="M:Bubba.AudioRecorder.StopRecording">
+            <summary>
+            Stops the recording.
+            </summary>
+            <exception cref="T:System.InvalidOperationException">
+            Not currently recording.
+            </exception>
+        </member>
+        <member name="M:Bubba.AudioRecorder.OnDataAvailable(System.Object,NAudio.Wave.WaveInEventArgs)">
+            <summary>
+            Called when [data available].
+            </summary>
+            <param name="sender">The sender.</param>
+            <param name="e">The <see cref="T:NAudio.Wave.WaveInEventArgs"/>
+            instance containing the event data.
+            </param>
+        </member>
+        <member name="M:Bubba.AudioRecorder.OnRecordingStopped(System.Object,NAudio.Wave.StoppedEventArgs)">
+            <summary>
+            Called when [recording stopped].
+            </summary>
+            <param name="sender">The sender.</param>
+            <param name="e">The <see cref="T:NAudio.Wave.StoppedEventArgs"/>
+            instance containing the event data.
+            </param>
+        </member>
+        <member name="M:Bubba.AudioRecorder.Dispose">
+            <summary>
+            Performs application-defined tasks associated with freeing,
+            releasing, or resetting unmanaged resources.
+            </summary>
+        </member>
+        <member name="M:Bubba.AudioRecorder.Fail(System.Exception)">
+            <summary>
+            Fails the specified ex.
+            </summary>
+            <param name="ex">The ex.</param>
+        </member>
+        <member name="T:Bubba.AudioUtils">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Bubba.AudioUtils.GetAudioDuration(System.String)">
+            <summary>
+            Gets the duration of the audio.
+            </summary>
+            <param name="filePath">The file path.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Bubba.AudioUtils.IsAudioFileValid(System.String)">
+            <summary>
+            Determines whether [is audio file valid] [the specified file path].
+            </summary>
+            <param name="filePath">The file path.</param>
+            <returns>
+              <c>true</c> if [is audio file valid]
+            [the specified file path]; otherwise, <c>false</c>.
+            </returns>
+        </member>
+        <member name="M:Bubba.AudioUtils.Fail(System.Exception)">
+            <summary>
+            Fails the specified ex.
+            </summary>
+            <param name="ex">The ex.</param>
         </member>
         <member name="T:Bubba.SpeechConfiguration">
             <summary>
@@ -23335,7 +23531,7 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="M:Bubba.AssistantRequest.ExtractResponseMessage(System.String)">
+        <member name="M:Bubba.AssistantRequest.ExtractResponse(System.String)">
             <summary>
             Extracts the message from response.
             </summary>
@@ -23854,6 +24050,20 @@
             <returns>
             </returns>
         </member>
+        <member name="M:Bubba.FineTuningRequest.GenerateAsync(System.String)">
+            <summary>
+            Gets the text completion asynchronous.
+            </summary>
+            <param name="prompt">The prompt.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Bubba.FineTuningRequest.ExtractResponse(System.String)">
+            <summary>
+            Extracts the content of the response.
+            </summary>
+            <param name="jsonResponse">The json response.</param>
+            <returns></returns>
+        </member>
         <member name="M:Bubba.FineTuningRequest.ToString">
             <summary>
             Converts to string.
@@ -24315,15 +24525,14 @@
             A <see cref="T:System.String" /> that represents this instance.
             </returns>
         </member>
-        <member name="M:Bubba.ImageGenerationRequest.GenerateImagesAsync(System.String,System.Int32)">
+        <member name="M:Bubba.ImageGenerationRequest.GenerateAsync(System.String)">
             <summary>
             Generates the images asynchronous.
             </summary>
             <param name="prompt">The prompt.</param>
-            <param name="imageCount">The image count.</param>
             <returns></returns>
         </member>
-        <member name="M:Bubba.ImageGenerationRequest.ExtractImageData(System.String)">
+        <member name="M:Bubba.ImageGenerationRequest.ExtractResponse(System.String)">
             <summary>
             Extracts the image urls.
             </summary>
@@ -24478,7 +24687,7 @@
             string
             </returns>
         </member>
-        <member name="M:Bubba.SpeechGenerationReqeust.SaveFileAsync(System.String,System.String)">
+        <member name="M:Bubba.SpeechGenerationReqeust.SaveAsync(System.String,System.String)">
             <summary>
             Saves the speech asynchronous.
             </summary>
@@ -24626,13 +24835,6 @@
             The presence.
             </value>
         </member>
-        <member name="M:Bubba.TextGenerationRequest.GetTextCompletionAsync(System.String)">
-            <summary>
-            Gets the text completion asynchronous.
-            </summary>
-            <param name="prompt">The prompt.</param>
-            <returns></returns>
-        </member>
         <member name="P:Bubba.TextGenerationRequest.ResponseFormat">
             <inheritdoc />
             <summary>
@@ -24651,7 +24853,14 @@
             The chat model.
             </value>
         </member>
-        <member name="M:Bubba.TextGenerationRequest.ExtractText(System.String)">
+        <member name="M:Bubba.TextGenerationRequest.GenerateAsync(System.String)">
+            <summary>
+            Gets the text completion asynchronous.
+            </summary>
+            <param name="prompt">The prompt.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Bubba.TextGenerationRequest.ExtractResponse(System.String)">
             <summary>
             Extracts the content of the response.
             </summary>
@@ -27032,7 +27241,7 @@
             <summary>
             Serializes an object to a JSON string.
             </summary>
-            <typeparam name="T">The type of the object to serialize.</typeparam>
+            <typeparam name="_t">The type of the object to serialize.</typeparam>
             <param name="data">The object to serialize.</param>
             <returns>JSON string representation of the object.</returns>
         </member>
@@ -27040,7 +27249,7 @@
             <summary>
             Deserializes a JSON string to an object of the specified type.
             </summary>
-            <typeparam name="T">The type of the object to deserialize to.</typeparam>
+            <typeparam name="_t">The type of the object to deserialize to.</typeparam>
             <param name="json">The JSON string to deserialize.</param>
             <returns>Deserialized object of the specified type.</returns>
         </member>
@@ -27048,8 +27257,8 @@
             <summary>
             Sends a POST request with a JSON payload and receives the JSON response.
             </summary>
-            <typeparam name="TRequest">Type of the request object to serialize.</typeparam>
-            <typeparam name="TResponse">Type of the response object to deserialize.</typeparam>
+            <typeparam name="_tRequest">Type of the request object to serialize.</typeparam>
+            <typeparam name="_tResponse">Type of the response object to deserialize.</typeparam>
             <param name="url">The URL to send the request to.</param>
             <param name="requestData">The object to be serialized and sent as JSON.</param>
             <returns>Deserialized response object.</returns>
@@ -27058,11 +27267,214 @@
             <summary>
             Sends a GET request and receives the JSON response.
             </summary>
-            <typeparam name="TResponse">
+            <typeparam name="_tResponse">
             Type of the response object to deserialize.
             </typeparam>
             <param name="url">The URL to send the request to.</param>
             <returns>Deserialized response object.</returns>
+        </member>
+        <member name="T:Bubba.ILanguageProcessor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Bubba.ILanguageProcessor.Tokenize(System.String)">
+            <summary>
+            Tokenizes the specified text.
+            </summary>
+            <param name="text">The text.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Bubba.ILanguageProcessor.NormalizeText(System.String)">
+            <summary>
+            Normalizes the text.
+            </summary>
+            <param name="text">The text.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Bubba.ILanguageProcessor.RemoveStopWords(System.String[])">
+            <summary>
+            Removes the stop words.
+            </summary>
+            <param name="tokens">The tokens.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Bubba.ILanguageProcessor.StemWord(System.String)">
+            <summary>
+            Stems the word.
+            </summary>
+            <param name="word">The word.</param>
+            <returns></returns>
+        </member>
+        <member name="T:Bubba.ISentimentAnalyzer">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Bubba.ISentimentAnalyzer.AnalyzeSentiment(System.String)">
+            <summary>
+            Analyzes the sentiment.
+            </summary>
+            <param name="text">The text.</param>
+            <returns></returns>
+        </member>
+        <member name="T:Bubba.ITextClassifier">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Bubba.ITextClassifier.ClassifyText(System.String)">
+            <summary>
+            Classifies the text.
+            </summary>
+            <param name="text">The text.</param>
+            <returns></returns>
+        </member>
+        <member name="T:Bubba.LanguagePipeline">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Bubba.LanguagePipeline._processor">
+            <summary>
+            The processor
+            </summary>
+        </member>
+        <member name="F:Bubba.LanguagePipeline._sentimentAnalyzer">
+            <summary>
+            The sentiment analyzer
+            </summary>
+        </member>
+        <member name="F:Bubba.LanguagePipeline._classifier">
+            <summary>
+            The classifier
+            </summary>
+        </member>
+        <member name="M:Bubba.LanguagePipeline.#ctor(Bubba.ILanguageProcessor,Bubba.ISentimentAnalyzer,Bubba.ITextClassifier)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Bubba.LanguagePipeline"/> class.
+            </summary>
+            <param name="processor">The processor.</param>
+            <param name="sentimentAnalyzer">The sentiment analyzer.</param>
+            <param name="classifier">The classifier.</param>
+        </member>
+        <member name="M:Bubba.LanguagePipeline.ProcessText(System.String)">
+            <summary>
+            Processes the text.
+            </summary>
+            <param name="text">The text.</param>
+        </member>
+        <member name="T:Bubba.SentimentAnalyzer">
+            <inheritdoc />
+            <summary>
+            </summary>
+            <seealso cref="T:Bubba.ISentimentAnalyzer" />
+        </member>
+        <member name="F:Bubba.SentimentAnalyzer._predictor">
+            <summary>
+            The predictor
+            </summary>
+        </member>
+        <member name="M:Bubba.SentimentAnalyzer.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Bubba.SentimentAnalyzer"/> class.
+            </summary>
+        </member>
+        <member name="M:Bubba.SentimentAnalyzer.AnalyzeSentiment(System.String)">
+            <summary>
+            Analyzes the sentiment.
+            </summary>
+            <param name="text">The text.</param>
+            <returns></returns>
+        </member>
+        <member name="T:Bubba.SentimentData">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Bubba.SentimentData.Text">
+            <summary>
+            Gets or sets the text.
+            </summary>
+            <value>
+            The text.
+            </value>
+        </member>
+        <member name="P:Bubba.SentimentData.Sentiment">
+            <summary>
+            Gets or sets a value indicating whether this
+            <see cref="T:Bubba.SentimentData"/> is sentiment.
+            </summary>
+            <value>
+              <c>true</c> if sentiment; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="T:Bubba.SentimentPrediction">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Bubba.SentimentPrediction.Prediction">
+            <summary>
+            Gets or sets a value indicating whether this
+            <see cref="T:Bubba.SentimentPrediction"/> is prediction.
+            </summary>
+            <value>
+              <c>true</c> if prediction; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="T:Bubba.TextClassifier">
+            <inheritdoc />
+            <summary>
+            </summary>
+            <seealso cref="T:Bubba.ITextClassifier" />
+        </member>
+        <member name="M:Bubba.TextClassifier.ClassifyText(System.String)">
+            <inheritdoc />
+            <summary>
+            Classifies the text.
+            </summary>
+            <param name="text">The text.</param>
+            <returns></returns>
+        </member>
+        <member name="T:Bubba.TextPreprocessor">
+            <summary>
+            
+            </summary>
+            <seealso cref="T:Bubba.ILanguageProcessor" />
+        </member>
+        <member name="F:Bubba.TextPreprocessor._stopWords">
+            <summary>
+            The stop words
+            </summary>
+        </member>
+        <member name="M:Bubba.TextPreprocessor.Tokenize(System.String)">
+            <summary>
+            Tokenizes the specified text.
+            </summary>
+            <param name="text">The text.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Bubba.TextPreprocessor.NormalizeText(System.String)">
+            <summary>
+            Normalizes the text.
+            </summary>
+            <param name="text">The text.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Bubba.TextPreprocessor.RemoveStopWords(System.String[])">
+            <summary>
+            Removes the stop words.
+            </summary>
+            <param name="tokens">The tokens.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Bubba.TextPreprocessor.StemWord(System.String)">
+            <summary>
+            Stems the word.
+            </summary>
+            <param name="word">The word.</param>
+            <returns></returns>
         </member>
         <member name="T:Bubba.AsyncPath">
             <inheritdoc />
@@ -30134,7 +30546,7 @@
             <summary>
             Fails the specified _ex.
             </summary>
-            <param name="_ex">The _ex.</param>
+            <param name="ex">The _ex.</param>
         </member>
         <member name="T:Bubba.MetroDropDown">
             <inheritdoc />
@@ -32106,7 +32518,7 @@
             <summary>
             Fails the specified _ex.
             </summary>
-            <param name="_ex">The _ex.</param>
+            <param name="ex">The _ex.</param>
         </member>
         <member name="T:Bubba.ToolStripButton">
             <inheritdoc />
@@ -33007,9 +33419,14 @@
             Populates the language ListBox.
             </summary>
         </member>
-        <member name="M:Bubba.ChatWindow.PopulateVoices">
+        <member name="M:Bubba.ChatWindow.PopulateInstalledVoices">
             <summary>
             Populates the voices.
+            </summary>
+        </member>
+        <member name="M:Bubba.ChatWindow.PopulateOpenAiVoices">
+            <summary>
+            Populates the open ai voices.
             </summary>
         </member>
         <member name="M:Bubba.ChatWindow.UpdateStatus">
@@ -37155,36 +37572,6 @@
         <member name="M:Bubba.WebBrowser.InitializeComponent">
             <summary>
             InitializeComponent
-            </summary>
-        </member>
-        <member name="T:XamlGeneratedNamespace.GeneratedInternalTypeHelper">
-            <summary>
-            GeneratedInternalTypeHelper
-            </summary>
-        </member>
-        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.CreateInstance(System.Type,System.Globalization.CultureInfo)">
-            <summary>
-            CreateInstance
-            </summary>
-        </member>
-        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.GetPropertyValue(System.Reflection.PropertyInfo,System.Object,System.Globalization.CultureInfo)">
-            <summary>
-            GetPropertyValue
-            </summary>
-        </member>
-        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.SetPropertyValue(System.Reflection.PropertyInfo,System.Object,System.Object,System.Globalization.CultureInfo)">
-            <summary>
-            SetPropertyValue
-            </summary>
-        </member>
-        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.CreateDelegate(System.Type,System.Object,System.String)">
-            <summary>
-            CreateDelegate
-            </summary>
-        </member>
-        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.AddEventHandler(System.Reflection.EventInfo,System.Object,System.Delegate)">
-            <summary>
-            AddEventHandler
             </summary>
         </member>
     </members>

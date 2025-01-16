@@ -42,17 +42,14 @@
 namespace Bubba
 {
     using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
-    using System.Threading.Tasks;
 
+    /// <inheritdoc />
     /// <summary>
-    /// 
     /// </summary>
-    /// <seealso cref="Bubba.ITextClassifier" />
+    /// <seealso cref="T:Bubba.ITextClassifier" />
     public class TextClassifier : ITextClassifier
     {
+        /// <inheritdoc />
         /// <summary>
         /// Classifies the text.
         /// </summary>
