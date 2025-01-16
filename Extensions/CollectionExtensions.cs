@@ -60,13 +60,13 @@ namespace Bubba
         /// <summary>
         /// Adds if.
         /// </summary>
-        /// <typeparam name="T"></typeparam>
+        /// <typeparam name="_t"></typeparam>
         /// <param name="collection">The collection.</param>
         /// <param name="predicate">The predicate.</param>
         /// <param name="value">The value.</param>
         /// <returns></returns>
-        public static bool AddIf<T>( this ICollection<T> collection, Func<T, bool> predicate,
-            T value )
+        public static bool AddIf<_t>( this ICollection<_t> collection, Func<_t, bool> predicate,
+            _t value )
         {
             if( predicate( value ) )
             {
@@ -95,7 +95,7 @@ namespace Bubba
         /// <param name="values">
         /// The values.
         /// </param>
-        public static void AddRange<T>( this ICollection<T> collection, params T[ ] values )
+        public static void AddRange<_t>( this ICollection<_t> collection, params _t[ ] values )
         {
             if( ( values?.Any( ) == true ) )
             {
@@ -125,7 +125,7 @@ namespace Bubba
         /// <c> false </c>
         /// .
         /// </returns>
-        public static bool IsEmpty<T>( this ICollection<T> collection )
+        public static bool IsEmpty<_t>( this ICollection<_t> collection )
         {
             try
             {
@@ -144,7 +144,7 @@ namespace Bubba
         /// <typeparam name="_"></typeparam>
         /// <param name="collection">The collection.</param>
         /// <param name="value">The value.</param>
-        public static void RemoveIfContains<T>( this ICollection<T> collection, T value )
+        public static void RemoveIfContains<_t>( this ICollection<_t> collection, _t value )
         {
             if( collection?.Contains( value ) == true )
             {
@@ -165,7 +165,7 @@ namespace Bubba
         /// <typeparam name="_"></typeparam>
         /// <param name="collection">The collection.</param>
         /// <param name="values">The values.</param>
-        public static void RemoveRange<T>( this ICollection<T> collection, params T[ ] values )
+        public static void RemoveRange<_t>( this ICollection<_t> collection, params _t[ ] values )
         {
             if( ( values?.Any( ) == true ) )
             {
@@ -189,7 +189,7 @@ namespace Bubba
         /// <typeparam name="_"></typeparam>
         /// <param name="collection">The collection.</param>
         /// <param name="predicate">The predicate.</param>
-        public static void RemoveWhere<T>( this ICollection<T> collection, Predicate<T> predicate )
+        public static void RemoveWhere<_t>( this ICollection<_t> collection, Predicate<_t> predicate )
         {
             try
             {
@@ -234,11 +234,11 @@ namespace Bubba
         /// <typeparam name="_"></typeparam>
         /// <param name="collection">The collection.</param>
         /// <returns></returns>
-        public static BindingList<T> ToBindingList<T>( this ICollection<T> collection )
+        public static BindingList<_t> ToBindingList<_t>( this ICollection<_t> collection )
         {
             try
             {
-                var _list = new BindingList<T>( );
+                var _list = new BindingList<_t>( );
                 foreach( var _item in collection )
                 {
                     _list.Add( _item );
@@ -246,12 +246,12 @@ namespace Bubba
 
                 return _list?.Any( ) == true
                     ? _list
-                    : default( BindingList<T> );
+                    : default( BindingList<_t> );
             }
             catch( Exception ex )
             {
                 Fail( ex );
-                return default( BindingList<T> );
+                return default( BindingList<_t> );
             }
         }
 

@@ -367,9 +367,17 @@ namespace Bubba
         /// </returns>
         public override string ToString( )
         {
-            return _data?.Any( ) == true
-                ? _data.ToJson( )
-                : string.Empty;
+            try
+            {
+                return _data?.Any( ) == true
+                    ? _data.ToJson( )
+                    : string.Empty;
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+                return string.Empty;
+            }
         }
 
         /// <summary>

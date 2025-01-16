@@ -82,15 +82,15 @@ namespace Bubba
                 new FrameworkPropertyMetadata( typeof( LoadingCircle ) ) );
         }
 
-        public bool _isLoading
+        public bool IsLoading
         {
-            get { return (bool)GetValue( _isLoadingProperty ); }
-            set { SetValue( _isLoadingProperty, value ); }
+            get { return (bool)GetValue( IsLoadingProperty ); }
+            set { SetValue( IsLoadingProperty, value ); }
         }
 
         // Using a DependencyProperty as the backing store for IsLoading.  This enables animation, styling, binding, etc...
-        public static readonly DependencyProperty _isLoadingProperty =
-            DependencyProperty.Register( nameof( _isLoading ), typeof( bool ),
+        public static readonly DependencyProperty IsLoadingProperty =
+            DependencyProperty.Register( nameof( IsLoading ), typeof( bool ),
                 typeof( LoadingCircle ), new PropertyMetadata( true ) );
     }
 }

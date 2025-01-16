@@ -269,9 +269,9 @@ namespace Bubba
                 var _splashMessage = new SplashMessage( message );
                 _splashMessage.Show( );
             }
-            catch( Exception _ex )
+            catch( Exception ex )
             {
-                Fail( _ex );
+                Fail( ex );
             }
         }
 
@@ -286,9 +286,9 @@ namespace Bubba
                 var _notify = new Notification( _message );
                 _notify.Show( );
             }
-            catch( Exception _ex )
+            catch( Exception ex )
             {
-                Fail( _ex );
+                Fail( ex );
             }
         }
 

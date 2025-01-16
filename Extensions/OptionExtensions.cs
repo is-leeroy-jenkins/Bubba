@@ -59,16 +59,16 @@ namespace Bubba
         /// <typeparam name="_"></typeparam>
         /// <param name="enumerable">The enumerable.</param>
         /// <returns></returns>
-        public static Option<T> FirstOrNone<T>( this IEnumerable<T> enumerable )
+        public static Option<_t> FirstOrNone<_t>( this IEnumerable<_t> enumerable )
         {
             try
             {
-                return enumerable.Select( x => ( Option<T> )new Some<T>( x ) ).FirstOrDefault( );
+                return enumerable.Select( x => ( Option<_t> )new Some<_t>( x ) ).FirstOrDefault( );
             }
             catch( Exception ex )
             {
                 Fail( ex );
-                return default( Option<T> );
+                return default( Option<_t> );
             }
         }
 
@@ -79,8 +79,8 @@ namespace Bubba
         /// <param name="enumerable">The enumerable.</param>
         /// <param name="predicate">The predicate.</param>
         /// <returns></returns>
-        public static Option<T> FirstOrNone<T>( this IEnumerable<T> enumerable,
-            Func<T, bool> predicate )
+        public static Option<_t> FirstOrNone<_t>( this IEnumerable<_t> enumerable,
+            Func<_t, bool> predicate )
         {
             try
             {
@@ -89,30 +89,30 @@ namespace Bubba
             catch( Exception ex )
             {
                 Fail( ex );
-                return default( Option<T> );
+                return default( Option<_t> );
             }
         }
 
         /// <summary>
         /// Selects the optional.
         /// </summary>
-        /// <typeparam name="T"></typeparam>
+        /// <typeparam name="_t"></typeparam>
         /// <typeparam name="_result">The type of the result.</typeparam>
         /// <param name="enumerable">The enumerable.</param>
         /// <param name="map">The map.</param>
         /// <returns></returns>
-        public static IEnumerable<TResult> SelectOptional<T, TResult>(
-            this IEnumerable<T> enumerable, Func<T, Option<TResult>> map )
+        public static IEnumerable<_tResult> SelectOptional<_t, _tResult>(
+            this IEnumerable<_t> enumerable, Func<_t, Option<_tResult>> map )
         {
             try
             {
-                return ( IEnumerable<TResult> )enumerable.Select( map ).OfType<Some<TResult>>( )
+                return ( IEnumerable<_tResult> )enumerable.Select( map ).OfType<Some<_tResult>>( )
                     .Select( s => s.IsSome );
             }
             catch( Exception ex )
             {
                 Fail( ex );
-                return default( IEnumerable<TResult> );
+                return default( IEnumerable<_tResult> );
             }
         }
 

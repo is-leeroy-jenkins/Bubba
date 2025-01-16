@@ -1261,25 +1261,17 @@ namespace Bubba
         {
             try
             {
-                if( Enum.IsDefined( _requestType ) )
-                {
-                    var _msg = "Select a GPT Task!";
-                    SendErrorMessage( _msg );
-                }
-                else
-                {
-                    _store = StoreCheckBox.IsChecked ?? false;
-                    _stream = StreamCheckBox.IsChecked ?? false;
-                    _presence = PresenceSlider.Value;
-                    _temperature = TemperatureSlider.Value;
-                    _topPercent = TopPercentSlider.Value;
-                    _frequency = FrequencySlider.Value;
-                    _number = int.Parse( NumberTextBox.Text );
-                    _maximumTokens = Convert.ToInt32( MaxTokenTextBox.Value );
-                    _userPrompt = _language == "Text"
-                        ? ChatEditor.Text
-                        : "";
-                }
+                _store = StoreCheckBox.IsChecked ?? false;
+                _stream = StreamCheckBox.IsChecked ?? false;
+                _presence = PresenceSlider.Value;
+                _temperature = TemperatureSlider.Value;
+                _topPercent = TopPercentSlider.Value;
+                _frequency = FrequencySlider.Value;
+                _number = int.Parse( NumberTextBox.Text );
+                _maximumTokens = Convert.ToInt32( MaxTokenTextBox.Value );
+                _userPrompt = _language == "Text"
+                    ? ChatEditor.Text
+                    : "";
             }
             catch( Exception ex )
             {

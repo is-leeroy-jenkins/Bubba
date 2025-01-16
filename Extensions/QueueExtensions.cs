@@ -54,10 +54,10 @@ namespace Bubba
         /// <summary>
         /// Adds the specified item.
         /// </summary>
-        /// <typeparam name="T"></typeparam>
+        /// <typeparam name="_t"></typeparam>
         /// <param name="queue">The queue.</param>
         /// <param name="item">The item.</param>
-        public static void Add<T>( this Queue<T> queue, T item )
+        public static void Add<_t>( this Queue<_t> queue, _t item )
         {
             queue.Enqueue( item );
         }

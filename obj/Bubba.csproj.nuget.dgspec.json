@@ -81,6 +81,10 @@
               "target": "Package",
               "version": "[2.4.10, )"
             },
+            "Microsoft.ML": {
+              "target": "Package",
+              "version": "[4.0.1, )"
+            },
             "Microsoft.NETFramework.ReferenceAssemblies": {
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
               "suppressParent": "All",
@@ -102,6 +106,10 @@
             "ModernWpfUI": {
               "target": "Package",
               "version": "[0.9.6, )"
+            },
+            "NAudio": {
+              "target": "Package",
+              "version": "[2.2.1, )"
             },
             "Newtonsoft.Json": {
               "target": "Package",

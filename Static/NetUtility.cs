@@ -353,9 +353,9 @@ namespace Bubba
             {
                 return ( num & bitMask ) != 0;
             }
-            catch( Exception _ex )
+            catch( Exception ex )
             {
-                Fail( _ex );
+                Fail( ex );
                 return false;
             }
         }
@@ -391,9 +391,9 @@ namespace Bubba
                     ? StringComparison.Ordinal
                     : StringComparison.OrdinalIgnoreCase ) == 0;
             }
-            catch( Exception _ex )
+            catch( Exception ex )
             {
-                Fail( _ex );
+                Fail( ex );
                 return false;
             }
         }
@@ -415,9 +415,9 @@ namespace Bubba
                     ? str.Substring( prefix.Length )
                     : str;
             }
-            catch( Exception _ex )
+            catch( Exception ex )
             {
-                Fail( _ex );
+                Fail( ex );
                 return string.Empty;
             }
         }
