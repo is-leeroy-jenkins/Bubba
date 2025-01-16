@@ -9778,6 +9778,76 @@
             The c
             </summary>
         </member>
+        <member name="T:Bubba.GptRequestTypes">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Bubba.GptRequestTypes.ChatCompletion">
+            <summary>
+            The chat completion
+            </summary>
+        </member>
+        <member name="F:Bubba.GptRequestTypes.TextGeneration">
+            <summary>
+            The text generation
+            </summary>
+        </member>
+        <member name="F:Bubba.GptRequestTypes.ImageGeneration">
+            <summary>
+            The image generation
+            </summary>
+        </member>
+        <member name="F:Bubba.GptRequestTypes.SpeechGeneration">
+            <summary>
+            The speech generation
+            </summary>
+        </member>
+        <member name="F:Bubba.GptRequestTypes.Translations">
+            <summary>
+            The speech translation
+            </summary>
+        </member>
+        <member name="F:Bubba.GptRequestTypes.Transcriptions">
+            <summary>
+            The sound transcribing
+            </summary>
+        </member>
+        <member name="F:Bubba.GptRequestTypes.Assistants">
+            <summary>
+            The assistants
+            </summary>
+        </member>
+        <member name="F:Bubba.GptRequestTypes.Files">
+            <summary>
+            The files
+            </summary>
+        </member>
+        <member name="F:Bubba.GptRequestTypes.Uploads">
+            <summary>
+            The uploads
+            </summary>
+        </member>
+        <member name="F:Bubba.GptRequestTypes.FineTuning">
+            <summary>
+            The fine tuning
+            </summary>
+        </member>
+        <member name="F:Bubba.GptRequestTypes.Embeddings">
+            <summary>
+            The vector embeddings
+            </summary>
+        </member>
+        <member name="F:Bubba.GptRequestTypes.VectorStores">
+            <summary>
+            The vector stores
+            </summary>
+        </member>
+        <member name="F:Bubba.GptRequestTypes.Projects">
+            <summary>
+            The projects
+            </summary>
+        </member>
         <member name="T:Bubba.GptRoles">
             <summary>
             
@@ -10876,71 +10946,6 @@
         <member name="F:Bubba.Provider.Text">
             <summary>
             The TXT data provider
-            </summary>
-        </member>
-        <member name="T:Bubba.RequestTypes">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="F:Bubba.RequestTypes.ChatCompletion">
-            <summary>
-            The chat completion
-            </summary>
-        </member>
-        <member name="F:Bubba.RequestTypes.TextGeneration">
-            <summary>
-            The text generation
-            </summary>
-        </member>
-        <member name="F:Bubba.RequestTypes.ImageGeneration">
-            <summary>
-            The image generation
-            </summary>
-        </member>
-        <member name="F:Bubba.RequestTypes.SpeechGeneration">
-            <summary>
-            The speech generation
-            </summary>
-        </member>
-        <member name="F:Bubba.RequestTypes.Translations">
-            <summary>
-            The speech translation
-            </summary>
-        </member>
-        <member name="F:Bubba.RequestTypes.Transcriptions">
-            <summary>
-            The sound transcribing
-            </summary>
-        </member>
-        <member name="F:Bubba.RequestTypes.Files">
-            <summary>
-            The files
-            </summary>
-        </member>
-        <member name="F:Bubba.RequestTypes.Uploads">
-            <summary>
-            The uploads
-            </summary>
-        </member>
-        <member name="F:Bubba.RequestTypes.FineTuning">
-            <summary>
-            The fine tuning
-            </summary>
-        </member>
-        <member name="F:Bubba.RequestTypes.Embeddings">
-            <summary>
-            The vector embeddings
-            </summary>
-        </member>
-        <member name="F:Bubba.RequestTypes.VectorStores">
-            <summary>
-            The vector stores
-            </summary>
-        </member>
-        <member name="F:Bubba.RequestTypes.Projects">
-            <summary>
-            The projects
             </summary>
         </member>
         <member name="T:Bubba.RunCommandType">
@@ -23324,7 +23329,7 @@
             The chat model.
             </value>
         </member>
-        <member name="M:Bubba.AssistantRequest.CreateResponseAsync">
+        <member name="M:Bubba.AssistantRequest.GetResponseAsync">
             <summary>
             Gets the chat response asynchronous.
             </summary>
@@ -33160,6 +33165,14 @@
             <param name="e">The <see cref="T:System.Windows.RoutedEventArgs"/>
             instance containing the event data.</param>
         </member>
+        <member name="M:Bubba.ChatWindow.OnFileApiButtonClick(System.Object,System.Windows.RoutedEventArgs)">
+            <summary>
+            Called when [file upload button click].
+            </summary>
+            <param name="sender">The sender.</param>
+            <param name="e">The <see cref="T:System.Windows.RoutedEventArgs"/>
+            instance containing the event data.</param>
+        </member>
         <member name="M:Bubba.ChatWindow.OnTaskManagerOptionClick(System.Object,System.Windows.RoutedEventArgs)">
             <summary>
             Called when [task manager option click].
@@ -34985,7 +34998,7 @@
             Sets the RadioButton events.
             </summary>
         </member>
-        <member name="M:Bubba.GptFileDialog.GetCheckBoxes">
+        <member name="M:Bubba.GptFileDialog.GetRadioButtons">
             <summary>
             Gets the radio buttons.
             </summary>
@@ -35021,7 +35034,7 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="M:Bubba.GptFileDialog.GetFilePathsAsync">
+        <member name="M:Bubba.GptFileDialog.GetFilesAsync">
             <summary>
             Gets the file paths asynchronous.
             </summary>
@@ -37142,6 +37155,36 @@
         <member name="M:Bubba.WebBrowser.InitializeComponent">
             <summary>
             InitializeComponent
+            </summary>
+        </member>
+        <member name="T:XamlGeneratedNamespace.GeneratedInternalTypeHelper">
+            <summary>
+            GeneratedInternalTypeHelper
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.CreateInstance(System.Type,System.Globalization.CultureInfo)">
+            <summary>
+            CreateInstance
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.GetPropertyValue(System.Reflection.PropertyInfo,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            GetPropertyValue
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.SetPropertyValue(System.Reflection.PropertyInfo,System.Object,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            SetPropertyValue
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.CreateDelegate(System.Type,System.Object,System.String)">
+            <summary>
+            CreateDelegate
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.AddEventHandler(System.Reflection.EventInfo,System.Object,System.Delegate)">
+            <summary>
+            AddEventHandler
             </summary>
         </member>
     </members>

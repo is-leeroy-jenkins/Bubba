@@ -133,8 +133,8 @@ namespace Bubba
             _entry = new object( );
             _header = new GptHeader( );
             _httpClient = new HttpClient( );
-            _model = "gpt-4o-mini";
             _endPoint = GptEndPoint.Files;
+            _model = "gpt-4o-mini";
             _limit = 10000;
             _order = "desc";
             _purpose = "assistants";
@@ -473,11 +473,11 @@ namespace Bubba
         {
             try
             {
-                using var _client = new HttpClient( );
-                _client.DefaultRequestHeaders.Authorization =
-                    new AuthenticationHeaderValue( "Bearer", _apiKey );
+                _httpClient = new HttpClient( );
+                _httpClient.DefaultRequestHeaders.Authorization =
+                    new AuthenticationHeaderValue( "Bearer", App.OpenAiKey );
 
-                var _response = await _client.GetAsync( _endPoint );
+                var _response = await _httpClient.GetAsync( _endPoint );
                 _response.EnsureSuccessStatusCode( );
                 var _responseContent = await _response.Content.ReadAsStringAsync( );
                 return !string.IsNullOrEmpty( _responseContent )
@@ -501,11 +501,11 @@ namespace Bubba
             try
             {
                 ThrowIf.Empty( fileId, nameof( fileId ) );
-                using var _client = new HttpClient( );
-                _client.DefaultRequestHeaders.Authorization =
-                    new AuthenticationHeaderValue( "Bearer", _apiKey );
+                _httpClient = new HttpClient( );
+                _httpClient.DefaultRequestHeaders.Authorization =
+                    new AuthenticationHeaderValue( "Bearer", App.OpenAiKey );
 
-                var _response = await _client.GetAsync( $"{_endPoint}/{fileId}" );
+                var _response = await _httpClient.GetAsync( $"{_endPoint}/{fileId}" );
                 _response.EnsureSuccessStatusCode( );
                 var _responseContent = await _response.Content.ReadAsStringAsync();
                 return !string.IsNullOrEmpty(_responseContent)
@@ -528,11 +528,12 @@ namespace Bubba
         {
             try
             {
-                using var _client = new HttpClient( );
-                _client.DefaultRequestHeaders.Authorization =
-                    new AuthenticationHeaderValue( "Bearer", _apiKey );
+                ThrowIf.Empty( fileId, nameof( fileId ) );
+                _httpClient = new HttpClient( );
+                _httpClient.DefaultRequestHeaders.Authorization =
+                    new AuthenticationHeaderValue( "Bearer", App.OpenAiKey );
 
-                var _response = await _client.DeleteAsync( $"{_endPoint}/{fileId}" );
+                var _response = await _httpClient.DeleteAsync( $"{_endPoint}/{fileId}" );
                 _response.EnsureSuccessStatusCode( );
                 var _responseContent = await _response.Content.ReadAsStringAsync();
                 return !string.IsNullOrEmpty(_responseContent)

@@ -114,9 +114,9 @@ namespace Bubba
         {
             _entry = new object( );
             _header = new GptHeader( );
-            _httpClient = new HttpClient( );
-            _model = "tts-1-hd";
+            _httpClient = new HttpClient();
             _endPoint = GptEndPoint.SpeechGeneration;
+            _model = "tts-1-hd";
             _speed = 1;
             _language = "en";
             _responseFormat = "mp3";
@@ -398,23 +398,31 @@ namespace Bubba
         /// </returns>
         public async Task<string> GenerateAsync( string text )
         {
-            using var _client = new HttpClient( );
-            _client.DefaultRequestHeaders.Authorization =
-                new AuthenticationHeaderValue( "Bearer", _apiKey );
-
-            var _payload = new SpeechPayload
+            try
             {
-                Model = _model,
-                Language = _language,
-                Input = text
-            };
+                _httpClient = new HttpClient( );
+                _httpClient.DefaultRequestHeaders.Authorization =
+                    new AuthenticationHeaderValue( "Bearer", App.OpenAiKey );
 
-            var _serialize = JsonSerializer.Serialize( _payload );
-            var _content = new StringContent( _serialize, Encoding.UTF8, _header.ContentType );
-            var _response = await _client.PostAsync( _endPoint, _content );
-            _response.EnsureSuccessStatusCode( );
-            var _responseContent = await _response.Content.ReadAsStringAsync( );
-            return ExtractSpeech( _responseContent );
+                var _payload = new SpeechPayload
+                {
+                    Model = _model,
+                    Language = _language,
+                    Input = text
+                };
+
+                var _serialize = JsonSerializer.Serialize( _payload );
+                var _content = new StringContent( _serialize, Encoding.UTF8, _header.ContentType );
+                var _response = await _httpClient.PostAsync( _endPoint, _content );
+                _response.EnsureSuccessStatusCode( );
+                var _responseContent = await _response.Content.ReadAsStringAsync( );
+                return ExtractSpeech( _responseContent );
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+                return string.Empty;
+            }
         }
 
         /// <summary>

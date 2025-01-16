@@ -72,23 +72,6 @@
                 VerticalAlignment="Center"
                 d:ItemsSource="{d:SampleData ItemCount=5}" />
 
-            <b:MetroRadioButton
-                x:Name="TextRadioButton"
-                Canvas.Left="440"
-                Canvas.Top="307"
-                Width="100"
-                Height="24"
-                Padding="1"
-                HorizontalAlignment="Left"
-                VerticalAlignment="Top"
-                Background="{StaticResource LightBlueBrush}"
-                BorderThickness="1"
-                Content="  .txt"
-                FontSize="10"
-                Foreground="{StaticResource BlueBorderBrush}"
-                Tag="TXT"
-                ToolTip="text/plain" />
-
         </Canvas>
 
 
@@ -206,7 +189,7 @@
             VerticalAlignment="Top"
             Background="{StaticResource LightBlueBrush}"
             BorderThickness="1"
-            Content="  .py"
+            Content=" .py"
             FontSize="12"
             Foreground="{StaticResource BlueBorderBrush}"
             Tag="PY"
@@ -350,7 +333,7 @@
             Margin="193,0,185,4"
             ClipToBounds="True"
             SnapsToDevicePixels="True"
-            Source="/Resources/Assets/ExtensionImages/PY.png" />
+            Source="/Resources/Assets/GitHubImages/openai.png" />
 
         <Grid Grid.RowSpan="2" Margin="0,34,0,0">
             <Grid.ColumnDefinitions>
@@ -365,12 +348,12 @@
 
 
             <Label
-                x:Name="Counter"
+                x:Name="CountLabel"
                 Grid.Row="0"
                 Grid.Column="0"
                 Grid.ColumnSpan="2"
                 Height="30"
-                Margin="1,2,84,0"
+                Margin="1,0,84,0"
                 VerticalAlignment="Center"
                 HorizontalContentAlignment="Right"
                 VerticalContentAlignment="Center"
@@ -406,7 +389,7 @@
                 Foreground="{StaticResource LightBlueBrush}" />
 
             <Label
-                x:Name="CountLabel"
+                x:Name="FileCountLabel"
                 Grid.Column="1"
                 Height="22"
                 Margin="2,0,1,0"
@@ -427,12 +410,13 @@
 
             <Label
                 x:Name="DateLabel"
+                Canvas.Left="20"
                 Canvas.Top="47"
-                Width="120"
+                Width="100"
                 Height="25"
                 Padding="1"
-                HorizontalAlignment="Center"
-                VerticalAlignment="Top"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Center"
                 HorizontalContentAlignment="Left"
                 Content="Date"
                 FontSize="12"

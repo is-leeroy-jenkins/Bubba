@@ -51,7 +51,6 @@ namespace Bubba
     using System.Text.Json;
     using System.Text.Json.Serialization;
     using System.Threading.Tasks;
-    using Newtonsoft.Json;
     using Properties;
     using JsonSerializer = System.Text.Json.JsonSerializer;
 
@@ -88,11 +87,12 @@ namespace Bubba
             : base( )
         {
             _entry = new object( );
+            _header = new GptHeader( );
+            _endPoint = GptEndPoint.ImageGeneration;
             _httpClient = new HttpClient( );
             _model = "dall-e-2";
             _style = "natural";
             _quality = "hd";
-            _endPoint = GptEndPoint.ImageGeneration;
             _size = "512X512";
             _number = 1;
         }
@@ -127,7 +127,7 @@ namespace Bubba
         /// <value>
         /// The size of the image.
         /// </value>
-        [JsonPropertyName("size")]
+        [ JsonPropertyName( "size" ) ]
         public string Size
         {
             get
@@ -373,30 +373,30 @@ namespace Bubba
         /// Generates the images asynchronous.
         /// </summary>
         /// <param name="prompt">The prompt.</param>
-        /// <param name="imageCount">The image count.</param>
         /// <returns></returns>
-        public async Task<string[ ]> GenerateImagesAsync( string prompt, int imageCount = 1 )
+        public async Task<string[ ]> GenerateAsync( string prompt )
         {
             try
             {
-                using var _client = new HttpClient( );
-                _client.DefaultRequestHeaders.Authorization =
-                    new AuthenticationHeaderValue( "Bearer", _apiKey );
+                ThrowIf.Empty( prompt, nameof( prompt ) );
+                _httpClient = new HttpClient( );
+                _httpClient.DefaultRequestHeaders.Authorization =
+                    new AuthenticationHeaderValue( "Bearer", App.OpenAiKey );
 
-                var _payload = new
+                var _payload = new ImagePayload( )
                 {
-                    prompt,
-                    n = imageCount,
-                    size = "512x512"
+                    Prompt = prompt,
+                    Number = _number,
+                    Size = _size
                 };
 
-                var _json = JsonSerializer.Serialize( _payload );
-                var _content = new StringContent( _json, Encoding.UTF8, "application/json" );
-                var _response = await _client.PostAsync( _endPoint, _content );
+                var _image = JsonSerializer.Serialize( _payload );
+                var _content = new StringContent( _image, Encoding.UTF8, _header.ContentType );
+                var _response = await _httpClient.PostAsync( _endPoint, _content );
                 _response.EnsureSuccessStatusCode( );
-                var _responseContent = await _response.Content.ReadAsStringAsync( );
-                var _imageData = ExtractImageData( _responseContent );
-                return _imageData?.Any( ) == true
+                var _responseData = await _response.Content.ReadAsStringAsync( );
+                var _imageData = ExtractResponse( _responseData );
+                return ( _imageData?.Any( ) == true )
                     ? _imageData
                     : default( string[ ] );
             }
@@ -412,7 +412,7 @@ namespace Bubba
         /// </summary>
         /// <param name="jsonResponse">The json response.</param>
         /// <returns></returns>
-        private string[ ] ExtractImageData( string jsonResponse )
+        private string[ ] ExtractResponse( string jsonResponse )
         {
             try
             {
@@ -422,7 +422,8 @@ namespace Bubba
                 var _urls = new List<string>( );
                 foreach( var _item in _root.EnumerateArray( ) )
                 {
-                    _urls.Add( _item.GetProperty( "url" ).GetString( ) );
+                    var _image = _item.GetProperty( "url" ).GetString( );
+                    _urls.Add( _image );
                 }
 
                 var _list = _urls.ToArray( );

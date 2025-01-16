@@ -51,18 +51,11 @@ namespace Bubba
     using System.Net.Http;
     using System.Net.Http.Headers;
     using System.Runtime.CompilerServices;
-    using System.Text;
     using System.Text.Json;
     using System.Threading;
     using System.Threading.Tasks;
     using System.Windows;
-    using System.Windows.Data;
-    using System.Windows.Documents;
-    using System.Windows.Forms;
-    using System.Windows.Input;
-    using System.Windows.Media;
     using System.Windows.Media.Imaging;
-    using System.Windows.Shapes;
     using Syncfusion.SfSkinManager;
     using HorizontalAlignment = System.Windows.HorizontalAlignment;
     using RadioButton = System.Windows.Controls.RadioButton;
@@ -77,6 +70,7 @@ namespace Bubba
     [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
     [ SuppressMessage( "ReSharper", "RedundantExtendsListEntry" ) ]
     [ SuppressMessage( "ReSharper", "PreferConcreteValueOverDefault" ) ]
+    [ SuppressMessage( "ReSharper", "FieldCanBeMadeReadOnly.Global" ) ]
     public partial class GptFileDialog : Window, IDisposable
     {
         /// <summary>
@@ -221,10 +215,14 @@ namespace Bubba
             Background = _theme.ControlBackground;
             Foreground = _theme.LightBlueBrush;
             BorderBrush = _theme.BorderBrush;
+            _filePaths = new List<string>( );
 
             // Timer Properties
             _time = 0;
             _seconds = 5;
+
+            // Event Wiring
+            Loaded += OnLoaded;
         }
 
         /// <summary>
@@ -318,6 +316,7 @@ namespace Bubba
         {
             try
             {
+                CountLabel.Content = "Files:";
             }
             catch( Exception ex )
             {
@@ -587,7 +586,7 @@ namespace Bubba
         /// <returns>
         /// List( MetroRadioButton )
         /// </returns>
-        private protected virtual IList<RadioButton> GetCheckBoxes( )
+        private protected virtual IList<RadioButton> GetRadioButtons( )
         {
             try
             {
@@ -601,7 +600,7 @@ namespace Bubba
                     CssRadioButton,
                     DocRadioButton,
                     DocxRadioButton,
-                    TextRadioButton,
+                    MdRadioButton,
                     JsRadioButton,
                     JsonRadioButton
                 };
@@ -672,36 +671,52 @@ namespace Bubba
         {
             try
             {
+                Busy( );
+                var _watch = new Stopwatch( );
+                _watch.Start( );
                 var _url = "https://api.openai.com/v1/files";
                 _httpClient = new HttpClient( );
                 _httpClient.Timeout = new TimeSpan( 0, 0, 3 );
                 _httpClient.DefaultRequestHeaders.Authorization =
-                    new AuthenticationHeaderValue( "Bearer", OpenAI.BubbaKey );
+                    new AuthenticationHeaderValue( "Bearer", App.OpenAiKey );
 
                 var _responseMessage = await _httpClient.GetAsync( _url );
                 _responseMessage.EnsureSuccessStatusCode( );
                 var _body = await _responseMessage.Content.ReadAsStringAsync( );
-                _filePaths?.Clear( );
                 using var _document = JsonDocument.Parse( _body );
                 var _root = _document.RootElement;
-                if( _root.TryGetProperty( "data", out var _value )
-                    && _value.ValueKind == JsonValueKind.Array )
+                _filePaths.Clear( );
+                if( _root.TryGetProperty( "data", out var _files )
+                    && _files.ValueKind == JsonValueKind.Array )
                 {
-                    foreach( var _item in _value.EnumerateArray( ) )
+                    foreach( var _item in _files.EnumerateArray( ) )
                     {
-                        if( _item.TryGetProperty( "filename", out var _element ) )
+                        if( _item.TryGetProperty( "purpose", out var _purposeElement ) )
                         {
-                            _filePaths?.Add( _element.GetString( ) );
+                            var _purpose = _purposeElement.ToString( );
+                            if( _purpose.Equals( "assistants" )
+                                && _item.TryGetProperty( "filename", out var _name ) )
+                            {
+                                _filePaths.Add( _name.GetString( ) );
+                            }
                         }
                     }
                 }
 
+                Chill( );
+                _watch.Stop( );
+                _count = _filePaths.Count;
+                FileCountLabel.Content = $"{_count:N0}";
+                _duration = _watch.Elapsed.TotalMilliseconds;
+                DurationLabel.Content = $"{_duration:N0} ms";
                 Dispatcher.BeginInvoke( ( ) =>
                 {
+                    ListBox.Items?.Clear( );
                     for( var _index = 0; _index < _filePaths.Count; _index++ )
                     {
-                        var _fileName = _filePaths[ _index ];
-                        ListBox.Items.Add( _fileName );
+                        var _fileName = _filePaths[_index];
+                        var _file = _fileName.Split( "." )[ 0 ];
+                        ListBox.Items?.Add( _file );
                     }
                 } );
             }
@@ -753,7 +768,8 @@ namespace Bubba
                 Chill( );
                 _watch.Stop( );
                 _count = _filePaths?.Count ?? 0;
-                CountLabel.Content = $"{_count:N0}";
+                CountLabel.Content = $"Files:";
+                FileCountLabel.Content = $"{_count:N0}";
                 _duration = _watch.Elapsed.TotalMilliseconds;
                 DurationLabel.Content = $"{_duration:N0} ms";
             }
@@ -782,10 +798,12 @@ namespace Bubba
                     var _parent = Directory.CreateDirectory( _dirPath );
                     var _folders = _parent.GetDirectories( )
                         ?.Where( s => s.Name.StartsWith( "My" ) == false )
-                        ?.Select( s => s.FullName )?.ToList( );
+                        ?.Select( s => s.FullName )
+                        ?.ToList( );
 
                     var _topLevelFiles = _parent.GetFiles( _pattern, SearchOption.TopDirectoryOnly )
-                        ?.Select( f => f.FullName )?.ToArray( );
+                        ?.Select( f => f.FullName )
+                        ?.ToArray( );
 
                     _list.AddRange( _topLevelFiles );
                     for( var _k = 0; _k < _folders.Count; _k++ )
@@ -793,7 +811,8 @@ namespace Bubba
                         var _folder = Directory.CreateDirectory( _folders[ _k ] );
                         var _lowerLevelFiles = _folder
                             .GetFiles( _pattern, SearchOption.AllDirectories )
-                            ?.Select( s => s.FullName )?.ToArray( );
+                            ?.Select( s => s.FullName )
+                            ?.ToArray( );
 
                         _list.AddRange( _lowerLevelFiles );
                     }
@@ -818,7 +837,7 @@ namespace Bubba
         /// Gets the file paths asynchronous.
         /// </summary>
         /// <returns></returns>
-        private protected async Task<IList<string>> GetFilePathsAsync( )
+        private protected async Task<IList<string>> GetFilesAsync( )
         {
             try
             {
@@ -827,7 +846,7 @@ namespace Bubba
                 _httpClient = new HttpClient( );
                 _httpClient.Timeout = new TimeSpan( 0, 0, 3 );
                 _httpClient.DefaultRequestHeaders.Authorization =
-                    new AuthenticationHeaderValue( "Bearer", OpenAI.BubbaKey );
+                    new AuthenticationHeaderValue( "Bearer", App.OpenAiKey );
 
                 var _list = new List<string>( );
                 var _responseMessage = await _httpClient.GetAsync( _url );
@@ -850,6 +869,8 @@ namespace Bubba
                             }
                         }
                     }
+
+                    FileCountLabel.Content = $"{_list.Count:N0}";
                 }
 
                 Chill( );
@@ -906,14 +927,12 @@ namespace Bubba
             try
             {
                 PdfRadioButton.IsChecked = true;
+                _radioButtons = GetRadioButtons( );
                 InitializeTimer( );
-                PopulateListBox( );
+                PopulateFilesAsync( );
                 InitializeLabels( );
                 InitializeButtons( );
                 RegisterRadioButtonEvents( );
-                SetImage( );
-                _filePaths = GetFilePathsAsync().Result;
-                _count = _filePaths.Count;
             }
             catch( Exception ex )
             {

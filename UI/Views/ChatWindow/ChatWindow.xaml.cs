@@ -1,10 +1,10 @@
 ﻿// ******************************************************************************************
 //     Assembly:                Bubba
 //     Author:                  Terry D. Eppler
-//     Created:                 01-12-2025
+//     Created:                 01-15-2025
 // 
 //     Last Modified By:        Terry D. Eppler
-//     Last Modified On:        01-12-2025
+//     Last Modified On:        01-15-2025
 // ******************************************************************************************
 // <copyright file="ChatWindow.xaml.cs" company="Terry D. Eppler">
 //    Bubba is a small and simple windows (wpf) application for interacting with the OpenAI API
@@ -107,7 +107,7 @@ namespace Bubba
         /// <summary>
         /// The role
         /// </summary>
-        private protected RequestTypes _requestType;
+        private protected GptRequestTypes _requestType;
 
         /// <summary>
         /// The role
@@ -565,7 +565,8 @@ namespace Bubba
             {
                 switch( _requestType )
                 {
-                    case RequestTypes.ChatCompletion:
+                    case GptRequestTypes.Assistants:
+                    case GptRequestTypes.ChatCompletion:
                     {
                         PopulateTextModels( );
                         _endpoint = GptEndPoint.Completions;
@@ -577,7 +578,7 @@ namespace Bubba
                         NumberSlider.Value = 1;
                         break;
                     }
-                    case RequestTypes.TextGeneration:
+                    case GptRequestTypes.TextGeneration:
                     {
                         PopulateTextModels( );
                         _endpoint = GptEndPoint.TextGeneration;
@@ -589,7 +590,7 @@ namespace Bubba
                         NumberSlider.Value = 1;
                         break;
                     }
-                    case RequestTypes.ImageGeneration:
+                    case GptRequestTypes.ImageGeneration:
                     {
                         PopulateImageModels( );
                         _endpoint = GptEndPoint.ImageGeneration;
@@ -598,7 +599,7 @@ namespace Bubba
                         NumberSlider.Value = 1;
                         break;
                     }
-                    case RequestTypes.Translations:
+                    case GptRequestTypes.Translations:
                     {
                         PopulateTranslationModels( );
                         _endpoint = GptEndPoint.Translations;
@@ -607,14 +608,14 @@ namespace Bubba
                         NumberSlider.Value = 1;
                         break;
                     }
-                    case RequestTypes.Embeddings:
+                    case GptRequestTypes.Embeddings:
                     {
                         PopulateEmbeddingModels( );
                         _endpoint = GptEndPoint.Embeddings;
                         NumberSlider.Value = 1;
                         break;
                     }
-                    case RequestTypes.Transcriptions:
+                    case GptRequestTypes.Transcriptions:
                     {
                         PopulateTranscriptionModels( );
                         _endpoint = GptEndPoint.Transcriptions;
@@ -623,13 +624,13 @@ namespace Bubba
                         NumberSlider.Value = 1;
                         break;
                     }
-                    case RequestTypes.VectorStores:
+                    case GptRequestTypes.VectorStores:
                     {
                         PopulateEmbeddingModels( );
                         _endpoint = GptEndPoint.VectorStores;
                         break;
                     }
-                    case RequestTypes.SpeechGeneration:
+                    case GptRequestTypes.SpeechGeneration:
                     {
                         PopulateSpeechModels( );
                         _endpoint = GptEndPoint.SpeechGeneration;
@@ -637,13 +638,13 @@ namespace Bubba
                         MaxTokenSlider.Value = 200;
                         break;
                     }
-                    case RequestTypes.FineTuning:
+                    case GptRequestTypes.FineTuning:
                     {
                         PopulateFineTuningModels( );
                         _endpoint = GptEndPoint.FineTuning;
                         break;
                     }
-                    case RequestTypes.Files:
+                    case GptRequestTypes.Files:
                     {
                         PopulateTextModels( );
                         _endpoint = GptEndPoint.Files;
@@ -655,13 +656,13 @@ namespace Bubba
                         NumberSlider.Value = 1;
                         break;
                     }
-                    case RequestTypes.Uploads:
+                    case GptRequestTypes.Uploads:
                     {
                         PopulateTextModels( );
                         _endpoint = GptEndPoint.Uploads;
                         break;
                     }
-                    case RequestTypes.Projects:
+                    case GptRequestTypes.Projects:
                     {
                         PopulateTextModels( );
                         _endpoint = GptEndPoint.Projects;
@@ -761,13 +762,12 @@ namespace Bubba
                 ListenCheckBox.Checked += OnListenCheckedChanged;
                 MuteCheckBox.Checked += OnMuteCheckedBoxChanged;
                 StoreCheckBox.Checked += OnStoreBoxChecked;
-                StreamCheckBox.Checked += OnStreamBoxChecked;
                 GenerationComboBox.SelectionChanged += OnSelectedGenerationChanged;
-                ModelComboBox.SelectionChanged += OnSelectedModelChanged;
                 GenerationComboBox.SelectionChanged += OnSelectedGenerationChanged;
                 ImageSizeComboBox.SelectionChanged += OnSelectedImageSizeChanged;
                 RefreshButton.Click += OnRefreshButtonClick;
                 LookupButton.Click += OnGoButtonClicked;
+                GptFileButton.Click += OnFileApiButtonClick;
             }
             catch( Exception ex )
             {
@@ -1147,8 +1147,11 @@ namespace Bubba
             try
             {
                 ThrowIf.Null( message, nameof( message ) );
-                var _splashMessage = new SplashMessage( message );
-                _splashMessage.WindowStartupLocation = WindowStartupLocation.CenterScreen;
+                var _splashMessage = new SplashMessage( message )
+                {
+                    WindowStartupLocation = WindowStartupLocation.CenterScreen
+                };
+
                 _splashMessage.Show( );
             }
             catch( Exception ex )
@@ -1648,7 +1651,7 @@ namespace Bubba
                 _httpClient = new HttpClient( );
                 _httpClient.Timeout = new TimeSpan( 0, 0, 3 );
                 _httpClient.DefaultRequestHeaders.Authorization =
-                    new AuthenticationHeaderValue( "Bearer", OpenAI.BubbaKey );
+                    new AuthenticationHeaderValue( "Bearer", App.OpenAiKey );
 
                 var _responseMessage = await _httpClient.GetAsync( _url );
                 _responseMessage.EnsureSuccessStatusCode( );
@@ -2042,8 +2045,10 @@ namespace Bubba
                 App.ActiveWindows.Add( "ChatWindow", this );
                 _systemPrompt = OpenAI.BubbaPrompt;
                 StreamCheckBox.IsChecked = true;
+                StreamCheckBox.Checked += OnStreamBoxChecked;
+                ModelComboBox.SelectionChanged += OnSelectedModelChanged;
                 SetGptParameters( );
-                UserLabel.Content = $@"User ID: {Environment.UserName}";
+                UserLabel.Content = $@"User ID : {Environment.UserName}";
             }
             catch( Exception ex )
             {
@@ -2150,9 +2155,6 @@ namespace Bubba
             try
             {
                 _stream = StreamCheckBox.IsChecked == true;
-                var _message = $"The '{nameof( _stream )}' data member is {_stream.ToString( )} ";
-                var _notifier = CreateNotifier( );
-                _notifier.ShowInformation( _message );
             }
             catch( Exception ex )
             {
@@ -2284,7 +2286,7 @@ namespace Bubba
         {
             try
             {
-                var _fileBrowser = new FileBrowser
+                var _fileBrowser = new FileBrowser( )
                 {
                     WindowStartupLocation = WindowStartupLocation.CenterScreen,
                     Owner = this,
@@ -2335,6 +2337,31 @@ namespace Bubba
             try
             {
                 WinMinion.LaunchControlPanel( );
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+            }
+        }
+
+        /// <summary>
+        /// Called when [file upload button click].
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The <see cref="RoutedEventArgs"/>
+        /// instance containing the event data.</param>
+        private void OnFileApiButtonClick( object sender, RoutedEventArgs e )
+        {
+            try
+            {
+                var _fileBrowser = new GptFileDialog( )
+                {
+                    WindowStartupLocation = WindowStartupLocation.CenterScreen,
+                    Owner = this,
+                    Topmost = true
+                };
+
+                _fileBrowser.Show( );
             }
             catch( Exception ex )
             {
@@ -2867,7 +2894,9 @@ namespace Bubba
                 {
                     var _item = GenerationComboBox.SelectedItem;
                     var _request = ( ( ComboBoxItem )_item ).Tag.ToString( );
-                    _requestType = ( RequestTypes )Enum.Parse( typeof( RequestTypes ), _request );
+                    _requestType =
+                        ( GptRequestTypes )Enum.Parse( typeof( GptRequestTypes ), _request );
+
                     InitializeParameters( );
                 }
             }

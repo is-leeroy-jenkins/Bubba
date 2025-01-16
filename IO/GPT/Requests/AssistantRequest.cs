@@ -91,8 +91,8 @@ namespace Bubba
         public AssistantRequest( )
             : base( )
         {
-            _header = new GptHeader( );
             _entry = new object( );
+            _header = new GptHeader( );
             _httpClient = new HttpClient( );
             _endPoint = GptEndPoint.Completions;
             _model = "gpt-4o-mini";
@@ -308,7 +308,7 @@ namespace Bubba
         /// Gets the chat response asynchronous.
         /// </summary>
         /// <returns></returns>
-        public async Task<string> CreateResponseAsync( )
+        public async Task<string> GetResponseAsync( )
         {
             try
             {
@@ -329,11 +329,11 @@ namespace Bubba
                 };
 
                 var _json = _payload.Serialize( );
-                var _content = new StringContent( _json, Encoding.UTF8, "application/json" );
+                var _content = new StringContent( _json, Encoding.UTF8, _header.ContentType );
                 var _response = await _client.PostAsync( _endPoint, _content );
                 _response.EnsureSuccessStatusCode( );
                 var _chat = await _response.Content.ReadAsStringAsync( );
-                var _chatResponse = ExtractResponseMessage( _chat );
+                var _chatResponse = ExtractResponse( _chat );
                 return !string.IsNullOrEmpty( _chatResponse )
                     ? _chatResponse
                     : string.Empty;
@@ -350,7 +350,7 @@ namespace Bubba
         /// </summary>
         /// <param name="jsonResponse">The json response.</param>
         /// <returns></returns>
-        private protected string ExtractResponseMessage( string jsonResponse )
+        private protected string ExtractResponse( string jsonResponse )
         {
             try
             {
@@ -386,7 +386,7 @@ namespace Bubba
             {
                 _data.Add( "model", _model );
                 _data.Add( "endpoint", _endPoint );
-                _data.Add( "number", _number );
+                _data.Add( "n", _number );
                 _data.Add( "max_completion_tokens", _maximumTokens );
                 _data.Add( "store", _store );
                 _data.Add( "stream", _stream );

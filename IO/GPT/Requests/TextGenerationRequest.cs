@@ -1,10 +1,10 @@
 ﻿// ******************************************************************************************
 //     Assembly:                Bubba
 //     Author:                  Terry D. Eppler
-//     Created:                 01-10-2025
+//     Created:                 01-15-2025
 // 
 //     Last Modified By:        Terry D. Eppler
-//     Last Modified On:        01-10-2025
+//     Last Modified On:        01-15-2025
 // ******************************************************************************************
 // <copyright file="TextGenerationRequest.cs" company="Terry D. Eppler">
 //    Bubba is a small and simple windows (wpf) application for interacting with the OpenAI API
@@ -73,9 +73,9 @@ namespace Bubba
             : base( )
         {
             _entry = new object( );
-            _httpClient = new HttpClient( );
-            _model = "gpt-4o-mini";
+            _header = new GptHeader( );
             _endPoint = GptEndPoint.TextGeneration;
+            _model = "gpt-4o-mini";
             _responseFormat = "text";
         }
 
@@ -379,48 +379,6 @@ namespace Bubba
             }
         }
 
-        /// <summary>
-        /// Gets the text completion asynchronous.
-        /// </summary>
-        /// <param name="prompt">The prompt.</param>
-        /// <returns></returns>
-        public async Task<string> GetTextCompletionAsync( string prompt )
-        {
-            try
-            {
-                ThrowIf.Empty( prompt, nameof( prompt ) );
-                var _endpoint = GptEndPoint.TextGeneration;
-                using var _client = new HttpClient( );
-                _client.DefaultRequestHeaders.Authorization =
-                    new AuthenticationHeaderValue( "Bearer", _apiKey );
-
-                var _payload = new GptPayload
-                {
-                    Model = _model,
-                    UserPrompt = prompt,
-                    Temperature = _temperature,
-                    Store = _store,
-                    Stream = _stream,
-                    Stop = _stop,
-                    TopPercent = _topPercent,
-                    FrequencyPenalty = _frequencyPenalty,
-                    PresencePenalty = _presencePenalty
-                };
-
-                var _serialize = JsonSerializer.Serialize( _payload );
-                var _content = new StringContent( _serialize, Encoding.UTF8, "application/json" );
-                var _response = await _client.PostAsync( _endpoint, _content );
-                _response.EnsureSuccessStatusCode( );
-                var _responseContent = await _response.Content.ReadAsStringAsync( );
-                return ExtractText( _responseContent );
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
-                return string.Empty;
-            }
-        }
-
         /// <inheritdoc />
         /// <summary>
         /// Gets or sets the response format.
@@ -469,15 +427,71 @@ namespace Bubba
         }
 
         /// <summary>
+        /// Gets the text completion asynchronous.
+        /// </summary>
+        /// <param name="prompt">The prompt.</param>
+        /// <returns></returns>
+        public async Task<string> GenerateAsync(string prompt)
+        {
+            try
+            {
+                ThrowIf.Empty(prompt, nameof(prompt));
+                _httpClient = new HttpClient();
+                _httpClient.DefaultRequestHeaders.Authorization =
+                    new AuthenticationHeaderValue("Bearer", App.OpenAiKey);
+
+                var _text = new TextPayload
+                {
+                    Model = _model,
+                    UserPrompt = prompt,
+                    Temperature = _temperature,
+                    Store = _store,
+                    Stream = _stream,
+                    Stop = _stop,
+                    TopPercent = _topPercent,
+                    FrequencyPenalty = _frequencyPenalty,
+                    PresencePenalty = _presencePenalty
+                };
+
+                var _serialize = JsonSerializer.Serialize(_text);
+                var _content = new StringContent(_serialize, Encoding.UTF8, _header.ContentType);
+                var _response = await _httpClient.PostAsync(_endPoint, _content);
+                _response.EnsureSuccessStatusCode();
+                var _responseContent = await _response.Content.ReadAsStringAsync();
+                return ExtractResponse(_responseContent);
+            }
+            catch(Exception ex)
+            {
+                Fail(ex);
+                return string.Empty;
+            }
+        }
+
+        /// <summary>
         /// Extracts the content of the response.
         /// </summary>
         /// <param name="jsonResponse">The json response.</param>
         /// <returns></returns>
-        private string ExtractText( string jsonResponse )
+        private string ExtractResponse( string jsonResponse )
         {
-            using var _document = JsonDocument.Parse( jsonResponse );
-            return _document.RootElement.GetProperty( "choices" )[ 0 ].GetProperty( "text" )
-                .GetString( );
+            try
+            {
+                ThrowIf.Empty( jsonResponse, nameof( jsonResponse ) );
+                using var _document = JsonDocument.Parse( jsonResponse );
+                var _response = _document.RootElement
+                    .GetProperty( "choices" )[ 0 ]
+                    .GetProperty( "text" )
+                    .GetString( );
+
+                return !string.IsNullOrEmpty( _response )
+                    ? _response
+                    : string.Empty;
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+                return string.Empty;
+            }
         }
 
         /// <inheritdoc />

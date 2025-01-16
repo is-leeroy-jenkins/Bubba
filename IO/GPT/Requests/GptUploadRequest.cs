@@ -64,6 +64,7 @@ namespace Bubba
     [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
     [ SuppressMessage( "ReSharper", "PossibleUnintendedReferenceComparison" ) ]
     [ SuppressMessage( "ReSharper", "PreferConcreteValueOverDefault" ) ]
+    [ SuppressMessage( "ReSharper", "MethodHasAsyncOverload" ) ]
     public class GptUploadRequest : GptRequest
     {
         /// <summary>
@@ -81,13 +82,14 @@ namespace Bubba
         {
             _entry = new object( );
             _httpClient = new HttpClient( );
+            _header = new GptHeader( );
+            _endPoint = GptEndPoint.Uploads;
+            _model = "gpt-4o-mini";
             _presencePenalty = 0.00;
             _frequencyPenalty = 0.00;
             _topPercent = 0.11;
             _temperature = 0.18;
             _maximumTokens = 2048;
-            _model = "gpt-4o-mini";
-            _endPoint = GptEndPoint.Uploads;
             _number = 1;
         }
 
@@ -398,7 +400,7 @@ namespace Bubba
         /// The response format.
         /// </value>
         [ JsonPropertyName( "response_format" ) ]
-        public string ResponseFormat
+        public override string ResponseFormat
         {
             get
             {
@@ -421,27 +423,34 @@ namespace Bubba
         /// <returns></returns>
         public async Task<string> UploadTrainingFileAsync( string filePath )
         {
-            using var _client = new HttpClient( );
-            _client.DefaultRequestHeaders.Authorization =
-                new AuthenticationHeaderValue( "Bearer", ApiKey );
-
-            var _fileContent = new ByteArrayContent( File.ReadAllBytes( filePath ) );
-            var _formData = new MultipartFormDataContent
+            try
             {
-                {
-                    _fileContent, "file", Path.GetFileName( filePath )
-                },
-                {
-                    new StringContent( "fine-tune" ), "purpose"
-                }
-            };
+                _httpClient.DefaultRequestHeaders.Authorization =
+                    new AuthenticationHeaderValue( "Bearer", App.OpenAiKey );
 
-            var _response = await _client.PostAsync( _endPoint, _formData );
-            _response.EnsureSuccessStatusCode( );
-            var _responseContent = await _response.Content.ReadAsStringAsync( );
-            var _document = JsonDocument.Parse( _responseContent );
-            var _fileId = _document.RootElement.GetProperty( "id" ).GetString( );
-            return _fileId;
+                var _fileContent = new ByteArrayContent( File.ReadAllBytes( filePath ) );
+                var _formData = new MultipartFormDataContent
+                {
+                    {
+                        _fileContent, "file", Path.GetFileName( filePath )
+                    },
+                    {
+                        new StringContent( "fine-tune" ), "purpose"
+                    }
+                };
+
+                var _response = await _httpClient.PostAsync( _endPoint, _formData );
+                _response.EnsureSuccessStatusCode( );
+                var _responseContent = await _response.Content.ReadAsStringAsync( );
+                var _document = JsonDocument.Parse( _responseContent );
+                var _fileId = _document.RootElement.GetProperty( "id" ).GetString( );
+                return _fileId;
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+                return string.Empty;
+            }
         }
 
         /// <summary>
@@ -451,24 +460,31 @@ namespace Bubba
         /// <returns></returns>
         public async Task<string> CreateFineTuneAsync( string fileId )
         {
-            using var _client = new HttpClient( );
-            _client.DefaultRequestHeaders.Authorization =
-                new AuthenticationHeaderValue( "Bearer", ApiKey );
-
-            var _payload = new
+            try
             {
-                training_file = fileId,
-                model = "curie"
-            };
+                _httpClient.DefaultRequestHeaders.Authorization =
+                    new AuthenticationHeaderValue( "Bearer", App.OpenAiKey );
 
-            var _jsonPayload = System.Text.Json.JsonSerializer.Serialize( _payload );
-            var _content = new StringContent( _jsonPayload, Encoding.UTF8, "application/json" );
-            var _response = await _client.PostAsync( _endPoint, _content );
-            _response.EnsureSuccessStatusCode( );
-            var _responseContent = await _response.Content.ReadAsStringAsync( );
-            var _document = JsonDocument.Parse( _responseContent );
-            var _jobId = _document.RootElement.GetProperty( "id" ).GetString( );
-            return _jobId;
+                var _payload = new
+                {
+                    training_file = fileId,
+                    model = "curie"
+                };
+
+                var _serialize = System.Text.Json.JsonSerializer.Serialize( _payload );
+                var _content = new StringContent( _serialize, Encoding.UTF8, _header.ContentType );
+                var _response = await _httpClient.PostAsync( _endPoint, _content );
+                _response.EnsureSuccessStatusCode( );
+                var _responseContent = await _response.Content.ReadAsStringAsync( );
+                var _document = JsonDocument.Parse( _responseContent );
+                var _jobId = _document.RootElement.GetProperty( "id" ).GetString( );
+                return _jobId;
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+                return string.Empty;
+            }
         }
 
         /// <inheritdoc />
@@ -483,7 +499,7 @@ namespace Bubba
             {
                 _data.Add( "model", _model );
                 _data.Add( "endpoint", _endPoint );
-                _data.Add( "number", _number );
+                _data.Add( "n", _number );
                 _data.Add( "max_completion_tokens", _maximumTokens );
                 _data.Add( "store", _store );
                 _data.Add( "stream", _stream );
