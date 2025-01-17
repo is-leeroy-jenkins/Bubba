@@ -169,4 +169,7 @@
     <value>https://api.openai.com/v1/chat/completions</value>
     <comment>URL to the openai chat completions api </comment>
   </data>
+  <data name="Assistants" xml:space="preserve">
+    <value>https://api.openai.com/v1/assistants</value>
+  </data>
 </root>

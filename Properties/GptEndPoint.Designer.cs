@@ -61,6 +61,15 @@ namespace Bubba.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to https://api.openai.com/v1/assistants.
+        /// </summary>
+        internal static string Assistants {
+            get {
+                return ResourceManager.GetString("Assistants", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to https://api.openai.com/.
         /// </summary>
         internal static string BaseUrl {

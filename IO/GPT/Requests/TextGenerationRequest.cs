@@ -75,7 +75,7 @@ namespace Bubba
             _entry = new object( );
             _header = new GptHeader( );
             _endPoint = GptEndPoint.TextGeneration;
-            _model = "gpt-4o-mini";
+            _model = "gpt-4o";
             _responseFormat = "text";
         }
 
@@ -440,10 +440,10 @@ namespace Bubba
                 _httpClient.DefaultRequestHeaders.Authorization =
                     new AuthenticationHeaderValue( "Bearer", App.OpenAiKey );
 
-                var Text = new TextPayload
+                var _text = new TextPayload
                 {
                     Model = _model,
-                    UserPrompt = prompt,
+                    Prompt = prompt,
                     Temperature = Temperature,
                     Store = _store,
                     Stream = _stream,
@@ -453,7 +453,7 @@ namespace Bubba
                     PresencePenalty = _presencePenalty
                 };
 
-                var _serialize = JsonSerializer.Serialize( Text );
+                var _serialize = JsonSerializer.Serialize( _text );
                 var _content = new StringContent( _serialize, Encoding.UTF8, _header.ContentType );
                 var _response = await _httpClient.PostAsync( _endPoint, _content );
                 _response.EnsureSuccessStatusCode( );
@@ -478,8 +478,10 @@ namespace Bubba
             {
                 ThrowIf.Empty( jsonResponse, nameof( jsonResponse ) );
                 using var _document = JsonDocument.Parse( jsonResponse );
-                var _response = _document.RootElement.GetProperty( "choices" )[ 0 ]
-                    .GetProperty( "text" ).GetString( );
+                var _response = _document.RootElement
+                    .GetProperty( "choices" )[ 0 ]
+                    .GetProperty( "text" )
+                    .GetString( );
 
                 return !string.IsNullOrEmpty( _response )
                     ? _response

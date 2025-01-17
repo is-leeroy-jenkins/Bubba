@@ -118,7 +118,7 @@ namespace Bubba
         /// <value>
         /// The prompt.
         /// </value>
-        string UserPrompt { get; set; }
+        string Prompt { get; set; }
 
         /// <summary>
         /// Gets or sets the stop.

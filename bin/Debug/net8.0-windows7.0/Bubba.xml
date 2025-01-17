@@ -15409,7 +15409,7 @@
             Handles POST requests and response parsing.
             </summary>
         </member>
-        <member name="M:Bubba.IGptClient.SendCompletionRequest(System.String)">
+        <member name="M:Bubba.IGptClient.SendRequest(System.String)">
             <summary>
             Sends the HTTP message.
             </summary>
@@ -15654,7 +15654,7 @@
             The size of the image.
             </value>
         </member>
-        <member name="P:Bubba.IGptPayload.UserPrompt">
+        <member name="P:Bubba.IGptPayload.Prompt">
             <summary>
             Gets the prompt.
             </summary>
@@ -16477,7 +16477,7 @@
             The string provided to GPT
             </summary>
         </member>
-        <member name="F:Bubba.PayloadBase._userPrompt">
+        <member name="F:Bubba.PayloadBase._prompt">
             <summary>
             The user prompt
             </summary>
@@ -16601,7 +16601,7 @@
             The size of the image.
             </value>
         </member>
-        <member name="P:Bubba.PayloadBase.UserPrompt">
+        <member name="P:Bubba.PayloadBase.Prompt">
             <inheritdoc />
             <summary>
             Gets the prompt.
@@ -19901,7 +19901,7 @@
             Handles POST requests and response parsing.
             </summary>
         </member>
-        <member name="M:Bubba.GptClient.SendCompletionRequest(System.String)">
+        <member name="M:Bubba.GptClient.SendRequest(System.String)">
             <inheritdoc />
             <summary>
             Sends the HTTP message.
@@ -21497,7 +21497,9 @@
         </member>
         <member name="F:Bubba.ImageParameter._prompt">
             <summary>
-            The prompt
+            A text description of the desired image(s).
+            The maximum length is 1000 characters for
+            dall-e-2 and 4000 characters for dall-e-3
             </summary>
         </member>
         <member name="F:Bubba.ImageParameter._quality">
@@ -21539,7 +21541,9 @@
         </member>
         <member name="P:Bubba.ImageParameter.Prompt">
             <summary>
-            Gets or sets the prompt.
+            A text description of the desired image(s).
+            The maximum length is 1000 characters for
+            dall-e-2 and 4000 characters for dall-e-3
             </summary>
             <value>
             The prompt.
@@ -21992,6 +21996,26 @@
             <summary>
             </summary>
         </member>
+        <member name="F:Bubba.AssistantPayload._name">
+            <summary>
+            The name
+            </summary>
+        </member>
+        <member name="F:Bubba.AssistantPayload._instructions">
+            <summary>
+            The instructions
+            </summary>
+        </member>
+        <member name="F:Bubba.AssistantPayload._descriptions">
+            <summary>
+            The descriptions
+            </summary>
+        </member>
+        <member name="F:Bubba.AssistantPayload._tools">
+            <summary>
+            The tools
+            </summary>
+        </member>
         <member name="M:Bubba.AssistantPayload.#ctor">
             <summary>
             Initializes a new instance of the
@@ -22008,6 +22032,22 @@
             The user identifier.
             </value>
         </member>
+        <member name="P:Bubba.AssistantPayload.Descriptions">
+            <summary>
+            Gets or sets the descriptions.
+            </summary>
+            <value>
+            The descriptions.
+            </value>
+        </member>
+        <member name="P:Bubba.AssistantPayload.Instructions">
+            <summary>
+            Gets or sets the instructions.
+            </summary>
+            <value>
+            The instructions.
+            </value>
+        </member>
         <member name="P:Bubba.AssistantPayload.Model">
             <summary>
             Gets the chat model.
@@ -22018,6 +22058,7 @@
             <inheritdoc />
         </member>
         <member name="P:Bubba.AssistantPayload.EndPoint">
+            <inheritdoc />
             <summary>
             Gets or sets the end point.
             </summary>
@@ -23008,6 +23049,7 @@
             <inheritdoc />
         </member>
         <member name="P:Bubba.TextPayload.EndPoint">
+            <inheritdoc />
             <summary>
             Gets or sets the end point.
             </summary>
@@ -23478,6 +23520,11 @@
             <summary>
             </summary>
         </member>
+        <member name="F:Bubba.AssistantRequest._tools">
+            <summary>
+            The tools
+            </summary>
+        </member>
         <member name="F:Bubba.AssistantRequest._metaData">
             <summary>
             Developer-defined tags and values used for filtering completions
@@ -23488,12 +23535,7 @@
             The reasoning effort
             </summary>
         </member>
-        <member name="F:Bubba.AssistantRequest._userPrompt">
-            <summary>
-            The user prompt
-            </summary>
-        </member>
-        <member name="F:Bubba.AssistantRequest._systemPrompt">
+        <member name="F:Bubba.AssistantRequest._instructions">
             <summary>
             The system prompt
             </summary>
@@ -23557,6 +23599,22 @@
             The modalities.
             </value>
         </member>
+        <member name="P:Bubba.AssistantRequest.Instructions">
+            <summary>
+            Gets or sets the instructions.
+            </summary>
+            <value>
+            The instructions.
+            </value>
+        </member>
+        <member name="P:Bubba.AssistantRequest.Prompt">
+            <summary>
+            Gets or sets the user prompt.
+            </summary>
+            <value>
+            The user prompt.
+            </value>
+        </member>
         <member name="P:Bubba.AssistantRequest.ReasoningEffort">
             <summary>
             Gets or sets the reasoning effort.
@@ -23582,7 +23640,7 @@
             The chat model.
             </value>
         </member>
-        <member name="M:Bubba.AssistantRequest.GetResponseAsync">
+        <member name="M:Bubba.AssistantRequest.GetResponseAsync(System.String)">
             <summary>
             Gets the chat response asynchronous.
             </summary>
@@ -29321,6 +29379,11 @@
               resource lookups using this strongly typed resource class.
             </summary>
         </member>
+        <member name="P:Bubba.Properties.GptEndPoint.Assistants">
+            <summary>
+              Looks up a localized string similar to https://api.openai.com/v1/assistants.
+            </summary>
+        </member>
         <member name="P:Bubba.Properties.GptEndPoint.BaseUrl">
             <summary>
               Looks up a localized string similar to https://api.openai.com/.
@@ -34143,6 +34206,11 @@
             The models
             </summary>
         </member>
+        <member name="F:Bubba.ChatWindow._imageSizes">
+            <summary>
+            The image sizes
+            </summary>
+        </member>
         <member name="F:Bubba.ChatWindow._model">
             <summary>
             The chat model
@@ -34267,6 +34335,14 @@
             </summary>
             <value>
             The endpoint.
+            </value>
+        </member>
+        <member name="M:Bubba.ChatWindow.GetImageSizes">
+            <summary>
+            Gets the image sizes.
+            </summary>
+            <value>
+            The image sizes.
             </value>
         </member>
         <member name="M:Bubba.ChatWindow.InitializeTitle">
@@ -34499,6 +34575,13 @@
             Opens the chat window.
             </summary>
         </member>
+        <member name="M:Bubba.ChatWindow.OpenPromptDialog(System.Double,System.Double)">
+            <summary>
+            Opens the prompt dialog.
+            </summary>
+            <param name="x">The x.</param>
+            <param name="y">The y.</param>
+        </member>
         <member name="M:Bubba.ChatWindow.PadQuotes(System.String)">
             <summary>
             Pads the quotes.
@@ -34526,6 +34609,11 @@
         <member name="M:Bubba.ChatWindow.PopulateImageModels">
             <summary>
             Populates the image generation models.
+            </summary>
+        </member>
+        <member name="M:Bubba.ChatWindow.PopulateImageSizes">
+            <summary>
+            Populates the image sizes.
             </summary>
         </member>
         <member name="M:Bubba.ChatWindow.PopulateTranslationModels">
@@ -34769,6 +34857,14 @@
             <param name="e">The <see cref="T:System.Windows.RoutedEventArgs"/>
             instance containing the event data.</param>
         </member>
+        <member name="M:Bubba.ChatWindow.OnSystemPromptOptionClick(System.Object,System.Windows.RoutedEventArgs)">
+            <summary>
+            Called when [system prompt button click].
+            </summary>
+            <param name="sender">The sender.</param>
+            <param name="e">The <see cref="T:System.Windows.RoutedEventArgs"/>
+            instance containing the event data.</param>
+        </member>
         <member name="M:Bubba.ChatWindow.OnFirstButtonClick(System.Object,System.Windows.RoutedEventArgs)">
             <summary>
             Called when [first button click].
@@ -34938,7 +35034,7 @@
             <param name="e">The <see cref="T:System.Windows.RoutedEventArgs"/>
             instance containing the event data.</param>
         </member>
-        <member name="M:Bubba.ChatWindow.OnSelectedGenerationChanged(System.Object,System.Windows.RoutedEventArgs)">
+        <member name="M:Bubba.ChatWindow.OnSelectedRequestTypeChanged(System.Object,System.Windows.RoutedEventArgs)">
             <summary>
             Called when [task selection changed].
             </summary>
@@ -37304,7 +37400,7 @@
             The timer
             </summary>
         </member>
-        <member name="F:Bubba.SystemDialog._queryPrefix">
+        <member name="F:Bubba.SystemDialog._systemPrompt">
             <summary>
             The domain
             </summary>
@@ -37331,7 +37427,7 @@
             <see cref="T:Bubba.SystemDialog" /> class.
             </summary>
         </member>
-        <member name="P:Bubba.SystemDialog.Results">
+        <member name="P:Bubba.SystemDialog.SystemPrompt">
             <summary>
             Gets or sets the results.
             </summary>
@@ -37362,7 +37458,7 @@
             Initializes the buttons.
             </summary>
         </member>
-        <member name="M:Bubba.SystemDialog.InitializeComboBox">
+        <member name="M:Bubba.SystemDialog.InitializeLabels">
             <summary>
             Initializes the ComboBox.
             </summary>

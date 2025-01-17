@@ -1,10 +1,10 @@
 ﻿// ******************************************************************************************
 //     Assembly:                Bubba
 //     Author:                  Terry D. Eppler
-//     Created:                 01-12-2025
+//     Created:                 01-17-2025
 // 
 //     Last Modified By:        Terry D. Eppler
-//     Last Modified On:        01-12-2025
+//     Last Modified On:        01-17-2025
 // ******************************************************************************************
 // <copyright file="AssistantPayload.cs" company="Terry D. Eppler">
 //    Bubba is a small and simple windows (wpf) application for interacting with the OpenAI API
@@ -54,8 +54,29 @@ namespace Bubba
     [ SuppressMessage( "ReSharper", "UnusedType.Global" ) ]
     [ SuppressMessage( "ReSharper", "PreferConcreteValueOverDefault" ) ]
     [ SuppressMessage( "ReSharper", "ClassCanBeSealed.Global" ) ]
+    [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
     public class AssistantPayload : TextPayload
     {
+        /// <summary>
+        /// The name
+        /// </summary>
+        private protected string _name;
+
+        /// <summary>
+        /// The instructions
+        /// </summary>
+        private protected string _instructions;
+
+        /// <summary>
+        /// The descriptions
+        /// </summary>
+        private protected string _descriptions;
+
+        /// <summary>
+        /// The tools
+        /// </summary>
+        private protected IList<string> _tools;
+
         /// <summary>
         /// Initializes a new instance of the
         /// <see cref="AssistantPayload"/> class.
@@ -64,8 +85,8 @@ namespace Bubba
         public AssistantPayload( )
             : base( )
         {
-            _model = "gpt-4o-mini";
-            _endPoint = GptEndPoint.Completions;
+            _model = "gpt-4o";
+            _endPoint = GptEndPoint.Assistants;
             _store = false;
             _stream = true;
             _number = 1;
@@ -74,7 +95,7 @@ namespace Bubba
             _frequencyPenalty = 0.00;
             _presencePenalty = 0.00;
             _maximumTokens = 2048;
-            _responseFormat = "text";
+            _responseFormat = "auto";
         }
 
         /// <inheritdoc />
@@ -97,6 +118,52 @@ namespace Bubba
                 {
                     _number = value;
                     OnPropertyChanged( nameof( Number ) );
+                }
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the descriptions.
+        /// </summary>
+        /// <value>
+        /// The descriptions.
+        /// </value>
+        [ JsonPropertyName( "descriptions" ) ]
+        public string Descriptions
+        {
+            get
+            {
+                return _descriptions;
+            }
+            set
+            {
+                if( _descriptions != value )
+                {
+                    _descriptions = value;
+                    OnPropertyChanged( nameof( Descriptions ) );
+                }
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the instructions.
+        /// </summary>
+        /// <value>
+        /// The instructions.
+        /// </value>
+        [ JsonPropertyName( "instructions" ) ]
+        public string Instructions
+        {
+            get
+            {
+                return _instructions;
+            }
+            set
+            {
+                if( _instructions != value )
+                {
+                    _instructions = value;
+                    OnPropertyChanged( nameof( Instructions ) );
                 }
             }
         }
@@ -125,13 +192,15 @@ namespace Bubba
             }
         }
 
+        /// <inheritdoc />
         /// <summary>
         /// Gets or sets the end point.
         /// </summary>
         /// <value>
         /// The end point.
         /// </value>
-        public string EndPoint
+        [ JsonPropertyName( "endpoint" ) ]
+        public override string EndPoint
         {
             get
             {
@@ -139,10 +208,10 @@ namespace Bubba
             }
             set
             {
-                if( _endPoint != value )
+                if(_endPoint != value)
                 {
                     _endPoint = value;
-                    OnPropertyChanged( nameof( EndPoint ) );
+                    OnPropertyChanged(nameof(EndPoint));
                 }
             }
         }
@@ -155,7 +224,7 @@ namespace Bubba
         /// <value>
         ///   <c>true</c> if store; otherwise, <c>false</c>.
         /// </value>
-        [ JsonPropertyName( "store" ) ]
+        [JsonPropertyName( "store" ) ]
         public override bool Store
         {
             get

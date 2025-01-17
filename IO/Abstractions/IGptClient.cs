@@ -130,7 +130,7 @@ namespace Bubba
         /// </summary>
         /// <param name="prompt">The question.</param>
         /// <returns></returns>
-        string SendCompletionRequest( string prompt );
+        string SendRequest( string prompt );
 
         /// <summary>
         /// Builds the request data.

@@ -132,13 +132,15 @@ namespace Bubba
             }
         }
 
+        /// <inheritdoc />
         /// <summary>
         /// Gets or sets the end point.
         /// </summary>
         /// <value>
         /// The end point.
         /// </value>
-        public string EndPoint
+        [ JsonPropertyName( "endpoint" ) ]
+        public override string EndPoint
         {
             get
             {

@@ -404,10 +404,10 @@ namespace Bubba
                 _httpClient.DefaultRequestHeaders.Authorization =
                     new AuthenticationHeaderValue( "Bearer", App.OpenAiKey );
 
-                var Text = new TextPayload
+                var _text = new TextPayload
                 {
                     Model = _model,
-                    UserPrompt = prompt,
+                    Prompt = prompt,
                     Temperature = Temperature,
                     Store = _store,
                     Stream = _stream,
@@ -417,7 +417,7 @@ namespace Bubba
                     PresencePenalty = _presencePenalty
                 };
 
-                var _serialize = JsonSerializer.Serialize( Text );
+                var _serialize = JsonSerializer.Serialize( _text );
                 var _content = new StringContent( _serialize, Encoding.UTF8, _header.ContentType );
                 var _response = await _httpClient.PostAsync( _endPoint, _content );
                 _response.EnsureSuccessStatusCode( );

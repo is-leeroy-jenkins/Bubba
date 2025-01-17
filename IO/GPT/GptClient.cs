@@ -430,7 +430,7 @@ namespace Bubba
         /// </summary>
         /// <param name="prompt">The question.</param>
         /// <returns></returns>
-        public string SendCompletionRequest( string prompt )
+        public string SendRequest( string prompt )
         {
             try
             {
@@ -445,7 +445,7 @@ namespace Bubba
                 // Validate randomness (temperature)
                 var _payload = new GptPayload
                 {
-                    UserPrompt = prompt
+                    Prompt = prompt
                 };
 
                 var _request = WebRequest.Create( _url );

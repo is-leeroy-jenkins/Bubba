@@ -213,6 +213,11 @@ namespace Bubba
         private protected IList<string> _models;
 
         /// <summary>
+        /// The image sizes
+        /// </summary>
+        private protected IList<string> _imageSizes;
+
+        /// <summary>
         /// The chat model
         /// </summary>
         private protected string _model;
@@ -292,6 +297,7 @@ namespace Bubba
             _presence = 0.00D;
             _frequency = 0.00D;
             _maximumTokens = 2048;
+            _imageSizes = new List<string>( );
 
             // Event Wiring
             Loaded += OnLoad;
@@ -460,6 +466,21 @@ namespace Bubba
         }
 
         /// <summary>
+        /// Gets the image sizes.
+        /// </summary>
+        /// <value>
+        /// The image sizes.
+        /// </value>
+        public IList<string> GetImageSizes( )
+        {
+            _imageSizes.Add( "1024x1024" );
+            _imageSizes.Add( "1792x1024" );
+            _imageSizes.Add( "1024x1792" );
+            _imageSizes.Add( "1024x1792" );
+            return _imageSizes;
+        }
+
+        /// <summary>
         /// Initializes the title.
         /// </summary>
         private void InitializeTitle( )
@@ -480,7 +501,7 @@ namespace Bubba
         {
             try
             {
-                SpeechLabel.Visibility = Visibility.Hidden;
+                HeaderLabel.Visibility = Visibility.Hidden;
             }
             catch( Exception ex )
             {
@@ -602,6 +623,7 @@ namespace Bubba
                     case GptRequestTypes.Translations:
                     {
                         PopulateTranslationModels( );
+                        PopulateOpenAiVoices( );
                         _endpoint = GptEndPoint.Translations;
                         TemperatureSlider.Value = 0.18;
                         MaxTokenSlider.Value = 2048;
@@ -618,6 +640,7 @@ namespace Bubba
                     case GptRequestTypes.Transcriptions:
                     {
                         PopulateTranscriptionModels( );
+                        PopulateOpenAiVoices( );
                         _endpoint = GptEndPoint.Transcriptions;
                         TemperatureSlider.Value = 0.18;
                         MaxTokenSlider.Value = 2048;
@@ -633,6 +656,7 @@ namespace Bubba
                     case GptRequestTypes.SpeechGeneration:
                     {
                         PopulateSpeechModels( );
+                        PopulateOpenAiVoices( );
                         _endpoint = GptEndPoint.SpeechGeneration;
                         TemperatureSlider.Value = 0.6;
                         MaxTokenSlider.Value = 200;
@@ -762,8 +786,8 @@ namespace Bubba
                 ListenCheckBox.Checked += OnListenCheckedChanged;
                 MuteCheckBox.Checked += OnMuteCheckedBoxChanged;
                 StoreCheckBox.Checked += OnStoreBoxChecked;
-                GenerationComboBox.SelectionChanged += OnSelectedGenerationChanged;
-                GenerationComboBox.SelectionChanged += OnSelectedGenerationChanged;
+                GenerationComboBox.SelectionChanged += OnSelectedRequestTypeChanged;
+                GenerationComboBox.SelectionChanged += OnSelectedRequestTypeChanged;
                 ImageSizeComboBox.SelectionChanged += OnSelectedImageSizeChanged;
                 RefreshButton.Click += OnRefreshButtonClick;
                 LookupButton.Click += OnGoButtonClicked;
@@ -795,6 +819,16 @@ namespace Bubba
                 TopPercentTextBox.TextChanged -= OnParameterTextBoxChanged;
                 BrowserButton.Click -= OnWebBrowserButtonClick;
                 LookupButton.Click -= OnGoButtonClicked;
+                DeleteButton.Click -= OnDeleteButtonClick;
+                ClearButton.Click -= OnClearButtonClick;
+                SendButton.Click -= OnSendButtonClick;
+                LanguageListBox.SelectionChanged -= OnSelectedLanguageChanged;
+                ListenCheckBox.Checked -= OnListenCheckedChanged;
+                MuteCheckBox.Checked -= OnMuteCheckedBoxChanged;
+                StoreCheckBox.Checked -= OnStoreBoxChecked;
+                GenerationComboBox.SelectionChanged -= OnSelectedRequestTypeChanged;
+                GenerationComboBox.SelectionChanged -= OnSelectedRequestTypeChanged;
+                ImageSizeComboBox.SelectionChanged -= OnSelectedImageSizeChanged;
             }
             catch( Exception ex )
             {
@@ -1426,7 +1460,7 @@ namespace Bubba
             var _request = WebRequest.Create( _url );
             _request.Method = "POST";
             _request.ContentType = "application/json";
-            _request.Headers.Add( "Authorization", "Bearer " + OpenAI.BubbaKey );
+            _request.Headers.Add( "Authorization", "Bearer " + App.OpenAiKey );
             var _maxTokens = int.Parse( MaxTokenTextBox.Text );// 2048
 
             // 0.5
@@ -1440,7 +1474,7 @@ namespace Bubba
                 return "";
             }
 
-            var _userId = UserLabel.Content;         
+            var _userId = UserLabel.Content;
             var _data = "";
             if( _model.IndexOf( "gpt-3.5-turbo" ) != -1 )
             {
@@ -1585,6 +1619,33 @@ namespace Bubba
             catch( Exception ex )
             {
                 Fail( ex );
+            }
+        }
+
+        /// <summary>
+        /// Opens the prompt dialog.
+        /// </summary>
+        /// <param name="x">The x.</param>
+        /// <param name="y">The y.</param>
+        private protected virtual void OpenPromptDialog( double x, double y )
+        {
+            try
+            {
+                ThrowIf.Negative(x, nameof(x));
+                ThrowIf.Negative(x, nameof(x));
+                var _systemDialog = new SystemDialog( )
+                {
+                    Owner = this,
+                    Left = x,
+                    Top = y
+                };
+
+                _systemDialog.Show( );
+                _systemDialog.SystemDialogTextBox.Text = _systemPrompt;
+            }
+            catch(Exception ex )
+            {
+                Fail(ex);
             }
         }
 
@@ -1753,6 +1814,25 @@ namespace Bubba
                 ModelComboBox.Items?.Clear( );
                 ModelComboBox.Items.Add( "dall-e-3" );
                 ModelComboBox.Items.Add( "dall-e-2" );
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+            }
+        }
+
+        /// <summary>
+        /// Populates the image sizes.
+        /// </summary>
+        private void PopulateImageSizes( )
+        {
+            try
+            {
+                ImageSizeComboBox.Items?.Clear( );
+                foreach( var _item in _imageSizes )
+                {
+                    ImageSizeComboBox.Items.Add( _item );
+                }
             }
             catch( Exception ex )
             {
@@ -2058,6 +2138,7 @@ namespace Bubba
                 PopulateInstalledVoices( );
                 ClearChatControls( );
                 InitializeChatEditor( );
+                PopulateImageSizes( );
                 App.ActiveWindows.Add( "ChatWindow", this );
                 _systemPrompt = OpenAI.BubbaPrompt;
                 StreamCheckBox.IsChecked = true;
@@ -2476,6 +2557,23 @@ namespace Bubba
         }
 
         /// <summary>
+        /// Called when [system prompt button click].
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The <see cref="RoutedEventArgs"/>
+        /// instance containing the event data.</param>
+        private void OnSystemPromptOptionClick(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+            }
+            catch(Exception ex)
+            {
+                Fail(ex);
+            }
+        }
+
+        /// <summary>
         /// Called when [first button click].
         /// </summary>
         /// <param name="sender">The sender.</param>
@@ -2583,6 +2681,7 @@ namespace Bubba
                 ClearChatControls( );
                 ClearParameters( );
                 PopulateModelsAsync( );
+                PopulateInstalledVoices( );
             }
             catch( Exception ex )
             {
@@ -2732,14 +2831,14 @@ namespace Bubba
         {
             if( ListenCheckBox.IsChecked == true )
             {
-                SpeechLabel.Content = "";
-                SpeechLabel.Visibility = Visibility.Visible;
+                HeaderLabel.Content = "";
+                HeaderLabel.Visibility = Visibility.Visible;
                 SpeechToText( );
             }
             else
             {
                 _engine.RecognizeAsyncStop( );
-                SpeechLabel.Visibility = Visibility.Hidden;
+                HeaderLabel.Visibility = Visibility.Hidden;
             }
         }
 
@@ -2774,7 +2873,7 @@ namespace Bubba
         private void OnSpeechRecognized( object sender, SpeechRecognizedEventArgs e )
         {
             // Reset Hypothesized text
-            SpeechLabel.Content = "";
+            HeaderLabel.Content = "";
             if( ChatEditor.Text != "" )
             {
                 ChatEditor.Text += "\n";
@@ -2793,7 +2892,7 @@ namespace Bubba
         private void OnSpeechHypothesized( object sender, SpeechHypothesizedEventArgs e )
         {
             var _text = e.Result.Text;
-            SpeechLabel.Content = _text;
+            HeaderLabel.Content = _text;
         }
 
         /// <summary>
@@ -2846,6 +2945,9 @@ namespace Bubba
             try
             {
                 ClearChatControls( );
+                ClearParameters( );
+                PopulateModelsAsync( );
+                PopulateInstalledVoices( );
             }
             catch( Exception ex )
             {
@@ -2902,7 +3004,7 @@ namespace Bubba
         /// <param name="sender">The sender.</param>
         /// <param name="e">The <see cref="RoutedEventArgs"/>
         /// instance containing the event data.</param>
-        private void OnSelectedGenerationChanged( object sender, RoutedEventArgs e )
+        private void OnSelectedRequestTypeChanged( object sender, RoutedEventArgs e )
         {
             try
             {

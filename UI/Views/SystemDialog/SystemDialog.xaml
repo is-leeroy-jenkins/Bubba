@@ -35,10 +35,10 @@
             FontFamily="Roboto"
             FontSize="12"
             Foreground="{StaticResource FormForeground}"
-            ToolTip="Enter Search Key Words" />
+            ToolTip="Enter System Prompt" />
 
         <local:MetroTile
-            x:Name="SystemDialogLookupButton"
+            x:Name="SystemDialogGoButton"
             Title=""
             Canvas.Left="697"
             Canvas.Top="126"
@@ -51,7 +51,7 @@
             Foreground="{StaticResource FormForeground}"
             Header=""
             ImageSource="/Resources/Assets/ToolStripImages/GoButton.png"
-            ToolTip="Begin Search" />
+            ToolTip="Set Prompt" />
 
         <local:MetroTile
             x:Name="SystemDialogCancelButton"
@@ -67,34 +67,37 @@
             Foreground="{StaticResource FormForeground}"
             Header=""
             ImageSource="/Resources/Assets/ToolStripImages/StopButton.png"
-            ToolTip="Cancel Search" />
+            ToolTip="Close Prompt" />
 
         <local:MetroTile
             x:Name="SystemDialogRefreshButton"
             Title=""
-            Canvas.Left="696"
-            Canvas.Top="75"
-            Width="50"
-            Height="45"
-            HorizontalAlignment="Left"
-            VerticalAlignment="Top"
+            Canvas.Left="697"
+            Canvas.Top="76"
+            Width="49"
+            Height="46"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
             Background="{StaticResource ControlBackground}"
             BorderBrush="{StaticResource ControlBackground}"
             Foreground="{StaticResource FormForeground}"
             Header=""
-            ImageSource="/Resources/Assets/ToolStripImages/RefreshButton.png"
-            ToolTip="Refresh Page" />
+            ImageSource="/Resources/Assets/ToolStripImages/ResetButton.png"
+            ToolTip="Clear Prompt" />
 
         <Label
-            Canvas.Left="0"
-            Canvas.Top="0"
-            Width="395"
+            x:Name="HeaderLabel"
+            Canvas.Left="30"
+            Canvas.Top="4"
+            Width="622"
+            Height="25"
             Padding="5,0,5,5"
             HorizontalAlignment="Left"
-            VerticalAlignment="Top"
+            VerticalAlignment="Center"
             HorizontalContentAlignment="Left"
             VerticalContentAlignment="Top"
             Content="System Instructions"
-            FontSize="10" />
+            FontSize="10"
+            Foreground="{StaticResource LightBlueBrush}" />
     </Canvas>
 </Window>

@@ -61,7 +61,9 @@ namespace Bubba
         private protected string _size;
 
         /// <summary>
-        /// The prompt
+        /// A text description of the desired image(s).
+        /// The maximum length is 1000 characters for
+        /// dall-e-2 and 4000 characters for dall-e-3
         /// </summary>
         private protected string _prompt;
 
@@ -87,7 +89,7 @@ namespace Bubba
             : base( )
         {
             _model = "dall-e-3";
-            _size = "250X250";
+            _size = "1024x1024";
             _number = 1;
             _responseFormat = "url";
             _style = "natural";
@@ -141,7 +143,9 @@ namespace Bubba
         }
 
         /// <summary>
-        /// Gets or sets the prompt.
+        /// A text description of the desired image(s).
+        /// The maximum length is 1000 characters for
+        /// dall-e-2 and 4000 characters for dall-e-3
         /// </summary>
         /// <value>
         /// The prompt.

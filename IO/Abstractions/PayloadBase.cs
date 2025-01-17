@@ -137,7 +137,7 @@ namespace Bubba
         /// <summary>
         /// The user prompt
         /// </summary>
-        private protected string _userPrompt;
+        private protected string _prompt;
 
         /// <summary>
         /// The response format
@@ -404,18 +404,18 @@ namespace Bubba
         /// The prompt.
         /// </value>
         [ JsonPropertyName( "prompt" ) ]
-        public string UserPrompt
+        public string Prompt
         {
             get
             {
-                return _userPrompt;
+                return _prompt;
             }
             set
             {
-                if( _userPrompt != value )
+                if( _prompt != value )
                 {
-                    _userPrompt = value;
-                    OnPropertyChanged( nameof( UserPrompt ) );
+                    _prompt = value;
+                    OnPropertyChanged( nameof( Prompt ) );
                 }
             }
         }

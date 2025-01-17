@@ -44,6 +44,7 @@ namespace Bubba
     using System;
     using System.Configuration;
     using System.Diagnostics;
+    using System.Diagnostics.CodeAnalysis;
     using System.Threading;
     using System.Threading.Tasks;
     using System.Windows;
@@ -54,6 +55,11 @@ namespace Bubba
     /// <summary>
     /// Interaction logic for SystemDialog.xaml
     /// </summary>
+    [ SuppressMessage( "ReSharper", "UnusedType.Global" ) ]
+    [ SuppressMessage( "ReSharper", "RedundantExtendsListEntry" ) ]
+    [ SuppressMessage( "ReSharper", "ConvertToAutoProperty" ) ]
+    [ SuppressMessage( "ReSharper", "ConvertToAutoPropertyWhenPossible" ) ]
+    [ SuppressMessage( "ReSharper", "MemberCanBeProtected.Global" ) ]
     public partial class SystemDialog : Window, IDisposable
     {
         /// <summary>
@@ -84,7 +90,7 @@ namespace Bubba
         /// <summary>
         /// The domain
         /// </summary>
-        private string _queryPrefix;
+        private string _systemPrompt;
 
         /// <summary>
         /// The results
@@ -115,6 +121,9 @@ namespace Bubba
             InitializeComponent( );
             RegisterCallbacks( );
 
+            // Dialog Properties
+            _systemPrompt = OpenAI.BubbaPrompt;
+
             //Event Wiring
             Loaded += OnLoad;
         }
@@ -125,15 +134,15 @@ namespace Bubba
         /// <value>
         /// The results.
         /// </value>
-        public string Results
+        public string SystemPrompt
         {
             get
             {
-                return _results;
+                return _systemPrompt;
             }
-            private protected set
+            set
             {
-                _results = value;
+                _systemPrompt = value;
             }
         }
 
@@ -162,7 +171,7 @@ namespace Bubba
         {
             try
             {
-                SystemDialogLookupButton.Click += OnGoButtonClick;
+                SystemDialogGoButton.Click += OnGoButtonClick;
                 SystemDialogCancelButton.Click += OnCloseButtonClick;
                 SystemDialogRefreshButton.Click += OnClearButtonClick;
                 SystemDialogTextBox.TextChanged += OnInputTextChanged;
@@ -194,6 +203,7 @@ namespace Bubba
         {
             try
             {
+                SystemDialogTextBox.InputText = _systemPrompt;
             }
             catch( Exception ex )
             {
@@ -204,11 +214,11 @@ namespace Bubba
         /// <summary>
         /// Initializes the ComboBox.
         /// </summary>
-        private void InitializeComboBox( )
+        private void InitializeLabels( )
         {
             try
             {
-                //ComboBox.ForeColor = Color.White;
+                HeaderLabel.Content = "System Instructions";
             }
             catch( Exception ex )
             {
@@ -271,7 +281,7 @@ namespace Bubba
         {
             try
             {
-                SystemDialogLookupButton.Click -= OnGoButtonClick;
+                SystemDialogGoButton.Click -= OnGoButtonClick;
                 SystemDialogCancelButton.Click -= OnCloseButtonClick;
                 SystemDialogRefreshButton.Click -= OnClearButtonClick;
                 SystemDialogTextBox.TextChanged -= OnInputTextChanged;
@@ -297,7 +307,7 @@ namespace Bubba
             {
                 InitializeTextBox( );
                 InitializeButtons( );
-                InitializeComboBox( );
+                InitializeLabels( );
             }
             catch( Exception ex )
             {

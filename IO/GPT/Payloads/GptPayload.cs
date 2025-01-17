@@ -105,14 +105,14 @@ namespace Bubba
             double temperature = 0.18, double topPercent = 0.11, int maxTokens = 2048,
             bool store = false, bool stream = true )
         {
-            _userPrompt = userPrompt;
-            Temperature = temperature;
+            _prompt = userPrompt;
+            _temperature = temperature;
             _maximumTokens = maxTokens;
             _frequencyPenalty = frequency;
             _presencePenalty = presence;
             _store = store;
             _stream = stream;
-            TopPercent = topPercent;
+            _topPercent = topPercent;
             _stop = new List<string>( );
             _messages = new List<IGptMessage>( );
             _data = new Dictionary<string, object>( );
@@ -126,14 +126,14 @@ namespace Bubba
         /// <param name="config">The configuration.</param>
         public GptPayload( string userPrompt, GptParameter config )
         {
-            _userPrompt = userPrompt;
-            Temperature = config.Temperature;
+            _prompt = userPrompt;
+            _temperature = config.Temperature;
             _maximumTokens = config.MaximumTokens;
             _frequencyPenalty = config.FrequencyPenalty;
             _presencePenalty = config.PresencePenalty;
             _store = config.Store;
             _stream = config.Stream;
-            TopPercent = config.TopPercent;
+            _topPercent = config.TopPercent;
             _stop = new List<string>( );
             _data = new Dictionary<string, object>( );
         }
@@ -146,12 +146,12 @@ namespace Bubba
         /// <param name="gptPayload">The payload.</param>
         public GptPayload( GptPayload gptPayload )
         {
-            _userPrompt = gptPayload.UserPrompt;
-            Temperature = gptPayload.Temperature;
+            _prompt = gptPayload.Prompt;
+            _temperature = gptPayload.Temperature;
             _maximumTokens = gptPayload.MaximumTokens;
             _frequencyPenalty = gptPayload.FrequencyPenalty;
             _presencePenalty = gptPayload.PresencePenalty;
-            _systemPrompt = gptPayload.UserPrompt;
+            _systemPrompt = gptPayload.Prompt;
             _store = gptPayload.Store;
             _stream = gptPayload.Stream;
             _stop = gptPayload.Stop;
@@ -173,7 +173,7 @@ namespace Bubba
             out double frequency, out double presence, out double temperature,
             out int maximumTokens, out bool store, out bool stream )
         {
-            prompt = _userPrompt;
+            prompt = _prompt;
             userId = _id;
             model = _model;
             temperature = Temperature;
@@ -432,7 +432,7 @@ namespace Bubba
                             new
                             {
                                 role = "user",
-                                content = _userPrompt
+                                content = _prompt
                             }
                         }
                     } );
@@ -442,9 +442,9 @@ namespace Bubba
                     return JsonSerializer.Serialize( new
                     {
                         Model = _model,
-                        UserPrompt = _userPrompt,
+                        UserPrompt = _prompt,
                         MaximumTokens = _maximumTokens,
-                        Temperature = Temperature,
+                        Temperature = _temperature,
                         FrequencyPenalty = _frequencyPenalty,
                         PresencePenalty = _presencePenalty,
                         stop = new[ ]

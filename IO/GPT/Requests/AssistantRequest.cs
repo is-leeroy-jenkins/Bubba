@@ -1,12 +1,12 @@
 ﻿// ******************************************************************************************
 //     Assembly:                Bubba
 //     Author:                  Terry D. Eppler
-//     Created:                 01-10-2025
+//     Created:                 01-17-2025
 // 
 //     Last Modified By:        Terry D. Eppler
-//     Last Modified On:        01-10-2025
+//     Last Modified On:        01-17-2025
 // ******************************************************************************************
-// <copyright file="CompletionRequest.cs" company="Terry D. Eppler">
+// <copyright file="AssistantRequest.cs" company="Terry D. Eppler">
 //    Bubba is a small and simple windows (wpf) application for interacting with the OpenAI API
 //    that's developed in C-Sharp under the MIT license.C#.
 // 
@@ -35,7 +35,7 @@
 //    You can contact me at:  terryeppler@gmail.com or eppler.terry@epa.gov
 // </copyright>
 // <summary>
-//   CompletionRequest.cs
+//   AssistantRequest.cs
 // </summary>
 // ******************************************************************************************
 
@@ -64,6 +64,11 @@ namespace Bubba
     public class AssistantRequest : TextGenerationRequest
     {
         /// <summary>
+        /// The tools
+        /// </summary>
+        private protected IList<string> _tools;
+
+        /// <summary>
         /// Developer-defined tags and values used for filtering completions
         /// </summary>
         private protected IDictionary<string, object> _metaData;
@@ -74,14 +79,9 @@ namespace Bubba
         private protected string _reasoningEffort;
 
         /// <summary>
-        /// The user prompt
-        /// </summary>
-        private protected string _userPrompt;
-
-        /// <summary>
         /// The system prompt
         /// </summary>
-        private protected string _systemPrompt;
+        private protected string _instructions;
 
         /// <inheritdoc />
         /// <summary>
@@ -93,12 +93,13 @@ namespace Bubba
         {
             _entry = new object( );
             _header = new GptHeader( );
-            _httpClient = new HttpClient( );
-            _endPoint = GptEndPoint.Completions;
-            _model = "gpt-4o-mini";
+            _endPoint = GptEndPoint.Assistants;
+            _model = "gpt-4o";
             _stop = new List<string>( );
+            _tools = new List<string>( );
             _seed = 1;
             _modalities = "['text', 'audio']";
+            _responseFormat = "auto";
         }
 
         /// <inheritdoc />
@@ -122,8 +123,8 @@ namespace Bubba
             _number = config.Number;
             _presencePenalty = config.PresencePenalty;
             _frequencyPenalty = config.FrequencyPenalty;
-            Temperature = config.Temperature;
-            TopPercent = config.TopPercent;
+            _temperature = config.Temperature;
+            _topPercent = config.TopPercent;
             _maximumTokens = config.MaximumTokens;
             _stop = config.Stop;
             _modalities = config.Modalities;
@@ -148,8 +149,8 @@ namespace Bubba
             _number = request.Number;
             _presencePenalty = request.PresencePenalty;
             _frequencyPenalty = request.FrequencyPenalty;
-            Temperature = request.Temperature;
-            TopPercent = request.TopPercent;
+            _temperature = request.Temperature;
+            _topPercent = request.TopPercent;
             _maximumTokens = request.MaximumTokens;
             _stop = request.Stop;
             _modalities = request.Modalities;
@@ -236,6 +237,52 @@ namespace Bubba
         }
 
         /// <summary>
+        /// Gets or sets the instructions.
+        /// </summary>
+        /// <value>
+        /// The instructions.
+        /// </value>
+        [ JsonPropertyName( "instructions" ) ]
+        public string Instructions
+        {
+            get
+            {
+                return _instructions;
+            }
+            set
+            {
+                if( _instructions != value )
+                {
+                    _instructions = value;
+                    OnPropertyChanged( nameof( Instructions ) );
+                }
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the user prompt.
+        /// </summary>
+        /// <value>
+        /// The user prompt.
+        /// </value>
+        [ JsonPropertyName( "prompt" ) ]
+        public string Prompt
+        {
+            get
+            {
+                return _prompt;
+            }
+            set
+            {
+                if( _prompt != value )
+                {
+                    _prompt = value;
+                    OnPropertyChanged( nameof( Prompt ) );
+                }
+            }
+        }
+
+        /// <summary>
         /// Gets or sets the reasoning effort.
         /// </summary>
         /// <value>
@@ -308,10 +355,11 @@ namespace Bubba
         /// Gets the chat response asynchronous.
         /// </summary>
         /// <returns></returns>
-        public async Task<string> GetResponseAsync( )
+        public async Task<string> GetResponseAsync( string prompt )
         {
             try
             {
+                ThrowIf.Empty( prompt, nameof( prompt ) );
                 _httpClient = new HttpClient( );
                 _httpClient.DefaultRequestHeaders.Authorization =
                     new AuthenticationHeaderValue( "Bearer", App.OpenAiKey );
@@ -325,7 +373,8 @@ namespace Bubba
                     Stop = _stop,
                     TopPercent = TopPercent,
                     FrequencyPenalty = _frequencyPenalty,
-                    PresencePenalty = _presencePenalty
+                    PresencePenalty = _presencePenalty,
+                    Prompt = prompt
                 };
 
                 var _json = _payload.Serialize( );
@@ -387,7 +436,7 @@ namespace Bubba
                 _data.Add( "model", _model );
                 _data.Add( "endpoint", _endPoint );
                 _data.Add( "n", _number );
-                _data.Add( "max_completionTokens", _maximumTokens );
+                _data.Add( "max_completion_tokens", _maximumTokens );
                 _data.Add( "store", _store );
                 _data.Add( "stream", _stream );
                 _data.Add( "temperature", Temperature );
@@ -396,6 +445,26 @@ namespace Bubba
                 _data.Add( "top_p", TopPercent );
                 _data.Add( "response_format", _responseFormat );
                 _data.Add( "modalities", _modalities );
+                if( !string.IsNullOrEmpty( _instructions ) )
+                {
+                    _data.Add( "instructions", _instructions );
+                }
+
+                if( !string.IsNullOrEmpty( _prompt ) )
+                {
+                    _data.Add( "prompt", _prompt );
+                }
+
+                if( !string.IsNullOrEmpty( _reasoningEffort ) )
+                {
+                    _data.Add( "reasoning_effort", _reasoningEffort );
+                }
+
+                if( _metaData?.Any( ) == true )
+                {
+                    _data.Add( "meta_data", _metaData );
+                }
+
                 return _data?.Any( ) == true
                     ? _data
                     : default( IDictionary<string, object> );
