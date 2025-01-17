@@ -376,23 +376,15 @@
                         </TransformGroup>
                     </GroupBox.RenderTransform>
 
-                    <b:MetroComboBox
+                    <ComboBox
                         x:Name="ImageSizeComboBox"
                         Height="30"
-                        Margin="5,0,12,0"
-                        AllowMultiSelect="False"
+                        Margin="5,0,5,0"
                         Background="{StaticResource ControlInteriorBrush}"
                         BorderBrush="{StaticResource BlueBorderBrush}"
                         BorderThickness="2"
-                        DefaultText=""
                         Foreground="{StaticResource WhiteForeground}"
-                        ToolTip="Select size for image generation">
-                        <wpf:ComboBoxItemAdv Content="50X50" />
-                        <wpf:ComboBoxItemAdv Content="100X50" />
-                        <wpf:ComboBoxItemAdv Content="150X100" />
-                        <wpf:ComboBoxItemAdv Content="250X250" />
-                        <wpf:ComboBoxItemAdv Content="512X512" />
-                    </b:MetroComboBox>
+                        ToolTip="Select size for image" />
                 </GroupBox>
 
 
@@ -408,7 +400,7 @@
                     Width="172"
                     Height="262"
                     HorizontalAlignment="Center"
-                    VerticalAlignment="Top"
+                    VerticalAlignment="Center"
                     Background="{StaticResource GroupBoxBackground}"
                     BorderBrush="{StaticResource MutedForeground}"
                     FontFamily="Roboto"
@@ -1073,6 +1065,27 @@
                     FontSize="18"
                     Foreground="{StaticResource BlueBorderBrush}"
                     Text="{Binding Value, ElementName=NumberSlider, Mode=TwoWay, StringFormat=N0}" />
+                <b:MetroLabel
+                    x:Name="LeftDescriptionLabel"
+                    Canvas.Left="24"
+                    Canvas.Top="183"
+                    Width="594"
+                    Height="67"
+                    Padding="1,1,1,1"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Center"
+                    HorizontalContentAlignment="Left"
+                    VerticalContentAlignment="Top"
+                    Content="MetroLabel"
+                    Foreground="{DynamicResource MahApps.Brushes.Border.NonActive}"
+                    UseLayoutRounding="True" />
+                <b:MetroLabel
+                    Canvas.Left="642"
+                    Canvas.Top="183"
+                    Height="57"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Top"
+                    Content="MetroLabel" />
 
 
             </Canvas>

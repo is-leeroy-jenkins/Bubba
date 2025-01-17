@@ -1,10 +1,10 @@
 ﻿// ******************************************************************************************
 //     Assembly:                Bubba
 //     Author:                  Terry D. Eppler
-//     Created:                 01-16-2025
+//     Created:                 01-17-2025
 // 
 //     Last Modified By:        Terry D. Eppler
-//     Last Modified On:        01-16-2025
+//     Last Modified On:        01-17-2025
 // ******************************************************************************************
 // <copyright file="ChatWindow.xaml.cs" company="Terry D. Eppler">
 //    Bubba is a small and simple windows (wpf) application for interacting with the OpenAI API
@@ -466,21 +466,6 @@ namespace Bubba
         }
 
         /// <summary>
-        /// Gets the image sizes.
-        /// </summary>
-        /// <value>
-        /// The image sizes.
-        /// </value>
-        public IList<string> GetImageSizes( )
-        {
-            _imageSizes.Add( "1024x1024" );
-            _imageSizes.Add( "1792x1024" );
-            _imageSizes.Add( "1024x1792" );
-            _imageSizes.Add( "1024x1792" );
-            return _imageSizes;
-        }
-
-        /// <summary>
         /// Initializes the title.
         /// </summary>
         private void InitializeTitle( )
@@ -792,6 +777,7 @@ namespace Bubba
                 RefreshButton.Click += OnRefreshButtonClick;
                 LookupButton.Click += OnGoButtonClicked;
                 GptFileButton.Click += OnFileApiButtonClick;
+                ImageSizeComboBox.SelectionChanged += OnSelectedImageSizeChanged;
             }
             catch( Exception ex )
             {
@@ -828,6 +814,7 @@ namespace Bubba
                 StoreCheckBox.Checked -= OnStoreBoxChecked;
                 GenerationComboBox.SelectionChanged -= OnSelectedRequestTypeChanged;
                 GenerationComboBox.SelectionChanged -= OnSelectedRequestTypeChanged;
+                ImageSizeComboBox.SelectionChanged -= OnSelectedImageSizeChanged;
                 ImageSizeComboBox.SelectionChanged -= OnSelectedImageSizeChanged;
             }
             catch( Exception ex )
@@ -1631,8 +1618,8 @@ namespace Bubba
         {
             try
             {
-                ThrowIf.Negative(x, nameof(x));
-                ThrowIf.Negative(x, nameof(x));
+                ThrowIf.Negative( x, nameof( x ) );
+                ThrowIf.Negative( y, nameof( y ) );
                 var _systemDialog = new SystemDialog( )
                 {
                     Owner = this,
@@ -1643,9 +1630,9 @@ namespace Bubba
                 _systemDialog.Show( );
                 _systemDialog.SystemDialogTextBox.Text = _systemPrompt;
             }
-            catch(Exception ex )
+            catch( Exception ex )
             {
-                Fail(ex);
+                Fail( ex );
             }
         }
 
@@ -1736,6 +1723,8 @@ namespace Bubba
                         }
                     }
                 } );
+
+                ModelComboBox.SelectedIndex = -1;
             }
             catch( HttpRequestException ex )
             {
@@ -1796,7 +1785,8 @@ namespace Bubba
                 ModelComboBox.Items.Add( "gpt-4o-mini" );
                 ModelComboBox.Items.Add( "o1-preview" );
                 ModelComboBox.Items.Add( "o1-mini" );
-                ModelComboBox.Items.Add( "gpt-3.5-turbo" );
+                ModelComboBox.Items.Add("gpt-3.5-turbo");
+                ModelComboBox.SelectedIndex = -1;
             }
             catch( Exception ex )
             {
@@ -1813,7 +1803,8 @@ namespace Bubba
             {
                 ModelComboBox.Items?.Clear( );
                 ModelComboBox.Items.Add( "dall-e-3" );
-                ModelComboBox.Items.Add( "dall-e-2" );
+                ModelComboBox.Items.Add("dall-e-2");
+                ModelComboBox.SelectedIndex = -1;
             }
             catch( Exception ex )
             {
@@ -1829,9 +1820,45 @@ namespace Bubba
             try
             {
                 ImageSizeComboBox.Items?.Clear( );
-                foreach( var _item in _imageSizes )
+                if( string.IsNullOrEmpty( _model ) )
                 {
-                    ImageSizeComboBox.Items.Add( _item );
+                    ImageSizeComboBox.Items.Add( "256 X 256" );
+                    ImageSizeComboBox.Items.Add( "512 X 512" );
+                    ImageSizeComboBox.Items.Add( "1024 X 1024" );
+                    ImageSizeComboBox.Items.Add( "1792 X 1024" );
+                    ImageSizeComboBox.Items.Add( "1024 X 1792" );
+                    ImageSizeComboBox.SelectedIndex = -1;
+                }
+                else if( !string.IsNullOrEmpty( _model ) )
+                {
+                    switch( _model )
+                    {
+                        case "dall-e-3":
+                        {
+                            ImageSizeComboBox.Items.Add( "256 X 256" );
+                            ImageSizeComboBox.Items.Add( "512 X 512" );
+                            ImageSizeComboBox.SelectedIndex = -1;
+                            break;
+                        }
+                        case "dall-e-2":
+                        {
+                            ImageSizeComboBox.Items.Add( "1024 X 1024" );
+                            ImageSizeComboBox.Items.Add( "1792 X 1024" );
+                            ImageSizeComboBox.Items.Add( "1024 X 1792" );
+                            ImageSizeComboBox.SelectedIndex = -1;
+                            break;
+                        }
+                        default:
+                        {
+                            ImageSizeComboBox.Items.Add( "256 X 256" );
+                            ImageSizeComboBox.Items.Add( "512 X 512" );
+                            ImageSizeComboBox.Items.Add( "1024 X 1024" );
+                            ImageSizeComboBox.Items.Add( "1792 X 1024" );
+                            ImageSizeComboBox.Items.Add( "1024 X 1792" );
+                            ImageSizeComboBox.SelectedIndex = -1;
+                            break;
+                        }
+                    }
                 }
             }
             catch( Exception ex )
@@ -1848,7 +1875,8 @@ namespace Bubba
             try
             {
                 ModelComboBox.Items?.Clear( );
-                ModelComboBox.Items.Add( "whisper-1" );
+                ModelComboBox.Items.Add("whisper-1");
+                ModelComboBox.SelectedIndex = -1;
             }
             catch( Exception ex )
             {
@@ -1864,7 +1892,8 @@ namespace Bubba
             try
             {
                 ModelComboBox.Items?.Clear( );
-                ModelComboBox.Items.Add( "whisper-1" );
+                ModelComboBox.Items.Add("whisper-1");
+                ModelComboBox.SelectedIndex = -1;
             }
             catch( Exception ex )
             {
@@ -1882,7 +1911,8 @@ namespace Bubba
                 ModelComboBox.Items?.Clear( );
                 ModelComboBox.Items.Add( "text-embedding-3-small" );
                 ModelComboBox.Items.Add( "text-embedding-3-large" );
-                ModelComboBox.Items.Add( "text-embedding-ada-002" );
+                ModelComboBox.Items.Add("text-embedding-ada-002");
+                ModelComboBox.SelectedIndex = -1;
             }
             catch( Exception ex )
             {
@@ -1901,7 +1931,8 @@ namespace Bubba
                 ModelComboBox.Items.Add( "gpt-4o" );
                 ModelComboBox.Items.Add( "gpt-4o-mini" );
                 ModelComboBox.Items.Add( "gpt-4" );
-                ModelComboBox.Items.Add( "gpt-3.5-turbo" );
+                ModelComboBox.Items.Add("gpt-3.5-turbo");
+                ModelComboBox.SelectedIndex = -1;
             }
             catch( Exception ex )
             {
@@ -1919,6 +1950,7 @@ namespace Bubba
                 ModelComboBox.Items?.Clear( );
                 ModelComboBox.Items.Add( "tts-1" );
                 ModelComboBox.Items.Add( "tts-1-hd" );
+                ModelComboBox.SelectedIndex = -1;
             }
             catch( Exception ex )
             {
@@ -2136,9 +2168,9 @@ namespace Bubba
                 PopulateModelsAsync( );
                 PopulateLanguageListBox( );
                 PopulateInstalledVoices( );
+                PopulateImageSizes( );
                 ClearChatControls( );
                 InitializeChatEditor( );
-                PopulateImageSizes( );
                 App.ActiveWindows.Add( "ChatWindow", this );
                 _systemPrompt = OpenAI.BubbaPrompt;
                 StreamCheckBox.IsChecked = true;
@@ -2562,14 +2594,15 @@ namespace Bubba
         /// <param name="sender">The sender.</param>
         /// <param name="e">The <see cref="RoutedEventArgs"/>
         /// instance containing the event data.</param>
-        private void OnSystemPromptOptionClick(object sender, RoutedEventArgs e)
+        private void OnSystemPromptOptionClick( object sender, MouseEventArgs e )
         {
             try
             {
+                var _psn = e.GetPosition( this );
             }
-            catch(Exception ex)
+            catch( Exception ex )
             {
-                Fail(ex);
+                Fail( ex );
             }
         }
 
@@ -2948,6 +2981,7 @@ namespace Bubba
                 ClearParameters( );
                 PopulateModelsAsync( );
                 PopulateInstalledVoices( );
+                PopulateImageSizes( );
             }
             catch( Exception ex )
             {
@@ -3083,7 +3117,10 @@ namespace Bubba
             {
                 if( ImageSizeComboBox.SelectedIndex != -1 )
                 {
-                    _size = ImageSizeComboBox.SelectedValue.ToString( );
+                    var _image = ImageSizeComboBox.SelectedValue.ToString( );
+                    _size = _image?.Replace( " ", "" );
+                    var _message = "Image Size Select - " + _size;
+                    SendNotification( _message );
                 }
             }
             catch( Exception ex )
