@@ -4,6 +4,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="clr-namespace:Bubba"
+    xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:skin="clr-namespace:Syncfusion.SfSkinManager;assembly=Syncfusion.SfSkinManager.WPF"
     xmlns:ui="http://schemas.modernwpf.com/2019"
@@ -18,17 +19,111 @@
     Icon="/Resources/Assets/ApplicationImages/Bubba.png"
     WindowStartupLocation="CenterScreen"
     mc:Ignorable="d">
-    <Canvas>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="355*" />
+            <RowDefinition Height="50*" />
+        </Grid.RowDefinitions>
+
         <wpf:SfImageEditor
             x:Name="Editor"
-            Canvas.Left="45"
-            Canvas.Top="20"
-            Width="660"
-            Height="369"
+            Margin="10,10,10,10"
             Padding="3,3,3,3"
-            HorizontalAlignment="Left"
-            VerticalAlignment="Top"
+            Background="{DynamicResource ControlInteriorBrush}"
             FontFamily="Roboto"
             UseLayoutRounding="True" />
-    </Canvas>
+
+
+        <!--  ********************************************* TOOLSTRIP *************************************  -->
+
+
+        <ToolBar
+            x:Name="ToolStrip"
+            Grid.Row="1"
+            Grid.ColumnSpan="2"
+            Width="745"
+            Height="40"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Center"
+            Background="{StaticResource FormBackground}"
+            BorderBrush="{StaticResource FormBackground}"
+            ClipToBounds="True"
+            FontFamily="Roboto"
+            Foreground="{StaticResource FormForeground}"
+            SnapsToDevicePixels="True">
+
+            <Label
+                x:Name="StatusLabel"
+                Width="80"
+                Height="30"
+                FontFamily="Roboto" />
+
+            <local:ToolStripButton
+                x:Name="FirstButton"
+                Width="40"
+                Height="30"
+                Margin="5,1,5,1"
+                FontFamily="Roboto"
+                ImageSource="/Resources/Assets/ToolStripImages/FirstButton.png"
+                ToolTip="First Item" />
+
+            <local:ToolStripButton
+                x:Name="PreviousButton"
+                Margin="5,1,5,1"
+                ImageSource="/Resources/Assets/ToolStripImages/PreviousButton.png"
+                ToolTip="Previous Item" />
+
+            <local:ToolStripTextBox
+                x:Name="ToolStripTextBox"
+                Width="150"
+                Height="30"
+                Margin="5,1,5,1"
+                Padding="15,1,1,1"
+                HorizontalContentAlignment="Left"
+                VerticalContentAlignment="Center"
+                Background="{StaticResource ControlInteriorBrush}"
+                BorderBrush="{StaticResource BlueBorderBrush}"
+                BorderThickness="2"
+                FontFamily="Roboto"
+                FontSize="14"
+                SelectionBackgroundColor="{StaticResource SteelBlueBackground}"
+                ToolTip="Enter text" />
+
+            <local:ToolStripButton
+                x:Name="LookupButton"
+                Margin="5,1,5,1"
+                ImageSource="/Resources/Assets/ToolStripImages/GoButton.png"
+                ToolTip="Begin Search" />
+
+            <local:ToolStripButton
+                x:Name="NextButton"
+                Margin="5,1,5,1"
+                ImageSource="/Resources/Assets/ToolStripImages/NextButton.png"
+                ToolTip="Next Item" />
+
+            <local:ToolStripButton
+                x:Name="LastButton"
+                Margin="5,1,5,1"
+                ImageSource="/Resources/Assets/ToolStripImages/LastButton.png"
+                ToolTip="Last Item" />
+
+
+            <local:ToolStripButton
+                x:Name="RefreshButton"
+                Margin="5,1,5,1"
+                ImageSource="/Resources/Assets/ToolStripImages/RefreshButton.png"
+                ToolTip="Resets Input Controls and GPT Parameters" />
+
+            <local:ToolStripButton
+                x:Name="BrowserButton"
+                Margin="5,1,5,1"
+                ImageSource="/Resources/Assets/ToolStripImages/LookUpButton.png"
+                ToolTip="Browse System" />
+
+            <mah:MetroProgressBar
+                x:Name="ProgressBar"
+                Width="100"
+                Background="{StaticResource FormBackground}" />
+        </ToolBar>
+    </Grid>
 </Window>

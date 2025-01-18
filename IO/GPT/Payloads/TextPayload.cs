@@ -59,11 +59,6 @@ namespace Bubba
     public class TextPayload : GptPayload
     {
         /// <summary>
-        /// The end point
-        /// </summary>
-        private protected string _endPoint;
-
-        /// <summary>
         /// Initializes a new instance of the
         /// <see cref="TextPayload"/> class.
         /// </summary>
@@ -71,7 +66,7 @@ namespace Bubba
         public TextPayload( )
             : base( )
         {
-            _model = "gpt-4o-mini";
+            _model = "gpt-4o";
             _endPoint = GptEndPoint.TextGeneration;
             _store = false;
             _stream = true;

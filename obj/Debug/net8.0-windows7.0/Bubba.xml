@@ -23018,11 +23018,6 @@
             <summary>
             </summary>
         </member>
-        <member name="F:Bubba.TextPayload._endPoint">
-            <summary>
-            The end point
-            </summary>
-        </member>
         <member name="M:Bubba.TextPayload.#ctor">
             <summary>
             Initializes a new instance of the
@@ -24296,7 +24291,7 @@
             The chat model.
             </value>
         </member>
-        <member name="M:Bubba.GptRequest.PostJsonAsync(System.String,System.Object)">
+        <member name="M:Bubba.GptRequest.PostAsync(System.String,System.Object)">
             <summary>
             Posts the json asynchronous.
             </summary>
@@ -34567,7 +34562,7 @@
             Opens the chat window.
             </summary>
         </member>
-        <member name="M:Bubba.ChatWindow.OpenPromptDialog(System.Double,System.Double)">
+        <member name="M:Bubba.ChatWindow.OpenPromptDialog">
             <summary>
             Opens the prompt dialog.
             </summary>
@@ -34849,7 +34844,7 @@
             <param name="e">The <see cref="T:System.Windows.RoutedEventArgs"/>
             instance containing the event data.</param>
         </member>
-        <member name="M:Bubba.ChatWindow.OnSystemPromptOptionClick(System.Object,System.Windows.Input.MouseEventArgs)">
+        <member name="M:Bubba.ChatWindow.OnPromptOptionClick(System.Object,System.Windows.RoutedEventArgs)">
             <summary>
             Called when [system prompt button click].
             </summary>

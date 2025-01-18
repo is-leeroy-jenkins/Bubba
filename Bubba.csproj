@@ -216,6 +216,7 @@
     <None Remove="Resources\Assets\GptApi\XLSX.png" />
     <None Remove="Resources\Assets\MenuImages\CalculatorItem.png" />
     <None Remove="Resources\Assets\MenuImages\CalendarItem.png" />
+    <None Remove="Resources\Assets\MenuImages\ChatItem.png" />
     <None Remove="Resources\Assets\MenuImages\ChromeItem.png" />
     <None Remove="Resources\Assets\MenuImages\ClockItem.png" />
     <None Remove="Resources\Assets\MenuImages\CloseItem.png" />
@@ -538,6 +539,7 @@
     <Resource Include="Resources\Assets\GptApi\XLSX.png" />
     <Resource Include="Resources\Assets\MenuImages\CalculatorItem.png" />
     <Resource Include="Resources\Assets\MenuImages\CalendarItem.png" />
+    <Resource Include="Resources\Assets\MenuImages\ChatItem.png" />
     <Resource Include="Resources\Assets\MenuImages\ChromeItem.png" />
     <Resource Include="Resources\Assets\MenuImages\ClockItem.png" />
     <Resource Include="Resources\Assets\MenuImages\CloseItem.png" />

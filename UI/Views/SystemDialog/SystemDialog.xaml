@@ -26,7 +26,7 @@
             Canvas.Top="34"
             Width="645"
             Height="129"
-            Padding="20,20,10,10"
+            Padding="20,10,20,10"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             Background="{StaticResource BlackBackground}"
@@ -35,6 +35,8 @@
             FontFamily="Roboto"
             FontSize="12"
             Foreground="{StaticResource FormForeground}"
+            SnapsToDevicePixels="True"
+            TextWrapping="Wrap"
             ToolTip="Enter System Prompt" />
 
         <local:MetroTile
@@ -82,12 +84,12 @@
             BorderBrush="{StaticResource ControlBackground}"
             Foreground="{StaticResource FormForeground}"
             Header=""
-            ImageSource="/Resources/Assets/ToolStripImages/ResetButton.png"
+            ImageSource="/Resources/Assets/ToolStripImages/RefreshButton.png"
             ToolTip="Clear Prompt" />
 
         <Label
             x:Name="HeaderLabel"
-            Canvas.Left="30"
+            Canvas.Left="10"
             Canvas.Top="4"
             Width="622"
             Height="25"
@@ -97,7 +99,7 @@
             HorizontalContentAlignment="Left"
             VerticalContentAlignment="Top"
             Content="System Instructions"
-            FontSize="10"
+            FontSize="14"
             Foreground="{StaticResource LightBlueBrush}" />
     </Canvas>
 </Window>

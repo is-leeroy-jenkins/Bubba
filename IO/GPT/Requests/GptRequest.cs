@@ -60,6 +60,7 @@ namespace Bubba
     [ SuppressMessage( "ReSharper", "MemberCanBeProtected.Global" ) ]
     [ SuppressMessage( "ReSharper", "PreferConcreteValueOverDefault" ) ]
     [ SuppressMessage( "ReSharper", "PossibleNullReferenceException" ) ]
+    [ SuppressMessage( "ReSharper", "VirtualMemberNeverOverridden.Global" ) ]
     public class GptRequest : GptRequestBase, IGptRequest
     {
         /// <summary>
@@ -122,8 +123,8 @@ namespace Bubba
             _stream = parameter.Stream;
             _frequencyPenalty = parameter.FrequencyPenalty;
             _presencePenalty = parameter.PresencePenalty;
-            TopPercent = parameter.TopPercent;
-            Temperature = parameter.Temperature;
+            _topPercent = parameter.TopPercent;
+            _temperature = parameter.Temperature;
             _maximumTokens = parameter.MaximumTokens;
             _responseFormat = parameter.ResponseFormat;
         }
@@ -142,8 +143,8 @@ namespace Bubba
             _store = request.Store;
             _frequencyPenalty = request.FrequencyPenalty;
             _presencePenalty = request.PresencePenalty;
-            TopPercent = request.TopPercent;
-            Temperature = request.Temperature;
+            _topPercent = request.TopPercent;
+            _temperature = request.Temperature;
             _maximumTokens = request.MaximumTokens;
             _stop = request.Stop;
             _body = request.Body;
@@ -311,7 +312,7 @@ namespace Bubba
         /// <exception cref="HttpRequestException">
         /// Error: {_response.StatusCode}, {_error}
         /// </exception>
-        private protected virtual async Task<string> PostJsonAsync( string endpoint,
+        private protected virtual async Task<string> PostAsync( string endpoint,
             object payload )
         {
             try
@@ -362,20 +363,20 @@ namespace Bubba
                     {
                         var _msg = _choices[ 0 ].GetProperty( "message" );
                         var _cnt = _msg.GetProperty( "content" );
-                        var Txt = _cnt.GetString( );
-                        return Txt;
+                        var _txt = _cnt.GetString( );
+                        return _txt;
                     }
 
                     var _message = _choices[ 0 ].GetProperty( "message" );
-                    var Text = _message.GetString( );
-                    return Text;
+                    var _text = _message.GetString( );
+                    return _text;
                 }
                 else
                 {
                     var _choice = _root.GetProperty( "choices" )[ 0 ];
                     var _property = _choice.GetProperty( "text" );
-                    var Text = _property.GetString( );
-                    return Text;
+                    var _text = _property.GetString( );
+                    return _text;
                 }
             }
             catch( Exception ex )
@@ -395,7 +396,7 @@ namespace Bubba
             {
                 _data.Add( "model", _model );
                 _data.Add( "n", _number );
-                _data.Add( "max_completionTokens", _maximumTokens );
+                _data.Add( "max_completion_tokens", _maximumTokens );
                 _data.Add( "store", _store );
                 _data.Add( "stream", _stream );
                 _data.Add( "temperature", Temperature );

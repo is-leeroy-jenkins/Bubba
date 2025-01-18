@@ -1614,17 +1614,14 @@ namespace Bubba
         /// </summary>
         /// <param name="x">The x.</param>
         /// <param name="y">The y.</param>
-        private protected virtual void OpenPromptDialog( double x, double y )
+        private protected virtual void OpenPromptDialog( )
         {
             try
             {
-                ThrowIf.Negative( x, nameof( x ) );
-                ThrowIf.Negative( y, nameof( y ) );
                 var _systemDialog = new SystemDialog( )
                 {
                     Owner = this,
-                    Left = x,
-                    Top = y
+                    WindowStartupLocation = WindowStartupLocation.CenterScreen
                 };
 
                 _systemDialog.Show( );
@@ -1833,14 +1830,15 @@ namespace Bubba
                 {
                     switch( _model )
                     {
-                        case "dall-e-3":
+                        case "dall-e-2":
                         {
                             ImageSizeComboBox.Items.Add( "256 X 256" );
                             ImageSizeComboBox.Items.Add( "512 X 512" );
+                            ImageSizeComboBox.Items.Add( "1024 X 1024" );
                             ImageSizeComboBox.SelectedIndex = -1;
                             break;
                         }
-                        case "dall-e-2":
+                        case "dall-e-3":
                         {
                             ImageSizeComboBox.Items.Add( "1024 X 1024" );
                             ImageSizeComboBox.Items.Add( "1792 X 1024" );
@@ -2594,11 +2592,11 @@ namespace Bubba
         /// <param name="sender">The sender.</param>
         /// <param name="e">The <see cref="RoutedEventArgs"/>
         /// instance containing the event data.</param>
-        private void OnSystemPromptOptionClick( object sender, MouseEventArgs e )
+        private void OnPromptOptionClick( object sender, RoutedEventArgs e )
         {
             try
             {
-                var _psn = e.GetPosition( this );
+                OpenPromptDialog( );
             }
             catch( Exception ex )
             {
@@ -3002,6 +3000,7 @@ namespace Bubba
                 if( ModelComboBox.SelectedIndex != -1 )
                 {
                     _model = ModelComboBox.SelectedValue.ToString( );
+                    PopulateImageSizes( );
                 }
             }
             catch( Exception ex )
