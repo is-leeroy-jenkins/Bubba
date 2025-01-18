@@ -63,6 +63,131 @@ namespace Bubba
     [ SuppressMessage( "ReSharper", "ClassCanBeSealed.Global" ) ]
     public class Folder : FolderBase
     {
+
+        /// <inheritdoc />
+        /// <summary>
+        /// Initializes a new instance of the
+        /// <see cref="T:Bubba.Folder" /> class.
+        /// </summary>
+        public Folder( )
+            : base( )
+        {
+        }
+
+        /// <inheritdoc />
+        /// <summary>
+        /// Initializes a new instance of the
+        /// <see cref="T:Bubba.Folder" /> class.
+        /// </summary>
+        /// <param name="input"></param>
+        public Folder( string input )
+            : base( input )
+        {
+            _input = input;
+            _fullPath = input;
+            _folderExists = Directory.Exists( input );
+            _folderName = Path.GetDirectoryName( input );
+            _hasSubFiles = Directory.GetFiles( input )?.Length > 0;
+            _fileCount = Directory.GetFiles( input ).Length;
+            _hasSubFolders = Directory.GetDirectories( input )?.Length > 0;
+            _folderCount = Directory.GetDirectories( input ).Length;
+            _created = Directory.GetCreationTime( input );
+            _modified = Directory.GetLastWriteTime( input );
+        }
+
+        /// <inheritdoc />
+        /// <summary>
+        /// Initializes a new instance of the
+        /// <see cref="T:Bubba.Folder" /> class.
+        /// </summary>
+        /// <param name="folder">The folder.</param>
+        public Folder( Folder folder )
+            : this( )
+        {
+            _input = folder.Input;
+            _fullPath = folder.FullPath;
+            _folderName = folder.FolderName;
+            _hasSubFiles = Directory.GetFiles( folder.FullPath )?.Length > 0;
+            _hasSubFolders = Directory.GetDirectories( folder.FullPath )?.Length > 0;
+            _created = folder.Created;
+            _modified = folder.Modified;
+        }
+
+        /// <summary>
+        /// Gets the name of the folder.
+        /// </summary>
+        /// <value>
+        /// The name of the folder.
+        /// </value>
+        public string FolderName
+        {
+            get
+            {
+                return _folderExists
+                    ? Path.GetDirectoryName( _fullPath )
+                    : string.Empty;
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the parent folder.
+        /// </summary>
+        /// <value>
+        /// The parent folder.
+        /// </value>
+        public DirectoryInfo ParentFolder
+        {
+            get
+            {
+                return _hasParent
+                    ? new DirectoryInfo( _fullPath ).Parent
+                    : default( DirectoryInfo );
+            }
+        }
+
+        /// <summary>
+        /// Gets the file count.
+        /// </summary>
+        /// <value>
+        /// The file count.
+        /// </value>
+        public int FileCount
+        {
+            get
+            {
+                return _fileCount;
+            }
+            set
+            {
+                if( _fileCount != value )
+                {
+                    _fileCount = value;
+                    OnPropertyChanged( nameof( FileCount ) );
+                }
+            }
+        }
+
+        /// <summary>
+        /// Gets the folder count.
+        /// </summary>
+        /// <value>
+        /// The folder count.
+        /// </value>
+        public int FolderCount
+        {
+            get
+            {
+                return _folderCount;
+            }
+            set
+            {
+                if( _folderCount != value )
+                {
+                    _folderCount = value;
+                    OnPropertyChanged( nameof( FolderCount ) );
+                }
+            }
+        }
         /// <summary>
         /// Gets the current directory.
         /// </summary>
@@ -310,131 +435,6 @@ namespace Bubba
             {
                 Fail( ex );
                 return string.Empty;
-            }
-        }
-
-        /// <inheritdoc />
-        /// <summary>
-        /// Initializes a new instance of the
-        /// <see cref="T:Bubba.Folder" /> class.
-        /// </summary>
-        public Folder( )
-            : base( )
-        {
-        }
-
-        /// <inheritdoc />
-        /// <summary>
-        /// Initializes a new instance of the
-        /// <see cref="T:Bubba.Folder" /> class.
-        /// </summary>
-        /// <param name="input"></param>
-        public Folder( string input )
-            : base( input )
-        {
-            _input = input;
-            _fullPath = input;
-            _folderExists = Directory.Exists( input );
-            _folderName = Path.GetDirectoryName( input );
-            _hasSubFiles = Directory.GetFiles( input )?.Length > 0;
-            _fileCount = Directory.GetFiles( input ).Length;
-            _hasSubFolders = Directory.GetDirectories( input )?.Length > 0;
-            _folderCount = Directory.GetDirectories( input ).Length;
-            _created = Directory.GetCreationTime( input );
-            _modified = Directory.GetLastWriteTime( input );
-        }
-
-        /// <inheritdoc />
-        /// <summary>
-        /// Initializes a new instance of the
-        /// <see cref="T:Bubba.Folder" /> class.
-        /// </summary>
-        /// <param name="folder">The folder.</param>
-        public Folder( Folder folder )
-            : this( )
-        {
-            _input = folder.Input;
-            _fullPath = folder.FullPath;
-            _folderName = folder.FolderName;
-            _hasSubFiles = Directory.GetFiles( folder.FullPath )?.Length > 0;
-            _hasSubFolders = Directory.GetDirectories( folder.FullPath )?.Length > 0;
-            _created = folder.Created;
-            _modified = folder.Modified;
-        }
-
-        /// <summary>
-        /// Gets the name of the folder.
-        /// </summary>
-        /// <value>
-        /// The name of the folder.
-        /// </value>
-        public string FolderName
-        {
-            get
-            {
-                return _folderExists
-                    ? Path.GetDirectoryName( _fullPath )
-                    : string.Empty;
-            }
-        }
-
-        /// <summary>
-        /// Gets or sets the parent folder.
-        /// </summary>
-        /// <value>
-        /// The parent folder.
-        /// </value>
-        public DirectoryInfo ParentFolder
-        {
-            get
-            {
-                return _hasParent
-                    ? new DirectoryInfo( _fullPath ).Parent
-                    : default( DirectoryInfo );
-            }
-        }
-
-        /// <summary>
-        /// Gets the file count.
-        /// </summary>
-        /// <value>
-        /// The file count.
-        /// </value>
-        public int FileCount
-        {
-            get
-            {
-                return _fileCount;
-            }
-            set
-            {
-                if( _fileCount != value )
-                {
-                    _fileCount = value;
-                    OnPropertyChanged( nameof( FileCount ) );
-                }
-            }
-        }
-
-        /// <summary>
-        /// Gets the folder count.
-        /// </summary>
-        /// <value>
-        /// The folder count.
-        /// </value>
-        public int FolderCount
-        {
-            get
-            {
-                return _folderCount;
-            }
-            set
-            {
-                if( _folderCount != value )
-                {
-                    _folderCount = value;
-                    OnPropertyChanged( nameof( FolderCount ) );
-                }
             }
         }
     }

@@ -1,10 +1,10 @@
 ﻿// ******************************************************************************************
 //     Assembly:                Bubba
 //     Author:                  Terry D. Eppler
-//     Created:                 01-16-2025
+//     Created:                 01-18-2025
 // 
 //     Last Modified By:        Terry D. Eppler
-//     Last Modified On:        01-16-2025
+//     Last Modified On:        01-18-2025
 // ******************************************************************************************
 // <copyright file="AudioConverter.cs" company="Terry D. Eppler">
 //    Bubba is a small and simple windows (wpf) application for interacting with the OpenAI API
@@ -60,6 +60,8 @@ namespace Bubba
         {
             try
             {
+                ThrowIf.Empty( inputFile, nameof( inputFile ) );
+                ThrowIf.Empty( outputFile, nameof( outputFile ) );
                 using var _reader = new MediaFoundationReader( inputFile );
                 using var _writer = new WaveFileWriter( outputFile, _reader.WaveFormat );
                 _reader.CopyTo( _writer );
@@ -80,6 +82,8 @@ namespace Bubba
         {
             try
             {
+                ThrowIf.Empty( inputFile, nameof( inputFile ) );
+                ThrowIf.Empty( outputFile, nameof( outputFile ) );
                 using var _reader = new WaveFileReader( inputFile );
                 using var _writer = new MediaFoundationReader( outputFile );
                 _reader.CopyTo( _writer );

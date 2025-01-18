@@ -62,6 +62,69 @@ namespace Bubba
     public abstract class Workbook : SheetConfig
     {
         /// <inheritdoc />
+        ///  <summary>
+        ///  </summary>
+        protected Workbook( )
+            : base( )
+        {
+        }
+
+        /// <summary>
+        /// Gets or sets the color of the font.
+        /// </summary>
+        /// <value>
+        /// The color of the font.
+        /// </value>
+        public Color FontColor
+        {
+            get
+            {
+                return _fontColor;
+            }
+
+            private protected set
+            {
+                _fontColor = value;
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the font.
+        /// </summary>
+        /// <value>
+        /// The font.
+        /// </value>
+        public Font Font
+        {
+            get
+            {
+                return _font;
+            }
+            set
+            {
+                _font = value;
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the title font.
+        /// </summary>
+        /// <value>
+        /// The title font.
+        /// </value>
+        public Font TitleFont
+        {
+            get
+            {
+                return TitleFont;
+            }
+            set
+            {
+                TitleFont = value;
+            }
+        }
+        
+        /// <inheritdoc />
         /// <summary>
         /// Initializes a new instance of the
         /// <see cref="T:Bubba.Workbook" /> class.
@@ -276,71 +339,6 @@ namespace Bubba
             {
                 Dispose( );
                 Fail( ex );
-            }
-        }
-
-        /// <inheritdoc />
-        ///  <summary>
-        ///  </summary>
-        protected Workbook( )
-            : base( )
-        {
-        }
-
-        /// <summary>
-        /// Gets or sets the color of the font.
-        /// </summary>
-        /// <value>
-        /// The color of the font.
-        /// </value>
-        public Color FontColor
-        {
-            get
-            {
-                return _fontColor;
-            }
-
-            private protected set
-            {
-                _fontColor = value;
-            }
-        }
-
-        /// <summary>
-        /// Gets or sets the font.
-        /// </summary>
-        /// <value>
-        /// The font.
-        /// </value>
-        public Font Font
-        {
-            get
-            {
-                return _font;
-            }
-
-            private protected set
-            {
-                _font = value;
-            }
-        }
-
-        /// <summary>
-        /// Gets or sets the title font.
-        /// </summary>
-        /// <value>
-        /// The title font.
-        /// </value>
-        public Font TitleFont
-        {
-            get
-            {
-                return TitleFont;
-            }
-
-            private protected set
-            {
-                TitleFont = value;
             }
         }
     }

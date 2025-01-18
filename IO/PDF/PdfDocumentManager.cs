@@ -51,7 +51,7 @@ namespace Bubba
     /// <summary>
     /// </summary>
     [ SuppressMessage( "ReSharper", "UnusedType.Global" ) ]
-    public class PdfDocumentManager : IDisposable
+    public class PdfDocumentManager : PropertyChangedBase, IDisposable
     {
         /// <summary>
         /// The timer

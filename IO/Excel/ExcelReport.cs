@@ -69,6 +69,199 @@ namespace Bubba
     [ SuppressMessage( "ReSharper", "RedundantBaseConstructorCall" ) ]
     public class ExcelReport : PartFactory
     {
+        /// <inheritdoc />
+        /// <summary>
+        /// Initializes a new instance of the
+        /// <see cref="T:Bubba.ExcelReport" /> class.
+        /// </summary>
+        public ExcelReport( )
+            : base( )
+        {
+            _startRow = 2;
+            _startColumn = 1;
+            _fontColor = Color.Black;
+            _font = new Font( "Segoe UI", 8, FontStyle.Regular );
+            TitleFont = new Font( "Segoe UI", 9 );
+            _fileName = "Budget.xlsx";
+            _rowHeight = 0.27d;
+            _columnWidth = 0.69d;
+            _leftMargin = .25m;
+            _rightMargin = .25m;
+            _topMargin = 1m;
+            _bottomMargin = 1m;
+            _headerMargin = 0.4m;
+            _footerMargin = 0.4m;
+            _zoomLevel = 100;
+            _primaryBackColor = Color.White;
+            _secondaryBackColor = Color.FromArgb( 220, 220, 220 );
+            _rowCount = 55;
+            _columnCount = 11;
+            _internalPath = AppSettings[ "Reports" ];
+            _savePath = AppSettings[ "Desktop" ] + _fileName;
+            _fileInfo = new FileInfo( _internalPath );
+            _excelPackage = new ExcelPackage( _fileInfo );
+            _excelPackage.Settings.TextSettings.PrimaryTextMeasurer = new TextSize( );
+            _excelPackage.Settings.TextSettings.AutofitScaleFactor = 0.9f;
+            _excelWorkbook = _excelPackage.Workbook;
+            _dataWorksheet = _excelWorkbook.Worksheets.Add( "Data" );
+            _dataRange = _dataWorksheet.Cells[ 2, 1, 57, 11 ];
+            _excelWorkbook.View.ShowHorizontalScrollBar = true;
+            _excelWorkbook.View.ShowVerticalScrollBar = true;
+            InitializeWorkbook( );
+            InitializeActiveGrid( );
+            InitializeSheetView( );
+            InitializePrinterSettings( );
+            InitializeHeaderFooter( );
+        }
+
+        /// <inheritdoc />
+        /// <summary>
+        /// Initializes a new instance of the
+        /// <see cref="T:Badger.BudgetWorkbook" /> class.
+        /// </summary>
+        /// <param name="filePath">The file path.</param>
+        public ExcelReport( string filePath )
+            : base( )
+        {
+            _startRow = 2;
+            _startColumn = 1;
+            _fontColor = Color.Black;
+            _font = new Font( "Segoe UI", 8, FontStyle.Regular );
+            TitleFont = new Font( "Segoe UI", 9 );
+            _rowHeight = 0.27d;
+            _columnWidth = 0.69d;
+            _leftMargin = .25m;
+            _rightMargin = .25m;
+            _topMargin = 1m;
+            _bottomMargin = 1m;
+            _headerMargin = 0.4m;
+            _footerMargin = 0.4m;
+            _zoomLevel = 100;
+            _primaryBackColor = Color.White;
+            _secondaryBackColor = Color.FromArgb( 220, 220, 220 );
+            _internalPath = AppSettings[ "Reports" ];
+            _savePath = AppSettings[ "Desktop" ] + _fileName + ".xlsx";
+            _filePath = filePath;
+            _fileName = Path.GetFileNameWithoutExtension( filePath );
+            _fileInfo = new FileInfo( filePath );
+            _excelPackage = new ExcelPackage( _fileInfo );
+            _excelPackage.Settings.TextSettings.PrimaryTextMeasurer = new TextSize( );
+            _excelPackage.Settings.TextSettings.AutofitScaleFactor = 0.9f;
+            _excelWorkbook = _excelPackage.Workbook;
+            _dataWorksheet = _excelWorkbook.Worksheets[ 0 ];
+            _excelWorkbook.View.ShowHorizontalScrollBar = true;
+            _excelWorkbook.View.ShowVerticalScrollBar = true;
+            InitializeWorkbook( );
+            InitializeActiveGrid( );
+            InitializeSheetView( );
+            InitializePrinterSettings( );
+            InitializeHeaderFooter( );
+        }
+
+        /// <inheritdoc/>
+        /// <summary>
+        /// Initializes a new instance of the
+        /// <see cref="T:Badger.BudgetWorkbook"/>
+        /// class.
+        /// </summary>
+        /// <param name="dataTable">
+        /// The data table.
+        /// </param>
+        public ExcelReport( DataTable dataTable )
+            : base( )
+        {
+            _startRow = 2;
+            _startColumn = 1;
+            _fontColor = Color.Black;
+            _font = new Font( "Segoe UI", 8, FontStyle.Regular );
+            _titleFont = new Font( "Segoe UI", 9, FontStyle.Regular );
+            _rowHeight = 0.27d;
+            _columnWidth = 0.69d;
+            _leftMargin = .25m;
+            _rightMargin = .25m;
+            _topMargin = 1m;
+            _bottomMargin = 1m;
+            _headerMargin = 0.4m;
+            _footerMargin = 0.4m;
+            _zoomLevel = 100;
+            _primaryBackColor = Color.White;
+            _secondaryBackColor = Color.FromArgb( 220, 220, 220 );
+            _internalPath = AppSettings[ "Reports" ];
+            _dataTable = dataTable;
+            _columnCount = dataTable.Columns.Count;
+            _rowCount = dataTable.Rows.Count;
+            _fileName = dataTable.TableName + ".xlsx";
+            _savePath = AppSettings[ "Desktop" ] + dataTable.TableName + ".xlsx";
+            DataMeasure = new DataMeasure( dataTable );
+            _fileInfo = new FileInfo( _internalPath );
+            _excelPackage = new ExcelPackage( _fileInfo );
+            _excelPackage.Settings.TextSettings.PrimaryTextMeasurer = new TextSize( );
+            _excelPackage.Settings.TextSettings.AutofitScaleFactor = 0.8f;
+            _excelWorkbook = _excelPackage.Workbook;
+            _dataWorksheet = _excelWorkbook.Worksheets.Add( "Data" );
+            _excelWorkbook.View.ShowHorizontalScrollBar = true;
+            _excelWorkbook.View.ShowVerticalScrollBar = true;
+            InitializeWorkbook( );
+            InitializeActiveGrid( );
+            InitializeSheetView( );
+            InitializePrinterSettings( );
+            InitializeHeaderFooter( );
+        }
+
+        /// <summary>
+        /// Gets or sets the height of the row.
+        /// </summary>
+        /// <value>
+        /// The height of the row.
+        /// </value>
+        public double RowHeight
+        {
+            get
+            {
+                return _rowHeight;
+            }
+
+            private protected set
+            {
+                _rowHeight = value;
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the width of the column.
+        /// </summary>
+        /// <value>
+        /// The width of the column.
+        /// </value>
+        public double ColumnWidth
+        {
+            get
+            {
+                return _columnWidth;
+            }
+
+            private protected set
+            {
+                _columnWidth = value;
+            }
+        }
+
+        /// <summary>
+        /// The configuration
+        /// </summary>
+        public string InternalPath
+        {
+            get
+            {
+                return _internalPath;
+            }
+
+            private protected set
+            {
+                _internalPath = value;
+            }
+        }
+
         /// <summary>
         /// Initializes the worksheets.
         /// </summary>
@@ -104,7 +297,7 @@ namespace Bubba
                     _excelWorkbook.Worksheets[ _i ].PrinterSettings.RightMargin = _rightMargin;
                     _excelWorkbook.Worksheets[ _i ].PrinterSettings.HeaderMargin = _headerMargin;
                     _excelWorkbook.Worksheets[ _i ].PrinterSettings.FooterMargin = _footerMargin;
-                    _excelWorkbook.Worksheets[ _i ].PrinterSettings.TopMargin = TopMargin;
+                    _excelWorkbook.Worksheets[ _i ].PrinterSettings.TopMargin = _topMargin;
                     _excelWorkbook.Worksheets[ _i ].PrinterSettings.BottomMargin = _bottomMargin;
                     _excelWorkbook.Worksheets[ _i ].PrinterSettings.Orientation =
                         eOrientation.Landscape;
@@ -215,199 +408,6 @@ namespace Bubba
             {
                 Fail( ex );
                 Dispose( );
-            }
-        }
-
-        /// <inheritdoc />
-        /// <summary>
-        /// Initializes a new instance of the
-        /// <see cref="T:Bubba.ExcelReport" /> class.
-        /// </summary>
-        public ExcelReport( )
-            : base( )
-        {
-            _startRow = 2;
-            _startColumn = 1;
-            _fontColor = Color.Black;
-            _font = new Font( "Segoe UI", 8, FontStyle.Regular );
-            TitleFont = new Font( "Segoe UI", 9 );
-            _fileName = "Budget.xlsx";
-            _rowHeight = 0.27d;
-            _columnWidth = 0.69d;
-            _leftMargin = .25m;
-            _rightMargin = .25m;
-            TopMargin = 1m;
-            _bottomMargin = 1m;
-            _headerMargin = 0.4m;
-            _footerMargin = 0.4m;
-            _zoomLevel = 100;
-            _primaryBackColor = Color.White;
-            _secondaryBackColor = Color.FromArgb( 220, 220, 220 );
-            _rowCount = 55;
-            _columnCount = 11;
-            _internalPath = AppSettings[ "Reports" ];
-            _savePath = AppSettings[ "Desktop" ] + _fileName;
-            _fileInfo = new FileInfo( _internalPath );
-            _excelPackage = new ExcelPackage( _fileInfo );
-            _excelPackage.Settings.TextSettings.PrimaryTextMeasurer = new TextSize( );
-            _excelPackage.Settings.TextSettings.AutofitScaleFactor = 0.9f;
-            _excelWorkbook = _excelPackage.Workbook;
-            _dataWorksheet = _excelWorkbook.Worksheets.Add( "Data" );
-            _dataRange = _dataWorksheet.Cells[ 2, 1, 57, 11 ];
-            _excelWorkbook.View.ShowHorizontalScrollBar = true;
-            _excelWorkbook.View.ShowVerticalScrollBar = true;
-            InitializeWorkbook( );
-            InitializeActiveGrid( );
-            InitializeSheetView( );
-            InitializePrinterSettings( );
-            InitializeHeaderFooter( );
-        }
-
-        /// <inheritdoc />
-        /// <summary>
-        /// Initializes a new instance of the
-        /// <see cref="T:Badger.BudgetWorkbook" /> class.
-        /// </summary>
-        /// <param name="filePath">The file path.</param>
-        public ExcelReport( string filePath )
-            : base( )
-        {
-            _startRow = 2;
-            _startColumn = 1;
-            _fontColor = Color.Black;
-            _font = new Font( "Segoe UI", 8, FontStyle.Regular );
-            TitleFont = new Font( "Segoe UI", 9 );
-            _rowHeight = 0.27d;
-            _columnWidth = 0.69d;
-            _leftMargin = .25m;
-            _rightMargin = .25m;
-            TopMargin = 1m;
-            _bottomMargin = 1m;
-            _headerMargin = 0.4m;
-            _footerMargin = 0.4m;
-            _zoomLevel = 100;
-            _primaryBackColor = Color.White;
-            _secondaryBackColor = Color.FromArgb( 220, 220, 220 );
-            _internalPath = AppSettings[ "Reports" ];
-            _savePath = AppSettings[ "Desktop" ] + _fileName + ".xlsx";
-            _filePath = filePath;
-            _fileName = Path.GetFileNameWithoutExtension( filePath );
-            _fileInfo = new FileInfo( filePath );
-            _excelPackage = new ExcelPackage( _fileInfo );
-            _excelPackage.Settings.TextSettings.PrimaryTextMeasurer = new TextSize( );
-            _excelPackage.Settings.TextSettings.AutofitScaleFactor = 0.9f;
-            _excelWorkbook = _excelPackage.Workbook;
-            _dataWorksheet = _excelWorkbook.Worksheets[ 0 ];
-            _excelWorkbook.View.ShowHorizontalScrollBar = true;
-            _excelWorkbook.View.ShowVerticalScrollBar = true;
-            InitializeWorkbook( );
-            InitializeActiveGrid( );
-            InitializeSheetView( );
-            InitializePrinterSettings( );
-            InitializeHeaderFooter( );
-        }
-
-        /// <inheritdoc/>
-        /// <summary>
-        /// Initializes a new instance of the
-        /// <see cref="T:Badger.BudgetWorkbook"/>
-        /// class.
-        /// </summary>
-        /// <param name="dataTable">
-        /// The data table.
-        /// </param>
-        public ExcelReport( DataTable dataTable )
-            : base( )
-        {
-            _startRow = 2;
-            _startColumn = 1;
-            _fontColor = Color.Black;
-            _font = new Font( "Segoe UI", 8, FontStyle.Regular );
-            TitleFont = new Font( "Segoe UI", 9, FontStyle.Regular );
-            _rowHeight = 0.27d;
-            _columnWidth = 0.69d;
-            _leftMargin = .25m;
-            _rightMargin = .25m;
-            TopMargin = 1m;
-            _bottomMargin = 1m;
-            _headerMargin = 0.4m;
-            _footerMargin = 0.4m;
-            _zoomLevel = 100;
-            _primaryBackColor = Color.White;
-            _secondaryBackColor = Color.FromArgb( 220, 220, 220 );
-            _internalPath = AppSettings[ "Reports" ];
-            _dataTable = dataTable;
-            _columnCount = dataTable.Columns.Count;
-            _rowCount = dataTable.Rows.Count;
-            _fileName = dataTable.TableName + ".xlsx";
-            _savePath = AppSettings[ "Desktop" ] + dataTable.TableName + ".xlsx";
-            DataMeasure = new DataMeasure( dataTable );
-            _fileInfo = new FileInfo( _internalPath );
-            _excelPackage = new ExcelPackage( _fileInfo );
-            _excelPackage.Settings.TextSettings.PrimaryTextMeasurer = new TextSize( );
-            _excelPackage.Settings.TextSettings.AutofitScaleFactor = 0.8f;
-            _excelWorkbook = _excelPackage.Workbook;
-            _dataWorksheet = _excelWorkbook.Worksheets.Add( "Data" );
-            _excelWorkbook.View.ShowHorizontalScrollBar = true;
-            _excelWorkbook.View.ShowVerticalScrollBar = true;
-            InitializeWorkbook( );
-            InitializeActiveGrid( );
-            InitializeSheetView( );
-            InitializePrinterSettings( );
-            InitializeHeaderFooter( );
-        }
-
-        /// <summary>
-        /// Gets or sets the height of the row.
-        /// </summary>
-        /// <value>
-        /// The height of the row.
-        /// </value>
-        public double RowHeight
-        {
-            get
-            {
-                return _rowHeight;
-            }
-
-            private protected set
-            {
-                _rowHeight = value;
-            }
-        }
-
-        /// <summary>
-        /// Gets or sets the width of the column.
-        /// </summary>
-        /// <value>
-        /// The width of the column.
-        /// </value>
-        public double ColumnWidth
-        {
-            get
-            {
-                return _columnWidth;
-            }
-
-            private protected set
-            {
-                _columnWidth = value;
-            }
-        }
-
-        /// <summary>
-        /// The configuration
-        /// </summary>
-        public string InternalPath
-        {
-            get
-            {
-                return _internalPath;
-            }
-
-            private protected set
-            {
-                _internalPath = value;
             }
         }
     }

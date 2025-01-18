@@ -1,10 +1,10 @@
 ﻿// ******************************************************************************************
 //     Assembly:                Bubba
 //     Author:                  Terry D. Eppler
-//     Created:                 01-12-2025
+//     Created:                 01-18-2025
 // 
 //     Last Modified By:        Terry D. Eppler
-//     Last Modified On:        01-12-2025
+//     Last Modified On:        01-18-2025
 // ******************************************************************************************
 // <copyright file="GptRequest.cs" company="Terry D. Eppler">
 //    Bubba is a small and simple windows (wpf) application for interacting with the OpenAI API
@@ -303,6 +303,44 @@ namespace Bubba
             }
         }
 
+        /// <inheritdoc />
+        /// <summary>
+        /// Begins the initialize.
+        /// </summary>
+        private protected virtual void Busy( )
+        {
+            try
+            {
+                lock( _entry )
+                {
+                    _busy = true;
+                }
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+            }
+        }
+
+        /// <inheritdoc />
+        /// <summary>
+        /// Ends the initialize.
+        /// </summary>
+        private protected virtual void Chill( )
+        {
+            try
+            {
+                lock( _entry )
+                {
+                    _busy = false;
+                }
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+            }
+        }
+
         /// <summary>
         /// Posts the json asynchronous.
         /// </summary>
@@ -312,7 +350,7 @@ namespace Bubba
         /// <exception cref="HttpRequestException">
         /// Error: {_response.StatusCode}, {_error}
         /// </exception>
-        private protected virtual async Task<string> PostAsync( string endpoint,
+        private protected virtual async Task<string> GetResponseAsync( string endpoint,
             object payload )
         {
             try
@@ -324,7 +362,7 @@ namespace Bubba
                 _httpClient.DefaultRequestHeaders.Clear( );
                 _httpClient.DefaultRequestHeaders.Add( "Authorization", $"Bearer {_gpt.ApiKey}" );
                 var _json = JsonConvert.SerializeObject( payload );
-                var _content = new StringContent( _json, Encoding.UTF8, "application/json" );
+                var _content = new StringContent( _json, Encoding.UTF8, _gpt.ContentType );
                 var _response = await _httpClient.PostAsync( $"{_url}/{endpoint}", _content );
                 if( !_response.IsSuccessStatusCode )
                 {
@@ -348,7 +386,7 @@ namespace Bubba
         /// The json response.
         /// </param>
         /// <returns></returns>
-        private protected string ExtractResponseContent( string jsonResponse )
+        private protected string ExtractResponse( string jsonResponse )
         {
             try
             {

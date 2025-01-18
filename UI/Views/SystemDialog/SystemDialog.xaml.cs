@@ -203,7 +203,7 @@ namespace Bubba
         {
             try
             {
-                SystemDialogTextBox.InputText = _systemPrompt;
+                SystemDialogTextBox.Text = _systemPrompt;
             }
             catch( Exception ex )
             {

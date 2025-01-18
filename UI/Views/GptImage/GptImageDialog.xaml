@@ -75,7 +75,7 @@
 
             <local:ToolStripTextBox
                 x:Name="ToolStripTextBox"
-                Width="150"
+                Width="200"
                 Height="30"
                 Margin="5,1,5,1"
                 Padding="15,1,1,1"
@@ -107,22 +107,9 @@
                 ImageSource="/Resources/Assets/ToolStripImages/LastButton.png"
                 ToolTip="Last Item" />
 
-
-            <local:ToolStripButton
-                x:Name="RefreshButton"
-                Margin="5,1,5,1"
-                ImageSource="/Resources/Assets/ToolStripImages/RefreshButton.png"
-                ToolTip="Resets Input Controls and GPT Parameters" />
-
-            <local:ToolStripButton
-                x:Name="BrowserButton"
-                Margin="5,1,5,1"
-                ImageSource="/Resources/Assets/ToolStripImages/LookUpButton.png"
-                ToolTip="Browse System" />
-
             <mah:MetroProgressBar
                 x:Name="ProgressBar"
-                Width="100"
+                Width="160"
                 Background="{StaticResource FormBackground}" />
         </ToolBar>
     </Grid>

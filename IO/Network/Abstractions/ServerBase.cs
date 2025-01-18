@@ -57,19 +57,9 @@ namespace Bubba
     public abstract class ServerBase : ClientBase
     {
         /// <summary>
-        /// The busy
-        /// </summary>
-        private protected new bool _busy;
-
-        /// <summary>
         /// The is connected
         /// </summary>
         private protected bool _connected;
-
-        /// <summary>
-        /// The locked object
-        /// </summary>
-        private protected new object _entry;
 
         /// <inheritdoc />
         /// <summary>

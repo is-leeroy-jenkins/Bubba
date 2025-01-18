@@ -120,8 +120,8 @@ namespace Bubba
                 _startColumn = excelRange.Start.Column;
                 var _endColumn = excelRange.End.Column;
                 _headerRange = _dataWorksheet.Cells[ _header, _startColumn, _header, _endColumn ];
-                _headerRange.Style.Font.Name = "Segoe UI";
-                _headerRange.Style.Font.Size = 8;
+                _headerRange.Style.Font.Name = "Roboto";
+                _headerRange.Style.Font.Size = 10;
                 _headerRange.Style.Font.Bold = false;
                 _headerRange.Style.Font.Italic = false;
                 _headerRange.Style.Font.Color.SetColor( _fontColor );
@@ -155,8 +155,8 @@ namespace Bubba
                 _startColumn = excelRange.Start.Column;
                 var _endColumn = excelRange.End.Column;
                 _dataRange = _dataWorksheet.Cells[ _header, _startColumn, _header, _endColumn ];
-                _dataRange.Style.Font.Name = "Segoe UI";
-                _dataRange.Style.Font.Size = 9;
+                _dataRange.Style.Font.Name = "Roboto";
+                _dataRange.Style.Font.Size = 11;
                 _dataRange.Style.Font.Bold = false;
                 _dataRange.Style.Font.Italic = false;
                 for( var _i = _startColumn; _i < _endColumn; _i++ )
@@ -185,8 +185,8 @@ namespace Bubba
                 _startColumn = excelRange.Start.Column;
                 var _endColumn = excelRange.End.Column;
                 _footerRange = _dataWorksheet.Cells[ _footer, _startColumn, _footer, _endColumn ];
-                _footerRange.Style.Font.Name = "Segoe UI";
-                _footerRange.Style.Font.Size = 8;
+                _footerRange.Style.Font.Name = "Roboto";
+                _footerRange.Style.Font.Size = 10;
                 _footerRange.Style.Font.Bold = true;
                 _footerRange.Style.Font.Italic = false;
                 _footerRange.Style.Font.Color.SetColor( _fontColor );
@@ -224,8 +224,7 @@ namespace Bubba
             {
                 return _dataConnection;
             }
-
-            private protected set
+            set
             {
                 _dataConnection = value;
             }
@@ -243,8 +242,7 @@ namespace Bubba
             {
                 return _dataCommand;
             }
-
-            private protected set
+            set
             {
                 _dataCommand = value;
             }
@@ -262,8 +260,7 @@ namespace Bubba
             {
                 return _dataAdapter;
             }
-
-            private protected set
+            set
             {
                 _dataAdapter = value;
             }
@@ -281,8 +278,7 @@ namespace Bubba
             {
                 return _fileInfo;
             }
-
-            private protected set
+            set
             {
                 _fileInfo = value;
             }
@@ -300,8 +296,7 @@ namespace Bubba
             {
                 return _excelPackage;
             }
-
-            private protected set
+            set
             {
                 _excelPackage = value;
             }

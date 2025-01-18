@@ -1,10 +1,10 @@
 ﻿// ******************************************************************************************
 //     Assembly:                Bubba
 //     Author:                  Terry D. Eppler
-//     Created:                 01-07-2025
+//     Created:                 01-18-2025
 // 
 //     Last Modified By:        Terry D. Eppler
-//     Last Modified On:        01-07-2025
+//     Last Modified On:        01-18-2025
 // ******************************************************************************************
 // <copyright file="EmailContent.cs" company="Terry D. Eppler">
 //    Bubba is a small and simple windows (wpf) application for interacting with the OpenAI API
@@ -43,6 +43,7 @@ namespace Bubba
 {
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
+    using System.IO;
     using Exception = System.Exception;
 
     /// <inheritdoc />
@@ -55,7 +56,7 @@ namespace Bubba
     [ SuppressMessage( "ReSharper", "ClassCanBeSealed.Global" ) ]
     [ SuppressMessage( "ReSharper", "InconsistentNaming" ) ]
     [ SuppressMessage( "ReSharper", "MemberCanBeProtected.Global" ) ]
-    public class EmailContent
+    public class EmailContent : PropertyChangedBase
     {
         /// <summary>
         /// The attachments
@@ -76,71 +77,6 @@ namespace Bubba
         /// The subject
         /// </summary>
         private protected string _subject;
-
-        /// <summary>
-        /// Deconstructs the specified is HTML.
-        /// </summary>
-        /// <param name="subject"> </param>
-        /// <param name="message">
-        /// The content.
-        /// </param>
-        /// <param name="attachments"></param>
-        public void Deconstruct( out string subject, out string message,
-            out IList<string> attachments )
-        {
-            subject = _subject;
-            message = _message;
-            attachments = _attachments;
-        }
-
-        /// <summary> Converts to string. </summary>
-        /// <returns>
-        /// A
-        /// <see cref="System.String"/>
-        /// that represents this instance.
-        /// </returns>
-        public override string ToString( )
-        {
-            try
-            {
-                return !string.IsNullOrEmpty( _message )
-                    ? _message
-                    : string.Empty;
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
-                return string.Empty;
-            }
-        }
-
-        /// <summary>
-        /// Adds the attachment.
-        /// </summary>
-        /// <param name="filePath">The attachment.</param>
-        public void AddAttachment( string filePath )
-        {
-            try
-            {
-                ThrowIf.Null( filePath, nameof( filePath ) );
-                _attachments.Add( filePath );
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
-            }
-        }
-
-        /// <summary>
-        /// Fails the specified ex.
-        /// </summary>
-        /// <param name="ex">The ex.</param>
-        private protected void Fail( Exception ex )
-        {
-            var _error = new ErrorWindow( ex );
-            _error?.SetText( );
-            _error?.ShowDialog( );
-        }
 
         /// <inheritdoc />
         /// <summary>
@@ -194,6 +130,36 @@ namespace Bubba
         }
 
         /// <summary>
+        /// Initializes a new instance of the <see cref="EmailContent"/> class.
+        /// </summary>
+        /// <param name="subject">The subject.</param>
+        /// <param name="message">The message.</param>
+        /// <param name="isHtml">if set to <c>true</c> [is HTML].</param>
+        public EmailContent( string subject, string message, bool isHtml = false )
+        {
+            _subject = subject;
+            _message = message;
+            _isHtml = isHtml;
+            _attachments = new List<string>( );
+        }
+
+        /// <summary>
+        /// Deconstructs the specified is HTML.
+        /// </summary>
+        /// <param name="subject"> </param>
+        /// <param name="message">
+        /// The content.
+        /// </param>
+        /// <param name="attachments"></param>
+        public void Deconstruct( out string subject, out string message,
+            out IList<string> attachments )
+        {
+            subject = _subject;
+            message = _message;
+            attachments = _attachments;
+        }
+
+        /// <summary>
         /// Gets or sets a value indicating whether this instance is HTML.
         /// </summary>
         /// <value>
@@ -208,9 +174,13 @@ namespace Bubba
             {
                 return _isHtml;
             }
-            private protected set
+            set
             {
-                _isHtml = value;
+                if( _isHtml != value )
+                {
+                    _isHtml = value;
+                    OnPropertyChanged( nameof( IsHtml ) );
+                }
             }
         }
 
@@ -226,9 +196,13 @@ namespace Bubba
             {
                 return _subject;
             }
-            private protected set
+            set
             {
-                _subject = value;
+                if( _subject != value )
+                {
+                    _subject = value;
+                    OnPropertyChanged( nameof( Subject ) );
+                }
             }
         }
 
@@ -244,9 +218,13 @@ namespace Bubba
             {
                 return _message;
             }
-            private protected set
+            set
             {
-                _message = value;
+                if( _message != value )
+                {
+                    _message = value;
+                    OnPropertyChanged( nameof( Message ) );
+                }
             }
         }
 
@@ -264,8 +242,64 @@ namespace Bubba
             }
             set
             {
-                _attachments = value;
+                if( _attachments != value )
+                {
+                    _attachments = value;
+                    OnPropertyChanged( nameof( Attachments ) );
+                }
             }
+        }
+
+        /// <summary> Converts to string. </summary>
+        /// <returns>
+        /// A
+        /// <see cref="System.String"/>
+        /// that represents this instance.
+        /// </returns>
+        public override string ToString( )
+        {
+            try
+            {
+                return !string.IsNullOrEmpty( _message )
+                    ? _message
+                    : string.Empty;
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+                return string.Empty;
+            }
+        }
+
+        /// <summary>
+        /// Adds the attachment.
+        /// </summary>
+        /// <param name="filePath">The attachment.</param>
+        public void AddAttachment( string filePath )
+        {
+            try
+            {
+                ThrowIf.Null( filePath, nameof( filePath ) );
+                if( File.Exists( filePath ) )
+                {
+                    _attachments.Add( filePath );
+                }
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+            }
+        }
+
+        /// <summary>
+        /// Fails the specified ex.
+        /// </summary>
+        /// <param name="ex">The ex.</param>
+        private protected void Fail( Exception ex )
+        {
+            var _error = new ErrorWindow( ex );
+            _error?.SetText( );
+            _error?.ShowDialog( );
         }
     }
 }

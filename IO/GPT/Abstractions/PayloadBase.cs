@@ -47,7 +47,6 @@ namespace Bubba
     using System.Diagnostics.CodeAnalysis;
     using System.Runtime.CompilerServices;
     using System.Text.Json.Serialization;
-    using Newtonsoft.Json;
 
     /// <inheritdoc />
     /// <summary>
@@ -350,7 +349,7 @@ namespace Bubba
 
         /// <inheritdoc />
         /// <summary>
-        /// Gets the chat model.
+        /// Gets the Large Language Model.
         /// </summary>
         /// <value>
         /// The chat model.
@@ -398,7 +397,7 @@ namespace Bubba
 
         /// <inheritdoc />
         /// <summary>
-        /// Gets the prompt.
+        /// Gets the user prompt.
         /// </summary>
         /// <value>
         /// The prompt.

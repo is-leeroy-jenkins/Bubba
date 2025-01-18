@@ -55,8 +55,8 @@ namespace Bubba
     using Color = System.Drawing.Color;
     using Font = System.Drawing.Font;
 
+    /// <inheritdoc />
     /// <summary>
-    /// 
     /// </summary>
     [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
     [ SuppressMessage( "ReSharper", "UnusedType.Global" ) ]
@@ -65,7 +65,7 @@ namespace Bubba
     [ SuppressMessage( "ReSharper", "MemberCanBeProtected.Global" ) ]
     [ SuppressMessage( "ReSharper", "RedundantCheckBeforeAssignment" ) ]
     [ SuppressMessage( "ReSharper", "NotAccessedField.Global" ) ]
-    public abstract class ReportBase
+    public abstract class ReportBase : PropertyChangedBase
     {
         /// <summary>
         /// The area chart
@@ -275,17 +275,17 @@ namespace Bubba
         /// <summary>
         /// The theme path
         /// </summary>
-        private protected string ThemePath;
+        private protected string _themePath;
 
         /// <summary>
         /// The title font
         /// </summary>
-        private protected Font TitleFont;
+        private protected Font _titleFont;
 
         /// <summary>
         /// The top margin
         /// </summary>
-        private protected decimal TopMargin;
+        private protected decimal _topMargin;
 
         /// <summary>
         /// The zoom level
@@ -296,6 +296,53 @@ namespace Bubba
         /// The data metric
         /// </summary>
         private protected DataMeasure DataMeasure;
+
+        /// <summary>
+        ///
+        /// </summary>
+        protected ReportBase( )
+        {
+        }
+
+        /// <inheritdoc />
+        /// <summary>
+        /// Gets or sets the index.
+        /// </summary>
+        /// <value>
+        /// The index.
+        /// </value>
+        public int StartRow
+        {
+            get
+            {
+                return _startRow;
+            }
+
+            private protected set
+            {
+                _startRow = value;
+            }
+        }
+
+        /// <inheritdoc />
+        /// <summary>
+        /// Gets or sets the index.
+        /// </summary>
+        /// <value>
+        /// The index.
+        /// </value>
+        public int StartColumn
+        {
+            get
+            {
+                return _startColumn;
+            }
+
+            private protected set
+            {
+                _startColumn = value;
+            }
+        }
 
         /// <summary>
         /// Sets the color of the range background.
@@ -361,8 +408,10 @@ namespace Bubba
         {
             try
             {
-                return type == typeof( string ) || type.IsArray || ( type.IsGenericType
-                    && type.GetGenericTypeDefinition( ) == typeof( Nullable<> ) );
+                return type == typeof( string ) 
+                    || type.IsArray 
+                    || ( type.IsGenericType
+                        && type.GetGenericTypeDefinition( ) == typeof( Nullable<> ) );
             }
             catch( Exception ex )
             {
@@ -383,7 +432,7 @@ namespace Bubba
             try
             {
                 _font?.Dispose( );
-                TitleFont?.Dispose( );
+                _titleFont?.Dispose( );
                 _dataConnection?.Dispose( );
                 _dataCommand?.Dispose( );
                 _dataAdapter?.Dispose( );
@@ -430,53 +479,6 @@ namespace Bubba
             var _error = new ErrorWindow( ex );
             _error?.SetText( );
             _error?.ShowDialog( );
-        }
-
-        /// <summary>
-        ///
-        /// </summary>
-        protected ReportBase( )
-        {
-        }
-
-        /// <inheritdoc />
-        /// <summary>
-        /// Gets or sets the index.
-        /// </summary>
-        /// <value>
-        /// The index.
-        /// </value>
-        public int StartRow
-        {
-            get
-            {
-                return _startRow;
-            }
-
-            private protected set
-            {
-                _startRow = value;
-            }
-        }
-
-        /// <inheritdoc />
-        /// <summary>
-        /// Gets or sets the index.
-        /// </summary>
-        /// <value>
-        /// The index.
-        /// </value>
-        public int StartColumn
-        {
-            get
-            {
-                return _startColumn;
-            }
-
-            private protected set
-            {
-                _startColumn = value;
-            }
         }
     }
 }

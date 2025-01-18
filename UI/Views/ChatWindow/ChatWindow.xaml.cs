@@ -1,10 +1,10 @@
 ﻿// ******************************************************************************************
 //     Assembly:                Bubba
 //     Author:                  Terry D. Eppler
-//     Created:                 01-17-2025
+//     Created:                 01-18-2025
 // 
 //     Last Modified By:        Terry D. Eppler
-//     Last Modified On:        01-17-2025
+//     Last Modified On:        01-18-2025
 // ******************************************************************************************
 // <copyright file="ChatWindow.xaml.cs" company="Terry D. Eppler">
 //    Bubba is a small and simple windows (wpf) application for interacting with the OpenAI API
@@ -72,6 +72,7 @@ namespace Bubba
     using Action = System.Action;
     using Exception = System.Exception;
     using Properties;
+    using Syncfusion.Windows.Shared;
 
     /// <inheritdoc />
     /// <summary>
@@ -89,6 +90,16 @@ namespace Bubba
     [ SuppressMessage( "ReSharper", "PreferConcreteValueOverDefault" ) ]
     public partial class ChatWindow : Window, INotifyPropertyChanged
     {
+        /// <summary>
+        /// The busy
+        /// </summary>
+        private protected bool _busy;
+
+        /// <summary>
+        /// The entry
+        /// </summary>
+        private protected object _entry = new object( );
+
         /// <summary>
         /// The system prompt
         /// </summary>
@@ -113,16 +124,6 @@ namespace Bubba
         /// The role
         /// </summary>
         private protected string _voice;
-
-        /// <summary>
-        /// The busy
-        /// </summary>
-        private protected bool _busy;
-
-        /// <summary>
-        /// The entry
-        /// </summary>
-        private protected object _entry = new object( );
 
         /// <summary>
         /// The endpoint
@@ -294,8 +295,8 @@ namespace Bubba
             _stream = false;
             _temperature = 0.18;
             _topPercent = 0.11;
-            _presence = 0.00D;
-            _frequency = 0.00D;
+            _presence = 0.00;
+            _frequency = 0.00;
             _maximumTokens = 2048;
             _imageSizes = new List<string>( );
 
@@ -737,6 +738,66 @@ namespace Bubba
                 else
                 {
                     Dispatcher.BeginInvoke( action );
+                }
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+            }
+        }
+
+        /// <summary>
+        /// Begins the initialize.
+        /// </summary>
+        private protected void Busy( )
+        {
+            try
+            {
+                lock( _entry )
+                {
+                    _busy = true;
+                }
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+            }
+        }
+
+        /// <summary>
+        /// Shows the progress.
+        /// </summary>
+        private protected void CheckProgress( )
+        {
+            try
+            {
+                if( _busy )
+                {
+                    ProgressBar.Visibility = Visibility.Visible;
+                    ProgressBar.IsIndeterminate = true;
+                }
+                else
+                {
+                    ProgressBar.Visibility = Visibility.Hidden;
+                    ProgressBar.IsIndeterminate = false;
+                }
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+            }
+        }
+
+        /// <summary>
+        /// Ends the initialize.
+        /// </summary>
+        private protected void Chill( )
+        {
+            try
+            {
+                lock( _entry )
+                {
+                    _busy = false;
                 }
             }
             catch( Exception ex )
@@ -1398,7 +1459,6 @@ namespace Bubba
                     LookupButton.Visibility = Visibility.Visible;
                     RefreshButton.Visibility = Visibility.Visible;
                     ToolStripTextBox.Visibility = Visibility.Visible;
-                    ToolStripComboBox.Visibility = Visibility.Visible;
                     CancelButton.Visibility = Visibility.Visible;
                     DeleteButton.Visibility = Visibility.Visible;
                     BrowserButton.Visibility = Visibility.Visible;
@@ -1413,7 +1473,6 @@ namespace Bubba
                     LookupButton.Visibility = Visibility.Hidden;
                     RefreshButton.Visibility = Visibility.Hidden;
                     ToolStripTextBox.Visibility = Visibility.Hidden;
-                    ToolStripComboBox.Visibility = Visibility.Hidden;
                     CancelButton.Visibility = Visibility.Hidden;
                     DeleteButton.Visibility = Visibility.Hidden;
                     BrowserButton.Visibility = Visibility.Hidden;
@@ -1516,42 +1575,6 @@ namespace Bubba
         }
 
         /// <summary>
-        /// Busies this instance.
-        /// </summary>
-        private void Busy( )
-        {
-            try
-            {
-                lock( _entry )
-                {
-                    _busy = true;
-                }
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
-            }
-        }
-
-        /// <summary>
-        /// Chills this instance.
-        /// </summary>
-        private void Chill( )
-        {
-            try
-            {
-                lock( _entry )
-                {
-                    _busy = false;
-                }
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
-            }
-        }
-
-        /// <summary>
         /// Opens the search dialog.
         /// </summary>
         /// <param name="x">The x.</param>
@@ -1626,6 +1649,7 @@ namespace Bubba
 
                 _systemDialog.Show( );
                 _systemDialog.SystemDialogTextBox.Text = _systemPrompt;
+                _systemDialog.SystemDialogTextBox.Focus( );
             }
             catch( Exception ex )
             {
@@ -1684,6 +1708,7 @@ namespace Bubba
         {
             try
             {
+                Busy( );
                 var _url = "https://api.openai.com/v1/models";
                 _httpClient = new HttpClient( );
                 _httpClient.Timeout = new TimeSpan( 0, 0, 3 );
@@ -1721,35 +1746,12 @@ namespace Bubba
                     }
                 } );
 
+                Chill( );
                 ModelComboBox.SelectedIndex = -1;
             }
             catch( HttpRequestException ex )
             {
                 Fail( ex );
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
-            }
-        }
-
-        /// <summary>
-        /// Populates the domain drop downs.
-        /// </summary>
-        private void PopulateDomainDropDowns( )
-        {
-            try
-            {
-                ToolStripComboBox.Items?.Clear( );
-                var _domains = Enum.GetNames( typeof( Domains ) );
-                for( var _i = 0; _i < _domains.Length; _i++ )
-                {
-                    var _dom = _domains[ _i ];
-                    if( !string.IsNullOrEmpty( _dom ) )
-                    {
-                        ToolStripComboBox.Items.Add( _dom );
-                    }
-                }
             }
             catch( Exception ex )
             {
@@ -1782,7 +1784,7 @@ namespace Bubba
                 ModelComboBox.Items.Add( "gpt-4o-mini" );
                 ModelComboBox.Items.Add( "o1-preview" );
                 ModelComboBox.Items.Add( "o1-mini" );
-                ModelComboBox.Items.Add("gpt-3.5-turbo");
+                ModelComboBox.Items.Add( "gpt-3.5-turbo" );
                 ModelComboBox.SelectedIndex = -1;
             }
             catch( Exception ex )
@@ -1800,7 +1802,7 @@ namespace Bubba
             {
                 ModelComboBox.Items?.Clear( );
                 ModelComboBox.Items.Add( "dall-e-3" );
-                ModelComboBox.Items.Add("dall-e-2");
+                ModelComboBox.Items.Add( "dall-e-2" );
                 ModelComboBox.SelectedIndex = -1;
             }
             catch( Exception ex )
@@ -1873,7 +1875,7 @@ namespace Bubba
             try
             {
                 ModelComboBox.Items?.Clear( );
-                ModelComboBox.Items.Add("whisper-1");
+                ModelComboBox.Items.Add( "whisper-1" );
                 ModelComboBox.SelectedIndex = -1;
             }
             catch( Exception ex )
@@ -1890,7 +1892,7 @@ namespace Bubba
             try
             {
                 ModelComboBox.Items?.Clear( );
-                ModelComboBox.Items.Add("whisper-1");
+                ModelComboBox.Items.Add( "whisper-1" );
                 ModelComboBox.SelectedIndex = -1;
             }
             catch( Exception ex )
@@ -1909,7 +1911,7 @@ namespace Bubba
                 ModelComboBox.Items?.Clear( );
                 ModelComboBox.Items.Add( "text-embedding-3-small" );
                 ModelComboBox.Items.Add( "text-embedding-3-large" );
-                ModelComboBox.Items.Add("text-embedding-ada-002");
+                ModelComboBox.Items.Add( "text-embedding-ada-002" );
                 ModelComboBox.SelectedIndex = -1;
             }
             catch( Exception ex )
@@ -1929,7 +1931,7 @@ namespace Bubba
                 ModelComboBox.Items.Add( "gpt-4o" );
                 ModelComboBox.Items.Add( "gpt-4o-mini" );
                 ModelComboBox.Items.Add( "gpt-4" );
-                ModelComboBox.Items.Add("gpt-3.5-turbo");
+                ModelComboBox.Items.Add( "gpt-3.5-turbo" );
                 ModelComboBox.SelectedIndex = -1;
             }
             catch( Exception ex )
@@ -2160,7 +2162,6 @@ namespace Bubba
             try
             {
                 InitializeTimer( );
-                PopulateDomainDropDowns( );
                 InitializeToolStrip( );
                 InitializeLabel( );
                 PopulateModelsAsync( );

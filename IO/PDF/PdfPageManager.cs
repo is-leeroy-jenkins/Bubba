@@ -52,7 +52,7 @@ namespace Bubba
     /// <seealso cref="T:System.IDisposable" />
     [SuppressMessage( "ReSharper", "UnusedType.Global" ) ]
     [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
-    public class PdfPageManager : IDisposable
+    public class PdfPageManager : PropertyChangedBase, IDisposable
     {
         /// <summary>
         /// The timer

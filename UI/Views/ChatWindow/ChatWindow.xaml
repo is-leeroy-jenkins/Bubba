@@ -39,7 +39,6 @@
     </Window.Resources>
 
 
-
     <!--  *********************************************  CONTEXT MENU *************************************  -->
 
     <Window.ContextMenu>
@@ -375,7 +374,7 @@
                     Background="{StaticResource GroupBoxBackground}"
                     FontSize="12"
                     Foreground="{StaticResource LightBlueBrush}"
-                    Header="Sizes">
+                    Header="Image Sizes">
                     <GroupBox.RenderTransform>
                         <TransformGroup>
                             <ScaleTransform ScaleX="1" />
@@ -408,7 +407,7 @@
                     Canvas.Left="1038"
                     Canvas.Top="28"
                     Width="190"
-                    Height="180"
+                    Height="200"
                     HorizontalAlignment="Center"
                     VerticalAlignment="Top"
                     Background="{StaticResource GroupBoxBackground}"
@@ -422,7 +421,7 @@
                     Canvas.Left="24"
                     Canvas.Top="28"
                     Width="190"
-                    Height="180"
+                    Height="200"
                     HorizontalAlignment="Center"
                     VerticalAlignment="Top"
                     Background="{StaticResource GroupBoxBackground}"
@@ -437,7 +436,7 @@
                     Canvas.Left="227"
                     Canvas.Top="28"
                     Width="190"
-                    Height="180"
+                    Height="200"
                     HorizontalAlignment="Left"
                     VerticalAlignment="Top"
                     Background="{StaticResource GroupBoxBackground}"
@@ -451,7 +450,7 @@
                     Canvas.Left="428"
                     Canvas.Top="28"
                     Width="190"
-                    Height="180"
+                    Height="200"
                     HorizontalAlignment="Center"
                     VerticalAlignment="Top"
                     Background="{StaticResource GroupBoxBackground}"
@@ -465,7 +464,7 @@
                     Canvas.Left="632"
                     Canvas.Top="28"
                     Width="190"
-                    Height="180"
+                    Height="200"
                     HorizontalAlignment="Center"
                     VerticalAlignment="Top"
                     Background="{StaticResource GroupBoxBackground}"
@@ -478,7 +477,7 @@
                 <wpf:DoubleTextBox
                     x:Name="TemperatureTextBox"
                     Canvas.Left="76"
-                    Canvas.Top="140"
+                    Canvas.Top="160"
                     Width="80"
                     Height="30"
                     HorizontalAlignment="Center"
@@ -540,11 +539,11 @@
                 <wpf:DoubleTextBox
                     x:Name="TopPercentTextBox"
                     Canvas.Left="274"
-                    Canvas.Top="140"
+                    Canvas.Top="160"
                     Width="80"
                     Height="30"
                     HorizontalAlignment="Left"
-                    VerticalAlignment="Top"
+                    VerticalAlignment="Center"
                     HorizontalContentAlignment="Center"
                     Background="{StaticResource ControlInteriorBrush}"
                     BorderBrush="{StaticResource BlueBorderBrush}"
@@ -606,11 +605,11 @@
                 <wpf:DoubleTextBox
                     x:Name="PresenceTextBox"
                     Canvas.Left="473"
-                    Canvas.Top="140"
+                    Canvas.Top="160"
                     Width="80"
                     Height="30"
                     HorizontalAlignment="Center"
-                    VerticalAlignment="Top"
+                    VerticalAlignment="Center"
                     HorizontalContentAlignment="Center"
                     ApplyNegativeForeground="True"
                     ApplyZeroColor="True"
@@ -663,11 +662,11 @@
                 <wpf:DoubleTextBox
                     x:Name="FrequencyTextBox"
                     Canvas.Left="682"
-                    Canvas.Top="140"
+                    Canvas.Top="160"
                     Width="80"
                     Height="30"
                     HorizontalAlignment="Center"
-                    VerticalAlignment="Top"
+                    VerticalAlignment="Center"
                     HorizontalContentAlignment="Center"
                     ApplyNegativeForeground="True"
                     ApplyZeroColor="True"
@@ -714,7 +713,7 @@
                     Canvas.Left="838"
                     Canvas.Top="28"
                     Width="179"
-                    Height="180"
+                    Height="200"
                     HorizontalAlignment="Center"
                     VerticalAlignment="Top"
                     Background="{StaticResource GroupBoxBackground}"
@@ -830,11 +829,11 @@
                 <wpf:IntegerTextBox
                     x:Name="NumberTextBox"
                     Canvas.Left="888"
-                    Canvas.Top="140"
+                    Canvas.Top="160"
                     Width="80"
                     Height="30"
                     HorizontalAlignment="Center"
-                    VerticalAlignment="Top"
+                    VerticalAlignment="Center"
                     HorizontalContentAlignment="Center"
                     Background="{StaticResource ControlInteriorBrush}"
                     BorderBrush="{StaticResource BlueBorderBrush}"
@@ -850,11 +849,11 @@
                 <wpf:IntegerTextBox
                     x:Name="MaxTokenTextBox"
                     Canvas.Left="1093"
-                    Canvas.Top="140"
+                    Canvas.Top="160"
                     Width="80"
                     Height="30"
                     HorizontalAlignment="Center"
-                    VerticalAlignment="Top"
+                    VerticalAlignment="Center"
                     HorizontalContentAlignment="Center"
                     Background="{StaticResource ControlInteriorBrush}"
                     BorderBrush="{StaticResource BlueBorderBrush}"
@@ -899,6 +898,7 @@
                     ToolTipFormat="N1"
                     ValuePlacement="TopLeft"
                     Value="1" />
+
                 <TextBlock
                     Canvas.Left="908"
                     Canvas.Top="53"
@@ -916,7 +916,7 @@
             <Canvas
                 x:Name="UserCanvas"
                 Grid.Row="2"
-                Margin="0,0,0,10">
+                Margin="0,0,0,20">
 
                 <GroupBox
                     Canvas.Left="1054"
@@ -925,13 +925,13 @@
                     HorizontalAlignment="Center"
                     VerticalAlignment="Top"
                     Background="{StaticResource GroupBoxBackground}"
-                    BorderBrush="{StaticResource MutedForeground}"
+                    Foreground="{StaticResource LightBlueBrush}"
                     Header="Commands">
 
                     <b:MetroTile
                         x:Name="ClearButton"
                         Title=""
-                        Width="95"
+                        Width="90"
                         Height="50"
                         Margin="33,0,0,0"
                         HorizontalAlignment="Left"
@@ -1059,7 +1059,7 @@
                     Header=""
                     ImageSource="/Resources/Assets/ToolStripImages/UploadButton.png"
                     ToolTip="Upload to API" />
-                
+
                 <b:MetroTile
                     x:Name="SendButton"
                     Title=""
@@ -1106,7 +1106,7 @@
 
                 <Label
                     x:Name="StatusLabel"
-                    Width="80"
+                    Width="100"
                     Height="30"
                     FontFamily="Roboto" />
 
@@ -1127,7 +1127,7 @@
 
                 <b:ToolStripTextBox
                     x:Name="ToolStripTextBox"
-                    Width="360"
+                    Width="380"
                     Height="30"
                     Margin="5,1,5,1"
                     Padding="15,1,1,1"
@@ -1166,15 +1166,6 @@
                     ImageSource="/Resources/Assets/ToolStripImages/RefreshButton.png"
                     ToolTip="Resets Input Controls and GPT Parameters" />
 
-                <b:ToolStripDropDown
-                    x:Name="ToolStripComboBox"
-                    Width="115"
-                    Margin="5,1,5,1"
-                    AllowMultiSelect="True"
-                    BorderBrush="{StaticResource BlueBorderBrush}"
-                    BorderThickness="2"
-                    ToolTip="Select Domain" />
-
                 <b:ToolStripButton
                     x:Name="BrowserButton"
                     Margin="5,1,5,1"
@@ -1195,7 +1186,7 @@
 
                 <mah:MetroProgressBar
                     x:Name="ProgressBar"
-                    Width="100"
+                    Width="180"
                     Background="{StaticResource FormBackground}" />
 
                 <b:ToolStripButton
@@ -1215,6 +1206,7 @@
             Margin="252,4,397,10"
             HorizontalContentAlignment="Center"
             Content="Text Generation Mode ..."
+            FontSize="14"
             Foreground="{StaticResource LightBlueBrush}" />
 
         <Label

@@ -63,8 +63,133 @@ namespace Bubba
     [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
     [ SuppressMessage( "ReSharper", "FieldCanBeMadeReadOnly.Global" ) ]
     [ SuppressMessage( "ReSharper", "InconsistentNaming" ) ]
+    [ SuppressMessage( "ReSharper", "PreferConcreteValueOverDefault" ) ]
     public class DataFile : FileBase
     {
+        /// <inheritdoc />
+        /// <summary>
+        /// Initializes a new instance of the
+        /// <see cref="T:Bubba.DataFile" /> class.
+        /// </summary>
+        public DataFile( )
+            : base( )
+        {
+        }
+
+        /// <inheritdoc />
+        /// <summary>
+        /// Initializes a new instance of the
+        /// <see cref="T:Bubba.DataFile" /> class.
+        /// </summary>
+        /// <param name="input">The input.</param>
+        public DataFile( string input )
+            : base( input )
+        {
+            _input = input;
+            _fileName = Path.GetFileNameWithoutExtension( input );
+            _fileExists = File.Exists( input );
+            _hasExtension = Path.HasExtension( input );
+            _fullPath = Path.GetFullPath( input );
+            _absolutePath = Path.GetFullPath( input );
+            _fileAttributes = File.GetAttributes( input );
+            _created = File.GetCreationTime( input );
+            _modified = File.GetLastWriteTime( input );
+            _hasParent = !string.IsNullOrEmpty( GetParent( input )?.Name );
+            _parentName = Path.GetDirectoryName( input );
+            _parentPath = GetParent( _fullPath )?.FullName;
+            _size = File.Open( input, FileMode.Open ).Length;
+        }
+
+        /// <inheritdoc />
+        /// <summary>
+        /// Initializes a new instance of the
+        /// <see cref="T:Bubba.DataFile" /> class.
+        /// </summary>
+        /// <param name="file">The file.</param>
+        public DataFile( DataFile file )
+            : this( )
+        {
+            _input = file.Input;
+            _fileName = file.FileName;
+            _fileExists = File.Exists( file.FullPath );
+            _hasExtension = Path.HasExtension( file.FullPath );
+            _fullPath = file.FullPath;
+            _absolutePath = file.AbsolutePath;
+            _fileAttributes = file.FileAttributes;
+            _created = file.Created;
+            _modified = file.Modified;
+            _hasParent = !string.IsNullOrEmpty( GetParent( file.FullPath )?.Name );
+            _parentName = file.ParentName;
+            _parentPath = file.ParentPath;
+            _size = file.Size;
+        }
+
+        /// <summary>
+        /// Gets the size.
+        /// </summary>
+        /// <value>
+        /// The size.
+        /// </value>
+        public long Size
+        {
+            get
+            {
+                return _size;
+            }
+            set
+            {
+                if( _size != value )
+                {
+                    _size = value;
+                    OnPropertyChanged( nameof( Size ) );
+                }
+            }
+        }
+
+        /// <summary>
+        /// Gets the name of the parent.
+        /// </summary>
+        /// <value>
+        /// The name of the parent.
+        /// </value>
+        public string ParentName
+        {
+            get
+            {
+                return _parentName;
+            }
+            set
+            {
+                if( _parentName != value )
+                {
+                    _parentName = value;
+                    OnPropertyChanged( nameof( ParentName ) );
+                }
+            }
+        }
+
+        /// <summary>
+        /// Gets the parent path.
+        /// </summary>
+        /// <value>
+        /// The parent path.
+        /// </value>
+        public string ParentPath
+        {
+            get
+            {
+                return _parentPath;
+            }
+            set
+            {
+                if( _parentPath != value )
+                {
+                    _parentPath = value;
+                    OnPropertyChanged( nameof( ParentPath ) );
+                }
+            }
+        }
+
         /// <inheritdoc />
         /// <summary>
         /// Determines whether this instance contains the object.
@@ -285,130 +410,6 @@ namespace Bubba
             {
                 Fail( ex );
                 return string.Empty;
-            }
-        }
-
-        /// <inheritdoc />
-        /// <summary>
-        /// Initializes a new instance of the
-        /// <see cref="T:Bubba.DataFile" /> class.
-        /// </summary>
-        public DataFile( )
-            : base( )
-        {
-        }
-
-        /// <inheritdoc />
-        /// <summary>
-        /// Initializes a new instance of the
-        /// <see cref="T:Bubba.DataFile" /> class.
-        /// </summary>
-        /// <param name="input">The input.</param>
-        public DataFile( string input )
-            : base( input )
-        {
-            _input = input;
-            _fileName = Path.GetFileNameWithoutExtension( input );
-            _fileExists = File.Exists( input );
-            _hasExtension = Path.HasExtension( input );
-            _fullPath = Path.GetFullPath( input );
-            _absolutePath = Path.GetFullPath( input );
-            _fileAttributes = File.GetAttributes( input );
-            _created = File.GetCreationTime( input );
-            _modified = File.GetLastWriteTime( input );
-            _hasParent = !string.IsNullOrEmpty( GetParent( input )?.Name );
-            _parentName = Path.GetDirectoryName( input );
-            _parentPath = GetParent( _fullPath )?.FullName;
-            _size = File.Open( input, FileMode.Open ).Length;
-        }
-
-        /// <inheritdoc />
-        /// <summary>
-        /// Initializes a new instance of the
-        /// <see cref="T:Bubba.DataFile" /> class.
-        /// </summary>
-        /// <param name="file">The file.</param>
-        public DataFile( DataFile file )
-            : this( )
-        {
-            _input = file.Input;
-            _fileName = file.FileName;
-            _fileExists = File.Exists( file.FullPath );
-            _hasExtension = Path.HasExtension( file.FullPath );
-            _fullPath = file.FullPath;
-            _absolutePath = file.AbsolutePath;
-            _fileAttributes = file.FileAttributes;
-            _created = file.Created;
-            _modified = file.Modified;
-            _hasParent = !string.IsNullOrEmpty( GetParent( file.FullPath )?.Name );
-            _parentName = file.ParentName;
-            _parentPath = file.ParentPath;
-            _size = file.Size;
-        }
-
-        /// <summary>
-        /// Gets the size.
-        /// </summary>
-        /// <value>
-        /// The size.
-        /// </value>
-        public long Size
-        {
-            get
-            {
-                return _size;
-            }
-            set
-            {
-                if( _size != value )
-                {
-                    _size = value;
-                    OnPropertyChanged( nameof( Size ) );
-                }
-            }
-        }
-
-        /// <summary>
-        /// Gets the name of the parent.
-        /// </summary>
-        /// <value>
-        /// The name of the parent.
-        /// </value>
-        public string ParentName
-        {
-            get
-            {
-                return _parentName;
-            }
-            set
-            {
-                if( _parentName != value )
-                {
-                    _parentName = value;
-                    OnPropertyChanged( nameof( ParentName ) );
-                }
-            }
-        }
-
-        /// <summary>
-        /// Gets the parent path.
-        /// </summary>
-        /// <value>
-        /// The parent path.
-        /// </value>
-        public string ParentPath
-        {
-            get
-            {
-                return _parentPath;
-            }
-            set
-            {
-                if( _parentPath != value )
-                {
-                    _parentPath = value;
-                    OnPropertyChanged( nameof( ParentPath ) );
-                }
             }
         }
     }

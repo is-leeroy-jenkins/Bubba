@@ -118,7 +118,7 @@ namespace Bubba
         /// </exception>
         public void StartRecording( string outputFilePath )
         {
-            if( IsRecording )
+            if( _isRecording )
             {
                 throw new InvalidOperationException( "Already recording." );
             }
@@ -127,7 +127,7 @@ namespace Bubba
             _waveIn.DataAvailable += OnDataAvailable;
             _waveIn.RecordingStopped += OnRecordingStopped;
             _waveIn.StartRecording( );
-            IsRecording = true;
+            _isRecording = true;
         }
 
         /// <summary>
@@ -138,7 +138,7 @@ namespace Bubba
         /// </exception>
         public void StopRecording( )
         {
-            if( !IsRecording )
+            if( !_isRecording )
             {
                 throw new InvalidOperationException( "Not currently recording." );
             }
@@ -178,9 +178,10 @@ namespace Bubba
             _writer?.Dispose( );
             _waveIn.DataAvailable -= OnDataAvailable;
             _waveIn.RecordingStopped -= OnRecordingStopped;
-            IsRecording = false;
+            _isRecording = false;
         }
 
+        /// <inheritdoc />
         /// <summary>
         /// Performs application-defined tasks associated with freeing,
         /// releasing, or resetting unmanaged resources.

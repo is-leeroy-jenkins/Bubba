@@ -123,6 +123,52 @@ namespace Bubba
         }
 
         /// <summary>
+        /// Gets or sets the name.
+        /// </summary>
+        /// <value>
+        /// The name.
+        /// </value>
+        [ JsonPropertyName( "name" ) ]
+        public string Name
+        {
+            get
+            {
+                return _name;
+            }
+            set
+            {
+                if(_name != value)
+                {
+                    _name = value;
+                    OnPropertyChanged(nameof(Name));
+                }
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the tools.
+        /// </summary>
+        /// <value>
+        /// The tools.
+        /// </value>
+        [ JsonPropertyName( "tools" ) ]
+        public IList<string> Tools
+        {
+            get
+            {
+                return _tools;
+            }
+            set
+            {
+                if(_tools != value)
+                {
+                    _tools = value;
+                    OnPropertyChanged(nameof(Tools));
+                }
+            }
+        }
+
+        /// <summary>
         /// Gets or sets the descriptions.
         /// </summary>
         /// <value>
@@ -146,7 +192,7 @@ namespace Bubba
         }
 
         /// <summary>
-        /// Gets or sets the instructions.
+        /// Gets or sets the system instructions.
         /// </summary>
         /// <value>
         /// The instructions.

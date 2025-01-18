@@ -45,6 +45,7 @@ namespace Bubba
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
     using System.Linq;
+    using System.Text.Json.Serialization;
     using Properties;
 
     /// <inheritdoc />
@@ -55,6 +56,26 @@ namespace Bubba
     public class ChatParameter : GptParameter
     {
         /// <summary>
+        /// The tools
+        /// </summary>
+        private protected IList<string> _tools;
+
+        /// <summary>
+        /// Developer-defined tags and values used for filtering completions
+        /// </summary>
+        private protected IDictionary<string, object> _metaData;
+
+        /// <summary>
+        /// The reasoning effort
+        /// </summary>
+        private protected string _reasoningEffort;
+
+        /// <summary>
+        /// The system prompt
+        /// </summary>
+        private protected string _instructions;
+
+        /// <summary>
         /// Initializes a new instance of the
         /// <see cref="ChatParameter"/> class.
         /// </summary>
@@ -62,7 +83,7 @@ namespace Bubba
         public ChatParameter( )
             : base( )
         {
-            _model = "gpt-4o-mini";
+            _model = "gpt-4o";
             _endPoint = GptEndPoint.Completions;
             _store = false;
             _stream = true;
@@ -292,6 +313,77 @@ namespace Bubba
                 {
                     _responseFormat = value;
                     OnPropertyChanged( nameof( ResponseFormat ) );
+                }
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the reasoning effort.
+        /// </summary>
+        /// <value>
+        /// The reasoning effort.
+        /// </value>
+        public string ReasoningEffort
+        {
+            get
+            {
+                return _reasoningEffort;
+            }
+            set
+            {
+                if(_reasoningEffort != value)
+                {
+                    _reasoningEffort = value;
+                    OnPropertyChanged(nameof(ReasoningEffort));
+                }
+            }
+        }
+
+        /// <summary>
+        /// A list of tool enabled on the assistant.
+        /// There can be a maximum of 128 tools per assistant.
+        /// Tools can be of types code_interpreter, file_search, or function.
+        /// </summary>
+        /// <value>
+        /// The tools.
+        /// </value>
+        public IList<string> Tools
+        {
+            get
+            {
+                return _tools;
+            }
+            set
+            {
+                if(_tools != value)
+                {
+                    _tools = value;
+                    OnPropertyChanged(nameof(Tools));
+                }
+            }
+        }
+
+        /// <summary>
+        /// Set of 16 key-value pairs that can be attached to an object.
+        /// This can be useful for storing additional information about the
+        /// object in a structured format. Keys can be a maximum of 64 characters
+        /// long and values can be a maximum of 512 characters long.
+        /// </summary>
+        /// <value>
+        /// The meta data.
+        /// </value>
+        public IDictionary<string, object> MetaData
+        {
+            get
+            {
+                return _metaData;
+            }
+            set
+            {
+                if(_metaData != value)
+                {
+                    _metaData = value;
+                    OnPropertyChanged(nameof(MetaData));
                 }
             }
         }

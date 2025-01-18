@@ -8,7 +8,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:wpf="http://schemas.syncfusion.com/wpf"
     Width="775"
-    Height="190"
+    Height="220"
     wpf:SfSkinManager.Theme="{wpf:SkinManager ThemeName=FluentDark}"
     Background="{StaticResource ControlBackground}"
     BorderBrush="{StaticResource BlueBorderBrush}"
@@ -19,15 +19,60 @@
     WindowStyle="None"
     mc:Ignorable="d">
 
+    <!--  ******************************************** RESOURCES *********************************************  -->
+
+    <Window.Resources>
+        <Style TargetType="{x:Type ToolTip}">
+            <Setter Property="BorderThickness" Value="1" />
+            <Setter Property="Padding" Value="10" />
+            <Setter Property="BorderBrush" Value="{StaticResource BlueBorderBrush}" />
+            <Setter Property="Background" Value="{StaticResource BlackBackground}" />
+            <Setter Property="Foreground" Value="{StaticResource LightBlueBrush}" />
+        </Style>
+    </Window.Resources>
+
+
+    <!--  *********************************************  CONTEXT MENU *************************************  -->
+
+    <Window.ContextMenu>
+        <ContextMenu x:Name="BrowserContextMenu">
+            <wpf:MenuItemAdv Header="File" ToolTip="Browse File System">
+                <wpf:MenuItemAdv.Icon>
+                    <Image Source="/Resources/Assets/MenuImages/FileItem.png" />
+                </wpf:MenuItemAdv.Icon>
+            </wpf:MenuItemAdv>
+
+            <wpf:MenuItemAdv Header="Folder" ToolTip="Browse Directories">
+                <wpf:MenuItemAdv.Icon>
+                    <Image Source="/Resources/Assets/MenuImages/FolderItem.png" />
+                </wpf:MenuItemAdv.Icon>
+            </wpf:MenuItemAdv>
+
+            <wpf:MenuItemAdv Header="Copy" ToolTip="Copy Prompt">
+                <wpf:MenuItemAdv.Icon>
+                    <Image Source="/Resources/Assets/DialogImages/CopyRecordButton.png" />
+                </wpf:MenuItemAdv.Icon>
+            </wpf:MenuItemAdv>
+
+            <Separator Background="{StaticResource BlueBorderBrush}" />
+
+        </ContextMenu>
+    </Window.ContextMenu>
+
+
+    <!--  *********************************************  MAIN GRID *************************************  -->
+
+
+
     <Canvas>
-        <local:MetroTextBox
+        <TextBox
             x:Name="SystemDialogTextBox"
             Canvas.Left="30"
             Canvas.Top="34"
             Width="645"
-            Height="129"
+            Height="169"
             Padding="20,10,20,10"
-            HorizontalAlignment="Left"
+            HorizontalAlignment="Center"
             VerticalAlignment="Top"
             Background="{StaticResource BlackBackground}"
             BorderBrush="{StaticResource MutedForeground}"
@@ -42,11 +87,11 @@
         <local:MetroTile
             x:Name="SystemDialogGoButton"
             Title=""
-            Canvas.Left="697"
-            Canvas.Top="126"
+            Canvas.Left="698"
+            Canvas.Top="157"
             Width="50"
             Height="45"
-            HorizontalAlignment="Left"
+            HorizontalAlignment="Center"
             VerticalAlignment="Top"
             Background="{StaticResource ControlBackground}"
             BorderBrush="{StaticResource ControlBackground}"
@@ -58,8 +103,8 @@
         <local:MetroTile
             x:Name="SystemDialogCancelButton"
             Title=""
-            Canvas.Left="695"
-            Canvas.Top="25"
+            Canvas.Left="700"
+            Canvas.Top="28"
             Width="50"
             Height="44"
             HorizontalAlignment="Left"
@@ -68,18 +113,18 @@
             BorderBrush="{StaticResource ControlBackground}"
             Foreground="{StaticResource FormForeground}"
             Header=""
-            ImageSource="/Resources/Assets/ToolStripImages/StopButton.png"
+            ImageSource="/Resources/Assets/ToolStripImages/CancelButton.png"
             ToolTip="Close Prompt" />
 
         <local:MetroTile
             x:Name="SystemDialogRefreshButton"
             Title=""
-            Canvas.Left="697"
-            Canvas.Top="76"
+            Canvas.Left="700"
+            Canvas.Top="93"
             Width="49"
             Height="46"
-            HorizontalAlignment="Center"
-            VerticalAlignment="Center"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
             Background="{StaticResource ControlBackground}"
             BorderBrush="{StaticResource ControlBackground}"
             Foreground="{StaticResource FormForeground}"
@@ -89,17 +134,23 @@
 
         <Label
             x:Name="HeaderLabel"
-            Canvas.Left="10"
-            Canvas.Top="4"
-            Width="622"
-            Height="25"
+            Canvas.Left="35"
+            Canvas.Top="2"
+            Width="572"
+            Height="24"
             Padding="5,0,5,5"
             HorizontalAlignment="Left"
-            VerticalAlignment="Center"
+            VerticalAlignment="Top"
             HorizontalContentAlignment="Left"
-            VerticalContentAlignment="Top"
+            VerticalContentAlignment="Center"
             Content="System Instructions"
             FontSize="14"
             Foreground="{StaticResource LightBlueBrush}" />
+        <local:MetroImage
+            Canvas.Left="3"
+            Canvas.Top="3"
+            Width="24"
+            Height="22"
+            Source="/Resources/Assets/ToolStripImages/ChatButton.png" />
     </Canvas>
 </Window>
