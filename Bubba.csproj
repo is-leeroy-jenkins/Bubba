@@ -325,7 +325,8 @@
     <PackageReference Include="PDFsharp" Version="6.1.1" />
     <PackageReference Include="QRCoder" Version="1.6.0" />
     <PackageReference Include="RestoreWindowPlace" Version="2.1.0" />
-    <PackageReference Include="ScottPlot.WPF" Version="5.0.47" />
+    <PackageReference Include="ScottPlot" Version="5.0.53" />
+    <PackageReference Include="ScottPlot.WPF" Version="5.0.53" />
     <PackageReference Include="SkiaSharp" Version="3.116.1" />
     <PackageReference Include="Syncfusion.Edit.WPF" Version="24.1.41" />
     <PackageReference Include="Syncfusion.Grouping.Base" Version="24.1.41" />
@@ -640,6 +641,7 @@
     <Folder Include="Data\Stores\Access\" />
     <Folder Include="Data\Stores\SqlServer\" />
     <Folder Include="Data\Stores\SQLite\" />
+    <Folder Include="UI\Graphing\" />
   </ItemGroup>
 
   <ItemGroup>

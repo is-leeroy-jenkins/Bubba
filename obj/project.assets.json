@@ -2018,7 +2018,7 @@
           }
         }
       },
-      "ScottPlot/5.0.47": {
+      "ScottPlot/5.0.53": {
         "type": "package",
         "dependencies": {
           "HarfBuzzSharp.NativeAssets.Linux": "7.3.0.3",
@@ -2037,12 +2037,12 @@
           }
         }
       },
-      "ScottPlot.WPF/5.0.47": {
+      "ScottPlot.WPF/5.0.53": {
         "type": "package",
         "dependencies": {
           "OpenTK": "4.3.0",
           "OpenTK.GLWpfControl": "4.2.3",
-          "ScottPlot": "5.0.47",
+          "ScottPlot": "5.0.53",
           "SkiaSharp.Views.WPF": "2.88.9"
         },
         "compile": {
@@ -6981,10 +6981,10 @@
         "version.txt"
       ]
     },
-    "ScottPlot/5.0.47": {
-      "sha512": "TLbfiW0CV6+Sban7ibQxJQQKpPcvYNDcc1xMo0n4016FZ1Y30z+HZHYEV+AELQ+Q0ral61e6xS7iQimot10C6Q==",
+    "ScottPlot/5.0.53": {
+      "sha512": "qTQzpD8Wa5njz/ZmF8hSadiKSM9tKdWxCq0Fnfcwt8Oik8e3RIiFeLSmcLa/TYVuPmIuPaCqm96RIWENvkvV4g==",
       "type": "package",
-      "path": "scottplot/5.0.47",
+      "path": "scottplot/5.0.53",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -6998,14 +6998,14 @@
         "lib/netstandard2.0/ScottPlot.dll",
         "lib/netstandard2.0/ScottPlot.xml",
         "readme.md",
-        "scottplot.5.0.47.nupkg.sha512",
+        "scottplot.5.0.53.nupkg.sha512",
         "scottplot.nuspec"
       ]
     },
-    "ScottPlot.WPF/5.0.47": {
-      "sha512": "c5LAIDZf0WwBPWGxtErxSNKLcxMcISMhLj5uYosMpJokBd/Ep2mennO78Rbqe3AKGtfF1ic81iPVj53VsqBfkA==",
+    "ScottPlot.WPF/5.0.53": {
+      "sha512": "x0IItR7wmqWet7ZyRTjW0aZQdn2BZOXrtRUjS7SppHxULmU5/JzklZlcIBUD9bczZPgXtPZeE988ejljqIcWpQ==",
       "type": "package",
-      "path": "scottplot.wpf/5.0.47",
+      "path": "scottplot.wpf/5.0.53",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -7015,7 +7015,7 @@
         "lib/net6.0-windows7.0/ScottPlot.WPF.dll",
         "lib/net6.0-windows7.0/ScottPlot.WPF.xml",
         "readme.md",
-        "scottplot.wpf.5.0.47.nupkg.sha512",
+        "scottplot.wpf.5.0.53.nupkg.sha512",
         "scottplot.wpf.nuspec"
       ]
     },
@@ -9357,7 +9357,8 @@
       "PDFsharp >= 6.1.1",
       "QRCoder >= 1.6.0",
       "RestoreWindowPlace >= 2.1.0",
-      "ScottPlot.WPF >= 5.0.47",
+      "ScottPlot >= 5.0.53",
+      "ScottPlot.WPF >= 5.0.53",
       "SkiaSharp >= 3.116.1",
       "Syncfusion.Edit.WPF >= 24.1.41",
       "Syncfusion.Grouping.Base >= 24.1.41",
@@ -9528,9 +9529,13 @@
             "target": "Package",
             "version": "[2.1.0, )"
           },
+          "ScottPlot": {
+            "target": "Package",
+            "version": "[5.0.53, )"
+          },
           "ScottPlot.WPF": {
             "target": "Package",
-            "version": "[5.0.47, )"
+            "version": "[5.0.53, )"
           },
           "SkiaSharp": {
             "target": "Package",

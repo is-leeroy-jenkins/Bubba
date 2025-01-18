@@ -1,12 +1,12 @@
 ﻿// ******************************************************************************************
 //     Assembly:                Bubba
 //     Author:                  Terry D. Eppler
-//     Created:                 01-17-2025
+//     Created:                 01-18-2025
 // 
 //     Last Modified By:        Terry D. Eppler
-//     Last Modified On:        01-17-2025
+//     Last Modified On:        01-18-2025
 // ******************************************************************************************
-// <copyright file="AssistantRequest.cs" company="Terry D. Eppler">
+// <copyright file="CompletionRequest.cs" company="Terry D. Eppler">
 //    Bubba is a small and simple windows (wpf) application for interacting with the OpenAI API
 //    that's developed in C-Sharp under the MIT license.C#.
 // 
@@ -35,7 +35,7 @@
 //    You can contact me at:  terryeppler@gmail.com or eppler.terry@epa.gov
 // </copyright>
 // <summary>
-//   AssistantRequest.cs
+//   CompletionRequest.cs
 // </summary>
 // ******************************************************************************************
 
@@ -56,12 +56,11 @@ namespace Bubba
     /// <inheritdoc />
     /// <summary>
     /// </summary>
+    /// <seealso cref="T:Bubba.TextGenerationRequest" />
     [ SuppressMessage( "ReSharper", "UnusedType.Global" ) ]
     [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
     [ SuppressMessage( "ReSharper", "PreferConcreteValueOverDefault" ) ]
-    [ SuppressMessage( "ReSharper", "ClassCanBeSealed.Global" ) ]
-    [ SuppressMessage( "ReSharper", "PossibleUnintendedReferenceComparison" ) ]
-    public class AssistantRequest : TextGenerationRequest
+    public class CompletionRequest : TextGenerationRequest
     {
         /// <summary>
         /// The tools
@@ -83,17 +82,18 @@ namespace Bubba
         /// </summary>
         private protected string _instructions;
 
-        /// <inheritdoc />
         /// <summary>
         /// Initializes a new instance of the
-        /// <see cref="T:Bubba.CompletionRequest" /> class.
+        /// <see cref="CompletionRequest"/> class.
         /// </summary>
-        public AssistantRequest( )
+        /// <inheritdoc />
+        public CompletionRequest( )
             : base( )
         {
             _entry = new object( );
             _header = new GptHeader( );
-            _endPoint = GptEndPoint.Assistants;
+            _httpClient = new HttpClient( );
+            _endPoint = GptEndPoint.Completions;
             _model = "gpt-4o";
             _stop = new List<string>( );
             _tools = new List<string>( );
@@ -109,12 +109,12 @@ namespace Bubba
         /// </summary>
         /// <param name="user">The user.</param>
         /// <param name="system">The system.</param>
-        /// <param name = "config" > </param>
-        public AssistantRequest( string user, string system, GptParameter config )
+        /// <param name="config">The configuration.</param>
+        public CompletionRequest( string user, string system, GptParameter config )
             : base( )
         {
-            _header = new GptHeader( );
             _entry = new object( );
+            _header = new GptHeader( );
             _httpClient = new HttpClient( );
             _endPoint = GptEndPoint.Completions;
             _model = config.Model;
@@ -128,64 +128,6 @@ namespace Bubba
             _maximumTokens = config.MaximumTokens;
             _stop = config.Stop;
             _modalities = config.Modalities;
-        }
-
-        /// <inheritdoc />
-        /// <summary>
-        /// Initializes a new instance of the
-        /// <see cref="T:Bubba.CompletionRequest" /> class.
-        /// </summary>
-        /// <param name="request">The request.</param>
-        public AssistantRequest( AssistantRequest request )
-            : base( )
-        {
-            _header = new GptHeader( );
-            _entry = new object( );
-            _httpClient = new HttpClient( );
-            _endPoint = request.EndPoint;
-            _model = request.Model;
-            _store = request.Store;
-            _stream = request.Stream;
-            _number = request.Number;
-            _presencePenalty = request.PresencePenalty;
-            _frequencyPenalty = request.FrequencyPenalty;
-            _temperature = request.Temperature;
-            _topPercent = request.TopPercent;
-            _maximumTokens = request.MaximumTokens;
-            _stop = request.Stop;
-            _modalities = request.Modalities;
-        }
-
-        /// <summary>
-        /// Decontructs the specified header.
-        /// </summary>
-        /// <param name="header">The header.</param>
-        /// <param name="endPoint">The end point.</param>
-        /// <param name="store">if set to <c>true</c> [store].</param>
-        /// <param name="stream">if set to <c>true</c> [stream].</param>
-        /// <param name="model">The model.</param>
-        /// <param name="number">The number.</param>
-        /// <param name="presence">The presence.</param>
-        /// <param name="frequency">The frequency.</param>
-        /// <param name="temperature">The temperature.</param>
-        /// <param name="topPercent">The top percent.</param>
-        /// <param name="tokens">The tokens.</param>
-        public void Decontruct( out GptHeader header, out string endPoint, out bool store,
-            out bool stream, out string model, out int number,
-            out double presence, out double frequency, out double temperature,
-            out double topPercent, out int tokens )
-        {
-            header = _header;
-            endPoint = _endPoint;
-            store = _store;
-            stream = _stream;
-            model = _model;
-            number = _number;
-            presence = _presencePenalty;
-            frequency = _frequencyPenalty;
-            temperature = Temperature;
-            topPercent = TopPercent;
-            tokens = _maximumTokens;
         }
 
         /// <inheritdoc />
@@ -322,10 +264,10 @@ namespace Bubba
             }
             set
             {
-                if(_tools != value)
+                if( _tools != value )
                 {
                     _tools = value;
-                    OnPropertyChanged(nameof(Tools));
+                    OnPropertyChanged( nameof( Tools ) );
                 }
             }
         }
@@ -405,8 +347,8 @@ namespace Bubba
                     Prompt = prompt
                 };
 
-                var _serial = _payload.Serialize( );
-                var _content = new StringContent( _serial, Encoding.UTF8, _header.ContentType );
+                var _json = _payload.Serialize( );
+                var _content = new StringContent( _json, Encoding.UTF8, _header.ContentType );
                 var _response = await _httpClient.PostAsync( _endPoint, _content );
                 _response.EnsureSuccessStatusCode( );
                 var _chat = await _response.Content.ReadAsStringAsync( );
@@ -432,29 +374,29 @@ namespace Bubba
         {
             try
             {
-                using var _document = JsonDocument.Parse(response);
+                using var _document = JsonDocument.Parse( response );
                 var _root = _document.RootElement;
-                if(_model.Contains("gpt-3.5-turbo"))
+                if( _model.Contains( "gpt-3.5-turbo" ) )
                 {
-                    var _choices = _root.GetProperty("choices");
-                    if(_choices.ValueKind == JsonValueKind.Array
-                        && _choices.GetArrayLength() > 0)
+                    var _choices = _root.GetProperty( "choices" );
+                    if( _choices.ValueKind == JsonValueKind.Array
+                        && _choices.GetArrayLength( ) > 0 )
                     {
-                        var _msg = _choices[0].GetProperty("message");
-                        var _cnt = _msg.GetProperty("content");
-                        var _txt = _cnt.GetString();
+                        var _msg = _choices[ 0 ].GetProperty( "message" );
+                        var _cnt = _msg.GetProperty( "content" );
+                        var _txt = _cnt.GetString( );
                         return _txt;
                     }
 
-                    var _message = _choices[0].GetProperty("message");
-                    var _text = _message.GetString();
+                    var _message = _choices[ 0 ].GetProperty( "message" );
+                    var _text = _message.GetString( );
                     return _text;
                 }
                 else
                 {
-                    var _choice = _root.GetProperty("choices")[0];
-                    var _property = _choice.GetProperty("text");
-                    var _text = _property.GetString();
+                    var _choice = _root.GetProperty( "choices" )[ 0 ];
+                    var _property = _choice.GetProperty( "text" );
+                    var _text = _property.GetString( );
                     return _text;
                 }
             }
@@ -523,7 +465,8 @@ namespace Bubba
         /// Converts to string.
         /// </summary>
         /// <returns>
-        /// A <see cref="T:System.String" /> that represents this instance.
+        /// A <see cref="T:System.String" />
+        /// that represents this instance.
         /// </returns>
         public override string ToString( )
         {

@@ -386,7 +386,7 @@ namespace Bubba
         /// The json response.
         /// </param>
         /// <returns></returns>
-        private protected string ExtractResponse( string jsonResponse )
+        private protected virtual string ExtractText( string jsonResponse )
         {
             try
             {

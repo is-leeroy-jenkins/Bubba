@@ -270,6 +270,7 @@
                     BorderThickness="2"
                     Foreground="{StaticResource FormForeground}"
                     ToolTip="Select GPT Task">
+
                     <ComboBoxItem
                         Margin="3,3,3,3"
                         Padding="10,1,4,2"
@@ -277,6 +278,7 @@
                         FontFamily="Roboto"
                         Tag="CompletionRequest"
                         ToolTip="Chat Completion" />
+
                     <ComboBoxItem
                         Margin="3,3,3,3"
                         Padding="10,2,4,2"
@@ -284,6 +286,7 @@
                         FontFamily="Roboto"
                         Tag="TextGeneration"
                         ToolTip="Generate Text" />
+
                     <ComboBoxItem
                         Margin="3,3,3,3"
                         Padding="10,2,4,2"
@@ -291,6 +294,15 @@
                         FontFamily="Roboto"
                         Tag="ImageGeneration"
                         ToolTip="Create Images" />
+
+                    <ComboBoxItem
+                        Margin="3,3,3,3"
+                        Padding="10,1,4,2"
+                        Content="Assistants"
+                        FontFamily="Roboto"
+                        Tag="Assistants"
+                        ToolTip="Assistants API" />
+
                     <ComboBoxItem
                         Margin="3,3,3,3"
                         Padding="10,1,4,2"
@@ -298,6 +310,7 @@
                         FontFamily="Roboto"
                         Tag="Translations"
                         ToolTip="Text To Speech (TTS)" />
+
                     <ComboBoxItem
                         Margin="3,3,3,3"
                         Padding="10,1,4,2"
@@ -305,12 +318,14 @@
                         FontFamily="Roboto"
                         Tag="Transcriptions"
                         ToolTip="Speech To Text (STT)" />
+
                     <ComboBoxItem
                         Margin="3,3,3,3"
                         Padding="10,1,4,2"
                         Content="Files"
                         FontFamily="Roboto"
                         Tag="Files" />
+
                     <ComboBoxItem
                         Margin="3,3,3,3"
                         Padding="10,1,4,2"
@@ -318,6 +333,7 @@
                         FontFamily="Roboto"
                         Tag="Uploads"
                         ToolTip="Upload to the API" />
+
                     <ComboBoxItem
                         Margin="3,3,3,3"
                         Padding="10,2,4,2"
@@ -325,6 +341,7 @@
                         FontFamily="Roboto"
                         Tag="FineTuning"
                         ToolTip="Improve model" />
+
                     <ComboBoxItem
                         Margin="3,3,3,3"
                         Padding="10,1,4,2"
@@ -332,6 +349,7 @@
                         FontFamily="Roboto"
                         Tag="Embedding"
                         ToolTip="Create Vector Embedding" />
+
                     <ComboBoxItem
                         Margin="3,3,3,3"
                         Padding="10,1,4,2"
@@ -339,6 +357,7 @@
                         FontFamily="Roboto"
                         Tag="VectorStores"
                         ToolTip="Persist Files/Data" />
+
                     <ComboBoxItem
                         Margin="3,3,3,3"
                         Padding="10,2,4,2"
@@ -346,6 +365,7 @@
                         FontFamily="Roboto"
                         Tag="Projects"
                         ToolTip="Projects API" />
+
                 </ComboBox>
 
                 <ComboBox
@@ -397,6 +417,7 @@
 
 
             </Canvas>
+
             <Canvas
                 x:Name="ParameterCanvas"
                 Grid.Row="1"

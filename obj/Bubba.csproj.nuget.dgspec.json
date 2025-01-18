@@ -135,9 +135,13 @@
               "target": "Package",
               "version": "[2.1.0, )"
             },
+            "ScottPlot": {
+              "target": "Package",
+              "version": "[5.0.53, )"
+            },
             "ScottPlot.WPF": {
               "target": "Package",
-              "version": "[5.0.47, )"
+              "version": "[5.0.53, )"
             },
             "SkiaSharp": {
               "target": "Package",
