@@ -149,13 +149,11 @@ namespace Bubba
         /// Initializes a new instance of the <see cref="T:Bubba.FilePayload" /> class.
         /// </summary>
         /// <param name="userPrompt">The user prompt.</param>
-        /// <param name="systemPrompt">The system prompt.</param>
         /// <param name="config">The configuration.</param>
-        public FilePayload( string userPrompt, string systemPrompt, GptParameter config )
+        public FilePayload( string userPrompt, GptParameter config )
             : this( )
         {
             _prompt = userPrompt;
-            _systemPrompt = systemPrompt;
             _temperature = config.Temperature;
             _maximumTokens = config.MaximumTokens;
             _frequencyPenalty = config.FrequencyPenalty;

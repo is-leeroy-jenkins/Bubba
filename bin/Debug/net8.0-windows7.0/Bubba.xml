@@ -20057,14 +20057,16 @@
             </summary>
             <param name="ex">The ex.</param>
         </member>
+        <member name="T:Bubba.AssistantMessage">
+            <inheritdoc />
+            <summary>
+            </summary>
+            <seealso cref="T:Bubba.GptMessage" />
+            <seealso cref="T:Bubba.IGptMessage" />
+        </member>
         <member name="F:Bubba.AssistantMessage._systemPrompt">
             <summary>
             The system prompt
-            </summary>
-        </member>
-        <member name="F:Bubba.AssistantMessage._content">
-            <summary>
-            The content
             </summary>
         </member>
         <member name="M:Bubba.AssistantMessage.#ctor">
@@ -20088,12 +20090,12 @@
             </summary>
             <param name="message">The message.</param>
         </member>
-        <member name="M:Bubba.AssistantMessage.Deconstruct(System.String@,System.Collections.Generic.IDictionary{System.String,System.Object}@,System.String@)">
+        <member name="M:Bubba.AssistantMessage.Deconstruct(System.String@,System.String@,System.String@)">
             <summary>
             Deconstructs the specified role.
             </summary>
             <param name="role">The role.</param>
-            <param name = "messages" > </param>
+            <param name = "type" > </param>
             <param name="content">The content.</param>
         </member>
         <member name="P:Bubba.AssistantMessage.Role">
@@ -20114,14 +20116,12 @@
             The content.
             </value>
         </member>
-        <member name="P:Bubba.AssistantMessage.Messages">
+        <member name="M:Bubba.AssistantMessage.GetData">
             <inheritdoc />
             <summary>
-            Gets or sets the data.
+            Gets the data.
             </summary>
-            <value>
-            The data.
-            </value>
+            <returns></returns>
         </member>
         <member name="M:Bubba.AssistantMessage.ToString">
             <inheritdoc />
@@ -20153,7 +20153,7 @@
             The content
             </summary>
         </member>
-        <member name="F:Bubba.GptMessage._messages">
+        <member name="F:Bubba.GptMessage._data">
             <summary>
             The data
             </summary>
@@ -20183,14 +20183,6 @@
             The content.
             </value>
         </member>
-        <member name="P:Bubba.GptMessage.Messages">
-            <summary>
-            Gets or sets the data.
-            </summary>
-            <value>
-            The data.
-            </value>
-        </member>
         <member name="M:Bubba.GptMessage.PadQuotes(System.String)">
             <summary>
             Pads the quotes.
@@ -20198,6 +20190,13 @@
             <param name="input">The input.</param>
             <returns>
             </returns>
+        </member>
+        <member name="M:Bubba.GptMessage.GetData">
+            <inheritdoc />
+            <summary>
+            Gets the data.
+            </summary>
+            <returns></returns>
         </member>
         <member name="M:Bubba.GptMessage.ToString">
             <inheritdoc />
@@ -20247,13 +20246,12 @@
             </summary>
             <param name="message">The message.</param>
         </member>
-        <member name="M:Bubba.SystemMessage.Deconstruct(System.String@,System.String@,System.Collections.Generic.IDictionary{System.String,System.Object}@)">
+        <member name="M:Bubba.SystemMessage.Deconstruct(System.String@,System.String@)">
             <summary>
             Deconstructs the specified role.
             </summary>
             <param name="role">The role.</param>
             <param name="content">The content.</param>
-            <param name = "messages" > </param>
         </member>
         <member name="P:Bubba.SystemMessage.Role">
             <inheritdoc />
@@ -20262,6 +20260,15 @@
             </summary>
             <value>
             The role.
+            </value>
+        </member>
+        <member name="P:Bubba.SystemMessage.Type">
+            <inheritdoc />
+            <summary>
+            Gets the type.
+            </summary>
+            <value>
+            The type.
             </value>
         </member>
         <member name="P:Bubba.SystemMessage.Content">
@@ -20273,14 +20280,12 @@
             The content.
             </value>
         </member>
-        <member name="P:Bubba.SystemMessage.Messages">
+        <member name="M:Bubba.SystemMessage.GetData">
             <inheritdoc />
             <summary>
-            Gets or sets the data.
+            Gets the data.
             </summary>
-            <value>
-            The data.
-            </value>
+            <returns></returns>
         </member>
         <member name="M:Bubba.SystemMessage.ToString">
             <inheritdoc />
@@ -20319,14 +20324,13 @@
             </summary>
             <param name="message">The message.</param>
         </member>
-        <member name="M:Bubba.UserMessage.Deconstruct(System.String@,System.Collections.Generic.IDictionary{System.String,System.Object}@,System.String@)">
+        <member name="M:Bubba.UserMessage.Deconstruct(System.String@,System.String@,System.String@)">
             <summary>
             Deconstructs the specified role.
             </summary>
             <param name="role">The role.</param>
-            <param name = "messages" > </param>
-            <param name="content">The content.</param>
             <param name = "type" > </param>
+            <param name="content">The content.</param>
         </member>
         <member name="P:Bubba.UserMessage.Role">
             <inheritdoc />
@@ -20335,6 +20339,15 @@
             </summary>
             <value>
             The role.
+            </value>
+        </member>
+        <member name="P:Bubba.UserMessage.Type">
+            <inheritdoc />
+            <summary>
+            Gets the type.
+            </summary>
+            <value>
+            The type.
             </value>
         </member>
         <member name="P:Bubba.UserMessage.Content">
@@ -20346,14 +20359,12 @@
             The content.
             </value>
         </member>
-        <member name="P:Bubba.UserMessage.Messages">
+        <member name="M:Bubba.UserMessage.GetData">
             <inheritdoc />
             <summary>
-            Gets or sets the data.
+            Gets the data.
             </summary>
-            <value>
-            The data.
-            </value>
+            <returns></returns>
         </member>
         <member name="M:Bubba.UserMessage.ToString">
             <inheritdoc />

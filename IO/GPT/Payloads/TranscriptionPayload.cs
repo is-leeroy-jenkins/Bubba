@@ -132,13 +132,11 @@ namespace Bubba
         /// Initializes a new instance of the <see cref="T:Bubba.TranscriptionPayload" /> class.
         /// </summary>
         /// <param name="userPrompt">The user prompt.</param>
-        /// <param name="systemPrompt">The system prompt.</param>
         /// <param name="config">The configuration.</param>
-        public TranscriptionPayload( string userPrompt, string systemPrompt, GptParameter config )
+        public TranscriptionPayload( string userPrompt, GptParameter config )
             : this( )
         {
             _prompt = userPrompt;
-            _systemPrompt = systemPrompt;
             _temperature = config.Temperature;
             _maximumTokens = config.MaximumTokens;
             _frequencyPenalty = config.FrequencyPenalty;

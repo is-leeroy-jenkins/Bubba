@@ -1,10 +1,10 @@
 ﻿// ******************************************************************************************
 //     Assembly:                Bubba
 //     Author:                  Terry D. Eppler
-//     Created:                 01-18-2025
+//     Created:                 01-19-2025
 // 
 //     Last Modified By:        Terry D. Eppler
-//     Last Modified On:        01-18-2025
+//     Last Modified On:        01-19-2025
 // ******************************************************************************************
 // <copyright file="CompletionRequest.cs" company="Terry D. Eppler">
 //    Bubba is a small and simple windows (wpf) application for interacting with the OpenAI API
@@ -94,7 +94,7 @@ namespace Bubba
             _header = new GptHeader( );
             _httpClient = new HttpClient( );
             _endPoint = GptEndPoint.Completions;
-            _instructions = OpenAI.BubbaPrompt;
+            _systemPrompt = OpenAI.BubbaPrompt;
             _model = "gpt-4o";
             _stop = new List<string>( );
             _tools = new List<string>( );
@@ -105,11 +105,9 @@ namespace Bubba
 
         /// <inheritdoc />
         /// <summary>
-        /// Initializes a new instance of the
-        /// <see cref="T:Bubba.CompletionRequest" /> class.
+        /// Initializes a new instance of the <see cref="T:Bubba.CompletionRequest" /> class.
         /// </summary>
         /// <param name="user">The user.</param>
-        /// <param name="system">The system.</param>
         /// <param name="config">The configuration.</param>
         public CompletionRequest( string user, GptParameter config )
             : base( )
@@ -118,8 +116,8 @@ namespace Bubba
             _header = new GptHeader( );
             _httpClient = new HttpClient( );
             _endPoint = GptEndPoint.Completions;
+            _systemPrompt = OpenAI.BubbaPrompt;
             _userPrompt = user;
-            _instructions = OpenAI.BubbaPrompt;
             _model = config.Model;
             _store = config.Store;
             _stream = config.Stream;

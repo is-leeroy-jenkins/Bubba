@@ -1,10 +1,10 @@
 ﻿// ******************************************************************************************
 //     Assembly:                Bubba
 //     Author:                  Terry D. Eppler
-//     Created:                 01-11-2025
+//     Created:                 01-19-2025
 // 
 //     Last Modified By:        Terry D. Eppler
-//     Last Modified On:        01-11-2025
+//     Last Modified On:        01-19-2025
 // ******************************************************************************************
 // <copyright file="ImagePayload.cs" company="Terry D. Eppler">
 //    Bubba is a small and simple windows (wpf) application for interacting with the OpenAI API
@@ -55,6 +55,7 @@ namespace Bubba
     [ SuppressMessage( "ReSharper", "UnusedType.Global" ) ]
     [ SuppressMessage( "ReSharper", "PreferConcreteValueOverDefault" ) ]
     [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
+    [ SuppressMessage( "ReSharper", "ClassCanBeSealed.Global" ) ]
     public class ImagePayload : GptPayload
     {
         /// <summary>
@@ -68,16 +69,6 @@ namespace Bubba
         private protected string _quality;
 
         /// <summary>
-        /// The end point
-        /// </summary>
-        private protected string _endPoint;
-
-        /// <summary>
-        /// The prompt
-        /// </summary>
-        private protected string _prompt;
-
-        /// <summary>
         /// Initializes a new instance of the <see cref="ImagePayload"/> class.
         /// </summary>
         /// <inheritdoc />
@@ -85,12 +76,64 @@ namespace Bubba
             : base( )
         {
             _model = "dall-e-3";
+            _endPoint = GptEndPoint.ImageGeneration;
             _size = "512X512";
             _number = 1;
             _responseFormat = "url";
             _style = "natural";
             _quality = "hd";
-            _endPoint = GptEndPoint.ImageGeneration;
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ImagePayload"/> class.
+        /// </summary>
+        /// <param name="userPrompt"></param>
+        /// <param name="frequency">The frequency penalty.</param>
+        /// <param name="presence">The presence penalty.</param>
+        /// <param name="temperature">The temperature.</param>
+        /// <param name="topPercent">The top percent.</param>
+        /// <param name="maxTokens">The maximum tokens.</param>
+        /// <param name="store">if set to <c>true</c> [store].</param>
+        /// <param name="stream">if set to <c>true</c> [stream].</param>
+        /// <inheritdoc />
+        public ImagePayload( string userPrompt, double frequency = 0.00, double presence = 0.00,
+            double temperature = 0.18, double topPercent = 0.11, int maxTokens = 2048,
+            bool store = false, bool stream = true )
+            : this( )
+        {
+            _prompt = userPrompt;
+            _temperature = temperature;
+            _maximumTokens = maxTokens;
+            _frequencyPenalty = frequency;
+            _presencePenalty = presence;
+            _store = store;
+            _stream = stream;
+            _topPercent = topPercent;
+            _stop = new List<string>( );
+            _messages = new List<IGptMessage>( );
+            _data = new Dictionary<string, object>( );
+        }
+
+        /// <inheritdoc />
+        /// <summary>
+        /// Initializes a new instance of the <see cref="T:Bubba.ImagePayload" /> class.
+        /// </summary>
+        /// <param name="userPrompt">The user prompt.</param>
+        /// <param name="config">The configuration.</param>
+        public ImagePayload( string userPrompt, GptParameter config )
+            : this( )
+        {
+            _prompt = userPrompt;
+            _temperature = config.Temperature;
+            _maximumTokens = config.MaximumTokens;
+            _frequencyPenalty = config.FrequencyPenalty;
+            _presencePenalty = config.PresencePenalty;
+            _store = config.Store;
+            _stream = config.Stream;
+            _topPercent = config.TopPercent;
+            _stop = config.Stop;
+            _messages = new List<IGptMessage>( );
+            _data = new Dictionary<string, object>( );
         }
 
         /// <inheritdoc />
@@ -276,10 +319,10 @@ namespace Bubba
                 _data.Add( "max_completionTokens", _maximumTokens );
                 _data.Add( "store", _store );
                 _data.Add( "stream", _stream );
-                _data.Add( "temperature", Temperature );
+                _data.Add( "temperature", _temperature );
                 _data.Add( "frequency_penalty", _frequencyPenalty );
                 _data.Add( "presence_penalty", _presencePenalty );
-                _data.Add( "top_p", TopPercent );
+                _data.Add( "top_p", _topPercent );
                 _data.Add( "response_format", _responseFormat );
                 _data.Add( "modalities", _modalities );
                 _data.Add( "size", _size );

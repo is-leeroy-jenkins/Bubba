@@ -127,9 +127,8 @@ namespace Bubba
         /// <see cref="T:Bubba.GptPayload" /> class.
         /// </summary>
         /// <param name="userPrompt">The user prompt.</param>
-        /// <param name="systemPrompt"> </param>
         /// <param name="config">The configuration.</param>
-        public GptPayload( string userPrompt, string systemPrompt, GptParameter config ) 
+        public GptPayload( string userPrompt, GptParameter config ) 
             : this( )
         {
             _prompt = userPrompt;

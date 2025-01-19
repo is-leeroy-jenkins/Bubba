@@ -135,14 +135,12 @@ namespace Bubba
         /// Initializes a new instance of the <see cref="AssistantPayload"/> class.
         /// </summary>
         /// <param name="userPrompt">The user prompt.</param>
-        /// <param name="systemPrompt">The system prompt.</param>
         /// <param name="config">The configuration.</param>
         /// <inheritdoc />
-        public AssistantPayload( string userPrompt, string systemPrompt, GptParameter config )
+        public AssistantPayload( string userPrompt, GptParameter config )
             : this( )
         {
             _prompt = userPrompt;
-            _systemPrompt = systemPrompt;
             _temperature = config.Temperature;
             _maximumTokens = config.MaximumTokens;
             _frequencyPenalty = config.FrequencyPenalty;
