@@ -1,10 +1,10 @@
 ﻿// ******************************************************************************************
 //     Assembly:                Bubba
 //     Author:                  Terry D. Eppler
-//     Created:                 01-11-2025
+//     Created:                 01-19-2025
 // 
 //     Last Modified By:        Terry D. Eppler
-//     Last Modified On:        01-11-2025
+//     Last Modified On:        01-19-2025
 // ******************************************************************************************
 // <copyright file="EmbeddingPayload.cs" company="Terry D. Eppler">
 //    Bubba is a small and simple windows (wpf) application for interacting with the OpenAI API
@@ -45,10 +45,7 @@ namespace Bubba
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
     using System.Linq;
-    using System.Text;
     using System.Text.Json.Serialization;
-    using System.Threading.Tasks;
-    using Newtonsoft.Json;
     using Properties;
 
     /// <inheritdoc />
@@ -81,11 +78,6 @@ namespace Bubba
         private protected int _dimensions;
 
         /// <summary>
-        /// The end point
-        /// </summary>
-        private protected string _endPoint;
-
-        /// <summary>
         /// Initializes a new instance of the
         /// <see cref="EmbeddingPayload"/> class.
         /// </summary>
@@ -111,9 +103,9 @@ namespace Bubba
         /// <param name="maxTokens">The maximum tokens.</param>
         /// <param name="store">if set to <c>true</c> [store].</param>
         /// <param name="stream">if set to <c>true</c> [stream].</param>
-        public EmbeddingPayload(string userPrompt, double frequency = 0.00, double presence = 0.00,
+        public EmbeddingPayload( string userPrompt, double frequency = 0.00, double presence = 0.00,
             double temperature = 0.18, double topPercent = 0.11, int maxTokens = 2048,
-            bool store = false, bool stream = true) 
+            bool store = false, bool stream = true )
             : this( )
         {
             _prompt = userPrompt;
@@ -124,9 +116,33 @@ namespace Bubba
             _store = store;
             _stream = stream;
             _topPercent = topPercent;
-            _stop = new List<string>();
-            _messages = new List<IGptMessage>();
-            _data = new Dictionary<string, object>();
+            _stop = new List<string>( );
+            _messages = new List<IGptMessage>( );
+            _data = new Dictionary<string, object>( );
+        }
+
+        /// <inheritdoc />
+        /// <summary>
+        /// Initializes a new instance of the <see cref="T:Bubba.EmbeddingPayload" /> class.
+        /// </summary>
+        /// <param name="userPrompt">The user prompt.</param>
+        /// <param name="systemPrompt">The system prompt.</param>
+        /// <param name="config">The configuration.</param>
+        public EmbeddingPayload( string userPrompt, string systemPrompt, GptParameter config )
+            : this( )
+        {
+            _prompt = userPrompt;
+            _systemPrompt = systemPrompt;
+            _temperature = config.Temperature;
+            _maximumTokens = config.MaximumTokens;
+            _frequencyPenalty = config.FrequencyPenalty;
+            _presencePenalty = config.PresencePenalty;
+            _store = config.Store;
+            _stream = config.Stream;
+            _topPercent = config.TopPercent;
+            _stop = config.Stop;
+            _messages = new List<IGptMessage>( );
+            _data = new Dictionary<string, object>( );
         }
 
         /// <summary>
@@ -159,7 +175,8 @@ namespace Bubba
         /// <value>
         /// The end point.
         /// </value>
-        public string EndPoint
+        [ JsonPropertyName( "endpoint" ) ]
+        public override string EndPoint
         {
             get
             {
@@ -257,18 +274,29 @@ namespace Bubba
             try
             {
                 _data.Add( "model", _model );
-                _data.Add( "number", _number );
+                _data.Add( "n", _number );
                 _data.Add( "max_completionTokens", _maximumTokens );
                 _data.Add( "store", _store );
                 _data.Add( "stream", _stream );
-                _data.Add( "temperature", Temperature );
+                _data.Add( "temperature", _temperature );
                 _data.Add( "frequency_penalty", _frequencyPenalty );
                 _data.Add( "presence_penalty", _presencePenalty );
-                _data.Add( "top_p", TopPercent );
+                _data.Add( "top_p", _topPercent );
                 _data.Add( "response_format", _responseFormat );
                 _stop.Add( "#" );
                 _stop.Add( ";" );
                 _data.Add( "stop", _stop );
+                _data.Add( "modalities", _modalities );
+                if( _messages?.Any( ) == true )
+                {
+                    _data.Add( "messages", _messages );
+                }
+
+                if( !string.IsNullOrEmpty( _prompt ) )
+                {
+                    _data?.Add( "prompt", _prompt );
+                }
+
                 return _data?.Any( ) == true
                     ? _data
                     : default( IDictionary<string, object> );

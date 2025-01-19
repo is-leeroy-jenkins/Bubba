@@ -46,7 +46,6 @@ namespace Bubba
     using System.Diagnostics.CodeAnalysis;
     using System.Linq;
     using System.Text.Json.Serialization;
-    using Newtonsoft.Json;
     using Exception = System.Exception;
     using JsonSerializer = System.Text.Json.JsonSerializer;
     using Properties;
@@ -62,6 +61,7 @@ namespace Bubba
     [ SuppressMessage( "ReSharper", "RedundantExtendsListEntry" ) ]
     [ SuppressMessage( "ReSharper", "PreferConcreteValueOverDefault" ) ]
     [ SuppressMessage( "ReSharper", "ClassCanBeSealed.Global" ) ]
+    [ SuppressMessage( "ReSharper", "PossibleUnintendedReferenceComparison" ) ]
     public class GptPayload : PayloadBase, IGptPayload
     {
         /// <summary>
@@ -91,10 +91,11 @@ namespace Bubba
             _data = new Dictionary<string, object>( );
         }
 
+        /// <inheritdoc />
         /// <summary>
-        /// Initializes a new instance of the <see cref="GptPayload"/> class.
+        /// Initializes a new instance of the <see cref="T:Bubba.GptPayload" /> class.
         /// </summary>
-        /// <param name = "userPrompt" > </param>
+        /// <param name="userPrompt"> </param>
         /// <param name="frequency">The frequency penalty.</param>
         /// <param name="presence">The presence penalty.</param>
         /// <param name="temperature">The temperature.</param>
@@ -104,7 +105,8 @@ namespace Bubba
         /// <param name="stream">if set to <c>true</c> [stream].</param>
         public GptPayload( string userPrompt, double frequency = 0.00, double presence = 0.00,
             double temperature = 0.18, double topPercent = 0.11, int maxTokens = 2048,
-            bool store = false, bool stream = true )
+            bool store = false, bool stream = true ) 
+            : this( )
         {
             _prompt = userPrompt;
             _temperature = temperature;
@@ -119,13 +121,16 @@ namespace Bubba
             _data = new Dictionary<string, object>( );
         }
 
+        /// <inheritdoc />
         /// <summary>
         /// Initializes a new instance of the
-        /// <see cref="GptPayload"/> class.
+        /// <see cref="T:Bubba.GptPayload" /> class.
         /// </summary>
         /// <param name="userPrompt">The user prompt.</param>
+        /// <param name="systemPrompt"> </param>
         /// <param name="config">The configuration.</param>
-        public GptPayload( string userPrompt, GptParameter config )
+        public GptPayload( string userPrompt, string systemPrompt, GptParameter config ) 
+            : this( )
         {
             _prompt = userPrompt;
             _temperature = config.Temperature;
@@ -273,13 +278,13 @@ namespace Bubba
         {
             get
             {
-                return Temperature;
+                return _temperature;
             }
             set
             {
-                if( Temperature != value )
+                if( _temperature != value )
                 {
-                    Temperature = value;
+                    _temperature = value;
                     OnPropertyChanged( nameof( Temperature ) );
                 }
             }
@@ -379,13 +384,13 @@ namespace Bubba
         {
             get
             {
-                return TopPercent;
+                return _topPercent;
             }
             set
             {
-                if( TopPercent != value )
+                if( _topPercent != value )
                 {
-                    TopPercent = value;
+                    _topPercent = value;
                     OnPropertyChanged( nameof( TopPercent ) );
                 }
             }

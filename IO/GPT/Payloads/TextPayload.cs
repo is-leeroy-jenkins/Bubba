@@ -1,10 +1,10 @@
 ﻿// ******************************************************************************************
 //     Assembly:                Bubba
 //     Author:                  Terry D. Eppler
-//     Created:                 01-18-2025
+//     Created:                 01-19-2025
 // 
 //     Last Modified By:        Terry D. Eppler
-//     Last Modified On:        01-18-2025
+//     Last Modified On:        01-19-2025
 // ******************************************************************************************
 // <copyright file="TextPayload.cs" company="Terry D. Eppler">
 //    Bubba is a small and simple windows (wpf) application for interacting with the OpenAI API
@@ -46,7 +46,6 @@ namespace Bubba
     using System.Diagnostics.CodeAnalysis;
     using System.Linq;
     using System.Text.Json.Serialization;
-    using Newtonsoft.Json;
     using Properties;
 
     /// <inheritdoc />
@@ -91,9 +90,10 @@ namespace Bubba
         /// <param name="maxTokens">The maximum tokens.</param>
         /// <param name="store">if set to <c>true</c> [store].</param>
         /// <param name="stream">if set to <c>true</c> [stream].</param>
-        public TextPayload(string userPrompt, double frequency = 0.00, double presence = 0.00,
+        public TextPayload( string userPrompt, double frequency = 0.00, double presence = 0.00,
             double temperature = 0.18, double topPercent = 0.11, int maxTokens = 2048,
-            bool store = false, bool stream = true)
+            bool store = false, bool stream = true ) 
+            : this( )
         {
             _prompt = userPrompt;
             _temperature = temperature;
@@ -103,9 +103,9 @@ namespace Bubba
             _store = store;
             _stream = stream;
             _topPercent = topPercent;
-            _stop = new List<string>();
-            _messages = new List<IGptMessage>();
-            _data = new Dictionary<string, object>();
+            _stop = new List<string>( );
+            _messages = new List<IGptMessage>( );
+            _data = new Dictionary<string, object>( );
         }
 
         /// <inheritdoc />
@@ -115,7 +115,8 @@ namespace Bubba
         /// <param name="userPrompt">The user prompt.</param>
         /// <param name="systemPrompt">The system prompt.</param>
         /// <param name="config">The configuration.</param>
-        public TextPayload( string userPrompt, string systemPrompt, GptParameter config )
+        public TextPayload( string userPrompt, string systemPrompt, GptParameter config ) 
+            : this( )
         {
             _prompt = userPrompt;
             _systemPrompt = systemPrompt;
@@ -127,8 +128,8 @@ namespace Bubba
             _stream = config.Stream;
             _topPercent = config.TopPercent;
             _stop = config.Stop;
-            _messages = new List<IGptMessage>();
-            _data = new Dictionary<string, object>();
+            _messages = new List<IGptMessage>( );
+            _data = new Dictionary<string, object>( );
         }
 
         /// <inheritdoc />
@@ -395,7 +396,7 @@ namespace Bubba
             try
             {
                 _data.Add( "model", _model );
-                _data.Add("endpoint", _endPoint);
+                _data.Add( "endpoint", _endPoint );
                 _data.Add( "n", _number );
                 _data.Add( "max_completion_tokens", _maximumTokens );
                 _data.Add( "store", _store );

@@ -1,10 +1,10 @@
 ﻿// ******************************************************************************************
 //     Assembly:                Bubba
 //     Author:                  Terry D. Eppler
-//     Created:                 01-12-2025
+//     Created:                 01-19-2025
 // 
 //     Last Modified By:        Terry D. Eppler
-//     Last Modified On:        01-12-2025
+//     Last Modified On:        01-19-2025
 // ******************************************************************************************
 // <copyright file="FineTuningPayload.cs" company="Terry D. Eppler">
 //    Bubba is a small and simple windows (wpf) application for interacting with the OpenAI API
@@ -45,10 +45,7 @@ namespace Bubba
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
     using System.Linq;
-    using System.Text;
     using System.Text.Json.Serialization;
-    using System.Threading.Tasks;
-    using Newtonsoft.Json;
     using Properties;
 
     /// <inheritdoc />
@@ -58,6 +55,8 @@ namespace Bubba
     [ SuppressMessage( "ReSharper", "PreferConcreteValueOverDefault" ) ]
     [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
     [ SuppressMessage( "ReSharper", "FieldCanBeMadeReadOnly.Global" ) ]
+    [ SuppressMessage( "ReSharper", "FunctionRecursiveOnAllPaths" ) ]
+    [ SuppressMessage( "ReSharper", "PossibleUnintendedReferenceComparison" ) ]
     public class FineTuningPayload : GptPayload
     {
         /// <summary>
@@ -101,11 +100,6 @@ namespace Bubba
         private protected string _validationFile;
 
         /// <summary>
-        /// The end point
-        /// </summary>
-        private protected string _endPoint;
-
-        /// <summary>
         /// The method
         /// </summary>
         private protected IDictionary<string, object> _method;
@@ -140,9 +134,10 @@ namespace Bubba
         /// <param name="maxTokens">The maximum tokens.</param>
         /// <param name="store">if set to <c>true</c> [store].</param>
         /// <param name="stream">if set to <c>true</c> [stream].</param>
-        public FineTuningPayload( string userPrompt, double frequency = 0.00, double presence = 0.00,
-            double temperature = 0.18, double topPercent = 0.11, int maxTokens = 2048,
-            bool store = false, bool stream = true )
+        public FineTuningPayload( string userPrompt, double frequency = 0.00,
+            double presence = 0.00, double temperature = 0.18, double topPercent = 0.11,
+            int maxTokens = 2048, bool store = false, bool stream = true )
+            : this( )
         {
             _prompt = userPrompt;
             _temperature = temperature;
@@ -152,9 +147,33 @@ namespace Bubba
             _store = store;
             _stream = stream;
             _topPercent = topPercent;
-            _stop = new List<string>();
-            _messages = new List<IGptMessage>();
-            _data = new Dictionary<string, object>();
+            _stop = new List<string>( );
+            _messages = new List<IGptMessage>( );
+            _data = new Dictionary<string, object>( );
+        }
+
+        /// <inheritdoc />
+        /// <summary>
+        /// Initializes a new instance of the <see cref="T:Bubba.FineTuningPayload" /> class.
+        /// </summary>
+        /// <param name="userPrompt">The user prompt.</param>
+        /// <param name="systemPrompt">The system prompt.</param>
+        /// <param name="config">The configuration.</param>
+        public FineTuningPayload( string userPrompt, string systemPrompt, GptParameter config )
+            : this( )
+        {
+            _prompt = userPrompt;
+            _systemPrompt = systemPrompt;
+            _temperature = config.Temperature;
+            _maximumTokens = config.MaximumTokens;
+            _frequencyPenalty = config.FrequencyPenalty;
+            _presencePenalty = config.PresencePenalty;
+            _store = config.Store;
+            _stream = config.Stream;
+            _topPercent = config.TopPercent;
+            _stop = config.Stop;
+            _messages = new List<IGptMessage>( );
+            _data = new Dictionary<string, object>( );
         }
 
         /// <summary>
@@ -309,13 +328,13 @@ namespace Bubba
         {
             get
             {
-                return TrainingFile;
+                return _trainingFile;
             }
             set
             {
-                if( TrainingFile != value )
+                if( _trainingFile != value )
                 {
-                    TrainingFile = value;
+                    _trainingFile = value;
                     OnPropertyChanged( nameof( TrainingFile ) );
                 }
             }
@@ -370,54 +389,6 @@ namespace Bubba
             }
         }
 
-        /// <summary>
-        /// Gets the chat model.
-        /// </summary>
-        /// <value>
-        /// The chat model.
-        /// </value>
-        /// <inheritdoc />
-        [ JsonPropertyName( "model" ) ]
-        public override string Model
-        {
-            get
-            {
-                return _model;
-            }
-            set
-            {
-                if( _model != value )
-                {
-                    _model = value;
-                    OnPropertyChanged( nameof( Model ) );
-                }
-            }
-        }
-
-        /// <inheritdoc />
-        /// <summary>
-        /// Gets or sets the response format.
-        /// </summary>
-        /// <value>
-        /// The response format.
-        /// </value>
-        [ JsonPropertyName( "response_format" ) ]
-        public override string ResponseFormat
-        {
-            get
-            {
-                return _responseFormat;
-            }
-            set
-            {
-                if( _responseFormat != value )
-                {
-                    _responseFormat = value;
-                    OnPropertyChanged( nameof( ResponseFormat ) );
-                }
-            }
-        }
-
         /// <inheritdoc />
         /// <summary>
         /// Gets the data.
@@ -438,6 +409,9 @@ namespace Bubba
                 _data.Add( "presence_penalty", _presencePenalty );
                 _data.Add( "top_p", TopPercent );
                 _data.Add( "response_format", _responseFormat );
+                _stop.Add( "#" );
+                _stop.Add( ";" );
+                _data.Add( "stop", _stop );
                 _data.Add( "modalities", _modalities );
                 _data.Add( "log_probs", _logProbs );
                 _data.Add( "best_of", _bestOf );
@@ -445,9 +419,9 @@ namespace Bubba
                 _data.Add( "echo", _echo );
                 _data.Add( "suffix", _suffix );
                 _data.Add( "seed", _seed );
-                if( !string.IsNullOrEmpty( TrainingFile ) )
+                if( !string.IsNullOrEmpty( _trainingFile ) )
                 {
-                    _data.Add( "training_file", TrainingFile );
+                    _data.Add( "training_file", _trainingFile );
                 }
 
                 if( !string.IsNullOrEmpty( _validationFile ) )
@@ -465,9 +439,6 @@ namespace Bubba
                     _logitBias.Add( "method", _logitBias );
                 }
 
-                _stop.Add( "#" );
-                _stop.Add( ";" );
-                _data.Add( "stop", _stop );
                 return _data?.Any( ) == true
                     ? _data
                     : default( IDictionary<string, object> );

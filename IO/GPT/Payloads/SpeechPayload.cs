@@ -1,10 +1,10 @@
 ﻿// ******************************************************************************************
 //     Assembly:                Bubba
 //     Author:                  Terry D. Eppler
-//     Created:                 01-15-2025
+//     Created:                 01-19-2025
 // 
 //     Last Modified By:        Terry D. Eppler
-//     Last Modified On:        01-15-2025
+//     Last Modified On:        01-19-2025
 // ******************************************************************************************
 // <copyright file="SpeechPayload.cs" company="Terry D. Eppler">
 //    Bubba is a small and simple windows (wpf) application for interacting with the OpenAI API
@@ -46,7 +46,6 @@ namespace Bubba
     using System.Diagnostics.CodeAnalysis;
     using System.Linq;
     using System.Text.Json.Serialization;
-    using Newtonsoft.Json;
     using Properties;
 
     /// <inheritdoc />
@@ -90,11 +89,6 @@ namespace Bubba
         private protected string _input;
 
         /// <summary>
-        /// The end point
-        /// </summary>
-        private protected string _endPoint;
-
-        /// <summary>
         /// Initializes a new instance of the
         /// <see cref="SpeechPayload"/> class.
         /// </summary>
@@ -123,9 +117,9 @@ namespace Bubba
         /// <param name="maxTokens">The maximum tokens.</param>
         /// <param name="store">if set to <c>true</c> [store].</param>
         /// <param name="stream">if set to <c>true</c> [stream].</param>
-        public SpeechPayload(string userPrompt, double frequency = 0.00, double presence = 0.00,
+        public SpeechPayload( string userPrompt, double frequency = 0.00, double presence = 0.00,
             double temperature = 0.18, double topPercent = 0.11, int maxTokens = 2048,
-            bool store = false, bool stream = true) 
+            bool store = false, bool stream = true )
             : this( )
         {
             _prompt = userPrompt;
@@ -136,8 +130,8 @@ namespace Bubba
             _store = store;
             _stream = stream;
             _topPercent = topPercent;
-            _stop = new List<string>();
-            _messages = new List<IGptMessage>();
+            _stop = new List<string>( );
+            _messages = new List<IGptMessage>( );
             _data = new Dictionary<string, object>( );
         }
 
@@ -148,7 +142,8 @@ namespace Bubba
         /// <param name="userPrompt">The user prompt.</param>
         /// <param name="systemPrompt">The system prompt.</param>
         /// <param name="config">The configuration.</param>
-        public SpeechPayload(string userPrompt, string systemPrompt, GptParameter config)
+        public SpeechPayload( string userPrompt, string systemPrompt, GptParameter config )
+            : this( )
         {
             _prompt = userPrompt;
             _systemPrompt = systemPrompt;
@@ -160,8 +155,8 @@ namespace Bubba
             _stream = config.Stream;
             _topPercent = config.TopPercent;
             _stop = config.Stop;
-            _messages = new List<IGptMessage>();
-            _data = new Dictionary<string, object>();
+            _messages = new List<IGptMessage>( );
+            _data = new Dictionary<string, object>( );
         }
 
         /// <summary>
@@ -366,10 +361,10 @@ namespace Bubba
                 _data.Add( "max_completionTokens", _maximumTokens );
                 _data.Add( "store", _store );
                 _data.Add( "stream", _stream );
-                _data.Add( "temperature", Temperature );
+                _data.Add( "temperature", _temperature );
                 _data.Add( "frequency_penalty", _frequencyPenalty );
                 _data.Add( "presence_penalty", _presencePenalty );
-                _data.Add( "top_p", TopPercent );
+                _data.Add( "top_p", _topPercent );
                 _data.Add( "response_format", _responseFormat );
                 _stop.Add( "#" );
                 _stop.Add( ";" );
@@ -377,6 +372,11 @@ namespace Bubba
                 _data.Add( "modalities", _modalities );
                 _data.Add( "speed", _speed );
                 _data.Add( "language", _language );
+                if( _messages?.Any( ) == true )
+                {
+                    _data.Add( "messages", _messages );
+                }
+
                 if( _file != null )
                 {
                     _data.Add( "file", _file );

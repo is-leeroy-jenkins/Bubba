@@ -1,10 +1,10 @@
 ﻿// ******************************************************************************************
 //     Assembly:                Bubba
 //     Author:                  Terry D. Eppler
-//     Created:                 01-12-2025
+//     Created:                 01-19-2025
 // 
 //     Last Modified By:        Terry D. Eppler
-//     Last Modified On:        01-12-2025
+//     Last Modified On:        01-19-2025
 // ******************************************************************************************
 // <copyright file="VectorPayload.cs" company="Terry D. Eppler">
 //    Bubba is a small and simple windows (wpf) application for interacting with the OpenAI API
@@ -46,7 +46,6 @@ namespace Bubba
     using System.Diagnostics.CodeAnalysis;
     using System.Linq;
     using System.Text.Json.Serialization;
-    using Newtonsoft.Json;
     using Properties;
 
     /// <inheritdoc />
@@ -55,6 +54,7 @@ namespace Bubba
     [ SuppressMessage( "ReSharper", "UnusedType.Global" ) ]
     [ SuppressMessage( "ReSharper", "PreferConcreteValueOverDefault" ) ]
     [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
+    [ SuppressMessage( "ReSharper", "PossibleUnintendedReferenceComparison" ) ]
     public class VectorPayload : GptPayload
     {
         /// <summary>
@@ -96,11 +96,6 @@ namespace Bubba
         /// The order
         /// </summary>
         private protected string _order;
-
-        /// <summary>
-        /// The end point
-        /// </summary>
-        private protected string _endPoint;
 
         /// <summary>
         /// The meta data
@@ -148,9 +143,9 @@ namespace Bubba
             _store = store;
             _stream = stream;
             _topPercent = topPercent;
-            _stop = new List<string>();
-            _messages = new List<IGptMessage>();
-            _data = new Dictionary<string, object>();
+            _stop = new List<string>( );
+            _messages = new List<IGptMessage>( );
+            _data = new Dictionary<string, object>( );
         }
 
         /// <inheritdoc />
@@ -160,7 +155,8 @@ namespace Bubba
         /// <param name="userPrompt">The user prompt.</param>
         /// <param name="systemPrompt">The system prompt.</param>
         /// <param name="config">The configuration.</param>
-        public VectorPayload(string userPrompt, string systemPrompt, GptParameter config)
+        public VectorPayload( string userPrompt, string systemPrompt, GptParameter config )
+            : this( )
         {
             _prompt = userPrompt;
             _systemPrompt = systemPrompt;
@@ -172,8 +168,8 @@ namespace Bubba
             _stream = config.Stream;
             _topPercent = config.TopPercent;
             _stop = config.Stop;
-            _messages = new List<IGptMessage>();
-            _data = new Dictionary<string, object>();
+            _messages = new List<IGptMessage>( );
+            _data = new Dictionary<string, object>( );
         }
 
         /// <summary>
@@ -447,20 +443,31 @@ namespace Bubba
             try
             {
                 _data.Add( "model", _model );
+                _data.Add( "endpoint", _endPoint );
                 _data.Add( "n", _number );
                 _data.Add( "max_completionTokens", _maximumTokens );
                 _data.Add( "store", _store );
                 _data.Add( "stream", _stream );
-                _data.Add( "temperature", Temperature );
+                _data.Add( "temperature", _temperature );
                 _data.Add( "frequency_penalty", _frequencyPenalty );
                 _data.Add( "presence_penalty", _presencePenalty );
-                _data.Add( "top_p", TopPercent );
+                _data.Add( "top_p", _topPercent );
                 _data.Add( "limit", _limit );
                 _data.Add( "response_format", _responseFormat );
                 _data.Add( "modalitites", _modalities );
                 _stop.Add( "#" );
                 _stop.Add( ";" );
                 _data.Add( "stop", _stop );
+                if( _messages?.Any( ) == true )
+                {
+                    _data.Add( "messages", _messages );
+                }
+
+                if( _fileIds?.Any( ) == true )
+                {
+                    _data.Add( "file_ids", _fileIds );
+                }
+
                 return _data?.Any( ) == true
                     ? _data
                     : default( IDictionary<string, object> );

@@ -46,7 +46,6 @@ namespace Bubba
     using System.Diagnostics.CodeAnalysis;
     using System.Linq;
     using System.Text.Json.Serialization;
-    using Newtonsoft.Json;
     using Properties;
 
     /// <inheritdoc />
@@ -60,19 +59,9 @@ namespace Bubba
     public class TranslationPayload : GptPayload
     {
         /// <summary>
-        /// The prompt
-        /// </summary>
-        private protected string _prompt;
-
-        /// <summary>
         /// The file
         /// </summary>
         private protected object _file;
-
-        /// <summary>
-        /// The end point
-        /// </summary>
-        private protected string _endPoint;
 
         /// <summary>
         /// Initializes a new instance of the
@@ -100,7 +89,8 @@ namespace Bubba
         /// <param name="stream"></param>
         public TranslationPayload( string userPrompt, double frequency = 0.00, double presence = 0.00,
             double temperature = 0.18, double topPercent = 0.11, int maxTokens = 2048,
-            bool store = false, bool stream = true )
+            bool store = false, bool stream = true ) 
+            : this( )
         {
             _prompt = userPrompt;
             _temperature = temperature;
@@ -110,9 +100,9 @@ namespace Bubba
             _store = store;
             _stream = stream;
             _topPercent = topPercent;
-            _stop = new List<string>();
-            _messages = new List<IGptMessage>();
-            _data = new Dictionary<string, object>();
+            _stop = new List<string>( );
+            _messages = new List<IGptMessage>( );
+            _data = new Dictionary<string, object>( );
         }
 
         /// <inheritdoc />
@@ -122,7 +112,8 @@ namespace Bubba
         /// <param name="userPrompt">The user prompt.</param>
         /// <param name="systemPrompt">The system prompt.</param>
         /// <param name="config">The configuration.</param>
-        public TranslationPayload(string userPrompt, string systemPrompt, GptParameter config)
+        public TranslationPayload( string userPrompt, string systemPrompt, GptParameter config ) 
+            : this( )
         {
             _prompt = userPrompt;
             _systemPrompt = systemPrompt;
@@ -134,31 +125,8 @@ namespace Bubba
             _stream = config.Stream;
             _topPercent = config.TopPercent;
             _stop = config.Stop;
-            _messages = new List<IGptMessage>();
-            _data = new Dictionary<string, object>();
-        }
-
-        /// <summary>
-        /// Gets or sets the input.
-        /// </summary>
-        /// <value>
-        /// The input.
-        /// </value>
-        [ JsonPropertyName( "prompt" ) ]
-        public string Prompt
-        {
-            get
-            {
-                return _prompt;
-            }
-            set
-            {
-                if( _prompt != value )
-                {
-                    _prompt = value;
-                    OnPropertyChanged( nameof( Prompt ) );
-                }
-            }
+            _messages = new List<IGptMessage>( );
+            _data = new Dictionary<string, object>( );
         }
 
         /// <summary>
@@ -243,18 +211,24 @@ namespace Bubba
             {
                 _data.Add( "n", _number );
                 _data.Add( "model", _model );
+                _data.Add( "endpoint", _endPoint );
                 _data.Add( "max_completionTokens", _maximumTokens );
                 _data.Add( "store", _store );
                 _data.Add( "stream", _stream );
-                _data.Add( "temperature", Temperature );
+                _data.Add( "temperature", _temperature );
                 _data.Add( "frequency_penalty", _frequencyPenalty );
                 _data.Add( "presence_penalty", _presencePenalty );
-                _data.Add( "top_p", TopPercent );
+                _data.Add( "top_p", _topPercent );
                 _data.Add( "response_format", _responseFormat );
                 _data.Add( "modalities", _modalities );
                 _stop.Add( "#" );
                 _stop.Add( ";" );
                 _data.Add( "stop", _stop );
+                if( _messages?.Any( ) == true )
+                {
+                    _data.Add( "messages", _messages );
+                }
+
                 return _data?.Any( ) == true
                     ? _data
                     : default( IDictionary<string, object> );

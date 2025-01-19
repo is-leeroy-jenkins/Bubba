@@ -53,6 +53,9 @@ namespace Bubba
     [ SuppressMessage( "ReSharper", "FieldCanBeMadeReadOnly.Global" ) ]
     [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
     [ SuppressMessage( "ReSharper", "VirtualMemberNeverOverridden.Global" ) ]
+    [ SuppressMessage( "ReSharper", "PossibleUnintendedReferenceComparison" ) ]
+    [ SuppressMessage( "ReSharper", "ConvertIfStatementToReturnStatement" ) ]
+    [ SuppressMessage( "ReSharper", "PreferConcreteValueOverDefault" ) ]
     public abstract class GptBase : PropertyChangedBase
     {
         /// <summary>
@@ -181,6 +184,28 @@ namespace Bubba
             get
             {
                 return _apiKey;
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the prompt.
+        /// </summary>
+        /// <value>
+        /// The prompt.
+        /// </value>
+        public virtual string Prompt
+        {
+            get
+            {
+                return _prompt;
+            }
+            set
+            {
+                if( _prompt != value )
+                {
+                    _prompt = value;
+                    OnPropertyChanged( nameof( Prompt ) );
+                }
             }
         }
 

@@ -1,10 +1,10 @@
 ﻿// ******************************************************************************************
 //     Assembly:                Bubba
 //     Author:                  Terry D. Eppler
-//     Created:                 01-11-2025
+//     Created:                 01-19-2025
 // 
 //     Last Modified By:        Terry D. Eppler
-//     Last Modified On:        01-11-2025
+//     Last Modified On:        01-19-2025
 // ******************************************************************************************
 // <copyright file="FilePayload.cs" company="Terry D. Eppler">
 //    Bubba is a small and simple windows (wpf) application for interacting with the OpenAI API
@@ -46,7 +46,6 @@ namespace Bubba
     using System.Diagnostics.CodeAnalysis;
     using System.Linq;
     using System.Text.Json.Serialization;
-    using Newtonsoft.Json;
     using Properties;
 
     /// <inheritdoc />
@@ -57,16 +56,6 @@ namespace Bubba
     [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
     public class FilePayload : GptPayload
     {
-        /// <summary>
-        /// The file identifier, which can be referenced in the API endpoints.
-        /// </summary>
-        private protected string _id;
-
-        /// <summary>
-        /// The end point
-        /// </summary>
-        private protected string _endPoint;
-
         /// <summary>
         /// The intended purpose of the file.
         /// Supported values are assistants, assistants_output,
@@ -137,9 +126,10 @@ namespace Bubba
         /// <param name="maxTokens">The maximum tokens.</param>
         /// <param name="store">if set to <c>true</c> [store].</param>
         /// <param name="stream">if set to <c>true</c> [stream].</param>
-        public FilePayload(string userPrompt, double frequency = 0.00, double presence = 0.00,
+        public FilePayload( string userPrompt, double frequency = 0.00, double presence = 0.00,
             double temperature = 0.18, double topPercent = 0.11, int maxTokens = 2048,
-            bool store = false, bool stream = true)
+            bool store = false, bool stream = true )
+            : this( )
         {
             _prompt = userPrompt;
             _temperature = temperature;
@@ -149,9 +139,9 @@ namespace Bubba
             _store = store;
             _stream = stream;
             _topPercent = topPercent;
-            _stop = new List<string>();
-            _messages = new List<IGptMessage>();
-            _data = new Dictionary<string, object>();
+            _stop = new List<string>( );
+            _messages = new List<IGptMessage>( );
+            _data = new Dictionary<string, object>( );
         }
 
         /// <inheritdoc />
@@ -162,6 +152,7 @@ namespace Bubba
         /// <param name="systemPrompt">The system prompt.</param>
         /// <param name="config">The configuration.</param>
         public FilePayload( string userPrompt, string systemPrompt, GptParameter config )
+            : this( )
         {
             _prompt = userPrompt;
             _systemPrompt = systemPrompt;
@@ -387,15 +378,20 @@ namespace Bubba
                 _data.Add( "max_completionTokens", _maximumTokens );
                 _data.Add( "store", _store );
                 _data.Add( "stream", _stream );
-                _data.Add( "temperature", Temperature );
+                _data.Add( "temperature", _temperature );
                 _data.Add( "frequency_penalty", _frequencyPenalty );
                 _data.Add( "presence_penalty", _presencePenalty );
-                _data.Add( "top_p", TopPercent );
+                _data.Add( "top_p", _topPercent );
                 _data.Add( "response_format", _responseFormat );
                 _data.Add( "modalities", _modalities );
                 _stop.Add( "#" );
                 _stop.Add( ";" );
-                _data.Add( "stop", _stop );
+                _data.Add("stop", _stop);
+                if(_messages?.Any() == true)
+                {
+                    _data.Add("messages", _messages);
+                }
+
                 return _data?.Any( ) == true
                     ? _data
                     : default( IDictionary<string, object> );

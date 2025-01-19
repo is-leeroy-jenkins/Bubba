@@ -1,10 +1,10 @@
 ﻿// ******************************************************************************************
 //     Assembly:                Bubba
 //     Author:                  Terry D. Eppler
-//     Created:                 01-12-2025
+//     Created:                 01-19-2025
 // 
 //     Last Modified By:        Terry D. Eppler
-//     Last Modified On:        01-12-2025
+//     Last Modified On:        01-19-2025
 // ******************************************************************************************
 // <copyright file="TranscriptionPayload.cs" company="Terry D. Eppler">
 //    Bubba is a small and simple windows (wpf) application for interacting with the OpenAI API
@@ -46,7 +46,6 @@ namespace Bubba
     using System.Diagnostics.CodeAnalysis;
     using System.Linq;
     using System.Text.Json.Serialization;
-    using Newtonsoft.Json;
     using Properties;
 
     /// <inheritdoc />
@@ -77,16 +76,6 @@ namespace Bubba
         private protected byte[ ] _audioData;
 
         /// <summary>
-        /// The input
-        /// </summary>
-        private protected string _prompt;
-
-        /// <summary>
-        /// The end point
-        /// </summary>
-        private protected string _endPoint;
-
-        /// <summary>
         /// The speed
         /// </summary>
         private protected int _speed;
@@ -103,7 +92,7 @@ namespace Bubba
             _endPoint = GptEndPoint.Transcriptions;
             _temperature = 0.18;
             _language = "en";
-            _responseFormat = "text";
+            _responseFormat = "auto";
             _modalities = "['text', 'audio']";
             _speed = 1;
         }
@@ -120,9 +109,10 @@ namespace Bubba
         /// <param name="maxTokens">The maximum tokens.</param>
         /// <param name="store">if set to <c>true</c> [store].</param>
         /// <param name="stream">if set to <c>true</c> [stream].</param>
-        public TranscriptionPayload( string userPrompt, double frequency = 0.00, double presence = 0.00,
-            double temperature = 0.18, double topPercent = 0.11, int maxTokens = 2048,
-            bool store = false, bool stream = true )
+        public TranscriptionPayload( string userPrompt, double frequency = 0.00,
+            double presence = 0.00, double temperature = 0.18, double topPercent = 0.11,
+            int maxTokens = 2048, bool store = false, bool stream = true )
+            : this( )
         {
             _prompt = userPrompt;
             _temperature = temperature;
@@ -132,9 +122,9 @@ namespace Bubba
             _store = store;
             _stream = stream;
             _topPercent = topPercent;
-            _stop = new List<string>();
-            _messages = new List<IGptMessage>();
-            _data = new Dictionary<string, object>();
+            _stop = new List<string>( );
+            _messages = new List<IGptMessage>( );
+            _data = new Dictionary<string, object>( );
         }
 
         /// <inheritdoc />
@@ -144,7 +134,8 @@ namespace Bubba
         /// <param name="userPrompt">The user prompt.</param>
         /// <param name="systemPrompt">The system prompt.</param>
         /// <param name="config">The configuration.</param>
-        public TranscriptionPayload(string userPrompt, string systemPrompt, GptParameter config)
+        public TranscriptionPayload( string userPrompt, string systemPrompt, GptParameter config )
+            : this( )
         {
             _prompt = userPrompt;
             _systemPrompt = systemPrompt;
@@ -156,8 +147,8 @@ namespace Bubba
             _stream = config.Stream;
             _topPercent = config.TopPercent;
             _stop = config.Stop;
-            _messages = new List<IGptMessage>();
-            _data = new Dictionary<string, object>();
+            _messages = new List<IGptMessage>( );
+            _data = new Dictionary<string, object>( );
         }
 
         /// <summary>
@@ -221,13 +212,13 @@ namespace Bubba
         {
             get
             {
-                return Temperature;
+                return _temperature;
             }
             set
             {
-                if( Temperature != value )
+                if( _temperature != value )
                 {
-                    Temperature = value;
+                    _temperature = value;
                     OnPropertyChanged( nameof( Temperature ) );
                 }
             }
@@ -280,29 +271,6 @@ namespace Bubba
             }
         }
 
-        /// <summary>
-        /// Gets or sets the input.
-        /// </summary>
-        /// <value>
-        /// The input.
-        /// </value>
-        [ JsonPropertyName( "prompt" ) ]
-        public string Prompt
-        {
-            get
-            {
-                return _prompt;
-            }
-            set
-            {
-                if( _prompt != value )
-                {
-                    _prompt = value;
-                    OnPropertyChanged( nameof( Prompt ) );
-                }
-            }
-        }
-
         /// <inheritdoc />
         /// <summary>
         /// Gets or sets the response format.
@@ -337,21 +305,26 @@ namespace Bubba
             try
             {
                 _data.Add( "model", _model );
+                _data.Add( "endpoint", _endPoint );
                 _data.Add( "n", _number );
                 _data.Add( "max_completionTokens", _maximumTokens );
                 _data.Add( "store", _store );
                 _data.Add( "stream", _stream );
-                _data.Add( "temperature", Temperature );
+                _data.Add( "temperature", _temperature );
                 _data.Add( "frequency_penalty", _frequencyPenalty );
                 _data.Add( "presence_penalty", _presencePenalty );
-                _data.Add( "top_p", TopPercent );
+                _data.Add( "top_p", _topPercent );
                 _data.Add( "response_format", _responseFormat );
-                _data.Add( "endpoint", _endPoint );
                 _stop.Add( "#" );
                 _stop.Add( ";" );
                 _data.Add( "stop", _stop );
                 _data.Add( "speed", _speed );
                 _data.Add( "modalities", _modalities );
+                if( _messages?.Any( ) == true )
+                {
+                    _data.Add( "messages", _messages );
+                }
+
                 return _data?.Any( ) == true
                     ? _data
                     : default( IDictionary<string, object> );

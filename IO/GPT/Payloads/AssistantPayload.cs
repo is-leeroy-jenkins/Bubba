@@ -1,10 +1,10 @@
 ﻿// ******************************************************************************************
 //     Assembly:                Bubba
 //     Author:                  Terry D. Eppler
-//     Created:                 01-17-2025
+//     Created:                 01-19-2025
 // 
 //     Last Modified By:        Terry D. Eppler
-//     Last Modified On:        01-17-2025
+//     Last Modified On:        01-19-2025
 // ******************************************************************************************
 // <copyright file="AssistantPayload.cs" company="Terry D. Eppler">
 //    Bubba is a small and simple windows (wpf) application for interacting with the OpenAI API
@@ -55,6 +55,7 @@ namespace Bubba
     [ SuppressMessage( "ReSharper", "PreferConcreteValueOverDefault" ) ]
     [ SuppressMessage( "ReSharper", "ClassCanBeSealed.Global" ) ]
     [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
+    [ SuppressMessage( "ReSharper", "PossibleUnintendedReferenceComparison" ) ]
     public class AssistantPayload : TextPayload
     {
         /// <summary>
@@ -115,6 +116,7 @@ namespace Bubba
         public AssistantPayload( string userPrompt, double frequency = 0.00, double presence = 0.00,
             double temperature = 0.18, double topPercent = 0.11, int maxTokens = 2048,
             bool store = false, bool stream = true )
+            : this( )
         {
             _prompt = userPrompt;
             _temperature = temperature;
@@ -124,9 +126,33 @@ namespace Bubba
             _store = store;
             _stream = stream;
             _topPercent = topPercent;
-            _stop = new List<string>();
-            _messages = new List<IGptMessage>();
-            _data = new Dictionary<string, object>();
+            _stop = new List<string>( );
+            _messages = new List<IGptMessage>( );
+            _data = new Dictionary<string, object>( );
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="AssistantPayload"/> class.
+        /// </summary>
+        /// <param name="userPrompt">The user prompt.</param>
+        /// <param name="systemPrompt">The system prompt.</param>
+        /// <param name="config">The configuration.</param>
+        /// <inheritdoc />
+        public AssistantPayload( string userPrompt, string systemPrompt, GptParameter config )
+            : this( )
+        {
+            _prompt = userPrompt;
+            _systemPrompt = systemPrompt;
+            _temperature = config.Temperature;
+            _maximumTokens = config.MaximumTokens;
+            _frequencyPenalty = config.FrequencyPenalty;
+            _presencePenalty = config.PresencePenalty;
+            _store = config.Store;
+            _stream = config.Stream;
+            _topPercent = config.TopPercent;
+            _stop = config.Stop;
+            _messages = new List<IGptMessage>( );
+            _data = new Dictionary<string, object>( );
         }
 
         /// <inheritdoc />
@@ -136,7 +162,7 @@ namespace Bubba
         /// <value>
         /// The user identifier.
         /// </value>
-        [JsonPropertyName( "n" ) ]
+        [ JsonPropertyName( "n" ) ]
         public override int Number
         {
             get
@@ -168,10 +194,10 @@ namespace Bubba
             }
             set
             {
-                if(_name != value)
+                if( _name != value )
                 {
                     _name = value;
-                    OnPropertyChanged(nameof(Name));
+                    OnPropertyChanged( nameof( Name ) );
                 }
             }
         }
@@ -191,10 +217,10 @@ namespace Bubba
             }
             set
             {
-                if(_tools != value)
+                if( _tools != value )
                 {
                     _tools = value;
-                    OnPropertyChanged(nameof(Tools));
+                    OnPropertyChanged( nameof( Tools ) );
                 }
             }
         }
@@ -285,10 +311,10 @@ namespace Bubba
             }
             set
             {
-                if(_endPoint != value)
+                if( _endPoint != value )
                 {
                     _endPoint = value;
-                    OnPropertyChanged(nameof(EndPoint));
+                    OnPropertyChanged( nameof( EndPoint ) );
                 }
             }
         }
@@ -301,7 +327,7 @@ namespace Bubba
         /// <value>
         ///   <c>true</c> if store; otherwise, <c>false</c>.
         /// </value>
-        [JsonPropertyName( "store" ) ]
+        [ JsonPropertyName( "store" ) ]
         public override bool Store
         {
             get
@@ -345,84 +371,6 @@ namespace Bubba
 
         /// <inheritdoc />
         /// <summary>
-        /// A number between 0.0 and 2.0   between 0 and 2.
-        /// Higher values like 0.8 will make the output more random,
-        /// while lower values like 0.2 will make it more focused and deterministic.
-        /// </summary>
-        /// <value>
-        /// The temperature.
-        /// </value>
-        [ JsonPropertyName( "temperature" ) ]
-        public override double Temperature
-        {
-            get
-            {
-                return Temperature;
-            }
-            set
-            {
-                if( Temperature != value )
-                {
-                    Temperature = value;
-                    OnPropertyChanged( nameof( Temperature ) );
-                }
-            }
-        }
-
-        /// <inheritdoc />
-        /// <summary>
-        /// A number between -2.0 and 2.0. Positive values penalize new
-        /// tokens based on their existing frequency in the text so far,
-        /// decreasing the model's likelihood to repeat the same line verbatim.
-        /// </summary>
-        /// <value>
-        /// The frequency.
-        /// </value>
-        [ JsonPropertyName( "frequency_penalty" ) ]
-        public override double FrequencyPenalty
-        {
-            get
-            {
-                return _frequencyPenalty;
-            }
-            set
-            {
-                if( _frequencyPenalty != value )
-                {
-                    _frequencyPenalty = value;
-                    OnPropertyChanged( nameof( FrequencyPenalty ) );
-                }
-            }
-        }
-
-        /// <inheritdoc />
-        /// <summary>
-        /// Number between -2.0 and 2.0. Positive values penalize new tokens
-        /// based on whether they appear in the text so far,
-        /// ncreasing the model's likelihood to talk about new topics.
-        /// </summary>
-        /// <value>
-        /// The presence.
-        /// </value>
-        [ JsonPropertyName( "presence_penalty" ) ]
-        public override double PresencePenalty
-        {
-            get
-            {
-                return _presencePenalty;
-            }
-            set
-            {
-                if( _presencePenalty != value )
-                {
-                    _presencePenalty = value;
-                    OnPropertyChanged( nameof( PresencePenalty ) );
-                }
-            }
-        }
-
-        /// <inheritdoc />
-        /// <summary>
         /// An alternative to sampling with temperature,
         /// called nucleus sampling, where the model considers
         /// the results of the tokens with top_p probability mass.
@@ -438,13 +386,13 @@ namespace Bubba
         {
             get
             {
-                return TopPercent;
+                return _topPercent;
             }
             set
             {
-                if( TopPercent != value )
+                if( _topPercent != value )
                 {
-                    TopPercent = value;
+                    _topPercent = value;
                     OnPropertyChanged( nameof( TopPercent ) );
                 }
             }
@@ -483,18 +431,25 @@ namespace Bubba
         {
             try
             {
+                _data.Add( "model", _model );
+                _data.Add( "endpoint", _endPoint );
                 _data.Add( "n", _number );
                 _data.Add( "max_completionTokens", _maximumTokens );
                 _data.Add( "store", _store );
                 _data.Add( "stream", _stream );
-                _data.Add( "temperature", Temperature );
+                _data.Add( "temperature", _temperature );
                 _data.Add( "frequency_penalty", _frequencyPenalty );
                 _data.Add( "presence_penalty", _presencePenalty );
-                _data.Add( "top_p", TopPercent );
+                _data.Add( "top_p", _topPercent );
                 _stop.Add( "#" );
                 _stop.Add( ";" );
                 _data.Add( "stop", _stop );
                 _data.Add( "modalities", _modalities );
+                if( _messages?.Any( ) == true )
+                {
+                    _data.Add( "messages", _messages );
+                }
+
                 return _data?.Any( ) == true
                     ? _data
                     : default( IDictionary<string, object> );
