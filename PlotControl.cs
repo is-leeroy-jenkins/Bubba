@@ -79,7 +79,7 @@ namespace Bubba
             //InitializeComponent( );
             _wpfPlot = new WpfPlot( );
             var _graphManager = new GraphManager( _wpfPlot );
-            _graphing = new Graph( _graphManager );
+            _graphing = new Graphing( _graphManager );
         }
 
         /// <summary>

@@ -87,6 +87,7 @@ namespace Bubba
         {
             _model = "gpt-4o";
             _endPoint = GptEndPoint.Assistants;
+            _instructions = OpenAI.BubbaPrompt;
             _store = false;
             _stream = true;
             _number = 1;
@@ -96,6 +97,36 @@ namespace Bubba
             _presencePenalty = 0.00;
             _maximumTokens = 2048;
             _responseFormat = "auto";
+            _modalities = "['text', 'audio']";
+        }
+
+        /// <inheritdoc />
+        /// <summary>
+        /// Initializes a new instance of the <see cref="T:Bubba.AssistantPayload" /> class.
+        /// </summary>
+        /// <param name="userPrompt"></param>
+        /// <param name="frequency">The frequency penalty.</param>
+        /// <param name="presence">The presence penalty.</param>
+        /// <param name="temperature">The temperature.</param>
+        /// <param name="topPercent">The top percent.</param>
+        /// <param name="maxTokens">The maximum tokens.</param>
+        /// <param name="store">if set to <c>true</c> [store].</param>
+        /// <param name="stream">if set to <c>true</c> [stream].</param>
+        public AssistantPayload( string userPrompt, double frequency = 0.00, double presence = 0.00,
+            double temperature = 0.18, double topPercent = 0.11, int maxTokens = 2048,
+            bool store = false, bool stream = true )
+        {
+            _prompt = userPrompt;
+            _temperature = temperature;
+            _maximumTokens = maxTokens;
+            _frequencyPenalty = frequency;
+            _presencePenalty = presence;
+            _store = store;
+            _stream = stream;
+            _topPercent = topPercent;
+            _stop = new List<string>();
+            _messages = new List<IGptMessage>();
+            _data = new Dictionary<string, object>();
         }
 
         /// <inheritdoc />
@@ -105,7 +136,7 @@ namespace Bubba
         /// <value>
         /// The user identifier.
         /// </value>
-        [ JsonPropertyName( "n" ) ]
+        [JsonPropertyName( "n" ) ]
         public override int Number
         {
             get

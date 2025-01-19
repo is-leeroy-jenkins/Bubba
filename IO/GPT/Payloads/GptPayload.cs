@@ -77,6 +77,7 @@ namespace Bubba
         public GptPayload( )
         {
             _systemPrompt = OpenAI.BubbaPrompt;
+            _header = new GptHeader( );
             _temperature = 0.18;
             _topPercent = 0.11;
             _maximumTokens = 2048;
@@ -481,8 +482,13 @@ namespace Bubba
                         {
                             new
                             {
-                                role = "user",
+                                role = "system",
                                 content = _systemPrompt
+                            },
+                            new
+                            {
+                                role = "user",
+                                content = prompt
                             }
                         }
                     } );
@@ -493,9 +499,9 @@ namespace Bubba
                     {
                         model = _model,
                         prompt,
-                        max_completionTokens = _maximumTokens,
+                        max_completion_tokens = _maximumTokens,
                         user = _id,
-                        Temperature,
+                        temperature = _temperature,
                         frequency_penalty = _frequencyPenalty,
                         presence_penalty = _presencePenalty,
                         stop = new[ ]

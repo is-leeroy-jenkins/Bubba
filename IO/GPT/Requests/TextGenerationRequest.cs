@@ -73,10 +73,10 @@ namespace Bubba
             : base( )
         {
             _entry = new object( );
-            _header = new GptHeader( );
             _endPoint = GptEndPoint.TextGeneration;
             _model = "gpt-4o";
             _responseFormat = "text";
+            _systemPrompt = OpenAI.BubbaPrompt;
         }
 
         /// <inheritdoc />
@@ -431,7 +431,7 @@ namespace Bubba
         /// </summary>
         /// <param name="prompt">The prompt.</param>
         /// <returns></returns>
-        public async Task<string> GenerateAsync( string prompt )
+        public override async Task<string> GenerateAsync( string prompt )
         {
             try
             {
@@ -444,21 +444,21 @@ namespace Bubba
                 {
                     Model = _model,
                     Prompt = prompt,
-                    Temperature = Temperature,
+                    Temperature = _temperature,
                     Store = _store,
                     Stream = _stream,
                     Stop = _stop,
-                    TopPercent = TopPercent,
+                    TopPercent = _topPercent,
                     FrequencyPenalty = _frequencyPenalty,
                     PresencePenalty = _presencePenalty
                 };
 
-                var _serialize = JsonSerializer.Serialize( _text );
-                var _content = new StringContent( _serialize, Encoding.UTF8, _header.ContentType );
+                var _serial = JsonSerializer.Serialize( _text );
+                var _content = new StringContent( _serial, Encoding.UTF8, _header.ContentType );
                 var _response = await _httpClient.PostAsync( _endPoint, _content );
                 _response.EnsureSuccessStatusCode( );
                 var _responseContent = await _response.Content.ReadAsStringAsync( );
-                return ExtractText( _responseContent );
+                return ExtractContent( _responseContent );
             }
             catch( Exception ex )
             {
@@ -473,7 +473,7 @@ namespace Bubba
         /// </summary>
         /// <param name="response">The json response.</param>
         /// <returns></returns>
-        private protected override string ExtractText( string response )
+        private protected override string ExtractContent( string response )
         {
             try
             {
@@ -524,7 +524,7 @@ namespace Bubba
                 _data.Add( "model", _model );
                 _data.Add( "endpoint", _endPoint );
                 _data.Add( "n", _number );
-                _data.Add( "max_completionTokens", _maximumTokens );
+                _data.Add( "max_completion_tokens", _maximumTokens );
                 _data.Add( "store", _store );
                 _data.Add( "stream", _stream );
                 _data.Add( "temperature", Temperature );
@@ -532,7 +532,12 @@ namespace Bubba
                 _data.Add( "presence_penalty", _presencePenalty );
                 _data.Add( "top_p", TopPercent );
                 _data.Add( "response_format", _responseFormat );
-                _data.Add( "stop", _stop );
+                _data.Add("stop", _stop);
+                if( _messages?.Any( ) == true )
+                {
+                    _data.Add("messages", _messages);
+                }
+
                 return _data?.Any( ) == true
                     ? _data
                     : default( IDictionary<string, object> );

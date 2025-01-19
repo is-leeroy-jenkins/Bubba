@@ -127,6 +127,58 @@ namespace Bubba
 
         /// <inheritdoc />
         /// <summary>
+        /// Initializes a new instance of the <see cref="T:Bubba.FilePayload" /> class.
+        /// </summary>
+        /// <param name="userPrompt"></param>
+        /// <param name="frequency">The frequency penalty.</param>
+        /// <param name="presence">The presence penalty.</param>
+        /// <param name="temperature">The temperature.</param>
+        /// <param name="topPercent">The top percent.</param>
+        /// <param name="maxTokens">The maximum tokens.</param>
+        /// <param name="store">if set to <c>true</c> [store].</param>
+        /// <param name="stream">if set to <c>true</c> [stream].</param>
+        public FilePayload(string userPrompt, double frequency = 0.00, double presence = 0.00,
+            double temperature = 0.18, double topPercent = 0.11, int maxTokens = 2048,
+            bool store = false, bool stream = true)
+        {
+            _prompt = userPrompt;
+            _temperature = temperature;
+            _maximumTokens = maxTokens;
+            _frequencyPenalty = frequency;
+            _presencePenalty = presence;
+            _store = store;
+            _stream = stream;
+            _topPercent = topPercent;
+            _stop = new List<string>();
+            _messages = new List<IGptMessage>();
+            _data = new Dictionary<string, object>();
+        }
+
+        /// <inheritdoc />
+        /// <summary>
+        /// Initializes a new instance of the <see cref="T:Bubba.FilePayload" /> class.
+        /// </summary>
+        /// <param name="userPrompt">The user prompt.</param>
+        /// <param name="systemPrompt">The system prompt.</param>
+        /// <param name="config">The configuration.</param>
+        public FilePayload( string userPrompt, string systemPrompt, GptParameter config )
+        {
+            _prompt = userPrompt;
+            _systemPrompt = systemPrompt;
+            _temperature = config.Temperature;
+            _maximumTokens = config.MaximumTokens;
+            _frequencyPenalty = config.FrequencyPenalty;
+            _presencePenalty = config.PresencePenalty;
+            _store = config.Store;
+            _stream = config.Stream;
+            _topPercent = config.TopPercent;
+            _stop = config.Stop;
+            _messages = new List<IGptMessage>( );
+            _data = new Dictionary<string, object>( );
+        }
+
+        /// <inheritdoc />
+        /// <summary>
         /// The file identifier, which can be referenced in the API endpoints.
         /// </summary>
         /// <value>

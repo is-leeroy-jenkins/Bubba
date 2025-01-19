@@ -64,6 +64,16 @@ namespace Bubba
     public class GptRequest : GptRequestBase, IGptRequest
     {
         /// <summary>
+        /// The system message
+        /// </summary>
+        private protected SystemMessage _systemMessage;
+
+        /// <summary>
+        /// The user message
+        /// </summary>
+        private protected UserMessage _userMessage;
+
+        /// <summary>
         /// The HTTP client
         /// </summary>
         private protected HttpClient _httpClient;
@@ -210,6 +220,51 @@ namespace Bubba
             }
         }
 
+        /// <summary>
+        /// Gets or sets the system message.
+        /// </summary>
+        /// <value>
+        /// The system message.
+        /// </value>
+        public SystemMessage SystemMessage
+        {
+            get
+            {
+                return _systemMessage;
+            }
+            set
+            {
+                if( _systemMessage != value )
+                {
+                    _systemMessage = value;
+                    OnPropertyChanged( nameof( SystemMessage ) );
+                }
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the user message.
+        /// </summary>
+        /// <value>
+        /// The user message.
+        /// </value>
+        public UserMessage UserMessage
+        {
+            get
+            {
+                return _userMessage;
+            }
+
+            set
+            {
+                if( _userMessage != value )
+                {
+                    _userMessage = value;
+                    OnPropertyChanged( nameof( UserMessage ) );
+                }
+            }
+        }
+
         /// <inheritdoc />
         /// <summary>
         /// Gets or sets a value indicating whether this
@@ -342,28 +397,24 @@ namespace Bubba
         }
 
         /// <summary>
-        /// Posts the json asynchronous.
+        /// Generates the asynchronous.
         /// </summary>
-        /// <param name="endpoint">The endpoint.</param>
-        /// <param name="payload">The payload.</param>
+        /// <param name="prompt">The prompt.</param>
+        /// <param name="config">The configuration.</param>
         /// <returns></returns>
-        /// <exception cref="HttpRequestException">
+        /// <exception cref="System.Net.Http.HttpRequestException">
         /// Error: {_response.StatusCode}, {_error}
         /// </exception>
-        private protected virtual async Task<string> GetResponseAsync( string endpoint,
-            object payload )
+        public virtual async Task<string> GenerateAsync( string prompt )
         {
             try
             {
-                ThrowIf.Empty( endpoint, nameof( endpoint ) );
-                ThrowIf.Null( payload, nameof( payload ) );
-                var _url = GptEndPoint.TextGeneration;
-                var _gpt = new GptHeader( );
+                ThrowIf.Empty( prompt, nameof( prompt ) );
                 _httpClient.DefaultRequestHeaders.Clear( );
-                _httpClient.DefaultRequestHeaders.Add( "Authorization", $"Bearer {_gpt.ApiKey}" );
-                var _json = JsonConvert.SerializeObject( payload );
-                var _content = new StringContent( _json, Encoding.UTF8, _gpt.ContentType );
-                var _response = await _httpClient.PostAsync( $"{_url}/{endpoint}", _content );
+                _httpClient.DefaultRequestHeaders.Add( "Authorization", $"Bearer {_header.ApiKey}" );
+                var _serial = JsonConvert.SerializeObject( prompt );
+                var _content = new StringContent( _serial, Encoding.UTF8, _header.ContentType);
+                var _response = await _httpClient.PostAsync( $"{_endPoint}", _content );
                 if( !_response.IsSuccessStatusCode )
                 {
                     var _error = await _response.Content.ReadAsStringAsync( );
@@ -386,7 +437,7 @@ namespace Bubba
         /// The json response.
         /// </param>
         /// <returns></returns>
-        private protected virtual string ExtractText( string jsonResponse )
+        private protected virtual string ExtractContent( string jsonResponse )
         {
             try
             {

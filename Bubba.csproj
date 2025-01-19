@@ -641,7 +641,6 @@
     <Folder Include="Data\Stores\Access\" />
     <Folder Include="Data\Stores\SqlServer\" />
     <Folder Include="Data\Stores\SQLite\" />
-    <Folder Include="UI\Graphing\" />
   </ItemGroup>
 
   <ItemGroup>

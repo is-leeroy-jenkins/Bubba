@@ -1262,6 +1262,182 @@
             instance containing the event data.
             </param>
         </member>
+        <member name="T:Bubba.ChatPayload">
+            <inheritdoc />
+            <summary>
+            </summary>
+            <seealso cref="T:Bubba.GptPayload" />
+        </member>
+        <member name="F:Bubba.ChatPayload._tools">
+            <summary>
+            The tools
+            </summary>
+        </member>
+        <member name="F:Bubba.ChatPayload._metaData">
+            <summary>
+            Developer-defined tags and values used for filtering completions
+            </summary>
+        </member>
+        <member name="F:Bubba.ChatPayload._reasoningEffort">
+            <summary>
+            The reasoning effort
+            </summary>
+        </member>
+        <member name="F:Bubba.ChatPayload._instructions">
+            <summary>
+            The system prompt
+            </summary>
+        </member>
+        <member name="M:Bubba.ChatPayload.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Bubba.ChatPayload"/> class.
+            </summary>
+            <inheritdoc />
+        </member>
+        <member name="P:Bubba.ChatPayload.Number">
+            <inheritdoc />
+            <summary>
+            THe number 'n' of responses generatred.
+            </summary>
+            <value>
+            The user identifier.
+            </value>
+        </member>
+        <member name="P:Bubba.ChatPayload.Model">
+            <summary>
+            Gets the chat model.
+            </summary>
+            <value>
+            The chat model.
+            </value>
+            <inheritdoc />
+        </member>
+        <member name="P:Bubba.ChatPayload.Store">
+            <inheritdoc />
+            <summary>
+            Gets or sets a value indicating whether this
+            <see cref="T:Bubba.ParameterBase" /> is store.
+            </summary>
+            <value>
+              <c>true</c> if store; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:Bubba.ChatPayload.Stream">
+            <inheritdoc />
+            <summary>
+            Gets or sets a value indicating whether this
+            <see cref="T:Bubba.ParameterBase" /> is stream.
+            </summary>
+            <value>
+              <c>true</c> if stream; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:Bubba.ChatPayload.Temperature">
+            <inheritdoc />
+            <summary>
+            A number between 0.0 and 2.0   between 0 and 2.
+            Higher values like 0.8 will make the output more random,
+            while lower values like 0.2 will make it more focused and deterministic.
+            </summary>
+            <value>
+            The temperature.
+            </value>
+        </member>
+        <member name="P:Bubba.ChatPayload.FrequencyPenalty">
+            <inheritdoc />
+            <summary>
+            A number between -2.0 and 2.0. Positive values penalize new
+            tokens based on their existing frequency in the text so far,
+            decreasing the model's likelihood to repeat the same line verbatim.
+            </summary>
+            <value>
+            The frequency.
+            </value>
+        </member>
+        <member name="P:Bubba.ChatPayload.PresencePenalty">
+            <inheritdoc />
+            <summary>
+            Number between -2.0 and 2.0. Positive values penalize new tokens
+            based on whether they appear in the text so far,
+            ncreasing the model's likelihood to talk about new topics.
+            </summary>
+            <value>
+            The presence.
+            </value>
+        </member>
+        <member name="P:Bubba.ChatPayload.TopPercent">
+            <inheritdoc />
+            <summary>
+            An alternative to sampling with temperature,
+            called nucleus sampling, where the model considers
+            the results of the tokens with top_p probability mass.
+            So 0.1 means only the tokens comprising the top 10% probability
+            mass are considered. We generally recommend altering this
+            or temperature but not both.
+            </summary>
+            <value>
+            The top percent.
+            </value>
+        </member>
+        <member name="P:Bubba.ChatPayload.ResponseFormat">
+            <inheritdoc />
+            <summary>
+            Gets or sets the response format.
+            </summary>
+            <value>
+            The response format.
+            </value>
+        </member>
+        <member name="P:Bubba.ChatPayload.ReasoningEffort">
+            <summary>
+            o1 models only.
+            Constrains effort on reasoning for reasoning models.
+            Currently supported values are low, medium, and high.
+            Reducing reasoning effort can result in faster responses
+            and fewer tokens used on reasoning in a response.
+            </summary>
+            <value>
+            The reasoning effort.
+            </value>
+        </member>
+        <member name="P:Bubba.ChatPayload.Tools">
+            <summary>
+            A list of tool enabled on the assistant.
+            There can be a maximum of 128 tools per assistant.
+            Tools can be of types code_interpreter, file_search, or function.
+            </summary>
+            <value>
+            The tools.
+            </value>
+        </member>
+        <member name="P:Bubba.ChatPayload.MetaData">
+            <summary>
+            Set of 16 key-value pairs that can be attached to an object.
+            This can be useful for storing additional information about the
+            object in a structured format. Keys can be a maximum of 64 characters
+            long and values can be a maximum of 512 characters long.
+            </summary>
+            <value>
+            The meta data.
+            </value>
+        </member>
+        <member name="M:Bubba.ChatPayload.GetData">
+            <inheritdoc />
+            <summary>
+            Gets the data.
+            </summary>
+            <returns>
+            </returns>
+        </member>
+        <member name="M:Bubba.ChatPayload.ToString">
+            <inheritdoc />
+            <summary>
+            Converts to string.
+            </summary>
+            <returns>
+            A <see cref="T:System.String" /> that represents this instance.
+            </returns>
+        </member>
         <member name="T:Bubba.AdapterBase">
             <inheritdoc/>
             <summary> </summary>
@@ -14100,6 +14276,84 @@
             </summary>
             <param name="ex">The ex.</param>
         </member>
+        <member name="T:Bubba.IGraphing">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Bubba.IGraphing.CreateScatter(Bubba.ScatterData)">
+            <summary>
+            Plots the scatter.
+            </summary>
+            <param name="pt">The scatter pt.</param>
+        </member>
+        <member name="M:Bubba.IGraphing.CreateSignal(Bubba.SignalData)">
+            <summary>
+            Plots the signal.
+            </summary>
+            <param name="pt">The signal pt.</param>
+        </member>
+        <member name="M:Bubba.IGraphing.Clear">
+            <summary>
+            Clears this instance.
+            </summary>
+        </member>
+        <member name="M:Bubba.IGraphing.SetTitle(System.String)">
+            <summary>
+            Sets the title.
+            </summary>
+            <param name="title">The title.</param>
+        </member>
+        <member name="M:Bubba.IGraphing.SetLabels(System.String,System.String)">
+            <summary>
+            Sets the labels.
+            </summary>
+            <param name="xLabel">The x label.</param>
+            <param name="yLabel">The y label.</param>
+        </member>
+        <member name="T:Bubba.IGraphManager">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Bubba.IGraphManager.AddScatter(System.Double[],System.Double[],System.String)">
+            <summary>
+            Adds the scatter.
+            </summary>
+            <param name="category">The category.</param>
+            <param name="values">The values.</param>
+            <param name="label">The label.</param>
+        </member>
+        <member name="M:Bubba.IGraphManager.AddSignal(System.Double[],System.String)">
+            <summary>
+            Adds the signal.
+            </summary>
+            <param name="values">The values.</param>
+            <param name="label">The label.</param>
+        </member>
+        <member name="M:Bubba.IGraphManager.ClearPlot">
+            <summary>
+            Clears the plot.
+            </summary>
+        </member>
+        <member name="M:Bubba.IGraphManager.SetTitle(System.String)">
+            <summary>
+            Sets the title.
+            </summary>
+            <param name="title">The title.</param>
+        </member>
+        <member name="M:Bubba.IGraphManager.SetAxisLabels(System.String,System.String)">
+            <summary>
+            Sets the axis labels.
+            </summary>
+            <param name="xLabel">The x label.</param>
+            <param name="yLabel">The y label.</param>
+        </member>
+        <member name="M:Bubba.IGraphManager.Refresh">
+            <summary>
+            Refreshes this instance.
+            </summary>
+        </member>
         <member name="T:Bubba.AudioConverter">
             <summary>
             
@@ -17617,6 +17871,16 @@
             <summary>
             </summary>
         </member>
+        <member name="F:Bubba.GptRequestBase._systemPrompt">
+            <summary>
+            The system prompt
+            </summary>
+        </member>
+        <member name="F:Bubba.GptRequestBase._userPrompt">
+            <summary>
+            The user prompt
+            </summary>
+        </member>
         <member name="F:Bubba.GptRequestBase._messages">
             <summary>
             The messages
@@ -20305,7 +20569,11 @@
         </member>
         <member name="P:Bubba.ChatParameter.ReasoningEffort">
             <summary>
-            Gets or sets the reasoning effort.
+            o1 models only.
+            Constrains effort on reasoning for reasoning models.
+            Currently supported values are low, medium, and high.
+            Reducing reasoning effort can result in faster responses
+            and fewer tokens used on reasoning in a response.
             </summary>
             <value>
             The reasoning effort.
@@ -23022,11 +23290,12 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="M:Bubba.AssistantRequest.ExtractResponse(System.String)">
+        <member name="M:Bubba.AssistantRequest.ExtractContent(System.String)">
+            <inheritdoc />
             <summary>
             Extracts the message from response.
             </summary>
-            <param name="jsonResponse">The json response.</param>
+            <param name="response">The json response.</param>
             <returns></returns>
         </member>
         <member name="M:Bubba.AssistantRequest.GetData">
@@ -23044,6 +23313,154 @@
             </summary>
             <returns>
             A <see cref="T:System.String" /> that represents this instance.
+            </returns>
+        </member>
+        <member name="T:Bubba.CompletionRequest">
+            <inheritdoc />
+            <summary>
+            </summary>
+            <seealso cref="T:Bubba.TextGenerationRequest" />
+        </member>
+        <member name="F:Bubba.CompletionRequest._tools">
+            <summary>
+            The tools
+            </summary>
+        </member>
+        <member name="F:Bubba.CompletionRequest._metaData">
+            <summary>
+            Developer-defined tags and values used for filtering completions
+            </summary>
+        </member>
+        <member name="F:Bubba.CompletionRequest._reasoningEffort">
+            <summary>
+            The reasoning effort
+            </summary>
+        </member>
+        <member name="F:Bubba.CompletionRequest._instructions">
+            <summary>
+            The system prompt
+            </summary>
+        </member>
+        <member name="M:Bubba.CompletionRequest.#ctor">
+            <summary>
+            Initializes a new instance of the
+            <see cref="T:Bubba.CompletionRequest"/> class.
+            </summary>
+            <inheritdoc />
+        </member>
+        <member name="M:Bubba.CompletionRequest.#ctor(System.String,Bubba.GptParameter)">
+            <inheritdoc />
+            <summary>
+            Initializes a new instance of the
+            <see cref="T:Bubba.CompletionRequest" /> class.
+            </summary>
+            <param name="user">The user.</param>
+            <param name="system">The system.</param>
+            <param name="config">The configuration.</param>
+        </member>
+        <member name="P:Bubba.CompletionRequest.EndPoint">
+            <inheritdoc />
+            <summary>
+            Gets the end point.
+            </summary>
+            <value>
+            The end point.
+            </value>
+        </member>
+        <member name="P:Bubba.CompletionRequest.Modalities">
+            <inheritdoc />
+            <summary>
+            Gets or sets the modalities.
+            </summary>
+            <value>
+            The modalities.
+            </value>
+        </member>
+        <member name="P:Bubba.CompletionRequest.Instructions">
+            <summary>
+            Gets or sets the instructions.
+            </summary>
+            <value>
+            The instructions.
+            </value>
+        </member>
+        <member name="P:Bubba.CompletionRequest.Prompt">
+            <summary>
+            Gets or sets the user prompt.
+            </summary>
+            <value>
+            The user prompt.
+            </value>
+        </member>
+        <member name="P:Bubba.CompletionRequest.ReasoningEffort">
+            <summary>
+            Gets or sets the reasoning effort.
+            </summary>
+            <value>
+            The reasoning effort.
+            </value>
+        </member>
+        <member name="P:Bubba.CompletionRequest.Tools">
+            <summary>
+            A list of tool enabled on the assistant.
+            There can be a maximum of 128 tools per assistant.
+            Tools can be of types code_interpreter, file_search, or function.
+            </summary>
+            <value>
+            The tools.
+            </value>
+        </member>
+        <member name="P:Bubba.CompletionRequest.MetaData">
+            <summary>
+            Set of 16 key-value pairs that can be attached to an object.
+            This can be useful for storing additional information about the
+            object in a structured format. Keys can be a maximum of 64 characters
+            long and values can be a maximum of 512 characters long.
+            </summary>
+            <value>
+            The meta data.
+            </value>
+        </member>
+        <member name="P:Bubba.CompletionRequest.Body">
+            <inheritdoc />
+            <summary>
+            Gets the chat model.
+            </summary>
+            <value>
+            The chat model.
+            </value>
+        </member>
+        <member name="M:Bubba.CompletionRequest.GenerateAsync(System.String)">
+            <inheritdoc />
+            <summary>
+            Gets the chat response asynchronous.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Bubba.CompletionRequest.ExtractContent(System.String)">
+            <inheritdoc />
+            <summary>
+            Extracts the message from response.
+            </summary>
+            <param name="response">The json response.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Bubba.CompletionRequest.GetData">
+            <inheritdoc />
+            <summary>
+            Gets the data.
+            </summary>
+            <returns>
+            </returns>
+        </member>
+        <member name="M:Bubba.CompletionRequest.ToString">
+            <inheritdoc />
+            <summary>
+            Converts to string.
+            </summary>
+            <returns>
+            A <see cref="T:System.String" />
+            that represents this instance.
             </returns>
         </member>
         <member name="T:Bubba.EmbeddingRequest">
@@ -23566,6 +23983,16 @@
         <member name="T:Bubba.GptRequest">
             <inheritdoc />
         </member>
+        <member name="F:Bubba.GptRequest._systemMessage">
+            <summary>
+            The system message
+            </summary>
+        </member>
+        <member name="F:Bubba.GptRequest._userMessage">
+            <summary>
+            The user message
+            </summary>
+        </member>
         <member name="F:Bubba.GptRequest._httpClient">
             <summary>
             The HTTP client
@@ -23637,6 +24064,22 @@
             The stop sequences.
             </value>
         </member>
+        <member name="P:Bubba.GptRequest.SystemMessage">
+            <summary>
+            Gets or sets the system message.
+            </summary>
+            <value>
+            The system message.
+            </value>
+        </member>
+        <member name="P:Bubba.GptRequest.UserMessage">
+            <summary>
+            Gets or sets the user message.
+            </summary>
+            <value>
+            The user message.
+            </value>
+        </member>
         <member name="P:Bubba.GptRequest.HttpClient">
             <inheritdoc />
             <summary>
@@ -23684,18 +24127,18 @@
             Ends the initialize.
             </summary>
         </member>
-        <member name="M:Bubba.GptRequest.GetResponseAsync(System.String,System.Object)">
+        <member name="M:Bubba.GptRequest.GenerateAsync(System.String)">
             <summary>
-            Posts the json asynchronous.
+            Generates the asynchronous.
             </summary>
-            <param name="endpoint">The endpoint.</param>
-            <param name="payload">The payload.</param>
+            <param name="prompt">The prompt.</param>
+            <param name="config">The configuration.</param>
             <returns></returns>
             <exception cref="T:System.Net.Http.HttpRequestException">
             Error: {_response.StatusCode}, {_error}
             </exception>
         </member>
-        <member name="M:Bubba.GptRequest.ExtractResponse(System.String)">
+        <member name="M:Bubba.GptRequest.ExtractContent(System.String)">
             <summary>
             Extracts the content of the response.
             </summary>
@@ -24363,11 +24806,12 @@
             <param name="prompt">The prompt.</param>
             <returns></returns>
         </member>
-        <member name="M:Bubba.TextGenerationRequest.ExtractResponse(System.String)">
+        <member name="M:Bubba.TextGenerationRequest.ExtractContent(System.String)">
+            <inheritdoc />
             <summary>
             Extracts the content of the response.
             </summary>
-            <param name="jsonResponse">The json response.</param>
+            <param name="response">The json response.</param>
             <returns></returns>
         </member>
         <member name="M:Bubba.TextGenerationRequest.GetData">
@@ -29264,6 +29708,39 @@
             </summary>
             <param name="ex">The ex.</param>
         </member>
+        <member name="T:Bubba.PlotControl">
+            <inheritdoc />
+            <summary>
+            </summary>
+            <seealso cref="T:System.Windows.Controls.UserControl" />
+        </member>
+        <member name="F:Bubba.PlotControl._wpfPlot">
+            <summary>
+            The WPF plot
+            </summary>
+        </member>
+        <member name="F:Bubba.PlotControl._graphing">
+            <summary>
+            The graphing
+            </summary>
+        </member>
+        <member name="M:Bubba.PlotControl.#ctor">
+            <inheritdoc />
+            <summary>
+            Initializes a new instance of the
+            <see cref="T:Bubba.PlotControl" /> class.
+            </summary>
+        </member>
+        <member name="M:Bubba.PlotControl.GraphSineWave(System.Double[],System.Double[])">
+            <summary>
+            Graphes the sine wave.
+            </summary>
+        </member>
+        <member name="M:Bubba.PlotControl.GraphCosineWave(System.Double[],System.Double[])">
+            <summary>
+            Graphes the cosine wave.
+            </summary>
+        </member>
         <member name="T:Bubba.Properties.Definitions">
             <summary>
               A strongly-typed resource class, for looking up localized strings, etc.
@@ -30084,6 +30561,98 @@
             <summary>
               Looks up a localized string similar to https://cse.google.com/cse?cx=e78aa3dcb21474bf4.
             </summary>
+        </member>
+        <member name="T:Bubba.ScatterData">
+            <inheritdoc />
+            <summary>
+            </summary>
+        </member>
+        <member name="F:Bubba.ScatterData._category">
+            <summary>
+            The category
+            </summary>
+        </member>
+        <member name="F:Bubba.ScatterData._values">
+            <summary>
+            The values
+            </summary>
+        </member>
+        <member name="F:Bubba.ScatterData._label">
+            <summary>
+            The label
+            </summary>
+        </member>
+        <member name="M:Bubba.ScatterData.#ctor">
+            <summary>
+            Initializes a new instance of the
+            <see cref="T:Bubba.ScatterData" /> class.
+            </summary>
+        </member>
+        <member name="M:Bubba.ScatterData.#ctor(System.Double[],System.Double[],System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Bubba.ScatterData"/> class.
+            </summary>
+            <param name="category">The category.</param>
+            <param name="values">The values.</param>
+            <param name="label">The label.</param>
+        </member>
+        <member name="P:Bubba.ScatterData.Category">
+            <summary>
+            Gets or sets the category.
+            </summary>
+            <value>
+            The category.
+            </value>
+        </member>
+        <member name="P:Bubba.ScatterData.Values">
+            <summary>
+            Gets or sets the values.
+            </summary>
+            <value>
+            The values.
+            </value>
+        </member>
+        <member name="P:Bubba.ScatterData.Label">
+            <summary>
+            Gets or sets the label.
+            </summary>
+            <value>
+            The label.
+            </value>
+        </member>
+        <member name="T:Bubba.SignalData">
+            <inheritdoc />
+            <summary>
+            </summary>
+        </member>
+        <member name="M:Bubba.SignalData.#ctor">
+            <summary>
+            Initializes a new instance of the
+            <see cref="T:Bubba.SignalData"/> class.
+            </summary>
+        </member>
+        <member name="M:Bubba.SignalData.#ctor(System.Double[],System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Bubba.SignalData"/> class.
+            </summary>
+            <param name="values">The values.</param>
+            <param name="label">The label.</param>
+        </member>
+        <member name="P:Bubba.SignalData.Values">
+            <summary>
+            Gets or sets the names.
+            </summary>
+            <value>
+            The names.
+            </value>
+        </member>
+        <member name="P:Bubba.SignalData.Label">
+            <summary>
+            Gets or sets the label.
+            </summary>
+            <value>
+            The label.
+            </value>
         </member>
         <member name="T:Bubba.DataMinion">
             <summary>
@@ -34092,6 +34661,147 @@
             Fails the specified _ex.
             </summary>
             <param name="_ex">The _ex.</param>
+        </member>
+        <member name="T:Bubba.Graphing">
+            <inheritdoc />
+            <summary>
+            </summary>
+            <seealso cref="T:Bubba.IGraphing" />
+        </member>
+        <member name="F:Bubba.Graphing._graphManager">
+            <summary>
+            The graph manager
+            </summary>
+        </member>
+        <member name="M:Bubba.Graphing.#ctor">
+            <summary>
+            Initializes a new instance of the
+            <see cref="T:Bubba.Graphing"/> class.
+            </summary>
+        </member>
+        <member name="M:Bubba.Graphing.#ctor(Bubba.IGraphManager)">
+            <summary>
+            Initializes a new instance of the
+            <see cref="T:Bubba.Graphing"/> class.
+            </summary>
+            <param name="graphManager">
+            The graph manager.
+            </param>
+        </member>
+        <member name="M:Bubba.Graphing.CreateScatter(Bubba.ScatterData)">
+            <inheritdoc />
+            <summary>
+            Plots the scatter.
+            </summary>
+            <param name="pt">
+            The scatter pt.
+            </param>
+        </member>
+        <member name="M:Bubba.Graphing.CreateSignal(Bubba.SignalData)">
+            <inheritdoc />
+            <summary>
+            Plots the signal.
+            </summary>
+            <param name="pt">The signal pt.</param>
+        </member>
+        <member name="M:Bubba.Graphing.Clear">
+            <inheritdoc />
+            <summary>
+            Clears this instance.
+            </summary>
+        </member>
+        <member name="M:Bubba.Graphing.SetTitle(System.String)">
+            <inheritdoc />
+            <summary>
+            Sets the title.
+            </summary>
+            <param name="title">The title.</param>
+        </member>
+        <member name="M:Bubba.Graphing.SetLabels(System.String,System.String)">
+            <inheritdoc />
+            <summary>
+            Sets the labels.
+            </summary>
+            <param name="xLabel">The x label.</param>
+            <param name="yLabel">The y label.</param>
+        </member>
+        <member name="M:Bubba.Graphing.Fail(System.Exception)">
+            <summary>
+            Fails the specified ex.
+            </summary>
+            <param name="ex">The ex.</param>
+        </member>
+        <member name="T:Bubba.GraphManager">
+            <inheritdoc />
+            <summary>
+            </summary>
+        </member>
+        <member name="F:Bubba.GraphManager._wpfPlot">
+            <summary>
+            The WPF plot
+            </summary>
+        </member>
+        <member name="M:Bubba.GraphManager.#ctor">
+            <summary>
+            Initializes a new instance of the
+            <see cref="T:Bubba.GraphManager" /> class.
+            </summary>
+        </member>
+        <member name="M:Bubba.GraphManager.#ctor(ScottPlot.WPF.WpfPlot)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Bubba.GraphManager"/> class.
+            </summary>
+            <param name="wpfPlot">The WPF plot.</param>
+        </member>
+        <member name="M:Bubba.GraphManager.AddScatter(System.Double[],System.Double[],System.String)">
+            <inheritdoc />
+            <summary>
+            Adds the scatter.
+            </summary>
+            <param name="category">The category.</param>
+            <param name="values">The values.</param>
+            <param name="label">The label.</param>
+        </member>
+        <member name="M:Bubba.GraphManager.AddSignal(System.Double[],System.String)">
+            <inheritdoc />
+            <summary>
+            Adds the signal.
+            </summary>
+            <param name="values">The values.</param>
+            <param name="label">The label.</param>
+        </member>
+        <member name="M:Bubba.GraphManager.ClearPlot">
+            <inheritdoc />
+            <summary>
+            Clears the plot.
+            </summary>
+        </member>
+        <member name="M:Bubba.GraphManager.SetTitle(System.String)">
+            <inheritdoc />
+            <summary>
+            Sets the title.
+            </summary>
+            <param name="title">The title.</param>
+        </member>
+        <member name="M:Bubba.GraphManager.SetAxisLabels(System.String,System.String)">
+            <inheritdoc />
+            <summary>
+            Sets the axis labels.
+            </summary>
+            <param name="xLabel">The x label.</param>
+            <param name="yLabel">The y label.</param>
+        </member>
+        <member name="M:Bubba.GraphManager.Refresh">
+            <inheritdoc />
+            <summary>
+            Refreshes this instance.
+            </summary>
+        </member>
+        <member name="M:Bubba.GraphManager.Fail(System.Exception)">
+            <summary>
+            Fails the specified ex.
+            </summary>
+            <param name="ex">The ex.</param>
         </member>
         <member name="T:Bubba.CalculatorWindow">
             <inheritdoc />
@@ -38906,36 +39616,6 @@
         <member name="M:Bubba.WebBrowser.InitializeComponent">
             <summary>
             InitializeComponent
-            </summary>
-        </member>
-        <member name="T:XamlGeneratedNamespace.GeneratedInternalTypeHelper">
-            <summary>
-            GeneratedInternalTypeHelper
-            </summary>
-        </member>
-        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.CreateInstance(System.Type,System.Globalization.CultureInfo)">
-            <summary>
-            CreateInstance
-            </summary>
-        </member>
-        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.GetPropertyValue(System.Reflection.PropertyInfo,System.Object,System.Globalization.CultureInfo)">
-            <summary>
-            GetPropertyValue
-            </summary>
-        </member>
-        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.SetPropertyValue(System.Reflection.PropertyInfo,System.Object,System.Object,System.Globalization.CultureInfo)">
-            <summary>
-            SetPropertyValue
-            </summary>
-        </member>
-        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.CreateDelegate(System.Type,System.Object,System.String)">
-            <summary>
-            CreateDelegate
-            </summary>
-        </member>
-        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.AddEventHandler(System.Reflection.EventInfo,System.Object,System.Delegate)">
-            <summary>
-            AddEventHandler
             </summary>
         </member>
     </members>

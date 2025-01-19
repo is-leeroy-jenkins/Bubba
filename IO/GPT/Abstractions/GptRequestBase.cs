@@ -55,6 +55,16 @@ namespace Bubba
     public abstract class GptRequestBase : GptBase
     {
         /// <summary>
+        /// The system prompt
+        /// </summary>
+        private protected string _systemPrompt;
+
+        /// <summary>
+        /// The user prompt
+        /// </summary>
+        private protected string _userPrompt;
+
+        /// <summary>
         /// The messages
         /// </summary>
         private protected IList<IGptMessage> _messages;

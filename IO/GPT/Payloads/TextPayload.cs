@@ -1,10 +1,10 @@
 ﻿// ******************************************************************************************
 //     Assembly:                Bubba
 //     Author:                  Terry D. Eppler
-//     Created:                 01-11-2025
+//     Created:                 01-18-2025
 // 
 //     Last Modified By:        Terry D. Eppler
-//     Last Modified On:        01-11-2025
+//     Last Modified On:        01-18-2025
 // ******************************************************************************************
 // <copyright file="TextPayload.cs" company="Terry D. Eppler">
 //    Bubba is a small and simple windows (wpf) application for interacting with the OpenAI API
@@ -77,6 +77,58 @@ namespace Bubba
             _presencePenalty = 0.00;
             _maximumTokens = 2048;
             _responseFormat = "text";
+        }
+
+        /// <inheritdoc />
+        /// <summary>
+        /// Initializes a new instance of the <see cref="T:Bubba.TextPayload" /> class.
+        /// </summary>
+        /// <param name="userPrompt"></param>
+        /// <param name="frequency">The frequency penalty.</param>
+        /// <param name="presence">The presence penalty.</param>
+        /// <param name="temperature">The temperature.</param>
+        /// <param name="topPercent">The top percent.</param>
+        /// <param name="maxTokens">The maximum tokens.</param>
+        /// <param name="store">if set to <c>true</c> [store].</param>
+        /// <param name="stream">if set to <c>true</c> [stream].</param>
+        public TextPayload(string userPrompt, double frequency = 0.00, double presence = 0.00,
+            double temperature = 0.18, double topPercent = 0.11, int maxTokens = 2048,
+            bool store = false, bool stream = true)
+        {
+            _prompt = userPrompt;
+            _temperature = temperature;
+            _maximumTokens = maxTokens;
+            _frequencyPenalty = frequency;
+            _presencePenalty = presence;
+            _store = store;
+            _stream = stream;
+            _topPercent = topPercent;
+            _stop = new List<string>();
+            _messages = new List<IGptMessage>();
+            _data = new Dictionary<string, object>();
+        }
+
+        /// <inheritdoc />
+        /// <summary>
+        /// Initializes a new instance of the <see cref="T:Bubba.TextPayload" /> class.
+        /// </summary>
+        /// <param name="userPrompt">The user prompt.</param>
+        /// <param name="systemPrompt">The system prompt.</param>
+        /// <param name="config">The configuration.</param>
+        public TextPayload( string userPrompt, string systemPrompt, GptParameter config )
+        {
+            _prompt = userPrompt;
+            _systemPrompt = systemPrompt;
+            _temperature = config.Temperature;
+            _maximumTokens = config.MaximumTokens;
+            _frequencyPenalty = config.FrequencyPenalty;
+            _presencePenalty = config.PresencePenalty;
+            _store = config.Store;
+            _stream = config.Stream;
+            _topPercent = config.TopPercent;
+            _stop = config.Stop;
+            _messages = new List<IGptMessage>();
+            _data = new Dictionary<string, object>();
         }
 
         /// <inheritdoc />
@@ -215,13 +267,13 @@ namespace Bubba
         {
             get
             {
-                return Temperature;
+                return _temperature;
             }
             set
             {
-                if( Temperature != value )
+                if( _temperature != value )
                 {
-                    Temperature = value;
+                    _temperature = value;
                     OnPropertyChanged( nameof( Temperature ) );
                 }
             }
@@ -296,13 +348,13 @@ namespace Bubba
         {
             get
             {
-                return TopPercent;
+                return _topPercent;
             }
             set
             {
-                if( TopPercent != value )
+                if( _topPercent != value )
                 {
-                    TopPercent = value;
+                    _topPercent = value;
                     OnPropertyChanged( nameof( TopPercent ) );
                 }
             }
@@ -343,19 +395,25 @@ namespace Bubba
             try
             {
                 _data.Add( "model", _model );
+                _data.Add("endpoint", _endPoint);
                 _data.Add( "n", _number );
-                _data.Add( "max_completionTokens", _maximumTokens );
+                _data.Add( "max_completion_tokens", _maximumTokens );
                 _data.Add( "store", _store );
                 _data.Add( "stream", _stream );
-                _data.Add( "temperature", Temperature );
+                _data.Add( "temperature", _temperature );
                 _data.Add( "frequency_penalty", _frequencyPenalty );
                 _data.Add( "presence_penalty", _presencePenalty );
-                _data.Add( "top_p", TopPercent );
+                _data.Add( "top_p", _topPercent );
                 _data.Add( "response_format", _responseFormat );
                 _data.Add( "modalities", _modalities );
                 _stop.Add( "#" );
                 _stop.Add( ";" );
                 _data.Add( "stop", _stop );
+                if( _messages?.Any( ) == true )
+                {
+                    _data.Add( "messages", _messages );
+                }
+
                 return _data?.Any( ) == true
                     ? _data
                     : default( IDictionary<string, object> );

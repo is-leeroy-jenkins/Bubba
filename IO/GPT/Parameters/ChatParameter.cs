@@ -1,10 +1,10 @@
 ﻿// ******************************************************************************************
 //     Assembly:                Bubba
 //     Author:                  Terry D. Eppler
-//     Created:                 01-11-2025
+//     Created:                 01-18-2025
 // 
 //     Last Modified By:        Terry D. Eppler
-//     Last Modified On:        01-11-2025
+//     Last Modified On:        01-18-2025
 // ******************************************************************************************
 // <copyright file="ChatParameter.cs" company="Terry D. Eppler">
 //    Bubba is a small and simple windows (wpf) application for interacting with the OpenAI API
@@ -86,6 +86,7 @@ namespace Bubba
         {
             _model = "gpt-4o";
             _endPoint = GptEndPoint.Completions;
+            _instructions = OpenAI.BubbaPrompt;
             _store = false;
             _stream = true;
             _number = 1;
@@ -94,7 +95,7 @@ namespace Bubba
             _frequencyPenalty = 0.00;
             _presencePenalty = 0.00;
             _maximumTokens = 2048;
-            _responseFormat = "text";
+            _responseFormat = "auto";
             _modalities = "['text', 'audio']";
         }
 
@@ -319,7 +320,11 @@ namespace Bubba
         }
 
         /// <summary>
-        /// Gets or sets the reasoning effort.
+        /// o1 models only.
+        /// Constrains effort on reasoning for reasoning models.
+        /// Currently supported values are low, medium, and high.
+        /// Reducing reasoning effort can result in faster responses
+        /// and fewer tokens used on reasoning in a response.
         /// </summary>
         /// <value>
         /// The reasoning effort.
@@ -332,10 +337,10 @@ namespace Bubba
             }
             set
             {
-                if(_reasoningEffort != value)
+                if( _reasoningEffort != value )
                 {
                     _reasoningEffort = value;
-                    OnPropertyChanged(nameof(ReasoningEffort));
+                    OnPropertyChanged( nameof( ReasoningEffort ) );
                 }
             }
         }
@@ -356,10 +361,10 @@ namespace Bubba
             }
             set
             {
-                if(_tools != value)
+                if( _tools != value )
                 {
                     _tools = value;
-                    OnPropertyChanged(nameof(Tools));
+                    OnPropertyChanged( nameof( Tools ) );
                 }
             }
         }
@@ -381,10 +386,10 @@ namespace Bubba
             }
             set
             {
-                if(_metaData != value)
+                if( _metaData != value )
                 {
                     _metaData = value;
-                    OnPropertyChanged(nameof(MetaData));
+                    OnPropertyChanged( nameof( MetaData ) );
                 }
             }
         }

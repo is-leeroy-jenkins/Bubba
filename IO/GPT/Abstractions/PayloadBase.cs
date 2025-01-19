@@ -63,6 +63,11 @@ namespace Bubba
         private protected string _id;
 
         /// <summary>
+        /// The API key
+        /// </summary>
+        private protected GptHeader _header;
+
+        /// <summary>
         /// The number of images
         /// </summary>
         private protected int _number;

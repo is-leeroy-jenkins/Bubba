@@ -81,7 +81,7 @@ namespace Bubba
             FontFamily = _theme.FontFamily;
             FontSize = _theme.FontSize;
             Padding = new Thickness( 10, 1, 1, 1 );
-            BorderThickness = new Thickness( 1 );
+            BorderThickness = new Thickness( 2 );
             IsEditable = true;
             IsTextSearchEnabled = false;
             Background = _theme.ControlBackground;
