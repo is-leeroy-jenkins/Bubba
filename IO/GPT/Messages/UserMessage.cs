@@ -1,10 +1,10 @@
 ﻿// ******************************************************************************************
 //     Assembly:                Bubba
 //     Author:                  Terry D. Eppler
-//     Created:                 01-10-2025
+//     Created:                 01-19-2025
 // 
 //     Last Modified By:        Terry D. Eppler
-//     Last Modified On:        01-10-2025
+//     Last Modified On:        01-19-2025
 // ******************************************************************************************
 // <copyright file="UserMessage.cs" company="Terry D. Eppler">
 //    Bubba is a small and simple windows (wpf) application for interacting with the OpenAI API
@@ -43,7 +43,9 @@ namespace Bubba
 {
     using System;
     using System.Collections.Generic;
+    using System.Collections.Immutable;
     using System.Diagnostics.CodeAnalysis;
+    using System.Linq;
     using System.Text.Json.Serialization;
 
     /// <inheritdoc />
@@ -57,6 +59,7 @@ namespace Bubba
     [ SuppressMessage( "ReSharper", "ClassCanBeSealed.Global" ) ]
     [ SuppressMessage( "ReSharper", "InconsistentNaming" ) ]
     [ SuppressMessage( "ReSharper", "PossibleUnintendedReferenceComparison" ) ]
+    [ SuppressMessage( "ReSharper", "PreferConcreteValueOverDefault" ) ]
     public class UserMessage : GptMessage, IGptMessage
     {
         /// <summary>
@@ -66,8 +69,8 @@ namespace Bubba
         public UserMessage( )
         {
             _role = "user";
-            _messages = new Dictionary<string, object>( );
-            _messages.Add( "role", "user" );
+            _type = "text";
+            _data = new Dictionary<string, object>( );
         }
 
         /// <inheritdoc />
@@ -80,7 +83,6 @@ namespace Bubba
             : this( )
         {
             _content = prompt;
-            _messages.Add( "content", _content );
         }
 
         /// <summary>
@@ -93,21 +95,18 @@ namespace Bubba
             _role = message.Role;
             _type = message.Type;
             _content = message.Content;
-            _messages = message.Messages;
         }
 
         /// <summary>
         /// Deconstructs the specified role.
         /// </summary>
         /// <param name="role">The role.</param>
-        /// <param name = "messages" > </param>
-        /// <param name="content">The content.</param>
         /// <param name = "type" > </param>
-        public void Deconstruct( out string role, out IDictionary<string, object> messages,
-            out string content )
+        /// <param name="content">The content.</param>
+        public void Deconstruct( out string role, out string type, out string content )
         {
             role = _role;
-            messages = _messages;
+            type = _type;
             content = _content;
         }
 
@@ -124,6 +123,30 @@ namespace Bubba
             get
             {
                 return _role;
+            }
+        }
+
+        /// <inheritdoc />
+        /// <summary>
+        /// Gets the type.
+        /// </summary>
+        /// <value>
+        /// The type.
+        /// </value>
+        [ JsonPropertyName( "type" ) ]
+        public override string Type
+        {
+            get
+            {
+                return _type;
+            }
+            set
+            {
+                if( _type != value )
+                {
+                    _type = value;
+                    OnPropertyChanged( nameof( Type ) );
+                }
             }
         }
 
@@ -153,25 +176,36 @@ namespace Bubba
 
         /// <inheritdoc />
         /// <summary>
-        /// Gets or sets the data.
+        /// Gets the data.
         /// </summary>
-        /// <value>
-        /// The data.
-        /// </value>
-        [ JsonPropertyName( "messages" ) ]
-        public override IDictionary<string, object> Messages
+        /// <returns></returns>
+        public override IDictionary<string, object> GetData( )
         {
-            get
+            try
             {
-                return _messages;
-            }
-            set
-            {
-                if( _messages != value )
+                if( !string.IsNullOrEmpty( _role ) )
                 {
-                    _messages = value;
-                    OnPropertyChanged( nameof( Messages ) );
+                    _data.Add( "role", _role );
                 }
+
+                if( !string.IsNullOrEmpty( _type ) )
+                {
+                    _data.Add( "type", _type );
+                }
+
+                if( !string.IsNullOrEmpty( _content ) )
+                {
+                    _data.Add( "content", _content );
+                }
+
+                return _data?.Any( ) == true
+                    ? _data
+                    : default( IDictionary<string, object> );
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+                return default( IDictionary<string, object> );
             }
         }
 
@@ -184,7 +218,17 @@ namespace Bubba
         /// </returns>
         public override string ToString( )
         {
-            return _messages.ToJson( );
+            try
+            {
+                return _data?.Any( ) == true
+                    ? _data.ToJson( )
+                    : string.Empty;
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+                return string.Empty;
+            }
         }
     }
 }

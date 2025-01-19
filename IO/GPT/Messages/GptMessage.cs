@@ -1,10 +1,10 @@
 ﻿// ******************************************************************************************
 //     Assembly:                Bubba
 //     Author:                  Terry D. Eppler
-//     Created:                 01-07-2025
+//     Created:                 01-19-2025
 // 
 //     Last Modified By:        Terry D. Eppler
-//     Last Modified On:        01-07-2025
+//     Last Modified On:        01-19-2025
 // ******************************************************************************************
 // <copyright file="GptMessage.cs" company="Terry D. Eppler">
 //    Bubba is a small and simple windows (wpf) application for interacting with the OpenAI API
@@ -44,12 +44,16 @@ namespace Bubba
     using System;
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
+    using System.Linq;
 
     /// <inheritdoc />
     /// <summary>
     /// </summary>
     /// <seealso cref="T:Bubba.PropertyChangedBase" />
     [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
+    [ SuppressMessage( "ReSharper", "PossibleUnintendedReferenceComparison" ) ]
+    [ SuppressMessage( "ReSharper", "ConvertIfStatementToReturnStatement" ) ]
+    [ SuppressMessage( "ReSharper", "PreferConcreteValueOverDefault" ) ]
     public abstract class GptMessage : PropertyChangedBase
     {
         /// <summary>
@@ -70,7 +74,7 @@ namespace Bubba
         /// <summary>
         /// The data
         /// </summary>
-        private protected IDictionary<string, object> _messages;
+        private protected IDictionary<string, object> _data;
 
         /// <inheritdoc />
         /// <summary>
@@ -97,7 +101,15 @@ namespace Bubba
         {
             get
             {
-                return Type;
+                return _type;
+            }
+            set
+            {
+                if( _type != value )
+                {
+                    _type = value;
+                    OnPropertyChanged( nameof( Type ) );
+                }
             }
         }
 
@@ -119,28 +131,6 @@ namespace Bubba
                 {
                     _content = value;
                     OnPropertyChanged( nameof( Content ) );
-                }
-            }
-        }
-
-        /// <summary>
-        /// Gets or sets the data.
-        /// </summary>
-        /// <value>
-        /// The data.
-        /// </value>
-        public virtual IDictionary<string, object> Messages
-        {
-            get
-            {
-                return _messages;
-            }
-            set
-            {
-                if( _messages != value )
-                {
-                    _messages = value;
-                    OnPropertyChanged( nameof( Messages ) );
                 }
             }
         }
@@ -199,6 +189,26 @@ namespace Bubba
 
         /// <inheritdoc />
         /// <summary>
+        /// Gets the data.
+        /// </summary>
+        /// <returns></returns>
+        public virtual IDictionary<string, object> GetData( )
+        {
+            try
+            {
+                return _data?.Any( ) == true
+                    ? _data
+                    : default( IDictionary<string, object> );
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+                return default( IDictionary<string, object> );
+            }
+        }
+
+        /// <inheritdoc />
+        /// <summary>
         /// Returns a string that represents the current object.
         /// </summary>
         /// <returns>
@@ -206,7 +216,17 @@ namespace Bubba
         /// </returns>
         public override string ToString( )
         {
-            return _messages.ToJson( );
+            try
+            {
+                return _data?.Any( ) == true
+                    ? _data.ToJson( )
+                    : string.Empty;
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+                return string.Empty;
+            }
         }
 
         /// <summary>

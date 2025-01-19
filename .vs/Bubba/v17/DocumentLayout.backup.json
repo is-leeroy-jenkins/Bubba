@@ -3,40 +3,20 @@
   "WorkspaceRootPath": "C:\\Users\\terry\\source\\repos\\Bubba\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{08012640-3765-4051-B5EB-4FF782150AEC}|Bubba.csproj|c:\\users\\terry\\source\\repos\\bubba\\chatpayload.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{08012640-3765-4051-B5EB-4FF782150AEC}|Bubba.csproj|solutionrelative:chatpayload.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{08012640-3765-4051-B5EB-4FF782150AEC}|Bubba.csproj|c:\\users\\terry\\source\\repos\\bubba\\io\\gpt\\messages\\systemmessage.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{08012640-3765-4051-B5EB-4FF782150AEC}|Bubba.csproj|solutionrelative:io\\gpt\\messages\\systemmessage.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{08012640-3765-4051-B5EB-4FF782150AEC}|Bubba.csproj|c:\\users\\terry\\source\\repos\\bubba\\io\\gpt\\payloads\\translationpayload.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{08012640-3765-4051-B5EB-4FF782150AEC}|Bubba.csproj|solutionrelative:io\\gpt\\payloads\\translationpayload.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{08012640-3765-4051-B5EB-4FF782150AEC}|Bubba.csproj|c:\\users\\terry\\source\\repos\\bubba\\io\\gpt\\messages\\usermessage.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{08012640-3765-4051-B5EB-4FF782150AEC}|Bubba.csproj|solutionrelative:io\\gpt\\messages\\usermessage.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{08012640-3765-4051-B5EB-4FF782150AEC}|Bubba.csproj|c:\\users\\terry\\source\\repos\\bubba\\io\\gpt\\payloads\\speechpayload.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{08012640-3765-4051-B5EB-4FF782150AEC}|Bubba.csproj|solutionrelative:io\\gpt\\payloads\\speechpayload.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{08012640-3765-4051-B5EB-4FF782150AEC}|Bubba.csproj|c:\\users\\terry\\source\\repos\\bubba\\io\\gpt\\messages\\assistantmessage.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{08012640-3765-4051-B5EB-4FF782150AEC}|Bubba.csproj|solutionrelative:io\\gpt\\messages\\assistantmessage.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{08012640-3765-4051-B5EB-4FF782150AEC}|Bubba.csproj|c:\\users\\terry\\source\\repos\\bubba\\io\\gpt\\payloads\\assistantpayload.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{08012640-3765-4051-B5EB-4FF782150AEC}|Bubba.csproj|solutionrelative:io\\gpt\\payloads\\assistantpayload.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{08012640-3765-4051-B5EB-4FF782150AEC}|Bubba.csproj|c:\\users\\terry\\source\\repos\\bubba\\io\\gpt\\payloads\\filepayload.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{08012640-3765-4051-B5EB-4FF782150AEC}|Bubba.csproj|solutionrelative:io\\gpt\\payloads\\filepayload.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{08012640-3765-4051-B5EB-4FF782150AEC}|Bubba.csproj|c:\\users\\terry\\source\\repos\\bubba\\io\\gpt\\payloads\\textpayload.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{08012640-3765-4051-B5EB-4FF782150AEC}|Bubba.csproj|solutionrelative:io\\gpt\\payloads\\textpayload.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{08012640-3765-4051-B5EB-4FF782150AEC}|Bubba.csproj|c:\\users\\terry\\source\\repos\\bubba\\io\\gpt\\parameters\\chatparameter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{08012640-3765-4051-B5EB-4FF782150AEC}|Bubba.csproj|solutionrelative:io\\gpt\\parameters\\chatparameter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{08012640-3765-4051-B5EB-4FF782150AEC}|Bubba.csproj|c:\\users\\terry\\source\\repos\\bubba\\io\\gpt\\abstractions\\gptbase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{08012640-3765-4051-B5EB-4FF782150AEC}|Bubba.csproj|solutionrelative:io\\gpt\\abstractions\\gptbase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{08012640-3765-4051-B5EB-4FF782150AEC}|Bubba.csproj|c:\\users\\terry\\source\\repos\\bubba\\io\\gpt\\payloads\\gptpayload.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{08012640-3765-4051-B5EB-4FF782150AEC}|Bubba.csproj|solutionrelative:io\\gpt\\payloads\\gptpayload.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{08012640-3765-4051-B5EB-4FF782150AEC}|Bubba.csproj|c:\\users\\terry\\source\\repos\\bubba\\io\\gpt\\messages\\gptmessage.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{08012640-3765-4051-B5EB-4FF782150AEC}|Bubba.csproj|solutionrelative:io\\gpt\\messages\\gptmessage.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -46,7 +26,7 @@
       "DocumentGroups": [
         {
           "DockedHeight": 332,
-          "SelectedChildIndex": 13,
+          "SelectedChildIndex": 12,
           "Children": [
             {
               "$type": "Bookmark",
@@ -94,119 +74,54 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "TextPayload.cs",
-              "DocumentMoniker": "C:\\Users\\terry\\source\\repos\\Bubba\\IO\\GPT\\Payloads\\TextPayload.cs",
-              "RelativeDocumentMoniker": "IO\\GPT\\Payloads\\TextPayload.cs",
-              "ToolTip": "C:\\Users\\terry\\source\\repos\\Bubba\\IO\\GPT\\Payloads\\TextPayload.cs",
-              "RelativeToolTip": "IO\\GPT\\Payloads\\TextPayload.cs",
-              "ViewState": "AgIAABgAAAAAAAAAAAAmwC8AAAApAAAAAAAAAA==",
+              "DocumentIndex": 1,
+              "Title": "UserMessage.cs",
+              "DocumentMoniker": "C:\\Users\\terry\\source\\repos\\Bubba\\IO\\GPT\\Messages\\UserMessage.cs",
+              "RelativeDocumentMoniker": "IO\\GPT\\Messages\\UserMessage.cs",
+              "ToolTip": "C:\\Users\\terry\\source\\repos\\Bubba\\IO\\GPT\\Messages\\UserMessage.cs",
+              "RelativeToolTip": "IO\\GPT\\Messages\\UserMessage.cs",
+              "ViewState": "AgIAAG8AAAAAAAAAAAAAAH8AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-18T23:13:48.814Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "ChatParameter.cs",
-              "DocumentMoniker": "C:\\Users\\terry\\source\\repos\\Bubba\\IO\\GPT\\Parameters\\ChatParameter.cs",
-              "RelativeDocumentMoniker": "IO\\GPT\\Parameters\\ChatParameter.cs",
-              "ToolTip": "C:\\Users\\terry\\source\\repos\\Bubba\\IO\\GPT\\Parameters\\ChatParameter.cs",
-              "RelativeToolTip": "IO\\GPT\\Parameters\\ChatParameter.cs",
-              "ViewState": "AgIAAE4AAAAAAAAAAAAmwGQAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-18T23:14:09.498Z",
+              "WhenOpened": "2025-01-19T13:35:05.465Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "ChatPayload.cs",
-              "DocumentMoniker": "C:\\Users\\terry\\source\\repos\\Bubba\\ChatPayload.cs",
-              "RelativeDocumentMoniker": "ChatPayload.cs",
-              "ToolTip": "C:\\Users\\terry\\source\\repos\\Bubba\\ChatPayload.cs",
-              "RelativeToolTip": "ChatPayload.cs",
-              "ViewState": "AgIAADgAAAAAAAAAAAAcwC4AAAAWAAAAAAAAAA==",
+              "Title": "SystemMessage.cs",
+              "DocumentMoniker": "C:\\Users\\terry\\source\\repos\\Bubba\\IO\\GPT\\Messages\\SystemMessage.cs",
+              "RelativeDocumentMoniker": "IO\\GPT\\Messages\\SystemMessage.cs",
+              "ToolTip": "C:\\Users\\terry\\source\\repos\\Bubba\\IO\\GPT\\Messages\\SystemMessage.cs",
+              "RelativeToolTip": "IO\\GPT\\Messages\\SystemMessage.cs",
+              "ViewState": "AgIAAIIAAAAAAAAAAAAwwKkAAAANAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-18T23:14:59.349Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "TranslationPayload.cs",
-              "DocumentMoniker": "C:\\Users\\terry\\source\\repos\\Bubba\\IO\\GPT\\Payloads\\TranslationPayload.cs",
-              "RelativeDocumentMoniker": "IO\\GPT\\Payloads\\TranslationPayload.cs",
-              "ToolTip": "C:\\Users\\terry\\source\\repos\\Bubba\\IO\\GPT\\Payloads\\TranslationPayload.cs",
-              "RelativeToolTip": "IO\\GPT\\Payloads\\TranslationPayload.cs",
-              "ViewState": "AgIAAE4AAAAAAAAAAAAIwGgAAAA2AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-19T01:41:09.61Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "SpeechPayload.cs",
-              "DocumentMoniker": "C:\\Users\\terry\\source\\repos\\Bubba\\IO\\GPT\\Payloads\\SpeechPayload.cs",
-              "RelativeDocumentMoniker": "IO\\GPT\\Payloads\\SpeechPayload.cs",
-              "ToolTip": "C:\\Users\\terry\\source\\repos\\Bubba\\IO\\GPT\\Payloads\\SpeechPayload.cs",
-              "RelativeToolTip": "IO\\GPT\\Payloads\\SpeechPayload.cs",
-              "ViewState": "AgIAAFgBAAAAAAAAAAAmwIEBAAARAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-19T01:41:14.015Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "GptPayload.cs",
-              "DocumentMoniker": "C:\\Users\\terry\\source\\repos\\Bubba\\IO\\GPT\\Payloads\\GptPayload.cs",
-              "RelativeDocumentMoniker": "IO\\GPT\\Payloads\\GptPayload.cs",
-              "ToolTip": "C:\\Users\\terry\\source\\repos\\Bubba\\IO\\GPT\\Payloads\\GptPayload.cs",
-              "RelativeToolTip": "IO\\GPT\\Payloads\\GptPayload.cs",
-              "ViewState": "AgIAAEAAAAAAAAAAAAAQwEUAAAAtAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-19T01:41:17.01Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "FilePayload.cs",
-              "DocumentMoniker": "C:\\Users\\terry\\source\\repos\\Bubba\\IO\\GPT\\Payloads\\FilePayload.cs",
-              "RelativeDocumentMoniker": "IO\\GPT\\Payloads\\FilePayload.cs",
-              "ToolTip": "C:\\Users\\terry\\source\\repos\\Bubba\\IO\\GPT\\Payloads\\FilePayload.cs",
-              "RelativeToolTip": "IO\\GPT\\Payloads\\FilePayload.cs",
-              "ViewState": "AgIAAGYBAAAAAAAAAAAmwHUBAAANAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-19T01:41:20.88Z",
+              "WhenOpened": "2025-01-19T13:35:26.842Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 3,
-              "Title": "AssistantPayload.cs",
-              "DocumentMoniker": "C:\\Users\\terry\\source\\repos\\Bubba\\IO\\GPT\\Payloads\\AssistantPayload.cs",
-              "RelativeDocumentMoniker": "IO\\GPT\\Payloads\\AssistantPayload.cs",
-              "ToolTip": "C:\\Users\\terry\\source\\repos\\Bubba\\IO\\GPT\\Payloads\\AssistantPayload.cs",
-              "RelativeToolTip": "IO\\GPT\\Payloads\\AssistantPayload.cs",
-              "ViewState": "AgIAAKoBAAAAAAAAAAAuwL0BAAArAAAAAAAAAA==",
+              "Title": "GptMessage.cs",
+              "DocumentMoniker": "C:\\Users\\terry\\source\\repos\\Bubba\\IO\\GPT\\Messages\\GptMessage.cs",
+              "RelativeDocumentMoniker": "IO\\GPT\\Messages\\GptMessage.cs",
+              "ToolTip": "C:\\Users\\terry\\source\\repos\\Bubba\\IO\\GPT\\Messages\\GptMessage.cs",
+              "RelativeToolTip": "IO\\GPT\\Messages\\GptMessage.cs",
+              "ViewState": "AgIAALUAAAAAAAAAAAAAAF4AAAAaAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-19T01:41:23.682Z",
+              "WhenOpened": "2025-01-19T13:38:50.695Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "GptBase.cs",
-              "DocumentMoniker": "C:\\Users\\terry\\source\\repos\\Bubba\\IO\\GPT\\Abstractions\\GptBase.cs",
-              "RelativeDocumentMoniker": "IO\\GPT\\Abstractions\\GptBase.cs",
-              "ToolTip": "C:\\Users\\terry\\source\\repos\\Bubba\\IO\\GPT\\Abstractions\\GptBase.cs",
-              "RelativeToolTip": "IO\\GPT\\Abstractions\\GptBase.cs",
-              "ViewState": "AgIAALUAAAAAAAAAAAAAADoAAAA3AAAAAAAAAA==",
+              "DocumentIndex": 2,
+              "Title": "AssistantMessage.cs",
+              "DocumentMoniker": "C:\\Users\\terry\\source\\repos\\Bubba\\IO\\GPT\\Messages\\AssistantMessage.cs",
+              "RelativeDocumentMoniker": "IO\\GPT\\Messages\\AssistantMessage.cs",
+              "ToolTip": "C:\\Users\\terry\\source\\repos\\Bubba\\IO\\GPT\\Messages\\AssistantMessage.cs",
+              "RelativeToolTip": "IO\\GPT\\Messages\\AssistantMessage.cs",
+              "ViewState": "AgIAAEgAAAAAAAAAAAAAAFoAAAAeAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-19T13:18:48.374Z",
+              "WhenOpened": "2025-01-19T14:01:31.448Z",
               "EditorCaption": ""
             }
           ]

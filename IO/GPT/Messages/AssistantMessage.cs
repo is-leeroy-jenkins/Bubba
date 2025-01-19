@@ -1,10 +1,10 @@
 ﻿// ******************************************************************************************
 //     Assembly:                Bubba
 //     Author:                  Terry D. Eppler
-//     Created:                 01-07-2025
+//     Created:                 01-19-2025
 // 
 //     Last Modified By:        Terry D. Eppler
-//     Last Modified On:        01-07-2025
+//     Last Modified On:        01-19-2025
 // ******************************************************************************************
 // <copyright file="AssistantMessage.cs" company="Terry D. Eppler">
 //    Bubba is a small and simple windows (wpf) application for interacting with the OpenAI API
@@ -44,7 +44,14 @@ namespace Bubba
     using System;
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
+    using System.Linq;
+    using Properties;
 
+    /// <inheritdoc />
+    /// <summary>
+    /// </summary>
+    /// <seealso cref="T:Bubba.GptMessage" />
+    /// <seealso cref="T:Bubba.IGptMessage" />
     [ SuppressMessage( "ReSharper", "UnusedType.Global" ) ]
     [ SuppressMessage( "ReSharper", "FieldCanBeMadeReadOnly.Global" ) ]
     [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
@@ -53,20 +60,13 @@ namespace Bubba
     [ SuppressMessage( "ReSharper", "FieldCanBeMadeReadOnly.Local" ) ]
     [ SuppressMessage( "ReSharper", "InconsistentNaming" ) ]
     [ SuppressMessage( "ReSharper", "ClassNeverInstantiated.Global" ) ]
+    [ SuppressMessage( "ReSharper", "PreferConcreteValueOverDefault" ) ]
     public class AssistantMessage : GptMessage, IGptMessage
     {
         /// <summary>
         /// The system prompt
         /// </summary>
-        private const string _systemPrompt = "You are the most knowledgeable Budget Analyst"
-            + " in the US federal government who provides detailed"
-            + " responses based on your vast knowledge"
-            + " of budget legislation and federal appropriations.";
-
-        /// <summary>
-        /// The content
-        /// </summary>
-        private protected string _content;
+        private protected string _systemPrompt;
 
         /// <summary>
         /// Initializes a new instance of the
@@ -76,10 +76,7 @@ namespace Bubba
         {
             _role = "assistant";
             _type = "text";
-            _content = _systemPrompt;
-            _messages = new Dictionary<string, object>( );
-            _messages.Add( "role", _role );
-            _messages.Add( "content", _content );
+            _data = new Dictionary<string, object>( );
         }
 
         /// <inheritdoc />
@@ -93,9 +90,6 @@ namespace Bubba
             _role = "assistant";
             _type = "text";
             _content = prompt;
-            _messages = new Dictionary<string, object>( );
-            _messages.Add( "role", _role );
-            _messages.Add( "content", _content );
         }
 
         /// <summary>
@@ -108,20 +102,18 @@ namespace Bubba
             _role = message.Role;
             _type = message.Type;
             _content = message.Content;
-            _messages = message.Messages;
         }
 
         /// <summary>
         /// Deconstructs the specified role.
         /// </summary>
         /// <param name="role">The role.</param>
-        /// <param name = "messages" > </param>
+        /// <param name = "type" > </param>
         /// <param name="content">The content.</param>
-        public void Deconstruct( out string role, out IDictionary<string, object> messages,
-            out string content )
+        public void Deconstruct( out string role, out string type, out string content )
         {
             role = _role;
-            messages = _messages;
+            type = _type;
             content = _content;
         }
 
@@ -165,24 +157,36 @@ namespace Bubba
 
         /// <inheritdoc />
         /// <summary>
-        /// Gets or sets the data.
+        /// Gets the data.
         /// </summary>
-        /// <value>
-        /// The data.
-        /// </value>
-        public override IDictionary<string, object> Messages
+        /// <returns></returns>
+        public override IDictionary<string, object> GetData( )
         {
-            get
+            try
             {
-                return _messages;
-            }
-            set
-            {
-                if( _messages != value )
+                if( !string.IsNullOrEmpty( _role ) )
                 {
-                    _messages = value;
-                    OnPropertyChanged( nameof( Messages ) );
+                    _data.Add( "role", _role );
                 }
+
+                if( !string.IsNullOrEmpty( _type ) )
+                {
+                    _data.Add( "type", _type );
+                }
+
+                if( !string.IsNullOrEmpty( _content ) )
+                {
+                    _data.Add( "content", _content );
+                }
+
+                return _data?.Any( ) == true
+                    ? _data
+                    : default( IDictionary<string, object> );
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+                return default( IDictionary<string, object> );
             }
         }
 
@@ -195,7 +199,17 @@ namespace Bubba
         /// </returns>
         public override string ToString( )
         {
-            return _messages.ToJson( );
+            try
+            {
+                return _data?.Any( ) == true
+                    ? _data.ToJson( )
+                    : string.Empty;
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+                return string.Empty;
+            }
         }
     }
 }

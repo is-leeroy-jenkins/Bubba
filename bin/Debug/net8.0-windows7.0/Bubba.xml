@@ -1294,6 +1294,29 @@
             </summary>
             <inheritdoc />
         </member>
+        <member name="M:Bubba.ChatPayload.#ctor(System.String,System.Double,System.Double,System.Double,System.Double,System.Int32,System.Boolean,System.Boolean)">
+            <inheritdoc />
+            <summary>
+            Initializes a new instance of the <see cref="T:Bubba.ChatPayload" /> class.
+            </summary>
+            <param name="userPrompt"></param>
+            <param name="frequency">The frequency penalty.</param>
+            <param name="presence">The presence penalty.</param>
+            <param name="temperature">The temperature.</param>
+            <param name="topPercent">The top percent.</param>
+            <param name="maxTokens">The maximum tokens.</param>
+            <param name="store">if set to <c>true</c> [store].</param>
+            <param name="stream">if set to <c>true</c> [stream].</param>
+        </member>
+        <member name="M:Bubba.ChatPayload.#ctor(System.String,System.String,Bubba.GptParameter)">
+            <inheritdoc />
+            <summary>
+            Initializes a new instance of the <see cref="T:Bubba.ChatPayload" /> class.
+            </summary>
+            <param name="userPrompt">The user prompt.</param>
+            <param name="systemPrompt">The system prompt.</param>
+            <param name="config">The configuration.</param>
+        </member>
         <member name="P:Bubba.ChatPayload.Number">
             <inheritdoc />
             <summary>
@@ -17810,6 +17833,14 @@
             The API key.
             </value>
         </member>
+        <member name="P:Bubba.GptBase.Prompt">
+            <summary>
+            Gets or sets the prompt.
+            </summary>
+            <value>
+            The prompt.
+            </value>
+        </member>
         <member name="P:Bubba.GptBase.IsBusy">
             <summary>
             Gets a value indicating whether this instance is busy.
@@ -18793,6 +18824,11 @@
         <member name="F:Bubba.PayloadBase._id">
             <summary>
             The user identifier
+            </summary>
+        </member>
+        <member name="F:Bubba.PayloadBase._header">
+            <summary>
+            The API key
             </summary>
         </member>
         <member name="F:Bubba.PayloadBase._number">
@@ -21643,6 +21679,29 @@
             </summary>
             <inheritdoc />
         </member>
+        <member name="M:Bubba.AssistantPayload.#ctor(System.String,System.Double,System.Double,System.Double,System.Double,System.Int32,System.Boolean,System.Boolean)">
+            <inheritdoc />
+            <summary>
+            Initializes a new instance of the <see cref="T:Bubba.AssistantPayload" /> class.
+            </summary>
+            <param name="userPrompt"></param>
+            <param name="frequency">The frequency penalty.</param>
+            <param name="presence">The presence penalty.</param>
+            <param name="temperature">The temperature.</param>
+            <param name="topPercent">The top percent.</param>
+            <param name="maxTokens">The maximum tokens.</param>
+            <param name="store">if set to <c>true</c> [store].</param>
+            <param name="stream">if set to <c>true</c> [stream].</param>
+        </member>
+        <member name="M:Bubba.AssistantPayload.#ctor(System.String,System.String,Bubba.GptParameter)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Bubba.AssistantPayload"/> class.
+            </summary>
+            <param name="userPrompt">The user prompt.</param>
+            <param name="systemPrompt">The system prompt.</param>
+            <param name="config">The configuration.</param>
+            <inheritdoc />
+        </member>
         <member name="P:Bubba.AssistantPayload.Number">
             <inheritdoc />
             <summary>
@@ -21722,39 +21781,6 @@
               <c>true</c> if stream; otherwise, <c>false</c>.
             </value>
         </member>
-        <member name="P:Bubba.AssistantPayload.Temperature">
-            <inheritdoc />
-            <summary>
-            A number between 0.0 and 2.0   between 0 and 2.
-            Higher values like 0.8 will make the output more random,
-            while lower values like 0.2 will make it more focused and deterministic.
-            </summary>
-            <value>
-            The temperature.
-            </value>
-        </member>
-        <member name="P:Bubba.AssistantPayload.FrequencyPenalty">
-            <inheritdoc />
-            <summary>
-            A number between -2.0 and 2.0. Positive values penalize new
-            tokens based on their existing frequency in the text so far,
-            decreasing the model's likelihood to repeat the same line verbatim.
-            </summary>
-            <value>
-            The frequency.
-            </value>
-        </member>
-        <member name="P:Bubba.AssistantPayload.PresencePenalty">
-            <inheritdoc />
-            <summary>
-            Number between -2.0 and 2.0. Positive values penalize new tokens
-            based on whether they appear in the text so far,
-            ncreasing the model's likelihood to talk about new topics.
-            </summary>
-            <value>
-            The presence.
-            </value>
-        </member>
         <member name="P:Bubba.AssistantPayload.TopPercent">
             <inheritdoc />
             <summary>
@@ -21819,17 +21845,35 @@
             The dimensions
             </summary>
         </member>
-        <member name="F:Bubba.EmbeddingPayload._endPoint">
-            <summary>
-            The end point
-            </summary>
-        </member>
         <member name="M:Bubba.EmbeddingPayload.#ctor">
             <summary>
             Initializes a new instance of the
             <see cref="T:Bubba.EmbeddingPayload"/> class.
             </summary>
             <inheritdoc />
+        </member>
+        <member name="M:Bubba.EmbeddingPayload.#ctor(System.String,System.Double,System.Double,System.Double,System.Double,System.Int32,System.Boolean,System.Boolean)">
+            <inheritdoc />
+            <summary>
+            Initializes a new instance of the <see cref="T:Bubba.EmbeddingPayload" /> class.
+            </summary>
+            <param name="userPrompt"></param>
+            <param name="frequency">The frequency penalty.</param>
+            <param name="presence">The presence penalty.</param>
+            <param name="temperature">The temperature.</param>
+            <param name="topPercent">The top percent.</param>
+            <param name="maxTokens">The maximum tokens.</param>
+            <param name="store">if set to <c>true</c> [store].</param>
+            <param name="stream">if set to <c>true</c> [stream].</param>
+        </member>
+        <member name="M:Bubba.EmbeddingPayload.#ctor(System.String,System.String,Bubba.GptParameter)">
+            <inheritdoc />
+            <summary>
+            Initializes a new instance of the <see cref="T:Bubba.EmbeddingPayload" /> class.
+            </summary>
+            <param name="userPrompt">The user prompt.</param>
+            <param name="systemPrompt">The system prompt.</param>
+            <param name="config">The configuration.</param>
         </member>
         <member name="P:Bubba.EmbeddingPayload.FilePath">
             <summary>
@@ -21887,16 +21931,6 @@
             <summary>
             </summary>
         </member>
-        <member name="F:Bubba.FilePayload._id">
-            <summary>
-            The file identifier, which can be referenced in the API endpoints.
-            </summary>
-        </member>
-        <member name="F:Bubba.FilePayload._endPoint">
-            <summary>
-            The end point
-            </summary>
-        </member>
         <member name="F:Bubba.FilePayload._purpose">
             <summary>
             The intended purpose of the file.
@@ -21947,6 +21981,29 @@
             <see cref="T:Bubba.FilePayload"/> class.
             </summary>
             <inheritdoc />
+        </member>
+        <member name="M:Bubba.FilePayload.#ctor(System.String,System.Double,System.Double,System.Double,System.Double,System.Int32,System.Boolean,System.Boolean)">
+            <inheritdoc />
+            <summary>
+            Initializes a new instance of the <see cref="T:Bubba.FilePayload" /> class.
+            </summary>
+            <param name="userPrompt"></param>
+            <param name="frequency">The frequency penalty.</param>
+            <param name="presence">The presence penalty.</param>
+            <param name="temperature">The temperature.</param>
+            <param name="topPercent">The top percent.</param>
+            <param name="maxTokens">The maximum tokens.</param>
+            <param name="store">if set to <c>true</c> [store].</param>
+            <param name="stream">if set to <c>true</c> [stream].</param>
+        </member>
+        <member name="M:Bubba.FilePayload.#ctor(System.String,System.String,Bubba.GptParameter)">
+            <inheritdoc />
+            <summary>
+            Initializes a new instance of the <see cref="T:Bubba.FilePayload" /> class.
+            </summary>
+            <param name="userPrompt">The user prompt.</param>
+            <param name="systemPrompt">The system prompt.</param>
+            <param name="config">The configuration.</param>
         </member>
         <member name="P:Bubba.FilePayload.Id">
             <inheritdoc />
@@ -22084,11 +22141,6 @@
             The validation file
             </summary>
         </member>
-        <member name="F:Bubba.FineTuningPayload._endPoint">
-            <summary>
-            The end point
-            </summary>
-        </member>
         <member name="F:Bubba.FineTuningPayload._method">
             <summary>
             The method
@@ -22100,6 +22152,29 @@
             <see cref="T:Bubba.FineTuningPayload"/> class.
             </summary>
             <inheritdoc />
+        </member>
+        <member name="M:Bubba.FineTuningPayload.#ctor(System.String,System.Double,System.Double,System.Double,System.Double,System.Int32,System.Boolean,System.Boolean)">
+            <inheritdoc />
+            <summary>
+            Initializes a new instance of the <see cref="T:Bubba.FineTuningPayload" /> class.
+            </summary>
+            <param name="userPrompt"></param>
+            <param name="frequency">The frequency penalty.</param>
+            <param name="presence">The presence penalty.</param>
+            <param name="temperature">The temperature.</param>
+            <param name="topPercent">The top percent.</param>
+            <param name="maxTokens">The maximum tokens.</param>
+            <param name="store">if set to <c>true</c> [store].</param>
+            <param name="stream">if set to <c>true</c> [stream].</param>
+        </member>
+        <member name="M:Bubba.FineTuningPayload.#ctor(System.String,System.String,Bubba.GptParameter)">
+            <inheritdoc />
+            <summary>
+            Initializes a new instance of the <see cref="T:Bubba.FineTuningPayload" /> class.
+            </summary>
+            <param name="userPrompt">The user prompt.</param>
+            <param name="systemPrompt">The system prompt.</param>
+            <param name="config">The configuration.</param>
         </member>
         <member name="P:Bubba.FineTuningPayload.LogProbs">
             <summary>
@@ -22179,24 +22254,6 @@
             The user identifier.
             </value>
         </member>
-        <member name="P:Bubba.FineTuningPayload.Model">
-            <summary>
-            Gets the chat model.
-            </summary>
-            <value>
-            The chat model.
-            </value>
-            <inheritdoc />
-        </member>
-        <member name="P:Bubba.FineTuningPayload.ResponseFormat">
-            <inheritdoc />
-            <summary>
-            Gets or sets the response format.
-            </summary>
-            <value>
-            The response format.
-            </value>
-        </member>
         <member name="M:Bubba.FineTuningPayload.GetData">
             <inheritdoc />
             <summary>
@@ -22234,10 +22291,11 @@
             </summary>
         </member>
         <member name="M:Bubba.GptPayload.#ctor(System.String,System.Double,System.Double,System.Double,System.Double,System.Int32,System.Boolean,System.Boolean)">
+            <inheritdoc />
             <summary>
-            Initializes a new instance of the <see cref="T:Bubba.GptPayload"/> class.
+            Initializes a new instance of the <see cref="T:Bubba.GptPayload" /> class.
             </summary>
-            <param name = "userPrompt" > </param>
+            <param name="userPrompt"> </param>
             <param name="frequency">The frequency penalty.</param>
             <param name="presence">The presence penalty.</param>
             <param name="temperature">The temperature.</param>
@@ -22246,12 +22304,14 @@
             <param name="store">if set to <c>true</c> [store].</param>
             <param name="stream">if set to <c>true</c> [stream].</param>
         </member>
-        <member name="M:Bubba.GptPayload.#ctor(System.String,Bubba.GptParameter)">
+        <member name="M:Bubba.GptPayload.#ctor(System.String,System.String,Bubba.GptParameter)">
+            <inheritdoc />
             <summary>
             Initializes a new instance of the
-            <see cref="T:Bubba.GptPayload"/> class.
+            <see cref="T:Bubba.GptPayload" /> class.
             </summary>
             <param name="userPrompt">The user prompt.</param>
+            <param name="systemPrompt"> </param>
             <param name="config">The configuration.</param>
         </member>
         <member name="M:Bubba.GptPayload.#ctor(Bubba.GptPayload)">
@@ -22554,17 +22614,35 @@
             The input
             </summary>
         </member>
-        <member name="F:Bubba.SpeechPayload._endPoint">
-            <summary>
-            The end point
-            </summary>
-        </member>
         <member name="M:Bubba.SpeechPayload.#ctor">
             <summary>
             Initializes a new instance of the
             <see cref="T:Bubba.SpeechPayload"/> class.
             </summary>
             <inheritdoc />
+        </member>
+        <member name="M:Bubba.SpeechPayload.#ctor(System.String,System.Double,System.Double,System.Double,System.Double,System.Int32,System.Boolean,System.Boolean)">
+            <inheritdoc />
+            <summary>
+            Initializes a new instance of the <see cref="T:Bubba.SpeechPayload" /> class.
+            </summary>
+            <param name="userPrompt"></param>
+            <param name="frequency">The frequency penalty.</param>
+            <param name="presence">The presence penalty.</param>
+            <param name="temperature">The temperature.</param>
+            <param name="topPercent">The top percent.</param>
+            <param name="maxTokens">The maximum tokens.</param>
+            <param name="store">if set to <c>true</c> [store].</param>
+            <param name="stream">if set to <c>true</c> [stream].</param>
+        </member>
+        <member name="M:Bubba.SpeechPayload.#ctor(System.String,System.String,Bubba.GptParameter)">
+            <inheritdoc />
+            <summary>
+            Initializes a new instance of the <see cref="T:Bubba.SpeechPayload" /> class.
+            </summary>
+            <param name="userPrompt">The user prompt.</param>
+            <param name="systemPrompt">The system prompt.</param>
+            <param name="config">The configuration.</param>
         </member>
         <member name="P:Bubba.SpeechPayload.Model">
             <summary>
@@ -22660,6 +22738,29 @@
             <see cref="T:Bubba.TextPayload"/> class.
             </summary>
             <inheritdoc />
+        </member>
+        <member name="M:Bubba.TextPayload.#ctor(System.String,System.Double,System.Double,System.Double,System.Double,System.Int32,System.Boolean,System.Boolean)">
+            <inheritdoc />
+            <summary>
+            Initializes a new instance of the <see cref="T:Bubba.TextPayload" /> class.
+            </summary>
+            <param name="userPrompt"></param>
+            <param name="frequency">The frequency penalty.</param>
+            <param name="presence">The presence penalty.</param>
+            <param name="temperature">The temperature.</param>
+            <param name="topPercent">The top percent.</param>
+            <param name="maxTokens">The maximum tokens.</param>
+            <param name="store">if set to <c>true</c> [store].</param>
+            <param name="stream">if set to <c>true</c> [stream].</param>
+        </member>
+        <member name="M:Bubba.TextPayload.#ctor(System.String,System.String,Bubba.GptParameter)">
+            <inheritdoc />
+            <summary>
+            Initializes a new instance of the <see cref="T:Bubba.TextPayload" /> class.
+            </summary>
+            <param name="userPrompt">The user prompt.</param>
+            <param name="systemPrompt">The system prompt.</param>
+            <param name="config">The configuration.</param>
         </member>
         <member name="P:Bubba.TextPayload.Number">
             <inheritdoc />
@@ -22802,16 +22903,6 @@
             The audio data
             </summary>
         </member>
-        <member name="F:Bubba.TranscriptionPayload._prompt">
-            <summary>
-            The input
-            </summary>
-        </member>
-        <member name="F:Bubba.TranscriptionPayload._endPoint">
-            <summary>
-            The end point
-            </summary>
-        </member>
         <member name="F:Bubba.TranscriptionPayload._speed">
             <summary>
             The speed
@@ -22823,6 +22914,29 @@
             <see cref="T:Bubba.TranscriptionPayload"/> class.
             </summary>
             <inheritdoc />
+        </member>
+        <member name="M:Bubba.TranscriptionPayload.#ctor(System.String,System.Double,System.Double,System.Double,System.Double,System.Int32,System.Boolean,System.Boolean)">
+            <inheritdoc />
+            <summary>
+            Initializes a new instance of the <see cref="T:Bubba.TranscriptionPayload" /> class.
+            </summary>
+            <param name="userPrompt"></param>
+            <param name="frequency">The frequency penalty.</param>
+            <param name="presence">The presence penalty.</param>
+            <param name="temperature">The temperature.</param>
+            <param name="topPercent">The top percent.</param>
+            <param name="maxTokens">The maximum tokens.</param>
+            <param name="store">if set to <c>true</c> [store].</param>
+            <param name="stream">if set to <c>true</c> [stream].</param>
+        </member>
+        <member name="M:Bubba.TranscriptionPayload.#ctor(System.String,System.String,Bubba.GptParameter)">
+            <inheritdoc />
+            <summary>
+            Initializes a new instance of the <see cref="T:Bubba.TranscriptionPayload" /> class.
+            </summary>
+            <param name="userPrompt">The user prompt.</param>
+            <param name="systemPrompt">The system prompt.</param>
+            <param name="config">The configuration.</param>
         </member>
         <member name="P:Bubba.TranscriptionPayload.Messages">
             <summary>
@@ -22869,14 +22983,6 @@
             </value>
             <inheritdoc />
         </member>
-        <member name="P:Bubba.TranscriptionPayload.Prompt">
-            <summary>
-            Gets or sets the input.
-            </summary>
-            <value>
-            The input.
-            </value>
-        </member>
         <member name="P:Bubba.TranscriptionPayload.ResponseFormat">
             <inheritdoc />
             <summary>
@@ -22908,19 +23014,9 @@
             </summary>
             <seealso cref="T:Bubba.GptPayload" />
         </member>
-        <member name="F:Bubba.TranslationPayload._prompt">
-            <summary>
-            The prompt
-            </summary>
-        </member>
         <member name="F:Bubba.TranslationPayload._file">
             <summary>
             The file
-            </summary>
-        </member>
-        <member name="F:Bubba.TranslationPayload._endPoint">
-            <summary>
-            The end point
             </summary>
         </member>
         <member name="M:Bubba.TranslationPayload.#ctor">
@@ -22930,13 +23026,27 @@
             </summary>
             <inheritdoc />
         </member>
-        <member name="P:Bubba.TranslationPayload.Prompt">
+        <member name="M:Bubba.TranslationPayload.#ctor(System.String,System.Double,System.Double,System.Double,System.Double,System.Int32,System.Boolean,System.Boolean)">
+            <inheritdoc />
             <summary>
-            Gets or sets the input.
             </summary>
-            <value>
-            The input.
-            </value>
+            <param name="userPrompt"></param>
+            <param name="frequency"></param>
+            <param name="presence"></param>
+            <param name="temperature"></param>
+            <param name="topPercent"></param>
+            <param name="maxTokens"></param>
+            <param name="store"></param>
+            <param name="stream"></param>
+        </member>
+        <member name="M:Bubba.TranslationPayload.#ctor(System.String,System.String,Bubba.GptParameter)">
+            <inheritdoc />
+            <summary>
+            Initializes a new instance of the <see cref="T:Bubba.TranslationPayload" /> class.
+            </summary>
+            <param name="userPrompt">The user prompt.</param>
+            <param name="systemPrompt">The system prompt.</param>
+            <param name="config">The configuration.</param>
         </member>
         <member name="P:Bubba.TranslationPayload.File">
             <summary>
@@ -23025,11 +23135,6 @@
             The order
             </summary>
         </member>
-        <member name="F:Bubba.VectorPayload._endPoint">
-            <summary>
-            The end point
-            </summary>
-        </member>
         <member name="F:Bubba.VectorPayload._metaData">
             <summary>
             The meta data
@@ -23041,6 +23146,29 @@
             <see cref="T:Bubba.VectorPayload"/> class.
             </summary>
             <inheritdoc />
+        </member>
+        <member name="M:Bubba.VectorPayload.#ctor(System.String,System.Double,System.Double,System.Double,System.Double,System.Int32,System.Boolean,System.Boolean)">
+            <inheritdoc />
+            <summary>
+            Initializes a new instance of the <see cref="T:Bubba.VectorPayload" /> class.
+            </summary>
+            <param name="userPrompt"></param>
+            <param name="frequency">The frequency penalty.</param>
+            <param name="presence">The presence penalty.</param>
+            <param name="temperature">The temperature.</param>
+            <param name="topPercent">The top percent.</param>
+            <param name="maxTokens">The maximum tokens.</param>
+            <param name="store">if set to <c>true</c> [store].</param>
+            <param name="stream">if set to <c>true</c> [stream].</param>
+        </member>
+        <member name="M:Bubba.VectorPayload.#ctor(System.String,System.String,Bubba.GptParameter)">
+            <inheritdoc />
+            <summary>
+            Initializes a new instance of the <see cref="T:Bubba.VectorPayload" /> class.
+            </summary>
+            <param name="userPrompt">The user prompt.</param>
+            <param name="systemPrompt">The system prompt.</param>
+            <param name="config">The configuration.</param>
         </member>
         <member name="P:Bubba.VectorPayload.FilePath">
             <summary>
