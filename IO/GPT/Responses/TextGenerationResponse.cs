@@ -45,12 +45,14 @@ namespace Bubba
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
     using System.Text.Json;
+    using System.Text.Json.Serialization;
 
     /// <inheritdoc />
     /// <summary>
     /// </summary>
     [ SuppressMessage( "ReSharper", "UnusedType.Global" ) ]
     [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
+    [ SuppressMessage( "ReSharper", "PossibleUnintendedReferenceComparison" ) ]
     public class TextGenerationResponse : GptResponse
     {
         /// <summary>
@@ -72,6 +74,18 @@ namespace Bubba
             : base( )
         {
             _created = DateTime.Now;
+        }
+
+        /// <inheritdoc />
+        /// <summary>
+        /// Initializes a new instance of the
+        /// <see cref="T:Bubba.TextGenerationResponse" /> class.
+        /// </summary>
+        /// <param name="request">The request.</param>
+        public TextGenerationResponse( TextGenerationRequest request ) 
+            : this( )
+        {
+            _model = request.Model;
         }
 
         /// <summary>
@@ -126,6 +140,7 @@ namespace Bubba
         /// <value>
         /// The identifier.
         /// </value>
+        [ JsonPropertyName( "id" ) ]
         public override string Id
         {
             get
@@ -149,6 +164,7 @@ namespace Bubba
         /// <value>
         /// The object.
         /// </value>
+        [JsonPropertyName("object")]
         public override string Object
         {
             get
@@ -172,6 +188,7 @@ namespace Bubba
         /// <value>
         /// The created.
         /// </value>
+        [JsonPropertyName("created")]
         public override DateTime Created
         {
             get
@@ -195,6 +212,7 @@ namespace Bubba
         /// <value>
         /// The model.
         /// </value>
+        [JsonPropertyName("model")]
         public override string Model
         {
             get
@@ -241,6 +259,7 @@ namespace Bubba
         /// <value>
         /// The usage.
         /// </value>
+        [JsonPropertyName("usage")]
         public override GptUsage Usage
         {
             get
@@ -254,56 +273,6 @@ namespace Bubba
                     _usage = value;
                     OnPropertyChanged( nameof( Usage ) );
                 }
-            }
-        }
-
-        /// <summary>
-        /// Extracts the text.
-        /// </summary>
-        /// <param name="jsonResponse">The json response.</param>
-        /// <returns></returns>
-        private string ExtractText( string jsonResponse )
-        {
-            using var _document = JsonDocument.Parse( jsonResponse );
-            return _document.RootElement.GetProperty( "choices" )[ 0 ].GetProperty( "text" )
-                .GetString( );
-        }
-
-        /// <summary>
-        /// Extracts the message from response.
-        /// </summary>
-        /// <param name="jsonResponse">The json response.</param>
-        /// <param name="chatModel">The chat model.</param>
-        /// <returns></returns>
-        private string ExtractResponseData( string jsonResponse, string chatModel )
-        {
-            try
-            {
-                ThrowIf.Empty( jsonResponse, nameof( jsonResponse ) );
-                ThrowIf.Empty( chatModel, nameof( chatModel ) );
-                using var _document = JsonDocument.Parse( jsonResponse );
-                var _root = _document.RootElement;
-                if( chatModel.Contains( "gpt-3.5-turbo" ) )
-                {
-                    var _element = _root.GetProperty( "choices" );
-                    if( _element.ValueKind == JsonValueKind.Array
-                        && _element.GetArrayLength( ) > 0 )
-                    {
-                        var _messageElement = _element[ 0 ].GetProperty( "message" );
-                        return _messageElement.GetProperty( "content" ).GetString( );
-                    }
-                }
-                else
-                {
-                    return _root.GetProperty( "choices" )[ 0 ].GetProperty( "text" ).GetString( );
-                }
-
-                return string.Empty;
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
-                return string.Empty;
             }
         }
     }

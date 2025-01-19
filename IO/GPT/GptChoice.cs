@@ -46,7 +46,6 @@ namespace Bubba
     using System.Diagnostics.CodeAnalysis;
     using System.Linq;
     using System.Text.Json.Serialization;
-    using Newtonsoft.Json;
 
     /// <inheritdoc />
     /// <summary>
@@ -54,6 +53,7 @@ namespace Bubba
     [ SuppressMessage( "ReSharper", "ClassNeverInstantiated.Global" ) ]
     [ SuppressMessage( "ReSharper", "ClassCanBeSealed.Global" ) ]
     [ SuppressMessage( "ReSharper", "PreferConcreteValueOverDefault" ) ]
+    [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
     public class GptChoice : PropertyChangedBase
     {
         /// <summary>

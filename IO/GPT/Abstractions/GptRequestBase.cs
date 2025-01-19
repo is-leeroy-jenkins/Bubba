@@ -45,7 +45,6 @@ namespace Bubba
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
     using System.Text.Json.Serialization;
-    using Newtonsoft.Json;
 
     /// <inheritdoc />
     /// <summary>
@@ -140,7 +139,7 @@ namespace Bubba
         /// <value>
         /// The user identifier.
         /// </value>
-        [JsonPropertyName( "n" ) ]
+        [ JsonPropertyName( "n" ) ]
         public virtual int Number
         {
             get
@@ -190,7 +189,7 @@ namespace Bubba
         /// <value>
         /// The seed.
         /// </value>
-        [JsonPropertyName("seed")]
+        [ JsonPropertyName( "seed" ) ]
         public virtual int Seed
         {
             get
@@ -267,13 +266,13 @@ namespace Bubba
         {
             get
             {
-                return Temperature;
+                return _temperature;
             }
             set
             {
-                if( Temperature != value )
+                if( _temperature != value )
                 {
-                    Temperature = value;
+                    _temperature = value;
                     OnPropertyChanged( nameof( Temperature ) );
                 }
             }
@@ -295,13 +294,13 @@ namespace Bubba
         {
             get
             {
-                return TopPercent;
+                return _topPercent;
             }
             set
             {
-                if( TopPercent != value )
+                if( _topPercent != value )
                 {
-                    TopPercent = value;
+                    _topPercent = value;
                     OnPropertyChanged( nameof( TopPercent ) );
                 }
             }

@@ -286,13 +286,13 @@ namespace Bubba
         {
             get
             {
-                return Temperature;
+                return _temperature;
             }
             set
             {
-                if( Temperature != value )
+                if( _temperature != value )
                 {
-                    Temperature = value;
+                    _temperature = value;
                     OnPropertyChanged( nameof( Temperature ) );
                 }
             }
@@ -315,13 +315,13 @@ namespace Bubba
         {
             get
             {
-                return TopPercent;
+                return _topPercent;
             }
             set
             {
-                if( TopPercent != value )
+                if( _topPercent != value )
                 {
-                    TopPercent = value;
+                    _topPercent = value;
                     OnPropertyChanged( nameof( TopPercent ) );
                 }
             }
@@ -426,24 +426,23 @@ namespace Bubba
             }
         }
 
+        /// <inheritdoc />
         /// <summary>
         /// Gets the text completion asynchronous.
         /// </summary>
-        /// <param name="prompt">The prompt.</param>
         /// <returns></returns>
-        public override async Task<string> GenerateAsync( string prompt )
+        public override async Task<string> GenerateAsync( )
         {
             try
             {
-                ThrowIf.Empty( prompt, nameof( prompt ) );
                 _httpClient = new HttpClient( );
                 _httpClient.DefaultRequestHeaders.Authorization =
-                    new AuthenticationHeaderValue( "Bearer", App.OpenAiKey );
+                    new AuthenticationHeaderValue( "Bearer", _apiKey );
 
                 var _text = new TextPayload
                 {
                     Model = _model,
-                    Prompt = prompt,
+                    Prompt = _prompt,
                     Temperature = _temperature,
                     Store = _store,
                     Stream = _stream,
@@ -458,7 +457,7 @@ namespace Bubba
                 var _response = await _httpClient.PostAsync( _endPoint, _content );
                 _response.EnsureSuccessStatusCode( );
                 var _responseContent = await _response.Content.ReadAsStringAsync( );
-                return ExtractContent( _responseContent );
+                return ExtractResponse( _responseContent );
             }
             catch( Exception ex )
             {
@@ -473,7 +472,7 @@ namespace Bubba
         /// </summary>
         /// <param name="response">The json response.</param>
         /// <returns></returns>
-        private protected override string ExtractContent( string response )
+        private protected override string ExtractResponse( string response )
         {
             try
             {

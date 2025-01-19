@@ -52,7 +52,6 @@ namespace Bubba
     using System.Text.Json;
     using System.Text.Json.Serialization;
     using System.Threading.Tasks;
-    using Newtonsoft.Json;
     using Properties;
     using JsonSerializer = System.Text.Json.JsonSerializer;
 
@@ -90,11 +89,6 @@ namespace Bubba
         private protected int _speed;
 
         /// <summary>
-        /// The seed
-        /// </summary>
-        private protected int _seed;
-
-        /// <summary>
         /// The input
         /// </summary>
         private protected string _input;
@@ -103,6 +97,11 @@ namespace Bubba
         /// The audio data
         /// </summary>
         private protected byte[ ] _audioData;
+
+        /// <summary>
+        /// The audio
+        /// </summary>
+        private protected IDictionary<string, object> _audio;
 
         /// <summary>
         /// Initializes a new instance of the
@@ -114,8 +113,9 @@ namespace Bubba
         {
             _entry = new object( );
             _header = new GptHeader( );
-            _httpClient = new HttpClient();
+            _httpClient = new HttpClient( );
             _endPoint = GptEndPoint.SpeechGeneration;
+            _audio = new Dictionary<string, object>( );
             _model = "tts-1-hd";
             _speed = 1;
             _language = "en";
@@ -358,6 +358,11 @@ namespace Bubba
                 _stop.Add( ";" );
                 _data.Add( "stop", _stop );
                 _data.Add( "modalities", _modalities );
+                if( _audio?.Any( ) == true )
+                {
+                    _data.Add( "audio", _audio );
+                }
+
                 if( _file != null )
                 {
                     _data.Add( "file", _file );
@@ -392,11 +397,11 @@ namespace Bubba
         /// <summary>
         /// Generates the speech asynchronous.
         /// </summary>
-        /// <param name="text">The text.</param>
+        /// <param name="prompt">The prompt.</param>
         /// <returns>
         /// Task
         /// </returns>
-        public async Task<string> GenerateAsync( string text )
+        public async Task<string> GenerateAsync( )
         {
             try
             {
@@ -408,7 +413,7 @@ namespace Bubba
                 {
                     Model = _model,
                     Language = _language,
-                    Input = text
+                    Input = _prompt
                 };
 
                 var _serialize = JsonSerializer.Serialize( _payload );
@@ -416,7 +421,7 @@ namespace Bubba
                 var _response = await _httpClient.PostAsync( _endPoint, _content );
                 _response.EnsureSuccessStatusCode( );
                 var _responseContent = await _response.Content.ReadAsStringAsync( );
-                return ExtractSpeech( _responseContent );
+                return ExtractResponse( _responseContent );
             }
             catch( Exception ex )
             {
@@ -425,25 +430,26 @@ namespace Bubba
             }
         }
 
+        /// <inheritdoc />
         /// <summary>
         /// Parses the generated speech.
         /// </summary>
-        /// <param name="jsonResponse">The json response.</param>
+        /// <param name="response">The json response.</param>
         /// <returns>
         /// string
         /// </returns>
-        private string ExtractSpeech( string jsonResponse )
+        private protected override string ExtractResponse( string response )
         {
             try
             {
-                ThrowIf.Empty( jsonResponse, nameof( jsonResponse ) );
-                using var _document = JsonDocument.Parse( jsonResponse );
-                var Text = _document.RootElement
+                ThrowIf.Empty( response, nameof( response ) );
+                using var _document = JsonDocument.Parse( response );
+                var _text = _document.RootElement
                     .GetProperty( "text" )
                     .GetString( );
 
-                return !string.IsNullOrEmpty( Text )
-                    ? Text
+                return !string.IsNullOrEmpty( _text )
+                    ? _text
                     : "Speech Generation Failed!";
             }
             catch( Exception ex )
@@ -456,22 +462,23 @@ namespace Bubba
         /// <summary>
         /// Saves the speech asynchronous.
         /// </summary>
-        /// <param name="text">The text.</param>
         /// <param name="filePath">The file path.</param>
-        public async Task SaveAsync( string text, string filePath )
+        public async Task SaveAsync( string filePath )
         {
             try
             {
-                ThrowIf.Empty( text, nameof( text ) );
                 ThrowIf.Empty( filePath, nameof( filePath ) );
                 _httpClient = new HttpClient( );
                 _httpClient.DefaultRequestHeaders.Authorization =
-                    new AuthenticationHeaderValue( "Bearer", App.OpenAiKey );
+                    new AuthenticationHeaderValue( "Bearer", _header.ApiKey );
 
                 var _speech = new SpeechPayload
                 {
                     Model = _model,
-                    Input = text,
+                    EndPoint = _endPoint,
+                    Input = _prompt,
+                    Language = _language,
+                    Voice = _voice,
                     Speed = _speed
                 };
 

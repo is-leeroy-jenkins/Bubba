@@ -1,10 +1,10 @@
 ﻿// ******************************************************************************************
 //     Assembly:                Bubba
 //     Author:                  Terry D. Eppler
-//     Created:                 01-16-2025
+//     Created:                 01-19-2025
 // 
 //     Last Modified By:        Terry D. Eppler
-//     Last Modified On:        01-16-2025
+//     Last Modified On:        01-19-2025
 // ******************************************************************************************
 // <copyright file="GptResponse.cs" company="Terry D. Eppler">
 //    Bubba is a small and simple windows (wpf) application for interacting with the OpenAI API
@@ -44,7 +44,11 @@ namespace Bubba
     using System;
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
+    using System.Linq;
     using System.Net.Http;
+    using System.Text.Json;
+    using System.Text.Json.Serialization;
+    using Properties;
 
     /// <inheritdoc />
     /// <summary>
@@ -52,6 +56,9 @@ namespace Bubba
     [ SuppressMessage( "ReSharper", "UnusedType.Global" ) ]
     [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
     [ SuppressMessage( "ReSharper", "MemberCanBeProtected.Global" ) ]
+    [ SuppressMessage( "ReSharper", "PreferConcreteValueOverDefault" ) ]
+    [ SuppressMessage( "ReSharper", "VirtualMemberNeverOverridden.Global" ) ]
+    [ SuppressMessage( "ReSharper", "PossibleUnintendedReferenceComparison" ) ]
     public class GptResponse : GptResponseBase, IDisposable
     {
         /// <summary>
@@ -78,12 +85,28 @@ namespace Bubba
             : base( )
         {
             _entry = new object( );
+            _model = "gpt-4o";
+            _endPoint = GptEndPoint.TextGeneration;
             _presencePenalty = 0.0;
             _frequencyPenalty = 0.0;
             _maximumTokens = 2048;
-            _model = "gpt-4o";
-            _endPoint = "https://api.openai.com/v1/chat/completions";
             _number = 1;
+        }
+
+        /// <inheritdoc />
+        /// <summary>
+        /// Initializes a new instance of the <see cref="T:Bubba.GptResponse" /> class.
+        /// </summary>
+        /// <param name="request">The request.</param>
+        public GptResponse( GptRequest request )
+            : this( )
+        {
+            _model = request.Model;
+            _endPoint = request.EndPoint;
+            _presencePenalty = request.PresencePenalty;
+            _frequencyPenalty = request.FrequencyPenalty;
+            _maximumTokens = request.MaximumTokens;
+            _number = request.Number;
         }
 
         /// <summary>
@@ -92,6 +115,7 @@ namespace Bubba
         /// <value>
         /// The identifier.
         /// </value>
+        [ JsonPropertyName( "id" ) ]
         public virtual string Id
         {
             get
@@ -114,6 +138,7 @@ namespace Bubba
         /// <value>
         /// The object.
         /// </value>
+        [ JsonPropertyName( "object" ) ]
         public virtual string Object
         {
             get
@@ -136,6 +161,7 @@ namespace Bubba
         /// <value>
         /// The created.
         /// </value>
+        [ JsonPropertyName( "created" ) ]
         public virtual DateTime Created
         {
             get
@@ -158,6 +184,7 @@ namespace Bubba
         /// <value>
         /// The model.
         /// </value>
+        [ JsonPropertyName( "model" ) ]
         public virtual string Model
         {
             get
@@ -202,6 +229,7 @@ namespace Bubba
         /// <value>
         /// The usage.
         /// </value>
+        [ JsonPropertyName( "usage" ) ]
         public virtual GptUsage Usage
         {
             get
@@ -215,6 +243,73 @@ namespace Bubba
                     _usage = value;
                     OnPropertyChanged( nameof( Usage ) );
                 }
+            }
+        }
+
+        /// <summary>
+        /// Extracts the message from response.
+        /// </summary>
+        /// <param name="response">The json response.</param>
+        /// <returns></returns>
+        private protected virtual string ExtractContent( string response )
+        {
+            try
+            {
+                ThrowIf.Empty( response, nameof( response ) );
+                using var _jsonDocument = JsonDocument.Parse( response );
+                var _root = _jsonDocument.RootElement;
+                if( _model.Contains( "gpt-3.5-turbo" ) )
+                {
+                    var _property = _root.GetProperty( "choices" );
+                    if( _property.ValueKind == JsonValueKind.Array
+                        && _property.GetArrayLength( ) > 0 )
+                    {
+                        var _msg = _property[ 0 ].GetProperty( "message" );
+                        var _cnt = _msg.GetProperty( "content" );
+                        var _txt = _cnt.GetString( );
+                        return _txt;
+                    }
+
+                    var _message = _property[ 0 ].GetProperty( "message" );
+                    var _text = _message.GetString( );
+                    return _text;
+                }
+                else
+                {
+                    var _choice = _root.GetProperty( "choices" )[ 0 ];
+                    var _property = _choice.GetProperty( "text" );
+                    var _text = _property.GetString( );
+                    return _text;
+                }
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+                return string.Empty;
+            }
+        }
+
+        /// <summary>
+        /// Gets the data.
+        /// </summary>
+        /// <returns></returns>
+        public virtual IDictionary<string, object> GetData( )
+        {
+            try
+            {
+                _data.Add( "model", _model );
+                _data.Add( "id", _id );
+                _data.Add( "created", _created );
+                _data.Add( "object", _object );
+                _data.Add( "usage", _usage );
+                return _data?.Any( ) == true
+                    ? _data
+                    : default( IDictionary<string, object> );
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+                return default( IDictionary<string, object> );
             }
         }
 

@@ -327,14 +327,13 @@ namespace Bubba
         /// Gets the chat response asynchronous.
         /// </summary>
         /// <returns></returns>
-        public override async Task<string> GenerateAsync( string prompt )
+        public override async Task<string> GenerateAsync( )
         {
             try
             {
-                ThrowIf.Empty( prompt, nameof( prompt ) );
                 _httpClient = new HttpClient( );
                 _httpClient.DefaultRequestHeaders.Authorization =
-                    new AuthenticationHeaderValue( "Bearer", App.OpenAiKey );
+                    new AuthenticationHeaderValue( "Bearer", _apiKey );
 
                 var _payload = new AssistantPayload( )
                 {
@@ -347,7 +346,7 @@ namespace Bubba
                     FrequencyPenalty = _frequencyPenalty,
                     PresencePenalty = _presencePenalty,
                     Instructions = _instructions,
-                    Prompt = prompt
+                    Prompt = _prompt
                 };
 
                 var _json = _payload.Serialize( );
@@ -355,7 +354,7 @@ namespace Bubba
                 var _response = await _httpClient.PostAsync( _endPoint, _content );
                 _response.EnsureSuccessStatusCode( );
                 var _chat = await _response.Content.ReadAsStringAsync( );
-                var _chatResponse = ExtractContent( _chat );
+                var _chatResponse = ExtractResponse( _chat );
                 return !string.IsNullOrEmpty( _chatResponse )
                     ? _chatResponse
                     : string.Empty;
@@ -373,7 +372,7 @@ namespace Bubba
         /// </summary>
         /// <param name="response">The json response.</param>
         /// <returns></returns>
-        private protected override string ExtractContent( string response )
+        private protected override string ExtractResponse( string response )
         {
             try
             {

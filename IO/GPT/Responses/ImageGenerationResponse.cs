@@ -45,12 +45,15 @@ namespace Bubba
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
     using System.Text.Json;
+    using System.Text.Json.Serialization;
 
     /// <inheritdoc />
     /// <summary>
     /// </summary>
     [ SuppressMessage( "ReSharper", "UnusedType.Global" ) ]
     [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
+    [ SuppressMessage( "ReSharper", "PossibleUnintendedReferenceComparison" ) ]
+    [ SuppressMessage( "ReSharper", "FunctionRecursiveOnAllPaths" ) ]
     public class ImageGenerationResponse : GptResponse
     {
         /// <summary>
@@ -77,6 +80,19 @@ namespace Bubba
             : base( )
         {
             _created = DateTime.Now;
+            _object = "chat.response";
+        }
+
+        /// <inheritdoc />
+        /// <summary>
+        /// Initializes a new instance of the
+        /// <see cref="T:Bubba.ImageGenerationResponse" /> class.
+        /// </summary>
+        /// <param name="request">The request.</param>
+        public ImageGenerationResponse( ImageGenerationRequest request )
+            : base( request )
+        {
+            _model = request.Model;
         }
 
         /// <summary>
@@ -111,13 +127,13 @@ namespace Bubba
         {
             get
             {
-                return TranscribedText;
+                return _transcribedText;
             }
             set
             {
-                if( TranscribedText != value )
+                if( _transcribedText != value )
                 {
-                    TranscribedText = value;
+                    _transcribedText = value;
                     OnPropertyChanged( nameof( TranscribedText ) );
                 }
             }
@@ -152,6 +168,7 @@ namespace Bubba
         /// <value>
         /// The identifier.
         /// </value>
+        [JsonPropertyName("id")]
         public override string Id
         {
             get
@@ -175,6 +192,7 @@ namespace Bubba
         /// <value>
         /// The object.
         /// </value>
+        [JsonPropertyName("object")]
         public override string Object
         {
             get
@@ -198,6 +216,7 @@ namespace Bubba
         /// <value>
         /// The created.
         /// </value>
+        [JsonPropertyName("created")]
         public override DateTime Created
         {
             get
@@ -221,6 +240,7 @@ namespace Bubba
         /// <value>
         /// The model.
         /// </value>
+        [ JsonPropertyName( "model" ) ]
         public override string Model
         {
             get
@@ -267,6 +287,7 @@ namespace Bubba
         /// <value>
         /// The usage.
         /// </value>
+        [JsonPropertyName("usage")]
         public override GptUsage Usage
         {
             get

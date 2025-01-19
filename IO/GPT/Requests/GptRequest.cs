@@ -51,7 +51,6 @@ namespace Bubba
     using System.Text.Json.Serialization;
     using System.Threading.Tasks;
     using Newtonsoft.Json;
-    using Properties;
 
     /// <inheritdoc />
     [ SuppressMessage( "ReSharper", "UnusedType.Global" ) ]
@@ -61,6 +60,7 @@ namespace Bubba
     [ SuppressMessage( "ReSharper", "PreferConcreteValueOverDefault" ) ]
     [ SuppressMessage( "ReSharper", "PossibleNullReferenceException" ) ]
     [ SuppressMessage( "ReSharper", "VirtualMemberNeverOverridden.Global" ) ]
+    [ SuppressMessage( "ReSharper", "PossibleUnintendedReferenceComparison" ) ]
     public class GptRequest : GptRequestBase, IGptRequest
     {
         /// <summary>
@@ -358,62 +358,21 @@ namespace Bubba
             }
         }
 
-        /// <inheritdoc />
-        /// <summary>
-        /// Begins the initialize.
-        /// </summary>
-        private protected virtual void Busy( )
-        {
-            try
-            {
-                lock( _entry )
-                {
-                    _busy = true;
-                }
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
-            }
-        }
-
-        /// <inheritdoc />
-        /// <summary>
-        /// Ends the initialize.
-        /// </summary>
-        private protected virtual void Chill( )
-        {
-            try
-            {
-                lock( _entry )
-                {
-                    _busy = false;
-                }
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
-            }
-        }
-
         /// <summary>
         /// Generates the asynchronous.
         /// </summary>
-        /// <param name="prompt">The prompt.</param>
-        /// <param name="config">The configuration.</param>
         /// <returns></returns>
         /// <exception cref="System.Net.Http.HttpRequestException">
         /// Error: {_response.StatusCode}, {_error}
         /// </exception>
-        public virtual async Task<string> GenerateAsync( string prompt )
+        public virtual async Task<string> GenerateAsync( )
         {
             try
             {
-                ThrowIf.Empty( prompt, nameof( prompt ) );
                 _httpClient.DefaultRequestHeaders.Clear( );
                 _httpClient.DefaultRequestHeaders.Add( "Authorization", $"Bearer {_header.ApiKey}" );
-                var _serial = JsonConvert.SerializeObject( prompt );
-                var _content = new StringContent( _serial, Encoding.UTF8, _header.ContentType);
+                var _serial = JsonConvert.SerializeObject( _prompt );
+                var _content = new StringContent( _serial, Encoding.UTF8, _header.ContentType );
                 var _response = await _httpClient.PostAsync( $"{_endPoint}", _content );
                 if( !_response.IsSuccessStatusCode )
                 {
@@ -433,16 +392,16 @@ namespace Bubba
         /// <summary>
         /// Extracts the content of the response.
         /// </summary>
-        /// <param name="jsonResponse">
+        /// <param name="response">
         /// The json response.
         /// </param>
         /// <returns></returns>
-        private protected virtual string ExtractContent( string jsonResponse )
+        private protected virtual string ExtractResponse( string response )
         {
             try
             {
-                ThrowIf.Empty( jsonResponse, nameof( jsonResponse ) );
-                using var _jsonDocument = JsonDocument.Parse( jsonResponse );
+                ThrowIf.Empty( response, nameof( response ) );
+                using var _jsonDocument = JsonDocument.Parse( response );
                 var _root = _jsonDocument.RootElement;
                 if( _model.Contains( "gpt-3.5-turbo" ) )
                 {
@@ -488,10 +447,10 @@ namespace Bubba
                 _data.Add( "max_completion_tokens", _maximumTokens );
                 _data.Add( "store", _store );
                 _data.Add( "stream", _stream );
-                _data.Add( "temperature", Temperature );
+                _data.Add( "temperature", _temperature );
                 _data.Add( "frequency_penalty", _frequencyPenalty );
                 _data.Add( "presence_penalty", _presencePenalty );
-                _data.Add( "top_p", TopPercent );
+                _data.Add( "top_p", _topPercent );
                 _data.Add( "response_format", _responseFormat );
                 _stop.Add( "#" );
                 _stop.Add( ";" );

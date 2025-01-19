@@ -410,7 +410,7 @@ namespace Bubba
                 var _response = await _httpClient.PostAsync( _endPoint, _content );
                 _response.EnsureSuccessStatusCode( );
                 var _chat = await _response.Content.ReadAsStringAsync( );
-                var _chatResponse = ExtractContent( _chat );
+                var _chatResponse = ExtractResponse( _chat );
                 return !string.IsNullOrEmpty( _chatResponse )
                     ? _chatResponse
                     : string.Empty;
@@ -428,7 +428,7 @@ namespace Bubba
         /// </summary>
         /// <param name="response">The json response.</param>
         /// <returns></returns>
-        private protected override string ExtractContent( string response )
+        private protected override string ExtractResponse( string response )
         {
             try
             {
