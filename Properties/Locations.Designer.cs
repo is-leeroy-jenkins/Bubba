@@ -61,29 +61,38 @@ namespace Bubba.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to https://www.google.com/search?q=site:usace.army.mil .
+        ///   Looks up a localized string similar to en-US,en;q=0.9.
         /// </summary>
-        internal static string ACE {
+        internal static string AcceptLanguage {
             get {
-                return ResourceManager.GetString("ACE", resourceCulture);
+                return ResourceManager.GetString("AcceptLanguage", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to UI\Pages\index.html.
+        ///   Looks up a localized string similar to true.
         /// </summary>
-        internal static string BubbaWeb {
+        internal static string ApplicationCache {
             get {
-                return ResourceManager.GetString("BubbaWeb", resourceCulture);
+                return ResourceManager.GetString("ApplicationCache", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to https://www.google.com/search?q=site:www.cdc.gov .
+        ///   Looks up a localized string similar to Bubba Browser.
         /// </summary>
-        internal static string CDC {
+        internal static string Branding {
             get {
-                return ResourceManager.GetString("CDC", resourceCulture);
+                return ResourceManager.GetString("Branding", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to bubba://UI/Pages/CannotConnect.html.
+        /// </summary>
+        internal static string CannotConnect {
+            get {
+                return ResourceManager.GetString("CannotConnect", resourceCulture);
             }
         }
         
@@ -97,29 +106,11 @@ namespace Bubba.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to https://www.google.com/search?q=site:crsreports.congress.gov .
+        ///   Looks up a localized string similar to true.
         /// </summary>
-        internal static string CRS {
+        internal static string CrossDomainSecurity {
             get {
-                return ResourceManager.GetString("CRS", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to https://www.google.com/search?q=site:www.csb.gov .
-        /// </summary>
-        internal static string CSB {
-            get {
-                return ResourceManager.GetString("CSB", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to https://www.google.com/search?q=site:data.gov .
-        /// </summary>
-        internal static string DATA {
-            get {
-                return ResourceManager.GetString("DATA", resourceCulture);
+                return ResourceManager.GetString("CrossDomainSecurity", resourceCulture);
             }
         }
         
@@ -133,47 +124,20 @@ namespace Bubba.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to https://www.google.com/search?q=site:www.dhs.gov .
+        ///   Looks up a localized string similar to Resources\Documents\.
         /// </summary>
-        internal static string DHS {
+        internal static string Documents {
             get {
-                return ResourceManager.GetString("DHS", resourceCulture);
+                return ResourceManager.GetString("Documents", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to https://www.google.com/search?q=site:www.commerce.gov .
+        ///   Looks up a localized string similar to bubba://UI/Pages/Downloads.html.
         /// </summary>
-        internal static string DOC {
+        internal static string Downloads {
             get {
-                return ResourceManager.GetString("DOC", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to https://www.google.com/search?q=site:www.defense.gov .
-        /// </summary>
-        internal static string DOD {
-            get {
-                return ResourceManager.GetString("DOD", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to https://www.google.com/search?q=site:www.energy.gov .
-        /// </summary>
-        internal static string DOE {
-            get {
-                return ResourceManager.GetString("DOE", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to https://www.google.com/search?q=site:www.doi.gov .
-        /// </summary>
-        internal static string DOI {
-            get {
-                return ResourceManager.GetString("DOI", resourceCulture);
+                return ResourceManager.GetString("Downloads", resourceCulture);
             }
         }
         
@@ -187,20 +151,11 @@ namespace Bubba.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to &quot;https://www.google.com/search?q=site:www.epa.gov .
+        ///   Looks up a localized string similar to bubba://UI/Pages/NotFound.html.
         /// </summary>
-        internal static string EPA {
+        internal static string FileNotFound {
             get {
-                return ResourceManager.GetString("EPA", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to https://www.google.com/search?q=site:www.fda.gov .
-        /// </summary>
-        internal static string FDA {
-            get {
-                return ResourceManager.GetString("FDA", resourceCulture);
+                return ResourceManager.GetString("FileNotFound", resourceCulture);
             }
         }
         
@@ -214,38 +169,29 @@ namespace Bubba.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to https://www.google.com/search?q=site:www.gpo.gov .
+        ///   Looks up a localized string similar to https://cse.google.com/cse?cx=e78aa3dcb21474bf4.
         /// </summary>
-        internal static string GPO {
+        internal static string Google {
             get {
-                return ResourceManager.GetString("GPO", resourceCulture);
+                return ResourceManager.GetString("Google", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to https://www.google.com/search?q=site:www.gsa.gov .
+        ///   Looks up a localized string similar to file:///C:/Users/terry/source/repos/Bubba/UI/Pages/index.html.
         /// </summary>
-        internal static string GSA {
+        internal static string HomePage {
             get {
-                return ResourceManager.GetString("GSA", resourceCulture);
+                return ResourceManager.GetString("HomePage", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to https://www.google.com/search?q=site:www.hhs.gov .
+        ///   Looks up a localized string similar to UI\Pages\index.html.
         /// </summary>
-        internal static string HHS {
+        internal static string Internal {
             get {
-                return ResourceManager.GetString("HHS", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to https://www.google.com/search?q=site:www.irs.gov .
-        /// </summary>
-        internal static string IRS {
-            get {
-                return ResourceManager.GetString("IRS", resourceCulture);
+                return ResourceManager.GetString("Internal", resourceCulture);
             }
         }
         
@@ -259,92 +205,11 @@ namespace Bubba.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to https://www.google.com/search?q=site:catalog.loc.gov .
-        /// </summary>
-        internal static string LOC {
-            get {
-                return ResourceManager.GetString("LOC", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to https://www.google.com/search?q=site:www.archives.gov .
-        /// </summary>
-        internal static string NARA {
-            get {
-                return ResourceManager.GetString("NARA", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to https://www.google.com/search?q=site:www.nasa.gov .
-        /// </summary>
-        internal static string NASA {
-            get {
-                return ResourceManager.GetString("NASA", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to https://www.google.com.
         /// </summary>
         internal static string NewTab {
             get {
                 return ResourceManager.GetString("NewTab", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to https://www.google.com/search?q=site:www.noaa.gov .
-        /// </summary>
-        internal static string NOAA {
-            get {
-                return ResourceManager.GetString("NOAA", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to https://www.google.com/search?q=site:www.nps.gov .
-        /// </summary>
-        internal static string NPS {
-            get {
-                return ResourceManager.GetString("NPS", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to https://www.google.com/search?q=site:www.nrc.gov .
-        /// </summary>
-        internal static string NRC {
-            get {
-                return ResourceManager.GetString("NRC", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to https://www.google.com/search?q=site:www.nsf.gov .
-        /// </summary>
-        internal static string NSF {
-            get {
-                return ResourceManager.GetString("NSF", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to https://www.google.com/search?q=site:www.weather.gov .
-        /// </summary>
-        internal static string NWS {
-            get {
-                return ResourceManager.GetString("NWS", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to https://www.google.com/search?q=site:www.whitehouse.gov .
-        /// </summary>
-        internal static string OMB {
-            get {
-                return ResourceManager.GetString("OMB", resourceCulture);
             }
         }
         
@@ -358,6 +223,51 @@ namespace Bubba.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 8.8.8.8.
+        /// </summary>
+        internal static string PingIP {
+            get {
+                return ResourceManager.GetString("PingIP", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to false.
+        /// </summary>
+        internal static string Proxy {
+            get {
+                return ResourceManager.GetString("Proxy", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to *.google.com, localhost.
+        /// </summary>
+        internal static string ProxyBypassList {
+            get {
+                return ResourceManager.GetString("ProxyBypassList", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 123.123.123.123.
+        /// </summary>
+        internal static string ProxyIP {
+            get {
+                return ResourceManager.GetString("ProxyIP", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 123.
+        /// </summary>
+        internal static string ProxyPort {
+            get {
+                return ResourceManager.GetString("ProxyPort", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Resources\Reports\Report.xlsx.
         /// </summary>
         internal static string Reports {
@@ -367,38 +277,29 @@ namespace Bubba.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to https://www.google.com/search?q=site:www.usda.gov .
+        ///   Looks up a localized string similar to Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/104.0.5112.102 Safari/537.36 /CefSharp Browser.
         /// </summary>
-        internal static string USDA {
+        internal static string UserAgent {
             get {
-                return ResourceManager.GetString("USDA", resourceCulture);
+                return ResourceManager.GetString("UserAgent", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to https://www.google.com/search?q=site:www.govinfo.gov .
+        ///   Looks up a localized string similar to true.
         /// </summary>
-        internal static string USGI {
+        internal static string WebGL {
             get {
-                return ResourceManager.GetString("USGI", resourceCulture);
+                return ResourceManager.GetString("WebGL", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to https://www.google.com/search?q=site:usno.navy.mil .
+        ///   Looks up a localized string similar to true.
         /// </summary>
-        internal static string USNO {
+        internal static string WebSecurity {
             get {
-                return ResourceManager.GetString("USNO", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to https://www.google.com/search?q=site:fiscal.treasury.gov .
-        /// </summary>
-        internal static string UST {
-            get {
-                return ResourceManager.GetString("UST", resourceCulture);
+                return ResourceManager.GetString("WebSecurity", resourceCulture);
             }
         }
     }

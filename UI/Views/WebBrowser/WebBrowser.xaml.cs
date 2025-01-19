@@ -52,30 +52,21 @@ namespace Bubba
     using CefSharp;
     using CefSharp.Wpf;
     using System.Threading.Tasks;
-    using System.Configuration;
     using System.Diagnostics.CodeAnalysis;
-    using System.Linq;
     using System.Threading;
     using System.Windows.Forms;
     using System.Windows.Input;
     using Syncfusion.SfSkinManager;
-    using Syncfusion.Windows.Controls.Input;
-    using Syncfusion.Windows.Tools.Controls;
     using ToastNotifications;
     using ToastNotifications.Lifetime;
     using ToastNotifications.Messages;
     using ToastNotifications.Position;
     using static System.Configuration.ConfigurationManager;
     using Application = System.Windows.Forms.Application;
-    using Button = System.Windows.Controls.Button;
-    using Cef = CefSharp.Core.Cef;
-    using Clipboard = System.Windows.Clipboard;
     using KeyEventArgs = System.Windows.Input.KeyEventArgs;
-    using MessageBox = System.Windows.MessageBox;
     using MouseEventArgs = System.Windows.Input.MouseEventArgs;
-    using PrintDialog = System.Windows.Controls.PrintDialog;
-    using TextDataFormat = System.Windows.TextDataFormat;
     using Timer = System.Threading.Timer;
+    using Properties;
 
     /// <inheritdoc />
     /// <summary>
@@ -86,6 +77,7 @@ namespace Bubba
     [ SuppressMessage( "ReSharper", "ConvertToAutoPropertyWithPrivateSetter" ) ]
     [ SuppressMessage( "ReSharper", "RedundantExtendsListEntry" ) ]
     [ SuppressMessage( "ReSharper", "CanSimplifyDictionaryLookupWithTryGetValue" ) ]
+    [ SuppressMessage( "ReSharper", "PreferConcreteValueOverDefault" ) ]
     public partial class WebBrowser : Window, IDisposable
     {
         /// <summary>
@@ -433,7 +425,6 @@ namespace Bubba
         /// </summary>
         public void AddBlankWindow( )
         {
-            // open a new instance of the browser
             var _info = new ProcessStartInfo( Application.ExecutablePath, "" )
             {
                 LoadUserProfile = true,
@@ -471,7 +462,6 @@ namespace Bubba
         {
             return Dispatcher.Invoke( delegate
             {
-                // check if already exists
                 foreach( BrowserTabItem _item in TabControl.Items )
                 {
                     var _tab2 = ( BrowserTabItem )_item.Tag;
@@ -508,7 +498,7 @@ namespace Bubba
         {
             if( url == "" )
             {
-                url = AppSettings[ "NewTab" ];
+                url = Locations.NewTab;
             }
 
             var _newBrowser = new ChromiumWebBrowser( url );
@@ -539,7 +529,7 @@ namespace Bubba
 
             tabItem.Tag = _tab;
             if( !string.IsNullOrEmpty( url ) 
-                && url.StartsWith( AppSettings[ "Internal" ] + ":" ) )
+                && url.StartsWith( Locations.Internal + ":" ) )
             {
                 _newBrowser.JavascriptObjectRepository.Register( "host", HostCallback,
                     BindingOptions.DefaultBinder );
@@ -562,19 +552,20 @@ namespace Bubba
             var _settings = new CefSettings( );
             _settings.RegisterScheme( new CefCustomScheme
             {
-                SchemeName = AppSettings[ "Internal" ],
+                SchemeName = Locations.Internal,
                 SchemeHandlerFactory = new SchemaCallbackFactory( )
             } );
 
-            _settings.UserAgent = BrowserConfig.UserAgent;
-            _settings.AcceptLanguageList = BrowserConfig.AcceptLanguage;
+            _settings.UserAgent = Locations.UserAgent;
+            _settings.AcceptLanguageList = Locations.AcceptLanguage;
             _settings.IgnoreCertificateErrors = true;
-            var _cache = AppSettings[ "Downloads" ];
+            var _cache = Locations.Downloads;
             _settings.CachePath = GetApplicationDirectory( _cache );
-            if( BrowserConfig.Proxy )
+            var _bool = bool.Parse( Locations.Proxy );
+            if( _bool )
             {
-                var _proxy = AppSettings[ "ProxyIP" ];
-                var _port = AppSettings[ "ProxyPort" ];
+                var _proxy = Locations.PingIP;
+                var _port = Locations.ProxyPort;
                 CefSharpSettings.Proxy = new ProxyOptions( _proxy, _port );
             }
 
@@ -778,7 +769,7 @@ namespace Bubba
             {
                 ThrowIf.Null( url, nameof( url ) );
                 return url == "" || url.BeginsWith( "about:" ) || url.BeginsWith( "chrome:" )
-                    || url.BeginsWith( AppSettings[ "Internal" ] + ":" );
+                    || url.BeginsWith( Locations.Internal + ":" );
             }
             catch( Exception ex )
             {
@@ -875,7 +866,6 @@ namespace Bubba
                 ToolStripTextBox.GotMouseCapture += OnToolStripTextBoxClick;
                 ChatButton.Click += OnChatButtonClick;
                 HomeButton.Click += OnHomeButtonClick;
-                ToolStripComboBox.SelectionChanged += OnSelectedDomainChanged;
             }
             catch( Exception ex )
             {
@@ -983,7 +973,7 @@ namespace Bubba
             {
                 ThrowIf.Null( browser, nameof( browser ) );
                 var _config = new BrowserSettings( );
-                var _flag = AppSettings[ "WebGL" ];
+                var _flag = Locations.WebGL;
                 if( !string.IsNullOrEmpty( _flag ) )
                 {
                     _config.WebGl = bool.Parse( _flag ).ToCefState( );
@@ -1262,9 +1252,9 @@ namespace Bubba
             {
                 ThrowIf.Null( name, nameof( name ) );
                 var _winXpDir = @"C:\Documents and Settings\All Users\Application Data\";
-                var _app = AppSettings[ "Branding" ];
+                var _app = Locations.Branding;
                 return Directory.Exists( _winXpDir )
-                    ? _winXpDir + AppSettings[ "Branding" ] + @"\" + name + @"\"
+                    ? _winXpDir + Locations.Branding + @"\" + name + @"\"
                     : @"C:\ProgramData\" + _app + @"\" + name + @"\";
             }
             catch( Exception ex )
@@ -1346,7 +1336,7 @@ namespace Bubba
                 {
                     Uri.TryCreate( url, UriKind.Absolute, out var _outUri );
                     if( !( _urlLower.StartsWith( "http" )
-                        || _urlLower.StartsWith( AppSettings[ "Internal" ] ) ) )
+                        || _urlLower.StartsWith( Locations.Internal ) ) )
                     {
                         if( _outUri == null
                             || _outUri.Scheme != Uri.UriSchemeFile )
@@ -1355,7 +1345,7 @@ namespace Bubba
                         }
                     }
 
-                    if( _urlLower.StartsWith( AppSettings[ "Internal" ] + ":" )
+                    if( _urlLower.StartsWith( Locations.Internal + ":" )
                         || ( Uri.TryCreate( _newUrl, UriKind.Absolute, out _outUri )
                             && ( ( ( _outUri.Scheme == Uri.UriSchemeHttp
                                         || _outUri.Scheme == Uri.UriSchemeHttps )
@@ -1365,7 +1355,7 @@ namespace Bubba
                     }
                     else
                     {
-                        _newUrl = AppSettings[ "Google" ] + HttpUtility.UrlEncode( url );
+                        _newUrl = Locations.Google + HttpUtility.UrlEncode( url );
                     }
                 }
 
@@ -1514,7 +1504,7 @@ namespace Bubba
             }
             else
             {
-                var _brw = AddNewBrowserTab( AppSettings[ "Downloads" ] );
+                var _brw = AddNewBrowserTab( Locations.Downloads );
                 _downloadStrip = ( BrowserTabItem )_brw.Parent;
             }
         }
@@ -1543,10 +1533,10 @@ namespace Bubba
         {
             try
             {
-                var _url = AppSettings[ "Google" ] + args;
+                var _url = Locations.Google + args;
                 var _info = new ProcessStartInfo
                 {
-                    FileName = AppSettings[ "Chrome" ],
+                    FileName = Locations.Chrome,
                     LoadUserProfile = true,
                     UseShellExecute = true
                 };
@@ -1567,10 +1557,10 @@ namespace Bubba
         {
             try
             {
-                var _url = AppSettings[ "HomePage" ];
+                var _url = Locations.HomePage;
                 var _info = new ProcessStartInfo
                 {
-                    FileName = AppSettings[ "Chrome" ],
+                    FileName = Locations.Chrome,
                     LoadUserProfile = true,
                     UseShellExecute = true
                 };
@@ -1912,84 +1902,6 @@ namespace Bubba
         }
 
         /// <summary>
-        /// Executes the multi search.
-        /// </summary>
-        /// <param name="keyWords">The key words.</param>
-        private void SearchGovernmentDomains( string keyWords )
-        {
-            if( !string.IsNullOrEmpty( keyWords ) )
-            {
-                try
-                {
-                    var _google = AppSettings[ "Google" ] + keyWords;
-                    _currentBrowser.LoadUrl( _google );
-                    var _epa = AppSettings[ "EPA" ] + keyWords;
-                    AddNewBrowserTab( _epa, false );
-                    var _data = AppSettings[ "DATA" ] + keyWords;
-                    AddNewBrowserTab( _data, false );
-                    var _crs = AppSettings[ "CRS" ] + keyWords;
-                    AddNewBrowserTab( _crs, false );
-                    var _loc = AppSettings[ "LOC" ] + keyWords;
-                    AddNewBrowserTab( _loc, false );
-                    var _gpo = AppSettings[ "GPO" ] + keyWords;
-                    AddNewBrowserTab( _gpo, false );
-                    var _usgi = AppSettings[ "USGI" ] + keyWords;
-                    AddNewBrowserTab( _usgi, false );
-                    var _omb = AppSettings[ "OMB" ] + keyWords;
-                    AddNewBrowserTab( _omb, false );
-                    var _ust = AppSettings[ "UST" ] + keyWords;
-                    AddNewBrowserTab( _ust, false );
-                    var _nara = AppSettings[ "NARA" ] + keyWords;
-                    AddNewBrowserTab( _nara, false );
-                    var _nasa = AppSettings[ "NASA" ] + keyWords;
-                    AddNewBrowserTab( _nasa, false );
-                    var _noaa = AppSettings[ "NOAA" ] + keyWords;
-                    AddNewBrowserTab( _noaa, false );
-                    var _doi = AppSettings[ "DOI" ] + keyWords;
-                    AddNewBrowserTab( _doi, false );
-                    var _nps = AppSettings[ "NPS" ] + keyWords;
-                    AddNewBrowserTab( _nps, false );
-                    var _gsa = AppSettings[ "GSA" ] + keyWords;
-                    AddNewBrowserTab( _gsa, false );
-                    var _doc = AppSettings[ "DOC" ] + keyWords;
-                    AddNewBrowserTab( _doc, false );
-                    var _hhs = AppSettings[ "HHS" ] + keyWords;
-                    AddNewBrowserTab( _hhs, false );
-                    var _nrc = AppSettings[ "NRC" ] + keyWords;
-                    AddNewBrowserTab( _nrc, false );
-                    var _doe = AppSettings[ "DOE" ] + keyWords;
-                    AddNewBrowserTab( _doe, false );
-                    var _nsf = AppSettings[ "NSF" ] + keyWords;
-                    AddNewBrowserTab( _nsf, false );
-                    var _usda = AppSettings[ "USDA" ] + keyWords;
-                    AddNewBrowserTab( _usda, false );
-                    var _csb = AppSettings[ "CSB" ] + keyWords;
-                    AddNewBrowserTab( _csb, false );
-                    var _irs = AppSettings[ "IRS" ] + keyWords;
-                    AddNewBrowserTab( _irs, false );
-                    var _fda = AppSettings[ "FDA" ] + keyWords;
-                    AddNewBrowserTab( _fda, false );
-                    var _cdc = AppSettings[ "CDC" ] + keyWords;
-                    AddNewBrowserTab( _cdc, false );
-                    var _ace = AppSettings[ "ACE" ] + keyWords;
-                    AddNewBrowserTab( _ace, false );
-                    var _dhs = AppSettings[ "DHS" ] + keyWords;
-                    AddNewBrowserTab( _dhs, false );
-                    var _dod = AppSettings[ "DOD" ] + keyWords;
-                    AddNewBrowserTab( _dod, false );
-                    var _usno = AppSettings[ "USNO" ] + keyWords;
-                    AddNewBrowserTab( _usno, false );
-                    var _nws = AppSettings[ "NWS" ] + keyWords;
-                    AddNewBrowserTab( _nws, false );
-                }
-                catch( Exception ex )
-                {
-                    Fail( ex );
-                }
-            }
-        }
-
-        /// <summary>
         /// Shows the items.
         /// </summary>
         private void ShowToolbar( )
@@ -2300,6 +2212,7 @@ namespace Bubba
         /// <summary>
         /// Raises the <see cref="E:TabClosing" /> event.
         /// </summary>
+        /// <param name = "sender" > </param>
         /// <param name="e">The <see cref="TabClosingEventArgs" />
         /// instance containing the event data.</param>
         private void OnTabClosing( object sender, TabClosingEventArgs e )
@@ -2373,61 +2286,6 @@ namespace Bubba
                         _browser.Focus( );
                     }
                 }
-            }
-        }
-
-        /// <summary>
-        /// Called when [search engine selected].
-        /// </summary>
-        /// <param name="sender">The sender.</param>
-        /// <param name="e">The <see cref="RoutedEventArgs" />
-        /// instance containing the event data.</param>
-        private void OnSelectedDomainChanged( object sender, RoutedEventArgs e )
-        {
-            try
-            {
-                if( sender is ToolStripComboBox _comboBox )
-                {
-                    var _index = _comboBox.SelectedIndex;
-                    _searchEngineUrl = _index switch
-                    {
-                        0 => AppSettings[ "EPA" ],
-                        1 => AppSettings[ "DATA" ],
-                        2 => AppSettings[ "GPO" ],
-                        3 => AppSettings[ "USGI" ],
-                        4 => AppSettings[ "CRS" ],
-                        5 => AppSettings[ "LOC" ],
-                        6 => AppSettings[ "OMB" ],
-                        7 => AppSettings[ "UST" ],
-                        8 => AppSettings[ "NASA" ],
-                        9 => AppSettings[ "NOAA" ],
-                        10 => AppSettings[ "DOI" ],
-                        11 => AppSettings[ "NPS" ],
-                        12 => AppSettings[ "GSA" ],
-                        13 => AppSettings[ "NARA" ],
-                        14 => AppSettings[ "DOC" ],
-                        15 => AppSettings[ "HHS" ],
-                        16 => AppSettings[ "NRC" ],
-                        17 => AppSettings[ "DOE" ],
-                        18 => AppSettings[ "NSF" ],
-                        19 => AppSettings[ "USDA" ],
-                        20 => AppSettings[ "CSB" ],
-                        21 => AppSettings[ "IRS" ],
-                        22 => AppSettings[ "FDA" ],
-                        23 => AppSettings[ "CDC" ],
-                        24 => AppSettings[ "ACE" ],
-                        25 => AppSettings[ "DHS" ],
-                        26 => AppSettings[ "DOD" ],
-                        27 => AppSettings[ "USNO" ],
-                        28 => AppSettings[ "NWS" ],
-                        29 => AppSettings[ "GOOG" ],
-                        var _ => AppSettings[ "GPT" ]
-                    };
-                }
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
             }
         }
 
@@ -2751,11 +2609,6 @@ namespace Bubba
             {
                 var _keywords = ToolStripTextBox.Text;
                 if( !string.IsNullOrEmpty( _keywords )
-                    && ToolStripComboBox.SelectedIndex == -1 )
-                {
-                    SearchGovernmentDomains( _keywords );
-                }
-                else if( !string.IsNullOrEmpty( _keywords )
                     && ToolStripComboBox.SelectedIndex > -1 )
                 {
                     var _search = SearchEngineUrl + _keywords;
