@@ -544,25 +544,6 @@ namespace Bubba
         }
 
         /// <summary>
-        /// Sets the extension.
-        /// </summary>
-        private void SetImage( )
-        {
-            try
-            {
-                var _extn = _fileExtension.ToUpper( );
-                var _file = $@"/Resources/Assets/ExtensionImages/{_extn}.png";
-                var _uri = new Uri( _file, UriKind.Relative );
-                _image = new BitmapImage( _uri );
-                PictureBox.Source = _image;
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
-            }
-        }
-
-        /// <summary>
         /// Sets the RadioButton events.
         /// </summary>
         private protected void RegisterRadioButtonEvents( )
@@ -965,10 +946,6 @@ namespace Bubba
                 CountLabel.Content = $"{_count:N0}";
                 DurationLabel.Content = $"{_duration:N0}";
                 PopulateListBox( _filePaths );
-                var _file = $@"/Resources/Assets/ExtensionImages/{_fileExtension?.ToUpper( )}.png";
-                var _uri = new Uri( _file, UriKind.Relative );
-                _image = new BitmapImage( _uri );
-                PictureBox.Source = _image;
                 Chill( );
             }
             catch( Exception ex )

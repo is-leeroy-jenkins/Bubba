@@ -322,18 +322,6 @@
             Tag="JSON"
             ToolTip="*.json files" />
 
-        <Image
-            x:Name="PictureBox"
-            Grid.Row="0"
-            Grid.Column="1"
-            Width="40"
-            Height="30"
-            MinWidth="20"
-            MinHeight="18"
-            Margin="193,0,185,4"
-            ClipToBounds="True"
-            SnapsToDevicePixels="True"
-            Source="/Resources/Assets/GitHubImages/openai.png" />
 
         <Grid Grid.RowSpan="2" Margin="0,34,0,0">
             <Grid.ColumnDefinitions>
@@ -349,13 +337,11 @@
 
             <Label
                 x:Name="CountLabel"
-                Grid.Row="0"
                 Grid.Column="0"
-                Grid.ColumnSpan="2"
                 Height="30"
-                Margin="1,0,84,0"
+                Margin="1,0,3,0"
                 VerticalAlignment="Center"
-                HorizontalContentAlignment="Right"
+                HorizontalContentAlignment="Left"
                 VerticalContentAlignment="Center"
                 Content="Files: "
                 FontSize="12"
@@ -369,7 +355,7 @@
                 Height="30"
                 Margin="1,0,84,0"
                 VerticalAlignment="Center"
-                HorizontalContentAlignment="Right"
+                HorizontalContentAlignment="Left"
                 VerticalContentAlignment="Center"
                 Content="Time: "
                 FontSize="12"
@@ -379,7 +365,7 @@
                 x:Name="DurationLabel"
                 Grid.Row="1"
                 Grid.Column="1"
-                Height="22"
+                Height="30"
                 Margin="2,0,1,0"
                 VerticalAlignment="Center"
                 HorizontalContentAlignment="Left"
@@ -391,7 +377,7 @@
             <Label
                 x:Name="FileCountLabel"
                 Grid.Column="1"
-                Height="22"
+                Height="30"
                 Margin="2,0,1,0"
                 VerticalAlignment="Center"
                 HorizontalContentAlignment="Left"

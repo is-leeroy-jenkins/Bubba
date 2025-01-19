@@ -46,16 +46,16 @@
             The controls
             </summary>
         </member>
-        <member name="M:Bubba.App.RegisterTheme">
-            <summary>
-            Registers the _theme.
-            </summary>
-        </member>
         <member name="M:Bubba.App.#ctor">
             <inheritdoc />
             <summary>
             Initializes a new instance of the
             <see cref="T:Bubba.App" /> class.
+            </summary>
+        </member>
+        <member name="F:Bubba.App.Instructions">
+            <summary>
+            The system instructions
             </summary>
         </member>
         <member name="F:Bubba.App.OpenAiKey">
@@ -66,6 +66,11 @@
         <member name="F:Bubba.App.GoogleKey">
             <summary>
             The google API key
+            </summary>
+        </member>
+        <member name="M:Bubba.App.RegisterTheme">
+            <summary>
+            Registers the _theme.
             </summary>
         </member>
         <member name="M:Bubba.App.InitializeDelegates">
@@ -85,7 +90,80 @@
             <summary>
             Handles the exception.
             </summary>
-            <param name="e">The e.</param>
+            <param name="ex">The ex.</param>
+        </member>
+        <member name="M:Bubba.App.OpenGptFileDialogAsync">
+            <summary>
+            Opens the GPT file dialog asynchronous.
+            </summary>
+        </member>
+        <member name="M:Bubba.App.OpenGptFileDialog">
+            <summary>
+            Opens the GPT file dialog.
+            </summary>
+        </member>
+        <member name="M:Bubba.App.OpenFolderBrowserAsync">
+            <summary>
+            Opens the folder browser asynchronous.
+            </summary>
+        </member>
+        <member name="M:Bubba.App.OpenFolderBrowser">
+            <summary>
+            Opens the folder browser.
+            </summary>
+        </member>
+        <member name="M:Bubba.App.OpenFileBrowserAsync">
+            <summary>
+            Opens the file browser asynchronous.
+            </summary>
+        </member>
+        <member name="M:Bubba.App.OpenFileBrowser">
+            <summary>
+            Opens the file browser.
+            </summary>
+        </member>
+        <member name="M:Bubba.App.OpenSearchDialogAsync">
+            <summary>
+            Opens the search dialog asynchronous.
+            </summary>
+        </member>
+        <member name="M:Bubba.App.OpenSearchDialog">
+            <summary>
+            Opens the search dialog.
+            </summary>
+        </member>
+        <member name="M:Bubba.App.OpenImageDialogAsync">
+            <summary>
+            Opens the image dialog asynchronous.
+            </summary>
+        </member>
+        <member name="M:Bubba.App.OpenImageDialog">
+            <summary>
+            Initializes the image dialog asynchronous.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Bubba.App.OpenWebBrowserAsync">
+            <summary>
+            Opens the WebBrowser asynchronous.
+            </summary>
+        </member>
+        <member name="M:Bubba.App.OpenWebBrowser">
+            <summary>
+            Opens the WebBrowser.
+            </summary>
+        </member>
+        <member name="M:Bubba.App.OpenSystemDialogAsync">
+            <summary>
+            Opens the system dialog asynchronous.
+            </summary>
+        </member>
+        <member name="M:Bubba.App.OpenSystemDialog">
+            <summary>
+            Opens the prompt dialog.
+            </summary>
+            <param name="x">The x.</param>
+            <param name="y">The y.</param>
         </member>
         <member name="M:Bubba.App.OnStartup(System.Windows.StartupEventArgs)">
             <inheritdoc />
@@ -7555,6 +7633,41 @@
             </summary>
             <param name="ex">The ex.</param>
         </member>
+        <member name="T:Bubba.DictionaryConverter">
+            <inheritdoc />
+            <summary>
+            </summary>
+        </member>
+        <member name="M:Bubba.DictionaryConverter.Read(System.Text.Json.Utf8JsonReader@,System.Type,System.Text.Json.JsonSerializerOptions)">
+            <inheritdoc />
+            <summary>
+            Reads and converts the JSON to a Dictionary(string, object).
+            </summary>
+            <param name="reader">The reader.</param>
+            <param name="typeToConvert">The type to convert.</param>
+            <param name="options">An object that specifies serialization options to use.</param>
+            <returns>
+            The converted value.
+            </returns>
+            <exception cref="T:Newtonsoft.Json.JsonException">
+            Expected StartObject token
+            or
+            Expected PropertyName token
+            or
+            Unexpected token {reader.TokenType}
+            or
+            Expected EndObject token
+            </exception>
+        </member>
+        <member name="M:Bubba.DictionaryConverter.Write(System.Text.Json.Utf8JsonWriter,System.Collections.Generic.IDictionary{System.String,System.Object},System.Text.Json.JsonSerializerOptions)">
+            <inheritdoc />
+            <summary>
+            Writes a specified value as JSON.
+            </summary>
+            <param name="writer">The writer to write to.</param>
+            <param name="value">The value to convert to JSON.</param>
+            <param name="options">An object that specifies serialization options to use.</param>
+        </member>
         <member name="T:Bubba.AccessType">
             <summary>
             The Access enum provides the data types used in MS Access databases
@@ -14298,84 +14411,6 @@
             Fails the specified ex.
             </summary>
             <param name="ex">The ex.</param>
-        </member>
-        <member name="T:Bubba.IGraphing">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="M:Bubba.IGraphing.CreateScatter(Bubba.ScatterData)">
-            <summary>
-            Plots the scatter.
-            </summary>
-            <param name="pt">The scatter pt.</param>
-        </member>
-        <member name="M:Bubba.IGraphing.CreateSignal(Bubba.SignalData)">
-            <summary>
-            Plots the signal.
-            </summary>
-            <param name="pt">The signal pt.</param>
-        </member>
-        <member name="M:Bubba.IGraphing.Clear">
-            <summary>
-            Clears this instance.
-            </summary>
-        </member>
-        <member name="M:Bubba.IGraphing.SetTitle(System.String)">
-            <summary>
-            Sets the title.
-            </summary>
-            <param name="title">The title.</param>
-        </member>
-        <member name="M:Bubba.IGraphing.SetLabels(System.String,System.String)">
-            <summary>
-            Sets the labels.
-            </summary>
-            <param name="xLabel">The x label.</param>
-            <param name="yLabel">The y label.</param>
-        </member>
-        <member name="T:Bubba.IGraphManager">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="M:Bubba.IGraphManager.AddScatter(System.Double[],System.Double[],System.String)">
-            <summary>
-            Adds the scatter.
-            </summary>
-            <param name="category">The category.</param>
-            <param name="values">The values.</param>
-            <param name="label">The label.</param>
-        </member>
-        <member name="M:Bubba.IGraphManager.AddSignal(System.Double[],System.String)">
-            <summary>
-            Adds the signal.
-            </summary>
-            <param name="values">The values.</param>
-            <param name="label">The label.</param>
-        </member>
-        <member name="M:Bubba.IGraphManager.ClearPlot">
-            <summary>
-            Clears the plot.
-            </summary>
-        </member>
-        <member name="M:Bubba.IGraphManager.SetTitle(System.String)">
-            <summary>
-            Sets the title.
-            </summary>
-            <param name="title">The title.</param>
-        </member>
-        <member name="M:Bubba.IGraphManager.SetAxisLabels(System.String,System.String)">
-            <summary>
-            Sets the axis labels.
-            </summary>
-            <param name="xLabel">The x label.</param>
-            <param name="yLabel">The y label.</param>
-        </member>
-        <member name="M:Bubba.IGraphManager.Refresh">
-            <summary>
-            Refreshes this instance.
-            </summary>
         </member>
         <member name="T:Bubba.AudioConverter">
             <summary>
@@ -23524,6 +23559,7 @@
             </value>
         </member>
         <member name="P:Bubba.CompletionRequest.Prompt">
+            <inheritdoc />
             <summary>
             Gets or sets the user prompt.
             </summary>
@@ -23583,24 +23619,6 @@
             </summary>
             <param name="response">The json response.</param>
             <returns></returns>
-        </member>
-        <member name="M:Bubba.CompletionRequest.GetData">
-            <inheritdoc />
-            <summary>
-            Gets the data.
-            </summary>
-            <returns>
-            </returns>
-        </member>
-        <member name="M:Bubba.CompletionRequest.ToString">
-            <inheritdoc />
-            <summary>
-            Converts to string.
-            </summary>
-            <returns>
-            A <see cref="T:System.String" />
-            that represents this instance.
-            </returns>
         </member>
         <member name="T:Bubba.EmbeddingRequest">
             <inheritdoc />
@@ -29847,74 +29865,6 @@
             </summary>
             <param name="ex">The ex.</param>
         </member>
-        <member name="T:Bubba.DictionaryJsonConverter">
-            <inheritdoc />
-            <summary>
-            </summary>
-        </member>
-        <member name="M:Bubba.DictionaryJsonConverter.Read(System.Text.Json.Utf8JsonReader@,System.Type,System.Text.Json.JsonSerializerOptions)">
-            <inheritdoc />
-            <summary>
-            Reads and converts the JSON to a Dictionary(string, object).
-            </summary>
-            <param name="reader">The reader.</param>
-            <param name="typeToConvert">The type to convert.</param>
-            <param name="options">An object that specifies serialization options to use.</param>
-            <returns>
-            The converted value.
-            </returns>
-            <exception cref="T:Newtonsoft.Json.JsonException">
-            Expected StartObject token
-            or
-            Expected PropertyName token
-            or
-            Unexpected token {reader.TokenType}
-            or
-            Expected EndObject token
-            </exception>
-        </member>
-        <member name="M:Bubba.DictionaryJsonConverter.Write(System.Text.Json.Utf8JsonWriter,System.Collections.Generic.IDictionary{System.String,System.Object},System.Text.Json.JsonSerializerOptions)">
-            <inheritdoc />
-            <summary>
-            Writes a specified value as JSON.
-            </summary>
-            <param name="writer">The writer to write to.</param>
-            <param name="value">The value to convert to JSON.</param>
-            <param name="options">An object that specifies serialization options to use.</param>
-        </member>
-        <member name="T:Bubba.PlotControl">
-            <inheritdoc />
-            <summary>
-            </summary>
-            <seealso cref="T:System.Windows.Controls.UserControl" />
-        </member>
-        <member name="F:Bubba.PlotControl._wpfPlot">
-            <summary>
-            The WPF plot
-            </summary>
-        </member>
-        <member name="F:Bubba.PlotControl._graphing">
-            <summary>
-            The graphing
-            </summary>
-        </member>
-        <member name="M:Bubba.PlotControl.#ctor">
-            <inheritdoc />
-            <summary>
-            Initializes a new instance of the
-            <see cref="T:Bubba.PlotControl" /> class.
-            </summary>
-        </member>
-        <member name="M:Bubba.PlotControl.GraphSineWave(System.Double[],System.Double[])">
-            <summary>
-            Graphes the sine wave.
-            </summary>
-        </member>
-        <member name="M:Bubba.PlotControl.GraphCosineWave(System.Double[],System.Double[])">
-            <summary>
-            Graphes the cosine wave.
-            </summary>
-        </member>
         <member name="T:Bubba.Properties.Definitions">
             <summary>
               A strongly-typed resource class, for looking up localized strings, etc.
@@ -30677,7 +30627,7 @@
         </member>
         <member name="P:Bubba.Properties.OpenAI.BubbaPrompt">
             <summary>
-              Looks up a localized string similar to You are the most knowledgeable Budget Analyst in the federal government who provides detailed responses based on your vast knowledge of budget legislation, and federal appropriations.  Your responses to questions about federal finance are very detailed using an academic format.  Your vast knowledge of and experience in Data Science makes you the best Data Analyst in the world. You are proficient in C#, Python, SQL, C++, JavaScript, and VBA. Your name is Bubba..
+              Looks up a localized string similar to You are the most knowledgeable Budget Analyst in the federal government who provides detailed responses based on your vast knowledge of budget legislation, and federal appropriations.  Your responses to questions about federal finance are complete, transparent, and very detailed using an academic format.  Your vast knowledge of and experience in Data Science makes you the best Data Analyst in the world. You are proficient in C#, Python, SQL, C++, JavaScript, and VBA. Whenever you are asked to draw, paint, o [rest of string was truncated]&quot;;.
             </summary>
         </member>
         <member name="P:Bubba.Properties.OpenAI.OrganizationID">
@@ -30735,98 +30685,6 @@
             <summary>
               Looks up a localized string similar to https://cse.google.com/cse?cx=e78aa3dcb21474bf4.
             </summary>
-        </member>
-        <member name="T:Bubba.ScatterData">
-            <inheritdoc />
-            <summary>
-            </summary>
-        </member>
-        <member name="F:Bubba.ScatterData._category">
-            <summary>
-            The category
-            </summary>
-        </member>
-        <member name="F:Bubba.ScatterData._values">
-            <summary>
-            The values
-            </summary>
-        </member>
-        <member name="F:Bubba.ScatterData._label">
-            <summary>
-            The label
-            </summary>
-        </member>
-        <member name="M:Bubba.ScatterData.#ctor">
-            <summary>
-            Initializes a new instance of the
-            <see cref="T:Bubba.ScatterData" /> class.
-            </summary>
-        </member>
-        <member name="M:Bubba.ScatterData.#ctor(System.Double[],System.Double[],System.String)">
-            <summary>
-            Initializes a new instance of the <see cref="T:Bubba.ScatterData"/> class.
-            </summary>
-            <param name="category">The category.</param>
-            <param name="values">The values.</param>
-            <param name="label">The label.</param>
-        </member>
-        <member name="P:Bubba.ScatterData.Category">
-            <summary>
-            Gets or sets the category.
-            </summary>
-            <value>
-            The category.
-            </value>
-        </member>
-        <member name="P:Bubba.ScatterData.Values">
-            <summary>
-            Gets or sets the values.
-            </summary>
-            <value>
-            The values.
-            </value>
-        </member>
-        <member name="P:Bubba.ScatterData.Label">
-            <summary>
-            Gets or sets the label.
-            </summary>
-            <value>
-            The label.
-            </value>
-        </member>
-        <member name="T:Bubba.SignalData">
-            <inheritdoc />
-            <summary>
-            </summary>
-        </member>
-        <member name="M:Bubba.SignalData.#ctor">
-            <summary>
-            Initializes a new instance of the
-            <see cref="T:Bubba.SignalData"/> class.
-            </summary>
-        </member>
-        <member name="M:Bubba.SignalData.#ctor(System.Double[],System.String)">
-            <summary>
-            Initializes a new instance of the <see cref="T:Bubba.SignalData"/> class.
-            </summary>
-            <param name="values">The values.</param>
-            <param name="label">The label.</param>
-        </member>
-        <member name="P:Bubba.SignalData.Values">
-            <summary>
-            Gets or sets the names.
-            </summary>
-            <value>
-            The names.
-            </value>
-        </member>
-        <member name="P:Bubba.SignalData.Label">
-            <summary>
-            Gets or sets the label.
-            </summary>
-            <value>
-            The label.
-            </value>
         </member>
         <member name="T:Bubba.DataMinion">
             <summary>
@@ -31465,6 +31323,84 @@
             Fails the specified ex.
             </summary>
             <param name="ex">The ex.</param>
+        </member>
+        <member name="T:Bubba.IGraphing">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Bubba.IGraphing.CreateScatter(Bubba.ScatterData)">
+            <summary>
+            Plots the scatter.
+            </summary>
+            <param name="pt">The scatter pt.</param>
+        </member>
+        <member name="M:Bubba.IGraphing.CreateSignal(Bubba.SignalData)">
+            <summary>
+            Plots the signal.
+            </summary>
+            <param name="pt">The signal pt.</param>
+        </member>
+        <member name="M:Bubba.IGraphing.Clear">
+            <summary>
+            Clears this instance.
+            </summary>
+        </member>
+        <member name="M:Bubba.IGraphing.SetTitle(System.String)">
+            <summary>
+            Sets the title.
+            </summary>
+            <param name="title">The title.</param>
+        </member>
+        <member name="M:Bubba.IGraphing.SetLabels(System.String,System.String)">
+            <summary>
+            Sets the labels.
+            </summary>
+            <param name="xLabel">The x label.</param>
+            <param name="yLabel">The y label.</param>
+        </member>
+        <member name="T:Bubba.IGraphManager">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Bubba.IGraphManager.AddScatter(System.Double[],System.Double[],System.String)">
+            <summary>
+            Adds the scatter.
+            </summary>
+            <param name="category">The category.</param>
+            <param name="values">The values.</param>
+            <param name="label">The label.</param>
+        </member>
+        <member name="M:Bubba.IGraphManager.AddSignal(System.Double[],System.String)">
+            <summary>
+            Adds the signal.
+            </summary>
+            <param name="values">The values.</param>
+            <param name="label">The label.</param>
+        </member>
+        <member name="M:Bubba.IGraphManager.ClearPlot">
+            <summary>
+            Clears the plot.
+            </summary>
+        </member>
+        <member name="M:Bubba.IGraphManager.SetTitle(System.String)">
+            <summary>
+            Sets the title.
+            </summary>
+            <param name="title">The title.</param>
+        </member>
+        <member name="M:Bubba.IGraphManager.SetAxisLabels(System.String,System.String)">
+            <summary>
+            Sets the axis labels.
+            </summary>
+            <param name="xLabel">The x label.</param>
+            <param name="yLabel">The y label.</param>
+        </member>
+        <member name="M:Bubba.IGraphManager.Refresh">
+            <summary>
+            Refreshes this instance.
+            </summary>
         </member>
         <member name="T:Bubba.MetroAccordian">
             <inheritdoc />
@@ -34977,6 +34913,131 @@
             </summary>
             <param name="ex">The ex.</param>
         </member>
+        <member name="T:Bubba.PlotControl">
+            <inheritdoc />
+            <summary>
+            </summary>
+            <seealso cref="T:System.Windows.Controls.UserControl" />
+        </member>
+        <member name="F:Bubba.PlotControl._wpfPlot">
+            <summary>
+            The WPF plot
+            </summary>
+        </member>
+        <member name="F:Bubba.PlotControl._graphing">
+            <summary>
+            The graphing
+            </summary>
+        </member>
+        <member name="M:Bubba.PlotControl.#ctor">
+            <inheritdoc />
+            <summary>
+            Initializes a new instance of the
+            <see cref="T:Bubba.PlotControl" /> class.
+            </summary>
+        </member>
+        <member name="M:Bubba.PlotControl.GraphSineWave(System.Double[],System.Double[])">
+            <summary>
+            Graphes the sine wave.
+            </summary>
+        </member>
+        <member name="M:Bubba.PlotControl.GraphCosineWave(System.Double[],System.Double[])">
+            <summary>
+            Graphes the cosine wave.
+            </summary>
+        </member>
+        <member name="T:Bubba.ScatterData">
+            <inheritdoc />
+            <summary>
+            </summary>
+        </member>
+        <member name="F:Bubba.ScatterData._category">
+            <summary>
+            The category
+            </summary>
+        </member>
+        <member name="F:Bubba.ScatterData._values">
+            <summary>
+            The values
+            </summary>
+        </member>
+        <member name="F:Bubba.ScatterData._label">
+            <summary>
+            The label
+            </summary>
+        </member>
+        <member name="M:Bubba.ScatterData.#ctor">
+            <summary>
+            Initializes a new instance of the
+            <see cref="T:Bubba.ScatterData" /> class.
+            </summary>
+        </member>
+        <member name="M:Bubba.ScatterData.#ctor(System.Double[],System.Double[],System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Bubba.ScatterData"/> class.
+            </summary>
+            <param name="category">The category.</param>
+            <param name="values">The values.</param>
+            <param name="label">The label.</param>
+        </member>
+        <member name="P:Bubba.ScatterData.Category">
+            <summary>
+            Gets or sets the category.
+            </summary>
+            <value>
+            The category.
+            </value>
+        </member>
+        <member name="P:Bubba.ScatterData.Values">
+            <summary>
+            Gets or sets the values.
+            </summary>
+            <value>
+            The values.
+            </value>
+        </member>
+        <member name="P:Bubba.ScatterData.Label">
+            <summary>
+            Gets or sets the label.
+            </summary>
+            <value>
+            The label.
+            </value>
+        </member>
+        <member name="T:Bubba.SignalData">
+            <inheritdoc />
+            <summary>
+            </summary>
+        </member>
+        <member name="M:Bubba.SignalData.#ctor">
+            <summary>
+            Initializes a new instance of the
+            <see cref="T:Bubba.SignalData"/> class.
+            </summary>
+        </member>
+        <member name="M:Bubba.SignalData.#ctor(System.Double[],System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Bubba.SignalData"/> class.
+            </summary>
+            <param name="values">The values.</param>
+            <param name="label">The label.</param>
+        </member>
+        <member name="P:Bubba.SignalData.Values">
+            <summary>
+            Gets or sets the names.
+            </summary>
+            <value>
+            The names.
+            </value>
+        </member>
+        <member name="P:Bubba.SignalData.Label">
+            <summary>
+            Gets or sets the label.
+            </summary>
+            <value>
+            The label.
+            </value>
+        </member>
         <member name="T:Bubba.CalculatorWindow">
             <inheritdoc />
             <summary>
@@ -35551,7 +35612,7 @@
             <param name="question">The question.</param>
             <returns></returns>
         </member>
-        <member name="M:Bubba.ChatWindow.OpenSearchDialog(System.Double,System.Double)">
+        <member name="M:Bubba.ChatWindow.OpenSearchDialog">
             <summary>
             Opens the search dialog.
             </summary>
@@ -35563,7 +35624,13 @@
             Opens the chat window.
             </summary>
         </member>
-        <member name="M:Bubba.ChatWindow.OpenPromptDialog">
+        <member name="M:Bubba.ChatWindow.OpenImageDialog">
+            <summary>
+            Initializes the image dialog asynchronous.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Bubba.ChatWindow.OpenSystemDialog">
             <summary>
             Opens the prompt dialog.
             </summary>
@@ -37621,11 +37688,6 @@
         <member name="M:Bubba.GptFileDialog.UpdateStatus(System.Object)">
             <summary>
             Updates the status.
-            </summary>
-        </member>
-        <member name="M:Bubba.GptFileDialog.SetImage">
-            <summary>
-            Sets the extension.
             </summary>
         </member>
         <member name="M:Bubba.GptFileDialog.RegisterRadioButtonEvents">

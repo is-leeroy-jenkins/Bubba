@@ -72,7 +72,6 @@ namespace Bubba
     using Action = System.Action;
     using Exception = System.Exception;
     using Properties;
-    using Syncfusion.Windows.Shared;
 
     /// <inheritdoc />
     /// <summary>
@@ -1579,21 +1578,11 @@ namespace Bubba
         /// </summary>
         /// <param name="x">The x.</param>
         /// <param name="y">The y.</param>
-        private protected virtual void OpenSearchDialog( double x, double y )
+        private protected virtual void OpenSearchDialog( )
         {
             try
             {
-                ThrowIf.Negative( x, nameof( x ) );
-                ThrowIf.Negative( x, nameof( x ) );
-                var _searchDialog = new SearchDialog
-                {
-                    Owner = this,
-                    Left = x,
-                    Top = y
-                };
-
-                _searchDialog.Show( );
-                _searchDialog.SearchPanelTextBox.Focus( );
+                App.OpenSearchDialog( );
             }
             catch( Exception ex )
             {
@@ -1615,13 +1604,14 @@ namespace Bubba
                 }
                 else
                 {
-                    var _web = new WebBrowser
+                    var _webBrowser = new WebBrowser
                     {
                         Owner = this,
-                        Topmost = true
+                        Topmost = true,
+                        WindowStartupLocation = WindowStartupLocation.CenterScreen
                     };
 
-                    _web.Show( );
+                    _webBrowser.Show( );
                 }
 
                 Hide( );
@@ -1632,24 +1622,74 @@ namespace Bubba
             }
         }
 
+        private protected void OpenFileBrowser( )
+        {
+            try
+            {
+                var _fileBrowser = new FileBrowser( )
+                {
+                    Topmost = true,
+                    WindowStartupLocation = WindowStartupLocation.CenterScreen
+                };
+
+                _fileBrowser.ShowDialog();
+            }
+            catch(Exception ex)
+            {
+                Fail(ex);
+            }
+        }
+
+        private protected void OpenFolderBrowser( )
+        {
+            try
+            {
+                var _systemDialog = new FolderBrowser( )
+                {
+                    Topmost = true,
+                    WindowStartupLocation = WindowStartupLocation.CenterScreen
+                };
+
+                _systemDialog.ShowDialog( );
+            }
+            catch(Exception ex)
+            {
+                Fail(ex);
+            }
+        }
+
+        /// <summary>
+        /// Initializes the image dialog asynchronous.
+        /// </summary>
+        /// <returns></returns>
+        private protected void OpenImageDialog( )
+        {
+            try
+            {
+                var _web = new GptImageDialog
+                {
+                    Topmost = true,
+                    WindowStartupLocation = WindowStartupLocation.CenterScreen
+                };
+
+                _web.ShowDialog( );
+            }
+            catch(Exception ex)
+            {
+                Fail(ex);
+            }
+        }
+
         /// <summary>
         /// Opens the prompt dialog.
         /// </summary>
         /// <param name="x">The x.</param>
         /// <param name="y">The y.</param>
-        private protected virtual void OpenPromptDialog( )
+        private protected void OpenSystemDialog( )
         {
             try
             {
-                var _systemDialog = new SystemDialog( )
-                {
-                    Owner = this,
-                    WindowStartupLocation = WindowStartupLocation.CenterScreen
-                };
-
-                _systemDialog.Show( );
-                _systemDialog.SystemDialogTextBox.Text = _systemPrompt;
-                _systemDialog.SystemDialogTextBox.Focus( );
+                App.OpenSystemDialog( );
             }
             catch( Exception ex )
             {
@@ -2482,14 +2522,7 @@ namespace Bubba
         {
             try
             {
-                var _fileBrowser = new GptFileDialog( )
-                {
-                    WindowStartupLocation = WindowStartupLocation.CenterScreen,
-                    Owner = this,
-                    Topmost = true
-                };
-
-                _fileBrowser.Show( );
+                App.OpenGptFileDialog( );
             }
             catch( Exception ex )
             {
@@ -2597,7 +2630,7 @@ namespace Bubba
         {
             try
             {
-                OpenPromptDialog( );
+                App.OpenSystemDialog( );
             }
             catch( Exception ex )
             {

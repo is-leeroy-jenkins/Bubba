@@ -6,7 +6,7 @@
 //     Last Modified By:        Terry D. Eppler
 //     Last Modified On:        01-19-2025
 // ******************************************************************************************
-// <copyright file="DictionaryJsonConverter.cs" company="Terry D. Eppler">
+// <copyright file="DictionaryConverter.cs" company="Terry D. Eppler">
 //    Bubba is a small and simple windows (wpf) application for interacting with the OpenAI API
 //    that's developed in C-Sharp under the MIT license.C#.
 // 
@@ -35,7 +35,7 @@
 //    You can contact me at:  terryeppler@gmail.com or eppler.terry@epa.gov
 // </copyright>
 // <summary>
-//   DictionaryJsonConverter.cs
+//   DictionaryConverter.cs
 // </summary>
 // ******************************************************************************************
 
@@ -51,7 +51,7 @@ namespace Bubba
     /// <summary>
     /// </summary>
     [ SuppressMessage( "ReSharper", "UnusedType.Global" ) ]
-    public class DictionaryJsonConverter : JsonConverter<IDictionary<string, object>>
+    public class DictionaryConverter : JsonConverter<IDictionary<string, object>>
     {
         /// <inheritdoc />
         /// <summary>

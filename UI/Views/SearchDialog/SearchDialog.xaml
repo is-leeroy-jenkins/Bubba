@@ -73,16 +73,16 @@
         <b:MetroLabel
             x:Name="SearchPanelQueryLabel"
             Canvas.Left="25"
-            Canvas.Top="10"
+            Canvas.Top="5"
             Width="560"
-            Height="20"
-            Padding="5,0,5,5"
+            Height="30"
+            Padding="1,0,1,1"
             HorizontalAlignment="Center"
             VerticalAlignment="Top"
             HorizontalContentAlignment="Left"
             Content="Key Words: "
             FontFamily="Roboto"
-            FontSize="14"
+            FontSize="16"
             Foreground="{StaticResource BlueBorderBrush}" />
 
         <b:MetroTile
@@ -110,11 +110,11 @@
             Padding="10,10,1,1"
             HorizontalAlignment="Center"
             VerticalAlignment="Top"
-            Background="{StaticResource ControlBackground}"
+            Background="{StaticResource BlackBackground}"
             BorderBrush="{StaticResource BlueBorderBrush}"
-            BorderThickness="1"
+            BorderThickness="2"
             FontFamily="Roboto"
-            FontSize="12"
+            FontSize="14"
             Foreground="{StaticResource WhiteForeground}"
             ToolTip="Enter Search Key Words" />
 

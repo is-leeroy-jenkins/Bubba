@@ -1,14 +1,14 @@
 ﻿// ******************************************************************************************
 //     Assembly:                Bubba
 //     Author:                  Terry D. Eppler
-//     Created:                 11-24-2024
+//     Created:                 01-19-2025
 // 
 //     Last Modified By:        Terry D. Eppler
-//     Last Modified On:        11-24-2024
+//     Last Modified On:        01-19-2025
 // ******************************************************************************************
 // <copyright file="App.xaml.cs" company="Terry D. Eppler">
-//    Bubba is a small windows (wpf) application for interacting with
-//    Chat GPT that's developed in C-Sharp under the MIT license
+//    Bubba is a small and simple windows (wpf) application for interacting with the OpenAI API
+//    that's developed in C-Sharp under the MIT license.C#.
 // 
 //    Copyright ©  2020-2024 Terry D. Eppler
 // 
@@ -54,6 +54,7 @@ namespace Bubba
     using Syncfusion.Licensing;
     using Syncfusion.SfSkinManager;
     using Syncfusion.Themes.FluentDark.WPF;
+    using Properties;
 
     /// <inheritdoc />
     /// <summary>
@@ -64,6 +65,7 @@ namespace Bubba
     [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
     [ SuppressMessage( "ReSharper", "FieldCanBeMadeReadOnly.Global" ) ]
     [ SuppressMessage( "ReSharper", "ClassCanBeSealed.Global" ) ]
+    [ SuppressMessage( "ReSharper", "ExpressionIsAlwaysNull" ) ]
     public partial class App : Application
     {
         /// <summary>
@@ -120,12 +122,45 @@ namespace Bubba
             "SfImageEditor"
         };
 
+        /// <inheritdoc />
+        /// <summary>
+        /// Initializes a new instance of the
+        /// <see cref="T:Bubba.App" /> class.
+        /// </summary>
+        public App( )
+        {
+            InitializeDelegates( );
+            var _key = ConfigurationManager.AppSettings[ "UI" ];
+            SyncfusionLicenseProvider.RegisterLicense( _key );
+            OpenAiKey = Environment.GetEnvironmentVariable( "OPENAI_API_KEY" );
+            GoogleKey = Environment.GetEnvironmentVariable( "GOOGLE_API_KEY" );
+            Instructions = OpenAI.BubbaPrompt;
+            ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
+            RegisterTheme( );
+            ActiveWindows = new Dictionary<string, Window>( );
+        }
+
+        /// <summary>
+        /// The system instructions
+        /// </summary>
+        public static string Instructions;
+
+        /// <summary>
+        /// The open ai API key
+        /// </summary>
+        public static string OpenAiKey;
+
+        /// <summary>
+        /// The google API key
+        /// </summary>
+        public static string GoogleKey;
+
         /// <summary>
         /// Registers the _theme.
         /// </summary>
         private void RegisterTheme( )
         {
-            var Theme = new FluentDarkThemeSettings
+            var _theme = new FluentDarkThemeSettings
             {
                 PrimaryBackground = new SolidColorBrush( Color.FromRgb( 20, 20, 20 ) ),
                 PrimaryColorForeground = new SolidColorBrush( Color.FromRgb( 0, 120, 212 ) ),
@@ -139,36 +174,9 @@ namespace Bubba
                 FontFamily = new FontFamily( "Roboto" )
             };
 
-            SfSkinManager.RegisterThemeSettings( "FluentDark", Theme );
+            SfSkinManager.RegisterThemeSettings( "FluentDark", _theme );
             SfSkinManager.ApplyStylesOnApplication = true;
         }
-
-        /// <inheritdoc />
-        /// <summary>
-        /// Initializes a new instance of the
-        /// <see cref="T:Bubba.App" /> class.
-        /// </summary>
-        public App( )
-        {
-            InitializeDelegates( );
-            var _key = ConfigurationManager.AppSettings[ "UI" ];
-            SyncfusionLicenseProvider.RegisterLicense( _key );
-            OpenAiKey = Environment.GetEnvironmentVariable( "OPENAI_API_KEY" );
-            GoogleKey = Environment.GetEnvironmentVariable("GOOGLE_API_KEY");
-            ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
-            RegisterTheme();
-            ActiveWindows = new Dictionary<string, Window>( );
-        }
-
-        /// <summary>
-        /// The open ai API key
-        /// </summary>
-        public static string OpenAiKey;
-
-        /// <summary>
-        /// The google API key
-        /// </summary>
-        public static string GoogleKey;
 
         /// <summary>
         /// Initializes the delegates.
@@ -206,18 +214,276 @@ namespace Bubba
         /// <summary>
         /// Handles the exception.
         /// </summary>
-        /// <param name="e">The e.</param>
-        private void HandleException( Exception e )
+        /// <param name="ex">The ex.</param>
+        private void HandleException( Exception ex )
         {
-            if( e == null )
+            if( ex == null )
             {
-                var _msg = $"The argument {e} is null!";
+                var _msg = $"The argument {ex} is null!";
                 throw new ArgumentNullException( _msg );
             }
             else
             {
-                Fail( e );
+                Fail( ex );
                 Environment.Exit( 1 );
+            }
+        }
+
+        /// <summary>
+        /// Opens the GPT file dialog asynchronous.
+        /// </summary>
+        public static async Task OpenGptFileDialogAsync( )
+        {
+            try
+            {
+                await Task.Run( ( ) => OpenGptFileDialog( ) );
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+            }
+        }
+
+        /// <summary>
+        /// Opens the GPT file dialog.
+        /// </summary>
+        public static void OpenGptFileDialog( )
+        {
+            try
+            {
+                var _gptFileDialog = new GptFileDialog
+                {
+                    Topmost = true,
+                    WindowStartupLocation = WindowStartupLocation.CenterScreen
+                };
+
+                _gptFileDialog.Show( );
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+            }
+        }
+
+        /// <summary>
+        /// Opens the folder browser asynchronous.
+        /// </summary>
+        public static async Task OpenFolderBrowserAsync( )
+        {
+            try
+            {
+                await Task.Run( ( ) => OpenFolderBrowser( ) );
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+            }
+        }
+
+        /// <summary>
+        /// Opens the folder browser.
+        /// </summary>
+        public static void OpenFolderBrowser( )
+        {
+            try
+            {
+                var _folderBrowser = new FolderBrowser( )
+                {
+                    Topmost = true,
+                    WindowStartupLocation = WindowStartupLocation.CenterScreen
+                };
+
+                _folderBrowser.Show( );
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+            }
+        }
+
+        /// <summary>
+        /// Opens the file browser asynchronous.
+        /// </summary>
+        public static async Task OpenFileBrowserAsync( )
+        {
+            try
+            {
+                await Task.Run( ( ) => OpenFileBrowser( ) );
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+            }
+        }
+
+        /// <summary>
+        /// Opens the file browser.
+        /// </summary>
+        public static void OpenFileBrowser( )
+        {
+            try
+            {
+                var _fileBrowser = new FileBrowser( )
+                {
+                    Topmost = true,
+                    WindowStartupLocation = WindowStartupLocation.CenterScreen
+                };
+
+                _fileBrowser.Show( );
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+            }
+        }
+
+        /// <summary>
+        /// Opens the search dialog asynchronous.
+        /// </summary>
+        public static async Task OpenSearchDialogAsync( )
+        {
+            try
+            {
+                await Task.Run( ( ) => OpenSearchDialog( ) );
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+            }
+        }
+
+        /// <summary>
+        /// Opens the search dialog.
+        /// </summary>
+        public static void OpenSearchDialog( )
+        {
+            try
+            {
+                var _searchDialog = new SearchDialog
+                {
+                    Topmost = true,
+                    WindowStartupLocation = WindowStartupLocation.CenterScreen
+                };
+
+                _searchDialog.Show( );
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+            }
+        }
+
+        /// <summary>
+        /// Opens the image dialog asynchronous.
+        /// </summary>
+        public static async Task OpenImageDialogAsync( )
+        {
+            try
+            {
+                await Task.Run( ( ) => OpenImageDialog( ) );
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+            }
+        }
+
+        /// <summary>
+        /// Initializes the image dialog asynchronous.
+        /// </summary>
+        /// <returns></returns>
+        public static void OpenImageDialog( )
+        {
+            try
+            {
+                var _web = new GptImageDialog
+                {
+                    Topmost = true,
+                    WindowStartupLocation = WindowStartupLocation.CenterScreen
+                };
+
+                _web.Show( );
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+            }
+        }
+
+        /// <summary>
+        /// Opens the WebBrowser asynchronous.
+        /// </summary>
+        public static async Task OpenWebBrowserAsync( )
+        {
+            try
+            {
+                await Task.Run( ( ) => OpenWebBrowser( ) );
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+            }
+        }
+
+        /// <summary>
+        /// Opens the WebBrowser.
+        /// </summary>
+        public static void OpenWebBrowser( )
+        {
+            try
+            {
+                var _web = new WebBrowser( )
+                {
+                    Topmost = true,
+                    WindowStartupLocation = WindowStartupLocation.CenterScreen
+                };
+
+                ActiveWindows.Add( "WebBrowser", _web );
+                _web.Show( );
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+            }
+        }
+
+        /// <summary>
+        /// Opens the system dialog asynchronous.
+        /// </summary>
+        public static async Task OpenSystemDialogAsync( )
+        {
+            try
+            {
+                await Task.Run( ( ) => OpenSystemDialog( ) );
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+            }
+        }
+
+        /// <summary>
+        /// Opens the prompt dialog.
+        /// </summary>
+        /// <param name="x">The x.</param>
+        /// <param name="y">The y.</param>
+        public static void OpenSystemDialog( )
+        {
+            try
+            {
+                var _systemDialog = new SystemDialog( )
+                {
+                    Topmost = true,
+                    WindowStartupLocation = WindowStartupLocation.CenterScreen
+                };
+
+                _systemDialog.Show( );
+                _systemDialog.SystemDialogTextBox.Text = Instructions;
+                _systemDialog.SystemDialogTextBox.Focus( );
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
             }
         }
 

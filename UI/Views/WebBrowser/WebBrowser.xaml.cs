@@ -474,19 +474,19 @@ namespace Bubba
                 // check if already exists
                 foreach( BrowserTabItem _item in TabControl.Items )
                 {
-                    var Tab2 = ( BrowserTabItem )_item.Tag;
-                    if( Tab2 != null
-                        && Tab2.CurrentUrl == url )
+                    var _tab2 = ( BrowserTabItem )_item.Tag;
+                    if( _tab2 != null
+                        && _tab2.CurrentUrl == url )
                     {
                         TabControl.SelectedItem = _item;
-                        return Tab2.Browser;
+                        return _tab2.Browser;
                     }
                 }
 
-                var Tab = new BrowserTabItem( );
-                Tab.Title = "New Tab";
-                TabControl.Items.Insert( TabControl.Items.Count - 1, Tab );
-                _newTabItem = Tab;
+                var _tab = new BrowserTabItem( );
+                _tab.Title = "New Tab";
+                TabControl.Items.Insert( TabControl.Items.Count - 1, _tab );
+                _newTabItem = _tab;
                 var _newTab = AddNewBrowser( _newTabItem, url );
                 _newTab.ReferringUrl = referringUrl;
                 if( focus )
@@ -526,7 +526,7 @@ namespace Bubba
             _newBrowser.LifeSpanHandler = _lifeSpanCallback;
             _newBrowser.KeyboardHandler = _keyboardCallback;
             _newBrowser.RequestHandler = _requestCallback;
-            var Tab = new BrowserTabItem
+            var _tab = new BrowserTabItem
             {
                 IsOpen = true,
                 Browser = _newBrowser,
@@ -537,14 +537,15 @@ namespace Bubba
                 DateCreated = DateTime.Now
             };
 
-            tabItem.Tag = Tab;
-            if( url.StartsWith( AppSettings[ "Internal" ] + ":" ) )
+            tabItem.Tag = _tab;
+            if( !string.IsNullOrEmpty( url ) 
+                && url.StartsWith( AppSettings[ "Internal" ] + ":" ) )
             {
                 _newBrowser.JavascriptObjectRepository.Register( "host", HostCallback,
                     BindingOptions.DefaultBinder );
             }
 
-            return Tab;
+            return _tab;
         }
 
         /// <summary>
@@ -1008,18 +1009,18 @@ namespace Bubba
             try
             {
                 var _listToClose = new List<BrowserTabItem>( );
-                foreach( BrowserTabItem Tab in TabControl.Items )
+                foreach( BrowserTabItem _tab in TabControl.Items )
                 {
-                    if( Tab != _currentTab
-                        && Tab != TabControl.SelectedItem )
+                    if( _tab != _currentTab
+                        && _tab != TabControl.SelectedItem )
                     {
-                        _listToClose.Add( Tab );
+                        _listToClose.Add( _tab );
                     }
                 }
 
-                foreach( var Tab in _listToClose )
+                foreach( var _tab in _listToClose )
                 {
-                    TabControl.Items.Remove( Tab );
+                    TabControl.Items.Remove( _tab );
                 }
             }
             catch( Exception ex )
@@ -1218,16 +1219,16 @@ namespace Bubba
         /// <returns></returns>
         public List<BrowserTabItem> GetTabs( )
         {
-            var Tabs = new List<BrowserTabItem>( );
-            foreach( BrowserTabItem TabPage in TabControl.Items )
+            var _tabs = new List<BrowserTabItem>( );
+            foreach( BrowserTabItem _tabPage in TabControl.Items )
             {
-                if( TabPage.Tag != null )
+                if( _tabPage.Tag != null )
                 {
-                    Tabs.Add( ( BrowserTabItem )TabPage.Tag );
+                    _tabs.Add( ( BrowserTabItem )_tabPage.Tag );
                 }
             }
 
-            return Tabs;
+            return _tabs;
         }
 
         /// <summary>
@@ -1239,11 +1240,11 @@ namespace Bubba
         {
             foreach( BrowserTabItem _item in TabControl.Items )
             {
-                var Tab = ( BrowserTabItem )_item.Tag;
-                if( Tab != null
-                    && Tab.Browser == browser )
+                var _tab = ( BrowserTabItem )_item.Tag;
+                if( _tab != null
+                    && _tab.Browser == browser )
                 {
-                    return Tab;
+                    return _tab;
                 }
             }
 
@@ -1304,17 +1305,17 @@ namespace Bubba
         /// <returns></returns>
         private Task<ChromiumWebBrowser> GetBrowserAsync( string url, bool focused )
         {
-            var Tcs = new TaskCompletionSource<ChromiumWebBrowser>( );
+            var _tcs = new TaskCompletionSource<ChromiumWebBrowser>( );
             try
             {
                 ThrowIf.Null( url, nameof( url ) );
                 var _browser = AddNewBrowserTab( url, focused );
-                Tcs.SetResult( _browser );
-                return Tcs.Task;
+                _tcs.SetResult( _browser );
+                return _tcs.Task;
             }
             catch( Exception ex )
             {
-                Tcs.SetException( ex );
+                _tcs.SetException( ex );
                 Fail( ex );
                 return default( Task<ChromiumWebBrowser> );
             }
@@ -1382,7 +1383,7 @@ namespace Bubba
         /// <summary>
         /// Begins the initialize.
         /// </summary>
-        private void Busy( )
+        private protected void Busy( )
         {
             try
             {
@@ -1400,7 +1401,7 @@ namespace Bubba
         /// <summary>
         /// Ends the initialize.
         /// </summary>
-        private void Chill( )
+        private protected void Chill( )
         {
             try
             {
@@ -1783,14 +1784,14 @@ namespace Bubba
                 browser.Tag = text;
                 if( text.Length > 20 )
                 {
-                    var Title = text.Substring( 0, 20 ) + "...";
-                    var Tab = ( BrowserTabItem )browser.Parent;
-                    Tab.Title = Title;
+                    var _title = text.Substring( 0, 20 ) + "...";
+                    var _tab = ( BrowserTabItem )browser.Parent;
+                    _tab.Title = _title;
                 }
                 else
                 {
-                    var Tab = ( BrowserTabItem )browser.Parent;
-                    Tab.Title = text;
+                    var _tab = ( BrowserTabItem )browser.Parent;
+                    _tab.Title = text;
                 }
 
                 // if current tab
@@ -2653,9 +2654,9 @@ namespace Bubba
             try
             {
                 SfSkinManager.Dispose( this );
-                foreach( BrowserTabItem Tab in TabControl.Items )
+                foreach( BrowserTabItem _tab in TabControl.Items )
                 {
-                    Tab.Dispose( );
+                    _tab.Dispose( );
                 }
 
                 _timer?.Dispose( );
