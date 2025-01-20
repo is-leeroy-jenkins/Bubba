@@ -158,7 +158,7 @@ namespace Bubba
         /// <value>
         /// The link.
         /// </value>
-        public string Link
+        public virtual string Link
         {
             get
             {
@@ -180,7 +180,7 @@ namespace Bubba
         /// <value>
         /// The project identifier.
         /// </value>
-        public string ProjectId
+        public virtual string ProjectId
         {
             get
             {
@@ -202,7 +202,7 @@ namespace Bubba
         /// <value>
         /// The project number.
         /// </value>
-        public string ProjectNumber
+        public virtual string ProjectNumber
         {
             get
             {
@@ -224,7 +224,7 @@ namespace Bubba
         /// <value>
         /// The URL.
         /// </value>
-        public string Url
+        public virtual string Url
         {
             get
             {
@@ -246,7 +246,7 @@ namespace Bubba
         /// <value>
         /// The name.
         /// </value>
-        public string Name
+        public virtual string Name
         {
             get
             {
@@ -268,7 +268,7 @@ namespace Bubba
         /// <value>
         /// The content.
         /// </value>
-        public string Content
+        public virtual string Content
         {
             get
             {
@@ -290,17 +290,17 @@ namespace Bubba
         /// <value>
         /// The title.
         /// </value>
-        public string Title
+        public virtual string Title
         {
             get
             {
-                return Title;
+                return _title;
             }
             set
             {
-                if( Title != value )
+                if( _title != value )
                 {
-                    Title = value;
+                    _title = value;
                     OnPropertyChanged( nameof( Title ) );
                 }
             }
@@ -315,7 +315,7 @@ namespace Bubba
         /// <returns>
         /// bool
         /// </returns>
-        private protected virtual bool PingNetwork( string ipAddress )
+        public virtual bool PingNetwork( string ipAddress )
         {
             var _status = false;
             try

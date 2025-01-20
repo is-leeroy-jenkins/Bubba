@@ -1535,7 +1535,7 @@ namespace Bubba
                 _data = "{";
                 _data += " \"model\":\"" + _model + "\",";
                 _data += " \"prompt\": \"" + PadQuotes( question ) + "\",";
-                _data += " \"max_completionTokens\": " + _maxTokens + ",";
+                _data += " \"max_completion_tokens\": " + _maxTokens + ",";
                 _data += " \"user\": \"" + _userId + "\", ";
                 _data += " \"temperature\": " + _temp + ", ";
                 _data += " \"frequency_penalty\": 0.0" + ", ";
@@ -1757,9 +1757,9 @@ namespace Bubba
 
                 var _responseMessage = await _httpClient.GetAsync( _url );
                 _responseMessage.EnsureSuccessStatusCode( );
-                var _body = await _responseMessage.Content.ReadAsStringAsync( );
+                var _content = await _responseMessage.Content.ReadAsStringAsync( );
                 var _models = new List<string>( );
-                using var _document = JsonDocument.Parse( _body );
+                using var _document = JsonDocument.Parse( _content );
                 var _root = _document.RootElement;
                 if( _root.TryGetProperty( "data", out var _data )
                     && _data.ValueKind == JsonValueKind.Array )

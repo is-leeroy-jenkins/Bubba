@@ -307,7 +307,7 @@
                 BorderBrush="{DynamicResource FormBackground}"
                 CloseButtonState="Hidden"
                 Foreground="{DynamicResource FormForeground}"
-                Header="">
+                Header="Bubba">
 
                 <web:ChromiumWebBrowser
                     x:Name="Browser"

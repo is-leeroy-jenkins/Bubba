@@ -1340,204 +1340,40 @@
             instance containing the event data.
             </param>
         </member>
-        <member name="T:Bubba.ChatPayload">
+        <member name="T:Bubba.DictionaryConverter">
             <inheritdoc />
             <summary>
             </summary>
-            <seealso cref="T:Bubba.GptPayload" />
         </member>
-        <member name="F:Bubba.ChatPayload._tools">
-            <summary>
-            The tools
-            </summary>
-        </member>
-        <member name="F:Bubba.ChatPayload._metaData">
-            <summary>
-            Developer-defined tags and values used for filtering completions
-            </summary>
-        </member>
-        <member name="F:Bubba.ChatPayload._reasoningEffort">
-            <summary>
-            The reasoning effort
-            </summary>
-        </member>
-        <member name="F:Bubba.ChatPayload._instructions">
-            <summary>
-            The system prompt
-            </summary>
-        </member>
-        <member name="M:Bubba.ChatPayload.#ctor">
-            <summary>
-            Initializes a new instance of the <see cref="T:Bubba.ChatPayload"/> class.
-            </summary>
-            <inheritdoc />
-        </member>
-        <member name="M:Bubba.ChatPayload.#ctor(System.String,System.Double,System.Double,System.Double,System.Double,System.Int32,System.Boolean,System.Boolean)">
+        <member name="M:Bubba.DictionaryConverter.Read(System.Text.Json.Utf8JsonReader@,System.Type,System.Text.Json.JsonSerializerOptions)">
             <inheritdoc />
             <summary>
-            Initializes a new instance of the <see cref="T:Bubba.ChatPayload" /> class.
+            Reads and converts the JSON to a Dictionary(string, object).
             </summary>
-            <param name="userPrompt"></param>
-            <param name="frequency">The frequency penalty.</param>
-            <param name="presence">The presence penalty.</param>
-            <param name="temperature">The temperature.</param>
-            <param name="topPercent">The top percent.</param>
-            <param name="maxTokens">The maximum tokens.</param>
-            <param name="store">if set to <c>true</c> [store].</param>
-            <param name="stream">if set to <c>true</c> [stream].</param>
-        </member>
-        <member name="M:Bubba.ChatPayload.#ctor(System.String,System.String,Bubba.GptParameter)">
-            <inheritdoc />
-            <summary>
-            Initializes a new instance of the <see cref="T:Bubba.ChatPayload" /> class.
-            </summary>
-            <param name="userPrompt">The user prompt.</param>
-            <param name="systemPrompt">The system prompt.</param>
-            <param name="config">The configuration.</param>
-        </member>
-        <member name="P:Bubba.ChatPayload.Number">
-            <inheritdoc />
-            <summary>
-            THe number 'n' of responses generatred.
-            </summary>
-            <value>
-            The user identifier.
-            </value>
-        </member>
-        <member name="P:Bubba.ChatPayload.Model">
-            <summary>
-            Gets the chat model.
-            </summary>
-            <value>
-            The chat model.
-            </value>
-            <inheritdoc />
-        </member>
-        <member name="P:Bubba.ChatPayload.Store">
-            <inheritdoc />
-            <summary>
-            Gets or sets a value indicating whether this
-            <see cref="T:Bubba.ParameterBase" /> is store.
-            </summary>
-            <value>
-              <c>true</c> if store; otherwise, <c>false</c>.
-            </value>
-        </member>
-        <member name="P:Bubba.ChatPayload.Stream">
-            <inheritdoc />
-            <summary>
-            Gets or sets a value indicating whether this
-            <see cref="T:Bubba.ParameterBase" /> is stream.
-            </summary>
-            <value>
-              <c>true</c> if stream; otherwise, <c>false</c>.
-            </value>
-        </member>
-        <member name="P:Bubba.ChatPayload.Temperature">
-            <inheritdoc />
-            <summary>
-            A number between 0.0 and 2.0   between 0 and 2.
-            Higher values like 0.8 will make the output more random,
-            while lower values like 0.2 will make it more focused and deterministic.
-            </summary>
-            <value>
-            The temperature.
-            </value>
-        </member>
-        <member name="P:Bubba.ChatPayload.FrequencyPenalty">
-            <inheritdoc />
-            <summary>
-            A number between -2.0 and 2.0. Positive values penalize new
-            tokens based on their existing frequency in the text so far,
-            decreasing the model's likelihood to repeat the same line verbatim.
-            </summary>
-            <value>
-            The frequency.
-            </value>
-        </member>
-        <member name="P:Bubba.ChatPayload.PresencePenalty">
-            <inheritdoc />
-            <summary>
-            Number between -2.0 and 2.0. Positive values penalize new tokens
-            based on whether they appear in the text so far,
-            ncreasing the model's likelihood to talk about new topics.
-            </summary>
-            <value>
-            The presence.
-            </value>
-        </member>
-        <member name="P:Bubba.ChatPayload.TopPercent">
-            <inheritdoc />
-            <summary>
-            An alternative to sampling with temperature,
-            called nucleus sampling, where the model considers
-            the results of the tokens with top_p probability mass.
-            So 0.1 means only the tokens comprising the top 10% probability
-            mass are considered. We generally recommend altering this
-            or temperature but not both.
-            </summary>
-            <value>
-            The top percent.
-            </value>
-        </member>
-        <member name="P:Bubba.ChatPayload.ResponseFormat">
-            <inheritdoc />
-            <summary>
-            Gets or sets the response format.
-            </summary>
-            <value>
-            The response format.
-            </value>
-        </member>
-        <member name="P:Bubba.ChatPayload.ReasoningEffort">
-            <summary>
-            o1 models only.
-            Constrains effort on reasoning for reasoning models.
-            Currently supported values are low, medium, and high.
-            Reducing reasoning effort can result in faster responses
-            and fewer tokens used on reasoning in a response.
-            </summary>
-            <value>
-            The reasoning effort.
-            </value>
-        </member>
-        <member name="P:Bubba.ChatPayload.Tools">
-            <summary>
-            A list of tool enabled on the assistant.
-            There can be a maximum of 128 tools per assistant.
-            Tools can be of types code_interpreter, file_search, or function.
-            </summary>
-            <value>
-            The tools.
-            </value>
-        </member>
-        <member name="P:Bubba.ChatPayload.MetaData">
-            <summary>
-            Set of 16 key-value pairs that can be attached to an object.
-            This can be useful for storing additional information about the
-            object in a structured format. Keys can be a maximum of 64 characters
-            long and values can be a maximum of 512 characters long.
-            </summary>
-            <value>
-            The meta data.
-            </value>
-        </member>
-        <member name="M:Bubba.ChatPayload.GetData">
-            <inheritdoc />
-            <summary>
-            Gets the data.
-            </summary>
+            <param name="reader">The reader.</param>
+            <param name="typeToConvert">The type to convert.</param>
+            <param name="options">An object that specifies serialization options to use.</param>
             <returns>
+            The converted value.
             </returns>
+            <exception cref="T:Newtonsoft.Json.JsonException">
+            Expected StartObject token
+            or
+            Expected PropertyName token
+            or
+            Unexpected token {reader.TokenType}
+            or
+            Expected EndObject token
+            </exception>
         </member>
-        <member name="M:Bubba.ChatPayload.ToString">
+        <member name="M:Bubba.DictionaryConverter.Write(System.Text.Json.Utf8JsonWriter,System.Collections.Generic.IDictionary{System.String,System.Object},System.Text.Json.JsonSerializerOptions)">
             <inheritdoc />
             <summary>
-            Converts to string.
+            Writes a specified value as JSON.
             </summary>
-            <returns>
-            A <see cref="T:System.String" /> that represents this instance.
-            </returns>
+            <param name="writer">The writer to write to.</param>
+            <param name="value">The value to convert to JSON.</param>
+            <param name="options">An object that specifies serialization options to use.</param>
         </member>
         <member name="T:Bubba.AdapterBase">
             <inheritdoc/>
@@ -7632,41 +7468,6 @@
             Fails the specified ex.
             </summary>
             <param name="ex">The ex.</param>
-        </member>
-        <member name="T:Bubba.DictionaryConverter">
-            <inheritdoc />
-            <summary>
-            </summary>
-        </member>
-        <member name="M:Bubba.DictionaryConverter.Read(System.Text.Json.Utf8JsonReader@,System.Type,System.Text.Json.JsonSerializerOptions)">
-            <inheritdoc />
-            <summary>
-            Reads and converts the JSON to a Dictionary(string, object).
-            </summary>
-            <param name="reader">The reader.</param>
-            <param name="typeToConvert">The type to convert.</param>
-            <param name="options">An object that specifies serialization options to use.</param>
-            <returns>
-            The converted value.
-            </returns>
-            <exception cref="T:Newtonsoft.Json.JsonException">
-            Expected StartObject token
-            or
-            Expected PropertyName token
-            or
-            Unexpected token {reader.TokenType}
-            or
-            Expected EndObject token
-            </exception>
-        </member>
-        <member name="M:Bubba.DictionaryConverter.Write(System.Text.Json.Utf8JsonWriter,System.Collections.Generic.IDictionary{System.String,System.Object},System.Text.Json.JsonSerializerOptions)">
-            <inheritdoc />
-            <summary>
-            Writes a specified value as JSON.
-            </summary>
-            <param name="writer">The writer to write to.</param>
-            <param name="value">The value to convert to JSON.</param>
-            <param name="options">An object that specifies serialization options to use.</param>
         </member>
         <member name="T:Bubba.AccessType">
             <summary>
@@ -21865,6 +21666,205 @@
             A <see cref="T:System.String" /> that represents this instance.
             </returns>
         </member>
+        <member name="T:Bubba.ChatPayload">
+            <inheritdoc />
+            <summary>
+            </summary>
+            <seealso cref="T:Bubba.GptPayload" />
+        </member>
+        <member name="F:Bubba.ChatPayload._tools">
+            <summary>
+            The tools
+            </summary>
+        </member>
+        <member name="F:Bubba.ChatPayload._metaData">
+            <summary>
+            Developer-defined tags and values used for filtering completions
+            </summary>
+        </member>
+        <member name="F:Bubba.ChatPayload._reasoningEffort">
+            <summary>
+            The reasoning effort
+            </summary>
+        </member>
+        <member name="F:Bubba.ChatPayload._instructions">
+            <summary>
+            The system prompt
+            </summary>
+        </member>
+        <member name="M:Bubba.ChatPayload.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Bubba.ChatPayload"/> class.
+            </summary>
+            <inheritdoc />
+        </member>
+        <member name="M:Bubba.ChatPayload.#ctor(System.String,System.Double,System.Double,System.Double,System.Double,System.Int32,System.Boolean,System.Boolean)">
+            <inheritdoc />
+            <summary>
+            Initializes a new instance of the <see cref="T:Bubba.ChatPayload" /> class.
+            </summary>
+            <param name="userPrompt"></param>
+            <param name="frequency">The frequency penalty.</param>
+            <param name="presence">The presence penalty.</param>
+            <param name="temperature">The temperature.</param>
+            <param name="topPercent">The top percent.</param>
+            <param name="maxTokens">The maximum tokens.</param>
+            <param name="store">if set to <c>true</c> [store].</param>
+            <param name="stream">if set to <c>true</c> [stream].</param>
+        </member>
+        <member name="M:Bubba.ChatPayload.#ctor(System.String,System.String,Bubba.GptParameter)">
+            <inheritdoc />
+            <summary>
+            Initializes a new instance of the <see cref="T:Bubba.ChatPayload" /> class.
+            </summary>
+            <param name="userPrompt">The user prompt.</param>
+            <param name="systemPrompt">The system prompt.</param>
+            <param name="config">The configuration.</param>
+        </member>
+        <member name="P:Bubba.ChatPayload.Number">
+            <inheritdoc />
+            <summary>
+            THe number 'n' of responses generatred.
+            </summary>
+            <value>
+            The user identifier.
+            </value>
+        </member>
+        <member name="P:Bubba.ChatPayload.Model">
+            <summary>
+            Gets the chat model.
+            </summary>
+            <value>
+            The chat model.
+            </value>
+            <inheritdoc />
+        </member>
+        <member name="P:Bubba.ChatPayload.Store">
+            <inheritdoc />
+            <summary>
+            Gets or sets a value indicating whether this
+            <see cref="T:Bubba.ParameterBase" /> is store.
+            </summary>
+            <value>
+              <c>true</c> if store; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:Bubba.ChatPayload.Stream">
+            <inheritdoc />
+            <summary>
+            Gets or sets a value indicating whether this
+            <see cref="T:Bubba.ParameterBase" /> is stream.
+            </summary>
+            <value>
+              <c>true</c> if stream; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:Bubba.ChatPayload.Temperature">
+            <inheritdoc />
+            <summary>
+            A number between 0.0 and 2.0   between 0 and 2.
+            Higher values like 0.8 will make the output more random,
+            while lower values like 0.2 will make it more focused and deterministic.
+            </summary>
+            <value>
+            The temperature.
+            </value>
+        </member>
+        <member name="P:Bubba.ChatPayload.FrequencyPenalty">
+            <inheritdoc />
+            <summary>
+            A number between -2.0 and 2.0. Positive values penalize new
+            tokens based on their existing frequency in the text so far,
+            decreasing the model's likelihood to repeat the same line verbatim.
+            </summary>
+            <value>
+            The frequency.
+            </value>
+        </member>
+        <member name="P:Bubba.ChatPayload.PresencePenalty">
+            <inheritdoc />
+            <summary>
+            Number between -2.0 and 2.0. Positive values penalize new tokens
+            based on whether they appear in the text so far,
+            ncreasing the model's likelihood to talk about new topics.
+            </summary>
+            <value>
+            The presence.
+            </value>
+        </member>
+        <member name="P:Bubba.ChatPayload.TopPercent">
+            <inheritdoc />
+            <summary>
+            An alternative to sampling with temperature,
+            called nucleus sampling, where the model considers
+            the results of the tokens with top_p probability mass.
+            So 0.1 means only the tokens comprising the top 10% probability
+            mass are considered. We generally recommend altering this
+            or temperature but not both.
+            </summary>
+            <value>
+            The top percent.
+            </value>
+        </member>
+        <member name="P:Bubba.ChatPayload.ResponseFormat">
+            <inheritdoc />
+            <summary>
+            Gets or sets the response format.
+            </summary>
+            <value>
+            The response format.
+            </value>
+        </member>
+        <member name="P:Bubba.ChatPayload.ReasoningEffort">
+            <summary>
+            o1 models only.
+            Constrains effort on reasoning for reasoning models.
+            Currently supported values are low, medium, and high.
+            Reducing reasoning effort can result in faster responses
+            and fewer tokens used on reasoning in a response.
+            </summary>
+            <value>
+            The reasoning effort.
+            </value>
+        </member>
+        <member name="P:Bubba.ChatPayload.Tools">
+            <summary>
+            A list of tool enabled on the assistant.
+            There can be a maximum of 128 tools per assistant.
+            Tools can be of types code_interpreter, file_search, or function.
+            </summary>
+            <value>
+            The tools.
+            </value>
+        </member>
+        <member name="P:Bubba.ChatPayload.MetaData">
+            <summary>
+            Set of 16 key-value pairs that can be attached to an object.
+            This can be useful for storing additional information about the
+            object in a structured format. Keys can be a maximum of 64 characters
+            long and values can be a maximum of 512 characters long.
+            </summary>
+            <value>
+            The meta data.
+            </value>
+        </member>
+        <member name="M:Bubba.ChatPayload.GetData">
+            <inheritdoc />
+            <summary>
+            Gets the data.
+            </summary>
+            <returns>
+            </returns>
+        </member>
+        <member name="M:Bubba.ChatPayload.ToString">
+            <inheritdoc />
+            <summary>
+            Converts to string.
+            </summary>
+            <returns>
+            A <see cref="T:System.String" /> that represents this instance.
+            </returns>
+        </member>
         <member name="T:Bubba.EmbeddingPayload">
             <inheritdoc />
             <summary>
@@ -27623,8 +27623,8 @@
             Initializes a new instance of the
             <see cref="T:Bubba.GoogleSearch" /> class.
             </summary>
-            <param name="keywords">
-            The keywords.
+            <param name="keyWords">
+            The keyWords.
             </param>
         </member>
         <member name="P:Bubba.GoogleSearch.KeyWords">
@@ -27664,38 +27664,6 @@
             </summary>
             <seealso cref="T:Badger.InnerWebs" />
         </member>
-        <member name="P:Bubba.SearchResult.Link">
-            <summary>
-            Gets or sets the link.
-            </summary>
-            <value>
-            The link.
-            </value>
-        </member>
-        <member name="P:Bubba.SearchResult.Name">
-            <summary>
-            Gets or sets the name.
-            </summary>
-            <value>
-            The name.
-            </value>
-        </member>
-        <member name="P:Bubba.SearchResult.Content">
-            <summary>
-            Gets or sets the content.
-            </summary>
-            <value>
-            The content.
-            </value>
-        </member>
-        <member name="P:Bubba.SearchResult.Title">
-            <summary>
-            Gets or sets the title.
-            </summary>
-            <value>
-            The title.
-            </value>
-        </member>
         <member name="M:Bubba.SearchResult.#ctor">
             <inheritdoc />
             <summary>
@@ -27730,6 +27698,42 @@
             <param name="name">The name.</param>
             <param name="content">The content.</param>
             <param name="title">The title.</param>
+        </member>
+        <member name="P:Bubba.SearchResult.Link">
+            <inheritdoc />
+            <summary>
+            Gets or sets the link.
+            </summary>
+            <value>
+            The link.
+            </value>
+        </member>
+        <member name="P:Bubba.SearchResult.Name">
+            <inheritdoc />
+            <summary>
+            Gets or sets the name.
+            </summary>
+            <value>
+            The name.
+            </value>
+        </member>
+        <member name="P:Bubba.SearchResult.Content">
+            <inheritdoc />
+            <summary>
+            Gets or sets the content.
+            </summary>
+            <value>
+            The content.
+            </value>
+        </member>
+        <member name="P:Bubba.SearchResult.Title">
+            <inheritdoc />
+            <summary>
+            Gets or sets the title.
+            </summary>
+            <value>
+            The title.
+            </value>
         </member>
         <member name="M:Bubba.SearchResult.ToString">
             <summary>
@@ -30173,19 +30177,24 @@
               resource lookups using this strongly typed resource class.
             </summary>
         </member>
-        <member name="P:Bubba.Properties.Locations.ACE">
+        <member name="P:Bubba.Properties.Locations.AcceptLanguage">
             <summary>
-              Looks up a localized string similar to https://www.google.com/search?q=site:usace.army.mil .
+              Looks up a localized string similar to en-US,en;q=0.9.
             </summary>
         </member>
-        <member name="P:Bubba.Properties.Locations.BubbaWeb">
+        <member name="P:Bubba.Properties.Locations.ApplicationCache">
             <summary>
-              Looks up a localized string similar to UI\Pages\index.html.
+              Looks up a localized string similar to true.
             </summary>
         </member>
-        <member name="P:Bubba.Properties.Locations.CDC">
+        <member name="P:Bubba.Properties.Locations.Branding">
             <summary>
-              Looks up a localized string similar to https://www.google.com/search?q=site:www.cdc.gov .
+              Looks up a localized string similar to Bubba Browser.
+            </summary>
+        </member>
+        <member name="P:Bubba.Properties.Locations.CannotConnect">
+            <summary>
+              Looks up a localized string similar to bubba://UI/Pages/CannotConnect.html.
             </summary>
         </member>
         <member name="P:Bubba.Properties.Locations.Chrome">
@@ -30193,19 +30202,9 @@
               Looks up a localized string similar to C:\Program Files\Google\Chrome\Application\chrome.exe.
             </summary>
         </member>
-        <member name="P:Bubba.Properties.Locations.CRS">
+        <member name="P:Bubba.Properties.Locations.CrossDomainSecurity">
             <summary>
-              Looks up a localized string similar to https://www.google.com/search?q=site:crsreports.congress.gov .
-            </summary>
-        </member>
-        <member name="P:Bubba.Properties.Locations.CSB">
-            <summary>
-              Looks up a localized string similar to https://www.google.com/search?q=site:www.csb.gov .
-            </summary>
-        </member>
-        <member name="P:Bubba.Properties.Locations.DATA">
-            <summary>
-              Looks up a localized string similar to https://www.google.com/search?q=site:data.gov .
+              Looks up a localized string similar to true.
             </summary>
         </member>
         <member name="P:Bubba.Properties.Locations.DatabaseDirectory">
@@ -30213,29 +30212,14 @@
               Looks up a localized string similar to Data\Stores\.
             </summary>
         </member>
-        <member name="P:Bubba.Properties.Locations.DHS">
+        <member name="P:Bubba.Properties.Locations.Documents">
             <summary>
-              Looks up a localized string similar to https://www.google.com/search?q=site:www.dhs.gov .
+              Looks up a localized string similar to Resources\Documents\.
             </summary>
         </member>
-        <member name="P:Bubba.Properties.Locations.DOC">
+        <member name="P:Bubba.Properties.Locations.Downloads">
             <summary>
-              Looks up a localized string similar to https://www.google.com/search?q=site:www.commerce.gov .
-            </summary>
-        </member>
-        <member name="P:Bubba.Properties.Locations.DOD">
-            <summary>
-              Looks up a localized string similar to https://www.google.com/search?q=site:www.defense.gov .
-            </summary>
-        </member>
-        <member name="P:Bubba.Properties.Locations.DOE">
-            <summary>
-              Looks up a localized string similar to https://www.google.com/search?q=site:www.energy.gov .
-            </summary>
-        </member>
-        <member name="P:Bubba.Properties.Locations.DOI">
-            <summary>
-              Looks up a localized string similar to https://www.google.com/search?q=site:www.doi.gov .
+              Looks up a localized string similar to bubba://UI/Pages/Downloads.html.
             </summary>
         </member>
         <member name="P:Bubba.Properties.Locations.Edge">
@@ -30243,14 +30227,9 @@
               Looks up a localized string similar to C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe.
             </summary>
         </member>
-        <member name="P:Bubba.Properties.Locations.EPA">
+        <member name="P:Bubba.Properties.Locations.FileNotFound">
             <summary>
-              Looks up a localized string similar to &quot;https://www.google.com/search?q=site:www.epa.gov .
-            </summary>
-        </member>
-        <member name="P:Bubba.Properties.Locations.FDA">
-            <summary>
-              Looks up a localized string similar to https://www.google.com/search?q=site:www.fda.gov .
+              Looks up a localized string similar to bubba://UI/Pages/NotFound.html.
             </summary>
         </member>
         <member name="P:Bubba.Properties.Locations.FireFox">
@@ -30258,24 +30237,19 @@
               Looks up a localized string similar to C:\Program Files\Mozilla Firefox\firefox.exe.
             </summary>
         </member>
-        <member name="P:Bubba.Properties.Locations.GPO">
+        <member name="P:Bubba.Properties.Locations.Google">
             <summary>
-              Looks up a localized string similar to https://www.google.com/search?q=site:www.gpo.gov .
+              Looks up a localized string similar to https://cse.google.com/cse?cx=e78aa3dcb21474bf4.
             </summary>
         </member>
-        <member name="P:Bubba.Properties.Locations.GSA">
+        <member name="P:Bubba.Properties.Locations.HomePage">
             <summary>
-              Looks up a localized string similar to https://www.google.com/search?q=site:www.gsa.gov .
+              Looks up a localized string similar to file:///C:/Users/terry/source/repos/Bubba/UI/Pages/index.html.
             </summary>
         </member>
-        <member name="P:Bubba.Properties.Locations.HHS">
+        <member name="P:Bubba.Properties.Locations.Internal">
             <summary>
-              Looks up a localized string similar to https://www.google.com/search?q=site:www.hhs.gov .
-            </summary>
-        </member>
-        <member name="P:Bubba.Properties.Locations.IRS">
-            <summary>
-              Looks up a localized string similar to https://www.google.com/search?q=site:www.irs.gov .
+              Looks up a localized string similar to UI\Pages\index.html.
             </summary>
         </member>
         <member name="P:Bubba.Properties.Locations.Loading">
@@ -30283,54 +30257,9 @@
               Looks up a localized string similar to Resources\Assets\LoaderImages\Loading.gif.
             </summary>
         </member>
-        <member name="P:Bubba.Properties.Locations.LOC">
-            <summary>
-              Looks up a localized string similar to https://www.google.com/search?q=site:catalog.loc.gov .
-            </summary>
-        </member>
-        <member name="P:Bubba.Properties.Locations.NARA">
-            <summary>
-              Looks up a localized string similar to https://www.google.com/search?q=site:www.archives.gov .
-            </summary>
-        </member>
-        <member name="P:Bubba.Properties.Locations.NASA">
-            <summary>
-              Looks up a localized string similar to https://www.google.com/search?q=site:www.nasa.gov .
-            </summary>
-        </member>
         <member name="P:Bubba.Properties.Locations.NewTab">
             <summary>
               Looks up a localized string similar to https://www.google.com.
-            </summary>
-        </member>
-        <member name="P:Bubba.Properties.Locations.NOAA">
-            <summary>
-              Looks up a localized string similar to https://www.google.com/search?q=site:www.noaa.gov .
-            </summary>
-        </member>
-        <member name="P:Bubba.Properties.Locations.NPS">
-            <summary>
-              Looks up a localized string similar to https://www.google.com/search?q=site:www.nps.gov .
-            </summary>
-        </member>
-        <member name="P:Bubba.Properties.Locations.NRC">
-            <summary>
-              Looks up a localized string similar to https://www.google.com/search?q=site:www.nrc.gov .
-            </summary>
-        </member>
-        <member name="P:Bubba.Properties.Locations.NSF">
-            <summary>
-              Looks up a localized string similar to https://www.google.com/search?q=site:www.nsf.gov .
-            </summary>
-        </member>
-        <member name="P:Bubba.Properties.Locations.NWS">
-            <summary>
-              Looks up a localized string similar to https://www.google.com/search?q=site:www.weather.gov .
-            </summary>
-        </member>
-        <member name="P:Bubba.Properties.Locations.OMB">
-            <summary>
-              Looks up a localized string similar to https://www.google.com/search?q=site:www.whitehouse.gov .
             </summary>
         </member>
         <member name="P:Bubba.Properties.Locations.PathPrefix">
@@ -30338,29 +30267,49 @@
               Looks up a localized string similar to C:\Users\terry\source\repos\Bubba\.
             </summary>
         </member>
+        <member name="P:Bubba.Properties.Locations.PingIP">
+            <summary>
+              Looks up a localized string similar to 8.8.8.8.
+            </summary>
+        </member>
+        <member name="P:Bubba.Properties.Locations.Proxy">
+            <summary>
+              Looks up a localized string similar to false.
+            </summary>
+        </member>
+        <member name="P:Bubba.Properties.Locations.ProxyBypassList">
+            <summary>
+              Looks up a localized string similar to *.google.com, localhost.
+            </summary>
+        </member>
+        <member name="P:Bubba.Properties.Locations.ProxyIP">
+            <summary>
+              Looks up a localized string similar to 123.123.123.123.
+            </summary>
+        </member>
+        <member name="P:Bubba.Properties.Locations.ProxyPort">
+            <summary>
+              Looks up a localized string similar to 123.
+            </summary>
+        </member>
         <member name="P:Bubba.Properties.Locations.Reports">
             <summary>
               Looks up a localized string similar to Resources\Reports\Report.xlsx.
             </summary>
         </member>
-        <member name="P:Bubba.Properties.Locations.USDA">
+        <member name="P:Bubba.Properties.Locations.UserAgent">
             <summary>
-              Looks up a localized string similar to https://www.google.com/search?q=site:www.usda.gov .
+              Looks up a localized string similar to Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/104.0.5112.102 Safari/537.36 /CefSharp Browser.
             </summary>
         </member>
-        <member name="P:Bubba.Properties.Locations.USGI">
+        <member name="P:Bubba.Properties.Locations.WebGL">
             <summary>
-              Looks up a localized string similar to https://www.google.com/search?q=site:www.govinfo.gov .
+              Looks up a localized string similar to true.
             </summary>
         </member>
-        <member name="P:Bubba.Properties.Locations.USNO">
+        <member name="P:Bubba.Properties.Locations.WebSecurity">
             <summary>
-              Looks up a localized string similar to https://www.google.com/search?q=site:usno.navy.mil .
-            </summary>
-        </member>
-        <member name="P:Bubba.Properties.Locations.UST">
-            <summary>
-              Looks up a localized string similar to https://www.google.com/search?q=site:fiscal.treasury.gov .
+              Looks up a localized string similar to true.
             </summary>
         </member>
         <member name="T:Bubba.Properties.Models">
@@ -39271,12 +39220,6 @@
             Stops the active tab.
             </summary>
         </member>
-        <member name="M:Bubba.WebBrowser.SearchGovernmentDomains(System.String)">
-            <summary>
-            Executes the multi search.
-            </summary>
-            <param name="keyWords">The key words.</param>
-        </member>
         <member name="M:Bubba.WebBrowser.ShowToolbar">
             <summary>
             Shows the items.
@@ -39390,6 +39333,7 @@
             <summary>
             Raises the <see cref="E:TabClosing" /> event.
             </summary>
+            <param name = "sender" > </param>
             <param name="e">The <see cref="T:Bubba.TabClosingEventArgs" />
             instance containing the event data.</param>
         </member>
@@ -39399,14 +39343,6 @@
             </summary>
             <param name = "sender" > </param>
             <param name="e">The <see cref="T:Bubba.BrowserTabChangedEventArgs" />
-            instance containing the event data.</param>
-        </member>
-        <member name="M:Bubba.WebBrowser.OnSelectedDomainChanged(System.Object,System.Windows.RoutedEventArgs)">
-            <summary>
-            Called when [search engine selected].
-            </summary>
-            <param name="sender">The sender.</param>
-            <param name="e">The <see cref="T:System.Windows.RoutedEventArgs" />
             instance containing the event data.</param>
         </member>
         <member name="M:Bubba.WebBrowser.OnMenuCloseClick(System.Object,System.Windows.RoutedEventArgs)">

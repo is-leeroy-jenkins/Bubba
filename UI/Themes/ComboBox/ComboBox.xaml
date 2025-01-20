@@ -14,8 +14,8 @@
     <Style x:Key="ComboBoxStyle" TargetType="{x:Type ComboBox}">
         <Setter Property="Background" Value="{StaticResource ControlInteriorBrush}" />
         <Setter Property="BorderBrush" Value="{StaticResource BlueBorderBrush}" />
-        <Setter Property="Foreground" Value="{StaticResource LightBlueBrush}" />
-        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="Foreground" Value="{StaticResource FormForeground}" />
+        <Setter Property="BorderThickness" Value="2" />
         <Setter Property="HorizontalAlignment" Value="Stretch" />
         <Setter Property="HorizontalContentAlignment" Value="Left" />
         <Setter Property="VerticalAlignment" Value="Stretch" />
@@ -27,8 +27,13 @@
 
         <Style.Triggers>
 
+            <Trigger Property="IsSelected" Value="True">
+                <Setter Property="Background" Value="{StaticResource DarkBlueBackground}" />
+                <Setter Property="BorderBrush" Value="{StaticResource BlueBorderBrush}" />
+            </Trigger>
+
             <Trigger Property="IsMouseOver" Value="True">
-                <Setter Property="BorderBrush" Value="{StaticResource BrightGreenForeground}" />
+                <Setter Property="BorderBrush" Value="{StaticResource BlueBorderBrush}" />
             </Trigger>
 
             <Trigger Property="IsMouseOver" Value="False">
@@ -45,10 +50,10 @@
     <Style x:Key="ComboBoxItemStyle" TargetType="{x:Type ComboBoxItem}">
         <Setter Property="Background" Value="{StaticResource ControlInteriorBrush}" />
         <Setter Property="BorderBrush" Value="{StaticResource ControlInteriorBrush}" />
-        <Setter Property="Foreground" Value="{StaticResource LightBlueBrush}" />
+        <Setter Property="Foreground" Value="{StaticResource FormForeground}" />
         <Setter Property="BorderThickness" Value="1" />
         <Setter Property="HorizontalAlignment" Value="Stretch" />
-        <Setter Property="HorizontalContentAlignment" Value="Left" />
+        <Setter Property="HorizontalContentAlignment" Value="Center" />
         <Setter Property="VerticalAlignment" Value="Stretch" />
         <Setter Property="VerticalContentAlignment" Value="Center" />
         <Setter Property="Padding" Value="1" />

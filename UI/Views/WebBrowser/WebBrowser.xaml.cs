@@ -1,14 +1,14 @@
 ﻿// ******************************************************************************************
 //     Assembly:                Bubba
 //     Author:                  Terry D. Eppler
-//     Created:                 12-05-2024
+//     Created:                 01-19-2025
 // 
 //     Last Modified By:        Terry D. Eppler
-//     Last Modified On:        12-05-2024
+//     Last Modified On:        01-19-2025
 // ******************************************************************************************
 // <copyright file="WebBrowser.xaml.cs" company="Terry D. Eppler">
-//    Bubba is a small windows (wpf) application for interacting with
-//    Chat GPT that's developed in C-Sharp under the MIT license
+//    Bubba is a small and simple windows (wpf) application for interacting with the OpenAI API
+//    that's developed in C-Sharp under the MIT license.C#.
 // 
 //    Copyright ©  2020-2024 Terry D. Eppler
 // 
@@ -528,7 +528,7 @@ namespace Bubba
             };
 
             tabItem.Tag = _tab;
-            if( !string.IsNullOrEmpty( url ) 
+            if( !string.IsNullOrEmpty( url )
                 && url.StartsWith( Locations.Internal + ":" ) )
             {
                 _newBrowser.JavascriptObjectRepository.Register( "host", HostCallback,
@@ -2341,7 +2341,7 @@ namespace Bubba
         /// instance containing the event data.</param>
         private void OnDownloadsButtonClick( object sender, RoutedEventArgs e )
         {
-            AddNewBrowserTab( AppSettings[ "Downloads" ] );
+            AddNewBrowserTab( Locations.Downloads );
         }
 
         /// <summary>

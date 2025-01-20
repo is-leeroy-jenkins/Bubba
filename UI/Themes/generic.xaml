@@ -6,6 +6,9 @@
     <!--  ******************************************** Resources *********************************************  -->
 
     <ResourceDictionary.MergedDictionaries>
+        <!--  COMBOBOX  -->
+        <ResourceDictionary Source="/UI/Themes/ComboBox/ComboBox.xaml" />
+
         <!--  COMMON  -->
 
         <ResourceDictionary Source="/UI/Themes/Colors.xaml" />
@@ -35,9 +38,6 @@
         <!--  DROPDOWN  -->
         <ResourceDictionary Source="/UI/Themes/DropDown/DropDown.xaml" />
         <ResourceDictionary Source="/UI/Themes/MultiSelectDropDown/MultiSelectDropDown.xaml" />
-
-        <!--  COMBOBOX  -->
-        <ResourceDictionary Source="/UI/Themes/ComboBox/ComboBox.xaml" />
 
         <!--  CHECK BOX/LIST  -->
         <ResourceDictionary Source="/UI/Themes/CheckBox/CheckBox.xaml" />

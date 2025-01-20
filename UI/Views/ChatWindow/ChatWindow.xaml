@@ -380,7 +380,7 @@
                     Background="{StaticResource ControlInteriorBrush}"
                     BorderBrush="{StaticResource BlueBorderBrush}"
                     BorderThickness="2"
-                    Foreground="{StaticResource WhiteForeground}"
+                    Foreground="{StaticResource FormForeground}"
                     ToolTip="Available Learning Models" />
 
                 <GroupBox
@@ -404,14 +404,14 @@
                         </TransformGroup>
                     </GroupBox.RenderTransform>
 
-                    <ComboBox
+                    <b:MetroComboBox
                         x:Name="ImageSizeComboBox"
                         Height="30"
                         Margin="5,0,5,0"
                         Background="{StaticResource ControlInteriorBrush}"
                         BorderBrush="{StaticResource BlueBorderBrush}"
                         BorderThickness="2"
-                        Foreground="{StaticResource WhiteForeground}"
+                        Foreground="{StaticResource FormForeground}"
                         ToolTip="Select size for image" />
                 </GroupBox>
 
@@ -722,12 +722,7 @@
                     Background="{StaticResource ControlInteriorBrush}"
                     BorderBrush="{StaticResource BlueBorderBrush}"
                     BorderThickness="2"
-                    Foreground="{StaticResource WhiteForeground}">
-                    <wpf:ComboBoxItemAdv Content="Item 1" />
-                    <wpf:ComboBoxItemAdv Content="Item 2" />
-                    <wpf:ComboBoxItemAdv Content="Item 3" />
-                    <wpf:ComboBoxItemAdv Content="Item 4" />
-                    <wpf:ComboBoxItemAdv Content="Item 5" />
+                    Foreground="{StaticResource FormForeground}">
                 </ComboBox>
 
                 <GroupBox

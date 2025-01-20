@@ -45,7 +45,6 @@ namespace Bubba
     using Google.Apis.Services;
     using System;
     using System.Collections.Generic;
-    using System.Configuration;
     using System.Diagnostics.CodeAnalysis;
     using System.Linq;
     using System.Threading.Tasks;
@@ -97,13 +96,13 @@ namespace Bubba
         /// Initializes a new instance of the
         /// <see cref="T:Bubba.GoogleSearch" /> class.
         /// </summary>
-        /// <param name="keywords">
-        /// The keywords.
+        /// <param name="keyWords">
+        /// The keyWords.
         /// </param>
-        public GoogleSearch( string keywords )
+        public GoogleSearch( string keyWords )
             : this( )
         {
-            _keyWords = keywords;
+            _keyWords = keyWords;
         }
 
         /// <inheritdoc />
@@ -160,10 +159,10 @@ namespace Bubba
                         {
                             var _snippet = _list[ _i ].Snippet ?? string.Empty;
                             var _lines = _list[ _i ].Link ?? string.Empty;
-                            var Titles = _list[ _i ].Title ?? string.Empty;
+                            var _titles = _list[ _i ].Title ?? string.Empty;
                             var _htmlTitle = _list[ _i ].HtmlTitle ?? string.Empty;
                             var _searchResults = new SearchResult( _snippet, _lines,
-                                Titles, _htmlTitle );
+                                _titles, _htmlTitle );
 
                             _results.Add( _searchResults );
                         }
@@ -211,17 +210,20 @@ namespace Bubba
                     _searchRequest.Q = _keyWords;
                     _searchRequest.Cx = _engineId;
                     _searchRequest.Start = _count;
-                    var _list = _searchRequest.Execute( )?.Items?.ToList( );
+                    var _list = _searchRequest.Execute( )
+                        ?.Items
+                        ?.ToList( );
+
                     if( _list?.Any( ) == true )
                     {
                         for( var _i = 0; _i < _list.Count; _i++ )
                         {
                             var _snippet = _list[ _i ].Snippet ?? string.Empty;
                             var _line = _list[ _i ].Link ?? string.Empty;
-                            var Titles = _list[ _i ].Title ?? string.Empty;
+                            var _titles = _list[ _i ].Title ?? string.Empty;
                             var _htmlTitle = _list[ _i ].HtmlTitle ?? string.Empty;
                             var _searchResults =
-                                new SearchResult( _snippet, _line, Titles, _htmlTitle );
+                                new SearchResult( _snippet, _line, _titles, _htmlTitle );
 
                             _results.Add( _searchResults );
                         }
