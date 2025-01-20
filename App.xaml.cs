@@ -230,21 +230,6 @@ namespace Bubba
         }
 
         /// <summary>
-        /// Opens the GPT file dialog asynchronous.
-        /// </summary>
-        public static async Task OpenGptFileDialogAsync( )
-        {
-            try
-            {
-                await Task.Run( ( ) => OpenGptFileDialog( ) );
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
-            }
-        }
-
-        /// <summary>
         /// Opens the GPT file dialog.
         /// </summary>
         public static void OpenGptFileDialog( )
@@ -258,21 +243,6 @@ namespace Bubba
                 };
 
                 _gptFileDialog.Show( );
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
-            }
-        }
-
-        /// <summary>
-        /// Opens the folder browser asynchronous.
-        /// </summary>
-        public static async Task OpenFolderBrowserAsync( )
-        {
-            try
-            {
-                await Task.Run( ( ) => OpenFolderBrowser( ) );
             }
             catch( Exception ex )
             {
@@ -302,21 +272,6 @@ namespace Bubba
         }
 
         /// <summary>
-        /// Opens the file browser asynchronous.
-        /// </summary>
-        public static async Task OpenFileBrowserAsync( )
-        {
-            try
-            {
-                await Task.Run( ( ) => OpenFileBrowser( ) );
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
-            }
-        }
-
-        /// <summary>
         /// Opens the file browser.
         /// </summary>
         public static void OpenFileBrowser( )
@@ -338,21 +293,6 @@ namespace Bubba
         }
 
         /// <summary>
-        /// Opens the search dialog asynchronous.
-        /// </summary>
-        public static async Task OpenSearchDialogAsync( )
-        {
-            try
-            {
-                await Task.Run( ( ) => OpenSearchDialog( ) );
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
-            }
-        }
-
-        /// <summary>
         /// Opens the search dialog.
         /// </summary>
         public static void OpenSearchDialog( )
@@ -366,21 +306,6 @@ namespace Bubba
                 };
 
                 _searchDialog.Show( );
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
-            }
-        }
-
-        /// <summary>
-        /// Opens the image dialog asynchronous.
-        /// </summary>
-        public static async Task OpenImageDialogAsync( )
-        {
-            try
-            {
-                await Task.Run( ( ) => OpenImageDialog( ) );
             }
             catch( Exception ex )
             {
@@ -413,7 +338,7 @@ namespace Bubba
         /// <summary>
         /// Opens the WebBrowser asynchronous.
         /// </summary>
-        public static async Task OpenWebBrowserAsync( )
+        public async Task OpenWebBrowserAsync( )
         {
             try
             {
@@ -440,21 +365,6 @@ namespace Bubba
 
                 ActiveWindows.Add( "WebBrowser", _web );
                 _web.Show( );
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
-            }
-        }
-
-        /// <summary>
-        /// Opens the system dialog asynchronous.
-        /// </summary>
-        public static async Task OpenSystemDialogAsync( )
-        {
-            try
-            {
-                await Task.Run( ( ) => OpenSystemDialog( ) );
             }
             catch( Exception ex )
             {

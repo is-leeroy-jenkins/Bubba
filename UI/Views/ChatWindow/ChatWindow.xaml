@@ -722,8 +722,7 @@
                     Background="{StaticResource ControlInteriorBrush}"
                     BorderBrush="{StaticResource BlueBorderBrush}"
                     BorderThickness="2"
-                    Foreground="{StaticResource FormForeground}">
-                </ComboBox>
+                    Foreground="{StaticResource FormForeground}" />
 
                 <GroupBox
                     Canvas.Left="838"
