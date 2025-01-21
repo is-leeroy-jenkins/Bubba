@@ -16,7 +16,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyDescriptionAttribute("A small and simple windows (wpf) application for interacting with the OpenAI Comp" +
     "letions and Assistants API that\'s developed in C-Sharp under the MIT license. ")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+97314e4fcd8ba67e32a1e38c42a4ae71fa039a59")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+92dff7713b0670965db3a0e90c8173162dd4f69d")]
 [assembly: System.Reflection.AssemblyProductAttribute("Bubba GPT")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Bubba")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
