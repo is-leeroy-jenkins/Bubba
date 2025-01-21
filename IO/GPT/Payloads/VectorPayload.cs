@@ -1,10 +1,10 @@
 ﻿// ******************************************************************************************
 //     Assembly:                Bubba
 //     Author:                  Terry D. Eppler
-//     Created:                 01-19-2025
+//     Created:                 01-21-2025
 // 
 //     Last Modified By:        Terry D. Eppler
-//     Last Modified On:        01-19-2025
+//     Last Modified On:        01-21-2025
 // ******************************************************************************************
 // <copyright file="VectorPayload.cs" company="Terry D. Eppler">
 //    Bubba is a small and simple windows (wpf) application for interacting with the OpenAI API
@@ -45,6 +45,7 @@ namespace Bubba
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
     using System.Linq;
+    using System.Text.Json;
     using System.Text.Json.Serialization;
     using Properties;
 
@@ -112,8 +113,15 @@ namespace Bubba
         {
             _model = "gpt-4o-mini";
             _endPoint = GptEndPoint.VectorStores;
+            _store = false;
+            _stream = true;
+            _number = 1;
+            _temperature = 0.18;
+            _topPercent = 0.11;
+            _frequencyPenalty = 0.00;
+            _presencePenalty = 0.00;
+            _maximumTokens = 2048;
             _limit = 20;
-            _responseFormat = "text";
             _fileIds = new List<string>( );
             _metaData = new Dictionary<string, object>( );
         }
@@ -144,8 +152,6 @@ namespace Bubba
             _stream = stream;
             _topPercent = topPercent;
             _stop = new List<string>( );
-            _messages = new List<IGptMessage>( );
-            _data = new Dictionary<string, object>( );
         }
 
         /// <inheritdoc />
@@ -166,8 +172,6 @@ namespace Bubba
             _stream = config.Stream;
             _topPercent = config.TopPercent;
             _stop = config.Stop;
-            _messages = new List<IGptMessage>( );
-            _data = new Dictionary<string, object>( );
         }
 
         /// <summary>
@@ -408,72 +412,57 @@ namespace Bubba
 
         /// <inheritdoc />
         /// <summary>
-        /// Gets or sets the response format.
+        /// Gets the data.
         /// </summary>
-        /// <value>
-        /// The response format.
-        /// </value>
-        [ JsonPropertyName( "response_format" ) ]
-        public override string ResponseFormat
+        /// <returns>
+        /// </returns>
+        public string Parse( )
         {
-            get
+            try
             {
-                return _responseFormat;
+                var _json = "{";
+                _json += " \"model\":\"" + _model + "\",";
+                _json += " \"n\": \"" + _number + "\", ";
+                _json += " \"presence_penalty\": " + _presencePenalty + ", ";
+                _json += " \"frequency_penalty\": " + _frequencyPenalty + ", ";
+                _json += " \"temperature\": " + _temperature + ", ";
+                _json += " \"top_p\": " + _topPercent + ", ";
+                _json += " \"store\": \"" + _store + "\", ";
+                _json += " \"stream\": \"" + _stream + "\", ";
+                _json += " \"max_completion_tokens\": " + _maximumTokens + ",";
+                _json += " \"limit\": " + _limit + ",";
+                _json += " \"stop\": [\"#\", \";\"]" + "\",";
+                _json += "}";
+                return _json;
             }
-            set
+            catch( Exception ex )
             {
-                if( _responseFormat != value )
-                {
-                    _responseFormat = value;
-                    OnPropertyChanged( nameof( ResponseFormat ) );
-                }
+                Fail( ex );
+                return string.Empty;
             }
         }
 
         /// <inheritdoc />
         /// <summary>
-        /// Gets the data.
+        /// Converts to string.
         /// </summary>
         /// <returns>
+        /// A <see cref="T:System.String" />
+        /// that represents this instance.
         /// </returns>
-        public override IDictionary<string, object> GetData( )
+        public override string ToString( )
         {
             try
             {
-                _data.Add( "model", _model );
-                _data.Add( "endpoint", _endPoint );
-                _data.Add( "n", _number );
-                _data.Add( "max_completionTokens", _maximumTokens );
-                _data.Add( "store", _store );
-                _data.Add( "stream", _stream );
-                _data.Add( "temperature", _temperature );
-                _data.Add( "frequency_penalty", _frequencyPenalty );
-                _data.Add( "presence_penalty", _presencePenalty );
-                _data.Add( "top_p", _topPercent );
-                _data.Add( "limit", _limit );
-                _data.Add( "response_format", _responseFormat );
-                _data.Add( "modalitites", _modalities );
-                _stop.Add( "#" );
-                _stop.Add( ";" );
-                _data.Add( "stop", _stop );
-                if( _messages?.Any( ) == true )
-                {
-                    _data.Add( "messages", _messages );
-                }
-
-                if( _fileIds?.Any( ) == true )
-                {
-                    _data.Add( "file_ids", _fileIds );
-                }
-
-                return _data?.Any( ) == true
-                    ? _data
-                    : default( IDictionary<string, object> );
+                var _text = JsonSerializer.Serialize( this );
+                return !string.IsNullOrEmpty( _text )
+                    ? _text
+                    : string.Empty;
             }
             catch( Exception ex )
             {
                 Fail( ex );
-                return default( IDictionary<string, object> );
+                return string.Empty;
             }
         }
     }

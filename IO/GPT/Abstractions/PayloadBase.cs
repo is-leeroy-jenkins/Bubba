@@ -78,11 +78,6 @@ namespace Bubba
         private protected string _model;
 
         /// <summary>
-        /// The end point
-        /// </summary>
-        private protected string _endPoint;
-
-        /// <summary>
         /// A number between -2.0 and 2.0  Positive value decrease the
         /// model's likelihood to repeat the same line verbatim.
         /// </summary>
@@ -93,6 +88,11 @@ namespace Bubba
         /// that can be generated for a completion
         /// </summary>
         private protected int _maximumTokens;
+
+        /// <summary>
+        /// The end point
+        /// </summary>
+        private protected string _endPoint;
 
         /// <summary>
         /// TNumber between -2.0 and 2.0. Positive values penalize new
@@ -142,11 +142,6 @@ namespace Bubba
         /// The user prompt
         /// </summary>
         private protected string _prompt;
-
-        /// <summary>
-        /// The response format
-        /// </summary>
-        private protected string _responseFormat;
 
         /// <summary>
         /// The messages
@@ -204,7 +199,7 @@ namespace Bubba
         /// <value>
         /// The maximum tokens.
         /// </value>
-        [ JsonPropertyName( "max_completionTokens" ) ]
+        [JsonPropertyName( "max_completionTokens" ) ]
         public virtual int MaximumTokens
         {
             get
@@ -446,57 +441,6 @@ namespace Bubba
                 {
                     _messages = value;
                     OnPropertyChanged(nameof(Messages));
-                }
-            }
-        }
-
-        /// <inheritdoc />
-        /// <summary>
-        /// An object specifying the format that the model must output.
-        /// Setting to { "type": "json_schema", "json_schema": {...} } enables
-        /// Structured Outputs which ensures the model will match your supplied JSON schema
-        /// Default = "text"
-        /// </summary>
-        /// <value>
-        /// The response format.
-        /// </value>
-        [ JsonPropertyName( "response_format" ) ]
-        public virtual string ResponseFormat
-        {
-            get
-            {
-                return _responseFormat;
-            }
-            set
-            {
-                if( _responseFormat != value )
-                {
-                    _responseFormat = value;
-                    OnPropertyChanged( nameof( ResponseFormat ) );
-                }
-            }
-        }
-
-        /// <inheritdoc />
-        /// <summary>
-        /// Gets the end point.
-        /// </summary>
-        /// <value>
-        /// The end point.
-        /// </value>
-        [ JsonPropertyName( "endpoint" ) ]
-        public virtual string EndPoint
-        {
-            get
-            {
-                return _endPoint;
-            }
-            set
-            {
-                if(_endPoint != value)
-                {
-                    _endPoint = value;
-                    OnPropertyChanged(nameof(EndPoint));
                 }
             }
         }

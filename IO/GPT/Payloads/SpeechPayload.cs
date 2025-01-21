@@ -1,10 +1,10 @@
 ﻿// ******************************************************************************************
 //     Assembly:                Bubba
 //     Author:                  Terry D. Eppler
-//     Created:                 01-19-2025
+//     Created:                 01-21-2025
 // 
 //     Last Modified By:        Terry D. Eppler
-//     Last Modified On:        01-19-2025
+//     Last Modified On:        01-21-2025
 // ******************************************************************************************
 // <copyright file="SpeechPayload.cs" company="Terry D. Eppler">
 //    Bubba is a small and simple windows (wpf) application for interacting with the OpenAI API
@@ -44,7 +44,7 @@ namespace Bubba
     using System;
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
-    using System.Linq;
+    using System.Text.Json;
     using System.Text.Json.Serialization;
     using Properties;
 
@@ -89,6 +89,11 @@ namespace Bubba
         private protected string _input;
 
         /// <summary>
+        /// The response format
+        /// </summary>
+        private protected string _responseFormat;
+
+        /// <summary>
         /// Initializes a new instance of the
         /// <see cref="SpeechPayload"/> class.
         /// </summary>
@@ -98,11 +103,18 @@ namespace Bubba
         {
             _model = "tts-1-hd";
             _endPoint = GptEndPoint.SpeechGeneration;
+            _store = false;
+            _stream = true;
+            _number = 1;
+            _temperature = 0.18;
+            _topPercent = 0.11;
+            _frequencyPenalty = 0.00;
+            _presencePenalty = 0.00;
+            _maximumTokens = 2048;
             _language = "en";
-            _responseFormat = "mp3";
-            _modalities = "['text','audio']";
             _voice = "fable";
             _speed = 1;
+            _responseFormat = "mp3";
         }
 
         /// <inheritdoc />
@@ -131,8 +143,6 @@ namespace Bubba
             _stream = stream;
             _topPercent = topPercent;
             _stop = new List<string>( );
-            _messages = new List<IGptMessage>( );
-            _data = new Dictionary<string, object>( );
         }
 
         /// <inheritdoc />
@@ -302,32 +312,8 @@ namespace Bubba
         /// <value>
         /// The modalities.
         /// </value>
-        [ JsonPropertyName( "modalities" ) ]
-        public string Modalities
-        {
-            get
-            {
-                return _modalities;
-            }
-            set
-            {
-                if( _modalities != value )
-                {
-                    _modalities = value;
-                    OnPropertyChanged( nameof( Modalities ) );
-                }
-            }
-        }
-
-        /// <inheritdoc />
-        /// <summary>
-        /// Gets or sets the response format.
-        /// </summary>
-        /// <value>
-        /// The response format.
-        /// </value>
         [ JsonPropertyName( "response_format" ) ]
-        public override string ResponseFormat
+        public string ResponseFormat
         {
             get
             {
@@ -349,55 +335,28 @@ namespace Bubba
         /// </summary>
         /// <returns>
         /// </returns>
-        public override IDictionary<string, object> GetData( )
+        public string Parse( )
         {
             try
             {
-                _data.Add( "model", _model );
-                _data.Add( "endpoint", _endPoint );
-                _data.Add( "n", _number );
-                _data.Add( "max_completionTokens", _maximumTokens );
-                _data.Add( "store", _store );
-                _data.Add( "stream", _stream );
-                _data.Add( "temperature", _temperature );
-                _data.Add( "frequency_penalty", _frequencyPenalty );
-                _data.Add( "presence_penalty", _presencePenalty );
-                _data.Add( "top_p", _topPercent );
-                _data.Add( "response_format", _responseFormat );
-                _stop.Add( "#" );
-                _stop.Add( ";" );
-                _data.Add( "stop", _stop );
-                _data.Add( "modalities", _modalities );
-                _data.Add( "speed", _speed );
-                _data.Add( "language", _language );
-                if( _messages?.Any( ) == true )
-                {
-                    _data.Add( "messages", _messages );
-                }
-
-                if( _file != null )
-                {
-                    _data.Add( "file", _file );
-                }
-
-                if( !string.IsNullOrEmpty( _input ) )
-                {
-                    _data.Add( "input", _input );
-                }
-
-                if( _audioData?.Any( ) == true )
-                {
-                    _data.Add( "audio_data", _audioData );
-                }
-
-                return _data?.Any( ) == true
-                    ? _data
-                    : default( IDictionary<string, object> );
+                var _json = "{";
+                _json += " \"model\":\"" + _model + "\",";
+                _json += " \"n\": \"" + _number + "\", ";
+                _json += " \"presence_penalty\": " + _presencePenalty + ", ";
+                _json += " \"frequency_penalty\": " + _frequencyPenalty + ", ";
+                _json += " \"temperature\": " + _temperature + ", ";
+                _json += " \"top_p\": " + _topPercent + ", ";
+                _json += " \"store\": \"" + _store + "\", ";
+                _json += " \"stream\": \"" + _stream + "\", ";
+                _json += " \"max_completion_tokens\": " + _maximumTokens + ",";
+                _json += " \"stop\": [\"#\", \";\"]" + "\",";
+                _json += "}";
+                return _json;
             }
             catch( Exception ex )
             {
                 Fail( ex );
-                return default( IDictionary<string, object> );
+                return string.Empty;
             }
         }
 
@@ -406,14 +365,16 @@ namespace Bubba
         /// Converts to string.
         /// </summary>
         /// <returns>
-        /// A <see cref="T:System.String" /> that represents this instance.
+        /// A <see cref="T:System.String" />
+        /// that represents this instance.
         /// </returns>
         public override string ToString( )
         {
             try
             {
-                return _data?.Any( ) == true
-                    ? _data.ToJson( )
+                var _text = JsonSerializer.Serialize( this );
+                return !string.IsNullOrEmpty( _text )
+                    ? _text
                     : string.Empty;
             }
             catch( Exception ex )

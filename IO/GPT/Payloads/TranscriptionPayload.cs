@@ -1,10 +1,10 @@
 ﻿// ******************************************************************************************
 //     Assembly:                Bubba
 //     Author:                  Terry D. Eppler
-//     Created:                 01-19-2025
+//     Created:                 01-21-2025
 // 
 //     Last Modified By:        Terry D. Eppler
-//     Last Modified On:        01-19-2025
+//     Last Modified On:        01-21-2025
 // ******************************************************************************************
 // <copyright file="TranscriptionPayload.cs" company="Terry D. Eppler">
 //    Bubba is a small and simple windows (wpf) application for interacting with the OpenAI API
@@ -45,6 +45,7 @@ namespace Bubba
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
     using System.Linq;
+    using System.Text.Json;
     using System.Text.Json.Serialization;
     using Properties;
 
@@ -68,17 +69,12 @@ namespace Bubba
         /// <summary>
         /// The file path
         /// </summary>
-        private protected object _file;
-
-        /// <summary>
-        /// The audio data
-        /// </summary>
-        private protected byte[ ] _audioData;
+        private protected object _audioFile;
 
         /// <summary>
         /// The speed
         /// </summary>
-        private protected int _speed;
+        private protected string _responseFormat;
 
         /// <summary>
         /// Initializes a new instance of the
@@ -90,11 +86,16 @@ namespace Bubba
         {
             _model = "whisper-1";
             _endPoint = GptEndPoint.Transcriptions;
+            _store = false;
+            _stream = true;
+            _number = 1;
             _temperature = 0.18;
+            _topPercent = 0.11;
+            _frequencyPenalty = 0.00;
+            _presencePenalty = 0.00;
+            _maximumTokens = 2048;
             _language = "en";
-            _responseFormat = "auto";
-            _modalities = "['text', 'audio']";
-            _speed = 1;
+            _responseFormat = "text";
         }
 
         /// <inheritdoc />
@@ -109,9 +110,11 @@ namespace Bubba
         /// <param name="maxTokens">The maximum tokens.</param>
         /// <param name="store">if set to <c>true</c> [store].</param>
         /// <param name="stream">if set to <c>true</c> [stream].</param>
+        /// <param name = "format" > </param>
         public TranscriptionPayload( string userPrompt, double frequency = 0.00,
             double presence = 0.00, double temperature = 0.18, double topPercent = 0.11,
-            int maxTokens = 2048, bool store = false, bool stream = true )
+            int maxTokens = 2048, bool store = false, bool stream = true, 
+            string format = "text" )
             : this( )
         {
             _prompt = userPrompt;
@@ -122,9 +125,8 @@ namespace Bubba
             _store = store;
             _stream = stream;
             _topPercent = topPercent;
+            _responseFormat = format;
             _stop = new List<string>( );
-            _messages = new List<IGptMessage>( );
-            _data = new Dictionary<string, object>( );
         }
 
         /// <inheritdoc />
@@ -145,32 +147,7 @@ namespace Bubba
             _stream = config.Stream;
             _topPercent = config.TopPercent;
             _stop = config.Stop;
-            _messages = new List<IGptMessage>( );
-            _data = new Dictionary<string, object>( );
-        }
-
-        /// <summary>
-        /// Gets or sets the system prompt.
-        /// </summary>
-        /// <value>
-        /// The system prompt.
-        /// </value>
-        /// <inheritdoc />
-        [ JsonPropertyName( "messages" ) ]
-        public override IList<IGptMessage> Messages
-        {
-            get
-            {
-                return _messages;
-            }
-            set
-            {
-                if( _messages != value )
-                {
-                    _messages = value;
-                    OnPropertyChanged( nameof( _messages ) );
-                }
-            }
+            _responseFormat = config.ResponseFormat;
         }
 
         /// <summary>
@@ -229,18 +206,18 @@ namespace Bubba
         /// The file path.
         /// </value>
         [ JsonPropertyName( "file" ) ]
-        public object File
+        public object AudioFile
         {
             get
             {
-                return _file;
+                return _audioFile;
             }
             set
             {
-                if( _file != value )
+                if( _audioFile != value )
                 {
-                    _file = value;
-                    OnPropertyChanged( nameof( File ) );
+                    _audioFile = value;
+                    OnPropertyChanged( nameof( AudioFile ) );
                 }
             }
         }
@@ -269,27 +246,20 @@ namespace Bubba
             }
         }
 
-        /// <inheritdoc />
         /// <summary>
-        /// Gets or sets the response format.
+        /// Gets the sound file.
         /// </summary>
-        /// <value>
-        /// The response format.
-        /// </value>
-        [ JsonPropertyName( "response_format" ) ]
-        public override string ResponseFormat
+        /// <returns></returns>
+        public string GetSoundFile( )
         {
-            get
+            try
             {
-                return _responseFormat;
+                return string.Empty;
             }
-            set
+            catch( Exception ex )
             {
-                if( _responseFormat != value )
-                {
-                    _responseFormat = value;
-                    OnPropertyChanged( nameof( ResponseFormat ) );
-                }
+                Fail( ex );
+                return string.Empty;
             }
         }
 
@@ -297,40 +267,32 @@ namespace Bubba
         /// <summary>
         /// Gets the data.
         /// </summary>
-        /// <returns></returns>
-        public override IDictionary<string, object> GetData( )
+        /// <returns>
+        /// </returns>
+        public string Parse( )
         {
             try
             {
-                _data.Add( "model", _model );
-                _data.Add( "endpoint", _endPoint );
-                _data.Add( "n", _number );
-                _data.Add( "max_completionTokens", _maximumTokens );
-                _data.Add( "store", _store );
-                _data.Add( "stream", _stream );
-                _data.Add( "temperature", _temperature );
-                _data.Add( "frequency_penalty", _frequencyPenalty );
-                _data.Add( "presence_penalty", _presencePenalty );
-                _data.Add( "top_p", _topPercent );
-                _data.Add( "response_format", _responseFormat );
-                _stop.Add( "#" );
-                _stop.Add( ";" );
-                _data.Add( "stop", _stop );
-                _data.Add( "speed", _speed );
-                _data.Add( "modalities", _modalities );
-                if( _messages?.Any( ) == true )
-                {
-                    _data.Add( "messages", _messages );
-                }
-
-                return _data?.Any( ) == true
-                    ? _data
-                    : default( IDictionary<string, object> );
+                var _json = "{";
+                _json += " \"model\":\"" + _model + "\",";
+                _json += " \"n\": \"" + _number + "\", ";
+                _json += " \"presence_penalty\": " + _presencePenalty + ", ";
+                _json += " \"frequency_penalty\": " + _frequencyPenalty + ", ";
+                _json += " \"temperature\": " + _temperature + ", ";
+                _json += " \"top_p\": " + _topPercent + ", ";
+                _json += " \"store\": \"" + _store + "\", ";
+                _json += " \"stream\": \"" + _stream + "\", ";
+                _json += " \"max_completion_tokens\": " + _maximumTokens + ",";
+                _json += " \"language\": " + _language + ",";
+                _json += " \"response_format\": " + _responseFormat + ",";
+                _json += " \"stop\": [\"#\", \";\"]" + "\",";
+                _json += "}";
+                return _json;
             }
             catch( Exception ex )
             {
                 Fail( ex );
-                return default( IDictionary<string, object> );
+                return string.Empty;
             }
         }
 
@@ -339,14 +301,16 @@ namespace Bubba
         /// Converts to string.
         /// </summary>
         /// <returns>
-        /// A <see cref="T:System.String" /> that represents this instance.
+        /// A <see cref="T:System.String" />
+        /// that represents this instance.
         /// </returns>
         public override string ToString( )
         {
             try
             {
-                return _data?.Any( ) == true
-                    ? _data.ToJson( )
+                var _text = JsonSerializer.Serialize( this );
+                return !string.IsNullOrEmpty( _text )
+                    ? _text
                     : string.Empty;
             }
             catch( Exception ex )

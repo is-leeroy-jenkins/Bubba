@@ -1,10 +1,10 @@
 ﻿// ******************************************************************************************
 //     Assembly:                Bubba
 //     Author:                  Terry D. Eppler
-//     Created:                 01-19-2025
+//     Created:                 01-21-2025
 // 
 //     Last Modified By:        Terry D. Eppler
-//     Last Modified On:        01-19-2025
+//     Last Modified On:        01-21-2025
 // ******************************************************************************************
 // <copyright file="EmbeddingPayload.cs" company="Terry D. Eppler">
 //    Bubba is a small and simple windows (wpf) application for interacting with the OpenAI API
@@ -45,6 +45,7 @@ namespace Bubba
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
     using System.Linq;
+    using System.Text.Json;
     using System.Text.Json.Serialization;
     using Properties;
 
@@ -87,7 +88,14 @@ namespace Bubba
         {
             _model = "text-embedding-3";
             _endPoint = GptEndPoint.Embeddings;
-            _responseFormat = "text";
+            _store = false;
+            _stream = true;
+            _number = 1;
+            _temperature = 0.18;
+            _topPercent = 0.11;
+            _frequencyPenalty = 0.00;
+            _presencePenalty = 0.00;
+            _maximumTokens = 2048;
             _encodingFormat = "float";
         }
 
@@ -117,8 +125,6 @@ namespace Bubba
             _stream = stream;
             _topPercent = topPercent;
             _stop = new List<string>( );
-            _messages = new List<IGptMessage>( );
-            _data = new Dictionary<string, object>( );
         }
 
         /// <inheritdoc />
@@ -139,8 +145,6 @@ namespace Bubba
             _stream = config.Stream;
             _topPercent = config.TopPercent;
             _stop = config.Stop;
-            _messages = new List<IGptMessage>( );
-            _data = new Dictionary<string, object>( );
         }
 
         /// <summary>
@@ -162,54 +166,6 @@ namespace Bubba
                 {
                     _filePath = value;
                     OnPropertyChanged( nameof( FilePath ) );
-                }
-            }
-        }
-
-        /// <inheritdoc />
-        /// <summary>
-        /// Gets or sets the end point.
-        /// </summary>
-        /// <value>
-        /// The end point.
-        /// </value>
-        [ JsonPropertyName( "endpoint" ) ]
-        public override string EndPoint
-        {
-            get
-            {
-                return _endPoint;
-            }
-            set
-            {
-                if( _endPoint != value )
-                {
-                    _endPoint = value;
-                    OnPropertyChanged( nameof( EndPoint ) );
-                }
-            }
-        }
-
-        /// <inheritdoc />
-        /// <summary>
-        /// Gets or sets the response format.
-        /// </summary>
-        /// <value>
-        /// The response format.
-        /// </value>
-        [ JsonPropertyName( "response_format" ) ]
-        public override string ResponseFormat
-        {
-            get
-            {
-                return _responseFormat;
-            }
-            set
-            {
-                if( _responseFormat != value )
-                {
-                    _responseFormat = value;
-                    OnPropertyChanged( nameof( ResponseFormat ) );
                 }
             }
         }
@@ -239,7 +195,13 @@ namespace Bubba
         }
 
         /// <summary>
-        /// Gets or sets the input.
+        /// Input text to embed, encoded as a string or array of tokens.
+        /// To embed multiple inputs in a single request, pass an array of strings
+        /// or array of token arrays. The input must not exceed the max input tokens
+        /// for the model (8192 tokens for text-embedding-ada-002), cannot be an
+        /// empty string, and any array must be 2048 dimensions or less.
+        /// Example Python code for counting tokens. Some models may also impose
+        /// a limit on total number of tokens summed across inputs.Gets or sets the input.
         /// </summary>
         /// <value>
         /// The input.
@@ -267,42 +229,53 @@ namespace Bubba
         /// </summary>
         /// <returns>
         /// </returns>
-        public override IDictionary<string, object> GetData( )
+        public string Parse()
         {
             try
             {
-                _data.Add( "model", _model );
-                _data.Add( "n", _number );
-                _data.Add( "max_completionTokens", _maximumTokens );
-                _data.Add( "store", _store );
-                _data.Add( "stream", _stream );
-                _data.Add( "temperature", _temperature );
-                _data.Add( "frequency_penalty", _frequencyPenalty );
-                _data.Add( "presence_penalty", _presencePenalty );
-                _data.Add( "top_p", _topPercent );
-                _data.Add( "response_format", _responseFormat );
-                _stop.Add( "#" );
-                _stop.Add( ";" );
-                _data.Add( "stop", _stop );
-                _data.Add( "modalities", _modalities );
-                if( _messages?.Any( ) == true )
-                {
-                    _data.Add( "messages", _messages );
-                }
-
-                if( !string.IsNullOrEmpty( _prompt ) )
-                {
-                    _data?.Add( "prompt", _prompt );
-                }
-
-                return _data?.Any( ) == true
-                    ? _data
-                    : default( IDictionary<string, object> );
+                var _json = "{";
+                _json += " \"model\":\"" + _model + "\",";
+                _json += " \"n\": \"" + _number + "\", ";
+                _json += " \"presence_penalty\": " + _presencePenalty + ", ";
+                _json += " \"frequency_penalty\": " + _frequencyPenalty + ", ";
+                _json += " \"temperature\": " + _temperature + ", ";
+                _json += " \"top_p\": " + _topPercent + ", ";
+                _json += " \"store\": \"" + _store + "\", ";
+                _json += " \"stream\": \"" + _stream + "\", ";
+                _json += " \"max_completion_tokens\": " + _maximumTokens + ",";
+                _json += " \"stop\": [\"#\", \";\"]" + "\",";
+                _json += " \"encoding_format\": " + _encodingFormat + ",";
+                _json += "}";
+                return _json;
             }
-            catch( Exception ex )
+            catch(Exception ex)
             {
-                Fail( ex );
-                return default( IDictionary<string, object> );
+                Fail(ex);
+                return string.Empty;
+            }
+        }
+
+        /// <inheritdoc />
+        /// <summary>
+        /// Converts to string.
+        /// </summary>
+        /// <returns>
+        /// A <see cref="T:System.String" />
+        /// that represents this instance.
+        /// </returns>
+        public override string ToString()
+        {
+            try
+            {
+                var _text = JsonSerializer.Serialize(this);
+                return !string.IsNullOrEmpty(_text)
+                    ? _text
+                    : string.Empty;
+            }
+            catch(Exception ex)
+            {
+                Fail(ex);
+                return string.Empty;
             }
         }
     }

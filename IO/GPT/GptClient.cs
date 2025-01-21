@@ -394,7 +394,7 @@ namespace Bubba
         /// </summary>
         public async Task<string> SendRequestAsync( GptPayload payload )
         {
-            var _url = payload.EndPoint;
+            var _url = GptEndPoint.TextGeneration;
             var _serial = payload.Serialize( );
             var _content = new StringContent( _serial, Encoding.UTF8, "application/json" );
             _httpClient.DefaultRequestHeaders.Clear( );

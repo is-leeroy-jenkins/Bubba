@@ -135,13 +135,5 @@ namespace Bubba
         /// The messages.
         /// </value>
         IList<IGptMessage> Messages { get; set; }
-
-        /// <summary>
-        /// Gets or sets the response format.
-        /// </summary>
-        /// <value>
-        /// The response format.
-        /// </value>
-        string ResponseFormat { get; set; }
     }
 }

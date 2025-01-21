@@ -1,10 +1,10 @@
 ﻿// ******************************************************************************************
 //     Assembly:                Bubba
 //     Author:                  Terry D. Eppler
-//     Created:                 01-19-2025
+//     Created:                 01-21-2025
 // 
 //     Last Modified By:        Terry D. Eppler
-//     Last Modified On:        01-19-2025
+//     Last Modified On:        01-21-2025
 // ******************************************************************************************
 // <copyright file="FilePayload.cs" company="Terry D. Eppler">
 //    Bubba is a small and simple windows (wpf) application for interacting with the OpenAI API
@@ -44,7 +44,7 @@ namespace Bubba
     using System;
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
-    using System.Linq;
+    using System.Text.Json;
     using System.Text.Json.Serialization;
     using Properties;
 
@@ -110,7 +110,16 @@ namespace Bubba
         {
             _model = "gpt-4o-mini";
             _endPoint = GptEndPoint.Files;
+            _store = false;
+            _stream = true;
+            _number = 1;
+            _temperature = 0.18;
+            _topPercent = 0.11;
+            _frequencyPenalty = 0.00;
+            _presencePenalty = 0.00;
+            _maximumTokens = 2048;
             _order = "desc";
+            _purpose = "assistants";
             _limit = 10000;
         }
 
@@ -366,38 +375,31 @@ namespace Bubba
         /// </summary>
         /// <returns>
         /// </returns>
-        public override IDictionary<string, object> GetData( )
+        public string Parse( )
         {
             try
             {
-                _data.Add( "model", _model );
-                _data.Add( "endpoint", _endPoint );
-                _data.Add( "n", _number );
-                _data.Add( "max_completionTokens", _maximumTokens );
-                _data.Add( "store", _store );
-                _data.Add( "stream", _stream );
-                _data.Add( "temperature", _temperature );
-                _data.Add( "frequency_penalty", _frequencyPenalty );
-                _data.Add( "presence_penalty", _presencePenalty );
-                _data.Add( "top_p", _topPercent );
-                _data.Add( "response_format", _responseFormat );
-                _data.Add( "modalities", _modalities );
-                _stop.Add( "#" );
-                _stop.Add( ";" );
-                _data.Add("stop", _stop);
-                if(_messages?.Any() == true)
-                {
-                    _data.Add("messages", _messages);
-                }
-
-                return _data?.Any( ) == true
-                    ? _data
-                    : default( IDictionary<string, object> );
+                var _json = "{";
+                _json += " \"model\":\"" + _model + "\",";
+                _json += " \"n\": \"" + _number + "\", ";
+                _json += " \"presence_penalty\": " + _presencePenalty + ", ";
+                _json += " \"frequency_penalty\": " + _frequencyPenalty + ", ";
+                _json += " \"temperature\": " + _temperature + ", ";
+                _json += " \"top_p\": " + _topPercent + ", ";
+                _json += " \"store\": \"" + _store + "\", ";
+                _json += " \"stream\": \"" + _stream + "\", ";
+                _json += " \"max_completion_tokens\": " + _maximumTokens + ",";
+                _json += " \"order\": " + _order + ",";
+                _json += " \"purpose\": " + _purpose + ",";
+                _json += " \"limit\": " + _limit + ",";
+                _json += " \"stop\": [\"#\", \";\"]" + "\",";
+                _json += "}";
+                return _json;
             }
             catch( Exception ex )
             {
                 Fail( ex );
-                return default( IDictionary<string, object> );
+                return string.Empty;
             }
         }
 
@@ -406,14 +408,16 @@ namespace Bubba
         /// Converts to string.
         /// </summary>
         /// <returns>
-        /// A <see cref="T:System.String" /> that represents this instance.
+        /// A <see cref="T:System.String" />
+        /// that represents this instance.
         /// </returns>
         public override string ToString( )
         {
             try
             {
-                return _data?.Any( ) == true
-                    ? _data.ToJson( )
+                var _text = JsonSerializer.Serialize( this );
+                return !string.IsNullOrEmpty( _text )
+                    ? _text
                     : string.Empty;
             }
             catch( Exception ex )

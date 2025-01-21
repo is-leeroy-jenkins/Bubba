@@ -68,6 +68,7 @@ namespace Bubba
     [ SuppressMessage( "ReSharper", "MemberCanBeInternal" ) ]
     [ SuppressMessage( "ReSharper", "FieldCanBeMadeReadOnly.Global" ) ]
     [ SuppressMessage( "ReSharper", "FieldCanBeMadeReadOnly.Global" ) ]
+    [ SuppressMessage( "ReSharper", "PreferConcreteValueOverDefault" ) ]
     public partial class FileBrowser : Window, INotifyPropertyChanged, IDisposable
     {
         /// <summary>
@@ -668,7 +669,6 @@ namespace Bubba
         {
             try
             {
-                Busy( );
                 var _watch = new Stopwatch( );
                 _filePaths?.Clear( );
                 var _pattern = "*." + _fileExtension;
@@ -677,11 +677,13 @@ namespace Bubba
                     var _dirPath = _initialPaths[ _i ];
                     var _parent = Directory.CreateDirectory( _dirPath );
                     var _folders = _parent.GetDirectories( )
-                        ?.Where( s => s.Name.Contains( "My" ) == false )?.Select( s => s.FullName )
+                        ?.Where( s => s.Name.Contains( "My" ) == false )
+                        ?.Select( s => s.FullName )
                         ?.ToList( );
 
                     var TopLevelFiles = _parent.GetFiles( _pattern, SearchOption.TopDirectoryOnly )
-                        ?.Select( f => f.FullName )?.ToArray( );
+                        ?.Select( f => f.FullName )
+                        ?.ToArray( );
 
                     _filePaths.AddRange( TopLevelFiles );
                     for( var _k = 0; _k < _folders.Count; _k++ )
@@ -689,13 +691,13 @@ namespace Bubba
                         var _folder = Directory.CreateDirectory( _folders[ _k ] );
                         var _lowerLevelFiles = _folder
                             .GetFiles( _pattern, SearchOption.AllDirectories )
-                            ?.Select( s => s.FullName )?.ToArray( );
+                            ?.Select( s => s.FullName )
+                            ?.ToArray( );
 
                         _filePaths.AddRange( _lowerLevelFiles );
                     }
                 }
 
-                Chill( );
                 _watch.Stop( );
                 _count = _filePaths?.Count ?? 0;
                 CountLabel.Content = $"{_count:N0}";
@@ -716,7 +718,6 @@ namespace Bubba
         {
             try
             {
-                Busy( );
                 var _watch = new Stopwatch( );
                 _watch.Start( );
                 var _list = new List<string>( );
@@ -727,24 +728,26 @@ namespace Bubba
                     var _parent = Directory.CreateDirectory( _dirPath );
                     var _folders = _parent.GetDirectories( )
                         ?.Where( s => s.Name.StartsWith( "My" ) == false )
-                        ?.Select( s => s.FullName )?.ToList( );
+                        ?.Select( s => s.FullName )
+                        ?.ToList( );
 
-                    var TopLevelFiles = _parent.GetFiles( _pattern, SearchOption.TopDirectoryOnly )
-                        ?.Select( f => f.FullName )?.ToArray( );
+                    var _topLevelFiles = _parent.GetFiles( _pattern, SearchOption.TopDirectoryOnly )
+                        ?.Select( f => f.FullName )
+                        ?.ToArray( );
 
-                    _list.AddRange( TopLevelFiles );
+                    _list.AddRange( _topLevelFiles );
                     for( var _k = 0; _k < _folders.Count; _k++ )
                     {
                         var _folder = Directory.CreateDirectory( _folders[ _k ] );
                         var _lowerLevelFiles = _folder
                             .GetFiles( _pattern, SearchOption.AllDirectories )
-                            ?.Select( s => s.FullName )?.ToArray( );
+                            ?.Select( s => s.FullName )
+                            ?.ToArray( );
 
                         _list.AddRange( _lowerLevelFiles );
                     }
                 }
 
-                Chill( );
                 _watch.Stop( );
                 _count = _list.Count;
                 CountLabel.Content = $"{_count:N0}";

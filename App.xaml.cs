@@ -1,10 +1,10 @@
 ﻿// ******************************************************************************************
 //     Assembly:                Bubba
 //     Author:                  Terry D. Eppler
-//     Created:                 01-19-2025
+//     Created:                 01-20-2025
 // 
 //     Last Modified By:        Terry D. Eppler
-//     Last Modified On:        01-19-2025
+//     Last Modified On:        01-20-2025
 // ******************************************************************************************
 // <copyright file="App.xaml.cs" company="Terry D. Eppler">
 //    Bubba is a small and simple windows (wpf) application for interacting with the OpenAI API
@@ -66,6 +66,7 @@ namespace Bubba
     [ SuppressMessage( "ReSharper", "FieldCanBeMadeReadOnly.Global" ) ]
     [ SuppressMessage( "ReSharper", "ClassCanBeSealed.Global" ) ]
     [ SuppressMessage( "ReSharper", "ExpressionIsAlwaysNull" ) ]
+    [ SuppressMessage( "ReSharper", "CanSimplifyDictionaryLookupWithTryGetValue" ) ]
     public partial class App : Application
     {
         /// <summary>
@@ -230,19 +231,58 @@ namespace Bubba
         }
 
         /// <summary>
+        /// Opens the GPT file dialog asynchronous.
+        /// </summary>
+        public static async Task OpenGptFileDialogAsync( )
+        {
+            try
+            {
+                await Task.Run( ( ) => OpenGptFileDialog( ) );
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+            }
+        }
+
+        /// <summary>
         /// Opens the GPT file dialog.
         /// </summary>
         public static void OpenGptFileDialog( )
         {
             try
             {
-                var _gptFileDialog = new GptFileDialog
+                if( ActiveWindows.ContainsKey( "GptFileDialog" ) )
                 {
-                    Topmost = true,
-                    WindowStartupLocation = WindowStartupLocation.CenterScreen
-                };
+                    var _form = ( GptFileDialog )ActiveWindows[ "GptFileDialog" ];
+                    _form.Show( );
+                }
+                else
+                {
+                    var _gptFileDialog = new GptFileDialog
+                    {
+                        Topmost = true,
+                        WindowStartupLocation = WindowStartupLocation.CenterScreen
+                    };
 
-                _gptFileDialog.Show( );
+                    ActiveWindows.Add( "GptFileDialog", _gptFileDialog );
+                    _gptFileDialog.Show( );
+                }
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+            }
+        }
+
+        /// <summary>
+        /// Opens the folder browser asynchronous.
+        /// </summary>
+        public static async Task OpenFolderBrowserAsync( )
+        {
+            try
+            {
+                await Task.Run( ( ) => OpenFolderBrowser( ) );
             }
             catch( Exception ex )
             {
@@ -257,13 +297,37 @@ namespace Bubba
         {
             try
             {
-                var _folderBrowser = new FolderBrowser( )
+                if( ActiveWindows.ContainsKey( "FolderBrowser" ) )
                 {
-                    Topmost = true,
-                    WindowStartupLocation = WindowStartupLocation.CenterScreen
-                };
+                    var _form = ( FolderBrowser )ActiveWindows[ "FolderBrowser" ];
+                    _form.Show( );
+                }
+                else
+                {
+                    var _folderBrowser = new FolderBrowser( )
+                    {
+                        Topmost = true,
+                        WindowStartupLocation = WindowStartupLocation.CenterScreen
+                    };
 
-                _folderBrowser.Show( );
+                    ActiveWindows.Add( "FolderBrowser", _folderBrowser );
+                    _folderBrowser.Show( );
+                }
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+            }
+        }
+
+        /// <summary>
+        /// Opens the file browser asynchronous.
+        /// </summary>
+        public static async Task OpenFileBrowserAsync( )
+        {
+            try
+            {
+                await Task.Run( ( ) => OpenFileBrowser( ) );
             }
             catch( Exception ex )
             {
@@ -278,13 +342,37 @@ namespace Bubba
         {
             try
             {
-                var _fileBrowser = new FileBrowser( )
+                if( ActiveWindows.ContainsKey( "FileBrowser" ) )
                 {
-                    Topmost = true,
-                    WindowStartupLocation = WindowStartupLocation.CenterScreen
-                };
+                    var _form = ( FileBrowser )ActiveWindows[ "FileBrowser" ];
+                    _form.Show( );
+                }
+                else
+                {
+                    var _fileBrowser = new FileBrowser( )
+                    {
+                        Topmost = true,
+                        WindowStartupLocation = WindowStartupLocation.CenterScreen
+                    };
 
-                _fileBrowser.Show( );
+                    ActiveWindows.Add( "FileBrowser", _fileBrowser );
+                    _fileBrowser.Show( );
+                }
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+            }
+        }
+
+        /// <summary>
+        /// Opens the search dialog asynchronous.
+        /// </summary>
+        public static async Task OpenSearchDialogAsync( )
+        {
+            try
+            {
+                await Task.Run( ( ) => OpenSearchDialog( ) );
             }
             catch( Exception ex )
             {
@@ -299,13 +387,37 @@ namespace Bubba
         {
             try
             {
-                var _searchDialog = new SearchDialog
+                if( ActiveWindows.ContainsKey( "SearchDialog" ) )
                 {
-                    Topmost = true,
-                    WindowStartupLocation = WindowStartupLocation.CenterScreen
-                };
+                    var _form = ( SearchDialog )ActiveWindows[ "SearchDialog" ];
+                    _form.Show( );
+                }
+                else
+                {
+                    var _searchDialog = new SearchDialog
+                    {
+                        Topmost = true,
+                        WindowStartupLocation = WindowStartupLocation.CenterScreen
+                    };
 
-                _searchDialog.Show( );
+                    ActiveWindows.Add( "SearchDialog", _searchDialog );
+                    _searchDialog.Show( );
+                }
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+            }
+        }
+
+        /// <summary>
+        /// Opens the image dialog asynchronous.
+        /// </summary>
+        public static async Task OpenImageDialogAsync( )
+        {
+            try
+            {
+                await Task.Run( ( ) => OpenImageDialog( ) );
             }
             catch( Exception ex )
             {
@@ -321,13 +433,22 @@ namespace Bubba
         {
             try
             {
-                var _web = new GptImageDialog
+                if( ActiveWindows.ContainsKey( "GptImageDialog" ) )
                 {
-                    Topmost = true,
-                    WindowStartupLocation = WindowStartupLocation.CenterScreen
-                };
+                    var _form = ( GptImageDialog )ActiveWindows[ "GptImageDialog" ];
+                    _form.Show( );
+                }
+                else
+                {
+                    var _gptImageDialog = new GptImageDialog
+                    {
+                        Topmost = true,
+                        WindowStartupLocation = WindowStartupLocation.CenterScreen
+                    };
 
-                _web.Show( );
+                    ActiveWindows.Add( "GptImageDialog", _gptImageDialog );
+                    _gptImageDialog.Show( );
+                }
             }
             catch( Exception ex )
             {
@@ -338,7 +459,7 @@ namespace Bubba
         /// <summary>
         /// Opens the WebBrowser asynchronous.
         /// </summary>
-        public async Task OpenWebBrowserAsync( )
+        public static async Task OpenWebBrowserAsync( )
         {
             try
             {
@@ -357,14 +478,22 @@ namespace Bubba
         {
             try
             {
-                var _web = new WebBrowser( )
+                if( ActiveWindows.ContainsKey( "WebBrowser" ) )
                 {
-                    Topmost = true,
-                    WindowStartupLocation = WindowStartupLocation.CenterScreen
-                };
+                    var _form = ( WebBrowser )ActiveWindows[ "WebBrowser" ];
+                    _form.Show( );
+                }
+                else
+                {
+                    var _web = new WebBrowser( )
+                    {
+                        Topmost = true,
+                        WindowStartupLocation = WindowStartupLocation.CenterScreen
+                    };
 
-                ActiveWindows.Add( "WebBrowser", _web );
-                _web.Show( );
+                    ActiveWindows.Add( "WebBrowser", _web );
+                    _web.Show( );
+                }
             }
             catch( Exception ex )
             {
@@ -375,21 +504,56 @@ namespace Bubba
         /// <summary>
         /// Opens the prompt dialog.
         /// </summary>
-        /// <param name="x">The x.</param>
-        /// <param name="y">The y.</param>
         public static void OpenSystemDialog( )
         {
             try
             {
-                var _systemDialog = new SystemDialog( )
+                if( ActiveWindows?.ContainsKey( "SystemDialog" ) == true )
                 {
-                    Topmost = true,
-                    WindowStartupLocation = WindowStartupLocation.CenterScreen
-                };
+                    var _form = ( SystemDialog )ActiveWindows[ "SystemDialog" ];
+                    _form.Show( );
+                }
+                else
+                {
+                    var _systemDialog = new SystemDialog( )
+                    {
+                        Topmost = true,
+                        WindowStartupLocation = WindowStartupLocation.CenterScreen
+                    };
 
-                _systemDialog.Show( );
-                _systemDialog.SystemDialogTextBox.Text = Instructions;
-                _systemDialog.SystemDialogTextBox.Focus( );
+                    _systemDialog.Show( );
+                    _systemDialog.SystemDialogTextBox.Text = Instructions;
+                    _systemDialog.SystemDialogTextBox.Focus( );
+                }
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+            }
+        }
+
+        /// <summary>
+        /// Opens the calculator window.
+        /// </summary>
+        public static void OpenCalculatorWindow( )
+        {
+            try
+            {
+                if( ActiveWindows?.ContainsKey( "CalculatorWindow" ) == true )
+                {
+                    var _form = ( CalculatorWindow )ActiveWindows[ "CalculatorWindow" ];
+                    _form.Show( );
+                }
+                else
+                {
+                    var _calculator = new CalculatorWindow( )
+                    {
+                        Topmost = true,
+                        WindowStartupLocation = WindowStartupLocation.CenterScreen
+                    };
+
+                    _calculator.Show( );
+                }
             }
             catch( Exception ex )
             {
@@ -399,7 +563,8 @@ namespace Bubba
 
         /// <inheritdoc />
         /// <summary>
-        /// Raises the <see cref="E:System.Windows.Application.Startup" /> event.
+        /// Raises the
+        /// <see cref="E:System.Windows.Application.Startup" /> event.
         /// </summary>
         /// <param name="e">A
         /// <see cref="T:System.Windows.StartupEventArgs" />

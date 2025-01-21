@@ -153,22 +153,21 @@
             Opens the WebBrowser.
             </summary>
         </member>
-        <member name="M:Bubba.App.OpenSystemDialogAsync">
-            <summary>
-            Opens the system dialog asynchronous.
-            </summary>
-        </member>
         <member name="M:Bubba.App.OpenSystemDialog">
             <summary>
             Opens the prompt dialog.
             </summary>
-            <param name="x">The x.</param>
-            <param name="y">The y.</param>
+        </member>
+        <member name="M:Bubba.App.OpenCalculatorWindow">
+            <summary>
+            Opens the calculator window.
+            </summary>
         </member>
         <member name="M:Bubba.App.OnStartup(System.Windows.StartupEventArgs)">
             <inheritdoc />
             <summary>
-            Raises the <see cref="E:System.Windows.Application.Startup" /> event.
+            Raises the
+            <see cref="E:System.Windows.Application.Startup" /> event.
             </summary>
             <param name="e">A
             <see cref="T:System.Windows.StartupEventArgs" />
@@ -18677,11 +18676,6 @@
             ID of the model to use.
             </summary>
         </member>
-        <member name="F:Bubba.PayloadBase._endPoint">
-            <summary>
-            The end point
-            </summary>
-        </member>
         <member name="F:Bubba.PayloadBase._temperature">
             <summary>
             A number between -2.0 and 2.0  Positive value decrease the
@@ -18692,6 +18686,11 @@
             <summary>
             An upper bound for the number of tokens
             that can be generated for a completion
+            </summary>
+        </member>
+        <member name="F:Bubba.PayloadBase._endPoint">
+            <summary>
+            The end point
             </summary>
         </member>
         <member name="F:Bubba.PayloadBase._frequencyPenalty">
@@ -18776,6 +18775,15 @@
             </summary>
             <value>
             The user identifier.
+            </value>
+        </member>
+        <member name="P:Bubba.PayloadBase.EndPoint">
+            <inheritdoc />
+            <summary>
+            Gets or sets the end point.
+            </summary>
+            <value>
+            The end point.
             </value>
         </member>
         <member name="P:Bubba.PayloadBase.MaximumTokens">
@@ -18892,15 +18900,6 @@
             </summary>
             <value>
             The response format.
-            </value>
-        </member>
-        <member name="P:Bubba.PayloadBase.EndPoint">
-            <inheritdoc />
-            <summary>
-            Gets the end point.
-            </summary>
-            <value>
-            The end point.
             </value>
         </member>
         <member name="P:Bubba.PayloadBase.Stop">
@@ -35368,7 +35367,7 @@
             Initializes the user system text box.
             </summary>
         </member>
-        <member name="M:Bubba.ChatWindow.InitializeParameters">
+        <member name="M:Bubba.ChatWindow.SetGeneration">
             <summary>
             Sets the end point.
             </summary>
@@ -35561,16 +35560,24 @@
             <param name="question">The question.</param>
             <returns></returns>
         </member>
-        <member name="M:Bubba.ChatWindow.OpenSearchDialog">
+        <member name="M:Bubba.ChatWindow.OpenSearchDialogAsync">
             <summary>
             Opens the search dialog.
             </summary>
-            <param name="x">The x.</param>
-            <param name="y">The y.</param>
         </member>
         <member name="M:Bubba.ChatWindow.OpenWebBrowser">
             <summary>
             Opens the chat window.
+            </summary>
+        </member>
+        <member name="M:Bubba.ChatWindow.OpenFileBrowser">
+            <summary>
+            Opens the file browser.
+            </summary>
+        </member>
+        <member name="M:Bubba.ChatWindow.OpenFolderBrowser">
+            <summary>
+            Opens the folder browser.
             </summary>
         </member>
         <member name="M:Bubba.ChatWindow.OpenImageDialog">
@@ -38132,6 +38139,7 @@
             <summary>
             Called when [search engine selected].
             </summary>
+            
             <param name="sender">The sender.</param>
             <param name="e">The <see cref="T:System.EventArgs"/>
             instance containing the event data.</param>

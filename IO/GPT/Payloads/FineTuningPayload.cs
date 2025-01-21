@@ -1,10 +1,10 @@
 ﻿// ******************************************************************************************
 //     Assembly:                Bubba
 //     Author:                  Terry D. Eppler
-//     Created:                 01-19-2025
+//     Created:                 01-21-2025
 // 
 //     Last Modified By:        Terry D. Eppler
-//     Last Modified On:        01-19-2025
+//     Last Modified On:        01-21-2025
 // ******************************************************************************************
 // <copyright file="FineTuningPayload.cs" company="Terry D. Eppler">
 //    Bubba is a small and simple windows (wpf) application for interacting with the OpenAI API
@@ -44,7 +44,7 @@ namespace Bubba
     using System;
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
-    using System.Linq;
+    using System.Text.Json;
     using System.Text.Json.Serialization;
     using Properties;
 
@@ -114,12 +114,19 @@ namespace Bubba
         {
             _model = "gpt-4o-mini";
             _endPoint = GptEndPoint.FineTuning;
+            _store = false;
+            _stream = true;
+            _number = 1;
+            _temperature = 0.18;
+            _topPercent = 0.11;
+            _frequencyPenalty = 0.00;
+            _presencePenalty = 0.00;
+            _maximumTokens = 2048;
             _method = new Dictionary<string, object>( );
             _logitBias = new Dictionary<string, object>( );
             _echo = true;
             _logProbs = true;
             _bestOf = 3;
-            _responseFormat = "text";
         }
 
         /// <inheritdoc />
@@ -148,8 +155,6 @@ namespace Bubba
             _stream = stream;
             _topPercent = topPercent;
             _stop = new List<string>( );
-            _messages = new List<IGptMessage>( );
-            _data = new Dictionary<string, object>( );
         }
 
         /// <inheritdoc />
@@ -170,8 +175,6 @@ namespace Bubba
             _stream = config.Stream;
             _topPercent = config.TopPercent;
             _stop = config.Stop;
-            _messages = new List<IGptMessage>( );
-            _data = new Dictionary<string, object>( );
         }
 
         /// <summary>
@@ -393,58 +396,31 @@ namespace Bubba
         /// </summary>
         /// <returns>
         /// </returns>
-        public override IDictionary<string, object> GetData( )
+        public string Parse( )
         {
             try
             {
-                _data.Add( "model", _model );
-                _data.Add( "n", _number );
-                _data.Add( "max_completionTokens", _maximumTokens );
-                _data.Add( "store", _store );
-                _data.Add( "stream", _stream );
-                _data.Add( "temperature", Temperature );
-                _data.Add( "frequency_penalty", _frequencyPenalty );
-                _data.Add( "presence_penalty", _presencePenalty );
-                _data.Add( "top_p", TopPercent );
-                _data.Add( "response_format", _responseFormat );
-                _stop.Add( "#" );
-                _stop.Add( ";" );
-                _data.Add( "stop", _stop );
-                _data.Add( "modalities", _modalities );
-                _data.Add( "log_probs", _logProbs );
-                _data.Add( "best_of", _bestOf );
-                _method.Add( "type", "supervised" );
-                _data.Add( "echo", _echo );
-                _data.Add( "suffix", _suffix );
-                _data.Add( "seed", _seed );
-                if( !string.IsNullOrEmpty( _trainingFile ) )
-                {
-                    _data.Add( "training_file", _trainingFile );
-                }
-
-                if( !string.IsNullOrEmpty( _validationFile ) )
-                {
-                    _data.Add( "validation_file", _validationFile );
-                }
-
-                if( _method?.Any( ) == true )
-                {
-                    _data.Add( "method", _method );
-                }
-
-                if( _logitBias?.Any( ) == true )
-                {
-                    _logitBias.Add( "method", _logitBias );
-                }
-
-                return _data?.Any( ) == true
-                    ? _data
-                    : default( IDictionary<string, object> );
+                var _json = "{";
+                _json += " \"model\":\"" + _model + "\",";
+                _json += " \"n\": \"" + _number + "\", ";
+                _json += " \"presence_penalty\": " + _presencePenalty + ", ";
+                _json += " \"frequency_penalty\": " + _frequencyPenalty + ", ";
+                _json += " \"temperature\": " + _temperature + ", ";
+                _json += " \"top_p\": " + _topPercent + ", ";
+                _json += " \"store\": \"" + _store + "\", ";
+                _json += " \"stream\": \"" + _stream + "\", ";
+                _json += " \"max_completion_tokens\": " + _maximumTokens + ",";
+                _json += " \"echo\": " + _echo + ",";
+                _json += " \"logprobs\": " + _logProbs + ",";
+                _json += " \"best_of\": " + _bestOf + ",";
+                _json += " \"stop\": [\"#\", \";\"]" + "\",";
+                _json += "}";
+                return _json;
             }
             catch( Exception ex )
             {
                 Fail( ex );
-                return default( IDictionary<string, object> );
+                return string.Empty;
             }
         }
 
@@ -453,14 +429,16 @@ namespace Bubba
         /// Converts to string.
         /// </summary>
         /// <returns>
-        /// A <see cref="T:System.String" /> that represents this instance.
+        /// A <see cref="T:System.String" />
+        /// that represents this instance.
         /// </returns>
         public override string ToString( )
         {
             try
             {
-                return _data?.Any( ) == true
-                    ? _data.ToJson( )
+                var _text = JsonSerializer.Serialize( this );
+                return !string.IsNullOrEmpty( _text )
+                    ? _text
                     : string.Empty;
             }
             catch( Exception ex )

@@ -45,7 +45,6 @@ namespace Bubba
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
     using System.IO;
-    using System.Linq;
     using System.Net.Http;
     using System.Net.Http.Headers;
     using System.Text;
@@ -264,6 +263,7 @@ namespace Bubba
             }
         }
 
+        /// <inheritdoc />
         /// <summary>
         /// Gets or sets the seed.
         /// </summary>
@@ -271,7 +271,7 @@ namespace Bubba
         /// The seed.
         /// </value>
         [ JsonPropertyName( "seed" ) ]
-        public int Seed
+        public override int Seed
         {
             get
             {
@@ -335,73 +335,12 @@ namespace Bubba
 
         /// <inheritdoc />
         /// <summary>
-        /// Gets the data.
-        /// </summary>
-        /// <returns>
-        /// </returns>
-        public override IDictionary<string, object> GetData( )
-        {
-            try
-            {
-                _data.Add( "model", _model );
-                _data.Add( "n", _number );
-                _data.Add( "max_completionTokens", _maximumTokens );
-                _data.Add( "store", _store );
-                _data.Add( "stream", _stream );
-                _data.Add( "temperature", Temperature );
-                _data.Add( "frequency_penalty", _frequencyPenalty );
-                _data.Add( "presence_penalty", _presencePenalty );
-                _data.Add( "top_p", TopPercent );
-                _data.Add( "response_format", _responseFormat );
-                _data.Add( "endpoint", _endPoint );
-                _stop.Add( "#" );
-                _stop.Add( ";" );
-                _data.Add( "stop", _stop );
-                _data.Add( "modalities", _modalities );
-                if( _audio?.Any( ) == true )
-                {
-                    _data.Add( "audio", _audio );
-                }
-
-                if( _file != null )
-                {
-                    _data.Add( "file", _file );
-                }
-
-                if( !string.IsNullOrEmpty( _input ) )
-                {
-                    _data.Add( "input", _input );
-                }
-
-                if( !string.IsNullOrEmpty( _language ) )
-                {
-                    _data.Add( "language", _language );
-                }
-
-                if( _audioData?.Any( ) == true )
-                {
-                    _data.Add( "audio_data", _audioData );
-                }
-
-                return _data?.Any( ) == true
-                    ? _data
-                    : default( IDictionary<string, object> );
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
-                return default( IDictionary<string, object> );
-            }
-        }
-
-        /// <summary>
         /// Generates the speech asynchronous.
         /// </summary>
-        /// <param name="prompt">The prompt.</param>
         /// <returns>
         /// Task
         /// </returns>
-        public async Task<string> GenerateAsync( )
+        public override async Task<string> GenerateAsync( )
         {
             try
             {
@@ -416,12 +355,12 @@ namespace Bubba
                     Input = _prompt
                 };
 
-                var _serialize = JsonSerializer.Serialize( _payload );
-                var _content = new StringContent( _serialize, Encoding.UTF8, _header.ContentType );
+                var _serial = JsonSerializer.Serialize( _payload );
+                var _content = new StringContent( _serial, Encoding.UTF8, _header.ContentType );
                 var _response = await _httpClient.PostAsync( _endPoint, _content );
                 _response.EnsureSuccessStatusCode( );
-                var _responseContent = await _response.Content.ReadAsStringAsync( );
-                return ExtractResponse( _responseContent );
+                var _async = await _response.Content.ReadAsStringAsync( );
+                return ExtractResponse( _async );
             }
             catch( Exception ex )
             {
@@ -475,7 +414,6 @@ namespace Bubba
                 var _speech = new SpeechPayload
                 {
                     Model = _model,
-                    EndPoint = _endPoint,
                     Input = _prompt,
                     Language = _language,
                     Voice = _voice,
@@ -495,27 +433,6 @@ namespace Bubba
             catch( Exception ex )
             {
                 Fail( ex );
-            }
-        }
-
-        /// <summary>
-        /// Converts to string.
-        /// </summary>
-        /// <returns>
-        /// A <see cref="System.String" /> that represents this instance.
-        /// </returns>
-        public override string ToString( )
-        {
-            try
-            {
-                return _data?.Any( ) == true
-                    ? _data.ToJson( )
-                    : string.Empty;
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
-                return string.Empty;
             }
         }
     }

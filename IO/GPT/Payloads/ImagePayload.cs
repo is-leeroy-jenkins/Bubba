@@ -44,9 +44,8 @@ namespace Bubba
     using System;
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
-    using System.Linq;
+    using System.Text.Json;
     using System.Text.Json.Serialization;
-    using Newtonsoft.Json;
     using Properties;
 
     /// <inheritdoc />
@@ -77,10 +76,16 @@ namespace Bubba
         {
             _model = "dall-e-3";
             _endPoint = GptEndPoint.ImageGeneration;
-            _size = "512X512";
+            _store = false;
+            _stream = true;
             _number = 1;
-            _responseFormat = "url";
-            _style = "natural";
+            _temperature = 0.18;
+            _topPercent = 0.11;
+            _frequencyPenalty = 0.00;
+            _presencePenalty = 0.00;
+            _maximumTokens = 2048;
+            _size = "1024X1024";
+            _style = "standard";
             _quality = "hd";
         }
 
@@ -156,53 +161,6 @@ namespace Bubba
                 {
                     _size = value;
                     OnPropertyChanged( nameof( Size ) );
-                }
-            }
-        }
-
-        /// <inheritdoc />
-        /// <summary>
-        /// Gets or sets the response format.
-        /// </summary>
-        /// <value>
-        /// The response format.
-        /// </value>
-        [ JsonPropertyName( "response_format" ) ]
-        public override string ResponseFormat
-        {
-            get
-            {
-                return _responseFormat;
-            }
-            set
-            {
-                if( _responseFormat != value )
-                {
-                    _responseFormat = value;
-                    OnPropertyChanged( nameof( ResponseFormat ) );
-                }
-            }
-        }
-
-        /// <summary>
-        /// Gets or sets the prompt.
-        /// </summary>
-        /// <value>
-        /// The prompt.
-        /// </value>
-        [ JsonPropertyName( "prompt" ) ]
-        public string Prompt
-        {
-            get
-            {
-                return _prompt;
-            }
-            set
-            {
-                if( _prompt != value )
-                {
-                    _prompt = value;
-                    OnPropertyChanged( nameof( Prompt ) );
                 }
             }
         }
@@ -310,34 +268,33 @@ namespace Bubba
         /// </summary>
         /// <returns>
         /// </returns>
-        public override IDictionary<string, object> GetData( )
+        public string Parse()
         {
             try
             {
-                _data.Add( "model", _model );
-                _data.Add( "n", _number );
-                _data.Add( "max_completionTokens", _maximumTokens );
-                _data.Add( "store", _store );
-                _data.Add( "stream", _stream );
-                _data.Add( "temperature", _temperature );
-                _data.Add( "frequency_penalty", _frequencyPenalty );
-                _data.Add( "presence_penalty", _presencePenalty );
-                _data.Add( "top_p", _topPercent );
-                _data.Add( "response_format", _responseFormat );
-                _data.Add( "modalities", _modalities );
-                _data.Add( "size", _size );
-                _data.Add( "quality", _quality );
-                _stop.Add( "#" );
-                _stop.Add( ";" );
-                _data.Add( "stop", _stop );
-                return _data?.Any( ) == true
-                    ? _data
-                    : default( IDictionary<string, object> );
+                var _json = "{";
+                _json += " \"model\":\"" + _model + "\",";
+                _json += " \"n\": \"" + _number + "\", ";
+                _json += " \"size\": \"" + _size + "\", ";
+                _json += " \"style\": \"" + _style + "\", ";
+                _json += " \"presence_penalty\": " + _presencePenalty + ", ";
+                _json += " \"frequency_penalty\": " + _frequencyPenalty + ", ";
+                _json += " \"temperature\": " + _temperature + ", ";
+                _json += " \"top_p\": " + _topPercent + ", ";
+                _json += " \"store\": \"" + _store + "\", ";
+                _json += " \"stream\": \"" + _stream + "\", ";
+                _json += " \"max_completion_tokens\": " + _maximumTokens + ",";
+                _json += " \"size\": " + _size + ",";
+                _json += " \"style\": " + _style + ",";
+                _json += " \"quality\": " + _quality + ",";
+                _json += " \"stop\": [\"#\", \";\"]" + "\",";
+                _json += "}";
+                return _json;
             }
-            catch( Exception ex )
+            catch(Exception ex)
             {
-                Fail( ex );
-                return default( IDictionary<string, object> );
+                Fail(ex);
+                return string.Empty;
             }
         }
 
@@ -346,19 +303,21 @@ namespace Bubba
         /// Converts to string.
         /// </summary>
         /// <returns>
-        /// A <see cref="T:System.String" /> that represents this instance.
+        /// A <see cref="T:System.String" />
+        /// that represents this instance.
         /// </returns>
-        public override string ToString( )
+        public override string ToString()
         {
             try
             {
-                return _data?.Any( ) == true
-                    ? _data.ToJson( )
+                var _text = JsonSerializer.Serialize(this);
+                return !string.IsNullOrEmpty(_text)
+                    ? _text
                     : string.Empty;
             }
-            catch( Exception ex )
+            catch(Exception ex)
             {
-                Fail( ex );
+                Fail(ex);
                 return string.Empty;
             }
         }

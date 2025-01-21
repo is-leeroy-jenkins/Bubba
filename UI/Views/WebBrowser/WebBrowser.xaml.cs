@@ -1,10 +1,10 @@
 ﻿// ******************************************************************************************
 //     Assembly:                Bubba
 //     Author:                  Terry D. Eppler
-//     Created:                 01-19-2025
+//     Created:                 01-21-2025
 // 
 //     Last Modified By:        Terry D. Eppler
-//     Last Modified On:        01-19-2025
+//     Last Modified On:        01-21-2025
 // ******************************************************************************************
 // <copyright file="WebBrowser.xaml.cs" company="Terry D. Eppler">
 //    Bubba is a small and simple windows (wpf) application for interacting with the OpenAI API
@@ -61,7 +61,6 @@ namespace Bubba
     using ToastNotifications.Lifetime;
     using ToastNotifications.Messages;
     using ToastNotifications.Position;
-    using static System.Configuration.ConfigurationManager;
     using Application = System.Windows.Forms.Application;
     using KeyEventArgs = System.Windows.Input.KeyEventArgs;
     using MouseEventArgs = System.Windows.Input.MouseEventArgs;
@@ -78,6 +77,7 @@ namespace Bubba
     [ SuppressMessage( "ReSharper", "RedundantExtendsListEntry" ) ]
     [ SuppressMessage( "ReSharper", "CanSimplifyDictionaryLookupWithTryGetValue" ) ]
     [ SuppressMessage( "ReSharper", "PreferConcreteValueOverDefault" ) ]
+    [ SuppressMessage( "ReSharper", "PossibleUnintendedReferenceComparison" ) ]
     public partial class WebBrowser : Window, IDisposable
     {
         /// <summary>
@@ -473,8 +473,11 @@ namespace Bubba
                     }
                 }
 
-                var _tab = new BrowserTabItem( );
-                _tab.Title = "New Tab";
+                var _tab = new BrowserTabItem
+                {
+                    Title = "New Tab"
+                };
+
                 TabControl.Items.Insert( TabControl.Items.Count - 1, _tab );
                 _newTabItem = _tab;
                 var _newTab = AddNewBrowser( _newTabItem, url );
@@ -903,10 +906,9 @@ namespace Bubba
         {
             get
             {
-                return TabControl.SelectedItem != null
-                    && ( ( BrowserTabItem )TabControl.SelectedItem ).Tag != null
-                        ? ( BrowserTabItem )TabControl.SelectedItem
-                        : default( BrowserTabItem );
+                return ( ( BrowserTabItem )TabControl.SelectedItem )?.Tag != null
+                    ? ( BrowserTabItem )TabControl.SelectedItem
+                    : default( BrowserTabItem );
             }
             set
             {
@@ -1349,7 +1351,7 @@ namespace Bubba
                         || ( Uri.TryCreate( _newUrl, UriKind.Absolute, out _outUri )
                             && ( ( ( _outUri.Scheme == Uri.UriSchemeHttp
                                         || _outUri.Scheme == Uri.UriSchemeHttps )
-                                    && _newUrl.Contains( "." ) )
+                                    && _newUrl?.Contains( "." ) == true )
                                 || _outUri.Scheme == Uri.UriSchemeFile ) ) )
                     {
                     }
@@ -1582,10 +1584,10 @@ namespace Bubba
         {
             try
             {
-                var _url = AppSettings[ "Google" ] + args;
+                var _url = Locations.Google + args;
                 var _info = new ProcessStartInfo
                 {
-                    FileName = AppSettings[ "Edge" ],
+                    FileName = Locations.FireFox,
                     LoadUserProfile = true,
                     UseShellExecute = true,
                     WindowStyle = ProcessWindowStyle.Normal
@@ -1607,10 +1609,10 @@ namespace Bubba
         {
             try
             {
-                var _url = AppSettings[ "HomePage" ];
+                var _url = Locations.HomePage;
                 var _info = new ProcessStartInfo
                 {
-                    FileName = AppSettings[ "Edge" ],
+                    FileName = Locations.Edge,
                     LoadUserProfile = true,
                     UseShellExecute = true,
                     WindowStyle = ProcessWindowStyle.Normal
@@ -1633,10 +1635,10 @@ namespace Bubba
         {
             try
             {
-                var _url = AppSettings[ "Google" ] + args;
+                var _url = Locations.Google + args;
                 var _info = new ProcessStartInfo
                 {
-                    FileName = AppSettings[ "FireFox" ],
+                    FileName = Locations.FireFox,
                     LoadUserProfile = true,
                     UseShellExecute = true,
                     WindowStyle = ProcessWindowStyle.Normal
@@ -1658,10 +1660,10 @@ namespace Bubba
         {
             try
             {
-                var _url = AppSettings[ "HomePage" ];
+                var _url = Locations.HomePage;
                 var _info = new ProcessStartInfo
                 {
-                    FileName = AppSettings[ "FireFox" ],
+                    FileName = Locations.FireFox,
                     LoadUserProfile = true,
                     UseShellExecute = true,
                     WindowStyle = ProcessWindowStyle.Normal
@@ -1808,12 +1810,12 @@ namespace Bubba
             {
                 if( title.CheckIfValid( ) )
                 {
-                    Title = AppSettings[ "Branding" ] + " - " + title;
+                    Title = Locations.Branding + " - " + title;
                     _currentTitle = title;
                 }
                 else
                 {
-                    Title = AppSettings[ "Branding" ];
+                    Title = Locations.Branding;
                     _currentTitle = "New Tab";
                 }
             } );
@@ -2059,8 +2061,7 @@ namespace Bubba
                 InitializeButtons( );
                 InitializeTitle( );
                 InitializeToolStrip( );
-                _searchEngineUrl = AppSettings[ "Google" ];
-                App.ActiveWindows.Add( "WebBrowser", this );
+                _searchEngineUrl = Locations.Google;
             }
             catch( Exception ex )
             {
@@ -2594,7 +2595,7 @@ namespace Bubba
         /// instance containing the event data.</param>
         private void OnHomeButtonClick( object sender, EventArgs e )
         {
-            _currentBrowser.Load( AppSettings[ "HomePage" ] );
+            _currentBrowser.Load( Locations.HomePage );
         }
 
         /// <summary>
@@ -2780,7 +2781,6 @@ namespace Bubba
                 var _calculator = new CalculatorWindow
                 {
                     WindowStartupLocation = WindowStartupLocation.CenterScreen,
-                    Owner = this,
                     Topmost = true
                 };
 

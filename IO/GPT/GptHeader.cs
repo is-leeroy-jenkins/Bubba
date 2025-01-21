@@ -129,6 +129,14 @@ namespace Bubba
             {
                 return _contentType;
             }
+            set
+            {
+                if(_contentType != value)
+                {
+                    _contentType = value;
+                    OnPropertyChanged(nameof(ContentType));
+                }
+            }
         }
 
         /// <summary>

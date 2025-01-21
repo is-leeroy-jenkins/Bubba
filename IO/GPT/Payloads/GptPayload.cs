@@ -1,10 +1,10 @@
 ﻿// ******************************************************************************************
 //     Assembly:                Bubba
 //     Author:                  Terry D. Eppler
-//     Created:                 01-11-2025
+//     Created:                 01-20-2025
 // 
 //     Last Modified By:        Terry D. Eppler
-//     Last Modified On:        01-11-2025
+//     Last Modified On:        01-20-2025
 // ******************************************************************************************
 // <copyright file="GptPayload.cs" company="Terry D. Eppler">
 //    Bubba is a small and simple windows (wpf) application for interacting with the OpenAI API
@@ -87,8 +87,6 @@ namespace Bubba
             _stream = true;
             _stop = new List<string>( );
             _messages = new List<IGptMessage>( );
-            _modalities = "['text','audio']";
-            _data = new Dictionary<string, object>( );
         }
 
         /// <inheritdoc />
@@ -105,7 +103,7 @@ namespace Bubba
         /// <param name="stream">if set to <c>true</c> [stream].</param>
         public GptPayload( string userPrompt, double frequency = 0.00, double presence = 0.00,
             double temperature = 0.18, double topPercent = 0.11, int maxTokens = 2048,
-            bool store = false, bool stream = true ) 
+            bool store = false, bool stream = true )
             : this( )
         {
             _prompt = userPrompt;
@@ -128,7 +126,7 @@ namespace Bubba
         /// </summary>
         /// <param name="userPrompt">The user prompt.</param>
         /// <param name="config">The configuration.</param>
-        public GptPayload( string userPrompt, GptParameter config ) 
+        public GptPayload( string userPrompt, GptParameter config )
             : this( )
         {
             _prompt = userPrompt;
@@ -140,7 +138,6 @@ namespace Bubba
             _stream = config.Stream;
             _topPercent = config.TopPercent;
             _stop = new List<string>( );
-            _data = new Dictionary<string, object>( );
         }
 
         /// <inheritdoc />
@@ -523,61 +520,47 @@ namespace Bubba
             }
         }
 
-        /// <inheritdoc />
         /// <summary>
-        /// Gets the data.
+        /// Pads the quotes.
         /// </summary>
+        /// <param name="input">The input.</param>
         /// <returns>
+        /// string
         /// </returns>
-        public virtual IDictionary<string, object> GetData( )
+        private protected string PadQuotes( string input )
         {
-            try
+            if( input.IndexOf( "\\" ) != -1 )
             {
-                _data.Add( "model", _model );
-                _data.Add( "n", _number );
-                _data.Add( "max_completionTokens", _maximumTokens );
-                _data.Add( "store", _store );
-                _data.Add( "stream", _stream );
-                _data.Add( "temperature", Temperature );
-                _data.Add( "frequency_penalty", _frequencyPenalty );
-                _data.Add( "presence_penalty", _presencePenalty );
-                _data.Add( "top_p", TopPercent );
-                _data.Add( "response_format", _responseFormat );
-                _stop.Add( "#" );
-                _stop.Add( ";" );
-                _data.Add( "stop", _stop );
-                _data.Add( "modalities", _modalities );
-                return _data?.Any( ) == true
-                    ? _data
-                    : default( IDictionary<string, object> );
+                input = input.Replace( "\\", @"\\" );
             }
-            catch( Exception ex )
-            {
-                Fail( ex );
-                return default( IDictionary<string, object> );
-            }
-        }
 
-        /// <inheritdoc />
-        /// <summary>
-        /// Converts to string.
-        /// </summary>
-        /// <returns>
-        /// A <see cref="T:System.String" />
-        /// that represents this instance.
-        /// </returns>
-        public override string ToString( )
-        {
-            try
+            if( input.IndexOf( "\n\r" ) != -1 )
             {
-                return _data?.Any( ) == true
-                    ? _data.ToJson( )
-                    : string.Empty;
+                input = input.Replace( "\n\r", @"\n" );
             }
-            catch( Exception ex )
+
+            if( input.IndexOf( "\r" ) != -1 )
             {
-                Fail( ex );
-                return string.Empty;
+                input = input.Replace( "\r", @"\r" );
+            }
+
+            if( input.IndexOf( "\n" ) != -1 )
+            {
+                input = input.Replace( "\n", @"\n" );
+            }
+
+            if( input.IndexOf( "\t" ) != -1 )
+            {
+                input = input.Replace( "\t", @"\t" );
+            }
+
+            if( input.IndexOf( "\"" ) != -1 )
+            {
+                return input.Replace( "\"", @"""" );
+            }
+            else
+            {
+                return input;
             }
         }
 

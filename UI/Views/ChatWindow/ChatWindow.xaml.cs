@@ -1,10 +1,10 @@
 ﻿// ******************************************************************************************
 //     Assembly:                Bubba
 //     Author:                  Terry D. Eppler
-//     Created:                 01-18-2025
+//     Created:                 01-20-2025
 // 
 //     Last Modified By:        Terry D. Eppler
-//     Last Modified On:        01-18-2025
+//     Last Modified On:        01-20-2025
 // ******************************************************************************************
 // <copyright file="ChatWindow.xaml.cs" company="Terry D. Eppler">
 //    Bubba is a small and simple windows (wpf) application for interacting with the OpenAI API
@@ -565,128 +565,111 @@ namespace Bubba
         /// <summary>
         /// Sets the end point.
         /// </summary>
-        private void InitializeParameters( )
+        private void SetGeneration( )
         {
             try
             {
                 switch( _requestType )
                 {
                     case GptRequestTypes.Assistants:
+                    {
+                        PopulateTextModels( );
+                        _endpoint = GptEndPoint.Assistants;
+                        HeaderLabel.Content = "GPT Assistant Mode...";
+                        break;
+                    }
                     case GptRequestTypes.ChatCompletion:
                     {
                         PopulateTextModels( );
                         _endpoint = GptEndPoint.Completions;
-                        TemperatureSlider.Value = 0.18;
-                        TopPercentSlider.Value = 0.11;
-                        MaxTokenSlider.Value = 2048;
-                        FrequencySlider.Value = 0.00;
-                        PresenceSlider.Value = 0.00;
-                        NumberSlider.Value = 1;
+                        HeaderLabel.Content = "GPT Completion Mode...";
                         break;
                     }
                     case GptRequestTypes.TextGeneration:
                     {
                         PopulateTextModels( );
                         _endpoint = GptEndPoint.TextGeneration;
-                        TemperatureSlider.Value = 0.18;
-                        TopPercentSlider.Value = 0.11;
-                        MaxTokenSlider.Value = 2048;
-                        FrequencySlider.Value = 0.00;
-                        PresenceSlider.Value = 0.00;
-                        NumberSlider.Value = 1;
+                        HeaderLabel.Content = "Text Generation Mode...";
                         break;
                     }
                     case GptRequestTypes.ImageGeneration:
                     {
                         PopulateImageModels( );
                         _endpoint = GptEndPoint.ImageGeneration;
-                        TopPercentSlider.Value = 0.11;
-                        TemperatureSlider.Value = 0.18;
-                        NumberSlider.Value = 1;
+                        HeaderLabel.Content = "Image Generation Mode...";
                         break;
                     }
                     case GptRequestTypes.Translations:
                     {
                         PopulateTranslationModels( );
-                        PopulateOpenAiVoices( );
+                        PopulateOpenAiVoices();
+                        HeaderLabel.Content = "Translation Mode...";
                         _endpoint = GptEndPoint.Translations;
-                        TemperatureSlider.Value = 0.18;
-                        MaxTokenSlider.Value = 2048;
-                        NumberSlider.Value = 1;
                         break;
                     }
                     case GptRequestTypes.Embeddings:
                     {
-                        PopulateEmbeddingModels( );
+                        PopulateEmbeddingModels();
+                        HeaderLabel.Content = "Vector Embedding Mode...";
                         _endpoint = GptEndPoint.Embeddings;
-                        NumberSlider.Value = 1;
                         break;
                     }
                     case GptRequestTypes.Transcriptions:
                     {
                         PopulateTranscriptionModels( );
-                        PopulateOpenAiVoices( );
+                        PopulateOpenAiVoices();
+                        HeaderLabel.Content = "Transcription Mode...";
                         _endpoint = GptEndPoint.Transcriptions;
-                        TemperatureSlider.Value = 0.18;
-                        MaxTokenSlider.Value = 2048;
-                        NumberSlider.Value = 1;
                         break;
                     }
                     case GptRequestTypes.VectorStores:
                     {
-                        PopulateEmbeddingModels( );
+                        PopulateEmbeddingModels();
+                        HeaderLabel.Content = "Vector Store Mode...";
                         _endpoint = GptEndPoint.VectorStores;
                         break;
                     }
                     case GptRequestTypes.SpeechGeneration:
                     {
                         PopulateSpeechModels( );
-                        PopulateOpenAiVoices( );
+                        PopulateOpenAiVoices();
+                        HeaderLabel.Content = "Speech Generation Mode...";
                         _endpoint = GptEndPoint.SpeechGeneration;
-                        TemperatureSlider.Value = 0.6;
-                        MaxTokenSlider.Value = 200;
                         break;
                     }
                     case GptRequestTypes.FineTuning:
                     {
-                        PopulateFineTuningModels( );
+                        PopulateFineTuningModels();
+                        HeaderLabel.Content = "Fine-Tuning Mode...";
                         _endpoint = GptEndPoint.FineTuning;
                         break;
                     }
                     case GptRequestTypes.Files:
                     {
-                        PopulateTextModels( );
+                        PopulateTextModels();
+                        HeaderLabel.Content = "Files API Mode...";
                         _endpoint = GptEndPoint.Files;
-                        TemperatureSlider.Value = 0.18;
-                        TopPercentSlider.Value = 0.11;
-                        MaxTokenSlider.Value = 2048;
-                        FrequencySlider.Value = 0.00;
-                        PresenceSlider.Value = 0.00;
-                        NumberSlider.Value = 1;
                         break;
                     }
                     case GptRequestTypes.Uploads:
                     {
-                        PopulateTextModels( );
+                        PopulateTextModels();
+                        HeaderLabel.Content = "Uploads API Mode...";
                         _endpoint = GptEndPoint.Uploads;
                         break;
                     }
                     case GptRequestTypes.Projects:
                     {
                         PopulateTextModels( );
+                        HeaderLabel.Content = "GPT Projects Mode...";
                         _endpoint = GptEndPoint.Projects;
                         break;
                     }
                     default:
                     {
-                        PopulateTextModels( );
+                        PopulateTextModels();
+                        HeaderLabel.Content = "GPT Completion Mode...";
                         _endpoint = GptEndPoint.Completions;
-                        TemperatureSlider.Value = 0.18;
-                        TopPercentSlider.Value = 0.11;
-                        MaxTokenSlider.Value = 2048;
-                        FrequencySlider.Value = 0.00;
-                        PresenceSlider.Value = 0.00;
-                        NumberSlider.Value = 1;
                         break;
                     }
                 }
@@ -756,6 +739,9 @@ namespace Bubba
                 {
                     _busy = true;
                 }
+
+                ProgressBar.Visibility = Visibility.Visible;
+                ProgressBar.IsIndeterminate = true;
             }
             catch( Exception ex )
             {
@@ -798,6 +784,9 @@ namespace Bubba
                 {
                     _busy = false;
                 }
+
+                ProgressBar.Visibility = Visibility.Hidden;
+                ProgressBar.IsIndeterminate = false;
             }
             catch( Exception ex )
             {
@@ -926,7 +915,7 @@ namespace Bubba
             try
             {
                 _store = false;
-                _stream = false;
+                _stream = true;
                 _model = "";
                 _size = "";
                 _endpoint = "";
@@ -1003,7 +992,7 @@ namespace Bubba
                 TemperatureSlider.Value = 0.18;
                 TopPercentSlider.Value = 0.11;
                 MaxTokenSlider.Value = 2048;
-                NumberSlider.Value = 1D;
+                NumberSlider.Value = 1;
             }
             catch( Exception ex )
             {
@@ -1576,13 +1565,11 @@ namespace Bubba
         /// <summary>
         /// Opens the search dialog.
         /// </summary>
-        /// <param name="x">The x.</param>
-        /// <param name="y">The y.</param>
-        private protected virtual void OpenSearchDialog( )
+        private protected async Task OpenSearchDialogAsync( )
         {
             try
             {
-                App.OpenSearchDialog( );
+                await Task.Run( ( ) => App.OpenSearchDialog( ) );
             }
             catch( Exception ex )
             {
@@ -1599,7 +1586,7 @@ namespace Bubba
             {
                 if( App.ActiveWindows?.ContainsKey( "WebBrowser" ) == true )
                 {
-                    var _form = ( WebBrowser )App.ActiveWindows[ "WebBrowser" ];
+                    var _form = (WebBrowser)App.ActiveWindows[ "WebBrowser" ];
                     _form.Show( );
                 }
                 else
@@ -1622,6 +1609,9 @@ namespace Bubba
             }
         }
 
+        /// <summary>
+        /// Opens the file browser.
+        /// </summary>
         private protected void OpenFileBrowser( )
         {
             try
@@ -1632,14 +1622,17 @@ namespace Bubba
                     WindowStartupLocation = WindowStartupLocation.CenterScreen
                 };
 
-                _fileBrowser.ShowDialog();
+                _fileBrowser.Show( );
             }
-            catch(Exception ex)
+            catch( Exception ex )
             {
-                Fail(ex);
+                Fail( ex );
             }
         }
 
+        /// <summary>
+        /// Opens the folder browser.
+        /// </summary>
         private protected void OpenFolderBrowser( )
         {
             try
@@ -1652,9 +1645,9 @@ namespace Bubba
 
                 _systemDialog.ShowDialog( );
             }
-            catch(Exception ex)
+            catch( Exception ex )
             {
-                Fail(ex);
+                Fail( ex );
             }
         }
 
@@ -1674,9 +1667,9 @@ namespace Bubba
 
                 _web.ShowDialog( );
             }
-            catch(Exception ex)
+            catch( Exception ex )
             {
-                Fail(ex);
+                Fail( ex );
             }
         }
 
@@ -1755,9 +1748,9 @@ namespace Bubba
                 _httpClient.DefaultRequestHeaders.Authorization =
                     new AuthenticationHeaderValue( "Bearer", App.OpenAiKey );
 
-                var _responseMessage = await _httpClient.GetAsync( _url );
-                _responseMessage.EnsureSuccessStatusCode( );
-                var _content = await _responseMessage.Content.ReadAsStringAsync( );
+                var _async = await _httpClient.GetAsync( _url );
+                _async.EnsureSuccessStatusCode( );
+                var _content = await _async.Content.ReadAsStringAsync( );
                 var _models = new List<string>( );
                 using var _document = JsonDocument.Parse( _content );
                 var _root = _document.RootElement;
@@ -2217,6 +2210,7 @@ namespace Bubba
                 ModelComboBox.SelectionChanged += OnSelectedModelChanged;
                 SetGptParameters( );
                 UserLabel.Content = $@"User ID : {Environment.UserName}";
+                HeaderLabel.Content = "GPT Completion Mode...";
             }
             catch( Exception ex )
             {
@@ -3082,7 +3076,7 @@ namespace Bubba
                     _requestType =
                         ( GptRequestTypes )Enum.Parse( typeof( GptRequestTypes ), _request );
 
-                    InitializeParameters( );
+                    SetGeneration( );
                 }
             }
             catch( Exception ex )
