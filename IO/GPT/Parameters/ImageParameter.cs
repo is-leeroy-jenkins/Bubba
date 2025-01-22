@@ -89,12 +89,19 @@ namespace Bubba
             : base( )
         {
             _model = "dall-e-3";
-            _size = "1024x1024";
+            _endPoint = GptEndPoint.ImageGeneration;
+            _store = false;
+            _stream = true;
             _number = 1;
+            _temperature = 0.18;
+            _topPercent = 0.11;
+            _frequencyPenalty = 0.00;
+            _presencePenalty = 0.00;
+            _maximumTokens = 2048;
+            _size = "1024x1024";
             _responseFormat = "url";
             _style = "natural";
             _quality = "hd";
-            _endPoint = GptEndPoint.ImageGeneration;
         }
 
         /// <summary>

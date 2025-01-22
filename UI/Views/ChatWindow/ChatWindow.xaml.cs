@@ -1,10 +1,10 @@
 ﻿// ******************************************************************************************
 //     Assembly:                Bubba
 //     Author:                  Terry D. Eppler
-//     Created:                 01-20-2025
+//     Created:                 01-21-2025
 // 
 //     Last Modified By:        Terry D. Eppler
-//     Last Modified On:        01-20-2025
+//     Last Modified On:        01-21-2025
 // ******************************************************************************************
 // <copyright file="ChatWindow.xaml.cs" company="Terry D. Eppler">
 //    Bubba is a small and simple windows (wpf) application for interacting with the OpenAI API
@@ -383,13 +383,13 @@ namespace Bubba
         {
             get
             {
-                return Temperature;
+                return _temperature;
             }
             set
             {
-                if( Temperature != value )
+                if( _temperature != value )
                 {
-                    Temperature = value;
+                    _temperature = value;
                     OnPropertyChanged( nameof( Temperature ) );
                 }
             }
@@ -486,7 +486,8 @@ namespace Bubba
         {
             try
             {
-                HeaderLabel.Visibility = Visibility.Hidden;
+                HeaderLabel.Visibility = Visibility.Visible;
+                HeaderLabel.Content = "Select Generation/Request Type";
             }
             catch( Exception ex )
             {
@@ -575,87 +576,99 @@ namespace Bubba
                     {
                         PopulateTextModels( );
                         _endpoint = GptEndPoint.Assistants;
-                        HeaderLabel.Content = "GPT Assistant Mode...";
+                        HeaderLabel.Content = "GPT Assistant ...";
+                        TabControl.SelectedIndex = 1;
                         break;
                     }
                     case GptRequestTypes.ChatCompletion:
                     {
                         PopulateTextModels( );
                         _endpoint = GptEndPoint.Completions;
-                        HeaderLabel.Content = "GPT Completion Mode...";
+                        HeaderLabel.Content = "GPT Completions...";
+                        TabControl.SelectedIndex = 1;
                         break;
                     }
                     case GptRequestTypes.TextGeneration:
                     {
                         PopulateTextModels( );
                         _endpoint = GptEndPoint.TextGeneration;
-                        HeaderLabel.Content = "Text Generation Mode...";
+                        HeaderLabel.Content = "Text Generations...";
+                        TabControl.SelectedIndex = 1;
                         break;
                     }
                     case GptRequestTypes.ImageGeneration:
                     {
                         PopulateImageModels( );
                         _endpoint = GptEndPoint.ImageGeneration;
-                        HeaderLabel.Content = "Image Generation Mode...";
+                        HeaderLabel.Content = "Image Generations...";
+                        TabControl.SelectedIndex = 1;
                         break;
                     }
                     case GptRequestTypes.Translations:
                     {
                         PopulateTranslationModels( );
-                        PopulateOpenAiVoices();
-                        HeaderLabel.Content = "Translation Mode...";
+                        PopulateOpenAiVoices( );
+                        HeaderLabel.Content = "Translations...";
                         _endpoint = GptEndPoint.Translations;
+                        TabControl.SelectedIndex = 1;
                         break;
                     }
                     case GptRequestTypes.Embeddings:
                     {
-                        PopulateEmbeddingModels();
-                        HeaderLabel.Content = "Vector Embedding Mode...";
+                        PopulateEmbeddingModels( );
+                        HeaderLabel.Content = "Vector Embeddings...";
                         _endpoint = GptEndPoint.Embeddings;
+                        TabControl.SelectedIndex = 1;
                         break;
                     }
                     case GptRequestTypes.Transcriptions:
                     {
                         PopulateTranscriptionModels( );
-                        PopulateOpenAiVoices();
-                        HeaderLabel.Content = "Transcription Mode...";
+                        PopulateOpenAiVoices( );
+                        HeaderLabel.Content = "Transcriptions (Speech To Text)...";
                         _endpoint = GptEndPoint.Transcriptions;
+                        TabControl.SelectedIndex = 1;
                         break;
                     }
                     case GptRequestTypes.VectorStores:
                     {
-                        PopulateEmbeddingModels();
-                        HeaderLabel.Content = "Vector Store Mode...";
+                        PopulateEmbeddingModels( );
+                        HeaderLabel.Content = "Vector Stores...";
                         _endpoint = GptEndPoint.VectorStores;
+                        TabControl.SelectedIndex = 1;
                         break;
                     }
                     case GptRequestTypes.SpeechGeneration:
                     {
                         PopulateSpeechModels( );
-                        PopulateOpenAiVoices();
-                        HeaderLabel.Content = "Speech Generation Mode...";
+                        PopulateOpenAiVoices( );
+                        HeaderLabel.Content = "Speech Generations (Text To Speech)...";
                         _endpoint = GptEndPoint.SpeechGeneration;
+                        TabControl.SelectedIndex = 1;
                         break;
                     }
                     case GptRequestTypes.FineTuning:
                     {
-                        PopulateFineTuningModels();
-                        HeaderLabel.Content = "Fine-Tuning Mode...";
+                        PopulateFineTuningModels( );
+                        HeaderLabel.Content = "Fine-Tunings...";
                         _endpoint = GptEndPoint.FineTuning;
+                        TabControl.SelectedIndex = 1;
                         break;
                     }
                     case GptRequestTypes.Files:
                     {
-                        PopulateTextModels();
-                        HeaderLabel.Content = "Files API Mode...";
+                        PopulateTextModels( );
+                        HeaderLabel.Content = "Files API...";
                         _endpoint = GptEndPoint.Files;
+                        TabControl.SelectedIndex = 1;
                         break;
                     }
                     case GptRequestTypes.Uploads:
                     {
-                        PopulateTextModels();
-                        HeaderLabel.Content = "Uploads API Mode...";
+                        PopulateTextModels( );
+                        HeaderLabel.Content = "Uploads API...";
                         _endpoint = GptEndPoint.Uploads;
+                        TabControl.SelectedIndex = 1;
                         break;
                     }
                     case GptRequestTypes.Projects:
@@ -663,13 +676,15 @@ namespace Bubba
                         PopulateTextModels( );
                         HeaderLabel.Content = "GPT Projects Mode...";
                         _endpoint = GptEndPoint.Projects;
+                        TabControl.SelectedIndex = 1;
                         break;
                     }
                     default:
                     {
-                        PopulateTextModels();
-                        HeaderLabel.Content = "GPT Completion Mode...";
+                        PopulateTextModels( );
+                        HeaderLabel.Content = "GPT Completion...";
                         _endpoint = GptEndPoint.Completions;
+                        TabControl.SelectedIndex = 1;
                         break;
                     }
                 }
@@ -1365,13 +1380,13 @@ namespace Bubba
                         case "Text":
                         {
                             var _path = _prefix + @"Resources\Documents\Editor\Stubs\Text.txt";
-                            ChatEditor.DocumentLanguage = Languages.Text;
-                            ChatEditor.DocumentSource = _path;
+                            TabControl.SelectedIndex = 1;
                             break;
                         }
                         case "C#":
                         {
                             var _path = _prefix + @"Resources\Documents\Editor\Stubs\CSharp.txt";
+                            TabControl.SelectedIndex = 0;
                             ChatEditor.DocumentLanguage = Languages.CSharp;
                             ChatEditor.DocumentSource = _path;
                             break;
@@ -1379,6 +1394,7 @@ namespace Bubba
                         case "Python":
                         {
                             var _path = _prefix + @"Resources\Documents\Editor\Stubs\Python.txt";
+                            TabControl.SelectedIndex = 0;
                             ChatEditor.DocumentLanguage = Languages.Text;
                             ChatEditor.DocumentSource = _path;
                             break;
@@ -1386,6 +1402,7 @@ namespace Bubba
                         case "SQL":
                         {
                             var _path = _prefix + @"Resources\Documents\Editor\Stubs\SQL.txt";
+                            TabControl.SelectedIndex = 0;
                             ChatEditor.DocumentLanguage = Languages.SQL;
                             ChatEditor.DocumentSource = _path;
                             break;
@@ -1395,6 +1412,7 @@ namespace Bubba
                             var _path = _prefix
                                 + @"Resources\Documents\Editor\Stubs\JavaScript.txt";
 
+                            TabControl.SelectedIndex = 0;
                             ChatEditor.DocumentLanguage = Languages.JScript;
                             ChatEditor.DocumentSource = _path;
                             break;
@@ -1402,6 +1420,7 @@ namespace Bubba
                         case "C/C++":
                         {
                             var _path = _prefix + @"Resources\Documents\Editor\Stubs\C.txt";
+                            TabControl.SelectedIndex = 0;
                             ChatEditor.DocumentLanguage = Languages.C;
                             ChatEditor.DocumentSource = _path;
                             break;
@@ -1409,6 +1428,7 @@ namespace Bubba
                         case "VB/VBA":
                         {
                             var _path = _prefix + @"Resources\Documents\Editor\Stubs\VBA.txt";
+                            TabControl.SelectedIndex = 0;
                             ChatEditor.DocumentLanguage = Languages.VisualBasic;
                             ChatEditor.DocumentSource = _path;
                             break;
@@ -1416,6 +1436,7 @@ namespace Bubba
                         default:
                         {
                             var _path = _prefix + @"Resources\Documents\Editor\Stubs\Text.txt";
+                            TabControl.SelectedIndex = 0;
                             ChatEditor.DocumentLanguage = Languages.Text;
                             ChatEditor.DocumentSource = _path;
                             break;
@@ -1586,7 +1607,7 @@ namespace Bubba
             {
                 if( App.ActiveWindows?.ContainsKey( "WebBrowser" ) == true )
                 {
-                    var _form = (WebBrowser)App.ActiveWindows[ "WebBrowser" ];
+                    var _form = ( WebBrowser )App.ActiveWindows[ "WebBrowser" ];
                     _form.Show( );
                 }
                 else
@@ -2210,7 +2231,7 @@ namespace Bubba
                 ModelComboBox.SelectionChanged += OnSelectedModelChanged;
                 SetGptParameters( );
                 UserLabel.Content = $@"User ID : {Environment.UserName}";
-                HeaderLabel.Content = "GPT Completion Mode...";
+                TabControl.SelectedIndex = 1;
             }
             catch( Exception ex )
             {

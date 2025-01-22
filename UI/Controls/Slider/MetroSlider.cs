@@ -3,6 +3,7 @@
 namespace Bubba
 {
     using System;
+    using System.Diagnostics.CodeAnalysis;
     using System.Windows.Controls;
     using System.Windows.Media;
     using Syncfusion.Windows.Controls.Input;
@@ -11,6 +12,8 @@ namespace Bubba
     /// <summary>
     /// </summary>
     /// <seealso cref="T:Syncfusion.Windows.Controls.Input.SfRangeSlider" />
+    [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
+    [ SuppressMessage( "ReSharper", "UnusedType.Global" ) ]
     public class MetroSlider : SfRangeSlider
     {
         /// <summary>
@@ -42,11 +45,11 @@ namespace Bubba
             FontSize = 12;
             LabelOrientation = Orientation.Horizontal;
             SnapsTo = SliderSnapsTo.Ticks;
-            TickFrequency = 4D;
+            TickFrequency = 5;
             TickPlacement = TickPlacement.Inline;
-            TickLength = 8D;
-            MinorTickFrequency = 2D;
-            MinorTickLength = 4D;
+            TickLength = 10;
+            MinorTickFrequency = 2;
+            MinorTickLength = 4;
             MinorTickStrokeThickness = 1D;
             MoveToPoint = MovePoint.MoveToTapPosition;
         }

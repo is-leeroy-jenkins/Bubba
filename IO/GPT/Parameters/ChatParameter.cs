@@ -44,8 +44,6 @@ namespace Bubba
     using System;
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
-    using System.Linq;
-    using System.Text.Json.Serialization;
     using Properties;
 
     /// <inheritdoc />
@@ -95,8 +93,6 @@ namespace Bubba
             _frequencyPenalty = 0.00;
             _presencePenalty = 0.00;
             _maximumTokens = 2048;
-            _responseFormat = "auto";
-            _modalities = "['text', 'audio']";
         }
 
         /// <inheritdoc />

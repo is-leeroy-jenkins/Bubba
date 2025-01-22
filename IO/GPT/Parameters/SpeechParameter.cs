@@ -6,7 +6,7 @@
 //     Last Modified By:        Terry D. Eppler
 //     Last Modified On:        01-09-2025
 // ******************************************************************************************
-// <copyright file="AudioParameter.cs" company="Terry D. Eppler">
+// <copyright file="SpeechParameter.cs" company="Terry D. Eppler">
 //    Bubba is a small and simple windows (wpf) application for interacting with the OpenAI API
 //    that's developed in C-Sharp under the MIT license.C#.
 // 
@@ -35,16 +35,14 @@
 //    You can contact me at:  terryeppler@gmail.com or eppler.terry@epa.gov
 // </copyright>
 // <summary>
-//   AudioParameter.cs
+//   SpeechParameter.cs
 // </summary>
 // ******************************************************************************************
 
 namespace Bubba
 {
     using System;
-    using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
-    using System.Linq;
     using Properties;
 
     /// <inheritdoc />
@@ -55,7 +53,7 @@ namespace Bubba
     [ SuppressMessage( "ReSharper", "FunctionComplexityOverflow" ) ]
     [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
     [ SuppressMessage( "ReSharper", "FieldCanBeMadeReadOnly.Global" ) ]
-    public class AudioParameter : GptParameter
+    public class SpeechParameter : GptParameter
     {
         /// <summary>
         /// The language
@@ -71,11 +69,6 @@ namespace Bubba
         /// The audio data
         /// </summary>
         private protected byte[ ] _audioData;
-
-        /// <summary>
-        /// The modalities
-        /// </summary>
-        private protected string _modalities;
 
         /// <summary>
         /// The voice
@@ -95,16 +88,15 @@ namespace Bubba
         /// <inheritdoc />
         /// <summary>
         /// Initializes a new instance of the
-        /// <see cref="T:Bubba.AudioParameter" /> class.
+        /// <see cref="T:Bubba.SpeechParameter" /> class.
         /// </summary>
-        public AudioParameter( )
+        public SpeechParameter( )
             : base( )
         {
             _model = "tts-1-hd";
             _endPoint = GptEndPoint.SpeechGeneration;
             _language = "en";
             _responseFormat = "mp3";
-            _modalities = "['text', 'audio']";
             _voice = "fable";
             _speed = 1;
         }
@@ -124,32 +116,10 @@ namespace Bubba
             }
             set
             {
-                if(_model != value)
+                if( _model != value )
                 {
                     _model = value;
-                    OnPropertyChanged(nameof(Model));
-                }
-            }
-        }
-
-        /// <summary>
-        /// Gets or sets the modalities.
-        /// </summary>
-        /// <value>
-        /// The modalities.
-        /// </value>
-        public string Modalities
-        {
-            get
-            {
-                return _modalities;
-            }
-            set
-            {
-                if(_modalities != value)
-                {
-                    _modalities = value;
-                    OnPropertyChanged(nameof(Modalities));
+                    OnPropertyChanged( nameof( Model ) );
                 }
             }
         }

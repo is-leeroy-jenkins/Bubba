@@ -1,4 +1,4 @@
-﻿
+﻿C:\Users\terry\source\repos\Bubba\obj\Debug\net8.0-windows7.0\GeneratedInternalTypeHelper.g.cs
 FC:\Users\terry\source\repos\Bubba\App.xaml;;
 FC:\Users\terry\source\repos\Bubba\UI\Controls\Frame\MetroComboFrame.xaml;;
 FC:\Users\terry\source\repos\Bubba\UI\Controls\Frame\MetroTextInput.xaml;;
@@ -28,11 +28,13 @@ FC:\Users\terry\source\repos\Bubba\UI\Themes\Scrolling\ScrollViewer.xaml;;
 FC:\Users\terry\source\repos\Bubba\UI\Themes\Slider\Slider.xaml;;
 FC:\Users\terry\source\repos\Bubba\UI\Themes\TabControl\BrowserTabItem.xaml;;
 FC:\Users\terry\source\repos\Bubba\UI\Themes\TabControl\TabControl.xaml;;
+FC:\Users\terry\source\repos\Bubba\UI\Themes\TextBlock\TextBlock.xaml;;
 FC:\Users\terry\source\repos\Bubba\UI\Themes\TextBox\TextBox.xaml;;
 FC:\Users\terry\source\repos\Bubba\UI\Themes\Tile\Tile.xaml;;
 FC:\Users\terry\source\repos\Bubba\UI\Themes\Window\Window.xaml;;
 FC:\Users\terry\source\repos\Bubba\UI\Views\Calculator\CalculatorWindow.xaml;;
 FC:\Users\terry\source\repos\Bubba\UI\Views\ChatWindow\ChatWindow.xaml;;
+FC:\Users\terry\source\repos\Bubba\UI\Views\ColorDialog\ColorDialog.xaml;;
 FC:\Users\terry\source\repos\Bubba\UI\Views\Configuration\ConfigurationDialog.xaml;;
 FC:\Users\terry\source\repos\Bubba\UI\Views\Document\DocumentWindow.xaml;;
 FC:\Users\terry\source\repos\Bubba\UI\Views\ErrorWindow\ErrorWindow.xaml;;

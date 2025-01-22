@@ -302,6 +302,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Include="UI\Views\BusyIndicator\BusyIndicator" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="AngleSharp" Version="1.2.0" />
     <PackageReference Include="CefSharp.Common.NETCore" Version="131.2.70" />
     <PackageReference Include="CefSharp.OffScreen.NETCore" Version="131.2.70" />

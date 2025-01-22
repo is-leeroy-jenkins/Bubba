@@ -18283,14 +18283,6 @@
             The messages.
             </value>
         </member>
-        <member name="P:Bubba.IGptPayload.ResponseFormat">
-            <summary>
-            Gets or sets the response format.
-            </summary>
-            <value>
-            The response format.
-            </value>
-        </member>
         <member name="P:Bubba.IGptRequest.HttpClient">
             <inheritdoc />
             <summary>
@@ -18742,11 +18734,6 @@
             The user prompt
             </summary>
         </member>
-        <member name="F:Bubba.PayloadBase._responseFormat">
-            <summary>
-            The response format
-            </summary>
-        </member>
         <member name="F:Bubba.PayloadBase._messages">
             <summary>
             The messages
@@ -18775,15 +18762,6 @@
             </summary>
             <value>
             The user identifier.
-            </value>
-        </member>
-        <member name="P:Bubba.PayloadBase.EndPoint">
-            <inheritdoc />
-            <summary>
-            Gets or sets the end point.
-            </summary>
-            <value>
-            The end point.
             </value>
         </member>
         <member name="P:Bubba.PayloadBase.MaximumTokens">
@@ -18888,18 +18866,6 @@
             </summary>
             <value>
             The system prompt.
-            </value>
-        </member>
-        <member name="P:Bubba.PayloadBase.ResponseFormat">
-            <inheritdoc />
-            <summary>
-            An object specifying the format that the model must output.
-            Setting to { "type": "json_schema", "json_schema": {...} } enables
-            Structured Outputs which ensures the model will match your supplied JSON schema
-            Default = "text"
-            </summary>
-            <value>
-            The response format.
             </value>
         </member>
         <member name="P:Bubba.PayloadBase.Stop">
@@ -20210,119 +20176,6 @@
             A string that represents the current object.
             </returns>
         </member>
-        <member name="T:Bubba.AudioParameter">
-            <inheritdoc />
-            <summary>
-            </summary>
-        </member>
-        <member name="F:Bubba.AudioParameter._language">
-            <summary>
-            The language
-            </summary>
-        </member>
-        <member name="F:Bubba.AudioParameter._file">
-            <summary>
-            The file path
-            </summary>
-        </member>
-        <member name="F:Bubba.AudioParameter._audioData">
-            <summary>
-            The audio data
-            </summary>
-        </member>
-        <member name="F:Bubba.AudioParameter._modalities">
-            <summary>
-            The modalities
-            </summary>
-        </member>
-        <member name="F:Bubba.AudioParameter._voice">
-            <summary>
-            The voice
-            </summary>
-        </member>
-        <member name="F:Bubba.AudioParameter._speed">
-            <summary>
-            The speed
-            </summary>
-        </member>
-        <member name="F:Bubba.AudioParameter._input">
-            <summary>
-            The input
-            </summary>
-        </member>
-        <member name="M:Bubba.AudioParameter.#ctor">
-            <inheritdoc />
-            <summary>
-            Initializes a new instance of the
-            <see cref="T:Bubba.AudioParameter" /> class.
-            </summary>
-        </member>
-        <member name="P:Bubba.AudioParameter.Model">
-            <summary>
-            Gets the chat model.
-            </summary>
-            <value>
-            The chat model.
-            </value>
-            <inheritdoc />
-        </member>
-        <member name="P:Bubba.AudioParameter.Modalities">
-            <summary>
-            Gets or sets the modalities.
-            </summary>
-            <value>
-            The modalities.
-            </value>
-        </member>
-        <member name="P:Bubba.AudioParameter.Language">
-            <summary>
-            Gets or sets the language.
-            </summary>
-            <value>
-            The language.
-            </value>
-        </member>
-        <member name="P:Bubba.AudioParameter.Input">
-            <summary>
-            Gets or sets the input.
-            </summary>
-            <value>
-            The input.
-            </value>
-        </member>
-        <member name="P:Bubba.AudioParameter.Voice">
-            <summary>
-            Gets or sets the voice.
-            </summary>
-            <value>
-            The voice.
-            </value>
-        </member>
-        <member name="P:Bubba.AudioParameter.Speed">
-            <summary>
-            Gets or sets the speed.
-            </summary>
-            <value>
-            The speed.
-            </value>
-        </member>
-        <member name="P:Bubba.AudioParameter.File">
-            <summary>
-            Gets or sets the file path.
-            </summary>
-            <value>
-            The file path.
-            </value>
-        </member>
-        <member name="P:Bubba.AudioParameter.ResponseFormat">
-            <inheritdoc />
-            <summary>
-            Gets or sets the response format.
-            </summary>
-            <value>
-            The response format.
-            </value>
-        </member>
         <member name="T:Bubba.ChatParameter">
             <inheritdoc />
             <summary>
@@ -21095,6 +20948,106 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="T:Bubba.SpeechParameter">
+            <inheritdoc />
+            <summary>
+            </summary>
+        </member>
+        <member name="F:Bubba.SpeechParameter._language">
+            <summary>
+            The language
+            </summary>
+        </member>
+        <member name="F:Bubba.SpeechParameter._file">
+            <summary>
+            The file path
+            </summary>
+        </member>
+        <member name="F:Bubba.SpeechParameter._audioData">
+            <summary>
+            The audio data
+            </summary>
+        </member>
+        <member name="F:Bubba.SpeechParameter._voice">
+            <summary>
+            The voice
+            </summary>
+        </member>
+        <member name="F:Bubba.SpeechParameter._speed">
+            <summary>
+            The speed
+            </summary>
+        </member>
+        <member name="F:Bubba.SpeechParameter._input">
+            <summary>
+            The input
+            </summary>
+        </member>
+        <member name="M:Bubba.SpeechParameter.#ctor">
+            <inheritdoc />
+            <summary>
+            Initializes a new instance of the
+            <see cref="T:Bubba.SpeechParameter" /> class.
+            </summary>
+        </member>
+        <member name="P:Bubba.SpeechParameter.Model">
+            <summary>
+            Gets the chat model.
+            </summary>
+            <value>
+            The chat model.
+            </value>
+            <inheritdoc />
+        </member>
+        <member name="P:Bubba.SpeechParameter.Language">
+            <summary>
+            Gets or sets the language.
+            </summary>
+            <value>
+            The language.
+            </value>
+        </member>
+        <member name="P:Bubba.SpeechParameter.Input">
+            <summary>
+            Gets or sets the input.
+            </summary>
+            <value>
+            The input.
+            </value>
+        </member>
+        <member name="P:Bubba.SpeechParameter.Voice">
+            <summary>
+            Gets or sets the voice.
+            </summary>
+            <value>
+            The voice.
+            </value>
+        </member>
+        <member name="P:Bubba.SpeechParameter.Speed">
+            <summary>
+            Gets or sets the speed.
+            </summary>
+            <value>
+            The speed.
+            </value>
+        </member>
+        <member name="P:Bubba.SpeechParameter.File">
+            <summary>
+            Gets or sets the file path.
+            </summary>
+            <value>
+            The file path.
+            </value>
+        </member>
+        <member name="P:Bubba.SpeechParameter.ResponseFormat">
+            <inheritdoc />
+            <summary>
+            Gets or sets the response format.
+            </summary>
+            <value>
+            The response format.
+            </value>
+        </member>
         <member name="T:Bubba.TextParameter">
             <inheritdoc />
             <summary>
@@ -21235,11 +21188,6 @@
         <member name="F:Bubba.TranscriptionParameter._audioData">
             <summary>
             The audio data
-            </summary>
-        </member>
-        <member name="F:Bubba.TranscriptionParameter._modalities">
-            <summary>
-            The modalities
             </summary>
         </member>
         <member name="F:Bubba.TranscriptionParameter._prompt">
@@ -21597,15 +21545,6 @@
             </value>
             <inheritdoc />
         </member>
-        <member name="P:Bubba.AssistantPayload.EndPoint">
-            <inheritdoc />
-            <summary>
-            Gets or sets the end point.
-            </summary>
-            <value>
-            The end point.
-            </value>
-        </member>
         <member name="P:Bubba.AssistantPayload.Store">
             <inheritdoc />
             <summary>
@@ -21640,21 +21579,13 @@
             The top percent.
             </value>
         </member>
-        <member name="P:Bubba.AssistantPayload.ResponseFormat">
-            <inheritdoc />
-            <summary>
-            Gets or sets the response format.
-            </summary>
-            <value>
-            The response format.
-            </value>
-        </member>
-        <member name="M:Bubba.AssistantPayload.GetData">
+        <member name="M:Bubba.AssistantPayload.Parse">
             <inheritdoc />
             <summary>
             Gets the data.
             </summary>
-            <returns></returns>
+            <returns>
+            </returns>
         </member>
         <member name="M:Bubba.AssistantPayload.ToString">
             <inheritdoc />
@@ -21662,7 +21593,8 @@
             Converts to string.
             </summary>
             <returns>
-            A <see cref="T:System.String" /> that represents this instance.
+            A <see cref="T:System.String" />
+            that represents this instance.
             </returns>
         </member>
         <member name="T:Bubba.ChatPayload">
@@ -21805,15 +21737,6 @@
             The top percent.
             </value>
         </member>
-        <member name="P:Bubba.ChatPayload.ResponseFormat">
-            <inheritdoc />
-            <summary>
-            Gets or sets the response format.
-            </summary>
-            <value>
-            The response format.
-            </value>
-        </member>
         <member name="P:Bubba.ChatPayload.ReasoningEffort">
             <summary>
             o1 models only.
@@ -21847,7 +21770,7 @@
             The meta data.
             </value>
         </member>
-        <member name="M:Bubba.ChatPayload.GetData">
+        <member name="M:Bubba.ChatPayload.Parse">
             <inheritdoc />
             <summary>
             Gets the data.
@@ -21861,7 +21784,8 @@
             Converts to string.
             </summary>
             <returns>
-            A <see cref="T:System.String" /> that represents this instance.
+            A <see cref="T:System.String" />
+            that represents this instance.
             </returns>
         </member>
         <member name="T:Bubba.EmbeddingPayload">
@@ -21926,24 +21850,6 @@
             The file path.
             </value>
         </member>
-        <member name="P:Bubba.EmbeddingPayload.EndPoint">
-            <inheritdoc />
-            <summary>
-            Gets or sets the end point.
-            </summary>
-            <value>
-            The end point.
-            </value>
-        </member>
-        <member name="P:Bubba.EmbeddingPayload.ResponseFormat">
-            <inheritdoc />
-            <summary>
-            Gets or sets the response format.
-            </summary>
-            <value>
-            The response format.
-            </value>
-        </member>
         <member name="P:Bubba.EmbeddingPayload.Model">
             <summary>
             Gets the chat model.
@@ -21955,18 +21861,34 @@
         </member>
         <member name="P:Bubba.EmbeddingPayload.Input">
             <summary>
-            Gets or sets the input.
+            Input text to embed, encoded as a string or array of tokens.
+            To embed multiple inputs in a single request, pass an array of strings
+            or array of token arrays. The input must not exceed the max input tokens
+            for the model (8192 tokens for text-embedding-ada-002), cannot be an
+            empty string, and any array must be 2048 dimensions or less.
+            Example Python code for counting tokens. Some models may also impose
+            a limit on total number of tokens summed across inputs.Gets or sets the input.
             </summary>
             <value>
             The input.
             </value>
         </member>
-        <member name="M:Bubba.EmbeddingPayload.GetData">
+        <member name="M:Bubba.EmbeddingPayload.Parse">
             <inheritdoc />
             <summary>
             Gets the data.
             </summary>
             <returns>
+            </returns>
+        </member>
+        <member name="M:Bubba.EmbeddingPayload.ToString">
+            <inheritdoc />
+            <summary>
+            Converts to string.
+            </summary>
+            <returns>
+            A <see cref="T:System.String" />
+            that represents this instance.
             </returns>
         </member>
         <member name="T:Bubba.FilePayload">
@@ -22121,7 +22043,7 @@
             The name of the file.
             </value>
         </member>
-        <member name="M:Bubba.FilePayload.GetData">
+        <member name="M:Bubba.FilePayload.Parse">
             <inheritdoc />
             <summary>
             Gets the data.
@@ -22135,7 +22057,8 @@
             Converts to string.
             </summary>
             <returns>
-            A <see cref="T:System.String" /> that represents this instance.
+            A <see cref="T:System.String" />
+            that represents this instance.
             </returns>
         </member>
         <member name="T:Bubba.FineTuningPayload">
@@ -22295,7 +22218,7 @@
             The user identifier.
             </value>
         </member>
-        <member name="M:Bubba.FineTuningPayload.GetData">
+        <member name="M:Bubba.FineTuningPayload.Parse">
             <inheritdoc />
             <summary>
             Gets the data.
@@ -22309,7 +22232,8 @@
             Converts to string.
             </summary>
             <returns>
-            A <see cref="T:System.String" /> that represents this instance.
+            A <see cref="T:System.String" />
+            that represents this instance.
             </returns>
         </member>
         <member name="T:Bubba.GptPayload">
@@ -22484,22 +22408,13 @@
             <param name="prompt">The prompt.</param>
             <returns></returns>
         </member>
-        <member name="M:Bubba.GptPayload.GetData">
-            <inheritdoc />
+        <member name="M:Bubba.GptPayload.PadQuotes(System.String)">
             <summary>
-            Gets the data.
+            Pads the quotes.
             </summary>
+            <param name="input">The input.</param>
             <returns>
-            </returns>
-        </member>
-        <member name="M:Bubba.GptPayload.ToString">
-            <inheritdoc />
-            <summary>
-            Converts to string.
-            </summary>
-            <returns>
-            A <see cref="T:System.String" />
-            that represents this instance.
+            string
             </returns>
         </member>
         <member name="M:Bubba.GptPayload.Fail(System.Exception)">
@@ -22560,23 +22475,6 @@
             The size of the image.
             </value>
         </member>
-        <member name="P:Bubba.ImagePayload.ResponseFormat">
-            <inheritdoc />
-            <summary>
-            Gets or sets the response format.
-            </summary>
-            <value>
-            The response format.
-            </value>
-        </member>
-        <member name="P:Bubba.ImagePayload.Prompt">
-            <summary>
-            Gets or sets the prompt.
-            </summary>
-            <value>
-            The prompt.
-            </value>
-        </member>
         <member name="P:Bubba.ImagePayload.Quality">
             <summary>
             Gets or sets the quality.
@@ -22614,7 +22512,7 @@
             </value>
             <inheritdoc />
         </member>
-        <member name="M:Bubba.ImagePayload.GetData">
+        <member name="M:Bubba.ImagePayload.Parse">
             <inheritdoc />
             <summary>
             Gets the data.
@@ -22628,7 +22526,8 @@
             Converts to string.
             </summary>
             <returns>
-            A <see cref="T:System.String" /> that represents this instance.
+            A <see cref="T:System.String" />
+            that represents this instance.
             </returns>
         </member>
         <member name="T:Bubba.SpeechPayload">
@@ -22664,6 +22563,11 @@
         <member name="F:Bubba.SpeechPayload._input">
             <summary>
             The input
+            </summary>
+        </member>
+        <member name="F:Bubba.SpeechPayload._responseFormat">
+            <summary>
+            The response format
             </summary>
         </member>
         <member name="M:Bubba.SpeechPayload.#ctor">
@@ -22744,7 +22648,7 @@
             The file path.
             </value>
         </member>
-        <member name="P:Bubba.SpeechPayload.Modalities">
+        <member name="P:Bubba.SpeechPayload.ResponseFormat">
             <summary>
             Gets or sets the modalities.
             </summary>
@@ -22752,16 +22656,7 @@
             The modalities.
             </value>
         </member>
-        <member name="P:Bubba.SpeechPayload.ResponseFormat">
-            <inheritdoc />
-            <summary>
-            Gets or sets the response format.
-            </summary>
-            <value>
-            The response format.
-            </value>
-        </member>
-        <member name="M:Bubba.SpeechPayload.GetData">
+        <member name="M:Bubba.SpeechPayload.Parse">
             <inheritdoc />
             <summary>
             Gets the data.
@@ -22775,7 +22670,8 @@
             Converts to string.
             </summary>
             <returns>
-            A <see cref="T:System.String" /> that represents this instance.
+            A <see cref="T:System.String" />
+            that represents this instance.
             </returns>
         </member>
         <member name="T:Bubba.TextPayload">
@@ -22829,15 +22725,6 @@
             The chat model.
             </value>
             <inheritdoc />
-        </member>
-        <member name="P:Bubba.TextPayload.EndPoint">
-            <inheritdoc />
-            <summary>
-            Gets or sets the end point.
-            </summary>
-            <value>
-            The end point.
-            </value>
         </member>
         <member name="P:Bubba.TextPayload.Store">
             <inheritdoc />
@@ -22906,16 +22793,7 @@
             The top percent.
             </value>
         </member>
-        <member name="P:Bubba.TextPayload.ResponseFormat">
-            <inheritdoc />
-            <summary>
-            Gets or sets the response format.
-            </summary>
-            <value>
-            The response format.
-            </value>
-        </member>
-        <member name="M:Bubba.TextPayload.GetData">
+        <member name="M:Bubba.TextPayload.Parse">
             <inheritdoc />
             <summary>
             Gets the data.
@@ -22929,7 +22807,8 @@
             Converts to string.
             </summary>
             <returns>
-            A <see cref="T:System.String" /> that represents this instance.
+            A <see cref="T:System.String" />
+            that represents this instance.
             </returns>
         </member>
         <member name="T:Bubba.TranscriptionPayload">
@@ -22943,17 +22822,12 @@
             The language
             </summary>
         </member>
-        <member name="F:Bubba.TranscriptionPayload._file">
+        <member name="F:Bubba.TranscriptionPayload._audioFile">
             <summary>
             The file path
             </summary>
         </member>
-        <member name="F:Bubba.TranscriptionPayload._audioData">
-            <summary>
-            The audio data
-            </summary>
-        </member>
-        <member name="F:Bubba.TranscriptionPayload._speed">
+        <member name="F:Bubba.TranscriptionPayload._responseFormat">
             <summary>
             The speed
             </summary>
@@ -22965,7 +22839,7 @@
             </summary>
             <inheritdoc />
         </member>
-        <member name="M:Bubba.TranscriptionPayload.#ctor(System.String,System.Double,System.Double,System.Double,System.Double,System.Int32,System.Boolean,System.Boolean)">
+        <member name="M:Bubba.TranscriptionPayload.#ctor(System.String,System.Double,System.Double,System.Double,System.Double,System.Int32,System.Boolean,System.Boolean,System.String)">
             <inheritdoc />
             <summary>
             Initializes a new instance of the <see cref="T:Bubba.TranscriptionPayload" /> class.
@@ -22978,6 +22852,7 @@
             <param name="maxTokens">The maximum tokens.</param>
             <param name="store">if set to <c>true</c> [store].</param>
             <param name="stream">if set to <c>true</c> [stream].</param>
+            <param name = "format" > </param>
         </member>
         <member name="M:Bubba.TranscriptionPayload.#ctor(System.String,Bubba.GptParameter)">
             <inheritdoc />
@@ -22986,15 +22861,6 @@
             </summary>
             <param name="userPrompt">The user prompt.</param>
             <param name="config">The configuration.</param>
-        </member>
-        <member name="P:Bubba.TranscriptionPayload.Messages">
-            <summary>
-            Gets or sets the system prompt.
-            </summary>
-            <value>
-            The system prompt.
-            </value>
-            <inheritdoc />
         </member>
         <member name="P:Bubba.TranscriptionPayload.Language">
             <summary>
@@ -23015,7 +22881,7 @@
             </value>
             <inheritdoc />
         </member>
-        <member name="P:Bubba.TranscriptionPayload.File">
+        <member name="P:Bubba.TranscriptionPayload.AudioFile">
             <summary>
             Gets or sets the file path.
             </summary>
@@ -23032,21 +22898,19 @@
             </value>
             <inheritdoc />
         </member>
-        <member name="P:Bubba.TranscriptionPayload.ResponseFormat">
-            <inheritdoc />
+        <member name="M:Bubba.TranscriptionPayload.GetSoundFile">
             <summary>
-            Gets or sets the response format.
+            Gets the sound file.
             </summary>
-            <value>
-            The response format.
-            </value>
+            <returns></returns>
         </member>
-        <member name="M:Bubba.TranscriptionPayload.GetData">
+        <member name="M:Bubba.TranscriptionPayload.Parse">
             <inheritdoc />
             <summary>
             Gets the data.
             </summary>
-            <returns></returns>
+            <returns>
+            </returns>
         </member>
         <member name="M:Bubba.TranscriptionPayload.ToString">
             <inheritdoc />
@@ -23054,7 +22918,8 @@
             Converts to string.
             </summary>
             <returns>
-            A <see cref="T:System.String" /> that represents this instance.
+            A <see cref="T:System.String" />
+            that represents this instance.
             </returns>
         </member>
         <member name="T:Bubba.TranslationPayload">
@@ -23063,9 +22928,14 @@
             </summary>
             <seealso cref="T:Bubba.GptPayload" />
         </member>
-        <member name="F:Bubba.TranslationPayload._file">
+        <member name="F:Bubba.TranslationPayload._audioFile">
             <summary>
             The file
+            </summary>
+        </member>
+        <member name="F:Bubba.TranslationPayload._resposeFormat">
+            <summary>
+            The respose format
             </summary>
         </member>
         <member name="M:Bubba.TranslationPayload.#ctor">
@@ -23096,7 +22966,7 @@
             <param name="userPrompt">The user prompt.</param>
             <param name="config">The configuration.</param>
         </member>
-        <member name="P:Bubba.TranslationPayload.File">
+        <member name="P:Bubba.TranslationPayload.AudioFile">
             <summary>
             Gets or sets the file path.
             </summary>
@@ -23113,21 +22983,13 @@
             </value>
             <inheritdoc />
         </member>
-        <member name="P:Bubba.TranslationPayload.ResponseFormat">
-            <inheritdoc />
-            <summary>
-            Gets or sets the response format.
-            </summary>
-            <value>
-            The response format.
-            </value>
-        </member>
-        <member name="M:Bubba.TranslationPayload.GetData">
+        <member name="M:Bubba.TranslationPayload.Parse">
             <inheritdoc />
             <summary>
             Gets the data.
             </summary>
-            <returns></returns>
+            <returns>
+            </returns>
         </member>
         <member name="M:Bubba.TranslationPayload.ToString">
             <inheritdoc />
@@ -23135,7 +22997,8 @@
             Converts to string.
             </summary>
             <returns>
-            A <see cref="T:System.String" /> that represents this instance.
+            A <see cref="T:System.String" />
+            that represents this instance.
             </returns>
         </member>
         <member name="T:Bubba.VectorPayload">
@@ -23304,21 +23167,22 @@
             The meta data.
             </value>
         </member>
-        <member name="P:Bubba.VectorPayload.ResponseFormat">
-            <inheritdoc />
-            <summary>
-            Gets or sets the response format.
-            </summary>
-            <value>
-            The response format.
-            </value>
-        </member>
-        <member name="M:Bubba.VectorPayload.GetData">
+        <member name="M:Bubba.VectorPayload.Parse">
             <inheritdoc />
             <summary>
             Gets the data.
             </summary>
             <returns>
+            </returns>
+        </member>
+        <member name="M:Bubba.VectorPayload.ToString">
+            <inheritdoc />
+            <summary>
+            Converts to string.
+            </summary>
+            <returns>
+            A <see cref="T:System.String" />
+            that represents this instance.
             </returns>
         </member>
         <member name="T:Bubba.AssistantRequest">
@@ -24726,6 +24590,7 @@
             </value>
         </member>
         <member name="P:Bubba.SpeechGenerationReqeust.Seed">
+            <inheritdoc />
             <summary>
             Gets or sets the seed.
             </summary>
@@ -24749,19 +24614,11 @@
             The audio data.
             </value>
         </member>
-        <member name="M:Bubba.SpeechGenerationReqeust.GetData">
-            <inheritdoc />
-            <summary>
-            Gets the data.
-            </summary>
-            <returns>
-            </returns>
-        </member>
         <member name="M:Bubba.SpeechGenerationReqeust.GenerateAsync">
+            <inheritdoc />
             <summary>
             Generates the speech asynchronous.
             </summary>
-            <param name="prompt">The prompt.</param>
             <returns>
             Task
             </returns>
@@ -24781,14 +24638,6 @@
             Saves the speech asynchronous.
             </summary>
             <param name="filePath">The file path.</param>
-        </member>
-        <member name="M:Bubba.SpeechGenerationReqeust.ToString">
-            <summary>
-            Converts to string.
-            </summary>
-            <returns>
-            A <see cref="T:System.String" /> that represents this instance.
-            </returns>
         </member>
         <member name="T:Bubba.TextGenerationRequest">
             <inheritdoc />
@@ -24962,14 +24811,6 @@
             Gets the data.
             </summary>
             <returns>
-            </returns>
-        </member>
-        <member name="M:Bubba.TextGenerationRequest.ToString">
-            <summary>
-            Converts to string.
-            </summary>
-            <returns>
-            A <see cref="T:System.String" /> that represents this instance.
             </returns>
         </member>
         <member name="T:Bubba.TranscriptionRequest">
@@ -36094,6 +35935,19 @@
             <param name="ex">The ex.</param>
         </member>
         <member name="M:Bubba.ChatWindow.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:Bubba.ColorDialog">
+            <summary>
+            Interaction logic for ColorDialog.xaml
+            </summary>
+            <summary>
+            ColorDialog
+            </summary>
+        </member>
+        <member name="M:Bubba.ColorDialog.InitializeComponent">
             <summary>
             InitializeComponent
             </summary>

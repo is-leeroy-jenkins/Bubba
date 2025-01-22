@@ -44,7 +44,6 @@ namespace Bubba
     using System;
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
-    using System.Linq;
     using Properties;
 
     /// <inheritdoc />
@@ -94,8 +93,16 @@ namespace Bubba
         public VectorParameter( )
             : base( )
         {
-            _model = "gpt-4o-mini";
+            _model = "gpt-4o";
             _endPoint = GptEndPoint.VectorStores;
+            _store = false;
+            _stream = true;
+            _number = 1;
+            _temperature = 0.18;
+            _topPercent = 0.11;
+            _frequencyPenalty = 0.00;
+            _presencePenalty = 0.00;
+            _maximumTokens = 2048;
             _limit = 20;
             _responseFormat = "text";
             _fileIds = new List<string>( );

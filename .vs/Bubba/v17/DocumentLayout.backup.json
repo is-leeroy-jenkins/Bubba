@@ -3,20 +3,12 @@
   "WorkspaceRootPath": "C:\\Users\\terry\\source\\repos\\Bubba\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{08012640-3765-4051-B5EB-4FF782150AEC}|Bubba.csproj|c:\\users\\terry\\source\\repos\\bubba\\io\\gpt\\payloads\\assistantpayload.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{08012640-3765-4051-B5EB-4FF782150AEC}|Bubba.csproj|solutionrelative:io\\gpt\\payloads\\assistantpayload.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{08012640-3765-4051-B5EB-4FF782150AEC}|Bubba.csproj|c:\\users\\terry\\source\\repos\\bubba\\io\\gpt\\payloads\\textpayload.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{08012640-3765-4051-B5EB-4FF782150AEC}|Bubba.csproj|solutionrelative:io\\gpt\\payloads\\textpayload.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{08012640-3765-4051-B5EB-4FF782150AEC}|Bubba.csproj|c:\\users\\terry\\source\\repos\\bubba\\ui\\views\\chatwindow\\chatwindow.xaml.cs||{8B382828-6202-11D1-8870-0000F87579D2}|",
       "RelativeMoniker": "D:0:0:{08012640-3765-4051-B5EB-4FF782150AEC}|Bubba.csproj|solutionrelative:ui\\views\\chatwindow\\chatwindow.xaml.cs||{8B382828-6202-11D1-8870-0000F87579D2}|"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{08012640-3765-4051-B5EB-4FF782150AEC}|Bubba.csproj|c:\\users\\terry\\source\\repos\\bubba\\io\\gpt\\payloads\\gptpayload.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{08012640-3765-4051-B5EB-4FF782150AEC}|Bubba.csproj|solutionrelative:io\\gpt\\payloads\\gptpayload.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{08012640-3765-4051-B5EB-4FF782150AEC}|Bubba.csproj|c:\\users\\terry\\source\\repos\\bubba\\ui\\views\\chatwindow\\chatwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{08012640-3765-4051-B5EB-4FF782150AEC}|Bubba.csproj|solutionrelative:ui\\views\\chatwindow\\chatwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     }
   ],
   "DocumentGroupContainers": [
@@ -75,53 +67,26 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "AssistantPayload.cs",
-              "DocumentMoniker": "C:\\Users\\terry\\source\\repos\\Bubba\\IO\\GPT\\Payloads\\AssistantPayload.cs",
-              "RelativeDocumentMoniker": "IO\\GPT\\Payloads\\AssistantPayload.cs",
-              "ToolTip": "C:\\Users\\terry\\source\\repos\\Bubba\\IO\\GPT\\Payloads\\AssistantPayload.cs",
-              "RelativeToolTip": "IO\\GPT\\Payloads\\AssistantPayload.cs",
-              "ViewState": "AgIAAFUAAAAAAAAAAAAIwFsAAAArAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-21T00:22:57.866Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "TextPayload.cs",
-              "DocumentMoniker": "C:\\Users\\terry\\source\\repos\\Bubba\\IO\\GPT\\Payloads\\TextPayload.cs",
-              "RelativeDocumentMoniker": "IO\\GPT\\Payloads\\TextPayload.cs",
-              "ToolTip": "C:\\Users\\terry\\source\\repos\\Bubba\\IO\\GPT\\Payloads\\TextPayload.cs",
-              "RelativeToolTip": "IO\\GPT\\Payloads\\TextPayload.cs",
-              "ViewState": "AgIAADQAAAAAAAAAAAAAAEQAAAAzAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-21T00:22:16.814Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "GptPayload.cs",
-              "DocumentMoniker": "C:\\Users\\terry\\source\\repos\\Bubba\\IO\\GPT\\Payloads\\GptPayload.cs",
-              "RelativeDocumentMoniker": "IO\\GPT\\Payloads\\GptPayload.cs",
-              "ToolTip": "C:\\Users\\terry\\source\\repos\\Bubba\\IO\\GPT\\Payloads\\GptPayload.cs",
-              "RelativeToolTip": "IO\\GPT\\Payloads\\GptPayload.cs",
-              "ViewState": "AgIAAKQAAAAAAAAAAAAcwLEAAAAdAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-21T00:23:06.889Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
               "Title": "ChatWindow.xaml.cs",
               "DocumentMoniker": "C:\\Users\\terry\\source\\repos\\Bubba\\UI\\Views\\ChatWindow\\ChatWindow.xaml.cs",
               "RelativeDocumentMoniker": "UI\\Views\\ChatWindow\\ChatWindow.xaml.cs",
               "ToolTip": "C:\\Users\\terry\\source\\repos\\Bubba\\UI\\Views\\ChatWindow\\ChatWindow.xaml.cs",
               "RelativeToolTip": "UI\\Views\\ChatWindow\\ChatWindow.xaml.cs",
-              "ViewState": "AgIAANgFAAAAAAAAAAAQwOsFAAA6AAAAAAAAAA==",
+              "ViewState": "AgIAAIkCAAAAAAAAAAAIwK4CAAA1AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-21T00:22:40.837Z",
+              "WhenOpened": "2025-01-21T23:12:32.648Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "ChatWindow.xaml",
+              "DocumentMoniker": "C:\\Users\\terry\\source\\repos\\Bubba\\UI\\Views\\ChatWindow\\ChatWindow.xaml",
+              "RelativeDocumentMoniker": "UI\\Views\\ChatWindow\\ChatWindow.xaml",
+              "ToolTip": "C:\\Users\\terry\\source\\repos\\Bubba\\UI\\Views\\ChatWindow\\ChatWindow.xaml",
+              "RelativeToolTip": "UI\\Views\\ChatWindow\\ChatWindow.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-01-22T16:31:06.956Z",
               "EditorCaption": ""
             }
           ]

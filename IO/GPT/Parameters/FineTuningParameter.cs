@@ -113,8 +113,16 @@ namespace Bubba
         public FineTuningParameter( )
             : base( )
         {
-            _model = "gpt-4o-mini";
+            _model = "gpt-4o";
             _endPoint = GptEndPoint.FineTuning;
+            _store = false;
+            _stream = true;
+            _number = 1;
+            _temperature = 0.18;
+            _topPercent = 0.11;
+            _frequencyPenalty = 0.00;
+            _presencePenalty = 0.00;
+            _maximumTokens = 2048;
             _method = new Dictionary<string, object>( );
             _logitBias = new Dictionary<string, object>( );
             _echo = true;

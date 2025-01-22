@@ -7,6 +7,9 @@
     </ApplicationDefinition>
   </ItemGroup>
   <ItemGroup>
+    <Compile Update="UI\Views\ColorDialog\ColorDialog.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="UI\Views\SystemDialog\SystemDialog.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -33,6 +36,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Page Update="UI\Views\ColorDialog\ColorDialog.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="UI\Views\SystemDialog\SystemDialog.xaml">
       <SubType>Designer</SubType>
     </Page>

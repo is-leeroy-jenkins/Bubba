@@ -62,7 +62,7 @@ namespace Bubba
         public TextParameter( )
             : base( )
         {
-            _model = "gpt-4o-mini";
+            _model = "gpt-4o";
             _endPoint = GptEndPoint.TextGeneration;
             _store = false;
             _stream = true;
@@ -72,7 +72,6 @@ namespace Bubba
             _frequencyPenalty = 0.00;
             _presencePenalty = 0.00;
             _maximumTokens = 2048;
-            _responseFormat = "text";
         }
 
         /// <inheritdoc />

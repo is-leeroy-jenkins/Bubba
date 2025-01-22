@@ -42,11 +42,7 @@
 namespace Bubba
 {
     using System;
-    using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
-    using System.Linq;
-    using System.Text.Json.Serialization;
-    using Newtonsoft.Json;
     using Properties;
 
     /// <inheritdoc />
@@ -89,6 +85,14 @@ namespace Bubba
         {
             _model = "text-embedding-3";
             _endPoint = GptEndPoint.Embeddings;
+            _store = false;
+            _stream = true;
+            _number = 1;
+            _temperature = 0.18;
+            _topPercent = 0.11;
+            _frequencyPenalty = 0.00;
+            _presencePenalty = 0.00;
+            _maximumTokens = 2048;
             _responseFormat = "text";
             _encodingFormat = "float";
         }

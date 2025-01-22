@@ -44,7 +44,6 @@ namespace Bubba
     using System;
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
-    using System.Linq;
     using Properties;
 
     /// <inheritdoc />
@@ -72,11 +71,6 @@ namespace Bubba
         private protected byte[ ] _audioData;
 
         /// <summary>
-        /// The modalities
-        /// </summary>
-        private protected IList<string> _modalities;
-
-        /// <summary>
         /// The input
         /// </summary>
         private protected string _prompt;
@@ -91,7 +85,14 @@ namespace Bubba
         {
             _model = "whisper-1";
             _endPoint = GptEndPoint.Transcriptions;
+            _store = false;
+            _stream = true;
+            _number = 1;
             _temperature = 0.18;
+            _topPercent = 0.11;
+            _frequencyPenalty = 0.00;
+            _presencePenalty = 0.00;
+            _maximumTokens = 2048;
             _language = "en";
             _responseFormat = "text";
         }
