@@ -6,7 +6,7 @@
 //     Last Modified By:        Terry D. Eppler
 //     Last Modified On:        01-16-2025
 // ******************************************************************************************
-// <copyright file="FileApiRequest.cs" company="Terry D. Eppler">
+// <copyright file="GptFileRequest.cs" company="Terry D. Eppler">
 //    Bubba is a small and simple windows (wpf) application for interacting with the OpenAI API
 //    that's developed in C-Sharp under the MIT license.C#.
 // 
@@ -35,7 +35,7 @@
 //    You can contact me at:  terryeppler@gmail.com or eppler.terry@epa.gov
 // </copyright>
 // <summary>
-//   FileApiRequest.cs
+//   GptFileRequest.cs
 // </summary>
 // ******************************************************************************************
 
@@ -48,10 +48,11 @@ namespace Bubba
     using System.Linq;
     using System.Net.Http;
     using System.Net.Http.Headers;
+    using System.Text;
+    using System.Text.Json;
     using System.Text.Json.Serialization;
     using System.Threading.Tasks;
     using Properties;
-    using Newtonsoft.Json;
 
     /// <inheritdoc />
     /// <summary>
@@ -61,7 +62,7 @@ namespace Bubba
     [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
     [ SuppressMessage( "ReSharper", "ClassCanBeSealed.Global" ) ]
     [ SuppressMessage( "ReSharper", "PreferConcreteValueOverDefault" ) ]
-    public class FileApiRequest : GptRequest
+    public class GptFileRequest : GptRequest
     {
         /// <summary>
         /// The file identifier, which can be referenced in the API endpoints.
@@ -75,30 +76,20 @@ namespace Bubba
 
         /// <summary>
         /// The intended purpose of the file.
-        /// Supported values are assistants, assistants_output,
-        /// batch, batch_output, fine-tune, fine-tune-results and vision.
         /// </summary>
         private protected string _purpose;
 
         /// <summary>
-        /// A limit on the number of objects to be returned.
-        /// Limit can range between 1 and 10,000,
-        /// and the default is 10,000.
         /// </summary>
         private protected int _limit;
 
         /// <summary>
-        /// Sort order by the created_at timestamp of the objects.
-        /// asc for ascending order and desc for descending order
+        /// 
         /// </summary>
         private protected string _order;
 
         /// <summary>
-        /// A cursor for use in pagination. after is an object ID
-        /// defines your place in the list. For instance, if you
-        /// make a list request and receive 100 objects, ending with
-        /// obj_foo, your subsequent call can include after=obj_foo
-        /// in order to fetch the next page of the list
+        ///
         /// </summary>
         private protected string _after;
 
@@ -124,10 +115,10 @@ namespace Bubba
 
         /// <summary>
         /// Initializes a new instance of the
-        /// <see cref="FileApiRequest"/> class.
+        /// <see cref="GptFileRequest"/> class.
         /// </summary>
         /// <inheritdoc />
-        public FileApiRequest( )
+        public GptFileRequest( )
             : base( )
         {
             _entry = new object( );
@@ -138,30 +129,6 @@ namespace Bubba
             _limit = 10000;
             _order = "desc";
             _purpose = "assistants";
-        }
-
-        /// <inheritdoc />
-        /// <summary>
-        /// Gets or sets a value indicating whether this
-        /// <see cref="P:Bubba.GptRequest.HttpClient" /> is store.
-        /// </summary>
-        /// <value>
-        ///   <c>true</c> if store; otherwise, <c>false</c>.
-        /// </value>
-        public override HttpClient HttpClient
-        {
-            get
-            {
-                return _httpClient;
-            }
-            set
-            {
-                if( _httpClient != value )
-                {
-                    _httpClient = value;
-                    OnPropertyChanged( nameof( HttpClient ) );
-                }
-            }
         }
 
         /// <summary>
@@ -475,7 +442,7 @@ namespace Bubba
             {
                 _httpClient = new HttpClient( );
                 _httpClient.DefaultRequestHeaders.Authorization =
-                    new AuthenticationHeaderValue( "Bearer", App.OpenAiKey );
+                    new AuthenticationHeaderValue( "Bearer", _apiKey );
 
                 var _response = await _httpClient.GetAsync( _endPoint );
                 _response.EnsureSuccessStatusCode( );
@@ -503,7 +470,7 @@ namespace Bubba
                 ThrowIf.Empty( fileId, nameof( fileId ) );
                 _httpClient = new HttpClient( );
                 _httpClient.DefaultRequestHeaders.Authorization =
-                    new AuthenticationHeaderValue( "Bearer", App.OpenAiKey );
+                    new AuthenticationHeaderValue( "Bearer", _apiKey );
 
                 var _response = await _httpClient.GetAsync( $"{_endPoint}/{fileId}" );
                 _response.EnsureSuccessStatusCode( );
@@ -517,6 +484,31 @@ namespace Bubba
                 Fail( ex );
                 return string.Empty;
             }
+        }
+
+        /// <summary>
+        /// Gets the response asynchronous.
+        /// </summary>
+        /// <param name="prompt">The prompt.</param>
+        /// <param name="contextChunks">The context chunks.</param>
+        /// <returns></returns>
+        public async Task<string> GetResponseAsync( string prompt, IList<string> contextChunks )
+        {
+            var _context = string.Join( "\n\n", contextChunks );
+            var _payload = new GptPayload( );
+            _payload.Prompt = prompt;
+            _httpClient = new HttpClient( );
+            _httpClient.DefaultRequestHeaders.Add( "Authorization", $"Bearer {_apiKey}" );
+            var _json = JsonSerializer.Serialize( _payload );
+            var _content = new StringContent( _json, Encoding.UTF8, _header.ContentType );
+            var _response = await _httpClient.PostAsync( _endPoint, _content );
+            _response.EnsureSuccessStatusCode( );
+            var _jsonResponse = await _response.Content.ReadAsStringAsync( );
+            var _parsedResponse = JsonSerializer.Deserialize<JsonElement>( _jsonResponse );
+            return _parsedResponse.GetProperty( "choices" )[ 0 ]
+                .GetProperty( "message" )
+                .GetProperty( "content" )
+                .GetString( );
         }
 
         /// <summary>
@@ -538,58 +530,6 @@ namespace Bubba
                 var _responseContent = await _response.Content.ReadAsStringAsync( );
                 return !string.IsNullOrEmpty( _responseContent )
                     ? _responseContent
-                    : string.Empty;
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
-                return string.Empty;
-            }
-        }
-
-        /// <inheritdoc />
-        /// <summary>
-        /// Gets the data.
-        /// </summary>
-        /// <returns>
-        /// </returns>
-        public override IDictionary<string, object> GetData( )
-        {
-            try
-            {
-                _data.Add( "model", _model );
-                _data.Add( "endpoint", _endPoint );
-                _data.Add( "n", _number );
-                _data.Add( "max_completionTokens", _maximumTokens );
-                _data.Add( "store", _store );
-                _data.Add( "stream", _stream );
-                _data.Add( "temperature", Temperature );
-                _data.Add( "frequency_penalty", _frequencyPenalty );
-                _data.Add( "presence_penalty", _presencePenalty );
-                _data.Add( "top_p", TopPercent );
-                return _data?.Any( ) == true
-                    ? _data
-                    : default( IDictionary<string, object> );
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
-                return default( IDictionary<string, object> );
-            }
-        }
-
-        /// <summary>
-        /// Converts to string.
-        /// </summary>
-        /// <returns>
-        /// A <see cref="System.String" /> that represents this instance.
-        /// </returns>
-        public override string ToString( )
-        {
-            try
-            {
-                return _data?.Any( ) == true
-                    ? _data.ToJson( )
                     : string.Empty;
             }
             catch( Exception ex )

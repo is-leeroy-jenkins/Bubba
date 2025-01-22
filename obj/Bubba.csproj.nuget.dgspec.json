@@ -59,23 +59,23 @@
             },
             "CefSharp.Common.NETCore": {
               "target": "Package",
-              "version": "[131.2.70, )"
+              "version": "[131.3.50, )"
             },
             "CefSharp.OffScreen.NETCore": {
               "target": "Package",
-              "version": "[131.2.70, )"
+              "version": "[131.3.50, )"
             },
             "CefSharp.WinForms.NETCore": {
               "target": "Package",
-              "version": "[131.2.70, )"
+              "version": "[131.3.50, )"
             },
             "CefSharp.Wpf.NETCore": {
               "target": "Package",
-              "version": "[131.2.70, )"
+              "version": "[131.3.50, )"
             },
             "EPPlus": {
               "target": "Package",
-              "version": "[7.5.1, )"
+              "version": "[7.5.3, )"
             },
             "Google.Apis.CustomSearchAPI.v1": {
               "target": "Package",
@@ -225,7 +225,7 @@
             },
             "System.Data.OleDb": {
               "target": "Package",
-              "version": "[9.0.0, )"
+              "version": "[9.0.1, )"
             },
             "System.Data.SQLite.Core": {
               "target": "Package",
@@ -237,15 +237,15 @@
             },
             "System.Speech": {
               "target": "Package",
-              "version": "[9.0.0, )"
+              "version": "[9.0.1, )"
             },
             "System.Text.Encodings.Web": {
               "target": "Package",
-              "version": "[9.0.0, )"
+              "version": "[9.0.1, )"
             },
             "System.Text.Json": {
               "target": "Package",
-              "version": "[9.0.0, )"
+              "version": "[9.0.1, )"
             },
             "SystemExtensions.NetCore": {
               "target": "Package",
@@ -261,15 +261,15 @@
             },
             "chromiumembeddedframework.runtime.win-arm64": {
               "target": "Package",
-              "version": "[131.2.7, )"
+              "version": "[131.3.5, )"
             },
             "chromiumembeddedframework.runtime.win-x64": {
               "target": "Package",
-              "version": "[131.2.7, )"
+              "version": "[131.3.5, )"
             },
             "chromiumembeddedframework.runtime.win-x86": {
               "target": "Package",
-              "version": "[131.2.7, )"
+              "version": "[131.3.5, )"
             }
           },
           "imports": [

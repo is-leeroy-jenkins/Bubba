@@ -118,7 +118,7 @@ namespace Bubba
         /// <summary>
         /// Sends a request to the Chat (Assistant) API.
         /// </summary>
-        Task<string> GetResponseAsync( IList<IGptMessage> messages, GptParameter config );
+        Task<string> GetResponseAsync( string prompt );
 
         /// <summary>
         /// Handles POST requests and response parsing.

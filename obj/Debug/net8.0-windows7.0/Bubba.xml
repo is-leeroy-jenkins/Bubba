@@ -18004,7 +18004,7 @@
             <c> false </c>
             </value>
         </member>
-        <member name="M:Bubba.IGptClient.GetResponseAsync(System.Collections.Generic.IList{Bubba.IGptMessage},Bubba.GptParameter)">
+        <member name="M:Bubba.IGptClient.GetResponseAsync(System.String)">
             <summary>
             Sends a request to the Chat (Assistant) API.
             </summary>
@@ -19165,6 +19165,11 @@
             <seealso cref="T:Bubba.GptBase" />
             <seealso cref="T:Bubba.IGptClient" />
         </member>
+        <member name="F:Bubba.GptClient._header">
+            <summary>
+            The header
+            </summary>
+        </member>
         <member name="F:Bubba.GptClient._httpClient">
             <summary>
             The HTTP client
@@ -19293,7 +19298,7 @@
             The prompt.
             </value>
         </member>
-        <member name="M:Bubba.GptClient.GetResponseAsync(System.Collections.Generic.IList{Bubba.IGptMessage},Bubba.GptParameter)">
+        <member name="M:Bubba.GptClient.GetResponseAsync(System.String)">
             <inheritdoc />
             <summary>
             Sends a request to the Chat (Assistant) API.
@@ -23185,6 +23190,286 @@
             that represents this instance.
             </returns>
         </member>
+        <member name="T:Bubba.Chunker">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Bubba.Chunker._busy">
+            <summary>
+            The busy
+            </summary>
+        </member>
+        <member name="F:Bubba.Chunker._entry">
+            <summary>
+            The entry
+            </summary>
+        </member>
+        <member name="F:Bubba.Chunker._timer">
+            <summary>
+            The timer
+            </summary>
+        </member>
+        <member name="F:Bubba.Chunker._timerCallback">
+            <summary>
+            The timer callback
+            </summary>
+        </member>
+        <member name="F:Bubba.Chunker._statusUpdate">
+            <summary>
+            The status update
+            </summary>
+        </member>
+        <member name="M:Bubba.Chunker.Busy">
+            <summary>
+            Begins the initialize.
+            </summary>
+        </member>
+        <member name="M:Bubba.Chunker.Chill">
+            <summary>
+            Ends the initialize.
+            </summary>
+        </member>
+        <member name="M:Bubba.Chunker.ChunkText(System.Collections.Generic.List{System.String},System.Int32)">
+            <summary>
+            Chunks the text.
+            </summary>
+            <param name="texts">The texts.</param>
+            <param name="maxChunkSize">Maximum size of the chunk.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Bubba.Chunker.Dispose">
+            <inheritdoc />
+            <summary>
+            Releases unmanaged and - optionally - managed resources.
+            </summary>
+        </member>
+        <member name="M:Bubba.Chunker.Dispose(System.Boolean)">
+            <summary>
+            Releases unmanaged and - optionally - managed resources.
+            </summary>
+            <param name="disposing"><c>true</c>
+            to release both managed and unmanaged resources;
+            <c>false</c> to release only unmanaged resources.
+            </param>
+        </member>
+        <member name="M:Bubba.Chunker.Fail(System.Exception)">
+            <summary>
+            Fails the specified ex.
+            </summary>
+            <param name="ex">The ex.</param>
+        </member>
+        <member name="T:Bubba.Extractor">
+            <inheritdoc />
+            <summary>
+            </summary>
+            <seealso cref="T:Bubba.Extractor" />
+        </member>
+        <member name="F:Bubba.Extractor._busy">
+            <summary>
+            The busy
+            </summary>
+        </member>
+        <member name="F:Bubba.Extractor._entry">
+            <summary>
+            The entry
+            </summary>
+        </member>
+        <member name="F:Bubba.Extractor._timer">
+            <summary>
+            The timer
+            </summary>
+        </member>
+        <member name="F:Bubba.Extractor._timerCallback">
+            <summary>
+            The timer callback
+            </summary>
+        </member>
+        <member name="M:Bubba.Extractor.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Bubba.Extractor"/> class.
+            </summary>
+        </member>
+        <member name="M:Bubba.Extractor.ExtractText(System.String)">
+            <summary>
+            Extracts the text.
+            </summary>
+            <param name="directoryPath">The directory path.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Bubba.Extractor.Dispose">
+            <inheritdoc />
+            <summary>
+            Releases unmanaged and - optionally - managed resources.
+            </summary>
+        </member>
+        <member name="M:Bubba.Extractor.Dispose(System.Boolean)">
+            <summary>
+            Releases unmanaged and - optionally - managed resources.
+            </summary>
+            <param name="disposing"><c>true</c>
+            to release both managed and unmanaged resources;
+            <c>false</c> to release only unmanaged resources.
+            </param>
+        </member>
+        <member name="M:Bubba.Extractor.Fail(System.Exception)">
+            <summary>
+            Fails the specified ex.
+            </summary>
+            <param name="ex">The ex.</param>
+        </member>
+        <member name="T:Bubba.RagPipe">
+            <summary>
+            
+            </summary>
+            <seealso cref="T:System.IDisposable" />
+        </member>
+        <member name="F:Bubba.RagPipe._busy">
+            <summary>
+            The busy
+            </summary>
+        </member>
+        <member name="F:Bubba.RagPipe._entry">
+            <summary>
+            The entry
+            </summary>
+        </member>
+        <member name="F:Bubba.RagPipe._timer">
+            <summary>
+            The timer
+            </summary>
+        </member>
+        <member name="F:Bubba.RagPipe._timerCallback">
+            <summary>
+            The timer callback
+            </summary>
+        </member>
+        <member name="F:Bubba.RagPipe._extractor">
+            <summary>
+            The extractor
+            </summary>
+        </member>
+        <member name="F:Bubba.RagPipe._chunker">
+            <summary>
+            The chunker
+            </summary>
+        </member>
+        <member name="F:Bubba.RagPipe._retriever">
+            <summary>
+            The retriever
+            </summary>
+        </member>
+        <member name="F:Bubba.RagPipe._fileRequest">
+            <summary>
+            The file request
+            </summary>
+        </member>
+        <member name="M:Bubba.RagPipe.#ctor(Bubba.Extractor,Bubba.Chunker,Bubba.Retriever,Bubba.GptFileRequest)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Bubba.RagPipe"/> class.
+            </summary>
+            <param name="extractor">The extractor.</param>
+            <param name="chunker">The chunker.</param>
+            <param name="retriever">The retriever.</param>
+            <param name="fileRequest">The file request.</param>
+        </member>
+        <member name="M:Bubba.RagPipe.ExecuteAsync(System.String,System.String)">
+            <summary>
+            Executes the asynchronous.
+            </summary>
+            <param name="query">The query.</param>
+            <param name="pdfDirectory">The PDF directory.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Bubba.RagPipe.Dispose">
+            <inheritdoc />
+            <summary>
+            Releases unmanaged and - optionally - managed resources.
+            </summary>
+        </member>
+        <member name="M:Bubba.RagPipe.Dispose(System.Boolean)">
+            <summary>
+            Releases unmanaged and - optionally - managed resources.
+            </summary>
+            <param name="disposing"><c>true</c>
+            to release both managed and unmanaged resources;
+            <c>false</c> to release only unmanaged resources.
+            </param>
+        </member>
+        <member name="M:Bubba.RagPipe.Fail(System.Exception)">
+            <summary>
+            Fails the specified ex.
+            </summary>
+            <param name="ex">The ex.</param>
+        </member>
+        <member name="T:Bubba.Retriever">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Bubba.Retriever._busy">
+            <summary>
+            The busy
+            </summary>
+        </member>
+        <member name="F:Bubba.Retriever._entry">
+            <summary>
+            The entry
+            </summary>
+        </member>
+        <member name="F:Bubba.Retriever._timer">
+            <summary>
+            The timer
+            </summary>
+        </member>
+        <member name="F:Bubba.Retriever._timerCallback">
+            <summary>
+            The timer callback
+            </summary>
+        </member>
+        <member name="M:Bubba.Retriever.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Bubba.Retriever"/> class.
+            </summary>
+        </member>
+        <member name="M:Bubba.Retriever.GetChunks(System.String,System.Collections.Generic.List{System.String},System.Int32)">
+            <summary>
+            Gets the chunks.
+            </summary>
+            <param name="query">The query.</param>
+            <param name="documentChunks">The document chunks.</param>
+            <param name="topN">The top n.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Bubba.Retriever.CalculateCosineSimilarity(System.String[],System.String[])">
+            <summary>
+            Calculates the cosine similarity.
+            </summary>
+            <param name="tokensA">The tokens a.</param>
+            <param name="tokensB">The tokens b.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Bubba.Retriever.Dispose">
+            <inheritdoc />
+            <summary>
+            Releases unmanaged and - optionally - managed resources.
+            </summary>
+        </member>
+        <member name="M:Bubba.Retriever.Dispose(System.Boolean)">
+            <summary>
+            Releases unmanaged and - optionally - managed resources.
+            </summary>
+            <param name="disposing"><c>true</c>
+            to release both managed and unmanaged resources;
+            <c>false</c> to release only unmanaged resources.
+            </param>
+        </member>
+        <member name="M:Bubba.Retriever.Fail(System.Exception)">
+            <summary>
+            Fails the specified ex.
+            </summary>
+            <param name="ex">The ex.</param>
+        </member>
         <member name="T:Bubba.AssistantRequest">
             <inheritdoc />
             <summary>
@@ -23622,229 +23907,6 @@
             A <see cref="T:System.String" /> that represents this instance.
             </returns>
         </member>
-        <member name="T:Bubba.FileApiRequest">
-            <inheritdoc />
-            <summary>
-            </summary>
-            <seealso cref="T:Bubba.GptRequest" />
-        </member>
-        <member name="F:Bubba.FileApiRequest._id">
-            <summary>
-            The file identifier, which can be referenced in the API endpoints.
-            </summary>
-        </member>
-        <member name="F:Bubba.FileApiRequest._fileId">
-            <summary>
-            The file identifier
-            </summary>
-        </member>
-        <member name="F:Bubba.FileApiRequest._purpose">
-            <summary>
-            The intended purpose of the file.
-            Supported values are assistants, assistants_output,
-            batch, batch_output, fine-tune, fine-tune-results and vision.
-            </summary>
-        </member>
-        <member name="F:Bubba.FileApiRequest._limit">
-            <summary>
-            A limit on the number of objects to be returned.
-            Limit can range between 1 and 10,000,
-            and the default is 10,000.
-            </summary>
-        </member>
-        <member name="F:Bubba.FileApiRequest._order">
-            <summary>
-            Sort order by the created_at timestamp of the objects.
-            asc for ascending order and desc for descending order
-            </summary>
-        </member>
-        <member name="F:Bubba.FileApiRequest._after">
-            <summary>
-            A cursor for use in pagination. after is an object ID
-            defines your place in the list. For instance, if you
-            make a list request and receive 100 objects, ending with
-            obj_foo, your subsequent call can include after=obj_foo
-            in order to fetch the next page of the list
-            </summary>
-        </member>
-        <member name="F:Bubba.FileApiRequest._createdAt">
-            <summary>
-            The Unix timestamp (in seconds) for when the file was created.
-            </summary>
-        </member>
-        <member name="F:Bubba.FileApiRequest._bytes">
-            <summary>
-            The size of the file, in bytes.
-            </summary>
-        </member>
-        <member name="F:Bubba.FileApiRequest._fileName">
-            <summary>
-            The file name
-            </summary>
-        </member>
-        <member name="F:Bubba.FileApiRequest._mimeType">
-            <summary>
-            The MIME type
-            </summary>
-        </member>
-        <member name="M:Bubba.FileApiRequest.#ctor">
-            <summary>
-            Initializes a new instance of the
-            <see cref="T:Bubba.FileApiRequest"/> class.
-            </summary>
-            <inheritdoc />
-        </member>
-        <member name="P:Bubba.FileApiRequest.HttpClient">
-            <inheritdoc />
-            <summary>
-            Gets or sets a value indicating whether this
-            <see cref="P:Bubba.GptRequest.HttpClient" /> is store.
-            </summary>
-            <value>
-              <c>true</c> if store; otherwise, <c>false</c>.
-            </value>
-        </member>
-        <member name="P:Bubba.FileApiRequest.Id">
-            <summary>
-            The file identifier, which can be referenced in the API endpoints.
-            </summary>
-            <value>
-            The identifier.
-            </value>
-        </member>
-        <member name="P:Bubba.FileApiRequest.Purpose">
-            <summary>
-            The intended purpose of the file.
-            Supported values are assistants, assistants_output,
-            batch, batch_output, fine-tune, fine-tune-results and vision.
-            </summary>
-            <value>
-            The purpose.
-            </value>
-        </member>
-        <member name="P:Bubba.FileApiRequest.Limit">
-            <summary>
-            A limit on the number of objects to be returned.
-            Limit can range between 1 and 10,000,
-            and the default is 10,000.
-            </summary>
-            <value>
-            The limit.
-            </value>
-        </member>
-        <member name="P:Bubba.FileApiRequest.Order">
-            <summary>
-            Sort order by the created_at timestamp of the objects.
-            asc for ascending order and desc for descending order
-            </summary>
-            <value>
-            The order.
-            </value>
-        </member>
-        <member name="P:Bubba.FileApiRequest.After">
-            <summary>
-            A cursor for use in pagination. after is an object ID
-            defines your place in the list. For instance, if you
-            make a list request and receive 100 objects, ending with
-            obj_foo, your subsequent call can include after=obj_foo
-            in order to fetch the next page of the list
-            </summary>
-            <value>
-            The after.
-            </value>
-        </member>
-        <member name="P:Bubba.FileApiRequest.CreatedAt">
-            <summary>
-            The Unix timestamp (in seconds) for when the file was created.
-            </summary>
-            <value>
-            The created at.
-            </value>
-        </member>
-        <member name="P:Bubba.FileApiRequest.Bytes">
-            <summary>
-            The size of the file, in bytes.
-            </summary>
-            <value>
-            The bytes.
-            </value>
-        </member>
-        <member name="P:Bubba.FileApiRequest.FileId">
-            <summary>
-            Gets or sets the file identifier.
-            </summary>
-            <value>
-            The file identifier.
-            </value>
-        </member>
-        <member name="P:Bubba.FileApiRequest.FileName">
-            <summary>
-            Gets or sets the name of the file.
-            </summary>
-            <value>
-            The name of the file.
-            </value>
-        </member>
-        <member name="P:Bubba.FileApiRequest.MimeType">
-            <summary>
-            Gets or sets the type of the MIME.
-            </summary>
-            <value>
-            The type of the MIME.
-            </value>
-        </member>
-        <member name="P:Bubba.FileApiRequest.EndPoint">
-            <inheritdoc />
-            <summary>
-            Gets the end point.
-            </summary>
-            <value>
-            The end point.
-            </value>
-        </member>
-        <member name="M:Bubba.FileApiRequest.UploadAsync(System.String)">
-            <summary>
-            Uploads the file asynchronous.
-            </summary>
-            <param name="filePath">The file path.</param>
-            <returns></returns>
-        </member>
-        <member name="M:Bubba.FileApiRequest.GetListAsync">
-            <summary>
-            Lists the files asynchronous.
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:Bubba.FileApiRequest.RetrieveAsync(System.String)">
-            <summary>
-            Retrieves the file asynchronous.
-            </summary>
-            <param name="fileId">The file identifier.</param>
-            <returns></returns>
-        </member>
-        <member name="M:Bubba.FileApiRequest.DeleteAsync(System.String)">
-            <summary>
-            Deletes the file asynchronous.
-            </summary>
-            <param name="fileId">The file identifier.</param>
-            <returns></returns>
-        </member>
-        <member name="M:Bubba.FileApiRequest.GetData">
-            <inheritdoc />
-            <summary>
-            Gets the data.
-            </summary>
-            <returns>
-            </returns>
-        </member>
-        <member name="M:Bubba.FileApiRequest.ToString">
-            <summary>
-            Converts to string.
-            </summary>
-            <returns>
-            A <see cref="T:System.String" /> that represents this instance.
-            </returns>
-        </member>
         <member name="T:Bubba.FineTuningRequest">
             <inheritdoc />
             <summary>
@@ -23999,6 +24061,200 @@
             <returns>
             A <see cref="T:System.String" /> that represents this instance.
             </returns>
+        </member>
+        <member name="T:Bubba.GptFileRequest">
+            <inheritdoc />
+            <summary>
+            </summary>
+            <seealso cref="T:Bubba.GptRequest" />
+        </member>
+        <member name="F:Bubba.GptFileRequest._id">
+            <summary>
+            The file identifier, which can be referenced in the API endpoints.
+            </summary>
+        </member>
+        <member name="F:Bubba.GptFileRequest._fileId">
+            <summary>
+            The file identifier
+            </summary>
+        </member>
+        <member name="F:Bubba.GptFileRequest._purpose">
+            <summary>
+            The intended purpose of the file.
+            </summary>
+        </member>
+        <member name="F:Bubba.GptFileRequest._limit">
+            <summary>
+            </summary>
+        </member>
+        <member name="F:Bubba.GptFileRequest._order">
+            <summary>
+            </summary>
+        </member>
+        <member name="F:Bubba.GptFileRequest._after">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="F:Bubba.GptFileRequest._createdAt">
+            <summary>
+            The Unix timestamp (in seconds) for when the file was created.
+            </summary>
+        </member>
+        <member name="F:Bubba.GptFileRequest._bytes">
+            <summary>
+            The size of the file, in bytes.
+            </summary>
+        </member>
+        <member name="F:Bubba.GptFileRequest._fileName">
+            <summary>
+            The file name
+            </summary>
+        </member>
+        <member name="F:Bubba.GptFileRequest._mimeType">
+            <summary>
+            The MIME type
+            </summary>
+        </member>
+        <member name="M:Bubba.GptFileRequest.#ctor">
+            <summary>
+            Initializes a new instance of the
+            <see cref="T:Bubba.GptFileRequest"/> class.
+            </summary>
+            <inheritdoc />
+        </member>
+        <member name="P:Bubba.GptFileRequest.Id">
+            <summary>
+            The file identifier, which can be referenced in the API endpoints.
+            </summary>
+            <value>
+            The identifier.
+            </value>
+        </member>
+        <member name="P:Bubba.GptFileRequest.Purpose">
+            <summary>
+            The intended purpose of the file.
+            Supported values are assistants, assistants_output,
+            batch, batch_output, fine-tune, fine-tune-results and vision.
+            </summary>
+            <value>
+            The purpose.
+            </value>
+        </member>
+        <member name="P:Bubba.GptFileRequest.Limit">
+            <summary>
+            A limit on the number of objects to be returned.
+            Limit can range between 1 and 10,000,
+            and the default is 10,000.
+            </summary>
+            <value>
+            The limit.
+            </value>
+        </member>
+        <member name="P:Bubba.GptFileRequest.Order">
+            <summary>
+            Sort order by the created_at timestamp of the objects.
+            asc for ascending order and desc for descending order
+            </summary>
+            <value>
+            The order.
+            </value>
+        </member>
+        <member name="P:Bubba.GptFileRequest.After">
+            <summary>
+            A cursor for use in pagination. after is an object ID
+            defines your place in the list. For instance, if you
+            make a list request and receive 100 objects, ending with
+            obj_foo, your subsequent call can include after=obj_foo
+            in order to fetch the next page of the list
+            </summary>
+            <value>
+            The after.
+            </value>
+        </member>
+        <member name="P:Bubba.GptFileRequest.CreatedAt">
+            <summary>
+            The Unix timestamp (in seconds) for when the file was created.
+            </summary>
+            <value>
+            The created at.
+            </value>
+        </member>
+        <member name="P:Bubba.GptFileRequest.Bytes">
+            <summary>
+            The size of the file, in bytes.
+            </summary>
+            <value>
+            The bytes.
+            </value>
+        </member>
+        <member name="P:Bubba.GptFileRequest.FileId">
+            <summary>
+            Gets or sets the file identifier.
+            </summary>
+            <value>
+            The file identifier.
+            </value>
+        </member>
+        <member name="P:Bubba.GptFileRequest.FileName">
+            <summary>
+            Gets or sets the name of the file.
+            </summary>
+            <value>
+            The name of the file.
+            </value>
+        </member>
+        <member name="P:Bubba.GptFileRequest.MimeType">
+            <summary>
+            Gets or sets the type of the MIME.
+            </summary>
+            <value>
+            The type of the MIME.
+            </value>
+        </member>
+        <member name="P:Bubba.GptFileRequest.EndPoint">
+            <inheritdoc />
+            <summary>
+            Gets the end point.
+            </summary>
+            <value>
+            The end point.
+            </value>
+        </member>
+        <member name="M:Bubba.GptFileRequest.UploadAsync(System.String)">
+            <summary>
+            Uploads the file asynchronous.
+            </summary>
+            <param name="filePath">The file path.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Bubba.GptFileRequest.GetListAsync">
+            <summary>
+            Lists the files asynchronous.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Bubba.GptFileRequest.RetrieveAsync(System.String)">
+            <summary>
+            Retrieves the file asynchronous.
+            </summary>
+            <param name="fileId">The file identifier.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Bubba.GptFileRequest.GetResponseAsync(System.String,System.Collections.Generic.IList{System.String})">
+            <summary>
+            Gets the response asynchronous.
+            </summary>
+            <param name="query">The query.</param>
+            <param name="contextChunks">The context chunks.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Bubba.GptFileRequest.DeleteAsync(System.String)">
+            <summary>
+            Deletes the file asynchronous.
+            </summary>
+            <param name="fileId">The file identifier.</param>
+            <returns></returns>
         </member>
         <member name="T:Bubba.GptRequest">
             <inheritdoc />
@@ -35560,6 +35816,14 @@
             <param name="e">The <see cref="T:System.Windows.RoutedEventArgs"/>
             instance containing the event data.</param>
         </member>
+        <member name="M:Bubba.ChatWindow.OnTabChanged(System.Object,System.Windows.RoutedEventArgs)">
+            <summary>
+            Called when [tab changed].
+            </summary>
+            <param name="sender">The sender.</param>
+            <param name="e">The <see cref="T:System.Windows.RoutedEventArgs"/>
+            instance containing the event data.</param>
+        </member>
         <member name="M:Bubba.ChatWindow.OnStatusUpdated(System.Object,CefSharp.StatusMessageEventArgs)">
             <summary>
             Called when [status updated].
@@ -35576,7 +35840,7 @@
             <param name="e">The <see cref="T:System.EventArgs"/>
             instance containing the event data.</param>
         </member>
-        <member name="M:Bubba.ChatWindow.OnStoreBoxChecked(System.Object,System.EventArgs)">
+        <member name="M:Bubba.ChatWindow.OnStoreCheckBoxChecked(System.Object,System.EventArgs)">
             <summary>
             Called when [store box checked].
             </summary>
@@ -35584,7 +35848,7 @@
             <param name="e">The <see cref="T:System.EventArgs"/>
             instance containing the event data.</param>
         </member>
-        <member name="M:Bubba.ChatWindow.OnStreamBoxChecked(System.Object,System.EventArgs)">
+        <member name="M:Bubba.ChatWindow.OnStreamCheckBoxChecked(System.Object,System.EventArgs)">
             <summary>
             Called when [stream box checked].
             </summary>

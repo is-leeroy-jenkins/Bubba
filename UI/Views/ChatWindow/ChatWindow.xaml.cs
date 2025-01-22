@@ -834,7 +834,7 @@ namespace Bubba
                 LanguageListBox.SelectionChanged += OnSelectedLanguageChanged;
                 ListenCheckBox.Checked += OnListenCheckedChanged;
                 MuteCheckBox.Checked += OnMuteCheckedBoxChanged;
-                StoreCheckBox.Checked += OnStoreBoxChecked;
+                StoreCheckBox.Checked += OnStoreCheckBoxChecked;
                 GenerationComboBox.SelectionChanged += OnSelectedRequestTypeChanged;
                 GenerationComboBox.SelectionChanged += OnSelectedRequestTypeChanged;
                 ImageSizeComboBox.SelectionChanged += OnSelectedImageSizeChanged;
@@ -875,7 +875,7 @@ namespace Bubba
                 LanguageListBox.SelectionChanged -= OnSelectedLanguageChanged;
                 ListenCheckBox.Checked -= OnListenCheckedChanged;
                 MuteCheckBox.Checked -= OnMuteCheckedBoxChanged;
-                StoreCheckBox.Checked -= OnStoreBoxChecked;
+                StoreCheckBox.Checked -= OnStoreCheckBoxChecked;
                 GenerationComboBox.SelectionChanged -= OnSelectedRequestTypeChanged;
                 GenerationComboBox.SelectionChanged -= OnSelectedRequestTypeChanged;
                 ImageSizeComboBox.SelectionChanged -= OnSelectedImageSizeChanged;
@@ -1040,6 +1040,7 @@ namespace Bubba
         {
             try
             {
+                PopulateLanguageListBox();
                 LanguageListBox.SelectedValue = "Text";
             }
             catch( Exception ex )
@@ -1683,10 +1684,11 @@ namespace Bubba
                 var _web = new GptImageDialog
                 {
                     Topmost = true,
+                    Owner = this,
                     WindowStartupLocation = WindowStartupLocation.CenterScreen
                 };
 
-                _web.ShowDialog( );
+                _web.Show( );
             }
             catch( Exception ex )
             {
@@ -2226,8 +2228,7 @@ namespace Bubba
                 InitializeChatEditor( );
                 App.ActiveWindows.Add( "ChatWindow", this );
                 _systemPrompt = OpenAI.BubbaPrompt;
-                StreamCheckBox.IsChecked = true;
-                StreamCheckBox.Checked += OnStreamBoxChecked;
+                StreamCheckBox.Checked += OnStreamCheckBoxChecked;
                 ModelComboBox.SelectionChanged += OnSelectedModelChanged;
                 SetGptParameters( );
                 UserLabel.Content = $@"User ID : {Environment.UserName}";
@@ -2264,6 +2265,25 @@ namespace Bubba
             catch( Exception ex )
             {
                 Fail( ex );
+            }
+        }
+
+        /// <summary>
+        /// Called when [tab changed].
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The <see cref="RoutedEventArgs"/>
+        /// instance containing the event data.</param>
+        private void OnTabChanged(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                var _message = "NOT YET IMPLEMENTED!";
+                SendMessage(_message);
+            }
+            catch(Exception ex)
+            {
+                Fail(ex);
             }
         }
 
@@ -2312,7 +2332,7 @@ namespace Bubba
         /// <param name="sender">The sender.</param>
         /// <param name="e">The <see cref="EventArgs"/>
         /// instance containing the event data.</param>
-        private void OnStoreBoxChecked( object sender, EventArgs e )
+        private void OnStoreCheckBoxChecked( object sender, EventArgs e )
         {
             try
             {
@@ -2333,7 +2353,7 @@ namespace Bubba
         /// <param name="sender">The sender.</param>
         /// <param name="e">The <see cref="EventArgs"/>
         /// instance containing the event data.</param>
-        private void OnStreamBoxChecked( object sender, EventArgs e )
+        private void OnStreamCheckBoxChecked( object sender, EventArgs e )
         {
             try
             {
