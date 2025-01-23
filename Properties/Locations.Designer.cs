@@ -169,7 +169,7 @@ namespace Bubba.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to https://cse.google.com/cse?cx=e78aa3dcb21474bf4.
+        ///   Looks up a localized string similar to https://www.google.com.
         /// </summary>
         internal static string Google {
             get {
@@ -291,6 +291,15 @@ namespace Bubba.Properties {
         internal static string Reports {
             get {
                 return ResourceManager.GetString("Reports", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to https://cse.google.com/cse?cx=e78aa3dcb21474bf4.
+        /// </summary>
+        internal static string SearchUrl {
+            get {
+                return ResourceManager.GetString("SearchUrl", resourceCulture);
             }
         }
         

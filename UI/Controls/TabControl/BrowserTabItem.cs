@@ -169,27 +169,6 @@ namespace Bubba
         /// </summary>
         public event PropertyChangedEventHandler PropertyChanged;
 
-        /// <summary>
-        /// Gets or sets an arbitrary object value
-        /// that can be used to store custom
-        /// information about this element.
-        /// </summary>
-        public object Tag
-        {
-            get
-            {
-                return _tag;
-            }
-            set
-            {
-                if(_tag != value)
-                {
-                    _tag = value;
-                    OnPropertyChanged(nameof(Tag));
-                }
-            }
-        }
-
         /// <inheritdoc />
         /// <summary>
         /// Initializes a new instance of the

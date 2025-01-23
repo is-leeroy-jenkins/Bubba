@@ -74,7 +74,7 @@ namespace Bubba
     [ SuppressMessage( "ReSharper", "MergeIntoPattern" ) ]
     [ SuppressMessage( "ReSharper", "PossibleNullReferenceException" ) ]
     [ SuppressMessage( "ReSharper", "RedundantExtendsListEntry" ) ]
-    public class WebControl : MetroTabControl, ISupportInitialize, IDisposable
+    public class WebControl : BrowserTabControl, ISupportInitialize, IDisposable
     {
         /// <summary>
         /// The text left margin
@@ -329,28 +329,6 @@ namespace Bubba
             return _result;
         }
 
-        /// <inheritdoc />
-        /// <summary>
-        /// Indicates that the initialization of the
-        /// <see cref="T:System.Windows.Controls.ItemsControl" />
-        /// object is about to start.
-        /// </summary>
-        public override void BeginInit( )
-        {
-            _initializing = true;
-        }
-
-        /// <inheritdoc />
-        /// <summary>
-        /// Indicates that the initialization of the
-        /// <see cref="T:System.Windows.Controls.ItemsControl" />
-        /// object is complete.
-        /// </summary>
-        public override void EndInit( )
-        {
-            _initializing = false;
-        }
-
         /// <summary>
         /// Ensures that all visual child elements of this
         /// element are properly updated for layout.
@@ -363,25 +341,6 @@ namespace Bubba
                 _formatString.FormatFlags |= StringFormatFlags.NoWrap;
                 _formatString.FormatFlags &= StringFormatFlags.DirectionRightToLeft;
             }
-        }
-
-        /// <summary>
-        /// Selects the item.
-        /// </summary>
-        /// <param name="tabItem">The tab item.</param>
-        public void SelectItem( BrowserTabItem tabItem )
-        {
-            tabItem.IsVisible = true;
-            tabItem.Selected = true;
-        }
-
-        /// <summary>
-        /// Uns the select item.
-        /// </summary>
-        /// <param name="tabItem">The tab item.</param>
-        public void UnSelectItem( BrowserTabItem tabItem )
-        {
-            tabItem.Selected = false;
         }
 
         /// <summary>
@@ -405,7 +364,7 @@ namespace Bubba
         /// Raises the <see cref="E:TabStripItemClosing" /> event.
         /// </summary>
         /// instance containing the event data.</param>
-        protected virtual void OnTabStripItemClosing( TabClosingEventArgs e )
+        protected override void OnTabStripItemClosing( TabClosingEventArgs e )
         {
             TabStripItemClosing?.Invoke( e );
         }
@@ -415,7 +374,7 @@ namespace Bubba
         /// </summary>
         /// <param name="e">The <see cref="RoutedEventArgs"/>
         /// instance containing the event data.</param>
-        protected virtual void OnTabStripItemClosed( RoutedEventArgs e )
+        protected override void OnTabStripItemClosed( RoutedEventArgs e )
         {
             _selectedItem = null;
             TabStripItemClosed?.Invoke( this, e );
@@ -426,7 +385,7 @@ namespace Bubba
         /// </summary>
         /// <param name="e">The <see cref="HandledEventArgs"/>
         /// instance containing the event data.</param>
-        protected virtual void OnMenuItemsLoading( HandledEventArgs e )
+        protected override void OnMenuItemsLoading( HandledEventArgs e )
         {
             MenuItemsLoading?.Invoke( this, e );
         }
@@ -436,7 +395,7 @@ namespace Bubba
         /// </summary>
         /// <param name="e">The <see cref="RoutedEventArgs"/>
         /// instance containing the event data.</param>
-        protected virtual void OnMenuItemsLoaded( RoutedEventArgs e )
+        protected override void OnMenuItemsLoaded( RoutedEventArgs e )
         {
             MenuItemsLoaded?.Invoke( this, e );
         }
@@ -446,7 +405,7 @@ namespace Bubba
         /// </summary>
         /// <param name="e">The <see cref="BrowserTabChangedEventArgs"/>
         /// instance containing the event data.</param>
-        protected virtual void OnBrowserTabItemChanged( BrowserTabChangedEventArgs e )
+        protected override void OnBrowserTabItemChanged( BrowserTabChangedEventArgs e )
         {
             TabStripItemSelectionChanged?.Invoke( e );
         }
@@ -456,7 +415,7 @@ namespace Bubba
         /// </summary>
         /// <param name="e">The <see cref="RoutedEventArgs"/>
         /// instance containing the event data.</param>
-        protected virtual void OnRightToLeftChanged( RoutedEventArgs e )
+        protected override void OnRightToLeftChanged( RoutedEventArgs e )
         {
             UpdateFormat( );
         }
@@ -466,7 +425,7 @@ namespace Bubba
         /// </summary>
         /// <param name="e">The <see cref="RoutedEventArgs"/>
         /// instance containing the event data.</param>
-        protected virtual void OnSizeChanged( RoutedEventArgs e )
+        protected override void OnSizeChanged( RoutedEventArgs e )
         {
             if( !_initializing )
             {
@@ -507,7 +466,7 @@ namespace Bubba
         /// </summary>
         /// <param name="disposing"><c>true</c> to release both managed and unmanaged resources;
         /// <c>false</c> to release only unmanaged resources.</param>
-        protected virtual void Dispose( bool disposing )
+        protected override void Dispose( bool disposing )
         {
             if( disposing )
             {
@@ -526,18 +485,6 @@ namespace Bubba
 
                 _formatString?.Dispose( );
             }
-        }
-
-        /// <inheritdoc />
-        /// <summary>
-        /// Performs application-defined tasks
-        /// associated with freeing, releasing,
-        /// or resetting unmanaged resources.
-        /// </summary>
-        public void Dispose( )
-        {
-            Dispose( true );
-            GC.SuppressFinalize( this );
         }
     }
 }

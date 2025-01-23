@@ -3,28 +3,16 @@
   "WorkspaceRootPath": "C:\\Users\\terry\\source\\repos\\Bubba\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{08012640-3765-4051-B5EB-4FF782150AEC}|Bubba.csproj|c:\\users\\terry\\source\\repos\\bubba\\io\\network\\domainsystem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{08012640-3765-4051-B5EB-4FF782150AEC}|Bubba.csproj|solutionrelative:io\\network\\domainsystem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{08012640-3765-4051-B5EB-4FF782150AEC}|Bubba.csproj|c:\\users\\terry\\source\\repos\\bubba\\io\\network\\urldecoder.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{08012640-3765-4051-B5EB-4FF782150AEC}|Bubba.csproj|solutionrelative:io\\network\\urldecoder.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{08012640-3765-4051-B5EB-4FF782150AEC}|Bubba.csproj|c:\\users\\terry\\source\\repos\\bubba\\app.xaml.cs||{8B382828-6202-11D1-8870-0000F87579D2}|",
-      "RelativeMoniker": "D:0:0:{08012640-3765-4051-B5EB-4FF782150AEC}|Bubba.csproj|solutionrelative:app.xaml.cs||{8B382828-6202-11D1-8870-0000F87579D2}|"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{08012640-3765-4051-B5EB-4FF782150AEC}|Bubba.csproj|c:\\users\\terry\\source\\repos\\bubba\\ui\\views\\webbrowser\\webbrowser.xaml.cs||{8B382828-6202-11D1-8870-0000F87579D2}|",
       "RelativeMoniker": "D:0:0:{08012640-3765-4051-B5EB-4FF782150AEC}|Bubba.csproj|solutionrelative:ui\\views\\webbrowser\\webbrowser.xaml.cs||{8B382828-6202-11D1-8870-0000F87579D2}|"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{08012640-3765-4051-B5EB-4FF782150AEC}|Bubba.csproj|c:\\users\\terry\\source\\repos\\bubba\\static\\webminion.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{08012640-3765-4051-B5EB-4FF782150AEC}|Bubba.csproj|solutionrelative:static\\webminion.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{08012640-3765-4051-B5EB-4FF782150AEC}|Bubba.csproj|c:\\users\\terry\\source\\repos\\bubba\\ui\\views\\chatwindow\\chatwindow.xaml.cs||{8B382828-6202-11D1-8870-0000F87579D2}|",
       "RelativeMoniker": "D:0:0:{08012640-3765-4051-B5EB-4FF782150AEC}|Bubba.csproj|solutionrelative:ui\\views\\chatwindow\\chatwindow.xaml.cs||{8B382828-6202-11D1-8870-0000F87579D2}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{08012640-3765-4051-B5EB-4FF782150AEC}|Bubba.csproj|c:\\users\\terry\\source\\repos\\bubba\\app.xaml.cs||{8B382828-6202-11D1-8870-0000F87579D2}|",
+      "RelativeMoniker": "D:0:0:{08012640-3765-4051-B5EB-4FF782150AEC}|Bubba.csproj|solutionrelative:app.xaml.cs||{8B382828-6202-11D1-8870-0000F87579D2}|"
     }
   ],
   "DocumentGroupContainers": [
@@ -34,7 +22,7 @@
       "DocumentGroups": [
         {
           "DockedHeight": 332,
-          "SelectedChildIndex": 16,
+          "SelectedChildIndex": 12,
           "Children": [
             {
               "$type": "Bookmark",
@@ -86,76 +74,37 @@
               "Title": "App.xaml.cs",
               "DocumentMoniker": "C:\\Users\\terry\\source\\repos\\Bubba\\App.xaml.cs",
               "RelativeDocumentMoniker": "App.xaml.cs",
-              "ToolTip": "C:\\Users\\terry\\source\\repos\\Bubba\\App.xaml.cs",
-              "RelativeToolTip": "App.xaml.cs",
-              "ViewState": "AgIAAIACAAAAAAAAAAAowJsCAAAAAAAAAAAAAA==",
+              "ToolTip": "C:\\Users\\terry\\source\\repos\\Bubba\\App.xaml.cs*",
+              "RelativeToolTip": "App.xaml.cs*",
+              "ViewState": "AgIAAGwAAAAAAAAAAAAwwIgAAABPAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-01-23T00:25:46.771Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 0,
               "Title": "WebBrowser.xaml.cs",
               "DocumentMoniker": "C:\\Users\\terry\\source\\repos\\Bubba\\UI\\Views\\WebBrowser\\WebBrowser.xaml.cs",
               "RelativeDocumentMoniker": "UI\\Views\\WebBrowser\\WebBrowser.xaml.cs",
               "ToolTip": "C:\\Users\\terry\\source\\repos\\Bubba\\UI\\Views\\WebBrowser\\WebBrowser.xaml.cs",
               "RelativeToolTip": "UI\\Views\\WebBrowser\\WebBrowser.xaml.cs",
-              "ViewState": "AgIAALMEAAAAAAAAAAAuwL0EAAAfAAAAAAAAAA==",
+              "ViewState": "AgIAADQCAAAAAAAAAAAcwC0CAABDAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-01-23T01:16:28.41Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 1,
               "Title": "ChatWindow.xaml.cs",
               "DocumentMoniker": "C:\\Users\\terry\\source\\repos\\Bubba\\UI\\Views\\ChatWindow\\ChatWindow.xaml.cs",
               "RelativeDocumentMoniker": "UI\\Views\\ChatWindow\\ChatWindow.xaml.cs",
               "ToolTip": "C:\\Users\\terry\\source\\repos\\Bubba\\UI\\Views\\ChatWindow\\ChatWindow.xaml.cs",
               "RelativeToolTip": "UI\\Views\\ChatWindow\\ChatWindow.xaml.cs",
-              "ViewState": "AgIAABEJAAAAAAAAAAAmwB0JAAAWAAAAAAAAAA==",
+              "ViewState": "AgIAAEgHAAAAAAAAAAAAAFYHAAANAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-01-23T02:33:57.163Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "UrlDecoder.cs",
-              "DocumentMoniker": "C:\\Users\\terry\\source\\repos\\Bubba\\IO\\Network\\UrlDecoder.cs",
-              "RelativeDocumentMoniker": "IO\\Network\\UrlDecoder.cs",
-              "ToolTip": "C:\\Users\\terry\\source\\repos\\Bubba\\IO\\Network\\UrlDecoder.cs",
-              "RelativeToolTip": "IO\\Network\\UrlDecoder.cs",
-              "ViewState": "AgIAACEAAAAAAAAAAADwvzAAAAARAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-23T14:13:16.869Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "WebMinion.cs",
-              "DocumentMoniker": "C:\\Users\\terry\\source\\repos\\Bubba\\Static\\WebMinion.cs",
-              "RelativeDocumentMoniker": "Static\\WebMinion.cs",
-              "ToolTip": "C:\\Users\\terry\\source\\repos\\Bubba\\Static\\WebMinion.cs",
-              "RelativeToolTip": "Static\\WebMinion.cs",
-              "ViewState": "AgIAAPMAAAAAAAAAAAAgwAYBAAAJAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-23T14:13:34.626Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "DomainSystem.cs",
-              "DocumentMoniker": "C:\\Users\\terry\\source\\repos\\Bubba\\IO\\Network\\DomainSystem.cs",
-              "RelativeDocumentMoniker": "IO\\Network\\DomainSystem.cs",
-              "ToolTip": "C:\\Users\\terry\\source\\repos\\Bubba\\IO\\Network\\DomainSystem.cs",
-              "RelativeToolTip": "IO\\Network\\DomainSystem.cs",
-              "ViewState": "AgIAACEAAAAAAAAAAADwvzwAAAAeAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-23T14:39:42.325Z",
               "EditorCaption": ""
             }
           ]

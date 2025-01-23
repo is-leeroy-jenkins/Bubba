@@ -27350,58 +27350,58 @@
             Notifies this instance.
             </summary>
         </member>
-        <member name="T:Bubba.DomainNameSystem">
+        <member name="T:Bubba.DomainSystem">
             <summary>
             
             </summary>
         </member>
-        <member name="M:Bubba.DomainNameSystem.#ctor">
+        <member name="M:Bubba.DomainSystem.#ctor">
             <summary>
             Initializes a new instance of the
-            <see cref="T:Bubba.DomainNameSystem"/> class.
+            <see cref="T:Bubba.DomainSystem"/> class.
             </summary>
         </member>
-        <member name="M:Bubba.DomainNameSystem.GetHostAddresses(System.String)">
+        <member name="M:Bubba.DomainSystem.GetHostAddresses(System.String)">
             <summary>
             Gets the IP addresses associated with a host name.
             </summary>
         </member>
-        <member name="M:Bubba.DomainNameSystem.GetHostName(System.Net.IPAddress)">
+        <member name="M:Bubba.DomainSystem.GetHostName(System.Net.IPAddress)">
             <summary>
             Gets the host name for the given IP address.
             </summary>
         </member>
-        <member name="M:Bubba.DomainNameSystem.GetLocalAddress">
+        <member name="M:Bubba.DomainSystem.GetLocalAddress">
             <summary>
             Gets the local machine's IP address.
             </summary>
         </member>
-        <member name="M:Bubba.DomainNameSystem.GetLocalHostName">
+        <member name="M:Bubba.DomainSystem.GetLocalHostName">
             <summary>
             Gets the fully qualified domain name (FQDN) of the local machine.
             </summary>
         </member>
-        <member name="M:Bubba.DomainNameSystem.CanReachHost(System.String)">
+        <member name="M:Bubba.DomainSystem.CanReachHost(System.String)">
             <summary>
             Pings a host name or IP address to check reachability.
             </summary>
         </member>
-        <member name="M:Bubba.DomainNameSystem.GetAliases(System.Net.IPAddress)">
+        <member name="M:Bubba.DomainSystem.GetAliases(System.Net.IPAddress)">
             <summary>
             Performs a reverse DNS lookup to find all alias names for a given IP address.
             </summary>
         </member>
-        <member name="M:Bubba.DomainNameSystem.IsValidHostName(System.String)">
+        <member name="M:Bubba.DomainSystem.IsValidHostName(System.String)">
             <summary>
             Validates if a given string is a valid host name.
             </summary>
         </member>
-        <member name="M:Bubba.DomainNameSystem.IsValidIpAddress(System.String)">
+        <member name="M:Bubba.DomainSystem.IsValidIpAddress(System.String)">
             <summary>
             Validates if a given string is a valid IP address.
             </summary>
         </member>
-        <member name="M:Bubba.DomainNameSystem.ResolveHost(System.String)">
+        <member name="M:Bubba.DomainSystem.ResolveHost(System.String)">
             <summary>
             Resolves both IP addresses and aliases for a given host name.
             </summary>
@@ -30365,7 +30365,7 @@
         </member>
         <member name="P:Bubba.Properties.Locations.Google">
             <summary>
-              Looks up a localized string similar to https://cse.google.com/cse?cx=e78aa3dcb21474bf4.
+              Looks up a localized string similar to https://www.google.com.
             </summary>
         </member>
         <member name="P:Bubba.Properties.Locations.HomePage">
@@ -30431,6 +30431,11 @@
         <member name="P:Bubba.Properties.Locations.Reports">
             <summary>
               Looks up a localized string similar to Resources\Reports\Report.xlsx.
+            </summary>
+        </member>
+        <member name="P:Bubba.Properties.Locations.SearchUrl">
+            <summary>
+              Looks up a localized string similar to https://cse.google.com/cse?cx=e78aa3dcb21474bf4.
             </summary>
         </member>
         <member name="P:Bubba.Properties.Locations.UserAgent">
@@ -33681,6 +33686,41 @@
             instance containing the event data.
             </param>
         </member>
+        <member name="T:Bubba.BrowserTabControl">
+            <summary>
+            
+            </summary>
+            <seealso cref="T:Bubba.MetroTabControl" />
+            <seealso cref="T:System.ComponentModel.ISupportInitialize" />
+        </member>
+        <member name="P:Bubba.BrowserTabControl.Items">
+            <inheritdoc />
+            <summary>
+            Gets or sets the items.
+            </summary>
+            <value>
+            The items.
+            </value>
+        </member>
+        <member name="M:Bubba.BrowserTabControl.AddTab(Bubba.BrowserTabItem)">
+            <summary>
+            Adds the tab.
+            </summary>
+            <param name="tabItem">The tab item.</param>
+        </member>
+        <member name="M:Bubba.BrowserTabControl.AddTab(Bubba.BrowserTabItem,System.Boolean)">
+            <summary>
+            Adds the tab.
+            </summary>
+            <param name="tabItem">The tab item.</param>
+            <param name="autoSelect">if set to <c>true</c> [automatic select].</param>
+        </member>
+        <member name="M:Bubba.BrowserTabControl.RemoveTab(Bubba.BrowserTabItem)">
+            <summary>
+            Removes the tab.
+            </summary>
+            <param name="tabItem">The tab item.</param>
+        </member>
         <member name="T:Bubba.BrowserTabItem">
             <inheritdoc />
             <summary>
@@ -33791,13 +33831,6 @@
             <inheritdoc />
             <summary>
             Occurs when a property value changes.
-            </summary>
-        </member>
-        <member name="P:Bubba.BrowserTabItem.Tag">
-            <summary>
-            Gets or sets an arbitrary object value
-            that can be used to store custom
-            information about this element.
             </summary>
         </member>
         <member name="M:Bubba.BrowserTabItem.#ctor">
@@ -34134,39 +34167,11 @@
             <param name="pt">The pt.</param>
             <returns></returns>
         </member>
-        <member name="M:Bubba.WebControl.BeginInit">
-            <inheritdoc />
-            <summary>
-            Indicates that the initialization of the
-            <see cref="T:System.Windows.Controls.ItemsControl" />
-            object is about to start.
-            </summary>
-        </member>
-        <member name="M:Bubba.WebControl.EndInit">
-            <inheritdoc />
-            <summary>
-            Indicates that the initialization of the
-            <see cref="T:System.Windows.Controls.ItemsControl" />
-            object is complete.
-            </summary>
-        </member>
         <member name="M:Bubba.WebControl.UpdateFormat">
             <summary>
             Ensures that all visual child elements of this
             element are properly updated for layout.
             </summary>
-        </member>
-        <member name="M:Bubba.WebControl.SelectItem(Bubba.BrowserTabItem)">
-            <summary>
-            Selects the item.
-            </summary>
-            <param name="tabItem">The tab item.</param>
-        </member>
-        <member name="M:Bubba.WebControl.UnSelectItem(Bubba.BrowserTabItem)">
-            <summary>
-            Uns the select item.
-            </summary>
-            <param name="tabItem">The tab item.</param>
         </member>
         <member name="M:Bubba.WebControl.SetDefaultSelection">
             <summary>
@@ -34230,14 +34235,6 @@
             </summary>
             <param name="disposing"><c>true</c> to release both managed and unmanaged resources;
             <c>false</c> to release only unmanaged resources.</param>
-        </member>
-        <member name="M:Bubba.WebControl.Dispose">
-            <inheritdoc />
-            <summary>
-            Performs application-defined tasks
-            associated with freeing, releasing,
-            or resetting unmanaged resources.
-            </summary>
         </member>
         <member name="T:Bubba.MetroRichTextBox">
             <inheritdoc />
@@ -39844,6 +39841,36 @@
         <member name="M:Bubba.WebBrowser.InitializeComponent">
             <summary>
             InitializeComponent
+            </summary>
+        </member>
+        <member name="T:XamlGeneratedNamespace.GeneratedInternalTypeHelper">
+            <summary>
+            GeneratedInternalTypeHelper
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.CreateInstance(System.Type,System.Globalization.CultureInfo)">
+            <summary>
+            CreateInstance
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.GetPropertyValue(System.Reflection.PropertyInfo,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            GetPropertyValue
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.SetPropertyValue(System.Reflection.PropertyInfo,System.Object,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            SetPropertyValue
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.CreateDelegate(System.Type,System.Object,System.String)">
+            <summary>
+            CreateDelegate
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.AddEventHandler(System.Reflection.EventInfo,System.Object,System.Delegate)">
+            <summary>
+            AddEventHandler
             </summary>
         </member>
     </members>

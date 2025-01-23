@@ -4,13 +4,16 @@
     using System.ComponentModel;
     using System.Diagnostics.CodeAnalysis;
     using System.Drawing;
-    using System.Drawing.Drawing2D;
     using System.Windows;
     using System.Windows.Forms;
-    using System.Windows.Input;
     using Point = System.Drawing.Point;
 
-    [ SuppressMessage( "ReSharper", "FieldCanBeMadeReadOnly.Global" ) ]
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <seealso cref="Bubba.MetroTabControl" />
+    /// <seealso cref="System.ComponentModel.ISupportInitialize" />
+    [SuppressMessage( "ReSharper", "FieldCanBeMadeReadOnly.Global" ) ]
     [ SuppressMessage( "ReSharper", "FieldCanBeMadeReadOnly.Local" ) ]
     [ SuppressMessage( "ReSharper", "UnusedParameter.Global" ) ]
     [ SuppressMessage( "ReSharper", "UnusedVariable" ) ]
@@ -59,6 +62,8 @@
         public int AddButtonWidth = 40;
 
         public int MaxTabSize = 200;
+
+        private protected BrowserTabCollection _items;
 
         public event TabItemClosing TabStripItemClosing;
 
@@ -133,13 +138,39 @@
             }
         }
 
-        public new BrowserTabCollection Items { get; set; }
+        /// <inheritdoc />
+        /// <summary>
+        /// Gets or sets the items.
+        /// </summary>
+        /// <value>
+        /// The items.
+        /// </value>
+        public new BrowserTabCollection Items
+        {
+            get
+            {
+                return _items;
+            }
+            set
+            {
+                _items = value;
+            }
+        }
 
+        /// <summary>
+        /// Adds the tab.
+        /// </summary>
+        /// <param name="tabItem">The tab item.</param>
         public void AddTab( BrowserTabItem tabItem )
         {
             AddTab( tabItem, false );
         }
 
+        /// <summary>
+        /// Adds the tab.
+        /// </summary>
+        /// <param name="tabItem">The tab item.</param>
+        /// <param name="autoSelect">if set to <c>true</c> [automatic select].</param>
         public void AddTab( BrowserTabItem tabItem, bool autoSelect )
         {
             Items.Add( tabItem );
@@ -151,6 +182,10 @@
             }
         }
 
+        /// <summary>
+        /// Removes the tab.
+        /// </summary>
+        /// <param name="tabItem">The tab item.</param>
         public void RemoveTab( BrowserTabItem tabItem )
         {
             var _num = Items.IndexOf( tabItem );

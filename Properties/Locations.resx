@@ -169,7 +169,7 @@
     <value>Bubba Browser</value>
   </data>
   <data name="Google" xml:space="preserve">
-    <value>https://cse.google.com/cse?cx=e78aa3dcb21474bf4</value>
+    <value>https://www.google.com</value>
   </data>
   <data name="CannotConnect" xml:space="preserve">
     <value>bubba://UI/Pages/CannotConnect.html</value>
@@ -203,5 +203,8 @@
   </data>
   <data name="ProxyUsername" xml:space="preserve">
     <value>teppler</value>
+  </data>
+  <data name="SearchUrl" xml:space="preserve">
+    <value>https://cse.google.com/cse?cx=e78aa3dcb21474bf4</value>
   </data>
 </root>

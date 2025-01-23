@@ -132,8 +132,6 @@ namespace Bubba
         /// </summary>
         public App( )
         {
-            InitializeDelegates( );
-            InitializeCefSharp( );
             var _key = ConfigurationManager.AppSettings[ "UI" ];
             SyncfusionLicenseProvider.RegisterLicense( _key );
             OpenAiKey = Environment.GetEnvironmentVariable( "OPENAI_API_KEY" );

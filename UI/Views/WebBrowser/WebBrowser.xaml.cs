@@ -1,10 +1,10 @@
 ﻿// ******************************************************************************************
 //     Assembly:                Bubba
 //     Author:                  Terry D. Eppler
-//     Created:                 01-21-2025
+//     Created:                 01-23-2025
 // 
 //     Last Modified By:        Terry D. Eppler
-//     Last Modified On:        01-21-2025
+//     Last Modified On:        01-23-2025
 // ******************************************************************************************
 // <copyright file="WebBrowser.xaml.cs" company="Terry D. Eppler">
 //    Bubba is a small and simple windows (wpf) application for interacting with the OpenAI API
@@ -506,7 +506,6 @@ namespace Bubba
 
             var _newBrowser = new ChromiumWebBrowser( url );
             ConfigureBrowser( _newBrowser );
-            TabControl.Items.Add( _newBrowser );
             _newBrowser.BringIntoView( );
             tabItem.Content = _newBrowser;
             _newBrowser.StatusMessage += OnStatusUpdated;
@@ -981,11 +980,6 @@ namespace Bubba
                     _config.WebGl = bool.Parse( _flag ).ToCefState( );
                     browser.BrowserSettings = _config;
                 }
-                else
-                {
-                    _config.WebGl = bool.Parse( "false" ).ToCefState( );
-                    browser.BrowserSettings = _config;
-                }
             }
             catch( Exception ex )
             {
@@ -1054,7 +1048,7 @@ namespace Bubba
         /// </summary>
         public void CloseActiveTab( )
         {
-            if( _currentTab != null  
+            if( _currentTab != null
                 && TabPages.Count > 2 )
             {
                 var _index = TabControl.Items.IndexOf( TabControl.SelectedItem );
@@ -1076,8 +1070,7 @@ namespace Bubba
                 _isSearchOpen = false;
                 InvokeIf( ( ) =>
                 {
-                    _currentBrowser.GetBrowser( )
-                        ?.StopFinding( true );
+                    _currentBrowser.GetBrowser( )?.StopFinding( true );
                 } );
             }
         }
@@ -1186,13 +1179,11 @@ namespace Bubba
             _lastSearch = UrlTextBox.Text;
             if( _lastSearch.IsNull( ) )
             {
-                _currentBrowser.GetBrowser( )
-                    ?.Find( _lastSearch, true, false, !_first );
+                _currentBrowser.GetBrowser( )?.Find( _lastSearch, true, false, !_first );
             }
             else
             {
-                _currentBrowser.GetBrowser( )
-                    ?.StopFinding( true );
+                _currentBrowser.GetBrowser( )?.StopFinding( true );
             }
 
             UrlTextBox.Focus( );
@@ -1298,19 +1289,29 @@ namespace Bubba
         /// <param name="url">The URL.</param>
         /// <param name="focused">if set to <c>true</c> [focused].</param>
         /// <returns></returns>
-        private Task<ChromiumWebBrowser> GetBrowserAsync( string url, bool focused )
+        private protected Task<ChromiumWebBrowser> GetBrowserAsync( string url, bool focused )
         {
-            var _tcs = new TaskCompletionSource<ChromiumWebBrowser>( );
             try
             {
-                ThrowIf.Null( url, nameof( url ) );
-                var _browser = AddNewBrowserTab( url, focused );
-                _tcs.SetResult( _browser );
-                return _tcs.Task;
+                ThrowIf.Empty( url, nameof( url ) );
+                ThrowIf.Null( focused, nameof( focused ) );
+                var _tcs = new TaskCompletionSource<ChromiumWebBrowser>( );
+                try
+                {
+                    ThrowIf.Null( url, nameof( url ) );
+                    var _browser = AddNewBrowserTab( url, focused );
+                    _tcs.SetResult( _browser );
+                    return _tcs.Task;
+                }
+                catch( Exception ex )
+                {
+                    _tcs.SetException( ex );
+                    Fail( ex );
+                    return default( Task<ChromiumWebBrowser> );
+                }
             }
             catch( Exception ex )
             {
-                _tcs.SetException( ex );
                 Fail( ex );
                 return default( Task<ChromiumWebBrowser> );
             }
@@ -1385,6 +1386,9 @@ namespace Bubba
                 {
                     _busy = true;
                 }
+
+                ProgressBar.Visibility = Visibility.Visible;
+                ProgressBar.IsIndeterminate = true;
             }
             catch( Exception ex )
             {
@@ -1403,6 +1407,9 @@ namespace Bubba
                 {
                     _busy = false;
                 }
+
+                ProgressBar.Visibility = Visibility.Hidden;
+                ProgressBar.IsIndeterminate = false;
             }
             catch( Exception ex )
             {
