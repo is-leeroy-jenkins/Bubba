@@ -1,4 +1,4 @@
-﻿C:\Users\terry\source\repos\Bubba\obj\Debug\net8.0-windows7.0\GeneratedInternalTypeHelper.g.cs
+﻿
 FC:\Users\terry\source\repos\Bubba\App.xaml;;
 FC:\Users\terry\source\repos\Bubba\UI\Controls\Frame\MetroComboFrame.xaml;;
 FC:\Users\terry\source\repos\Bubba\UI\Controls\Frame\MetroTextInput.xaml;;
@@ -13,6 +13,7 @@ FC:\Users\terry\source\repos\Bubba\UI\Themes\Common\Fonts.xaml;;
 FC:\Users\terry\source\repos\Bubba\UI\Themes\DropDown\DropDown.xaml;;
 FC:\Users\terry\source\repos\Bubba\UI\Themes\Editor\EditControl.xaml;;
 FC:\Users\terry\source\repos\Bubba\UI\Themes\generic.xaml;;
+FC:\Users\terry\source\repos\Bubba\UI\Themes\GroupBox\GroupBox.xaml;;
 FC:\Users\terry\source\repos\Bubba\UI\Themes\Label\Label.xaml;;
 FC:\Users\terry\source\repos\Bubba\UI\Themes\ListBox\ListBox.xaml;;
 FC:\Users\terry\source\repos\Bubba\UI\Themes\ListView\ListView.xaml;;
@@ -40,8 +41,9 @@ FC:\Users\terry\source\repos\Bubba\UI\Views\Document\DocumentWindow.xaml;;
 FC:\Users\terry\source\repos\Bubba\UI\Views\ErrorWindow\ErrorWindow.xaml;;
 FC:\Users\terry\source\repos\Bubba\UI\Views\FileBrowser\FileBrowser.xaml;;
 FC:\Users\terry\source\repos\Bubba\UI\Views\Folder\FolderBrowser.xaml;;
-FC:\Users\terry\source\repos\Bubba\UI\Views\GptFile\GptFileDialog.xaml;;
-FC:\Users\terry\source\repos\Bubba\UI\Views\GptImage\GptImageDialog.xaml;;
+FC:\Users\terry\source\repos\Bubba\UI\Views\GptFileDialog\GptFileDialog.xaml;;
+FC:\Users\terry\source\repos\Bubba\UI\Views\GptImageDialog\GptImageDialog.xaml;;
+FC:\Users\terry\source\repos\Bubba\UI\Views\PropertyDialog\PropertyDialog.xaml;;
 FC:\Users\terry\source\repos\Bubba\UI\Views\SearchDialog\SearchDialog.xaml;;
 FC:\Users\terry\source\repos\Bubba\UI\Views\SplashWindow\SplashMessage.xaml;;
 FC:\Users\terry\source\repos\Bubba\UI\Views\SystemDialog\SystemDialog.xaml;;

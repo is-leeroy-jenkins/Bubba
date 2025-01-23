@@ -302,7 +302,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Include="UI\Views\BusyIndicator\BusyIndicator" />
+    <Compile Include="UI\Controls\BusyIndicator\BusyIndicator" />
   </ItemGroup>
 
   <ItemGroup>

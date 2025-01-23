@@ -78,6 +78,18 @@
             Initializes the delegates.
             </summary>
         </member>
+        <member name="M:Bubba.App.InitializeCefSharp">
+            <summary>
+            this is done just once, to globally initialize CefSharp/CEF
+            </summary>
+        </member>
+        <member name="M:Bubba.App.GetApplicationDirectory(System.String)">
+            <summary>
+            Gets the application directory.
+            </summary>
+            <param name="name">The name.</param>
+            <returns></returns>
+        </member>
         <member name="M:Bubba.App.SetupRestoreWindowPlace(Bubba.ChatWindow)">
             <summary>
             Setups the restore window place.
@@ -163,22 +175,23 @@
             Opens the calculator window.
             </summary>
         </member>
-        <member name="M:Bubba.App.OnStartup(System.Windows.StartupEventArgs)">
+        <member name="M:Bubba.App.OnStartup(System.Object,System.Windows.StartupEventArgs)">
             <inheritdoc />
             <summary>
             Raises the
             <see cref="E:System.Windows.Application.Startup" /> event.
             </summary>
-            <param name="e">A
-            <see cref="T:System.Windows.StartupEventArgs" />
+            <param name = "sender" > </param>
+            <param name="e">
             that contains the event data.
             </param>
         </member>
-        <member name="M:Bubba.App.OnExit(System.Windows.ExitEventArgs)">
+        <member name="M:Bubba.App.OnExit(System.Object,System.Windows.ExitEventArgs)">
             <inheritdoc />
             <summary>
             Raises the <see cref="E:System.Windows.Application.Exit" /> event.
             </summary>
+            <param name = "sender" > </param>
             <param name="e">An <see cref="T:System.Windows.ExitEventArgs" />
             that contains the event data.</param>
         </member>
@@ -14000,6 +14013,156 @@
             .
             </returns>
         </member>
+        <member name="M:Bubba.StringExtensions.RemovePrefix(System.String,System.String,System.Boolean)">
+            <summary>
+            Removes the prefix.
+            </summary>
+            <param name="str">The string.</param>
+            <param name="prefix">The prefix.</param>
+            <param name="caseSensitive">if set to <c>true</c> [case sensitive].</param>
+            <returns></returns>
+        </member>
+        <member name="M:Bubba.StringExtensions.BeginsWith(System.String,System.String,System.Boolean)">
+            <summary>
+            Beginses the with.
+            </summary>
+            <param name="str">The string.</param>
+            <param name="beginsWith">The begins with.</param>
+            <param name="caseSensitive">
+            if set to <c>true</c> [case sensitive].
+            </param>
+            <returns></returns>
+        </member>
+        <member name="M:Bubba.StringExtensions.IsNull(System.String,System.Boolean)">
+            <summary>
+            Checks if valid.
+            </summary>
+            <param name="text">The text.</param>
+            <param name="trimAndCheck">if set to <c>true</c> [trim and check].</param>
+            <returns></returns>
+        </member>
+        <member name="M:Bubba.StringExtensions.SupportedInFilePath(System.Char)">
+            <summary>
+            Supporteds the in file path.
+            </summary>
+            <param name="c">The c.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Bubba.StringExtensions.ChangePathSlash(System.String,System.String)">
+            <summary>
+            Changes the path slash.
+            </summary>
+            <param name="filePath">The file path.</param>
+            <param name="slash">The slash.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Bubba.StringExtensions.FileUrlToPath(System.String)">
+            <summary>
+            Files the URL to path.
+            </summary>
+            <param name="url">The URL.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Bubba.StringExtensions.IsFIle(System.String)">
+            <summary>
+            Files the not exists.
+            </summary>
+            <param name="path">The path.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Bubba.StringExtensions.IsFilePath(System.String)">
+            <summary>
+            Checks if file path.
+            </summary>
+            <param name="path">The path.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Bubba.StringExtensions.GetAfter(System.String,System.String,System.Int32,System.Boolean,System.Boolean)">
+            <summary>
+            Gets the after.
+            </summary>
+            <param name="text">The text.</param>
+            <param name="find">The find.</param>
+            <param name="startAt">The start at.</param>
+            <param name="returnAll">
+            if set to <c>true</c> [return all].
+            </param>
+            <param name="forward">
+            if set to <c>true</c> [forward].
+            </param>
+            <returns>
+            string
+            </returns>
+        </member>
+        <member name="M:Bubba.StringExtensions.GetAfterLast(System.String,System.String,System.Boolean)">
+            <summary>
+            Gets the after last.
+            </summary>
+            <param name="text">The text.</param>
+            <param name="find">The find.</param>
+            <param name="returnAll">if set to <c>true</c> [return all].</param>
+            <returns></returns>
+        </member>
+        <member name="M:Bubba.StringExtensions.PathToUrl(System.String,System.String)">
+            <summary>
+            Paths to URL.
+            </summary>
+            <param name="filePath">The file path.</param>
+            <param name="removeBaseDir">The remove base dir.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Bubba.StringExtensions.IsFileOffline(System.String)">
+            <summary>
+            Determines whether [is file offline].
+            </summary>
+            <param name="url">The URL.</param>
+            <returns>
+            <c> true </c>
+            if [is file offline] [the specified URL]; otherwise,
+            <c> false </c>
+            .
+            </returns>
+        </member>
+        <member name="M:Bubba.StringExtensions.IsLocalhost(System.String)">
+            <summary>
+            Determines whether this instance is localhost.
+            </summary>
+            <param name="url">The URL.</param>
+            <returns>
+            <c> true </c>
+            if the specified URL is localhost; otherwise,
+            <c> false </c>
+            .
+            </returns>
+        </member>
+        <member name="M:Bubba.StringExtensions.UrlDecode(System.String)">
+            <summary>
+            URLs the decode.
+            </summary>
+            <param name="url">The URL.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Bubba.StringExtensions.HexToInt(System.Char)">
+            <summary>
+            Hexadecimals to int.
+            </summary>
+            <param name="hex">The hexadecimal.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Bubba.StringExtensions.DecodeUrlForFilePath(System.String)">
+            <summary>
+            Decodes the URL for filepath.
+            </summary>
+            <param name="url">The URL.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Bubba.StringExtensions.UrlEncode(System.String)">
+            <summary>
+            URLs the encode.
+            </summary>
+            <param name="text">The text.</param>
+            <returns></returns>
+        </member>
         <member name="M:Bubba.StringExtensions.Fail(System.Exception)">
             <summary>
             Fails the specified ex.
@@ -19342,231 +19505,6 @@
             <param name="userPrompt">The prompt.</param>
             <returns></returns>
         </member>
-        <member name="T:Bubba.GptEndpoints">
-            <inheritdoc />
-            <summary>
-            </summary>
-            <seealso cref="T:Bubba.PropertyChangedBase" />
-        </member>
-        <member name="F:Bubba.GptEndpoints._baseUrl">
-            <summary>
-            The domain
-            </summary>
-        </member>
-        <member name="F:Bubba.GptEndpoints._all">
-            <summary>
-            The locations
-            </summary>
-        </member>
-        <member name="F:Bubba.GptEndpoints._textGeneration">
-            <summary>
-            The Completions API
-            </summary>
-        </member>
-        <member name="F:Bubba.GptEndpoints._assistants">
-            <summary>
-            The assistant
-            </summary>
-        </member>
-        <member name="F:Bubba.GptEndpoints._speechGeneration">
-            <summary>
-            The speech
-            </summary>
-        </member>
-        <member name="F:Bubba.GptEndpoints._translations">
-            <summary>
-            The translations
-            </summary>
-        </member>
-        <member name="F:Bubba.GptEndpoints._transcriptions">
-            <summary>
-            The transcriptions
-            </summary>
-        </member>
-        <member name="F:Bubba.GptEndpoints._fineTuning">
-            <summary>
-            The jobs
-            </summary>
-        </member>
-        <member name="F:Bubba.GptEndpoints._files">
-            <summary>
-            The files
-            </summary>
-        </member>
-        <member name="F:Bubba.GptEndpoints._uploads">
-            <summary>
-            The uploads
-            </summary>
-        </member>
-        <member name="F:Bubba.GptEndpoints._vectorStores">
-            <summary>
-            The vector stores
-            </summary>
-        </member>
-        <member name="F:Bubba.GptEndpoints._projects">
-            <summary>
-            The projects
-            </summary>
-        </member>
-        <member name="F:Bubba.GptEndpoints._imageGeneration">
-            <summary>
-            The generations
-            </summary>
-        </member>
-        <member name="F:Bubba.GptEndpoints._vectorEmbeddings">
-            <summary>
-            The vector embedding
-            </summary>
-        </member>
-        <member name="F:Bubba.GptEndpoints._data">
-            <summary>
-            The data
-            </summary>
-        </member>
-        <member name="M:Bubba.GptEndpoints.#ctor">
-            <summary>
-            Initializes a new instance of the
-            <see cref="T:Bubba.GptEndpoints"/> class.
-            </summary>
-        </member>
-        <member name="P:Bubba.GptEndpoints.BaseUrl">
-            <summary>
-            Gets the domain.
-            </summary>
-            <value>
-            The domain.
-            </value>
-        </member>
-        <member name="P:Bubba.GptEndpoints.All">
-            <summary>
-            Gets the locations.
-            </summary>
-            <value>
-            The locations.
-            </value>
-        </member>
-        <member name="P:Bubba.GptEndpoints.Data">
-            <summary>
-            Gets the data.
-            </summary>
-            <value>
-            The data.
-            </value>
-        </member>
-        <member name="P:Bubba.GptEndpoints.TextGeneration">
-            <summary>
-            Gets the completions.
-            </summary>
-            <value>
-            The completions.
-            </value>
-        </member>
-        <member name="P:Bubba.GptEndpoints.Assistants">
-            <summary>
-            Gets the assistant.
-            </summary>
-            <value>
-            The assistant.
-            </value>
-        </member>
-        <member name="P:Bubba.GptEndpoints.SpeechGeneration">
-            <summary>
-            Gets the speech.
-            </summary>
-            <value>
-            The speech.
-            </value>
-        </member>
-        <member name="P:Bubba.GptEndpoints.Translations">
-            <summary>
-            Gets the translations.
-            </summary>
-            <value>
-            The translations.
-            </value>
-        </member>
-        <member name="P:Bubba.GptEndpoints.Transcriptions">
-            <summary>
-            Gets the translations.
-            </summary>
-            <value>
-            The translations.
-            </value>
-        </member>
-        <member name="P:Bubba.GptEndpoints.FineTuning">
-            <summary>
-            Gets the jobs.
-            </summary>
-            <value>
-            The jobs.
-            </value>
-        </member>
-        <member name="P:Bubba.GptEndpoints.Files">
-            <summary>
-            Gets the files.
-            </summary>
-            <value>
-            The files.
-            </value>
-        </member>
-        <member name="P:Bubba.GptEndpoints.Uploads">
-            <summary>
-            Gets the uploads.
-            </summary>
-            <value>
-            The uploads.
-            </value>
-        </member>
-        <member name="P:Bubba.GptEndpoints.VectorStores">
-            <summary>
-            Gets the vector stores.
-            </summary>
-            <value>
-            The vector stores.
-            </value>
-        </member>
-        <member name="P:Bubba.GptEndpoints.VectorEmbeddings">
-            <summary>
-            Gets the vector embedding.
-            </summary>
-            <value>
-            The vector embedding.
-            </value>
-        </member>
-        <member name="P:Bubba.GptEndpoints.Projects">
-            <summary>
-            Gets the projects.
-            </summary>
-            <value>
-            The projects.
-            </value>
-        </member>
-        <member name="P:Bubba.GptEndpoints.ImageGeneration">
-            <summary>
-            Gets the image generations.
-            </summary>
-            <value>
-            The image generations.
-            </value>
-        </member>
-        <member name="M:Bubba.GptEndpoints.CreateData">
-            <summary>
-            Creates the data.
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:Bubba.GptEndpoints.GetAll">
-            <summary>
-            Gets the end points.
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:Bubba.GptEndpoints.Fail(System.Exception)">
-            <summary>
-            Fails the specified ex.
-            </summary>
-            <param name="ex">The ex.</param>
-        </member>
         <member name="T:Bubba.GptFactory">
             <inheritdoc />
             <summary>
@@ -23190,286 +23128,6 @@
             that represents this instance.
             </returns>
         </member>
-        <member name="T:Bubba.Chunker">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="F:Bubba.Chunker._busy">
-            <summary>
-            The busy
-            </summary>
-        </member>
-        <member name="F:Bubba.Chunker._entry">
-            <summary>
-            The entry
-            </summary>
-        </member>
-        <member name="F:Bubba.Chunker._timer">
-            <summary>
-            The timer
-            </summary>
-        </member>
-        <member name="F:Bubba.Chunker._timerCallback">
-            <summary>
-            The timer callback
-            </summary>
-        </member>
-        <member name="F:Bubba.Chunker._statusUpdate">
-            <summary>
-            The status update
-            </summary>
-        </member>
-        <member name="M:Bubba.Chunker.Busy">
-            <summary>
-            Begins the initialize.
-            </summary>
-        </member>
-        <member name="M:Bubba.Chunker.Chill">
-            <summary>
-            Ends the initialize.
-            </summary>
-        </member>
-        <member name="M:Bubba.Chunker.ChunkText(System.Collections.Generic.List{System.String},System.Int32)">
-            <summary>
-            Chunks the text.
-            </summary>
-            <param name="texts">The texts.</param>
-            <param name="maxChunkSize">Maximum size of the chunk.</param>
-            <returns></returns>
-        </member>
-        <member name="M:Bubba.Chunker.Dispose">
-            <inheritdoc />
-            <summary>
-            Releases unmanaged and - optionally - managed resources.
-            </summary>
-        </member>
-        <member name="M:Bubba.Chunker.Dispose(System.Boolean)">
-            <summary>
-            Releases unmanaged and - optionally - managed resources.
-            </summary>
-            <param name="disposing"><c>true</c>
-            to release both managed and unmanaged resources;
-            <c>false</c> to release only unmanaged resources.
-            </param>
-        </member>
-        <member name="M:Bubba.Chunker.Fail(System.Exception)">
-            <summary>
-            Fails the specified ex.
-            </summary>
-            <param name="ex">The ex.</param>
-        </member>
-        <member name="T:Bubba.Extractor">
-            <inheritdoc />
-            <summary>
-            </summary>
-            <seealso cref="T:Bubba.Extractor" />
-        </member>
-        <member name="F:Bubba.Extractor._busy">
-            <summary>
-            The busy
-            </summary>
-        </member>
-        <member name="F:Bubba.Extractor._entry">
-            <summary>
-            The entry
-            </summary>
-        </member>
-        <member name="F:Bubba.Extractor._timer">
-            <summary>
-            The timer
-            </summary>
-        </member>
-        <member name="F:Bubba.Extractor._timerCallback">
-            <summary>
-            The timer callback
-            </summary>
-        </member>
-        <member name="M:Bubba.Extractor.#ctor">
-            <summary>
-            Initializes a new instance of the <see cref="T:Bubba.Extractor"/> class.
-            </summary>
-        </member>
-        <member name="M:Bubba.Extractor.ExtractText(System.String)">
-            <summary>
-            Extracts the text.
-            </summary>
-            <param name="directoryPath">The directory path.</param>
-            <returns></returns>
-        </member>
-        <member name="M:Bubba.Extractor.Dispose">
-            <inheritdoc />
-            <summary>
-            Releases unmanaged and - optionally - managed resources.
-            </summary>
-        </member>
-        <member name="M:Bubba.Extractor.Dispose(System.Boolean)">
-            <summary>
-            Releases unmanaged and - optionally - managed resources.
-            </summary>
-            <param name="disposing"><c>true</c>
-            to release both managed and unmanaged resources;
-            <c>false</c> to release only unmanaged resources.
-            </param>
-        </member>
-        <member name="M:Bubba.Extractor.Fail(System.Exception)">
-            <summary>
-            Fails the specified ex.
-            </summary>
-            <param name="ex">The ex.</param>
-        </member>
-        <member name="T:Bubba.RagPipe">
-            <summary>
-            
-            </summary>
-            <seealso cref="T:System.IDisposable" />
-        </member>
-        <member name="F:Bubba.RagPipe._busy">
-            <summary>
-            The busy
-            </summary>
-        </member>
-        <member name="F:Bubba.RagPipe._entry">
-            <summary>
-            The entry
-            </summary>
-        </member>
-        <member name="F:Bubba.RagPipe._timer">
-            <summary>
-            The timer
-            </summary>
-        </member>
-        <member name="F:Bubba.RagPipe._timerCallback">
-            <summary>
-            The timer callback
-            </summary>
-        </member>
-        <member name="F:Bubba.RagPipe._extractor">
-            <summary>
-            The extractor
-            </summary>
-        </member>
-        <member name="F:Bubba.RagPipe._chunker">
-            <summary>
-            The chunker
-            </summary>
-        </member>
-        <member name="F:Bubba.RagPipe._retriever">
-            <summary>
-            The retriever
-            </summary>
-        </member>
-        <member name="F:Bubba.RagPipe._fileRequest">
-            <summary>
-            The file request
-            </summary>
-        </member>
-        <member name="M:Bubba.RagPipe.#ctor(Bubba.Extractor,Bubba.Chunker,Bubba.Retriever,Bubba.GptFileRequest)">
-            <summary>
-            Initializes a new instance of the <see cref="T:Bubba.RagPipe"/> class.
-            </summary>
-            <param name="extractor">The extractor.</param>
-            <param name="chunker">The chunker.</param>
-            <param name="retriever">The retriever.</param>
-            <param name="fileRequest">The file request.</param>
-        </member>
-        <member name="M:Bubba.RagPipe.ExecuteAsync(System.String,System.String)">
-            <summary>
-            Executes the asynchronous.
-            </summary>
-            <param name="query">The query.</param>
-            <param name="pdfDirectory">The PDF directory.</param>
-            <returns></returns>
-        </member>
-        <member name="M:Bubba.RagPipe.Dispose">
-            <inheritdoc />
-            <summary>
-            Releases unmanaged and - optionally - managed resources.
-            </summary>
-        </member>
-        <member name="M:Bubba.RagPipe.Dispose(System.Boolean)">
-            <summary>
-            Releases unmanaged and - optionally - managed resources.
-            </summary>
-            <param name="disposing"><c>true</c>
-            to release both managed and unmanaged resources;
-            <c>false</c> to release only unmanaged resources.
-            </param>
-        </member>
-        <member name="M:Bubba.RagPipe.Fail(System.Exception)">
-            <summary>
-            Fails the specified ex.
-            </summary>
-            <param name="ex">The ex.</param>
-        </member>
-        <member name="T:Bubba.Retriever">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="F:Bubba.Retriever._busy">
-            <summary>
-            The busy
-            </summary>
-        </member>
-        <member name="F:Bubba.Retriever._entry">
-            <summary>
-            The entry
-            </summary>
-        </member>
-        <member name="F:Bubba.Retriever._timer">
-            <summary>
-            The timer
-            </summary>
-        </member>
-        <member name="F:Bubba.Retriever._timerCallback">
-            <summary>
-            The timer callback
-            </summary>
-        </member>
-        <member name="M:Bubba.Retriever.#ctor">
-            <summary>
-            Initializes a new instance of the <see cref="T:Bubba.Retriever"/> class.
-            </summary>
-        </member>
-        <member name="M:Bubba.Retriever.GetChunks(System.String,System.Collections.Generic.List{System.String},System.Int32)">
-            <summary>
-            Gets the chunks.
-            </summary>
-            <param name="query">The query.</param>
-            <param name="documentChunks">The document chunks.</param>
-            <param name="topN">The top n.</param>
-            <returns></returns>
-        </member>
-        <member name="M:Bubba.Retriever.CalculateCosineSimilarity(System.String[],System.String[])">
-            <summary>
-            Calculates the cosine similarity.
-            </summary>
-            <param name="tokensA">The tokens a.</param>
-            <param name="tokensB">The tokens b.</param>
-            <returns></returns>
-        </member>
-        <member name="M:Bubba.Retriever.Dispose">
-            <inheritdoc />
-            <summary>
-            Releases unmanaged and - optionally - managed resources.
-            </summary>
-        </member>
-        <member name="M:Bubba.Retriever.Dispose(System.Boolean)">
-            <summary>
-            Releases unmanaged and - optionally - managed resources.
-            </summary>
-            <param name="disposing"><c>true</c>
-            to release both managed and unmanaged resources;
-            <c>false</c> to release only unmanaged resources.
-            </param>
-        </member>
-        <member name="M:Bubba.Retriever.Fail(System.Exception)">
-            <summary>
-            Fails the specified ex.
-            </summary>
-            <param name="ex">The ex.</param>
-        </member>
         <member name="T:Bubba.AssistantRequest">
             <inheritdoc />
             <summary>
@@ -24089,6 +23747,7 @@
         </member>
         <member name="F:Bubba.GptFileRequest._order">
             <summary>
+            
             </summary>
         </member>
         <member name="F:Bubba.GptFileRequest._after">
@@ -24245,7 +23904,7 @@
             <summary>
             Gets the response asynchronous.
             </summary>
-            <param name="query">The query.</param>
+            <param name="prompt">The prompt.</param>
             <param name="contextChunks">The context chunks.</param>
             <returns></returns>
         </member>
@@ -27691,6 +27350,62 @@
             Notifies this instance.
             </summary>
         </member>
+        <member name="T:Bubba.DomainNameSystem">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Bubba.DomainNameSystem.#ctor">
+            <summary>
+            Initializes a new instance of the
+            <see cref="T:Bubba.DomainNameSystem"/> class.
+            </summary>
+        </member>
+        <member name="M:Bubba.DomainNameSystem.GetHostAddresses(System.String)">
+            <summary>
+            Gets the IP addresses associated with a host name.
+            </summary>
+        </member>
+        <member name="M:Bubba.DomainNameSystem.GetHostName(System.Net.IPAddress)">
+            <summary>
+            Gets the host name for the given IP address.
+            </summary>
+        </member>
+        <member name="M:Bubba.DomainNameSystem.GetLocalAddress">
+            <summary>
+            Gets the local machine's IP address.
+            </summary>
+        </member>
+        <member name="M:Bubba.DomainNameSystem.GetLocalHostName">
+            <summary>
+            Gets the fully qualified domain name (FQDN) of the local machine.
+            </summary>
+        </member>
+        <member name="M:Bubba.DomainNameSystem.CanReachHost(System.String)">
+            <summary>
+            Pings a host name or IP address to check reachability.
+            </summary>
+        </member>
+        <member name="M:Bubba.DomainNameSystem.GetAliases(System.Net.IPAddress)">
+            <summary>
+            Performs a reverse DNS lookup to find all alias names for a given IP address.
+            </summary>
+        </member>
+        <member name="M:Bubba.DomainNameSystem.IsValidHostName(System.String)">
+            <summary>
+            Validates if a given string is a valid host name.
+            </summary>
+        </member>
+        <member name="M:Bubba.DomainNameSystem.IsValidIpAddress(System.String)">
+            <summary>
+            Validates if a given string is a valid IP address.
+            </summary>
+        </member>
+        <member name="M:Bubba.DomainNameSystem.ResolveHost(System.String)">
+            <summary>
+            Resolves both IP addresses and aliases for a given host name.
+            </summary>
+        </member>
         <member name="T:Bubba.GoogleSearch">
             <inheritdoc />
             <summary>
@@ -28088,42 +27803,6 @@
             Fails the specified ex.
             </summary>
             <param name="ex">The ex.</param>
-        </member>
-        <member name="M:Bubba.WebSerializer.Serialize``1(``0)">
-            <summary>
-            Serializes an object to a JSON string.
-            </summary>
-            <typeparam name="T">The type of the object to serialize.</typeparam>
-            <param name="data">The object to serialize.</param>
-            <returns>JSON string representation of the object.</returns>
-        </member>
-        <member name="M:Bubba.WebSerializer.Deserialize``1(System.String)">
-            <summary>
-            Deserializes a JSON string to an object of the specified type.
-            </summary>
-            <typeparam name="T">The type of the object to deserialize to.</typeparam>
-            <param name="json">The JSON string to deserialize.</param>
-            <returns>Deserialized object of the specified type.</returns>
-        </member>
-        <member name="M:Bubba.WebSerializer.SendJsonPostRequest``2(System.String,``0)">
-            <summary>
-            Sends a POST request with a JSON payload and receives the JSON response.
-            </summary>
-            <typeparam name="TRequest">Type of the request object to serialize.</typeparam>
-            <typeparam name="TResponse">Type of the response object to deserialize.</typeparam>
-            <param name="url">The URL to send the request to.</param>
-            <param name="requestData">The object to be serialized and sent as JSON.</param>
-            <returns>Deserialized response object.</returns>
-        </member>
-        <member name="M:Bubba.WebSerializer.SendJsonGetRequest``1(System.String)">
-            <summary>
-            Sends a GET request and receives the JSON response.
-            </summary>
-            <typeparam name="T">
-            Type of the response object to deserialize.
-            </typeparam>
-            <param name="url">The URL to send the request to.</param>
-            <returns>Deserialized response object.</returns>
         </member>
         <member name="T:Bubba.ILanguageProcessor">
             <summary>
@@ -29591,6 +29270,357 @@
             </summary>
             <param name="ex">The ex.</param>
         </member>
+        <member name="T:Bubba.Chunker">
+            <inheritdoc />
+            <summary>
+            </summary>
+        </member>
+        <member name="F:Bubba.Chunker._busy">
+            <summary>
+            The busy
+            </summary>
+        </member>
+        <member name="F:Bubba.Chunker._entry">
+            <summary>
+            The entry
+            </summary>
+        </member>
+        <member name="F:Bubba.Chunker._timer">
+            <summary>
+            The timer
+            </summary>
+        </member>
+        <member name="F:Bubba.Chunker._timerCallback">
+            <summary>
+            The timer callback
+            </summary>
+        </member>
+        <member name="F:Bubba.Chunker._statusUpdate">
+            <summary>
+            The status update
+            </summary>
+        </member>
+        <member name="M:Bubba.Chunker.#ctor">
+            <summary>
+            Initializes a new instance of the
+            <see cref="T:Bubba.Chunker"/> class.
+            </summary>
+        </member>
+        <member name="M:Bubba.Chunker.Busy">
+            <summary>
+            Begins the initialize.
+            </summary>
+        </member>
+        <member name="M:Bubba.Chunker.Chill">
+            <summary>
+            Ends the initialize.
+            </summary>
+        </member>
+        <member name="M:Bubba.Chunker.ChunkText(System.Collections.Generic.IList{System.String},System.Int32)">
+            <summary>
+            Chunks the text.
+            </summary>
+            <param name="texts">The texts.</param>
+            <param name="maxSize">Maximum size of the chunk.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Bubba.Chunker.RemoveStopWords(System.Collections.Generic.IList{System.String},System.Collections.Generic.HashSet{System.String})">
+            <summary>
+            Removes the stop words.
+            </summary>
+            <param name="chunks">The chunks.</param>
+            <param name="stops">The stop words.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Bubba.Chunker.GetTokenCount(System.Collections.Generic.IList{System.String})">
+            <summary>
+            Gets the total token count.
+            </summary>
+            <param name="chunks">The chunks.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Bubba.Chunker.Dispose">
+            <inheritdoc />
+            <summary>
+            Releases unmanaged and - optionally - managed resources.
+            </summary>
+        </member>
+        <member name="M:Bubba.Chunker.Dispose(System.Boolean)">
+            <summary>
+            Releases unmanaged and - optionally - managed resources.
+            </summary>
+            <param name="disposing"><c>true</c>
+            to release both managed and unmanaged resources;
+            <c>false</c> to release only unmanaged resources.
+            </param>
+        </member>
+        <member name="M:Bubba.Chunker.Fail(System.Exception)">
+            <summary>
+            Fails the specified ex.
+            </summary>
+            <param name="ex">The ex.</param>
+        </member>
+        <member name="T:Bubba.Extractor">
+            <inheritdoc />
+            <summary>
+            </summary>
+            <seealso cref="T:Bubba.Extractor" />
+        </member>
+        <member name="F:Bubba.Extractor._busy">
+            <summary>
+            The busy
+            </summary>
+        </member>
+        <member name="F:Bubba.Extractor._entry">
+            <summary>
+            The entry
+            </summary>
+        </member>
+        <member name="F:Bubba.Extractor._timer">
+            <summary>
+            The timer
+            </summary>
+        </member>
+        <member name="F:Bubba.Extractor._timerCallback">
+            <summary>
+            The timer callback
+            </summary>
+        </member>
+        <member name="M:Bubba.Extractor.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Bubba.Extractor"/> class.
+            </summary>
+        </member>
+        <member name="M:Bubba.Extractor.Busy">
+            <summary>
+            Begins the initialize.
+            </summary>
+        </member>
+        <member name="M:Bubba.Extractor.Chill">
+            <summary>
+            Ends the initialize.
+            </summary>
+        </member>
+        <member name="M:Bubba.Extractor.GetTextFromFolder(System.String)">
+            <summary>
+            Extract text from all pages in all PDFs in a directory
+            </summary>
+            <param name="dirPath">The directory dirPath.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Bubba.Extractor.GetTextFromFile(System.String)">
+            <summary>
+            Extract text from a specific PDF file, page by page
+            </summary>
+            <param name="filePath">The file path.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Bubba.Extractor.GetMetadata(System.String)">
+            <summary>
+            Extract metadata (e.g., title, author) from a PDF file
+            </summary>
+            <param name="filePath">The file path.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Bubba.Extractor.Dispose">
+            <inheritdoc />
+            <summary>
+            Releases unmanaged and - optionally - managed resources.
+            </summary>
+        </member>
+        <member name="M:Bubba.Extractor.Dispose(System.Boolean)">
+            <summary>
+            Releases unmanaged and - optionally - managed resources.
+            </summary>
+            <param name="disposing"><c>true</c>
+            to release both managed and unmanaged resources;
+            <c>false</c> to release only unmanaged resources.
+            </param>
+        </member>
+        <member name="M:Bubba.Extractor.Fail(System.Exception)">
+            <summary>
+            Fails the specified ex.
+            </summary>
+            <param name="ex">The ex.</param>
+        </member>
+        <member name="T:Bubba.Pipeline">
+            <inheritdoc />
+            <summary>
+            </summary>
+            <seealso cref="T:System.IDisposable" />
+        </member>
+        <member name="F:Bubba.Pipeline._busy">
+            <summary>
+            The busy
+            </summary>
+        </member>
+        <member name="F:Bubba.Pipeline._entry">
+            <summary>
+            The entry
+            </summary>
+        </member>
+        <member name="F:Bubba.Pipeline._timer">
+            <summary>
+            The timer
+            </summary>
+        </member>
+        <member name="F:Bubba.Pipeline._statusUpdate">
+            <summary>
+            The status update
+            </summary>
+        </member>
+        <member name="F:Bubba.Pipeline._timerCallback">
+            <summary>
+            The timer callback
+            </summary>
+        </member>
+        <member name="F:Bubba.Pipeline._extractor">
+            <summary>
+            The extractor
+            </summary>
+        </member>
+        <member name="F:Bubba.Pipeline._chunker">
+            <summary>
+            The chunker
+            </summary>
+        </member>
+        <member name="F:Bubba.Pipeline._retriever">
+            <summary>
+            The retriever
+            </summary>
+        </member>
+        <member name="F:Bubba.Pipeline._request">
+            <summary>
+            The file request
+            </summary>
+        </member>
+        <member name="M:Bubba.Pipeline.#ctor(Bubba.Extractor,Bubba.Chunker,Bubba.Retriever,Bubba.GptFileRequest)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Bubba.Pipeline"/> class.
+            </summary>
+            <param name="extractor">The extractor.</param>
+            <param name="chunker">The chunker.</param>
+            <param name="retriever">The retriever.</param>
+            <param name="request">The file request.</param>
+        </member>
+        <member name="M:Bubba.Pipeline.Busy">
+            <summary>
+            Begins the initialize.
+            </summary>
+        </member>
+        <member name="M:Bubba.Pipeline.Chill">
+            <summary>
+            Ends the initialize.
+            </summary>
+        </member>
+        <member name="M:Bubba.Pipeline.ExecuteAsync(System.String,System.String)">
+            <summary>
+            Executes the asynchronous.
+            </summary>
+            <param name="query">The query.</param>
+            <param name="directory">The PDF directory.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Bubba.Pipeline.Dispose">
+            <inheritdoc />
+            <summary>
+            Releases unmanaged and - optionally - managed resources.
+            </summary>
+        </member>
+        <member name="M:Bubba.Pipeline.Dispose(System.Boolean)">
+            <summary>
+            Releases unmanaged and - optionally - managed resources.
+            </summary>
+            <param name="disposing"><c>true</c>
+            to release both managed and unmanaged resources;
+            <c>false</c> to release only unmanaged resources.
+            </param>
+        </member>
+        <member name="M:Bubba.Pipeline.Fail(System.Exception)">
+            <summary>
+            Fails the specified ex.
+            </summary>
+            <param name="ex">The ex.</param>
+        </member>
+        <member name="T:Bubba.Retriever">
+            <inheritdoc />
+            <summary>
+            </summary>
+        </member>
+        <member name="F:Bubba.Retriever._busy">
+            <summary>
+            The busy
+            </summary>
+        </member>
+        <member name="F:Bubba.Retriever._entry">
+            <summary>
+            The entry
+            </summary>
+        </member>
+        <member name="F:Bubba.Retriever._timer">
+            <summary>
+            The timer
+            </summary>
+        </member>
+        <member name="F:Bubba.Retriever._timerCallback">
+            <summary>
+            The timer callback
+            </summary>
+        </member>
+        <member name="M:Bubba.Retriever.#ctor">
+            <summary>
+            Initializes a new instance of the
+            <see cref="T:Bubba.Retriever"/> class.
+            </summary>
+        </member>
+        <member name="M:Bubba.Retriever.Busy">
+            <summary>
+            Begins the initialize.
+            </summary>
+        </member>
+        <member name="M:Bubba.Retriever.Chill">
+            <summary>
+            Ends the initialize.
+            </summary>
+        </member>
+        <member name="M:Bubba.Retriever.GetChunks(System.String,System.Collections.Generic.IList{System.String},System.Int32)">
+            <summary>
+            Gets the chunks.
+            </summary>
+            <param name="prompt">The prompt.</param>
+            <param name="chunks">The document chunks.</param>
+            <param name="topN">The top n.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Bubba.Retriever.CalculateCosineSimilarity(System.String[],System.String[])">
+            <summary>
+            Calculates the cosine similarity.
+            </summary>
+            <param name="tokensA">The tokens a.</param>
+            <param name="tokensB">The tokens b.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Bubba.Retriever.Dispose">
+            <inheritdoc />
+            <summary>
+            Releases unmanaged and - optionally - managed resources.
+            </summary>
+        </member>
+        <member name="M:Bubba.Retriever.Dispose(System.Boolean)">
+            <summary>
+            Releases unmanaged and - optionally - managed resources.
+            </summary>
+            <param name="disposing"><c>true</c>
+            to release both managed and unmanaged resources;
+            <c>false</c> to release only unmanaged resources.
+            </param>
+        </member>
+        <member name="M:Bubba.Retriever.Fail(System.Exception)">
+            <summary>
+            Fails the specified ex.
+            </summary>
+            <param name="ex">The ex.</param>
+        </member>
         <member name="T:Bubba.XmlCallback">
             <summary>
             
@@ -30383,9 +30413,19 @@
               Looks up a localized string similar to 123.123.123.123.
             </summary>
         </member>
+        <member name="P:Bubba.Properties.Locations.ProxyPassword">
+            <summary>
+              Looks up a localized string similar to Blaise#2016.
+            </summary>
+        </member>
         <member name="P:Bubba.Properties.Locations.ProxyPort">
             <summary>
               Looks up a localized string similar to 123.
+            </summary>
+        </member>
+        <member name="P:Bubba.Properties.Locations.ProxyUsername">
+            <summary>
+              Looks up a localized string similar to teppler.
             </summary>
         </member>
         <member name="P:Bubba.Properties.Locations.Reports">
@@ -30942,12 +30982,12 @@
             <param name="fileName">Full path of the file to look for.</param>
             <returns></returns>
         </member>
-        <member name="T:Bubba.NetUtility">
+        <member name="T:Bubba.NetManager">
             <summary>
             
             </summary>
         </member>
-        <member name="M:Bubba.NetUtility.IsFocused(System.Windows.Controls.TextBox)">
+        <member name="M:Bubba.NetManager.IsFocused(System.Windows.Controls.TextBox)">
             <summary>
             Determines whether the specified tb is focused.
             </summary>
@@ -30956,7 +30996,7 @@
               <c>true</c> if the specified tb is focused; otherwise, <c>false</c>.
             </returns>
         </member>
-        <member name="M:Bubba.NetUtility.AddHotKey(System.Windows.Window,System.Action,System.Boolean,System.Boolean,System.Boolean)">
+        <member name="M:Bubba.NetManager.AddHotKey(System.Windows.Window,System.Action,System.Boolean,System.Boolean,System.Boolean)">
             <summary>
             Adds the hot key.
             </summary>
@@ -30966,7 +31006,7 @@
             <param name="shift">if set to <c>true</c> [shift].</param>
             <param name="alt">if set to <c>true</c> [alt].</param>
         </member>
-        <member name="M:Bubba.NetUtility.IsFullySelected(System.Windows.Controls.TextBox)">
+        <member name="M:Bubba.NetManager.IsFullySelected(System.Windows.Controls.TextBox)">
             <summary>
             Determines whether [is fully selected] [the specified tb].
             </summary>
@@ -30976,7 +31016,7 @@
             [the specified tb]; otherwise, <c>false</c>.
             </returns>
         </member>
-        <member name="M:Bubba.NetUtility.HasSelection(System.Windows.Controls.TextBox)">
+        <member name="M:Bubba.NetManager.HasSelection(System.Windows.Controls.TextBox)">
             <summary>
             Determines whether the specified tb has selection.
             </summary>
@@ -30988,91 +31028,14 @@
             <c>false</c>.
             </returns>
         </member>
-        <member name="M:Bubba.NetUtility.CheckIfFilePath(System.String)">
-            <summary>
-            Checks if file path.
-            </summary>
-            <param name="path">The path.</param>
-            <returns></returns>
-        </member>
-        <member name="M:Bubba.NetUtility.CheckIfFilePath2(System.String)">
-            <summary>
-            Checks if file path2.
-            </summary>
-            <param name="path">The path.</param>
-            <returns></returns>
-        </member>
-        <member name="M:Bubba.NetUtility.GetAfter(System.String,System.String,System.Int32,System.Boolean,System.Boolean)">
-            <summary>
-            Gets the after.
-            </summary>
-            <param name="text">The text.</param>
-            <param name="find">The find.</param>
-            <param name="startAt">The start at.</param>
-            <param name="returnAll">
-            if set to <c>true</c> [return all].
-            </param>
-            <param name="forward">
-            if set to <c>true</c> [forward].
-            </param>
-            <returns>
-            string
-            </returns>
-        </member>
-        <member name="M:Bubba.NetUtility.GetAfterLast(System.String,System.String,System.Boolean)">
-            <summary>
-            Gets the after last.
-            </summary>
-            <param name="text">The text.</param>
-            <param name="find">The find.</param>
-            <param name="returnAll">if set to <c>true</c> [return all].</param>
-            <returns></returns>
-        </member>
-        <member name="M:Bubba.NetUtility.SupportedInFilePath(System.Char)">
-            <summary>
-            Supporteds the in file path.
-            </summary>
-            <param name="c">The c.</param>
-            <returns></returns>
-        </member>
-        <member name="M:Bubba.NetUtility.ChangePathSlash(System.String,System.String)">
-            <summary>
-            Changes the path slash.
-            </summary>
-            <param name="filePath">The file path.</param>
-            <param name="slash">The slash.</param>
-            <returns></returns>
-        </member>
-        <member name="M:Bubba.NetUtility.FileUrlToPath(System.String)">
-            <summary>
-            Files the URL to path.
-            </summary>
-            <param name="url">The URL.</param>
-            <returns></returns>
-        </member>
-        <member name="M:Bubba.NetUtility.FileNotExists(System.String)">
-            <summary>
-            Files the not exists.
-            </summary>
-            <param name="path">The path.</param>
-            <returns></returns>
-        </member>
-        <member name="M:Bubba.NetUtility.ConvertToString(System.Object)">
+        <member name="M:Bubba.NetManager.ConvertToString(System.Object)">
             <summary>
             Converts to string.
             </summary>
             <param name="o">The o.</param>
             <returns></returns>
         </member>
-        <member name="M:Bubba.NetUtility.CheckIfValid(System.String,System.Boolean)">
-            <summary>
-            Checks if valid.
-            </summary>
-            <param name="text">The text.</param>
-            <param name="trimAndCheck">if set to <c>true</c> [trim and check].</param>
-            <returns></returns>
-        </member>
-        <member name="M:Bubba.NetUtility.IsHotKey(System.Windows.Input.KeyEventArgs,System.Boolean,System.Boolean,System.Boolean)">
+        <member name="M:Bubba.NetManager.IsHotKey(System.Windows.Input.KeyEventArgs,System.Boolean,System.Boolean,System.Boolean)">
             <summary>
             Determines whether [is hot key] [the specified key].
             </summary>
@@ -31087,14 +31050,14 @@
             otherwise, <c>false</c>.
             </returns>
         </member>
-        <member name="M:Bubba.NetUtility.ToCefState(System.Boolean)">
+        <member name="M:Bubba.NetManager.ToCefState(System.Boolean)">
             <summary>
             Converts to cefstate.
             </summary>
             <param name="value">if set to <c>true</c> [value].</param>
             <returns></returns>
         </member>
-        <member name="M:Bubba.NetUtility.IsBitMaskOn(System.Int32,System.Int32)">
+        <member name="M:Bubba.NetManager.IsBitMaskOn(System.Int32,System.Int32)">
             <summary>
             Determines whether [is bitMask on] [the specified bitMask].
             </summary>
@@ -31104,27 +31067,7 @@
               <c>true</c> if [is bitMask on] [the specified bitMask]; otherwise, <c>false</c>.
             </returns>
         </member>
-        <member name="M:Bubba.NetUtility.BeginsWith(System.String,System.String,System.Boolean)">
-            <summary>
-            Beginses the with.
-            </summary>
-            <param name="str">The string.</param>
-            <param name="beginsWith">The begins with.</param>
-            <param name="caseSensitive">
-            if set to <c>true</c> [case sensitive].
-            </param>
-            <returns></returns>
-        </member>
-        <member name="M:Bubba.NetUtility.RemovePrefix(System.String,System.String,System.Boolean)">
-            <summary>
-            Removes the prefix.
-            </summary>
-            <param name="str">The string.</param>
-            <param name="prefix">The prefix.</param>
-            <param name="caseSensitive">if set to <c>true</c> [case sensitive].</param>
-            <returns></returns>
-        </member>
-        <member name="M:Bubba.NetUtility.Fail(System.Exception)">
+        <member name="M:Bubba.NetManager.Fail(System.Exception)">
             <summary>
             Get ErrorDialog Dialog.
             </summary>
@@ -31240,78 +31183,52 @@
             </summary>
             <param name="ex">The ex.</param>
         </member>
-        <member name="T:Bubba.WebUtility">
+        <member name="T:Bubba.WebSerializer">
             <summary>
             
             </summary>
         </member>
-        <member name="M:Bubba.WebUtility.PathToUrl(System.String,System.String)">
+        <member name="M:Bubba.WebSerializer.Serialize``1(``0)">
             <summary>
-            Paths to URL.
+            Serializes an object to a JSON string.
             </summary>
-            <param name="filePath">The file path.</param>
-            <param name="removeBaseDir">The remove base dir.</param>
-            <returns></returns>
+            <typeparam name="T">The type of the object to serialize.</typeparam>
+            <param name="data">The object to serialize.</param>
+            <returns>JSON string representation of the object.</returns>
         </member>
-        <member name="M:Bubba.WebUtility.IsFileOffline(System.String)">
+        <member name="M:Bubba.WebSerializer.Deserialize``1(System.String)">
             <summary>
-            Determines whether [is file offline].
+            Deserializes a JSON string to an object of the specified type.
             </summary>
-            <param name="url">The URL.</param>
-            <returns>
-            <c> true </c>
-            if [is file offline] [the specified URL]; otherwise,
-            <c> false </c>
-            .
-            </returns>
+            <typeparam name="T">The type of the object to deserialize to.</typeparam>
+            <param name="json">The JSON string to deserialize.</param>
+            <returns>Deserialized object of the specified type.</returns>
         </member>
-        <member name="M:Bubba.WebUtility.IsLocalhost(System.String)">
+        <member name="M:Bubba.WebSerializer.SendJsonPostRequest``2(System.String,``0)">
             <summary>
-            Determines whether this instance is localhost.
+            Sends a POST request with a JSON payload and receives the JSON response.
             </summary>
-            <param name="url">The URL.</param>
-            <returns>
-            <c> true </c>
-            if the specified URL is localhost; otherwise,
-            <c> false </c>
-            .
-            </returns>
+            <typeparam name="TRequest">Type of the request object to serialize.</typeparam>
+            <typeparam name="TResponse">Type of the response object to deserialize.</typeparam>
+            <param name="url">The URL to send the request to.</param>
+            <param name="requestData">The object to be serialized and sent as JSON.</param>
+            <returns>Deserialized response object.</returns>
         </member>
-        <member name="M:Bubba.WebUtility.UrlDecode(System.String)">
+        <member name="M:Bubba.WebSerializer.SendJsonGetRequest``1(System.String)">
             <summary>
-            URLs the decode.
+            Sends a GET request and receives the JSON response.
             </summary>
-            <param name="url">The URL.</param>
-            <returns></returns>
+            <typeparam name="T">
+            Type of the response object to deserialize.
+            </typeparam>
+            <param name="url">The URL to send the request to.</param>
+            <returns>Deserialized response object.</returns>
         </member>
-        <member name="M:Bubba.WebUtility.HexToInt(System.Char)">
+        <member name="M:Bubba.WebSerializer.Fail(System.Exception)">
             <summary>
-            Hexadecimals to int.
+            Fails the specified ex.
             </summary>
-            <param name="hex">The hexadecimal.</param>
-            <returns></returns>
-        </member>
-        <member name="M:Bubba.WebUtility.DecodeUrlForFilePath(System.String)">
-            <summary>
-            Decodes the URL for filepath.
-            </summary>
-            <param name="url">The URL.</param>
-            <returns></returns>
-        </member>
-        <member name="M:Bubba.WebUtility.UrlEncode(System.String)">
-            <summary>
-            URLs the encode.
-            </summary>
-            <param name="text">The text.</param>
-            <returns></returns>
-        </member>
-        <member name="M:Bubba.WebUtility.Fail(System.Exception)">
-            <summary>
-            Get ErrorDialog Dialog.
-            </summary>
-            <param name="ex">
-            The ex.
-            </param>
+            <param name="ex">The ex.</param>
         </member>
         <member name="T:Bubba.WinMinion">
             <summary>
@@ -38065,6 +37982,19 @@
             <param name="ex">The ex.</param>
         </member>
         <member name="M:Bubba.Notification.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:Bubba.PropertyDialog">
+            <summary>
+            Interaction logic for PropertyDialog.xaml
+            </summary>
+            <summary>
+            PropertyDialog
+            </summary>
+        </member>
+        <member name="M:Bubba.PropertyDialog.InitializeComponent">
             <summary>
             InitializeComponent
             </summary>

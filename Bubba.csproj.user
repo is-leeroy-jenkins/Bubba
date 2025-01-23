@@ -7,19 +7,22 @@
     </ApplicationDefinition>
   </ItemGroup>
   <ItemGroup>
+    <Compile Update="UI\Views\PropertyDialog\PropertyDialog.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="UI\Views\ColorDialog\ColorDialog.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="UI\Views\SystemDialog\SystemDialog.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="UI\Views\GptImage\GptImageDialog.xaml.cs">
+    <Compile Update="UI\Views\GptImageDialog\GptImageDialog.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="UI\Views\Configuration\ConfigurationDialog.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="UI\Views\GptFile\GptFileDialog.xaml.cs">
+    <Compile Update="UI\Views\GptFileDialog\GptFileDialog.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="UI\Views\ChatWindow\ChatWindow.xaml.cs">
@@ -36,13 +39,19 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Page Update="UI\Themes\GroupBox\GroupBox.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="UI\Views\PropertyDialog\PropertyDialog.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="UI\Views\ColorDialog\ColorDialog.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="UI\Views\SystemDialog\SystemDialog.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="UI\Views\GptImage\GptImageDialog.xaml">
+    <Page Update="UI\Views\GptImageDialog\GptImageDialog.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="UI\Views\Configuration\ConfigurationDialog.xaml">
@@ -51,7 +60,7 @@
     <Page Update="UI\Themes\Slider\Slider.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="UI\Views\GptFile\GptFileDialog.xaml">
+    <Page Update="UI\Views\GptFileDialog\GptFileDialog.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="UI\Views\Document\DocumentWindow.xaml">

@@ -1,10 +1,10 @@
 ﻿// ******************************************************************************************
 //     Assembly:                Bubba
 //     Author:                  Terry D. Eppler
-//     Created:                 01-20-2025
+//     Created:                 01-23-2025
 // 
 //     Last Modified By:        Terry D. Eppler
-//     Last Modified On:        01-20-2025
+//     Last Modified On:        01-23-2025
 // ******************************************************************************************
 // <copyright file="App.xaml.cs" company="Terry D. Eppler">
 //    Bubba is a small and simple windows (wpf) application for interacting with the OpenAI API
@@ -49,6 +49,8 @@ namespace Bubba
     using System.Threading.Tasks;
     using System.Windows;
     using System.Windows.Media;
+    using CefSharp;
+    using CefSharp.Wpf;
     using OfficeOpenXml;
     using RestoreWindowPlace;
     using Syncfusion.Licensing;
@@ -131,6 +133,7 @@ namespace Bubba
         public App( )
         {
             InitializeDelegates( );
+            InitializeCefSharp( );
             var _key = ConfigurationManager.AppSettings[ "UI" ];
             SyncfusionLicenseProvider.RegisterLicense( _key );
             OpenAiKey = Environment.GetEnvironmentVariable( "OPENAI_API_KEY" );
@@ -139,6 +142,10 @@ namespace Bubba
             ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
             RegisterTheme( );
             ActiveWindows = new Dictionary<string, Window>( );
+
+            // Wire Events
+            Startup += OnStartup;
+            Exit += OnExit;
         }
 
         /// <summary>
@@ -196,6 +203,63 @@ namespace Bubba
             catch( Exception e )
             {
                 Fail( e );
+            }
+        }
+
+        /// <summary>
+        /// this is done just once, to globally initialize CefSharp/CEF
+        /// </summary>
+        protected virtual void InitializeCefSharp( )
+        {
+            try
+            {
+                var _cefSettings = new CefSettings( );
+                _cefSettings.RegisterScheme( new CefCustomScheme
+                {
+                    SchemeName = Locations.Internal,
+                    SchemeHandlerFactory = new SchemaCallbackFactory( )
+                } );
+
+                _cefSettings.UserAgent = Locations.UserAgent;
+                _cefSettings.AcceptLanguageList = Locations.AcceptLanguage;
+                _cefSettings.IgnoreCertificateErrors = true;
+                _cefSettings.CachePath = GetApplicationDirectory( "Cache" );
+                if( bool.Parse( Locations.Proxy ) )
+                {
+                    CefSharpSettings.Proxy = new ProxyOptions( Locations.ProxyIP,
+                        Locations.ProxyPort, Locations.ProxyUsername,
+                        Locations.ProxyPassword, Locations.ProxyBypassList );
+                }
+
+                Cef.Initialize( _cefSettings );
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+            }
+        }
+
+        /// <summary>
+        /// Gets the application directory.
+        /// </summary>
+        /// <param name="name">The name.</param>
+        /// <returns></returns>
+        private protected static string GetApplicationDirectory( string name )
+        {
+            try
+            {
+                ThrowIf.Empty( name, nameof( name ) );
+                var _winXpDir = @"C:\Documents and Settings\All Users\Application Data\";
+                return Directory.Exists( _winXpDir )
+                    ? _winXpDir + Locations.Branding + @"\" + name
+                    + @"\"
+                    : @"C:\ProgramData\" + Locations.Branding + @"\"
+                    + name + @"\";
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+                return string.Empty;
             }
         }
 
@@ -566,18 +630,24 @@ namespace Bubba
         /// Raises the
         /// <see cref="E:System.Windows.Application.Startup" /> event.
         /// </summary>
-        /// <param name="e">A
-        /// <see cref="T:System.Windows.StartupEventArgs" />
+        /// <param name = "sender" > </param>
+        /// <param name="e">
         /// that contains the event data.
         /// </param>
-        protected override void OnStartup( StartupEventArgs e )
+        protected virtual void OnStartup( object sender, StartupEventArgs e )
         {
             try
             {
-                base.OnStartup( e );
+                DispatcherUnhandledException += ( s, args ) => HandleException( args.Exception );
+                TaskScheduler.UnobservedTaskException += ( s, args ) =>
+                    HandleException( args.Exception?.InnerException );
+
+                AppDomain.CurrentDomain.UnhandledException += ( s, args ) =>
+                    HandleException( args.ExceptionObject as Exception );
             }
             catch( Exception ex )
             {
+                Cef.Shutdown( );
                 Fail( ex );
                 Environment.Exit( 1 );
             }
@@ -587,12 +657,14 @@ namespace Bubba
         /// <summary>
         /// Raises the <see cref="E:System.Windows.Application.Exit" /> event.
         /// </summary>
+        /// <param name = "sender" > </param>
         /// <param name="e">An <see cref="T:System.Windows.ExitEventArgs" />
         /// that contains the event data.</param>
-        protected override void OnExit( ExitEventArgs e )
+        protected virtual void OnExit( object sender, ExitEventArgs e )
         {
             try
             {
+                Cef.Shutdown( );
                 base.OnExit( e );
                 Environment.Exit( 0 );
             }

@@ -259,11 +259,29 @@ namespace Bubba.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Blaise#2016.
+        /// </summary>
+        internal static string ProxyPassword {
+            get {
+                return ResourceManager.GetString("ProxyPassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 123.
         /// </summary>
         internal static string ProxyPort {
             get {
                 return ResourceManager.GetString("ProxyPort", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to teppler.
+        /// </summary>
+        internal static string ProxyUsername {
+            get {
+                return ResourceManager.GetString("ProxyUsername", resourceCulture);
             }
         }
         

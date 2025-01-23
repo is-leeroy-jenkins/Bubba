@@ -1,14 +1,14 @@
 ﻿// ******************************************************************************************
-//     Assembly:                Bocifus
+//     Assembly:                Bubba
 //     Author:                  Terry D. Eppler
-//     Created:                 10-31-2024
+//     Created:                 01-23-2025
 // 
 //     Last Modified By:        Terry D. Eppler
-//     Last Modified On:        10-31-2024
+//     Last Modified On:        01-23-2025
 // ******************************************************************************************
 // <copyright file="StringExtensions.cs" company="Terry D. Eppler">
-//   Bocifus is an open source windows (wpf) application that interacts with OpenAI GPT-3.5 Turbo API
-//   based on NET6 and written in C-Sharp.
+//    Bubba is a small and simple windows (wpf) application for interacting with the OpenAI API
+//    that's developed in C-Sharp under the MIT license.C#.
 // 
 //    Copyright ©  2020-2024 Terry D. Eppler
 // 
@@ -56,6 +56,7 @@ namespace Bubba
     [ SuppressMessage( "ReSharper", "ReplaceSubstringWithRangeIndexer" ) ]
     [ SuppressMessage( "ReSharper", "MemberCanBeInternal" ) ]
     [ SuppressMessage( "ReSharper", "ArrangeRedundantParentheses" ) ]
+    [ SuppressMessage( "ReSharper", "PreferConcreteValueOverDefault" ) ]
     public static class StringExtensions
     {
         /// <summary>
@@ -129,7 +130,7 @@ namespace Bubba
             catch( Exception ex )
             {
                 Fail( ex );
-                return default( string );
+                return string.Empty;
             }
         }
 
@@ -480,6 +481,511 @@ namespace Bubba
                 Fail( ex );
                 return false;
             }
+        }
+
+        /// <summary>
+        /// Removes the prefix.
+        /// </summary>
+        /// <param name="str">The string.</param>
+        /// <param name="prefix">The prefix.</param>
+        /// <param name="caseSensitive">if set to <c>true</c> [case sensitive].</param>
+        /// <returns></returns>
+        public static string RemovePrefix( this string str, string prefix,
+            bool caseSensitive = true )
+        {
+            try
+            {
+                ThrowIf.Null( prefix, nameof( prefix ) );
+                return str.Length >= prefix.Length && str.BeginsWith( prefix, caseSensitive )
+                    ? str.Substring( prefix.Length )
+                    : str;
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+                return string.Empty;
+            }
+        }
+
+        /// <summary>
+        /// Beginses the with.
+        /// </summary>
+        /// <param name="str">The string.</param>
+        /// <param name="beginsWith">The begins with.</param>
+        /// <param name="caseSensitive">
+        /// if set to <c>true</c> [case sensitive].
+        /// </param>
+        /// <returns></returns>
+        public static bool BeginsWith( this string str, string beginsWith,
+            bool caseSensitive = true )
+        {
+            try
+            {
+                ThrowIf.Null( beginsWith, nameof( beginsWith ) );
+                if( beginsWith.Length > str.Length )
+                {
+                    return false;
+                }
+
+                if( beginsWith.Length == str.Length )
+                {
+                    return string.Equals( beginsWith, str, caseSensitive
+                        ? StringComparison.Ordinal
+                        : StringComparison.OrdinalIgnoreCase );
+                }
+
+                return str.LastIndexOf( beginsWith, beginsWith.Length - 1, caseSensitive
+                    ? StringComparison.Ordinal
+                    : StringComparison.OrdinalIgnoreCase ) == 0;
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+                return false;
+            }
+        }
+
+        /// <summary>
+        /// Checks if valid.
+        /// </summary>
+        /// <param name="text">The text.</param>
+        /// <param name="trimAndCheck">if set to <c>true</c> [trim and check].</param>
+        /// <returns></returns>
+        public static bool IsNull( this string text, bool trimAndCheck = false )
+        {
+            return string.IsNullOrEmpty( text );
+        }
+
+        /// <summary>
+        /// Supporteds the in file path.
+        /// </summary>
+        /// <param name="c">The c.</param>
+        /// <returns></returns>
+        public static bool SupportedInFilePath( this char c )
+        {
+            return !( c == '?' || c == '\'' || c == '\"' || c == '/' || c == '\\' || c == ';'
+                || c == ':' || c == '&' || c == '*' || c == '<' || c == '>' || c == '|' || c == '{'
+                || c == '}' || c == '[' || c == ']' || c == '(' || c == ')' );
+        }
+
+        /// <summary>
+        /// Changes the path slash.
+        /// </summary>
+        /// <param name="filePath">The file path.</param>
+        /// <param name="slash">The slash.</param>
+        /// <returns></returns>
+        public static string ChangePathSlash( this string filePath, string slash )
+        {
+            return slash switch
+            {
+                "\\" when filePath.Contains( '/' ) => filePath.Replace( "/", "\\" ),
+                "/" when filePath.Contains( '\\' ) => filePath.Replace( "\\", "/" ),
+                var _ => filePath
+            };
+        }
+
+        /// <summary>
+        /// Files the URL to path.
+        /// </summary>
+        /// <param name="url">The URL.</param>
+        /// <returns></returns>
+        public static string FileUrlToPath( this string url )
+        {
+            return url.RemovePrefix( "file:///" ).ChangePathSlash( @"\" ).DecodeUrlForFilePath( );
+        }
+
+        /// <summary>
+        /// Files the not exists.
+        /// </summary>
+        /// <param name="path">The path.</param>
+        /// <returns></returns>
+        public static bool IsFIle( this string path )
+        {
+            try
+            {
+                return !File.Exists( path );
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+                return false;
+            }
+        }
+
+        /// <summary>
+        /// Checks if file path.
+        /// </summary>
+        /// <param name="path">The path.</param>
+        /// <returns></returns>
+        public static bool IsFilePath( this string path )
+        {
+            if( path.Length >= 3 )
+            {
+                if( path[ 1 ] == ':' )
+                {
+                    if( path[ 2 ] == '\\' )
+                    {
+                        if( char.IsLetter( path[ 0 ] ) )
+                        {
+                            return true;
+                        }
+                    }
+                }
+            }
+
+            return false;
+        }
+
+        /// <summary>
+        /// Gets the after.
+        /// </summary>
+        /// <param name="text">The text.</param>
+        /// <param name="find">The find.</param>
+        /// <param name="startAt">The start at.</param>
+        /// <param name="returnAll">
+        /// if set to <c>true</c> [return all].
+        /// </param>
+        /// <param name="forward">
+        /// if set to <c>true</c> [forward].
+        /// </param>
+        /// <returns>
+        /// string
+        /// </returns>
+        public static string GetAfter( this string text, string find, int startAt = 0,
+            bool returnAll = false, bool forward = true )
+        {
+            if( text == null )
+            {
+                return returnAll
+                    ? text
+                    : "";
+            }
+
+            var _idx = !forward
+                ? text.LastIndexOf( find, text.Length - startAt, StringComparison.Ordinal )
+                : text.IndexOf( find, startAt, StringComparison.Ordinal );
+
+            if( _idx == -1 )
+            {
+                return returnAll
+                    ? text
+                    : "";
+            }
+
+            _idx += find.Length;
+            return text.Substring( _idx );
+        }
+
+        /// <summary>
+        /// Gets the after last.
+        /// </summary>
+        /// <param name="text">The text.</param>
+        /// <param name="find">The find.</param>
+        /// <param name="returnAll">if set to <c>true</c> [return all].</param>
+        /// <returns></returns>
+        public static string GetAfterLast( this string text, string find, bool returnAll = false )
+        {
+            var _index = text.LastIndexOf( find, StringComparison.Ordinal );
+            if( _index == -1 )
+            {
+                return returnAll
+                    ? text
+                    : "";
+            }
+
+            _index += find.Length;
+            return text.Substring( _index );
+        }
+
+        /// <summary>
+        /// Paths to URL.
+        /// </summary>
+        /// <param name="filePath">The file path.</param>
+        /// <param name="removeBaseDir">The remove base dir.</param>
+        /// <returns></returns>
+        public static string PathToUrl( this string filePath, string removeBaseDir = null )
+        {
+            try
+            {
+                if( !filePath.IsNull( ) )
+                {
+                    return "";
+                }
+
+                return @"file:///" + filePath.Replace( @"\", "/" );
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+                return string.Empty;
+            }
+        }
+
+        /// <summary>
+        /// Determines whether [is file offline].
+        /// </summary>
+        /// <param name="url">The URL.</param>
+        /// <returns>
+        /// <c> true </c>
+        /// if [is file offline] [the specified URL]; otherwise,
+        /// <c> false </c>
+        /// .
+        /// </returns>
+        public static bool IsFileOffline( this string url )
+        {
+            try
+            {
+                return url.StartsWith( "file://", StringComparison.Ordinal );
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+                return false;
+            }
+        }
+
+        /// <summary>
+        /// Determines whether this instance is localhost.
+        /// </summary>
+        /// <param name="url">The URL.</param>
+        /// <returns>
+        /// <c> true </c>
+        /// if the specified URL is localhost; otherwise,
+        /// <c> false </c>
+        /// .
+        /// </returns>
+        public static bool IsLocalhost( this string url )
+        {
+            try
+            {
+                return url.BeginsWith( "http://localhost" ) || url.BeginsWith( "localhost" );
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+                return false;
+            }
+        }
+
+        /// <summary>
+        /// URLs the decode.
+        /// </summary>
+        /// <param name="url">The URL.</param>
+        /// <returns></returns>
+        public static string UrlDecode( this string url )
+        {
+            try
+            {
+                if( url == null )
+                {
+                    return null;
+                }
+
+                var _length = url.Length;
+                var _decoder = new UrlDecoder( _length, Encoding.UTF8 );
+                for( var _i = 0; _i < _length; _i++ )
+                {
+                    var _char = url[ _i ];
+                    if( _char == '+' )
+                    {
+                        _char = ' ';
+                    }
+                    else if( _char == '%'
+                        && _i < _length - 2 )
+                    {
+                        if( url[ _i + 1 ] == 'u'
+                            && _i < _length - 5 )
+                        {
+                            var _num3 = url[ _i + 2 ].HexToInt( );
+                            var _num4 = url[ _i + 3 ].HexToInt( );
+                            var _num5 = url[ _i + 4 ].HexToInt( );
+                            var _num6 = url[ _i + 5 ].HexToInt( );
+                            if( _num3 < 0
+                                || _num4 < 0
+                                || _num5 < 0
+                                || _num6 < 0 )
+                            {
+                                goto Label_010B;
+                            }
+
+                            _char = ( char )( ( _num3 << 12 ) | ( _num4 << 8 ) | ( _num5 << 4 )
+                                | _num6 );
+
+                            _i += 5;
+                            _decoder.AddChar( _char );
+                            continue;
+                        }
+
+                        var _num7 = url[ _i + 1 ].HexToInt( );
+                        var _num8 = url[ _i + 2 ].HexToInt( );
+                        if( _num7 >= 0
+                            && _num8 >= 0 )
+                        {
+                            var _b = ( byte )( ( _num7 << 4 ) | _num8 );
+                            _i += 2;
+                            _decoder.AddByte( _b );
+                            continue;
+                        }
+                    }
+
+                    Label_010B:
+                    if( ( _char & 0xff80 ) == 0 )
+                    {
+                        _decoder.AddByte( ( byte )_char );
+                    }
+                    else
+                    {
+                        _decoder.AddChar( _char );
+                    }
+                }
+
+                return _decoder.GetString( );
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+                return string.Empty;
+            }
+        }
+
+        /// <summary>
+        /// Hexadecimals to int.
+        /// </summary>
+        /// <param name="hex">The hexadecimal.</param>
+        /// <returns></returns>
+        public static int HexToInt( this char hex )
+        {
+            try
+            {
+                return hex switch
+                {
+                    >= '0' and <= '9' => hex - '0',
+                    >= 'a' and <= 'f' => hex - 'a' + 10,
+                    >= 'A' and <= 'F' => hex - 'A' + 10,
+                    var _ => -1
+                };
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+                return -1;
+            }
+        }
+
+        /// <summary>
+        /// Decodes the URL for filepath.
+        /// </summary>
+        /// <param name="url">The URL.</param>
+        /// <returns></returns>
+        public static string DecodeUrlForFilePath( this string url )
+        {
+            try
+            {
+                if( url == null )
+                {
+                    return null;
+                }
+
+                var _length = url.Length;
+                var _decoder = new UrlDecoder( _length * 10, Encoding.UTF8 )
+                {
+                    ForFilePaths = true
+                };
+
+                for( var _i = 0; _i < _length; _i++ )
+                {
+                    var _ch = url[ _i ];
+                    if( _ch == '+' )
+                    {
+                        _ch = ' ';
+                    }
+                    else if( _ch == '%'
+                        && _i < _length - 2 )
+                    {
+                        if( url[ _i + 1 ] == 'u'
+                            && _i < _length - 5 )
+                        {
+                            var _num3 = url[ _i + 2 ].HexToInt( );
+                            var _num4 = url[ _i + 3 ].HexToInt( );
+                            var _num5 = url[ _i + 4 ].HexToInt( );
+                            var _num6 = url[ _i + 5 ].HexToInt( );
+                            if( _num3 < 0
+                                || _num4 < 0
+                                || _num5 < 0
+                                || _num6 < 0 )
+                            {
+                                goto Label_010B;
+                            }
+
+                            _ch = ( char )( ( _num3 << 12 ) | ( _num4 << 8 ) | ( _num5 << 4 )
+                                | _num6 );
+
+                            _i += 5;
+                            _decoder.FlushBytes( false );
+                            _decoder.AddChar( _ch, true );
+                            continue;
+                        }
+
+                        var _num7 = url[ _i + 1 ].HexToInt( );
+                        var _num8 = url[ _i + 2 ].HexToInt( );
+                        if( _num7 >= 0
+                            && _num8 >= 0 )
+                        {
+                            var _b = ( byte )( ( _num7 << 4 ) | _num8 );
+                            _i += 2;
+                            _decoder.FlushBytes( false );
+                            _decoder.AddByte( _b );
+                            if( _i + 1 < _length - 2
+                                && url[ _i + 1 ] == '%' )
+                            {
+                                _num7 = url[ _i + 1 ].HexToInt( );
+                                _num8 = url[ _i + 2 ].HexToInt( );
+                                if( _num7 >= 0
+                                    && _num8 >= 0 )
+                                {
+                                    _b = ( byte )( ( _num7 << 4 ) | _num8 );
+                                    _i += 2;
+                                    _decoder.AddByte( _b );
+                                    _decoder.FlushBytes( true );
+                                }
+                            }
+                            else
+                            {
+                                _decoder.FlushBytes( true );
+                            }
+
+                            continue;
+                        }
+                    }
+
+                    Label_010B:
+                    if( ( _ch & 0xff80 ) == 0 )
+                    {
+                        _decoder.AddByte( ( byte )_ch );
+                    }
+                    else
+                    {
+                        _decoder.AddChar( _ch, false );
+                    }
+                }
+
+                return _decoder.GetString( );
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+                return string.Empty;
+            }
+        }
+
+        /// <summary>
+        /// URLs the encode.
+        /// </summary>
+        /// <param name="text">The text.</param>
+        /// <returns></returns>
+        public static string UrlEncode( this string text )
+        {
+            return Uri.EscapeDataString( text );
         }
 
         /// <summary>

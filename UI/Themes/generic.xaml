@@ -9,6 +9,9 @@
         <!--  COMBOBOX  -->
         <ResourceDictionary Source="/UI/Themes/ComboBox/ComboBox.xaml" />
 
+        <!--  GROUPBOX  -->
+        <ResourceDictionary Source="/UI/Themes/GroupBox/GroupBox.xaml" />
+
         <!--  COMMON  -->
 
         <ResourceDictionary Source="/UI/Themes/Colors.xaml" />

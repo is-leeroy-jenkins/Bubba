@@ -1054,7 +1054,8 @@ namespace Bubba
         /// </summary>
         public void CloseActiveTab( )
         {
-            if( _currentTab != null/* && TabPages.Items.Count > 2*/ )
+            if( _currentTab != null  
+                && TabPages.Count > 2 )
             {
                 var _index = TabControl.Items.IndexOf( TabControl.SelectedItem );
                 TabControl.Items.RemoveAt( _index );
@@ -1075,8 +1076,8 @@ namespace Bubba
                 _isSearchOpen = false;
                 InvokeIf( ( ) =>
                 {
-                    //SearchPanel.Visible = false;
-                    _currentBrowser.GetBrowser( )?.StopFinding( true );
+                    _currentBrowser.GetBrowser( )
+                        ?.StopFinding( true );
                 } );
             }
         }
@@ -1183,13 +1184,15 @@ namespace Bubba
         {
             var _first = _lastSearch != UrlTextBox.Text;
             _lastSearch = UrlTextBox.Text;
-            if( _lastSearch.CheckIfValid( ) )
+            if( _lastSearch.IsNull( ) )
             {
-                _currentBrowser.GetBrowser( )?.Find( _lastSearch, true, false, !_first );
+                _currentBrowser.GetBrowser( )
+                    ?.Find( _lastSearch, true, false, !_first );
             }
             else
             {
-                _currentBrowser.GetBrowser( )?.StopFinding( true );
+                _currentBrowser.GetBrowser( )
+                    ?.StopFinding( true );
             }
 
             UrlTextBox.Focus( );
@@ -1329,8 +1332,7 @@ namespace Bubba
                 {
                     _newUrl = "http://localhost/";
                 }
-                else if( url.CheckIfFilePath( )
-                    || url.CheckIfFilePath2( ) )
+                else if( url.IsFilePath( ) )
                 {
                     _newUrl = url.PathToUrl( );
                 }
@@ -1808,7 +1810,7 @@ namespace Bubba
         {
             InvokeIf( ( ) =>
             {
-                if( title.CheckIfValid( ) )
+                if( title.IsNull( ) )
                 {
                     Title = Locations.Branding + " - " + title;
                     _currentTitle = title;
@@ -2094,7 +2096,7 @@ namespace Bubba
                 if( sender == _currentBrowser
                     && e.Property.Name.Equals( "Address" ) )
                 {
-                    if( !NetUtility.IsFocused( UrlTextBox ) )
+                    if( !NetManager.IsFocused( UrlTextBox ) )
                     {
                         var _url = e.NewValue.ToString( );
                         SetUrl( _url );

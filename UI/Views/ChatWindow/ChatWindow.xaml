@@ -439,6 +439,7 @@
 
 
                 <GroupBox
+                    x:Name="TemperatureGroupBox"
                     Canvas.Left="24"
                     Canvas.Top="28"
                     Width="165"
@@ -454,6 +455,7 @@
 
 
                 <GroupBox
+                    x:Name="TopPercentGroupBox"
                     Canvas.Left="227"
                     Canvas.Top="28"
                     Width="165"
@@ -468,6 +470,7 @@
                     Header="Nucleus Sampling" />
 
                 <GroupBox
+                    x:Name="FrequencyPenaltyGroupBox"
                     Canvas.Left="428"
                     Canvas.Top="28"
                     Width="165"
@@ -981,19 +984,23 @@
                             <Canvas Grid.Column="1" />
                             <Canvas Grid.Column="1">
                                 <b:MetroEditor
-                                x:Name="ChatEditor"
-                                Height="207"
-                                MaxWidth="1030"
-                                Padding="20,20,5,5"
-                                VerticalAlignment="Center"
-                                Background="{StaticResource ControlInteriorBrush}"
-                                BorderThickness="2"
-                                ClipToBounds="True"
-                                FontFamily="Source Code Pro"
-                                FontSize="12"
-                                Foreground="{StaticResource WhiteForeground}"
-                                OutliningAreaWidth="15"
-                                VerticalScrollBarVisibility="Visible" Canvas.Left="20" Canvas.Top="12" Width="960" HorizontalAlignment="Left" />
+                                    x:Name="ChatEditor"
+                                    Canvas.Left="20"
+                                    Canvas.Top="12"
+                                    Width="960"
+                                    Height="207"
+                                    MaxWidth="1030"
+                                    Padding="20,20,5,5"
+                                    HorizontalAlignment="Left"
+                                    VerticalAlignment="Center"
+                                    Background="{StaticResource ControlInteriorBrush}"
+                                    BorderThickness="2"
+                                    ClipToBounds="True"
+                                    FontFamily="Source Code Pro"
+                                    FontSize="12"
+                                    Foreground="{StaticResource WhiteForeground}"
+                                    OutliningAreaWidth="15"
+                                    VerticalScrollBarVisibility="Visible" />
                             </Canvas>
 
                         </Grid>

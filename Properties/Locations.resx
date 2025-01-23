@@ -198,4 +198,10 @@
   <data name="HomePage" xml:space="preserve">
     <value>file:///C:/Users/terry/source/repos/Bubba/UI/Pages/index.html</value>
   </data>
+  <data name="ProxyPassword" xml:space="preserve">
+    <value>Blaise#2016</value>
+  </data>
+  <data name="ProxyUsername" xml:space="preserve">
+    <value>teppler</value>
+  </data>
 </root>

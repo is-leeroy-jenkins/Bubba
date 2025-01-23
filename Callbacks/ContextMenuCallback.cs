@@ -152,7 +152,7 @@ namespace Bubba
         {
             model.Clear( );
             _lastSelText = parameters.SelectionText;
-            if( parameters.SelectionText.CheckIfValid( ) )
+            if( parameters.SelectionText.IsNull( ) )
             {
                 model.AddItem( CefMenuCommand.Copy, "Copy" );
                 model.AddSeparator( );
@@ -166,7 +166,7 @@ namespace Bubba
             }
 
             if( parameters.HasImageContents
-                && parameters.SourceUrl.CheckIfValid( ) )
+                && parameters.SourceUrl.IsNull( ) )
             {
                 // RIGHT CLICKED ON IMAGE
             }

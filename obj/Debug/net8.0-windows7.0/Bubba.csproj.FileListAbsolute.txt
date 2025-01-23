@@ -635,8 +635,6 @@ C:\Users\terry\source\repos\Bubba\obj\Debug\net8.0-windows7.0\UI\Views\Document\
 C:\Users\terry\source\repos\Bubba\obj\Debug\net8.0-windows7.0\UI\Views\ErrorWindow\ErrorWindow.g.cs
 C:\Users\terry\source\repos\Bubba\obj\Debug\net8.0-windows7.0\UI\Views\FileBrowser\FileBrowser.g.cs
 C:\Users\terry\source\repos\Bubba\obj\Debug\net8.0-windows7.0\UI\Views\Folder\FolderBrowser.g.cs
-C:\Users\terry\source\repos\Bubba\obj\Debug\net8.0-windows7.0\UI\Views\GptFile\GptFileDialog.g.cs
-C:\Users\terry\source\repos\Bubba\obj\Debug\net8.0-windows7.0\UI\Views\GptImage\GptImageDialog.g.cs
 C:\Users\terry\source\repos\Bubba\obj\Debug\net8.0-windows7.0\UI\Views\Notification\Notification.g.cs
 C:\Users\terry\source\repos\Bubba\obj\Debug\net8.0-windows7.0\UI\Views\SearchDialog\SearchDialog.g.cs
 C:\Users\terry\source\repos\Bubba\obj\Debug\net8.0-windows7.0\UI\Views\SplashWindow\SplashMessage.g.cs
@@ -686,8 +684,6 @@ C:\Users\terry\source\repos\Bubba\obj\Debug\net8.0-windows7.0\UI\Views\Document\
 C:\Users\terry\source\repos\Bubba\obj\Debug\net8.0-windows7.0\UI\Views\ErrorWindow\ErrorWindow.baml
 C:\Users\terry\source\repos\Bubba\obj\Debug\net8.0-windows7.0\UI\Views\FileBrowser\FileBrowser.baml
 C:\Users\terry\source\repos\Bubba\obj\Debug\net8.0-windows7.0\UI\Views\Folder\FolderBrowser.baml
-C:\Users\terry\source\repos\Bubba\obj\Debug\net8.0-windows7.0\UI\Views\GptFile\GptFileDialog.baml
-C:\Users\terry\source\repos\Bubba\obj\Debug\net8.0-windows7.0\UI\Views\GptImage\GptImageDialog.baml
 C:\Users\terry\source\repos\Bubba\obj\Debug\net8.0-windows7.0\UI\Views\SearchDialog\SearchDialog.baml
 C:\Users\terry\source\repos\Bubba\obj\Debug\net8.0-windows7.0\UI\Views\SplashWindow\SplashMessage.baml
 C:\Users\terry\source\repos\Bubba\obj\Debug\net8.0-windows7.0\UI\Views\SystemDialog\SystemDialog.baml
@@ -713,3 +709,10 @@ C:\Users\terry\source\repos\Bubba\obj\Debug\net8.0-windows7.0\Bubba.genruntimeco
 C:\Users\terry\source\repos\Bubba\obj\Debug\net8.0-windows7.0\ref\Bubba.dll
 C:\Users\terry\source\repos\Bubba\obj\Debug\net8.0-windows7.0\UI\Views\ColorDialog\ColorDialog.g.cs
 C:\Users\terry\source\repos\Bubba\obj\Debug\net8.0-windows7.0\UI\Views\ColorDialog\ColorDialog.baml
+C:\Users\terry\source\repos\Bubba\obj\Debug\net8.0-windows7.0\UI\Views\GptFileDialog\GptFileDialog.g.cs
+C:\Users\terry\source\repos\Bubba\obj\Debug\net8.0-windows7.0\UI\Views\GptImageDialog\GptImageDialog.g.cs
+C:\Users\terry\source\repos\Bubba\obj\Debug\net8.0-windows7.0\UI\Views\PropertyDialog\PropertyDialog.g.cs
+C:\Users\terry\source\repos\Bubba\obj\Debug\net8.0-windows7.0\UI\Views\GptFileDialog\GptFileDialog.baml
+C:\Users\terry\source\repos\Bubba\obj\Debug\net8.0-windows7.0\UI\Views\GptImageDialog\GptImageDialog.baml
+C:\Users\terry\source\repos\Bubba\obj\Debug\net8.0-windows7.0\UI\Views\PropertyDialog\PropertyDialog.baml
+C:\Users\terry\source\repos\Bubba\obj\Debug\net8.0-windows7.0\UI\Themes\GroupBox\GroupBox.baml

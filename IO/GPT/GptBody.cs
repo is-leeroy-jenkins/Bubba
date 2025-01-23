@@ -115,6 +115,8 @@ namespace Bubba
             _model = param.Model;
             _systemMessage = new SystemMessage( systemPrompt );
             _userMessage = new UserMessage( userPrompt );
+            _messages.Add( _systemMessage );
+            _messages.Add( _userMessage );
         }
 
         /// <inheritdoc />

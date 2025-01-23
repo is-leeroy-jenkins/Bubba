@@ -1,10 +1,10 @@
 ﻿// ******************************************************************************************
 //     Assembly:                Bubba
 //     Author:                  Terry D. Eppler
-//     Created:                 01-21-2025
+//     Created:                 01-22-2025
 // 
 //     Last Modified By:        Terry D. Eppler
-//     Last Modified On:        01-21-2025
+//     Last Modified On:        01-22-2025
 // ******************************************************************************************
 // <copyright file="ChatWindow.xaml.cs" company="Terry D. Eppler">
 //    Bubba is a small and simple windows (wpf) application for interacting with the OpenAI API
@@ -674,7 +674,7 @@ namespace Bubba
                     case GptRequestTypes.Projects:
                     {
                         PopulateTextModels( );
-                        HeaderLabel.Content = "GPT Projects Mode...";
+                        HeaderLabel.Content = "Projects API...";
                         _endpoint = GptEndPoint.Projects;
                         TabControl.SelectedIndex = 1;
                         break;
@@ -771,15 +771,18 @@ namespace Bubba
         {
             try
             {
-                if( _busy )
+                lock( _entry )
                 {
-                    ProgressBar.Visibility = Visibility.Visible;
-                    ProgressBar.IsIndeterminate = true;
-                }
-                else
-                {
-                    ProgressBar.Visibility = Visibility.Hidden;
-                    ProgressBar.IsIndeterminate = false;
+                    if( _busy )
+                    {
+                        ProgressBar.Visibility = Visibility.Visible;
+                        ProgressBar.IsIndeterminate = true;
+                    }
+                    else
+                    {
+                        ProgressBar.Visibility = Visibility.Hidden;
+                        ProgressBar.IsIndeterminate = false;
+                    }
                 }
             }
             catch( Exception ex )
@@ -1040,7 +1043,7 @@ namespace Bubba
         {
             try
             {
-                PopulateLanguageListBox();
+                PopulateLanguageListBox( );
                 LanguageListBox.SelectedValue = "Text";
             }
             catch( Exception ex )
@@ -2274,16 +2277,16 @@ namespace Bubba
         /// <param name="sender">The sender.</param>
         /// <param name="e">The <see cref="RoutedEventArgs"/>
         /// instance containing the event data.</param>
-        private void OnTabChanged(object sender, RoutedEventArgs e)
+        private void OnTabChanged( object sender, RoutedEventArgs e )
         {
             try
             {
                 var _message = "NOT YET IMPLEMENTED!";
-                SendMessage(_message);
+                SendMessage( _message );
             }
-            catch(Exception ex)
+            catch( Exception ex )
             {
-                Fail(ex);
+                Fail( ex );
             }
         }
 

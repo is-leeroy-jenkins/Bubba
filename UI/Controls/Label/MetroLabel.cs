@@ -82,7 +82,7 @@ namespace Bubba
             VerticalAlignment = VerticalAlignment.Stretch;
             VerticalContentAlignment = VerticalAlignment.Center;
             Background = _theme.TransparentBrush;
-            Foreground = _theme.BorderBrush;
+            Foreground = _theme.LightBlueBrush;
 
             // Event Wiring
             MouseEnter += OnMouseEnter;
@@ -121,7 +121,7 @@ namespace Bubba
             try
             {
                 Background = _theme.TransparentBrush;
-                Foreground = _theme.BorderBrush;
+                Foreground = _theme.LightBlueBrush;
             }
             catch( Exception ex )
             {

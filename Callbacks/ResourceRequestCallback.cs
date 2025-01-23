@@ -187,7 +187,7 @@ namespace Bubba
             else if( request.Url.IsFileOffline( ) )
             {
                 var _path = request.Url.FileUrlToPath( );
-                if( _path.FileNotExists( ) )
+                if( _path.IsFIle( ) )
                 {
                     frame.LoadUrl( BrowserConfig.FileNotFound + "?path=" + _path.UrlEncode( ) );
                 }
