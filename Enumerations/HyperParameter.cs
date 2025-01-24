@@ -70,7 +70,7 @@ namespace Bubba
         /// <summary>
         /// The maximum tokens
         /// </summary>
-        MaximumTokens,
+        MaxCompletionTokens,
 
         /// <summary>
         /// The temperature
@@ -80,12 +80,12 @@ namespace Bubba
         /// <summary>
         /// The frequency
         /// </summary>
-        Frequency, 
+        FrequencyPenalty, 
 
         /// <summary>
         /// The presence
         /// </summary>
-        Presence,
+        PresencePenalty,
 
         /// <summary>
         /// The stream

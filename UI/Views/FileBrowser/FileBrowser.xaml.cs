@@ -1,10 +1,10 @@
 ﻿// ******************************************************************************************
 //     Assembly:                Bubba
 //     Author:                  Terry D. Eppler
-//     Created:                 12-08-2024
+//     Created:                 01-24-2025
 // 
 //     Last Modified By:        Terry D. Eppler
-//     Last Modified On:        12-08-2024
+//     Last Modified On:        01-24-2025
 // ******************************************************************************************
 // <copyright file="FileBrowser.xaml.cs" company="Terry D. Eppler">
 //    Bubba is a small and simple windows (wpf) application for interacting with the OpenAI API
@@ -50,6 +50,7 @@ namespace Bubba
     using System.Linq;
     using System.Runtime.CompilerServices;
     using System.Threading;
+    using System.Threading.Tasks;
     using System.Windows;
     using System.Windows.Controls;
     using System.Windows.Media.Imaging;
@@ -259,6 +260,7 @@ namespace Bubba
             WindowStartupLocation = WindowStartupLocation.CenterScreen;
             HorizontalAlignment = HorizontalAlignment.Stretch;
             VerticalAlignment = VerticalAlignment.Stretch;
+            WindowStyle = WindowStyle.None;
             Background = _theme.ControlBackground;
             Foreground = _theme.LightBlueBrush;
             BorderBrush = _theme.BorderBrush;
@@ -270,12 +272,10 @@ namespace Bubba
             // Budget Properties
             _extension = EXT.XLSX;
             _fileExtension = _extension.ToString( ).ToLower( );
-            _radioButtons = GetCheckBoxes( );
             _initialPaths = CreateInitialDirectoryPaths( );
 
             // Wire Events
             Loaded += OnLoaded;
-            Closing += OnClosing;
         }
 
         /// <summary>
@@ -285,6 +285,7 @@ namespace Bubba
         {
             try
             {
+                CloseButton.Click += OnCloseButtonClick;
             }
             catch( Exception ex )
             {
@@ -677,13 +678,11 @@ namespace Bubba
                     var _dirPath = _initialPaths[ _i ];
                     var _parent = Directory.CreateDirectory( _dirPath );
                     var _folders = _parent.GetDirectories( )
-                        ?.Where( s => s.Name.Contains( "My" ) == false )
-                        ?.Select( s => s.FullName )
+                        ?.Where( s => s.Name.Contains( "My" ) == false )?.Select( s => s.FullName )
                         ?.ToList( );
 
                     var TopLevelFiles = _parent.GetFiles( _pattern, SearchOption.TopDirectoryOnly )
-                        ?.Select( f => f.FullName )
-                        ?.ToArray( );
+                        ?.Select( f => f.FullName )?.ToArray( );
 
                     _filePaths.AddRange( TopLevelFiles );
                     for( var _k = 0; _k < _folders.Count; _k++ )
@@ -691,8 +690,7 @@ namespace Bubba
                         var _folder = Directory.CreateDirectory( _folders[ _k ] );
                         var _lowerLevelFiles = _folder
                             .GetFiles( _pattern, SearchOption.AllDirectories )
-                            ?.Select( s => s.FullName )
-                            ?.ToArray( );
+                            ?.Select( s => s.FullName )?.ToArray( );
 
                         _filePaths.AddRange( _lowerLevelFiles );
                     }
@@ -728,6 +726,56 @@ namespace Bubba
                     var _parent = Directory.CreateDirectory( _dirPath );
                     var _folders = _parent.GetDirectories( )
                         ?.Where( s => s.Name.StartsWith( "My" ) == false )
+                        ?.Select( s => s.FullName )?.ToList( );
+
+                    var _topLevelFiles = _parent.GetFiles( _pattern, SearchOption.TopDirectoryOnly )
+                        ?.Select( f => f.FullName )?.ToArray( );
+
+                    _list.AddRange( _topLevelFiles );
+                    for( var _k = 0; _k < _folders.Count; _k++ )
+                    {
+                        var _folder = Directory.CreateDirectory( _folders[ _k ] );
+                        var _lowerLevelFiles = _folder
+                            .GetFiles( _pattern, SearchOption.AllDirectories )
+                            ?.Select( s => s.FullName )?.ToArray( );
+
+                        _list.AddRange( _lowerLevelFiles );
+                    }
+                }
+
+                _watch.Stop( );
+                _count = _list.Count;
+                CountLabel.Content = $"{_count:N0}";
+                _duration = _watch.Elapsed.TotalMilliseconds;
+                DurationLabel.Content = $"{_duration:N0}";
+                return _list;
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+                return default( IList<string> );
+            }
+        }
+
+        /// <summary>
+        /// Gets the file paths asynchronous.
+        /// </summary>
+        /// <returns></returns>
+        private protected async Task<IList<string>> GetFilePathsAsync( )
+        {
+            var _tcs = new TaskCompletionSource<IList<string>>( );
+            try
+            {
+                var _watch = new Stopwatch( );
+                _watch.Start( );
+                var _list = new List<string>( );
+                var _pattern = "*." + _fileExtension;
+                for( var _e = 0; _e < _initialPaths.Count; _e++ )
+                {
+                    var _dirPath = _initialPaths[ _e ];
+                    var _parent = Directory.CreateDirectory( _dirPath );
+                    var _folders = _parent.GetDirectories( )
+                        ?.Where( s => s.Name.StartsWith( "My" ) == false )
                         ?.Select( s => s.FullName )
                         ?.ToList( );
 
@@ -748,15 +796,17 @@ namespace Bubba
                     }
                 }
 
+                _tcs.SetResult( _list );
                 _watch.Stop( );
                 _count = _list.Count;
                 CountLabel.Content = $"{_count:N0}";
                 _duration = _watch.Elapsed.TotalMilliseconds;
                 DurationLabel.Content = $"{_duration:N0}";
-                return _list;
+                return _tcs.Task.Result;
             }
             catch( Exception ex )
             {
+                _tcs.SetException( ex );
                 Fail( ex );
                 return default( IList<string> );
             }
@@ -804,8 +854,9 @@ namespace Bubba
             try
             {
                 ExcelCheckBox.IsChecked = true;
-                _filePaths = GetFilePaths( );
+                _filePaths = GetFilePathsAsync( ).Result;
                 _count = _filePaths.Count;
+                _radioButtons = GetCheckBoxes( );
                 InitializeTimer( );
                 PopulateListBox( );
                 InitializeLabels( );
@@ -860,14 +911,13 @@ namespace Bubba
         /// Called when [closing].
         /// </summary>
         /// <param name="sender">The sender.</param>
-        /// <param name="e">The <see cref="RoutedEventArgs"/> instance containing the event data.</param>
-        private void OnClosing( object sender, CancelEventArgs e )
+        /// <param name="e">The <see cref="RoutedEventArgs"/>
+        /// instance containing the event data.</param>
+        private void OnCloseButtonClick( object sender, RoutedEventArgs e )
         {
             try
             {
-                SfSkinManager.Dispose( this );
-                ClearDelegates( );
-                _timer?.Dispose( );
+                Hide( );
             }
             catch( Exception ex )
             {

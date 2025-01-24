@@ -9,24 +9,28 @@
     xmlns:skin="clr-namespace:Syncfusion.SfSkinManager;assembly=Syncfusion.SfSkinManager.WPF"
     xmlns:ui="http://schemas.modernwpf.com/2019"
     xmlns:wpf="http://schemas.syncfusion.com/wpf"
-    Title="GPT Image"
+    x:Name="ImageDialog"
     Width="750"
     Height="450"
     wpf:SfSkinManager.Theme="{wpf:SkinManager ThemeName=FluentDark}"
     Background="{StaticResource FormBackground}"
     BorderBrush="{StaticResource BlueBorderBrush}"
+    FontFamily="Roboto"
     Foreground="{StaticResource FormForeground}"
     Icon="/Resources/Assets/ApplicationImages/Bubba.png"
     WindowStartupLocation="CenterScreen"
+    WindowStyle="None"
     mc:Ignorable="d">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="355*" />
-            <RowDefinition Height="50*" />
+            <RowDefinition Height="40" />
+            <RowDefinition />
+            <RowDefinition Height="50" />
         </Grid.RowDefinitions>
 
         <wpf:SfImageEditor
             x:Name="Editor"
+            Grid.Row="1"
             Margin="10,10,10,10"
             Padding="3,3,3,3"
             Background="{DynamicResource ControlInteriorBrush}"
@@ -39,11 +43,9 @@
 
         <ToolBar
             x:Name="ToolStrip"
-            Grid.Row="1"
-            Grid.ColumnSpan="2"
-            Width="745"
+            Grid.Row="2"
             Height="40"
-            HorizontalAlignment="Left"
+            Margin="0,0,10,0"
             VerticalAlignment="Center"
             Background="{StaticResource FormBackground}"
             BorderBrush="{StaticResource FormBackground}"
@@ -109,8 +111,37 @@
 
             <mah:MetroProgressBar
                 x:Name="ProgressBar"
-                Width="160"
+                Width="130"
                 Background="{StaticResource FormBackground}" />
+            <local:ToolStripButton
+                Width="40"
+                Height="30"
+                VerticalContentAlignment="Stretch"
+                ClipToBounds="True"
+                ImageSource="/Resources/Assets/ToolStripImages/ExitButton.png"
+                SnapsToDevicePixels="True"
+                ToolTip="Close Window"
+                UseLayoutRounding="True" />
         </ToolBar>
+        <Grid x:Name="HeaderGrid">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="6*" />
+                <ColumnDefinition Width="33*" />
+                <ColumnDefinition Width="11*" />
+            </Grid.ColumnDefinitions>
+            <Image
+                x:Name="HeaderIcon"
+                Width="65"
+                Margin="10,-2,0,7"
+                HorizontalAlignment="Left" />
+            <Label
+                Grid.Column="2"
+                Width="145"
+                Margin="0,0,10,0"
+                HorizontalAlignment="Right"
+                VerticalAlignment="Center"
+                HorizontalContentAlignment="Center"
+                Content="Label" />
+        </Grid>
     </Grid>
 </Window>

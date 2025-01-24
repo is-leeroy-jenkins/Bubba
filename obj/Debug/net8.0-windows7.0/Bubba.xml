@@ -78,6 +78,11 @@
             Initializes the delegates.
             </summary>
         </member>
+        <member name="M:Bubba.App.InitializeInterface">
+            <summary>
+            Initializes the interface.
+            </summary>
+        </member>
         <member name="M:Bubba.App.InitializeCefSharp">
             <summary>
             this is done just once, to globally initialize CefSharp/CEF
@@ -104,43 +109,43 @@
             </summary>
             <param name="ex">The ex.</param>
         </member>
-        <member name="M:Bubba.App.OpenGptFileDialog">
+        <member name="M:Bubba.App.LoadGptFileDialog">
             <summary>
             Opens the GPT file dialog.
             </summary>
         </member>
-        <member name="M:Bubba.App.OpenFolderBrowser">
+        <member name="M:Bubba.App.LoadFolderBrowser">
             <summary>
             Opens the folder browser.
             </summary>
         </member>
-        <member name="M:Bubba.App.OpenFileBrowser">
+        <member name="M:Bubba.App.LoadFileBrowser">
             <summary>
             Opens the file browser.
             </summary>
         </member>
-        <member name="M:Bubba.App.OpenSearchDialog">
+        <member name="M:Bubba.App.LoadSearchDialog">
             <summary>
             Opens the search dialog.
             </summary>
         </member>
-        <member name="M:Bubba.App.OpenImageDialog">
+        <member name="M:Bubba.App.LoadImageDialog">
             <summary>
             Initializes the image dialog asynchronous.
             </summary>
             <returns></returns>
         </member>
-        <member name="M:Bubba.App.OpenWebBrowser">
+        <member name="M:Bubba.App.LoadWebBrowser">
             <summary>
             Opens the WebBrowser.
             </summary>
         </member>
-        <member name="M:Bubba.App.OpenSystemDialog">
+        <member name="M:Bubba.App.LoadSystemDialog">
             <summary>
             Opens the prompt dialog.
             </summary>
         </member>
-        <member name="M:Bubba.App.OpenCalculatorWindow">
+        <member name="M:Bubba.App.LoadCalculator">
             <summary>
             Opens the calculator window.
             </summary>
@@ -10021,7 +10026,7 @@
             The store
             </summary>
         </member>
-        <member name="F:Bubba.HyperParameter.MaximumTokens">
+        <member name="F:Bubba.HyperParameter.MaxCompletionTokens">
             <summary>
             The maximum tokens
             </summary>
@@ -10031,12 +10036,12 @@
             The temperature
             </summary>
         </member>
-        <member name="F:Bubba.HyperParameter.Frequency">
+        <member name="F:Bubba.HyperParameter.FrequencyPenalty">
             <summary>
             The frequency
             </summary>
         </member>
-        <member name="F:Bubba.HyperParameter.Presence">
+        <member name="F:Bubba.HyperParameter.PresencePenalty">
             <summary>
             The presence
             </summary>
@@ -35353,6 +35358,11 @@
             Initializes the user system text box.
             </summary>
         </member>
+        <member name="M:Bubba.ChatWindow.InitializeInterfaceAsync">
+            <summary>
+            Initializes the interface asynchronous.
+            </summary>
+        </member>
         <member name="M:Bubba.ChatWindow.SetGeneration">
             <summary>
             Sets the end point.
@@ -35581,8 +35591,6 @@
             <summary>
             Opens the prompt dialog.
             </summary>
-            <param name="x">The x.</param>
-            <param name="y">The y.</param>
         </member>
         <member name="M:Bubba.ChatWindow.PadQuotes(System.String)">
             <summary>
@@ -37129,6 +37137,12 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="M:Bubba.FileBrowser.GetFilePathsAsync">
+            <summary>
+            Gets the file paths asynchronous.
+            </summary>
+            <returns></returns>
+        </member>
         <member name="M:Bubba.FileBrowser.CreateInitialDirectoryPaths">
             <summary>
             Gets the initial dir paths.
@@ -37152,12 +37166,13 @@
             <param name="sender">The sender.</param>
             <param name = "e" > </param>
         </member>
-        <member name="M:Bubba.FileBrowser.OnClosing(System.Object,System.ComponentModel.CancelEventArgs)">
+        <member name="M:Bubba.FileBrowser.OnCloseButtonClick(System.Object,System.Windows.RoutedEventArgs)">
             <summary>
             Called when [closing].
             </summary>
             <param name="sender">The sender.</param>
-            <param name="e">The <see cref="T:System.Windows.RoutedEventArgs"/> instance containing the event data.</param>
+            <param name="e">The <see cref="T:System.Windows.RoutedEventArgs"/>
+            instance containing the event data.</param>
         </member>
         <member name="M:Bubba.FileBrowser.OnPropertyChanged(System.String)">
             <summary>
@@ -37387,6 +37402,14 @@
             </summary>
             <param name="sender">The sender.</param>
             <param name="e">The <see cref="T:System.EventArgs"/>
+            instance containing the event data.</param>
+        </member>
+        <member name="M:Bubba.FolderBrowser.OnClosing(System.Object,System.ComponentModel.CancelEventArgs)">
+            <summary>
+            Called when [closing].
+            </summary>
+            <param name="sender">The sender.</param>
+            <param name="e">The <see cref="T:System.Windows.RoutedEventArgs"/>
             instance containing the event data.</param>
         </member>
         <member name="M:Bubba.FolderBrowser.OnPropertyChanged(System.String)">
@@ -37779,6 +37802,285 @@
             <summary>
             GptImageDialog
             </summary>
+        </member>
+        <member name="F:Bubba.GptImageDialog._busy">
+            <summary>
+            The busy
+            </summary>
+        </member>
+        <member name="F:Bubba.GptImageDialog._count">
+            <summary>
+            The count
+            </summary>
+        </member>
+        <member name="F:Bubba.GptImageDialog._data">
+            <summary>
+            The data
+            </summary>
+        </member>
+        <member name="F:Bubba.GptImageDialog._duration">
+            <summary>
+            The duration
+            </summary>
+        </member>
+        <member name="F:Bubba.GptImageDialog._extension">
+            <summary>
+            The extension
+            </summary>
+        </member>
+        <member name="F:Bubba.GptImageDialog._fileExtension">
+            <summary>
+            The file extension
+            </summary>
+        </member>
+        <member name="F:Bubba.GptImageDialog._filePaths">
+            <summary>
+            The file paths
+            </summary>
+        </member>
+        <member name="F:Bubba.GptImageDialog._image">
+            <summary>
+            The image
+            </summary>
+        </member>
+        <member name="F:Bubba.GptImageDialog._initialDirectory">
+            <summary>
+            The initial directory
+            </summary>
+        </member>
+        <member name="F:Bubba.GptImageDialog._initialPaths">
+            <summary>
+            The initial dir paths
+            </summary>
+        </member>
+        <member name="F:Bubba.GptImageDialog._entry">
+            <summary>
+            The locked object
+            </summary>
+        </member>
+        <member name="F:Bubba.GptImageDialog._radioButtons">
+            <summary>
+            The radio buttons
+            </summary>
+        </member>
+        <member name="F:Bubba.GptImageDialog._seconds">
+            <summary>
+            The seconds
+            </summary>
+        </member>
+        <member name="F:Bubba.GptImageDialog._selectedFile">
+            <summary>
+            The selected file
+            </summary>
+        </member>
+        <member name="F:Bubba.GptImageDialog._selectedPath">
+            <summary>
+            The selected path
+            </summary>
+        </member>
+        <member name="F:Bubba.GptImageDialog._statusUpdate">
+            <summary>
+            The status update
+            </summary>
+        </member>
+        <member name="F:Bubba.GptImageDialog._theme">
+            <summary>
+            The theme
+            </summary>
+        </member>
+        <member name="F:Bubba.GptImageDialog._time">
+            <summary>
+            The time
+            </summary>
+        </member>
+        <member name="F:Bubba.GptImageDialog._timer">
+            <summary>
+            The timer
+            </summary>
+        </member>
+        <member name="F:Bubba.GptImageDialog._timerCallback">
+            <summary>
+            The timer
+            </summary>
+        </member>
+        <member name="E:Bubba.GptImageDialog.PropertyChanged">
+            <inheritdoc />
+            <summary>
+            Occurs when a property value changes.
+            </summary>
+        </member>
+        <member name="F:Bubba.GptImageDialog._httpClient">
+            <summary>
+            The HTTP client
+            </summary>
+        </member>
+        <member name="M:Bubba.GptImageDialog.#ctor">
+            <inheritdoc />
+            <summary>
+            Initializes a new instance of the
+            <see cref="T:Bubba.GptImageDialog" /> class.
+            </summary>
+        </member>
+        <member name="P:Bubba.GptImageDialog.SelectedPath">
+            <summary>
+            Gets or sets the selected path.
+            </summary>
+            <value>
+            The selected path.
+            </value>
+        </member>
+        <member name="P:Bubba.GptImageDialog.SelectedFile">
+            <summary>
+            Gets or sets the selected file.
+            </summary>
+            <value>
+            The selected file.
+            </value>
+        </member>
+        <member name="P:Bubba.GptImageDialog.IsBusy">
+            <summary>
+            Gets a value indicating whether this instance is busy.
+            </summary>
+            <value>
+            <c> true </c>
+            if this instance is busy; otherwise,
+            <c> false </c>
+            </value>
+        </member>
+        <member name="M:Bubba.GptImageDialog.RegisterCallbacks">
+            <summary>
+            Initializes the callbacks.
+            </summary>
+        </member>
+        <member name="M:Bubba.GptImageDialog.InitializeDelegates">
+            <summary>
+            Initializes the delegates.
+            </summary>
+        </member>
+        <member name="M:Bubba.GptImageDialog.InitializeLabels">
+            <summary>
+            Initializes the labels.
+            </summary>
+        </member>
+        <member name="M:Bubba.GptImageDialog.InitializeTimer">
+            <summary>
+            Initializes the timer.
+            </summary>
+        </member>
+        <member name="M:Bubba.GptImageDialog.InitializeButtons">
+            <summary>
+            Initializes the buttons.
+            </summary>
+        </member>
+        <member name="M:Bubba.GptImageDialog.InvokeIf(System.Action)">
+            <summary>
+            Invokes if needed.
+            </summary>
+            <param name="action">The action.</param>
+        </member>
+        <member name="M:Bubba.GptImageDialog.InvokeIf(System.Action{System.Object})">
+            <summary>
+            Invokes if.
+            </summary>
+            <param name="action">The action.</param>
+        </member>
+        <member name="M:Bubba.GptImageDialog.Busy">
+            <summary>
+            Begins the initialize.
+            </summary>
+        </member>
+        <member name="M:Bubba.GptImageDialog.Chill">
+            <summary>
+            Ends the initialize.
+            </summary>
+        </member>
+        <member name="M:Bubba.GptImageDialog.ClearCallbacks">
+            <summary>
+            Clears the callbacks.
+            </summary>
+        </member>
+        <member name="M:Bubba.GptImageDialog.ClearDelegates">
+            <summary>
+            Clears the delegates.
+            </summary>
+        </member>
+        <member name="M:Bubba.GptImageDialog.SendNotification(System.String)">
+            <summary>
+            Sends the notification.
+            </summary>
+            <param name="message">
+            The message.
+            </param>
+        </member>
+        <member name="M:Bubba.GptImageDialog.SendMessage(System.String)">
+            <summary>
+            Shows the splash message.
+            </summary>
+        </member>
+        <member name="M:Bubba.GptImageDialog.UpdateStatus">
+            <summary>
+            Updates the status.
+            </summary>
+        </member>
+        <member name="M:Bubba.GptImageDialog.UpdateStatus(System.Object)">
+            <summary>
+            Updates the status.
+            </summary>
+        </member>
+        <member name="M:Bubba.GptImageDialog.CreateInitialDirectoryPaths">
+            <summary>
+            Gets the initial dir paths.
+            </summary>
+            <returns>
+            IList(string)
+            </returns>
+        </member>
+        <member name="M:Bubba.GptImageDialog.OnLoaded(System.Object,System.EventArgs)">
+            <summary>
+            Called when [load].
+            </summary>
+            <param name="sender">The sender.</param>
+            <param name="e">The <see cref="T:System.EventArgs"/>
+            instance containing the event data.</param>
+        </member>
+        <member name="M:Bubba.GptImageDialog.OnClosing(System.Object,System.ComponentModel.CancelEventArgs)">
+            <summary>
+            Called when [closing].
+            </summary>
+            <param name="sender">The sender.</param>
+            <param name="e">The <see cref="T:System.Windows.RoutedEventArgs"/>
+            instance containing the event data.</param>
+        </member>
+        <member name="M:Bubba.GptImageDialog.OnPropertyChanged(System.String)">
+            <summary>
+            Called when [property changed].
+            </summary>
+            <param name="propertyName">Name of the property.</param>
+        </member>
+        <member name="M:Bubba.GptImageDialog.Dispose">
+            <inheritdoc />
+            <summary>
+            Performs application-defined tasks
+            associated with freeing, releasing,
+            or resetting unmanaged resources.
+            </summary>
+        </member>
+        <member name="M:Bubba.GptImageDialog.Dispose(System.Boolean)">
+            <summary>
+            Releases unmanaged and - optionally - managed resources.
+            </summary>
+            <param name="disposing">
+            <c>true</c>
+            to release both managed
+            and unmanaged resources;
+            <c>false</c> to release only unmanaged resources.
+            </param>
+        </member>
+        <member name="M:Bubba.GptImageDialog.Fail(System.Exception)">
+            <summary>
+            Fails the specified ex.
+            </summary>
+            <param name="ex">The ex.</param>
         </member>
         <member name="M:Bubba.GptImageDialog.InitializeComponent">
             <summary>
@@ -38529,7 +38831,7 @@
             </param>
             <param name="e">
             The
-            <see cref="T:System.EventArgs"/>
+            <see cref="T:System.Windows.RoutedEventArgs"/>
             instance containing the event data.
             </param>
         </member>

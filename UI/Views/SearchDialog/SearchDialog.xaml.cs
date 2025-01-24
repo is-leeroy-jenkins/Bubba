@@ -365,12 +365,7 @@ namespace Bubba
         {
             try
             {
-                SfSkinManager.Dispose( this );
-                _results = string.Empty;
-                _queryPrefix = string.Empty;
-                _domainLabelPrefix = string.Empty;
-                ClearCallbacks( );
-                Close( );
+                Hide( );
             }
             catch( Exception ex )
             {

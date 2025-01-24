@@ -1,10 +1,10 @@
 ﻿// ******************************************************************************************
 //     Assembly:                Bubba
 //     Author:                  Terry D. Eppler
-//     Created:                 01-23-2025
+//     Created:                 01-24-2025
 // 
 //     Last Modified By:        Terry D. Eppler
-//     Last Modified On:        01-23-2025
+//     Last Modified On:        01-24-2025
 // ******************************************************************************************
 // <copyright file="App.xaml.cs" company="Terry D. Eppler">
 //    Bubba is a small and simple windows (wpf) application for interacting with the OpenAI API
@@ -111,6 +111,7 @@ namespace Bubba
             "GridControl",
             "MetroGridControl",
             "TabControlExt",
+            "TabItemExt",
             "MetroTabControl",
             "SfTextInputLayout",
             "MetroTextInput",
@@ -122,7 +123,8 @@ namespace Bubba
             "ColorEdit",
             "SfCalculator",
             "SfMultiColumnDropDownControl",
-            "SfImageEditor"
+            "SfImageEditor",
+            "SfBusyIndicator"
         };
 
         /// <inheritdoc />
@@ -201,6 +203,28 @@ namespace Bubba
             catch( Exception e )
             {
                 Fail( e );
+            }
+        }
+
+        /// <summary>
+        /// Initializes the interface.
+        /// </summary>
+        public static void InitializeInterface( )
+        {
+            try
+            {
+                LoadSystemDialog( );
+                LoadWebBrowser( );
+                LoadFileBrowser( );
+                LoadFolderBrowser( );
+                LoadGptFileDialog( );
+                LoadImageDialog( );
+                LoadSearchDialog( );
+                LoadCalculator( );
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
             }
         }
 
@@ -293,7 +317,7 @@ namespace Bubba
         /// <summary>
         /// Opens the GPT file dialog.
         /// </summary>
-        private protected static void LoadGptFileDialog( )
+        public static void LoadGptFileDialog( )
         {
             try
             {
@@ -315,7 +339,7 @@ namespace Bubba
         /// <summary>
         /// Opens the folder browser.
         /// </summary>
-        private protected static void LoadFolderBrowser( )
+        public static void LoadFolderBrowser( )
         {
             try
             {
@@ -337,7 +361,7 @@ namespace Bubba
         /// <summary>
         /// Opens the file browser.
         /// </summary>
-        private protected static void LoadFileBrowser( )
+        public static void LoadFileBrowser( )
         {
             try
             {
@@ -359,7 +383,7 @@ namespace Bubba
         /// <summary>
         /// Opens the search dialog.
         /// </summary>
-        private protected static void LoadSearchDialog( )
+        public static void LoadSearchDialog( )
         {
             try
             {
@@ -382,7 +406,7 @@ namespace Bubba
         /// Initializes the image dialog asynchronous.
         /// </summary>
         /// <returns></returns>
-        private protected static void LoadImageDialog( )
+        public static void LoadImageDialog( )
         {
             try
             {
@@ -404,7 +428,7 @@ namespace Bubba
         /// <summary>
         /// Opens the WebBrowser.
         /// </summary>
-        private protected static void LoadWebBrowser( )
+        public static void LoadWebBrowser( )
         {
             try
             {
@@ -426,7 +450,7 @@ namespace Bubba
         /// <summary>
         /// Opens the prompt dialog.
         /// </summary>
-        private protected static void LoadSystemDialog( )
+        public static void LoadSystemDialog( )
         {
             try
             {
@@ -449,7 +473,7 @@ namespace Bubba
         /// <summary>
         /// Opens the calculator window.
         /// </summary>
-        private protected static void LoadCalculator( )
+        public static void LoadCalculator( )
         {
             try
             {
@@ -468,28 +492,6 @@ namespace Bubba
             }
         }
 
-        /// <summary>
-        /// Initializes the interface.
-        /// </summary>
-        public static void InitializeInterface( )
-        {
-            try
-            {
-                LoadSystemDialog( );
-                LoadWebBrowser( );
-                LoadFileBrowser( );
-                LoadFolderBrowser( );
-                LoadGptFileDialog( );
-                LoadImageDialog( );
-                LoadSearchDialog( );
-                LoadCalculator( );
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
-            }
-        }
-
         /// <inheritdoc />
         /// <summary>
         /// Raises the
@@ -499,7 +501,7 @@ namespace Bubba
         /// <param name="e">
         /// that contains the event data.
         /// </param>
-        protected virtual void OnStartup( object sender, StartupEventArgs e )
+        public virtual void OnStartup( object sender, StartupEventArgs e )
         {
             try
             {
@@ -525,7 +527,7 @@ namespace Bubba
         /// <param name = "sender" > </param>
         /// <param name="e">An <see cref="T:System.Windows.ExitEventArgs" />
         /// that contains the event data.</param>
-        protected virtual void OnExit( object sender, ExitEventArgs e )
+        public virtual void OnExit( object sender, ExitEventArgs e )
         {
             try
             {

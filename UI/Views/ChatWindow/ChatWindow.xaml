@@ -36,6 +36,24 @@
             <Setter Property="Background" Value="{StaticResource BlackBackground}" />
             <Setter Property="Foreground" Value="{StaticResource LightBlueBrush}" />
         </Style>
+
+        <Style x:Key="ThumbStyle" TargetType="Thumb">
+            <Setter Property="Width" Value="13" />
+            <Setter Property="Height" Value="13" />
+            <Setter Property="Background" Value="{StaticResource BlueBorderBrush}" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Thumb">
+                        <Border
+                            x:Name="ThumbBorder"
+                            Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            CornerRadius="12" />
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
     </Window.Resources>
 
 
@@ -150,16 +168,16 @@
 
         <Grid.RowDefinitions>
             <RowDefinition x:Name="Header" Height="40" />
-            <RowDefinition x:Name="Body" Height="681" />
-            <RowDefinition x:Name="Footer" Height="65" />
+            <RowDefinition x:Name="Body" Height="690" />
+            <RowDefinition x:Name="Footer" Height="45" />
         </Grid.RowDefinitions>
 
         <Grid x:Name="BodyGrid" Grid.Row="1">
 
             <Grid.RowDefinitions>
                 <RowDefinition x:Name="SystemRow" Height="131" />
-                <RowDefinition x:Name="ParameterRow" Height="260" />
-                <RowDefinition x:Name="UserRow" Height="304" />
+                <RowDefinition x:Name="ParameterRow" Height="245" />
+                <RowDefinition x:Name="UserRow" Height="330" />
             </Grid.RowDefinitions>
 
             <Canvas x:Name="SystemCanvas" Grid.Row="0">
@@ -485,7 +503,7 @@
                     FontFamily="Roboto"
                     FontSize="12"
                     Foreground="{StaticResource LightBlueBrush}"
-                    Header="Presence Penalty" />
+                    Header="PresencePenalty Penalty" />
 
                 <GroupBox
                     Canvas.Left="632"
@@ -499,7 +517,7 @@
                     FontFamily="Roboto"
                     FontSize="12"
                     Foreground="{StaticResource LightBlueBrush}"
-                    Header="Frequency Penalty" />
+                    Header="FrequencyPenalty Penalty" />
 
                 <wpf:DoubleTextBox
                     x:Name="TemperatureTextBox"
@@ -617,7 +635,7 @@
                     SmallChange="0.25"
                     SnapsTo="Ticks"
                     SnapsToDevicePixels="True"
-                    Tag="Frequency"
+                    Tag="FrequencyPenalty"
                     TickFrequency="0.2"
                     TickLength="10"
                     TickStroke="{StaticResource WhiteForeground}"
@@ -649,7 +667,7 @@
                     SelectionOpacity="1"
                     SnapsToDevicePixels="True"
                     Step="3"
-                    Tag="Presence"
+                    Tag="PresencePenalty"
                     Text="{Binding Value, ElementName=PresenceSlider, Mode=TwoWay, StringFormat=N2}"
                     ToolTip="A number between -2 and 2. Default=0"
                     ZeroColor="#FFEFA90D" />
@@ -674,7 +692,7 @@
                     MinorTickStroke="{StaticResource WhiteForeground}"
                     SmallChange="0.20"
                     SnapsTo="Ticks"
-                    Tag="Frequency"
+                    Tag="FrequencyPenalty"
                     TickFrequency="0.25"
                     TickLength="10"
                     TickStroke="{StaticResource WhiteForeground}"
@@ -705,7 +723,7 @@
                     NumberDecimalDigits="2"
                     SelectionOpacity="1"
                     SnapsToDevicePixels="True"
-                    Tag="Frequency"
+                    Tag="FrequencyPenalty"
                     Text="{Binding Value, ElementName=FrequencySlider, Mode=TwoWay, StringFormat=N2}"
                     ToolTip="A number between -2 and 2. Default=0">
                     <wpf:DoubleTextBox.NumberFormat>
@@ -938,16 +956,16 @@
             <Canvas
                 x:Name="UserCanvas"
                 Grid.Row="2"
-                Margin="0,0,0,20">
+                Margin="0,0,10,30">
 
                 <TabControl
                     x:Name="TabControl"
                     Canvas.Left="10"
-                    Canvas.Top="7"
+                    Canvas.Top="-7"
                     Width="1231"
-                    Height="267"
-                    HorizontalAlignment="Left"
-                    VerticalAlignment="Center"
+                    Height="300"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Top"
                     Background="{DynamicResource FormBackground}"
                     BorderBrush="{DynamicResource FormBackground}"
                     FontFamily="Roboto"
@@ -961,40 +979,44 @@
                         Foreground="{DynamicResource LightBlueBrush}"
                         Header="">
 
-                        <Grid Margin="3,10,15,0" Background="{StaticResource FormBackground}">
+                        <Grid
+                            Height="290"
+                            Margin="3,0,5,0"
+                            Background="{StaticResource FormBackground}">
 
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="197*" />
-                                <ColumnDefinition Width="1000*" />
+                                <ColumnDefinition Width="470*" />
+                                <ColumnDefinition Width="530*" />
                                 <ColumnDefinition Width="12*" />
                             </Grid.ColumnDefinitions>
 
                             <GroupBox
                                 x:Name="LanguageGroupBox"
                                 Grid.Column="0"
-                                Margin="10,0,9,10"
+                                Margin="10,0,9,24"
                                 Background="{StaticResource GroupBoxBackground}"
                                 Foreground="{StaticResource LightBlueBrush}"
                                 Header="Languages">
 
                                 <b:MetroListBox
                                     x:Name="LanguageListBox"
-                                    Height="170"
-                                    Margin="10,0,18,0" />
+                                    Height="203"
+                                    Margin="26,0,34,0" />
                             </GroupBox>
 
-                            <Canvas Grid.Column="1" />
-                            <Canvas Grid.Column="1">
+                            <Canvas 
+                                Grid.Column="1" 
+                                Grid.ColumnSpan="2">
                                 <b:MetroEditor
                                     x:Name="ChatEditor"
                                     Canvas.Left="20"
-                                    Canvas.Top="12"
                                     Width="960"
-                                    Height="207"
+                                    Height="246"
                                     MaxWidth="1030"
                                     Padding="20,20,5,5"
-                                    HorizontalAlignment="Left"
-                                    VerticalAlignment="Center"
+                                    HorizontalAlignment="Center"
+                                    VerticalAlignment="Top"
                                     Background="{StaticResource ControlInteriorBrush}"
                                     BorderThickness="2"
                                     ClipToBounds="True"
@@ -1002,7 +1024,7 @@
                                     FontSize="12"
                                     Foreground="{StaticResource WhiteForeground}"
                                     OutliningAreaWidth="15"
-                                    VerticalScrollBarVisibility="Visible" />
+                                    VerticalScrollBarVisibility="Visible" Canvas.Top="10" />
                             </Canvas>
 
                         </Grid>
@@ -1165,16 +1187,16 @@
         <Canvas
             x:Name="ToolStripCanvas"
             Grid.Row="2"
-            Margin="13,1,0,1">
+            Margin="5,1,0,1">
 
             <ToolBar
                 x:Name="ToolStrip"
-                Canvas.Left="7"
-                Canvas.Top="4"
+                Canvas.Left="12"
+                Canvas.Top="3"
                 Width="1217"
                 Height="40"
                 HorizontalAlignment="Left"
-                VerticalAlignment="Center"
+                VerticalAlignment="Top"
                 Background="{StaticResource FormBackground}"
                 BorderBrush="{StaticResource FormBackground}"
                 ClipToBounds="True"
@@ -1271,6 +1293,7 @@
                     Foreground="{DynamicResource BlueBorderBrush}"
                     ProgressColor="{DynamicResource BrightGreenForeground}"
                     TrackColor="{DynamicResource BlueBackground}" />
+                <Separator Background="{x:Null}" BorderBrush="{x:Null}" Foreground="{x:Null}" Width="5"/>
 
                 <b:ToolStripButton
                     x:Name="MenuButton"

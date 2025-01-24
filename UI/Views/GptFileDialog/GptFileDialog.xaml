@@ -86,14 +86,15 @@
                     <ColumnDefinition />
                     <ColumnDefinition />
                     <ColumnDefinition />
+                    <ColumnDefinition />
                 </Grid.ColumnDefinitions>
 
                 <Button
                     x:Name="SelectButton"
                     Grid.Column="2"
-                    Width="90"
-                    Margin="0,26,28,26"
-                    HorizontalAlignment="Right"
+                    Width="80"
+                    Margin="10,26,0,26"
+                    HorizontalAlignment="Left"
                     Background="{DynamicResource ControlBackground}"
                     BorderBrush="{DynamicResource BlueBorderBrush}"
                     Content="Select"
@@ -102,9 +103,9 @@
                 <Button
                     x:Name="ClearButton"
                     Grid.Column="1"
-                    Width="90"
-                    Margin="0,26,28,26"
-                    HorizontalAlignment="Right"
+                    Width="80"
+                    Margin="10,26,0,26"
+                    HorizontalAlignment="Left"
                     Background="{DynamicResource ControlBackground}"
                     BorderBrush="{DynamicResource BlueBorderBrush}"
                     Content="Clear"
@@ -113,13 +114,23 @@
                 <Button
                     x:Name="BrowseButton"
                     Grid.Column="0"
-                    Width="90"
-                    Margin="0,24,30,28"
-                    HorizontalAlignment="Right"
+                    Width="80"
+                    Margin="10,24,0,28"
+                    HorizontalAlignment="Left"
                     Background="{DynamicResource ControlBackground}"
                     BorderBrush="{DynamicResource BlueBorderBrush}"
                     Content="Browse"
                     ToolTip="Browse File System" />
+                <Button
+                    x:Name="CloseButton"
+                    Grid.Column="3"
+                    Width="80"
+                    Margin="10,26,0,26"
+                    HorizontalAlignment="Left"
+                    Background="{DynamicResource ControlBackground}"
+                    BorderBrush="{DynamicResource BlueBorderBrush}"
+                    Content="Select"
+                    ToolTip="Select File" />
             </Grid>
         </Canvas>
 

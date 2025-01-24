@@ -20,9 +20,11 @@
     Background="{StaticResource FormBackground}"
     BorderBrush="{StaticResource BlueBorderBrush}"
     BorderThickness="1"
+    FontFamily="Roboto"
     Foreground="{StaticResource LightBlueBrush}"
     Icon="/Resources/Assets/ApplicationImages/Bubba.png"
     WindowStartupLocation="CenterScreen"
+    WindowStyle="None"
     mc:Ignorable="d">
 
     <!--  ******************************************** Resources *********************************************  -->
@@ -82,9 +84,12 @@
             Grid.ColumnSpan="2"
             Margin="0,335,0,0">
             <Grid
-                Width="440"
-                Height="88">
+                Width="425"
+                Height="88"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Center">
                 <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
                     <ColumnDefinition />
                     <ColumnDefinition />
                     <ColumnDefinition />
@@ -93,32 +98,35 @@
                 <Button
                     x:Name="SelectButton"
                     Grid.Column="2"
-                    Width="90"
-                    Margin="0,26,28,26"
-                    HorizontalAlignment="Right"
-                    Content="Select"
+                    Margin="10,24,15,28"
                     Background="{DynamicResource ControlBackground}"
-                    BorderBrush="{DynamicResource BlueBorderBrush}" />
+                    BorderBrush="{DynamicResource BlueBorderBrush}"
+                    Content="Select" />
 
                 <Button
                     x:Name="ClearButton"
                     Grid.Column="1"
-                    Width="90"
-                    Margin="0,26,28,26"
-                    HorizontalAlignment="Right"
-                    Content="Clear"
+                    Margin="10,24,14,28"
                     Background="{DynamicResource ControlBackground}"
-                    BorderBrush="{DynamicResource BlueBorderBrush}" />
+                    BorderBrush="{DynamicResource BlueBorderBrush}"
+                    Content="Clear" />
 
                 <Button
                     x:Name="BrowseButton"
                     Grid.Column="0"
-                    Width="90"
-                    Margin="0,24,30,28"
-                    HorizontalAlignment="Right"
-                    Content="Browse"
+                    Margin="10,24,15,28"
                     Background="{DynamicResource ControlBackground}"
-                    BorderBrush="{DynamicResource BlueBorderBrush}" />
+                    BorderBrush="{DynamicResource BlueBorderBrush}"
+                    Content="Browse" />
+
+                <Button
+                    x:Name="CloseButton"
+                    Grid.Column="3"
+                    Margin="10,24,15,28"
+                    Background="{DynamicResource ControlBackground}"
+                    BorderBrush="{DynamicResource BlueBorderBrush}"
+                    Content="Close"
+                    ToolTip="Close Dialog" />
             </Grid>
         </Canvas>
 
@@ -132,11 +140,11 @@
             Padding="1"
             HorizontalAlignment="Right"
             VerticalAlignment="Top"
-            BorderThickness="1"
-            Foreground="{StaticResource BlueBorderBrush}"
             Background="{StaticResource LightBlueBrush}"
-            FontSize="10"
+            BorderThickness="1"
             Content="  PDF "
+            FontSize="10"
+            Foreground="{StaticResource BlueBorderBrush}"
             Tag="PDF"
             ToolTip="*.pdf files" />
 
@@ -150,11 +158,11 @@
             Padding="1"
             HorizontalAlignment="Center"
             VerticalAlignment="Top"
-            BorderThickness="1"
-            Foreground="{StaticResource BlueBorderBrush}"
             Background="{StaticResource LightBlueBrush}"
-            FontSize="10"
+            BorderThickness="1"
             Content="  MS Access "
+            FontSize="10"
+            Foreground="{StaticResource BlueBorderBrush}"
             Tag="ACCDB"
             ToolTip="*.accdb " />
 
@@ -168,11 +176,11 @@
             Padding="1"
             HorizontalAlignment="Center"
             VerticalAlignment="Top"
-            BorderThickness="1"
-            Foreground="{StaticResource BlueBorderBrush}"
             Background="{StaticResource LightBlueBrush}"
-            FontSize="10"
+            BorderThickness="1"
             Content="  SQLite "
+            FontSize="10"
+            Foreground="{StaticResource BlueBorderBrush}"
             Tag="DB"
             ToolTip="*.db files" />
 
@@ -186,11 +194,11 @@
             Padding="1"
             HorizontalAlignment="Center"
             VerticalAlignment="Top"
-            BorderThickness="1"
-            Foreground="{StaticResource BlueBorderBrush}"
             Background="{StaticResource LightBlueBrush}"
-            FontSize="10"
+            BorderThickness="1"
             Content="  Library "
+            FontSize="10"
+            Foreground="{StaticResource BlueBorderBrush}"
             Tag="DLL"
             ToolTip="*.dll files" />
 
@@ -204,11 +212,11 @@
             Padding="1"
             HorizontalAlignment="Center"
             VerticalAlignment="Top"
-            BorderThickness="1"
-            Foreground="{StaticResource BlueBorderBrush}"
             Background="{StaticResource LightBlueBrush}"
-            FontSize="10"
+            BorderThickness="1"
             Content="  SQL Server   "
+            FontSize="10"
+            Foreground="{StaticResource BlueBorderBrush}"
             Tag="MDF"
             ToolTip="*.mdf files" />
 
@@ -222,11 +230,11 @@
             Padding="1"
             HorizontalAlignment="Center"
             VerticalAlignment="Top"
-            BorderThickness="1"
-            Foreground="{StaticResource BlueBorderBrush}"
             Background="{StaticResource LightBlueBrush}"
-            FontSize="10"
+            BorderThickness="1"
             Content="  Excel "
+            FontSize="10"
+            Foreground="{StaticResource BlueBorderBrush}"
             IsChecked="False"
             Tag="XLSX"
             ToolTip="*.xlsx files" />
@@ -241,11 +249,11 @@
             Padding="1"
             HorizontalAlignment="Center"
             VerticalAlignment="Top"
-            BorderThickness="1"
-            Foreground="{StaticResource BlueBorderBrush}"
             Background="{StaticResource LightBlueBrush}"
-            FontSize="10"
+            BorderThickness="1"
             Content="  CSV"
+            FontSize="10"
+            Foreground="{StaticResource BlueBorderBrush}"
             Tag="CSV"
             ToolTip="*.csv" />
 
@@ -259,11 +267,11 @@
             Padding="1"
             HorizontalAlignment="Center"
             VerticalAlignment="Top"
-            BorderThickness="1"
-            Foreground="{StaticResource BlueBorderBrush}"
             Background="{StaticResource LightBlueBrush}"
-            FontSize="10"
+            BorderThickness="1"
             Content="  Text "
+            FontSize="10"
+            Foreground="{StaticResource BlueBorderBrush}"
             Tag="TXT"
             ToolTip="*.txt files" />
 
@@ -277,11 +285,11 @@
             Padding="1"
             HorizontalAlignment="Center"
             VerticalAlignment="Top"
-            Foreground="{StaticResource BlueBorderBrush}"
             Background="{StaticResource LightBlueBrush}"
-            FontSize="10"
             BorderThickness="1"
             Content="  Power Point"
+            FontSize="10"
+            Foreground="{StaticResource BlueBorderBrush}"
             Tag="PPTX"
             ToolTip="*.pptx files" />
 
@@ -295,12 +303,12 @@
             Padding="1"
             HorizontalAlignment="Center"
             VerticalAlignment="Top"
+            Background="{StaticResource LightBlueBrush}"
             BorderThickness="1"
             Content="  Word "
-            Tag="DOCX"
-            Foreground="{StaticResource BlueBorderBrush}"
-            Background="{StaticResource LightBlueBrush}"
             FontSize="10"
+            Foreground="{StaticResource BlueBorderBrush}"
+            Tag="DOCX"
             ToolTip="*.docx files" />
 
         <b:MetroRadioButton
@@ -313,11 +321,11 @@
             Padding="1"
             HorizontalAlignment="Center"
             VerticalAlignment="Top"
-            BorderThickness="1"
-            Foreground="{StaticResource BlueBorderBrush}"
             Background="{StaticResource LightBlueBrush}"
-            FontSize="10"
+            BorderThickness="1"
             Content="  Executables"
+            FontSize="10"
+            Foreground="{StaticResource BlueBorderBrush}"
             Tag="EXE"
             ToolTip="*.exe files" />
 
@@ -330,13 +338,11 @@
             MinWidth="20"
             MinHeight="18"
             Margin="193,0,183,4"
-            Source="/Resources/Assets/ExtensionImages/XLSX.png"
             ClipToBounds="True"
-            SnapsToDevicePixels="True" />
+            SnapsToDevicePixels="True"
+            Source="/Resources/Assets/ExtensionImages/XLSX.png" />
 
-        <Grid
-            Grid.RowSpan="2"
-            Margin="0,34,0,0">
+        <Grid Grid.RowSpan="2" Margin="0,34,0,0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="10*" />
                 <ColumnDefinition Width="17*" />
@@ -344,9 +350,7 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="40" />
                 <RowDefinition Height="30" />
-                <RowDefinition
-                    Height="Auto"
-                    MinHeight="10" />
+                <RowDefinition Height="Auto" MinHeight="10" />
             </Grid.RowDefinitions>
 
 
@@ -357,10 +361,10 @@
                 Margin="1,0,4,0"
                 VerticalAlignment="Center"
                 HorizontalContentAlignment="Left"
-                VerticalContentAlignment="Center"
+                VerticalContentAlignment="Bottom"
+                Content="Files: "
                 FontSize="12"
-                Foreground="{StaticResource BlueBorderBrush}"
-                Content="Files: " />
+                Foreground="{StaticResource BlueBorderBrush}" />
 
             <Label
                 x:Name="Timer"
@@ -370,10 +374,10 @@
                 Margin="1,0,4,0"
                 VerticalAlignment="Center"
                 HorizontalContentAlignment="Left"
-                VerticalContentAlignment="Center"
+                VerticalContentAlignment="Bottom"
+                Content="Time: "
                 FontSize="12"
-                Foreground="{StaticResource BlueBorderBrush}"
-                Content="Time: " />
+                Foreground="{StaticResource BlueBorderBrush}" />
 
             <Label
                 x:Name="DurationLabel"
@@ -383,7 +387,7 @@
                 Margin="2,0,1,0"
                 VerticalAlignment="Top"
                 HorizontalContentAlignment="Left"
-                VerticalContentAlignment="Center"
+                VerticalContentAlignment="Bottom"
                 Content="0.0"
                 FontSize="12"
                 Foreground="{StaticResource LightBlueBrush}" />
@@ -410,21 +414,20 @@
 
             <Label
                 x:Name="DateLabel"
+                Canvas.Left="20"
                 Canvas.Top="47"
-                Width="120"
+                Width="100"
                 Height="25"
                 Padding="1"
-                HorizontalAlignment="Center"
-                VerticalAlignment="Top"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Center"
                 HorizontalContentAlignment="Left"
-                Foreground="{StaticResource BlueBorderBrush}"
                 Content="Date"
-                FontSize="10" />
+                FontSize="10"
+                Foreground="{StaticResource BlueBorderBrush}" />
         </Canvas>
 
-        <Canvas
-            Grid.Row="0"
-            Grid.Column="3" />
+        <Canvas Grid.Row="0" Grid.Column="3" />
 
         <Label
             x:Name="TimeLabel"
@@ -433,8 +436,8 @@
             Padding="1"
             HorizontalContentAlignment="Right"
             VerticalContentAlignment="Top"
-            Foreground="{StaticResource BlueBorderBrush}"
             Content="Time"
-            FontSize="10" />
+            FontSize="10"
+            Foreground="{StaticResource BlueBorderBrush}" />
     </Grid>
 </Window>

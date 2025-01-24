@@ -71,7 +71,7 @@ namespace Bubba
     [ SuppressMessage( "ReSharper", "RedundantExtendsListEntry" ) ]
     [ SuppressMessage( "ReSharper", "PreferConcreteValueOverDefault" ) ]
     [ SuppressMessage( "ReSharper", "FieldCanBeMadeReadOnly.Global" ) ]
-    public partial class GptFileDialog : Window, IDisposable
+    public partial class GptFileDialog : Window, IDisposable, INotifyPropertyChanged
     {
         /// <summary>
         /// The busy
@@ -212,6 +212,7 @@ namespace Bubba
             WindowStartupLocation = WindowStartupLocation.CenterScreen;
             HorizontalAlignment = HorizontalAlignment.Stretch;
             VerticalAlignment = VerticalAlignment.Stretch;
+            WindowStyle = WindowStyle.None;
             Background = _theme.ControlBackground;
             Foreground = _theme.LightBlueBrush;
             BorderBrush = _theme.BorderBrush;

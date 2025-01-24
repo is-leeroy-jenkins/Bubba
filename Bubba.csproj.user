@@ -63,7 +63,7 @@
     <Page Update="UI\Views\GptFileDialog\GptFileDialog.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="UI\Views\Document\DocumentWindow.xaml">
+    <Page Update="UI\Views\DocumentWindow\DocumentWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="UI\Views\ChatWindow\ChatWindow.xaml">
@@ -195,7 +195,7 @@
     <Page Update="UI\Views\FileBrowser\FileBrowser.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="UI\Views\Folder\FolderBrowser.xaml">
+    <Page Update="UI\Views\FolderBrowser\FolderBrowser.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="UI\Views\Notification\Notification.xaml">

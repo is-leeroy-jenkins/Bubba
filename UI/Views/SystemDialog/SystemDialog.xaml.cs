@@ -42,7 +42,7 @@
 namespace Bubba
 {
     using System;
-    using System.Configuration;
+    using System.ComponentModel;
     using System.Diagnostics;
     using System.Diagnostics.CodeAnalysis;
     using System.Threading;
@@ -323,16 +323,14 @@ namespace Bubba
         /// </param>
         /// <param name="e">
         /// The
-        /// <see cref="EventArgs"/>
+        /// <see cref="RoutedEventArgs"/>
         /// instance containing the event data.
         /// </param>
         public virtual void OnCloseButtonClick( object sender, RoutedEventArgs e )
         {
             try
             {
-                SfSkinManager.Dispose( this );
-                ClearCallbacks( );
-                Close( );
+                Hide( );
             }
             catch( Exception ex )
             {

@@ -1,10 +1,10 @@
 ﻿// ******************************************************************************************
 //     Assembly:                Bubba
 //     Author:                  Terry D. Eppler
-//     Created:                 01-23-2025
+//     Created:                 01-24-2025
 // 
 //     Last Modified By:        Terry D. Eppler
-//     Last Modified On:        01-23-2025
+//     Last Modified On:        01-24-2025
 // ******************************************************************************************
 // <copyright file="ChatWindow.xaml.cs" company="Terry D. Eppler">
 //    Bubba is a small and simple windows (wpf) application for interacting with the OpenAI API
@@ -88,6 +88,7 @@ namespace Bubba
     [ SuppressMessage( "ReSharper", "CanSimplifyDictionaryLookupWithTryGetValue" ) ]
     [ SuppressMessage( "ReSharper", "PreferConcreteValueOverDefault" ) ]
     [ SuppressMessage( "ReSharper", "UnusedMethodReturnValue.Global" ) ]
+    [ SuppressMessage( "ReSharper", "ConvertIfStatementToReturnStatement" ) ]
     public partial class ChatWindow : Window, INotifyPropertyChanged
     {
         /// <summary>
@@ -562,6 +563,28 @@ namespace Bubba
                 ChatEditor.IsRedoEnabled = true;
                 ChatEditor.SelectionBackground = _theme.SteelBlueBrush;
                 ChatEditor.SelectionForeground = _theme.WhiteForeground;
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+            }
+        }
+
+        /// <summary>
+        /// Initializes the interface asynchronous.
+        /// </summary>
+        public async Task InitializeInterfaceAsync( )
+        {
+            try
+            {
+                await Task.Run( ( ) => App.LoadSystemDialog( ) );
+                await Task.Run( ( ) => App.LoadWebBrowser( ) );
+                await Task.Run( ( ) => App.LoadFileBrowser( ) );
+                await Task.Run( ( ) => App.LoadFolderBrowser( ) );
+                await Task.Run( ( ) => App.LoadGptFileDialog( ) );
+                await Task.Run( ( ) => App.LoadImageDialog( ) );
+                await Task.Run( ( ) => App.LoadSearchDialog( ) );
+                await Task.Run( ( ) => App.LoadCalculator( ) );
             }
             catch( Exception ex )
             {
@@ -1386,7 +1409,9 @@ namespace Bubba
                         case "Text":
                         {
                             var _path = _prefix + @"Resources\Documents\Editor\Stubs\Text.txt";
-                            TabControl.SelectedIndex = 1;
+                            TabControl.SelectedIndex = 0;
+                            ChatEditor.DocumentLanguage = Languages.Text;
+                            ChatEditor.DocumentSource = _path;
                             break;
                         }
                         case "C#":
@@ -1629,15 +1654,15 @@ namespace Bubba
                 {
                     var _browser = ( WebBrowser )App.ActiveWindows[ "WebBrowser" ];
                     _browser.Show( );
-                    Hide( );
                 }
                 else
                 {
                     var _webBrowser = new WebBrowser( );
                     App.ActiveWindows?.Add( "WebBrowser", _webBrowser );
                     _webBrowser.Show( );
-                    Hide( );
                 }
+
+                Hide( );
             }
             catch( Exception ex )
             {
@@ -1768,8 +1793,6 @@ namespace Bubba
         /// <summary>
         /// Opens the prompt dialog.
         /// </summary>
-        /// <param name="x">The x.</param>
-        /// <param name="y">The y.</param>
         private protected void OpenSystemDialog( )
         {
             try
@@ -2296,7 +2319,7 @@ namespace Bubba
         /// <param name="sender">The sender.</param>
         /// <param name="e">The <see cref="RoutedEventArgs"/>
         /// instance containing the event data.</param>
-        private void OnLoad( object sender, RoutedEventArgs e )
+        private async void OnLoad( object sender, RoutedEventArgs e )
         {
             try
             {
@@ -2316,6 +2339,7 @@ namespace Bubba
                 SetGptParameters( );
                 UserLabel.Content = $@"User ID : {Environment.UserName}";
                 TabControl.SelectedIndex = 1;
+                await InitializeInterfaceAsync( );
             }
             catch( Exception ex )
             {
@@ -2901,7 +2925,7 @@ namespace Bubba
         /// <param name="sender">The sender.</param>
         /// <param name="e">The <see cref="RoutedEventArgs"/>
         /// instance containing the event data.</param>
-        private protected async void OnWebBrowserButtonClick( object sender, RoutedEventArgs e )
+        private protected void OnWebBrowserButtonClick( object sender, RoutedEventArgs e )
         {
             try
             {
@@ -3232,8 +3256,8 @@ namespace Bubba
                     {
                         switch( _tag )
                         {
-                            case "Frequency":
-                            case "Presence":
+                            case "FrequencyPenalty":
+                            case "PresencePenalty":
                             case "Temperature":
                             {
                                 var _temp = _textBox.Text;
