@@ -35109,6 +35109,11 @@
             The system prompt
             </summary>
         </member>
+        <member name="F:Bubba.ChatWindow._window">
+            <summary>
+            The interface update
+            </summary>
+        </member>
         <member name="F:Bubba.ChatWindow._userPrompt">
             <summary>
             The user prompt
@@ -35571,7 +35576,7 @@
             <param name="question">The question.</param>
             <returns></returns>
         </member>
-        <member name="M:Bubba.ChatWindow.OpenSearchDialogAsync">
+        <member name="M:Bubba.ChatWindow.OpenSearchDialog">
             <summary>
             Opens the search dialog.
             </summary>
@@ -35582,6 +35587,11 @@
             </summary>
         </member>
         <member name="M:Bubba.ChatWindow.OpenFileBrowser">
+            <summary>
+            Opens the file browser.
+            </summary>
+        </member>
+        <member name="M:Bubba.ChatWindow.OpenGptFileDialog">
             <summary>
             Opens the file browser.
             </summary>
@@ -39067,14 +39077,14 @@
             <summary>
             Fades the in asynchronously.
             </summary>
-            <param name="form">The o.</param>
+            <param name="window">The o.</param>
             <param name="interval">The interval.</param>
         </member>
         <member name="M:Bubba.WebBrowser.FadeOutAsync(System.Windows.Window,System.Int32)">
             <summary>
             Fades the out asynchronously.
             </summary>
-            <param name="form">The o.</param>
+            <param name="window">The o.</param>
             <param name="interval">The interval.</param>
         </member>
         <member name="M:Bubba.WebBrowser.FindTextOnPage(System.Boolean)">
@@ -39438,14 +39448,6 @@
             <param name="e">The <see cref="T:System.EventArgs" />
             instance containing the event data.</param>
         </member>
-        <member name="M:Bubba.WebBrowser.OnRefreshButtonClick(System.Object,System.Windows.RoutedEventArgs)">
-            <summary>
-            Called when [refresh button clicked].
-            </summary>
-            <param name="sender">The sender.</param>
-            <param name="e">The <see cref="T:System.EventArgs" />
-            instance containing the event data.</param>
-        </member>
         <member name="M:Bubba.WebBrowser.OnStopButtonClick(System.Object,System.Windows.RoutedEventArgs)">
             <summary>
             Called when [stop button clicked].
@@ -39462,7 +39464,7 @@
             <param name="e">The <see cref="T:System.Windows.Input.MouseEventArgs" />
             instance containing the event data.</param>
         </member>
-        <member name="M:Bubba.WebBrowser.OnSearchDialogClosing(System.Object,System.EventArgs)">
+        <member name="M:Bubba.WebBrowser.OnSearchDialogClosing(System.Object,System.Windows.RoutedEventArgs)">
             <summary>
             Called when [URL text box text changed].
             </summary>
@@ -39470,7 +39472,7 @@
             <param name="e">The <see cref="T:System.EventArgs" />
             instance containing the event data.</param>
         </member>
-        <member name="M:Bubba.WebBrowser.OnSourceButtonClick(System.Object,System.EventArgs)">
+        <member name="M:Bubba.WebBrowser.OnSourceButtonClick(System.Object,System.Windows.RoutedEventArgs)">
             <summary>
             Called when [source button click].
             </summary>
@@ -39509,7 +39511,7 @@
             <param name="e">The <see cref="T:System.Windows.Forms.FormClosingEventArgs" />
             instance containing the event data.</param>
         </member>
-        <member name="M:Bubba.WebBrowser.OnSearchPanelClearButtonClick(System.Object,System.EventArgs)">
+        <member name="M:Bubba.WebBrowser.OnSearchPanelClearButtonClick(System.Object,System.Windows.RoutedEventArgs)">
             <summary>
             Called when [close search button click].
             </summary>
@@ -39517,7 +39519,7 @@
             <param name="e">The <see cref="T:System.EventArgs" />
             instance containing the event data.</param>
         </member>
-        <member name="M:Bubba.WebBrowser.OnSearchPreviousButtonClick(System.Object,System.EventArgs)">
+        <member name="M:Bubba.WebBrowser.OnSearchPreviousButtonClick(System.Object,System.Windows.RoutedEventArgs)">
             <summary>
             Called when [previous search button click].
             </summary>
@@ -39525,7 +39527,7 @@
             <param name="e">The <see cref="T:System.EventArgs" />
             instance containing the event data.</param>
         </member>
-        <member name="M:Bubba.WebBrowser.OnSearchForwardButtonClick(System.Object,System.EventArgs)">
+        <member name="M:Bubba.WebBrowser.OnSearchForwardButtonClick(System.Object,System.Windows.RoutedEventArgs)">
             <summary>
             Called when [next search button click].
             </summary>
@@ -39533,7 +39535,7 @@
             <param name="e">The <see cref="T:System.EventArgs" />
             instance containing the event data.</param>
         </member>
-        <member name="M:Bubba.WebBrowser.OnSearchPanelTextChanged(System.Object,System.EventArgs)">
+        <member name="M:Bubba.WebBrowser.OnSearchPanelTextChanged(System.Object,System.Windows.RoutedEventArgs)">
             <summary>
             Called when [search text changed].
             </summary>
@@ -39549,7 +39551,7 @@
             <param name="e">The <see cref="T:System.Windows.Input.KeyEventArgs" />
             instance containing the event data.</param>
         </member>
-        <member name="M:Bubba.WebBrowser.OnHomeButtonClick(System.Object,System.EventArgs)">
+        <member name="M:Bubba.WebBrowser.OnHomeButtonClick(System.Object,System.Windows.RoutedEventArgs)">
             <summary>
             Called when [home button click].
             </summary>
@@ -39557,7 +39559,7 @@
             <param name="e">The <see cref="T:System.EventArgs" />
             instance containing the event data.</param>
         </member>
-        <member name="M:Bubba.WebBrowser.OnGoButtonClick(System.Object,System.EventArgs)">
+        <member name="M:Bubba.WebBrowser.OnGoButtonClick(System.Object,System.Windows.RoutedEventArgs)">
             <summary>
             Called when [go button clicked].
             </summary>
@@ -39565,7 +39567,7 @@
             <param name="e">The <see cref="T:System.EventArgs" />
             instance containing the event data.</param>
         </member>
-        <member name="M:Bubba.WebBrowser.OnCloseButtonClick(System.Object,System.EventArgs)">
+        <member name="M:Bubba.WebBrowser.OnCloseButtonClick(System.Object,System.Windows.RoutedEventArgs)">
             <summary>
             Called when [close button clicked].
             </summary>
@@ -39573,7 +39575,7 @@
             <param name="e">The <see cref="T:System.EventArgs" />
             instance containing the event data.</param>
         </member>
-        <member name="M:Bubba.WebBrowser.OnFireFoxButtonClick(System.Object,System.EventArgs)">
+        <member name="M:Bubba.WebBrowser.OnFireFoxButtonClick(System.Object,System.Windows.RoutedEventArgs)">
             <summary>
             Called when [fire fox button click].
             </summary>
@@ -39581,7 +39583,7 @@
             <param name="e">The <see cref="T:System.EventArgs" />
             instance containing the event data.</param>
         </member>
-        <member name="M:Bubba.WebBrowser.OnEdgeButtonClick(System.Object,System.EventArgs)">
+        <member name="M:Bubba.WebBrowser.OnEdgeButtonClick(System.Object,System.Windows.RoutedEventArgs)">
             <summary>
             Called when [close button clicked].
             </summary>
@@ -39589,7 +39591,7 @@
             <param name="e">The <see cref="T:System.EventArgs" />
             instance containing the event data.</param>
         </member>
-        <member name="M:Bubba.WebBrowser.OnChromeButtonClick(System.Object,System.EventArgs)">
+        <member name="M:Bubba.WebBrowser.OnChromeButtonClick(System.Object,System.Windows.RoutedEventArgs)">
             <summary>
             Called when [close button clicked].
             </summary>
@@ -39597,7 +39599,7 @@
             <param name="e">The <see cref="T:System.EventArgs" />
             instance containing the event data.</param>
         </member>
-        <member name="M:Bubba.WebBrowser.OnSharepointButtonClicked(System.Object,System.EventArgs)">
+        <member name="M:Bubba.WebBrowser.OnSharepointButtonClicked(System.Object,System.Windows.RoutedEventArgs)">
             <summary>
             Called when [refresh button clicked].
             </summary>
@@ -39605,7 +39607,7 @@
             <param name="e">The <see cref="T:System.EventArgs" />
             instance containing the event data.</param>
         </member>
-        <member name="M:Bubba.WebBrowser.OnFormClosing(System.Object,System.EventArgs)">
+        <member name="M:Bubba.WebBrowser.OnClosing(System.Object,System.Windows.RoutedEventArgs)">
             <summary>
             Called when [form closing].
             </summary>
@@ -39613,7 +39615,7 @@
             <param name="e">The <see cref="T:System.EventArgs" />
             instance containing the event data.</param>
         </member>
-        <member name="M:Bubba.WebBrowser.OnActivated(System.Object,System.EventArgs)">
+        <member name="M:Bubba.WebBrowser.OnActivated(System.Object,System.Windows.RoutedEventArgs)">
             <summary>
             Called when [shown].
             </summary>
@@ -39733,7 +39735,7 @@
             <param name="e">The <see cref="T:System.EventArgs" />
             instance containing the event data.</param>
         </member>
-        <member name="M:Bubba.WebBrowser.OnRefreshButtonClick(System.Object,System.EventArgs)">
+        <member name="M:Bubba.WebBrowser.OnRefreshButtonClick(System.Object,System.Windows.RoutedEventArgs)">
             <summary>
             Called when [refresh button click].
             </summary>

@@ -314,22 +314,14 @@ namespace Bubba
         {
             try
             {
-                if( ActiveWindows.ContainsKey( "GptFileDialog" ) )
+                var _gptFileDialog = new GptFileDialog
                 {
-                    var _form = ( GptFileDialog )ActiveWindows[ "GptFileDialog" ];
-                    _form.Show( );
-                }
-                else
-                {
-                    var _gptFileDialog = new GptFileDialog
-                    {
-                        Topmost = true,
-                        WindowStartupLocation = WindowStartupLocation.CenterScreen
-                    };
+                    Topmost = true,
+                    WindowStartupLocation = WindowStartupLocation.CenterScreen
+                };
 
-                    ActiveWindows.Add( "GptFileDialog", _gptFileDialog );
-                    _gptFileDialog.Show( );
-                }
+                _gptFileDialog.Hide( );
+                ActiveWindows.Add( "GptFileDialog", _gptFileDialog );
             }
             catch( Exception ex )
             {
@@ -359,22 +351,14 @@ namespace Bubba
         {
             try
             {
-                if( ActiveWindows.ContainsKey( "FolderBrowser" ) )
+                var _folderBrowser = new FolderBrowser( )
                 {
-                    var _form = ( FolderBrowser )ActiveWindows[ "FolderBrowser" ];
-                    _form.Show( );
-                }
-                else
-                {
-                    var _folderBrowser = new FolderBrowser( )
-                    {
-                        Topmost = true,
-                        WindowStartupLocation = WindowStartupLocation.CenterScreen
-                    };
+                    Topmost = true,
+                    WindowStartupLocation = WindowStartupLocation.CenterScreen
+                };
 
-                    ActiveWindows.Add( "FolderBrowser", _folderBrowser );
-                    _folderBrowser.Show( );
-                }
+                _folderBrowser.Hide();
+                ActiveWindows.Add("FolderBrowser", _folderBrowser);
             }
             catch( Exception ex )
             {
@@ -404,22 +388,14 @@ namespace Bubba
         {
             try
             {
-                if( ActiveWindows.ContainsKey( "FileBrowser" ) )
+                var _fileBrowser = new FileBrowser( )
                 {
-                    var _form = ( FileBrowser )ActiveWindows[ "FileBrowser" ];
-                    _form.Show( );
-                }
-                else
-                {
-                    var _fileBrowser = new FileBrowser( )
-                    {
-                        Topmost = true,
-                        WindowStartupLocation = WindowStartupLocation.CenterScreen
-                    };
+                    Topmost = true,
+                    WindowStartupLocation = WindowStartupLocation.CenterScreen
+                };
 
-                    ActiveWindows.Add( "FileBrowser", _fileBrowser );
-                    _fileBrowser.Show( );
-                }
+                ActiveWindows.Add("FileBrowser", _fileBrowser);
+                _fileBrowser.Show(  );
             }
             catch( Exception ex )
             {
@@ -449,22 +425,14 @@ namespace Bubba
         {
             try
             {
-                if( ActiveWindows.ContainsKey( "SearchDialog" ) )
+                var _searchDialog = new SearchDialog
                 {
-                    var _form = ( SearchDialog )ActiveWindows[ "SearchDialog" ];
-                    _form.Show( );
-                }
-                else
-                {
-                    var _searchDialog = new SearchDialog
-                    {
-                        Topmost = true,
-                        WindowStartupLocation = WindowStartupLocation.CenterScreen
-                    };
+                    Topmost = true,
+                    WindowStartupLocation = WindowStartupLocation.CenterScreen
+                };
 
-                    ActiveWindows.Add( "SearchDialog", _searchDialog );
-                    _searchDialog.Show( );
-                }
+                _searchDialog.Hide();
+                ActiveWindows.Add("SearchDialog", _searchDialog);
             }
             catch( Exception ex )
             {
@@ -495,22 +463,14 @@ namespace Bubba
         {
             try
             {
-                if( ActiveWindows.ContainsKey( "GptImageDialog" ) )
+                var _gptImageDialog = new GptImageDialog
                 {
-                    var _form = ( GptImageDialog )ActiveWindows[ "GptImageDialog" ];
-                    _form.Show( );
-                }
-                else
-                {
-                    var _gptImageDialog = new GptImageDialog
-                    {
-                        Topmost = true,
-                        WindowStartupLocation = WindowStartupLocation.CenterScreen
-                    };
+                    Topmost = true,
+                    WindowStartupLocation = WindowStartupLocation.CenterScreen
+                };
 
-                    ActiveWindows.Add( "GptImageDialog", _gptImageDialog );
-                    _gptImageDialog.Show( );
-                }
+                _gptImageDialog.Hide();
+                ActiveWindows.Add("GptImageDialog", _gptImageDialog);
             }
             catch( Exception ex )
             {
@@ -540,21 +500,21 @@ namespace Bubba
         {
             try
             {
-                if( ActiveWindows.ContainsKey( "WebBrowser" ) )
+                if(ActiveWindows.ContainsKey("WebBrowser"))
                 {
-                    var _form = ( WebBrowser )ActiveWindows[ "WebBrowser" ];
-                    _form.Show( );
+                    var _window = (WebBrowser)ActiveWindows["WebBrowser"];
+                    _window.Show( );
                 }
                 else
                 {
-                    var _web = new WebBrowser( )
+                    var _web = new WebBrowser()
                     {
                         Topmost = true,
                         WindowStartupLocation = WindowStartupLocation.CenterScreen
                     };
 
-                    ActiveWindows.Add( "WebBrowser", _web );
-                    _web.Show( );
+                    ActiveWindows.Add("WebBrowser", _web);
+                    _web.Show();
                 }
             }
             catch( Exception ex )
@@ -570,23 +530,15 @@ namespace Bubba
         {
             try
             {
-                if( ActiveWindows?.ContainsKey( "SystemDialog" ) == true )
+                var _systemDialog = new SystemDialog( )
                 {
-                    var _form = ( SystemDialog )ActiveWindows[ "SystemDialog" ];
-                    _form.Show( );
-                }
-                else
-                {
-                    var _systemDialog = new SystemDialog( )
-                    {
-                        Topmost = true,
-                        WindowStartupLocation = WindowStartupLocation.CenterScreen
-                    };
+                    Topmost = true,
+                    WindowStartupLocation = WindowStartupLocation.CenterScreen
+                };
 
-                    _systemDialog.Show( );
-                    _systemDialog.SystemDialogTextBox.Text = Instructions;
-                    _systemDialog.SystemDialogTextBox.Focus( );
-                }
+                _systemDialog.SystemDialogTextBox.Text = Instructions;
+                ActiveWindows.Add("SystemDialog", _systemDialog);
+                _systemDialog.Show( );
             }
             catch( Exception ex )
             {
@@ -601,21 +553,14 @@ namespace Bubba
         {
             try
             {
-                if( ActiveWindows?.ContainsKey( "CalculatorWindow" ) == true )
+                var _calculator = new CalculatorWindow( )
                 {
-                    var _form = ( CalculatorWindow )ActiveWindows[ "CalculatorWindow" ];
-                    _form.Show( );
-                }
-                else
-                {
-                    var _calculator = new CalculatorWindow( )
-                    {
-                        Topmost = true,
-                        WindowStartupLocation = WindowStartupLocation.CenterScreen
-                    };
+                    Topmost = true,
+                    WindowStartupLocation = WindowStartupLocation.CenterScreen
+                };
 
-                    _calculator.Show( );
-                }
+                ActiveWindows.Add("CalculatorWindow", _calculator);
+                _calculator.Show( );
             }
             catch( Exception ex )
             {

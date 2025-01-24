@@ -33,8 +33,8 @@ namespace Bubba
             MinWidth = 120;
             Background = _theme.TransparentBrush;
             BorderBrush = _theme.TransparentBrush;
-            Foreground = _theme.WhiteForeground;
-            ActiveMinorTickStroke = _theme.DarkGreenBrush;
+            Foreground = _theme.LightBlueBrush;
+            ActiveMinorTickStroke = _theme.LightBlueBrush;
             ActiveTickStroke = _theme.GreenBrush;
             MinorTickStroke = _theme.LightBlueBrush;
             TickStroke = _theme.WhiteForeground;
@@ -48,9 +48,8 @@ namespace Bubba
             TickFrequency = 5;
             TickPlacement = TickPlacement.Inline;
             TickLength = 10;
-            MinorTickFrequency = 2;
             MinorTickLength = 4;
-            MinorTickStrokeThickness = 1D;
+            MinorTickStrokeThickness = 1;
             MoveToPoint = MovePoint.MoveToTapPosition;
         }
     }

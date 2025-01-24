@@ -7,9 +7,9 @@
 
     <Style x:Key="GroupBoxStyle" TargetType="{x:Type GroupBox}">
 
-        <Setter Property="Background" Value="{StaticResource GroupBoxBackground}" />
-        <Setter Property="BorderBrush" Value="{StaticResource MutedBorderColor}" />
-        <Setter Property="Foreground" Value="{StaticResource LightBlueBrush}" />
+        <Setter Property="Background" Value="{DynamicResource GroupBoxBackground}" />
+        <Setter Property="BorderBrush" Value="{DynamicResource MutedBorderColor}" />
+        <Setter Property="Foreground" Value="{DynamicResource LightBlueBrush}" />
         <Setter Property="FontFamily" Value="Roboto" />
         <Setter Property="FontSize" Value="12" />
         <Setter Property="HorizontalAlignment" Value="Stretch" />

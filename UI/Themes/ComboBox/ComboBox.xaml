@@ -28,17 +28,38 @@
         <Style.Triggers>
 
             <Trigger Property="IsSelected" Value="True">
-                <Setter Property="Background" Value="{StaticResource DarkBlueBackground}" />
+                <Setter Property="Background" Value="{StaticResource ControlInteriorBrush}" />
                 <Setter Property="BorderBrush" Value="{StaticResource BlueBorderBrush}" />
+                <Setter Property="Foreground" Value="{StaticResource WhiteForeground}" />
             </Trigger>
 
             <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background" Value="{StaticResource ControlInteriorBrush}" />
                 <Setter Property="BorderBrush" Value="{StaticResource BlueBorderBrush}" />
+                <Setter Property="Foreground" Value="{StaticResource WhiteForeground}" />
             </Trigger>
 
             <Trigger Property="IsMouseOver" Value="False">
+                <Setter Property="Background" Value="{StaticResource ControlInteriorBrush}" />
                 <Setter Property="BorderBrush" Value="{StaticResource BlueBorderBrush}" />
+                <Setter Property="Foreground" Value="{StaticResource WhiteForeground}" />
             </Trigger>
+
+            <Trigger Property="IsEnabled" Value="False">
+                <Setter Property="Background" Value="{StaticResource ControlInteriorBrush}" />
+                <Setter Property="BorderBrush" Value="{StaticResource BlueBorderBrush}" />
+                <Setter Property="Foreground" Value="{StaticResource WhiteForeground}" />
+                <Setter Property="FontWeight" Value="Normal" />
+            </Trigger>
+
+
+            <Trigger Property="IsMouseOver" Value="False">
+                <Setter Property="Background" Value="{StaticResource ControlInteriorBrush}" />
+                <Setter Property="BorderBrush" Value="{StaticResource BlueBorderBrush}" />
+                <Setter Property="Foreground" Value="{StaticResource WhiteForeground}" />
+                <Setter Property="FontWeight" Value="Bold" />
+            </Trigger>
+
 
 
         </Style.Triggers>
@@ -63,9 +84,17 @@
 
         <Style.Triggers>
 
-            <Trigger Property="IsMouseOver" Value="True">
-                <Setter Property="Background" Value="{StaticResource SteelBlueBackground}" />
-                <Setter Property="BorderBrush" Value="{StaticResource SteelBlueBackground}" />
+            <Trigger Property="IsEnabled" Value="False">
+                <Setter Property="Background" Value="{StaticResource ControlInteriorBrush}" />
+                <Setter Property="BorderBrush" Value="{StaticResource ControlInteriorBrush}" />
+                <Setter Property="Foreground" Value="{StaticResource WhiteForeground}" />
+                <Setter Property="FontWeight" Value="Normal" />
+            </Trigger>
+
+
+            <Trigger Property="IsMouseOver" Value="False">
+                <Setter Property="Background" Value="{StaticResource ControlInteriorBrush}" />
+                <Setter Property="BorderBrush" Value="{StaticResource ControlInteriorBrush}" />
                 <Setter Property="Foreground" Value="{StaticResource WhiteForeground}" />
                 <Setter Property="FontWeight" Value="Bold" />
             </Trigger>
@@ -73,7 +102,7 @@
             <Trigger Property="IsMouseOver" Value="False">
                 <Setter Property="Background" Value="{StaticResource ControlInteriorBrush}" />
                 <Setter Property="BorderBrush" Value="{StaticResource ControlInteriorBrush}" />
-                <Setter Property="Foreground" Value="{StaticResource LightBlueBrush}" />
+                <Setter Property="Foreground" Value="{StaticResource WhiteForeground}" />
                 <Setter Property="FontWeight" Value="Normal" />
             </Trigger>
 
@@ -87,7 +116,7 @@
             <Trigger Property="IsSelected" Value="False">
                 <Setter Property="Background" Value="{StaticResource ControlInteriorBrush}" />
                 <Setter Property="BorderBrush" Value="{StaticResource ControlInteriorBrush}" />
-                <Setter Property="Foreground" Value="{StaticResource LightBlueBrush}" />
+                <Setter Property="Foreground" Value="{StaticResource WhiteForeground}" />
                 <Setter Property="FontWeight" Value="Normal" />
             </Trigger>
 

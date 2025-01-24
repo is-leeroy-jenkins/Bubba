@@ -78,6 +78,7 @@ namespace Bubba
     [ SuppressMessage( "ReSharper", "CanSimplifyDictionaryLookupWithTryGetValue" ) ]
     [ SuppressMessage( "ReSharper", "PreferConcreteValueOverDefault" ) ]
     [ SuppressMessage( "ReSharper", "PossibleUnintendedReferenceComparison" ) ]
+    [ SuppressMessage( "ReSharper", "MergeSequentialChecks" ) ]
     public partial class WebBrowser : Window, IDisposable
     {
         /// <summary>
@@ -1123,20 +1124,20 @@ namespace Bubba
         /// <summary>
         /// Fades the in asynchronously.
         /// </summary>
-        /// <param name="form">The o.</param>
+        /// <param name="window">The o.</param>
         /// <param name="interval">The interval.</param>
-        private async void FadeInAsync( Window form, int interval = 80 )
+        private async void FadeInAsync( Window window, int interval = 80 )
         {
             try
             {
-                ThrowIf.Null( form, nameof( form ) );
-                while( form.Opacity < 1.0 )
+                ThrowIf.Null( window, nameof( window ) );
+                while( window.Opacity < 1.0 )
                 {
                     await Task.Delay( interval );
-                    form.Opacity += 0.05;
+                    window.Opacity += 0.05;
                 }
 
-                form.Opacity = 1;
+                window.Opacity = 1;
             }
             catch( Exception ex )
             {
@@ -1147,20 +1148,20 @@ namespace Bubba
         /// <summary>
         /// Fades the out asynchronously.
         /// </summary>
-        /// <param name="form">The o.</param>
+        /// <param name="window">The o.</param>
         /// <param name="interval">The interval.</param>
-        private async void FadeOutAsync( Window form, int interval = 80 )
+        private async void FadeOutAsync( Window window, int interval = 80 )
         {
             try
             {
-                ThrowIf.Null( form, nameof( form ) );
-                while( form.Opacity > 0.0 )
+                ThrowIf.Null( window, nameof( window ) );
+                while( window.Opacity > 0.0 )
                 {
                     await Task.Delay( interval );
-                    form.Opacity -= 0.05;
+                    window.Opacity -= 0.05;
                 }
 
-                form.Opacity = 0;
+                window.Opacity = 0;
             }
             catch( Exception ex )
             {
@@ -1179,11 +1180,13 @@ namespace Bubba
             _lastSearch = UrlTextBox.Text;
             if( _lastSearch.IsNull( ) )
             {
-                _currentBrowser.GetBrowser( )?.Find( _lastSearch, true, false, !_first );
+                _currentBrowser.GetBrowser( )
+                    ?.Find( _lastSearch, true, false, !_first );
             }
             else
             {
-                _currentBrowser.GetBrowser( )?.StopFinding( true );
+                _currentBrowser.GetBrowser( )
+                    ?.StopFinding( true );
             }
 
             UrlTextBox.Focus( );
@@ -2355,17 +2358,6 @@ namespace Bubba
         }
 
         /// <summary>
-        /// Called when [refresh button clicked].
-        /// </summary>
-        /// <param name="sender">The sender.</param>
-        /// <param name="e">The <see cref="EventArgs" />
-        /// instance containing the event data.</param>
-        private void OnRefreshButtonClick( object sender, RoutedEventArgs e )
-        {
-            RefreshActiveTab( );
-        }
-
-        /// <summary>
         /// Called when [stop button clicked].
         /// </summary>
         /// <param name="sender">The sender.</param>
@@ -2407,7 +2399,7 @@ namespace Bubba
         /// <param name="sender">The sender.</param>
         /// <param name="e">The <see cref="EventArgs" />
         /// instance containing the event data.</param>
-        private void OnSearchDialogClosing( object sender, EventArgs e )
+        private void OnSearchDialogClosing( object sender, RoutedEventArgs e )
         {
             if( sender is SearchDialog _dialog )
             {
@@ -2433,7 +2425,7 @@ namespace Bubba
         /// <param name="sender">The sender.</param>
         /// <param name="e">The <see cref="EventArgs" />
         /// instance containing the event data.</param>
-        private void OnSourceButtonClick( object sender, EventArgs e )
+        private void OnSourceButtonClick( object sender, RoutedEventArgs e )
         {
             try
             {
@@ -2543,7 +2535,7 @@ namespace Bubba
         /// <param name="sender">The sender.</param>
         /// <param name="e">The <see cref="EventArgs" />
         /// instance containing the event data.</param>
-        private void OnSearchPanelClearButtonClick( object sender, EventArgs e )
+        private void OnSearchPanelClearButtonClick( object sender, RoutedEventArgs e )
         {
             CloseSearch( );
         }
@@ -2554,7 +2546,7 @@ namespace Bubba
         /// <param name="sender">The sender.</param>
         /// <param name="e">The <see cref="EventArgs" />
         /// instance containing the event data.</param>
-        private void OnSearchPreviousButtonClick( object sender, EventArgs e )
+        private void OnSearchPreviousButtonClick( object sender, RoutedEventArgs e )
         {
             FindTextOnPage( false );
         }
@@ -2565,7 +2557,7 @@ namespace Bubba
         /// <param name="sender">The sender.</param>
         /// <param name="e">The <see cref="EventArgs" />
         /// instance containing the event data.</param>
-        private void OnSearchForwardButtonClick( object sender, EventArgs e )
+        private void OnSearchForwardButtonClick( object sender, RoutedEventArgs e )
         {
             FindTextOnPage( true );
         }
@@ -2576,7 +2568,7 @@ namespace Bubba
         /// <param name="sender">The sender.</param>
         /// <param name="e">The <see cref="EventArgs" />
         /// instance containing the event data.</param>
-        private void OnSearchPanelTextChanged( object sender, EventArgs e )
+        private void OnSearchPanelTextChanged( object sender, RoutedEventArgs e )
         {
             FindTextOnPage( true );
         }
@@ -2602,7 +2594,7 @@ namespace Bubba
         /// <param name="sender">The sender.</param>
         /// <param name="e">The <see cref="EventArgs" />
         /// instance containing the event data.</param>
-        private void OnHomeButtonClick( object sender, EventArgs e )
+        private void OnHomeButtonClick( object sender, RoutedEventArgs e )
         {
             _currentBrowser.Load( Locations.HomePage );
         }
@@ -2613,7 +2605,7 @@ namespace Bubba
         /// <param name="sender">The sender.</param>
         /// <param name="e">The <see cref="EventArgs" />
         /// instance containing the event data.</param>
-        private void OnGoButtonClick( object sender, EventArgs e )
+        private void OnGoButtonClick( object sender, RoutedEventArgs e )
         {
             try
             {
@@ -2641,7 +2633,7 @@ namespace Bubba
         /// <param name="sender">The sender.</param>
         /// <param name="e">The <see cref="EventArgs" />
         /// instance containing the event data.</param>
-        private void OnCloseButtonClick( object sender, EventArgs e )
+        private void OnCloseButtonClick( object sender, RoutedEventArgs e )
         {
             try
             {
@@ -2659,7 +2651,7 @@ namespace Bubba
         /// <param name="sender">The sender.</param>
         /// <param name="e">The <see cref="EventArgs" />
         /// instance containing the event data.</param>
-        private void OnFireFoxButtonClick( object sender, EventArgs e )
+        private void OnFireFoxButtonClick( object sender, RoutedEventArgs e )
         {
             ToolStripTextBox.SelectAll( );
             var _args = ToolStripTextBox.Text;
@@ -2681,7 +2673,7 @@ namespace Bubba
         /// <param name="sender">The sender.</param>
         /// <param name="e">The <see cref="EventArgs" />
         /// instance containing the event data.</param>
-        private void OnEdgeButtonClick( object sender, EventArgs e )
+        private void OnEdgeButtonClick( object sender, RoutedEventArgs e )
         {
             ToolStripTextBox.SelectAll( );
             var _args = ToolStripTextBox.Text;
@@ -2703,7 +2695,7 @@ namespace Bubba
         /// <param name="sender">The sender.</param>
         /// <param name="e">The <see cref="EventArgs" />
         /// instance containing the event data.</param>
-        private void OnChromeButtonClick( object sender, EventArgs e )
+        private void OnChromeButtonClick( object sender, RoutedEventArgs e )
         {
             ToolStripTextBox.SelectAll( );
             var _args = ToolStripTextBox.Text;
@@ -2725,7 +2717,7 @@ namespace Bubba
         /// <param name="sender">The sender.</param>
         /// <param name="e">The <see cref="EventArgs" />
         /// instance containing the event data.</param>
-        private void OnSharepointButtonClicked( object sender, EventArgs e )
+        private void OnSharepointButtonClicked( object sender, RoutedEventArgs e )
         {
             try
             {
@@ -2744,11 +2736,10 @@ namespace Bubba
         /// <param name="sender">The sender.</param>
         /// <param name="e">The <see cref="EventArgs" />
         /// instance containing the event data.</param>
-        private void OnFormClosing( object sender, EventArgs e )
+        private void OnClosing( object sender, RoutedEventArgs e )
         {
             try
             {
-                _timer?.Dispose( );
                 Opacity = 1;
                 FadeOutAsync( this );
             }
@@ -2764,7 +2755,7 @@ namespace Bubba
         /// <param name="sender">The sender.</param>
         /// <param name="e">The <see cref="EventArgs" />
         /// instance containing the event data.</param>
-        private void OnActivated( object sender, EventArgs e )
+        private void OnActivated( object sender, RoutedEventArgs e )
         {
             try
             {
@@ -3060,12 +3051,11 @@ namespace Bubba
         /// <param name="sender">The sender.</param>
         /// <param name="e">The <see cref="EventArgs" />
         /// instance containing the event data.</param>
-        private void OnRefreshButtonClick( object sender, EventArgs e )
+        private void OnRefreshButtonClick( object sender, RoutedEventArgs e )
         {
             try
             {
-                var _message = "NOT YET IMPLEMENTED!";
-                SendMessage( _message );
+                RefreshActiveTab( );
             }
             catch( Exception ex )
             {

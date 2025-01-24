@@ -1,10 +1,10 @@
 ﻿// ******************************************************************************************
 //     Assembly:                Bubba
 //     Author:                  Terry D. Eppler
-//     Created:                 01-22-2025
+//     Created:                 01-23-2025
 // 
 //     Last Modified By:        Terry D. Eppler
-//     Last Modified On:        01-22-2025
+//     Last Modified On:        01-23-2025
 // ******************************************************************************************
 // <copyright file="ChatWindow.xaml.cs" company="Terry D. Eppler">
 //    Bubba is a small and simple windows (wpf) application for interacting with the OpenAI API
@@ -87,6 +87,7 @@ namespace Bubba
     [ SuppressMessage( "ReSharper", "LocalVariableHidesMember" ) ]
     [ SuppressMessage( "ReSharper", "CanSimplifyDictionaryLookupWithTryGetValue" ) ]
     [ SuppressMessage( "ReSharper", "PreferConcreteValueOverDefault" ) ]
+    [ SuppressMessage( "ReSharper", "UnusedMethodReturnValue.Global" ) ]
     public partial class ChatWindow : Window, INotifyPropertyChanged
     {
         /// <summary>
@@ -103,6 +104,11 @@ namespace Bubba
         /// The system prompt
         /// </summary>
         private string _systemPrompt;
+
+        /// <summary>
+        /// The interface update
+        /// </summary>
+        private protected Action _window;
 
         /// <summary>
         /// The user prompt
@@ -750,13 +756,12 @@ namespace Bubba
         {
             try
             {
+                ProgressBar.Visibility = Visibility.Visible;
+                ProgressBar.IsIndeterminate = true;
                 lock( _entry )
                 {
                     _busy = true;
                 }
-
-                ProgressBar.Visibility = Visibility.Visible;
-                ProgressBar.IsIndeterminate = true;
             }
             catch( Exception ex )
             {
@@ -798,13 +803,12 @@ namespace Bubba
         {
             try
             {
+                ProgressBar.Visibility = Visibility.Hidden;
+                ProgressBar.IsIndeterminate = false;
                 lock( _entry )
                 {
                     _busy = false;
                 }
-
-                ProgressBar.Visibility = Visibility.Hidden;
-                ProgressBar.IsIndeterminate = false;
             }
             catch( Exception ex )
             {
@@ -880,8 +884,6 @@ namespace Bubba
                 MuteCheckBox.Checked -= OnMuteCheckedBoxChanged;
                 StoreCheckBox.Checked -= OnStoreCheckBoxChecked;
                 GenerationComboBox.SelectionChanged -= OnSelectedRequestTypeChanged;
-                GenerationComboBox.SelectionChanged -= OnSelectedRequestTypeChanged;
-                ImageSizeComboBox.SelectionChanged -= OnSelectedImageSizeChanged;
                 ImageSizeComboBox.SelectionChanged -= OnSelectedImageSizeChanged;
             }
             catch( Exception ex )
@@ -1044,7 +1046,7 @@ namespace Bubba
             try
             {
                 PopulateLanguageListBox( );
-                LanguageListBox.SelectedValue = "Text";
+                LanguageListBox.SelectedIndex = -1;
             }
             catch( Exception ex )
             {
@@ -1590,11 +1592,25 @@ namespace Bubba
         /// <summary>
         /// Opens the search dialog.
         /// </summary>
-        private protected async Task OpenSearchDialogAsync( )
+        private protected void OpenSearchDialog( )
         {
             try
             {
-                await Task.Run( ( ) => App.OpenSearchDialog( ) );
+                if(App.ActiveWindows.Keys.Contains("SearchDialog"))
+                {
+                    var _window = (SearchDialog)App.ActiveWindows["SearchDialog"];
+                    _window.Show();
+                }
+                else
+                {
+                    var _searchDialog = new SearchDialog
+                    {
+                        Topmost = true,
+                        WindowStartupLocation = WindowStartupLocation.CenterScreen
+                    };
+
+                    _searchDialog.Show();
+                }
             }
             catch( Exception ex )
             {
@@ -1605,28 +1621,23 @@ namespace Bubba
         /// <summary>
         /// Opens the chat window.
         /// </summary>
-        private void OpenWebBrowser( )
+        private protected void OpenWebBrowser( )
         {
             try
             {
                 if( App.ActiveWindows?.ContainsKey( "WebBrowser" ) == true )
                 {
-                    var _form = ( WebBrowser )App.ActiveWindows[ "WebBrowser" ];
-                    _form.Show( );
+                    var _browser = ( WebBrowser )App.ActiveWindows[ "WebBrowser" ];
+                    _browser.Show( );
+                    Hide( );
                 }
                 else
                 {
-                    var _webBrowser = new WebBrowser
-                    {
-                        Owner = this,
-                        Topmost = true,
-                        WindowStartupLocation = WindowStartupLocation.CenterScreen
-                    };
-
+                    var _webBrowser = new WebBrowser( );
+                    App.ActiveWindows?.Add( "WebBrowser", _webBrowser );
                     _webBrowser.Show( );
+                    Hide( );
                 }
-
-                Hide( );
             }
             catch( Exception ex )
             {
@@ -1641,13 +1652,52 @@ namespace Bubba
         {
             try
             {
-                var _fileBrowser = new FileBrowser( )
+                if(App.ActiveWindows.Keys.Contains("FileBrowser"))
                 {
-                    Topmost = true,
-                    WindowStartupLocation = WindowStartupLocation.CenterScreen
-                };
+                    var _window = (FileBrowser)App.ActiveWindows["FileBrowser"];
+                    _window.Show();
+                }
+                else
+                {
+                    var _fileBrowser = new FileBrowser()
+                    {
+                        Topmost = true,
+                        Owner = this,
+                        WindowStartupLocation = WindowStartupLocation.CenterScreen
+                    };
 
-                _fileBrowser.Show( );
+                    _fileBrowser.Show();
+                }
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+            }
+        }
+
+        /// <summary>
+        /// Opens the file browser.
+        /// </summary>
+        private protected void OpenGptFileDialog( )
+        {
+            try
+            {
+                if( App.ActiveWindows.Keys.Contains( "GptFileDialog" ) )
+                {
+                    var _window = (GptFileDialog)App.ActiveWindows["GptFileDialog"];
+                    _window.Show( );
+                }
+                else
+                {
+                    var _fileDialog = new GptFileDialog()
+                    {
+                        Topmost = true,
+                        Owner = this,
+                        WindowStartupLocation = WindowStartupLocation.CenterScreen
+                    };
+
+                    _fileDialog.Show();
+                }
             }
             catch( Exception ex )
             {
@@ -1662,13 +1712,21 @@ namespace Bubba
         {
             try
             {
-                var _systemDialog = new FolderBrowser( )
+                if(App.ActiveWindows.Keys.Contains("FolderBrowser"))
                 {
-                    Topmost = true,
-                    WindowStartupLocation = WindowStartupLocation.CenterScreen
-                };
+                    var _window = (FolderBrowser)App.ActiveWindows["FolderBrowser"];
+                    _window.Show();
+                }
+                else
+                {
+                    var _folderBrowser = new FolderBrowser()
+                    {
+                        Topmost = true,
+                        WindowStartupLocation = WindowStartupLocation.CenterScreen
+                    };
 
-                _systemDialog.ShowDialog( );
+                    _folderBrowser.Show();
+                }
             }
             catch( Exception ex )
             {
@@ -1684,14 +1742,22 @@ namespace Bubba
         {
             try
             {
-                var _web = new GptImageDialog
+                if(App.ActiveWindows.Keys.Contains("GptImageDialog"))
                 {
-                    Topmost = true,
-                    Owner = this,
-                    WindowStartupLocation = WindowStartupLocation.CenterScreen
-                };
+                    var _window = (GptImageDialog)App.ActiveWindows["GptImageDialog"];
+                    _window.Show();
+                }
+                else
+                {
+                    var _gptImageDialog = new GptImageDialog
+                    {
+                        Topmost = true,
+                        Owner = this,
+                        WindowStartupLocation = WindowStartupLocation.CenterScreen
+                    };
 
-                _web.Show( );
+                    _gptImageDialog.Show();
+                }
             }
             catch( Exception ex )
             {
@@ -1708,7 +1774,21 @@ namespace Bubba
         {
             try
             {
-                App.OpenSystemDialog( );
+                if(App.ActiveWindows.Keys.Contains("SystemDialog"))
+                {
+                    var _window = (SystemDialog)App.ActiveWindows["SystemDialog"];
+                    _window.Show();
+                }
+                else
+                {
+                    var _systemDialog = new SystemDialog
+                    {
+                        Topmost = true,
+                        WindowStartupLocation = WindowStartupLocation.CenterScreen
+                    };
+
+                    _systemDialog.Show();
+                }
             }
             catch( Exception ex )
             {
@@ -2429,6 +2509,8 @@ namespace Bubba
             try
             {
                 _timer?.Dispose( );
+                _statusUpdate += null;
+                _window += null;
                 SfSkinManager.Dispose( this );
                 App.ActiveWindows.Clear( );
                 Environment.Exit( 0 );
@@ -2492,14 +2574,7 @@ namespace Bubba
         {
             try
             {
-                var _fileBrowser = new FileBrowser( )
-                {
-                    WindowStartupLocation = WindowStartupLocation.CenterScreen,
-                    Owner = this,
-                    Topmost = true
-                };
-
-                _fileBrowser.Show( );
+                App.OpenFileBrowser( );
             }
             catch( Exception ex )
             {
@@ -2668,7 +2743,9 @@ namespace Bubba
         {
             try
             {
-                App.OpenSystemDialog( );
+                Busy( );
+                OpenSystemDialog( );
+                Chill( );
             }
             catch( Exception ex )
             {
@@ -2818,11 +2895,14 @@ namespace Bubba
         /// <param name="sender">The sender.</param>
         /// <param name="e">The <see cref="RoutedEventArgs"/>
         /// instance containing the event data.</param>
-        private protected void OnWebBrowserButtonClick( object sender, RoutedEventArgs e )
+        private protected async void OnWebBrowserButtonClick( object sender, RoutedEventArgs e )
         {
             try
             {
+                Busy( );
                 OpenWebBrowser( );
+                Chill( );
+                Hide( );
             }
             catch( Exception ex )
             {
