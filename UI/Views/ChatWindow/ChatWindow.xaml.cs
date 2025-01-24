@@ -295,6 +295,7 @@ namespace Bubba
             RegisterCallbacks( );
             InitializeDelegates( );
             InitializeToolStrip( );
+            Opacity = 0;
 
             // GPT Parameters
             _store = false;
@@ -573,18 +574,16 @@ namespace Bubba
         /// <summary>
         /// Initializes the interface asynchronous.
         /// </summary>
-        public async Task InitializeInterfaceAsync( )
+        public void InitializeInterface( )
         {
             try
             {
-                await Task.Run( ( ) => App.LoadSystemDialog( ) );
-                await Task.Run( ( ) => App.LoadWebBrowser( ) );
-                await Task.Run( ( ) => App.LoadFileBrowser( ) );
-                await Task.Run( ( ) => App.LoadFolderBrowser( ) );
-                await Task.Run( ( ) => App.LoadGptFileDialog( ) );
-                await Task.Run( ( ) => App.LoadImageDialog( ) );
-                await Task.Run( ( ) => App.LoadSearchDialog( ) );
-                await Task.Run( ( ) => App.LoadCalculator( ) );
+                App.LoadSystemDialog( );
+                App.LoadWebBrowser( );
+                App.LoadFileBrowser( );
+                App.LoadGptFileDialog( );
+                App.LoadImageDialog( );
+                App.LoadSearchDialog( );
             }
             catch( Exception ex )
             {
@@ -2319,10 +2318,11 @@ namespace Bubba
         /// <param name="sender">The sender.</param>
         /// <param name="e">The <see cref="RoutedEventArgs"/>
         /// instance containing the event data.</param>
-        private async void OnLoad( object sender, RoutedEventArgs e )
+        private void OnLoad( object sender, RoutedEventArgs e )
         {
             try
             {
+                Opacity = 0;
                 InitializeTimer( );
                 InitializeToolStrip( );
                 InitializeLabel( );
@@ -2339,7 +2339,8 @@ namespace Bubba
                 SetGptParameters( );
                 UserLabel.Content = $@"User ID : {Environment.UserName}";
                 TabControl.SelectedIndex = 1;
-                await InitializeInterfaceAsync( );
+                InitializeInterface( );
+                Opacity = 1;
             }
             catch( Exception ex )
             {

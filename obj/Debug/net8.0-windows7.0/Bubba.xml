@@ -19024,6 +19024,190 @@
             The data.
             </value>
         </member>
+        <member name="T:Bubba.GptClient">
+            <inheritdoc />
+            <summary>
+            </summary>
+            <seealso cref="T:Bubba.GptBase" />
+            <seealso cref="T:Bubba.IGptClient" />
+        </member>
+        <member name="F:Bubba.GptClient._header">
+            <summary>
+            The header
+            </summary>
+        </member>
+        <member name="F:Bubba.GptClient._httpClient">
+            <summary>
+            The HTTP client
+            </summary>
+        </member>
+        <member name="F:Bubba.GptClient._messages">
+            <summary>
+            The messages
+            </summary>
+        </member>
+        <member name="M:Bubba.GptClient.#ctor">
+            <inheritdoc />
+            <summary>
+            Initializes a new instance of the
+            <see cref="T:Bubba.GptClient" /> class.
+            </summary>
+        </member>
+        <member name="M:Bubba.GptClient.#ctor(Bubba.GptParameter)">
+            <inheritdoc />
+            <summary>
+            Initializes a new instance of the
+            <see cref="T:Bubba.GptClient" /> class.
+            </summary>
+        </member>
+        <member name="P:Bubba.GptClient.Store">
+            <summary>
+            Gets or sets a value indicating whether this
+            <see cref="P:Bubba.GptClient.Store"/> is store.
+            </summary>
+            <value>
+              <c>true</c> if store; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:Bubba.GptClient.Stream">
+            <summary>
+            Gets or sets a value indicating whether this
+            <see cref="P:Bubba.GptClient.Stream"/> is stream.
+            </summary>
+            <value>
+              <c>true</c> if stream; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:Bubba.GptClient.FrequencyPenalty">
+            <inheritdoc />
+            <summary>
+            Number between -2.0 and 2.0. Positive values penalize new tokens
+            based on their existing frequency in the text so far,
+            decreasing the model's likelihood to repeat the same line verbatim.
+            </summary>
+            <value>
+            The frequency.
+            </value>
+        </member>
+        <member name="P:Bubba.GptClient.Temperature">
+            <inheritdoc />
+            <summary>
+            Gets the temperature.
+            </summary>
+            <value>
+            The temperature.
+            </value>
+        </member>
+        <member name="P:Bubba.GptClient.PresencePenalty">
+            <inheritdoc />
+            <summary>
+            Gets the presence.
+            </summary>
+            <value>
+            The presence.
+            </value>
+        </member>
+        <member name="P:Bubba.GptClient.MaxTokens">
+            <inheritdoc />
+            <summary>
+            Gets the maximum tokens.
+            </summary>
+            <value>
+            The maximum tokens.
+            </value>
+        </member>
+        <member name="P:Bubba.GptClient.TopPercent">
+            <summary>
+            An alternative to sampling with temperature,
+            called nucleus sampling, where the model considers
+            the results of the tokens with top_p probability mass.
+            So 0.1 means only the tokens comprising the top 10% probability
+            mass are considered. We generally recommend altering this
+            or temperature but not both.
+            </summary>
+            <value>
+            The top percent.
+            </value>
+        </member>
+        <member name="P:Bubba.GptClient.EndPoint">
+            <inheritdoc />
+            <summary>
+            Gets the end point.
+            </summary>
+            <value>
+            The end point.
+            </value>
+        </member>
+        <member name="P:Bubba.GptClient.Model">
+            <inheritdoc />
+            <summary>
+            Gets the chat model.
+            </summary>
+            <value>
+            The chat model.
+            </value>
+        </member>
+        <member name="P:Bubba.GptClient.Messages">
+            <summary>
+            Gets the messages.
+            </summary>
+            <value>
+            The messages.
+            </value>
+        </member>
+        <member name="P:Bubba.GptClient.Prompt">
+            <inheritdoc />
+            <summary>
+            Gets the prompt.
+            </summary>
+            <value>
+            The prompt.
+            </value>
+        </member>
+        <member name="M:Bubba.GptClient.GetResponseAsync(System.String)">
+            <inheritdoc />
+            <summary>
+            Sends a request to the Chat (Assistant) API.
+            </summary>
+        </member>
+        <member name="M:Bubba.GptClient.SendRequestAsync(Bubba.GptPayload)">
+            <inheritdoc />
+            <summary>
+            Handles POST requests and response parsing.
+            </summary>
+        </member>
+        <member name="M:Bubba.GptClient.SendRequest(System.String)">
+            <inheritdoc />
+            <summary>
+            Sends the HTTP message.
+            </summary>
+            <param name="prompt">The question.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Bubba.GptClient.CreatePayload(System.String)">
+            <inheritdoc />
+            <summary>
+            Builds the request data.
+            </summary>
+            <param name="prompt">The question.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Bubba.GptClient.ExtractResponseContent(System.String)">
+            <summary>
+            Extracts the message from jsonResponse.
+            Helper method to extract the message from the JSON jsonResponse
+            </summary>
+            <param name="jsonResponse">The json jsonResponse.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Bubba.GptClient.SendHttpMessageAsync(System.String)">
+            <inheritdoc />
+            <summary>
+            Sends the HTTP message asynchronous.
+            </summary>
+            <param name="userPrompt">The prompt.</param>
+            <returns></returns>
+        </member>
         <member name="T:Bubba.GptBody">
             <inheritdoc />
             <summary>
@@ -19295,291 +19479,6 @@
             Fails the specified ex.
             </summary>
             <param name="ex">The ex.</param>
-        </member>
-        <member name="T:Bubba.GptClient">
-            <inheritdoc />
-            <summary>
-            </summary>
-            <seealso cref="T:Bubba.GptBase" />
-            <seealso cref="T:Bubba.IGptClient" />
-        </member>
-        <member name="F:Bubba.GptClient._header">
-            <summary>
-            The header
-            </summary>
-        </member>
-        <member name="F:Bubba.GptClient._httpClient">
-            <summary>
-            The HTTP client
-            </summary>
-        </member>
-        <member name="F:Bubba.GptClient._messages">
-            <summary>
-            The messages
-            </summary>
-        </member>
-        <member name="M:Bubba.GptClient.#ctor">
-            <inheritdoc />
-            <summary>
-            Initializes a new instance of the
-            <see cref="T:Bubba.GptClient" /> class.
-            </summary>
-        </member>
-        <member name="M:Bubba.GptClient.#ctor(Bubba.GptParameter)">
-            <inheritdoc />
-            <summary>
-            Initializes a new instance of the
-            <see cref="T:Bubba.GptClient" /> class.
-            </summary>
-        </member>
-        <member name="P:Bubba.GptClient.Store">
-            <summary>
-            Gets or sets a value indicating whether this
-            <see cref="P:Bubba.GptClient.Store"/> is store.
-            </summary>
-            <value>
-              <c>true</c> if store; otherwise, <c>false</c>.
-            </value>
-        </member>
-        <member name="P:Bubba.GptClient.Stream">
-            <summary>
-            Gets or sets a value indicating whether this
-            <see cref="P:Bubba.GptClient.Stream"/> is stream.
-            </summary>
-            <value>
-              <c>true</c> if stream; otherwise, <c>false</c>.
-            </value>
-        </member>
-        <member name="P:Bubba.GptClient.FrequencyPenalty">
-            <inheritdoc />
-            <summary>
-            Number between -2.0 and 2.0. Positive values penalize new tokens
-            based on their existing frequency in the text so far,
-            decreasing the model's likelihood to repeat the same line verbatim.
-            </summary>
-            <value>
-            The frequency.
-            </value>
-        </member>
-        <member name="P:Bubba.GptClient.Temperature">
-            <inheritdoc />
-            <summary>
-            Gets the temperature.
-            </summary>
-            <value>
-            The temperature.
-            </value>
-        </member>
-        <member name="P:Bubba.GptClient.PresencePenalty">
-            <inheritdoc />
-            <summary>
-            Gets the presence.
-            </summary>
-            <value>
-            The presence.
-            </value>
-        </member>
-        <member name="P:Bubba.GptClient.MaxTokens">
-            <inheritdoc />
-            <summary>
-            Gets the maximum tokens.
-            </summary>
-            <value>
-            The maximum tokens.
-            </value>
-        </member>
-        <member name="P:Bubba.GptClient.TopPercent">
-            <summary>
-            An alternative to sampling with temperature,
-            called nucleus sampling, where the model considers
-            the results of the tokens with top_p probability mass.
-            So 0.1 means only the tokens comprising the top 10% probability
-            mass are considered. We generally recommend altering this
-            or temperature but not both.
-            </summary>
-            <value>
-            The top percent.
-            </value>
-        </member>
-        <member name="P:Bubba.GptClient.EndPoint">
-            <inheritdoc />
-            <summary>
-            Gets the end point.
-            </summary>
-            <value>
-            The end point.
-            </value>
-        </member>
-        <member name="P:Bubba.GptClient.Model">
-            <inheritdoc />
-            <summary>
-            Gets the chat model.
-            </summary>
-            <value>
-            The chat model.
-            </value>
-        </member>
-        <member name="P:Bubba.GptClient.Messages">
-            <summary>
-            Gets the messages.
-            </summary>
-            <value>
-            The messages.
-            </value>
-        </member>
-        <member name="P:Bubba.GptClient.Prompt">
-            <inheritdoc />
-            <summary>
-            Gets the prompt.
-            </summary>
-            <value>
-            The prompt.
-            </value>
-        </member>
-        <member name="M:Bubba.GptClient.GetResponseAsync(System.String)">
-            <inheritdoc />
-            <summary>
-            Sends a request to the Chat (Assistant) API.
-            </summary>
-        </member>
-        <member name="M:Bubba.GptClient.SendRequestAsync(Bubba.GptPayload)">
-            <inheritdoc />
-            <summary>
-            Handles POST requests and response parsing.
-            </summary>
-        </member>
-        <member name="M:Bubba.GptClient.SendRequest(System.String)">
-            <inheritdoc />
-            <summary>
-            Sends the HTTP message.
-            </summary>
-            <param name="prompt">The question.</param>
-            <returns></returns>
-        </member>
-        <member name="M:Bubba.GptClient.CreatePayload(System.String)">
-            <inheritdoc />
-            <summary>
-            Builds the request data.
-            </summary>
-            <param name="prompt">The question.</param>
-            <returns></returns>
-        </member>
-        <member name="M:Bubba.GptClient.ExtractResponseContent(System.String)">
-            <summary>
-            Extracts the message from jsonResponse.
-            Helper method to extract the message from the JSON jsonResponse
-            </summary>
-            <param name="jsonResponse">The json jsonResponse.</param>
-            <returns></returns>
-        </member>
-        <member name="M:Bubba.GptClient.SendHttpMessageAsync(System.String)">
-            <inheritdoc />
-            <summary>
-            Sends the HTTP message asynchronous.
-            </summary>
-            <param name="userPrompt">The prompt.</param>
-            <returns></returns>
-        </member>
-        <member name="T:Bubba.GptFactory">
-            <inheritdoc />
-            <summary>
-            </summary>
-            <seealso cref="T:Bubba.GptBase" />
-        </member>
-        <member name="F:Bubba.GptFactory._client">
-            <summary>
-            The client
-            </summary>
-        </member>
-        <member name="F:Bubba.GptFactory._userPrompt">
-            <summary>
-            The user prompt
-            </summary>
-        </member>
-        <member name="F:Bubba.GptFactory._systemPrompt">
-            <summary>
-            The system prompt
-            </summary>
-        </member>
-        <member name="M:Bubba.GptFactory.#ctor">
-            <inheritdoc />
-            <summary>
-            Initializes a new instance of the
-            <see cref="T:Bubba.GptClient" /> class.
-            </summary>
-        </member>
-        <member name="M:Bubba.GptFactory.#ctor(System.String)">
-            <inheritdoc />
-            <summary>
-            Initializes a new instance of the
-            <see cref="T:Bubba.GptClient" /> class.
-            </summary>
-            <param name="model">The chat model.</param>
-        </member>
-        <member name="P:Bubba.GptFactory.Model">
-            <inheritdoc />
-            <summary>
-            Gets the chat model.
-            </summary>
-            <value>
-            The chat model.
-            </value>
-        </member>
-        <member name="P:Bubba.GptFactory.UserPrompt">
-            <inheritdoc />
-            <summary>
-            Gets the prompt.
-            </summary>
-            <value>
-            The prompt.
-            </value>
-        </member>
-        <member name="M:Bubba.GptFactory.CreateChatClient">
-            <summary>
-            Creates the chat client.
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:Bubba.GptFactory.CreateChatStreamAsync">
-            <summary>
-            Creates the chat stream asynchronous.
-            </summary>
-        </member>
-        <member name="M:Bubba.GptFactory.CreateAssistantClient">
-            <summary>
-            Creates the assistant client.
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:Bubba.GptFactory.CreateFineTuningClient">
-            <summary>
-            Creates the fine tuning client.
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:Bubba.GptFactory.CreateVectorStoreClient">
-            <summary>
-            Creates the vector store client.
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:Bubba.GptFactory.CreateImageClient">
-            <summary>
-            Creates the image client.
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:Bubba.GptFactory.CreateFileClient">
-            <summary>
-            Creates the file client.
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:Bubba.GptFactory.CreateAudioClient">
-            <summary>
-            Creates the audio client.
-            </summary>
-            <returns></returns>
         </member>
         <member name="T:Bubba.GptHeader">
             <inheritdoc />
@@ -35358,7 +35257,7 @@
             Initializes the user system text box.
             </summary>
         </member>
-        <member name="M:Bubba.ChatWindow.InitializeInterfaceAsync">
+        <member name="M:Bubba.ChatWindow.InitializeInterface">
             <summary>
             Initializes the interface asynchronous.
             </summary>
