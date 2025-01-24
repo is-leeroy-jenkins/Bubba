@@ -104,19 +104,9 @@
             </summary>
             <param name="ex">The ex.</param>
         </member>
-        <member name="M:Bubba.App.OpenGptFileDialogAsync">
-            <summary>
-            Opens the GPT file dialog asynchronous.
-            </summary>
-        </member>
         <member name="M:Bubba.App.OpenGptFileDialog">
             <summary>
             Opens the GPT file dialog.
-            </summary>
-        </member>
-        <member name="M:Bubba.App.OpenFolderBrowserAsync">
-            <summary>
-            Opens the folder browser asynchronous.
             </summary>
         </member>
         <member name="M:Bubba.App.OpenFolderBrowser">
@@ -124,19 +114,9 @@
             Opens the folder browser.
             </summary>
         </member>
-        <member name="M:Bubba.App.OpenFileBrowserAsync">
-            <summary>
-            Opens the file browser asynchronous.
-            </summary>
-        </member>
         <member name="M:Bubba.App.OpenFileBrowser">
             <summary>
             Opens the file browser.
-            </summary>
-        </member>
-        <member name="M:Bubba.App.OpenSearchDialogAsync">
-            <summary>
-            Opens the search dialog asynchronous.
             </summary>
         </member>
         <member name="M:Bubba.App.OpenSearchDialog">
@@ -144,21 +124,11 @@
             Opens the search dialog.
             </summary>
         </member>
-        <member name="M:Bubba.App.OpenImageDialogAsync">
-            <summary>
-            Opens the image dialog asynchronous.
-            </summary>
-        </member>
         <member name="M:Bubba.App.OpenImageDialog">
             <summary>
             Initializes the image dialog asynchronous.
             </summary>
             <returns></returns>
-        </member>
-        <member name="M:Bubba.App.OpenWebBrowserAsync">
-            <summary>
-            Opens the WebBrowser asynchronous.
-            </summary>
         </member>
         <member name="M:Bubba.App.OpenWebBrowser">
             <summary>
@@ -39843,36 +39813,6 @@
         <member name="M:Bubba.WebBrowser.InitializeComponent">
             <summary>
             InitializeComponent
-            </summary>
-        </member>
-        <member name="T:XamlGeneratedNamespace.GeneratedInternalTypeHelper">
-            <summary>
-            GeneratedInternalTypeHelper
-            </summary>
-        </member>
-        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.CreateInstance(System.Type,System.Globalization.CultureInfo)">
-            <summary>
-            CreateInstance
-            </summary>
-        </member>
-        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.GetPropertyValue(System.Reflection.PropertyInfo,System.Object,System.Globalization.CultureInfo)">
-            <summary>
-            GetPropertyValue
-            </summary>
-        </member>
-        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.SetPropertyValue(System.Reflection.PropertyInfo,System.Object,System.Object,System.Globalization.CultureInfo)">
-            <summary>
-            SetPropertyValue
-            </summary>
-        </member>
-        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.CreateDelegate(System.Type,System.Object,System.String)">
-            <summary>
-            CreateDelegate
-            </summary>
-        </member>
-        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.AddEventHandler(System.Reflection.EventInfo,System.Object,System.Delegate)">
-            <summary>
-            AddEventHandler
             </summary>
         </member>
     </members>

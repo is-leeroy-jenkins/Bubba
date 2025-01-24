@@ -225,8 +225,8 @@ namespace Bubba
                 if( bool.Parse( Locations.Proxy ) )
                 {
                     CefSharpSettings.Proxy = new ProxyOptions( Locations.ProxyIP,
-                        Locations.ProxyPort, Locations.ProxyUsername,
-                        Locations.ProxyPassword, Locations.ProxyBypassList );
+                        Locations.ProxyPort, Locations.ProxyUsername, Locations.ProxyPassword,
+                        Locations.ProxyBypassList );
                 }
 
                 Cef.Initialize( _cefSettings );
@@ -249,10 +249,8 @@ namespace Bubba
                 ThrowIf.Empty( name, nameof( name ) );
                 var _winXpDir = @"C:\Documents and Settings\All Users\Application Data\";
                 return Directory.Exists( _winXpDir )
-                    ? _winXpDir + Locations.Branding + @"\" + name
-                    + @"\"
-                    : @"C:\ProgramData\" + Locations.Branding + @"\"
-                    + name + @"\";
+                    ? _winXpDir + Locations.Branding + @"\" + name + @"\"
+                    : @"C:\ProgramData\" + Locations.Branding + @"\" + name + @"\";
             }
             catch( Exception ex )
             {
@@ -293,24 +291,9 @@ namespace Bubba
         }
 
         /// <summary>
-        /// Opens the GPT file dialog asynchronous.
-        /// </summary>
-        public static async Task OpenGptFileDialogAsync( )
-        {
-            try
-            {
-                await Task.Run( ( ) => OpenGptFileDialog( ) );
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
-            }
-        }
-
-        /// <summary>
         /// Opens the GPT file dialog.
         /// </summary>
-        public static void OpenGptFileDialog( )
+        private protected static void LoadGptFileDialog( )
         {
             try
             {
@@ -320,23 +303,8 @@ namespace Bubba
                     WindowStartupLocation = WindowStartupLocation.CenterScreen
                 };
 
-                _gptFileDialog.Hide( );
                 ActiveWindows.Add( "GptFileDialog", _gptFileDialog );
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
-            }
-        }
-
-        /// <summary>
-        /// Opens the folder browser asynchronous.
-        /// </summary>
-        public static async Task OpenFolderBrowserAsync( )
-        {
-            try
-            {
-                await Task.Run( ( ) => OpenFolderBrowser( ) );
+                _gptFileDialog.Hide( );
             }
             catch( Exception ex )
             {
@@ -347,7 +315,7 @@ namespace Bubba
         /// <summary>
         /// Opens the folder browser.
         /// </summary>
-        public static void OpenFolderBrowser( )
+        private protected static void LoadFolderBrowser( )
         {
             try
             {
@@ -357,23 +325,8 @@ namespace Bubba
                     WindowStartupLocation = WindowStartupLocation.CenterScreen
                 };
 
-                _folderBrowser.Hide();
-                ActiveWindows.Add("FolderBrowser", _folderBrowser);
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
-            }
-        }
-
-        /// <summary>
-        /// Opens the file browser asynchronous.
-        /// </summary>
-        public static async Task OpenFileBrowserAsync( )
-        {
-            try
-            {
-                await Task.Run( ( ) => OpenFileBrowser( ) );
+                ActiveWindows.Add( "FolderBrowser", _folderBrowser );
+                _folderBrowser.Hide( );
             }
             catch( Exception ex )
             {
@@ -384,7 +337,7 @@ namespace Bubba
         /// <summary>
         /// Opens the file browser.
         /// </summary>
-        public static void OpenFileBrowser( )
+        private protected static void LoadFileBrowser( )
         {
             try
             {
@@ -394,23 +347,8 @@ namespace Bubba
                     WindowStartupLocation = WindowStartupLocation.CenterScreen
                 };
 
-                ActiveWindows.Add("FileBrowser", _fileBrowser);
-                _fileBrowser.Show(  );
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
-            }
-        }
-
-        /// <summary>
-        /// Opens the search dialog asynchronous.
-        /// </summary>
-        public static async Task OpenSearchDialogAsync( )
-        {
-            try
-            {
-                await Task.Run( ( ) => OpenSearchDialog( ) );
+                ActiveWindows.Add( "FileBrowser", _fileBrowser );
+                _fileBrowser.Hide( );
             }
             catch( Exception ex )
             {
@@ -421,7 +359,7 @@ namespace Bubba
         /// <summary>
         /// Opens the search dialog.
         /// </summary>
-        public static void OpenSearchDialog( )
+        private protected static void LoadSearchDialog( )
         {
             try
             {
@@ -431,23 +369,8 @@ namespace Bubba
                     WindowStartupLocation = WindowStartupLocation.CenterScreen
                 };
 
-                _searchDialog.Hide();
-                ActiveWindows.Add("SearchDialog", _searchDialog);
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
-            }
-        }
-
-        /// <summary>
-        /// Opens the image dialog asynchronous.
-        /// </summary>
-        public static async Task OpenImageDialogAsync( )
-        {
-            try
-            {
-                await Task.Run( ( ) => OpenImageDialog( ) );
+                ActiveWindows.Add( "SearchDialog", _searchDialog );
+                _searchDialog.Hide( );
             }
             catch( Exception ex )
             {
@@ -459,7 +382,7 @@ namespace Bubba
         /// Initializes the image dialog asynchronous.
         /// </summary>
         /// <returns></returns>
-        public static void OpenImageDialog( )
+        private protected static void LoadImageDialog( )
         {
             try
             {
@@ -469,23 +392,8 @@ namespace Bubba
                     WindowStartupLocation = WindowStartupLocation.CenterScreen
                 };
 
-                _gptImageDialog.Hide();
-                ActiveWindows.Add("GptImageDialog", _gptImageDialog);
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
-            }
-        }
-
-        /// <summary>
-        /// Opens the WebBrowser asynchronous.
-        /// </summary>
-        public static async Task OpenWebBrowserAsync( )
-        {
-            try
-            {
-                await Task.Run( ( ) => OpenWebBrowser( ) );
+                ActiveWindows.Add( "GptImageDialog", _gptImageDialog );
+                _gptImageDialog.Hide( );
             }
             catch( Exception ex )
             {
@@ -496,26 +404,18 @@ namespace Bubba
         /// <summary>
         /// Opens the WebBrowser.
         /// </summary>
-        public static void OpenWebBrowser( )
+        private protected static void LoadWebBrowser( )
         {
             try
             {
-                if(ActiveWindows.ContainsKey("WebBrowser"))
+                var _web = new WebBrowser( )
                 {
-                    var _window = (WebBrowser)ActiveWindows["WebBrowser"];
-                    _window.Show( );
-                }
-                else
-                {
-                    var _web = new WebBrowser()
-                    {
-                        Topmost = true,
-                        WindowStartupLocation = WindowStartupLocation.CenterScreen
-                    };
+                    Topmost = true,
+                    WindowStartupLocation = WindowStartupLocation.CenterScreen
+                };
 
-                    ActiveWindows.Add("WebBrowser", _web);
-                    _web.Show();
-                }
+                ActiveWindows.Add( "WebBrowser", _web );
+                _web.Hide( );
             }
             catch( Exception ex )
             {
@@ -526,7 +426,7 @@ namespace Bubba
         /// <summary>
         /// Opens the prompt dialog.
         /// </summary>
-        public static void OpenSystemDialog( )
+        private protected static void LoadSystemDialog( )
         {
             try
             {
@@ -537,8 +437,8 @@ namespace Bubba
                 };
 
                 _systemDialog.SystemDialogTextBox.Text = Instructions;
-                ActiveWindows.Add("SystemDialog", _systemDialog);
-                _systemDialog.Show( );
+                ActiveWindows.Add( "SystemDialog", _systemDialog );
+                _systemDialog.Hide( );
             }
             catch( Exception ex )
             {
@@ -549,7 +449,7 @@ namespace Bubba
         /// <summary>
         /// Opens the calculator window.
         /// </summary>
-        public static void OpenCalculatorWindow( )
+        private protected static void LoadCalculator( )
         {
             try
             {
@@ -559,8 +459,30 @@ namespace Bubba
                     WindowStartupLocation = WindowStartupLocation.CenterScreen
                 };
 
-                ActiveWindows.Add("CalculatorWindow", _calculator);
-                _calculator.Show( );
+                ActiveWindows.Add( "CalculatorWindow", _calculator );
+                _calculator.Hide( );
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+            }
+        }
+
+        /// <summary>
+        /// Initializes the interface.
+        /// </summary>
+        public static void InitializeInterface( )
+        {
+            try
+            {
+                LoadSystemDialog( );
+                LoadWebBrowser( );
+                LoadFileBrowser( );
+                LoadFolderBrowser( );
+                LoadGptFileDialog( );
+                LoadImageDialog( );
+                LoadSearchDialog( );
+                LoadCalculator( );
             }
             catch( Exception ex )
             {
@@ -609,6 +531,7 @@ namespace Bubba
             {
                 Cef.Shutdown( );
                 base.OnExit( e );
+                ActiveWindows?.Clear( );
                 Environment.Exit( 0 );
             }
             catch( Exception )

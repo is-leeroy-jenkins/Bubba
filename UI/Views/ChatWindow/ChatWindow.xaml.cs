@@ -1353,11 +1353,11 @@ namespace Bubba
             try
             {
                 _store = StoreCheckBox.IsChecked ?? false;
-                _stream = StreamCheckBox.IsChecked ?? false;
-                _presence = PresenceSlider.Value;
-                _temperature = TemperatureSlider.Value;
-                _topPercent = TopPercentSlider.Value;
-                _frequency = FrequencySlider.Value;
+                _stream = StreamCheckBox.IsChecked ?? true;
+                _presence = double.Parse( PresenceSlider.Value.ToString( "N" ) );
+                _temperature = double.Parse( TemperatureSlider.Value.ToString( "N" ) );
+                _topPercent = double.Parse( TopPercentSlider.Value.ToString( "N" ) );
+                _frequency = double.Parse( FrequencySlider.Value.ToString( "N" ) );
                 _number = int.Parse( NumberTextBox.Text );
                 _maximumTokens = Convert.ToInt32( MaxTokenTextBox.Value );
                 _userPrompt = _language == "Text"
@@ -1596,10 +1596,10 @@ namespace Bubba
         {
             try
             {
-                if(App.ActiveWindows.Keys.Contains("SearchDialog"))
+                if( App.ActiveWindows.Keys.Contains( "SearchDialog" ) )
                 {
-                    var _window = (SearchDialog)App.ActiveWindows["SearchDialog"];
-                    _window.Show();
+                    var _window = ( SearchDialog )App.ActiveWindows[ "SearchDialog" ];
+                    _window.Show( );
                 }
                 else
                 {
@@ -1609,7 +1609,7 @@ namespace Bubba
                         WindowStartupLocation = WindowStartupLocation.CenterScreen
                     };
 
-                    _searchDialog.Show();
+                    _searchDialog.Show( );
                 }
             }
             catch( Exception ex )
@@ -1652,21 +1652,21 @@ namespace Bubba
         {
             try
             {
-                if(App.ActiveWindows.Keys.Contains("FileBrowser"))
+                if( App.ActiveWindows.Keys.Contains( "FileBrowser" ) )
                 {
-                    var _window = (FileBrowser)App.ActiveWindows["FileBrowser"];
-                    _window.Show();
+                    var _window = ( FileBrowser )App.ActiveWindows[ "FileBrowser" ];
+                    _window.Show( );
                 }
                 else
                 {
-                    var _fileBrowser = new FileBrowser()
+                    var _fileBrowser = new FileBrowser( )
                     {
                         Topmost = true,
                         Owner = this,
                         WindowStartupLocation = WindowStartupLocation.CenterScreen
                     };
 
-                    _fileBrowser.Show();
+                    _fileBrowser.Show( );
                 }
             }
             catch( Exception ex )
@@ -1684,19 +1684,19 @@ namespace Bubba
             {
                 if( App.ActiveWindows.Keys.Contains( "GptFileDialog" ) )
                 {
-                    var _window = (GptFileDialog)App.ActiveWindows["GptFileDialog"];
+                    var _window = ( GptFileDialog )App.ActiveWindows[ "GptFileDialog" ];
                     _window.Show( );
                 }
                 else
                 {
-                    var _fileDialog = new GptFileDialog()
+                    var _fileDialog = new GptFileDialog( )
                     {
                         Topmost = true,
                         Owner = this,
                         WindowStartupLocation = WindowStartupLocation.CenterScreen
                     };
 
-                    _fileDialog.Show();
+                    _fileDialog.Show( );
                 }
             }
             catch( Exception ex )
@@ -1712,20 +1712,20 @@ namespace Bubba
         {
             try
             {
-                if(App.ActiveWindows.Keys.Contains("FolderBrowser"))
+                if( App.ActiveWindows.Keys.Contains( "FolderBrowser" ) )
                 {
-                    var _window = (FolderBrowser)App.ActiveWindows["FolderBrowser"];
-                    _window.Show();
+                    var _window = ( FolderBrowser )App.ActiveWindows[ "FolderBrowser" ];
+                    _window.Show( );
                 }
                 else
                 {
-                    var _folderBrowser = new FolderBrowser()
+                    var _folderBrowser = new FolderBrowser( )
                     {
                         Topmost = true,
                         WindowStartupLocation = WindowStartupLocation.CenterScreen
                     };
 
-                    _folderBrowser.Show();
+                    _folderBrowser.Show( );
                 }
             }
             catch( Exception ex )
@@ -1742,10 +1742,10 @@ namespace Bubba
         {
             try
             {
-                if(App.ActiveWindows.Keys.Contains("GptImageDialog"))
+                if( App.ActiveWindows.Keys.Contains( "GptImageDialog" ) )
                 {
-                    var _window = (GptImageDialog)App.ActiveWindows["GptImageDialog"];
-                    _window.Show();
+                    var _window = ( GptImageDialog )App.ActiveWindows[ "GptImageDialog" ];
+                    _window.Show( );
                 }
                 else
                 {
@@ -1756,7 +1756,7 @@ namespace Bubba
                         WindowStartupLocation = WindowStartupLocation.CenterScreen
                     };
 
-                    _gptImageDialog.Show();
+                    _gptImageDialog.Show( );
                 }
             }
             catch( Exception ex )
@@ -1774,10 +1774,10 @@ namespace Bubba
         {
             try
             {
-                if(App.ActiveWindows.Keys.Contains("SystemDialog"))
+                if( App.ActiveWindows.Keys.Contains( "SystemDialog" ) )
                 {
-                    var _window = (SystemDialog)App.ActiveWindows["SystemDialog"];
-                    _window.Show();
+                    var _window = ( SystemDialog )App.ActiveWindows[ "SystemDialog" ];
+                    _window.Show( );
                 }
                 else
                 {
@@ -1787,7 +1787,7 @@ namespace Bubba
                         WindowStartupLocation = WindowStartupLocation.CenterScreen
                     };
 
-                    _systemDialog.Show();
+                    _systemDialog.Show( );
                 }
             }
             catch( Exception ex )
@@ -2574,7 +2574,9 @@ namespace Bubba
         {
             try
             {
-                App.OpenFileBrowser( );
+                Busy( );
+                OpenFileBrowser( );
+                Chill( );
             }
             catch( Exception ex )
             {
@@ -2592,6 +2594,7 @@ namespace Bubba
         {
             try
             {
+                Busy( );
                 var _fileBrowser = new FileBrowser
                 {
                     WindowStartupLocation = WindowStartupLocation.CenterScreen,
@@ -2599,6 +2602,7 @@ namespace Bubba
                     Topmost = true
                 };
 
+                Chill( );
                 _fileBrowser.Show( );
             }
             catch( Exception ex )
@@ -2635,7 +2639,9 @@ namespace Bubba
         {
             try
             {
-                App.OpenGptFileDialog( );
+                Busy( );
+                OpenGptFileDialog( );
+                Chill( );
             }
             catch( Exception ex )
             {
