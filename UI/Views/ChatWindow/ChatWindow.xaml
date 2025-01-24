@@ -523,7 +523,7 @@
                     SelectionOpacity="1"
                     SnapsToDevicePixels="True"
                     Tag="Temperature"
-                    Text="{Binding Value, ElementName=TemperatureSlider, Mode=OneWay, StringFormat=N2}"
+                    Text="{Binding Value, ElementName=TemperatureSlider, Mode=TwoWay, StringFormat=N2}"
                     ToolTip="A number between 0 and 2. Default=1" />
 
                 <wpf:SfRangeSlider
@@ -585,7 +585,7 @@
                     SelectionOpacity="1"
                     SnapsToDevicePixels="True"
                     Tag="TopPercent"
-                    Text="{Binding Value, ElementName=TopPercentSlider, Mode=OneWay, StringFormat=N2}"
+                    Text="{Binding Value, ElementName=TopPercentSlider, Mode=TwoWay, StringFormat=N2}"
                     ToolTip="A number between 0 and 1. (%) Default=0"
                     ZeroColor="#FFEFA90D">
                     <wpf:DoubleTextBox.NumberFormat>
@@ -650,7 +650,7 @@
                     SnapsToDevicePixels="True"
                     Step="3"
                     Tag="Presence"
-                    Text="{Binding Value, ElementName=PresenceSlider, Mode=OneWay, StringFormat=N2}"
+                    Text="{Binding Value, ElementName=PresenceSlider, Mode=TwoWay, StringFormat=N2}"
                     ToolTip="A number between -2 and 2. Default=0"
                     ZeroColor="#FFEFA90D" />
 
@@ -706,7 +706,7 @@
                     SelectionOpacity="1"
                     SnapsToDevicePixels="True"
                     Tag="Frequency"
-                    Text="{Binding Value, ElementName=FrequencySlider, Mode=OneWay, StringFormat=N2}"
+                    Text="{Binding Value, ElementName=FrequencySlider, Mode=TwoWay, StringFormat=N2}"
                     ToolTip="A number between -2 and 2. Default=0">
                     <wpf:DoubleTextBox.NumberFormat>
                         <num:NumberFormatInfo CurrencyDecimalDigits="1" />
@@ -865,7 +865,7 @@
                     FontSize="14"
                     Foreground="{StaticResource WhiteForeground}"
                     SnapsToDevicePixels="True"
-                    Text="{Binding Value, ElementName=NumberSlider, Mode=Default, StringFormat=N0}"
+                    Text="{Binding Value, ElementName=NumberSlider, Mode=TwoWay, StringFormat=N0}"
                     TextWrapping="Wrap" />
 
                 <wpf:IntegerTextBox
@@ -885,7 +885,7 @@
                     FontSize="14"
                     Foreground="{StaticResource WhiteForeground}"
                     SnapsToDevicePixels="True"
-                    Text="{Binding Value, ElementName=MaxTokenSlider, Mode=OneWay, StringFormat=N0}"
+                    Text="{Binding Value, ElementName=MaxTokenSlider, Mode=TwoWay, StringFormat=N0}"
                     TextWrapping="Wrap"
                     ToolTip="The upper limit on the number of tokens per request" />
 
