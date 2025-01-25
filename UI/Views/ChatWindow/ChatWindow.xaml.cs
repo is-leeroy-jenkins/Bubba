@@ -289,22 +289,27 @@ namespace Bubba
         {
             // Theme Properties
             SfSkinManager.SetTheme( this, new Theme( "FluentDark", App.Controls ) );
+            Opacity = 0;
 
             // Window Initialization
             InitializeComponent( );
             RegisterCallbacks( );
             InitializeDelegates( );
             InitializeToolStrip( );
-            Opacity = 0;
 
             // GPT Parameters
             _store = false;
             _stream = true;
-            _temperature = 0.18;
-            _topPercent = 0.11;
-            _presence = 0.00;
-            _frequency = 0.00;
-            _maximumTokens = 2048;
+            TemperatureSlider.Value = 0.18;
+            _temperature = TemperatureSlider.Value;
+            TopPercentSlider.Value = 0.11;
+            _topPercent = TopPercentSlider.Value;
+            PresenceSlider.Value = 0.00;
+            _presence = PresenceSlider.Value;
+            FrequencySlider.Value = 0.00;
+            _frequency = FrequencySlider.Value;
+            MaxTokenSlider.Value = 2048;
+            _maximumTokens = (int)MaxTokenSlider.Value;
             _imageSizes = new List<string>( );
 
             // Event Wiring
@@ -495,7 +500,7 @@ namespace Bubba
             try
             {
                 HeaderLabel.Visibility = Visibility.Visible;
-                HeaderLabel.Content = "Select Generation/Request Type";
+                HeaderLabel.Content = "Select Generation Type";
             }
             catch( Exception ex )
             {
@@ -1381,7 +1386,7 @@ namespace Bubba
                 _topPercent = double.Parse( TopPercentSlider.Value.ToString( "N2" ) );
                 _frequency = double.Parse( FrequencySlider.Value.ToString( "N2" ) );
                 _number = int.Parse( NumberTextBox.Text );
-                _maximumTokens = Convert.ToInt32( MaxTokenTextBox.Value );
+                _maximumTokens = Convert.ToInt32( MaxTokenTextBox.Text );
                 _userPrompt = _language == "Text"
                     ? ChatEditor.Text
                     : "";

@@ -37,9 +37,10 @@
             <Setter Property="Foreground" Value="{StaticResource LightBlueBrush}" />
         </Style>
 
-        <Style x:Key="ThumbStyle" TargetType="Thumb">
+        <Style x:Key="ThumbStyle" TargetType="{x:Type Thumb}">
             <Setter Property="Width" Value="13" />
             <Setter Property="Height" Value="13" />
+            <Setter Property="BorderBrush" Value="{StaticResource BlueBorderBrush}" />
             <Setter Property="Background" Value="{StaticResource BlueBorderBrush}" />
             <Setter Property="Template">
                 <Setter.Value>
@@ -519,7 +520,7 @@
                     Foreground="{StaticResource LightBlueBrush}"
                     Header="FrequencyPenalty Penalty" />
 
-                <wpf:DoubleTextBox
+                <TextBox
                     x:Name="TemperatureTextBox"
                     Canvas.Left="76"
                     Canvas.Top="160"
@@ -535,9 +536,6 @@
                     FontFamily="Roboto"
                     FontSize="14"
                     Foreground="{StaticResource WhiteForeground}"
-                    MaximumNumberDecimalDigits="2"
-                    MinimumNumberDecimalDigits="0"
-                    NumberDecimalDigits="2"
                     SelectionOpacity="1"
                     SnapsToDevicePixels="True"
                     Tag="Temperature"
@@ -578,7 +576,7 @@
                     ValuePlacement="TopLeft"
                     Value="0.18" />
 
-                <wpf:DoubleTextBox
+                <TextBox
                     x:Name="TopPercentTextBox"
                     Canvas.Left="274"
                     Canvas.Top="160"
@@ -594,22 +592,12 @@
                     FontFamily="Roboto"
                     FontSize="14"
                     Foreground="{StaticResource WhiteForeground}"
-                    IsScrollingOnCircle="False"
-                    MaxValue="1"
-                    MinValue="0"
-                    NegativeForeground="{StaticResource RedForeground}"
-                    NumberDecimalDigits="2"
-                    RangeAdornerBackground="{StaticResource BrightGreenForeground}"
                     SelectionOpacity="1"
                     SnapsToDevicePixels="True"
                     Tag="TopPercent"
                     Text="{Binding Value, ElementName=TopPercentSlider, Mode=TwoWay, StringFormat=N2}"
-                    ToolTip="A number between 0 and 1. (%) Default=0"
-                    ZeroColor="#FFEFA90D">
-                    <wpf:DoubleTextBox.NumberFormat>
-                        <num:NumberFormatInfo />
-                    </wpf:DoubleTextBox.NumberFormat>
-                </wpf:DoubleTextBox>
+                    ToolTip="A number between 0 and 1. (%) Default=0">
+                </TextBox>
 
                 <wpf:SfRangeSlider
                     x:Name="PresenceSlider"
@@ -644,7 +632,7 @@
                     ValuePlacement="TopLeft"
                     Value="0.00" />
 
-                <wpf:DoubleTextBox
+                <TextBox
                     x:Name="PresenceTextBox"
                     Canvas.Left="473"
                     Canvas.Top="160"
@@ -653,8 +641,6 @@
                     HorizontalAlignment="Center"
                     VerticalAlignment="Center"
                     HorizontalContentAlignment="Center"
-                    ApplyNegativeForeground="True"
-                    ApplyZeroColor="True"
                     Background="{StaticResource ControlInteriorBrush}"
                     BorderBrush="{StaticResource BlueBorderBrush}"
                     BorderThickness="2"
@@ -662,15 +648,11 @@
                     FontFamily="Roboto"
                     FontSize="14"
                     Foreground="{StaticResource WhiteForeground}"
-                    NumberDecimalDigits="2"
-                    RangeAdornerBackground="{StaticResource BrightGreenForeground}"
                     SelectionOpacity="1"
                     SnapsToDevicePixels="True"
-                    Step="3"
                     Tag="PresencePenalty"
                     Text="{Binding Value, ElementName=PresenceSlider, Mode=TwoWay, StringFormat=N2}"
-                    ToolTip="A number between -2 and 2. Default=0"
-                    ZeroColor="#FFEFA90D" />
+                    ToolTip="A number between -2 and 2. Default=0" />
 
                 <wpf:SfRangeSlider
                     x:Name="FrequencySlider"
@@ -701,7 +683,7 @@
                     ValuePlacement="TopLeft"
                     Value="0.00" />
 
-                <wpf:DoubleTextBox
+                <TextBox
                     x:Name="FrequencyTextBox"
                     Canvas.Left="682"
                     Canvas.Top="160"
@@ -710,8 +692,6 @@
                     HorizontalAlignment="Center"
                     VerticalAlignment="Center"
                     HorizontalContentAlignment="Center"
-                    ApplyNegativeForeground="True"
-                    ApplyZeroColor="True"
                     Background="{StaticResource ControlInteriorBrush}"
                     BorderBrush="{StaticResource BlueBorderBrush}"
                     BorderThickness="2"
@@ -719,17 +699,12 @@
                     FontFamily="Roboto"
                     FontSize="14"
                     Foreground="{StaticResource WhiteForeground}"
-                    NullValue="0"
-                    NumberDecimalDigits="2"
                     SelectionOpacity="1"
                     SnapsToDevicePixels="True"
                     Tag="FrequencyPenalty"
                     Text="{Binding Value, ElementName=FrequencySlider, Mode=TwoWay, StringFormat=N2}"
                     ToolTip="A number between -2 and 2. Default=0">
-                    <wpf:DoubleTextBox.NumberFormat>
-                        <num:NumberFormatInfo CurrencyDecimalDigits="1" />
-                    </wpf:DoubleTextBox.NumberFormat>
-                </wpf:DoubleTextBox>
+                </TextBox>
 
                 <ComboBox
                     x:Name="VoiceComboBox"
@@ -762,7 +737,7 @@
                 <TextBlock
                     x:Name="TemperatureText"
                     Canvas.Left="84"
-                    Canvas.Top="55"
+                    Canvas.Top="57"
                     Width="72"
                     HorizontalAlignment="Center"
                     VerticalAlignment="Top"
@@ -782,7 +757,7 @@
                     FontFamily="Roboto"
                     FontSize="16"
                     Foreground="{StaticResource BlueBorderBrush}"
-                    Text="{Binding Value, ElementName=FrequencySlider, Mode=TwoWay, StringFormat=N1}" />
+                    Text="{Binding Value, ElementName=FrequencySlider, Mode=TwoWay, StringFormat=N2}" />
 
                 <TextBlock
                     x:Name="PresenceText"
@@ -866,7 +841,7 @@
                     FontSize="14"
                     ToolTip="Transcribes audio" />
 
-                <wpf:IntegerTextBox
+                <TextBox
                     x:Name="NumberTextBox"
                     Canvas.Left="888"
                     Canvas.Top="160"
@@ -886,7 +861,7 @@
                     Text="{Binding Value, ElementName=NumberSlider, Mode=TwoWay, StringFormat=N0}"
                     TextWrapping="Wrap" />
 
-                <wpf:IntegerTextBox
+                <TextBox
                     x:Name="MaxTokenTextBox"
                     Canvas.Left="1093"
                     Canvas.Top="160"
@@ -1137,8 +1112,8 @@
 
                 <TextBlock
                     x:Name="MaxTokenText"
-                    Canvas.Left="1104"
-                    Canvas.Top="-200"
+                    Canvas.Left="1094"
+                    Canvas.Top="-194"
                     Width="60"
                     HorizontalAlignment="Center"
                     VerticalAlignment="Top"
