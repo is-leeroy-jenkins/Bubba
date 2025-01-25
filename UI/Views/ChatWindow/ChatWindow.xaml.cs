@@ -1,10 +1,10 @@
 ﻿// ******************************************************************************************
 //     Assembly:                Bubba
 //     Author:                  Terry D. Eppler
-//     Created:                 01-24-2025
+//     Created:                 01-25-2025
 // 
 //     Last Modified By:        Terry D. Eppler
-//     Last Modified On:        01-24-2025
+//     Last Modified On:        01-25-2025
 // ******************************************************************************************
 // <copyright file="ChatWindow.xaml.cs" company="Terry D. Eppler">
 //    Bubba is a small and simple windows (wpf) application for interacting with the OpenAI API
@@ -299,7 +299,7 @@ namespace Bubba
 
             // GPT Parameters
             _store = false;
-            _stream = false;
+            _stream = true;
             _temperature = 0.18;
             _topPercent = 0.11;
             _presence = 0.00;
@@ -602,7 +602,7 @@ namespace Bubba
                 {
                     case GptRequestTypes.Assistants:
                     {
-                        PopulateTextModels( );
+                        PopulateCompletionModels( );
                         _endpoint = GptEndPoint.Assistants;
                         HeaderLabel.Content = "GPT Assistant ...";
                         TabControl.SelectedIndex = 1;
@@ -610,7 +610,7 @@ namespace Bubba
                     }
                     case GptRequestTypes.ChatCompletion:
                     {
-                        PopulateTextModels( );
+                        PopulateCompletionModels( );
                         _endpoint = GptEndPoint.Completions;
                         HeaderLabel.Content = "GPT Completions...";
                         TabControl.SelectedIndex = 1;
@@ -660,7 +660,7 @@ namespace Bubba
                     }
                     case GptRequestTypes.VectorStores:
                     {
-                        PopulateEmbeddingModels( );
+                        PopulateVectorStoreModels( );
                         HeaderLabel.Content = "Vector Stores...";
                         _endpoint = GptEndPoint.VectorStores;
                         TabControl.SelectedIndex = 1;
@@ -685,7 +685,7 @@ namespace Bubba
                     }
                     case GptRequestTypes.Files:
                     {
-                        PopulateTextModels( );
+                        PopulateFileApiModels( );
                         HeaderLabel.Content = "Files API...";
                         _endpoint = GptEndPoint.Files;
                         TabControl.SelectedIndex = 1;
@@ -693,7 +693,7 @@ namespace Bubba
                     }
                     case GptRequestTypes.Uploads:
                     {
-                        PopulateTextModels( );
+                        PopulateUploadApiModels( );
                         HeaderLabel.Content = "Uploads API...";
                         _endpoint = GptEndPoint.Uploads;
                         TabControl.SelectedIndex = 1;
@@ -709,7 +709,7 @@ namespace Bubba
                     }
                     default:
                     {
-                        PopulateTextModels( );
+                        PopulateModelsAsync( );
                         HeaderLabel.Content = "GPT Completion...";
                         _endpoint = GptEndPoint.Completions;
                         TabControl.SelectedIndex = 1;
@@ -1376,10 +1376,10 @@ namespace Bubba
             {
                 _store = StoreCheckBox.IsChecked ?? false;
                 _stream = StreamCheckBox.IsChecked ?? true;
-                _presence = double.Parse( PresenceSlider.Value.ToString( "N" ) );
-                _temperature = double.Parse( TemperatureSlider.Value.ToString( "N" ) );
-                _topPercent = double.Parse( TopPercentSlider.Value.ToString( "N" ) );
-                _frequency = double.Parse( FrequencySlider.Value.ToString( "N" ) );
+                _presence = double.Parse( PresenceSlider.Value.ToString( "N2" ) );
+                _temperature = double.Parse( TemperatureSlider.Value.ToString( "N2" ) );
+                _topPercent = double.Parse( TopPercentSlider.Value.ToString( "N2" ) );
+                _frequency = double.Parse( FrequencySlider.Value.ToString( "N2" ) );
                 _number = int.Parse( NumberTextBox.Text );
                 _maximumTokens = Convert.ToInt32( MaxTokenTextBox.Value );
                 _userPrompt = _language == "Text"
@@ -1921,58 +1921,6 @@ namespace Bubba
         }
 
         /// <summary>
-        /// Populates the text generation models.
-        /// </summary>
-        private void PopulateTextModels( )
-        {
-            try
-            {
-                ModelComboBox.Items?.Clear( );
-                ModelComboBox.Items.Add( "gpt-4-turbo" );
-                ModelComboBox.Items.Add( "gpt-4-turbo-2024-04-09" );
-                ModelComboBox.Items.Add( "gpt-4-turbo-preview" );
-                ModelComboBox.Items.Add( "gpt-4-0125-preview" );
-                ModelComboBox.Items.Add( "gpt-4-1106-preview" );
-                ModelComboBox.Items.Add( "gpt-4" );
-                ModelComboBox.Items.Add( "gpt-4-0613" );
-                ModelComboBox.Items.Add( "gpt-4-0314" );
-                ModelComboBox.Items.Add( "gpt-4-turbo" );
-                ModelComboBox.Items.Add( "gpt-4-turbo-2024-04-09" );
-                ModelComboBox.Items.Add( "gpt-4-turbo-preview" );
-                ModelComboBox.Items.Add( "gpt-4-0125-preview" );
-                ModelComboBox.Items.Add( "gpt-4-1106-preview" );
-                ModelComboBox.Items.Add( "gpt-4o" );
-                ModelComboBox.Items.Add( "gpt-4o-mini" );
-                ModelComboBox.Items.Add( "o1-preview" );
-                ModelComboBox.Items.Add( "o1-mini" );
-                ModelComboBox.Items.Add( "gpt-3.5-turbo" );
-                ModelComboBox.SelectedIndex = -1;
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
-            }
-        }
-
-        /// <summary>
-        /// Populates the image generation models.
-        /// </summary>
-        private void PopulateImageModels( )
-        {
-            try
-            {
-                ModelComboBox.Items?.Clear( );
-                ModelComboBox.Items.Add( "dall-e-3" );
-                ModelComboBox.Items.Add( "dall-e-2" );
-                ModelComboBox.SelectedIndex = -1;
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
-            }
-        }
-
-        /// <summary>
         /// Populates the image sizes.
         /// </summary>
         private void PopulateImageSizes( )
@@ -2029,6 +1977,79 @@ namespace Bubba
         }
 
         /// <summary>
+        /// Populates the text generation models.
+        /// </summary>
+        private void PopulateTextModels( )
+        {
+            try
+            {
+                ModelComboBox.Items?.Clear( );
+                ModelComboBox.Items.Add( "gpt-4-0613" );
+                ModelComboBox.Items.Add( "gpt-4-0314" );
+                ModelComboBox.Items.Add( "gpt-4-turbo-2024-04-09" );
+                ModelComboBox.Items.Add( "gpt-4o-2024-08-06" );
+                ModelComboBox.Items.Add( "gpt-4o-2024-11-20" );
+                ModelComboBox.Items.Add( "gpt-4o-2024-05-13" );
+                ModelComboBox.Items.Add( "gpt-4o-mini-2024-07-18" );
+                ModelComboBox.Items.Add( "o1-2024-12-17" );
+                ModelComboBox.Items.Add( "o1-mini-2024-09-12" );
+                ModelComboBox.Items.Add( "text-davinci-003" );
+                ModelComboBox.Items.Add( "text-curie-001" );
+                ModelComboBox.SelectedIndex = -1;
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+            }
+        }
+
+        /// <summary>
+        /// Populates the completion models.
+        /// </summary>
+        private void PopulateCompletionModels( )
+        {
+            try
+            {
+                ModelComboBox.Items?.Clear( );
+                ModelComboBox.Items.Add( "gpt-4-0613" );
+                ModelComboBox.Items.Add( "gpt-4-0314" );
+                ModelComboBox.Items.Add( "gpt-4-turbo-2024-04-09" );
+                ModelComboBox.Items.Add( "gpt-4o-2024-08-06" );
+                ModelComboBox.Items.Add( "gpt-4o-2024-11-20" );
+                ModelComboBox.Items.Add( "gpt-4o-2024-05-13" );
+                ModelComboBox.Items.Add( "gpt-4o-mini-2024-07-18" );
+                ModelComboBox.Items.Add( "o1-2024-12-17" );
+                ModelComboBox.Items.Add( "o1-mini-2024-09-12" );
+                ModelComboBox.SelectedIndex = -1;
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+            }
+        }
+
+        /// <summary>
+        /// Populates the image generation models.
+        /// </summary>
+        private void PopulateImageModels( )
+        {
+            try
+            {
+                ModelComboBox.Items?.Clear( );
+                ModelComboBox.Items.Add( "dall-e-2" );
+                ModelComboBox.Items.Add( "dall-e-3" );
+                ModelComboBox.Items.Add( "gpt-4-0613" );
+                ModelComboBox.Items.Add( "gpt-4-0314" );
+                ModelComboBox.Items.Add( "gpt-4o-mini-2024-07-18" );
+                ModelComboBox.SelectedIndex = -1;
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+            }
+        }
+
+        /// <summary>
         /// Populates the translation models.
         /// </summary>
         private void PopulateTranslationModels( )
@@ -2037,6 +2058,10 @@ namespace Bubba
             {
                 ModelComboBox.Items?.Clear( );
                 ModelComboBox.Items.Add( "whisper-1" );
+                ModelComboBox.Items.Add( "gpt-4-0613" );
+                ModelComboBox.Items.Add( "gpt-4-0314" );
+                ModelComboBox.Items.Add( "gpt-4-turbo-2024-04-09" );
+                ModelComboBox.Items.Add( "text-davinci-003" );
                 ModelComboBox.SelectedIndex = -1;
             }
             catch( Exception ex )
@@ -2089,10 +2114,13 @@ namespace Bubba
             try
             {
                 ModelComboBox.Items?.Clear( );
-                ModelComboBox.Items.Add( "gpt-4o" );
-                ModelComboBox.Items.Add( "gpt-4o-mini" );
-                ModelComboBox.Items.Add( "gpt-4" );
-                ModelComboBox.Items.Add( "gpt-3.5-turbo" );
+                ModelComboBox.Items.Add( "gpt-4-0613" );
+                ModelComboBox.Items.Add( "gpt-4-0314" );
+                ModelComboBox.Items.Add( "gpt-4-turbo-2024-04-09" );
+                ModelComboBox.Items.Add( "gpt-4o-mini-2024-07-18" );
+                ModelComboBox.Items.Add( "gpt-4o-2024-08-06" );
+                ModelComboBox.Items.Add( "gpt-4o-2024-11-20" );
+                ModelComboBox.Items.Add( "gpt-4o-2024-05-13" );
                 ModelComboBox.SelectedIndex = -1;
             }
             catch( Exception ex )
@@ -2111,6 +2139,84 @@ namespace Bubba
                 ModelComboBox.Items?.Clear( );
                 ModelComboBox.Items.Add( "tts-1" );
                 ModelComboBox.Items.Add( "tts-1-hd" );
+                ModelComboBox.Items.Add( "gpt-4o-audio-preview-2024-12-17" );
+                ModelComboBox.Items.Add( "gpt-4o-audio-preview-2024-10-01" );
+                ModelComboBox.Items.Add( "gpt-4o-mini-audio-preview-2024-12-17" );
+                ModelComboBox.SelectedIndex = -1;
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+            }
+        }
+
+        /// <summary>
+        /// Populates the upload API models.
+        /// </summary>
+        private void PopulateUploadApiModels( )
+        {
+            try
+            {
+                ModelComboBox.Items?.Clear( );
+                ModelComboBox.Items.Add( "gpt-4-0613" );
+                ModelComboBox.Items.Add( "gpt-4-0314" );
+                ModelComboBox.Items.Add( "gpt-4-turbo-2024-04-09" );
+                ModelComboBox.Items.Add( "gpt-4o-mini-2024-07-18" );
+                ModelComboBox.Items.Add( "gpt-4o-2024-08-06" );
+                ModelComboBox.Items.Add( "gpt-4o-2024-11-20" );
+                ModelComboBox.Items.Add( "gpt-4o-2024-05-13" );
+                ModelComboBox.Items.Add( "o1-2024-12-17" );
+                ModelComboBox.Items.Add( "o1-mini-2024-09-12" );
+                ModelComboBox.SelectedIndex = -1;
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+            }
+        }
+
+        /// <summary>
+        /// Populates the vector store models.
+        /// </summary>
+        private void PopulateVectorStoreModels( )
+        {
+            try
+            {
+                ModelComboBox.Items?.Clear( );
+                ModelComboBox.Items.Add( "gpt-4-0613" );
+                ModelComboBox.Items.Add( "gpt-4-0314" );
+                ModelComboBox.Items.Add( "gpt-4-turbo-2024-04-09" );
+                ModelComboBox.Items.Add( "gpt-4o-mini-2024-07-18" );
+                ModelComboBox.Items.Add( "gpt-4o-2024-08-06" );
+                ModelComboBox.Items.Add( "gpt-4o-2024-11-20" );
+                ModelComboBox.Items.Add( "gpt-4o-2024-05-13" );
+                ModelComboBox.Items.Add( "o1-2024-12-17" );
+                ModelComboBox.Items.Add( "o1-mini-2024-09-12" );
+                ModelComboBox.SelectedIndex = -1;
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+            }
+        }
+
+        /// <summary>
+        /// Populates the file API models.
+        /// </summary>
+        private void PopulateFileApiModels( )
+        {
+            try
+            {
+                ModelComboBox.Items?.Clear( );
+                ModelComboBox.Items.Add( "gpt-4-0613" );
+                ModelComboBox.Items.Add( "gpt-4-0314" );
+                ModelComboBox.Items.Add( "gpt-4-turbo-2024-04-09" );
+                ModelComboBox.Items.Add( "gpt-4o-mini-2024-07-18" );
+                ModelComboBox.Items.Add( "gpt-4o-2024-08-06" );
+                ModelComboBox.Items.Add( "gpt-4o-2024-11-20" );
+                ModelComboBox.Items.Add( "gpt-4o-2024-05-13" );
+                ModelComboBox.Items.Add( "o1-2024-12-17" );
+                ModelComboBox.Items.Add( "o1-mini-2024-09-12" );
                 ModelComboBox.SelectedIndex = -1;
             }
             catch( Exception ex )
@@ -2332,13 +2438,12 @@ namespace Bubba
                 PopulateImageSizes( );
                 ClearChatControls( );
                 InitializeChatEditor( );
-                App.ActiveWindows.Add( "ChatWindow", this );
                 _systemPrompt = OpenAI.BubbaPrompt;
                 StreamCheckBox.Checked += OnStreamCheckBoxChecked;
                 ModelComboBox.SelectionChanged += OnSelectedModelChanged;
-                SetGptParameters( );
                 UserLabel.Content = $@"User ID : {Environment.UserName}";
                 TabControl.SelectedIndex = 1;
+                App.ActiveWindows.Add( "ChatWindow", this );
                 InitializeInterface( );
                 Opacity = 1;
             }

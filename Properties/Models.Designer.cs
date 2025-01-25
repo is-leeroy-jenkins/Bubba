@@ -79,6 +79,15 @@ namespace Bubba.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to curie-001;  GPT base models can understand and generate natural language or code but are not trained with instruction following. These models are made to be replacements for the original GPT-3 base models and use the legacy Completions API. .
+        /// </summary>
+        internal static string curie_001 {
+            get {
+                return ResourceManager.GetString("curie-001", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to dall-e-2;  DALL·E is a AI system that can create realistic images and art from a description in natural language. DALL·E 3 currently supports the ability, given a prompt, to create a new image with a specific size. DALL·E 2 also support the ability to edit an existing image, or create variations of a user provided image.   .
         /// </summary>
         internal static string dall_e_2 {
@@ -106,9 +115,18 @@ namespace Bubba.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to davinci-003;  GPT base models can understand and generate natural language or code but are not trained with instruction following. These models are made to be replacements for the original GPT-3 base models and use the legacy Completions API. .
+        /// </summary>
+        internal static string davinci_003 {
+            get {
+                return ResourceManager.GetString("davinci-003", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to gpt-3.5-turbo; Currently points to gpt-3.5-turbo-0125..
         /// </summary>
-        internal static string gpt_3_5Turbo {
+        internal static string gpt_3_5_turbo {
             get {
                 return ResourceManager.GetString("gpt-3.5-turbo", resourceCulture);
             }
@@ -117,7 +135,7 @@ namespace Bubba.Properties {
         /// <summary>
         ///   Looks up a localized string similar to gpt-3.5-turbo-0125; GPT-3.5 Turbo models can understand and generate natural language or code and have been optimized for chat using the Chat Completions API but work well for non-chat tasks as well..
         /// </summary>
-        internal static string gpt_3_5Turbo_0125 {
+        internal static string gpt_3_5_turbo_0125 {
             get {
                 return ResourceManager.GetString("gpt-3.5-turbo-0125", resourceCulture);
             }
@@ -171,7 +189,7 @@ namespace Bubba.Properties {
         /// <summary>
         ///   Looks up a localized string similar to gpt-4-turbo;  GPT-4 is an older version of a high-intelligence GPT model, usable in Chat Completions. Image inputs via the o1, gpt-4o, gpt-4o-mini, chatgpt-4o-latest, or gpt-4-turbo models (or previously gpt-4-vision-preview) are not eligible for zero retention..
         /// </summary>
-        internal static string gpt_4Turbo {
+        internal static string gpt_4_turbo {
             get {
                 return ResourceManager.GetString("gpt-4-turbo", resourceCulture);
             }
@@ -180,7 +198,7 @@ namespace Bubba.Properties {
         /// <summary>
         ///   Looks up a localized string similar to gpt-4-turbo-2024-04-09.  GPT-4 is an older version of a high-intelligence GPT model, usable in Chat Completions. Image inputs via the o1, gpt-4o, gpt-4o-mini, chatgpt-4o-latest, or gpt-4-turbo models (or previously gpt-4-vision-preview) are not eligible for zero retention..
         /// </summary>
-        internal static string gpt_4Turbo_2024_04_09 {
+        internal static string gpt_4_turbo_2024_04_09 {
             get {
                 return ResourceManager.GetString("gpt-4-turbo-2024-04-09", resourceCulture);
             }
@@ -189,7 +207,7 @@ namespace Bubba.Properties {
         /// <summary>
         ///   Looks up a localized string similar to gpt-4-turbo-preview;  GPT-4 is an older version of a high-intelligence GPT model, usable in Chat Completions. Image inputs via the o1, gpt-4o, gpt-4o-mini, chatgpt-4o-latest, or gpt-4-turbo models (or previously gpt-4-vision-preview) are not eligible for zero retention..
         /// </summary>
-        internal static string gpt_4Turbo_preview {
+        internal static string gpt_4_turbo_preview {
             get {
                 return ResourceManager.GetString("gpt-4-turbo-preview", resourceCulture);
             }
