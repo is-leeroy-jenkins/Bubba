@@ -585,9 +585,9 @@ namespace Bubba
             {
                 App.LoadSystemDialog( );
                 App.LoadWebBrowser( );
-                App.LoadFileBrowser( );
                 App.LoadGptFileDialog( );
                 App.LoadImageDialog( );
+                App.LoadFileBrowser( );
                 App.LoadSearchDialog( );
             }
             catch( Exception ex )

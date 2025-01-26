@@ -288,6 +288,7 @@ namespace Bubba
         {
             try
             {
+                CloseButton.Click += OnCloseButtonClick;
             }
             catch( Exception ex )
             {
@@ -446,6 +447,7 @@ namespace Bubba
         {
             try
             {
+                CloseButton.Click -= OnCloseButtonClick;
             }
             catch( Exception ex )
             {
@@ -972,6 +974,24 @@ namespace Bubba
             catch( Exception ex )
             {
                 Fail( ex );
+            }
+        }
+
+        /// <summary>
+        /// Called when [close button click].
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The <see cref="RoutedEventArgs"/>
+        /// instance containing the event data.</param>
+        private void OnCloseButtonClick(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                Hide();
+            }
+            catch(Exception ex)
+            {
+                Fail(ex);
             }
         }
 

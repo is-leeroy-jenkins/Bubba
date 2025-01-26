@@ -1,10 +1,10 @@
 ﻿// ******************************************************************************************
 //     Assembly:                Bubba
 //     Author:                  Terry D. Eppler
-//     Created:                 01-23-2025
+//     Created:                 01-25-2025
 // 
 //     Last Modified By:        Terry D. Eppler
-//     Last Modified On:        01-23-2025
+//     Last Modified On:        01-25-2025
 // ******************************************************************************************
 // <copyright file="WebBrowser.xaml.cs" company="Terry D. Eppler">
 //    Bubba is a small and simple windows (wpf) application for interacting with the OpenAI API
@@ -54,6 +54,7 @@ namespace Bubba
     using System.Threading.Tasks;
     using System.Diagnostics.CodeAnalysis;
     using System.Threading;
+    using System.Windows.Controls;
     using System.Windows.Forms;
     using System.Windows.Input;
     using Syncfusion.SfSkinManager;
@@ -267,13 +268,13 @@ namespace Bubba
             SfSkinManager.SetTheme( this, new Theme( "FluentDark", App.Controls ) );
 
             // Window Properties
-            Instance = this;
             InitializeComponent( );
-            RegisterCallbacks( );
             InitializeBrowser( );
+            RegisterCallbacks( );
             InitializeDelegates( );
             InitializeToolStrip( );
             InitializeTabControl( );
+            WindowStyle = WindowStyle.None;
 
             // Event Wiring
             Loaded += OnLoad;
@@ -407,7 +408,7 @@ namespace Bubba
             get
             {
                 if( TabControl.SelectedItem != null
-                    && ( ( BrowserTabItem )TabControl.SelectedItem ).Tag != null )
+                    && TabControl.SelectedItem != null )
                 {
                     var _loadTime =
                         ( int )( DateTime.Now - _currentTab.DateCreated ).TotalMilliseconds;
@@ -519,7 +520,7 @@ namespace Bubba
             _newBrowser.LifeSpanHandler = _lifeSpanCallback;
             _newBrowser.KeyboardHandler = _keyboardCallback;
             _newBrowser.RequestHandler = _requestCallback;
-            var _tab = new BrowserTabItem
+            var _tabItem = new BrowserTabItem
             {
                 IsOpen = true,
                 Browser = _newBrowser,
@@ -530,15 +531,15 @@ namespace Bubba
                 DateCreated = DateTime.Now
             };
 
-            tabItem.Tag = _tab;
+            tabItem.Tag = _tabItem;
             if( !string.IsNullOrEmpty( url )
                 && url.StartsWith( Locations.Internal + ":" ) )
             {
-                _newBrowser.JavascriptObjectRepository.Register( "host", HostCallback,
+                _newBrowser.JavascriptObjectRepository.Register( "host", _hostCallback,
                     BindingOptions.DefaultBinder );
             }
 
-            return _tab;
+            return _tabItem;
         }
 
         /// <summary>
@@ -547,23 +548,10 @@ namespace Bubba
         /// </summary>
         private void InitializeBrowser( )
         {
-            _hostCallback = new HostCallback( this );
             ConfigureBrowser( Browser );
             _currentTab = BrowserTab;
             _currentBrowser = Browser;
             _searchEngineUrl = Browser.Address;
-            var _settings = new CefSettings( );
-            _settings.RegisterScheme( new CefCustomScheme
-            {
-                SchemeName = Locations.Internal,
-                SchemeHandlerFactory = new SchemaCallbackFactory( )
-            } );
-
-            _settings.UserAgent = Locations.UserAgent;
-            _settings.AcceptLanguageList = Locations.AcceptLanguage;
-            _settings.IgnoreCertificateErrors = true;
-            var _cache = Locations.Downloads;
-            _settings.CachePath = GetApplicationDirectory( _cache );
             var _bool = bool.Parse( Locations.Proxy );
             if( _bool )
             {
@@ -572,6 +560,7 @@ namespace Bubba
                 CefSharpSettings.Proxy = new ProxyOptions( _proxy, _port );
             }
 
+            _hostCallback = new HostCallback( this );
             _downloadCallback = new DownloadCallback( this );
             _lifeSpanCallback = new LifeSpanCallback( this );
             _contextMenuCallback = new ContextMenuCallback( this );
@@ -629,9 +618,9 @@ namespace Bubba
                 SearchPanelForwardButton.Visibility = Visibility.Hidden;
                 SearchPanelBackButton.Visibility = Visibility.Hidden;
                 SearchPanelCancelButton.Visibility = Visibility.Hidden;
-                CancelButton.Visibility = Visibility.Hidden;
-                PreviousButton.Visibility = Visibility.Hidden;
-                NextButton.Visibility = Visibility.Hidden;
+                ToolStripCancelButton.Visibility = Visibility.Hidden;
+                ToolStripPreviousButton.Visibility = Visibility.Hidden;
+                ToolStripNextButton.Visibility = Visibility.Hidden;
                 HomeButton.Visibility = Visibility.Hidden;
             }
             catch( Exception ex )
@@ -858,16 +847,16 @@ namespace Bubba
         {
             try
             {
-                PreviousButton.Click += OnPreviousButtonClick;
-                NextButton.Click += OnNextButtonClick;
-                LookupButton.Click += OnLookupButtonClick;
-                RefreshButton.Click += OnRefreshButtonClick;
-                MenuButton.Click += OnToggleButtonClick;
-                ToolButton.Click += OnDeveloperToolsButtonClick;
+                ToolStripPreviousButton.Click += OnPreviousButtonClick;
+                ToolStripNextButton.Click += OnNextButtonClick;
+                ToolStripLookupButton.Click += OnLookupButtonClick;
+                ToolStripRefreshButton.Click += OnRefreshButtonClick;
+                ToolStripMenuButton.Click += OnToggleButtonClick;
+                ToolStripToolButton.Click += OnDeveloperToolsButtonClick;
                 SearchPanelCancelButton.MouseLeftButtonDown += OnCloseButtonClick;
                 UrlTextBox.GotMouseCapture += OnUrlTextBoxClick;
                 ToolStripTextBox.GotMouseCapture += OnToolStripTextBoxClick;
-                ChatButton.Click += OnChatButtonClick;
+                ToolStripChatButton.Click += OnChatButtonClick;
                 HomeButton.Click += OnHomeButtonClick;
             }
             catch( Exception ex )
@@ -906,8 +895,8 @@ namespace Bubba
         {
             get
             {
-                return ( ( BrowserTabItem )TabControl.SelectedItem )?.Tag != null
-                    ? ( BrowserTabItem )TabControl.SelectedItem
+                return TabControl.SelectedItem?.Tag != null
+                    ? TabControl.SelectedItem
                     : default( BrowserTabItem );
             }
             set
@@ -926,10 +915,9 @@ namespace Bubba
         {
             get
             {
-                return TabControl.SelectedItem != null
-                    && ( ( BrowserTabItem )TabControl.SelectedItem ).Tag != null
-                        ? ( ( BrowserTabItem )TabControl.SelectedItem ).Browser
-                        : default( ChromiumWebBrowser );
+                return TabControl.SelectedItem != null && TabControl.SelectedItem != null
+                    ? TabControl.SelectedItem.Browser
+                    : default( ChromiumWebBrowser );
             }
             set
             {
@@ -1087,12 +1075,12 @@ namespace Bubba
             {
                 if( canGoBack )
                 {
-                    PreviousButton.Visibility = Visibility.Visible;
+                    ToolStripPreviousButton.Visibility = Visibility.Visible;
                     SearchPanelBackButton.Visibility = Visibility.Visible;
                 }
                 else
                 {
-                    PreviousButton.Visibility = Visibility.Hidden;
+                    ToolStripPreviousButton.Visibility = Visibility.Hidden;
                     SearchPanelBackButton.Visibility = Visibility.Hidden;
                 }
             } );
@@ -1110,12 +1098,12 @@ namespace Bubba
             {
                 if( canGoForward )
                 {
-                    NextButton.Visibility = Visibility.Visible;
+                    ToolStripNextButton.Visibility = Visibility.Visible;
                     SearchPanelForwardButton.Visibility = Visibility.Visible;
                 }
                 else
                 {
-                    NextButton.Visibility = Visibility.Hidden;
+                    ToolStripNextButton.Visibility = Visibility.Hidden;
                     SearchPanelForwardButton.Visibility = Visibility.Hidden;
                 }
             } );
@@ -1176,20 +1164,20 @@ namespace Bubba
         /// <c>true</c> [next].</param>
         private void FindTextOnPage( bool next = true )
         {
+            Busy( );
             var _first = _lastSearch != UrlTextBox.Text;
             _lastSearch = UrlTextBox.Text;
             if( _lastSearch.IsNull( ) )
             {
-                _currentBrowser.GetBrowser( )
-                    ?.Find( _lastSearch, true, false, !_first );
+                _currentBrowser.GetBrowser( )?.Find( _lastSearch, true, false, !_first );
             }
             else
             {
-                _currentBrowser.GetBrowser( )
-                    ?.StopFinding( true );
+                _currentBrowser.GetBrowser( )?.StopFinding( true );
             }
 
             UrlTextBox.Focus( );
+            Chill( );
         }
 
         /// <summary>
@@ -1294,27 +1282,18 @@ namespace Bubba
         /// <returns></returns>
         private protected Task<ChromiumWebBrowser> GetBrowserAsync( string url, bool focused )
         {
+            var _tcs = new TaskCompletionSource<ChromiumWebBrowser>( );
             try
             {
-                ThrowIf.Empty( url, nameof( url ) );
+                ThrowIf.Null( url, nameof( url ) );
                 ThrowIf.Null( focused, nameof( focused ) );
-                var _tcs = new TaskCompletionSource<ChromiumWebBrowser>( );
-                try
-                {
-                    ThrowIf.Null( url, nameof( url ) );
-                    var _browser = AddNewBrowserTab( url, focused );
-                    _tcs.SetResult( _browser );
-                    return _tcs.Task;
-                }
-                catch( Exception ex )
-                {
-                    _tcs.SetException( ex );
-                    Fail( ex );
-                    return default( Task<ChromiumWebBrowser> );
-                }
+                var _browser = AddNewBrowserTab( url, focused );
+                _tcs.SetResult( _browser );
+                return _tcs.Task;
             }
             catch( Exception ex )
             {
+                _tcs.SetException( ex );
                 Fail( ex );
                 return default( Task<ChromiumWebBrowser> );
             }
@@ -1329,6 +1308,7 @@ namespace Bubba
             try
             {
                 ThrowIf.Null( url, nameof( url ) );
+                Busy( );
                 var _newUrl = url;
                 var _urlLower = url.Trim( ).ToLower( );
                 SetTabText( _currentBrowser, "Loading..." );
@@ -1371,6 +1351,7 @@ namespace Bubba
                 SetUrl( _newUrl );
                 EnableBackButton( true );
                 EnableForwardButton( false );
+                Chill( );
             }
             catch( Exception e )
             {
@@ -1390,8 +1371,8 @@ namespace Bubba
                     _busy = true;
                 }
 
-                ProgressBar.Visibility = Visibility.Visible;
-                ProgressBar.IsIndeterminate = true;
+                ToolStripProgressBar.Visibility = Visibility.Visible;
+                ToolStripProgressBar.IsIndeterminate = true;
             }
             catch( Exception ex )
             {
@@ -1411,8 +1392,8 @@ namespace Bubba
                     _busy = false;
                 }
 
-                ProgressBar.Visibility = Visibility.Hidden;
-                ProgressBar.IsIndeterminate = false;
+                ToolStripProgressBar.Visibility = Visibility.Hidden;
+                ToolStripProgressBar.IsIndeterminate = false;
             }
             catch( Exception ex )
             {
@@ -1486,6 +1467,7 @@ namespace Bubba
         {
             if( _downloadItems?.Values?.Count > 0 )
             {
+                Busy( );
                 foreach( var _item in _downloadItems.Values )
                 {
                     if( _item.IsInProgress )
@@ -1493,6 +1475,8 @@ namespace Bubba
                         return true;
                     }
                 }
+
+                Chill( );
             }
 
             return false;
@@ -1503,8 +1487,10 @@ namespace Bubba
         /// </summary>
         public void RefreshActiveTab( )
         {
+            Busy( );
             var _address = _currentBrowser.Address;
             _currentBrowser.Load( _address );
+            Chill( );
         }
 
         /// <summary>
@@ -1512,6 +1498,7 @@ namespace Bubba
         /// </summary>
         public void OpenDownloadsTab( )
         {
+            Busy( );
             if( _downloadStrip != null )
             {
                 TabControl.SelectedItem = _downloadStrip;
@@ -1521,6 +1508,8 @@ namespace Bubba
                 var _brw = AddNewBrowserTab( Locations.Downloads );
                 _downloadStrip = ( BrowserTabItem )_brw.Parent;
             }
+
+            Chill( );
         }
 
         /// <summary>
@@ -1528,6 +1517,7 @@ namespace Bubba
         /// </summary>
         private void OpenDeveloperTools( )
         {
+            Busy( );
             if( _currentBrowser == null )
             {
                 var _message = "CurrentBrowser is null!";
@@ -1537,6 +1527,8 @@ namespace Bubba
             {
                 _currentBrowser.ShowDevTools( );
             }
+
+            Chill( );
         }
 
         /// <summary>
@@ -1922,17 +1914,17 @@ namespace Bubba
         {
             try
             {
-                FirstButton.Visibility = Visibility.Visible;
-                PreviousButton.Visibility = Visibility.Visible;
-                NextButton.Visibility = Visibility.Visible;
-                LastButton.Visibility = Visibility.Visible;
+                ToolStripFirstButton.Visibility = Visibility.Visible;
+                ToolStripPreviousButton.Visibility = Visibility.Visible;
+                ToolStripNextButton.Visibility = Visibility.Visible;
+                ToolStripLastButton.Visibility = Visibility.Visible;
                 ToolStripTextBox.Visibility = Visibility.Visible;
                 ToolStripComboBox.Visibility = Visibility.Visible;
-                LookupButton.Visibility = Visibility.Visible;
-                RefreshButton.Visibility = Visibility.Visible;
-                CancelButton.Visibility = Visibility.Visible;
-                ChatButton.Visibility = Visibility.Visible;
-                ToolButton.Visibility = Visibility.Visible;
+                ToolStripLookupButton.Visibility = Visibility.Visible;
+                ToolStripRefreshButton.Visibility = Visibility.Visible;
+                ToolStripCancelButton.Visibility = Visibility.Visible;
+                ToolStripChatButton.Visibility = Visibility.Visible;
+                ToolStripToolButton.Visibility = Visibility.Visible;
             }
             catch( Exception ex )
             {
@@ -1947,17 +1939,17 @@ namespace Bubba
         {
             try
             {
-                FirstButton.Visibility = Visibility.Hidden;
-                PreviousButton.Visibility = Visibility.Hidden;
-                NextButton.Visibility = Visibility.Hidden;
-                LastButton.Visibility = Visibility.Hidden;
+                ToolStripFirstButton.Visibility = Visibility.Hidden;
+                ToolStripPreviousButton.Visibility = Visibility.Hidden;
+                ToolStripNextButton.Visibility = Visibility.Hidden;
+                ToolStripLastButton.Visibility = Visibility.Hidden;
                 ToolStripTextBox.Visibility = Visibility.Hidden;
                 ToolStripComboBox.Visibility = Visibility.Hidden;
-                LookupButton.Visibility = Visibility.Hidden;
-                RefreshButton.Visibility = Visibility.Hidden;
-                CancelButton.Visibility = Visibility.Hidden;
-                ChatButton.Visibility = Visibility.Hidden;
-                ToolButton.Visibility = Visibility.Hidden;
+                ToolStripLookupButton.Visibility = Visibility.Hidden;
+                ToolStripRefreshButton.Visibility = Visibility.Hidden;
+                ToolStripCancelButton.Visibility = Visibility.Hidden;
+                ToolStripChatButton.Visibility = Visibility.Hidden;
+                ToolStripToolButton.Visibility = Visibility.Hidden;
             }
             catch( Exception ex )
             {
@@ -2068,7 +2060,6 @@ namespace Bubba
             {
                 InitializeTimer( );
                 InitializePictureBox( );
-                PopulateDomainDropDowns( );
                 InitializeHotkeys( );
                 InitializeButtons( );
                 InitializeTitle( );
@@ -2115,7 +2106,7 @@ namespace Bubba
                     EnableBackButton( _currentBrowser.CanGoBack );
                     EnableForwardButton( _currentBrowser.CanGoForward );
                     SetTabText( ( ChromiumWebBrowser )sender, "Loading..." );
-                    RefreshButton.Visibility = Visibility.Hidden;
+                    ToolStripRefreshButton.Visibility = Visibility.Hidden;
                     SearchPanelCancelButton.Visibility = Visibility.Visible;
                     _currentTab.DateCreated = DateTime.Now;
                 }
@@ -2181,7 +2172,7 @@ namespace Bubba
                     // after loaded / stopped
                     InvokeIf( ( ) =>
                     {
-                        RefreshButton.Visibility = Visibility.Visible;
+                        ToolStripRefreshButton.Visibility = Visibility.Visible;
                         SearchPanelCancelButton.Visibility = Visibility.Hidden;
                     } );
                 }
@@ -2266,7 +2257,7 @@ namespace Bubba
 
             if( e.ChangeType == ChangeType.SelectionChanged )
             {
-                if( TabControl.SelectedItem == _currentBrowser )
+                if( TabControl.SelectedItem.Browser == _currentBrowser )
                 {
                     AddBlankTab( );
                 }
@@ -2637,7 +2628,7 @@ namespace Bubba
         {
             try
             {
-                Environment.Exit( 1 );
+                Hide( );
             }
             catch( Exception ex )
             {
@@ -2823,18 +2814,11 @@ namespace Bubba
         /// <param name="sender">The sender.</param>
         /// <param name="e">The <see cref="EventArgs" />
         /// instance containing the event data.</param>
-        private void OnFolderMenuOptionClick( object sender, RoutedEventArgs e )
+        private void OnChatMenuOptionClick( object sender, RoutedEventArgs e )
         {
             try
             {
-                var _fileBrowser = new FileBrowser
-                {
-                    WindowStartupLocation = WindowStartupLocation.CenterScreen,
-                    Owner = this,
-                    Topmost = true
-                };
-
-                _fileBrowser.Show( );
+                OpenChatWindow( );
             }
             catch( Exception ex )
             {
@@ -3187,7 +3171,7 @@ namespace Bubba
         {
             try
             {
-                if( !PreviousButton.IsVisible )
+                if( !ToolStripPreviousButton.IsVisible )
                 {
                     ShowToolbar( );
                 }

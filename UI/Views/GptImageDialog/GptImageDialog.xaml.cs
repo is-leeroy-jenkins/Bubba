@@ -1,10 +1,10 @@
 ﻿// ******************************************************************************************
 //     Assembly:                Bubba
 //     Author:                  Terry D. Eppler
-//     Created:                 01-24-2025
+//     Created:                 01-25-2025
 // 
 //     Last Modified By:        Terry D. Eppler
-//     Last Modified On:        01-24-2025
+//     Last Modified On:        01-25-2025
 // ******************************************************************************************
 // <copyright file="GptImageDialog.xaml.cs" company="Terry D. Eppler">
 //    Bubba is a small and simple windows (wpf) application for interacting with the OpenAI API
@@ -60,6 +60,7 @@ namespace Bubba
     [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
     [ SuppressMessage( "ReSharper", "FieldCanBeMadeReadOnly.Global" ) ]
     [ SuppressMessage( "ReSharper", "InheritdocConsiderUsage" ) ]
+    [ SuppressMessage( "ReSharper", "PreferConcreteValueOverDefault" ) ]
     public partial class GptImageDialog : Window, IDisposable, INotifyPropertyChanged
     {
         /// <summary>
@@ -182,6 +183,8 @@ namespace Bubba
             : base( )
         {
             InitializeComponent( );
+            InitializeDelegates( );
+            RegisterCallbacks( );
 
             // Basic Properties
             ResizeMode = _theme.SizeMode;
@@ -266,6 +269,7 @@ namespace Bubba
         {
             try
             {
+                CloseButton.Click += OnCloseButtonClick;
             }
             catch( Exception ex )
             {
@@ -424,6 +428,7 @@ namespace Bubba
         {
             try
             {
+                CloseButton.Click -= OnCloseButtonClick;
             }
             catch( Exception ex )
             {
@@ -577,6 +582,24 @@ namespace Bubba
         /// <param name="e">The <see cref="RoutedEventArgs"/>
         /// instance containing the event data.</param>
         private void OnClosing( object sender, CancelEventArgs e )
+        {
+            try
+            {
+                Hide( );
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+            }
+        }
+
+        /// <summary>
+        /// Called when [close button click].
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The <see cref="RoutedEventArgs"/>
+        /// instance containing the event data.</param>
+        private void OnCloseButtonClick( object sender, RoutedEventArgs e )
         {
             try
             {

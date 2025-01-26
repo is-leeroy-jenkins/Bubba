@@ -30239,7 +30239,7 @@
         </member>
         <member name="P:Bubba.Properties.Locations.Google">
             <summary>
-              Looks up a localized string similar to https://www.google.com.
+              Looks up a localized string similar to https://www.google.com/.
             </summary>
         </member>
         <member name="P:Bubba.Properties.Locations.HomePage">
@@ -30259,7 +30259,7 @@
         </member>
         <member name="P:Bubba.Properties.Locations.NewTab">
             <summary>
-              Looks up a localized string similar to https://www.google.com.
+              Looks up a localized string similar to https://www.google.com/.
             </summary>
         </member>
         <member name="P:Bubba.Properties.Locations.PathPrefix">
@@ -33571,11 +33571,123 @@
             </param>
         </member>
         <member name="T:Bubba.BrowserTabControl">
+            <inheritdoc />
             <summary>
-            
             </summary>
             <seealso cref="T:Bubba.MetroTabControl" />
             <seealso cref="T:System.ComponentModel.ISupportInitialize" />
+        </member>
+        <member name="F:Bubba.BrowserTabControl.TEXT_LEFT_MARGIN">
+            <summary>
+            The text left margin
+            </summary>
+        </member>
+        <member name="F:Bubba.BrowserTabControl.TEXT_RIGHT_MARGIN">
+            <summary>
+            The text right margin
+            </summary>
+        </member>
+        <member name="F:Bubba.BrowserTabControl._DEF_HEADER_HEIGHT">
+            <summary>
+            The definition header height
+            </summary>
+        </member>
+        <member name="F:Bubba.BrowserTabControl._DEF_BUTTON_HEIGHT">
+            <summary>
+            The definition button height
+            </summary>
+        </member>
+        <member name="F:Bubba.BrowserTabControl._DEF_GLYPH_WIDTH">
+            <summary>
+            The definition glyph width
+            </summary>
+        </member>
+        <member name="F:Bubba.BrowserTabControl._startPosition">
+            <summary>
+            The start position
+            </summary>
+        </member>
+        <member name="F:Bubba.BrowserTabControl._formatString">
+            <summary>
+            The format string
+            </summary>
+        </member>
+        <member name="F:Bubba.BrowserTabControl._initializing">
+            <summary>
+            The initializing
+            </summary>
+        </member>
+        <member name="F:Bubba.BrowserTabControl._menu">
+            <summary>
+            The menu
+            </summary>
+        </member>
+        <member name="F:Bubba.BrowserTabControl._open">
+            <summary>
+            The open
+            </summary>
+        </member>
+        <member name="F:Bubba.BrowserTabControl._selectedItem">
+            <summary>
+            The selected item
+            </summary>
+        </member>
+        <member name="F:Bubba.BrowserTabControl._rectangle">
+            <summary>
+            The rectangle
+            </summary>
+        </member>
+        <member name="F:Bubba.BrowserTabControl.AddButtonWidth">
+            <summary>
+            The add button width
+            </summary>
+        </member>
+        <member name="F:Bubba.BrowserTabControl.MaxTabSize">
+            <summary>
+            The maximum tab size
+            </summary>
+        </member>
+        <member name="F:Bubba.BrowserTabControl._items">
+            <summary>
+            The items
+            </summary>
+        </member>
+        <member name="E:Bubba.BrowserTabControl.TabStripItemClosing">
+            <summary>
+            Occurs when [tab strip item closing].
+            </summary>
+        </member>
+        <member name="E:Bubba.BrowserTabControl.TabStripItemSelectionChanged">
+            <summary>
+            Occurs when [tab strip item selection changed].
+            </summary>
+        </member>
+        <member name="E:Bubba.BrowserTabControl.MenuItemsLoading">
+            <summary>
+            Occurs when [menu items loading].
+            </summary>
+        </member>
+        <member name="E:Bubba.BrowserTabControl.MenuItemsLoaded">
+            <summary>
+            Occurs when [menu items loaded].
+            </summary>
+        </member>
+        <member name="E:Bubba.BrowserTabControl.TabStripItemClosed">
+            <summary>
+            Occurs when [tab strip item closed].
+            </summary>
+        </member>
+        <member name="M:Bubba.BrowserTabControl.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Bubba.BrowserTabControl"/> class.
+            </summary>
+            <inheritdoc />
+        </member>
+        <member name="P:Bubba.BrowserTabControl.SelectedItem">
+            <summary>
+            Gets or sets the first item in the current
+            selection or returns null if the selection is empty.
+            </summary>
         </member>
         <member name="P:Bubba.BrowserTabControl.Items">
             <inheritdoc />
@@ -33604,6 +33716,115 @@
             Removes the tab.
             </summary>
             <param name="tabItem">The tab item.</param>
+        </member>
+        <member name="M:Bubba.BrowserTabControl.GetTabItemByPoint(System.Drawing.Point)">
+            <summary>
+            Gets the tab item by point.
+            </summary>
+            <param name="pt">The pt.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Bubba.BrowserTabControl.BeginInit">
+            <inheritdoc />
+            <summary>
+            Indicates that the initialization of the
+            <see cref="T:System.Windows.Controls.ItemsControl" /> object is about to start.
+            </summary>
+        </member>
+        <member name="M:Bubba.BrowserTabControl.EndInit">
+            <inheritdoc />
+            <summary>
+            Indicates that the initialization of the
+            <see cref="T:System.Windows.Controls.ItemsControl" /> object is complete.
+            </summary>
+        </member>
+        <member name="M:Bubba.BrowserTabControl.UpdateLayout">
+            <summary>
+            Ensures that all visual child elements of this element are properly updated for layout.
+            </summary>
+        </member>
+        <member name="M:Bubba.BrowserTabControl.SelectItem(Bubba.BrowserTabItem)">
+            <summary>
+            Selects the item.
+            </summary>
+            <param name="tabItem">The tab item.</param>
+        </member>
+        <member name="M:Bubba.BrowserTabControl.UnSelectItem(Bubba.BrowserTabItem)">
+            <summary>
+            Uns the select item.
+            </summary>
+            <param name="tabItem">The tab item.</param>
+        </member>
+        <member name="M:Bubba.BrowserTabControl.SetDefaultSelection">
+            <summary>
+            Sets the default selection.
+            </summary>
+        </member>
+        <member name="M:Bubba.BrowserTabControl.OnTabStripItemClosing(Bubba.TabClosingEventArgs)">
+            <summary>
+            Raises the <see cref="E:TabStripItemClosing" /> event.
+            </summary>
+            <param name="e">The <see cref="T:Bubba.TabClosingEventArgs"/>
+            instance containing the event data.</param>
+        </member>
+        <member name="M:Bubba.BrowserTabControl.OnTabStripItemClosed(System.Windows.RoutedEventArgs)">
+            <summary>
+            Raises the <see cref="E:TabStripItemClosed" /> event.
+            </summary>
+            <param name="e">The <see cref="T:System.Windows.RoutedEventArgs"/>
+            instance containing the event data.</param>
+        </member>
+        <member name="M:Bubba.BrowserTabControl.OnMenuItemsLoading(System.ComponentModel.HandledEventArgs)">
+            <summary>
+            Raises the <see cref="E:MenuItemsLoading" /> event.
+            </summary>
+            <param name="e">The <see cref="T:System.ComponentModel.HandledEventArgs"/>
+            instance containing the event data.</param>
+        </member>
+        <member name="M:Bubba.BrowserTabControl.OnMenuItemsLoaded(System.Windows.RoutedEventArgs)">
+            <summary>
+            Raises the <see cref="E:MenuItemsLoaded" /> event.
+            </summary>
+            <param name="e">The <see cref="T:System.Windows.RoutedEventArgs"/>
+            instance containing the event data.</param>
+        </member>
+        <member name="M:Bubba.BrowserTabControl.OnBrowserTabItemChanged(Bubba.BrowserTabChangedEventArgs)">
+            <summary>
+            Raises the <see cref="E:BrowserTabItemChanged" /> event.
+            </summary>
+            <param name="e">The <see cref="T:Bubba.BrowserTabChangedEventArgs"/>
+            instance containing the event data.</param>
+        </member>
+        <member name="M:Bubba.BrowserTabControl.OnRightToLeftChanged(System.Windows.RoutedEventArgs)">
+            <summary>
+            Raises the <see cref="E:RightToLeftChanged" /> event.
+            </summary>
+            <param name="e">The <see cref="T:System.Windows.RoutedEventArgs"/>
+            instance containing the event data.</param>
+        </member>
+        <member name="M:Bubba.BrowserTabControl.OnSizeChanged(System.Windows.RoutedEventArgs)">
+            <summary>
+            Raises the <see cref="E:SizeChanged" /> event.
+            </summary>
+            <param name="e">The <see cref="T:System.Windows.RoutedEventArgs"/>
+            instance containing the event data.</param>
+        </member>
+        <member name="M:Bubba.BrowserTabControl.OnCollectionChanged(System.Object,System.ComponentModel.CollectionChangeEventArgs)">
+            <summary>
+            Called when [collection changed].
+            </summary>
+            <param name="sender">The sender.</param>
+            <param name="e">The <see cref="T:System.ComponentModel.CollectionChangeEventArgs"/>
+            instance containing the event data.</param>
+        </member>
+        <member name="M:Bubba.BrowserTabControl.Dispose(System.Boolean)">
+            <summary>
+            Releases unmanaged and - optionally - managed resources.
+            </summary>
+            <param name="disposing"><c>true</c>
+            to release both managed and unmanaged resources;
+            <c>false</c> to release only unmanaged resources.
+            </param>
         </member>
         <member name="T:Bubba.BrowserTabItem">
             <inheritdoc />
@@ -33885,6 +34106,106 @@
             </summary>
             <seealso cref="T:System.Windows.Controls.TabControl" />
         </member>
+        <member name="F:Bubba.MetroTabControl.TEXT_LEFT_MARGIN">
+            <summary>
+            The text left margin
+            </summary>
+        </member>
+        <member name="F:Bubba.MetroTabControl.TEXT_RIGHT_MARGIN">
+            <summary>
+            The text right margin
+            </summary>
+        </member>
+        <member name="F:Bubba.MetroTabControl._DEF_HEADER_HEIGHT">
+            <summary>
+            The definition header height
+            </summary>
+        </member>
+        <member name="F:Bubba.MetroTabControl._DEF_BUTTON_HEIGHT">
+            <summary>
+            The definition button height
+            </summary>
+        </member>
+        <member name="F:Bubba.MetroTabControl._DEF_GLYPH_WIDTH">
+            <summary>
+            The definition glyph width
+            </summary>
+        </member>
+        <member name="F:Bubba.MetroTabControl._startPosition">
+            <summary>
+            The start position
+            </summary>
+        </member>
+        <member name="F:Bubba.MetroTabControl._formatString">
+            <summary>
+            The format string
+            </summary>
+        </member>
+        <member name="F:Bubba.MetroTabControl._initializing">
+            <summary>
+            The initializing
+            </summary>
+        </member>
+        <member name="F:Bubba.MetroTabControl._menu">
+            <summary>
+            The menu
+            </summary>
+        </member>
+        <member name="F:Bubba.MetroTabControl._open">
+            <summary>
+            The open
+            </summary>
+        </member>
+        <member name="F:Bubba.MetroTabControl._selectedItem">
+            <summary>
+            The selected item
+            </summary>
+        </member>
+        <member name="F:Bubba.MetroTabControl._rectangle">
+            <summary>
+            The rectangle
+            </summary>
+        </member>
+        <member name="F:Bubba.MetroTabControl.AddButtonWidth">
+            <summary>
+            The add button width
+            </summary>
+        </member>
+        <member name="F:Bubba.MetroTabControl.MaxTabSize">
+            <summary>
+            The maximum tab size
+            </summary>
+        </member>
+        <member name="F:Bubba.MetroTabControl._items">
+            <summary>
+            The items
+            </summary>
+        </member>
+        <member name="E:Bubba.MetroTabControl.TabStripItemClosing">
+            <summary>
+            Occurs when [tab strip item closing].
+            </summary>
+        </member>
+        <member name="E:Bubba.MetroTabControl.TabStripItemSelectionChanged">
+            <summary>
+            Occurs when [tab strip item selection changed].
+            </summary>
+        </member>
+        <member name="E:Bubba.MetroTabControl.MenuItemsLoading">
+            <summary>
+            Occurs when [menu items loading].
+            </summary>
+        </member>
+        <member name="E:Bubba.MetroTabControl.MenuItemsLoaded">
+            <summary>
+            Occurs when [menu items loaded].
+            </summary>
+        </member>
+        <member name="E:Bubba.MetroTabControl.TabStripItemClosed">
+            <summary>
+            Occurs when [tab strip item closed].
+            </summary>
+        </member>
         <member name="F:Bubba.MetroTabControl._theme">
             <summary>
             The theme
@@ -33896,6 +34217,149 @@
             Initializes a new instance of the
             <see cref="T:Bubba.MetroTabControl" /> class.
             </summary>
+        </member>
+        <member name="P:Bubba.MetroTabControl.SelectedItem">
+            <summary>
+            Gets or sets the first item in the current
+            selection or returns null if the selection is empty.
+            </summary>
+        </member>
+        <member name="P:Bubba.MetroTabControl.Items">
+            <inheritdoc />
+            <summary>
+            Gets or sets the items.
+            </summary>
+            <value>
+            The items.
+            </value>
+        </member>
+        <member name="M:Bubba.MetroTabControl.AddTab(Bubba.BrowserTabItem)">
+            <summary>
+            Adds the tab.
+            </summary>
+            <param name="tabItem">The tab item.</param>
+        </member>
+        <member name="M:Bubba.MetroTabControl.AddTab(Bubba.BrowserTabItem,System.Boolean)">
+            <summary>
+            Adds the tab.
+            </summary>
+            <param name="tabItem">The tab item.</param>
+            <param name="autoSelect">if set to <c>true</c> [automatic select].</param>
+        </member>
+        <member name="M:Bubba.MetroTabControl.RemoveTab(Bubba.BrowserTabItem)">
+            <summary>
+            Removes the tab.
+            </summary>
+            <param name="tabItem">The tab item.</param>
+        </member>
+        <member name="M:Bubba.MetroTabControl.GetTabItemByPoint(System.Drawing.Point)">
+            <summary>
+            Gets the tab item by point.
+            </summary>
+            <param name="pt">The pt.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Bubba.MetroTabControl.BeginInit">
+            <inheritdoc />
+            <summary>
+            Indicates that the initialization of the
+            <see cref="T:System.Windows.Controls.ItemsControl" /> object is about to start.
+            </summary>
+        </member>
+        <member name="M:Bubba.MetroTabControl.EndInit">
+            <inheritdoc />
+            <summary>
+            Indicates that the initialization of the
+            <see cref="T:System.Windows.Controls.ItemsControl" /> object is complete.
+            </summary>
+        </member>
+        <member name="M:Bubba.MetroTabControl.UpdateLayout">
+            <summary>
+            Ensures that all visual child elements of this element are properly updated for layout.
+            </summary>
+        </member>
+        <member name="M:Bubba.MetroTabControl.SelectItem(Bubba.BrowserTabItem)">
+            <summary>
+            Selects the item.
+            </summary>
+            <param name="tabItem">The tab item.</param>
+        </member>
+        <member name="M:Bubba.MetroTabControl.UnSelectItem(Bubba.BrowserTabItem)">
+            <summary>
+            Uns the select item.
+            </summary>
+            <param name="tabItem">The tab item.</param>
+        </member>
+        <member name="M:Bubba.MetroTabControl.SetDefaultSelection">
+            <summary>
+            Sets the default selection.
+            </summary>
+        </member>
+        <member name="M:Bubba.MetroTabControl.OnTabStripItemClosing(Bubba.TabClosingEventArgs)">
+            <summary>
+            Raises the <see cref="E:TabStripItemClosing" /> event.
+            </summary>
+            <param name="e">The <see cref="T:Bubba.TabClosingEventArgs"/>
+            instance containing the event data.</param>
+        </member>
+        <member name="M:Bubba.MetroTabControl.OnTabStripItemClosed(System.Windows.RoutedEventArgs)">
+            <summary>
+            Raises the <see cref="E:TabStripItemClosed" /> event.
+            </summary>
+            <param name="e">The <see cref="T:System.Windows.RoutedEventArgs"/>
+            instance containing the event data.</param>
+        </member>
+        <member name="M:Bubba.MetroTabControl.OnMenuItemsLoading(System.ComponentModel.HandledEventArgs)">
+            <summary>
+            Raises the <see cref="E:MenuItemsLoading" /> event.
+            </summary>
+            <param name="e">The <see cref="T:System.ComponentModel.HandledEventArgs"/>
+            instance containing the event data.</param>
+        </member>
+        <member name="M:Bubba.MetroTabControl.OnMenuItemsLoaded(System.Windows.RoutedEventArgs)">
+            <summary>
+            Raises the <see cref="E:MenuItemsLoaded" /> event.
+            </summary>
+            <param name="e">The <see cref="T:System.Windows.RoutedEventArgs"/>
+            instance containing the event data.</param>
+        </member>
+        <member name="M:Bubba.MetroTabControl.OnBrowserTabItemChanged(Bubba.BrowserTabChangedEventArgs)">
+            <summary>
+            Raises the <see cref="E:BrowserTabItemChanged" /> event.
+            </summary>
+            <param name="e">The <see cref="T:Bubba.BrowserTabChangedEventArgs"/>
+            instance containing the event data.</param>
+        </member>
+        <member name="M:Bubba.MetroTabControl.OnRightToLeftChanged(System.Windows.RoutedEventArgs)">
+            <summary>
+            Raises the <see cref="E:RightToLeftChanged" /> event.
+            </summary>
+            <param name="e">The <see cref="T:System.Windows.RoutedEventArgs"/>
+            instance containing the event data.</param>
+        </member>
+        <member name="M:Bubba.MetroTabControl.OnSizeChanged(System.Windows.RoutedEventArgs)">
+            <summary>
+            Raises the <see cref="E:SizeChanged" /> event.
+            </summary>
+            <param name="e">The <see cref="T:System.Windows.RoutedEventArgs"/>
+            instance containing the event data.</param>
+        </member>
+        <member name="M:Bubba.MetroTabControl.OnCollectionChanged(System.Object,System.ComponentModel.CollectionChangeEventArgs)">
+            <summary>
+            Called when [collection changed].
+            </summary>
+            <param name="sender">The sender.</param>
+            <param name="e">The <see cref="T:System.ComponentModel.CollectionChangeEventArgs"/>
+            instance containing the event data.</param>
+        </member>
+        <member name="M:Bubba.MetroTabControl.Dispose(System.Boolean)">
+            <summary>
+            Releases unmanaged and - optionally - managed resources.
+            </summary>
+            <param name="disposing"><c>true</c>
+            to release both managed and unmanaged resources;
+            <c>false</c> to release only unmanaged resources.
+            </param>
         </member>
         <member name="M:Bubba.MetroTabControl.Fail(System.Exception)">
             <summary>
@@ -33981,26 +34445,31 @@
             </summary>
         </member>
         <member name="E:Bubba.WebControl.TabStripItemClosing">
+            <inheritdoc />
             <summary>
             Occurs when [tab strip item closing].
             </summary>
         </member>
         <member name="E:Bubba.WebControl.TabStripItemSelectionChanged">
+            <inheritdoc />
             <summary>
             Occurs when [tab strip item selection changed].
             </summary>
         </member>
         <member name="E:Bubba.WebControl.MenuItemsLoading">
+            <inheritdoc />
             <summary>
             Occurs when [menu items loading].
             </summary>
         </member>
         <member name="E:Bubba.WebControl.MenuItemsLoaded">
+            <inheritdoc />
             <summary>
             Occurs when [menu items loaded].
             </summary>
         </member>
         <member name="E:Bubba.WebControl.TabStripItemClosed">
+            <inheritdoc />
             <summary>
             Occurs when [tab strip item closed].
             </summary>
@@ -34026,12 +34495,14 @@
             </summary>
         </member>
         <member name="M:Bubba.WebControl.AddTab(Bubba.BrowserTabItem)">
+            <inheritdoc />
             <summary>
             Adds the tab.
             </summary>
             <param name="tabItem">The tab item.</param>
         </member>
         <member name="M:Bubba.WebControl.AddTab(Bubba.BrowserTabItem,System.Boolean)">
+            <inheritdoc />
             <summary>
             Adds the tab.
             </summary>
@@ -34039,12 +34510,14 @@
             <param name="autoSelect">if set to <c>true</c> [automatic select].</param>
         </member>
         <member name="M:Bubba.WebControl.RemoveTab(Bubba.BrowserTabItem)">
+            <inheritdoc />
             <summary>
             Removes the tab.
             </summary>
             <param name="tabItem">The tab item.</param>
         </member>
         <member name="M:Bubba.WebControl.GetTabItemByPoint(System.Drawing.Point)">
+            <inheritdoc />
             <summary>
             Gets the tab item by point.
             </summary>
@@ -34058,62 +34531,74 @@
             </summary>
         </member>
         <member name="M:Bubba.WebControl.SetDefaultSelection">
+            <inheritdoc />
             <summary>
             Sets the default selection.
             </summary>
         </member>
-        <!-- Badly formed XML comment ignored for member "M:Bubba.WebControl.OnTabStripItemClosing(Bubba.TabClosingEventArgs)" -->
+        <member name="M:Bubba.WebControl.OnTabStripItemClosing(Bubba.TabClosingEventArgs)">
+            <inheritdoc />
+            <![CDATA[The 'member' start tag on line 2 position 2 does not match the end tag of 'param'. Line 5, position 38.]]>
+        </member>
         <member name="M:Bubba.WebControl.OnTabStripItemClosed(System.Windows.RoutedEventArgs)">
+            <inheritdoc />
             <summary>
             Raises the <see cref="E:TabStripItemClosed" /> event.
             </summary>
-            <param name="e">The <see cref="T:System.Windows.RoutedEventArgs"/>
+            <param name="e">The <see cref="T:System.Windows.RoutedEventArgs" />
             instance containing the event data.</param>
         </member>
         <member name="M:Bubba.WebControl.OnMenuItemsLoading(System.ComponentModel.HandledEventArgs)">
+            <inheritdoc />
             <summary>
             Raises the <see cref="E:MenuItemsLoading" /> event.
             </summary>
-            <param name="e">The <see cref="T:System.ComponentModel.HandledEventArgs"/>
+            <param name="e">The <see cref="T:System.ComponentModel.HandledEventArgs" />
             instance containing the event data.</param>
         </member>
         <member name="M:Bubba.WebControl.OnMenuItemsLoaded(System.Windows.RoutedEventArgs)">
+            <inheritdoc />
             <summary>
             Raises the <see cref="E:MenuItemsLoaded" /> event.
             </summary>
-            <param name="e">The <see cref="T:System.Windows.RoutedEventArgs"/>
+            <param name="e">The <see cref="T:System.Windows.RoutedEventArgs" />
             instance containing the event data.</param>
         </member>
         <member name="M:Bubba.WebControl.OnBrowserTabItemChanged(Bubba.BrowserTabChangedEventArgs)">
+            <inheritdoc />
             <summary>
             Raises the <see cref="E:BrowserTabItemChanged" /> event.
             </summary>
-            <param name="e">The <see cref="T:Bubba.BrowserTabChangedEventArgs"/>
+            <param name="e">The <see cref="T:Bubba.BrowserTabChangedEventArgs" />
             instance containing the event data.</param>
         </member>
         <member name="M:Bubba.WebControl.OnRightToLeftChanged(System.Windows.RoutedEventArgs)">
+            <inheritdoc />
             <summary>
             Raises the <see cref="E:RightToLeftChanged" /> event.
             </summary>
-            <param name="e">The <see cref="T:System.Windows.RoutedEventArgs"/>
+            <param name="e">The <see cref="T:System.Windows.RoutedEventArgs" />
             instance containing the event data.</param>
         </member>
         <member name="M:Bubba.WebControl.OnSizeChanged(System.Windows.RoutedEventArgs)">
+            <inheritdoc />
             <summary>
             Raises the <see cref="E:SizeChanged" /> event.
             </summary>
-            <param name="e">The <see cref="T:System.Windows.RoutedEventArgs"/>
+            <param name="e">The <see cref="T:System.Windows.RoutedEventArgs" />
             instance containing the event data.</param>
         </member>
         <member name="M:Bubba.WebControl.OnCollectionChanged(System.Object,System.ComponentModel.CollectionChangeEventArgs)">
+            <inheritdoc />
             <summary>
             Called when [collection changed].
             </summary>
             <param name="sender">The sender.</param>
-            <param name="e">The <see cref="T:System.ComponentModel.CollectionChangeEventArgs"/>
+            <param name="e">The <see cref="T:System.ComponentModel.CollectionChangeEventArgs" />
             instance containing the event data.</param>
         </member>
         <member name="M:Bubba.WebControl.Dispose(System.Boolean)">
+            <inheritdoc />
             <summary>
             Releases unmanaged and - optionally - managed resources.
             </summary>
@@ -37311,6 +37796,11 @@
             Populates the ListBox.
             </summary>
         </member>
+        <member name="M:Bubba.FolderBrowser.ClearCallbacks">
+            <summary>
+            Clears the callbacks.
+            </summary>
+        </member>
         <member name="M:Bubba.FolderBrowser.CreateInitialSearchPaths">
             <summary>
             Gets the initial dir paths.
@@ -37336,6 +37826,14 @@
         <member name="M:Bubba.FolderBrowser.OnClosing(System.Object,System.ComponentModel.CancelEventArgs)">
             <summary>
             Called when [closing].
+            </summary>
+            <param name="sender">The sender.</param>
+            <param name="e">The <see cref="T:System.Windows.RoutedEventArgs"/>
+            instance containing the event data.</param>
+        </member>
+        <member name="M:Bubba.FolderBrowser.OnCloseButtonClick(System.Object,System.Windows.RoutedEventArgs)">
+            <summary>
+            Called when [close button click].
             </summary>
             <param name="sender">The sender.</param>
             <param name="e">The <see cref="T:System.Windows.RoutedEventArgs"/>
@@ -37688,6 +38186,14 @@
             <param name="e">The <see cref="T:System.Windows.RoutedEventArgs"/>
             instance containing the event data.</param>
         </member>
+        <member name="M:Bubba.GptFileDialog.OnCloseButtonClick(System.Object,System.Windows.RoutedEventArgs)">
+            <summary>
+            Called when [close button click].
+            </summary>
+            <param name="sender">The sender.</param>
+            <param name="e">The <see cref="T:System.Windows.RoutedEventArgs"/>
+            instance containing the event data.</param>
+        </member>
         <member name="M:Bubba.GptFileDialog.OnPropertyChanged(System.String)">
             <summary>
             Called when [property changed].
@@ -37975,6 +38481,14 @@
         <member name="M:Bubba.GptImageDialog.OnClosing(System.Object,System.ComponentModel.CancelEventArgs)">
             <summary>
             Called when [closing].
+            </summary>
+            <param name="sender">The sender.</param>
+            <param name="e">The <see cref="T:System.Windows.RoutedEventArgs"/>
+            instance containing the event data.</param>
+        </member>
+        <member name="M:Bubba.GptImageDialog.OnCloseButtonClick(System.Object,System.Windows.RoutedEventArgs)">
+            <summary>
+            Called when [close button click].
             </summary>
             <param name="sender">The sender.</param>
             <param name="e">The <see cref="T:System.Windows.RoutedEventArgs"/>
@@ -39840,7 +40354,7 @@
             <param name="e">The <see cref="T:System.EventArgs" />
             instance containing the event data.</param>
         </member>
-        <member name="M:Bubba.WebBrowser.OnFolderMenuOptionClick(System.Object,System.Windows.RoutedEventArgs)">
+        <member name="M:Bubba.WebBrowser.OnChatMenuOptionClick(System.Object,System.Windows.RoutedEventArgs)">
             <summary>
             Called when [folder menu option click].
             </summary>
@@ -40044,36 +40558,6 @@
         <member name="M:Bubba.WebBrowser.InitializeComponent">
             <summary>
             InitializeComponent
-            </summary>
-        </member>
-        <member name="T:XamlGeneratedNamespace.GeneratedInternalTypeHelper">
-            <summary>
-            GeneratedInternalTypeHelper
-            </summary>
-        </member>
-        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.CreateInstance(System.Type,System.Globalization.CultureInfo)">
-            <summary>
-            CreateInstance
-            </summary>
-        </member>
-        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.GetPropertyValue(System.Reflection.PropertyInfo,System.Object,System.Globalization.CultureInfo)">
-            <summary>
-            GetPropertyValue
-            </summary>
-        </member>
-        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.SetPropertyValue(System.Reflection.PropertyInfo,System.Object,System.Object,System.Globalization.CultureInfo)">
-            <summary>
-            SetPropertyValue
-            </summary>
-        </member>
-        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.CreateDelegate(System.Type,System.Object,System.String)">
-            <summary>
-            CreateDelegate
-            </summary>
-        </member>
-        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.AddEventHandler(System.Reflection.EventInfo,System.Object,System.Delegate)">
-            <summary>
-            AddEventHandler
             </summary>
         </member>
     </members>

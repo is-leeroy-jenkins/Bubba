@@ -169,7 +169,7 @@ namespace Bubba.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to https://www.google.com.
+        ///   Looks up a localized string similar to https://www.google.com/.
         /// </summary>
         internal static string Google {
             get {
@@ -205,7 +205,7 @@ namespace Bubba.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to https://www.google.com.
+        ///   Looks up a localized string similar to https://www.google.com/.
         /// </summary>
         internal static string NewTab {
             get {

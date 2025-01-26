@@ -2,8 +2,8 @@
     x:Class="Bubba.GptImageDialog"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:b="clr-namespace:Bubba"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:local="clr-namespace:Bubba"
     xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:skin="clr-namespace:Syncfusion.SfSkinManager;assembly=Syncfusion.SfSkinManager.WPF"
@@ -60,7 +60,7 @@
                 Height="30"
                 FontFamily="Roboto" />
 
-            <local:ToolStripButton
+            <b:ToolStripButton
                 x:Name="FirstButton"
                 Width="40"
                 Height="30"
@@ -69,13 +69,13 @@
                 ImageSource="/Resources/Assets/ToolStripImages/FirstButton.png"
                 ToolTip="First Item" />
 
-            <local:ToolStripButton
+            <b:ToolStripButton
                 x:Name="PreviousButton"
                 Margin="5,1,5,1"
                 ImageSource="/Resources/Assets/ToolStripImages/PreviousButton.png"
                 ToolTip="Previous Item" />
 
-            <local:ToolStripTextBox
+            <b:ToolStripTextBox
                 x:Name="ToolStripTextBox"
                 Width="200"
                 Height="30"
@@ -91,19 +91,19 @@
                 SelectionBackgroundColor="{StaticResource SteelBlueBackground}"
                 ToolTip="Enter text" />
 
-            <local:ToolStripButton
+            <b:ToolStripButton
                 x:Name="LookupButton"
                 Margin="5,1,5,1"
                 ImageSource="/Resources/Assets/ToolStripImages/GoButton.png"
                 ToolTip="Begin Search" />
 
-            <local:ToolStripButton
+            <b:ToolStripButton
                 x:Name="NextButton"
                 Margin="5,1,5,1"
                 ImageSource="/Resources/Assets/ToolStripImages/NextButton.png"
                 ToolTip="Next Item" />
 
-            <local:ToolStripButton
+            <b:ToolStripButton
                 x:Name="LastButton"
                 Margin="5,1,5,1"
                 ImageSource="/Resources/Assets/ToolStripImages/LastButton.png"
@@ -113,7 +113,9 @@
                 x:Name="ProgressBar"
                 Width="130"
                 Background="{StaticResource FormBackground}" />
-            <local:ToolStripButton
+
+            <b:ToolStripButton
+                x:Name="CloseButton"
                 Width="40"
                 Height="30"
                 VerticalContentAlignment="Stretch"

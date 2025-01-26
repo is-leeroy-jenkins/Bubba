@@ -10,8 +10,8 @@
     xmlns:web="clr-namespace:CefSharp.Wpf;assembly=CefSharp.Wpf"
     xmlns:wpf="http://schemas.syncfusion.com/wpf"
     Title="Bubba Web"
-    Width="1255"
-    Height="810"
+    Width="1260"
+    Height="805"
     MinWidth="1000"
     MinHeight="400"
     MaxWidth="1500"
@@ -50,11 +50,11 @@
             </wpf:MenuItemAdv>
 
             <wpf:MenuItemAdv
-                Click="OnFolderMenuOptionClick"
-                Header="Folder"
-                ToolTip="Browse Directories">
+                Click="OnChatMenuOptionClick"
+                Header="GPT Mode"
+                ToolTip="GPT (Chat) Window">
                 <wpf:MenuItemAdv.Icon>
-                    <Image Source="/Resources/Assets/MenuImages/FolderItem.png" />
+                    <Image Source="/Resources/Assets/MenuImages/ChatItem.png" />
                 </wpf:MenuItemAdv.Icon>
             </wpf:MenuItemAdv>
 
@@ -136,9 +136,9 @@
 
     <Grid x:Name="MainGrid">
         <Grid.RowDefinitions>
-            <RowDefinition Height="40" />
-            <RowDefinition Height="684" />
-            <RowDefinition Height="76" />
+            <RowDefinition Height="60" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="50" />
         </Grid.RowDefinitions>
 
 
@@ -147,7 +147,7 @@
 
         <Grid
             x:Name="ControlBox"
-            Height="40"
+            Height="50"
             MinWidth="1100"
             Margin="0,-2,10,0"
             VerticalAlignment="Top">
@@ -216,8 +216,8 @@
                 HorizontalContentAlignment="Left"
                 VerticalContentAlignment="Center"
                 Panel.ZIndex="1"
-                Background="{DynamicResource ControlInteriorBrush}"
-                BorderBrush="{DynamicResource BlueBorderBrush}"
+                Background="{StaticResource ControlInteriorBrush}"
+                BorderBrush="{StaticResource BlueBorderBrush}"
                 BorderThickness="2"
                 ClipToBounds="True"
                 FontFamily="Roboto"
@@ -252,7 +252,7 @@
                 ClipToBounds="True"
                 Content="Label"
                 FontFamily="Roboto"
-                Foreground="{DynamicResource BlueBorderBrush}"
+                Foreground="{StaticResource BlueBorderBrush}"
                 SnapsToDevicePixels="True" />
 
             <b:ToolStripButton
@@ -274,49 +274,42 @@
 
         <!--  ******************************************** TAB CONTROL *********************************************  -->
 
-        <b:MetroTabControl
+        <b:WebControl
             x:Name="TabControl"
             Grid.Row="1"
             Width="Auto"
             Height="Auto"
-            MinWidth="1200"
+            MinWidth="1100"
             MinHeight="500"
             Margin="1"
             Padding="1"
             HorizontalContentAlignment="Stretch"
             VerticalContentAlignment="Stretch"
-            Background="{DynamicResource FormBackground}"
-            BorderBrush="{DynamicResource FormBackground}"
-            Foreground="{DynamicResource FormForeground}"
-            NewButtonBackground="{DynamicResource ControlBackground}"
+            Background="{StaticResource FormBackground}"
+            BorderBrush="{StaticResource FormBackground}"
+            Foreground="{StaticResource FormForeground}"
+            NewButtonBackground="{StaticResource ControlBackground}"
             ScrollViewer.VerticalScrollBarVisibility="Auto"
-            TabItemHoverBackground="{DynamicResource FormBackground}"
-            TabItemHoverBorderBrush="{DynamicResource FormBackground}"
-            TabItemHoverForeground="{DynamicResource WhiteForeground}"
-            TabItemSelectedBackground="{DynamicResource FormBackground}"
-            TabItemSelectedBorderBrush="{DynamicResource FormBackground}"
-            TabItemSelectedForeground="{DynamicResource BlueBorderBrush}"
-            TabPanelBackground="{DynamicResource FormBackground}">
+            TabItemHoverBackground="{StaticResource FormBackground}"
+            TabItemHoverBorderBrush="{StaticResource FormBackground}"
+            TabItemHoverForeground="{StaticResource WhiteForeground}"
+            TabItemSelectedBackground="{StaticResource FormBackground}"
+            TabItemSelectedBorderBrush="{StaticResource FormBackground}"
+            TabItemSelectedForeground="{StaticResource BlueBorderBrush}"
+            TabPanelBackground="{StaticResource FormBackground}">
 
             <b:BrowserTabItem
                 x:Name="BrowserTab"
-                Width="0"
-                Height="0"
-                Background="{DynamicResource FormBackground}"
-                BorderBrush="{DynamicResource FormBackground}"
-                CloseButtonState="Hidden"
-                Foreground="{DynamicResource FormForeground}"
-                Header="Bubba">
+                Background="{StaticResource FormBackground}"
+                BorderBrush="{StaticResource FormBackground}"
+                Foreground="{StaticResource FormForeground}">
 
-                <web:ChromiumWebBrowser
-                    x:Name="Browser"
-                    Address="https://www.google.com/"
-                    ResizeHackEnabled="True"
-                    ZoomLevel="0" />
+                <web:ChromiumWebBrowser x:Name="Browser" Address="https://www.google.com/" />
 
             </b:BrowserTabItem>
 
-        </b:MetroTabControl>
+
+        </b:WebControl>
 
 
 
@@ -341,7 +334,7 @@
                     FontFamily="Roboto" />
 
                 <b:ToolStripButton
-                    x:Name="FirstButton"
+                    x:Name="ToolStripFirstButton"
                     Width="40"
                     Height="30"
                     Margin="5,1,5,1"
@@ -350,19 +343,19 @@
                     ToolTip="First Item" />
 
                 <b:ToolStripButton
-                    x:Name="PreviousButton"
+                    x:Name="ToolStripPreviousButton"
                     Margin="5,1,5,1"
                     ImageSource="/Resources/Assets/ToolStripImages/PreviousButton.png"
                     ToolTip="Previous Item" />
 
                 <b:ToolStripButton
-                    x:Name="NextButton"
+                    x:Name="ToolStripNextButton"
                     Margin="5,1,5,1"
                     ImageSource="/Resources/Assets/ToolStripImages/NextButton.png"
                     ToolTip="Next Item" />
 
                 <b:ToolStripButton
-                    x:Name="LastButton"
+                    x:Name="ToolStripLastButton"
                     Margin="5,1,5,1"
                     ImageSource="/Resources/Assets/ToolStripImages/LastButton.png"
                     ToolTip="Last Item" />
@@ -379,20 +372,20 @@
                     ToolTip="Key Word Search" />
 
                 <b:ToolStripButton
-                    x:Name="LookupButton"
+                    x:Name="ToolStripLookupButton"
                     Margin="5,1,5,1"
                     ImageSource="/Resources/Assets/ToolStripImages/GoButton.png"
                     ToolTip="Begin Search" />
 
 
                 <b:ToolStripButton
-                    x:Name="RefreshButton"
+                    x:Name="ToolStripRefreshButton"
                     Margin="5,1,5,1"
                     ImageSource="/Resources/Assets/ToolStripImages/RefreshButton.png"
                     ToolTip="Resets input controls and parameters" />
 
                 <b:ToolStripButton
-                    x:Name="CancelButton"
+                    x:Name="ToolStripCancelButton"
                     Margin="5,1,5,1"
                     ImageSource="/Resources/Assets/ToolStripImages/CancelButton.png"
                     ToolTip="Developer Tools" />
@@ -407,7 +400,7 @@
 
 
                 <b:ToolStripButton
-                    x:Name="ToolButton"
+                    x:Name="ToolStripToolButton"
                     Width="40"
                     Height="30"
                     Margin="5,1,5,1"
@@ -415,18 +408,18 @@
                     ToolTip="Developer Tools" />
 
                 <b:ToolStripButton
-                    x:Name="ChatButton"
+                    x:Name="ToolStripChatButton"
                     Margin="5,1,5,1"
                     ImageSource="/Resources/Assets/ToolStripImages/ChatButton.png"
                     ToolTip="Web Browser" />
 
                 <mah:MetroProgressBar
-                    x:Name="ProgressBar"
+                    x:Name="ToolStripProgressBar"
                     Width="160"
                     Background="{StaticResource FormBackground}" />
 
                 <b:ToolStripButton
-                    x:Name="MenuButton"
+                    x:Name="ToolStripMenuButton"
                     Width="40"
                     Height="30"
                     Margin="5,1,5,1"

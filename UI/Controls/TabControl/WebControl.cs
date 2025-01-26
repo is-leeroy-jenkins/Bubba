@@ -74,7 +74,7 @@ namespace Bubba
     [ SuppressMessage( "ReSharper", "MergeIntoPattern" ) ]
     [ SuppressMessage( "ReSharper", "PossibleNullReferenceException" ) ]
     [ SuppressMessage( "ReSharper", "RedundantExtendsListEntry" ) ]
-    public class WebControl : BrowserTabControl, ISupportInitialize, IDisposable
+    public class WebControl : MetroTabControl, ISupportInitialize, IDisposable
     {
         /// <summary>
         /// The text left margin
@@ -139,37 +139,42 @@ namespace Bubba
         /// <summary>
         /// The add button width
         /// </summary>
-        public int AddButtonWidth = 40;
+        public new int AddButtonWidth = 40;
 
         /// <summary>
         /// The maximum tab size
         /// </summary>
-        public int MaxTabSize = 200;
+        public new int MaxTabSize = 200;
 
+        /// <inheritdoc />
         /// <summary>
         /// Occurs when [tab strip item closing].
         /// </summary>
-        public event TabItemClosing TabStripItemClosing;
+        public override event TabItemClosing TabStripItemClosing;
 
+        /// <inheritdoc />
         /// <summary>
         /// Occurs when [tab strip item selection changed].
         /// </summary>
-        public event TabItemChange TabStripItemSelectionChanged;
+        public override event TabItemChange TabStripItemSelectionChanged;
 
+        /// <inheritdoc />
         /// <summary>
         /// Occurs when [menu items loading].
         /// </summary>
-        public event HandledEventHandler MenuItemsLoading;
+        public override event HandledEventHandler MenuItemsLoading;
 
+        /// <inheritdoc />
         /// <summary>
         /// Occurs when [menu items loaded].
         /// </summary>
-        public event EventHandler MenuItemsLoaded;
+        public override event EventHandler MenuItemsLoaded;
 
+        /// <inheritdoc />
         /// <summary>
         /// Occurs when [tab strip item closed].
         /// </summary>
-        public event EventHandler TabStripItemClosed;
+        public override event EventHandler TabStripItemClosed;
 
         /// <summary>
         /// Initializes a new instance of the
@@ -250,21 +255,23 @@ namespace Bubba
         /// </summary>
         public new BrowserTabCollection Items { get; set; }
 
+        /// <inheritdoc />
         /// <summary>
         /// Adds the tab.
         /// </summary>
         /// <param name="tabItem">The tab item.</param>
-        public void AddTab( BrowserTabItem tabItem )
+        public override void AddTab( BrowserTabItem tabItem )
         {
             AddTab( tabItem, false );
         }
 
+        /// <inheritdoc />
         /// <summary>
         /// Adds the tab.
         /// </summary>
         /// <param name="tabItem">The tab item.</param>
         /// <param name="autoSelect">if set to <c>true</c> [automatic select].</param>
-        public void AddTab( BrowserTabItem tabItem, bool autoSelect )
+        public override void AddTab( BrowserTabItem tabItem, bool autoSelect )
         {
             Items.Add( tabItem );
             if( ( autoSelect && tabItem.IsVisible )
@@ -275,11 +282,12 @@ namespace Bubba
             }
         }
 
+        /// <inheritdoc />
         /// <summary>
         /// Removes the tab.
         /// </summary>
         /// <param name="tabItem">The tab item.</param>
-        public void RemoveTab( BrowserTabItem tabItem )
+        public override void RemoveTab( BrowserTabItem tabItem )
         {
             var _num = Items.IndexOf( tabItem );
             if( _num >= 0 )
@@ -301,12 +309,13 @@ namespace Bubba
             }
         }
 
+        /// <inheritdoc />
         /// <summary>
         /// Gets the tab item by point.
         /// </summary>
         /// <param name="pt">The pt.</param>
         /// <returns></returns>
-        public BrowserTabItem GetTabItemByPoint( Point pt )
+        public override BrowserTabItem GetTabItemByPoint( Point pt )
         {
             BrowserTabItem _result = null;
             var _flag = false;
@@ -343,10 +352,11 @@ namespace Bubba
             }
         }
 
+        /// <inheritdoc />
         /// <summary>
         /// Sets the default selection.
         /// </summary>
-        private void SetDefaultSelection( )
+        protected override void SetDefaultSelection( )
         {
             if( _selectedItem == null
                 && Items.Count > 0 )
@@ -360,19 +370,18 @@ namespace Bubba
             }
         }
 
-        /// <summary>
-        /// Raises the <see cref="E:TabStripItemClosing" /> event.
-        /// </summary>
-        /// instance containing the event data.</param>
+        /// <inheritdoc />
+        /// <![CDATA[The 'member' start tag on line 2 position 2 does not match the end tag of 'param'. Line 5, position 38.]]>
         protected override void OnTabStripItemClosing( TabClosingEventArgs e )
         {
             TabStripItemClosing?.Invoke( e );
         }
 
+        /// <inheritdoc />
         /// <summary>
         /// Raises the <see cref="E:TabStripItemClosed" /> event.
         /// </summary>
-        /// <param name="e">The <see cref="RoutedEventArgs"/>
+        /// <param name="e">The <see cref="T:System.Windows.RoutedEventArgs" />
         /// instance containing the event data.</param>
         protected override void OnTabStripItemClosed( RoutedEventArgs e )
         {
@@ -380,50 +389,55 @@ namespace Bubba
             TabStripItemClosed?.Invoke( this, e );
         }
 
+        /// <inheritdoc />
         /// <summary>
         /// Raises the <see cref="E:MenuItemsLoading" /> event.
         /// </summary>
-        /// <param name="e">The <see cref="HandledEventArgs"/>
+        /// <param name="e">The <see cref="T:System.ComponentModel.HandledEventArgs" />
         /// instance containing the event data.</param>
         protected override void OnMenuItemsLoading( HandledEventArgs e )
         {
             MenuItemsLoading?.Invoke( this, e );
         }
 
+        /// <inheritdoc />
         /// <summary>
         /// Raises the <see cref="E:MenuItemsLoaded" /> event.
         /// </summary>
-        /// <param name="e">The <see cref="RoutedEventArgs"/>
+        /// <param name="e">The <see cref="T:System.Windows.RoutedEventArgs" />
         /// instance containing the event data.</param>
         protected override void OnMenuItemsLoaded( RoutedEventArgs e )
         {
             MenuItemsLoaded?.Invoke( this, e );
         }
 
+        /// <inheritdoc />
         /// <summary>
         /// Raises the <see cref="E:BrowserTabItemChanged" /> event.
         /// </summary>
-        /// <param name="e">The <see cref="BrowserTabChangedEventArgs"/>
+        /// <param name="e">The <see cref="T:Bubba.BrowserTabChangedEventArgs" />
         /// instance containing the event data.</param>
         protected override void OnBrowserTabItemChanged( BrowserTabChangedEventArgs e )
         {
             TabStripItemSelectionChanged?.Invoke( e );
         }
 
+        /// <inheritdoc />
         /// <summary>
         /// Raises the <see cref="E:RightToLeftChanged" /> event.
         /// </summary>
-        /// <param name="e">The <see cref="RoutedEventArgs"/>
+        /// <param name="e">The <see cref="T:System.Windows.RoutedEventArgs" />
         /// instance containing the event data.</param>
         protected override void OnRightToLeftChanged( RoutedEventArgs e )
         {
             UpdateFormat( );
         }
 
+        /// <inheritdoc />
         /// <summary>
         /// Raises the <see cref="E:SizeChanged" /> event.
         /// </summary>
-        /// <param name="e">The <see cref="RoutedEventArgs"/>
+        /// <param name="e">The <see cref="T:System.Windows.RoutedEventArgs" />
         /// instance containing the event data.</param>
         protected override void OnSizeChanged( RoutedEventArgs e )
         {
@@ -433,13 +447,14 @@ namespace Bubba
             }
         }
 
+        /// <inheritdoc />
         /// <summary>
         /// Called when [collection changed].
         /// </summary>
         /// <param name="sender">The sender.</param>
-        /// <param name="e">The <see cref="CollectionChangeEventArgs"/>
+        /// <param name="e">The <see cref="T:System.ComponentModel.CollectionChangeEventArgs" />
         /// instance containing the event data.</param>
-        private void OnCollectionChanged( object sender, CollectionChangeEventArgs e )
+        protected override void OnCollectionChanged( object sender, CollectionChangeEventArgs e )
         {
             var Tab = ( BrowserTabItem )e.Element;
             if( e.Action == CollectionChangeAction.Add )
@@ -461,6 +476,7 @@ namespace Bubba
             UpdateFormat( );
         }
 
+        /// <inheritdoc />
         /// <summary>
         /// Releases unmanaged and - optionally - managed resources.
         /// </summary>

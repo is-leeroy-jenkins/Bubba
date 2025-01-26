@@ -129,8 +129,8 @@
                     HorizontalAlignment="Left"
                     Background="{DynamicResource ControlBackground}"
                     BorderBrush="{DynamicResource BlueBorderBrush}"
-                    Content="Select"
-                    ToolTip="Select File" />
+                    Content="Close"
+                    ToolTip="Close Window" />
             </Grid>
         </Canvas>
 

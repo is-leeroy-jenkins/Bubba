@@ -134,6 +134,7 @@ namespace Bubba
         /// </summary>
         public App( )
         {
+            InitializeCefSharp( );
             var _key = ConfigurationManager.AppSettings[ "UI" ];
             SyncfusionLicenseProvider.RegisterLicense( _key );
             OpenAiKey = Environment.GetEnvironmentVariable( "OPENAI_API_KEY" );
@@ -209,14 +210,13 @@ namespace Bubba
         /// <summary>
         /// Initializes the interface.
         /// </summary>
-        public static void InitializeInterface( )
+        public void InitializeInterface( )
         {
             try
             {
                 LoadSystemDialog( );
                 LoadWebBrowser( );
                 LoadFileBrowser( );
-                LoadFolderBrowser( );
                 LoadGptFileDialog( );
                 LoadImageDialog( );
                 LoadSearchDialog( );
@@ -501,7 +501,7 @@ namespace Bubba
         /// <param name="e">
         /// that contains the event data.
         /// </param>
-        public virtual void OnStartup( object sender, StartupEventArgs e )
+        public void OnStartup( object sender, StartupEventArgs e )
         {
             try
             {

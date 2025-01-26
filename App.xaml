@@ -7,6 +7,7 @@
     xmlns:skin="clr-namespace:Syncfusion.SfSkinManager;assembly=Syncfusion.SfSkinManager.WPF"
     xmlns:sync="http://schemas.syncfusion.com/wpf"
     xmlns:ui="http://schemas.modernwpf.com/2019"
+    xmlns:web="clr-namespace:CefSharp.Wpf;assembly=CefSharp.Wpf"
     StartupUri="/UI/Views/ChatWindow/ChatWindow.xaml">
 
     <!--  *********************************************  RESOURCES *********************************************  -->

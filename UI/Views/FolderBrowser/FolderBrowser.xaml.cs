@@ -161,6 +161,7 @@ namespace Bubba
         public FolderBrowser( )
         {
             InitializeComponent( );
+            InitializeDelegates( );
             RegisterCallbacks( );
 
             // Basic Properties
@@ -202,6 +203,7 @@ namespace Bubba
         {
             try
             {
+                CloseButton.Click += OnCloseButtonClick;
             }
             catch( Exception ex )
             {
@@ -415,6 +417,21 @@ namespace Bubba
         }
 
         /// <summary>
+        /// Clears the callbacks.
+        /// </summary>
+        private void ClearCallbacks()
+        {
+            try
+            {
+                CloseButton.Click -= OnCloseButtonClick;
+            }
+            catch(Exception ex)
+            {
+                Fail(ex);
+            }
+        }
+
+        /// <summary>
         /// Gets the initial dir paths.
         /// </summary>
         /// <returns>
@@ -542,6 +559,24 @@ namespace Bubba
             catch( Exception ex )
             {
                 Fail( ex );
+            }
+        }
+
+        /// <summary>
+        /// Called when [close button click].
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The <see cref="RoutedEventArgs"/>
+        /// instance containing the event data.</param>
+        private void OnCloseButtonClick(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                Hide( );
+            }
+            catch(Exception ex)
+            {
+                Fail(ex);
             }
         }
 

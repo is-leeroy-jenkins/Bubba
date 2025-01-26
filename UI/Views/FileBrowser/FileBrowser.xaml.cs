@@ -443,6 +443,7 @@ namespace Bubba
         {
             try
             {
+                CloseButton.Click -= OnCloseButtonClick;
             }
             catch( Exception ex )
             {

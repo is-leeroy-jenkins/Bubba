@@ -13,7 +13,7 @@
     xmlns:wpf="http://schemas.syncfusion.com/wpf"
     Title="Bubba GPT"
     Width="1260"
-    Height="795"
+    Height="805"
     MinWidth="1000"
     MinHeight="400"
     MaxWidth="1500"
@@ -37,7 +37,7 @@
             <Setter Property="Foreground" Value="{StaticResource LightBlueBrush}" />
         </Style>
 
-        <Style x:Key="ThumbStyle" TargetType="{x:Type Thumb}">
+        <Style TargetType="{x:Type Thumb}">
             <Setter Property="Width" Value="13" />
             <Setter Property="Height" Value="13" />
             <Setter Property="BorderBrush" Value="{StaticResource BlueBorderBrush}" />
@@ -68,15 +68,6 @@
                 ToolTip="Browse File System">
                 <wpf:MenuItemAdv.Icon>
                     <Image Source="/Resources/Assets/MenuImages/FileItem.png" />
-                </wpf:MenuItemAdv.Icon>
-            </wpf:MenuItemAdv>
-
-            <wpf:MenuItemAdv
-                Click="OnFolderMenuOptionClick"
-                Header="Folder"
-                ToolTip="Browse Directories">
-                <wpf:MenuItemAdv.Icon>
-                    <Image Source="/Resources/Assets/MenuImages/FolderItem.png" />
                 </wpf:MenuItemAdv.Icon>
             </wpf:MenuItemAdv>
 
