@@ -256,7 +256,7 @@
                 SnapsToDevicePixels="True" />
 
             <b:ToolStripButton
-                x:Name="HomeButton"
+                x:Name="SearchPanelHomeButton"
                 Title=""
                 Grid.Column="3"
                 Width="40"

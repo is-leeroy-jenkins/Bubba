@@ -265,7 +265,8 @@ namespace Bubba
         public WebBrowser( )
         {
             // Theme Properties
-            SfSkinManager.SetTheme( this, new Theme( "FluentDark", App.Controls ) );
+            SfSkinManager.SetTheme(this, new Theme("FluentDark", App.Controls) );
+            Instance = this;
 
             // Window Properties
             InitializeComponent( );
@@ -621,7 +622,7 @@ namespace Bubba
                 ToolStripCancelButton.Visibility = Visibility.Hidden;
                 ToolStripPreviousButton.Visibility = Visibility.Hidden;
                 ToolStripNextButton.Visibility = Visibility.Hidden;
-                HomeButton.Visibility = Visibility.Hidden;
+                SearchPanelHomeButton.Visibility = Visibility.Hidden;
             }
             catch( Exception ex )
             {
@@ -857,7 +858,7 @@ namespace Bubba
                 UrlTextBox.GotMouseCapture += OnUrlTextBoxClick;
                 ToolStripTextBox.GotMouseCapture += OnToolStripTextBoxClick;
                 ToolStripChatButton.Click += OnChatButtonClick;
-                HomeButton.Click += OnHomeButtonClick;
+                SearchPanelHomeButton.Click += OnSearchPanelHomeButtonClick;
             }
             catch( Exception ex )
             {
@@ -2064,7 +2065,6 @@ namespace Bubba
                 InitializeButtons( );
                 InitializeTitle( );
                 InitializeToolStrip( );
-                _searchEngineUrl = Locations.Google;
             }
             catch( Exception ex )
             {
@@ -2585,7 +2585,7 @@ namespace Bubba
         /// <param name="sender">The sender.</param>
         /// <param name="e">The <see cref="EventArgs" />
         /// instance containing the event data.</param>
-        private void OnHomeButtonClick( object sender, RoutedEventArgs e )
+        private void OnSearchPanelHomeButtonClick( object sender, RoutedEventArgs e )
         {
             _currentBrowser.Load( Locations.HomePage );
         }

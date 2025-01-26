@@ -140,7 +140,7 @@ namespace Bubba {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/Bubba;component/ui/views/notification/notification.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/Bubba;V1.0.0.0;component/ui/views/notification/notification.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\..\..\UI\Views\Notification\Notification.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

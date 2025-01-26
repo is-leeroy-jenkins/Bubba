@@ -583,12 +583,7 @@ namespace Bubba
         {
             try
             {
-                App.LoadSystemDialog( );
                 App.LoadWebBrowser( );
-                App.LoadGptFileDialog( );
-                App.LoadImageDialog( );
-                App.LoadFileBrowser( );
-                App.LoadSearchDialog( );
             }
             catch( Exception ex )
             {
