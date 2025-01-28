@@ -45,7 +45,9 @@
 
     <!--  *********************************************** CHECKBOX *****************************************************  -->
 
-    <Style x:Key="CheckBoxStyle" TargetType="{x:Type CheckBox}">
+    <Style
+        x:Key="CheckBoxStyle"
+        TargetType="{x:Type CheckBox}">
         <Setter Property="FocusVisualStyle" Value="{DynamicResource FocusVisual}" />
         <Setter Property="Background" Value="{DynamicResource TransparentBrush}" />
         <Setter Property="BorderBrush" Value="{DynamicResource LightBlueBrush}" />

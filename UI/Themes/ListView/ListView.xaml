@@ -6,7 +6,9 @@
 
     <!--  *********************************************** ListView *****************************************************  -->
 
-    <Style x:Key="MetroListViewStyle" TargetType="{x:Type ListView}">
+    <Style
+        x:Key="MetroListViewStyle"
+        TargetType="{x:Type ListView}">
         <Setter Property="Background" Value="{StaticResource ControlInteriorBrush}" />
         <Setter Property="BorderBrush" Value="{StaticResource BlueBorderBrush}" />
         <Setter Property="Foreground" Value="{StaticResource LightBlueBrush}" />
@@ -19,7 +21,9 @@
 
     <!--  *********************************************** ListViewItem *****************************************************  -->
 
-    <Style x:Key="MetroListViewItemStyle" TargetType="{x:Type ListViewItem}">
+    <Style
+        x:Key="MetroListViewItemStyle"
+        TargetType="{x:Type ListViewItem}">
         <Setter Property="Background" Value="{StaticResource ControlInteriorBrush}" />
         <Setter Property="BorderBrush" Value="{StaticResource ControlInteriorBrush}" />
         <Setter Property="Foreground" Value="{StaticResource LightBlueBrush}" />

@@ -49,6 +49,7 @@ namespace Bubba
     using System.Diagnostics.CodeAnalysis;
     using System.Linq;
     using System.Threading.Tasks;
+    using Properties;
 
     /// <inheritdoc />
     /// <summary>
@@ -63,6 +64,7 @@ namespace Bubba
     [ SuppressMessage( "ReSharper", "AutoPropertyCanBeMadeGetOnly.Global" ) ]
     [ SuppressMessage( "ReSharper", "RedundantBaseConstructorCall" ) ]
     [ SuppressMessage( "ReSharper", "UnusedType.Global" ) ]
+    [ SuppressMessage( "ReSharper", "PreferConcreteValueOverDefault" ) ]
     public class BabySearch : WebSearch
     {
         /// <summary>
@@ -83,8 +85,8 @@ namespace Bubba
         public BabySearch( )
             : base( )
         {
-            _key = ConfigurationManager.AppSettings[ "ApiKey" ];
-            _engineId = ConfigurationManager.AppSettings[ "SearchEngineId" ];
+            _key = Environment.GetEnvironmentVariable( "GOOGLE_API_KEY" );
+            _engineId = SearchEngine.ID;
         }
 
         /// <inheritdoc />
@@ -152,10 +154,10 @@ namespace Bubba
                         {
                             var _snippet = _list[ _i ].Snippet ?? string.Empty;
                             var _lines = _list[ _i ].Link ?? string.Empty;
-                            var Titles = _list[ _i ].Title ?? string.Empty;
+                            var _titles = _list[ _i ].Title ?? string.Empty;
                             var _htmlTitle = _list[ _i ].HtmlTitle ?? string.Empty;
                             var _searchResults = new SearchResult( _snippet, _lines,
-                                Titles, _htmlTitle );
+                                _titles, _htmlTitle );
 
                             _results.Add( _searchResults );
                         }
@@ -210,10 +212,10 @@ namespace Bubba
                         {
                             var _snippet = _list[ _i ].Snippet ?? string.Empty;
                             var _line = _list[ _i ].Link ?? string.Empty;
-                            var Titles = _list[ _i ].Title ?? string.Empty;
+                            var _titles = _list[ _i ].Title ?? string.Empty;
                             var _htmlTitle = _list[ _i ].HtmlTitle ?? string.Empty;
                             var _searchResults =
-                                new SearchResult( _snippet, _line, Titles, _htmlTitle );
+                                new SearchResult( _snippet, _line, _titles, _htmlTitle );
 
                             _results.Add( _searchResults );
                         }

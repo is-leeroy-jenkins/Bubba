@@ -11,7 +11,9 @@
 
     <!--  *********************************************** ComboBox *****************************************************  -->
 
-    <Style x:Key="ComboBoxStyle" TargetType="{x:Type ComboBox}">
+    <Style
+        x:Key="ComboBoxStyle"
+        TargetType="{x:Type ComboBox}">
         <Setter Property="Background" Value="{StaticResource ControlInteriorBrush}" />
         <Setter Property="BorderBrush" Value="{StaticResource BlueBorderBrush}" />
         <Setter Property="Foreground" Value="{StaticResource FormForeground}" />
@@ -68,7 +70,9 @@
 
     <!--  *********************************************** ComboBoxItem *****************************************************  -->
 
-    <Style x:Key="ComboBoxItemStyle" TargetType="{x:Type ComboBoxItem}">
+    <Style
+        x:Key="ComboBoxItemStyle"
+        TargetType="{x:Type ComboBoxItem}">
         <Setter Property="Background" Value="{StaticResource ControlInteriorBrush}" />
         <Setter Property="BorderBrush" Value="{StaticResource ControlInteriorBrush}" />
         <Setter Property="Foreground" Value="{StaticResource FormForeground}" />
@@ -127,7 +131,9 @@
 
     <!--  *********************************************** ComboBox *****************************************************  -->
 
-    <Style x:Key="MetroComboBoxStyle" TargetType="{x:Type b:MetroComboBox}">
+    <Style
+        x:Key="MetroComboBoxStyle"
+        TargetType="{x:Type b:MetroComboBox}">
         <Setter Property="Background" Value="{StaticResource ControlInteriorBrush}" />
         <Setter Property="BorderBrush" Value="{StaticResource BlueBorderBrush}" />
         <Setter Property="Foreground" Value="{StaticResource LightBlueBrush}" />
@@ -158,7 +164,9 @@
 
     <!--  *********************************************** ComboBoxItem *****************************************************  -->
 
-    <Style x:Key="MetroComboBoxItemStyle" TargetType="{x:Type b:MetroComboBoxItem}">
+    <Style
+        x:Key="MetroComboBoxItemStyle"
+        TargetType="{x:Type b:MetroComboBoxItem}">
         <Setter Property="Background" Value="{StaticResource ControlInteriorBrush}" />
         <Setter Property="BorderBrush" Value="{StaticResource ControlInteriorBrush}" />
         <Setter Property="Foreground" Value="{StaticResource LightBlueBrush}" />

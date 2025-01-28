@@ -107,6 +107,21 @@ namespace Bubba
         /// </summary>
         private string _currentTitle;
 
+        private string _searchEngineId;
+
+        private string _searchEngineProjectId;
+
+        private string _searchEngineName;
+
+        private string _searchEngineProjectNumber;
+
+        private string _searchEngineKey;
+
+        /// <summary>
+        /// The search engine URL
+        /// </summary>
+        private protected string _searchEngineUrl;
+
         /// <summary>
         /// The path
         /// </summary>
@@ -141,11 +156,6 @@ namespace Bubba
         /// The application path
         /// </summary>
         private string _path = Path.GetDirectoryName( Application.ExecutablePath ) + @"\";
-
-        /// <summary>
-        /// The search engine URL
-        /// </summary>
-        private protected string _searchEngineUrl;
 
         /// <summary>
         /// The search open
@@ -266,7 +276,6 @@ namespace Bubba
         {
             // Theme Properties
             SfSkinManager.SetTheme(this, new Theme("FluentDark", App.Controls) );
-            Instance = this;
 
             // Window Properties
             InitializeComponent( );
@@ -424,6 +433,24 @@ namespace Bubba
         }
 
         /// <summary>
+        /// Gets the search engine URL.
+        /// </summary>
+        /// <value>
+        /// The search engine URL.
+        /// </value>
+        public string SearchEngineUrl
+        {
+            get
+            {
+                return _searchEngineUrl;
+            }
+            set
+            {
+                _searchEngineUrl = value;
+            }
+        }
+
+        /// <summary>
         /// Adds the blank window.
         /// </summary>
         public void AddBlankWindow( )
@@ -550,7 +577,6 @@ namespace Bubba
         private void InitializeBrowser( )
         {
             ConfigureBrowser( Browser );
-            _currentTab = BrowserTab;
             _currentBrowser = Browser;
             _searchEngineUrl = Browser.Address;
             var _bool = bool.Parse( Locations.Proxy );
@@ -588,6 +614,8 @@ namespace Bubba
         {
             try
             {
+                TabControl.SelectedItem = BrowserTab;
+                Browser.Address = Locations.Google;
             }
             catch( Exception ex )
             {
@@ -855,8 +883,6 @@ namespace Bubba
                 ToolStripMenuButton.Click += OnToggleButtonClick;
                 ToolStripToolButton.Click += OnDeveloperToolsButtonClick;
                 SearchPanelCancelButton.MouseLeftButtonDown += OnCloseButtonClick;
-                UrlTextBox.GotMouseCapture += OnUrlTextBoxClick;
-                ToolStripTextBox.GotMouseCapture += OnToolStripTextBoxClick;
                 ToolStripChatButton.Click += OnChatButtonClick;
                 SearchPanelHomeButton.Click += OnSearchPanelHomeButtonClick;
             }
@@ -896,8 +922,8 @@ namespace Bubba
         {
             get
             {
-                return TabControl.SelectedItem?.Tag != null
-                    ? TabControl.SelectedItem
+                return TabControl.SelectedItem != null
+                    ? TabControl.SelectedItem as BrowserTabItem
                     : default( BrowserTabItem );
             }
             set
@@ -916,9 +942,7 @@ namespace Bubba
         {
             get
             {
-                return TabControl.SelectedItem != null && TabControl.SelectedItem != null
-                    ? TabControl.SelectedItem.Browser
-                    : default( ChromiumWebBrowser );
+                return _currentBrowser;
             }
             set
             {
@@ -1192,44 +1216,6 @@ namespace Bubba
         }
 
         /// <summary>
-        /// Gets all tabs.
-        /// </summary>
-        /// <returns></returns>
-        public List<BrowserTabItem> GetTabs( )
-        {
-            var _tabs = new List<BrowserTabItem>( );
-            foreach( BrowserTabItem _tabPage in TabControl.Items )
-            {
-                if( _tabPage.Tag != null )
-                {
-                    _tabs.Add( ( BrowserTabItem )_tabPage.Tag );
-                }
-            }
-
-            return _tabs;
-        }
-
-        /// <summary>
-        /// Gets the tab by browser.
-        /// </summary>
-        /// <param name="browser">The browser.</param>
-        /// <returns></returns>
-        public BrowserTabItem GetTabByBrowser( IWebBrowser browser )
-        {
-            foreach( BrowserTabItem _item in TabControl.Items )
-            {
-                var _tab = ( BrowserTabItem )_item.Tag;
-                if( _tab != null
-                    && _tab.Browser == browser )
-                {
-                    return _tab;
-                }
-            }
-
-            return null;
-        }
-
-        /// <summary>
         /// Gets the application directory.
         /// </summary>
         /// <param name="name">The name.</param>
@@ -1433,30 +1419,6 @@ namespace Bubba
             {
                 var _next = TabControl.SelectedIndex - 1;
                 TabControl.SelectedItem = TabControl.Items[ _next ];
-            }
-        }
-
-        /// <summary>
-        /// Sets the tool strip properties.
-        /// </summary>
-        private void PopulateDomainDropDowns( )
-        {
-            try
-            {
-                ToolStripComboBox.Items?.Clear( );
-                var _domains = Enum.GetNames( typeof( Domains ) );
-                for( var _i = 0; _i < _domains.Length; _i++ )
-                {
-                    var _dom = _domains[ _i ];
-                    if( !string.IsNullOrEmpty( _dom ) )
-                    {
-                        ToolStripComboBox.Items.Add( _dom );
-                    }
-                }
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
             }
         }
 
@@ -1827,24 +1789,6 @@ namespace Bubba
         }
 
         /// <summary>
-        /// Gets the search engine URL.
-        /// </summary>
-        /// <value>
-        /// The search engine URL.
-        /// </value>
-        public string SearchEngineUrl
-        {
-            get
-            {
-                return _searchEngineUrl;
-            }
-            set
-            {
-                _searchEngineUrl = value;
-            }
-        }
-
-        /// <summary>
         /// Called by LoadURL to set the form URL.
         /// </summary>
         /// <param name="url">The URL.</param>
@@ -1920,7 +1864,6 @@ namespace Bubba
                 ToolStripNextButton.Visibility = Visibility.Visible;
                 ToolStripLastButton.Visibility = Visibility.Visible;
                 ToolStripTextBox.Visibility = Visibility.Visible;
-                ToolStripComboBox.Visibility = Visibility.Visible;
                 ToolStripLookupButton.Visibility = Visibility.Visible;
                 ToolStripRefreshButton.Visibility = Visibility.Visible;
                 ToolStripCancelButton.Visibility = Visibility.Visible;
@@ -1945,7 +1888,6 @@ namespace Bubba
                 ToolStripNextButton.Visibility = Visibility.Hidden;
                 ToolStripLastButton.Visibility = Visibility.Hidden;
                 ToolStripTextBox.Visibility = Visibility.Hidden;
-                ToolStripComboBox.Visibility = Visibility.Hidden;
                 ToolStripLookupButton.Visibility = Visibility.Hidden;
                 ToolStripRefreshButton.Visibility = Visibility.Hidden;
                 ToolStripCancelButton.Visibility = Visibility.Hidden;
@@ -2065,6 +2007,7 @@ namespace Bubba
                 InitializeButtons( );
                 InitializeTitle( );
                 InitializeToolStrip( );
+                InitializeTabControl( );
             }
             catch( Exception ex )
             {
@@ -2097,7 +2040,7 @@ namespace Bubba
                 if( sender == _currentBrowser
                     && e.Property.Name.Equals( "Address" ) )
                 {
-                    if( !NetManager.IsFocused( UrlTextBox ) )
+                    if( !NetUtility.IsFocused( UrlTextBox ) )
                     {
                         var _url = e.NewValue.ToString( );
                         SetUrl( _url );
@@ -2257,7 +2200,7 @@ namespace Bubba
 
             if( e.ChangeType == ChangeType.SelectionChanged )
             {
-                if( TabControl.SelectedItem.Browser == _currentBrowser )
+                if( TabControl.SelectedItem == _currentBrowser )
                 {
                     AddBlankTab( );
                 }
@@ -2601,8 +2544,7 @@ namespace Bubba
             try
             {
                 var _keywords = ToolStripTextBox.Text;
-                if( !string.IsNullOrEmpty( _keywords )
-                    && ToolStripComboBox.SelectedIndex > -1 )
+                if( !string.IsNullOrEmpty( _keywords ) )
                 {
                     var _search = SearchEngineUrl + _keywords;
                     _currentBrowser.Load( _search );
@@ -2650,7 +2592,6 @@ namespace Bubba
             {
                 OpenFireFoxBrowser( _args );
                 ToolStripTextBox.Clear( );
-                ToolStripComboBox.SelectedIndex = -1;
             }
             else
             {
@@ -2672,7 +2613,6 @@ namespace Bubba
             {
                 OpenEdgeBrowser( _args );
                 ToolStripTextBox.Clear( );
-                ToolStripComboBox.SelectedIndex = -1;
             }
             else
             {
@@ -2694,7 +2634,6 @@ namespace Bubba
             {
                 OpenChromeBrowser( _args );
                 ToolStripTextBox.Clear( );
-                ToolStripComboBox.SelectedIndex = -1;
             }
             else
             {

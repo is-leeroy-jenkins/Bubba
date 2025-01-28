@@ -104,7 +104,7 @@ namespace Bubba
         public static void AddHotKey( Window form, Action function, Keys key,
             bool ctrl = false, bool shift = false, bool alt = false )
         {
-            NetManager.AddHotKey( form, function, ctrl,
+            NetUtility.AddHotKey( form, function, ctrl,
                 shift, alt );
 
             Hotkeys.Add( new BrowserHotKey( function, key, ctrl, shift,

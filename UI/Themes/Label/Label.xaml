@@ -12,7 +12,9 @@
     <!--  ******************************************** LabelStyle *****************************************************  -->
 
 
-    <Style x:Key="LabelStyle" TargetType="{x:Type Label}">
+    <Style
+        x:Key="LabelStyle"
+        TargetType="{x:Type Label}">
         <Setter Property="Background" Value="{StaticResource TransparentBrush}" />
         <Setter Property="BorderBrush" Value="{StaticResource TransparentBrush}" />
         <Setter Property="Foreground" Value="{StaticResource LightBlueBrush}" />
@@ -52,7 +54,9 @@
     <!--  ******************************************** MetroLabelStyle *****************************************************  -->
 
 
-    <Style x:Key="MetroLabelStyle" TargetType="{x:Type b:MetroLabel}">
+    <Style
+        x:Key="MetroLabelStyle"
+        TargetType="{x:Type b:MetroLabel}">
         <Setter Property="Background" Value="{StaticResource TransparentBrush}" />
         <Setter Property="BorderBrush" Value="{StaticResource TransparentBrush}" />
         <Setter Property="Foreground" Value="{StaticResource LightBlueBrush}" />

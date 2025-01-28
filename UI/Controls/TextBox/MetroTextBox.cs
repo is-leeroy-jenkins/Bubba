@@ -1,4 +1,45 @@
-﻿namespace Bubba
+﻿// ******************************************************************************************
+//     Assembly:                Bubba
+//     Author:                  Terry D. Eppler
+//     Created:                 01-26-2025
+// 
+//     Last Modified By:        Terry D. Eppler
+//     Last Modified On:        01-26-2025
+// ******************************************************************************************
+// <copyright file="MetroTextBox.cs" company="Terry D. Eppler">
+//    Bubba is a small and simple windows (wpf) application for interacting with the OpenAI API
+//    that's developed in C-Sharp under the MIT license.C#.
+// 
+//    Copyright ©  2020-2024 Terry D. Eppler
+// 
+//    Permission is hereby granted, free of charge, to any person obtaining a copy
+//    of this software and associated documentation files (the “Software”),
+//    to deal in the Software without restriction,
+//    including without limitation the rights to use,
+//    copy, modify, merge, publish, distribute, sublicense,
+//    and/or sell copies of the Software,
+//    and to permit persons to whom the Software is furnished to do so,
+//    subject to the following conditions:
+// 
+//    The above copyright notice and this permission notice shall be included in all
+//    copies or substantial portions of the Software.
+// 
+//    THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,
+//    INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+//    FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT.
+//    IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
+//    DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,
+//    ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
+//    DEALINGS IN THE SOFTWARE.
+// 
+//    You can contact me at:  terryeppler@gmail.com or eppler.terry@epa.gov
+// </copyright>
+// <summary>
+//   MetroTextBox.cs
+// </summary>
+// ******************************************************************************************
+
+namespace Bubba
 {
     using System;
     using System.Diagnostics.CodeAnalysis;
@@ -10,7 +51,7 @@
     /// <summary>
     /// </summary>
     /// <seealso cref="T:Syncfusion.Windows.Controls.Input.SfTextBoxExt" />
-    [SuppressMessage( "ReSharper", "UnusedType.Global" ) ]
+    [ SuppressMessage( "ReSharper", "UnusedType.Global" ) ]
     [ SuppressMessage( "ReSharper", "FieldCanBeMadeReadOnly.Local" ) ]
     [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
     [ SuppressMessage( "ReSharper", "InconsistentNaming" ) ]
@@ -32,7 +73,7 @@
         /// <summary>
         /// The temporary text
         /// </summary>
-        private protected string TempText;
+        private protected string _tempText;
 
         /// <inheritdoc />
         /// <summary>
@@ -53,7 +94,7 @@
             BorderBrush = _theme.BorderBrush;
             SelectionBrush = _theme.SteelBlueBrush;
             _inputText = "";
-            TempText = "";
+            _tempText = "";
 
             // Event Wiring
             MouseEnter += OnMouseEnter;
@@ -86,17 +127,17 @@
         /// <param name="sender">The sender.</param>
         /// <param name="e">The <see cref="RoutedEventArgs"/>
         /// instance containing the event data.</param>
-        private protected void OnMouseEnter(object sender, RoutedEventArgs e )
+        private protected void OnMouseEnter( object sender, RoutedEventArgs e )
         {
             try
             {
-                Background = _theme.DarkBlueBrush;
-                BorderBrush = _theme.LightBlueBrush;
+                Background = _theme.ControlInterior;
+                BorderBrush = _theme.BorderBrush;
                 Foreground = _theme.WhiteForeground;
             }
             catch( Exception ex )
             {
-                Fail(ex);
+                Fail( ex );
             }
         }
 
@@ -111,10 +152,10 @@
             try
             {
                 Background = _theme.ControlInterior;
-                BorderBrush = _theme.SteelBlueBrush;
-                Foreground = _theme.LightBlueBrush;
+                BorderBrush = _theme.BorderBrush;
+                Foreground = _theme.WhiteForeground;
             }
-            catch(Exception ex )
+            catch( Exception ex )
             {
                 Fail( ex );
             }
@@ -131,15 +172,15 @@
         {
             try
             {
-                if( !string.IsNullOrEmpty( Text ) 
-                    && Text != "" )
+                if( sender is MetroTextBox _textBox
+                    && !string.IsNullOrEmpty( _textBox.Text ) )
                 {
-                    TempText = Text;
+                    _tempText = _textBox.Text;
                 }
             }
-            catch(Exception ex)
+            catch( Exception ex )
             {
-                Fail(ex);
+                Fail( ex );
             }
         }
 
@@ -149,19 +190,20 @@
         /// <param name="sender">The sender.</param>
         /// <param name="e">The <see cref="System.Windows.RoutedEventArgs" />
         /// instance containing the event data.</param>
-        private protected void OnFocusLost(object sender, RoutedEventArgs e)
+        private protected void OnFocusLost( object sender, RoutedEventArgs e )
         {
             try
             {
-                if(!string.IsNullOrEmpty(TempText) 
-                    && TempText != _inputText ) 
+                if( !string.IsNullOrEmpty( _tempText )
+                    && !string.IsNullOrEmpty( _inputText )
+                    && _tempText != _inputText )
                 {
-                    TempText = _inputText;
+                    _tempText = _inputText;
                 }
             }
-            catch(Exception ex)
+            catch( Exception ex )
             {
-                Fail(ex);
+                Fail( ex );
             }
         }
 

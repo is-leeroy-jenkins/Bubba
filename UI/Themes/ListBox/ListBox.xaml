@@ -6,7 +6,9 @@
 
     <!--  *********************************************** MetroListBox *****************************************************  -->
 
-    <Style x:Key="MetroListBoxStyle" TargetType="{x:Type ListBox}">
+    <Style
+        x:Key="MetroListBoxStyle"
+        TargetType="{x:Type ListBox}">
 
         <Setter Property="Background" Value="{StaticResource ControlInteriorBrush}" />
         <Setter Property="BorderBrush" Value="{StaticResource BlueBorderBrush}" />
@@ -24,7 +26,9 @@
 
     <!--  *********************************************** MetroListBoxItem *****************************************************  -->
 
-    <Style x:Key="MetroListBoxItemStyle" TargetType="{x:Type ListBoxItem}">
+    <Style
+        x:Key="MetroListBoxItemStyle"
+        TargetType="{x:Type ListBoxItem}">
 
         <Setter Property="Background" Value="{StaticResource ControlInteriorBrush}" />
         <Setter Property="BorderBrush" Value="{StaticResource ControlInteriorBrush}" />

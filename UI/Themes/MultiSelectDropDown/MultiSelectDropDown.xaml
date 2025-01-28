@@ -10,7 +10,9 @@
 
     <!--  *********************************************** METRO DROP DOWN *****************************************************  -->
 
-    <Style x:Key="MetroDropDownStyle" TargetType="{x:Type b:MulitSelectDropDown}">
+    <Style
+        x:Key="MetroDropDownStyle"
+        TargetType="{x:Type b:MulitSelectDropDown}">
         <Setter Property="Background" Value="{StaticResource ControlInteriorBrush}" />
         <Setter Property="BorderBrush" Value="{StaticResource BlueBorderBrush}" />
         <Setter Property="Foreground" Value="{StaticResource FormForeground}" />
@@ -25,7 +27,9 @@
     <!--  *********************************************** DropDownItem *****************************************************  -->
 
 
-    <Style x:Key="MetroDropDownItemStyle" TargetType="{x:Type b:MetroDropDownItem}">
+    <Style
+        x:Key="MetroDropDownItemStyle"
+        TargetType="{x:Type b:MetroDropDownItem}">
         <Setter Property="Foreground" Value="{StaticResource LightBlueBrush}" />
         <Setter Property="Height" Value="40" />
         <Setter Property="BorderThickness" Value="1" />

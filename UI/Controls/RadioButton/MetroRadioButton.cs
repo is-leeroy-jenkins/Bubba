@@ -81,6 +81,7 @@ namespace Bubba
             BorderThickness = _theme.BorderThickness;
             Background = _theme.DarkBlueBrush;
             BorderBrush = _theme.TransparentBrush;
+            Foreground = _theme.LightBlueBrush;
             HorizontalAlignment = HorizontalAlignment.Stretch;
             VerticalAlignment = VerticalAlignment.Stretch;
 

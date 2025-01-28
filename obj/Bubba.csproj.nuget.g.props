@@ -38,6 +38,7 @@
     <PkgSyncfusion_Grid_WPF Condition=" '$(PkgSyncfusion_Grid_WPF)' == '' ">C:\Users\terry\.nuget\packages\syncfusion.grid.wpf\24.1.41</PkgSyncfusion_Grid_WPF>
     <PkgSyncfusion_PivotTable_Wpf Condition=" '$(PkgSyncfusion_PivotTable_Wpf)' == '' ">C:\Users\terry\.nuget\packages\syncfusion.pivottable.wpf\24.1.41</PkgSyncfusion_PivotTable_Wpf>
     <PkgSyncfusion_Edit_WPF Condition=" '$(PkgSyncfusion_Edit_WPF)' == '' ">C:\Users\terry\.nuget\packages\syncfusion.edit.wpf\24.1.41</PkgSyncfusion_Edit_WPF>
+    <PkgMicrosoft_SqlServer_Compact Condition=" '$(PkgMicrosoft_SqlServer_Compact)' == '' ">C:\Users\terry\.nuget\packages\microsoft.sqlserver.compact\4.0.8854.1</PkgMicrosoft_SqlServer_Compact>
     <PkgMicrosoft_Xaml_Behaviors_Wpf Condition=" '$(PkgMicrosoft_Xaml_Behaviors_Wpf)' == '' ">C:\Users\terry\.nuget\packages\microsoft.xaml.behaviors.wpf\1.1.19</PkgMicrosoft_Xaml_Behaviors_Wpf>
     <PkgMahApps_Metro Condition=" '$(PkgMahApps_Metro)' == '' ">C:\Users\terry\.nuget\packages\mahapps.metro\2.4.10</PkgMahApps_Metro>
   </PropertyGroup>

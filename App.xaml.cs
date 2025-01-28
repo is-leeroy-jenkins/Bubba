@@ -134,7 +134,6 @@ namespace Bubba
         /// </summary>
         public App( )
         {
-            InitializeCefSharp( );
             var _key = ConfigurationManager.AppSettings[ "UI" ];
             SyncfusionLicenseProvider.RegisterLicense( _key );
             OpenAiKey = Environment.GetEnvironmentVariable( "OPENAI_API_KEY" );
@@ -185,80 +184,6 @@ namespace Bubba
 
             SfSkinManager.RegisterThemeSettings( "FluentDark", _theme );
             SfSkinManager.ApplyStylesOnApplication = true;
-        }
-
-        /// <summary>
-        /// Initializes the delegates.
-        /// </summary>
-        private void InitializeDelegates( )
-        {
-            try
-            {
-                DispatcherUnhandledException += ( s, args ) => HandleException( args.Exception );
-                TaskScheduler.UnobservedTaskException += ( s, args ) =>
-                    HandleException( args.Exception?.InnerException );
-
-                AppDomain.CurrentDomain.UnhandledException += ( s, args ) =>
-                    HandleException( args.ExceptionObject as Exception );
-            }
-            catch( Exception e )
-            {
-                Fail( e );
-            }
-        }
-
-        /// <summary>
-        /// Initializes the interface.
-        /// </summary>
-        public void InitializeInterface( )
-        {
-            try
-            {
-                LoadSystemDialog( );
-                LoadWebBrowser( );
-                LoadFileBrowser( );
-                LoadGptFileDialog( );
-                LoadImageDialog( );
-                LoadSearchDialog( );
-                LoadCalculator( );
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
-            }
-        }
-
-        /// <summary>
-        /// this is done just once, to globally initialize CefSharp/CEF
-        /// </summary>
-        protected virtual void InitializeCefSharp( )
-        {
-            try
-            {
-                var _cefSettings = new CefSettings( );
-                _cefSettings.RegisterScheme( new CefCustomScheme
-                {
-                    SchemeName = Locations.Internal,
-                    SchemeHandlerFactory = new SchemaCallbackFactory( )
-                } );
-
-                _cefSettings.UserAgent = Locations.UserAgent;
-                _cefSettings.AcceptLanguageList = Locations.AcceptLanguage;
-                _cefSettings.IgnoreCertificateErrors = true;
-                _cefSettings.CachePath = GetApplicationDirectory( "Cache" );
-                if( bool.Parse( Locations.Proxy ) )
-                {
-                    CefSharpSettings.Proxy = new ProxyOptions( Locations.ProxyIP,
-                        Locations.ProxyPort, Locations.ProxyUsername, Locations.ProxyPassword,
-                        Locations.ProxyBypassList );
-                }
-
-                Cef.Initialize( _cefSettings );
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
-            }
         }
 
         /// <summary>
@@ -314,184 +239,6 @@ namespace Bubba
             }
         }
 
-        /// <summary>
-        /// Opens the GPT file dialog.
-        /// </summary>
-        public static void LoadGptFileDialog( )
-        {
-            try
-            {
-                var _gptFileDialog = new GptFileDialog
-                {
-                    Topmost = true,
-                    WindowStartupLocation = WindowStartupLocation.CenterScreen
-                };
-
-                ActiveWindows.Add( "GptFileDialog", _gptFileDialog );
-                _gptFileDialog.Hide( );
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
-            }
-        }
-
-        /// <summary>
-        /// Opens the folder browser.
-        /// </summary>
-        public static void LoadFolderBrowser( )
-        {
-            try
-            {
-                var _folderBrowser = new FolderBrowser( )
-                {
-                    Topmost = true,
-                    WindowStartupLocation = WindowStartupLocation.CenterScreen
-                };
-
-                ActiveWindows.Add( "FolderBrowser", _folderBrowser );
-                _folderBrowser.Hide( );
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
-            }
-        }
-
-        /// <summary>
-        /// Opens the file browser.
-        /// </summary>
-        public static void LoadFileBrowser( )
-        {
-            try
-            {
-                var _fileBrowser = new FileBrowser( )
-                {
-                    Topmost = true,
-                    WindowStartupLocation = WindowStartupLocation.CenterScreen
-                };
-
-                ActiveWindows.Add( "FileBrowser", _fileBrowser );
-                _fileBrowser.Hide( );
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
-            }
-        }
-
-        /// <summary>
-        /// Opens the search dialog.
-        /// </summary>
-        public static void LoadSearchDialog( )
-        {
-            try
-            {
-                var _searchDialog = new SearchDialog
-                {
-                    Topmost = true,
-                    WindowStartupLocation = WindowStartupLocation.CenterScreen
-                };
-
-                ActiveWindows.Add( "SearchDialog", _searchDialog );
-                _searchDialog.Hide( );
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
-            }
-        }
-
-        /// <summary>
-        /// Initializes the image dialog asynchronous.
-        /// </summary>
-        /// <returns></returns>
-        public static void LoadImageDialog( )
-        {
-            try
-            {
-                var _gptImageDialog = new GptImageDialog
-                {
-                    Topmost = true,
-                    WindowStartupLocation = WindowStartupLocation.CenterScreen
-                };
-
-                ActiveWindows.Add( "GptImageDialog", _gptImageDialog );
-                _gptImageDialog.Hide( );
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
-            }
-        }
-
-        /// <summary>
-        /// Opens the WebBrowser.
-        /// </summary>
-        public static void LoadWebBrowser( )
-        {
-            try
-            {
-                var _web = new WebBrowser( )
-                {
-                    Topmost = true,
-                    WindowStartupLocation = WindowStartupLocation.CenterScreen
-                };
-
-                ActiveWindows.Add( "WebBrowser", _web );
-                _web.Hide( );
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
-            }
-        }
-
-        /// <summary>
-        /// Opens the prompt dialog.
-        /// </summary>
-        public static void LoadSystemDialog( )
-        {
-            try
-            {
-                var _systemDialog = new SystemDialog( )
-                {
-                    Topmost = true,
-                    WindowStartupLocation = WindowStartupLocation.CenterScreen
-                };
-
-                _systemDialog.SystemDialogTextBox.Text = Instructions;
-                ActiveWindows.Add( "SystemDialog", _systemDialog );
-                _systemDialog.Hide( );
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
-            }
-        }
-
-        /// <summary>
-        /// Opens the calculator window.
-        /// </summary>
-        public static void LoadCalculator( )
-        {
-            try
-            {
-                var _calculator = new CalculatorWindow( )
-                {
-                    Topmost = true,
-                    WindowStartupLocation = WindowStartupLocation.CenterScreen
-                };
-
-                ActiveWindows.Add( "CalculatorWindow", _calculator );
-                _calculator.Hide( );
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
-            }
-        }
-
         /// <inheritdoc />
         /// <summary>
         /// Raises the
@@ -511,6 +258,26 @@ namespace Bubba
 
                 AppDomain.CurrentDomain.UnhandledException += ( s, args ) =>
                     HandleException( args.ExceptionObject as Exception );
+
+                var _cefSettings = new CefSettings();
+                _cefSettings.RegisterScheme(new CefCustomScheme
+                {
+                    SchemeName = Locations.Internal,
+                    SchemeHandlerFactory = new SchemaCallbackFactory()
+                });
+
+                _cefSettings.UserAgent = Locations.UserAgent;
+                _cefSettings.AcceptLanguageList = Locations.AcceptLanguage;
+                _cefSettings.IgnoreCertificateErrors = true;
+                _cefSettings.CachePath = GetApplicationDirectory("Cache");
+                if(bool.Parse(Locations.Proxy))
+                {
+                    CefSharpSettings.Proxy = new ProxyOptions(Locations.ProxyIP,
+                        Locations.ProxyPort, Locations.ProxyUsername, Locations.ProxyPassword,
+                        Locations.ProxyBypassList);
+                }
+
+                Cef.Initialize(_cefSettings);
             }
             catch( Exception ex )
             {

@@ -1,10 +1,10 @@
 ﻿// ******************************************************************************************
 //     Assembly:                Bubba
 //     Author:                  Terry D. Eppler
-//     Created:                 01-25-2025
+//     Created:                 01-27-2025
 // 
 //     Last Modified By:        Terry D. Eppler
-//     Last Modified On:        01-25-2025
+//     Last Modified On:        01-27-2025
 // ******************************************************************************************
 // <copyright file="ChatWindow.xaml.cs" company="Terry D. Eppler">
 //    Bubba is a small and simple windows (wpf) application for interacting with the OpenAI API
@@ -89,6 +89,7 @@ namespace Bubba
     [ SuppressMessage( "ReSharper", "PreferConcreteValueOverDefault" ) ]
     [ SuppressMessage( "ReSharper", "UnusedMethodReturnValue.Global" ) ]
     [ SuppressMessage( "ReSharper", "ConvertIfStatementToReturnStatement" ) ]
+    [ SuppressMessage( "ReSharper", "UseCollectionExpression" ) ]
     public partial class ChatWindow : Window, INotifyPropertyChanged
     {
         /// <summary>
@@ -102,19 +103,19 @@ namespace Bubba
         private protected object _entry = new object( );
 
         /// <summary>
-        /// The system prompt
+        /// The system prompt fro the GPT
         /// </summary>
         private string _systemPrompt;
 
         /// <summary>
-        /// The interface update
+        /// The user prompt for the GPT
         /// </summary>
-        private protected Action _window;
+        private string _prompt;
 
         /// <summary>
-        /// The user prompt
+        /// The key words for the custome search engine
         /// </summary>
-        private string _userPrompt;
+        private string _keyWords;
 
         /// <summary>
         /// The role
@@ -289,7 +290,6 @@ namespace Bubba
         {
             // Theme Properties
             SfSkinManager.SetTheme( this, new Theme( "FluentDark", App.Controls ) );
-            Opacity = 0;
 
             // Window Initialization
             InitializeComponent( );
@@ -301,181 +301,20 @@ namespace Bubba
             _store = false;
             _stream = true;
             TemperatureSlider.Value = 0.18;
-            _temperature = TemperatureSlider.Value;
             TopPercentSlider.Value = 0.11;
-            _topPercent = TopPercentSlider.Value;
             PresenceSlider.Value = 0.00;
-            _presence = PresenceSlider.Value;
             FrequencySlider.Value = 0.00;
-            _frequency = FrequencySlider.Value;
             MaxTokenSlider.Value = 2048;
-            _maximumTokens = (int)MaxTokenSlider.Value;
+            _temperature = TemperatureSlider.Value;
+            _topPercent = TopPercentSlider.Value;
+            _presence = PresenceSlider.Value;
+            _frequency = FrequencySlider.Value;
+            _maximumTokens = ( int )MaxTokenSlider.Value;
             _imageSizes = new List<string>( );
 
             // Event Wiring
             Loaded += OnLoad;
             Closing += OnClosing;
-        }
-
-        /// <summary>
-        /// Gets or sets a value indicating whether this
-        /// <see cref="Store"/> is store.
-        /// </summary>
-        /// <value>
-        ///   <c>true</c> if store; otherwise, <c>false</c>.
-        /// </value>
-        public bool Store
-        {
-            get
-            {
-                return _store;
-            }
-            set
-            {
-                if( _store != value )
-                {
-                    _store = value;
-                    OnPropertyChanged( nameof( Store ) );
-                }
-            }
-        }
-
-        /// <summary>
-        /// Gets or sets a value indicating whether this
-        /// <see cref="Stream"/> is stream.
-        /// </summary>
-        /// <value>
-        ///   <c>true</c> if stream; otherwise, <c>false</c>.
-        /// </value>
-        public bool Stream
-        {
-            get
-            {
-                return _stream;
-            }
-            set
-            {
-                if( _stream != value )
-                {
-                    _stream = value;
-                    OnPropertyChanged( nameof( Stream ) );
-                }
-            }
-        }
-
-        /// <summary>
-        /// An upper bound for the number of tokens
-        /// that can be generated for a completion
-        /// </summary>
-        /// <value>
-        /// The maximum tokens.
-        /// </value>
-        public int MaximumTokens
-        {
-            get
-            {
-                return _maximumTokens;
-            }
-            set
-            {
-                if( _maximumTokens != value )
-                {
-                    _maximumTokens = value;
-                    OnPropertyChanged( nameof( MaximumTokens ) );
-                }
-            }
-        }
-
-        /// <summary>
-        /// A number between 0 and 2.0
-        /// Higher values like 0.8 will make the output more random,
-        /// while lower values like 0.2 will make it more focused and deterministic.
-        /// Default=1
-        /// </summary>
-        public double Temperature
-        {
-            get
-            {
-                return _temperature;
-            }
-            set
-            {
-                if( _temperature != value )
-                {
-                    _temperature = value;
-                    OnPropertyChanged( nameof( Temperature ) );
-                }
-            }
-        }
-
-        /// <summary>
-        /// A number between -2.0 and 2.0. Positive values penalize new
-        /// tokens based on their existing frequency in the text so far,
-        /// decreasing the model's likelihood to repeat the same line verbatim.
-        /// </summary>
-        /// <value>
-        /// The frequency.
-        /// </value>
-        public double Frequency
-        {
-            get
-            {
-                return _frequency;
-            }
-            set
-            {
-                if( _frequency != value )
-                {
-                    _frequency = value;
-                    OnPropertyChanged( nameof( Frequency ) );
-                }
-            }
-        }
-
-        /// <summary>
-        /// Number between -2.0 and 2.0. Positive values penalize new tokens
-        /// based on whether they appear in the text so far,
-        /// ncreasing the model's likelihood to talk about new topics.
-        /// </summary>
-        /// <value>
-        /// The presence.
-        /// </value>
-        public double Presence
-        {
-            get
-            {
-                return _presence;
-            }
-            set
-            {
-                if( _presence != value )
-                {
-                    _presence = value;
-                    OnPropertyChanged( nameof( Presence ) );
-                }
-            }
-        }
-
-        /// <summary>
-        /// Gets or sets the endpoint.
-        /// </summary>
-        /// <value>
-        /// The endpoint.
-        /// </value>
-        public string Endpoint
-        {
-            get
-            {
-                return _endpoint;
-            }
-            set
-            {
-                if( _endpoint != value )
-                {
-                    _endpoint = value;
-                    OnPropertyChanged( nameof( EndPoint ) );
-                }
-            }
         }
 
         /// <summary>
@@ -583,7 +422,10 @@ namespace Bubba
         {
             try
             {
-                App.LoadWebBrowser( );
+                LoadWebBrowser( );
+                LoadFileBrowser( );
+                LoadGptFileDialog( );
+                LoadSystemDialog( );
             }
             catch( Exception ex )
             {
@@ -592,130 +434,82 @@ namespace Bubba
         }
 
         /// <summary>
-        /// Sets the end point.
+        /// Speeches to text.
         /// </summary>
-        private void SetGeneration( )
+        private void InitializeSpeechEngine( )
         {
             try
             {
-                switch( _requestType )
+                if( _engine != null )
                 {
-                    case GptRequestTypes.Assistants:
-                    {
-                        PopulateCompletionModels( );
-                        _endpoint = GptEndPoint.Assistants;
-                        HeaderLabel.Content = "GPT Assistant ...";
-                        TabControl.SelectedIndex = 1;
-                        break;
-                    }
-                    case GptRequestTypes.ChatCompletion:
-                    {
-                        PopulateCompletionModels( );
-                        _endpoint = GptEndPoint.Completions;
-                        HeaderLabel.Content = "GPT Completions...";
-                        TabControl.SelectedIndex = 1;
-                        break;
-                    }
-                    case GptRequestTypes.TextGeneration:
-                    {
-                        PopulateTextModels( );
-                        _endpoint = GptEndPoint.TextGeneration;
-                        HeaderLabel.Content = "Text Generations...";
-                        TabControl.SelectedIndex = 1;
-                        break;
-                    }
-                    case GptRequestTypes.ImageGeneration:
-                    {
-                        PopulateImageModels( );
-                        _endpoint = GptEndPoint.ImageGeneration;
-                        HeaderLabel.Content = "Image Generations...";
-                        TabControl.SelectedIndex = 1;
-                        break;
-                    }
-                    case GptRequestTypes.Translations:
-                    {
-                        PopulateTranslationModels( );
-                        PopulateOpenAiVoices( );
-                        HeaderLabel.Content = "Translations...";
-                        _endpoint = GptEndPoint.Translations;
-                        TabControl.SelectedIndex = 1;
-                        break;
-                    }
-                    case GptRequestTypes.Embeddings:
-                    {
-                        PopulateEmbeddingModels( );
-                        HeaderLabel.Content = "Vector Embeddings...";
-                        _endpoint = GptEndPoint.Embeddings;
-                        TabControl.SelectedIndex = 1;
-                        break;
-                    }
-                    case GptRequestTypes.Transcriptions:
-                    {
-                        PopulateTranscriptionModels( );
-                        PopulateOpenAiVoices( );
-                        HeaderLabel.Content = "Transcriptions (Speech To Text)...";
-                        _endpoint = GptEndPoint.Transcriptions;
-                        TabControl.SelectedIndex = 1;
-                        break;
-                    }
-                    case GptRequestTypes.VectorStores:
-                    {
-                        PopulateVectorStoreModels( );
-                        HeaderLabel.Content = "Vector Stores...";
-                        _endpoint = GptEndPoint.VectorStores;
-                        TabControl.SelectedIndex = 1;
-                        break;
-                    }
-                    case GptRequestTypes.SpeechGeneration:
-                    {
-                        PopulateSpeechModels( );
-                        PopulateOpenAiVoices( );
-                        HeaderLabel.Content = "Speech Generations (Text To Speech)...";
-                        _endpoint = GptEndPoint.SpeechGeneration;
-                        TabControl.SelectedIndex = 1;
-                        break;
-                    }
-                    case GptRequestTypes.FineTuning:
-                    {
-                        PopulateFineTuningModels( );
-                        HeaderLabel.Content = "Fine-Tunings...";
-                        _endpoint = GptEndPoint.FineTuning;
-                        TabControl.SelectedIndex = 1;
-                        break;
-                    }
-                    case GptRequestTypes.Files:
-                    {
-                        PopulateFileApiModels( );
-                        HeaderLabel.Content = "Files API...";
-                        _endpoint = GptEndPoint.Files;
-                        TabControl.SelectedIndex = 1;
-                        break;
-                    }
-                    case GptRequestTypes.Uploads:
-                    {
-                        PopulateUploadApiModels( );
-                        HeaderLabel.Content = "Uploads API...";
-                        _endpoint = GptEndPoint.Uploads;
-                        TabControl.SelectedIndex = 1;
-                        break;
-                    }
-                    case GptRequestTypes.Projects:
-                    {
-                        PopulateTextModels( );
-                        HeaderLabel.Content = "Projects API...";
-                        _endpoint = GptEndPoint.Projects;
-                        TabControl.SelectedIndex = 1;
-                        break;
-                    }
-                    default:
-                    {
-                        PopulateModelsAsync( );
-                        HeaderLabel.Content = "GPT Completion...";
-                        _endpoint = GptEndPoint.Completions;
-                        TabControl.SelectedIndex = 1;
-                        break;
-                    }
+                    _engine.RecognizeAsync( RecognizeMode.Multiple );
+                    return;
                 }
+
+                _engine = new SpeechRecognitionEngine( new CultureInfo( "en-US" ) );
+                _engine.LoadGrammar( new DictationGrammar( ) );
+                _engine.SpeechRecognized += OnSpeechRecognized;
+                _engine.SpeechHypothesized += OnSpeechHypothesized;
+                _engine.SetInputToDefaultAudioDevice( );
+                _engine.RecognizeAsync( RecognizeMode.Multiple );
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+            }
+        }
+
+        /// <summary>
+        /// Activates the editor tab.
+        /// </summary>
+        private protected void ActivateEditorTab( )
+        {
+            try
+            {
+                EditorTab.IsSelected = true;
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+            }
+        }
+
+        /// <summary>
+        /// Activates the chat tab.
+        /// </summary>
+        private protected void ActivateChatTab( )
+        {
+            try
+            {
+                ChatTab.IsSelected = true;
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+            }
+        }
+
+        /// <summary>
+        /// Activates the network tab.
+        /// </summary>
+        private protected void ActivateNetworkTab( )
+        {
+            try
+            {
+                NetworkTab.IsSelected = true;
+                SetNetworkGraph( );
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+            }
+        }
+
+        private protected void ActivateDataTab( )
+        {
+            try
+            {
+                //DataTab.IsSelected = true;
             }
             catch( Exception ex )
             {
@@ -1083,7 +877,7 @@ namespace Bubba
         {
             try
             {
-                ChatEditor.Text = _userPrompt;
+                ChatEditor.Text = _prompt;
                 ToolStripTextBox.Text = "";
             }
             catch( Exception ex )
@@ -1311,34 +1105,8 @@ namespace Bubba
         /// <summary>
         /// Speeches to text.
         /// </summary>
-        private void SpeechToText( )
-        {
-            try
-            {
-                if( _engine != null )
-                {
-                    _engine.RecognizeAsync( RecognizeMode.Multiple );
-                    return;
-                }
-
-                _engine = new SpeechRecognitionEngine( new CultureInfo( "en-US" ) );
-                _engine.LoadGrammar( new DictationGrammar( ) );
-                _engine.SpeechRecognized += OnSpeechRecognized;
-                _engine.SpeechHypothesized += OnSpeechHypothesized;
-                _engine.SetInputToDefaultAudioDevice( );
-                _engine.RecognizeAsync( RecognizeMode.Multiple );
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
-            }
-        }
-
-        /// <summary>
-        /// Speeches to text.
-        /// </summary>
         /// <param name="input">The input.</param>
-        public void SpeechToText( string input )
+        public void TextToSpeech( string input )
         {
             try
             {
@@ -1368,6 +1136,205 @@ namespace Bubba
         }
 
         /// <summary>
+        /// Sets the network graph.
+        /// </summary>
+        private protected void SetNetworkGraph( )
+        {
+            try
+            {
+                double[ ] _xs =
+                {
+                    1,
+                    2,
+                    3,
+                    4,
+                    5
+                };
+
+                double[ ] _ys =
+                {
+                    1,
+                    4,
+                    9,
+                    16,
+                    25
+                };
+
+                //Graph.Plot.Add.Scatter( _xs, _ys );
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+            }
+        }
+
+        /// <summary>
+        /// Sets the end point.
+        /// </summary>
+        private void SetRequestType( )
+        {
+            try
+            {
+                switch( _requestType )
+                {
+                    case GptRequestTypes.Assistants:
+                    {
+                        PopulateCompletionModels( );
+                        _endpoint = GptEndPoint.Assistants;
+                        HeaderLabel.Content = "GPT Assistant ...";
+                        TabControl.SelectedIndex = 1;
+                        break;
+                    }
+                    case GptRequestTypes.ChatCompletion:
+                    {
+                        PopulateCompletionModels( );
+                        _endpoint = GptEndPoint.Completions;
+                        HeaderLabel.Content = "GPT Completions...";
+                        TabControl.SelectedIndex = 1;
+                        break;
+                    }
+                    case GptRequestTypes.TextGeneration:
+                    {
+                        PopulateTextModels( );
+                        _endpoint = GptEndPoint.TextGeneration;
+                        HeaderLabel.Content = "Text Generations...";
+                        TabControl.SelectedIndex = 1;
+                        break;
+                    }
+                    case GptRequestTypes.ImageGeneration:
+                    {
+                        PopulateImageModels( );
+                        _endpoint = GptEndPoint.ImageGeneration;
+                        HeaderLabel.Content = "Image Generations...";
+                        TabControl.SelectedIndex = 1;
+                        break;
+                    }
+                    case GptRequestTypes.Translations:
+                    {
+                        PopulateTranslationModels( );
+                        PopulateOpenAiVoices( );
+                        HeaderLabel.Content = "Translations...";
+                        _endpoint = GptEndPoint.Translations;
+                        TabControl.SelectedIndex = 1;
+                        break;
+                    }
+                    case GptRequestTypes.Embeddings:
+                    {
+                        PopulateEmbeddingModels( );
+                        HeaderLabel.Content = "Vector Embeddings...";
+                        _endpoint = GptEndPoint.Embeddings;
+                        TabControl.SelectedIndex = 1;
+                        break;
+                    }
+                    case GptRequestTypes.Transcriptions:
+                    {
+                        PopulateTranscriptionModels( );
+                        PopulateOpenAiVoices( );
+                        HeaderLabel.Content = "Transcriptions (Speech To Text)...";
+                        _endpoint = GptEndPoint.Transcriptions;
+                        TabControl.SelectedIndex = 1;
+                        break;
+                    }
+                    case GptRequestTypes.VectorStores:
+                    {
+                        PopulateVectorStoreModels( );
+                        HeaderLabel.Content = "Vector Stores...";
+                        _endpoint = GptEndPoint.VectorStores;
+                        TabControl.SelectedIndex = 1;
+                        break;
+                    }
+                    case GptRequestTypes.SpeechGeneration:
+                    {
+                        PopulateSpeechModels( );
+                        PopulateOpenAiVoices( );
+                        HeaderLabel.Content = "Speech Generations (Text To Speech)...";
+                        _endpoint = GptEndPoint.SpeechGeneration;
+                        TabControl.SelectedIndex = 1;
+                        break;
+                    }
+                    case GptRequestTypes.FineTuning:
+                    {
+                        PopulateFineTuningModels( );
+                        HeaderLabel.Content = "Fine-Tunings...";
+                        _endpoint = GptEndPoint.FineTuning;
+                        TabControl.SelectedIndex = 1;
+                        break;
+                    }
+                    case GptRequestTypes.Files:
+                    {
+                        PopulateFileApiModels( );
+                        HeaderLabel.Content = "Files API...";
+                        _endpoint = GptEndPoint.Files;
+                        TabControl.SelectedIndex = 1;
+                        break;
+                    }
+                    case GptRequestTypes.Uploads:
+                    {
+                        PopulateUploadApiModels( );
+                        HeaderLabel.Content = "Uploads API...";
+                        _endpoint = GptEndPoint.Uploads;
+                        TabControl.SelectedIndex = 1;
+                        break;
+                    }
+                    case GptRequestTypes.Projects:
+                    {
+                        PopulateTextModels( );
+                        HeaderLabel.Content = "Projects API...";
+                        _endpoint = GptEndPoint.Projects;
+                        TabControl.SelectedIndex = 1;
+                        break;
+                    }
+                    default:
+                    {
+                        PopulateModelsAsync( );
+                        HeaderLabel.Content = "GPT Completion...";
+                        _endpoint = GptEndPoint.Completions;
+                        TabControl.SelectedIndex = 1;
+                        break;
+                    }
+                }
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+            }
+        }
+
+        /// <summary>
+        /// Sets the user mode.
+        /// </summary>
+        private protected void SetTabControl( )
+        {
+            try
+            {
+                if( EditorRadioButton.IsChecked == true )
+                {
+                    ActivateEditorTab( );
+                }
+                else if( ChatRadioButton.IsChecked == true )
+                {
+                    ActivateChatTab( );
+                }
+                else if( NetworkRadioButton.IsChecked == true )
+                {
+                    ActivateNetworkTab( );
+                }
+                else if( DataRadioButton.IsChecked == true )
+                {
+                    ActivateDataTab( );
+                }
+                else
+                {
+                    ActivateChatTab( );
+                }
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+            }
+        }
+
+        /// <summary>
         /// Sets the hyper parameters.
         /// </summary>
         private protected void SetGptParameters( )
@@ -1382,7 +1349,8 @@ namespace Bubba
                 _frequency = double.Parse( FrequencySlider.Value.ToString( "N2" ) );
                 _number = int.Parse( NumberTextBox.Text );
                 _maximumTokens = Convert.ToInt32( MaxTokenTextBox.Text );
-                _userPrompt = _language == "Text"
+                _model = ModelComboBox.SelectedItem.ToString( ) ?? "gpt-4o";
+                _prompt = _language == "Text"
                     ? ChatEditor.Text
                     : "";
             }
@@ -1611,6 +1579,185 @@ namespace Bubba
             }
 
             return _message;
+        }
+
+        /// <summary>
+        /// Opens the GPT file dialog.
+        /// </summary>
+        private protected void LoadGptFileDialog( )
+        {
+            try
+            {
+                var _gptFileDialog = new GptFileDialog
+                {
+                    Topmost = true,
+                    WindowStartupLocation = WindowStartupLocation.CenterScreen
+                };
+
+                App.ActiveWindows.Add( "GptFileDialog", _gptFileDialog );
+                _gptFileDialog.Hide( );
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+            }
+        }
+
+        /// <summary>
+        /// Opens the folder browser.
+        /// </summary>
+        private protected void LoadFolderBrowser( )
+        {
+            try
+            {
+                var _folderBrowser = new FolderBrowser( )
+                {
+                    Topmost = true,
+                    WindowStartupLocation = WindowStartupLocation.CenterScreen
+                };
+
+                App.ActiveWindows.Add( "FolderBrowser", _folderBrowser );
+                _folderBrowser.Hide( );
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+            }
+        }
+
+        /// <summary>
+        /// Opens the file browser.
+        /// </summary>
+        private protected void LoadFileBrowser( )
+        {
+            try
+            {
+                var _fileBrowser = new FileBrowser( )
+                {
+                    Topmost = true,
+                    WindowStartupLocation = WindowStartupLocation.CenterScreen
+                };
+
+                App.ActiveWindows.Add( "FileBrowser", _fileBrowser );
+                _fileBrowser.Hide( );
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+            }
+        }
+
+        /// <summary>
+        /// Opens the search dialog.
+        /// </summary>
+        private protected void LoadSearchDialog( )
+        {
+            try
+            {
+                var _searchDialog = new SearchDialog
+                {
+                    Topmost = true,
+                    WindowStartupLocation = WindowStartupLocation.CenterScreen
+                };
+
+                App.ActiveWindows.Add( "SearchDialog", _searchDialog );
+                _searchDialog.Hide( );
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+            }
+        }
+
+        /// <summary>
+        /// Initializes the image dialog asynchronous.
+        /// </summary>
+        /// <returns></returns>
+        private protected void LoadImageDialog( )
+        {
+            try
+            {
+                var _gptImageDialog = new GptImageDialog
+                {
+                    Topmost = true,
+                    WindowStartupLocation = WindowStartupLocation.CenterScreen
+                };
+
+                App.ActiveWindows.Add( "GptImageDialog", _gptImageDialog );
+                _gptImageDialog.Hide( );
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+            }
+        }
+
+        /// <summary>
+        /// Opens the WebBrowser.
+        /// </summary>
+        private protected void LoadWebBrowser( )
+        {
+            try
+            {
+                var _web = new WebBrowser( )
+                {
+                    Topmost = true,
+                    WindowStartupLocation = WindowStartupLocation.CenterScreen
+                };
+
+                App.ActiveWindows.Add( "WebBrowser", _web );
+                _web.Hide( );
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+            }
+        }
+
+        /// <summary>
+        /// Opens the prompt dialog.
+        /// </summary>
+        private protected void LoadSystemDialog( )
+        {
+            try
+            {
+                var _default = OpenAI.BubbaPrompt;
+                var _systemDialog = new SystemDialog( )
+                {
+                    Topmost = true,
+                    WindowStartupLocation = WindowStartupLocation.CenterScreen
+                };
+
+                _systemDialog.SystemDialogTextBox.Text = _default;
+                App.ActiveWindows.Add( "SystemDialog", _systemDialog );
+                _systemDialog.Hide( );
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+            }
+        }
+
+        /// <summary>
+        /// Opens the calculator window.
+        /// </summary>
+        private protected void LoadCalculator( )
+        {
+            try
+            {
+                var _calculator = new CalculatorWindow( )
+                {
+                    Topmost = true,
+                    WindowStartupLocation = WindowStartupLocation.CenterScreen
+                };
+
+                App.ActiveWindows.Add( "CalculatorWindow", _calculator );
+                _calculator.Hide( );
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+            }
         }
 
         /// <summary>
@@ -2234,11 +2381,12 @@ namespace Bubba
             {
                 LanguageListBox.Items?.Clear( );
                 LanguageListBox.Items.Add( "Text" );
-                LanguageListBox.Items.Add( "C#" );
                 LanguageListBox.Items.Add( "Python" );
                 LanguageListBox.Items.Add( "SQL" );
-                LanguageListBox.Items.Add( "C/C++" );
                 LanguageListBox.Items.Add( "JavaScript" );
+                LanguageListBox.Items.Add( "C" );
+                LanguageListBox.Items.Add( "C Plus" );
+                LanguageListBox.Items.Add( "C Sharp" );
                 LanguageListBox.Items.Add( "VBA" );
             }
             catch( Exception ex )
@@ -2428,7 +2576,6 @@ namespace Bubba
         {
             try
             {
-                Opacity = 0;
                 InitializeTimer( );
                 InitializeToolStrip( );
                 InitializeLabel( );
@@ -2445,7 +2592,6 @@ namespace Bubba
                 TabControl.SelectedIndex = 1;
                 App.ActiveWindows.Add( "ChatWindow", this );
                 InitializeInterface( );
-                Opacity = 1;
             }
             catch( Exception ex )
             {
@@ -2550,9 +2696,6 @@ namespace Bubba
             try
             {
                 _store = StoreCheckBox.IsChecked == true;
-                var _message = $"The '{nameof( _store )}' data member is {_store.ToString( )} ";
-                var _notifier = CreateNotifier( );
-                _notifier.ShowInformation( _message );
             }
             catch( Exception ex )
             {
@@ -2584,7 +2727,7 @@ namespace Bubba
         /// <param name="sender">The sender.</param>
         /// <param name="e">The <see cref="MouseEventArgs"/>
         /// instance containing the event data.</param>
-        private protected void OnUrlTextBoxClick( object sender, MouseEventArgs e )
+        private protected void OnMouseMove( object sender, MouseEventArgs e )
         {
             try
             {
@@ -2595,9 +2738,6 @@ namespace Bubba
                     Left = _psn.X - 100,
                     Top = _psn.Y + 50
                 };
-
-                _searchDialog.Show( );
-                _searchDialog.SearchPanelTextBox.Focus( );
             }
             catch( Exception ex )
             {
@@ -2640,7 +2780,6 @@ namespace Bubba
             {
                 _timer?.Dispose( );
                 _statusUpdate += null;
-                _window += null;
                 SfSkinManager.Dispose( this );
                 App.ActiveWindows.Clear( );
                 Environment.Exit( 0 );
@@ -2679,6 +2818,7 @@ namespace Bubba
         {
             try
             {
+                Busy( );
                 var _calculator = new CalculatorWindow
                 {
                     WindowStartupLocation = WindowStartupLocation.CenterScreen,
@@ -2686,6 +2826,7 @@ namespace Bubba
                     Topmost = true
                 };
 
+                Chill( );
                 _calculator.Show( );
             }
             catch( Exception ex )
@@ -2751,7 +2892,9 @@ namespace Bubba
         {
             try
             {
+                Busy( );
                 WinMinion.LaunchControlPanel( );
+                Chill( );
             }
             catch( Exception ex )
             {
@@ -2789,7 +2932,9 @@ namespace Bubba
         {
             try
             {
+                Busy( );
                 WinMinion.LaunchTaskManager( );
+                Chill( );
             }
             catch( Exception ex )
             {
@@ -2825,7 +2970,9 @@ namespace Bubba
         {
             try
             {
+                Busy( );
                 WebMinion.RunChrome( );
+                Chill( );
             }
             catch( Exception ex )
             {
@@ -2843,7 +2990,9 @@ namespace Bubba
         {
             try
             {
+                Busy( );
                 WebMinion.RunEdge( );
+                Chill( );
             }
             catch( Exception ex )
             {
@@ -2861,7 +3010,9 @@ namespace Bubba
         {
             try
             {
+                Busy( );
                 WebMinion.RunFirefox( );
+                Chill( );
             }
             catch( Exception ex )
             {
@@ -3152,7 +3303,7 @@ namespace Bubba
             {
                 HeaderLabel.Content = "";
                 HeaderLabel.Visibility = Visibility.Visible;
-                SpeechToText( );
+                InitializeSpeechEngine( );
             }
             else
             {
@@ -3244,7 +3395,7 @@ namespace Bubba
                     ChatEditor.AppendText( "Bubba GPT: "
                         + _answer.Replace( "\n", "\r\n" ).Trim( ) );
 
-                    SpeechToText( _answer );
+                    TextToSpeech( _answer );
                 }
                 catch( Exception ex )
                 {
@@ -3336,7 +3487,7 @@ namespace Bubba
                     _requestType =
                         ( GptRequestTypes )Enum.Parse( typeof( GptRequestTypes ), _request );
 
-                    SetGeneration( );
+                    SetRequestType( );
                 }
             }
             catch( Exception ex )
@@ -3426,7 +3577,20 @@ namespace Bubba
         {
             try
             {
-                SendMessage( ToolStripTextBox.Text );
+                var _item = "";
+                _keyWords = ToolStripTextBox.InputText;
+                if( !string.IsNullOrEmpty( _keyWords ) )
+                {
+                    Busy( );
+                    var _googleSearch = new GoogleSearch( _keyWords );
+                    var _results = _googleSearch.GetResults( );
+                    foreach( var _result in _results )
+                    {
+                        _item += _result;
+                    }
+
+                    ChatEditor.Text = _item;
+                }
             }
             catch( Exception ex )
             {

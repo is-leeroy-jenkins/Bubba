@@ -15,6 +15,7 @@
           "CefSharp.Wpf.NETCore": "131.3.50",
           "EPPlus": "7.5.3",
           "Google.Apis.CustomSearchAPI.v1": "1.68.0.3520",
+          "LinqStatistics": "3.0.1",
           "MahApps.Metro": "2.4.10",
           "Microsoft.ML": "4.0.1",
           "Microsoft.NETFramework.ReferenceAssemblies": "1.0.3",
@@ -28,9 +29,10 @@
           "PDFsharp": "6.1.1",
           "QRCoder": "1.6.0",
           "RestoreWindowPlace": "2.1.0",
-          "ScottPlot": "5.0.53",
-          "ScottPlot.WPF": "5.0.53",
+          "ScottPlot": "5.0.54",
+          "ScottPlot.WPF": "5.0.54",
           "SkiaSharp": "3.116.1",
+          "SqlServerCompact": "4.0.8854.1",
           "Syncfusion.Edit.WPF": "24.1.41",
           "Syncfusion.Grouping.Base": "24.1.41",
           "Syncfusion.Licensing": "24.1.41",
@@ -61,9 +63,7 @@
           "ToastNotifications.Net6": "1.0.4",
           "chromiumembeddedframework.runtime.win-arm64": "131.3.5",
           "chromiumembeddedframework.runtime.win-x64": "131.3.5",
-          "chromiumembeddedframework.runtime.win-x86": "131.3.5",
-          "LinqStatistics": "2.2.0.0",
-          "System.Data.SqlServerCe": "4.0.0.0"
+          "chromiumembeddedframework.runtime.win-x86": "131.3.5"
         },
         "runtime": {
           "Bubba.dll": {}
@@ -644,6 +644,14 @@
           }
         }
       },
+      "LinqStatistics/3.0.1": {
+        "runtime": {
+          "lib/net8.0/LinqStatistics.dll": {
+            "assemblyVersion": "3.0.1.0",
+            "fileVersion": "3.0.1.0"
+          }
+        }
+      },
       "MahApps.Metro/2.4.10": {
         "dependencies": {
           "ControlzEx": "4.4.0"
@@ -959,6 +967,18 @@
           "lib/netstandard2.0/Microsoft.Office.Interop.Outlook.dll": {
             "assemblyVersion": "15.0.0.0",
             "fileVersion": "15.0.4797.1003"
+          }
+        }
+      },
+      "Microsoft.SqlServer.Compact/4.0.8854.1": {
+        "runtime": {
+          "lib/net40/System.Data.SqlServerCe.Entity.dll": {
+            "assemblyVersion": "4.0.0.0",
+            "fileVersion": "4.0.8854.1"
+          },
+          "lib/net40/System.Data.SqlServerCe.dll": {
+            "assemblyVersion": "4.0.0.0",
+            "fileVersion": "4.0.8854.1"
           }
         }
       },
@@ -1712,7 +1732,7 @@
           }
         }
       },
-      "ScottPlot/5.0.53": {
+      "ScottPlot/5.0.54": {
         "dependencies": {
           "HarfBuzzSharp.NativeAssets.Linux": "7.3.0.3",
           "SkiaSharp": "3.116.1",
@@ -1721,22 +1741,22 @@
         },
         "runtime": {
           "lib/net8.0/ScottPlot.dll": {
-            "assemblyVersion": "5.0.53.0",
-            "fileVersion": "5.0.53.0"
+            "assemblyVersion": "5.0.54.0",
+            "fileVersion": "5.0.54.0"
           }
         }
       },
-      "ScottPlot.WPF/5.0.53": {
+      "ScottPlot.WPF/5.0.54": {
         "dependencies": {
           "OpenTK": "4.3.0",
           "OpenTK.GLWpfControl": "4.2.3",
-          "ScottPlot": "5.0.53",
+          "ScottPlot": "5.0.54",
           "SkiaSharp.Views.WPF": "2.88.9"
         },
         "runtime": {
           "lib/net6.0-windows7.0/ScottPlot.WPF.dll": {
-            "assemblyVersion": "5.0.53.0",
-            "fileVersion": "5.0.53.0"
+            "assemblyVersion": "5.0.54.0",
+            "fileVersion": "5.0.54.0"
           }
         }
       },
@@ -1841,6 +1861,11 @@
             "assemblyVersion": "2.88.0.0",
             "fileVersion": "2.88.9.0"
           }
+        }
+      },
+      "SqlServerCompact/4.0.8854.1": {
+        "dependencies": {
+          "Microsoft.SqlServer.Compact": "4.0.8854.1"
         }
       },
       "Stub.System.Data.SQLite.Core.NetStandard/1.0.119": {
@@ -2723,22 +2748,6 @@
             "fileVersion": "3.0.0.0"
           }
         }
-      },
-      "LinqStatistics/2.2.0.0": {
-        "runtime": {
-          "LinqStatistics.dll": {
-            "assemblyVersion": "2.2.0.0",
-            "fileVersion": "2.2.0.0"
-          }
-        }
-      },
-      "System.Data.SqlServerCe/4.0.0.0": {
-        "runtime": {
-          "System.Data.SqlServerCe.dll": {
-            "assemblyVersion": "4.0.0.0",
-            "fileVersion": "4.0.8482.1"
-          }
-        }
       }
     }
   },
@@ -2887,6 +2896,13 @@
       "sha512": "sha512-RPxRXD16KtSs8Yxr2RK9Qs7AwyN9MlpqZIYs0AvfaJwl7RAtVhC0+u2f2SKwX0uMYYd3O98Z+OBA1sj6aWVKQA==",
       "path": "harfbuzzsharp.nativeassets.win32/7.3.0.3",
       "hashPath": "harfbuzzsharp.nativeassets.win32.7.3.0.3.nupkg.sha512"
+    },
+    "LinqStatistics/3.0.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-7iyP8V9J+9bDmFWayX7iM8N+UJds17+T+hLSJZz3pCoMp9JB/XD6jAJk25b8SuOlIOVgwdL7Pqk1qXtKn1XRvA==",
+      "path": "linqstatistics/3.0.1",
+      "hashPath": "linqstatistics.3.0.1.nupkg.sha512"
     },
     "MahApps.Metro/2.4.10": {
       "type": "package",
@@ -3048,6 +3064,13 @@
       "sha512": "sha512-17tdFXg/TGnbmSC9YNkIrB6P3vTSemOMI/TaUaZWQmRE1dMjHIVmBPffQhXasH/te4weHiFk8EEXUCi/NsGbuA==",
       "path": "microsoft.office.interop.outlook/15.0.4797.1004",
       "hashPath": "microsoft.office.interop.outlook.15.0.4797.1004.nupkg.sha512"
+    },
+    "Microsoft.SqlServer.Compact/4.0.8854.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-Lv3xL4PFzgDAXq09GBtf6kf8K5eW/arPNBQCLnPWWdEIcZqe0i/OpMIAc/fC88SKnU3gHxK208MV7BtDXRkMTA==",
+      "path": "microsoft.sqlserver.compact/4.0.8854.1",
+      "hashPath": "microsoft.sqlserver.compact.4.0.8854.1.nupkg.sha512"
     },
     "Microsoft.Win32.Registry/4.7.0": {
       "type": "package",
@@ -3280,19 +3303,19 @@
       "path": "runtime.win-x86.runtime.native.system.data.sqlclient.sni/4.4.0",
       "hashPath": "runtime.win-x86.runtime.native.system.data.sqlclient.sni.4.4.0.nupkg.sha512"
     },
-    "ScottPlot/5.0.53": {
+    "ScottPlot/5.0.54": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-qTQzpD8Wa5njz/ZmF8hSadiKSM9tKdWxCq0Fnfcwt8Oik8e3RIiFeLSmcLa/TYVuPmIuPaCqm96RIWENvkvV4g==",
-      "path": "scottplot/5.0.53",
-      "hashPath": "scottplot.5.0.53.nupkg.sha512"
+      "sha512": "sha512-06ElMYTylidEA0AMVczsB/eXXazPpzd8oelhifNsKPxbeisjOmt2Y9etNTbPyDKeROBcRqnV/TCNuedBV3tsMA==",
+      "path": "scottplot/5.0.54",
+      "hashPath": "scottplot.5.0.54.nupkg.sha512"
     },
-    "ScottPlot.WPF/5.0.53": {
+    "ScottPlot.WPF/5.0.54": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-x0IItR7wmqWet7ZyRTjW0aZQdn2BZOXrtRUjS7SppHxULmU5/JzklZlcIBUD9bczZPgXtPZeE988ejljqIcWpQ==",
-      "path": "scottplot.wpf/5.0.53",
-      "hashPath": "scottplot.wpf.5.0.53.nupkg.sha512"
+      "sha512": "sha512-tAbSQ35nPoa17dyQO9pGpSdLgOz8WksRzRpAsGJMteDJqOXq32zga/4CqCtYA9a9xWqoGaNO3FK8KwUyrO8xhg==",
+      "path": "scottplot.wpf/5.0.54",
+      "hashPath": "scottplot.wpf.5.0.54.nupkg.sha512"
     },
     "SkiaSharp/3.116.1": {
       "type": "package",
@@ -3342,6 +3365,13 @@
       "sha512": "sha512-80fEK0dYEJpi36Ko9WylN2rCf4w/hzzHEe+nyEL79dTHvUVfuXLZONmIwrDJ+pL5JSi8YmktQVxbYZexS+NZCw==",
       "path": "skiasharp.views.wpf/2.88.9",
       "hashPath": "skiasharp.views.wpf.2.88.9.nupkg.sha512"
+    },
+    "SqlServerCompact/4.0.8854.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-l51DpZ78LAXO1yCeEQANlu+EvhAeFgeREwuzcTXk4HewCLgNxlZ2rA/SAOLmBL/XYCDNZvXNePV6rxGfBzNkQw==",
+      "path": "sqlservercompact/4.0.8854.1",
+      "hashPath": "sqlservercompact.4.0.8854.1.nupkg.sha512"
     },
     "Stub.System.Data.SQLite.Core.NetStandard/1.0.119": {
       "type": "package",
@@ -3741,16 +3771,6 @@
       "sha512": "sha512-MzzlXWirEPJwPeD8tMnRhcFKfgiq4CBS/jjGOMjUwMw5ooQvxDBM2AyPX8UuvHZjNhGpyw+rn1GNr2RKc96Rrw==",
       "path": "toastnotifications.net6/1.0.4",
       "hashPath": "toastnotifications.net6.1.0.4.nupkg.sha512"
-    },
-    "LinqStatistics/2.2.0.0": {
-      "type": "reference",
-      "serviceable": false,
-      "sha512": ""
-    },
-    "System.Data.SqlServerCe/4.0.0.0": {
-      "type": "reference",
-      "serviceable": false,
-      "sha512": ""
     }
   }
 }

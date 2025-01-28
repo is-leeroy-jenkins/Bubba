@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "35MQXaTZTjI=",
+  "dgSpecHash": "+tCxwTirzr0=",
   "success": true,
   "projectFilePath": "C:\\Users\\terry\\source\\repos\\Bubba\\Bubba.csproj",
   "expectedPackageFiles": [
@@ -24,6 +24,7 @@
     "C:\\Users\\terry\\.nuget\\packages\\harfbuzzsharp.nativeassets.linux\\7.3.0.3\\harfbuzzsharp.nativeassets.linux.7.3.0.3.nupkg.sha512",
     "C:\\Users\\terry\\.nuget\\packages\\harfbuzzsharp.nativeassets.macos\\7.3.0.3\\harfbuzzsharp.nativeassets.macos.7.3.0.3.nupkg.sha512",
     "C:\\Users\\terry\\.nuget\\packages\\harfbuzzsharp.nativeassets.win32\\7.3.0.3\\harfbuzzsharp.nativeassets.win32.7.3.0.3.nupkg.sha512",
+    "C:\\Users\\terry\\.nuget\\packages\\linqstatistics\\3.0.1\\linqstatistics.3.0.1.nupkg.sha512",
     "C:\\Users\\terry\\.nuget\\packages\\mahapps.metro\\2.4.10\\mahapps.metro.2.4.10.nupkg.sha512",
     "C:\\Users\\terry\\.nuget\\packages\\microsoft.extensions.configuration\\8.0.0\\microsoft.extensions.configuration.8.0.0.nupkg.sha512",
     "C:\\Users\\terry\\.nuget\\packages\\microsoft.extensions.configuration.abstractions\\8.0.0\\microsoft.extensions.configuration.abstractions.8.0.0.nupkg.sha512",
@@ -47,6 +48,7 @@
     "C:\\Users\\terry\\.nuget\\packages\\microsoft.netframework.referenceassemblies.net45\\1.0.3\\microsoft.netframework.referenceassemblies.net45.1.0.3.nupkg.sha512",
     "C:\\Users\\terry\\.nuget\\packages\\microsoft.netframework.referenceassemblies.net461\\1.0.3\\microsoft.netframework.referenceassemblies.net461.1.0.3.nupkg.sha512",
     "C:\\Users\\terry\\.nuget\\packages\\microsoft.office.interop.outlook\\15.0.4797.1004\\microsoft.office.interop.outlook.15.0.4797.1004.nupkg.sha512",
+    "C:\\Users\\terry\\.nuget\\packages\\microsoft.sqlserver.compact\\4.0.8854.1\\microsoft.sqlserver.compact.4.0.8854.1.nupkg.sha512",
     "C:\\Users\\terry\\.nuget\\packages\\microsoft.win32.registry\\4.7.0\\microsoft.win32.registry.4.7.0.nupkg.sha512",
     "C:\\Users\\terry\\.nuget\\packages\\microsoft.win32.systemevents\\8.0.0\\microsoft.win32.systemevents.8.0.0.nupkg.sha512",
     "C:\\Users\\terry\\.nuget\\packages\\microsoft.xaml.behaviors.wpf\\1.1.19\\microsoft.xaml.behaviors.wpf.1.1.19.nupkg.sha512",
@@ -80,8 +82,8 @@
     "C:\\Users\\terry\\.nuget\\packages\\runtime.win-arm64.runtime.native.system.data.sqlclient.sni\\4.4.0\\runtime.win-arm64.runtime.native.system.data.sqlclient.sni.4.4.0.nupkg.sha512",
     "C:\\Users\\terry\\.nuget\\packages\\runtime.win-x64.runtime.native.system.data.sqlclient.sni\\4.4.0\\runtime.win-x64.runtime.native.system.data.sqlclient.sni.4.4.0.nupkg.sha512",
     "C:\\Users\\terry\\.nuget\\packages\\runtime.win-x86.runtime.native.system.data.sqlclient.sni\\4.4.0\\runtime.win-x86.runtime.native.system.data.sqlclient.sni.4.4.0.nupkg.sha512",
-    "C:\\Users\\terry\\.nuget\\packages\\scottplot\\5.0.53\\scottplot.5.0.53.nupkg.sha512",
-    "C:\\Users\\terry\\.nuget\\packages\\scottplot.wpf\\5.0.53\\scottplot.wpf.5.0.53.nupkg.sha512",
+    "C:\\Users\\terry\\.nuget\\packages\\scottplot\\5.0.54\\scottplot.5.0.54.nupkg.sha512",
+    "C:\\Users\\terry\\.nuget\\packages\\scottplot.wpf\\5.0.54\\scottplot.wpf.5.0.54.nupkg.sha512",
     "C:\\Users\\terry\\.nuget\\packages\\skiasharp\\3.116.1\\skiasharp.3.116.1.nupkg.sha512",
     "C:\\Users\\terry\\.nuget\\packages\\skiasharp.harfbuzz\\2.88.9\\skiasharp.harfbuzz.2.88.9.nupkg.sha512",
     "C:\\Users\\terry\\.nuget\\packages\\skiasharp.nativeassets.linux.nodependencies\\2.88.9\\skiasharp.nativeassets.linux.nodependencies.2.88.9.nupkg.sha512",
@@ -89,6 +91,7 @@
     "C:\\Users\\terry\\.nuget\\packages\\skiasharp.nativeassets.win32\\3.116.1\\skiasharp.nativeassets.win32.3.116.1.nupkg.sha512",
     "C:\\Users\\terry\\.nuget\\packages\\skiasharp.views.desktop.common\\2.88.9\\skiasharp.views.desktop.common.2.88.9.nupkg.sha512",
     "C:\\Users\\terry\\.nuget\\packages\\skiasharp.views.wpf\\2.88.9\\skiasharp.views.wpf.2.88.9.nupkg.sha512",
+    "C:\\Users\\terry\\.nuget\\packages\\sqlservercompact\\4.0.8854.1\\sqlservercompact.4.0.8854.1.nupkg.sha512",
     "C:\\Users\\terry\\.nuget\\packages\\stub.system.data.sqlite.core.netstandard\\1.0.119\\stub.system.data.sqlite.core.netstandard.1.0.119.nupkg.sha512",
     "C:\\Users\\terry\\.nuget\\packages\\syncfusion.calculate.base\\24.1.41\\syncfusion.calculate.base.24.1.41.nupkg.sha512",
     "C:\\Users\\terry\\.nuget\\packages\\syncfusion.edit.wpf\\24.1.41\\syncfusion.edit.wpf.24.1.41.nupkg.sha512",
@@ -148,6 +151,16 @@
     "C:\\Users\\terry\\.nuget\\packages\\toastnotifications.net6\\1.0.4\\toastnotifications.net6.1.0.4.nupkg.sha512"
   ],
   "logs": [
+    {
+      "code": "NU1701",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Package 'Microsoft.SqlServer.Compact 4.0.8854.1' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1' instead of the project target framework 'net8.0-windows7.0'. This package may not be fully compatible with your project.",
+      "libraryId": "Microsoft.SqlServer.Compact",
+      "targetGraphs": [
+        "net8.0-windows7.0"
+      ]
+    },
     {
       "code": "NU1701",
       "level": "Warning",

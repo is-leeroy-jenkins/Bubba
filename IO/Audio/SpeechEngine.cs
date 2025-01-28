@@ -1,10 +1,10 @@
 ﻿// ******************************************************************************************
 //     Assembly:                Bubba
 //     Author:                  Terry D. Eppler
-//     Created:                 01-12-2025
+//     Created:                 01-27-2025
 // 
 //     Last Modified By:        Terry D. Eppler
-//     Last Modified On:        01-12-2025
+//     Last Modified On:        01-27-2025
 // ******************************************************************************************
 // <copyright file="SpeechEngine.cs" company="Terry D. Eppler">
 //    Bubba is a small and simple windows (wpf) application for interacting with the OpenAI API
@@ -85,7 +85,15 @@ namespace Bubba
         /// <param name="text">The text.</param>
         public void Speak( string text )
         {
-            _synthesizer.SpeakAsync( text );
+            try
+            {
+                ThrowIf.Empty( text, nameof( text ) );
+                _synthesizer.SpeakAsync( text );
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+            }
         }
 
         /// <summary>
@@ -96,47 +104,73 @@ namespace Bubba
         /// The specified file does not exist.</exception>
         public void SpeakFromFile( string filePath )
         {
-            if( !File.Exists( filePath ) )
+            try
             {
-                throw new FileNotFoundException( "The specified file does not exist." );
-            }
+                ThrowIf.Empty( filePath, nameof( filePath ) );
+                if( !File.Exists( filePath ) )
+                {
+                    throw new FileNotFoundException( "The specified file does not exist." );
+                }
 
-            var Text = File.ReadAllText( filePath );
-            _synthesizer.SpeakAsync( Text );
+                var _text = File.ReadAllText( filePath );
+                _synthesizer.SpeakAsync( _text );
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+            }
         }
 
         /// <summary>
         /// Saves to audio file.
         /// </summary>
         /// <param name="text">The text.</param>
-        /// <param name="outputPath">The output path.</param>
-        public void SaveToAudioFile( string text, string outputPath )
+        /// <param name="filePath">The output path.</param>
+        public void SaveToAudioFile( string text, string filePath )
         {
-            using( var _fileStream =
-                new FileStream( outputPath, FileMode.Create, FileAccess.Write ) )
+            try
             {
+                ThrowIf.Empty( text, nameof( text ) );
+                ThrowIf.Empty( filePath, nameof( filePath ) );
+                using var _fileStream =
+                    new FileStream( filePath, FileMode.Create, FileAccess.Write );
+
                 _synthesizer.SetOutputToWaveStream( _fileStream );
                 _synthesizer.Speak( text );
                 _synthesizer.SetOutputToDefaultAudioDevice( );
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
             }
         }
 
         /// <summary>
         /// Saves the file to audio.
         /// </summary>
-        /// <param name="inputFilePath">The input file path.</param>
+        /// <param name="inputPath">The input file path.</param>
         /// <param name="outputPath">The output path.</param>
         /// <exception cref="System.IO.FileNotFoundException">
         /// The specified input file does not exist.</exception>
-        public void SaveFileToAudio( string inputFilePath, string outputPath )
+        public void SaveFileToAudio( string inputPath, string outputPath )
         {
-            if( !File.Exists( inputFilePath ) )
+            try
             {
-                throw new FileNotFoundException( "The specified input file does not exist." );
-            }
+                ThrowIf.Empty( inputPath, nameof( inputPath ) );
+                ThrowIf.Empty( outputPath, nameof( outputPath ) );
+                if( !File.Exists( inputPath ) )
+                {
+                    var _message = "The specified input file does not exist.";
+                    throw new FileNotFoundException( _message );
+                }
 
-            var Text = File.ReadAllText( inputFilePath );
-            SaveToAudioFile( Text, outputPath );
+                var _text = File.ReadAllText( inputPath );
+                SaveToAudioFile( _text, outputPath );
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+            }
         }
 
         /// <summary>
@@ -144,7 +178,14 @@ namespace Bubba
         /// </summary>
         public void Pause( )
         {
-            _synthesizer.Pause( );
+            try
+            {
+                _synthesizer.Pause( );
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+            }
         }
 
         /// <summary>
@@ -152,7 +193,14 @@ namespace Bubba
         /// </summary>
         public void Resume( )
         {
-            _synthesizer.Resume( );
+            try
+            {
+                _synthesizer.Resume( );
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+            }
         }
 
         /// <summary>
@@ -161,7 +209,15 @@ namespace Bubba
         /// <param name="voiceName">Name of the voice.</param>
         public void SetVoice( string voiceName )
         {
-            _synthesizer.SelectVoice( voiceName );
+            try
+            {
+                ThrowIf.Empty( voiceName, nameof( voiceName ) );
+                _synthesizer.SelectVoice( voiceName );
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+            }
         }
 
         /// <summary>
@@ -170,7 +226,15 @@ namespace Bubba
         /// <param name="volume">The volume.</param>
         public void SetVolume( int volume )
         {
-            _synthesizer.Volume = volume;
+            try
+            {
+                ThrowIf.Negative( volume, nameof( volume ) );
+                _synthesizer.Volume = volume;
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+            }
         }
 
         /// <summary>
@@ -179,7 +243,15 @@ namespace Bubba
         /// <param name="rate">The rate.</param>
         public void SetRate( int rate )
         {
-            _synthesizer.Rate = rate;
+            try
+            {
+                ThrowIf.Negative( rate, nameof( rate ) );
+                _synthesizer.Rate = rate;
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+            }
         }
 
         /// <summary>
@@ -190,7 +262,14 @@ namespace Bubba
         /// instance containing the event data.</param>
         private void OnSpeakCompleted( object sender, SpeakCompletedEventArgs e )
         {
-            SpeakCompleted?.Invoke( this, e );
+            try
+            {
+                SpeakCompleted?.Invoke( this, e );
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+            }
         }
 
         /// <summary>
@@ -201,7 +280,14 @@ namespace Bubba
         /// instance containing the event data.</param>
         private void OnSpeakProgress( object sender, SpeakProgressEventArgs e )
         {
-            SpeakProgress?.Invoke( this, e );
+            try
+            {
+                SpeakProgress?.Invoke( this, e );
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+            }
         }
 
         /// <inheritdoc />

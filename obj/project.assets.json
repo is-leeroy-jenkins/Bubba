@@ -580,6 +580,15 @@
           }
         }
       },
+      "LinqStatistics/3.0.1": {
+        "type": "package",
+        "compile": {
+          "lib/net8.0/LinqStatistics.dll": {}
+        },
+        "runtime": {
+          "lib/net8.0/LinqStatistics.dll": {}
+        }
+      },
       "MahApps.Metro/2.4.10": {
         "type": "package",
         "dependencies": {
@@ -1080,6 +1089,17 @@
         },
         "runtime": {
           "lib/netstandard2.0/Microsoft.Office.Interop.Outlook.dll": {}
+        }
+      },
+      "Microsoft.SqlServer.Compact/4.0.8854.1": {
+        "type": "package",
+        "compile": {
+          "lib/net40/System.Data.SqlServerCe.Entity.dll": {},
+          "lib/net40/System.Data.SqlServerCe.dll": {}
+        },
+        "runtime": {
+          "lib/net40/System.Data.SqlServerCe.Entity.dll": {},
+          "lib/net40/System.Data.SqlServerCe.dll": {}
         }
       },
       "Microsoft.Win32.Registry/4.7.0": {
@@ -2018,7 +2038,7 @@
           }
         }
       },
-      "ScottPlot/5.0.53": {
+      "ScottPlot/5.0.54": {
         "type": "package",
         "dependencies": {
           "HarfBuzzSharp.NativeAssets.Linux": "7.3.0.3",
@@ -2037,12 +2057,12 @@
           }
         }
       },
-      "ScottPlot.WPF/5.0.53": {
+      "ScottPlot.WPF/5.0.54": {
         "type": "package",
         "dependencies": {
           "OpenTK": "4.3.0",
           "OpenTK.GLWpfControl": "4.2.3",
-          "ScottPlot": "5.0.53",
+          "ScottPlot": "5.0.54",
           "SkiaSharp.Views.WPF": "2.88.9"
         },
         "compile": {
@@ -2191,6 +2211,12 @@
           "lib/netcoreapp3.1/SkiaSharp.Views.WPF.dll": {
             "related": ".pdb;.xml"
           }
+        }
+      },
+      "SqlServerCompact/4.0.8854.1": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.SqlServer.Compact": "4.0.8854.1"
         }
       },
       "Stub.System.Data.SQLite.Core.NetStandard/1.0.119": {
@@ -4604,6 +4630,21 @@
         "runtimes/win-x86/native/libHarfBuzzSharp.dll"
       ]
     },
+    "LinqStatistics/3.0.1": {
+      "sha512": "7iyP8V9J+9bDmFWayX7iM8N+UJds17+T+hLSJZz3pCoMp9JB/XD6jAJk25b8SuOlIOVgwdL7Pqk1qXtKn1XRvA==",
+      "type": "package",
+      "path": "linqstatistics/3.0.1",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "License.md",
+        "README.md",
+        "lib/net8.0/LinqStatistics.dll",
+        "linqstatistics.3.0.1.nupkg.sha512",
+        "linqstatistics.nuspec",
+        "nugeticon.png"
+      ]
+    },
     "MahApps.Metro/2.4.10": {
       "sha512": "45exHKJCVYaD1/rNr3ekZPECEBM4uHOt6aYp6yNaJbliFMUo+d3z8Gi1xG+qEkbiHKITX+dlz+BW1FOsjAbl/w==",
       "type": "package",
@@ -5846,6 +5887,44 @@
         "microsoft.office.interop.outlook.nuspec"
       ]
     },
+    "Microsoft.SqlServer.Compact/4.0.8854.1": {
+      "sha512": "Lv3xL4PFzgDAXq09GBtf6kf8K5eW/arPNBQCLnPWWdEIcZqe0i/OpMIAc/fC88SKnU3gHxK208MV7BtDXRkMTA==",
+      "type": "package",
+      "path": "microsoft.sqlserver.compact/4.0.8854.1",
+      "hasTools": true,
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Content/web.config.transform",
+        "NativeBinaries/amd64/Microsoft.VC90.CRT/Microsoft.VC90.CRT.manifest",
+        "NativeBinaries/amd64/Microsoft.VC90.CRT/README_ENU.txt",
+        "NativeBinaries/amd64/Microsoft.VC90.CRT/msvcr90.dll",
+        "NativeBinaries/amd64/sqlceca40.dll",
+        "NativeBinaries/amd64/sqlcecompact40.dll",
+        "NativeBinaries/amd64/sqlceer40EN.dll",
+        "NativeBinaries/amd64/sqlceme40.dll",
+        "NativeBinaries/amd64/sqlceqp40.dll",
+        "NativeBinaries/amd64/sqlcese40.dll",
+        "NativeBinaries/x86/Microsoft.VC90.CRT/Microsoft.VC90.CRT.manifest",
+        "NativeBinaries/x86/Microsoft.VC90.CRT/README_ENU.txt",
+        "NativeBinaries/x86/Microsoft.VC90.CRT/msvcr90.dll",
+        "NativeBinaries/x86/sqlceca40.dll",
+        "NativeBinaries/x86/sqlcecompact40.dll",
+        "NativeBinaries/x86/sqlceer40EN.dll",
+        "NativeBinaries/x86/sqlceme40.dll",
+        "NativeBinaries/x86/sqlceqp40.dll",
+        "NativeBinaries/x86/sqlcese40.dll",
+        "SQLCE_EULA_ENU.rtf",
+        "lib/net40/System.Data.SqlServerCe.Entity.dll",
+        "lib/net40/System.Data.SqlServerCe.dll",
+        "microsoft.sqlserver.compact.4.0.8854.1.nupkg.sha512",
+        "microsoft.sqlserver.compact.nuspec",
+        "tools/Install.ps1",
+        "tools/Uninstall.ps1",
+        "tools/VS.psd1",
+        "tools/VS.psm1"
+      ]
+    },
     "Microsoft.Win32.Registry/4.7.0": {
       "sha512": "KSrRMb5vNi0CWSGG1++id2ZOs/1QhRqROt+qgbEAdQuGjGrFcl4AOl4/exGPUYz2wUnU42nvJqon1T3U0kPXLA==",
       "type": "package",
@@ -6981,10 +7060,10 @@
         "version.txt"
       ]
     },
-    "ScottPlot/5.0.53": {
-      "sha512": "qTQzpD8Wa5njz/ZmF8hSadiKSM9tKdWxCq0Fnfcwt8Oik8e3RIiFeLSmcLa/TYVuPmIuPaCqm96RIWENvkvV4g==",
+    "ScottPlot/5.0.54": {
+      "sha512": "06ElMYTylidEA0AMVczsB/eXXazPpzd8oelhifNsKPxbeisjOmt2Y9etNTbPyDKeROBcRqnV/TCNuedBV3tsMA==",
       "type": "package",
-      "path": "scottplot/5.0.53",
+      "path": "scottplot/5.0.54",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -6998,14 +7077,14 @@
         "lib/netstandard2.0/ScottPlot.dll",
         "lib/netstandard2.0/ScottPlot.xml",
         "readme.md",
-        "scottplot.5.0.53.nupkg.sha512",
+        "scottplot.5.0.54.nupkg.sha512",
         "scottplot.nuspec"
       ]
     },
-    "ScottPlot.WPF/5.0.53": {
-      "sha512": "x0IItR7wmqWet7ZyRTjW0aZQdn2BZOXrtRUjS7SppHxULmU5/JzklZlcIBUD9bczZPgXtPZeE988ejljqIcWpQ==",
+    "ScottPlot.WPF/5.0.54": {
+      "sha512": "tAbSQ35nPoa17dyQO9pGpSdLgOz8WksRzRpAsGJMteDJqOXq32zga/4CqCtYA9a9xWqoGaNO3FK8KwUyrO8xhg==",
       "type": "package",
-      "path": "scottplot.wpf/5.0.53",
+      "path": "scottplot.wpf/5.0.54",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -7015,7 +7094,7 @@
         "lib/net6.0-windows7.0/ScottPlot.WPF.dll",
         "lib/net6.0-windows7.0/ScottPlot.WPF.xml",
         "readme.md",
-        "scottplot.wpf.5.0.53.nupkg.sha512",
+        "scottplot.wpf.5.0.54.nupkg.sha512",
         "scottplot.wpf.nuspec"
       ]
     },
@@ -7211,6 +7290,17 @@
         "lib/netcoreapp3.1/SkiaSharp.Views.WPF.xml",
         "skiasharp.views.wpf.2.88.9.nupkg.sha512",
         "skiasharp.views.wpf.nuspec"
+      ]
+    },
+    "SqlServerCompact/4.0.8854.1": {
+      "sha512": "l51DpZ78LAXO1yCeEQANlu+EvhAeFgeREwuzcTXk4HewCLgNxlZ2rA/SAOLmBL/XYCDNZvXNePV6rxGfBzNkQw==",
+      "type": "package",
+      "path": "sqlservercompact/4.0.8854.1",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "sqlservercompact.4.0.8854.1.nupkg.sha512",
+        "sqlservercompact.nuspec"
       ]
     },
     "Stub.System.Data.SQLite.Core.NetStandard/1.0.119": {
@@ -9344,6 +9434,7 @@
       "CefSharp.Wpf.NETCore >= 131.3.50",
       "EPPlus >= 7.5.3",
       "Google.Apis.CustomSearchAPI.v1 >= 1.68.0.3520",
+      "LinqStatistics >= 3.0.1",
       "MahApps.Metro >= 2.4.10",
       "Microsoft.ML >= 4.0.1",
       "Microsoft.NETFramework.ReferenceAssemblies >= 1.0.3",
@@ -9357,9 +9448,10 @@
       "PDFsharp >= 6.1.1",
       "QRCoder >= 1.6.0",
       "RestoreWindowPlace >= 2.1.0",
-      "ScottPlot >= 5.0.53",
-      "ScottPlot.WPF >= 5.0.53",
+      "ScottPlot >= 5.0.54",
+      "ScottPlot.WPF >= 5.0.54",
       "SkiaSharp >= 3.116.1",
+      "SqlServerCompact >= 4.0.8854.1",
       "Syncfusion.Edit.WPF >= 24.1.41",
       "Syncfusion.Grouping.Base >= 24.1.41",
       "Syncfusion.Licensing >= 24.1.41",
@@ -9475,6 +9567,10 @@
             "target": "Package",
             "version": "[1.68.0.3520, )"
           },
+          "LinqStatistics": {
+            "target": "Package",
+            "version": "[3.0.1, )"
+          },
           "MahApps.Metro": {
             "target": "Package",
             "version": "[2.4.10, )"
@@ -9531,15 +9627,19 @@
           },
           "ScottPlot": {
             "target": "Package",
-            "version": "[5.0.53, )"
+            "version": "[5.0.54, )"
           },
           "ScottPlot.WPF": {
             "target": "Package",
-            "version": "[5.0.53, )"
+            "version": "[5.0.54, )"
           },
           "SkiaSharp": {
             "target": "Package",
             "version": "[3.116.1, )"
+          },
+          "SqlServerCompact": {
+            "target": "Package",
+            "version": "[4.0.8854.1, )"
           },
           "Syncfusion.Edit.WPF": {
             "target": "Package",
@@ -9690,6 +9790,16 @@
     }
   },
   "logs": [
+    {
+      "code": "NU1701",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Package 'Microsoft.SqlServer.Compact 4.0.8854.1' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1' instead of the project target framework 'net8.0-windows7.0'. This package may not be fully compatible with your project.",
+      "libraryId": "Microsoft.SqlServer.Compact",
+      "targetGraphs": [
+        "net8.0-windows7.0"
+      ]
+    },
     {
       "code": "NU1701",
       "level": "Warning",

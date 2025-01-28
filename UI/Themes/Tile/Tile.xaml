@@ -7,7 +7,9 @@
 
     <!--  *********************************************** MetroTile *****************************************************  -->
 
-    <Style x:Key="MetroHubTileStyle" TargetType="{x:Type sync:SfHubTile}">
+    <Style
+        x:Key="MetroHubTileStyle"
+        TargetType="{x:Type sync:SfHubTile}">
 
         <Setter Property="Background" Value="{DynamicResource ControlInteriorColor}" />
         <Setter Property="BorderBrush" Value="{DynamicResource BlueBorderBrush}" />
@@ -42,7 +44,9 @@
 
     </Style>
 
-    <Style x:Key="MetroPulsingTileStyle" TargetType="{x:Type sync:SfPulsingTile}">
+    <Style
+        x:Key="MetroPulsingTileStyle"
+        TargetType="{x:Type sync:SfPulsingTile}">
 
         <Setter Property="Background" Value="{StaticResource ControlInteriorColor}" />
         <Setter Property="BorderBrush" Value="{StaticResource BlueBorderBrush}" />

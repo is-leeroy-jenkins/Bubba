@@ -1,14 +1,14 @@
 ﻿// ******************************************************************************************
-//     Assembly:                Badger
+//     Assembly:                Bubba
 //     Author:                  Terry D. Eppler
-//     Created:                 12-07-2024
+//     Created:                 01-27-2025
 // 
 //     Last Modified By:        Terry D. Eppler
-//     Last Modified On:        12-07-2024
+//     Last Modified On:        01-27-2025
 // ******************************************************************************************
 // <copyright file="DocumentWindow.xaml.cs" company="Terry D. Eppler">
-//    Badger is a budget execution & data analysis tool for federal budget analysts
-//     with the EPA based on WPF, Net 6, and is written in C#.
+//    Bubba is a small and simple windows (wpf) application for interacting with the OpenAI API
+//    that's developed in C-Sharp under the MIT license.C#.
 // 
 //    Copyright ©  2020-2024 Terry D. Eppler
 // 
@@ -54,6 +54,8 @@ namespace Bubba
     using System.Threading.Tasks;
     using System.Windows;
     using System.Windows.Controls;
+    using Microsoft.Win32;
+    using Properties;
     using ToastNotifications;
     using ToastNotifications.Lifetime;
     using ToastNotifications.Messages;
@@ -72,6 +74,7 @@ namespace Bubba
     [ SuppressMessage( "ReSharper", "LoopCanBePartlyConvertedToQuery" ) ]
     [ SuppressMessage( "ReSharper", "FieldCanBeMadeReadOnly.Global" ) ]
     [ SuppressMessage( "ReSharper", "UnusedType.Global" ) ]
+    [ SuppressMessage( "ReSharper", "PreferConcreteValueOverDefault" ) ]
     public partial class DocumentWindow : Window, IDisposable
     {
         /// <summary>
@@ -234,15 +237,16 @@ namespace Bubba
         {
             try
             {
-                FirstButton.Click += OnFirstButtonClick;
-                PreviousButton.Click += OnPreviousButtonClick;
-                NextButton.Click += OnNextButtonClick;
-                LastButton.Click += OnLastButtonClick;
-                LookupButton.Click += OnLookupButtonClick;
-                RefreshButton.Click += OnRefreshButtonClick;
-                MenuButton.Click += OnMenuButtonClick;
-                ToggleButton.Click += OnToggleButtonClick;
-                DocumentListBox.SelectionChanged += OnDocumentSelected;
+                ToolStripFirstButton.Click += OnFirstButtonClick;
+                ToolStripPreviousButton.Click += OnPreviousButtonClick;
+                ToolStripNextButton.Click += OnNextButtonClick;
+                ToolStripLastButton.Click += OnLastButtonClick;
+                ToolStripGoButton.Click += OnLookupButtonClick;
+                ToolStripRefreshButton.Click += OnRefreshButtonClick;
+                ToolStripBrowseButton.Click += OnMenuButtonClick;
+                ToolStripToggleButton.Click += OnToggleButtonClick;
+                DocumentListBox.SelectionChanged += OnListBoxSelected;
+                ToolStripBrowseButton.Click += OnBrowseButtonClick;
             }
             catch( Exception ex )
             {
@@ -344,14 +348,14 @@ namespace Bubba
         {
             try
             {
-                FirstButton.Visibility = Visibility.Hidden;
-                PreviousButton.Visibility = Visibility.Hidden;
-                NextButton.Visibility = Visibility.Hidden;
-                LastButton.Visibility = Visibility.Hidden;
+                ToolStripFirstButton.Visibility = Visibility.Hidden;
+                ToolStripPreviousButton.Visibility = Visibility.Hidden;
+                ToolStripNextButton.Visibility = Visibility.Hidden;
+                ToolStripLastButton.Visibility = Visibility.Hidden;
                 ToolStripTextBox.Visibility = Visibility.Hidden;
-                LookupButton.Visibility = Visibility.Hidden;
-                RefreshButton.Visibility = Visibility.Hidden;
-                FirstButton.Visibility = Visibility.Hidden;
+                ToolStripGoButton.Visibility = Visibility.Hidden;
+                ToolStripRefreshButton.Visibility = Visibility.Hidden;
+                ToolStripFirstButton.Visibility = Visibility.Hidden;
             }
             catch( Exception ex )
             {
@@ -479,8 +483,8 @@ namespace Bubba
         {
             try
             {
-                _prefix = ConfigurationManager.AppSettings[ "PathPrefix" ];
-                var _folder = ConfigurationManager.AppSettings[ "Documents" ];
+                _prefix = Locations.PathPrefix;
+                var _folder = Locations.Documents;
                 var _documentPaths = new Dictionary<string, string>( );
                 var _dirPath = _prefix + _folder;
                 var _files = Directory.EnumerateFiles( _dirPath );
@@ -577,13 +581,13 @@ namespace Bubba
         {
             try
             {
-                FirstButton.Visibility = Visibility.Visible;
-                PreviousButton.Visibility = Visibility.Visible;
-                NextButton.Visibility = Visibility.Visible;
-                LastButton.Visibility = Visibility.Visible;
+                ToolStripFirstButton.Visibility = Visibility.Visible;
+                ToolStripPreviousButton.Visibility = Visibility.Visible;
+                ToolStripNextButton.Visibility = Visibility.Visible;
+                ToolStripLastButton.Visibility = Visibility.Visible;
                 ToolStripTextBox.Visibility = Visibility.Visible;
-                LookupButton.Visibility = Visibility.Visible;
-                RefreshButton.Visibility = Visibility.Visible;
+                ToolStripGoButton.Visibility = Visibility.Visible;
+                ToolStripRefreshButton.Visibility = Visibility.Visible;
             }
             catch( Exception ex )
             {
@@ -598,13 +602,13 @@ namespace Bubba
         {
             try
             {
-                FirstButton.Visibility = Visibility.Hidden;
-                PreviousButton.Visibility = Visibility.Hidden;
-                NextButton.Visibility = Visibility.Hidden;
-                LastButton.Visibility = Visibility.Hidden;
+                ToolStripFirstButton.Visibility = Visibility.Hidden;
+                ToolStripPreviousButton.Visibility = Visibility.Hidden;
+                ToolStripNextButton.Visibility = Visibility.Hidden;
+                ToolStripLastButton.Visibility = Visibility.Hidden;
                 ToolStripTextBox.Visibility = Visibility.Hidden;
-                LookupButton.Visibility = Visibility.Hidden;
-                RefreshButton.Visibility = Visibility.Hidden;
+                ToolStripGoButton.Visibility = Visibility.Hidden;
+                ToolStripRefreshButton.Visibility = Visibility.Hidden;
             }
             catch( Exception ex )
             {
@@ -794,8 +798,12 @@ namespace Bubba
         {
             try
             {
-                var _fileBrowser = new FileBrowser( );
-                _fileBrowser.ShowDialog( );
+                var _dialog = new OpenFileDialog
+                {
+                    Filter = "PDF Files|*.pdf"
+                };
+
+                _dialog.ShowDialog( );
             }
             catch( Exception ex )
             {
@@ -946,7 +954,24 @@ namespace Bubba
         {
             try
             {
-                Close( );
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+            }
+        }
+
+        /// <summary>
+        /// Called when [exit button click].
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The <see cref="RoutedEventArgs"/>
+        /// instance containing the event data.</param>
+        private void OnExitButtonClick( object sender, RoutedEventArgs e )
+        {
+            try
+            { 
+                Hide( );
             }
             catch( Exception ex )
             {
@@ -1139,7 +1164,7 @@ namespace Bubba
         {
             try
             {
-                if( !FirstButton.IsVisible )
+                if( !ToolStripFirstButton.IsVisible )
                 {
                     SetToolbarVisible( );
                 }
@@ -1160,7 +1185,7 @@ namespace Bubba
         /// <param name="sender">The sender.</param>
         /// <param name="e">The <see cref="EventArgs"/>
         /// instance containing the event data.</param>
-        private void OnDocumentSelected( object sender, RoutedEventArgs e )
+        private void OnListBoxSelected( object sender, RoutedEventArgs e )
         {
             try
             {
@@ -1168,10 +1193,27 @@ namespace Bubba
                 var _item = ( ListBoxItem )_listBox?.SelectedValue;
                 var _content = _item?.Content.ToString( );
                 var _name = _content?.Replace( " ", "" );
-                var _prefix = ConfigurationManager.AppSettings[ "PathPrefix" ];
-                var _folder = ConfigurationManager.AppSettings[ "Documents" ];
-                _selectedPath = _prefix + _folder + _name + ".pdf";
+                var _pathPrefix = Locations.PathPrefix;
+                var _folder = Locations.Documents;
+                _selectedPath = _pathPrefix + _folder + _name + ".pdf";
                 PdfViewer.Load( _selectedPath );
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+            }
+        }
+
+        /// <summary>
+        /// Called when [ComboBox item selected].
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The <see cref="RoutedEventArgs"/>
+        /// instance containing the event data.</param>
+        private void OnComboBoxItemSelected( object sender, RoutedEventArgs e )
+        {
+            try
+            {
             }
             catch( Exception ex )
             {

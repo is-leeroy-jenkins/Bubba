@@ -1,10 +1,10 @@
 ﻿// ******************************************************************************************
 //     Assembly:                Bubba
 //     Author:                  Terry D. Eppler
-//     Created:                 01-12-2025
+//     Created:                 01-26-2025
 // 
 //     Last Modified By:        Terry D. Eppler
-//     Last Modified On:        01-12-2025
+//     Last Modified On:        01-26-2025
 // ******************************************************************************************
 // <copyright file="WebSearch.cs" company="Terry D. Eppler">
 //    Bubba is a small and simple windows (wpf) application for interacting with the OpenAI API
@@ -44,7 +44,6 @@ namespace Bubba
     using System;
     using System.Diagnostics.CodeAnalysis;
     using System.Net.NetworkInformation;
-    using System.Text;
 
     /// <inheritdoc />
     /// <summary>
@@ -210,10 +209,10 @@ namespace Bubba
             }
             set
             {
-                if(_projectNumber != value)
+                if( _projectNumber != value )
                 {
                     _projectNumber = value;
-                    OnPropertyChanged(nameof(ProjectNumber));
+                    OnPropertyChanged( nameof( ProjectNumber ) );
                 }
             }
         }

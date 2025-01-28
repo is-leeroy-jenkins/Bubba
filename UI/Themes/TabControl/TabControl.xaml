@@ -11,7 +11,9 @@
 
     <!--  *********************************************** TAB CONTROL  *****************************************************  -->
 
-    <Style x:Key="MetroTabControlStyle" TargetType="{x:Type TabControl}">
+    <Style
+        x:Key="MetroTabControlStyle"
+        TargetType="{x:Type TabControl}">
         <Setter Property="Background" Value="{DynamicResource FormBackground}" />
         <Setter Property="BorderBrush" Value="{DynamicResource FormBackground}" />
         <Setter Property="Foreground" Value="{DynamicResource FormForeground}" />

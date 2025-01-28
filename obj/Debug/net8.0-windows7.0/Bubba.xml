@@ -73,21 +73,6 @@
             Registers the _theme.
             </summary>
         </member>
-        <member name="M:Bubba.App.InitializeDelegates">
-            <summary>
-            Initializes the delegates.
-            </summary>
-        </member>
-        <member name="M:Bubba.App.InitializeInterface">
-            <summary>
-            Initializes the interface.
-            </summary>
-        </member>
-        <member name="M:Bubba.App.InitializeCefSharp">
-            <summary>
-            this is done just once, to globally initialize CefSharp/CEF
-            </summary>
-        </member>
         <member name="M:Bubba.App.GetApplicationDirectory(System.String)">
             <summary>
             Gets the application directory.
@@ -108,47 +93,6 @@
             Handles the exception.
             </summary>
             <param name="ex">The ex.</param>
-        </member>
-        <member name="M:Bubba.App.LoadGptFileDialog">
-            <summary>
-            Opens the GPT file dialog.
-            </summary>
-        </member>
-        <member name="M:Bubba.App.LoadFolderBrowser">
-            <summary>
-            Opens the folder browser.
-            </summary>
-        </member>
-        <member name="M:Bubba.App.LoadFileBrowser">
-            <summary>
-            Opens the file browser.
-            </summary>
-        </member>
-        <member name="M:Bubba.App.LoadSearchDialog">
-            <summary>
-            Opens the search dialog.
-            </summary>
-        </member>
-        <member name="M:Bubba.App.LoadImageDialog">
-            <summary>
-            Initializes the image dialog asynchronous.
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:Bubba.App.LoadWebBrowser">
-            <summary>
-            Opens the WebBrowser.
-            </summary>
-        </member>
-        <member name="M:Bubba.App.LoadSystemDialog">
-            <summary>
-            Opens the prompt dialog.
-            </summary>
-        </member>
-        <member name="M:Bubba.App.LoadCalculator">
-            <summary>
-            Opens the calculator window.
-            </summary>
         </member>
         <member name="M:Bubba.App.OnStartup(System.Object,System.Windows.StartupEventArgs)">
             <inheritdoc />
@@ -14659,13 +14603,13 @@
             Saves to audio file.
             </summary>
             <param name="text">The text.</param>
-            <param name="outputPath">The output path.</param>
+            <param name="filePath">The output path.</param>
         </member>
         <member name="M:Bubba.SpeechEngine.SaveFileToAudio(System.String,System.String)">
             <summary>
             Saves the file to audio.
             </summary>
-            <param name="inputFilePath">The input file path.</param>
+            <param name="inputPath">The input file path.</param>
             <param name="outputPath">The output path.</param>
             <exception cref="T:System.IO.FileNotFoundException">
             The specified input file does not exist.</exception>
@@ -27366,6 +27310,7 @@
             <param name="name">The name.</param>
             <param name="content">The content.</param>
             <param name="title">The title.</param>
+            <param name = "time" > </param>
         </member>
         <member name="M:Bubba.SearchResult.#ctor(Bubba.SearchResult)">
             <inheritdoc />
@@ -30871,12 +30816,12 @@
             <param name="fileName">Full path of the file to look for.</param>
             <returns></returns>
         </member>
-        <member name="T:Bubba.NetManager">
+        <member name="T:Bubba.NetUtility">
             <summary>
             
             </summary>
         </member>
-        <member name="M:Bubba.NetManager.IsFocused(System.Windows.Controls.TextBox)">
+        <member name="M:Bubba.NetUtility.IsFocused(System.Windows.Controls.TextBox)">
             <summary>
             Determines whether the specified tb is focused.
             </summary>
@@ -30885,7 +30830,7 @@
               <c>true</c> if the specified tb is focused; otherwise, <c>false</c>.
             </returns>
         </member>
-        <member name="M:Bubba.NetManager.AddHotKey(System.Windows.Window,System.Action,System.Boolean,System.Boolean,System.Boolean)">
+        <member name="M:Bubba.NetUtility.AddHotKey(System.Windows.Window,System.Action,System.Boolean,System.Boolean,System.Boolean)">
             <summary>
             Adds the hot key.
             </summary>
@@ -30895,7 +30840,7 @@
             <param name="shift">if set to <c>true</c> [shift].</param>
             <param name="alt">if set to <c>true</c> [alt].</param>
         </member>
-        <member name="M:Bubba.NetManager.IsFullySelected(System.Windows.Controls.TextBox)">
+        <member name="M:Bubba.NetUtility.IsFullySelected(System.Windows.Controls.TextBox)">
             <summary>
             Determines whether [is fully selected] [the specified tb].
             </summary>
@@ -30905,7 +30850,7 @@
             [the specified tb]; otherwise, <c>false</c>.
             </returns>
         </member>
-        <member name="M:Bubba.NetManager.HasSelection(System.Windows.Controls.TextBox)">
+        <member name="M:Bubba.NetUtility.HasSelection(System.Windows.Controls.TextBox)">
             <summary>
             Determines whether the specified tb has selection.
             </summary>
@@ -30917,14 +30862,14 @@
             <c>false</c>.
             </returns>
         </member>
-        <member name="M:Bubba.NetManager.ConvertToString(System.Object)">
+        <member name="M:Bubba.NetUtility.ConvertToString(System.Object)">
             <summary>
             Converts to string.
             </summary>
             <param name="o">The o.</param>
             <returns></returns>
         </member>
-        <member name="M:Bubba.NetManager.IsHotKey(System.Windows.Input.KeyEventArgs,System.Boolean,System.Boolean,System.Boolean)">
+        <member name="M:Bubba.NetUtility.IsHotKey(System.Windows.Input.KeyEventArgs,System.Boolean,System.Boolean,System.Boolean)">
             <summary>
             Determines whether [is hot key] [the specified key].
             </summary>
@@ -30939,14 +30884,14 @@
             otherwise, <c>false</c>.
             </returns>
         </member>
-        <member name="M:Bubba.NetManager.ToCefState(System.Boolean)">
+        <member name="M:Bubba.NetUtility.ToCefState(System.Boolean)">
             <summary>
             Converts to cefstate.
             </summary>
             <param name="value">if set to <c>true</c> [value].</param>
             <returns></returns>
         </member>
-        <member name="M:Bubba.NetManager.IsBitMaskOn(System.Int32,System.Int32)">
+        <member name="M:Bubba.NetUtility.IsBitMaskOn(System.Int32,System.Int32)">
             <summary>
             Determines whether [is bitMask on] [the specified bitMask].
             </summary>
@@ -30956,7 +30901,7 @@
               <c>true</c> if [is bitMask on] [the specified bitMask]; otherwise, <c>false</c>.
             </returns>
         </member>
-        <member name="M:Bubba.NetManager.Fail(System.Exception)">
+        <member name="M:Bubba.NetUtility.Fail(System.Exception)">
             <summary>
             Get ErrorDialog Dialog.
             </summary>
@@ -32386,6 +32331,53 @@
             Fails the specified _ex.
             </summary>
             <param name="ex">The _ex.</param>
+        </member>
+        <member name="T:Bubba.MetroDataGrid">
+            <inheritdoc />
+            <summary>
+            </summary>
+            <seealso cref="T:Syncfusion.UI.Xaml.Grid.SfDataGrid" />
+        </member>
+        <member name="F:Bubba.MetroDataGrid._theme">
+            <summary>
+            The theme
+            </summary>
+        </member>
+        <member name="M:Bubba.MetroDataGrid.#ctor">
+            <inheritdoc />
+            <summary>
+            Initializes a new instance of the
+            <see cref="T:Badger.DataGrid" /> class.
+            </summary>
+        </member>
+        <member name="M:Bubba.MetroDataGrid.OnMouseRightClick(System.Object,System.Windows.Input.MouseButtonEventArgs)">
+            <summary>
+            Called when [column right clicked].
+            </summary>
+            <param name="sender">The sender.</param>
+            <param name="e">The <see cref="T:System.Windows.RoutedEventArgs"/>
+            instance containing the event data.</param>
+        </member>
+        <member name="M:Bubba.MetroDataGrid.OnMouseLeftClick(System.Object,System.Windows.RoutedEventArgs)">
+            <summary>
+            Called when [cell left clicked].
+            </summary>
+            <param name="sender">The sender.</param>
+            <param name="e">The <see cref="T:System.Windows.RoutedEventArgs"/>
+            instance containing the event data.</param>
+        </member>
+        <member name="M:Bubba.MetroDataGrid.OnAutoGeneratingColumn(System.Object,Syncfusion.UI.Xaml.Grid.AutoGeneratingColumnArgs)">
+            <summary>
+            Called when [automatic generating column].
+            </summary>
+            <param name="sender">The sender.</param>
+            <param name="e">The e.</param>
+        </member>
+        <member name="M:Bubba.MetroDataGrid.Fail(System.Exception)">
+            <summary>
+            Fails the specified _ex.
+            </summary>
+            <param name="_ex">The _ex.</param>
         </member>
         <member name="T:Bubba.MetroDropDown">
             <inheritdoc />
@@ -34685,7 +34677,7 @@
             The input text
             </summary>
         </member>
-        <member name="F:Bubba.MetroTextBox.TempText">
+        <member name="F:Bubba.MetroTextBox._tempText">
             <summary>
             The temporary text
             </summary>
@@ -35475,17 +35467,17 @@
         </member>
         <member name="F:Bubba.ChatWindow._systemPrompt">
             <summary>
-            The system prompt
+            The system prompt fro the GPT
             </summary>
         </member>
-        <member name="F:Bubba.ChatWindow._window">
+        <member name="F:Bubba.ChatWindow._prompt">
             <summary>
-            The interface update
+            The user prompt for the GPT
             </summary>
         </member>
-        <member name="F:Bubba.ChatWindow._userPrompt">
+        <member name="F:Bubba.ChatWindow._keyWords">
             <summary>
-            The user prompt
+            The key words for the custome search engine
             </summary>
         </member>
         <member name="F:Bubba.ChatWindow._role">
@@ -35659,69 +35651,6 @@
             <see cref="T:Bubba.ChatWindow" /> class.
             </summary>
         </member>
-        <member name="P:Bubba.ChatWindow.Store">
-            <summary>
-            Gets or sets a value indicating whether this
-            <see cref="P:Bubba.ChatWindow.Store"/> is store.
-            </summary>
-            <value>
-              <c>true</c> if store; otherwise, <c>false</c>.
-            </value>
-        </member>
-        <member name="P:Bubba.ChatWindow.Stream">
-            <summary>
-            Gets or sets a value indicating whether this
-            <see cref="P:Bubba.ChatWindow.Stream"/> is stream.
-            </summary>
-            <value>
-              <c>true</c> if stream; otherwise, <c>false</c>.
-            </value>
-        </member>
-        <member name="P:Bubba.ChatWindow.MaximumTokens">
-            <summary>
-            An upper bound for the number of tokens
-            that can be generated for a completion
-            </summary>
-            <value>
-            The maximum tokens.
-            </value>
-        </member>
-        <member name="P:Bubba.ChatWindow.Temperature">
-            <summary>
-            A number between 0 and 2.0
-            Higher values like 0.8 will make the output more random,
-            while lower values like 0.2 will make it more focused and deterministic.
-            Default=1
-            </summary>
-        </member>
-        <member name="P:Bubba.ChatWindow.Frequency">
-            <summary>
-            A number between -2.0 and 2.0. Positive values penalize new
-            tokens based on their existing frequency in the text so far,
-            decreasing the model's likelihood to repeat the same line verbatim.
-            </summary>
-            <value>
-            The frequency.
-            </value>
-        </member>
-        <member name="P:Bubba.ChatWindow.Presence">
-            <summary>
-            Number between -2.0 and 2.0. Positive values penalize new tokens
-            based on whether they appear in the text so far,
-            ncreasing the model's likelihood to talk about new topics.
-            </summary>
-            <value>
-            The presence.
-            </value>
-        </member>
-        <member name="P:Bubba.ChatWindow.Endpoint">
-            <summary>
-            Gets or sets the endpoint.
-            </summary>
-            <value>
-            The endpoint.
-            </value>
-        </member>
         <member name="M:Bubba.ChatWindow.InitializeTitle">
             <summary>
             Initializes the title.
@@ -35757,9 +35686,24 @@
             Initializes the interface asynchronous.
             </summary>
         </member>
-        <member name="M:Bubba.ChatWindow.SetGeneration">
+        <member name="M:Bubba.ChatWindow.InitializeSpeechEngine">
             <summary>
-            Sets the end point.
+            Speeches to text.
+            </summary>
+        </member>
+        <member name="M:Bubba.ChatWindow.ActivateEditorTab">
+            <summary>
+            Activates the editor tab.
+            </summary>
+        </member>
+        <member name="M:Bubba.ChatWindow.ActivateChatTab">
+            <summary>
+            Activates the chat tab.
+            </summary>
+        </member>
+        <member name="M:Bubba.ChatWindow.ActivateNetworkTab">
+            <summary>
+            Activates the network tab.
             </summary>
         </member>
         <member name="M:Bubba.ChatWindow.InvokeIf(System.Action)">
@@ -35916,16 +35860,26 @@
             </summary>
             <param name="message">The message.</param>
         </member>
-        <member name="M:Bubba.ChatWindow.SpeechToText">
-            <summary>
-            Speeches to text.
-            </summary>
-        </member>
-        <member name="M:Bubba.ChatWindow.SpeechToText(System.String)">
+        <member name="M:Bubba.ChatWindow.TextToSpeech(System.String)">
             <summary>
             Speeches to text.
             </summary>
             <param name="input">The input.</param>
+        </member>
+        <member name="M:Bubba.ChatWindow.SetNetworkGraph">
+            <summary>
+            Sets the network graph.
+            </summary>
+        </member>
+        <member name="M:Bubba.ChatWindow.SetRequestType">
+            <summary>
+            Sets the end point.
+            </summary>
+        </member>
+        <member name="M:Bubba.ChatWindow.SetTabControl">
+            <summary>
+            Sets the user mode.
+            </summary>
         </member>
         <member name="M:Bubba.ChatWindow.SetGptParameters">
             <summary>
@@ -35949,6 +35903,47 @@
             </summary>
             <param name="question">The question.</param>
             <returns></returns>
+        </member>
+        <member name="M:Bubba.ChatWindow.LoadGptFileDialog">
+            <summary>
+            Opens the GPT file dialog.
+            </summary>
+        </member>
+        <member name="M:Bubba.ChatWindow.LoadFolderBrowser">
+            <summary>
+            Opens the folder browser.
+            </summary>
+        </member>
+        <member name="M:Bubba.ChatWindow.LoadFileBrowser">
+            <summary>
+            Opens the file browser.
+            </summary>
+        </member>
+        <member name="M:Bubba.ChatWindow.LoadSearchDialog">
+            <summary>
+            Opens the search dialog.
+            </summary>
+        </member>
+        <member name="M:Bubba.ChatWindow.LoadImageDialog">
+            <summary>
+            Initializes the image dialog asynchronous.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Bubba.ChatWindow.LoadWebBrowser">
+            <summary>
+            Opens the WebBrowser.
+            </summary>
+        </member>
+        <member name="M:Bubba.ChatWindow.LoadSystemDialog">
+            <summary>
+            Opens the prompt dialog.
+            </summary>
+        </member>
+        <member name="M:Bubba.ChatWindow.LoadCalculator">
+            <summary>
+            Opens the calculator window.
+            </summary>
         </member>
         <member name="M:Bubba.ChatWindow.OpenSearchDialog">
             <summary>
@@ -36172,7 +36167,7 @@
             <param name="e">The <see cref="T:System.EventArgs"/>
             instance containing the event data.</param>
         </member>
-        <member name="M:Bubba.ChatWindow.OnUrlTextBoxClick(System.Object,System.Windows.Input.MouseEventArgs)">
+        <member name="M:Bubba.ChatWindow.OnMouseMove(System.Object,System.Windows.Input.MouseEventArgs)">
             <summary>
             Called when [URL text box click].
             </summary>
@@ -36907,6 +36902,14 @@
             <param name="e">The <see cref="T:System.EventArgs"/>
             instance containing the event data.</param>
         </member>
+        <member name="M:Bubba.DocumentWindow.OnExitButtonClick(System.Object,System.Windows.RoutedEventArgs)">
+            <summary>
+            Called when [exit button click].
+            </summary>
+            <param name="sender">The sender.</param>
+            <param name="e">The <see cref="T:System.Windows.RoutedEventArgs"/>
+            instance containing the event data.</param>
+        </member>
         <member name="M:Bubba.DocumentWindow.OnCalculatorMenuOptionClick(System.Object,System.Windows.RoutedEventArgs)">
             <summary>
             Called when [calculator menu option click].
@@ -36987,12 +36990,20 @@
             <param name="e">The <see cref="T:System.EventArgs"/>
             instance containing the event data.</param>
         </member>
-        <member name="M:Bubba.DocumentWindow.OnDocumentSelected(System.Object,System.Windows.RoutedEventArgs)">
+        <member name="M:Bubba.DocumentWindow.OnListBoxSelected(System.Object,System.Windows.RoutedEventArgs)">
             <summary>
             Called when [document selected].
             </summary>
             <param name="sender">The sender.</param>
             <param name="e">The <see cref="T:System.EventArgs"/>
+            instance containing the event data.</param>
+        </member>
+        <member name="M:Bubba.DocumentWindow.OnComboBoxItemSelected(System.Object,System.Windows.RoutedEventArgs)">
+            <summary>
+            Called when [ComboBox item selected].
+            </summary>
+            <param name="sender">The sender.</param>
+            <param name="e">The <see cref="T:System.Windows.RoutedEventArgs"/>
             instance containing the event data.</param>
         </member>
         <member name="M:Bubba.DocumentWindow.Dispose(System.Boolean)">
@@ -39362,6 +39373,11 @@
             The current title
             </summary>
         </member>
+        <member name="F:Bubba.WebBrowser._searchEngineUrl">
+            <summary>
+            The search engine URL
+            </summary>
+        </member>
         <member name="F:Bubba.WebBrowser._entry">
             <summary>
             The path
@@ -39395,11 +39411,6 @@
         <member name="F:Bubba.WebBrowser._path">
             <summary>
             The application path
-            </summary>
-        </member>
-        <member name="F:Bubba.WebBrowser._searchEngineUrl">
-            <summary>
-            The search engine URL
             </summary>
         </member>
         <member name="F:Bubba.WebBrowser._isSearchOpen">
@@ -39575,6 +39586,14 @@
             </summary>
             <value>
             The duration of the current tab loading.
+            </value>
+        </member>
+        <member name="P:Bubba.WebBrowser.SearchEngineUrl">
+            <summary>
+            Gets the search engine URL.
+            </summary>
+            <value>
+            The search engine URL.
             </value>
         </member>
         <member name="M:Bubba.WebBrowser.AddBlankWindow">
@@ -39816,19 +39835,6 @@
             <param name="item">The item.</param>
             <returns></returns>
         </member>
-        <member name="M:Bubba.WebBrowser.GetTabs">
-            <summary>
-            Gets all tabs.
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:Bubba.WebBrowser.GetTabByBrowser(CefSharp.IWebBrowser)">
-            <summary>
-            Gets the tab by browser.
-            </summary>
-            <param name="browser">The browser.</param>
-            <returns></returns>
-        </member>
         <member name="M:Bubba.WebBrowser.GetApplicationDirectory(System.String)">
             <summary>
             Gets the application directory.
@@ -39877,11 +39883,6 @@
         <member name="M:Bubba.WebBrowser.PreviousTab">
             <summary>
             Previous tab.
-            </summary>
-        </member>
-        <member name="M:Bubba.WebBrowser.PopulateDomainDropDowns">
-            <summary>
-            Sets the tool strip properties.
             </summary>
         </member>
         <member name="M:Bubba.WebBrowser.DownloadsInProgress">
@@ -39967,14 +39968,6 @@
             <param name="title">
             Name of the tab.
             </param>
-        </member>
-        <member name="P:Bubba.WebBrowser.SearchEngineUrl">
-            <summary>
-            Gets the search engine URL.
-            </summary>
-            <value>
-            The search engine URL.
-            </value>
         </member>
         <member name="M:Bubba.WebBrowser.SetUrl(System.String)">
             <summary>
@@ -40558,36 +40551,6 @@
         <member name="M:Bubba.WebBrowser.InitializeComponent">
             <summary>
             InitializeComponent
-            </summary>
-        </member>
-        <member name="T:XamlGeneratedNamespace.GeneratedInternalTypeHelper">
-            <summary>
-            GeneratedInternalTypeHelper
-            </summary>
-        </member>
-        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.CreateInstance(System.Type,System.Globalization.CultureInfo)">
-            <summary>
-            CreateInstance
-            </summary>
-        </member>
-        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.GetPropertyValue(System.Reflection.PropertyInfo,System.Object,System.Globalization.CultureInfo)">
-            <summary>
-            GetPropertyValue
-            </summary>
-        </member>
-        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.SetPropertyValue(System.Reflection.PropertyInfo,System.Object,System.Object,System.Globalization.CultureInfo)">
-            <summary>
-            SetPropertyValue
-            </summary>
-        </member>
-        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.CreateDelegate(System.Type,System.Object,System.String)">
-            <summary>
-            CreateDelegate
-            </summary>
-        </member>
-        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.AddEventHandler(System.Reflection.EventInfo,System.Object,System.Delegate)">
-            <summary>
-            AddEventHandler
             </summary>
         </member>
     </members>

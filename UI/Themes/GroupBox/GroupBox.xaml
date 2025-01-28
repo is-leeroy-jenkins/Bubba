@@ -5,7 +5,9 @@
 
     <!--  *********************************************** GROUP BOX  *****************************************************  -->
 
-    <Style x:Key="GroupBoxStyle" TargetType="{x:Type GroupBox}">
+    <Style
+        x:Key="GroupBoxStyle"
+        TargetType="{x:Type GroupBox}">
 
         <Setter Property="Background" Value="{DynamicResource GroupBoxBackground}" />
         <Setter Property="BorderBrush" Value="{DynamicResource MutedBorderColor}" />

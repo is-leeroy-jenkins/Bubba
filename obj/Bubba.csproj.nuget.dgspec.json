@@ -81,6 +81,10 @@
               "target": "Package",
               "version": "[1.68.0.3520, )"
             },
+            "LinqStatistics": {
+              "target": "Package",
+              "version": "[3.0.1, )"
+            },
             "MahApps.Metro": {
               "target": "Package",
               "version": "[2.4.10, )"
@@ -137,15 +141,19 @@
             },
             "ScottPlot": {
               "target": "Package",
-              "version": "[5.0.53, )"
+              "version": "[5.0.54, )"
             },
             "ScottPlot.WPF": {
               "target": "Package",
-              "version": "[5.0.53, )"
+              "version": "[5.0.54, )"
             },
             "SkiaSharp": {
               "target": "Package",
               "version": "[3.116.1, )"
+            },
+            "SqlServerCompact": {
+              "target": "Package",
+              "version": "[4.0.8854.1, )"
             },
             "Syncfusion.Edit.WPF": {
               "target": "Package",

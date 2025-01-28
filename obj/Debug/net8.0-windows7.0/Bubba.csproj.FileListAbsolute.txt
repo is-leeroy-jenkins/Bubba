@@ -716,3 +716,4 @@ C:\Users\terry\source\repos\Bubba\obj\Debug\net8.0-windows7.0\refint\Bubba.dll
 C:\Users\terry\source\repos\Bubba\obj\Debug\net8.0-windows7.0\Bubba.xml
 C:\Users\terry\source\repos\Bubba\obj\Debug\net8.0-windows7.0\Bubba.genruntimeconfig.cache
 C:\Users\terry\source\repos\Bubba\obj\Debug\net8.0-windows7.0\ref\Bubba.dll
+C:\Users\terry\Source\Repos\Bubba\bin\Debug\net8.0-windows7.0\System.Data.SqlServerCe.Entity.dll

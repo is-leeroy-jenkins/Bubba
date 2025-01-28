@@ -11,7 +11,9 @@
 
     <!--  *********************************************** BROWSER TAB  *****************************************************  -->
 
-    <Style x:Key="MetroBrowserTabStyle" TargetType="{x:Type b:BrowserTabItem}">
+    <Style
+        x:Key="MetroBrowserTabStyle"
+        TargetType="{x:Type b:BrowserTabItem}">
         <Setter Property="Background" Value="{DynamicResource FormBackground}" />
         <Setter Property="BorderBrush" Value="{DynamicResource FormBackground}" />
         <Setter Property="Foreground" Value="{DynamicResource FormForeground}" />
