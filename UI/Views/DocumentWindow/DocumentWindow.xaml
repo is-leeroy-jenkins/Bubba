@@ -57,11 +57,20 @@
             </sync:MenuItemAdv>
 
             <sync:MenuItemAdv
-                Click="OnFolderMenuOptionClick"
-                Header="Folder"
-                ToolTip="Browse Directories">
+                Click="OnChatOptionClick"
+                Header="Chat"
+                ToolTip="GPT Mode">
                 <sync:MenuItemAdv.Icon>
-                    <Image Source="/Resources/Assets/MenuImages/FolderItem.png" />
+                    <Image Source="/Resources/Assets/ToolStripImages/ChatButton.png" />
+                </sync:MenuItemAdv.Icon>
+            </sync:MenuItemAdv>
+
+            <sync:MenuItemAdv
+                Click="OnWebOptionClick"
+                Header="Web"
+                ToolTip="Web Browser">
+                <sync:MenuItemAdv.Icon>
+                    <Image Source="/Resources/Assets/ToolStripImages/WebSearchButton.png" />
                 </sync:MenuItemAdv.Icon>
             </sync:MenuItemAdv>
 
@@ -69,7 +78,7 @@
 
             <sync:MenuItemAdv
                 Click="OnCalculatorMenuOptionClick"
-                Header="Chrome"
+                Header="Google Chrome"
                 ToolTip="Launch Chrome Browser">
                 <sync:MenuItemAdv.Icon>
                     <Image Source="/Resources/Assets/MenuImages/ChromeItem.png" />
@@ -78,7 +87,7 @@
 
             <sync:MenuItemAdv
                 Click="OnControlPanelOptionClick"
-                Header="Edge"
+                Header="MS Edge"
                 ToolTip="Launch Edge Browser">
                 <sync:MenuItemAdv.Icon>
                     <Image Source="/Resources/Assets/MenuImages/EdgeItem.png" />
@@ -278,8 +287,9 @@
 
             <Canvas Grid.Column="1" />
 
-            <pdf:PdfViewerControl
+            <pdf:PdfViewerControl 
                 x:Name="PdfViewer"
+                Grid.Column="0"
                 Width="845"
                 Height="686"
                 Margin="11,0,0,0"

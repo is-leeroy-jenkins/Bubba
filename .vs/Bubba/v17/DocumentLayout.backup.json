@@ -3,20 +3,12 @@
   "WorkspaceRootPath": "C:\\Users\\terry\\source\\repos\\Bubba\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{08012640-3765-4051-B5EB-4FF782150AEC}|Bubba.csproj|c:\\users\\terry\\source\\repos\\bubba\\ui\\views\\documentwindow\\documentwindow.xaml.cs||{8B382828-6202-11D1-8870-0000F87579D2}|",
-      "RelativeMoniker": "D:0:0:{08012640-3765-4051-B5EB-4FF782150AEC}|Bubba.csproj|solutionrelative:ui\\views\\documentwindow\\documentwindow.xaml.cs||{8B382828-6202-11D1-8870-0000F87579D2}|"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{08012640-3765-4051-B5EB-4FF782150AEC}|Bubba.csproj|c:\\users\\terry\\source\\repos\\bubba\\ui\\views\\documentwindow\\documentwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{08012640-3765-4051-B5EB-4FF782150AEC}|Bubba.csproj|solutionrelative:ui\\views\\documentwindow\\documentwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+      "AbsoluteMoniker": "D:0:0:{08012640-3765-4051-B5EB-4FF782150AEC}|Bubba.csproj|c:\\users\\terry\\source\\repos\\bubba\\ui\\views\\webbrowser\\webbrowser.xaml.cs||{8B382828-6202-11D1-8870-0000F87579D2}|",
+      "RelativeMoniker": "D:0:0:{08012640-3765-4051-B5EB-4FF782150AEC}|Bubba.csproj|solutionrelative:ui\\views\\webbrowser\\webbrowser.xaml.cs||{8B382828-6202-11D1-8870-0000F87579D2}|"
     },
     {
       "AbsoluteMoniker": "D:0:0:{08012640-3765-4051-B5EB-4FF782150AEC}|Bubba.csproj|c:\\users\\terry\\source\\repos\\bubba\\ui\\views\\chatwindow\\chatwindow.xaml.cs||{8B382828-6202-11D1-8870-0000F87579D2}|",
       "RelativeMoniker": "D:0:0:{08012640-3765-4051-B5EB-4FF782150AEC}|Bubba.csproj|solutionrelative:ui\\views\\chatwindow\\chatwindow.xaml.cs||{8B382828-6202-11D1-8870-0000F87579D2}|"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{08012640-3765-4051-B5EB-4FF782150AEC}|Bubba.csproj|c:\\users\\terry\\source\\repos\\bubba\\ui\\views\\chatwindow\\chatwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{08012640-3765-4051-B5EB-4FF782150AEC}|Bubba.csproj|solutionrelative:ui\\views\\chatwindow\\chatwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     }
   ],
   "DocumentGroupContainers": [
@@ -26,7 +18,7 @@
       "DocumentGroups": [
         {
           "DockedHeight": 332,
-          "SelectedChildIndex": 11,
+          "SelectedChildIndex": 12,
           "Children": [
             {
               "$type": "Bookmark",
@@ -74,50 +66,29 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "DocumentWindow.xaml.cs",
-              "DocumentMoniker": "C:\\Users\\terry\\source\\repos\\Bubba\\UI\\Views\\DocumentWindow\\DocumentWindow.xaml.cs",
-              "RelativeDocumentMoniker": "UI\\Views\\DocumentWindow\\DocumentWindow.xaml.cs",
-              "ToolTip": "C:\\Users\\terry\\source\\repos\\Bubba\\UI\\Views\\DocumentWindow\\DocumentWindow.xaml.cs",
-              "RelativeToolTip": "UI\\Views\\DocumentWindow\\DocumentWindow.xaml.cs",
-              "ViewState": "AgIAAGkCAAAAAAAAAADwv4ECAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-29T14:47:38.301Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 1,
               "Title": "ChatWindow.xaml.cs",
               "DocumentMoniker": "C:\\Users\\terry\\source\\repos\\Bubba\\UI\\Views\\ChatWindow\\ChatWindow.xaml.cs",
               "RelativeDocumentMoniker": "UI\\Views\\ChatWindow\\ChatWindow.xaml.cs",
               "ToolTip": "C:\\Users\\terry\\source\\repos\\Bubba\\UI\\Views\\ChatWindow\\ChatWindow.xaml.cs",
               "RelativeToolTip": "UI\\Views\\ChatWindow\\ChatWindow.xaml.cs",
-              "ViewState": "AgIAAJYHAAAAAAAAAAAowLUHAAAJAAAAAAAAAA==",
+              "ViewState": "AgIAAOEGAAAAAAAAAAAowO4GAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-29T15:09:38.133Z"
+              "WhenOpened": "2025-01-29T15:09:38.133Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "DocumentWindow.xaml",
-              "DocumentMoniker": "C:\\Users\\terry\\source\\repos\\Bubba\\UI\\Views\\DocumentWindow\\DocumentWindow.xaml",
-              "RelativeDocumentMoniker": "UI\\Views\\DocumentWindow\\DocumentWindow.xaml",
-              "ToolTip": "C:\\Users\\terry\\source\\repos\\Bubba\\UI\\Views\\DocumentWindow\\DocumentWindow.xaml",
-              "RelativeToolTip": "UI\\Views\\DocumentWindow\\DocumentWindow.xaml",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-01-29T15:21:55.073Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "ChatWindow.xaml",
-              "DocumentMoniker": "C:\\Users\\terry\\source\\repos\\Bubba\\UI\\Views\\ChatWindow\\ChatWindow.xaml",
-              "RelativeDocumentMoniker": "UI\\Views\\ChatWindow\\ChatWindow.xaml",
-              "ToolTip": "C:\\Users\\terry\\source\\repos\\Bubba\\UI\\Views\\ChatWindow\\ChatWindow.xaml",
-              "RelativeToolTip": "UI\\Views\\ChatWindow\\ChatWindow.xaml",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-01-29T16:37:04.889Z"
+              "DocumentIndex": 0,
+              "Title": "WebBrowser.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\terry\\source\\repos\\Bubba\\UI\\Views\\WebBrowser\\WebBrowser.xaml.cs",
+              "RelativeDocumentMoniker": "UI\\Views\\WebBrowser\\WebBrowser.xaml.cs",
+              "ToolTip": "C:\\Users\\terry\\source\\repos\\Bubba\\UI\\Views\\WebBrowser\\WebBrowser.xaml.cs",
+              "RelativeToolTip": "UI\\Views\\WebBrowser\\WebBrowser.xaml.cs",
+              "ViewState": "AgIAAJ0GAAAAAAAAAAAIwK0GAAAVAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-29T22:38:43.544Z",
+              "EditorCaption": ""
             }
           ]
         },

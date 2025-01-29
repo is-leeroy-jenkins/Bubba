@@ -1019,13 +1019,13 @@
             <Canvas
                 x:Name="LowerCanvas"
                 Grid.Row="2"
-                Margin="0,10,10,35">
+                Margin="0,0,10,40">
 
                 <TabControl
                     x:Name="TabControl"
                     Canvas.Left="10"
                     Width="1231"
-                    Height="290"
+                    Height="315"
                     HorizontalAlignment="Center"
                     VerticalAlignment="Top"
                     Background="{DynamicResource FormBackground}"
@@ -1056,7 +1056,7 @@
                             <GroupBox
                                 x:Name="LanguageGroupBox"
                                 Grid.Column="0"
-                                Margin="10,0,9,37"
+                                Margin="10,0,9,10"
                                 Background="{StaticResource GroupBoxBackground}"
                                 Foreground="{StaticResource LightBlueBrush}"
                                 Header="Languages">
@@ -1076,7 +1076,7 @@
                                     Canvas.Left="20"
                                     Canvas.Top="10"
                                     Width="960"
-                                    Height="243"
+                                    Height="270"
                                     MaxWidth="1030"
                                     Padding="20,20,5,5"
                                     HorizontalAlignment="Center"
@@ -1104,8 +1104,8 @@
                         <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="195*" />
-                                <ColumnDefinition Width="1000*" />
-                                <ColumnDefinition Width="32*" />
+                                <ColumnDefinition Width="1030*" />
+                                <ColumnDefinition Width="2*" />
                             </Grid.ColumnDefinitions>
 
                             <GroupBox
@@ -1210,6 +1210,7 @@
                             <Canvas
                                 x:Name="GraphCanvas"
                                 Margin="1"
+                                Height="275"
                                 Background="{StaticResource FormBackground}">
 
                                 <wpf:SfChart3D

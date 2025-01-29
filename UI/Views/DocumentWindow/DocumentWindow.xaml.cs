@@ -603,8 +603,8 @@ namespace Bubba
                 _prefix = Locations.PathPrefix;
                 var _folder = Locations.FederalRegulations;
                 var _documentPaths = new Dictionary<string, string>( );
-                var _dirPath = _prefix + _folder;
-                var _files = Directory.EnumerateFiles( _dirPath );
+                var _directory = _prefix + _folder;
+                var _files = Directory.EnumerateFiles( _directory );
                 foreach( var _filePath in _files )
                 {
                     var _fileName = Path.GetFileNameWithoutExtension( _filePath );
@@ -752,6 +752,28 @@ namespace Bubba
         }
 
         /// <summary>
+        /// Sets the toolbar visibility.
+        /// </summary>
+        private void SetToolbarVisibility( )
+        {
+            try
+            {
+                if( !ToolStripFirstButton.IsVisible )
+                {
+                    SetToolbarVisible( );
+                }
+                else
+                {
+                    SetToolbarHidden( );
+                }
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+            }
+        }
+
+        /// <summary>
         /// Updates the status.
         /// </summary>
         private void UpdateStatus( )
@@ -788,8 +810,49 @@ namespace Bubba
         {
             try
             {
-                var _form = ( ChatWindow )App.ActiveWindows[ "ChatWindow" ];
-                _form.Show( );
+                if( App.ActiveWindows?.ContainsKey( "ChatWindow" ) == true )
+                {
+                    var _form = ( ChatWindow )App.ActiveWindows[ "ChatWindow" ];
+                    _form.Show( );
+                }
+                else
+                {
+                    var _chat = new ChatWindow
+                    {
+                        Topmost = true
+                    };
+
+                    _chat.Show( );
+                }
+
+                Hide( );
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+            }
+        }
+
+        /// <summary>
+        /// Opens the chat window.
+        /// </summary>
+        private protected void OpenWebBrowser( )
+        {
+            try
+            {
+                if( App.ActiveWindows?.ContainsKey( "WebBrowser" ) == true )
+                {
+                    var _browser = ( WebBrowser )App.ActiveWindows[ "WebBrowser" ];
+                    _browser.Show( );
+                }
+                else
+                {
+                    var _webBrowser = new WebBrowser( );
+                    App.ActiveWindows?.Add( "WebBrowser", _webBrowser );
+                    _webBrowser.Show( );
+                }
+
+                Hide( );
             }
             catch( Exception ex )
             {
@@ -845,7 +908,13 @@ namespace Bubba
                 DocumentListBox.Items.Clear( );
                 foreach( var _kvp in _federalRegulations )
                 {
-                    DocumentListBox.Items.Add( _kvp.Key );
+                    var _item = new MetroListBoxItem
+                    {
+                        Content = _kvp.Key,
+                        Tag = _kvp.Value
+                    };
+
+                    DocumentListBox.Items.Add( _item );
                 }
             }
             catch( Exception ex )
@@ -1185,30 +1254,6 @@ namespace Bubba
         }
 
         /// <summary>
-        /// Called when [folder menu option click].
-        /// </summary>
-        /// <param name="sender">The sender.</param>
-        /// <param name="e">The <see cref="EventArgs"/>
-        /// instance containing the event data.</param>
-        private void OnFolderMenuOptionClick( object sender, RoutedEventArgs e )
-        {
-            try
-            {
-                var _fileBrowser = new FileBrowser
-                {
-                    Owner = this,
-                    Topmost = true
-                };
-
-                _fileBrowser.Show( );
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
-            }
-        }
-
-        /// <summary>
         /// Called when [control panel option click].
         /// </summary>
         /// <param name="sender">The sender.</param>
@@ -1324,16 +1369,38 @@ namespace Bubba
         /// instance containing the event data.</param>
         private void OnToggleButtonClick( object sender, RoutedEventArgs e )
         {
+            SetToolbarVisibility( );
+        }
+
+        /// <summary>
+        /// Called when [web option click].
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The <see cref="RoutedEventArgs"/>
+        /// instance containing the event data.</param>
+        private void OnWebOptionClick( object sender, RoutedEventArgs e )
+        {
             try
             {
-                if( !ToolStripFirstButton.IsVisible )
-                {
-                    SetToolbarVisible( );
-                }
-                else
-                {
-                    SetToolbarHidden( );
-                }
+                OpenWebBrowser( );
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+            }
+        }
+
+        /// <summary>
+        /// Called when [chat option click].
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The <see cref="RoutedEventArgs"/>
+        /// instance containing the event data.</param>
+        private void OnChatOptionClick( object sender, RoutedEventArgs e )
+        {
+            try
+            {
+                OpenChatWindow( );
             }
             catch( Exception ex )
             {
