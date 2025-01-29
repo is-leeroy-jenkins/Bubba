@@ -2,9 +2,9 @@
     x:Class="Bubba.MetroTextInput"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="clr-namespace:Bubba"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     x:Name="InputBox"
     Width="245"
     Height="80"
@@ -15,9 +15,9 @@
     Padding="1"
     HorizontalAlignment="Left"
     Background="#FF141414"
-    Foreground="#FFDEDEDE"
     BorderBrush="#FF0078D4"
     BorderThickness="1"
+    Foreground="#FFDEDEDE"
     mc:Ignorable="d">
     <Canvas
         x:Name="Canvas"
@@ -37,9 +37,9 @@
             HorizontalAlignment="Center"
             VerticalAlignment="Top"
             VerticalContentAlignment="Bottom"
-            Content="Name"
             Background="#FF141414"
-            BorderBrush="#FF141414" />
+            BorderBrush="#FF141414"
+            Content="Name" />
         <local:MetroTextBox
             x:Name="TextBox"
             Canvas.Left="13"
@@ -49,7 +49,7 @@
             MaxWidth="260"
             MaxHeight="30"
             Padding="10,1,1,1"
-            TextWrapping="NoWrap"
-            Text="Value" />
+            Text="Value"
+            TextWrapping="NoWrap" />
     </Canvas>
 </UserControl>

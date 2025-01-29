@@ -81,6 +81,16 @@
                 </wpf:MenuItemAdv.Icon>
             </wpf:MenuItemAdv>
 
+            <wpf:MenuItemAdv
+                Click="OnPromptOptionClick"
+                Header="Guidance"
+                ToolTip="Federal Regulations">
+                <wpf:MenuItemAdv.Icon>
+                    <Image Source="/Resources/Assets/MenuImages/DocumentaionItem.png" />
+                </wpf:MenuItemAdv.Icon>
+            </wpf:MenuItemAdv>
+
+
             <Separator Background="{StaticResource BlueBorderBrush}" />
 
             <wpf:MenuItemAdv
@@ -961,15 +971,20 @@
                             Height="32"
                             Margin="23,10,30,0"
                             VerticalAlignment="Top"
+                            ClickMode="Press"
                             Content="Editor"
-                            Foreground="{StaticResource LightBlueBrush}" />
+                            FontFamily="Roboto"
+                            Foreground="{StaticResource BlueBorderBrush}"
+                            Tag="Editor" />
 
                         <RadioButton
                             x:Name="ChatRadioButton"
                             Grid.Row="1"
                             Margin="23,5,30,8"
                             Content="Chat"
-                            Foreground="{StaticResource LightBlueBrush}" />
+                            FontFamily="Roboto"
+                            Foreground="{StaticResource BlueBorderBrush}"
+                            Tag="Chat" />
 
                         <RadioButton
                             x:Name="NetworkRadioButton"
@@ -978,7 +993,9 @@
                             Margin="23,1,0,9"
                             HorizontalAlignment="Left"
                             Content="Network"
-                            Foreground="{StaticResource LightBlueBrush}" />
+                            FontFamily="Roboto"
+                            Foreground="{StaticResource BlueBorderBrush}"
+                            Tag="Network" />
 
                         <RadioButton
                             x:Name="DataRadioButton"
@@ -990,7 +1007,9 @@
                             HorizontalAlignment="Left"
                             VerticalAlignment="Top"
                             Content="Data"
-                            Foreground="{StaticResource LightBlueBrush}" />
+                            FontFamily="Roboto"
+                            Foreground="{StaticResource BlueBorderBrush}"
+                            Tag="Data" />
                     </Grid>
                 </GroupBox>
 
@@ -1020,7 +1039,7 @@
                         Background="{DynamicResource FormBackground}"
                         BorderBrush="{DynamicResource FormBackground}"
                         Foreground="{DynamicResource LightBlueBrush}"
-                        Header="Editor">
+                        Header="">
 
                         <Grid
                             Height="290"
@@ -1080,7 +1099,7 @@
                         Background="{DynamicResource FormBackground}"
                         BorderBrush="{DynamicResource FormBackground}"
                         Foreground="{DynamicResource LightBlueBrush}"
-                        Header="Chat">
+                        Header="">
 
                         <Grid>
                             <Grid.ColumnDefinitions>
@@ -1181,39 +1200,55 @@
 
                     <TabItem
                         x:Name="NetworkTab"
+                        Background="{StaticResource FormBackground}"
                         ClipToBounds="True"
-                        Foreground="{DynamicResource {x:Static SystemColors.ActiveCaptionBrushKey}}"
-                        Header="Network"
-                        IsSelected="True"
+                        Foreground="{StaticResource LightBlueBrush}"
+                        Header=""
                         SnapsToDevicePixels="True"
                         UseLayoutRounding="True">
                         <Grid>
-                            <Canvas 
+                            <Canvas
                                 x:Name="GraphCanvas"
-                                Background="{StaticResource ControlBackground}"/>
-                                <plt:WpfPlot x:Name="Graph">
+                                Margin="1"
+                                Background="{StaticResource FormBackground}">
 
-                                </plt:WpfPlot>
+                                <wpf:SfChart3D
+                                    x:Name="Graph"
+                                    Canvas.Left="112"
+                                    Width="1000"
+                                    Height="255"
+                                    HorizontalAlignment="Center"
+                                    VerticalAlignment="Center"
+                                    BorderBrush="{StaticResource BlueBorderBrush}"
+                                    BorderThickness="2" />
+
+                            </Canvas>
                         </Grid>
 
                     </TabItem>
-                    
-                    <TabItem 
+
+                    <TabItem
                         x:Name="DataTab"
                         ClipToBounds="True"
                         Foreground="{StaticResource LightBlueBrush}"
-                        Header="Network"
-                        IsSelected="True"
+                        Header=""
                         SnapsToDevicePixels="True"
-                        UseLayoutRounding="True" />
-                        <Grid>
-                            <Canvas 
-                                x:Name="DataCanvas"
-                                Background="{StaticResource ControlBackground}"/>
-                        </Grid>
->
-                    
+                        UseLayoutRounding="True">
 
+                        <Grid>
+                            <Canvas
+                                x:Name="DataCanvas"
+                                Margin="1"
+                                Background="{StaticResource ControlBackground}" />
+
+                            <b:MetroDataGrid
+                                x:Name="DataGrid"
+                                Height="255"
+                                Margin="10,4,9,1"
+                                BorderBrush="{StaticResource BlueBorderBrush}"
+                                BorderThickness="2" />
+                        </Grid>
+                    </TabItem>
                 </TabControl>
 
                 <TextBlock

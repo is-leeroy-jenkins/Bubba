@@ -1,10 +1,10 @@
 ﻿// ******************************************************************************************
 //     Assembly:                Bubba
 //     Author:                  Terry D. Eppler
-//     Created:                 01-27-2025
+//     Created:                 01-29-2025
 // 
 //     Last Modified By:        Terry D. Eppler
-//     Last Modified On:        01-27-2025
+//     Last Modified On:        01-29-2025
 // ******************************************************************************************
 // <copyright file="ChatWindow.xaml.cs" company="Terry D. Eppler">
 //    Bubba is a small and simple windows (wpf) application for interacting with the OpenAI API
@@ -425,7 +425,9 @@ namespace Bubba
                 LoadWebBrowser( );
                 LoadFileBrowser( );
                 LoadGptFileDialog( );
+                LoadCalculator( );
                 LoadSystemDialog( );
+                LoadDocumentWindow( );
             }
             catch( Exception ex )
             {
@@ -497,7 +499,6 @@ namespace Bubba
             try
             {
                 NetworkTab.IsSelected = true;
-                SetNetworkGraph( );
             }
             catch( Exception ex )
             {
@@ -505,11 +506,14 @@ namespace Bubba
             }
         }
 
+        /// <summary>
+        /// Activates the data tab.
+        /// </summary>
         private protected void ActivateDataTab( )
         {
             try
             {
-                //DataTab.IsSelected = true;
+                DataTab.IsSelected = true;
             }
             catch( Exception ex )
             {
@@ -572,8 +576,8 @@ namespace Bubba
         {
             try
             {
-                ProgressBar.Visibility = Visibility.Visible;
                 ProgressBar.IsIndeterminate = true;
+                ProgressBar.Visibility = Visibility.Visible;
                 lock( _entry )
                 {
                     _busy = true;
@@ -665,6 +669,10 @@ namespace Bubba
                 LookupButton.Click += OnGoButtonClicked;
                 GptFileButton.Click += OnFileApiButtonClick;
                 ImageSizeComboBox.SelectionChanged += OnSelectedImageSizeChanged;
+                ChatRadioButton.Checked += OnRadioButtonSelected;
+                EditorRadioButton.Checked += OnRadioButtonSelected;
+                NetworkRadioButton.Checked += OnRadioButtonSelected;
+                DataRadioButton.Checked += OnRadioButtonSelected;
             }
             catch( Exception ex )
             {
@@ -701,6 +709,10 @@ namespace Bubba
                 StoreCheckBox.Checked -= OnStoreCheckBoxChecked;
                 GenerationComboBox.SelectionChanged -= OnSelectedRequestTypeChanged;
                 ImageSizeComboBox.SelectionChanged -= OnSelectedImageSizeChanged;
+                ChatRadioButton.Checked -= OnRadioButtonSelected;
+                EditorRadioButton.Checked -= OnRadioButtonSelected;
+                NetworkRadioButton.Checked -= OnRadioButtonSelected;
+                DataRadioButton.Checked -= OnRadioButtonSelected;
             }
             catch( Exception ex )
             {
@@ -1128,39 +1140,6 @@ namespace Bubba
                 }
 
                 _synthesizer.Speak( input );
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
-            }
-        }
-
-        /// <summary>
-        /// Sets the network graph.
-        /// </summary>
-        private protected void SetNetworkGraph( )
-        {
-            try
-            {
-                double[ ] _xs =
-                {
-                    1,
-                    2,
-                    3,
-                    4,
-                    5
-                };
-
-                double[ ] _ys =
-                {
-                    1,
-                    4,
-                    9,
-                    16,
-                    25
-                };
-
-                //Graph.Plot.Add.Scatter( _xs, _ys );
             }
             catch( Exception ex )
             {
@@ -1606,18 +1585,18 @@ namespace Bubba
         /// <summary>
         /// Opens the folder browser.
         /// </summary>
-        private protected void LoadFolderBrowser( )
+        private protected void LoadDocumentWindow( )
         {
             try
             {
-                var _folderBrowser = new FolderBrowser( )
+                var _folderBrowser = new DocumentWindow( )
                 {
                     Topmost = true,
+                    Owner = this,
                     WindowStartupLocation = WindowStartupLocation.CenterScreen
                 };
 
-                App.ActiveWindows.Add( "FolderBrowser", _folderBrowser );
-                _folderBrowser.Hide( );
+                App.ActiveWindows.Add( "DocumentWindow", _folderBrowser );
             }
             catch( Exception ex )
             {
@@ -1767,9 +1746,11 @@ namespace Bubba
         {
             try
             {
+                Busy( );
                 if( App.ActiveWindows.Keys.Contains( "SearchDialog" ) )
                 {
                     var _window = ( SearchDialog )App.ActiveWindows[ "SearchDialog" ];
+                    _window.Owner = this;
                     _window.Show( );
                 }
                 else
@@ -1777,11 +1758,14 @@ namespace Bubba
                     var _searchDialog = new SearchDialog
                     {
                         Topmost = true,
+                        Owner = this,
                         WindowStartupLocation = WindowStartupLocation.CenterScreen
                     };
 
                     _searchDialog.Show( );
                 }
+
+                Chill( );
             }
             catch( Exception ex )
             {
@@ -1796,6 +1780,7 @@ namespace Bubba
         {
             try
             {
+                Busy( );
                 if( App.ActiveWindows?.ContainsKey( "WebBrowser" ) == true )
                 {
                     var _browser = ( WebBrowser )App.ActiveWindows[ "WebBrowser" ];
@@ -1808,6 +1793,7 @@ namespace Bubba
                     _webBrowser.Show( );
                 }
 
+                Chill( );
                 Hide( );
             }
             catch( Exception ex )
@@ -1823,9 +1809,11 @@ namespace Bubba
         {
             try
             {
+                Busy( );
                 if( App.ActiveWindows.Keys.Contains( "FileBrowser" ) )
                 {
                     var _window = ( FileBrowser )App.ActiveWindows[ "FileBrowser" ];
+                    _window.Owner = this;
                     _window.Show( );
                 }
                 else
@@ -1839,6 +1827,8 @@ namespace Bubba
 
                     _fileBrowser.Show( );
                 }
+
+                Chill( );
             }
             catch( Exception ex )
             {
@@ -1853,9 +1843,11 @@ namespace Bubba
         {
             try
             {
+                Busy( );
                 if( App.ActiveWindows.Keys.Contains( "GptFileDialog" ) )
                 {
                     var _window = ( GptFileDialog )App.ActiveWindows[ "GptFileDialog" ];
+                    _window.Owner = this;
                     _window.Show( );
                 }
                 else
@@ -1869,6 +1861,8 @@ namespace Bubba
 
                     _fileDialog.Show( );
                 }
+
+                Chill( );
             }
             catch( Exception ex )
             {
@@ -1879,25 +1873,30 @@ namespace Bubba
         /// <summary>
         /// Opens the folder browser.
         /// </summary>
-        private protected void OpenFolderBrowser( )
+        private protected void OpenDocumentWindow( )
         {
             try
             {
-                if( App.ActiveWindows.Keys.Contains( "FolderBrowser" ) )
+                Busy( );
+                if( App.ActiveWindows.Keys.Contains( "DocumentWindow" ) )
                 {
-                    var _window = ( FolderBrowser )App.ActiveWindows[ "FolderBrowser" ];
+                    var _window = ( DocumentWindow )App.ActiveWindows[ "DocumentWindow" ];
+                    _window.Owner = this;
                     _window.Show( );
                 }
                 else
                 {
-                    var _folderBrowser = new FolderBrowser( )
+                    var _documentWindow = new DocumentWindow( )
                     {
                         Topmost = true,
+                        Owner = this,
                         WindowStartupLocation = WindowStartupLocation.CenterScreen
                     };
 
-                    _folderBrowser.Show( );
+                    _documentWindow.Show( );
                 }
+
+                Chill( );
             }
             catch( Exception ex )
             {
@@ -1913,9 +1912,11 @@ namespace Bubba
         {
             try
             {
+                Busy( );
                 if( App.ActiveWindows.Keys.Contains( "GptImageDialog" ) )
                 {
                     var _window = ( GptImageDialog )App.ActiveWindows[ "GptImageDialog" ];
+                    _window.Owner = this;
                     _window.Show( );
                 }
                 else
@@ -1929,6 +1930,8 @@ namespace Bubba
 
                     _gptImageDialog.Show( );
                 }
+
+                Chill( );
             }
             catch( Exception ex )
             {
@@ -1943,9 +1946,11 @@ namespace Bubba
         {
             try
             {
+                Busy( );
                 if( App.ActiveWindows.Keys.Contains( "SystemDialog" ) )
                 {
                     var _window = ( SystemDialog )App.ActiveWindows[ "SystemDialog" ];
+                    _window.Owner = this;
                     _window.Show( );
                 }
                 else
@@ -1953,11 +1958,47 @@ namespace Bubba
                     var _systemDialog = new SystemDialog
                     {
                         Topmost = true,
+                        Owner = this,
                         WindowStartupLocation = WindowStartupLocation.CenterScreen
                     };
 
                     _systemDialog.Show( );
                 }
+
+                Chill( );
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+            }
+        }
+
+        /// <summary>
+        /// Opens the calculator.
+        /// </summary>
+        private protected void OpenCalculator( )
+        {
+            try
+            {
+                Busy( );
+                if( App.ActiveWindows.Keys.Contains( "CalculatorWindow" ) )
+                {
+                    var _window = ( CalculatorWindow )App.ActiveWindows[ "CalculatorWindow" ];
+                    _window.Topmost = true;
+                    _window.Show( );
+                }
+                else
+                {
+                    var _calculator = new CalculatorWindow
+                    {
+                        Topmost = true,
+                        WindowStartupLocation = WindowStartupLocation.CenterScreen
+                    };
+
+                    _calculator.Show( );
+                }
+
+                Chill( );
             }
             catch( Exception ex )
             {
@@ -2591,7 +2632,9 @@ namespace Bubba
                 UserLabel.Content = $@"User ID : {Environment.UserName}";
                 TabControl.SelectedIndex = 1;
                 App.ActiveWindows.Add( "ChatWindow", this );
+                ActivateChatTab( );
                 InitializeInterface( );
+                ActivateChatTab( );
             }
             catch( Exception ex )
             {
@@ -2845,9 +2888,7 @@ namespace Bubba
         {
             try
             {
-                Busy( );
                 OpenFileBrowser( );
-                Chill( );
             }
             catch( Exception ex )
             {
@@ -2861,20 +2902,11 @@ namespace Bubba
         /// <param name="sender">The sender.</param>
         /// <param name="e">The <see cref="RoutedEventArgs"/>
         /// instance containing the event data.</param>
-        private void OnFolderMenuOptionClick( object sender, RoutedEventArgs e )
+        private void OnGuidanceMenuOptionClick( object sender, RoutedEventArgs e )
         {
             try
             {
-                Busy( );
-                var _fileBrowser = new FileBrowser
-                {
-                    WindowStartupLocation = WindowStartupLocation.CenterScreen,
-                    Owner = this,
-                    Topmost = true
-                };
-
-                Chill( );
-                _fileBrowser.Show( );
+                OpenDocumentWindow( );
             }
             catch( Exception ex )
             {
@@ -2892,9 +2924,7 @@ namespace Bubba
         {
             try
             {
-                Busy( );
                 WinMinion.LaunchControlPanel( );
-                Chill( );
             }
             catch( Exception ex )
             {
@@ -2912,9 +2942,7 @@ namespace Bubba
         {
             try
             {
-                Busy( );
                 OpenGptFileDialog( );
-                Chill( );
             }
             catch( Exception ex )
             {
@@ -2932,9 +2960,7 @@ namespace Bubba
         {
             try
             {
-                Busy( );
                 WinMinion.LaunchTaskManager( );
-                Chill( );
             }
             catch( Exception ex )
             {
@@ -3590,6 +3616,52 @@ namespace Bubba
                     }
 
                     ChatEditor.Text = _item;
+                }
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+            }
+        }
+
+        /// <summary>
+        /// Called when [RadioButton selected].
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The <see cref="RoutedEventArgs"/> instance containing the event data.</param>
+        private protected void OnRadioButtonSelected( object sender, RoutedEventArgs e )
+        {
+            try
+            {
+                if( sender is RadioButton _button )
+                {
+                    var _tag = _button?.Tag.ToString( );
+                    if( !string.IsNullOrEmpty( _tag ) )
+                    {
+                        switch( _tag )
+                        {
+                            case "Editor":
+                            {
+                                ActivateEditorTab( );
+                                break;
+                            }
+                            case "Chat":
+                            {
+                                ActivateChatTab( );
+                                break;
+                            }
+                            case "Network":
+                            {
+                                ActivateNetworkTab( );
+                                break;
+                            }
+                            case "Data":
+                            {
+                                ActivateDataTab( );
+                                break;
+                            }
+                        }
+                    }
                 }
             }
             catch( Exception ex )

@@ -1,17 +1,16 @@
 ﻿// ******************************************************************************************
-//     Assembly:                Bocifus
+//     Assembly:                Bubba
 //     Author:                  Terry D. Eppler
-//     Created:                 09-25-2024
+//     Created:                 01-28-2025
 // 
 //     Last Modified By:        Terry D. Eppler
-//     Last Modified On:        09-25-2024
+//     Last Modified On:        01-28-2025
 // ******************************************************************************************
 // <copyright file="ErrorWindow.xaml.cs" company="Terry D. Eppler">
+//    Bubba is a small and simple windows (wpf) application for interacting with the OpenAI API
+//    that's developed in C-Sharp under the MIT license.C#.
 // 
-//    Ninja is a network toolkit, support iperf, tcp, udp, websocket, mqtt,
-//    sniffer, pcap, port scan, listen, ip scan .etc.
-// 
-//    Copyright ©  2019-2024 Terry D. Eppler
+//    Copyright ©  2020-2024 Terry D. Eppler
 // 
 //    Permission is hereby granted, free of charge, to any person obtaining a copy
 //    of this software and associated documentation files (the “Software”),
@@ -140,7 +139,7 @@ namespace Bubba
             FontFamily = _theme.FontFamily;
             FontSize = _theme.FontSize;
             WindowStyle = WindowStyle.None;
-            WindowStartupLocation = WindowStartupLocation.CenterOwner;
+            WindowStartupLocation = WindowStartupLocation.CenterScreen;
             HorizontalAlignment = HorizontalAlignment.Stretch;
             VerticalAlignment = VerticalAlignment.Stretch;
             Background = _theme.DarkRedBrush;
@@ -302,7 +301,7 @@ namespace Bubba
             try
             {
                 _timerCallback += UpdateStatus;
-                _timer = new Timer( _timerCallback, null, 0, 260);
+                _timer = new Timer( _timerCallback, null, 0, 260 );
             }
             catch( Exception ex )
             {
@@ -371,18 +370,18 @@ namespace Bubba
         /// <summary>
         /// Busies this instance.
         /// </summary>
-        private void Busy()
+        private void Busy( )
         {
             try
             {
-                lock(_entry)
+                lock( _entry )
                 {
                     _busy = true;
                 }
             }
-            catch(Exception ex)
+            catch( Exception ex )
             {
-                Fail(ex);
+                Fail( ex );
             }
         }
 
@@ -393,14 +392,14 @@ namespace Bubba
         {
             try
             {
-                lock(_entry)
+                lock( _entry )
                 {
                     _busy = false;
                 }
             }
-            catch(Exception ex)
+            catch( Exception ex )
             {
-                Fail(ex);
+                Fail( ex );
             }
         }
 
@@ -486,23 +485,23 @@ namespace Bubba
         /// Invokes if.
         /// </summary>
         /// <param name="action">The action.</param>
-        public void InvokeIf(Action action)
+        public void InvokeIf( Action action )
         {
             try
             {
-                ThrowIf.Null(action, nameof(action));
-                if(Dispatcher.CheckAccess())
+                ThrowIf.Null( action, nameof( action ) );
+                if( Dispatcher.CheckAccess( ) )
                 {
-                    action?.Invoke();
+                    action?.Invoke( );
                 }
                 else
                 {
-                    Dispatcher.BeginInvoke(action);
+                    Dispatcher.BeginInvoke( action );
                 }
             }
-            catch(Exception ex)
+            catch( Exception ex )
             {
-                Fail(ex);
+                Fail( ex );
             }
         }
 
@@ -510,23 +509,23 @@ namespace Bubba
         /// Invokes if.
         /// </summary>
         /// <param name="action">The action.</param>
-        public void InvokeIf(Action<object> action)
+        public void InvokeIf( Action<object> action )
         {
             try
             {
-                ThrowIf.Null(action, nameof(action));
-                if(Dispatcher.CheckAccess())
+                ThrowIf.Null( action, nameof( action ) );
+                if( Dispatcher.CheckAccess( ) )
                 {
-                    action?.Invoke(null);
+                    action?.Invoke( null );
                 }
                 else
                 {
-                    Dispatcher.BeginInvoke(action);
+                    Dispatcher.BeginInvoke( action );
                 }
             }
-            catch(Exception ex)
+            catch( Exception ex )
             {
-                Fail(ex);
+                Fail( ex );
             }
         }
 

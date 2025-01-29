@@ -17,7 +17,7 @@
         <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}" />
         <Setter Property="Background" Value="{StaticResource TransparentBrush}" />
         <Setter Property="BorderBrush" Value="{StaticResource TransparentBrush}" />
-        <Setter Property="Foreground" Value="{StaticResource LightBlueColor}" />
+        <Setter Property="Foreground" Value="{StaticResource BlueBorderBrush}" />
         <Setter Property="BorderThickness" Value="0" />
         <Setter Property="HorizontalAlignment" Value="Stretch" />
         <Setter Property="VerticalAlignment" Value="Stretch" />

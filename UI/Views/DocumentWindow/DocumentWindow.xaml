@@ -11,7 +11,7 @@
     x:Name="DocViewer"
     Title="Documentation"
     Width="1130"
-    Height="805"
+    Height="795"
     MinWidth="1100"
     MinHeight="500"
     MaxWidth="1500"
@@ -38,6 +38,7 @@
             <Setter Property="Background" Value="{StaticResource BlackBackground}" />
             <Setter Property="Foreground" Value="{StaticResource LightBlueBrush}" />
         </Style>
+
     </Window.Resources>
 
 
@@ -136,165 +137,232 @@
         </ContextMenu>
     </Window.ContextMenu>
 
-    <Grid x:Name="DocumentCanvas" Margin="3">
+    <Grid
+        x:Name="DocumentCanvas"
+        Margin="3">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="877*" />
+            <ColumnDefinition Width="243*" />
+        </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition />
-            <RowDefinition Height="63.04" />
+            <RowDefinition Height="60" />
+            <RowDefinition Height="3.04" />
         </Grid.RowDefinitions>
-        <!--  ***************************** PDF Viewer  ***********************************  -->
-        <pdf:PdfViewerControl
-            x:Name="PdfViewer"
-            Width="830"
-            Height="666"
-            Margin="25,0,0,25"
-            HorizontalAlignment="Left"
-            VerticalAlignment="Bottom"
-            BorderBrush="{StaticResource BlueBorderBrush}"
-            BorderThickness="2" />
 
-        <!--  ***************************** ToolStrip  ***********************************  -->
+        <!--  ***************************** PDF  ***********************************  -->
 
-        <b:ToolStrip
-            x:Name="DocumentToolStrip"
+        <Canvas
             Grid.Row="1"
-            Margin="10,1,10,3"
-            Padding="1"
-            HorizontalContentAlignment="Stretch"
-            VerticalContentAlignment="Stretch"
-            BorderThickness="1"
-            OverflowButtonVisibility="Collapsed">
+            Grid.ColumnSpan="2">
+            <b:ToolStrip
+                x:Name="DocumentToolStrip"
+                Canvas.Left="10"
+                Canvas.Top="8"
+                Width="1100"
+                Height="40"
+                Padding="1"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Top"
+                HorizontalContentAlignment="Stretch"
+                VerticalContentAlignment="Stretch"
+                BorderThickness="1"
+                OverflowButtonVisibility="Collapsed">
 
-            <b:ToolStripLabel
-                x:Name="StatusLabel"
-                Width="80"
-                Height="35"
-                Padding="1,1,1,1"
-                HorizontalAlignment="Left"
-                VerticalAlignment="Center"
-                VerticalContentAlignment="Center"
-                Content="Date &amp; Time"
-                FontSize="9" />
+                <b:ToolStripLabel
+                    x:Name="StatusLabel"
+                    Width="90"
+                    Height="35"
+                    Padding="1,1,1,1"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Center"
+                    VerticalContentAlignment="Center"
+                    Content="Date &amp; Time"
+                    FontSize="9" />
 
-            <sync:MenuItemSeparator
-                Background="{x:Null}"
-                BorderBrush="{x:Null}"
-                Foreground="{x:Null}" />
+                <sync:MenuItemSeparator
+                    Background="{x:Null}"
+                    BorderBrush="{x:Null}"
+                    Foreground="{x:Null}" />
 
-            <b:ToolStripButton
-                x:Name="ToolStripFirstButton"
-                Height="30"
-                ImageSource="/Resources/Assets/ToolStripImages/FirstButton.png"
-                ToolTip="First Record" />
+                <b:ToolStripButton
+                    x:Name="ToolStripFirstButton"
+                    Height="30"
+                    ImageSource="/Resources/Assets/ToolStripImages/FirstButton.png"
+                    ToolTip="First Record" />
 
-            <b:ToolStripButton
-                x:Name="ToolStripPreviousButton"
-                Height="30"
-                ImageSource="/Resources/Assets/ToolStripImages/PreviousButton.png"
-                ToolTip="Previous Record" />
+                <b:ToolStripButton
+                    x:Name="ToolStripPreviousButton"
+                    Height="30"
+                    ImageSource="/Resources/Assets/ToolStripImages/PreviousButton.png"
+                    ToolTip="Previous Record" />
 
-            <b:ToolStripButton
-                x:Name="ToolStripNextButton"
-                Height="30"
-                ImageSource="/Resources/Assets/ToolStripImages/NextButton.png"
-                ToolTip="Next Record" />
+                <b:ToolStripButton
+                    x:Name="ToolStripNextButton"
+                    Height="30"
+                    ImageSource="/Resources/Assets/ToolStripImages/NextButton.png"
+                    ToolTip="Next Record" />
 
-            <b:ToolStripButton
-                x:Name="ToolStripLastButton"
-                Height="30"
-                ImageSource="/Resources/Assets/ToolStripImages/LastButton.png"
-                ToolTip="Last Record" />
+                <b:ToolStripButton
+                    x:Name="ToolStripLastButton"
+                    Height="30"
+                    ImageSource="/Resources/Assets/ToolStripImages/LastButton.png"
+                    ToolTip="Last Record" />
 
-            <sync:MenuItemSeparator
-                Background="{x:Null}"
-                BorderBrush="{x:Null}"
-                Foreground="{x:Null}" />
+                <b:ToolStripTextBox
+                    x:Name="ToolStripTextBox"
+                    Width="312"
+                    Height="30"
+                    Padding="10,1,1,1"
+                    HorizontalContentAlignment="Center"
+                    VerticalContentAlignment="Center" />
 
-            <b:ToolStripTextBox
-                x:Name="ToolStripTextBox"
-                Width="300"
-                Height="30"
-                Padding="10,1,1,1"
-                HorizontalAlignment="Stretch"
-                HorizontalContentAlignment="Center"
-                VerticalContentAlignment="Center" />
+                <sync:MenuItemSeparator
+                    Background="{x:Null}"
+                    BorderBrush="{x:Null}"
+                    Foreground="{x:Null}" />
 
-            <sync:MenuItemSeparator
-                Background="{x:Null}"
-                BorderBrush="{x:Null}"
-                Foreground="{x:Null}" />
+                <b:ToolStripButton
+                    x:Name="ToolStripGoButton"
+                    Height="30"
+                    ImageSource="/Resources/Assets/ToolStripImages/GoButton.png"
+                    ToolTip="Look Up" />
 
-            <b:ToolStripButton
-                x:Name="ToolStripGoButton"
-                Height="30"
-                ImageSource="/Resources/Assets/ToolStripImages/GoButton.png"
-                ToolTip="Look Up" />
+                <b:ToolStripButton
+                    x:Name="ToolStripRefreshButton"
+                    Height="30"
+                    ImageSource="/Resources/Assets/ToolStripImages/RefreshButton.png"
+                    ToolTip="Refresh" />
 
-            <b:ToolStripButton
-                x:Name="ToolStripRefreshButton"
-                Height="30"
-                ImageSource="/Resources/Assets/ToolStripImages/RefreshButton.png"
-                ToolTip="Refresh" />
+                <ProgressBar
+                    x:Name="ToolStripProgressBar"
+                    Width="200"
+                    Height="30"
+                    Margin="5,1,5,1"
+                    Background="{StaticResource FormBackground}"
+                    BorderBrush="{StaticResource FormBackground}" />
 
-            <ProgressBar
-                x:Name="ToolStripProgressBar"
-                Width="200"
-                Height="30"
-                Margin="5,1,5,1"
-                Background="{StaticResource FormBackground}"
-                BorderBrush="{StaticResource FormBackground}" />
+                <b:ToolStripButton
+                    x:Name="ToolStripBrowseButton"
+                    Margin="5,1,5,1"
+                    Height="30"
+                    Width="40"
+                    ImageSource="/Resources/Assets/ToolStripImages/BrowseButton.png"
+                    ToolTip="Search File  System" />
 
-            <b:ToolStripButton
-                x:Name="ToolStripBrowseButton"
-                Margin="5,1,5,1"
-                ImageSource="/Resources/Assets/ToolStripImages/BrowseButton.png"
-                ToolTip="Search File  System" />
+                <b:ToolStripButton
+                    x:Name="ToolStripToggleButton"
+                    Width="40"
+                    Background="{StaticResource FormBackground}"
+                    ImageSource="/Resources/Assets/ToolStripImages/ToggleButton.png"
+                    ToolTip="Show Command Buttons" />
 
-            <b:ToolStripButton
-                x:Name="ToolStripToggleButton"
-                Width="40"
-                Background="{StaticResource FormBackground}"
-                ImageSource="/Resources/Assets/ToolStripImages/ToggleButton.png"
-                ToolTip="Show Command Buttons" />
+                <b:ToolStripButton
+                    x:Name="ToolStripExitButton"
+                    Height="30"
+                    ImageSource="/Resources/Assets/ToolStripImages/ExitButton.png"
+                    ToolTip="Close Window" />
 
-            <b:ToolStripButton
-                x:Name="ToolStripExitButton"
-                Height="30"
-                ImageSource="/Resources/Assets/ToolStripImages/ExitButton.png"
-                ToolTip="Close Window" />
+            </b:ToolStrip>
+        </Canvas>
 
-        </b:ToolStrip>
-        <Grid>
+        <Grid
+            Grid.Row="0"
+            Grid.Column="0"
+            Grid.ColumnSpan="2">
+
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="867*" />
-                <ColumnDefinition Width="257*" />
+                <ColumnDefinition Width="253*" />
             </Grid.ColumnDefinitions>
-            <b:MetroListBox
-                x:Name="DocumentListBox"
-                Grid.Column="1"
-                Margin="10,81,10,25"
-                Panel.ZIndex="4"
-                Background="{StaticResource ControlInteriorBrush}"
-                BorderBrush="{StaticResource BlueBorderBrush}"
-                BorderThickness="2"
-                FontSize="8" />
-            <ComboBox
-                x:Name="DocumentComboBox"
-                Grid.Column="1"
-                Margin="10,22,10,655"
-                Background="{StaticResource ControlInteriorBrush}"
-                BorderBrush="{StaticResource BlueBorderBrush}"
-                BorderThickness="2">
 
-                <ComboBoxItem
-                    Background="{DynamicResource ControlInteriorBrush}"
-                    Content="Public Laws"
-                    FontFamily="Roboto" />
+            <Canvas Grid.Column="1" />
 
-                <ComboBoxItem
-                    Background="{DynamicResource ControlInteriorBrush}"
-                    Content="Regulations"
-                    FontFamily="Roboto" />
-            </ComboBox>
+            <pdf:PdfViewerControl
+                x:Name="PdfViewer"
+                Width="845"
+                Height="686"
+                Margin="11,0,0,0"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Center"
+                BorderBrush="{StaticResource BlueBorderBrush}"
+                BorderThickness="2" />
+
         </Grid>
+
+        <!--  ***************************** PDF Viewer  ***********************************  -->
+
+        <Grid
+            Grid.Row="0"
+            Grid.Column="0"
+            Grid.ColumnSpan="2">
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="109*" />
+                <ColumnDefinition Width="31*" />
+            </Grid.ColumnDefinitions>
+
+            <Grid Grid.Column="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="35" />
+                    <RowDefinition Height="35" />
+                    <RowDefinition Height="35" />
+                    <RowDefinition Height="625*" />
+                </Grid.RowDefinitions>
+
+                <RadioButton
+                    x:Name="PublicLawsRadioButton"
+                    Grid.Row="0"
+                    Margin="30,1,10,1"
+                    Padding="15,1,1,1"
+                    Content="Appropriation Bills"
+                    FontFamily="Roboto"
+                    FontSize="14"
+                    Foreground="{DynamicResource BlueBorderBrush}"
+                    Tag="PublicLaws" />
+
+                <RadioButton
+                    x:Name="ExplanatoryStatementsRadioButton"
+                    Grid.Row="1"
+                    Margin="30,1,10,1"
+                    Padding="15,1,1,1"
+                    Content="Committee Reports"
+                    FontFamily="Roboto"
+                    FontSize="14"
+                    Foreground="{DynamicResource BlueBorderBrush}"
+                    Tag="ExplanatoryStatements" />
+
+                <RadioButton
+                    x:Name="FederalRegulationsRadioButton"
+                    Grid.Row="2"
+                    Margin="30,0,10,1"
+                    Padding="15,1,1,1"
+                    Content="Federal Regulations"
+                    FontFamily="Roboto"
+                    FontSize="14"
+                    Foreground="{DynamicResource BlueBorderBrush}"
+                    Tag="FederalRegulations" />
+                <Canvas Grid.Row="3">
+                    <b:MetroListBox
+                        x:Name="DocumentListBox"
+                        Canvas.Left="23"
+                        Canvas.Top="21"
+                        Width="202"
+                        Height="570"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        HorizontalContentAlignment="Left"
+                        Panel.ZIndex="4"
+                        Background="{StaticResource ControlBackground}"
+                        BorderBrush="{StaticResource BlueBorderBrush}"
+                        BorderThickness="2"
+                        FontSize="10" />
+                </Canvas>
+            </Grid>
+
+            <Canvas />
+        </Grid>
+
+        <!--  ***************************** ToolStrip  ***********************************  -->
     </Grid>
 </Window>

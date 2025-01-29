@@ -53,10 +53,22 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Data\Stores\Access\**" />
+    <Compile Remove="Data\Stores\SqlServer\**" />
     <Compile Remove="IO\Google\**" />
+    <Compile Remove="Resources\Documents\CodeEditor\**" />
+    <EmbeddedResource Remove="Data\Stores\Access\**" />
+    <EmbeddedResource Remove="Data\Stores\SqlServer\**" />
     <EmbeddedResource Remove="IO\Google\**" />
+    <EmbeddedResource Remove="Resources\Documents\CodeEditor\**" />
+    <None Remove="Data\Stores\Access\**" />
+    <None Remove="Data\Stores\SqlServer\**" />
     <None Remove="IO\Google\**" />
+    <None Remove="Resources\Documents\CodeEditor\**" />
+    <Page Remove="Data\Stores\Access\**" />
+    <Page Remove="Data\Stores\SqlServer\**" />
     <Page Remove="IO\Google\**" />
+    <Page Remove="Resources\Documents\CodeEditor\**" />
   </ItemGroup>
 
   <ItemGroup>
@@ -315,6 +327,94 @@
     <None Remove="Resources\Assets\ToolStripImages\WebDownload.png" />
     <None Remove="Resources\Assets\ToolStripImages\WebDownloadButton.png" />
     <None Remove="Resources\Assets\ToolStripImages\WebSearchButton.png" />
+    <None Remove="Resources\Documents\PublicLaws\Public Law 100-202.pdf" />
+    <None Remove="Resources\Documents\PublicLaws\Public Law 100-404.pdf" />
+    <None Remove="Resources\Documents\PublicLaws\Public Law 101-121.pdf" />
+    <None Remove="Resources\Documents\PublicLaws\Public Law 101-508.pdf" />
+    <None Remove="Resources\Documents\PublicLaws\Public Law 102-141.pdf" />
+    <None Remove="Resources\Documents\PublicLaws\Public Law 102-393.pdf" />
+    <None Remove="Resources\Documents\PublicLaws\Public Law 103-333.pdf" />
+    <None Remove="Resources\Documents\PublicLaws\Public Law 104-134.pdf" />
+    <None Remove="Resources\Documents\PublicLaws\Public Law 104-208.pdf" />
+    <None Remove="Resources\Documents\PublicLaws\Public Law 105-277.pdf" />
+    <None Remove="Resources\Documents\PublicLaws\Public Law 106-113.pdf" />
+    <None Remove="Resources\Documents\PublicLaws\Public Law 106-259.pdf" />
+    <None Remove="Resources\Documents\PublicLaws\Public Law 106-554.pdf" />
+    <None Remove="Resources\Documents\PublicLaws\Public Law 106-79.pdf" />
+    <None Remove="Resources\Documents\PublicLaws\Public Law 107-117.pdf" />
+    <None Remove="Resources\Documents\PublicLaws\Public Law 107-206.pdf" />
+    <None Remove="Resources\Documents\PublicLaws\Public Law 108-11.pdf" />
+    <None Remove="Resources\Documents\PublicLaws\Public Law 108-199.pdf" />
+    <None Remove="Resources\Documents\PublicLaws\Public Law 108-447.pdf" />
+    <None Remove="Resources\Documents\PublicLaws\Public Law 108-7.pdf" />
+    <None Remove="Resources\Documents\PublicLaws\Public Law 109-115.pdf" />
+    <None Remove="Resources\Documents\PublicLaws\Public Law 110-329.pdf" />
+    <None Remove="Resources\Documents\PublicLaws\Public Law 110-5.pdf" />
+    <None Remove="Resources\Documents\PublicLaws\Public Law 110-61.pdf" />
+    <None Remove="Resources\Documents\PublicLaws\Public Law 111-117.pdf" />
+    <None Remove="Resources\Documents\PublicLaws\Public Law 111-8.pdf" />
+    <None Remove="Resources\Documents\PublicLaws\Public Law 112-10.pdf" />
+    <None Remove="Resources\Documents\PublicLaws\Public Law 112-74.pdf" />
+    <None Remove="Resources\Documents\PublicLaws\Public Law 113-2.pdf" />
+    <None Remove="Resources\Documents\PublicLaws\Public Law 113-235.pdf" />
+    <None Remove="Resources\Documents\PublicLaws\Public Law 113-6.pdf" />
+    <None Remove="Resources\Documents\PublicLaws\Public Law 113-76.pdf" />
+    <None Remove="Resources\Documents\PublicLaws\Public Law 114-113.pdf" />
+    <None Remove="Resources\Documents\PublicLaws\Public Law 115-141.pdf" />
+    <None Remove="Resources\Documents\PublicLaws\Public Law 115-31.pdf" />
+    <None Remove="Resources\Documents\PublicLaws\Public Law 116-260.pdf" />
+    <None Remove="Resources\Documents\PublicLaws\Public Law 116-6.pdf" />
+    <None Remove="Resources\Documents\PublicLaws\Public Law 116-93.pdf" />
+    <None Remove="Resources\Documents\PublicLaws\Public Law 117-103.pdf" />
+    <None Remove="Resources\Documents\PublicLaws\Public Law 117-169.pdf" />
+    <None Remove="Resources\Documents\PublicLaws\Public Law 117-328.pdf" />
+    <None Remove="Resources\Documents\PublicLaws\Public Law 117-58.pdf" />
+    <None Remove="Resources\Documents\PublicLaws\Public Law 118-47pdf.pdf" />
+    <None Remove="Resources\Documents\PublicLaws\Public Law 97-377.pdf" />
+    <None Remove="Resources\Documents\PublicLaws\Public Law 98-151.pdf" />
+    <None Remove="Resources\Documents\PublicLaws\Public Law 98-473.pdf" />
+    <None Remove="Resources\Documents\PublicLaws\Public Law 99-190.pdf" />
+    <None Remove="Resources\Documents\PublicLaws\Public Law 99-951.pdf" />
+    <None Remove="Resources\Documents\FederlalRegulations\Chief Financial Officers Act of 1990.pdf" />
+    <None Remove="Resources\Documents\FederlalRegulations\Digital Accountability And Transparency Act of 2014.pdf" />
+    <None Remove="Resources\Documents\FederlalRegulations\Federal Account Symbols And Titles Book.pdf" />
+    <None Remove="Resources\Documents\FederlalRegulations\Federal Acquisition Regulation.pdf" />
+    <None Remove="Resources\Documents\FederlalRegulations\Federal Government Standards For Internal Controls.pdf" />
+    <None Remove="Resources\Documents\FederlalRegulations\Federal Managers Financial Integrity Act of 1982.pdf" />
+    <None Remove="Resources\Documents\FederlalRegulations\Federal Trust Fund Accounting Guide.pdf" />
+    <None Remove="Resources\Documents\FederlalRegulations\Financial Resposibility Act Of 2023.pdf" />
+    <None Remove="Resources\Documents\FederlalRegulations\Government Auditing Standards.pdf" />
+    <None Remove="Resources\Documents\FederlalRegulations\Government Invoicing User Guide.pdf" />
+    <None Remove="Resources\Documents\FederlalRegulations\Government Performance and Results Act of 1993.pdf" />
+    <None Remove="Resources\Documents\FederlalRegulations\GPRA Modernization Act of 2010.pdf" />
+    <None Remove="Resources\Documents\FederlalRegulations\Independent Offices Appropriation Act, 1953.pdf" />
+    <None Remove="Resources\Documents\FederlalRegulations\Inspector General Act of 1978.pdf" />
+    <None Remove="Resources\Documents\FederlalRegulations\OMB Circular A-11 Preparation Submission And Execution Of The Budget.pdf" />
+    <None Remove="Resources\Documents\FederlalRegulations\OMB Circular A-11 Section 100 Sequestration.pdf" />
+    <None Remove="Resources\Documents\FederlalRegulations\OMB Circular A-11 Section 120 Apportionment Process.pdf" />
+    <None Remove="Resources\Documents\FederlalRegulations\OMB Circular A-123 Managements Responsibility for Enterprise Risk Management and Internal Control.pdf" />
+    <None Remove="Resources\Documents\FederlalRegulations\Principles Of Federal Appropriations Law Volume One.pdf" />
+    <None Remove="Resources\Documents\FederlalRegulations\Principles Of Federal Appropriations Law Volume Two.pdf" />
+    <None Remove="Resources\Documents\FederlalRegulations\Statements of Federal Federal Financial Accounting Concepts and Standards.pdf" />
+    <None Remove="Resources\Documents\FederlalRegulations\Supplemental Appropriation Act, 1955.pdf" />
+    <None Remove="Resources\Documents\FederlalRegulations\The Anti-Deficiency Act PL 97-258.pdf" />
+    <None Remove="Resources\Documents\FederlalRegulations\The Anti-Deficiency Reform and Enforcement Act of 2018.pdf" />
+    <None Remove="Resources\Documents\FederlalRegulations\The Balanced Budget and Emergency Deficit Control Act of 1985.pdf" />
+    <None Remove="Resources\Documents\FederlalRegulations\The Budget and Accounting Act of 1921.pdf" />
+    <None Remove="Resources\Documents\FederlalRegulations\The Budget Control Act.pdf" />
+    <None Remove="Resources\Documents\FederlalRegulations\The Economy Act of 1932.pdf" />
+    <None Remove="Resources\Documents\FederlalRegulations\The Fiscal Responsibility Act of 2023.pdf" />
+    <None Remove="Resources\Documents\FederlalRegulations\The Impoundment Control Act Of 1974.pdf" />
+    <None Remove="Resources\Documents\FederlalRegulations\The Stafford Act.pdf" />
+    <None Remove="Resources\Documents\FederlalRegulations\Title 2 Code of Federal Regulations - Uniform Administrative Requirements, Cost Principles, And Audit.pdf" />
+    <None Remove="Resources\Documents\FederlalRegulations\Title 31 Code of Federal Regulations - Money And Finance.pdf" />
+    <None Remove="Resources\Documents\FederlalRegulations\U.S. Standard General Ledger Accounts and Definitions.pdf" />
+    <None Remove="Resources\Fonts\Anonymous Pro.ttf" />
+    <None Remove="Resources\Fonts\Hack-Regular.ttf" />
+    <None Remove="Resources\Fonts\JetBrainsMono-Regular.ttf" />
+    <None Remove="Resources\Fonts\Monaco.ttf" />
+    <None Remove="Resources\Fonts\Roboto-Regular.ttf" />
+    <None Remove="Resources\Reports\Report.xlsx" />
     <None Remove="SplashScreen.png" />
   </ItemGroup>
 
@@ -643,6 +743,270 @@
     <Resource Include="Resources\Assets\ToolStripImages\WebDownload.png" />
     <Resource Include="Resources\Assets\ToolStripImages\WebDownloadButton.png" />
     <Resource Include="Resources\Assets\ToolStripImages\WebSearchButton.png" />
+    <Resource Include="Resources\Documents\PublicLaws\Public Law 100-202.pdf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Documents\PublicLaws\Public Law 100-404.pdf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Documents\PublicLaws\Public Law 101-121.pdf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Documents\PublicLaws\Public Law 101-508.pdf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Documents\PublicLaws\Public Law 102-141.pdf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Documents\PublicLaws\Public Law 102-393.pdf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Documents\PublicLaws\Public Law 103-333.pdf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Documents\PublicLaws\Public Law 104-134.pdf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Documents\PublicLaws\Public Law 104-208.pdf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Documents\PublicLaws\Public Law 105-277.pdf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Documents\PublicLaws\Public Law 106-113.pdf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Documents\PublicLaws\Public Law 106-259.pdf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Documents\PublicLaws\Public Law 106-554.pdf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Documents\PublicLaws\Public Law 106-79.pdf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Documents\PublicLaws\Public Law 107-117.pdf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Documents\PublicLaws\Public Law 107-206.pdf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Documents\PublicLaws\Public Law 108-11.pdf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Documents\PublicLaws\Public Law 108-199.pdf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Documents\PublicLaws\Public Law 108-447.pdf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Documents\PublicLaws\Public Law 108-7.pdf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Documents\PublicLaws\Public Law 109-115.pdf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Documents\PublicLaws\Public Law 110-329.pdf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Documents\PublicLaws\Public Law 110-5.pdf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Documents\PublicLaws\Public Law 110-61.pdf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Documents\PublicLaws\Public Law 111-117.pdf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Documents\PublicLaws\Public Law 111-8.pdf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Documents\PublicLaws\Public Law 112-10.pdf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Documents\PublicLaws\Public Law 112-74.pdf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Documents\PublicLaws\Public Law 113-2.pdf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Documents\PublicLaws\Public Law 113-235.pdf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Documents\PublicLaws\Public Law 113-6.pdf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Documents\PublicLaws\Public Law 113-76.pdf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Documents\PublicLaws\Public Law 114-113.pdf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Documents\PublicLaws\Public Law 115-141.pdf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Documents\PublicLaws\Public Law 115-31.pdf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Documents\PublicLaws\Public Law 116-260.pdf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Documents\PublicLaws\Public Law 116-6.pdf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Documents\PublicLaws\Public Law 116-93.pdf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Documents\PublicLaws\Public Law 117-103.pdf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Documents\PublicLaws\Public Law 117-169.pdf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Documents\PublicLaws\Public Law 117-328.pdf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Documents\PublicLaws\Public Law 117-58.pdf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Documents\PublicLaws\Public Law 118-47pdf.pdf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Documents\PublicLaws\Public Law 97-377.pdf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Documents\PublicLaws\Public Law 98-151.pdf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Documents\PublicLaws\Public Law 98-473.pdf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Documents\PublicLaws\Public Law 99-190.pdf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Documents\PublicLaws\Public Law 99-951.pdf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Documents\FederlalRegulations\Chief Financial Officers Act of 1990.pdf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Documents\FederlalRegulations\Digital Accountability And Transparency Act of 2014.pdf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Documents\FederlalRegulations\Federal Account Symbols And Titles Book.pdf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Documents\FederlalRegulations\Federal Acquisition Regulation.pdf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Documents\FederlalRegulations\Federal Government Standards For Internal Controls.pdf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Documents\FederlalRegulations\Federal Managers Financial Integrity Act of 1982.pdf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Documents\FederlalRegulations\Federal Trust Fund Accounting Guide.pdf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Documents\FederlalRegulations\Financial Resposibility Act Of 2023.pdf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Documents\FederlalRegulations\Government Auditing Standards.pdf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Documents\FederlalRegulations\Government Invoicing User Guide.pdf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Documents\FederlalRegulations\Government Performance and Results Act of 1993.pdf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Documents\FederlalRegulations\GPRA Modernization Act of 2010.pdf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Documents\FederlalRegulations\Independent Offices Appropriation Act, 1953.pdf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Documents\FederlalRegulations\Inspector General Act of 1978.pdf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Documents\FederlalRegulations\OMB Circular A-11 Preparation Submission And Execution Of The Budget.pdf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Documents\FederlalRegulations\OMB Circular A-11 Section 100 Sequestration.pdf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Documents\FederlalRegulations\OMB Circular A-11 Section 120 Apportionment Process.pdf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Documents\FederlalRegulations\OMB Circular A-123 Managements Responsibility for Enterprise Risk Management and Internal Control.pdf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Documents\FederlalRegulations\Principles Of Federal Appropriations Law Volume One.pdf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Documents\FederlalRegulations\Principles Of Federal Appropriations Law Volume Two.pdf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Documents\FederlalRegulations\Statements of Federal Federal Financial Accounting Concepts and Standards.pdf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Documents\FederlalRegulations\Supplemental Appropriation Act, 1955.pdf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Documents\FederlalRegulations\The Anti-Deficiency Act PL 97-258.pdf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Documents\FederlalRegulations\The Anti-Deficiency Reform and Enforcement Act of 2018.pdf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Documents\FederlalRegulations\The Balanced Budget and Emergency Deficit Control Act of 1985.pdf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Documents\FederlalRegulations\The Budget and Accounting Act of 1921.pdf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Documents\FederlalRegulations\The Budget Control Act.pdf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Documents\FederlalRegulations\The Economy Act of 1932.pdf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Documents\FederlalRegulations\The Fiscal Responsibility Act of 2023.pdf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Documents\FederlalRegulations\The Impoundment Control Act Of 1974.pdf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Documents\FederlalRegulations\The Stafford Act.pdf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Documents\FederlalRegulations\Title 2 Code of Federal Regulations - Uniform Administrative Requirements, Cost Principles, And Audit.pdf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Documents\FederlalRegulations\Title 31 Code of Federal Regulations - Money And Finance.pdf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Documents\FederlalRegulations\U.S. Standard General Ledger Accounts and Definitions.pdf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Fonts\Anonymous Pro.ttf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Fonts\Hack-Regular.ttf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Fonts\JetBrainsMono-Regular.ttf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Fonts\Monaco.ttf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Fonts\Roboto-Regular.ttf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Reports\Report.xlsx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
   </ItemGroup>
 
   <ItemGroup>
@@ -665,8 +1029,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Data\Stores\Access\" />
-    <Folder Include="Data\Stores\SqlServer\" />
     <Folder Include="Data\Stores\SQLite\" />
   </ItemGroup>
 

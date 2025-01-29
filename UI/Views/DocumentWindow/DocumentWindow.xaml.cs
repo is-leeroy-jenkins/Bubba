@@ -1,10 +1,10 @@
 ﻿// ******************************************************************************************
 //     Assembly:                Bubba
 //     Author:                  Terry D. Eppler
-//     Created:                 01-27-2025
+//     Created:                 01-29-2025
 // 
 //     Last Modified By:        Terry D. Eppler
-//     Last Modified On:        01-27-2025
+//     Last Modified On:        01-29-2025
 // ******************************************************************************************
 // <copyright file="DocumentWindow.xaml.cs" company="Terry D. Eppler">
 //    Bubba is a small and simple windows (wpf) application for interacting with the OpenAI API
@@ -44,8 +44,6 @@ namespace Bubba
     using Syncfusion.SfSkinManager;
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel;
-    using System.Configuration;
     using System.Data;
     using System.Diagnostics.CodeAnalysis;
     using System.IO;
@@ -163,6 +161,31 @@ namespace Bubba
         private protected TimerCallback _timerCallback;
 
         /// <summary>
+        /// The code editor path
+        /// </summary>
+        private protected string _codeEditor;
+
+        /// <summary>
+        /// The explanatory statements
+        /// </summary>
+        private protected IDictionary<string, string> _explanatoryStatements;
+
+        /// <summary>
+        /// The public laws
+        /// </summary>
+        private protected IDictionary<string, string> _publicLaws;
+
+        /// <summary>
+        /// The federal regulations
+        /// </summary>
+        private protected IDictionary<string, string> _federalRegulations;
+
+        /// <summary>
+        /// The document path
+        /// </summary>
+        private protected string _documentPath;
+
+        /// <summary>
         /// Gets a value indicating whether this instance is busy.
         /// </summary>
         /// <value>
@@ -216,7 +239,12 @@ namespace Bubba
             RegisterCallbacks( );
 
             // Window Properties
-            Title = "PDF Document Viewer";
+            Title = "PDF Viewer";
+            _codeEditor = Locations.CodeEditor;
+            _explanatoryStatements = new Dictionary<string, string>( );
+            _federalRegulations = new Dictionary<string, string>( );
+            _publicLaws = new Dictionary<string, string>( );
+            _prefix = Locations.PathPrefix;
 
             // Initialize Default Provider
             _source = Source.Resources;
@@ -224,7 +252,6 @@ namespace Bubba
 
             // Initialize Collections
             _filter = new Dictionary<string, object>( );
-            _documents = CreatePaths( );
 
             // Window Events
             Loaded += OnLoaded;
@@ -247,6 +274,9 @@ namespace Bubba
                 ToolStripToggleButton.Click += OnToggleButtonClick;
                 DocumentListBox.SelectionChanged += OnListBoxSelected;
                 ToolStripBrowseButton.Click += OnBrowseButtonClick;
+                ExplanatoryStatementsRadioButton.Click += OnRadioButtonSelected;
+                PublicLawsRadioButton.Click += OnRadioButtonSelected;
+                FederalRegulationsRadioButton.Click += OnRadioButtonSelected;
             }
             catch( Exception ex )
             {
@@ -476,15 +506,42 @@ namespace Bubba
         }
 
         /// <summary>
-        /// Creates the paths.
+        /// Clears the callbacks.
+        /// </summary>
+        private void ClearCallbacks( )
+        {
+            try
+            {
+                ToolStripFirstButton.Click -= OnFirstButtonClick;
+                ToolStripPreviousButton.Click -= OnPreviousButtonClick;
+                ToolStripNextButton.Click -= OnNextButtonClick;
+                ToolStripLastButton.Click -= OnLastButtonClick;
+                ToolStripGoButton.Click -= OnLookupButtonClick;
+                ToolStripRefreshButton.Click -= OnRefreshButtonClick;
+                ToolStripBrowseButton.Click -= OnMenuButtonClick;
+                ToolStripToggleButton.Click -= OnToggleButtonClick;
+                DocumentListBox.SelectionChanged -= OnListBoxSelected;
+                ToolStripBrowseButton.Click -= OnBrowseButtonClick;
+                ExplanatoryStatementsRadioButton.Click -= OnRadioButtonSelected;
+                PublicLawsRadioButton.Click -= OnRadioButtonSelected;
+                FederalRegulationsRadioButton.Click -= OnRadioButtonSelected;
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+            }
+        }
+
+        /// <summary>
+        /// Gets the explanatory statement paths.
         /// </summary>
         /// <returns></returns>
-        private IDictionary<string, string> CreatePaths( )
+        private IDictionary<string, string> GetExplanatoryStatementPaths( )
         {
             try
             {
                 _prefix = Locations.PathPrefix;
-                var _folder = Locations.Documents;
+                var _folder = Locations.ExplanatoryStatements;
                 var _documentPaths = new Dictionary<string, string>( );
                 var _dirPath = _prefix + _folder;
                 var _files = Directory.EnumerateFiles( _dirPath );
@@ -502,6 +559,84 @@ namespace Bubba
             {
                 Fail( ex );
                 return default( IDictionary<string, string> );
+            }
+        }
+
+        /// <summary>
+        /// Gets the appropriation paths.
+        /// </summary>
+        /// <returns></returns>
+        private IDictionary<string, string> GetAppropriationPaths( )
+        {
+            try
+            {
+                _prefix = Locations.PathPrefix;
+                var _folder = Locations.PublicLaws;
+                var _documentPaths = new Dictionary<string, string>( );
+                var _dirPath = _prefix + _folder;
+                var _files = Directory.EnumerateFiles( _dirPath );
+                foreach( var _filePath in _files )
+                {
+                    var _fileName = Path.GetFileNameWithoutExtension( _filePath );
+                    _documentPaths.Add( _fileName, _filePath );
+                }
+
+                return _documentPaths?.Any( ) == true
+                    ? _documentPaths
+                    : default( IDictionary<string, string> );
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+                return default( IDictionary<string, string> );
+            }
+        }
+
+        /// <summary>
+        /// Gets the federal regulation paths.
+        /// </summary>
+        /// <returns></returns>
+        private IDictionary<string, string> GetFederalRegulationPaths( )
+        {
+            try
+            {
+                _prefix = Locations.PathPrefix;
+                var _folder = Locations.FederalRegulations;
+                var _documentPaths = new Dictionary<string, string>( );
+                var _dirPath = _prefix + _folder;
+                var _files = Directory.EnumerateFiles( _dirPath );
+                foreach( var _filePath in _files )
+                {
+                    var _fileName = Path.GetFileNameWithoutExtension( _filePath );
+                    _documentPaths.Add( _fileName, _filePath );
+                }
+
+                return _documentPaths?.Any( ) == true
+                    ? _documentPaths
+                    : default( IDictionary<string, string> );
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+                return default( IDictionary<string, string> );
+            }
+        }
+
+        /// <summary>
+        /// Creates the paths.
+        /// </summary>
+        /// <returns></returns>
+        private void CreatePaths( )
+        {
+            try
+            {
+                _explanatoryStatements = GetExplanatoryStatementPaths( );
+                _publicLaws = GetAppropriationPaths( );
+                _federalRegulations = GetFederalRegulationPaths( );
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
             }
         }
 
@@ -663,25 +798,54 @@ namespace Bubba
         }
 
         /// <summary>
-        /// Initializes the list boxes.
+        /// Populates the explanatory statements.
         /// </summary>
-        private void PopulateListBoxDocuments( )
+        private void PopulateExplanatoryStatements( )
         {
             try
             {
-                DocumentListBox.Items?.Clear( );
-                foreach( var _kvp in _documents )
+                DocumentListBox.Items.Clear( );
+                foreach( var _kvp in _publicLaws )
                 {
-                    var _item = new ListBoxItem
-                    {
-                        Height = 40,
-                        Name = _kvp.Key,
-                        Tag = _kvp.Value,
-                        Content = _kvp.Key.SplitPascal( ),
-                        ToolTip = _kvp.Key.SplitPascal( )
-                    };
+                    DocumentListBox.Items.Add( _kvp.Key );
+                }
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+            }
+        }
 
-                    DocumentListBox.Items.Add( _item );
+        /// <summary>
+        /// Populates the public laws.
+        /// </summary>
+        private void PopulatePublicLaws( )
+        {
+            try
+            {
+                DocumentListBox.Items.Clear( );
+                foreach( var _kvp in _publicLaws )
+                {
+                    DocumentListBox.Items.Add( _kvp.Key );
+                }
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+            }
+        }
+
+        /// <summary>
+        /// Populates the federal regulations.
+        /// </summary>
+        private void PopulateFederalRegulations( )
+        {
+            try
+            {
+                DocumentListBox.Items.Clear( );
+                foreach( var _kvp in _federalRegulations )
+                {
+                    DocumentListBox.Items.Add( _kvp.Key );
                 }
             }
             catch( Exception ex )
@@ -702,9 +866,7 @@ namespace Bubba
             {
                 InitializeTimer( );
                 InitializeToolbar( );
-                PopulateListBoxDocuments( );
-                Opacity = 0;
-                FadeInAsync( this );
+                CreatePaths( );
             }
             catch( Exception ex )
             {
@@ -970,7 +1132,7 @@ namespace Bubba
         private void OnExitButtonClick( object sender, RoutedEventArgs e )
         {
             try
-            { 
+            {
                 Hide( );
             }
             catch( Exception ex )
@@ -1092,7 +1254,7 @@ namespace Bubba
         {
             try
             {
-                Application.Current.Shutdown( );
+                Hide( );
             }
             catch( Exception ex )
             {
@@ -1192,10 +1354,9 @@ namespace Bubba
                 var _listBox = sender as MetroListBox;
                 var _item = ( ListBoxItem )_listBox?.SelectedValue;
                 var _content = _item?.Content.ToString( );
-                var _name = _content?.Replace( " ", "" );
                 var _pathPrefix = Locations.PathPrefix;
                 var _folder = Locations.Documents;
-                _selectedPath = _pathPrefix + _folder + _name + ".pdf";
+                _selectedPath = _pathPrefix + _folder + _content + ".pdf";
                 PdfViewer.Load( _selectedPath );
             }
             catch( Exception ex )
@@ -1210,10 +1371,37 @@ namespace Bubba
         /// <param name="sender">The sender.</param>
         /// <param name="e">The <see cref="RoutedEventArgs"/>
         /// instance containing the event data.</param>
-        private void OnComboBoxItemSelected( object sender, RoutedEventArgs e )
+        private void OnRadioButtonSelected( object sender, RoutedEventArgs e )
         {
             try
             {
+                if( sender is ComboBox _comboBox )
+                {
+                    var _item = _comboBox.SelectedItem?.ToString( );
+                    switch( _item )
+                    {
+                        case "PublicLaws":
+                        {
+                            PopulatePublicLaws( );
+                            break;
+                        }
+                        case "ExplanatoryStatements":
+                        {
+                            PopulateExplanatoryStatements( );
+                            break;
+                        }
+                        case "FederalRegulations":
+                        {
+                            PopulateFederalRegulations( );
+                            break;
+                        }
+                        default:
+                        {
+                            PopulateFederalRegulations( );
+                            break;
+                        }
+                    }
+                }
             }
             catch( Exception ex )
             {

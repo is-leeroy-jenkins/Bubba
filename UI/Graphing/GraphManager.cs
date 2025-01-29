@@ -82,7 +82,7 @@ namespace Bubba
         /// <param name="category">The category.</param>
         /// <param name="values">The values.</param>
         /// <param name="label">The label.</param>
-        public void AddScatter( double[ ] category, double[ ] values, string label = null )
+        public void AddScatter( double[ ] category, double[ ] values, string label )
         {
             try
             {
@@ -102,7 +102,7 @@ namespace Bubba
         /// </summary>
         /// <param name="values">The values.</param>
         /// <param name="label">The label.</param>
-        public void AddSignal( double[ ] values, string label = null )
+        public void AddSignal( double[ ] values, string label )
         {
             try
             {
@@ -133,7 +133,7 @@ namespace Bubba
         {
             try
             {
-                ThrowIf.Negative( title, nameof( title ) );
+                ThrowIf.Empty( title, nameof( title ) );
                 _wpfPlot.Plot.Title( title );
             }
             catch( Exception ex )
@@ -152,8 +152,8 @@ namespace Bubba
         {
             try
             {
-                ThrowIf.Null( yLabel, nameof( yLabel ) );
-                ThrowIf.Null( xLabel, nameof( xLabel ) );
+                ThrowIf.Empty( yLabel, nameof( yLabel ) );
+                ThrowIf.Empty( xLabel, nameof( xLabel ) );
                 _wpfPlot.Plot.XLabel( xLabel );
                 _wpfPlot.Plot.YLabel( yLabel );
             }

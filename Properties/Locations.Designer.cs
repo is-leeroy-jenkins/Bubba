@@ -106,6 +106,15 @@ namespace Bubba.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Resources\Documents\CodeEditor\.
+        /// </summary>
+        internal static string CodeEditor {
+            get {
+                return ResourceManager.GetString("CodeEditor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to true.
         /// </summary>
         internal static string CrossDomainSecurity {
@@ -147,6 +156,24 @@ namespace Bubba.Properties {
         internal static string Edge {
             get {
                 return ResourceManager.GetString("Edge", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Resources\Documents\ExplanatoryStatements\.
+        /// </summary>
+        internal static string ExplanatoryStatements {
+            get {
+                return ResourceManager.GetString("ExplanatoryStatements", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Resources\Documents\FederalRegulations\.
+        /// </summary>
+        internal static string FederalRegulations {
+            get {
+                return ResourceManager.GetString("FederalRegulations", resourceCulture);
             }
         }
         
@@ -282,6 +309,15 @@ namespace Bubba.Properties {
         internal static string ProxyUsername {
             get {
                 return ResourceManager.GetString("ProxyUsername", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Resources\Documents\PublicLaws\.
+        /// </summary>
+        internal static string PublicLaws {
+            get {
+                return ResourceManager.GetString("PublicLaws", resourceCulture);
             }
         }
         

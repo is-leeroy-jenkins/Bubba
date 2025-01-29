@@ -192,9 +192,6 @@
   <data name="Proxy" xml:space="preserve">
     <value>false</value>
   </data>
-  <data name="Documents" xml:space="preserve">
-    <value>Resources\Documents\</value>
-  </data>
   <data name="HomePage" xml:space="preserve">
     <value>file:///C:/Users/terry/source/repos/Bubba/UI/Pages/index.html</value>
   </data>
@@ -206,5 +203,20 @@
   </data>
   <data name="SearchUrl" xml:space="preserve">
     <value>https://cse.google.com/cse?cx=e78aa3dcb21474bf4</value>
+  </data>
+  <data name="CodeEditor" xml:space="preserve">
+    <value>Resources\Documents\CodeEditor\</value>
+  </data>
+  <data name="ExplanatoryStatements" xml:space="preserve">
+    <value>Resources\Documents\ExplanatoryStatements\</value>
+  </data>
+  <data name="FederalRegulations" xml:space="preserve">
+    <value>Resources\Documents\FederalRegulations\</value>
+  </data>
+  <data name="PublicLaws" xml:space="preserve">
+    <value>Resources\Documents\PublicLaws\</value>
+  </data>
+  <data name="Documents" xml:space="preserve">
+    <value>Resources\Documents\</value>
   </data>
 </root>

@@ -7,7 +7,9 @@
 
     <!--  *********************************************** TextBox *****************************************************  -->
 
-    <Style x:Key="MetroTextBlockStyle" TargetType="TextBlock">
+    <Style
+        x:Key="MetroTextBlockStyle"
+        TargetType="TextBlock">
 
         <Setter Property="Background" Value="{StaticResource ControlInteriorBrush}" />
         <Setter Property="Foreground" Value="{StaticResource FormForeground}" />
