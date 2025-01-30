@@ -9,10 +9,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{08012640-3765-4051-B5EB-4FF782150AEC}|Bubba.csproj|c:\\users\\terry\\source\\repos\\bubba\\ui\\views\\chatwindow\\chatwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
       "RelativeMoniker": "D:0:0:{08012640-3765-4051-B5EB-4FF782150AEC}|Bubba.csproj|solutionrelative:ui\\views\\chatwindow\\chatwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{08012640-3765-4051-B5EB-4FF782150AEC}|Bubba.csproj|c:\\users\\terry\\source\\repos\\bubba\\ui\\themes\\slider\\slider.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{08012640-3765-4051-B5EB-4FF782150AEC}|Bubba.csproj|solutionrelative:ui\\themes\\slider\\slider.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     }
   ],
   "DocumentGroupContainers": [
@@ -76,7 +72,7 @@
               "RelativeDocumentMoniker": "UI\\Views\\ChatWindow\\ChatWindow.xaml.cs",
               "ToolTip": "C:\\Users\\terry\\source\\repos\\Bubba\\UI\\Views\\ChatWindow\\ChatWindow.xaml.cs",
               "RelativeToolTip": "UI\\Views\\ChatWindow\\ChatWindow.xaml.cs",
-              "ViewState": "AgIAANYBAAAAAAAAAAAowOgBAAAbAAAAAAAAAA==",
+              "ViewState": "AgIAANYBAAAAAAAAAAAowPcBAAAmAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-01-30T12:50:23.948Z",
               "EditorCaption": ""
@@ -91,18 +87,6 @@
               "RelativeToolTip": "UI\\Views\\ChatWindow\\ChatWindow.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
               "WhenOpened": "2025-01-30T15:13:53.552Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "Slider.xaml",
-              "DocumentMoniker": "C:\\Users\\terry\\source\\repos\\Bubba\\UI\\Themes\\Slider\\Slider.xaml",
-              "RelativeDocumentMoniker": "UI\\Themes\\Slider\\Slider.xaml",
-              "ToolTip": "C:\\Users\\terry\\source\\repos\\Bubba\\UI\\Themes\\Slider\\Slider.xaml",
-              "RelativeToolTip": "UI\\Themes\\Slider\\Slider.xaml",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-01-30T15:50:46.617Z",
               "EditorCaption": ""
             }
           ]

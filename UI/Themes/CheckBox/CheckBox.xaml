@@ -42,7 +42,7 @@
             <Trigger Property="IsMouseOver" Value="True">
                 <Setter Property="Background" Value="{StaticResource TransparentBrush}" />
                 <Setter Property="BorderBrush" Value="{StaticResource TransparentBrush}" />
-                <Setter Property="Foreground" Value="{StaticResource FormForeground}" />
+                <Setter Property="Foreground" Value="{StaticResource BlueBorderBrush}" />
                 <Setter Property="FontWeight" Value="Regular" />
             </Trigger>
 

@@ -9,9 +9,7 @@
 
     <!--  *********************************************** Slider *****************************************************  -->
 
-    <Style
-        x:Key="MetroSliderStyle"
-        TargetType="{x:Type wpf:SfRangeSlider}">
+    <Style TargetType="{x:Type wpf:SfRangeSlider}">
         <Setter Property="Background" Value="{StaticResource GroupBoxBackground}" />
         <Setter Property="BorderBrush" Value="{StaticResource MutedForeground}" />
         <Setter Property="Foreground" Value="{StaticResource FormForeground}" />
@@ -34,9 +32,7 @@
 
     <!--  *********************************************** Slider *****************************************************  -->
 
-    <Style
-        x:Key="SliderStyle"
-        TargetType="{x:Type Slider}">
+    <Style TargetType="{x:Type Slider}">
         <Setter Property="Background" Value="{StaticResource GroupBoxBackground}" />
         <Setter Property="BorderBrush" Value="{StaticResource MutedForeground}" />
         <Setter Property="Foreground" Value="{StaticResource LightBlueBrush}" />

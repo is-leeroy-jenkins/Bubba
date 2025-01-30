@@ -35729,11 +35729,6 @@
             Activates the chat tab.
             </summary>
         </member>
-        <member name="M:Bubba.ChatWindow.ActivateNetworkTab">
-            <summary>
-            Activates the network tab.
-            </summary>
-        </member>
         <member name="M:Bubba.ChatWindow.InvokeIf(System.Action)">
             <summary>
             Invokes if.
