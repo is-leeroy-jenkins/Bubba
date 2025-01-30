@@ -507,21 +507,6 @@ namespace Bubba
         }
 
         /// <summary>
-        /// Activates the data tab.
-        /// </summary>
-        private protected void ActivateDataTab( )
-        {
-            try
-            {
-                DataTab.IsSelected = true;
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
-            }
-        }
-
-        /// <summary>
         /// Invokes if.
         /// </summary>
         /// <param name="action">The action.</param>
@@ -671,8 +656,6 @@ namespace Bubba
                 ImageSizeComboBox.SelectionChanged += OnSelectedImageSizeChanged;
                 ChatRadioButton.Checked += OnRadioButtonSelected;
                 EditorRadioButton.Checked += OnRadioButtonSelected;
-                NetworkRadioButton.Checked += OnRadioButtonSelected;
-                DataRadioButton.Checked += OnRadioButtonSelected;
             }
             catch( Exception ex )
             {
@@ -711,8 +694,6 @@ namespace Bubba
                 ImageSizeComboBox.SelectionChanged -= OnSelectedImageSizeChanged;
                 ChatRadioButton.Checked -= OnRadioButtonSelected;
                 EditorRadioButton.Checked -= OnRadioButtonSelected;
-                NetworkRadioButton.Checked -= OnRadioButtonSelected;
-                DataRadioButton.Checked -= OnRadioButtonSelected;
             }
             catch( Exception ex )
             {
@@ -1293,14 +1274,6 @@ namespace Bubba
                 else if( ChatRadioButton.IsChecked == true )
                 {
                     ActivateChatTab( );
-                }
-                else if( NetworkRadioButton.IsChecked == true )
-                {
-                    ActivateNetworkTab( );
-                }
-                else if( DataRadioButton.IsChecked == true )
-                {
-                    ActivateDataTab( );
                 }
                 else
                 {
@@ -3653,11 +3626,6 @@ namespace Bubba
                             case "Network":
                             {
                                 ActivateNetworkTab( );
-                                break;
-                            }
-                            case "Data":
-                            {
-                                ActivateDataTab( );
                                 break;
                             }
                         }

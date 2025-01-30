@@ -82,7 +82,7 @@
             </wpf:MenuItemAdv>
 
             <wpf:MenuItemAdv
-                Click="OnPromptOptionClick"
+                Click="OnGuidanceMenuOptionClick"
                 Header="Guidance"
                 ToolTip="Federal Regulations">
                 <wpf:MenuItemAdv.Icon>
@@ -955,61 +955,33 @@
                     Background="{StaticResource GroupBoxBackground}"
                     BorderBrush="{StaticResource MutedForeground}"
                     Foreground="{StaticResource LightBlueBrush}"
-                    Header="Imput Mode">
+                    Header="Imput">
 
                     <Grid>
                         <Grid.RowDefinitions>
-                            <RowDefinition Height="25*" />
-                            <RowDefinition Height="25*" />
-                            <RowDefinition Height="25*" />
-                            <RowDefinition Height="25*" />
+                            <RowDefinition Height="30*" />
+                            <RowDefinition Height="30*" />
                         </Grid.RowDefinitions>
 
                         <RadioButton
                             x:Name="EditorRadioButton"
-                            Grid.RowSpan="2"
-                            Height="32"
-                            Margin="23,10,30,0"
-                            VerticalAlignment="Top"
+                            Margin="26,14,10,10"
                             ClickMode="Press"
                             Content="Editor"
                             FontFamily="Roboto"
+                            HorizontalContentAlignment="Center"
                             Foreground="{StaticResource BlueBorderBrush}"
                             Tag="Editor" />
 
                         <RadioButton
                             x:Name="ChatRadioButton"
                             Grid.Row="1"
-                            Margin="23,5,30,8"
+                            Margin="26,5,10,8"
                             Content="Chat"
+                            HorizontalContentAlignment="Center"
                             FontFamily="Roboto"
                             Foreground="{StaticResource BlueBorderBrush}"
                             Tag="Chat" />
-
-                        <RadioButton
-                            x:Name="NetworkRadioButton"
-                            Grid.Row="2"
-                            Width="81"
-                            Margin="23,1,0,9"
-                            HorizontalAlignment="Left"
-                            Content="Network"
-                            FontFamily="Roboto"
-                            Foreground="{StaticResource BlueBorderBrush}"
-                            Tag="Network" />
-
-                        <RadioButton
-                            x:Name="DataRadioButton"
-                            Grid.Row="2"
-                            Grid.RowSpan="2"
-                            Width="81"
-                            Height="29"
-                            Margin="23,38,0,0"
-                            HorizontalAlignment="Left"
-                            VerticalAlignment="Top"
-                            Content="Data"
-                            FontFamily="Roboto"
-                            Foreground="{StaticResource BlueBorderBrush}"
-                            Tag="Data" />
                     </Grid>
                 </GroupBox>
 
@@ -1056,16 +1028,34 @@
                             <GroupBox
                                 x:Name="LanguageGroupBox"
                                 Grid.Column="0"
-                                Margin="10,0,9,10"
+                                Margin="10,53,9,10"
                                 Background="{StaticResource GroupBoxBackground}"
                                 Foreground="{StaticResource LightBlueBrush}"
-                                Header="Languages">
+                                Header=""/>
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="53*"/>
+                                    <RowDefinition Height="237*"/>
+                                </Grid.RowDefinitions>
 
-                                <b:MetroListBox
-                                    x:Name="LanguageListBox"
-                                    Height="196"
-                                    Margin="27,0,36,0" />
-                            </GroupBox>
+                                <b:MetroComboBox 
+                                    x:Name="LanguageComboBox" 
+                                    Padding="20,1,1,1"
+                                    AllowMultiSelect="False" 
+                                    DefaultText="Languages" 
+                                    Width="180"
+                                    HorizontalContentAlignment="Center">
+                                    <wpf:ComboBoxItemAdv Content="Text"/>
+                                    <wpf:ComboBoxItemAdv Content="SQL"/>
+                                    <wpf:ComboBoxItemAdv Content="C"/>
+                                    <wpf:ComboBoxItemAdv Content="C++"/>
+                                    <wpf:ComboBoxItemAdv Content="C#"/>
+                                    <wpf:ComboBoxItemAdv Content="Python"/>
+                                    <wpf:ComboBoxItemAdv Content="JavaScript"/>
+                                    <wpf:ComboBoxItemAdv Content="VBA"/>
+                                </b:MetroComboBox>
+
+                            </Grid>
 
                             <Canvas
                                 Grid.Column="1"
@@ -1090,6 +1080,11 @@
                                     OutliningAreaWidth="15"
                                     VerticalScrollBarVisibility="Visible" />
                             </Canvas>
+
+                            <b:MetroListBox
+                                x:Name="LanguageListBox" 
+                                Grid.Column="0" 
+                                Margin="25,83,25,27"/>
 
                         </Grid>
                     </TabItem>
@@ -1215,40 +1210,17 @@
 
                                 <wpf:SfChart3D
                                     x:Name="Graph"
-                                    Canvas.Left="112"
-                                    Width="1000"
-                                    Height="255"
-                                    HorizontalAlignment="Center"
+                                    Canvas.Left="6"
+                                    Width="1209"
+                                    Height="275"
+                                    HorizontalAlignment="Left"
                                     VerticalAlignment="Center"
-                                    BorderBrush="{StaticResource BlueBorderBrush}"
+                                    BorderBrush="{StaticResource MutedForeground}"
                                     BorderThickness="2" />
 
                             </Canvas>
                         </Grid>
 
-                    </TabItem>
-
-                    <TabItem
-                        x:Name="DataTab"
-                        ClipToBounds="True"
-                        Foreground="{StaticResource LightBlueBrush}"
-                        Header=""
-                        SnapsToDevicePixels="True"
-                        UseLayoutRounding="True">
-
-                        <Grid>
-                            <Canvas
-                                x:Name="DataCanvas"
-                                Margin="1"
-                                Background="{StaticResource ControlBackground}" />
-
-                            <b:MetroDataGrid
-                                x:Name="DataGrid"
-                                Height="255"
-                                Margin="10,4,9,1"
-                                BorderBrush="{StaticResource BlueBorderBrush}"
-                                BorderThickness="2" />
-                        </Grid>
                     </TabItem>
                 </TabControl>
 

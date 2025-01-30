@@ -76,49 +76,14 @@ namespace Bubba
     public partial class DocumentWindow : Window, IDisposable
     {
         /// <summary>
-        /// The data model
-        /// </summary>
-        private protected DataGenerator _dataModel;
-
-        /// <summary>
-        /// The data table
-        /// </summary>
-        private protected DataTable _dataTable;
-
-        /// <summary>
-        /// The filter
-        /// </summary>
-        private protected IDictionary<string, string> _documents;
-
-        /// <summary>
-        /// The filter
-        /// </summary>
-        private protected IDictionary<string, object> _filter;
-
-        /// <summary>
         /// The prefix
         /// </summary>
         private protected string _prefix;
 
         /// <summary>
-        /// The provider
-        /// </summary>
-        private protected Provider _provider;
-
-        /// <summary>
         /// The selected path
         /// </summary>
         private protected string _selectedPath;
-
-        /// <summary>
-        /// The source
-        /// </summary>
-        private protected Source _source;
-
-        /// <summary>
-        /// The SQL command
-        /// </summary>
-        private protected string _sqlQuery;
 
         /// <summary>
         /// The busy
@@ -164,6 +129,16 @@ namespace Bubba
         /// The code editor path
         /// </summary>
         private protected string _codeEditor;
+
+        /// <summary>
+        /// The filter
+        /// </summary>
+        private protected IDictionary<string, string> _documents;
+
+        /// <summary>
+        /// The filter
+        /// </summary>
+        private protected IDictionary<string, object> _filter;
 
         /// <summary>
         /// The explanatory statements
@@ -245,10 +220,6 @@ namespace Bubba
             _federalRegulations = new Dictionary<string, string>( );
             _publicLaws = new Dictionary<string, string>( );
             _prefix = Locations.PathPrefix;
-
-            // Initialize Default Provider
-            _source = Source.Resources;
-            _provider = Provider.SQLite;
 
             // Initialize Collections
             _filter = new Dictionary<string, object>( );
@@ -397,20 +368,6 @@ namespace Bubba
         /// Initializes the viewer.
         /// </summary>
         private void InitializeViewer( )
-        {
-            try
-            {
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
-            }
-        }
-
-        /// <summary>
-        /// Binds the data.
-        /// </summary>
-        private void BindData( )
         {
             try
             {
@@ -867,10 +824,16 @@ namespace Bubba
         {
             try
             {
-                DocumentListBox.Items.Clear( );
+                DocumentListBox.Items?.Clear( );
                 foreach( var _kvp in _publicLaws )
                 {
-                    DocumentListBox.Items.Add( _kvp.Key );
+                    var _item = new MetroListBoxItem
+                    {
+                        Content = _kvp.Key,
+                        Tag = _kvp.Value
+                    };
+
+                    DocumentListBox.Items.Add( _item );
                 }
             }
             catch( Exception ex )
@@ -889,7 +852,13 @@ namespace Bubba
                 DocumentListBox.Items.Clear( );
                 foreach( var _kvp in _publicLaws )
                 {
-                    DocumentListBox.Items.Add( _kvp.Key );
+                    var _item = new MetroListBoxItem
+                    {
+                        Content = _kvp.Key,
+                        Tag = _kvp.Value
+                    };
+
+                    DocumentListBox.Items.Add( _item );
                 }
             }
             catch( Exception ex )

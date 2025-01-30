@@ -35726,11 +35726,6 @@
             Activates the network tab.
             </summary>
         </member>
-        <member name="M:Bubba.ChatWindow.ActivateDataTab">
-            <summary>
-            Activates the data tab.
-            </summary>
-        </member>
         <member name="M:Bubba.ChatWindow.InvokeIf(System.Action)">
             <summary>
             Invokes if.
@@ -36581,49 +36576,14 @@
             DocumentWindow
             </summary>
         </member>
-        <member name="F:Bubba.DocumentWindow._dataModel">
-            <summary>
-            The data model
-            </summary>
-        </member>
-        <member name="F:Bubba.DocumentWindow._dataTable">
-            <summary>
-            The data table
-            </summary>
-        </member>
-        <member name="F:Bubba.DocumentWindow._documents">
-            <summary>
-            The filter
-            </summary>
-        </member>
-        <member name="F:Bubba.DocumentWindow._filter">
-            <summary>
-            The filter
-            </summary>
-        </member>
         <member name="F:Bubba.DocumentWindow._prefix">
             <summary>
             The prefix
             </summary>
         </member>
-        <member name="F:Bubba.DocumentWindow._provider">
-            <summary>
-            The provider
-            </summary>
-        </member>
         <member name="F:Bubba.DocumentWindow._selectedPath">
             <summary>
             The selected path
-            </summary>
-        </member>
-        <member name="F:Bubba.DocumentWindow._source">
-            <summary>
-            The source
-            </summary>
-        </member>
-        <member name="F:Bubba.DocumentWindow._sqlQuery">
-            <summary>
-            The SQL command
             </summary>
         </member>
         <member name="F:Bubba.DocumentWindow._busy">
@@ -36669,6 +36629,16 @@
         <member name="F:Bubba.DocumentWindow._codeEditor">
             <summary>
             The code editor path
+            </summary>
+        </member>
+        <member name="F:Bubba.DocumentWindow._documents">
+            <summary>
+            The filter
+            </summary>
+        </member>
+        <member name="F:Bubba.DocumentWindow._filter">
+            <summary>
+            The filter
             </summary>
         </member>
         <member name="F:Bubba.DocumentWindow._explanatoryStatements">
@@ -36759,11 +36729,6 @@
         <member name="M:Bubba.DocumentWindow.InitializeViewer">
             <summary>
             Initializes the viewer.
-            </summary>
-        </member>
-        <member name="M:Bubba.DocumentWindow.BindData">
-            <summary>
-            Binds the data.
             </summary>
         </member>
         <member name="M:Bubba.DocumentWindow.FadeInAsync(System.Windows.Window,System.Int32)">
