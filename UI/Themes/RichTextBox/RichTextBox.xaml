@@ -11,12 +11,10 @@
 
     <!--  *********************************************** TextBox*****************************************************  -->
 
-    <Style
-        x:Key="MetroRichTextBoxStyle"
-        TargetType="{x:Type RichTextBox}">
+    <Style TargetType="{x:Type RichTextBox}">
         <Setter Property="Background" Value="{StaticResource ControlInteriorBrush}" />
         <Setter Property="BorderBrush" Value="{StaticResource BlueBorderBrush}" />
-        <Setter Property="Foreground" Value="{StaticResource WhiteForeground}" />
+        <Setter Property="Foreground" Value="{StaticResource FormForeground}" />
         <Setter Property="SelectionBrush" Value="{StaticResource SteelBlueBackground}" />
         <Setter Property="BorderThickness" Value="1" />
         <Setter Property="HorizontalAlignment" Value="Stretch" />
@@ -40,7 +38,7 @@
             <Trigger Property="IsFocused" Value="False">
                 <Setter Property="Background" Value="{StaticResource ControlInteriorBrush}" />
                 <Setter Property="BorderBrush" Value="{StaticResource ControlInteriorBrush}" />
-                <Setter Property="Foreground" Value="{StaticResource LightBlueBrush}" />
+                <Setter Property="Foreground" Value="{StaticResource FormForeground}" />
             </Trigger>
 
 

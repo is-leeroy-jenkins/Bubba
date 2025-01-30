@@ -78,11 +78,11 @@ namespace Bubba
             Width = 80;
             Height = 22;
             HorizontalAlignment = HorizontalAlignment.Stretch;
-            HorizontalContentAlignment = HorizontalAlignment.Center;
             VerticalAlignment = VerticalAlignment.Stretch;
             VerticalContentAlignment = VerticalAlignment.Center;
+            HorizontalContentAlignment = HorizontalAlignment.Center;
             Background = _theme.TransparentBrush;
-            Foreground = _theme.LightBlueBrush;
+            Foreground = _theme.FormForeground;
 
             // Event Wiring
             MouseEnter += OnMouseEnter;
@@ -121,7 +121,7 @@ namespace Bubba
             try
             {
                 Background = _theme.TransparentBrush;
-                Foreground = _theme.LightBlueBrush;
+                Foreground = _theme.FormForeground;
             }
             catch( Exception ex )
             {

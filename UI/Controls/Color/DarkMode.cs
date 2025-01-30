@@ -59,6 +59,7 @@ namespace Bubba
     [ SuppressMessage( "ReSharper", "InconsistentNaming" ) ]
     [ SuppressMessage( "ReSharper", "AutoPropertyCanBeMadeGetOnly.Global" ) ]
     [ SuppressMessage( "ReSharper", "UseObjectOrCollectionInitializer" ) ]
+    [ SuppressMessage( "ReSharper", "PreferConcreteValueOverDefault" ) ]
     public class DarkMode : Palette
     {
         /// <inheritdoc />
@@ -174,6 +175,7 @@ namespace Bubba
             ControlInterior = new SolidColorBrush( _controlInteriorColor );
             MutedBorderBrush = new SolidColorBrush( _mutedBorderColor );
             SteelBlueBrush = new SolidColorBrush( _steelBlueColor );
+            FormForeground = new SolidColorBrush( _lightBlue );
             GrayBrush = new SolidColorBrush( Colors.DarkGray );
             YellowBrush = new SolidColorBrush( _yellowColor );
             RedBrush = new SolidColorBrush( _redColor );

@@ -43,13 +43,14 @@ namespace Bubba
 {
     using System;
     using System.Data;
+    using System.Diagnostics.CodeAnalysis;
     using System.IO;
-    using System.Text;
     using System.Xml.Serialization;
 
     /// <summary>
     /// 
     /// </summary>
+    [ SuppressMessage( "ReSharper", "UnusedType.Global" ) ]
     public class DataSerializer
     {
         /// <summary>

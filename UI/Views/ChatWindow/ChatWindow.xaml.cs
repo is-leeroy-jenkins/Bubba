@@ -427,7 +427,6 @@ namespace Bubba
                 LoadGptFileDialog( );
                 LoadCalculator( );
                 LoadSystemDialog( );
-                LoadDocumentWindow( );
             }
             catch( Exception ex )
             {
@@ -484,21 +483,6 @@ namespace Bubba
             try
             {
                 ChatTab.IsSelected = true;
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
-            }
-        }
-
-        /// <summary>
-        /// Activates the network tab.
-        /// </summary>
-        private protected void ActivateNetworkTab( )
-        {
-            try
-            {
-                NetworkTab.IsSelected = true;
             }
             catch( Exception ex )
             {
@@ -1556,28 +1540,6 @@ namespace Bubba
         }
 
         /// <summary>
-        /// Opens the folder browser.
-        /// </summary>
-        private protected void LoadDocumentWindow( )
-        {
-            try
-            {
-                var _folderBrowser = new DocumentWindow( )
-                {
-                    Topmost = true,
-                    Owner = this,
-                    WindowStartupLocation = WindowStartupLocation.CenterScreen
-                };
-
-                App.ActiveWindows.Add( "DocumentWindow", _folderBrowser );
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
-            }
-        }
-
-        /// <summary>
         /// Opens the file browser.
         /// </summary>
         private protected void LoadFileBrowser( )
@@ -1833,40 +1795,6 @@ namespace Bubba
                     };
 
                     _fileDialog.Show( );
-                }
-
-                Chill( );
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
-            }
-        }
-
-        /// <summary>
-        /// Opens the folder browser.
-        /// </summary>
-        private protected void OpenDocumentWindow( )
-        {
-            try
-            {
-                Busy( );
-                if( App.ActiveWindows.Keys.Contains( "DocumentWindow" ) )
-                {
-                    var _window = ( DocumentWindow )App.ActiveWindows[ "DocumentWindow" ];
-                    _window.Owner = this;
-                    _window.Show( );
-                }
-                else
-                {
-                    var _documentWindow = new DocumentWindow( )
-                    {
-                        Topmost = true,
-                        Owner = this,
-                        WindowStartupLocation = WindowStartupLocation.CenterScreen
-                    };
-
-                    _documentWindow.Show( );
                 }
 
                 Chill( );
@@ -2870,24 +2798,6 @@ namespace Bubba
         }
 
         /// <summary>
-        /// Called when [folder menu option click].
-        /// </summary>
-        /// <param name="sender">The sender.</param>
-        /// <param name="e">The <see cref="RoutedEventArgs"/>
-        /// instance containing the event data.</param>
-        private void OnGuidanceMenuOptionClick( object sender, RoutedEventArgs e )
-        {
-            try
-            {
-                OpenDocumentWindow( );
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
-            }
-        }
-
-        /// <summary>
         /// Called when [control panel option click].
         /// </summary>
         /// <param name="sender">The sender.</param>
@@ -3623,9 +3533,9 @@ namespace Bubba
                                 ActivateChatTab( );
                                 break;
                             }
-                            case "Network":
+                            default:
                             {
-                                ActivateNetworkTab( );
+                                ActivateChatTab( );
                                 break;
                             }
                         }

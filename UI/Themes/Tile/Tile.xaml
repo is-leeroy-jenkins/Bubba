@@ -7,9 +7,7 @@
 
     <!--  *********************************************** MetroTile *****************************************************  -->
 
-    <Style
-        x:Key="MetroHubTileStyle"
-        TargetType="{x:Type sync:SfHubTile}">
+    <Style TargetType="{x:Type sync:SfHubTile}">
 
         <Setter Property="Background" Value="{DynamicResource ControlInteriorColor}" />
         <Setter Property="BorderBrush" Value="{DynamicResource BlueBorderBrush}" />

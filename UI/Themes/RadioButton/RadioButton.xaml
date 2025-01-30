@@ -11,9 +11,7 @@
 
     <!--  ***********************************************************RESOURCES****************************************************  -->
 
-    <Style
-        x:Key="MetroRadioButtonStyle"
-        TargetType="{x:Type RadioButton}">
+    <Style TargetType="{x:Type RadioButton}">
         <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}" />
         <Setter Property="Background" Value="{StaticResource TransparentBrush}" />
         <Setter Property="BorderBrush" Value="{StaticResource TransparentBrush}" />

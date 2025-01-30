@@ -74,8 +74,7 @@ namespace Bubba
 
         {
             // Control Properties
-            SetResourceReference(StyleProperty, typeof(ComboBoxAdv));
-            Width = 200;
+            SetResourceReference( StyleProperty, typeof( ComboBoxAdv ) );
             Width = 100;
             Height = 30;
             FontFamily = _theme.FontFamily;
@@ -83,9 +82,9 @@ namespace Bubba
             Padding = new Thickness( 10, 1, 1, 1 );
             BorderThickness = new Thickness( 2 );
             IsEditable = true;
-            IsTextSearchEnabled = false;
-            Background = _theme.ControlBackground;
-            Foreground = _theme.Foreground;
+            IsTextSearchEnabled = true;
+            Background = _theme.ControlInterior;
+            Foreground = _theme.FormForeground;
             BorderBrush = _theme.BorderBrush;
         }
 
@@ -99,12 +98,12 @@ namespace Bubba
             {
                 var _item = new MetroComboBoxItem
                 {
-                    Background = _theme.ControlBackground,
-                    Foreground = _theme.Foreground,
-                    BorderBrush = _theme.ControlBackground,
+                    Background = _theme.ControlInterior,
+                    Foreground = _theme.FormForeground,
+                    BorderBrush = _theme.ControlInterior,
                     Content = name,
                     Tag = name,
-                    Height = 22
+                    Height = 30
                 };
 
                 Items.Add( _item );

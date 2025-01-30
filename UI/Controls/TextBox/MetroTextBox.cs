@@ -131,7 +131,7 @@ namespace Bubba
         {
             try
             {
-                Background = _theme.ControlInterior;
+                Background = _theme.SteelBlueBrush;
                 BorderBrush = _theme.BorderBrush;
                 Foreground = _theme.WhiteForeground;
             }
@@ -153,7 +153,7 @@ namespace Bubba
             {
                 Background = _theme.ControlInterior;
                 BorderBrush = _theme.BorderBrush;
-                Foreground = _theme.WhiteForeground;
+                Foreground = _theme.FormForeground;
             }
             catch( Exception ex )
             {

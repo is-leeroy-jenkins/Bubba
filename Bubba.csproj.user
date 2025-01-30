@@ -63,9 +63,6 @@
     <Page Update="UI\Views\GptFileDialog\GptFileDialog.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="UI\Views\DocumentWindow\DocumentWindow.xaml">
-      <SubType>Designer</SubType>
-    </Page>
     <Page Update="UI\Views\ChatWindow\ChatWindow.xaml">
       <SubType>Designer</SubType>
     </Page>

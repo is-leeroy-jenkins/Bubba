@@ -307,6 +307,14 @@ namespace Bubba
         public SolidColorBrush WhiteForeground { get; private protected init; }
 
         /// <summary>
+        /// Gets the color of the white.
+        /// </summary>
+        /// <value>
+        /// The color of the white.
+        /// </value>
+        public SolidColorBrush FormForeground { get; private protected init; }
+
+        /// <summary>
         /// Gets or sets the colors.
         /// </summary>
         /// <value>

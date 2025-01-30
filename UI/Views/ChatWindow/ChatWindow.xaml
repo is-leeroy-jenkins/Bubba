@@ -81,15 +81,6 @@
                 </wpf:MenuItemAdv.Icon>
             </wpf:MenuItemAdv>
 
-            <wpf:MenuItemAdv
-                Click="OnGuidanceMenuOptionClick"
-                Header="Guidance"
-                ToolTip="Federal Regulations">
-                <wpf:MenuItemAdv.Icon>
-                    <Image Source="/Resources/Assets/MenuImages/DocumentaionItem.png" />
-                </wpf:MenuItemAdv.Icon>
-            </wpf:MenuItemAdv>
-
 
             <Separator Background="{StaticResource BlueBorderBrush}" />
 
@@ -204,40 +195,26 @@
                 x:Name="SystemCanvas"
                 Grid.Row="0">
 
+
                 <GroupBox
-                    x:Name="SoundGroupBox"
-                    Canvas.Left="902"
-                    Canvas.Top="16"
-                    Width="120"
-                    Height="106"
+                    x:Name="VoiceLabel"
+                    Canvas.Left="917"
+                    Canvas.Top="18"
+                    Width="310"
+                    Height="100"
                     HorizontalAlignment="Left"
                     VerticalAlignment="Center"
                     Background="{StaticResource GroupBoxBackground}"
                     BorderBrush="{StaticResource MutedForeground}"
                     FontSize="12"
                     Foreground="{StaticResource LightBlueBrush}"
-                    Header="Sound" />
+                    Header="Audio" />
 
 
                 <GroupBox
-                    x:Name="VoiceLabel"
-                    Canvas.Left="1042"
+                    Canvas.Left="342"
                     Canvas.Top="19"
-                    Width="190"
-                    Height="100"
-                    HorizontalAlignment="Center"
-                    VerticalAlignment="Center"
-                    Background="{StaticResource GroupBoxBackground}"
-                    BorderBrush="{StaticResource MutedForeground}"
-                    FontSize="12"
-                    Foreground="{StaticResource LightBlueBrush}"
-                    Header="Voices" />
-
-
-                <GroupBox
-                    Canvas.Left="322"
-                    Canvas.Top="19"
-                    Width="265"
+                    Width="305"
                     Height="100"
                     HorizontalAlignment="Left"
                     VerticalAlignment="Center"
@@ -250,7 +227,7 @@
                     x:Name="TaskGroupBox"
                     Canvas.Left="27"
                     Canvas.Top="19"
-                    Width="260"
+                    Width="300"
                     Height="100"
                     HorizontalAlignment="Left"
                     VerticalAlignment="Center"
@@ -259,53 +236,13 @@
                     Foreground="{StaticResource LightBlueBrush}"
                     Header="Tasks" />
 
-                <GroupBox
-                    x:Name="OutputGroupBox"
-                    Canvas.Left="767"
-                    Canvas.Top="16"
-                    Width="115"
-                    Height="106"
-                    HorizontalAlignment="Left"
-                    VerticalAlignment="Center"
-                    Background="{StaticResource GroupBoxBackground}"
-                    BorderBrush="{StaticResource MutedForeground}"
-                    FontSize="12"
-                    Foreground="{StaticResource LightBlueBrush}"
-                    Header="Output" />
-
-                <CheckBox
-                    x:Name="StoreCheckBox"
-                    Canvas.Left="797"
-                    Canvas.Top="54"
-                    Width="70"
-                    Height="16"
-                    HorizontalAlignment="Left"
-                    VerticalAlignment="Center"
-                    Content="Store"
-                    FontFamily="Roboto"
-                    FontSize="14"
-                    ToolTip="Adds GPT Output to model" />
-
-                <CheckBox
-                    x:Name="StreamCheckBox"
-                    Canvas.Left="797"
-                    Canvas.Top="80"
-                    Width="70"
-                    Height="22"
-                    HorizontalAlignment="Left"
-                    VerticalAlignment="Center"
-                    Content="Stream"
-                    FontFamily="Roboto"
-                    FontSize="14"
-                    ToolTip="Return GPT output in chuncks" />
-
                 <ComboBox
                     x:Name="GenerationComboBox"
-                    Canvas.Left="62"
+                    Canvas.Left="52"
                     Canvas.Top="57"
-                    Width="200"
+                    Width="240"
                     Height="30"
-                    HorizontalAlignment="Center"
+                    HorizontalAlignment="Left"
                     VerticalAlignment="Center"
                     HorizontalContentAlignment="Left"
                     Background="{StaticResource ControlInteriorBrush}"
@@ -413,9 +350,9 @@
 
                 <ComboBox
                     x:Name="ModelComboBox"
-                    Canvas.Left="347"
+                    Canvas.Left="367"
                     Canvas.Top="57"
-                    Width="210"
+                    Width="245"
                     Height="30"
                     HorizontalAlignment="Left"
                     VerticalAlignment="Center"
@@ -428,12 +365,12 @@
 
                 <GroupBox
                     x:Name="ImageSizeGroup"
-                    Canvas.Left="607"
+                    Canvas.Left="662"
                     Canvas.Top="16"
-                    Width="140"
+                    Width="229"
                     Height="103"
-                    HorizontalAlignment="Center"
-                    VerticalAlignment="Top"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Center"
                     Background="{StaticResource GroupBoxBackground}"
                     Foreground="{StaticResource LightBlueBrush}"
                     Header="Sizes">
@@ -727,11 +664,11 @@
 
                 <ComboBox
                     x:Name="VoiceComboBox"
-                    Canvas.Left="1052"
-                    Canvas.Top="-70"
+                    Canvas.Left="1035"
+                    Canvas.Top="-71"
                     Width="162"
                     Height="30"
-                    HorizontalAlignment="Center"
+                    HorizontalAlignment="Left"
                     VerticalAlignment="Top"
                     HorizontalContentAlignment="Left"
                     Background="{StaticResource ControlInteriorBrush}"
@@ -836,12 +773,12 @@
 
                 <CheckBox
                     x:Name="MuteCheckBox"
-                    Canvas.Left="928"
-                    Canvas.Top="-77"
+                    Canvas.Left="949"
+                    Canvas.Top="-82"
                     Width="68"
                     Height="22"
                     HorizontalAlignment="Left"
-                    VerticalAlignment="Top"
+                    VerticalAlignment="Center"
                     Content="Mute"
                     FontFamily="Roboto"
                     FontSize="14"
@@ -849,12 +786,12 @@
 
                 <CheckBox
                     x:Name="ListenCheckBox"
-                    Canvas.Left="928"
-                    Canvas.Top="-50"
+                    Canvas.Left="949"
+                    Canvas.Top="-55"
                     Width="68"
                     Height="22"
                     HorizontalAlignment="Left"
-                    VerticalAlignment="Top"
+                    VerticalAlignment="Center"
                     Content="Listen"
                     FontFamily="Roboto"
                     FontSize="14"
@@ -949,39 +886,82 @@
                     Canvas.Left="1102"
                     Canvas.Top="11"
                     Width="132"
-                    Height="188"
+                    Height="89"
                     HorizontalAlignment="Center"
                     VerticalAlignment="Top"
                     Background="{StaticResource GroupBoxBackground}"
                     BorderBrush="{StaticResource MutedForeground}"
                     Foreground="{StaticResource LightBlueBrush}"
                     Header="Imput">
-
-                    <Grid>
+                    <Grid
+                        Height="64"
+                        Margin="0,0,1,0"
+                        VerticalAlignment="Top">
                         <Grid.RowDefinitions>
-                            <RowDefinition Height="30*" />
-                            <RowDefinition Height="30*" />
+                            <RowDefinition />
+                            <RowDefinition />
                         </Grid.RowDefinitions>
 
                         <RadioButton
                             x:Name="EditorRadioButton"
-                            Margin="26,14,10,10"
-                            ClickMode="Press"
+                            Margin="16,1,10,1"
                             Content="Editor"
                             FontFamily="Roboto"
-                            HorizontalContentAlignment="Center"
-                            Foreground="{StaticResource BlueBorderBrush}"
-                            Tag="Editor" />
+                            Tag="Editor"
+                            FontSize="14"
+                            Foreground="{StaticResource BlueBorderBrush}" />
 
                         <RadioButton
                             x:Name="ChatRadioButton"
                             Grid.Row="1"
-                            Margin="26,5,10,8"
+                            Margin="16,1,10,1"
                             Content="Chat"
-                            HorizontalContentAlignment="Center"
                             FontFamily="Roboto"
+                            FontSize="14"
+                            Tag="Chat"
+                            Foreground="{StaticResource BlueBorderBrush}" />
+                    </Grid>
+                </GroupBox>
+
+                <GroupBox
+                    x:Name="OutputGroupBox"
+                    Canvas.Left="1102"
+                    Canvas.Top="108"
+                    Width="132"
+                    Height="90"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Top"
+                    Background="{StaticResource GroupBoxBackground}"
+                    BorderBrush="{StaticResource MutedForeground}"
+                    FontSize="12"
+                    Foreground="{StaticResource LightBlueBrush}"
+                    Header="Output">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition />
+                            <RowDefinition />
+                        </Grid.RowDefinitions>
+
+                        <CheckBox
+                            x:Name="StoreCheckBox"
+                            Margin="16,1,28,1"
+                            Content="Store"
+                            FontFamily="Roboto"
+                            FontSize="14"
                             Foreground="{StaticResource BlueBorderBrush}"
-                            Tag="Chat" />
+                            ToolTip="Adds GPT Output to model" />
+
+                        <CheckBox
+                            x:Name="StreamCheckBox"
+                            Grid.Row="1"
+                            Height="22"
+                            Margin="16,0,28,0"
+                            VerticalAlignment="Center"
+                            Content="Stream"
+                            FontFamily="Roboto"
+                            FontSize="14"
+                            Foreground="{StaticResource BlueBorderBrush}"
+                            ToolTip="Return GPT output in chuncks" />
                     </Grid>
                 </GroupBox>
 
@@ -1031,29 +1011,33 @@
                                 Margin="10,53,9,10"
                                 Background="{StaticResource GroupBoxBackground}"
                                 Foreground="{StaticResource LightBlueBrush}"
-                                Header=""/>
+                                Header="" />
                             <Grid>
                                 <Grid.RowDefinitions>
-                                    <RowDefinition Height="53*"/>
-                                    <RowDefinition Height="237*"/>
+                                    <RowDefinition Height="53*" />
+                                    <RowDefinition Height="237*" />
                                 </Grid.RowDefinitions>
 
-                                <b:MetroComboBox 
-                                    x:Name="LanguageComboBox" 
-                                    Padding="20,1,1,1"
-                                    AllowMultiSelect="False" 
-                                    DefaultText="Languages" 
+                                <ComboBox
+                                    x:Name="LanguageComboBox"
                                     Width="180"
-                                    HorizontalContentAlignment="Center">
-                                    <wpf:ComboBoxItemAdv Content="Text"/>
-                                    <wpf:ComboBoxItemAdv Content="SQL"/>
-                                    <wpf:ComboBoxItemAdv Content="C"/>
-                                    <wpf:ComboBoxItemAdv Content="C++"/>
-                                    <wpf:ComboBoxItemAdv Content="C#"/>
-                                    <wpf:ComboBoxItemAdv Content="Python"/>
-                                    <wpf:ComboBoxItemAdv Content="JavaScript"/>
-                                    <wpf:ComboBoxItemAdv Content="VBA"/>
-                                </b:MetroComboBox>
+                                    Padding="20,1,1,1"
+                                    HorizontalContentAlignment="Center" Margin="10,10,10,0">
+                                    <ComboBoxItem Content="Text" />
+                                    <ComboBoxItem Content="SQL" />
+                                    <ComboBoxItem Content="C" />
+                                    <ComboBoxItem Content="C++" />
+                                    <ComboBoxItem Content="C#" />
+                                    <ComboBoxItem Content="Python" />
+                                    <ComboBoxItem Content="JavaScript" />
+                                    <ComboBoxItem Content="VBA" />
+                                </ComboBox>
+
+                                <b:MetroListBox
+                                    x:Name="LanguageListBox"
+                                    Grid.Row="1"
+                                    Grid.Column="0"
+                                    Margin="34,35,0,34" HorizontalAlignment="Left" Width="135" />
 
                             </Grid>
 
@@ -1065,12 +1049,12 @@
                                     x:Name="ChatEditor"
                                     Canvas.Left="20"
                                     Canvas.Top="10"
-                                    Width="960"
+                                    Width="983"
                                     Height="270"
                                     MaxWidth="1030"
                                     Padding="20,20,5,5"
-                                    HorizontalAlignment="Center"
-                                    VerticalAlignment="Top"
+                                    HorizontalAlignment="Left"
+                                    VerticalAlignment="Center"
                                     Background="{StaticResource ControlInteriorBrush}"
                                     BorderThickness="2"
                                     ClipToBounds="True"
@@ -1078,13 +1062,8 @@
                                     FontSize="12"
                                     Foreground="{StaticResource WhiteForeground}"
                                     OutliningAreaWidth="15"
-                                    VerticalScrollBarVisibility="Visible" />
+                                    VerticalScrollBarVisibility="Visible" OutliningAreaBackground="{DynamicResource ListBoxBackground}" LineNumberTextForeground="{DynamicResource GreenBackground}" LineNumberAreaBackground="{DynamicResource BlackBackground}" />
                             </Canvas>
-
-                            <b:MetroListBox
-                                x:Name="LanguageListBox" 
-                                Grid.Column="0" 
-                                Margin="25,83,25,27"/>
 
                         </Grid>
                     </TabItem>
@@ -1204,8 +1183,8 @@
                         <Grid>
                             <Canvas
                                 x:Name="GraphCanvas"
-                                Margin="1"
                                 Height="275"
+                                Margin="1"
                                 Background="{StaticResource FormBackground}">
 
                                 <wpf:SfChart3D

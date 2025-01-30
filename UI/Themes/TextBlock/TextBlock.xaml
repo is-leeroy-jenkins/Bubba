@@ -7,14 +7,11 @@
 
     <!--  *********************************************** TextBox *****************************************************  -->
 
-    <Style
-        x:Key="MetroTextBlockStyle"
-        TargetType="TextBlock">
+    <Style TargetType="TextBlock">
 
         <Setter Property="Background" Value="{StaticResource ControlInteriorBrush}" />
         <Setter Property="Foreground" Value="{StaticResource FormForeground}" />
         <Setter Property="Padding" Value="1" />
-        <Setter Property="Margin" Value="1" />
         <Setter Property="FontFamily" Value="Roboto" />
         <Setter Property="FontSize" Value="12" />
         <Setter Property="FontWeight" Value="Regular" />
@@ -30,7 +27,7 @@
 
             <Trigger Property="IsMouseOver" Value="False">
                 <Setter Property="Background" Value="{StaticResource ControlInteriorBrush}" />
-                <Setter Property="Foreground" Value="{StaticResource LightBlueBrush}" />
+                <Setter Property="Foreground" Value="{StaticResource FormForeground}" />
                 <Setter Property="FontWeight" Value="Regular" />
             </Trigger>
 

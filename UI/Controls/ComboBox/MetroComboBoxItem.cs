@@ -74,11 +74,11 @@ namespace Bubba
         {
             // Control Properties
             SetResourceReference( StyleProperty, typeof( ComboBoxItemAdv ) );
-            Height = 22;
+            Height = 30;
             Padding = new Thickness( 10, 1, 1, 1 );
-            Background = _theme.ControlBackground;
-            BorderBrush = _theme.ControlBackground;
-            Foreground = _theme.Foreground;
+            Background = _theme.ControlInterior;
+            BorderBrush = _theme.ControlInterior;
+            Foreground = _theme.FormForeground;
 
             // Event Wiring
             MouseEnter += OnItemMouseEnter;

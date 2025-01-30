@@ -11,9 +11,7 @@
 
     <!--  *********************************************** STYLE *****************************************************  -->
 
-    <Style
-        x:Key="MetroButtonStyle"
-        TargetType="{x:Type Button}">
+    <Style TargetType="{x:Type Button}">
 
         <Setter Property="Background" Value="{StaticResource ControlInteriorColor}" />
         <Setter Property="BorderBrush" Value="{StaticResource BlueBorderBrush}" />
@@ -31,9 +29,78 @@
 
         <Style.Triggers>
 
+            <Trigger Property="IsEnabled" Value="True">
+                <Setter Property="Background" Value="{StaticResource ControlInteriorColor}" />
+                <Setter Property="BorderBrush" Value="{StaticResource BlueBorderBrush}" />
+                <Setter Property="Foreground" Value="{StaticResource FormForeground}" />
+                <Setter Property="FontWeight" Value="Regular" />
+            </Trigger>
+
+            <Trigger Property="IsEnabled" Value="False">
+                <Setter Property="Background" Value="{StaticResource ControlInteriorColor}" />
+                <Setter Property="BorderBrush" Value="{StaticResource BlueBorderBrush}" />
+                <Setter Property="Foreground" Value="{StaticResource FormForeground}" />
+                <Setter Property="FontWeight" Value="Regular" />
+            </Trigger>
+
+
             <Trigger Property="IsMouseOver" Value="True">
-                <Setter Property="Background" Value="{StaticResource SteelBlueBackground}" />
-                <Setter Property="BorderBrush" Value="{StaticResource SteelBlueBackground}" />
+                <Setter Property="Background" Value="{StaticResource DarkBlueBackground}" />
+                <Setter Property="BorderBrush" Value="{StaticResource DarkBlueBackground}" />
+                <Setter Property="Foreground" Value="{StaticResource WhiteForeground}" />
+                <Setter Property="FontWeight" Value="Bold" />
+            </Trigger>
+
+            <Trigger Property="IsMouseOver" Value="False">
+                <Setter Property="Background" Value="{StaticResource ControlInteriorColor}" />
+                <Setter Property="BorderBrush" Value="{StaticResource BlueBorderBrush}" />
+                <Setter Property="Foreground" Value="{StaticResource FormForeground}" />
+                <Setter Property="FontWeight" Value="Regular" />
+            </Trigger>
+
+
+        </Style.Triggers>
+
+    </Style>
+
+    <!--  *********************************************** METROBUTTON STYLE *****************************************************  -->
+
+    <Style TargetType="{x:Type b:MetroButton}">
+
+        <Setter Property="Background" Value="{StaticResource ControlInteriorColor}" />
+        <Setter Property="BorderBrush" Value="{StaticResource BlueBorderBrush}" />
+        <Setter Property="Foreground" Value="{StaticResource FormForeground}" />
+        <Setter Property="FontFamily" Value="Roboto" />
+        <Setter Property="FontSize" Value="12" />
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="HorizontalAlignment" Value="Stretch" />
+        <Setter Property="HorizontalContentAlignment" Value="Center" />
+        <Setter Property="VerticalAlignment" Value="Stretch" />
+        <Setter Property="VerticalContentAlignment" Value="Center" />
+        <Setter Property="Padding" Value="1" />
+        <Setter Property="Margin" Value="1" />
+
+
+        <Style.Triggers>
+
+            <Trigger Property="IsEnabled" Value="True">
+                <Setter Property="Background" Value="{StaticResource ControlInteriorColor}" />
+                <Setter Property="BorderBrush" Value="{StaticResource BlueBorderBrush}" />
+                <Setter Property="Foreground" Value="{StaticResource FormForeground}" />
+                <Setter Property="FontWeight" Value="Regular" />
+            </Trigger>
+
+            <Trigger Property="IsEnabled" Value="False">
+                <Setter Property="Background" Value="{StaticResource ControlInteriorColor}" />
+                <Setter Property="BorderBrush" Value="{StaticResource BlueBorderBrush}" />
+                <Setter Property="Foreground" Value="{StaticResource FormForeground}" />
+                <Setter Property="FontWeight" Value="Regular" />
+            </Trigger>
+
+
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background" Value="{StaticResource DarkBlueBackground}" />
+                <Setter Property="BorderBrush" Value="{StaticResource DarkBlueBackground}" />
                 <Setter Property="Foreground" Value="{StaticResource WhiteForeground}" />
                 <Setter Property="FontWeight" Value="Bold" />
             </Trigger>
