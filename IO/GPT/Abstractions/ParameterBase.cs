@@ -140,7 +140,7 @@ namespace Bubba
         /// <summary>
         /// The stop
         /// </summary>
-        private protected IList<string> _stop;
+        private protected string _stop;
 
         /// <summary>
         /// The data
@@ -243,7 +243,7 @@ namespace Bubba
         /// <value>
         /// The stop.
         /// </value>
-        public virtual IList<string> Stop
+        public virtual string Stop
         {
             get
             {

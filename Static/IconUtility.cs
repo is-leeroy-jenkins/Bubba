@@ -281,7 +281,7 @@ namespace Bubba
         }
 
         /// <summary>
-        /// Parse strings in registry who contains the name of the icon and
+        /// Print strings in registry who contains the name of the icon and
         /// the index of the icon an return both parts.
         /// </summary>
         /// <param name="regString">The full string in the form "path,index" as found in registry.</param>

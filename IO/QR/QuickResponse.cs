@@ -54,6 +54,7 @@ namespace Bubba
     [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
     [ SuppressMessage( "ReSharper", "PreferConcreteValueOverDefault" ) ]
     [ SuppressMessage( "ReSharper", "UnusedType.Global" ) ]
+    [ SuppressMessage( "ReSharper", "MergeConditionalExpression" ) ]
     public class QuickResponse : IDisposable
     {
         /// <summary>
@@ -73,25 +74,36 @@ namespace Bubba
         /// Generates the code.
         /// </summary>
         /// <param name="text">The text.</param>
-        /// <param name="pixelsPerModule">The pixels per module.</param>
-        /// <param name="darkColor">Color of the dark.</param>
-        /// <param name="lightColor">Color of the light.</param>
-        /// <returns></returns>
-        /// <exception cref="System.ArgumentException">Text cannot be null or empty. - text</exception>
-        public Bitmap GenerateCode( string text, int pixelsPerModule = 20, Color? darkColor = null,
-            Color? lightColor = null )
+        /// <param name="pixels">The pixels per module.</param>
+        /// <param name="dark">Color of the dark.</param>
+        /// <param name="light">Color of the light.</param>
+        /// <returns>
+        /// </returns>
+        /// <exception cref="System.ArgumentException">
+        /// Text cannot be null or empty. - text
+        /// </exception>
+        public Bitmap GenerateCode( string text, int pixels = 20, Color? dark = null,
+            Color? light = null )
         {
-            if( string.IsNullOrWhiteSpace( text ) )
+            try
             {
-                var _message = "Text cannot be null or empty.";
-                throw new ArgumentException( _message, nameof( text ) );
-            }
+                if( string.IsNullOrWhiteSpace( text ) )
+                {
+                    var _message = "Text cannot be null or empty.";
+                    throw new ArgumentException( _message, nameof( text ) );
+                }
 
-            var _data = _codeGenerator.CreateQrCode( text, QRCodeGenerator.ECCLevel.Q );
-            var _code = new QRCode( _data );
-            darkColor ??= Color.Black;
-            lightColor ??= Color.White;
-            return _code.GetGraphic( pixelsPerModule, darkColor.Value, lightColor.Value, true );
+                var _data = _codeGenerator.CreateQrCode( text, QRCodeGenerator.ECCLevel.Q );
+                var _code = new QRCode( _data );
+                dark ??= Color.Black;
+                light ??= Color.White;
+                return _code.GetGraphic( pixels, dark.Value, light.Value, true );
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+                return default( Bitmap );
+            }
         }
 
         /// <summary>
@@ -100,16 +112,16 @@ namespace Bubba
         /// <param name="text">The text.</param>
         /// <param name="filePath">The file path.</param>
         /// <param name="format">The image format.</param>
-        /// <param name="pixelsPerModule">The pixels per module.</param>
-        /// <param name="darkColor">Color of the dark.</param>
-        /// <param name="lightColor">Color of the light.</param>
+        /// <param name="pixels">The pixels per module.</param>
+        /// <param name="dark">Color of the dark.</param>
+        /// <param name="light">Color of the light.</param>
         public void SaveToFile( string text, string filePath, ImageFormat format = null,
-            int pixelsPerModule = 20, Color? darkColor = null, Color? lightColor = null )
+            int pixels = 20, Color? dark = null, Color? light = null )
         {
             try
             {
                 format ??= ImageFormat.Png;
-                using var _code = GenerateCode( text, pixelsPerModule, darkColor, lightColor );
+                using var _code = GenerateCode( text, pixels, dark, light );
                 _code.Save( filePath, format );
             }
             catch( Exception ex )
@@ -123,20 +135,24 @@ namespace Bubba
         /// </summary>
         /// <param name="text">The text.</param>
         /// <param name="format">The image format.</param>
-        /// <param name="pixelsPerModule">The pixels per module.</param>
-        /// <param name="darkColor">Color of the dark.</param>
-        /// <param name="lightColor">Color of the light.</param>
-        /// <returns></returns>
+        /// <param name="pixels">The pixels per module.</param>
+        /// <param name="dark">Color of the dark.</param>
+        /// <param name="light">Color of the light.</param>
+        /// <returns>
+        /// </returns>
         public byte[ ] CreateByteArray( string text, ImageFormat format = null,
-            int pixelsPerModule = 20, Color? darkColor = null, Color? lightColor = null )
+            int pixels = 20, Color? dark = null, Color? light = null )
         {
             try
             {
                 format ??= ImageFormat.Png;
-                using var _bitmap = GenerateCode( text, pixelsPerModule, darkColor, lightColor );
+                using var _bitmap = GenerateCode( text, pixels, dark, light );
                 using var _stream = new MemoryStream( );
                 _bitmap.Save( _stream, format );
-                return _stream.ToArray( );
+                var _bytes = _stream.ToArray( );
+                return ( _bytes != null )
+                    ? _bytes
+                    : default( byte[ ] );
             }
             catch( Exception ex )
             {
@@ -150,21 +166,24 @@ namespace Bubba
         /// </summary>
         /// <param name="text">The text.</param>
         /// <param name="format">The image format.</param>
-        /// <param name="pixelsPerModule">The pixels per module.</param>
-        /// <param name="darkColor">Color of the dark.</param>
-        /// <param name="lightColor">Color of the light.</param>
-        /// <returns></returns>
+        /// <param name="pixels">The pixels per module.</param>
+        /// <param name="dark">Color of the dark.</param>
+        /// <param name="light">Color of the light.</param>
+        /// <returns>
+        /// </returns>
         public MemoryStream CreateStream( string text, ImageFormat format = null,
-            int pixelsPerModule = 20, Color? darkColor = null, Color? lightColor = null )
+            int pixels = 20, Color? dark = null, Color? light = null )
         {
             try
             {
                 format ??= ImageFormat.Png;
                 var _stream = new MemoryStream( );
-                using var _bitmap = GenerateCode( text, pixelsPerModule, darkColor, lightColor );
+                using var _bitmap = GenerateCode( text, pixels, dark, light );
                 _bitmap.Save( _stream, format );
                 _stream.Position = 0;
-                return _stream;
+                return ( _stream != null )
+                    ? _stream
+                    : default( MemoryStream );
             }
             catch( Exception ex )
             {
@@ -177,20 +196,24 @@ namespace Bubba
         /// Creates the base64.
         /// </summary>
         /// <param name="text">The text.</param>
-        /// <param name="imageFormat">The image format.</param>
-        /// <param name="pixelsPerModule">The pixels per module.</param>
-        /// <param name="darkColor">Color of the dark.</param>
-        /// <param name="lightColor">Color of the light.</param>
-        /// <returns></returns>
-        public string CreateBase64( string text, ImageFormat imageFormat = null,
-            int pixelsPerModule = 20, Color? darkColor = null, Color? lightColor = null )
+        /// <param name="image">The image format.</param>
+        /// <param name="pixels">The pixels per module.</param>
+        /// <param name="dark">Color of the dark.</param>
+        /// <param name="light">Color of the light.</param>
+        /// <returns>
+        /// </returns>
+        public string CreateBase64( string text, ImageFormat image = null,
+            int pixels = 20, Color? dark = null, Color? light = null )
         {
             try
             {
-                var _array = CreateByteArray( text, imageFormat, pixelsPerModule, darkColor,
-                    lightColor );
+                var _array = CreateByteArray( text, image, pixels, 
+                    dark, light );
 
-                return Convert.ToBase64String( _array );
+                var _code = Convert.ToBase64String( _array );
+                return !string.IsNullOrWhiteSpace( _code )
+                    ? _code
+                    : string.Empty;
             }
             catch( Exception ex )
             {

@@ -1,10 +1,10 @@
 ﻿// ******************************************************************************************
 //     Assembly:                Bubba
 //     Author:                  Terry D. Eppler
-//     Created:                 01-16-2025
+//     Created:                 01-30-2025
 // 
 //     Last Modified By:        Terry D. Eppler
-//     Last Modified On:        01-16-2025
+//     Last Modified On:        01-30-2025
 // ******************************************************************************************
 // <copyright file="XmlReader.cs" company="Terry D. Eppler">
 //    Bubba is a small and simple windows (wpf) application for interacting with the OpenAI API
@@ -53,6 +53,8 @@ namespace Bubba
     /// </summary>
     [ SuppressMessage( "ReSharper", "UnusedType.Global" ) ]
     [ SuppressMessage( "ReSharper", "PreferConcreteValueOverDefault" ) ]
+    [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
+    [ SuppressMessage( "ReSharper", "MergeConditionalExpression" ) ]
     public class XmlReader
     {
         /// <summary>
@@ -82,9 +84,14 @@ namespace Bubba
         {
             try
             {
+                ThrowIf.Empty( filePath, nameof( filePath ) );
+                ThrowIf.Empty( elementName, nameof( elementName ) );
                 var _document = XDocument.Load( filePath );
                 var _element = _document.Descendants( elementName ).FirstOrDefault( );
-                return _element?.Value;
+                var _value = _element?.Value;
+                return _value != null
+                    ? _value
+                    : string.Empty;
             }
             catch( Exception ex )
             {
@@ -99,17 +106,20 @@ namespace Bubba
         /// <param name="filePath">The file path.</param>
         /// <param name="elementName">Name of the element.</param>
         /// <returns></returns>
-        public IDictionary<string, string> ReadAttributes( string filePath,
-            string elementName )
+        public IDictionary<string, string> ReadAttributes( string filePath, string elementName )
         {
             try
             {
+                ThrowIf.Empty( filePath, nameof( filePath ) );
+                ThrowIf.Empty( elementName, nameof( elementName ) );
                 var _document = XDocument.Load( filePath );
-                var _element = _document.Descendants( elementName )
-                    ?.FirstOrDefault( );
+                var _element = _document.Descendants( elementName )?.FirstOrDefault( );
+                var _data = _element?.Attributes( )
+                    ?.ToDictionary( a => a.Name.LocalName, a => a.Value );
 
-                return _element?.Attributes( )
-                    ?.ToDictionary( attr => attr.Name.LocalName, attr => attr.Value );
+                return _data?.Any( ) == true
+                    ? _data
+                    : default( IDictionary<string, string> );
             }
             catch( Exception ex )
             {
@@ -128,8 +138,13 @@ namespace Bubba
         {
             try
             {
+                ThrowIf.Empty( filePath, nameof( filePath ) );
+                ThrowIf.Empty( elementName, nameof( elementName ) );
                 var _document = XDocument.Load( filePath );
-                return _document.Descendants( elementName );
+                var _elements = _document.Descendants( elementName );
+                return _elements?.Any( ) == true
+                    ? _elements
+                    : default( IEnumerable<XElement> );
             }
             catch( Exception ex )
             {

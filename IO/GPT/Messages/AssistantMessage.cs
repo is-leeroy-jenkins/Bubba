@@ -1,10 +1,10 @@
 ﻿// ******************************************************************************************
 //     Assembly:                Bubba
 //     Author:                  Terry D. Eppler
-//     Created:                 01-19-2025
+//     Created:                 01-31-2025
 // 
 //     Last Modified By:        Terry D. Eppler
-//     Last Modified On:        01-19-2025
+//     Last Modified On:        01-31-2025
 // ******************************************************************************************
 // <copyright file="AssistantMessage.cs" company="Terry D. Eppler">
 //    Bubba is a small and simple windows (wpf) application for interacting with the OpenAI API
@@ -45,6 +45,8 @@ namespace Bubba
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
     using System.Linq;
+    using System.Text.Json;
+    using System.Text.Json.Serialization;
 
     /// <inheritdoc />
     /// <summary>
@@ -74,7 +76,6 @@ namespace Bubba
         public AssistantMessage( )
         {
             _role = "assistant";
-            _type = "text";
             _data = new Dictionary<string, object>( );
         }
 
@@ -87,7 +88,6 @@ namespace Bubba
         public AssistantMessage( string prompt )
         {
             _role = "assistant";
-            _type = "text";
             _content = prompt;
         }
 
@@ -99,7 +99,6 @@ namespace Bubba
         public AssistantMessage( AssistantMessage message )
         {
             _role = message.Role;
-            _type = message.Type;
             _content = message.Content;
         }
 
@@ -107,12 +106,10 @@ namespace Bubba
         /// Deconstructs the specified role.
         /// </summary>
         /// <param name="role">The role.</param>
-        /// <param name = "type" > </param>
         /// <param name="content">The content.</param>
-        public void Deconstruct( out string role, out string type, out string content )
+        public void Deconstruct( out string role, out string content )
         {
             role = _role;
-            type = _type;
             content = _content;
         }
 
@@ -123,6 +120,7 @@ namespace Bubba
         /// <value>
         /// The role.
         /// </value>
+        [ JsonPropertyName( "role" ) ]
         public override string Role
         {
             get
@@ -138,6 +136,7 @@ namespace Bubba
         /// <value>
         /// The content.
         /// </value>
+        [ JsonPropertyName( "content" ) ]
         public override string Content
         {
             get
@@ -168,11 +167,6 @@ namespace Bubba
                     _data.Add( "role", _role );
                 }
 
-                if( !string.IsNullOrEmpty( _type ) )
-                {
-                    _data.Add( "type", _type );
-                }
-
                 if( !string.IsNullOrEmpty( _content ) )
                 {
                     _data.Add( "content", _content );
@@ -200,8 +194,9 @@ namespace Bubba
         {
             try
             {
-                return _data?.Any( ) == true
-                    ? _data.ToJson( )
+                var _text = JsonSerializer.Serialize( this );
+                return !string.IsNullOrEmpty( _text )
+                    ? _text
                     : string.Empty;
             }
             catch( Exception ex )

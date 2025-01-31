@@ -102,9 +102,8 @@ namespace Bubba
             _store = store;
             _stream = stream;
             _topPercent = topPercent;
-            _stop = new List<string>( );
+            _stop = @"['#', ';']";
             _messages = new List<IGptMessage>( );
-            _data = new Dictionary<string, object>( );
         }
 
         /// <inheritdoc />
@@ -124,9 +123,8 @@ namespace Bubba
             _store = config.Store;
             _stream = config.Stream;
             _topPercent = config.TopPercent;
-            _stop = config.Stop;
+            _stop = "['#', ';']";
             _messages = new List<IGptMessage>( );
-            _data = new Dictionary<string, object>( );
         }
 
         /// <inheritdoc />
@@ -340,19 +338,19 @@ namespace Bubba
         /// </summary>
         /// <returns>
         /// </returns>
-        public string Parse( )
+        public string Print( )
         {
             try
             {
                 var _json = "{";
                 _json += " \"model\":\"" + _model + "\",";
                 _json += " \"n\": \"" + _number + "\", ";
+                _json += " \"store\": \"" + _store + "\", ";
+                _json += " \"stream\": \"" + _stream + "\", ";
                 _json += " \"presence_penalty\": " + _presencePenalty + ", ";
                 _json += " \"frequency_penalty\": " + _frequencyPenalty + ", ";
                 _json += " \"temperature\": " + _temperature + ", ";
                 _json += " \"top_p\": " + _topPercent + ", ";
-                _json += " \"store\": \"" + _store + "\", ";
-                _json += " \"stream\": \"" + _stream + "\", ";
                 _json += " \"max_completion_tokens\": " + _maximumTokens + ",";
                 _json += " \"stop\": [\"#\", \";\"]" + "\",";
                 _json += "}";

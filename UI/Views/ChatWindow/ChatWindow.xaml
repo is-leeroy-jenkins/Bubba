@@ -782,6 +782,7 @@
                     Content="Mute"
                     FontFamily="Roboto"
                     FontSize="14"
+                    Foreground="{StaticResource BlueBorderBrush}"
                     ToolTip="Deactivates Text-to-speech (TTS)" />
 
                 <CheckBox
@@ -795,6 +796,7 @@
                     Content="Listen"
                     FontFamily="Roboto"
                     FontSize="14"
+                            Foreground="{StaticResource BlueBorderBrush}"
                     ToolTip="Transcribes audio" />
 
                 <TextBox
@@ -1004,25 +1006,16 @@
                                 <ColumnDefinition Width="530*" />
                                 <ColumnDefinition Width="12*" />
                             </Grid.ColumnDefinitions>
-
-                            <GroupBox
-                                x:Name="LanguageGroupBox"
-                                Grid.Column="0"
-                                Margin="10,53,9,10"
-                                Background="{StaticResource GroupBoxBackground}"
-                                Foreground="{StaticResource LightBlueBrush}"
-                                Header="" />
                             <Grid>
                                 <Grid.RowDefinitions>
-                                    <RowDefinition Height="53*" />
-                                    <RowDefinition Height="237*" />
+                                    <RowDefinition Height="63*" />
+                                    <RowDefinition Height="227*" />
                                 </Grid.RowDefinitions>
 
                                 <ComboBox
-                                    x:Name="LanguageComboBox"
-                                    Width="180"
-                                    Padding="20,1,1,1"
-                                    HorizontalContentAlignment="Center" Margin="10,10,10,0">
+                                            x:Name="LanguageComboBox"
+                                            Padding="20,1,1,1"
+                                            HorizontalContentAlignment="Center" Margin="10,10,10,10">
                                     <ComboBoxItem Content="Text" />
                                     <ComboBoxItem Content="SQL" />
                                     <ComboBoxItem Content="C" />
@@ -1034,10 +1027,9 @@
                                 </ComboBox>
 
                                 <b:MetroListBox
-                                    x:Name="LanguageListBox"
-                                    Grid.Row="1"
-                                    Grid.Column="0"
-                                    Margin="34,35,0,34" HorizontalAlignment="Left" Width="135" />
+                                            x:Name="LanguageListBox"
+                                            Grid.Row="1"
+                                            Margin="10,0,11,10" Height="207" VerticalAlignment="Bottom" />
 
                             </Grid>
 

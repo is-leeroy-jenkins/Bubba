@@ -238,7 +238,7 @@ namespace Bubba
         /// <value>
         /// The maximum tokens.
         /// </value>
-        [ JsonPropertyName( "max_completionTokens" ) ]
+        [ JsonPropertyName( "max_completion_tokens" ) ]
         public int MaxTokens
         {
             get
@@ -516,50 +516,6 @@ namespace Bubba
             {
                 Fail( ex );
                 return string.Empty;
-            }
-        }
-
-        // Helper method to build the request payload
-        /// <inheritdoc />
-        /// <summary>
-        /// Builds the request data.
-        /// </summary>
-        /// <param name="prompt">The question.</param>
-        /// <returns></returns>
-        public string CreatePayload( string prompt )
-        {
-            if( _model.Contains( "gpt-3.5-turbo" ) )
-            {
-                return JsonSerializer.Serialize( new
-                {
-                    model = _model,
-                    messages = new[ ]
-                    {
-                        new
-                        {
-                            role = "user",
-                            content = prompt
-                        }
-                    }
-                } );
-            }
-            else
-            {
-                return JsonSerializer.Serialize( new
-                {
-                    model = _model,
-                    prompt,
-                    maxTokens = _maximumTokens,
-                    user = _user,
-                    Temperature,
-                    frequency_penalty = 0.0,
-                    presence_penalty = 0.0,
-                    stop = new[ ]
-                    {
-                        "#",
-                        ";"
-                    }
-                } );
             }
         }
 

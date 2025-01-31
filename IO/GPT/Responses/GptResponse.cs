@@ -1,10 +1,10 @@
 ﻿// ******************************************************************************************
 //     Assembly:                Bubba
 //     Author:                  Terry D. Eppler
-//     Created:                 01-19-2025
+//     Created:                 01-30-2025
 // 
 //     Last Modified By:        Terry D. Eppler
-//     Last Modified On:        01-19-2025
+//     Last Modified On:        01-30-2025
 // ******************************************************************************************
 // <copyright file="GptResponse.cs" company="Terry D. Eppler">
 //    Bubba is a small and simple windows (wpf) application for interacting with the OpenAI API
@@ -207,6 +207,7 @@ namespace Bubba
         /// <value>
         /// The choices.
         /// </value>
+        [ JsonPropertyName( "choices" ) ]
         public virtual IList<GptChoice> Choices
         {
             get
@@ -269,10 +270,12 @@ namespace Bubba
                         var _txt = _cnt.GetString( );
                         return _txt;
                     }
-
-                    var _message = _property[ 0 ].GetProperty( "message" );
-                    var _text = _message.GetString( );
-                    return _text;
+                    else
+                    {
+                        var _message = _property[ 0 ].GetProperty( "message" );
+                        var _text = _message.GetString( );
+                        return _text;
+                    }
                 }
                 else
                 {

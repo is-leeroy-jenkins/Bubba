@@ -44,7 +44,6 @@ namespace Bubba
     using System;
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
-    using System.Linq;
     using System.Text.Json.Serialization;
     using Exception = System.Exception;
     using JsonSerializer = System.Text.Json.JsonSerializer;
@@ -62,6 +61,7 @@ namespace Bubba
     [ SuppressMessage( "ReSharper", "PreferConcreteValueOverDefault" ) ]
     [ SuppressMessage( "ReSharper", "ClassCanBeSealed.Global" ) ]
     [ SuppressMessage( "ReSharper", "PossibleUnintendedReferenceComparison" ) ]
+    [ SuppressMessage( "ReSharper", "ConvertIfStatementToReturnStatement" ) ]
     public class GptPayload : PayloadBase, IGptPayload
     {
         /// <summary>
@@ -85,7 +85,7 @@ namespace Bubba
             _presencePenalty = 0.00;
             _store = false;
             _stream = true;
-            _stop = new List<string>( );
+            _stop = "['#', ';']";
             _messages = new List<IGptMessage>( );
         }
 
@@ -114,9 +114,8 @@ namespace Bubba
             _store = store;
             _stream = stream;
             _topPercent = topPercent;
-            _stop = new List<string>( );
+            _stop = "['#', ';']";
             _messages = new List<IGptMessage>( );
-            _data = new Dictionary<string, object>( );
         }
 
         /// <inheritdoc />
@@ -137,7 +136,7 @@ namespace Bubba
             _store = config.Store;
             _stream = config.Stream;
             _topPercent = config.TopPercent;
-            _stop = new List<string>( );
+            _stop = "['#', ';']";
         }
 
         /// <inheritdoc />
@@ -449,11 +448,7 @@ namespace Bubba
                         Temperature = _temperature,
                         FrequencyPenalty = _frequencyPenalty,
                         PresencePenalty = _presencePenalty,
-                        stop = new[ ]
-                        {
-                            "#",
-                            ";"
-                        }
+                        Stop = "['#', ';']"
                     } );
                 }
             }

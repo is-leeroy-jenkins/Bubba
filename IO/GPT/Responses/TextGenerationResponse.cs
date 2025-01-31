@@ -1,10 +1,10 @@
 ﻿// ******************************************************************************************
 //     Assembly:                Bubba
 //     Author:                  Terry D. Eppler
-//     Created:                 01-07-2025
+//     Created:                 01-30-2025
 // 
 //     Last Modified By:        Terry D. Eppler
-//     Last Modified On:        01-07-2025
+//     Last Modified On:        01-30-2025
 // ******************************************************************************************
 // <copyright file="TextGenerationResponse.cs" company="Terry D. Eppler">
 //    Bubba is a small and simple windows (wpf) application for interacting with the OpenAI API
@@ -81,11 +81,11 @@ namespace Bubba
         /// Initializes a new instance of the
         /// <see cref="T:Bubba.TextGenerationResponse" /> class.
         /// </summary>
-        /// <param name="request">The request.</param>
-        public TextGenerationResponse( TextGenerationRequest request ) 
+        /// <param name="response">The request.</param>
+        public TextGenerationResponse( string response )
             : this( )
         {
-            _model = request.Model;
+            _rawResponse = response;
         }
 
         /// <summary>
@@ -164,7 +164,7 @@ namespace Bubba
         /// <value>
         /// The object.
         /// </value>
-        [JsonPropertyName("object")]
+        [ JsonPropertyName( "object" ) ]
         public override string Object
         {
             get
@@ -188,7 +188,7 @@ namespace Bubba
         /// <value>
         /// The created.
         /// </value>
-        [JsonPropertyName("created")]
+        [ JsonPropertyName( "created" ) ]
         public override DateTime Created
         {
             get
@@ -212,7 +212,7 @@ namespace Bubba
         /// <value>
         /// The model.
         /// </value>
-        [JsonPropertyName("model")]
+        [ JsonPropertyName( "model" ) ]
         public override string Model
         {
             get
@@ -259,7 +259,7 @@ namespace Bubba
         /// <value>
         /// The usage.
         /// </value>
-        [JsonPropertyName("usage")]
+        [ JsonPropertyName( "usage" ) ]
         public override GptUsage Usage
         {
             get
@@ -273,6 +273,30 @@ namespace Bubba
                     _usage = value;
                     OnPropertyChanged( nameof( Usage ) );
                 }
+            }
+        }
+
+        /// <inheritdoc />
+        /// <summary>
+        /// Converts to string.
+        /// </summary>
+        /// <returns>
+        /// A <see cref="T:System.String" />
+        /// that represents this instance.
+        /// </returns>
+        public override string ToString( )
+        {
+            try
+            {
+                var _text = JsonSerializer.Serialize( this );
+                return !string.IsNullOrEmpty( _text )
+                    ? _text
+                    : string.Empty;
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+                return string.Empty;
             }
         }
     }

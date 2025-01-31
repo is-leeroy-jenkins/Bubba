@@ -360,7 +360,7 @@ namespace Bubba
                 var _response = await _httpClient.PostAsync( _endPoint, _content );
                 _response.EnsureSuccessStatusCode( );
                 var _async = await _response.Content.ReadAsStringAsync( );
-                return ExtractResponse( _async );
+                return ExtractContent( _async );
             }
             catch( Exception ex )
             {
@@ -377,7 +377,7 @@ namespace Bubba
         /// <returns>
         /// string
         /// </returns>
-        private protected override string ExtractResponse( string response )
+        private protected override string ExtractContent( string response )
         {
             try
             {

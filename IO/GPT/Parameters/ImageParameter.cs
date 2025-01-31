@@ -102,6 +102,7 @@ namespace Bubba
             _responseFormat = "url";
             _style = "natural";
             _quality = "hd";
+            _stop = "['#', ';']";
         }
 
         /// <summary>
@@ -279,12 +280,10 @@ namespace Bubba
                 _data.Add( "max_completionTokens", _maximumTokens );
                 _data.Add( "store", _store );
                 _data.Add( "stream", _stream );
-                _data.Add( "temperature", Temperature );
+                _data.Add( "temperature", _temperature );
                 _data.Add( "frequency_penalty", _frequencyPenalty );
                 _data.Add( "presence_penalty", _presencePenalty );
-                _data.Add( "top_p", TopPercent );
-                _stop.Add( "#" );
-                _stop.Add( ";" );
+                _data.Add( "top_p", _topPercent );
                 _data.Add( "stop", _stop );
                 return _data?.Any( ) == true
                     ? _data

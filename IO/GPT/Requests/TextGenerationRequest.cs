@@ -76,7 +76,7 @@ namespace Bubba
             _endPoint = GptEndPoint.TextGeneration;
             _model = "gpt-4o";
             _responseFormat = "text";
-            _systemPrompt = OpenAI.BubbaPrompt;
+            _systemMessage = new SystemMessage( OpenAI.BubbaPrompt );
         }
 
         /// <inheritdoc />
@@ -206,7 +206,7 @@ namespace Bubba
         /// <value>
         /// The maximum tokens.
         /// </value>
-        [ JsonPropertyName( "max_completionTokens" ) ]
+        [ JsonPropertyName( "max_completion_tokens" ) ]
         public override int MaximumTokens
         {
             get
@@ -457,7 +457,7 @@ namespace Bubba
                 var _response = await _httpClient.PostAsync( _endPoint, _content );
                 _response.EnsureSuccessStatusCode( );
                 var _responseContent = await _response.Content.ReadAsStringAsync( );
-                return ExtractResponse( _responseContent );
+                return ExtractContent( _responseContent );
             }
             catch( Exception ex )
             {
@@ -472,7 +472,7 @@ namespace Bubba
         /// </summary>
         /// <param name="response">The json response.</param>
         /// <returns></returns>
-        private protected override string ExtractResponse( string response )
+        private protected override string ExtractContent( string response )
         {
             try
             {

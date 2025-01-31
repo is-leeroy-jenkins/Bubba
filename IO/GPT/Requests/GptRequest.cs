@@ -81,7 +81,7 @@ namespace Bubba
         /// <summary>
         /// The stop sequence
         /// </summary>
-        private protected IList<string> _stop;
+        private protected string _stop;
 
         /// <summary>
         /// The modalities
@@ -102,7 +102,7 @@ namespace Bubba
         {
             _header = new GptHeader( );
             _apiKey = _header.ApiKey;
-            _stop = new List<string>( );
+            _stop = @"['#', ';']";
             _store = false;
             _stream = true;
             _presencePenalty = 0.00;
@@ -127,7 +127,7 @@ namespace Bubba
         {
             _header = new GptHeader( );
             _apiKey = _header.ApiKey;
-            _stop = new List<string>( );
+            _stop = @"['#', ';']";
             _number = parameter.Number;
             _store = parameter.Store;
             _stream = parameter.Stream;
@@ -156,7 +156,7 @@ namespace Bubba
             _topPercent = request.TopPercent;
             _temperature = request.Temperature;
             _maximumTokens = request.MaximumTokens;
-            _stop = request.Stop;
+            _stop = @"['#', ';']";
             _body = request.Body;
         }
 
@@ -192,8 +192,8 @@ namespace Bubba
             number = _number;
             presence = _presencePenalty;
             frequency = _frequencyPenalty;
-            temperature = Temperature;
-            topPercent = TopPercent;
+            temperature = _temperature;
+            topPercent = _topPercent;
             tokens = _maximumTokens;
         }
 
@@ -204,7 +204,7 @@ namespace Bubba
         /// The stop sequences.
         /// </value>
         [ JsonPropertyName( "stop" ) ]
-        public virtual IList<string> Stop
+        public virtual string Stop
         {
             get
             {
@@ -396,7 +396,7 @@ namespace Bubba
         /// The json response.
         /// </param>
         /// <returns></returns>
-        private protected virtual string ExtractResponse( string response )
+        private protected virtual string ExtractContent( string response )
         {
             try
             {
@@ -452,8 +452,6 @@ namespace Bubba
                 _data.Add( "presence_penalty", _presencePenalty );
                 _data.Add( "top_p", _topPercent );
                 _data.Add( "response_format", _responseFormat );
-                _stop.Add( "#" );
-                _stop.Add( ";" );
                 _data.Add( "stop", _stop );
                 _data.Add( "modalities", _modalities );
                 return _data?.Any( ) == true

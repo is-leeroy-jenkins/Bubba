@@ -154,7 +154,7 @@ namespace Bubba
             _store = store;
             _stream = stream;
             _topPercent = topPercent;
-            _stop = new List<string>( );
+            _stop = "['#', ';']";
         }
 
         /// <inheritdoc />

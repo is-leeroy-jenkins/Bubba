@@ -79,37 +79,11 @@ namespace Bubba
             FontFamily = _theme.FontFamily;
             FontSize = _theme.FontSize;
             BorderThickness = _theme.BorderThickness;
-            Background = _theme.DarkBlueBrush;
+            Background = _theme.BorderBrush;
             BorderBrush = _theme.TransparentBrush;
-            Foreground = _theme.LightBlueBrush;
+            Foreground = _theme.BorderBrush;
             HorizontalAlignment = HorizontalAlignment.Stretch;
             VerticalAlignment = VerticalAlignment.Stretch;
-
-            // Wire Events
-            MouseLeftButtonDown += OnMouseClick;
-        }
-
-        /// <summary>
-        /// Called when [mouse click].
-        /// </summary>
-        /// <param name="sender">The sender.</param>
-        /// <param name="e">The <see cref="MouseEventArgs"/>
-        /// instance containing the event data.</param>
-        private protected virtual void OnMouseClick( object sender, MouseEventArgs e )
-        {
-            try
-            {
-                if( sender is MetroRadioButton _button
-                    && _button.IsChecked == true )
-                {
-                    Foreground = _theme.WhiteForeground;
-                    Background = _theme.GreenBrush;
-                }
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
-            }
         }
 
         /// <summary>

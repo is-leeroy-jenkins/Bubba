@@ -115,12 +115,13 @@ namespace Bubba
             _store = store;
             _stream = stream;
             _topPercent = topPercent;
-            _stop = new List<string>( );
+            _stop = "['#', ';']";
         }
 
         /// <inheritdoc />
         /// <summary>
-        /// Initializes a new instance of the <see cref="T:Bubba.TranslationPayload" /> class.
+        /// Initializes a new instance of the
+        /// <see cref="T:Bubba.TranslationPayload" /> class.
         /// </summary>
         /// <param name="userPrompt">The user prompt.</param>
         /// <param name="config">The configuration.</param>

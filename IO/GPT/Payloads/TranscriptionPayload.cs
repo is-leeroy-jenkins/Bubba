@@ -126,7 +126,7 @@ namespace Bubba
             _stream = stream;
             _topPercent = topPercent;
             _responseFormat = format;
-            _stop = new List<string>( );
+            _stop = @"['#', ';']";
         }
 
         /// <inheritdoc />

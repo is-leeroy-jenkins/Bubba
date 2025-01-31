@@ -142,7 +142,7 @@ namespace Bubba
             _store = store;
             _stream = stream;
             _topPercent = topPercent;
-            _stop = new List<string>( );
+            _stop = @"['#', ';']";
         }
 
         /// <inheritdoc />
@@ -162,9 +162,8 @@ namespace Bubba
             _store = config.Store;
             _stream = config.Stream;
             _topPercent = config.TopPercent;
-            _stop = config.Stop;
+            _stop = @"['#', ';']";
             _messages = new List<IGptMessage>( );
-            _data = new Dictionary<string, object>( );
         }
 
         /// <summary>

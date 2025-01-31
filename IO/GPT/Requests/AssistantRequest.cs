@@ -1,10 +1,10 @@
 ﻿// ******************************************************************************************
 //     Assembly:                Bubba
 //     Author:                  Terry D. Eppler
-//     Created:                 01-17-2025
+//     Created:                 01-30-2025
 // 
 //     Last Modified By:        Terry D. Eppler
-//     Last Modified On:        01-17-2025
+//     Last Modified On:        01-30-2025
 // ******************************************************************************************
 // <copyright file="AssistantRequest.cs" company="Terry D. Eppler">
 //    Bubba is a small and simple windows (wpf) application for interacting with the OpenAI API
@@ -95,7 +95,7 @@ namespace Bubba
             _header = new GptHeader( );
             _endPoint = GptEndPoint.Assistants;
             _model = "gpt-4o";
-            _stop = new List<string>( );
+            _stop = "['#', ';']";
             _tools = new List<string>( );
             _seed = 1;
             _modalities = "['text', 'audio']";
@@ -322,10 +322,10 @@ namespace Bubba
             }
             set
             {
-                if(_tools != value)
+                if( _tools != value )
                 {
                     _tools = value;
-                    OnPropertyChanged(nameof(Tools));
+                    OnPropertyChanged( nameof( Tools ) );
                 }
             }
         }
@@ -410,7 +410,7 @@ namespace Bubba
                 var _response = await _httpClient.PostAsync( _endPoint, _content );
                 _response.EnsureSuccessStatusCode( );
                 var _chat = await _response.Content.ReadAsStringAsync( );
-                var _chatResponse = ExtractResponse( _chat );
+                var _chatResponse = ExtractContent( _chat );
                 return !string.IsNullOrEmpty( _chatResponse )
                     ? _chatResponse
                     : string.Empty;
@@ -428,33 +428,33 @@ namespace Bubba
         /// </summary>
         /// <param name="response">The json response.</param>
         /// <returns></returns>
-        private protected override string ExtractResponse( string response )
+        private protected override string ExtractContent( string response )
         {
             try
             {
-                using var _document = JsonDocument.Parse(response);
+                using var _document = JsonDocument.Parse( response );
                 var _root = _document.RootElement;
-                if(_model.Contains("gpt-3.5-turbo"))
+                if( _model.Contains( "gpt-3.5-turbo" ) )
                 {
-                    var _choices = _root.GetProperty("choices");
-                    if(_choices.ValueKind == JsonValueKind.Array
-                        && _choices.GetArrayLength() > 0)
+                    var _choices = _root.GetProperty( "choices" );
+                    if( _choices.ValueKind == JsonValueKind.Array
+                        && _choices.GetArrayLength( ) > 0 )
                     {
-                        var _msg = _choices[0].GetProperty("message");
-                        var _cnt = _msg.GetProperty("content");
-                        var _txt = _cnt.GetString();
+                        var _msg = _choices[ 0 ].GetProperty( "message" );
+                        var _cnt = _msg.GetProperty( "content" );
+                        var _txt = _cnt.GetString( );
                         return _txt;
                     }
 
-                    var _message = _choices[0].GetProperty("message");
-                    var _text = _message.GetString();
+                    var _message = _choices[ 0 ].GetProperty( "message" );
+                    var _text = _message.GetString( );
                     return _text;
                 }
                 else
                 {
-                    var _choice = _root.GetProperty("choices")[0];
-                    var _property = _choice.GetProperty("text");
-                    var _text = _property.GetString();
+                    var _choice = _root.GetProperty( "choices" )[ 0 ];
+                    var _property = _choice.GetProperty( "text" );
+                    var _text = _property.GetString( );
                     return _text;
                 }
             }

@@ -97,7 +97,7 @@ namespace Bubba
             _endPoint = GptEndPoint.Completions;
             _systemPrompt = OpenAI.BubbaPrompt;
             _model = "gpt-4o";
-            _stop = new List<string>( );
+            _stop = "['#', ';']";
             _tools = new List<string>( );
             _seed = 1;
             _modalities = "['text', 'audio']";
@@ -356,7 +356,7 @@ namespace Bubba
                 var _message = await _httpClient.PostAsync( _endPoint, _content );
                 _message.EnsureSuccessStatusCode( );
                 var _response = await _message.Content.ReadAsStringAsync( );
-                var _text = ExtractResponse( _response );
+                var _text = ExtractContent( _response );
                 return !string.IsNullOrEmpty( _text )
                     ? _text
                     : string.Empty;
@@ -374,7 +374,7 @@ namespace Bubba
         /// </summary>
         /// <param name="response">The json response.</param>
         /// <returns></returns>
-        private protected override string ExtractResponse( string response )
+        private protected override string ExtractContent( string response )
         {
             try
             {

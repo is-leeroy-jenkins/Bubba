@@ -120,13 +120,14 @@ namespace Bubba
             }
         }
 
+        /// <inheritdoc />
         /// <summary>
         /// Gets or sets the end point.
         /// </summary>
         /// <value>
         /// The end point.
         /// </value>
-        public string EndPoint
+        public override string EndPoint
         {
             get
             {
@@ -203,13 +204,13 @@ namespace Bubba
         {
             get
             {
-                return Temperature;
+                return _temperature;
             }
             set
             {
-                if( Temperature != value )
+                if( _temperature != value )
                 {
-                    Temperature = value;
+                    _temperature = value;
                     OnPropertyChanged( nameof( Temperature ) );
                 }
             }
@@ -281,13 +282,13 @@ namespace Bubba
         {
             get
             {
-                return TopPercent;
+                return _topPercent;
             }
             set
             {
-                if( TopPercent != value )
+                if( _topPercent != value )
                 {
-                    TopPercent = value;
+                    _topPercent = value;
                     OnPropertyChanged( nameof( TopPercent ) );
                 }
             }
@@ -326,15 +327,13 @@ namespace Bubba
             try
             {
                 _data.Add( "n", _number );
-                _data.Add( "max_completionTokens", _maximumTokens );
+                _data.Add( "max_completion_tokens", _maximumTokens );
                 _data.Add( "store", _store );
                 _data.Add( "stream", _stream );
-                _data.Add( "temperature", Temperature );
+                _data.Add( "temperature", _temperature );
                 _data.Add( "frequency_penalty", _frequencyPenalty );
                 _data.Add( "presence_penalty", _presencePenalty );
-                _data.Add( "top_p", TopPercent );
-                _stop.Add( "#" );
-                _stop.Add( ";" );
+                _data.Add( "top_p", _topPercent );
                 _data.Add( "stop", _stop );
                 return _data?.Any( ) == true
                     ? _data

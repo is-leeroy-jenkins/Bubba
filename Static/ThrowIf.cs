@@ -51,8 +51,10 @@ namespace Bubba
     using System.Diagnostics.CodeAnalysis;
     using System.Linq;
     using System.Net.Mail;
+    using System.Text.Json;
     using System.Windows;
     using System.Windows.Controls;
+    using System.Xml.Linq;
 
     /// <summary>
     /// 
@@ -252,6 +254,26 @@ namespace Bubba
                     {
                         var _message = @$"The '{paramName}' is null!";
                         throw new ArgumentNullException( _message );
+                    }
+
+                    break;
+                }
+                case XElement _xElement:
+                {
+                    if(_xElement == null)
+                    {
+                        var _message = @$"The '{paramName}' is null!";
+                        throw new ArgumentNullException(_message);
+                    }
+
+                    break;
+                }
+                case XAttribute _xAttribute:
+                {
+                    if(_xAttribute == null)
+                    {
+                        var _message = @$"The '{paramName}' is null!";
+                        throw new ArgumentNullException(_message);
                     }
 
                     break;

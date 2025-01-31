@@ -133,13 +133,6 @@ namespace Bubba
         string SendRequest( string prompt );
 
         /// <summary>
-        /// Builds the request data.
-        /// </summary>
-        /// <param name="prompt">The question.</param>
-        /// <returns></returns>
-        string CreatePayload( string prompt );
-
-        /// <summary>
         /// Sends the HTTP message asynchronous.
         /// </summary>
         /// <param name="userPrompt">The prompt.</param>

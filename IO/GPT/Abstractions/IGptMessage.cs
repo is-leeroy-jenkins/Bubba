@@ -57,12 +57,12 @@ namespace Bubba
         string Role { get; }
 
         /// <summary>
-        /// Gets the type.
+        /// Gets or sets the content.
         /// </summary>
         /// <value>
-        /// The type.
+        /// The content.
         /// </value>
-        string Type { get; }
+        string Content { get; set; }
 
         /// <summary>
         /// Returns a string that represents the current object.

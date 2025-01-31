@@ -109,7 +109,7 @@ namespace Bubba
         /// <summary>
         /// The stop sequences
         /// </summary>
-        private protected IList<string> _stop;
+        private protected string _stop;
 
         /// <summary>
         /// Number between -2.0 and 2.0. Positive values penalize new tokens
@@ -199,7 +199,7 @@ namespace Bubba
         /// <value>
         /// The maximum tokens.
         /// </value>
-        [JsonPropertyName( "max_completionTokens" ) ]
+        [ JsonPropertyName( "max_completionTokens" ) ]
         public virtual int MaximumTokens
         {
             get
@@ -230,13 +230,13 @@ namespace Bubba
         {
             get
             {
-                return Temperature;
+                return _temperature;
             }
             set
             {
-                if( Temperature != value )
+                if( _temperature != value )
                 {
-                    Temperature = value;
+                    _temperature = value;
                     OnPropertyChanged( nameof( Temperature ) );
                 }
             }
@@ -335,13 +335,13 @@ namespace Bubba
         {
             get
             {
-                return TopPercent;
+                return _topPercent;
             }
             set
             {
-                if(TopPercent != value)
+                if(_topPercent != value)
                 {
-                    TopPercent = value;
+                    _topPercent = value;
                     OnPropertyChanged(nameof(TopPercent));
                 }
             }
@@ -403,7 +403,7 @@ namespace Bubba
         /// The prompt.
         /// </value>
         [ JsonPropertyName( "prompt" ) ]
-        public string Prompt
+        public virtual string Prompt
         {
             get
             {
@@ -437,10 +437,10 @@ namespace Bubba
             }
             set
             {
-                if(_messages != value)
+                if( _messages != value )
                 {
                     _messages = value;
-                    OnPropertyChanged(nameof(Messages));
+                    OnPropertyChanged( nameof( Messages ) );
                 }
             }
         }
@@ -452,8 +452,8 @@ namespace Bubba
         /// <value>
         /// The stop sequences.
         /// </value>
-        [JsonPropertyName( "stop" ) ]
-        public IList<string> Stop
+        [ JsonPropertyName( "stop" ) ]
+        public virtual string Stop
         {
             get
             {
@@ -461,33 +461,10 @@ namespace Bubba
             }
             set
             {
-                if(_stop != value)
+                if( _stop != value )
                 {
                     _stop = value;
-                    OnPropertyChanged(nameof(Stop));
-                }
-            }
-        }
-
-        /// <inheritdoc />
-        /// <summary>
-        /// Gets or sets the data.
-        /// </summary>
-        /// <value>
-        /// The data.
-        /// </value>
-        public IDictionary<string, object> Data
-        {
-            get
-            {
-                return _data;
-            }
-            set
-            {
-                if( _data != value )
-                {
-                    _data = value;
-                    OnPropertyChanged( nameof( Data ) );
+                    OnPropertyChanged( nameof( Stop ) );
                 }
             }
         }

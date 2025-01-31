@@ -45,8 +45,6 @@ namespace Bubba
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
     using System.Linq;
-    using System.Text.Json.Serialization;
-    using Newtonsoft.Json;
     using Properties;
 
     /// <inheritdoc />
@@ -123,6 +121,7 @@ namespace Bubba
             _frequencyPenalty = 0.00;
             _presencePenalty = 0.00;
             _maximumTokens = 2048;
+            _stop = "['#', ';']";
             _method = new Dictionary<string, object>( );
             _logitBias = new Dictionary<string, object>( );
             _echo = true;
@@ -276,13 +275,13 @@ namespace Bubba
         {
             get
             {
-                return TrainingFile;
+                return _trainingFile;
             }
             set
             {
-                if( TrainingFile != value )
+                if( _trainingFile != value )
                 {
-                    TrainingFile = value;
+                    _trainingFile = value;
                     OnPropertyChanged( nameof( TrainingFile ) );
                 }
             }
@@ -394,16 +393,14 @@ namespace Bubba
                 _data.Add( "model", _model );
                 _data.Add( "endpoint", _endPoint );
                 _data.Add( "number", _number );
-                _data.Add( "max_completionTokens", _maximumTokens );
-                _stop.Add( "#" );
-                _stop.Add( ";" );
+                _data.Add( "max_completion_tokens", _maximumTokens );
                 _data.Add( "stop", _stop );
                 _data.Add( "store", _store );
                 _data.Add( "stream", _stream );
-                _data.Add( "temperature", Temperature );
+                _data.Add( "temperature", _temperature );
                 _data.Add( "frequency_penalty", _frequencyPenalty );
                 _data.Add( "presence_penalty", _presencePenalty );
-                _data.Add( "top_p", TopPercent );
+                _data.Add( "top_p", _topPercent );
                 _data.Add( "response_format", _responseFormat );
                 _data.Add( "endpoint", _endPoint );
                 _method.Add( "type", "supervised" );
@@ -411,12 +408,10 @@ namespace Bubba
                 _data.Add( "logprobs", _logProbs );
                 _data.Add( "echo", _echo );
                 _data.Add( "best_of", _bestOf );
-                _stop.Add( "#" );
-                _stop.Add( ";" );
                 _data.Add( "stop", _stop );
-                if( !string.IsNullOrEmpty( TrainingFile ) )
+                if( !string.IsNullOrEmpty( _trainingFile ) )
                 {
-                    _data.Add( "filepath", TrainingFile );
+                    _data.Add( "filepath", _trainingFile );
                 }
 
                 return _data?.Any( ) == true

@@ -45,6 +45,7 @@ namespace Bubba
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
     using System.Linq;
+    using System.Text.Json;
 
     /// <inheritdoc />
     /// <summary>
@@ -60,11 +61,6 @@ namespace Bubba
         /// The role
         /// </summary>
         private protected string _role;
-
-        /// <summary>
-        /// The type
-        /// </summary>
-        private protected string _type;
 
         /// <summary>
         /// The content
@@ -88,28 +84,6 @@ namespace Bubba
             get
             {
                 return _role;
-            }
-        }
-
-        /// <summary>
-        /// Gets the type.
-        /// </summary>
-        /// <value>
-        /// The type.
-        /// </value>
-        public virtual string Type
-        {
-            get
-            {
-                return _type;
-            }
-            set
-            {
-                if( _type != value )
-                {
-                    _type = value;
-                    OnPropertyChanged( nameof( Type ) );
-                }
             }
         }
 
@@ -218,8 +192,9 @@ namespace Bubba
         {
             try
             {
-                return _data?.Any( ) == true
-                    ? _data.ToJson( )
+                var _text = JsonSerializer.Serialize(this);
+                return !string.IsNullOrEmpty(_text)
+                    ? _text
                     : string.Empty;
             }
             catch( Exception ex )

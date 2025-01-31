@@ -96,6 +96,7 @@ namespace Bubba
             _frequencyPenalty = 0.00;
             _presencePenalty = 0.00;
             _maximumTokens = 2048;
+            _stop = "['#', ';']";
             _modalities = "['text', 'audio']";
         }
 
@@ -123,9 +124,8 @@ namespace Bubba
             _store = store;
             _stream = stream;
             _topPercent = topPercent;
-            _stop = new List<string>( );
+            _stop = "['#', ';']";
             _messages = new List<IGptMessage>( );
-            _data = new Dictionary<string, object>( );
         }
 
         /// <inheritdoc />
@@ -148,7 +148,6 @@ namespace Bubba
             _topPercent = config.TopPercent;
             _stop = config.Stop;
             _messages = new List<IGptMessage>( );
-            _data = new Dictionary<string, object>( );
         }
 
         /// <inheritdoc />

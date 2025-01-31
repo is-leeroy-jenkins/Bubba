@@ -126,7 +126,7 @@ namespace Bubba
         /// <value>
         /// The stop.
         /// </value>
-        IList<string> Stop { get; set; }
+        string Stop { get; set; }
 
         /// <summary>
         /// Gets or sets the messages.

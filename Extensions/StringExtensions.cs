@@ -436,7 +436,7 @@ namespace Bubba
 
         /// <summary>
         /// remove space, not line end Useful when parsing user
-        /// input such phone, price int.Parse("1 000
+        /// input such phone, price int.Print("1 000
         /// 000".RemoveSpaces(),.....
         /// </summary>
         /// <param name="text">The text.</param>

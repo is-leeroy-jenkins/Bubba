@@ -45,6 +45,7 @@ namespace Bubba
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
     using System.Linq;
+    using System.Text.Json;
     using System.Text.Json.Serialization;
     using Properties;
     using Exception = System.Exception;
@@ -132,30 +133,6 @@ namespace Bubba
 
         /// <inheritdoc />
         /// <summary>
-        /// Gets the type.
-        /// </summary>
-        /// <value>
-        /// The type.
-        /// </value>
-        [ JsonPropertyName( "type" ) ]
-        public override string Type
-        {
-            get
-            {
-                return _type;
-            }
-            set
-            {
-                if( _type != value )
-                {
-                    _type = value;
-                    OnPropertyChanged( nameof( Type ) );
-                }
-            }
-        }
-
-        /// <inheritdoc />
-        /// <summary>
         /// Gets the content.
         /// </summary>
         /// <value>
@@ -188,11 +165,6 @@ namespace Bubba
                     _data.Add( "role", _role );
                 }
 
-                if( !string.IsNullOrEmpty( _type ) )
-                {
-                    _data.Add( "type", _type );
-                }
-
                 if( !string.IsNullOrEmpty( _content ) )
                 {
                     _data.Add( "content", _content );
@@ -220,8 +192,9 @@ namespace Bubba
         {
             try
             {
-                return _data?.Any( ) == true
-                    ? _data.ToJson( )
+                var _text = JsonSerializer.Serialize(this);
+                return !string.IsNullOrEmpty(_text)
+                    ? _text
                     : string.Empty;
             }
             catch( Exception ex )

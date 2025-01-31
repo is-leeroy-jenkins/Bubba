@@ -29026,11 +29026,14 @@
             Generates the code.
             </summary>
             <param name="text">The text.</param>
-            <param name="pixelsPerModule">The pixels per module.</param>
-            <param name="darkColor">Color of the dark.</param>
-            <param name="lightColor">Color of the light.</param>
-            <returns></returns>
-            <exception cref="T:System.ArgumentException">Text cannot be null or empty. - text</exception>
+            <param name="pixels">The pixels per module.</param>
+            <param name="dark">Color of the dark.</param>
+            <param name="light">Color of the light.</param>
+            <returns>
+            </returns>
+            <exception cref="T:System.ArgumentException">
+            Text cannot be null or empty. - text
+            </exception>
         </member>
         <member name="M:Bubba.QuickResponse.SaveToFile(System.String,System.String,System.Drawing.Imaging.ImageFormat,System.Int32,System.Nullable{System.Drawing.Color},System.Nullable{System.Drawing.Color})">
             <summary>
@@ -29039,9 +29042,9 @@
             <param name="text">The text.</param>
             <param name="filePath">The file path.</param>
             <param name="format">The image format.</param>
-            <param name="pixelsPerModule">The pixels per module.</param>
-            <param name="darkColor">Color of the dark.</param>
-            <param name="lightColor">Color of the light.</param>
+            <param name="pixels">The pixels per module.</param>
+            <param name="dark">Color of the dark.</param>
+            <param name="light">Color of the light.</param>
         </member>
         <member name="M:Bubba.QuickResponse.CreateByteArray(System.String,System.Drawing.Imaging.ImageFormat,System.Int32,System.Nullable{System.Drawing.Color},System.Nullable{System.Drawing.Color})">
             <summary>
@@ -29049,10 +29052,11 @@
             </summary>
             <param name="text">The text.</param>
             <param name="format">The image format.</param>
-            <param name="pixelsPerModule">The pixels per module.</param>
-            <param name="darkColor">Color of the dark.</param>
-            <param name="lightColor">Color of the light.</param>
-            <returns></returns>
+            <param name="pixels">The pixels per module.</param>
+            <param name="dark">Color of the dark.</param>
+            <param name="light">Color of the light.</param>
+            <returns>
+            </returns>
         </member>
         <member name="M:Bubba.QuickResponse.CreateStream(System.String,System.Drawing.Imaging.ImageFormat,System.Int32,System.Nullable{System.Drawing.Color},System.Nullable{System.Drawing.Color})">
             <summary>
@@ -29060,21 +29064,23 @@
             </summary>
             <param name="text">The text.</param>
             <param name="format">The image format.</param>
-            <param name="pixelsPerModule">The pixels per module.</param>
-            <param name="darkColor">Color of the dark.</param>
-            <param name="lightColor">Color of the light.</param>
-            <returns></returns>
+            <param name="pixels">The pixels per module.</param>
+            <param name="dark">Color of the dark.</param>
+            <param name="light">Color of the light.</param>
+            <returns>
+            </returns>
         </member>
         <member name="M:Bubba.QuickResponse.CreateBase64(System.String,System.Drawing.Imaging.ImageFormat,System.Int32,System.Nullable{System.Drawing.Color},System.Nullable{System.Drawing.Color})">
             <summary>
             Creates the base64.
             </summary>
             <param name="text">The text.</param>
-            <param name="imageFormat">The image format.</param>
-            <param name="pixelsPerModule">The pixels per module.</param>
-            <param name="darkColor">Color of the dark.</param>
-            <param name="lightColor">Color of the light.</param>
-            <returns></returns>
+            <param name="image">The image format.</param>
+            <param name="pixels">The pixels per module.</param>
+            <param name="dark">Color of the dark.</param>
+            <param name="light">Color of the light.</param>
+            <returns>
+            </returns>
         </member>
         <member name="M:Bubba.QuickResponse.Dispose">
             <inheritdoc />
@@ -29781,8 +29787,8 @@
             Adds the element.
             </summary>
             <param name="filePath">The file path.</param>
-            <param name="elementToAdd">The element to add.</param>
-            <param name="parentElementName">Name of the parent element.</param>
+            <param name="element">The element to add.</param>
+            <param name="parentName">Name of the parent element.</param>
         </member>
         <member name="M:Bubba.XmlWriter.UpdateAttribute(System.String,System.String,System.String,System.String)">
             <summary>
@@ -33170,14 +33176,6 @@
             Initializes a new instance of the
             <see cref="T:Bubba.MetroRadioButton" /> class.
             </summary>
-        </member>
-        <member name="M:Bubba.MetroRadioButton.OnMouseClick(System.Object,System.Windows.Input.MouseEventArgs)">
-            <summary>
-            Called when [mouse click].
-            </summary>
-            <param name="sender">The sender.</param>
-            <param name="e">The <see cref="T:System.Windows.Input.MouseEventArgs"/>
-            instance containing the event data.</param>
         </member>
         <member name="M:Bubba.MetroRadioButton.Fail(System.Exception)">
             <summary>

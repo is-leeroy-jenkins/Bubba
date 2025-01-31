@@ -55,7 +55,7 @@ namespace Bubba
         ///   <c>true</c> if store; otherwise, <c>false</c>.
         /// </value>
         bool Store { get; set; }
-
+            
         /// <inheritdoc />
         /// <summary>
         /// Gets or sets a value indicating whether this

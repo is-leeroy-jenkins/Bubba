@@ -1,10 +1,10 @@
 ﻿// ******************************************************************************************
 //     Assembly:                Bubba
 //     Author:                  Terry D. Eppler
-//     Created:                 01-16-2025
+//     Created:                 01-30-2025
 // 
 //     Last Modified By:        Terry D. Eppler
-//     Last Modified On:        01-16-2025
+//     Last Modified On:        01-30-2025
 // ******************************************************************************************
 // <copyright file="XmlWriter.cs" company="Terry D. Eppler">
 //    Bubba is a small and simple windows (wpf) application for interacting with the OpenAI API
@@ -43,12 +43,15 @@ namespace Bubba
 {
     using System.Xml.Linq;
     using System;
+    using System.Diagnostics.CodeAnalysis;
     using System.Linq;
     using System.Threading;
 
     /// <summary>
     /// 
     /// </summary>
+    [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
+    [ SuppressMessage( "ReSharper", "UnusedType.Global" ) ]
     public class XmlWriter
     {
         /// <summary>
@@ -71,12 +74,24 @@ namespace Bubba
         /// <param name="value">The value.</param>
         public void WriteElementValue( string filePath, string elementName, string value )
         {
-            var _document = XDocument.Load( filePath );
-            var _element = _document.Descendants( elementName ).FirstOrDefault( );
-            if( _element != null )
+            try
             {
-                _element.Value = value;
-                _document.Save( filePath );
+                ThrowIf.Empty( filePath, nameof( filePath ) );
+                ThrowIf.Empty( elementName, nameof( elementName ) );
+                ThrowIf.Empty( value, nameof( value ) );
+                var _document = XDocument.Load( filePath );
+                var _element = _document.Descendants( elementName )
+                    .FirstOrDefault( );
+
+                if( _element != null )
+                {
+                    _element.Value = value;
+                    _document.Save( filePath );
+                }
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
             }
         }
 
@@ -84,23 +99,33 @@ namespace Bubba
         /// Adds the element.
         /// </summary>
         /// <param name="filePath">The file path.</param>
-        /// <param name="elementToAdd">The element to add.</param>
-        /// <param name="parentElementName">Name of the parent element.</param>
-        public void AddElement( string filePath, XElement elementToAdd,
-            string parentElementName = null )
+        /// <param name="element">The element to add.</param>
+        /// <param name="parentName">Name of the parent element.</param>
+        public void AddElement( string filePath, XElement element, string parentName = null )
         {
-            var _document = XDocument.Load( filePath );
-            if( string.IsNullOrEmpty( parentElementName ) )
+            try
             {
-                _document.Root?.Add( elementToAdd );
-            }
-            else
-            {
-                var _parent = _document.Descendants( parentElementName ).FirstOrDefault( );
-                _parent?.Add( elementToAdd );
-            }
+                ThrowIf.Empty( filePath, nameof( filePath ) );
+                ThrowIf.Null( element, nameof( element ) );
+                var _document = XDocument.Load( filePath );
+                if( string.IsNullOrEmpty( parentName ) )
+                {
+                    _document.Root?.Add( element );
+                }
+                else
+                {
+                    var _parent = _document.Descendants( parentName )
+                        .FirstOrDefault( );
 
-            _document.Save( filePath );
+                    _parent?.Add( element );
+                }
+
+                _document.Save( filePath );
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+            }
         }
 
         /// <summary>
@@ -110,15 +135,28 @@ namespace Bubba
         /// <param name="elementName">Name of the element.</param>
         /// <param name="attributeName">Name of the attribute.</param>
         /// <param name="newValue">The new value.</param>
-        public void UpdateAttribute( string filePath, string elementName, string attributeName,
-            string newValue )
+        public void UpdateAttribute( string filePath, string elementName, 
+            string attributeName, string newValue )
         {
-            var _document = XDocument.Load( filePath );
-            var _element = _document.Descendants( elementName ).FirstOrDefault( );
-            if( _element != null )
+            try
             {
-                _element.SetAttributeValue( attributeName, newValue );
-                _document.Save( filePath );
+                ThrowIf.Empty( filePath, nameof( filePath ) );
+                ThrowIf.Empty( elementName, nameof( elementName ) );
+                ThrowIf.Empty( attributeName, nameof( attributeName ) );
+                ThrowIf.Empty( newValue, nameof( newValue ) );
+                var _document = XDocument.Load( filePath );
+                var _element = _document.Descendants( elementName )
+                    .FirstOrDefault( );
+
+                if( _element != null )
+                {
+                    _element.SetAttributeValue( attributeName, newValue );
+                    _document.Save( filePath );
+                }
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
             }
         }
 

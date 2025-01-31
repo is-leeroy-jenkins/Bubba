@@ -53,6 +53,7 @@ namespace Bubba
     /// </summary>
     [ SuppressMessage( "ReSharper", "UnusedType.Global" ) ]
     [ SuppressMessage( "ReSharper", "PreferConcreteValueOverDefault" ) ]
+    [ SuppressMessage( "ReSharper", "InconsistentNaming" ) ]
     public static class XmlUtility
     {
         /// <summary>
