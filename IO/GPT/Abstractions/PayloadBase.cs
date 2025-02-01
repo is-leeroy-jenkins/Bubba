@@ -151,7 +151,7 @@ namespace Bubba
         /// <summary>
         /// The data
         /// </summary>
-        private protected IDictionary<string, object> _data;
+        private protected IDictionary<string, string> _data;
 
         /// <inheritdoc />
         /// <summary>

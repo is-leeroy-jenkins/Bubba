@@ -125,7 +125,7 @@ namespace Bubba
         /// <summary>
         /// The role
         /// </summary>
-        private protected GptRequestTypes _requestType;
+        private protected GptRequests _requestType;
 
         /// <summary>
         /// The role
@@ -1121,39 +1121,39 @@ namespace Bubba
             {
                 switch( _requestType )
                 {
-                    case GptRequestTypes.Assistants:
+                    case GptRequests.Assistants:
                     {
                         PopulateCompletionModels( );
                         _endpoint = GptEndPoint.Assistants;
-                        HeaderLabel.Content = "GPT Assistant ...";
+                        HeaderLabel.Content = "GPT Assistant";
                         TabControl.SelectedIndex = 1;
                         break;
                     }
-                    case GptRequestTypes.ChatCompletion:
+                    case GptRequests.ChatCompletion:
                     {
                         PopulateCompletionModels( );
                         _endpoint = GptEndPoint.Completions;
-                        HeaderLabel.Content = "GPT Completions...";
+                        HeaderLabel.Content = "GPT Completions";
                         TabControl.SelectedIndex = 1;
                         break;
                     }
-                    case GptRequestTypes.TextGeneration:
+                    case GptRequests.TextGeneration:
                     {
                         PopulateTextModels( );
                         _endpoint = GptEndPoint.TextGeneration;
-                        HeaderLabel.Content = "Text Generations...";
+                        HeaderLabel.Content = "Text Generations";
                         TabControl.SelectedIndex = 1;
                         break;
                     }
-                    case GptRequestTypes.ImageGeneration:
+                    case GptRequests.ImageGeneration:
                     {
                         PopulateImageModels( );
                         _endpoint = GptEndPoint.ImageGeneration;
-                        HeaderLabel.Content = "Image Generations...";
+                        HeaderLabel.Content = "Image Generations";
                         TabControl.SelectedIndex = 1;
                         break;
                     }
-                    case GptRequestTypes.Translations:
+                    case GptRequests.Translations:
                     {
                         PopulateTranslationModels( );
                         PopulateOpenAiVoices( );
@@ -1162,57 +1162,57 @@ namespace Bubba
                         TabControl.SelectedIndex = 1;
                         break;
                     }
-                    case GptRequestTypes.Embeddings:
+                    case GptRequests.Embeddings:
                     {
                         PopulateEmbeddingModels( );
-                        HeaderLabel.Content = "Vector Embeddings...";
+                        HeaderLabel.Content = "Vector Embeddings";
                         _endpoint = GptEndPoint.Embeddings;
                         TabControl.SelectedIndex = 1;
                         break;
                     }
-                    case GptRequestTypes.Transcriptions:
+                    case GptRequests.Transcriptions:
                     {
                         PopulateTranscriptionModels( );
                         PopulateOpenAiVoices( );
-                        HeaderLabel.Content = "Transcriptions (Speech To Text)...";
+                        HeaderLabel.Content = "Transcriptions (Speech To Text)";
                         _endpoint = GptEndPoint.Transcriptions;
                         TabControl.SelectedIndex = 1;
                         break;
                     }
-                    case GptRequestTypes.VectorStores:
+                    case GptRequests.VectorStores:
                     {
                         PopulateVectorStoreModels( );
-                        HeaderLabel.Content = "Vector Stores...";
+                        HeaderLabel.Content = "Vector Stores";
                         _endpoint = GptEndPoint.VectorStores;
                         TabControl.SelectedIndex = 1;
                         break;
                     }
-                    case GptRequestTypes.SpeechGeneration:
+                    case GptRequests.SpeechGeneration:
                     {
                         PopulateSpeechModels( );
                         PopulateOpenAiVoices( );
-                        HeaderLabel.Content = "Speech Generations (Text To Speech)...";
+                        HeaderLabel.Content = "Speech Generations (Text To Speech)";
                         _endpoint = GptEndPoint.SpeechGeneration;
                         TabControl.SelectedIndex = 1;
                         break;
                     }
-                    case GptRequestTypes.FineTuning:
+                    case GptRequests.FineTuning:
                     {
                         PopulateFineTuningModels( );
-                        HeaderLabel.Content = "Fine-Tunings...";
+                        HeaderLabel.Content = "Fine-Tuning";
                         _endpoint = GptEndPoint.FineTuning;
                         TabControl.SelectedIndex = 1;
                         break;
                     }
-                    case GptRequestTypes.Files:
+                    case GptRequests.Files:
                     {
                         PopulateFileApiModels( );
-                        HeaderLabel.Content = "Files API...";
+                        HeaderLabel.Content = "Files API";
                         _endpoint = GptEndPoint.Files;
                         TabControl.SelectedIndex = 1;
                         break;
                     }
-                    case GptRequestTypes.Uploads:
+                    case GptRequests.Uploads:
                     {
                         PopulateUploadApiModels( );
                         HeaderLabel.Content = "Uploads API...";
@@ -1220,7 +1220,7 @@ namespace Bubba
                         TabControl.SelectedIndex = 1;
                         break;
                     }
-                    case GptRequestTypes.Projects:
+                    case GptRequests.Projects:
                     {
                         PopulateTextModels( );
                         HeaderLabel.Content = "Projects API...";
@@ -3394,7 +3394,7 @@ namespace Bubba
                     var _item = GenerationComboBox.SelectedItem;
                     var _request = ( ( ComboBoxItem )_item ).Tag.ToString( );
                     _requestType =
-                        ( GptRequestTypes )Enum.Parse( typeof( GptRequestTypes ), _request );
+                        ( GptRequests )Enum.Parse( typeof( GptRequests ), _request );
 
                     SetRequestType( );
                 }

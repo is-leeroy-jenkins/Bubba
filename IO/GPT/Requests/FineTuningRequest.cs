@@ -72,8 +72,9 @@ namespace Bubba
             : base( )
         {
             _entry = new object( );
-            _httpClient = new HttpClient( );
+            _header = new GptHeader( );
             _endPoint = GptEndPoint.FineTuning;
+            _messages.Add( new SystemMessage( _systemPrompt ) );
             _model = "gpt-4o-mini";
             _presencePenalty = 0.00;
             _frequencyPenalty = 0.00;
@@ -265,13 +266,13 @@ namespace Bubba
         {
             get
             {
-                return Temperature;
+                return _temperature;
             }
             set
             {
-                if( Temperature != value )
+                if( _temperature != value )
                 {
-                    Temperature = value;
+                    _temperature = value;
                     OnPropertyChanged( nameof( Temperature ) );
                 }
             }
@@ -294,13 +295,13 @@ namespace Bubba
         {
             get
             {
-                return TopPercent;
+                return _topPercent;
             }
             set
             {
-                if( TopPercent != value )
+                if( _topPercent != value )
                 {
-                    TopPercent = value;
+                    _topPercent = value;
                     OnPropertyChanged( nameof( TopPercent ) );
                 }
             }
@@ -360,94 +361,41 @@ namespace Bubba
 
         /// <inheritdoc />
         /// <summary>
-        /// Gets the data.
-        /// </summary>
-        /// <returns>
-        /// </returns>
-        public override IDictionary<string, object> GetData( )
-        {
-            try
-            {
-                _data.Add( "model", _model );
-                _data.Add( "endpoint", _endPoint );
-                _data.Add( "n", _number );
-                _data.Add( "max_completionTokens", _maximumTokens );
-                _data.Add( "store", _store );
-                _data.Add( "stream", _stream );
-                _data.Add( "temperature", Temperature );
-                _data.Add( "frequency_penalty", _frequencyPenalty );
-                _data.Add( "presence_penalty", _presencePenalty );
-                _data.Add( "top_p", TopPercent );
-                _data.Add( "response_format", _responseFormat );
-                return _data?.Any( ) == true
-                    ? _data
-                    : default( IDictionary<string, object> );
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
-                return default( IDictionary<string, object> );
-            }
-        }
-
-        /// <summary>
         /// Gets the text completion asynchronous.
         /// </summary>
-        /// <param name="prompt">The prompt.</param>
         /// <returns></returns>
-        public async Task<string> GenerateAsync( string prompt )
+        public override async Task<string> GetResponseAsync( string prompt )
         {
             try
             {
                 ThrowIf.Empty( prompt, nameof( prompt ) );
-                _httpClient = new HttpClient( );
+                _prompt = prompt;
+                _httpClient = new HttpClient();
+                _httpClient.Timeout = new TimeSpan(0, 0, 3);
                 _httpClient.DefaultRequestHeaders.Authorization =
-                    new AuthenticationHeaderValue( "Bearer", App.OpenAiKey );
+                    new AuthenticationHeaderValue("Bearer", _header.ApiKey);
 
                 var _text = new TextPayload
                 {
                     Model = _model,
-                    Prompt = prompt,
-                    Temperature = Temperature,
+                    Prompt = _prompt,
+                    Temperature = _temperature,
                     Store = _store,
                     Stream = _stream,
                     Stop = _stop,
-                    TopPercent = TopPercent,
+                    TopPercent = _topPercent,
                     FrequencyPenalty = _frequencyPenalty,
                     PresencePenalty = _presencePenalty
                 };
 
-                var _serialize = JsonSerializer.Serialize( _text );
-                var _content = new StringContent( _serialize, Encoding.UTF8, _header.ContentType );
-                var _response = await _httpClient.PostAsync( _endPoint, _content );
-                _response.EnsureSuccessStatusCode( );
-                var _responseContent = await _response.Content.ReadAsStringAsync( );
-                return ExtractResponse( _responseContent );
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
-                return string.Empty;
-            }
-        }
-
-        /// <summary>
-        /// Extracts the content of the response.
-        /// </summary>
-        /// <param name="jsonResponse">The json response.</param>
-        /// <returns></returns>
-        private string ExtractResponse( string jsonResponse )
-        {
-            try
-            {
-                ThrowIf.Empty( jsonResponse, nameof( jsonResponse ) );
-                using var _document = JsonDocument.Parse( jsonResponse );
-                var _response = _document.RootElement
-                    .GetProperty( "choices" )[ 0 ]
-                    .GetProperty( "text" ).GetString( );
-
-                return !string.IsNullOrEmpty( _response )
-                    ? _response
+                var _message = _text.Serialize( );
+                var _payload = new StringContent( _message, Encoding.UTF8, _header.ContentType );
+                var _request = await _httpClient.PostAsync( _endPoint, _payload );
+                _request.EnsureSuccessStatusCode( );
+                var _response = await _request.Content.ReadAsStringAsync( );
+                var _content = ExtractContent( _response );
+                return !string.IsNullOrEmpty( _content )
+                    ? _content
                     : string.Empty;
             }
             catch( Exception ex )
@@ -457,18 +405,24 @@ namespace Bubba
             }
         }
 
+        /// <inheritdoc />
         /// <summary>
-        /// Converts to string.
+        /// Extracts the content of the response.
         /// </summary>
-        /// <returns>
-        /// A <see cref="System.String" /> that represents this instance.
-        /// </returns>
-        public override string ToString( )
+        /// <param name="response">The json response.</param>
+        /// <returns></returns>
+        private protected override string ExtractContent( string response )
         {
             try
             {
-                return _data?.Any( ) == true
-                    ? _data.ToJson( )
+                ThrowIf.Empty( response, nameof( response ) );
+                using var _document = JsonDocument.Parse( response );
+                var _response = _document.RootElement
+                    .GetProperty( "choices" )[ 0 ]
+                    .GetProperty( "text" ).GetString( );
+
+                return !string.IsNullOrEmpty( _response )
+                    ? _response
                     : string.Empty;
             }
             catch( Exception ex )

@@ -1,10 +1,10 @@
 ﻿// ******************************************************************************************
 //     Assembly:                Bubba
 //     Author:                  Terry D. Eppler
-//     Created:                 01-20-2025
+//     Created:                 01-31-2025
 // 
 //     Last Modified By:        Terry D. Eppler
-//     Last Modified On:        01-20-2025
+//     Last Modified On:        01-31-2025
 // ******************************************************************************************
 // <copyright file="GptPayload.cs" company="Terry D. Eppler">
 //    Bubba is a small and simple windows (wpf) application for interacting with the OpenAI API
@@ -44,6 +44,8 @@ namespace Bubba
     using System;
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
+    using System.Text.Encodings.Web;
+    using System.Text.Json;
     using System.Text.Json.Serialization;
     using Exception = System.Exception;
     using JsonSerializer = System.Text.Json.JsonSerializer;
@@ -107,13 +109,13 @@ namespace Bubba
             : this( )
         {
             _prompt = userPrompt;
-            _temperature = temperature;
-            _maximumTokens = maxTokens;
             _frequencyPenalty = frequency;
             _presencePenalty = presence;
+            _temperature = temperature;
+            _topPercent = topPercent;
+            _maximumTokens = maxTokens;
             _store = store;
             _stream = stream;
-            _topPercent = topPercent;
             _stop = "['#', ';']";
             _messages = new List<IGptMessage>( );
         }
@@ -125,7 +127,7 @@ namespace Bubba
         /// </summary>
         /// <param name="userPrompt">The user prompt.</param>
         /// <param name="config">The configuration.</param>
-        public GptPayload( string userPrompt, GptParameter config )
+        public GptPayload( string userPrompt, GptOptions config )
             : this( )
         {
             _prompt = userPrompt;
@@ -170,19 +172,44 @@ namespace Bubba
         /// <param name="maximumTokens">The maximum tokens.</param>
         /// <param name="store">if set to <c>true</c> [store].</param>
         /// <param name="stream">if set to <c>true</c> [stream].</param>
+        /// <param name = "header" > </param>
         public void Deconstruct( out string prompt, out string userId, out string model,
             out double frequency, out double presence, out double temperature,
-            out int maximumTokens, out bool store, out bool stream )
+            out int maximumTokens, out bool store, out bool stream,
+            out GptHeader header )
         {
             prompt = _prompt;
             userId = _id;
             model = _model;
+            header = _header;
             temperature = Temperature;
             frequency = _frequencyPenalty;
             presence = _presencePenalty;
             maximumTokens = _maximumTokens;
             store = _store;
             stream = _stream;
+        }
+
+        /// <summary>
+        /// Gets or sets the header.
+        /// </summary>
+        /// <value>
+        /// The header.
+        /// </value>
+        public virtual GptHeader Header
+        {
+            get
+            {
+                return _header;
+            }
+            set
+            {
+                if(_header != value)
+                {
+                    _header = value;
+                    OnPropertyChanged(nameof(Header));
+                }
+            }
         }
 
         /// <summary>
@@ -418,144 +445,34 @@ namespace Bubba
         /// <summary>
         /// Serializes the specified prompt.
         /// </summary>
-        /// <returns></returns>
-        public string Serialize( )
-        {
-            try
-            {
-                if( _model.Contains( "gpt-3.5-turbo" ) )
-                {
-                    return JsonSerializer.Serialize( new
-                    {
-                        model = _model,
-                        messages = new[ ]
-                        {
-                            new
-                            {
-                                role = "user",
-                                content = _prompt
-                            }
-                        }
-                    } );
-                }
-                else
-                {
-                    return JsonSerializer.Serialize( new
-                    {
-                        Model = _model,
-                        UserPrompt = _prompt,
-                        MaximumTokens = _maximumTokens,
-                        Temperature = _temperature,
-                        FrequencyPenalty = _frequencyPenalty,
-                        PresencePenalty = _presencePenalty,
-                        Stop = "['#', ';']"
-                    } );
-                }
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
-                return string.Empty;
-            }
-        }
-
-        /// <summary>
-        /// Serializes the specified prompt.
-        /// </summary>
-        /// <param name="prompt">The prompt.</param>
-        /// <returns></returns>
-        public string Serialize( string prompt )
-        {
-            try
-            {
-                ThrowIf.Null( prompt, nameof( prompt ) );
-                if( _model.Contains( "gpt-3.5-turbo" ) )
-                {
-                    return JsonSerializer.Serialize( new
-                    {
-                        model = _model,
-                        messages = new[ ]
-                        {
-                            new
-                            {
-                                role = "system",
-                                content = _systemPrompt
-                            },
-                            new
-                            {
-                                role = "user",
-                                content = prompt
-                            }
-                        }
-                    } );
-                }
-                else
-                {
-                    return JsonSerializer.Serialize( new
-                    {
-                        model = _model,
-                        prompt,
-                        max_completion_tokens = _maximumTokens,
-                        user = _id,
-                        temperature = _temperature,
-                        frequency_penalty = _frequencyPenalty,
-                        presence_penalty = _presencePenalty,
-                        stop = new[ ]
-                        {
-                            "#",
-                            ";"
-                        }
-                    } );
-                }
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
-                return string.Empty;
-            }
-        }
-
-        /// <summary>
-        /// Pads the quotes.
-        /// </summary>
-        /// <param name="input">The input.</param>
         /// <returns>
-        /// string
         /// </returns>
-        private protected string PadQuotes( string input )
+        public virtual string Serialize( )
         {
-            if( input.IndexOf( "\\" ) != -1 )
+            try
             {
-                input = input.Replace( "\\", @"\\" );
-            }
+                var _options = new JsonSerializerOptions
+                {
+                    PropertyNameCaseInsensitive = false,
+                    WriteIndented = true,
+                    AllowTrailingCommas = false,
+                    ReadCommentHandling = JsonCommentHandling.Skip,
+                    Encoder = JavaScriptEncoder.UnsafeRelaxedJsonEscaping,
+                    DictionaryKeyPolicy = JsonNamingPolicy.SnakeCaseLower,
+                    PropertyNamingPolicy = JsonNamingPolicy.SnakeCaseLower,
+                    DefaultIgnoreCondition = JsonIgnoreCondition.Always,
+                    IncludeFields = false
+                };
 
-            if( input.IndexOf( "\n\r" ) != -1 )
-            {
-                input = input.Replace( "\n\r", @"\n" );
+                var _text = JsonSerializer.Serialize( this, _options );
+                return !string.IsNullOrEmpty( _text )
+                    ? _text
+                    : string.Empty;
             }
-
-            if( input.IndexOf( "\r" ) != -1 )
+            catch( Exception ex )
             {
-                input = input.Replace( "\r", @"\r" );
-            }
-
-            if( input.IndexOf( "\n" ) != -1 )
-            {
-                input = input.Replace( "\n", @"\n" );
-            }
-
-            if( input.IndexOf( "\t" ) != -1 )
-            {
-                input = input.Replace( "\t", @"\t" );
-            }
-
-            if( input.IndexOf( "\"" ) != -1 )
-            {
-                return input.Replace( "\"", @"""" );
-            }
-            else
-            {
-                return input;
+                Fail( ex );
+                return string.Empty;
             }
         }
 

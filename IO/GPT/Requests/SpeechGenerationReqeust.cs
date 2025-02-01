@@ -1,10 +1,10 @@
 ﻿// ******************************************************************************************
 //     Assembly:                Bubba
 //     Author:                  Terry D. Eppler
-//     Created:                 01-12-2025
+//     Created:                 01-31-2025
 // 
 //     Last Modified By:        Terry D. Eppler
-//     Last Modified On:        01-12-2025
+//     Last Modified On:        01-31-2025
 // ******************************************************************************************
 // <copyright file="SpeechGenerationReqeust.cs" company="Terry D. Eppler">
 //    Bubba is a small and simple windows (wpf) application for interacting with the OpenAI API
@@ -45,6 +45,7 @@ namespace Bubba
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
     using System.IO;
+    using System.Linq;
     using System.Net.Http;
     using System.Net.Http.Headers;
     using System.Text;
@@ -112,15 +113,15 @@ namespace Bubba
         {
             _entry = new object( );
             _header = new GptHeader( );
-            _httpClient = new HttpClient( );
             _endPoint = GptEndPoint.SpeechGeneration;
-            _audio = new Dictionary<string, object>( );
             _model = "tts-1-hd";
+            _messages.Add( new SystemMessage( _systemPrompt ) );
             _speed = 1;
             _language = "en";
             _responseFormat = "mp3";
             _modalities = "['text', 'audio']";
             _voice = "fable";
+            _audio = new Dictionary<string, object>( );
         }
 
         /// <inheritdoc />
@@ -335,36 +336,75 @@ namespace Bubba
 
         /// <inheritdoc />
         /// <summary>
+        /// Gets the data.
+        /// </summary>
+        /// <returns></returns>
+        public override IDictionary<string, string> GetData( )
+        {
+            try
+            {
+                _data.Add( "model", _model );
+                _data.Add( "n", _number.ToString( ) );
+                _data.Add( "max_completion_tokens", _maximumTokens.ToString( ) );
+                _data.Add( "store", _store.ToString( ) );
+                _data.Add( "stream", _stream.ToString( ) );
+                _data.Add( "temperature", _temperature.ToString( ) );
+                _data.Add( "frequency_penalty", _frequencyPenalty.ToString( ) );
+                _data.Add( "presence_penalty", _presencePenalty.ToString( ) );
+                _data.Add( "top_p", _topPercent.ToString( ) );
+                _data.Add( "response_format", _responseFormat );
+                _data.Add( "stop", _stop );
+                _data.Add( "modalities", _modalities );
+                return _data?.Any( ) == true
+                    ? _data
+                    : default( IDictionary<string, string> );
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+                return default( IDictionary<string, string> );
+            }
+        }
+
+        /// <inheritdoc />
+        /// <summary>
         /// Generates the speech asynchronous.
         /// </summary>
         /// <returns>
         /// Task
         /// </returns>
-        public override async Task<string> GenerateAsync( )
+        public override async Task<string> GetResponseAsync( string prompt )
         {
             try
             {
+                ThrowIf.Empty( prompt, nameof( prompt ) );
+                _prompt = prompt;
                 _httpClient = new HttpClient( );
+                _httpClient.Timeout = new TimeSpan(0, 0, 3);
                 _httpClient.DefaultRequestHeaders.Authorization =
-                    new AuthenticationHeaderValue( "Bearer", App.OpenAiKey );
+                    new AuthenticationHeaderValue( "Bearer", _header.ApiKey );
 
-                var _payload = new SpeechPayload
+                var _speech = new SpeechPayload
                 {
                     Model = _model,
                     Language = _language,
                     Input = _prompt
                 };
 
-                var _serial = JsonSerializer.Serialize( _payload );
-                var _content = new StringContent( _serial, Encoding.UTF8, _header.ContentType );
-                var _response = await _httpClient.PostAsync( _endPoint, _content );
-                _response.EnsureSuccessStatusCode( );
-                var _async = await _response.Content.ReadAsStringAsync( );
-                return ExtractContent( _async );
+                var _message = _speech.Serialize( );
+                var _payload = new StringContent( _message, Encoding.UTF8, _header.ContentType );
+                var _request = await _httpClient.PostAsync( _endPoint, _payload );
+                _request.EnsureSuccessStatusCode( );
+                var _response = await _request.Content.ReadAsStringAsync( );
+                var _content = ExtractContent( _response );
+                return !string.IsNullOrEmpty( _content )
+                    ? _content
+                    : string.Empty;
             }
             catch( Exception ex )
             {
                 Fail( ex );
+                _httpClient?.Dispose( );
                 return string.Empty;
             }
         }
@@ -383,10 +423,7 @@ namespace Bubba
             {
                 ThrowIf.Empty( response, nameof( response ) );
                 using var _document = JsonDocument.Parse( response );
-                var _text = _document.RootElement
-                    .GetProperty( "text" )
-                    .GetString( );
-
+                var _text = _document.RootElement.GetProperty( "text" ).GetString( );
                 return !string.IsNullOrEmpty( _text )
                     ? _text
                     : "Speech Generation Failed!";
@@ -425,7 +462,7 @@ namespace Bubba
                 var _response = await _httpClient.PostAsync( _endPoint, _content );
                 _response.EnsureSuccessStatusCode( );
                 using var _responseStream = await _response.Content.ReadAsStreamAsync( );
-                using var _fileStream = 
+                using var _fileStream =
                     new FileStream( filePath, FileMode.Create, FileAccess.Write );
 
                 await _responseStream.CopyToAsync( _fileStream );

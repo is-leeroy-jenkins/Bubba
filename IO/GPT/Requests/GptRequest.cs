@@ -1,10 +1,10 @@
 ﻿// ******************************************************************************************
 //     Assembly:                Bubba
 //     Author:                  Terry D. Eppler
-//     Created:                 01-18-2025
+//     Created:                 01-31-2025
 // 
 //     Last Modified By:        Terry D. Eppler
-//     Last Modified On:        01-18-2025
+//     Last Modified On:        01-31-2025
 // ******************************************************************************************
 // <copyright file="GptRequest.cs" company="Terry D. Eppler">
 //    Bubba is a small and simple windows (wpf) application for interacting with the OpenAI API
@@ -44,13 +44,14 @@ namespace Bubba
     using System;
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
-    using System.Linq;
     using System.Net.Http;
+    using System.Net.Http.Headers;
     using System.Text;
     using System.Text.Json;
     using System.Text.Json.Serialization;
     using System.Threading.Tasks;
     using Newtonsoft.Json;
+    using Properties;
 
     /// <inheritdoc />
     [ SuppressMessage( "ReSharper", "UnusedType.Global" ) ]
@@ -61,23 +62,8 @@ namespace Bubba
     [ SuppressMessage( "ReSharper", "PossibleNullReferenceException" ) ]
     [ SuppressMessage( "ReSharper", "VirtualMemberNeverOverridden.Global" ) ]
     [ SuppressMessage( "ReSharper", "PossibleUnintendedReferenceComparison" ) ]
-    public class GptRequest : GptRequestBase, IGptRequest
+    public class GptRequest : GptRequestBase
     {
-        /// <summary>
-        /// The system message
-        /// </summary>
-        private protected SystemMessage _systemMessage;
-
-        /// <summary>
-        /// The user message
-        /// </summary>
-        private protected UserMessage _userMessage;
-
-        /// <summary>
-        /// The HTTP client
-        /// </summary>
-        private protected HttpClient _httpClient;
-
         /// <summary>
         /// The stop sequence
         /// </summary>
@@ -100,9 +86,10 @@ namespace Bubba
         /// </summary>
         public GptRequest( )
         {
+            _messages = new List<IGptMessage>( );
             _header = new GptHeader( );
             _apiKey = _header.ApiKey;
-            _stop = @"['#', ';']";
+            _systemPrompt = OpenAI.BubbaPrompt;
             _store = false;
             _stream = true;
             _presencePenalty = 0.00;
@@ -112,6 +99,7 @@ namespace Bubba
             _maximumTokens = 2048;
             _number = 1;
             _responseFormat = "text";
+            _stop = "['#', ';']";
             _modalities = "['text','audio']";
         }
 
@@ -120,14 +108,16 @@ namespace Bubba
         /// Initializes a new instance of the
         /// <see cref="T:Bubba.GptRequest" /> class.
         /// </summary>
-        /// <param name = "system" > </param>
         /// <param name = "user" > </param>
         /// <param name = "parameter" > </param>
-        public GptRequest( string system, string user, IGptParameter parameter )
+        public GptRequest( string user, IGptParameter parameter )
+            : this( )
         {
             _header = new GptHeader( );
+            _userPrompt = user;
+            _messages.Add( new SystemMessage( _systemPrompt ) );
+            _messages.Add( new UserMessage( user ) );
             _apiKey = _header.ApiKey;
-            _stop = @"['#', ';']";
             _number = parameter.Number;
             _store = parameter.Store;
             _stream = parameter.Stream;
@@ -146,6 +136,7 @@ namespace Bubba
         /// </summary>
         /// <param name="request">The GPT request.</param>
         public GptRequest( GptRequest request )
+            : this( )
         {
             _apiKey = request.ApiKey;
             _number = request.Number;
@@ -156,7 +147,6 @@ namespace Bubba
             _topPercent = request.TopPercent;
             _temperature = request.Temperature;
             _maximumTokens = request.MaximumTokens;
-            _stop = @"['#', ';']";
             _body = request.Body;
         }
 
@@ -216,75 +206,6 @@ namespace Bubba
                 {
                     _stop = value;
                     OnPropertyChanged( nameof( Stop ) );
-                }
-            }
-        }
-
-        /// <summary>
-        /// Gets or sets the system message.
-        /// </summary>
-        /// <value>
-        /// The system message.
-        /// </value>
-        public SystemMessage SystemMessage
-        {
-            get
-            {
-                return _systemMessage;
-            }
-            set
-            {
-                if( _systemMessage != value )
-                {
-                    _systemMessage = value;
-                    OnPropertyChanged( nameof( SystemMessage ) );
-                }
-            }
-        }
-
-        /// <summary>
-        /// Gets or sets the user message.
-        /// </summary>
-        /// <value>
-        /// The user message.
-        /// </value>
-        public UserMessage UserMessage
-        {
-            get
-            {
-                return _userMessage;
-            }
-
-            set
-            {
-                if( _userMessage != value )
-                {
-                    _userMessage = value;
-                    OnPropertyChanged( nameof( UserMessage ) );
-                }
-            }
-        }
-
-        /// <inheritdoc />
-        /// <summary>
-        /// Gets or sets a value indicating whether this
-        /// <see cref="P:Bubba.GptRequest.HttpClient" /> is store.
-        /// </summary>
-        /// <value>
-        ///   <c>true</c> if store; otherwise, <c>false</c>.
-        /// </value>
-        public virtual HttpClient HttpClient
-        {
-            get
-            {
-                return _httpClient;
-            }
-            set
-            {
-                if( _httpClient != value )
-                {
-                    _httpClient = value;
-                    OnPropertyChanged( nameof( HttpClient ) );
                 }
             }
         }
@@ -365,27 +286,32 @@ namespace Bubba
         /// <exception cref="System.Net.Http.HttpRequestException">
         /// Error: {_response.StatusCode}, {_error}
         /// </exception>
-        public virtual async Task<string> GenerateAsync( )
+        public virtual async Task<string> GetResponseAsync( string prompt )
         {
             try
             {
-                _httpClient.DefaultRequestHeaders.Clear( );
-                _httpClient.DefaultRequestHeaders.Add( "Authorization", $"Bearer {_header.ApiKey}" );
-                var _serial = JsonConvert.SerializeObject( _prompt );
-                var _content = new StringContent( _serial, Encoding.UTF8, _header.ContentType );
-                var _response = await _httpClient.PostAsync( $"{_endPoint}", _content );
-                if( !_response.IsSuccessStatusCode )
-                {
-                    var _error = await _response.Content.ReadAsStringAsync( );
-                    throw new HttpRequestException( $"Error: {_response.StatusCode}, {_error}" );
-                }
+                ThrowIf.Empty( prompt, nameof( prompt ) );
+                _prompt = prompt;
+                _httpClient = new HttpClient( );
+                _httpClient.Timeout = new TimeSpan( 0, 0, 3 );
+                _httpClient.DefaultRequestHeaders.Authorization =
+                    new AuthenticationHeaderValue( "Bearer", _header.ApiKey );
 
-                return await _response.Content.ReadAsStringAsync( );
+                var _message = JsonConvert.SerializeObject( _prompt );
+                var _payload = new StringContent( _message, Encoding.UTF8, _header.ContentType );
+                var _request = await _httpClient.PostAsync( _endPoint, _payload );
+                _request.EnsureSuccessStatusCode( );
+                var _response = await _request.Content.ReadAsStringAsync( );
+                var _content = ExtractContent( _response );
+                return !string.IsNullOrEmpty( _content )
+                    ? _content
+                    : string.Empty;
             }
             catch( Exception ex )
             {
                 Fail( ex );
-                return await default( Task<string> );
+                _httpClient?.Dispose( );
+                return string.Empty;
             }
         }
 
@@ -401,8 +327,8 @@ namespace Bubba
             try
             {
                 ThrowIf.Empty( response, nameof( response ) );
-                using var _jsonDocument = JsonDocument.Parse( response );
-                var _root = _jsonDocument.RootElement;
+                using var _document = JsonDocument.Parse( response );
+                var _root = _document.RootElement;
                 if( _model.Contains( "gpt-3.5-turbo" ) )
                 {
                     var _choices = _root.GetProperty( "choices" );
@@ -412,19 +338,27 @@ namespace Bubba
                         var _msg = _choices[ 0 ].GetProperty( "message" );
                         var _cnt = _msg.GetProperty( "content" );
                         var _txt = _cnt.GetString( );
-                        return _txt;
+                        return !string.IsNullOrEmpty( _txt )
+                            ? _txt
+                            : string.Empty;
                     }
-
-                    var _message = _choices[ 0 ].GetProperty( "message" );
-                    var _text = _message.GetString( );
-                    return _text;
+                    else
+                    {
+                        var _message = _choices[ 0 ].GetProperty( "message" );
+                        var _text = _message.GetString( );
+                        return !string.IsNullOrEmpty( _text )
+                            ? _text
+                            : string.Empty;
+                    }
                 }
                 else
                 {
                     var _choice = _root.GetProperty( "choices" )[ 0 ];
                     var _property = _choice.GetProperty( "text" );
                     var _text = _property.GetString( );
-                    return _text;
+                    return !string.IsNullOrEmpty( _text )
+                        ? _text
+                        : string.Empty;
                 }
             }
             catch( Exception ex )
@@ -438,30 +372,28 @@ namespace Bubba
         /// Gets the data.
         /// </summary>
         /// <returns></returns>
-        public virtual IDictionary<string, object> GetData( )
+        public virtual IDictionary<string, string> GetData( )
         {
             try
             {
                 _data.Add( "model", _model );
-                _data.Add( "n", _number );
-                _data.Add( "max_completion_tokens", _maximumTokens );
-                _data.Add( "store", _store );
-                _data.Add( "stream", _stream );
-                _data.Add( "temperature", _temperature );
-                _data.Add( "frequency_penalty", _frequencyPenalty );
-                _data.Add( "presence_penalty", _presencePenalty );
-                _data.Add( "top_p", _topPercent );
+                _data.Add( "n", _number.ToString( ) );
+                _data.Add( "max_completion_tokens", _maximumTokens.ToString( ) );
+                _data.Add( "store", _store.ToString( ) );
+                _data.Add( "stream", _stream.ToString( ) );
+                _data.Add( "temperature", _temperature.ToString( ) );
+                _data.Add( "frequency_penalty", _frequencyPenalty.ToString( ) );
+                _data.Add( "presence_penalty", _presencePenalty.ToString( ) );
+                _data.Add( "top_p", _topPercent.ToString( ) );
                 _data.Add( "response_format", _responseFormat );
                 _data.Add( "stop", _stop );
                 _data.Add( "modalities", _modalities );
-                return _data?.Any( ) == true
-                    ? _data
-                    : default( IDictionary<string, object> );
+                return _data;
             }
             catch( Exception ex )
             {
                 Fail( ex );
-                return default( IDictionary<string, object> );
+                return default( IDictionary<string, string> );
             }
         }
 

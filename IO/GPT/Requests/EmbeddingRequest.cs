@@ -1,10 +1,10 @@
 ﻿// ******************************************************************************************
 //     Assembly:                Bubba
 //     Author:                  Terry D. Eppler
-//     Created:                 01-10-2025
+//     Created:                 01-31-2025
 // 
 //     Last Modified By:        Terry D. Eppler
-//     Last Modified On:        01-10-2025
+//     Last Modified On:        01-31-2025
 // ******************************************************************************************
 // <copyright file="EmbeddingRequest.cs" company="Terry D. Eppler">
 //    Bubba is a small and simple windows (wpf) application for interacting with the OpenAI API
@@ -94,9 +94,10 @@ namespace Bubba
             : base( )
         {
             _entry = new object( );
-            _httpClient = new HttpClient( );
-            _model = "text-embedding-3";
+            _header = new GptHeader( );
             _endPoint = GptEndPoint.Embeddings;
+            _model = "text-embedding-3";
+            _messages.Add( new SystemMessage( _systemPrompt ) );
             _encodingFormat = "float";
         }
 
@@ -299,98 +300,56 @@ namespace Bubba
         /// </summary>
         /// <param name="query">The query.</param>
         /// <returns></returns>
-        public async Task<float[]> CreateQueryAsync( string query )
+        public async Task<float[ ]> GetQueryAsync( string query )
         {
-            using var _client = new HttpClient();
-            _client.DefaultRequestHeaders.Authorization =
-                new AuthenticationHeaderValue("Bearer", OpenAI.BubbaKey );
-            
-            var _payload = new EmbeddingPayload( )
+            try
             {
-                Model = "text-embedding-ada-002",
-                Input = query
-            };
+                ThrowIf.Empty( query, nameof( query ) );
+                _prompt = query;
+                _httpClient = new HttpClient( );
+                _httpClient.Timeout = new TimeSpan( 0, 0, 3 );
+                _httpClient.DefaultRequestHeaders.Authorization =
+                    new AuthenticationHeaderValue( "Bearer", _header.ApiKey );
 
-            var _jsonPayload = System.Text.Json.JsonSerializer.Serialize(_payload);
-            var _content = new StringContent(_jsonPayload, Encoding.UTF8, "application/json");
-            var _response = await _client.PostAsync( _endPoint, _content);
-            _response.EnsureSuccessStatusCode( );
-            var _responseContent = await _response.Content.ReadAsStringAsync();
-            return ExtractData(_responseContent);
+                var _file = new EmbeddingPayload( )
+                {
+                    Model = "text-embedding-ada-002",
+                    Input = _prompt
+                };
+
+                var _message = _file.Serialize( );
+                var _payload = new StringContent( _message, Encoding.UTF8, "application/json" );
+                var _request = await _httpClient.PostAsync( _endPoint, _payload );
+                _request.EnsureSuccessStatusCode( );
+                var _response = await _request.Content.ReadAsStringAsync( );
+                return ExtractContent( _response );
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+                return default( float[ ] );
+            }
         }
 
         /// <summary>
         /// Extracts the embedding.
         /// </summary>
-        /// <param name="jsonResponse">The json response.</param>
+        /// <param name="response">The json response.</param>
         /// <returns></returns>
-        private float[] ExtractData(string jsonResponse)
+        private protected new float[ ] ExtractContent( string response )
         {
-            using var _document = JsonDocument.Parse(jsonResponse);
+            using var _document = JsonDocument.Parse( response );
             var _embedding = _document.RootElement
-                .GetProperty("data")[0]
-                .GetProperty("embedding");
+                .GetProperty( "data" )[ 0 ]
+                .GetProperty( "embedding" );
 
-            var _embeddingList = new System.Collections.Generic.List<float>();
-            foreach(var _value in _embedding.EnumerateArray())
+            var _embeddingList = new List<float>( );
+            foreach( var _value in _embedding.EnumerateArray( ) )
             {
-                _embeddingList.Add(_value.GetSingle());
+                _embeddingList.Add( _value.GetSingle( ) );
             }
 
-            return _embeddingList.ToArray();
-        }
-
-        /// <inheritdoc />
-        /// <summary>
-        /// Gets the data.
-        /// </summary>
-        /// <returns>
-        /// </returns>
-        public override IDictionary<string, object> GetData( )
-        {
-            try
-            {
-                _data.Add( "model", _model );
-                _data.Add( "endpoint", _endPoint );
-                _data.Add( "number", _number );
-                _data.Add( "max_completionTokens", _maximumTokens );
-                _data.Add( "store", _store );
-                _data.Add( "stream", _stream );
-                _data.Add( "temperature", Temperature );
-                _data.Add( "frequency_penalty", _frequencyPenalty );
-                _data.Add( "presence_penalty", _presencePenalty );
-                _data.Add( "top_p", TopPercent );
-                _data.Add( "response_format", _responseFormat );
-                return _data?.Any( ) == true
-                    ? _data
-                    : default( IDictionary<string, object> );
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
-                return default( IDictionary<string, object> );
-            }
-        }
-
-        /// <summary>
-        /// Converts to string.
-        /// </summary>
-        /// <returns>
-        /// A <see cref="System.String" /> that represents this instance.
-        /// </returns>
-        public override string ToString( )
-        {
-            try
-            {
-                return _data?.Any( ) == true
-                    ? _data.ToJson( )
-                    : string.Empty;
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
-                return string.Empty;
-            }
+            return _embeddingList.ToArray( );
         }
     }
 }

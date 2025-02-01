@@ -1,10 +1,10 @@
 ﻿// ******************************************************************************************
 //     Assembly:                Bubba
 //     Author:                  Terry D. Eppler
-//     Created:                 01-21-2025
+//     Created:                 01-31-2025
 // 
 //     Last Modified By:        Terry D. Eppler
-//     Last Modified On:        01-21-2025
+//     Last Modified On:        01-31-2025
 // ******************************************************************************************
 // <copyright file="TranslationPayload.cs" company="Terry D. Eppler">
 //    Bubba is a small and simple windows (wpf) application for interacting with the OpenAI API
@@ -44,6 +44,7 @@ namespace Bubba
     using System;
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
+    using System.Text.Encodings.Web;
     using System.Text.Json;
     using System.Text.Json.Serialization;
     using Properties;
@@ -125,7 +126,7 @@ namespace Bubba
         /// </summary>
         /// <param name="userPrompt">The user prompt.</param>
         /// <param name="config">The configuration.</param>
-        public TranslationPayload( string userPrompt, GptParameter config )
+        public TranslationPayload( string userPrompt, GptOptions config )
             : this( )
         {
             _prompt = userPrompt;
@@ -188,50 +189,28 @@ namespace Bubba
 
         /// <inheritdoc />
         /// <summary>
-        /// Gets the data.
+        /// Serializes the specified prompt.
         /// </summary>
         /// <returns>
         /// </returns>
-        public string Parse( )
+        public override string Serialize( )
         {
             try
             {
-                var _json = "{";
-                _json += " \"model\":\"" + _model + "\",";
-                _json += " \"n\": \"" + _number + "\", ";
-                _json += " \"response_format\": \"" + _resposeFormat + "\", ";
-                _json += " \"presence_penalty\": " + _presencePenalty + ", ";
-                _json += " \"frequency_penalty\": " + _frequencyPenalty + ", ";
-                _json += " \"temperature\": " + _temperature + ", ";
-                _json += " \"top_p\": " + _topPercent + ", ";
-                _json += " \"store\": \"" + _store + "\", ";
-                _json += " \"stream\": \"" + _stream + "\", ";
-                _json += " \"max_completion_tokens\": " + _maximumTokens + ",";
-                _json += " \"response_format\": " + _resposeFormat + ",";
-                _json += " \"stop\": [\"#\", \";\"]" + "\",";
-                _json += "}";
-                return _json;
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
-                return string.Empty;
-            }
-        }
+                var _options = new JsonSerializerOptions
+                {
+                    PropertyNameCaseInsensitive = false,
+                    WriteIndented = true,
+                    AllowTrailingCommas = false,
+                    ReadCommentHandling = JsonCommentHandling.Skip,
+                    Encoder = JavaScriptEncoder.UnsafeRelaxedJsonEscaping,
+                    DictionaryKeyPolicy = JsonNamingPolicy.SnakeCaseLower,
+                    PropertyNamingPolicy = JsonNamingPolicy.SnakeCaseLower,
+                    DefaultIgnoreCondition = JsonIgnoreCondition.Always,
+                    IncludeFields = false
+                };
 
-        /// <inheritdoc />
-        /// <summary>
-        /// Converts to string.
-        /// </summary>
-        /// <returns>
-        /// A <see cref="T:System.String" />
-        /// that represents this instance.
-        /// </returns>
-        public override string ToString( )
-        {
-            try
-            {
-                var _text = JsonSerializer.Serialize( this );
+                var _text = JsonSerializer.Serialize( this, _options );
                 return !string.IsNullOrEmpty( _text )
                     ? _text
                     : string.Empty;

@@ -1,10 +1,10 @@
 ﻿// ******************************************************************************************
 //     Assembly:                Bubba
 //     Author:                  Terry D. Eppler
-//     Created:                 01-12-2025
+//     Created:                 01-31-2025
 // 
 //     Last Modified By:        Terry D. Eppler
-//     Last Modified On:        01-12-2025
+//     Last Modified On:        01-31-2025
 // ******************************************************************************************
 // <copyright file="VectorRequest.cs" company="Terry D. Eppler">
 //    Bubba is a small and simple windows (wpf) application for interacting with the OpenAI API
@@ -52,7 +52,6 @@ namespace Bubba
     using System.Text.Json;
     using System.Text.Json.Serialization;
     using System.Threading.Tasks;
-    using Newtonsoft.Json;
     using Properties;
     using JsonSerializer = System.Text.Json.JsonSerializer;
 
@@ -64,6 +63,7 @@ namespace Bubba
     [ SuppressMessage( "ReSharper", "PreferConcreteValueOverDefault" ) ]
     [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
     [ SuppressMessage( "ReSharper", "ClassCanBeSealed.Global" ) ]
+    [ SuppressMessage( "ReSharper", "PossibleUnintendedReferenceComparison" ) ]
     public class VectorRequest : GptRequest
     {
         /// <summary>
@@ -120,9 +120,10 @@ namespace Bubba
             : base( )
         {
             _entry = new object( );
-            _httpClient = new HttpClient( );
+            _header = new GptHeader( );
             _model = "gpt-4o-mini";
             _endPoint = GptEndPoint.VectorStores;
+            _messages.Add(new SystemMessage(_systemPrompt));
         }
 
         /// <inheritdoc />
@@ -296,22 +297,22 @@ namespace Bubba
         /// </summary>
         /// <returns>
         /// </returns>
-        public override IDictionary<string, object> GetData( )
+        public override IDictionary<string, string> GetData( )
         {
             try
             {
                 _data.Add( "model", _model );
                 _data.Add( "endpoint", _endPoint );
-                _data.Add( "n", _number );
-                _data.Add( "max_completionTokens", _maximumTokens );
-                _data.Add( "store", _store );
-                _data.Add( "stream", _stream );
-                _data.Add( "temperature", Temperature );
-                _data.Add( "frequency_penalty", _frequencyPenalty );
-                _data.Add( "presence_penalty", _presencePenalty );
-                _data.Add( "top_p", TopPercent );
+                _data.Add( "n", _number.ToString(  ) );
+                _data.Add( "max_completionTokens", _maximumTokens.ToString() );
+                _data.Add( "store", _store.ToString( ) );
+                _data.Add( "stream", _stream.ToString() );
+                _data.Add( "temperature", _temperature.ToString() );
+                _data.Add( "frequency_penalty", _frequencyPenalty.ToString( ) );
+                _data.Add( "presence_penalty", _presencePenalty.ToString() );
+                _data.Add( "top_p", _topPercent.ToString() );
                 _data.Add( "response_format", _responseFormat );
-                _data.Add( "limit", _limit );
+                _data.Add( "limit", _limit.ToString( ) );
                 if( !string.IsNullOrEmpty( _filePath ) )
                 {
                     _data.Add( "filepath", _filePath );
@@ -324,22 +325,22 @@ namespace Bubba
 
                 if( _fileIds?.Any( ) == true )
                 {
-                    _data.Add( "file_ids", _fileIds );
+                    _data.Add( "file_ids", _fileIds.ToString( ) );
                 }
 
                 if( _metaData?.Any( ) == true )
                 {
-                    _data.Add( "metadata", _metaData );
+                    _data.Add( "metadata", _metaData.ToString( ) );
                 }
 
                 return _data?.Any( ) == true
                     ? _data
-                    : default( IDictionary<string, object> );
+                    : default( IDictionary<string, string> );
             }
             catch( Exception ex )
             {
                 Fail( ex );
-                return default( IDictionary<string, object> );
+                return default( IDictionary<string, string> );
             }
         }
 
@@ -371,8 +372,8 @@ namespace Bubba
         /// <returns></returns>
         public async Task<string> UploadFileByIdAsync( string filePath )
         {
-            using var _client = new HttpClient( );
-            _client.DefaultRequestHeaders.Authorization =
+            _httpClient = new HttpClient( );
+            _httpClient.DefaultRequestHeaders.Authorization =
                 new AuthenticationHeaderValue( "Bearer", OpenAI.BubbaKey );
 
             var _fileContent = new ByteArrayContent( File.ReadAllBytes( filePath ) );
@@ -386,7 +387,7 @@ namespace Bubba
                 }
             };
 
-            var _response = await _client.PostAsync( _endPoint, _formData );
+            var _response = await _httpClient.PostAsync( _endPoint, _formData );
             _response.EnsureSuccessStatusCode( );
             var _responseContent = await _response.Content.ReadAsStringAsync( );
             var _document = JsonDocument.Parse( _responseContent );
@@ -430,10 +431,10 @@ namespace Bubba
             using var _reader = _command.ExecuteReader( );
             while( _reader.Read( ) )
             {
-                var Text = _reader.GetString( 0 );
+                var _text = _reader.GetString( 0 );
                 var _embeddingString = _reader.GetString( 1 );
                 var _embedding = JsonSerializer.Deserialize<float[ ]>( _embeddingString );
-                _results.Add( ( Text, _embedding ) );
+                _results.Add( ( _text, _embedding ) );
             }
 
             return _results;

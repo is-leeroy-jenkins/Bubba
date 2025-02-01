@@ -1,10 +1,10 @@
 ﻿// ******************************************************************************************
 //     Assembly:                Bubba
 //     Author:                  Terry D. Eppler
-//     Created:                 01-12-2025
+//     Created:                 01-31-2025
 // 
 //     Last Modified By:        Terry D. Eppler
-//     Last Modified On:        01-12-2025
+//     Last Modified On:        01-31-2025
 // ******************************************************************************************
 // <copyright file="TranscriptionRequest.cs" company="Terry D. Eppler">
 //    Bubba is a small and simple windows (wpf) application for interacting with the OpenAI API
@@ -45,13 +45,11 @@ namespace Bubba
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
     using System.IO;
-    using System.Linq;
     using System.Net.Http;
     using System.Net.Http.Headers;
     using System.Text.Json;
     using System.Text.Json.Serialization;
     using System.Threading.Tasks;
-    using Newtonsoft.Json;
     using Properties;
 
     /// <inheritdoc />
@@ -95,14 +93,15 @@ namespace Bubba
             : base( )
         {
             _entry = new object( );
-            _httpClient = new HttpClient( );
-            _language = "en";
-            _model = "whisper-1";
+            _header = new GptHeader( );
             _endPoint = GptEndPoint.Transcriptions;
-            _responseFormat = "text";
-            _temperature = 0.18;
+            _messages.Add( new SystemMessage( _systemPrompt ) );
+            _model = "whisper-1";
             _number = 1;
             _speed = 1;
+            _language = "en";
+            _responseFormat = "text";
+            _temperature = 0.18;
             _modalities = "['text','audio']";
         }
 
@@ -233,7 +232,7 @@ namespace Bubba
         /// The messages.
         /// </value>
         [ JsonPropertyName( "messages" ) ]
-        public IList<IGptMessage> Messages
+        public override IList<IGptMessage> Messages
         {
             get
             {
@@ -249,6 +248,7 @@ namespace Bubba
             }
         }
 
+        /// <inheritdoc />
         /// <summary>
         /// Gets or sets the input.
         /// </summary>
@@ -256,7 +256,7 @@ namespace Bubba
         /// The input.
         /// </value>
         [ JsonPropertyName( "prompt" ) ]
-        public string Prompt
+        public override string Prompt
         {
             get
             {
@@ -311,7 +311,7 @@ namespace Bubba
         {
             get
             {
-                return Temperature;
+                return _temperature;
             }
         }
 
@@ -338,143 +338,72 @@ namespace Bubba
             }
         }
 
+        /// <inheritdoc />
         /// <summary>
         /// Transcribes the audio asynchronous.
         /// </summary>
-        /// <param name="filePath">
-        /// The file path.</param>
-        /// <returns></returns>
-        public async Task<string> TranscribeAudioAsync( string filePath )
+        /// <returns>
+        /// Task(String)
+        /// </returns>
+        public override async Task<string> GetResponseAsync( string prompt )
         {
             try
             {
-                ThrowIf.Empty( filePath, nameof( filePath ) );
-                using var _client = new HttpClient( );
-                _client.DefaultRequestHeaders.Authorization =
-                    new AuthenticationHeaderValue( "Bearer", OpenAI.BubbaKey );
+                ThrowIf.Empty( prompt, nameof( prompt ) );
+                _prompt = prompt;
+                _httpClient = new HttpClient( );
+                _httpClient.DefaultRequestHeaders.Add( "Authorization",
+                    $"Bearer {_header.ApiKey}" );
 
-                using var _fileStream = new FileStream( filePath, FileMode.Open, FileAccess.Read );
+                using var _fileStream = new FileStream( _file, FileMode.Open, FileAccess.Read );
                 var _fileContent = new StreamContent( _fileStream );
                 _fileContent.Headers.ContentType = new MediaTypeHeaderValue( "audio/mpeg" );
                 var _formData = new MultipartFormDataContent
                 {
                     {
-                        _fileContent, "file", Path.GetFileName( filePath )
+                        _fileContent, "file", Path.GetFileName( _file )
                     },
                     {
                         new StringContent( "whisper-1" ), "model"
                     }
                 };
 
-                var _response = await _client.PostAsync( _endPoint, _formData );
-                _response.EnsureSuccessStatusCode( );
-                var _responseContent = await _response.Content.ReadAsStringAsync( );
-                var Transcription = ParseTranscription( _responseContent );
-                return !string.IsNullOrEmpty( Transcription ) 
-                    ? Transcription
+                var _request = await _httpClient.PostAsync( _endPoint, _formData );
+                _request.EnsureSuccessStatusCode( );
+                var _response = await _request.Content.ReadAsStringAsync( );
+                var _content = ExtractContent( _response );
+                return !string.IsNullOrEmpty( _content )
+                    ? _content
                     : string.Empty;
             }
             catch( Exception ex )
             {
                 Fail( ex );
-                return string.Empty;
-            }
-        }
-
-        /// <summary>
-        /// Parses the transcription.
-        /// </summary>
-        /// <param name="jsonResponse">The json response.</param>
-        /// <returns></returns>
-        private string ParseTranscription( string jsonResponse )
-        {
-            try
-            {
-                ThrowIf.Empty( jsonResponse, nameof( jsonResponse ) );
-                using var _document = JsonDocument.Parse( jsonResponse );
-                var Transcription = _document.RootElement
-                    .GetProperty( "text" )
-                    .GetString( );
-
-                return !string.IsNullOrEmpty( Transcription )
-                    ? Transcription
-                    : string.Empty;
-            }
-            catch( Exception e )
-            {
-                Fail( e );
+                _httpClient?.Dispose( );
                 return string.Empty;
             }
         }
 
         /// <inheritdoc />
         /// <summary>
-        /// Gets the data.
+        /// Parses the transcription.
         /// </summary>
-        /// <returns>
-        /// </returns>
-        public override IDictionary<string, object> GetData( )
+        /// <param name="response">The json response.</param>
+        /// <returns></returns>
+        private protected override string ExtractContent( string response )
         {
             try
             {
-                _data.Add( "model", _model );
-                _data.Add( "endpoint", _endPoint );
-                _data.Add( "n", _number );
-                _data.Add( "max_completionTokens", _maximumTokens );
-                _data.Add( "store", _store );
-                _data.Add( "stream", _stream );
-                _data.Add( "temperature", Temperature );
-                _data.Add( "frequency_penalty", _frequencyPenalty );
-                _data.Add( "presence_penalty", _presencePenalty );
-                _data.Add( "top_p", TopPercent );
-                _data.Add( "response_format", _responseFormat );
-                _data.Add( "endpoint", _endPoint );
-                _data.Add( "speed", _speed );
-                _data.Add( "language", _language );
-                _data.Add( "modalities", _modalities );
-                if( !string.IsNullOrEmpty( _file ) )
-                {
-                    _data.Add( "filepath", _file );
-                }
-
-                if( !string.IsNullOrEmpty( _language ) )
-                {
-                    _data.Add( "language", _language );
-                }
-
-                if( _audioData?.Any( ) == true )
-                {
-                    _data.Add( "audio_data", _audioData );
-                }
-
-                return _data?.Any( ) == true
-                    ? _data
-                    : default( IDictionary<string, object> );
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
-                return default( IDictionary<string, object> );
-            }
-        }
-
-        /// <summary>
-        /// Converts to string.
-        /// </summary>
-        /// <returns>
-        /// A <see cref="System.String" /> that represents this instance.
-        /// </returns>
-        public override string ToString( )
-        {
-            try
-            {
-                return _data?.Any( ) == true
-                    ? _data.ToJson( )
+                ThrowIf.Empty( response, nameof( response ) );
+                using var _document = JsonDocument.Parse( response );
+                var _transcription = _document.RootElement.GetProperty( "text" ).GetString( );
+                return !string.IsNullOrEmpty( _transcription )
+                    ? _transcription
                     : string.Empty;
             }
-            catch( Exception ex )
+            catch( Exception e )
             {
-                Fail( ex );
+                Fail( e );
                 return string.Empty;
             }
         }

@@ -1,10 +1,10 @@
 ﻿// ******************************************************************************************
 //     Assembly:                Bubba
 //     Author:                  Terry D. Eppler
-//     Created:                 01-18-2025
+//     Created:                 01-31-2025
 // 
 //     Last Modified By:        Terry D. Eppler
-//     Last Modified On:        01-18-2025
+//     Last Modified On:        01-31-2025
 // ******************************************************************************************
 // <copyright file="TextGenerationRequest.cs" company="Terry D. Eppler">
 //    Bubba is a small and simple windows (wpf) application for interacting with the OpenAI API
@@ -44,7 +44,6 @@ namespace Bubba
     using System;
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
-    using System.Linq;
     using System.Net.Http;
     using System.Net.Http.Headers;
     using System.Text;
@@ -52,7 +51,6 @@ namespace Bubba
     using System.Text.Json.Serialization;
     using System.Threading.Tasks;
     using Properties;
-    using JsonSerializer = System.Text.Json.JsonSerializer;
 
     /// <inheritdoc />
     /// <summary>
@@ -62,6 +60,8 @@ namespace Bubba
     [ SuppressMessage( "ReSharper", "PreferConcreteValueOverDefault" ) ]
     [ SuppressMessage( "ReSharper", "ClassCanBeSealed.Global" ) ]
     [ SuppressMessage( "ReSharper", "MemberCanBeProtected.Global" ) ]
+    [ SuppressMessage( "ReSharper", "PossibleUnintendedReferenceComparison" ) ]
+    [ SuppressMessage( "ReSharper", "VirtualMemberNeverOverridden.Global" ) ]
     public class TextGenerationRequest : GptRequest
     {
         /// <summary>
@@ -73,10 +73,11 @@ namespace Bubba
             : base( )
         {
             _entry = new object( );
+            _header = new GptHeader( );
             _endPoint = GptEndPoint.TextGeneration;
+            _messages.Add( new SystemMessage( _systemPrompt ) );
             _model = "gpt-4o";
             _responseFormat = "text";
-            _systemMessage = new SystemMessage( OpenAI.BubbaPrompt );
         }
 
         /// <inheritdoc />
@@ -135,7 +136,7 @@ namespace Bubba
         /// The messages.
         /// </value>
         [ JsonPropertyName( "messages" ) ]
-        public IList<IGptMessage> Messages
+        public override IList<IGptMessage> Messages
         {
             get
             {
@@ -431,13 +432,16 @@ namespace Bubba
         /// Gets the text completion asynchronous.
         /// </summary>
         /// <returns></returns>
-        public override async Task<string> GenerateAsync( )
+        public override async Task<string> GetResponseAsync( string prompt )
         {
             try
             {
+                ThrowIf.Empty( prompt, nameof( prompt ) );
+                _prompt = prompt;
                 _httpClient = new HttpClient( );
+                _httpClient.Timeout = new TimeSpan( 0, 0, 3 );
                 _httpClient.DefaultRequestHeaders.Authorization =
-                    new AuthenticationHeaderValue( "Bearer", _apiKey );
+                    new AuthenticationHeaderValue( "Bearer", _header.ApiKey );
 
                 var _text = new TextPayload
                 {
@@ -452,16 +456,20 @@ namespace Bubba
                     PresencePenalty = _presencePenalty
                 };
 
-                var _serial = JsonSerializer.Serialize( _text );
-                var _content = new StringContent( _serial, Encoding.UTF8, _header.ContentType );
-                var _response = await _httpClient.PostAsync( _endPoint, _content );
-                _response.EnsureSuccessStatusCode( );
-                var _responseContent = await _response.Content.ReadAsStringAsync( );
-                return ExtractContent( _responseContent );
+                var _message = _text.Serialize( );
+                var _payload = new StringContent( _message, Encoding.UTF8, _header.ContentType );
+                var _request = await _httpClient.PostAsync( _endPoint, _payload );
+                _request.EnsureSuccessStatusCode( );
+                var _response = await _request.Content.ReadAsStringAsync( );
+                var _content = ExtractContent( _response );
+                return !string.IsNullOrEmpty( _content )
+                    ? _content
+                    : string.Empty;
             }
             catch( Exception ex )
             {
                 Fail( ex );
+                _httpClient?.Dispose( );
                 return string.Empty;
             }
         }
@@ -507,44 +515,6 @@ namespace Bubba
             {
                 Fail( ex );
                 return string.Empty;
-            }
-        }
-
-        /// <inheritdoc />
-        /// <summary>
-        /// Gets the data.
-        /// </summary>
-        /// <returns>
-        /// </returns>
-        public override IDictionary<string, object> GetData( )
-        {
-            try
-            {
-                _data.Add( "model", _model );
-                _data.Add( "endpoint", _endPoint );
-                _data.Add( "n", _number );
-                _data.Add( "max_completion_tokens", _maximumTokens );
-                _data.Add( "store", _store );
-                _data.Add( "stream", _stream );
-                _data.Add( "temperature", Temperature );
-                _data.Add( "frequency_penalty", _frequencyPenalty );
-                _data.Add( "presence_penalty", _presencePenalty );
-                _data.Add( "top_p", TopPercent );
-                _data.Add( "response_format", _responseFormat );
-                _data.Add("stop", _stop);
-                if( _messages?.Any( ) == true )
-                {
-                    _data.Add("messages", _messages);
-                }
-
-                return _data?.Any( ) == true
-                    ? _data
-                    : default( IDictionary<string, object> );
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
-                return default( IDictionary<string, object> );
             }
         }
     }

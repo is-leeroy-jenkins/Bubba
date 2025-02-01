@@ -97,16 +97,16 @@ namespace Bubba
         /// <summary>
         /// Initializes a new instance of the <see cref="T:Bubba.GptResponse" /> class.
         /// </summary>
-        /// <param name="request">The request.</param>
-        public GptResponse( GptRequest request )
+        /// <param name="generationRequest">The request.</param>
+        public GptResponse( GptRequest generationRequest )
             : this( )
         {
-            _model = request.Model;
-            _endPoint = request.EndPoint;
-            _presencePenalty = request.PresencePenalty;
-            _frequencyPenalty = request.FrequencyPenalty;
-            _maximumTokens = request.MaximumTokens;
-            _number = request.Number;
+            _model = generationRequest.Model;
+            _endPoint = generationRequest.EndPoint;
+            _presencePenalty = generationRequest.PresencePenalty;
+            _frequencyPenalty = generationRequest.FrequencyPenalty;
+            _maximumTokens = generationRequest.MaximumTokens;
+            _number = generationRequest.Number;
         }
 
         /// <summary>
@@ -296,23 +296,23 @@ namespace Bubba
         /// Gets the data.
         /// </summary>
         /// <returns></returns>
-        public virtual IDictionary<string, object> GetData( )
+        public virtual IDictionary<string, string> GetData( )
         {
             try
             {
                 _data.Add( "model", _model );
                 _data.Add( "id", _id );
-                _data.Add( "created", _created );
+                _data.Add( "created", _created.ToString( ) );
                 _data.Add( "object", _object );
-                _data.Add( "usage", _usage );
+                _data.Add( "usage", _usage.ToString( ) );
                 return _data?.Any( ) == true
                     ? _data
-                    : default( IDictionary<string, object> );
+                    : default( IDictionary<string, string> );
             }
             catch( Exception ex )
             {
                 Fail( ex );
-                return default( IDictionary<string, object> );
+                return default( IDictionary<string, string> );
             }
         }
 

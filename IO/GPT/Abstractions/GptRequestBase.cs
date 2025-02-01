@@ -44,6 +44,7 @@ namespace Bubba
     using System;
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
+    using System.Net.Http;
     using System.Text.Json.Serialization;
 
     /// <inheritdoc />
@@ -53,6 +54,11 @@ namespace Bubba
     [ SuppressMessage( "ReSharper", "MemberCanBeProtected.Global" ) ]
     public abstract class GptRequestBase : GptBase
     {
+        /// <summary>
+        /// The HTTP client
+        /// </summary>
+        private protected HttpClient _httpClient;
+
         /// <summary>
         /// The system prompt
         /// </summary>
@@ -82,6 +88,28 @@ namespace Bubba
         /// The seed
         /// </summary>
         private protected int _seed;
+
+        /// <summary>
+        /// Gets or sets the header.
+        /// </summary>
+        /// <value>
+        /// The header.
+        /// </value>
+        public virtual GptHeader Header
+        {
+            get
+            {
+                return _header;
+            }
+            set
+            {
+                if(_header != value)
+                {
+                    _header = value;
+                    OnPropertyChanged(nameof(Header));
+                }
+            }
+        }
 
         /// <inheritdoc />
         /// <summary>
@@ -162,7 +190,7 @@ namespace Bubba
         /// <value>
         /// The maximum tokens.
         /// </value>
-        [ JsonPropertyName( "max_completionTokens" ) ]
+        [ JsonPropertyName( "max_completion_tokens" ) ]
         public virtual int MaximumTokens
         {
             get
@@ -352,6 +380,53 @@ namespace Bubba
                 {
                     _presencePenalty = value;
                     OnPropertyChanged( nameof( PresencePenalty ) );
+                }
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the system message.
+        /// </summary>
+        /// <value>
+        /// The system message.
+        /// </value>
+        [JsonPropertyName("messages")]
+        public virtual IList<IGptMessage> Messages
+        {
+            get
+            {
+                return _messages;
+            }
+            set
+            {
+                if(_messages != value)
+                {
+                    _messages = value;
+                    OnPropertyChanged(nameof(Messages));
+                }
+            }
+        }
+
+        /// <inheritdoc />
+        /// <summary>
+        /// Gets or sets a value indicating whether this
+        /// <see cref="P:Bubba.GptRequest.HttpClient" /> is store.
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if store; otherwise, <c>false</c>.
+        /// </value>
+        public virtual HttpClient HttpClient
+        {
+            get
+            {
+                return _httpClient;
+            }
+            set
+            {
+                if(_httpClient != value)
+                {
+                    _httpClient = value;
+                    OnPropertyChanged(nameof(HttpClient));
                 }
             }
         }

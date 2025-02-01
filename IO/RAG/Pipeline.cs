@@ -95,9 +95,9 @@ namespace Bubba
         private readonly Retriever _retriever;
 
         /// <summary>
-        /// The file request
+        /// The file apiRequest
         /// </summary>
-        private readonly GptFileRequest _request;
+        private readonly FileRequest _apiRequest;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Pipeline"/> class.
@@ -105,14 +105,14 @@ namespace Bubba
         /// <param name="extractor">The extractor.</param>
         /// <param name="chunker">The chunker.</param>
         /// <param name="retriever">The retriever.</param>
-        /// <param name="request">The file request.</param>
+        /// <param name="apiRequest">The file apiRequest.</param>
         public Pipeline( Extractor extractor, Chunker chunker, Retriever retriever,
-            GptFileRequest request )
+            FileRequest apiRequest )
         {
             _extractor = extractor;
             _chunker = chunker;
             _retriever = retriever;
-            _request = request;
+            _apiRequest = apiRequest;
         }
 
         /// <summary>
@@ -167,7 +167,7 @@ namespace Bubba
                 var _texts = _extractor.GetTextFromFolder( directory );
                 var _text = _chunker.ChunkText( _texts );
                 var _chunks = _retriever.GetChunks( query, _text );
-                var _response = await _request.GetResponseAsync( query, _chunks );
+                var _response = await _apiRequest.GetResponseAsync( query, _chunks );
                 Chill( );
                 return !string.IsNullOrEmpty( _response )
                     ? _response

@@ -1,10 +1,10 @@
 ﻿// ******************************************************************************************
 //     Assembly:                Bubba
 //     Author:                  Terry D. Eppler
-//     Created:                 01-19-2025
+//     Created:                 01-31-2025
 // 
 //     Last Modified By:        Terry D. Eppler
-//     Last Modified On:        01-19-2025
+//     Last Modified On:        01-31-2025
 // ******************************************************************************************
 // <copyright file="AssistantPayload.cs" company="Terry D. Eppler">
 //    Bubba is a small and simple windows (wpf) application for interacting with the OpenAI API
@@ -136,7 +136,7 @@ namespace Bubba
         /// <param name="userPrompt">The user prompt.</param>
         /// <param name="config">The configuration.</param>
         /// <inheritdoc />
-        public AssistantPayload( string userPrompt, GptParameter config )
+        public AssistantPayload( string userPrompt, GptOptions config )
             : this( )
         {
             _prompt = userPrompt;
@@ -376,7 +376,7 @@ namespace Bubba
         /// </summary>
         /// <returns>
         /// </returns>
-        public string Parse()
+        public string Parse( )
         {
             try
             {
@@ -394,9 +394,9 @@ namespace Bubba
                 _json += "}";
                 return _json;
             }
-            catch(Exception ex)
+            catch( Exception ex )
             {
-                Fail(ex);
+                Fail( ex );
                 return string.Empty;
             }
         }
@@ -409,18 +409,18 @@ namespace Bubba
         /// A <see cref="T:System.String" />
         /// that represents this instance.
         /// </returns>
-        public override string ToString()
+        public override string ToString( )
         {
             try
             {
-                var _text = JsonSerializer.Serialize(this);
-                return !string.IsNullOrEmpty(_text)
+                var _text = JsonSerializer.Serialize( this );
+                return !string.IsNullOrEmpty( _text )
                     ? _text
                     : string.Empty;
             }
-            catch(Exception ex)
+            catch( Exception ex )
             {
-                Fail(ex);
+                Fail( ex );
                 return string.Empty;
             }
         }

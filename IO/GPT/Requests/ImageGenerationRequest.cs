@@ -6,7 +6,7 @@
 //     Last Modified By:        Terry D. Eppler
 //     Last Modified On:        01-15-2025
 // ******************************************************************************************
-// <copyright file="ImageGenerationRequest.cs" company="Terry D. Eppler">
+// <copyright file="ImageRequest.cs" company="Terry D. Eppler">
 //    Bubba is a small and simple windows (wpf) application for interacting with the OpenAI API
 //    that's developed in C-Sharp under the MIT license.C#.
 // 
@@ -35,7 +35,7 @@
 //    You can contact me at:  terryeppler@gmail.com or eppler.terry@epa.gov
 // </copyright>
 // <summary>
-//   ImageGenerationRequest.cs
+//   ImageRequest.cs
 // </summary>
 // ******************************************************************************************
 
@@ -61,6 +61,7 @@ namespace Bubba
     [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
     [ SuppressMessage( "ReSharper", "PreferConcreteValueOverDefault" ) ]
     [ SuppressMessage( "ReSharper", "ClassCanBeSealed.Global" ) ]
+    [ SuppressMessage( "ReSharper", "ClassNeverInstantiated.Global" ) ]
     public class ImageGenerationRequest : GptRequest
     {
         /// <summary>
@@ -81,7 +82,7 @@ namespace Bubba
         /// <inheritdoc />
         /// <summary>
         /// Initializes a new instance of the
-        /// <see cref="T:Bubba.ImageGenerationRequest" /> class.
+        /// <see cref="T:Bubba.ImageRequest" /> class.
         /// </summary>
         public ImageGenerationRequest( )
             : base( )
@@ -89,11 +90,11 @@ namespace Bubba
             _entry = new object( );
             _header = new GptHeader( );
             _endPoint = GptEndPoint.ImageGeneration;
-            _httpClient = new HttpClient( );
-            _model = "dall-e-2";
+            _messages.Add( new SystemMessage( _systemPrompt ) );
+            _model = "dall-e-3";
             _style = "natural";
             _quality = "hd";
-            _size = "512X512";
+            _size = "1024X1024";
             _number = 1;
         }
 
@@ -314,37 +315,30 @@ namespace Bubba
         /// </summary>
         /// <returns>
         /// </returns>
-        public override IDictionary<string, object> GetData( )
+        public override IDictionary<string, string> GetData( )
         {
             try
             {
                 _data.Add( "model", _model );
                 _data.Add( "endpoint", _endPoint );
-                _data.Add( "n", _number );
-                _data.Add( "max_completionTokens", _maximumTokens );
-                _data.Add( "store", _store );
-                _data.Add( "stream", _stream );
-                _data.Add( "temperature", Temperature );
-                _data.Add( "frequency_penalty", _frequencyPenalty );
-                _data.Add( "presence_penalty", _presencePenalty );
-                _data.Add( "top_p", TopPercent );
+                _data.Add( "n", _number.ToString( ) );
+                _data.Add( "max_completionTokens", _maximumTokens.ToString( ) );
+                _data.Add( "store", _store.ToString( ) );
+                _data.Add( "stream", _stream.ToString( ) );
+                _data.Add( "temperature", _temperature.ToString( ) );
+                _data.Add( "frequency_penalty", _frequencyPenalty.ToString( ) );
+                _data.Add( "presence_penalty", _presencePenalty.ToString() );
+                _data.Add( "top_p", _topPercent.ToString( ) );
                 _data.Add( "response_format", _responseFormat );
                 _data.Add( "style", _style );
                 _data.Add( "size", _size );
                 _data.Add( "quality", _quality );
-                if( !string.IsNullOrEmpty( _prompt ) )
-                {
-                    _data.Add( "prompt", _prompt );
-                }
-
-                return _data?.Any( ) == true
-                    ? _data
-                    : default( IDictionary<string, object> );
+                return _data;
             }
             catch( Exception ex )
             {
                 Fail( ex );
-                return default( IDictionary<string, object> );
+                return default( IDictionary<string, string> );
             }
         }
 
@@ -374,14 +368,16 @@ namespace Bubba
         /// </summary>
         /// <param name="prompt">The prompt.</param>
         /// <returns></returns>
-        public async Task<string[ ]> GenerateAsync( string prompt )
+        public async new Task<string[ ]> GetResponseAsync( string prompt )
         {
             try
             {
                 ThrowIf.Empty( prompt, nameof( prompt ) );
-                _httpClient = new HttpClient( );
+                _prompt = prompt;
+                _httpClient = new HttpClient();
+                _httpClient.Timeout = new TimeSpan(0, 0, 3);
                 _httpClient.DefaultRequestHeaders.Authorization =
-                    new AuthenticationHeaderValue( "Bearer", App.OpenAiKey );
+                    new AuthenticationHeaderValue("Bearer", _header.ApiKey);
 
                 var _payload = new ImagePayload( )
                 {
@@ -395,7 +391,7 @@ namespace Bubba
                 var _response = await _httpClient.PostAsync( _endPoint, _content );
                 _response.EnsureSuccessStatusCode( );
                 var _responseData = await _response.Content.ReadAsStringAsync( );
-                var _imageData = ExtractResponse( _responseData );
+                var _imageData = ExtractContent( _responseData );
                 return ( _imageData?.Any( ) == true )
                     ? _imageData
                     : default( string[ ] );
@@ -412,7 +408,7 @@ namespace Bubba
         /// </summary>
         /// <param name="jsonResponse">The json response.</param>
         /// <returns></returns>
-        private string[ ] ExtractResponse( string jsonResponse )
+        private new string[ ] ExtractContent( string jsonResponse )
         {
             try
             {
@@ -422,7 +418,9 @@ namespace Bubba
                 var _urls = new List<string>( );
                 foreach( var _item in _root.EnumerateArray( ) )
                 {
-                    var _image = _item.GetProperty( "url" ).GetString( );
+                    var _image = _item.GetProperty( "url" )
+                        .GetString( );
+
                     _urls.Add( _image );
                 }
 

@@ -796,7 +796,7 @@
                     Content="Listen"
                     FontFamily="Roboto"
                     FontSize="14"
-                            Foreground="{StaticResource BlueBorderBrush}"
+                    Foreground="{StaticResource BlueBorderBrush}"
                     ToolTip="Transcribes audio" />
 
                 <TextBox
@@ -909,9 +909,9 @@
                             Margin="16,1,10,1"
                             Content="Editor"
                             FontFamily="Roboto"
-                            Tag="Editor"
                             FontSize="14"
-                            Foreground="{StaticResource BlueBorderBrush}" />
+                            Foreground="{StaticResource BlueBorderBrush}"
+                            Tag="Editor" />
 
                         <RadioButton
                             x:Name="ChatRadioButton"
@@ -920,8 +920,8 @@
                             Content="Chat"
                             FontFamily="Roboto"
                             FontSize="14"
-                            Tag="Chat"
-                            Foreground="{StaticResource BlueBorderBrush}" />
+                            Foreground="{StaticResource BlueBorderBrush}"
+                            Tag="Chat" />
                     </Grid>
                 </GroupBox>
 
@@ -1013,9 +1013,10 @@
                                 </Grid.RowDefinitions>
 
                                 <ComboBox
-                                            x:Name="LanguageComboBox"
-                                            Padding="20,1,1,1"
-                                            HorizontalContentAlignment="Center" Margin="10,10,10,10">
+                                    x:Name="LanguageComboBox"
+                                    Margin="10,10,10,10"
+                                    Padding="20,1,1,1"
+                                    HorizontalContentAlignment="Center">
                                     <ComboBoxItem Content="Text" />
                                     <ComboBoxItem Content="SQL" />
                                     <ComboBoxItem Content="C" />
@@ -1027,9 +1028,11 @@
                                 </ComboBox>
 
                                 <b:MetroListBox
-                                            x:Name="LanguageListBox"
-                                            Grid.Row="1"
-                                            Margin="10,0,11,10" Height="207" VerticalAlignment="Bottom" />
+                                    x:Name="LanguageListBox"
+                                    Grid.Row="1"
+                                    Height="207"
+                                    Margin="10,0,11,10"
+                                    VerticalAlignment="Bottom" />
 
                             </Grid>
 
@@ -1053,8 +1056,11 @@
                                     FontFamily="Source Code Pro"
                                     FontSize="12"
                                     Foreground="{StaticResource WhiteForeground}"
+                                    LineNumberAreaBackground="{DynamicResource BlackBackground}"
+                                    LineNumberTextForeground="{DynamicResource GreenBackground}"
+                                    OutliningAreaBackground="{DynamicResource ListBoxBackground}"
                                     OutliningAreaWidth="15"
-                                    VerticalScrollBarVisibility="Visible" OutliningAreaBackground="{DynamicResource ListBoxBackground}" LineNumberTextForeground="{DynamicResource GreenBackground}" LineNumberAreaBackground="{DynamicResource BlackBackground}" />
+                                    VerticalScrollBarVisibility="Visible" />
                             </Canvas>
 
                         </Grid>

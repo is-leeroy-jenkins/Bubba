@@ -88,11 +88,11 @@ namespace Bubba
         /// Initializes a new instance of the
         /// <see cref="T:Bubba.ImageGenerationResponse" /> class.
         /// </summary>
-        /// <param name="request">The request.</param>
-        public ImageGenerationResponse( ImageGenerationRequest request )
-            : base( request )
+        /// <param name="generationRequest">The request.</param>
+        public ImageGenerationResponse( ImageGenerationRequest generationRequest )
+            : base( generationRequest )
         {
-            _model = request.Model;
+            _model = generationRequest.Model;
         }
 
         /// <summary>

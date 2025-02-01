@@ -42,16 +42,13 @@
 namespace Bubba
 {
     using System;
-    using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
     using System.IO;
-    using System.Linq;
     using System.Net.Http;
     using System.Net.Http.Headers;
     using System.Text.Json;
     using System.Text.Json.Serialization;
     using System.Threading.Tasks;
-    using Newtonsoft.Json;
     using Properties;
 
     /// <inheritdoc />
@@ -62,6 +59,7 @@ namespace Bubba
     [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
     [ SuppressMessage( "ReSharper", "ClassCanBeSealed.Global" ) ]
     [ SuppressMessage( "ReSharper", "PreferConcreteValueOverDefault" ) ]
+    [ SuppressMessage( "ReSharper", "FieldCanBeMadeReadOnly.Global" ) ]
     public class TranslationRequest : GptRequest
     {
         /// <summary>
@@ -83,41 +81,18 @@ namespace Bubba
             : base( )
         {
             _entry = new object( );
-            _httpClient = new HttpClient( );
+            _header = new GptHeader( );
+            _endPoint = GptEndPoint.Translations;
             _model = "whisper-1";
             _language = "en";
-            _endPoint = GptEndPoint.Translations;
             _responseFormat = "mp3";
             _temperature = 0.18;
         }
 
-        /// <inheritdoc />
-        /// <summary>
-        /// Gets or sets a value indicating whether this
-        /// <see cref="P:Bubba.GptRequest.HttpClient" /> is store.
-        /// </summary>
-        /// <value>
-        ///   <c>true</c> if store; otherwise, <c>false</c>.
-        /// </value>
-        public override HttpClient HttpClient
-        {
-            get
-            {
-                return _httpClient;
-            }
-            set
-            {
-                if( _httpClient != value )
-                {
-                    _httpClient = value;
-                    OnPropertyChanged( nameof( HttpClient ) );
-                }
-            }
-        }
-
         /// <summary>
         /// The path to the audio file object (not file name) to transcribe,
-        /// in one of these formats: flac, mp3, mp4, mpeg, mpga, m4a, ogg, wav, or webm.
+        /// in one of these formats:
+        /// flac, mp3, mp4, mpeg, mpga, m4a, ogg, wav, or webm.
         /// </summary>
         /// <value>
         /// The file.
@@ -187,6 +162,7 @@ namespace Bubba
             }
         }
 
+        /// <inheritdoc />
         /// <summary>
         /// Gets or sets the input.
         /// </summary>
@@ -194,7 +170,7 @@ namespace Bubba
         /// The input.
         /// </value>
         [ JsonPropertyName( "prompt" ) ]
-        public string Prompt
+        public override string Prompt
         {
             get
             {
@@ -215,7 +191,7 @@ namespace Bubba
         /// </summary>
         /// <param name="path">The file path.</param>
         /// <returns></returns>
-        public async Task<string> TranslateAudioAsync( string path )
+        public async Task<string> GetAudioAsync( string path )
         {
             try
             {
@@ -224,7 +200,7 @@ namespace Bubba
                 _client.DefaultRequestHeaders.Authorization =
                     new AuthenticationHeaderValue( "Bearer", _apiKey );
 
-                using var _fileStream = new FileStream( path, FileMode.Open, FileAccess.Read );
+                await using var _fileStream = new FileStream( path, FileMode.Open, FileAccess.Read );
                 var _content = new StreamContent( _fileStream );
                 _content.Headers.ContentType = new MediaTypeHeaderValue( "audio/mpeg" );
                 var _form = new MultipartFormDataContent
@@ -237,12 +213,12 @@ namespace Bubba
                     }
                 };
 
-                _form.Add( new StringContent( Temperature.ToString( ) ), "temperature" );
+                _form.Add( new StringContent( _temperature.ToString( ) ), "temperature" );
                 _form.Add( new StringContent( _language ), "language" );
                 var _response = await _client.PostAsync( _endPoint, _form );
                 _response.EnsureSuccessStatusCode( );
                 var _responseContent = await _response.Content.ReadAsStringAsync( );
-                var _parsed = ParseTranslation( _responseContent );
+                var _parsed = ExtractContent( _responseContent );
                 return !string.IsNullOrEmpty( _parsed )
                     ? _parsed
                     : string.Empty;
@@ -254,63 +230,30 @@ namespace Bubba
             }
         }
 
+        /// <inheritdoc />
         /// <summary>
         /// Parses the translation.
         /// </summary>
-        /// <param name="jsonResponse">The json response.</param>
+        /// <param name="response">The json response.</param>
         /// <returns></returns>
-        private string ParseTranslation( string jsonResponse )
+        private protected override string ExtractContent( string response )
         {
             try
             {
-                ThrowIf.Empty( jsonResponse, nameof( jsonResponse ) );
-                using var _document = JsonDocument.Parse( jsonResponse );
-                var Translation = _document.RootElement.GetProperty( "text" ).GetString( );
-                return !string.IsNullOrEmpty( Translation )
-                    ? Translation
+                ThrowIf.Empty( response, nameof( response ) );
+                using var _document = JsonDocument.Parse( response );
+                var _translation = _document.RootElement
+                    .GetProperty( "text" )
+                    .GetString( );
+
+                return !string.IsNullOrEmpty( _translation )
+                    ? _translation
                     : string.Empty;
             }
             catch( Exception ex )
             {
                 Fail( ex );
                 return string.Empty;
-            }
-        }
-
-        /// <inheritdoc />
-        /// <summary>
-        /// Gets the data.
-        /// </summary>
-        /// <returns>
-        /// </returns>
-        public override IDictionary<string, object> GetData( )
-        {
-            try
-            {
-                _data.Add( "model", _model );
-                _data.Add( "endpoint", _endPoint );
-                _data.Add( "n", _number );
-                _data.Add( "max_completionTokens", _maximumTokens );
-                _data.Add( "store", _store );
-                _data.Add( "stream", _stream );
-                _data.Add( "temperature", Temperature );
-                _data.Add( "frequency_penalty", _frequencyPenalty );
-                _data.Add( "presence_penalty", _presencePenalty );
-                _data.Add( "top_p", TopPercent );
-                _data.Add( "response_format", _responseFormat );
-                if( !string.IsNullOrEmpty( _file ) )
-                {
-                    _data.Add( "filepath", _file );
-                }
-
-                return _data?.Any( ) == true
-                    ? _data
-                    : default( IDictionary<string, object> );
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
-                return default( IDictionary<string, object> );
             }
         }
 
@@ -324,8 +267,9 @@ namespace Bubba
         {
             try
             {
-                return _data?.Any( ) == true
-                    ? _data.ToJson( )
+                var _text = JsonSerializer.Serialize( this );
+                return !string.IsNullOrEmpty( _text )
+                    ? _text
                     : string.Empty;
             }
             catch( Exception ex )

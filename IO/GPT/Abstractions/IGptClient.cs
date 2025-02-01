@@ -52,52 +52,6 @@ namespace Bubba
     public interface IGptClient
     {
         /// <summary>
-        /// Number between -2.0 and 2.0. Positive values penalize new tokens
-        /// based on their existing frequency in the text so far,
-        /// decreasing the model's likelihood to repeat the same line verbatim.
-        /// </summary>
-        double FrequencyPenalty { get; }
-
-        /// <summary>
-        /// A number between 0 and 2.
-        /// Higher values like 0.8 will make the output more random,
-        /// while lower values like 0.2 will make it more focused and deterministic.
-        /// </summary>
-        double Temperature { get; }
-
-        /// <summary>
-        /// a number between -2.0 and 2.0.
-        /// Positive values penalize new tokens
-        /// based on whether they appear in the text so far,
-        /// increasing the model's likelihood to talk about new topics.
-        /// </summary>
-        double PresencePenalty { get; }
-
-        /// <summary>
-        /// Gets the maximum number of tokens.
-        /// </summary>
-        /// <value>
-        /// The maximum tokens.
-        /// </value>
-        int MaxTokens { get; }
-
-        /// <summary>
-        /// Gets the end point.
-        /// </summary>
-        /// <value>
-        /// The end point.
-        /// </value>
-        string EndPoint { get; }
-
-        /// <summary>
-        /// Gets the chat model.
-        /// </summary>
-        /// <value>
-        /// The chat model.
-        /// </value>
-        string Model { get; }
-
-        /// <summary>
         /// Gets the prompt.
         /// </summary>
         /// <value>
@@ -119,11 +73,6 @@ namespace Bubba
         /// Sends a request to the Chat (Assistant) API.
         /// </summary>
         Task<string> GetResponseAsync( string prompt );
-
-        /// <summary>
-        /// Handles POST requests and response parsing.
-        /// </summary>
-        Task<string> SendRequestAsync( GptPayload payload );
 
         /// <summary>
         /// Sends the HTTP message.

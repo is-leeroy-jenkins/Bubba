@@ -1,10 +1,10 @@
 ﻿// ******************************************************************************************
 //     Assembly:                Bubba
 //     Author:                  Terry D. Eppler
-//     Created:                 01-30-2025
+//     Created:                 01-31-2025
 // 
 //     Last Modified By:        Terry D. Eppler
-//     Last Modified On:        01-30-2025
+//     Last Modified On:        01-31-2025
 // ******************************************************************************************
 // <copyright file="AssistantRequest.cs" company="Terry D. Eppler">
 //    Bubba is a small and simple windows (wpf) application for interacting with the OpenAI API
@@ -110,13 +110,12 @@ namespace Bubba
         /// <param name="user">The user.</param>
         /// <param name="system">The system.</param>
         /// <param name = "config" > </param>
-        public AssistantRequest( string user, string system, GptParameter config )
+        public AssistantRequest( string user, string system, GptOptions config )
             : base( )
         {
-            _header = new GptHeader( );
             _entry = new object( );
-            _httpClient = new HttpClient( );
-            _endPoint = GptEndPoint.Completions;
+            _header = new GptHeader( );
+            _endPoint = GptEndPoint.Assistants;
             _model = config.Model;
             _store = config.Store;
             _stream = config.Stream;
@@ -139,9 +138,8 @@ namespace Bubba
         public AssistantRequest( AssistantRequest request )
             : base( )
         {
-            _header = new GptHeader( );
             _entry = new object( );
-            _httpClient = new HttpClient( );
+            _header = request.Header;
             _endPoint = request.EndPoint;
             _model = request.Model;
             _store = request.Store;
@@ -259,6 +257,7 @@ namespace Bubba
             }
         }
 
+        /// <inheritdoc />
         /// <summary>
         /// Gets or sets the user prompt.
         /// </summary>
@@ -266,7 +265,7 @@ namespace Bubba
         /// The user prompt.
         /// </value>
         [ JsonPropertyName( "prompt" ) ]
-        public string Prompt
+        public override string Prompt
         {
             get
             {
@@ -379,45 +378,78 @@ namespace Bubba
             }
         }
 
+        /// <inheritdoc />
+        /// <summary>
+        /// Gets the data.
+        /// </summary>
+        /// <returns></returns>
+        public override IDictionary<string, string> GetData( )
+        {
+            try
+            {
+                _data.Add( "model", _model );
+                _data.Add( "n", _number.ToString( ) );
+                _data.Add( "max_completion_tokens", _maximumTokens.ToString( ) );
+                _data.Add( "store", _store.ToString( ) );
+                _data.Add( "stream", _stream.ToString( ) );
+                _data.Add( "temperature", _temperature.ToString( ) );
+                _data.Add( "frequency_penalty", _frequencyPenalty.ToString( ) );
+                _data.Add( "presence_penalty", _presencePenalty.ToString( ) );
+                _data.Add( "top_p", _topPercent.ToString( ) );
+                _data.Add( "response_format", _responseFormat );
+                _data.Add( "stop", _stop );
+                _data.Add( "modalities", _modalities );
+                return _data?.Any( ) == true
+                    ? _data
+                    : default( IDictionary<string, string> );
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+                return default( IDictionary<string, string> );
+            }
+        }
+
+        /// <inheritdoc />
         /// <summary>
         /// Gets the chat response asynchronous.
         /// </summary>
         /// <returns></returns>
-        public async Task<string> GetResponseAsync( string prompt )
+        public override async Task<string> GetResponseAsync(string prompt)
         {
             try
             {
-                ThrowIf.Empty( prompt, nameof( prompt ) );
-                _httpClient = new HttpClient( );
-                _httpClient.DefaultRequestHeaders.Authorization =
-                    new AuthenticationHeaderValue( "Bearer", App.OpenAiKey );
-
-                var _payload = new AssistantPayload( )
+                ThrowIf.Empty(prompt, nameof(prompt));
+                _prompt = prompt;
+                _httpClient = new HttpClient();
+                _httpClient.DefaultRequestHeaders.Add("Authorization", $"Bearer {_header.ApiKey}");
+                var _package = new AssistantPayload( )
                 {
                     Model = _model,
-                    Temperature = Temperature,
+                    Temperature = _temperature,
                     Store = _store,
                     Stream = _stream,
                     Stop = _stop,
-                    TopPercent = TopPercent,
+                    TopPercent = _topPercent,
                     FrequencyPenalty = _frequencyPenalty,
                     PresencePenalty = _presencePenalty,
-                    Prompt = prompt
+                    Prompt = _prompt
                 };
 
-                var _serial = _payload.Serialize( );
-                var _content = new StringContent( _serial, Encoding.UTF8, _header.ContentType );
-                var _response = await _httpClient.PostAsync( _endPoint, _content );
-                _response.EnsureSuccessStatusCode( );
-                var _chat = await _response.Content.ReadAsStringAsync( );
-                var _chatResponse = ExtractContent( _chat );
-                return !string.IsNullOrEmpty( _chatResponse )
-                    ? _chatResponse
+                var _serial = _package.Serialize( );
+                var _payload = new StringContent( _serial, Encoding.UTF8, _header.ContentType );
+                var _request = await _httpClient.PostAsync( _endPoint, _payload );
+                _request.EnsureSuccessStatusCode( );
+                var _response = await _request.Content.ReadAsStringAsync( );
+                var _content = ExtractContent( _response );
+                return !string.IsNullOrEmpty( _content )
+                    ? _content
                     : string.Empty;
             }
             catch( Exception ex )
             {
                 Fail( ex );
+                _httpClient?.Dispose( );
                 return string.Empty;
             }
         }
@@ -440,102 +472,36 @@ namespace Bubba
                     if( _choices.ValueKind == JsonValueKind.Array
                         && _choices.GetArrayLength( ) > 0 )
                     {
-                        var _msg = _choices[ 0 ].GetProperty( "message" );
-                        var _cnt = _msg.GetProperty( "content" );
-                        var _txt = _cnt.GetString( );
-                        return _txt;
+                        var _message = _choices[ 0 ].GetProperty( "message" );
+                        var _count = _message.GetProperty( "content" );
+                        var _text = _count.GetString( );
+                        return !string.IsNullOrEmpty( _text )
+                            ? _text
+                            : string.Empty;
                     }
-
-                    var _message = _choices[ 0 ].GetProperty( "message" );
-                    var _text = _message.GetString( );
-                    return _text;
+                    else
+                    {
+                        var _message = _choices[ 0 ].GetProperty( "message" );
+                        var _text = _message.GetString( );
+                        return !string.IsNullOrEmpty( _text )
+                            ? _text
+                            : string.Empty;
+                    }
                 }
                 else
                 {
                     var _choice = _root.GetProperty( "choices" )[ 0 ];
                     var _property = _choice.GetProperty( "text" );
                     var _text = _property.GetString( );
-                    return _text;
+                    return !string.IsNullOrEmpty( _text )
+                        ? _text
+                        : string.Empty;
                 }
             }
             catch( Exception ex )
             {
                 Fail( ex );
-                return string.Empty;
-            }
-        }
-
-        /// <inheritdoc />
-        /// <summary>
-        /// Gets the data.
-        /// </summary>
-        /// <returns>
-        /// </returns>
-        public override IDictionary<string, object> GetData( )
-        {
-            try
-            {
-                _data.Add( "model", _model );
-                _data.Add( "endpoint", _endPoint );
-                _data.Add( "n", _number );
-                _data.Add( "max_completion_tokens", _maximumTokens );
-                _data.Add( "store", _store );
-                _data.Add( "stream", _stream );
-                _data.Add( "temperature", Temperature );
-                _data.Add( "frequency_penalty", _frequencyPenalty );
-                _data.Add( "presence_penalty", _presencePenalty );
-                _data.Add( "top_p", TopPercent );
-                _data.Add( "response_format", _responseFormat );
-                _data.Add( "modalities", _modalities );
-                if( !string.IsNullOrEmpty( _instructions ) )
-                {
-                    _data.Add( "instructions", _instructions );
-                }
-
-                if( !string.IsNullOrEmpty( _prompt ) )
-                {
-                    _data.Add( "prompt", _prompt );
-                }
-
-                if( !string.IsNullOrEmpty( _reasoningEffort ) )
-                {
-                    _data.Add( "reasoning_effort", _reasoningEffort );
-                }
-
-                if( _metaData?.Any( ) == true )
-                {
-                    _data.Add( "meta_data", _metaData );
-                }
-
-                return _data?.Any( ) == true
-                    ? _data
-                    : default( IDictionary<string, object> );
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
-                return default( IDictionary<string, object> );
-            }
-        }
-
-        /// <inheritdoc />
-        /// <summary>
-        /// Converts to string.
-        /// </summary>
-        /// <returns>
-        /// A <see cref="T:System.String" /> that represents this instance.
-        /// </returns>
-        public override string ToString( )
-        {
-            try
-            {
-                return _data?.Any( ) == true
-                    ? _data.ToJson( )
-                    : string.Empty;
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
+                _httpClient?.Dispose( );
                 return string.Empty;
             }
         }

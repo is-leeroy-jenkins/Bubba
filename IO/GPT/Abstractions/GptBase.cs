@@ -163,7 +163,7 @@ namespace Bubba
         /// <summary>
         /// The data
         /// </summary>
-        private protected IDictionary<string, object> _data;
+        private protected IDictionary<string, string> _data;
 
         /// <summary>
         /// Initializes a new instance of the
@@ -235,7 +235,7 @@ namespace Bubba
         /// <value>
         /// The data.
         /// </value>
-        public virtual IDictionary<string, object> Data
+        public virtual IDictionary<string, string> Data
         {
             get
             {
