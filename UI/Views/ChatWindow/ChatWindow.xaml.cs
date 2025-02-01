@@ -1,10 +1,10 @@
 ﻿// ******************************************************************************************
 //     Assembly:                Bubba
 //     Author:                  Terry D. Eppler
-//     Created:                 01-29-2025
+//     Created:                 02-01-2025
 // 
 //     Last Modified By:        Terry D. Eppler
-//     Last Modified On:        01-29-2025
+//     Last Modified On:        02-01-2025
 // ******************************************************************************************
 // <copyright file="ChatWindow.xaml.cs" company="Terry D. Eppler">
 //    Bubba is a small and simple windows (wpf) application for interacting with the OpenAI API
@@ -1675,6 +1675,28 @@ namespace Bubba
         }
 
         /// <summary>
+        /// Opens the folder browser.
+        /// </summary>
+        private protected void LoadDocumentWindow( )
+        {
+            try
+            {
+                var _folderBrowser = new DocumentWindow( )
+                {
+                    Topmost = true,
+                    Owner = this,
+                    WindowStartupLocation = WindowStartupLocation.CenterScreen
+                };
+
+                App.ActiveWindows.Add( "DocumentWindow", _folderBrowser );
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+            }
+        }
+
+        /// <summary>
         /// Opens the search dialog.
         /// </summary>
         private protected void OpenSearchDialog( )
@@ -1897,6 +1919,40 @@ namespace Bubba
                     };
 
                     _calculator.Show( );
+                }
+
+                Chill( );
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+            }
+        }
+
+        /// <summary>
+        /// Opens the folder browser.
+        /// </summary>
+        private protected void OpenDocumentWindow( )
+        {
+            try
+            {
+                Busy( );
+                if( App.ActiveWindows.Keys.Contains( "DocumentWindow" ) )
+                {
+                    var _window = ( DocumentWindow )App.ActiveWindows[ "DocumentWindow" ];
+                    _window.Owner = this;
+                    _window.Show( );
+                }
+                else
+                {
+                    var _documentWindow = new DocumentWindow( )
+                    {
+                        Topmost = true,
+                        Owner = this,
+                        WindowStartupLocation = WindowStartupLocation.CenterScreen
+                    };
+
+                    _documentWindow.Show( );
                 }
 
                 Chill( );
@@ -3393,9 +3449,7 @@ namespace Bubba
                 {
                     var _item = GenerationComboBox.SelectedItem;
                     var _request = ( ( ComboBoxItem )_item ).Tag.ToString( );
-                    _requestType =
-                        ( GptRequests )Enum.Parse( typeof( GptRequests ), _request );
-
+                    _requestType = ( GptRequests )Enum.Parse( typeof( GptRequests ), _request );
                     SetRequestType( );
                 }
             }

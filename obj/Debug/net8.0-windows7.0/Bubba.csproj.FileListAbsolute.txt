@@ -715,3 +715,5 @@ C:\Users\terry\source\repos\Bubba\bin\Debug\net8.0-windows7.0\runtimes\win-x86\n
 C:\Users\terry\source\repos\Bubba\bin\Debug\net8.0-windows7.0\runtimes\win-x86\native\vk_swiftshader.dll
 C:\Users\terry\source\repos\Bubba\bin\Debug\net8.0-windows7.0\runtimes\win-x86\native\vk_swiftshader_icd.json
 C:\Users\terry\source\repos\Bubba\bin\Debug\net8.0-windows7.0\runtimes\win-x86\native\vulkan-1.dll
+C:\Users\terry\source\repos\Bubba\obj\Debug\net8.0-windows7.0\UI\Views\DocumentWindow\DocumentWindow.g.cs
+C:\Users\terry\source\repos\Bubba\obj\Debug\net8.0-windows7.0\UI\Views\DocumentWindow\DocumentWindow.baml
