@@ -89,8 +89,8 @@ namespace Bubba
             _store = false;
             _stream = true;
             _number = 1;
-            _temperature = 0.18;
-            _topPercent = 0.11;
+            _temperature = 0.08;
+            _topPercent = 0.09;
             _frequencyPenalty = 0.00;
             _presencePenalty = 0.00;
             _maximumTokens = 2048;

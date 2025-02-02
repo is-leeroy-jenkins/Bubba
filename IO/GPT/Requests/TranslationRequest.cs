@@ -86,7 +86,7 @@ namespace Bubba
             _model = "whisper-1";
             _language = "en";
             _responseFormat = "mp3";
-            _temperature = 0.18;
+            _temperature = 0.08;
         }
 
         /// <summary>

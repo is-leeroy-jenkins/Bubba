@@ -118,8 +118,8 @@ namespace Bubba
             _store = false;
             _stream = true;
             _number = 1;
-            _temperature = 0.18;
-            _topPercent = 0.11;
+            _temperature = 0.08;
+            _topPercent = 0.09;
             _frequencyPenalty = 0.00;
             _presencePenalty = 0.00;
             _maximumTokens = 2048;
@@ -143,7 +143,7 @@ namespace Bubba
         /// <param name="store">if set to <c>true</c> [store].</param>
         /// <param name="stream">if set to <c>true</c> [stream].</param>
         public FineTuningPayload( string userPrompt, double frequency = 0.00,
-            double presence = 0.00, double temperature = 0.18, double topPercent = 0.11,
+            double presence = 0.00, double temperature = 0.08, double topPercent = 0.09,
             int maxTokens = 2048, bool store = false, bool stream = true )
             : this( )
         {

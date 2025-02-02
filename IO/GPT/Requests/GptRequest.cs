@@ -94,8 +94,8 @@ namespace Bubba
             _stream = true;
             _presencePenalty = 0.00;
             _frequencyPenalty = 0.00;
-            _topPercent = 0.11;
-            _temperature = 0.18;
+            _topPercent = 0.09;
+            _temperature = 0.08;
             _maximumTokens = 2048;
             _number = 1;
             _responseFormat = "text";

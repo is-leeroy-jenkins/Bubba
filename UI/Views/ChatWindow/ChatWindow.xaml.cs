@@ -295,16 +295,19 @@ namespace Bubba
             InitializeComponent( );
             RegisterCallbacks( );
             InitializeDelegates( );
-            InitializeToolStrip( );
+            InitializeToolStrip();
+
+            // Control Properties
+            ChatRadioButton.IsChecked = true;
+            TemperatureSlider.Value = 0.08;
+            TopPercentSlider.Value = 0.09;
+            PresenceSlider.Value = 0.00;
+            FrequencySlider.Value = 0.00;
+            MaxTokenSlider.Value = 2048;
 
             // GPT Parameters
             _store = false;
             _stream = true;
-            TemperatureSlider.Value = 0.18;
-            TopPercentSlider.Value = 0.11;
-            PresenceSlider.Value = 0.00;
-            FrequencySlider.Value = 0.00;
-            MaxTokenSlider.Value = 2048;
             _temperature = TemperatureSlider.Value;
             _topPercent = TopPercentSlider.Value;
             _presence = PresenceSlider.Value;
@@ -338,8 +341,9 @@ namespace Bubba
         {
             try
             {
-                HeaderLabel.Visibility = Visibility.Visible;
-                HeaderLabel.Content = "Select Generation Type";
+                RequestLabel.Visibility = Visibility.Visible;
+                RequestLabel.Content = "Generative Pre-Trained Transformer";
+                ModelLabel.Content = "";
             }
             catch( Exception ex )
             {
@@ -631,13 +635,11 @@ namespace Bubba
                 ListenCheckBox.Checked += OnListenCheckedChanged;
                 MuteCheckBox.Checked += OnMuteCheckedBoxChanged;
                 StoreCheckBox.Checked += OnStoreCheckBoxChecked;
-                GenerationComboBox.SelectionChanged += OnSelectedRequestTypeChanged;
-                GenerationComboBox.SelectionChanged += OnSelectedRequestTypeChanged;
+                GenerationComboBox.SelectionChanged += OnSelectedRequestChanged;
                 ImageSizeComboBox.SelectionChanged += OnSelectedImageSizeChanged;
                 RefreshButton.Click += OnRefreshButtonClick;
                 LookupButton.Click += OnGoButtonClicked;
                 GptFileButton.Click += OnFileApiButtonClick;
-                ImageSizeComboBox.SelectionChanged += OnSelectedImageSizeChanged;
                 ChatRadioButton.Checked += OnRadioButtonSelected;
                 EditorRadioButton.Checked += OnRadioButtonSelected;
             }
@@ -654,19 +656,18 @@ namespace Bubba
         {
             try
             {
+                ToolStripTextBox.TextChanged -= OnToolStripTextBoxTextChanged;
                 FirstButton.Click -= OnFirstButtonClick;
                 PreviousButton.Click -= OnPreviousButtonClick;
                 NextButton.Click -= OnNextButtonClick;
                 LastButton.Click -= OnLastButtonClick;
                 RefreshButton.Click -= OnRefreshButtonClick;
-                ModelComboBox.SelectionChanged -= OnSelectedModelChanged;
                 MenuButton.Click -= OnToggleButtonClick;
+                BrowserButton.Click -= OnWebBrowserButtonClick;
                 TemperatureTextBox.TextChanged -= OnParameterTextBoxChanged;
                 PresenceTextBox.TextChanged -= OnParameterTextBoxChanged;
                 FrequencyTextBox.TextChanged -= OnParameterTextBoxChanged;
                 TopPercentTextBox.TextChanged -= OnParameterTextBoxChanged;
-                BrowserButton.Click -= OnWebBrowserButtonClick;
-                LookupButton.Click -= OnGoButtonClicked;
                 DeleteButton.Click -= OnDeleteButtonClick;
                 ClearButton.Click -= OnClearButtonClick;
                 SendButton.Click -= OnSendButtonClick;
@@ -674,8 +675,11 @@ namespace Bubba
                 ListenCheckBox.Checked -= OnListenCheckedChanged;
                 MuteCheckBox.Checked -= OnMuteCheckedBoxChanged;
                 StoreCheckBox.Checked -= OnStoreCheckBoxChecked;
-                GenerationComboBox.SelectionChanged -= OnSelectedRequestTypeChanged;
+                GenerationComboBox.SelectionChanged -= OnSelectedRequestChanged;
                 ImageSizeComboBox.SelectionChanged -= OnSelectedImageSizeChanged;
+                RefreshButton.Click -= OnRefreshButtonClick;
+                LookupButton.Click -= OnGoButtonClicked;
+                GptFileButton.Click -= OnFileApiButtonClick;
                 ChatRadioButton.Checked -= OnRadioButtonSelected;
                 EditorRadioButton.Checked -= OnRadioButtonSelected;
             }
@@ -734,8 +738,8 @@ namespace Bubba
                 _endpoint = "";
                 _number = 1;
                 _maximumTokens = 2048;
-                _temperature = 0.18;
-                _topPercent = 0.11;
+                _temperature = 0.08;
+                _topPercent = 0.09;
                 _frequency = 0.00;
                 _presence = 0.00;
                 _language = "";
@@ -802,14 +806,30 @@ namespace Bubba
             {
                 PresenceSlider.Value = 0.00;
                 FrequencySlider.Value = 0.00;
-                TemperatureSlider.Value = 0.18;
-                TopPercentSlider.Value = 0.11;
+                TemperatureSlider.Value = 0.08;
+                TopPercentSlider.Value = 0.09;
                 MaxTokenSlider.Value = 2048;
                 NumberSlider.Value = 1;
             }
             catch( Exception ex )
             {
                 Fail( ex );
+            }
+        }
+
+        /// <summary>
+        /// Clears the labels.
+        /// </summary>
+        private void ClearLabels()
+        {
+            try
+            {
+                RequestLabel.Content = "Generative Pre-Trained Transformer";
+                ModelLabel.Content = "";
+            }
+            catch( Exception ex )
+            {
+                Fail(ex);
             }
         }
 
@@ -1125,7 +1145,7 @@ namespace Bubba
                     {
                         PopulateCompletionModels( );
                         _endpoint = GptEndPoint.Assistants;
-                        HeaderLabel.Content = "GPT Assistant";
+                        RequestLabel.Content = "GPT Request - Assistant API";
                         TabControl.SelectedIndex = 1;
                         break;
                     }
@@ -1133,7 +1153,7 @@ namespace Bubba
                     {
                         PopulateCompletionModels( );
                         _endpoint = GptEndPoint.Completions;
-                        HeaderLabel.Content = "GPT Completions";
+                        RequestLabel.Content = "GPT Request - Chat Completion";
                         TabControl.SelectedIndex = 1;
                         break;
                     }
@@ -1141,7 +1161,7 @@ namespace Bubba
                     {
                         PopulateTextModels( );
                         _endpoint = GptEndPoint.TextGeneration;
-                        HeaderLabel.Content = "Text Generations";
+                        RequestLabel.Content = "GPT Request - Text Generation";
                         TabControl.SelectedIndex = 1;
                         break;
                     }
@@ -1149,7 +1169,7 @@ namespace Bubba
                     {
                         PopulateImageModels( );
                         _endpoint = GptEndPoint.ImageGeneration;
-                        HeaderLabel.Content = "Image Generations";
+                        RequestLabel.Content = "GPT Request - Image Generation";
                         TabControl.SelectedIndex = 1;
                         break;
                     }
@@ -1157,7 +1177,7 @@ namespace Bubba
                     {
                         PopulateTranslationModels( );
                         PopulateOpenAiVoices( );
-                        HeaderLabel.Content = "Translations...";
+                        RequestLabel.Content = "GPT Request - Translation API";
                         _endpoint = GptEndPoint.Translations;
                         TabControl.SelectedIndex = 1;
                         break;
@@ -1165,7 +1185,7 @@ namespace Bubba
                     case GptRequests.Embeddings:
                     {
                         PopulateEmbeddingModels( );
-                        HeaderLabel.Content = "Vector Embeddings";
+                        RequestLabel.Content = "GPT Request - Embeddings API";
                         _endpoint = GptEndPoint.Embeddings;
                         TabControl.SelectedIndex = 1;
                         break;
@@ -1174,7 +1194,7 @@ namespace Bubba
                     {
                         PopulateTranscriptionModels( );
                         PopulateOpenAiVoices( );
-                        HeaderLabel.Content = "Transcriptions (Speech To Text)";
+                        RequestLabel.Content = "GPT Request - Transcription (Speech To Text)";
                         _endpoint = GptEndPoint.Transcriptions;
                         TabControl.SelectedIndex = 1;
                         break;
@@ -1182,7 +1202,7 @@ namespace Bubba
                     case GptRequests.VectorStores:
                     {
                         PopulateVectorStoreModels( );
-                        HeaderLabel.Content = "Vector Stores";
+                        RequestLabel.Content = "GPT Request - Vector Stores API";
                         _endpoint = GptEndPoint.VectorStores;
                         TabControl.SelectedIndex = 1;
                         break;
@@ -1191,7 +1211,7 @@ namespace Bubba
                     {
                         PopulateSpeechModels( );
                         PopulateOpenAiVoices( );
-                        HeaderLabel.Content = "Speech Generations (Text To Speech)";
+                        RequestLabel.Content = "GPT Request - Speech Generation (Text To Speech)";
                         _endpoint = GptEndPoint.SpeechGeneration;
                         TabControl.SelectedIndex = 1;
                         break;
@@ -1199,7 +1219,7 @@ namespace Bubba
                     case GptRequests.FineTuning:
                     {
                         PopulateFineTuningModels( );
-                        HeaderLabel.Content = "Fine-Tuning";
+                        RequestLabel.Content = "GPT Request - Fine-Tuning API";
                         _endpoint = GptEndPoint.FineTuning;
                         TabControl.SelectedIndex = 1;
                         break;
@@ -1207,7 +1227,7 @@ namespace Bubba
                     case GptRequests.Files:
                     {
                         PopulateFileApiModels( );
-                        HeaderLabel.Content = "Files API";
+                        RequestLabel.Content = "GPT Request - Files API";
                         _endpoint = GptEndPoint.Files;
                         TabControl.SelectedIndex = 1;
                         break;
@@ -1215,7 +1235,7 @@ namespace Bubba
                     case GptRequests.Uploads:
                     {
                         PopulateUploadApiModels( );
-                        HeaderLabel.Content = "Uploads API...";
+                        RequestLabel.Content = "GPT Request - Uploads API";
                         _endpoint = GptEndPoint.Uploads;
                         TabControl.SelectedIndex = 1;
                         break;
@@ -1223,7 +1243,7 @@ namespace Bubba
                     case GptRequests.Projects:
                     {
                         PopulateTextModels( );
-                        HeaderLabel.Content = "Projects API...";
+                        RequestLabel.Content = "GPT Request - Projects API";
                         _endpoint = GptEndPoint.Projects;
                         TabControl.SelectedIndex = 1;
                         break;
@@ -1231,7 +1251,7 @@ namespace Bubba
                     default:
                     {
                         PopulateModelsAsync( );
-                        HeaderLabel.Content = "GPT Completion...";
+                        RequestLabel.Content = "GPT Request - Chat Completions";
                         _endpoint = GptEndPoint.Completions;
                         TabControl.SelectedIndex = 1;
                         break;
@@ -3112,6 +3132,7 @@ namespace Bubba
             {
                 ClearChatControls( );
                 ClearParameters( );
+                ClearLabels( );
                 PopulateModelsAsync( );
                 PopulateInstalledVoices( );
             }
@@ -3266,14 +3287,14 @@ namespace Bubba
         {
             if( ListenCheckBox.IsChecked == true )
             {
-                HeaderLabel.Content = "";
-                HeaderLabel.Visibility = Visibility.Visible;
+                RequestLabel.Content = "";
+                RequestLabel.Visibility = Visibility.Visible;
                 InitializeSpeechEngine( );
             }
             else
             {
                 _engine.RecognizeAsyncStop( );
-                HeaderLabel.Visibility = Visibility.Hidden;
+                RequestLabel.Visibility = Visibility.Hidden;
             }
         }
 
@@ -3308,7 +3329,7 @@ namespace Bubba
         private void OnSpeechRecognized( object sender, SpeechRecognizedEventArgs e )
         {
             // Reset Hypothesized text
-            HeaderLabel.Content = "";
+            RequestLabel.Content = "";
             if( ChatEditor.Text != "" )
             {
                 ChatEditor.Text += "\n";
@@ -3327,7 +3348,7 @@ namespace Bubba
         private void OnSpeechHypothesized( object sender, SpeechHypothesizedEventArgs e )
         {
             var _text = e.Result.Text;
-            HeaderLabel.Content = _text;
+            RequestLabel.Content = _text;
         }
 
         /// <summary>
@@ -3357,7 +3378,7 @@ namespace Bubba
                 try
                 {
                     var _answer = SendHttpMessage( _question ) + "";
-                    ChatEditor.AppendText( "Bubba GPT: "
+                    ChatEditor.AppendText( "Bubba: "
                         + _answer.Replace( "\n", "\r\n" ).Trim( ) );
 
                     TextToSpeech( _answer );
@@ -3380,7 +3401,8 @@ namespace Bubba
             try
             {
                 ClearChatControls( );
-                ClearParameters( );
+                ClearParameters();
+                ClearLabels();
                 PopulateModelsAsync( );
                 PopulateInstalledVoices( );
                 PopulateImageSizes( );
@@ -3404,6 +3426,7 @@ namespace Bubba
                 if( ModelComboBox.SelectedIndex != -1 )
                 {
                     _model = ModelComboBox.SelectedValue.ToString( );
+                    ModelLabel.Content = $"LLM - {_model?.ToUpper( )}";
                     PopulateImageSizes( );
                 }
             }
@@ -3441,7 +3464,7 @@ namespace Bubba
         /// <param name="sender">The sender.</param>
         /// <param name="e">The <see cref="RoutedEventArgs"/>
         /// instance containing the event data.</param>
-        private void OnSelectedRequestTypeChanged( object sender, RoutedEventArgs e )
+        private void OnSelectedRequestChanged( object sender, RoutedEventArgs e )
         {
             try
             {

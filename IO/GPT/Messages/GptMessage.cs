@@ -68,6 +68,11 @@ namespace Bubba
         private protected string _content;
 
         /// <summary>
+        /// The type
+        /// </summary>
+        private protected string _type;
+
+        /// <summary>
         /// The data
         /// </summary>
         private protected IDictionary<string, object> _data;
@@ -105,6 +110,22 @@ namespace Bubba
                 {
                     _content = value;
                     OnPropertyChanged( nameof( Content ) );
+                }
+            }
+        }
+
+        public virtual string Type
+        {
+            get
+            {
+                return _type;
+            }
+            set
+            {
+                if(_type != value)
+                {
+                    _type = value;
+                    OnPropertyChanged(nameof(Type));
                 }
             }
         }

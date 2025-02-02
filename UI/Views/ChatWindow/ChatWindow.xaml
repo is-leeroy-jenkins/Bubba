@@ -12,7 +12,7 @@
     xmlns:ui="http://schemas.modernwpf.com/2019"
     xmlns:web="clr-namespace:CefSharp.Wpf;assembly=CefSharp.Wpf"
     xmlns:wpf="http://schemas.syncfusion.com/wpf"
-    Title="Bubba GPT"
+    Title="Bubba"
     Width="1260"
     Height="805"
     MinWidth="1000"
@@ -532,7 +532,7 @@
                     ToolTip="A number between 0 and 1. (%) Default=0"
                     ToolTipFormat="P2"
                     ValuePlacement="TopLeft"
-                    Value="0.18" />
+                    Value="0.09" />
 
                 <TextBox
                     x:Name="TopPercentTextBox"
@@ -664,12 +664,12 @@
 
                 <ComboBox
                     x:Name="VoiceComboBox"
-                    Canvas.Left="1035"
+                    Canvas.Left="1057"
                     Canvas.Top="-71"
-                    Width="162"
+                    Width="140"
                     Height="30"
                     HorizontalAlignment="Left"
-                    VerticalAlignment="Top"
+                    VerticalAlignment="Center"
                     HorizontalContentAlignment="Left"
                     Background="{StaticResource ControlInteriorBrush}"
                     BorderBrush="{StaticResource BlueBorderBrush}"
@@ -769,7 +769,7 @@
                     TickStroke="{StaticResource WhiteForeground}"
                     ToolTip="A number between 0 and 2. Default=1"
                     ToolTipFormat="P2"
-                    Value="0.11" />
+                    Value="0.08" />
 
                 <CheckBox
                     x:Name="MuteCheckBox"
@@ -1013,26 +1013,49 @@
                                 </Grid.RowDefinitions>
 
                                 <ComboBox
+                                    Grid.Row="0"
                                     x:Name="LanguageComboBox"
                                     Margin="10,10,10,10"
                                     Padding="20,1,1,1"
-                                    HorizontalContentAlignment="Center">
-                                    <ComboBoxItem Content="Text" />
-                                    <ComboBoxItem Content="SQL" />
-                                    <ComboBoxItem Content="C" />
-                                    <ComboBoxItem Content="C++" />
-                                    <ComboBoxItem Content="C#" />
-                                    <ComboBoxItem Content="Python" />
-                                    <ComboBoxItem Content="JavaScript" />
-                                    <ComboBoxItem Content="VBA" />
+                                    HorizontalContentAlignment="Center"
+                                    Background="{DynamicResource ControlInteriorBrush}"
+                                    BorderBrush="{DynamicResource BlueBorderBrush}"
+                                    BorderThickness="2,2,2,2"
+                                    ClipToBounds="True"
+                                    FontFamily="Roboto"
+                                    Foreground="{DynamicResource FormForeground}"
+                                    SnapsToDevicePixels="True">
+                                    <ComboBoxItem
+                                        Content="Text"
+                                        Tag=".txt" />
+                                    <ComboBoxItem
+                                        Content="SQL"
+                                        Tag=".sql" />
+                                    <ComboBoxItem
+                                        Content="C"
+                                        Tag=".c" />
+                                    <ComboBoxItem
+                                        Content="C++"
+                                        Tag=".cpp" />
+                                    <ComboBoxItem
+                                        Content="C#"
+                                        Tag=".cs" />
+                                    <ComboBoxItem
+                                        Content="Python"
+                                        Tag=".py" />
+                                    <ComboBoxItem
+                                        Content="JavaScript"
+                                        Tag=".js" />
+                                    <ComboBoxItem
+                                        Content="VBA"
+                                        Tag=".cls" />
                                 </ComboBox>
 
                                 <b:MetroListBox
                                     x:Name="LanguageListBox"
                                     Grid.Row="1"
-                                    Height="207"
-                                    Margin="10,0,11,10"
-                                    VerticalAlignment="Bottom" />
+                                    Width="180" 
+                                    Margin="10,10,10,0" Height="207" VerticalAlignment="Top"/>
 
                             </Grid>
 
@@ -1377,22 +1400,40 @@
         </Canvas>
 
         <Label
-            x:Name="HeaderLabel"
+            x:Name="RequestLabel"
             Grid.Row="0"
-            Margin="10,4,397,3"
+            Margin="10,4,892,3"
             HorizontalContentAlignment="Left"
-            Content="Text Generation Mode ..."
+            VerticalContentAlignment="Center"
+            Content="Generative Pre-Trained Transformer"
             FontSize="16"
             Foreground="{StaticResource LightBlueBrush}" />
-
-        <Label
-            x:Name="UserLabel"
-            Grid.Row="0"
-            Height="26"
-            Margin="887,4,10,0"
-            VerticalAlignment="Top"
-            HorizontalContentAlignment="Right"
-            Content="User ID:"
-            Foreground="{StaticResource LightBlueBrush}" />
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <Label
+                x:Name="ModelLabel"
+                Grid.Column="1"
+                Margin="1"
+                VerticalContentAlignment="Center"
+                Content=""
+                FontFamily="Roboto"
+                FontSize="16"
+                Foreground="{DynamicResource FormForeground}" />
+            <Label
+                x:Name="UserLabel"
+                Grid.Column="2"
+                Height="35"
+                Margin="5,3,5,2"
+                HorizontalContentAlignment="Right"
+                VerticalContentAlignment="Center"
+                Content="Label"
+                FontFamily="Roboto"
+                FontSize="14"
+                Foreground="{DynamicResource FormForeground}" />
+        </Grid>
     </Grid>
 </Window>
