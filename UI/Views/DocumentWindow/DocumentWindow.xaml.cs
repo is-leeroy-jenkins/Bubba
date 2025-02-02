@@ -73,6 +73,7 @@ namespace Bubba
     [ SuppressMessage( "ReSharper", "FieldCanBeMadeReadOnly.Global" ) ]
     [ SuppressMessage( "ReSharper", "UnusedType.Global" ) ]
     [ SuppressMessage( "ReSharper", "PreferConcreteValueOverDefault" ) ]
+    [ SuppressMessage( "ReSharper", "CanSimplifyDictionaryLookupWithTryGetValue" ) ]
     public partial class DocumentWindow : Window, IDisposable
     {
         /// <summary>
@@ -272,11 +273,12 @@ namespace Bubba
                 ToolStripRefreshButton.Click += OnRefreshButtonClick;
                 ToolStripBrowseButton.Click += OnMenuButtonClick;
                 ToolStripToggleButton.Click += OnToggleButtonClick;
+                ToolStripExitButton.Click += OnExitButtonClick;
                 DocumentListBox.SelectionChanged += OnListBoxItemSelected;
                 ToolStripBrowseButton.Click += OnBrowseButtonClick;
-                ExplanatoryStatementRadioButton.Click += OnRadioButtonSelected;
-                PublicLawsRadioButton.Click += OnRadioButtonSelected;
-                FederalRegulationsRadioButton.Click += OnRadioButtonSelected;
+                ExplanatoryStatementsRadioButton.Click += OnRadioButtonSelected;
+                AppropriationsRadioButton.Click += OnRadioButtonSelected;
+                RegulationsRadioButton.Click += OnRadioButtonSelected;
             }
             catch( Exception ex )
             {
@@ -522,9 +524,9 @@ namespace Bubba
                 ToolStripToggleButton.Click -= OnToggleButtonClick;
                 DocumentListBox.SelectionChanged -= OnListBoxItemSelected;
                 ToolStripBrowseButton.Click -= OnBrowseButtonClick;
-                ExplanatoryStatementRadioButton.Click -= OnRadioButtonSelected;
-                PublicLawsRadioButton.Click -= OnRadioButtonSelected;
-                FederalRegulationsRadioButton.Click -= OnRadioButtonSelected;
+                ExplanatoryStatementsRadioButton.Click -= OnRadioButtonSelected;
+                AppropriationsRadioButton.Click -= OnRadioButtonSelected;
+                RegulationsRadioButton.Click -= OnRadioButtonSelected;
             }
             catch( Exception ex )
             {
@@ -540,15 +542,14 @@ namespace Bubba
         {
             try
             {
-                _prefix = Locations.PathPrefix;
                 var _folder = Locations.ExplanatoryStatements;
                 var _documentPaths = new Dictionary<string, string>( );
                 var _dirPath = _prefix + _folder;
                 var _files = Directory.EnumerateFiles( _dirPath );
-                foreach( var _filePath in _files )
+                foreach( var _path in _files )
                 {
-                    var _fileName = Path.GetFileNameWithoutExtension( _filePath );
-                    _documentPaths.Add( _fileName, _filePath );
+                    var _fileName = Path.GetFileNameWithoutExtension( _path );
+                    _documentPaths.Add( _fileName, _path );
                 }
 
                 return _documentPaths?.Any( ) == true
@@ -626,7 +627,7 @@ namespace Bubba
         /// Creates the paths.
         /// </summary>
         /// <returns></returns>
-        private void CreatePaths( )
+        private void BuildPaths( )
         {
             try
             {
@@ -868,9 +869,9 @@ namespace Bubba
             try
             {
                 DocumentListBox.Items.Clear( );
-                foreach( var _kvp in _publicLaws )
+                foreach( var _kvp in _explanatoryStatements )
                 {
-                    var _item = new MetroListBoxItem
+                    var _item = new ListBoxItem
                     {
                         Content = _kvp.Key,
                         Tag = _kvp.Value
@@ -895,7 +896,13 @@ namespace Bubba
                 DocumentListBox.Items.Clear( );
                 foreach( var _kvp in _publicLaws )
                 {
-                    DocumentListBox.Items.Add( _kvp.Key );
+                    var _item = new ListBoxItem
+                    {
+                        Content = _kvp.Key,
+                        Tag = _kvp.Value
+                    };
+
+                    DocumentListBox.Items.Add( _item );
                 }
             }
             catch( Exception ex )
@@ -914,7 +921,7 @@ namespace Bubba
                 DocumentListBox.Items.Clear( );
                 foreach( var _kvp in _federalRegulations )
                 {
-                    var _item = new MetroListBoxItem
+                    var _item = new ListBoxItem
                     {
                         Content = _kvp.Key,
                         Tag = _kvp.Value
@@ -941,7 +948,7 @@ namespace Bubba
             {
                 InitializeTimer( );
                 InitializeToolbar( );
-                CreatePaths( );
+                BuildPaths( );
             }
             catch( Exception ex )
             {
@@ -1424,12 +1431,9 @@ namespace Bubba
         {
             try
             {
-                var _listBox = sender as MetroListBox;
-                var _item = ( ListBoxItem )_listBox?.SelectedValue;
-                var _content = _item?.Content.ToString( );
-                var _pathPrefix = Locations.PathPrefix;
-                var _folder = Locations.Documents;
-                _selectedPath = _pathPrefix + _folder + _content + ".txt";
+                var _listBox = sender as ListBox;
+                var _item = ( ( ListBoxItem )_listBox.SelectedItem).Tag;
+                _selectedPath = _item.ToString( );
                 PdfViewer.Load( _selectedPath );
             }
             catch( Exception ex )

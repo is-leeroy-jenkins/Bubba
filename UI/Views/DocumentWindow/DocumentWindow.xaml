@@ -10,8 +10,8 @@
     xmlns:sync="http://schemas.syncfusion.com/wpf"
     x:Name="DocViewer"
     Title="Documentation"
-    Width="1130"
-    Height="795"
+    Width="1110"
+    Height="805"
     MinWidth="1100"
     MinHeight="500"
     MaxWidth="1500"
@@ -25,6 +25,7 @@
     Foreground="{StaticResource LightBlueBrush}"
     Icon="/Resources/Assets/ApplicationImages/Bubba.png"
     WindowStartupLocation="CenterScreen"
+    WindowStyle="None"
     mc:Ignorable="d">
 
     <!--  ******************************************** Resources *********************************************  -->
@@ -146,32 +147,23 @@
         </ContextMenu>
     </Window.ContextMenu>
 
-    <Grid
-        x:Name="DocumentCanvas"
-        Margin="3">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="877*" />
-            <ColumnDefinition Width="243*" />
-        </Grid.ColumnDefinitions>
+    <!--  ***************************** TOOLSTRIP  ***********************************  -->
+
+    <Grid x:Name="MainGrid">
         <Grid.RowDefinitions>
+            <RowDefinition Height="40" />
             <RowDefinition />
-            <RowDefinition Height="60" />
-            <RowDefinition Height="3.04" />
+            <RowDefinition Height="50" />
         </Grid.RowDefinitions>
 
-        <!--  ***************************** PDF  ***********************************  -->
-
-        <Canvas
-            Grid.Row="1"
-            Grid.ColumnSpan="2">
+        <Canvas Grid.Row="2">
             <b:ToolStrip
                 x:Name="DocumentToolStrip"
-                Canvas.Left="10"
-                Canvas.Top="8"
-                Width="1100"
+                Canvas.Left="6"
+                Width="1090"
                 Height="40"
                 Padding="1"
-                HorizontalAlignment="Center"
+                HorizontalAlignment="Left"
                 VerticalAlignment="Top"
                 HorizontalContentAlignment="Stretch"
                 VerticalContentAlignment="Stretch"
@@ -276,102 +268,89 @@
         </Canvas>
 
         <Grid
-            Grid.Row="0"
-            Grid.Column="0"
-            Grid.ColumnSpan="2">
-
+            x:Name="HeaderGrid"
+            Grid.Row="0">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="867*" />
-                <ColumnDefinition Width="253*" />
+                <ColumnDefinition Width="65*" />
+                <ColumnDefinition Width="840*" />
+                <ColumnDefinition Width="221*" />
             </Grid.ColumnDefinitions>
+            <Label
+                x:Name="HeaderLabel"
+                Grid.Column="1"
+                Margin="150,3,30,3"
+                Padding="5,1,1,5"
+                VerticalContentAlignment="Center"
+                Content="PDF Viewer"
+                FontFamily="Roboto"
+                FontSize="16"
+                Foreground="{DynamicResource BlueBorderBrush}" />
+            <Image
+                x:Name="Icon"
+                Margin="5,5,5,5"
+                Source="/Resources/Assets/DemoImages/OpenAI.ico" />
+        </Grid>
 
-            <Canvas Grid.Column="1" />
-
+        <Grid
+            x:Name="DocumentGrid"
+            Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="805*" />
+                <ColumnDefinition Width="321*" />
+            </Grid.ColumnDefinitions>
+            <Grid
+                x:Name="MenuGrid"
+                Grid.Column="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="40" />
+                    <RowDefinition Height="40" />
+                    <RowDefinition Height="40" />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+                <Canvas Grid.Row="3" />
+                <RadioButton
+                    x:Name="AppropriationsRadioButton"
+                    Margin="50,3,126,3"
+                    Content="Appropriations"
+                    Foreground="{DynamicResource FormForeground}"
+                    Tag="Appropriations"
+                    ToolTip="Public Laws" />
+                <RadioButton
+                    x:Name="RegulationsRadioButton"
+                    Grid.Row="1"
+                    Margin="50,3,126,3"
+                    Content="Regulations"
+                    Foreground="{DynamicResource FormForeground}"
+                    Tag="Regulations"
+                    ToolTip="CFRs, etc" />
+                <RadioButton
+                    x:Name="ExplanatoryStatementsRadioButton"
+                    Grid.Row="2"
+                    Margin="50,3,126,3"
+                    Content="Explanatory Statements"
+                    Foreground="{DynamicResource FormForeground}"
+                    Tag="ExplanatoryStatements"
+                    ToolTip="Committee Reports" />
+                <ListBox
+                    x:Name="DocumentListBox"
+                    Grid.Row="3"
+                    Width="282"
+                    Height="500"
+                    Margin="10,36,23,0"
+                    VerticalAlignment="Top"
+                    d:ItemsSource="{d:SampleData ItemCount=5}"
+                    BorderThickness="2,2,2,2" />
+            </Grid>
             <pdf:PdfViewerControl
                 x:Name="PdfViewer"
                 Grid.Column="0"
-                Width="845"
-                Height="686"
-                Margin="11,0,0,0"
+                Width="730"
+                Margin="30,10,0,50"
+                Padding="1,1,1,1"
                 HorizontalAlignment="Left"
-                VerticalAlignment="Center"
-                BorderBrush="{StaticResource BlueBorderBrush}"
-                BorderThickness="2" />
-
+                BorderBrush="{DynamicResource BlueBorderBrush}"
+                BorderThickness="2,2,2,2"
+                FontFamily="Roboto" />
         </Grid>
-
-        <!--  ***************************** PDF Viewer  ***********************************  -->
-
-        <Grid
-            Grid.Row="0"
-            Grid.Column="0"
-            Grid.ColumnSpan="2">
-
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="109*" />
-                <ColumnDefinition Width="31*" />
-            </Grid.ColumnDefinitions>
-
-            <Grid Grid.Column="1">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="46" />
-                    <RowDefinition Height="35" />
-                    <RowDefinition Height="35" />
-                    <RowDefinition />
-                </Grid.RowDefinitions>
-
-                <RadioButton
-                    x:Name="PublicLawsRadioButton"
-                    Margin="30,10,10,0"
-                    Padding="15,1,1,1"
-                    Content="Appropriations"
-                    FontFamily="Roboto"
-                    FontSize="14"
-                    Foreground="{DynamicResource BlueBorderBrush}"
-                    Tag="Appropriations" />
-
-                <RadioButton
-                    x:Name="ExplanatoryStatementRadioButton"
-                    Grid.Row="1"
-                    Margin="30,1,10,1"
-                    Padding="15,1,1,1"
-                    Content="Regulations"
-                    FontFamily="Roboto"
-                    FontSize="14"
-                    Foreground="{DynamicResource BlueBorderBrush}"
-                    Tag="Regulations" />
-
-                <RadioButton
-                    x:Name="FederalRegulationsRadioButton"
-                    Grid.Row="2"
-                    Margin="30,0,10,1"
-                    Padding="15,1,1,1"
-                    Content="Explanatory Statements"
-                    FontFamily="Roboto"
-                    FontSize="14"
-                    Foreground="{DynamicResource BlueBorderBrush}"
-                    Tag="ExplanatoryStatements" />
-                <Canvas Grid.Row="3">
-                    <b:MetroListBox
-                        x:Name="DocumentListBox"
-                        Canvas.Left="23"
-                        Canvas.Top="10"
-                        Width="202"
-                        Height="570"
-                        HorizontalAlignment="Left"
-                        VerticalAlignment="Top"
-                        HorizontalContentAlignment="Left"
-                        Panel.ZIndex="4"
-                        Background="{StaticResource ControlBackground}"
-                        BorderBrush="{StaticResource BlueBorderBrush}"
-                        BorderThickness="2"
-                        FontSize="10" />
-                </Canvas>
-            </Grid>
-
-            <Canvas />
-        </Grid>
-
-        <!--  ***************************** ToolStrip  ***********************************  -->
     </Grid>
 </Window>

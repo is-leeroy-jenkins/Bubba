@@ -35153,7 +35153,7 @@
             Initializes the title.
             </summary>
         </member>
-        <member name="M:Bubba.ChatWindow.InitializeLabel">
+        <member name="M:Bubba.ChatWindow.InitializeLabels">
             <summary>
             Initializes the label.
             </summary>
@@ -35776,6 +35776,13 @@
             <param name="e">The <see cref="T:System.Windows.RoutedEventArgs"/>
             instance containing the event data.</param>
         </member>
+        <member name="M:Bubba.ChatWindow.OnGuidanceOptionClick(System.Object,System.Windows.RoutedEventArgs)">
+            <summary>
+            Called when [guidance option click].
+            </summary>
+            <param name="sender">The sender.</param>
+            <param name="e">The <see cref="T:System.Windows.RoutedEventArgs"/> instance containing the event data.</param>
+        </member>
         <member name="M:Bubba.ChatWindow.OnFirstButtonClick(System.Object,System.Windows.RoutedEventArgs)">
             <summary>
             Called when [first button click].
@@ -36277,7 +36284,7 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="M:Bubba.DocumentWindow.CreatePaths">
+        <member name="M:Bubba.DocumentWindow.BuildPaths">
             <summary>
             Creates the paths.
             </summary>
@@ -38592,7 +38599,7 @@
             The time
             </summary>
         </member>
-        <member name="F:Bubba.SplashMessage.TitleColor">
+        <member name="F:Bubba.SplashMessage._titleColor">
             <summary>
             The fore color
             </summary>
@@ -40123,6 +40130,36 @@
         <member name="M:Bubba.WebBrowser.InitializeComponent">
             <summary>
             InitializeComponent
+            </summary>
+        </member>
+        <member name="T:XamlGeneratedNamespace.GeneratedInternalTypeHelper">
+            <summary>
+            GeneratedInternalTypeHelper
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.CreateInstance(System.Type,System.Globalization.CultureInfo)">
+            <summary>
+            CreateInstance
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.GetPropertyValue(System.Reflection.PropertyInfo,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            GetPropertyValue
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.SetPropertyValue(System.Reflection.PropertyInfo,System.Object,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            SetPropertyValue
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.CreateDelegate(System.Type,System.Object,System.String)">
+            <summary>
+            CreateDelegate
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.AddEventHandler(System.Reflection.EventInfo,System.Object,System.Delegate)">
+            <summary>
+            AddEventHandler
             </summary>
         </member>
     </members>

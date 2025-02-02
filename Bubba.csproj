@@ -68,6 +68,29 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Remove="Resources\Documents\Editor\CS\AbstractFactory.cs" />
+    <Compile Remove="Resources\Documents\Editor\CS\Adapter.cs" />
+    <Compile Remove="Resources\Documents\Editor\CS\Bridge.cs" />
+    <Compile Remove="Resources\Documents\Editor\CS\Builder.cs" />
+    <Compile Remove="Resources\Documents\Editor\CS\ChainOfResponsibility.cs" />
+    <Compile Remove="Resources\Documents\Editor\CS\Command.cs" />
+    <Compile Remove="Resources\Documents\Editor\CS\Composite.cs" />
+    <Compile Remove="Resources\Documents\Editor\CS\Decorator.cs" />
+    <Compile Remove="Resources\Documents\Editor\CS\Facade.cs" />
+    <Compile Remove="Resources\Documents\Editor\CS\Flyweight.cs" />
+    <Compile Remove="Resources\Documents\Editor\CS\HashExtension.cs" />
+    <Compile Remove="Resources\Documents\Editor\CS\Interpreter.cs" />
+    <Compile Remove="Resources\Documents\Editor\CS\Mediator.cs" />
+    <Compile Remove="Resources\Documents\Editor\CS\Memento.cs" />
+    <Compile Remove="Resources\Documents\Editor\CS\Observer.cs" />
+    <Compile Remove="Resources\Documents\Editor\CS\Proxy.cs" />
+    <Compile Remove="Resources\Documents\Editor\CS\State.cs" />
+    <Compile Remove="Resources\Documents\Editor\CS\TcpClient.cs" />
+    <Compile Remove="Resources\Documents\Editor\CS\TcpServer.cs" />
+    <Compile Remove="Resources\Documents\Editor\CS\Visitor.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Remove="Data\Stores\SQLite\Bubba.db" />
     <None Remove="Resources\Assets\ApplicationImages\Bubba.ico" />
     <None Remove="Resources\Assets\CalculatorImages\CalculatorCloseButton.png" />
@@ -324,6 +347,31 @@
     <None Remove="Resources\Assets\ToolStripImages\WebDownload.png" />
     <None Remove="Resources\Assets\ToolStripImages\WebDownloadButton.png" />
     <None Remove="Resources\Assets\ToolStripImages\WebSearchButton.png" />
+    <None Remove="Resources\Documents\Editor\JS\browser.js" />
+    <None Remove="Resources\Documents\Editor\JS\constants.js" />
+    <None Remove="Resources\Documents\Editor\JS\create.js" />
+    <None Remove="Resources\Documents\Editor\JS\d3.js" />
+    <None Remove="Resources\Documents\Editor\JS\extension.js" />
+    <None Remove="Resources\Documents\Editor\JS\extract.js" />
+    <None Remove="Resources\Documents\Editor\JS\header.js" />
+    <None Remove="Resources\Documents\Editor\JS\helpers.js" />
+    <None Remove="Resources\Documents\Editor\JS\high-level-opt.js" />
+    <None Remove="Resources\Documents\Editor\JS\large-numbers.js" />
+    <None Remove="Resources\Documents\Editor\JS\list.js" />
+    <None Remove="Resources\Documents\Editor\JS\parse.js" />
+    <None Remove="Resources\Documents\Editor\JS\receivebuffer.js" />
+    <None Remove="Resources\Documents\Editor\JS\scan.js" />
+    <None Remove="Resources\Documents\Editor\JS\socksclient.js" />
+    <None Remove="Resources\Documents\Editor\JS\style.js" />
+    <None Remove="Resources\Documents\Editor\JS\util.js" />
+    <None Remove="Resources\Documents\Editor\JS\utils.js" />
+    <None Remove="Resources\Documents\Editor\SQL\BudgetOutlays.sql" />
+    <None Remove="Resources\Documents\Editor\SQL\BudgetResourceExecution.sql" />
+    <None Remove="Resources\Documents\Editor\SQL\CarryoverEstimates.sql" />
+    <None Remove="Resources\Documents\Editor\SQL\Contacts.sql" />
+    <None Remove="Resources\Documents\Editor\SQL\SpendingRates.sql" />
+    <None Remove="Resources\Documents\Editor\SQL\TreasuryAppropriationFundSymbol.sql" />
+    <None Remove="Resources\Documents\Editor\SQL\UnobligatedBalances.sql" />
     <None Remove="Resources\Fonts\Anonymous Pro.ttf" />
     <None Remove="Resources\Fonts\Hack-Regular.ttf" />
     <None Remove="Resources\Fonts\JetBrainsMono-Regular.ttf" />
@@ -331,6 +379,7 @@
     <None Remove="Resources\Fonts\Roboto-Regular.ttf" />
     <None Remove="Resources\Reports\Report.xlsx" />
     <None Remove="SplashScreen.png" />
+    <None Remove="UI\Views\DocumentWindow\Badger.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -661,6 +710,141 @@
     <Resource Include="Resources\Assets\ToolStripImages\WebDownload.png" />
     <Resource Include="Resources\Assets\ToolStripImages\WebDownloadButton.png" />
     <Resource Include="Resources\Assets\ToolStripImages\WebSearchButton.png" />
+    <Resource Include="Resources\Documents\Editor\CS\AbstractFactory.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Documents\Editor\CS\Adapter.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Documents\Editor\CS\Bridge.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Documents\Editor\CS\Builder.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Documents\Editor\CS\ChainOfResponsibility.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Documents\Editor\CS\Command.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Documents\Editor\CS\Composite.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Documents\Editor\CS\Decorator.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Documents\Editor\CS\Facade.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Documents\Editor\CS\Flyweight.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Documents\Editor\CS\HashExtension.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Documents\Editor\CS\Interpreter.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Documents\Editor\CS\Mediator.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Documents\Editor\CS\Memento.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Documents\Editor\CS\Observer.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Documents\Editor\CS\Proxy.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Documents\Editor\CS\State.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Documents\Editor\CS\TcpClient.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Documents\Editor\CS\TcpServer.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Documents\Editor\CS\Visitor.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Documents\Editor\JS\browser.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Documents\Editor\JS\constants.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Documents\Editor\JS\create.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Documents\Editor\JS\d3.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Documents\Editor\JS\extension.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Documents\Editor\JS\extract.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Documents\Editor\JS\header.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Documents\Editor\JS\helpers.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Documents\Editor\JS\high-level-opt.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Documents\Editor\JS\large-numbers.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Documents\Editor\JS\list.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Documents\Editor\JS\parse.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Documents\Editor\JS\receivebuffer.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Documents\Editor\JS\scan.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Documents\Editor\JS\socksclient.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Documents\Editor\JS\style.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Documents\Editor\JS\util.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Documents\Editor\JS\utils.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Documents\Editor\SQL\BudgetOutlays.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Documents\Editor\SQL\BudgetResourceExecution.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Documents\Editor\SQL\CarryoverEstimates.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Documents\Editor\SQL\Contacts.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Documents\Editor\SQL\SpendingRates.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Documents\Editor\SQL\TreasuryAppropriationFundSymbol.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Documents\Editor\SQL\UnobligatedBalances.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="Resources\Fonts\Anonymous Pro.ttf">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
@@ -679,6 +863,7 @@
     <Resource Include="Resources\Reports\Report.xlsx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
+    <Resource Include="UI\Views\DocumentWindow\Badger.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -778,7 +963,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Resources\Documents\" />
+    <Folder Include="Resources\Documents\Editor\C\" />
+    <Folder Include="Resources\Documents\Editor\CPP\" />
+    <Folder Include="Resources\Documents\Editor\TXT\" />
+    <Folder Include="Resources\Documents\Editor\VBA\" />
   </ItemGroup>
 
 </Project>

@@ -145,7 +145,7 @@ namespace Bubba
         /// <summary>
         /// The fore color
         /// </summary>
-        private protected Color TitleColor = new Color( )
+        private protected Color _titleColor = new Color( )
         {
             A = 255,
             R = 106,
@@ -210,14 +210,13 @@ namespace Bubba
             FontSize = 11d;
             Width = 560;
             Height = 250;
-            Margin = new Thickness( 3 );
             Padding = new Thickness( 1 );
             WindowStyle = WindowStyle.None;
             WindowStartupLocation = WindowStartupLocation.CenterScreen;
             HorizontalAlignment = HorizontalAlignment.Stretch;
             VerticalAlignment = VerticalAlignment.Stretch;
             Background = new SolidColorBrush( _backColor );
-            Foreground = new SolidColorBrush( TitleColor );
+            Foreground = new SolidColorBrush( _titleColor );
 
             // Event Wiring
             IsVisibleChanged += OnVisibleChanged;

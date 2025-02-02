@@ -81,6 +81,15 @@
                 </wpf:MenuItemAdv.Icon>
             </wpf:MenuItemAdv>
 
+            <wpf:MenuItemAdv
+                Click="OnGuidanceOptionClick"
+                Header="Guidance"
+                ToolTip="Federal Regulations">
+                <wpf:MenuItemAdv.Icon>
+                    <Image Source="/Resources/Assets/MenuImages/DocumentaionItem.png" />
+                </wpf:MenuItemAdv.Icon>
+            </wpf:MenuItemAdv>
+
 
             <Separator Background="{StaticResource BlueBorderBrush}" />
 
@@ -248,6 +257,7 @@
                     Background="{StaticResource ControlInteriorBrush}"
                     BorderBrush="{StaticResource BlueBorderBrush}"
                     BorderThickness="2"
+                    FontFamily="Roboto"
                     Foreground="{StaticResource FormForeground}"
                     ToolTip="Select GPT Task">
 
@@ -256,7 +266,7 @@
                         Padding="10,1,4,2"
                         Content="Completion Request"
                         FontFamily="Roboto"
-                        Tag="CompletionRequest"
+                        Tag="ChatCompletion"
                         ToolTip="Chat Completion" />
 
                     <ComboBoxItem
@@ -1001,10 +1011,10 @@
                             Background="{StaticResource FormBackground}">
 
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="197*" />
-                                <ColumnDefinition Width="470*" />
-                                <ColumnDefinition Width="530*" />
-                                <ColumnDefinition Width="12*" />
+                                <ColumnDefinition Width="174*" />
+                                <ColumnDefinition Width="502*" />
+                                <ColumnDefinition Width="543*" />
+                                <ColumnDefinition Width="6*" />
                             </Grid.ColumnDefinitions>
                             <Grid>
                                 <Grid.RowDefinitions>
@@ -1013,9 +1023,9 @@
                                 </Grid.RowDefinitions>
 
                                 <ComboBox
-                                    Grid.Row="0"
                                     x:Name="LanguageComboBox"
-                                    Margin="10,10,10,10"
+                                    Grid.Row="0"
+                                    Margin="25,10,25,10"
                                     Padding="20,1,1,1"
                                     HorizontalContentAlignment="Center"
                                     Background="{DynamicResource ControlInteriorBrush}"
@@ -1027,35 +1037,38 @@
                                     SnapsToDevicePixels="True">
                                     <ComboBoxItem
                                         Content="Text"
-                                        Tag=".txt" />
+                                        Tag="TXT" />
                                     <ComboBoxItem
                                         Content="SQL"
-                                        Tag=".sql" />
+                                        Tag="SQL" />
                                     <ComboBoxItem
                                         Content="C"
-                                        Tag=".c" />
+                                        Tag="C" />
                                     <ComboBoxItem
                                         Content="C++"
-                                        Tag=".cpp" />
+                                        Tag="CPP" />
                                     <ComboBoxItem
                                         Content="C#"
-                                        Tag=".cs" />
+                                        Tag="CS" />
                                     <ComboBoxItem
                                         Content="Python"
-                                        Tag=".py" />
+                                        Tag="PY" />
                                     <ComboBoxItem
                                         Content="JavaScript"
-                                        Tag=".js" />
+                                        Tag="JS" />
                                     <ComboBoxItem
                                         Content="VBA"
-                                        Tag=".cls" />
+                                        Tag="VBA" />
                                 </ComboBox>
 
                                 <b:MetroListBox
                                     x:Name="LanguageListBox"
                                     Grid.Row="1"
-                                    Width="180" 
-                                    Margin="10,10,10,0" Height="207" VerticalAlignment="Top"/>
+                                    Width="122"
+                                    Height="190"
+                                    Margin="0,21,0,0"
+                                    HorizontalAlignment="Center"
+                                    VerticalAlignment="Top" />
 
                             </Grid>
 
@@ -1065,9 +1078,9 @@
 
                                 <b:MetroEditor
                                     x:Name="ChatEditor"
-                                    Canvas.Left="20"
+                                    Canvas.Left="10"
                                     Canvas.Top="10"
-                                    Width="983"
+                                    Width="1025"
                                     Height="270"
                                     MaxWidth="1030"
                                     Padding="20,20,5,5"

@@ -431,6 +431,7 @@ namespace Bubba
                 LoadGptFileDialog( );
                 LoadCalculator( );
                 LoadSystemDialog( );
+                LoadDocumentWindow( );
             }
             catch( Exception ex )
             {
@@ -820,7 +821,7 @@ namespace Bubba
         /// <summary>
         /// Clears the labels.
         /// </summary>
-        private void ClearLabels()
+        private void ClearLabels( )
         {
             try
             {
@@ -1145,7 +1146,7 @@ namespace Bubba
                     {
                         PopulateCompletionModels( );
                         _endpoint = GptEndPoint.Assistants;
-                        RequestLabel.Content = "Assistant API";
+                        RequestLabel.Content = "GPT - Assistant API";
                         TabControl.SelectedIndex = 1;
                         break;
                     }
@@ -1161,7 +1162,7 @@ namespace Bubba
                     {
                         PopulateTextModels( );
                         _endpoint = GptEndPoint.TextGeneration;
-                        RequestLabel.Content = "Text Generation";
+                        RequestLabel.Content = "GPT - Text Generation";
                         TabControl.SelectedIndex = 1;
                         break;
                     }
@@ -1169,7 +1170,7 @@ namespace Bubba
                     {
                         PopulateImageModels( );
                         _endpoint = GptEndPoint.ImageGeneration;
-                        RequestLabel.Content = "Image Generation";
+                        RequestLabel.Content = "GPT - Image Generation";
                         TabControl.SelectedIndex = 1;
                         break;
                     }
@@ -1177,7 +1178,7 @@ namespace Bubba
                     {
                         PopulateTranslationModels( );
                         PopulateOpenAiVoices( );
-                        RequestLabel.Content = "Translation API";
+                        RequestLabel.Content = "GPT - Translation API";
                         _endpoint = GptEndPoint.Translations;
                         TabControl.SelectedIndex = 1;
                         break;
@@ -1185,7 +1186,7 @@ namespace Bubba
                     case GptRequests.Embeddings:
                     {
                         PopulateEmbeddingModels( );
-                        RequestLabel.Content = "Embeddings API";
+                        RequestLabel.Content = "GPT - Embeddings API";
                         _endpoint = GptEndPoint.Embeddings;
                         TabControl.SelectedIndex = 1;
                         break;
@@ -1194,7 +1195,7 @@ namespace Bubba
                     {
                         PopulateTranscriptionModels( );
                         PopulateOpenAiVoices( );
-                        RequestLabel.Content = "Transcription (Speech To Text)";
+                        RequestLabel.Content = "GPT - Transcription (Speech To Text)";
                         _endpoint = GptEndPoint.Transcriptions;
                         TabControl.SelectedIndex = 1;
                         break;
@@ -1202,7 +1203,7 @@ namespace Bubba
                     case GptRequests.VectorStores:
                     {
                         PopulateVectorStoreModels( );
-                        RequestLabel.Content = "Vector Stores API";
+                        RequestLabel.Content = "GPT - Vector Stores API";
                         _endpoint = GptEndPoint.VectorStores;
                         TabControl.SelectedIndex = 1;
                         break;
@@ -1211,7 +1212,7 @@ namespace Bubba
                     {
                         PopulateSpeechModels( );
                         PopulateOpenAiVoices( );
-                        RequestLabel.Content = "Speech Generation (Text To Speech)";
+                        RequestLabel.Content = "GPT - Speech Generation (Text To Speech)";
                         _endpoint = GptEndPoint.SpeechGeneration;
                         TabControl.SelectedIndex = 1;
                         break;
@@ -1219,7 +1220,7 @@ namespace Bubba
                     case GptRequests.FineTuning:
                     {
                         PopulateFineTuningModels( );
-                        RequestLabel.Content = "Fine-Tuning API";
+                        RequestLabel.Content = "GPT - Fine-Tuning API";
                         _endpoint = GptEndPoint.FineTuning;
                         TabControl.SelectedIndex = 1;
                         break;
@@ -1227,7 +1228,7 @@ namespace Bubba
                     case GptRequests.Files:
                     {
                         PopulateFileApiModels( );
-                        RequestLabel.Content = "Files API";
+                        RequestLabel.Content = "GPT - Files API";
                         _endpoint = GptEndPoint.Files;
                         TabControl.SelectedIndex = 1;
                         break;
@@ -1235,7 +1236,7 @@ namespace Bubba
                     case GptRequests.Uploads:
                     {
                         PopulateUploadApiModels( );
-                        RequestLabel.Content = "Uploads API";
+                        RequestLabel.Content = "GPT - Uploads API";
                         _endpoint = GptEndPoint.Uploads;
                         TabControl.SelectedIndex = 1;
                         break;
@@ -1243,7 +1244,7 @@ namespace Bubba
                     case GptRequests.Projects:
                     {
                         PopulateTextModels( );
-                        RequestLabel.Content = "Projects API";
+                        RequestLabel.Content = "GPT - Projects API";
                         _endpoint = GptEndPoint.Projects;
                         TabControl.SelectedIndex = 1;
                         break;
@@ -1251,7 +1252,7 @@ namespace Bubba
                     default:
                     {
                         PopulateModelsAsync( );
-                        RequestLabel.Content = "Chat Completions";
+                        RequestLabel.Content = "GPT - Chat Completion";
                         _endpoint = GptEndPoint.Completions;
                         TabControl.SelectedIndex = 1;
                         break;
@@ -1319,7 +1320,7 @@ namespace Bubba
         /// <summary>
         /// Sets the user document language.
         /// </summary>
-        private protected void SetUserDocumentLanguage( )
+        private protected void SetEditorLanguage( )
         {
             try
             {
@@ -1329,25 +1330,25 @@ namespace Bubba
                     ChatEditor.Text = "";
                     switch( _language )
                     {
-                        case "Text":
+                        case "TXT":
                         {
-                            var _path = _prefix + @"Resources\Documents\Editor\Stubs\Text.txt";
+                            var _path = _prefix + @"Resources\Documents\Editor\TXT\Text.txt";
                             TabControl.SelectedIndex = 0;
                             ChatEditor.DocumentLanguage = Languages.Text;
                             ChatEditor.DocumentSource = _path;
                             break;
                         }
-                        case "C#":
+                        case "CS":
                         {
-                            var _path = _prefix + @"Resources\Documents\Editor\Stubs\CSharp.txt";
+                            var _path = _prefix + @"Resources\Documents\Editor\CS\CSharp.txt";
                             TabControl.SelectedIndex = 0;
                             ChatEditor.DocumentLanguage = Languages.CSharp;
                             ChatEditor.DocumentSource = _path;
                             break;
                         }
-                        case "Python":
+                        case "PY":
                         {
-                            var _path = _prefix + @"Resources\Documents\Editor\Stubs\Python.txt";
+                            var _path = _prefix + @"Resources\Documents\Editor\PY\Python.txt";
                             TabControl.SelectedIndex = 0;
                             ChatEditor.DocumentLanguage = Languages.Text;
                             ChatEditor.DocumentSource = _path;
@@ -1355,33 +1356,33 @@ namespace Bubba
                         }
                         case "SQL":
                         {
-                            var _path = _prefix + @"Resources\Documents\Editor\Stubs\SQL.txt";
+                            var _path = _prefix + @"Resources\Documents\Editor\SQL\SQL.txt";
                             TabControl.SelectedIndex = 0;
                             ChatEditor.DocumentLanguage = Languages.SQL;
                             ChatEditor.DocumentSource = _path;
                             break;
                         }
-                        case "JavaScript":
+                        case "JS":
                         {
                             var _path = _prefix
-                                + @"Resources\Documents\Editor\Stubs\JavaScript.txt";
+                                + @"Resources\Documents\Editor\JS\JavaScript.txt";
 
                             TabControl.SelectedIndex = 0;
                             ChatEditor.DocumentLanguage = Languages.JScript;
                             ChatEditor.DocumentSource = _path;
                             break;
                         }
-                        case "C/C++":
+                        case "CPP":
                         {
-                            var _path = _prefix + @"Resources\Documents\Editor\Stubs\C.txt";
+                            var _path = _prefix + @"Resources\Documents\Editor\CPP\C.txt";
                             TabControl.SelectedIndex = 0;
                             ChatEditor.DocumentLanguage = Languages.C;
                             ChatEditor.DocumentSource = _path;
                             break;
                         }
-                        case "VB/VBA":
+                        case "VBA":
                         {
-                            var _path = _prefix + @"Resources\Documents\Editor\Stubs\VBA.txt";
+                            var _path = _prefix + @"Resources\Documents\Editor\VBA\VBA.txt";
                             TabControl.SelectedIndex = 0;
                             ChatEditor.DocumentLanguage = Languages.VisualBasic;
                             ChatEditor.DocumentSource = _path;
@@ -1389,7 +1390,7 @@ namespace Bubba
                         }
                         default:
                         {
-                            var _path = _prefix + @"Resources\Documents\Editor\Stubs\Text.txt";
+                            var _path = _prefix + @"Resources\Documents\Editor\TXT\Text.txt";
                             TabControl.SelectedIndex = 0;
                             ChatEditor.DocumentLanguage = Languages.Text;
                             ChatEditor.DocumentSource = _path;
@@ -2397,15 +2398,6 @@ namespace Bubba
         {
             try
             {
-                LanguageListBox.Items?.Clear( );
-                LanguageListBox.Items.Add( "Text" );
-                LanguageListBox.Items.Add( "Python" );
-                LanguageListBox.Items.Add( "SQL" );
-                LanguageListBox.Items.Add( "JavaScript" );
-                LanguageListBox.Items.Add( "C" );
-                LanguageListBox.Items.Add( "C Plus" );
-                LanguageListBox.Items.Add( "C Sharp" );
-                LanguageListBox.Items.Add( "VBA" );
             }
             catch( Exception ex )
             {
@@ -3026,6 +3018,25 @@ namespace Bubba
         }
 
         /// <summary>
+        /// Called when [guidance option click].
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The <see cref="RoutedEventArgs"/> instance containing the event data.</param>
+        private void OnGuidanceOptionClick( object sender, RoutedEventArgs e )
+        {
+            try
+            {
+                Busy( );
+                OpenDocumentWindow( );
+                Chill( );
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+            }
+        }
+
+        /// <summary>
         /// Called when [first button click].
         /// </summary>
         /// <param name="sender">The sender.</param>
@@ -3446,10 +3457,12 @@ namespace Bubba
         {
             try
             {
-                if( LanguageListBox.SelectedIndex != -1 )
+                if( LanguageComboBox.SelectedIndex != -1 )
                 {
-                    _language = LanguageListBox.SelectedItem.ToString( );
-                    SetUserDocumentLanguage( );
+                    _language = 
+                        ( (ComboBoxItem)LanguageComboBox.SelectedItem )?.Tag?.ToString( );
+
+                    SetEditorLanguage( );
                 }
             }
             catch( Exception ex )
