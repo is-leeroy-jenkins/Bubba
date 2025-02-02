@@ -295,7 +295,7 @@ namespace Bubba
             InitializeComponent( );
             RegisterCallbacks( );
             InitializeDelegates( );
-            InitializeToolStrip();
+            InitializeToolStrip( );
 
             // Control Properties
             ChatRadioButton.IsChecked = true;
@@ -337,7 +337,7 @@ namespace Bubba
         /// <summary>
         /// Initializes the label.
         /// </summary>
-        private void InitializeLabel( )
+        private void InitializeLabels( )
         {
             try
             {
@@ -1145,7 +1145,7 @@ namespace Bubba
                     {
                         PopulateCompletionModels( );
                         _endpoint = GptEndPoint.Assistants;
-                        RequestLabel.Content = "GPT Request - Assistant API";
+                        RequestLabel.Content = "Assistant API";
                         TabControl.SelectedIndex = 1;
                         break;
                     }
@@ -1153,7 +1153,7 @@ namespace Bubba
                     {
                         PopulateCompletionModels( );
                         _endpoint = GptEndPoint.Completions;
-                        RequestLabel.Content = "GPT Request - Chat Completion";
+                        RequestLabel.Content = "Chat Completion";
                         TabControl.SelectedIndex = 1;
                         break;
                     }
@@ -1161,7 +1161,7 @@ namespace Bubba
                     {
                         PopulateTextModels( );
                         _endpoint = GptEndPoint.TextGeneration;
-                        RequestLabel.Content = "GPT Request - Text Generation";
+                        RequestLabel.Content = "Text Generation";
                         TabControl.SelectedIndex = 1;
                         break;
                     }
@@ -1169,7 +1169,7 @@ namespace Bubba
                     {
                         PopulateImageModels( );
                         _endpoint = GptEndPoint.ImageGeneration;
-                        RequestLabel.Content = "GPT Request - Image Generation";
+                        RequestLabel.Content = "Image Generation";
                         TabControl.SelectedIndex = 1;
                         break;
                     }
@@ -1177,7 +1177,7 @@ namespace Bubba
                     {
                         PopulateTranslationModels( );
                         PopulateOpenAiVoices( );
-                        RequestLabel.Content = "GPT Request - Translation API";
+                        RequestLabel.Content = "Translation API";
                         _endpoint = GptEndPoint.Translations;
                         TabControl.SelectedIndex = 1;
                         break;
@@ -1185,7 +1185,7 @@ namespace Bubba
                     case GptRequests.Embeddings:
                     {
                         PopulateEmbeddingModels( );
-                        RequestLabel.Content = "GPT Request - Embeddings API";
+                        RequestLabel.Content = "Embeddings API";
                         _endpoint = GptEndPoint.Embeddings;
                         TabControl.SelectedIndex = 1;
                         break;
@@ -1194,7 +1194,7 @@ namespace Bubba
                     {
                         PopulateTranscriptionModels( );
                         PopulateOpenAiVoices( );
-                        RequestLabel.Content = "GPT Request - Transcription (Speech To Text)";
+                        RequestLabel.Content = "Transcription (Speech To Text)";
                         _endpoint = GptEndPoint.Transcriptions;
                         TabControl.SelectedIndex = 1;
                         break;
@@ -1202,7 +1202,7 @@ namespace Bubba
                     case GptRequests.VectorStores:
                     {
                         PopulateVectorStoreModels( );
-                        RequestLabel.Content = "GPT Request - Vector Stores API";
+                        RequestLabel.Content = "Vector Stores API";
                         _endpoint = GptEndPoint.VectorStores;
                         TabControl.SelectedIndex = 1;
                         break;
@@ -1211,7 +1211,7 @@ namespace Bubba
                     {
                         PopulateSpeechModels( );
                         PopulateOpenAiVoices( );
-                        RequestLabel.Content = "GPT Request - Speech Generation (Text To Speech)";
+                        RequestLabel.Content = "Speech Generation (Text To Speech)";
                         _endpoint = GptEndPoint.SpeechGeneration;
                         TabControl.SelectedIndex = 1;
                         break;
@@ -1219,7 +1219,7 @@ namespace Bubba
                     case GptRequests.FineTuning:
                     {
                         PopulateFineTuningModels( );
-                        RequestLabel.Content = "GPT Request - Fine-Tuning API";
+                        RequestLabel.Content = "Fine-Tuning API";
                         _endpoint = GptEndPoint.FineTuning;
                         TabControl.SelectedIndex = 1;
                         break;
@@ -1227,7 +1227,7 @@ namespace Bubba
                     case GptRequests.Files:
                     {
                         PopulateFileApiModels( );
-                        RequestLabel.Content = "GPT Request - Files API";
+                        RequestLabel.Content = "Files API";
                         _endpoint = GptEndPoint.Files;
                         TabControl.SelectedIndex = 1;
                         break;
@@ -1235,7 +1235,7 @@ namespace Bubba
                     case GptRequests.Uploads:
                     {
                         PopulateUploadApiModels( );
-                        RequestLabel.Content = "GPT Request - Uploads API";
+                        RequestLabel.Content = "Uploads API";
                         _endpoint = GptEndPoint.Uploads;
                         TabControl.SelectedIndex = 1;
                         break;
@@ -1243,7 +1243,7 @@ namespace Bubba
                     case GptRequests.Projects:
                     {
                         PopulateTextModels( );
-                        RequestLabel.Content = "GPT Request - Projects API";
+                        RequestLabel.Content = "Projects API";
                         _endpoint = GptEndPoint.Projects;
                         TabControl.SelectedIndex = 1;
                         break;
@@ -1251,7 +1251,7 @@ namespace Bubba
                     default:
                     {
                         PopulateModelsAsync( );
-                        RequestLabel.Content = "GPT Request - Chat Completions";
+                        RequestLabel.Content = "Chat Completions";
                         _endpoint = GptEndPoint.Completions;
                         TabControl.SelectedIndex = 1;
                         break;
@@ -2596,7 +2596,7 @@ namespace Bubba
             {
                 InitializeTimer( );
                 InitializeToolStrip( );
-                InitializeLabel( );
+                InitializeLabels( );
                 PopulateModelsAsync( );
                 PopulateLanguageListBox( );
                 PopulateInstalledVoices( );
@@ -3543,8 +3543,6 @@ namespace Bubba
                 {
                     var _image = ImageSizeComboBox.SelectedValue.ToString( );
                     _size = _image?.Replace( " ", "" );
-                    var _message = "Image Size Select - " + _size;
-                    SendNotification( _message );
                 }
             }
             catch( Exception ex )
@@ -3567,6 +3565,11 @@ namespace Bubba
                 _keyWords = ToolStripTextBox.InputText;
                 if( !string.IsNullOrEmpty( _keyWords ) )
                 {
+                    var _message = "The search keywords are empty!";
+                    SendMessage( _message );
+                }
+                else
+                {
                     Busy( );
                     var _googleSearch = new GoogleSearch( _keyWords );
                     var _results = _googleSearch.GetResults( );
@@ -3576,6 +3579,7 @@ namespace Bubba
                     }
 
                     ChatEditor.Text = _item;
+                    Chill( );
                 }
             }
             catch( Exception ex )

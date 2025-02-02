@@ -272,9 +272,9 @@ namespace Bubba
                 ToolStripRefreshButton.Click += OnRefreshButtonClick;
                 ToolStripBrowseButton.Click += OnMenuButtonClick;
                 ToolStripToggleButton.Click += OnToggleButtonClick;
-                DocumentListBox.SelectionChanged += OnListBoxSelected;
+                DocumentListBox.SelectionChanged += OnListBoxItemSelected;
                 ToolStripBrowseButton.Click += OnBrowseButtonClick;
-                ExplanatoryStatementsRadioButton.Click += OnRadioButtonSelected;
+                ExplanatoryStatementRadioButton.Click += OnRadioButtonSelected;
                 PublicLawsRadioButton.Click += OnRadioButtonSelected;
                 FederalRegulationsRadioButton.Click += OnRadioButtonSelected;
             }
@@ -520,9 +520,9 @@ namespace Bubba
                 ToolStripRefreshButton.Click -= OnRefreshButtonClick;
                 ToolStripBrowseButton.Click -= OnMenuButtonClick;
                 ToolStripToggleButton.Click -= OnToggleButtonClick;
-                DocumentListBox.SelectionChanged -= OnListBoxSelected;
+                DocumentListBox.SelectionChanged -= OnListBoxItemSelected;
                 ToolStripBrowseButton.Click -= OnBrowseButtonClick;
-                ExplanatoryStatementsRadioButton.Click -= OnRadioButtonSelected;
+                ExplanatoryStatementRadioButton.Click -= OnRadioButtonSelected;
                 PublicLawsRadioButton.Click -= OnRadioButtonSelected;
                 FederalRegulationsRadioButton.Click -= OnRadioButtonSelected;
             }
@@ -571,7 +571,7 @@ namespace Bubba
             try
             {
                 _prefix = Locations.PathPrefix;
-                var _folder = Locations.PublicLaws;
+                var _folder = Locations.Appropriations;
                 var _documentPaths = new Dictionary<string, string>( );
                 var _dirPath = _prefix + _folder;
                 var _files = Directory.EnumerateFiles( _dirPath );
@@ -601,7 +601,7 @@ namespace Bubba
             try
             {
                 _prefix = Locations.PathPrefix;
-                var _folder = Locations.FederalRegulations;
+                var _folder = Locations.Regulations;
                 var _documentPaths = new Dictionary<string, string>( );
                 var _directory = _prefix + _folder;
                 var _files = Directory.EnumerateFiles( _directory );
@@ -870,7 +870,13 @@ namespace Bubba
                 DocumentListBox.Items.Clear( );
                 foreach( var _kvp in _publicLaws )
                 {
-                    DocumentListBox.Items.Add( _kvp.Key );
+                    var _item = new MetroListBoxItem
+                    {
+                        Content = _kvp.Key,
+                        Tag = _kvp.Value
+                    };
+
+                    DocumentListBox.Items.Add( _item );
                 }
             }
             catch( Exception ex )
@@ -1414,7 +1420,7 @@ namespace Bubba
         /// <param name="sender">The sender.</param>
         /// <param name="e">The <see cref="EventArgs"/>
         /// instance containing the event data.</param>
-        private void OnListBoxSelected( object sender, RoutedEventArgs e )
+        private void OnListBoxItemSelected( object sender, RoutedEventArgs e )
         {
             try
             {
@@ -1423,7 +1429,7 @@ namespace Bubba
                 var _content = _item?.Content.ToString( );
                 var _pathPrefix = Locations.PathPrefix;
                 var _folder = Locations.Documents;
-                _selectedPath = _pathPrefix + _folder + _content + ".pdf";
+                _selectedPath = _pathPrefix + _folder + _content + ".txt";
                 PdfViewer.Load( _selectedPath );
             }
             catch( Exception ex )
@@ -1436,18 +1442,19 @@ namespace Bubba
         /// Called when [ComboBox item selected].
         /// </summary>
         /// <param name="sender">The sender.</param>
-        /// <param name="e">The <see cref="RoutedEventArgs"/>
+        /// <param name="e">The <see cref="RoutedEventArgs" />
         /// instance containing the event data.</param>
         private void OnRadioButtonSelected( object sender, RoutedEventArgs e )
         {
             try
             {
-                if( sender is ComboBox _comboBox )
+                if( sender is RadioButton _radioButton 
+                    && _radioButton.IsChecked == true )
                 {
-                    var _item = _comboBox.SelectedItem?.ToString( );
+                    var _item = _radioButton?.Tag?.ToString( );
                     switch( _item )
                     {
-                        case "PublicLaws":
+                        case "Appropriations":
                         {
                             PopulatePublicLaws( );
                             break;
@@ -1457,7 +1464,7 @@ namespace Bubba
                             PopulateExplanatoryStatements( );
                             break;
                         }
-                        case "FederalRegulations":
+                        case "Regulations":
                         {
                             PopulateFederalRegulations( );
                             break;

@@ -23,7 +23,7 @@
     BorderThickness="2"
     FontSize="12"
     Foreground="{StaticResource LightBlueBrush}"
-    Icon="/Resources/Assets/ApplicationImages/Bubba.ico"
+    Icon="/Resources/Assets/ApplicationImages/Bubba.png"
     WindowStartupLocation="CenterScreen"
     mc:Ignorable="d">
 
@@ -253,9 +253,9 @@
 
                 <b:ToolStripButton
                     x:Name="ToolStripBrowseButton"
-                    Margin="5,1,5,1"
-                    Height="30"
                     Width="40"
+                    Height="30"
+                    Margin="5,1,5,1"
                     ImageSource="/Resources/Assets/ToolStripImages/BrowseButton.png"
                     ToolTip="Search File  System" />
 
@@ -287,7 +287,7 @@
 
             <Canvas Grid.Column="1" />
 
-            <pdf:PdfViewerControl 
+            <pdf:PdfViewerControl
                 x:Name="PdfViewer"
                 Grid.Column="0"
                 Width="845"
@@ -314,53 +314,52 @@
 
             <Grid Grid.Column="1">
                 <Grid.RowDefinitions>
+                    <RowDefinition Height="46" />
                     <RowDefinition Height="35" />
                     <RowDefinition Height="35" />
-                    <RowDefinition Height="35" />
-                    <RowDefinition Height="625*" />
+                    <RowDefinition />
                 </Grid.RowDefinitions>
 
                 <RadioButton
                     x:Name="PublicLawsRadioButton"
-                    Grid.Row="0"
-                    Margin="30,1,10,1"
+                    Margin="30,10,10,0"
                     Padding="15,1,1,1"
-                    Content="Appropriation Bills"
+                    Content="Appropriations"
                     FontFamily="Roboto"
                     FontSize="14"
                     Foreground="{DynamicResource BlueBorderBrush}"
-                    Tag="PublicLaws" />
+                    Tag="Appropriations" />
 
                 <RadioButton
-                    x:Name="ExplanatoryStatementsRadioButton"
+                    x:Name="ExplanatoryStatementRadioButton"
                     Grid.Row="1"
                     Margin="30,1,10,1"
                     Padding="15,1,1,1"
-                    Content="Committee Reports"
+                    Content="Regulations"
                     FontFamily="Roboto"
                     FontSize="14"
                     Foreground="{DynamicResource BlueBorderBrush}"
-                    Tag="ExplanatoryStatements" />
+                    Tag="Regulations" />
 
                 <RadioButton
                     x:Name="FederalRegulationsRadioButton"
                     Grid.Row="2"
                     Margin="30,0,10,1"
                     Padding="15,1,1,1"
-                    Content="Federal Regulations"
+                    Content="Explanatory Statements"
                     FontFamily="Roboto"
                     FontSize="14"
                     Foreground="{DynamicResource BlueBorderBrush}"
-                    Tag="FederalRegulations" />
+                    Tag="ExplanatoryStatements" />
                 <Canvas Grid.Row="3">
                     <b:MetroListBox
                         x:Name="DocumentListBox"
                         Canvas.Left="23"
-                        Canvas.Top="21"
+                        Canvas.Top="10"
                         Width="202"
                         Height="570"
-                        HorizontalAlignment="Center"
-                        VerticalAlignment="Center"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Top"
                         HorizontalContentAlignment="Left"
                         Panel.ZIndex="4"
                         Background="{StaticResource ControlBackground}"

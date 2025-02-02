@@ -777,4 +777,8 @@
     <PackageReference Update="chromiumembeddedframework.runtime.win-x86" Version="131.3.5" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Resources\Documents\" />
+  </ItemGroup>
+
 </Project>

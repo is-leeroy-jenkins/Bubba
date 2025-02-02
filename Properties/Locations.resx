@@ -210,11 +210,11 @@
   <data name="ExplanatoryStatements" xml:space="preserve">
     <value>Resources\Documents\ExplanatoryStatements\</value>
   </data>
-  <data name="FederalRegulations" xml:space="preserve">
-    <value>Resources\Documents\FederalRegulations\</value>
+  <data name="Regulations" xml:space="preserve">
+    <value>Resources\Documents\Regulations\</value>
   </data>
-  <data name="PublicLaws" xml:space="preserve">
-    <value>Resources\Documents\PublicLaws\</value>
+  <data name="Appropriations" xml:space="preserve">
+    <value>Resources\Documents\Appropriations\</value>
   </data>
   <data name="Documents" xml:space="preserve">
     <value>Resources\Documents\</value>

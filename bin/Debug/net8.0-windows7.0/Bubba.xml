@@ -29609,6 +29609,11 @@
               Looks up a localized string similar to true.
             </summary>
         </member>
+        <member name="P:Bubba.Properties.Locations.Appropriations">
+            <summary>
+              Looks up a localized string similar to Resources\Documents\Appropriations\.
+            </summary>
+        </member>
         <member name="P:Bubba.Properties.Locations.Branding">
             <summary>
               Looks up a localized string similar to Bubba Browser.
@@ -29657,11 +29662,6 @@
         <member name="P:Bubba.Properties.Locations.ExplanatoryStatements">
             <summary>
               Looks up a localized string similar to Resources\Documents\ExplanatoryStatements\.
-            </summary>
-        </member>
-        <member name="P:Bubba.Properties.Locations.FederalRegulations">
-            <summary>
-              Looks up a localized string similar to Resources\Documents\FederalRegulations\.
             </summary>
         </member>
         <member name="P:Bubba.Properties.Locations.FileNotFound">
@@ -29739,9 +29739,9 @@
               Looks up a localized string similar to teppler.
             </summary>
         </member>
-        <member name="P:Bubba.Properties.Locations.PublicLaws">
+        <member name="P:Bubba.Properties.Locations.Regulations">
             <summary>
-              Looks up a localized string similar to Resources\Documents\PublicLaws\.
+              Looks up a localized string similar to Resources\Documents\Regulations\.
             </summary>
         </member>
         <member name="P:Bubba.Properties.Locations.Reports">
@@ -36562,7 +36562,7 @@
             <param name="e">The <see cref="T:System.Windows.RoutedEventArgs"/>
             instance containing the event data.</param>
         </member>
-        <member name="M:Bubba.DocumentWindow.OnListBoxSelected(System.Object,System.Windows.RoutedEventArgs)">
+        <member name="M:Bubba.DocumentWindow.OnListBoxItemSelected(System.Object,System.Windows.RoutedEventArgs)">
             <summary>
             Called when [document selected].
             </summary>
@@ -36575,7 +36575,7 @@
             Called when [ComboBox item selected].
             </summary>
             <param name="sender">The sender.</param>
-            <param name="e">The <see cref="T:System.Windows.RoutedEventArgs"/>
+            <param name="e">The <see cref="T:System.Windows.RoutedEventArgs" />
             instance containing the event data.</param>
         </member>
         <member name="M:Bubba.DocumentWindow.Dispose(System.Boolean)">
@@ -40123,36 +40123,6 @@
         <member name="M:Bubba.WebBrowser.InitializeComponent">
             <summary>
             InitializeComponent
-            </summary>
-        </member>
-        <member name="T:XamlGeneratedNamespace.GeneratedInternalTypeHelper">
-            <summary>
-            GeneratedInternalTypeHelper
-            </summary>
-        </member>
-        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.CreateInstance(System.Type,System.Globalization.CultureInfo)">
-            <summary>
-            CreateInstance
-            </summary>
-        </member>
-        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.GetPropertyValue(System.Reflection.PropertyInfo,System.Object,System.Globalization.CultureInfo)">
-            <summary>
-            GetPropertyValue
-            </summary>
-        </member>
-        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.SetPropertyValue(System.Reflection.PropertyInfo,System.Object,System.Object,System.Globalization.CultureInfo)">
-            <summary>
-            SetPropertyValue
-            </summary>
-        </member>
-        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.CreateDelegate(System.Type,System.Object,System.String)">
-            <summary>
-            CreateDelegate
-            </summary>
-        </member>
-        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.AddEventHandler(System.Reflection.EventInfo,System.Object,System.Delegate)">
-            <summary>
-            AddEventHandler
             </summary>
         </member>
     </members>

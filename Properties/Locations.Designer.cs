@@ -79,6 +79,15 @@ namespace Bubba.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Resources\Documents\Appropriations\.
+        /// </summary>
+        internal static string Appropriations {
+            get {
+                return ResourceManager.GetString("Appropriations", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Bubba Browser.
         /// </summary>
         internal static string Branding {
@@ -165,15 +174,6 @@ namespace Bubba.Properties {
         internal static string ExplanatoryStatements {
             get {
                 return ResourceManager.GetString("ExplanatoryStatements", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Resources\Documents\FederalRegulations\.
-        /// </summary>
-        internal static string FederalRegulations {
-            get {
-                return ResourceManager.GetString("FederalRegulations", resourceCulture);
             }
         }
         
@@ -313,11 +313,11 @@ namespace Bubba.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Resources\Documents\PublicLaws\.
+        ///   Looks up a localized string similar to Resources\Documents\Regulations\.
         /// </summary>
-        internal static string PublicLaws {
+        internal static string Regulations {
             get {
-                return ResourceManager.GetString("PublicLaws", resourceCulture);
+                return ResourceManager.GetString("Regulations", resourceCulture);
             }
         }
         
