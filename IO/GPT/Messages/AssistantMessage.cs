@@ -67,7 +67,7 @@ namespace Bubba
         /// <summary>
         /// The system prompt
         /// </summary>
-        private protected string _systemPrompt;
+        private protected string _assistantPrompt;
 
         /// <summary>
         /// Initializes a new instance of the
@@ -77,6 +77,7 @@ namespace Bubba
         {
             _role = "assistant";
             _data = new Dictionary<string, object>( );
+            _content = new Dictionary<string, string>( );
         }
 
         /// <inheritdoc />
@@ -88,7 +89,9 @@ namespace Bubba
         public AssistantMessage( string prompt )
         {
             _role = "assistant";
-            _content = prompt;
+            _assistantPrompt = prompt;
+            _content.Add( "type", "text" );
+            _content.Add( "text", prompt );
         }
 
         /// <summary>
@@ -98,6 +101,7 @@ namespace Bubba
         /// <param name="message">The message.</param>
         public AssistantMessage( AssistantMessage message )
         {
+            _assistantPrompt = message.ToString( );
             _role = message.Role;
             _content = message.Content;
         }
@@ -107,7 +111,7 @@ namespace Bubba
         /// </summary>
         /// <param name="role">The role.</param>
         /// <param name="content">The content.</param>
-        public void Deconstruct( out string role, out string content )
+        public void Deconstruct( out string role, out IDictionary<string, string> content )
         {
             role = _role;
             content = _content;
@@ -137,7 +141,7 @@ namespace Bubba
         /// The content.
         /// </value>
         [ JsonPropertyName( "content" ) ]
-        public override string Content
+        public override IDictionary<string, string> Content
         {
             get
             {
@@ -167,7 +171,7 @@ namespace Bubba
                     _data.Add( "role", _role );
                 }
 
-                if( !string.IsNullOrEmpty( _content ) )
+                if( _content?.Any( ) == true )
                 {
                     _data.Add( "content", _content );
                 }
@@ -194,9 +198,8 @@ namespace Bubba
         {
             try
             {
-                var _text = JsonSerializer.Serialize( this );
-                return !string.IsNullOrEmpty( _text )
-                    ? _text
+                return !string.IsNullOrEmpty( _assistantPrompt )
+                    ? _assistantPrompt
                     : string.Empty;
             }
             catch( Exception ex )

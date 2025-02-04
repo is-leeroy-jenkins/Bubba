@@ -111,8 +111,6 @@ namespace Bubba
         public FileOptions( )
             : base( )
         {
-            _model = "gpt-4o";
-            _endPoint = GptEndPoint.Files;
             _store = false;
             _stream = true;
             _number = 1;

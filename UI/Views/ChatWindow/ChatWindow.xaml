@@ -62,7 +62,7 @@
     <!--  *********************************************  CONTEXT MENU *************************************  -->
 
     <Window.ContextMenu>
-        <ContextMenu x:Name="BrowserContextMenu">
+        <ContextMenu x:Name="ChatWindowContextMenu">
             <wpf:MenuItemAdv
                 Click="OnFileMenuOptionClick"
                 Header="File"
@@ -792,7 +792,7 @@
                     Content="Mute"
                     FontFamily="Roboto"
                     FontSize="14"
-                    Foreground="{StaticResource BlueBorderBrush}"
+                    Foreground="{StaticResource FormForeground}"
                     ToolTip="Deactivates Text-to-speech (TTS)" />
 
                 <CheckBox
@@ -806,7 +806,7 @@
                     Content="Listen"
                     FontFamily="Roboto"
                     FontSize="14"
-                    Foreground="{StaticResource BlueBorderBrush}"
+                    Foreground="{StaticResource FormForeground}"
                     ToolTip="Transcribes audio" />
 
                 <TextBox
@@ -920,7 +920,7 @@
                             Content="Editor"
                             FontFamily="Roboto"
                             FontSize="14"
-                            Foreground="{StaticResource BlueBorderBrush}"
+                            Foreground="{StaticResource FormForeground}"
                             Tag="Editor" />
 
                         <RadioButton
@@ -930,7 +930,7 @@
                             Content="Chat"
                             FontFamily="Roboto"
                             FontSize="14"
-                            Foreground="{StaticResource BlueBorderBrush}"
+                            Foreground="{StaticResource FormForeground}"
                             Tag="Chat" />
                     </Grid>
                 </GroupBox>
@@ -960,7 +960,7 @@
                             Content="Store"
                             FontFamily="Roboto"
                             FontSize="14"
-                            Foreground="{StaticResource BlueBorderBrush}"
+                            Foreground="{StaticResource FormForeground}"
                             ToolTip="Adds GPT Output to model" />
 
                         <CheckBox
@@ -972,7 +972,7 @@
                             Content="Stream"
                             FontFamily="Roboto"
                             FontSize="14"
-                            Foreground="{StaticResource BlueBorderBrush}"
+                            Foreground="{StaticResource FormForeground}"
                             ToolTip="Return GPT output in chuncks" />
                     </Grid>
                 </GroupBox>
@@ -1419,14 +1419,16 @@
             HorizontalContentAlignment="Left"
             VerticalContentAlignment="Center"
             Content="Generative Pre-Trained Transformer"
-            FontSize="16"
+            FontSize="14"
             Foreground="{StaticResource LightBlueBrush}" />
+        
         <Grid Grid.Row="0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition />
                 <ColumnDefinition />
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
+           
             <Label
                 x:Name="ModelLabel"
                 Grid.Column="1"
@@ -1434,8 +1436,9 @@
                 VerticalContentAlignment="Center"
                 Content=""
                 FontFamily="Roboto"
-                FontSize="16"
+                FontSize="14"
                 Foreground="{DynamicResource FormForeground}" />
+           
             <Label
                 x:Name="UserLabel"
                 Grid.Column="2"

@@ -45,8 +45,6 @@ namespace Bubba
     using System.Diagnostics.CodeAnalysis;
     using System.Windows;
     using System.Windows.Controls;
-    using System.Windows.Input;
-    using System.Windows.Media;
 
     /// <inheritdoc />
     /// <summary>
@@ -78,10 +76,10 @@ namespace Bubba
             Width = 124;
             FontFamily = _theme.FontFamily;
             FontSize = _theme.FontSize;
-            BorderThickness = _theme.BorderThickness;
-            Background = _theme.BorderBrush;
+            BorderThickness = new Thickness( 0 );
+            Background = _theme.TransparentBrush;
             BorderBrush = _theme.TransparentBrush;
-            Foreground = _theme.BorderBrush;
+            Foreground = _theme.FormForeground;
             HorizontalAlignment = HorizontalAlignment.Stretch;
             VerticalAlignment = VerticalAlignment.Stretch;
         }

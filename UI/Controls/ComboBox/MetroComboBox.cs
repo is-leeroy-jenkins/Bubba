@@ -57,7 +57,8 @@ namespace Bubba
     [ SuppressMessage( "ReSharper", "ClassCanBeSealed.Global" ) ]
     [ SuppressMessage( "ReSharper", "MemberCanBeInternal" ) ]
     [ SuppressMessage( "ReSharper", "FieldCanBeMadeReadOnly.Local" ) ]
-    public class MetroComboBox : ComboBoxAdv
+    [ SuppressMessage( "ReSharper", "ClassNeverInstantiated.Global" ) ]
+    public class MetroComboBox : ComboBox
     {
         /// <summary>
         /// The theme
@@ -73,8 +74,6 @@ namespace Bubba
             : base( )
 
         {
-            // Control Properties
-            SetResourceReference( StyleProperty, typeof( ComboBoxAdv ) );
             Width = 100;
             Height = 30;
             FontFamily = _theme.FontFamily;
@@ -96,7 +95,7 @@ namespace Bubba
         {
             try
             {
-                var _item = new MetroComboBoxItem
+                var _item = new ComboBoxItem
                 {
                     Background = _theme.ControlInterior,
                     Foreground = _theme.FormForeground,
@@ -111,6 +110,33 @@ namespace Bubba
             catch( Exception ex )
             {
                 Fail( ex );
+            }
+        }
+
+        /// <summary>
+        /// Creates the item.
+        /// </summary>
+        /// <param name="name">The name.</param>
+        /// <param name="tag">The tag.</param>
+        public void CreateItem( string name, string tag )
+        {
+            try
+            {
+                var _item = new ComboBoxItem
+                {
+                    Background = _theme.ControlInterior,
+                    Foreground = _theme.FormForeground,
+                    BorderBrush = _theme.ControlInterior,
+                    Content = name,
+                    Tag = tag,
+                    Height = 30
+                };
+
+                Items.Add( _item );
+            }
+            catch(Exception ex)
+            {
+                Fail(ex);
             }
         }
 

@@ -83,8 +83,6 @@ namespace Bubba
         public EmbeddingOptions( )
             : base( )
         {
-            _model = "text-embedding-3";
-            _endPoint = GptEndPoint.Embeddings;
             _store = false;
             _stream = true;
             _number = 1;

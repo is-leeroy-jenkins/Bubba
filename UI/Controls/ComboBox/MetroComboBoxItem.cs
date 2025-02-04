@@ -44,6 +44,7 @@ namespace Bubba
     using System;
     using System.Diagnostics.CodeAnalysis;
     using System.Windows;
+    using System.Windows.Controls;
     using Syncfusion.Windows.Tools.Controls;
 
     /// <inheritdoc />
@@ -57,7 +58,7 @@ namespace Bubba
     [ SuppressMessage( "ReSharper", "MemberCanBeInternal" ) ]
     [ SuppressMessage( "ReSharper", "ClassCanBeSealed.Global" ) ]
     [ SuppressMessage( "ReSharper", "MemberCanBeInternal" ) ]
-    public class MetroComboBoxItem : ComboBoxItemAdv
+    public class MetroComboBoxItem : ComboBoxItem
     {
         /// <summary>
         /// The theme
@@ -73,7 +74,7 @@ namespace Bubba
             : base( )
         {
             // Control Properties
-            SetResourceReference( StyleProperty, typeof( ComboBoxItemAdv ) );
+            SetResourceReference( StyleProperty, typeof( ComboBoxItem ) );
             Height = 30;
             Padding = new Thickness( 10, 1, 1, 1 );
             Background = _theme.ControlInterior;
@@ -95,11 +96,12 @@ namespace Bubba
         {
             try
             {
-                if( sender is MetroComboBoxItem _item )
+                if( sender is ComboBoxItem _item )
                 {
                     _item.Foreground = _theme.WhiteForeground;
                     _item.Background = _theme.SteelBlueBrush;
                     _item.BorderBrush = _theme.SteelBlueBrush;
+                    _item.FontWeight = FontWeights.Bold;
                 }
             }
             catch( Exception ex )
@@ -118,11 +120,12 @@ namespace Bubba
         {
             try
             {
-                if( sender is MetroComboBoxItem _item )
+                if( sender is ComboBoxItem _item )
                 {
                     _item.Foreground = _theme.Foreground;
                     _item.Background = _theme.ControlBackground;
                     _item.BorderBrush = _theme.ControlBackground;
+                    _item.FontWeight = FontWeights.Normal;
                 }
             }
             catch( Exception ex )

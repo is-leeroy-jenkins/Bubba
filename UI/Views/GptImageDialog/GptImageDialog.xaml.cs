@@ -187,7 +187,7 @@ namespace Bubba
             RegisterCallbacks( );
 
             // Basic Properties
-            ResizeMode = _theme.SizeMode;
+            ResizeMode = ResizeMode.NoResize;
             FontFamily = _theme.FontFamily;
             FontSize = _theme.FontSize;
             WindowStyle = _theme.WindowStyle;

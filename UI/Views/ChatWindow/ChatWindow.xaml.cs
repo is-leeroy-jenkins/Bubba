@@ -1,10 +1,10 @@
 ﻿// ******************************************************************************************
 //     Assembly:                Bubba
 //     Author:                  Terry D. Eppler
-//     Created:                 02-01-2025
+//     Created:                 02-03-2025
 // 
 //     Last Modified By:        Terry D. Eppler
-//     Last Modified On:        02-01-2025
+//     Last Modified On:        02-03-2025
 // ******************************************************************************************
 // <copyright file="ChatWindow.xaml.cs" company="Terry D. Eppler">
 //    Bubba is a small and simple windows (wpf) application for interacting with the OpenAI API
@@ -90,7 +90,7 @@ namespace Bubba
     [ SuppressMessage( "ReSharper", "UnusedMethodReturnValue.Global" ) ]
     [ SuppressMessage( "ReSharper", "ConvertIfStatementToReturnStatement" ) ]
     [ SuppressMessage( "ReSharper", "UseCollectionExpression" ) ]
-    public partial class ChatWindow : Window, INotifyPropertyChanged
+    public partial class ChatWindow : Window, INotifyPropertyChanged, IDisposable
     {
         /// <summary>
         /// The busy
@@ -632,7 +632,7 @@ namespace Bubba
                 DeleteButton.Click += OnDeleteButtonClick;
                 ClearButton.Click += OnClearButtonClick;
                 SendButton.Click += OnSendButtonClick;
-                LanguageListBox.SelectionChanged += OnSelectedLanguageChanged;
+                LanguageListBox.SelectionChanged += OnLanguageChanged;
                 ListenCheckBox.Checked += OnListenCheckedChanged;
                 MuteCheckBox.Checked += OnMuteCheckedBoxChanged;
                 StoreCheckBox.Checked += OnStoreCheckBoxChecked;
@@ -672,7 +672,7 @@ namespace Bubba
                 DeleteButton.Click -= OnDeleteButtonClick;
                 ClearButton.Click -= OnClearButtonClick;
                 SendButton.Click -= OnSendButtonClick;
-                LanguageListBox.SelectionChanged -= OnSelectedLanguageChanged;
+                LanguageListBox.SelectionChanged -= OnLanguageChanged;
                 ListenCheckBox.Checked -= OnListenCheckedChanged;
                 MuteCheckBox.Checked -= OnMuteCheckedBoxChanged;
                 StoreCheckBox.Checked -= OnStoreCheckBoxChecked;
@@ -830,7 +830,7 @@ namespace Bubba
             }
             catch( Exception ex )
             {
-                Fail(ex);
+                Fail( ex );
             }
         }
 
@@ -1320,7 +1320,7 @@ namespace Bubba
         /// <summary>
         /// Sets the user document language.
         /// </summary>
-        private protected void SetEditorLanguage( )
+        private protected void PopulateDocuments( )
         {
             try
             {
@@ -1332,68 +1332,123 @@ namespace Bubba
                     {
                         case "TXT":
                         {
-                            var _path = _prefix + @"Resources\Documents\Editor\TXT\Text.txt";
+                            var _path = _prefix + @"Resources\Documents\Editor\TXT\";
                             TabControl.SelectedIndex = 0;
                             ChatEditor.DocumentLanguage = Languages.Text;
-                            ChatEditor.DocumentSource = _path;
+                            LanguageListBox.Items?.Clear( );
+                            var _documents = Directory.EnumerateFiles( _path );
+                            foreach( var _file in _documents )
+                            {
+                                var _name = Path.GetFileNameWithoutExtension( _file );
+                                LanguageListBox.Items?.Add( _name );
+                            }
+
                             break;
                         }
                         case "CS":
                         {
-                            var _path = _prefix + @"Resources\Documents\Editor\CS\CSharp.txt";
+                            var _path = _prefix + @"Resources\Documents\Editor\CS\";
                             TabControl.SelectedIndex = 0;
                             ChatEditor.DocumentLanguage = Languages.CSharp;
-                            ChatEditor.DocumentSource = _path;
+                            LanguageListBox.Items?.Clear( );
+                            var _documents = Directory.EnumerateFiles( _path );
+                            foreach( var _file in _documents )
+                            {
+                                var _name = Path.GetFileNameWithoutExtension( _file );
+                                LanguageListBox.Items?.Add( _name );
+                            }
+
                             break;
                         }
                         case "PY":
                         {
-                            var _path = _prefix + @"Resources\Documents\Editor\PY\Python.txt";
+                            var _path = _prefix + @"Resources\Documents\Editor\PY\";
                             TabControl.SelectedIndex = 0;
                             ChatEditor.DocumentLanguage = Languages.Text;
-                            ChatEditor.DocumentSource = _path;
+                            LanguageListBox.Items?.Clear( );
+                            var _documents = Directory.EnumerateFiles( _path );
+                            foreach( var _file in _documents )
+                            {
+                                var _name = Path.GetFileNameWithoutExtension( _file );
+                                LanguageListBox.Items?.Add( _name );
+                            }
+
                             break;
                         }
                         case "SQL":
                         {
-                            var _path = _prefix + @"Resources\Documents\Editor\SQL\SQL.txt";
+                            var _path = _prefix + @"Resources\Documents\Editor\SQL\";
                             TabControl.SelectedIndex = 0;
                             ChatEditor.DocumentLanguage = Languages.SQL;
-                            ChatEditor.DocumentSource = _path;
+                            LanguageListBox.Items?.Clear( );
+                            var _documents = Directory.EnumerateFiles( _path );
+                            foreach( var _file in _documents )
+                            {
+                                var _name = Path.GetFileNameWithoutExtension( _file );
+                                LanguageListBox.Items?.Add( _name );
+                            }
+
                             break;
                         }
                         case "JS":
                         {
-                            var _path = _prefix
-                                + @"Resources\Documents\Editor\JS\JavaScript.txt";
-
+                            var _path = _prefix + @"Resources\Documents\Editor\JS\";
                             TabControl.SelectedIndex = 0;
                             ChatEditor.DocumentLanguage = Languages.JScript;
-                            ChatEditor.DocumentSource = _path;
+                            LanguageListBox.Items?.Clear( );
+                            var _documents = Directory.EnumerateFiles( _path );
+                            foreach( var _file in _documents )
+                            {
+                                var _name = Path.GetFileNameWithoutExtension( _file );
+                                LanguageListBox.Items?.Add( _name );
+                            }
+
                             break;
                         }
                         case "CPP":
                         {
-                            var _path = _prefix + @"Resources\Documents\Editor\CPP\C.txt";
+                            var _path = _prefix + @"Resources\Documents\Editor\CPP\";
                             TabControl.SelectedIndex = 0;
                             ChatEditor.DocumentLanguage = Languages.C;
                             ChatEditor.DocumentSource = _path;
+                            LanguageListBox.Items?.Clear( );
+                            var _documents = Directory.EnumerateFiles( _path );
+                            foreach( var _file in _documents )
+                            {
+                                var _name = Path.GetFileNameWithoutExtension( _file );
+                                LanguageListBox.Items?.Add( _name );
+                            }
+
                             break;
                         }
                         case "VBA":
                         {
-                            var _path = _prefix + @"Resources\Documents\Editor\VBA\VBA.txt";
+                            var _path = _prefix + @"Resources\Documents\Editor\VBA\";
                             TabControl.SelectedIndex = 0;
                             ChatEditor.DocumentLanguage = Languages.VisualBasic;
-                            ChatEditor.DocumentSource = _path;
+                            LanguageListBox.Items?.Clear( );
+                            var _documents = Directory.EnumerateFiles( _path );
+                            foreach( var _file in _documents )
+                            {
+                                var _name = Path.GetFileNameWithoutExtension( _file );
+                                LanguageListBox.Items?.Add( _name );
+                            }
+
                             break;
                         }
                         default:
                         {
-                            var _path = _prefix + @"Resources\Documents\Editor\TXT\Text.txt";
+                            var _path = _prefix + @"Resources\Documents\Editor\TXT\";
                             TabControl.SelectedIndex = 0;
                             ChatEditor.DocumentLanguage = Languages.Text;
-                            ChatEditor.DocumentSource = _path;
+                            LanguageListBox.Items?.Clear( );
+                            var _documents = Directory.EnumerateFiles( _path );
+                            foreach( var _file in _documents )
+                            {
+                                var _name = Path.GetFileNameWithoutExtension( _file );
+                                LanguageListBox.Items?.Add( _name );
+                            }
+
                             break;
                         }
                     }
@@ -2398,6 +2453,36 @@ namespace Bubba
         {
             try
             {
+                if( !string.IsNullOrEmpty( _language ) )
+                {
+                    switch( _language )
+                    {
+                        case "TXT":
+                        {
+                            break;
+                        }
+                        case "C":
+                        {
+                            break;
+                        }
+                        case "PY":
+                        {
+                            break;
+                        }
+                        case "JS":
+                        {
+                            break;
+                        }
+                        case "SQL":
+                        {
+                            break;
+                        }
+                        case "VBA":
+                        {
+                            break;
+                        }
+                    }
+                }
             }
             catch( Exception ex )
             {
@@ -2857,7 +2942,7 @@ namespace Bubba
         {
             try
             {
-                OpenFileBrowser( );
+                OpenGptFileDialog( );
             }
             catch( Exception ex )
             {
@@ -3389,9 +3474,7 @@ namespace Bubba
                 try
                 {
                     var _answer = SendHttpMessage( _question ) + "";
-                    ChatEditor.AppendText( "Bubba: "
-                        + _answer.Replace( "\n", "\r\n" ).Trim( ) );
-
+                    ChatEditor.AppendText( "Bubba: " + _answer.Replace( "\n", "\r\n" ).Trim( ) );
                     TextToSpeech( _answer );
                 }
                 catch( Exception ex )
@@ -3412,8 +3495,8 @@ namespace Bubba
             try
             {
                 ClearChatControls( );
-                ClearParameters();
-                ClearLabels();
+                ClearParameters( );
+                ClearLabels( );
                 PopulateModelsAsync( );
                 PopulateInstalledVoices( );
                 PopulateImageSizes( );
@@ -3437,7 +3520,7 @@ namespace Bubba
                 if( ModelComboBox.SelectedIndex != -1 )
                 {
                     _model = ModelComboBox.SelectedValue.ToString( );
-                    ModelLabel.Content = $"LLM - {_model?.ToUpper( )}";
+                    ModelLabel.Content = $"LLM | {_model?.ToUpper( )}";
                     PopulateImageSizes( );
                 }
             }
@@ -3453,16 +3536,35 @@ namespace Bubba
         /// <param name="sender">The sender.</param>
         /// <param name="e">The <see cref="RoutedEventArgs"/>
         /// instance containing the event data.</param>
-        private void OnSelectedLanguageChanged( object sender, RoutedEventArgs e )
+        private void OnLanguageChanged( object sender, RoutedEventArgs e )
         {
             try
             {
                 if( LanguageComboBox.SelectedIndex != -1 )
                 {
-                    _language = 
-                        ( (ComboBoxItem)LanguageComboBox.SelectedItem )?.Tag?.ToString( );
+                    _language = ( ( ComboBoxItem )LanguageComboBox.SelectedItem )?.Tag?.ToString( );
+                    PopulateDocuments( );
+                }
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+            }
+        }
 
-                    SetEditorLanguage( );
+        /// <summary>
+        /// Called when [document selection changed].
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The <see cref="RoutedEventArgs"/> instance containing the event data.</param>
+        private void OnDocumentSelectionChanged( object sender, RoutedEventArgs e )
+        {
+            try
+            {
+                if( LanguageComboBox.SelectedIndex != -1 )
+                {
+                    _language = ( ( ComboBoxItem )LanguageComboBox.SelectedItem )?.Tag?.ToString( );
+                    PopulateDocuments( );
                 }
             }
             catch( Exception ex )

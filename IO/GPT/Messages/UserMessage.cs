@@ -1,10 +1,10 @@
 ﻿// ******************************************************************************************
 //     Assembly:                Bubba
 //     Author:                  Terry D. Eppler
-//     Created:                 01-19-2025
+//     Created:                 02-03-2025
 // 
 //     Last Modified By:        Terry D. Eppler
-//     Last Modified On:        01-19-2025
+//     Last Modified On:        02-03-2025
 // ******************************************************************************************
 // <copyright file="UserMessage.cs" company="Terry D. Eppler">
 //    Bubba is a small and simple windows (wpf) application for interacting with the OpenAI API
@@ -43,9 +43,9 @@ namespace Bubba
 {
     using System;
     using System.Collections.Generic;
-    using System.Collections.Immutable;
     using System.Diagnostics.CodeAnalysis;
     using System.Linq;
+    using System.Text.Encodings.Web;
     using System.Text.Json;
     using System.Text.Json.Serialization;
 
@@ -64,13 +64,20 @@ namespace Bubba
     public class UserMessage : GptMessage, IGptMessage
     {
         /// <summary>
+        /// The user prompt
+        /// </summary>
+        private protected string _userPrompt;
+
+        /// <summary>
         /// Initializes a new instance of the
         /// <see cref="UserMessage"/> class.
         /// </summary>
-        public UserMessage( )
+        public UserMessage( ) 
+            : base( )
         {
             _role = "user";
             _data = new Dictionary<string, object>( );
+            _content = new Dictionary<string, string>( );
         }
 
         /// <inheritdoc />
@@ -82,7 +89,9 @@ namespace Bubba
         public UserMessage( string prompt )
             : this( )
         {
-            _content = prompt;
+            _userPrompt = prompt;
+            _content.Add( "type", "text" );
+            _content.Add( "text", prompt );
         }
 
         /// <summary>
@@ -100,9 +109,8 @@ namespace Bubba
         /// Deconstructs the specified role.
         /// </summary>
         /// <param name="role">The role.</param>
-        /// <param name = "type" > </param>
         /// <param name="content">The content.</param>
-        public void Deconstruct( out string role, out string content )
+        public void Deconstruct( out string role, out IDictionary<string, string> content )
         {
             role = _role;
             content = _content;
@@ -122,6 +130,14 @@ namespace Bubba
             {
                 return _role;
             }
+            set
+            {
+                if(_role != value)
+                {
+                    _role = value;
+                    OnPropertyChanged(nameof(Role));
+                }
+            }
         }
 
         /// <inheritdoc />
@@ -132,7 +148,7 @@ namespace Bubba
         /// The content.
         /// </value>
         [ JsonPropertyName( "content" ) ]
-        public override string Content
+        public override IDictionary<string, string> Content
         {
             get
             {
@@ -162,7 +178,7 @@ namespace Bubba
                     _data.Add( "role", _role );
                 }
 
-                if( !string.IsNullOrEmpty( _content ) )
+                if( _content?.Any( ) == true )
                 {
                     _data.Add( "content", _content );
                 }
@@ -180,6 +196,41 @@ namespace Bubba
 
         /// <inheritdoc />
         /// <summary>
+        /// Serializes the specified prompt.
+        /// </summary>
+        /// <returns>
+        /// </returns>
+        public override string Serialize( )
+        {
+            try
+            {
+                var _options = new JsonSerializerOptions
+                {
+                    PropertyNameCaseInsensitive = false,
+                    WriteIndented = true,
+                    AllowTrailingCommas = false,
+                    ReadCommentHandling = JsonCommentHandling.Skip,
+                    Encoder = JavaScriptEncoder.UnsafeRelaxedJsonEscaping,
+                    DictionaryKeyPolicy = JsonNamingPolicy.SnakeCaseLower,
+                    PropertyNamingPolicy = JsonNamingPolicy.SnakeCaseLower,
+                    DefaultIgnoreCondition = JsonIgnoreCondition.Always,
+                    IncludeFields = false
+                };
+
+                var _text = JsonSerializer.Serialize( this, _options );
+                return !string.IsNullOrEmpty( _text )
+                    ? _text
+                    : string.Empty;
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+                return string.Empty;
+            }
+        }
+
+        /// <inheritdoc />
+        /// <summary>
         /// Returns a string that represents the current object.
         /// </summary>
         /// <returns>
@@ -189,9 +240,8 @@ namespace Bubba
         {
             try
             {
-                var _text = JsonSerializer.Serialize(this);
-                return !string.IsNullOrEmpty(_text)
-                    ? _text
+                return !string.IsNullOrEmpty( _userPrompt )
+                    ? _userPrompt
                     : string.Empty;
             }
             catch( Exception ex )

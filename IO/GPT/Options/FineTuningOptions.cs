@@ -111,8 +111,6 @@ namespace Bubba
         public FineTuningOptions( )
             : base( )
         {
-            _model = "gpt-4o";
-            _endPoint = GptEndPoint.FineTuning;
             _store = false;
             _stream = true;
             _number = 1;

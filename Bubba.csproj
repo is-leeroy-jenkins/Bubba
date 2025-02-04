@@ -56,15 +56,19 @@
     <Compile Remove="Data\Stores\Access\**" />
     <Compile Remove="Data\Stores\SqlServer\**" />
     <Compile Remove="IO\Google\**" />
+    <Compile Remove="Resources\Documents\Editor\TXT\**" />
     <EmbeddedResource Remove="Data\Stores\Access\**" />
     <EmbeddedResource Remove="Data\Stores\SqlServer\**" />
     <EmbeddedResource Remove="IO\Google\**" />
+    <EmbeddedResource Remove="Resources\Documents\Editor\TXT\**" />
     <None Remove="Data\Stores\Access\**" />
     <None Remove="Data\Stores\SqlServer\**" />
     <None Remove="IO\Google\**" />
+    <None Remove="Resources\Documents\Editor\TXT\**" />
     <Page Remove="Data\Stores\Access\**" />
     <Page Remove="Data\Stores\SqlServer\**" />
     <Page Remove="IO\Google\**" />
+    <Page Remove="Resources\Documents\Editor\TXT\**" />
   </ItemGroup>
 
   <ItemGroup>
@@ -347,6 +351,38 @@
     <None Remove="Resources\Assets\ToolStripImages\WebDownload.png" />
     <None Remove="Resources\Assets\ToolStripImages\WebDownloadButton.png" />
     <None Remove="Resources\Assets\ToolStripImages\WebSearchButton.png" />
+    <None Remove="Resources\Documents\Editor\CPP\Ex6_01.cpp" />
+    <None Remove="Resources\Documents\Editor\CPP\Ex6_02.cpp" />
+    <None Remove="Resources\Documents\Editor\CPP\Ex6_03.cpp" />
+    <None Remove="Resources\Documents\Editor\CPP\Ex6_04.cpp" />
+    <None Remove="Resources\Documents\Editor\CPP\Ex6_05.cpp" />
+    <None Remove="Resources\Documents\Editor\CPP\Ex6_06.cpp" />
+    <None Remove="Resources\Documents\Editor\CPP\Ex6_07.cpp" />
+    <None Remove="Resources\Documents\Editor\CPP\Ex7_01.cpp" />
+    <None Remove="Resources\Documents\Editor\CPP\Ex7_01A.cpp" />
+    <None Remove="Resources\Documents\Editor\CPP\Ex7_02.cpp" />
+    <None Remove="Resources\Documents\Editor\CPP\Ex7_02A.cpp" />
+    <None Remove="Resources\Documents\Editor\CPP\Ex7_03.cpp" />
+    <None Remove="Resources\Documents\Editor\CPP\Ex7_04.cpp" />
+    <None Remove="Resources\Documents\Editor\CPP\Ex7_05.cpp" />
+    <None Remove="Resources\Documents\Editor\CPP\Ex7_06.cpp" />
+    <None Remove="Resources\Documents\Editor\CPP\Ex7_07.cpp" />
+    <None Remove="Resources\Documents\Editor\C\Ex6_01.cpp" />
+    <None Remove="Resources\Documents\Editor\C\Ex6_02.cpp" />
+    <None Remove="Resources\Documents\Editor\C\Ex6_03.cpp" />
+    <None Remove="Resources\Documents\Editor\C\Ex6_04.cpp" />
+    <None Remove="Resources\Documents\Editor\C\Ex6_05.cpp" />
+    <None Remove="Resources\Documents\Editor\C\Ex6_06.cpp" />
+    <None Remove="Resources\Documents\Editor\C\Ex6_07.cpp" />
+    <None Remove="Resources\Documents\Editor\C\Ex7_01.cpp" />
+    <None Remove="Resources\Documents\Editor\C\Ex7_01A.cpp" />
+    <None Remove="Resources\Documents\Editor\C\Ex7_02.cpp" />
+    <None Remove="Resources\Documents\Editor\C\Ex7_02A.cpp" />
+    <None Remove="Resources\Documents\Editor\C\Ex7_03.cpp" />
+    <None Remove="Resources\Documents\Editor\C\Ex7_04.cpp" />
+    <None Remove="Resources\Documents\Editor\C\Ex7_05.cpp" />
+    <None Remove="Resources\Documents\Editor\C\Ex7_06.cpp" />
+    <None Remove="Resources\Documents\Editor\C\Ex7_07.cpp" />
     <None Remove="Resources\Documents\Editor\JS\browser.js" />
     <None Remove="Resources\Documents\Editor\JS\constants.js" />
     <None Remove="Resources\Documents\Editor\JS\create.js" />
@@ -372,6 +408,23 @@
     <None Remove="Resources\Documents\Editor\SQL\SpendingRates.sql" />
     <None Remove="Resources\Documents\Editor\SQL\TreasuryAppropriationFundSymbol.sql" />
     <None Remove="Resources\Documents\Editor\SQL\UnobligatedBalances.sql" />
+    <None Remove="Resources\Documents\Editor\VBA\AccessData.cls" />
+    <None Remove="Resources\Documents\Editor\VBA\Calculator.cls" />
+    <None Remove="Resources\Documents\Editor\VBA\DataAccess.cls" />
+    <None Remove="Resources\Documents\Editor\VBA\DataFile.cls" />
+    <None Remove="Resources\Documents\Editor\VBA\DataFolder.cls" />
+    <None Remove="Resources\Documents\Editor\VBA\DataPath.cls" />
+    <None Remove="Resources\Documents\Editor\VBA\EmailBuilder.cls" />
+    <None Remove="Resources\Documents\Editor\VBA\EmailManager.cls" />
+    <None Remove="Resources\Documents\Editor\VBA\Employee.cls" />
+    <None Remove="Resources\Documents\Editor\VBA\ExcelFile.cls" />
+    <None Remove="Resources\Documents\Editor\VBA\ExcelReport.cls" />
+    <None Remove="Resources\Documents\Editor\VBA\ExcelWorkbook.cls" />
+    <None Remove="Resources\Documents\Editor\VBA\FederalHoliday.cls" />
+    <None Remove="Resources\Documents\Editor\VBA\FormAction.cls" />
+    <None Remove="Resources\Documents\Editor\VBA\PdfBrowser.cls" />
+    <None Remove="Resources\Documents\Editor\VBA\PowerQuery.cls" />
+    <None Remove="Resources\Documents\Editor\VBA\Strings.cls" />
     <None Remove="Resources\Fonts\Anonymous Pro.ttf" />
     <None Remove="Resources\Fonts\Hack-Regular.ttf" />
     <None Remove="Resources\Fonts\JetBrainsMono-Regular.ttf" />
@@ -710,6 +763,54 @@
     <Resource Include="Resources\Assets\ToolStripImages\WebDownload.png" />
     <Resource Include="Resources\Assets\ToolStripImages\WebDownloadButton.png" />
     <Resource Include="Resources\Assets\ToolStripImages\WebSearchButton.png" />
+    <Resource Include="Resources\Documents\Editor\CPP\Ex6_01.cpp">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Documents\Editor\CPP\Ex6_02.cpp">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Documents\Editor\CPP\Ex6_03.cpp">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Documents\Editor\CPP\Ex6_04.cpp">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Documents\Editor\CPP\Ex6_05.cpp">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Documents\Editor\CPP\Ex6_06.cpp">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Documents\Editor\CPP\Ex6_07.cpp">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Documents\Editor\CPP\Ex7_01.cpp">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Documents\Editor\CPP\Ex7_01A.cpp">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Documents\Editor\CPP\Ex7_02.cpp">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Documents\Editor\CPP\Ex7_02A.cpp">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Documents\Editor\CPP\Ex7_03.cpp">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Documents\Editor\CPP\Ex7_04.cpp">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Documents\Editor\CPP\Ex7_05.cpp">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Documents\Editor\CPP\Ex7_06.cpp">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Documents\Editor\CPP\Ex7_07.cpp">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="Resources\Documents\Editor\CS\AbstractFactory.cs">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
@@ -768,6 +869,54 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Resources\Documents\Editor\CS\Visitor.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Documents\Editor\C\Ex6_01.cpp">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Documents\Editor\C\Ex6_02.cpp">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Documents\Editor\C\Ex6_03.cpp">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Documents\Editor\C\Ex6_04.cpp">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Documents\Editor\C\Ex6_05.cpp">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Documents\Editor\C\Ex6_06.cpp">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Documents\Editor\C\Ex6_07.cpp">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Documents\Editor\C\Ex7_01.cpp">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Documents\Editor\C\Ex7_01A.cpp">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Documents\Editor\C\Ex7_02.cpp">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Documents\Editor\C\Ex7_02A.cpp">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Documents\Editor\C\Ex7_03.cpp">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Documents\Editor\C\Ex7_04.cpp">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Documents\Editor\C\Ex7_05.cpp">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Documents\Editor\C\Ex7_06.cpp">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Documents\Editor\C\Ex7_07.cpp">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Resources\Documents\Editor\JS\browser.js">
@@ -843,6 +992,57 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Resources\Documents\Editor\SQL\UnobligatedBalances.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Documents\Editor\VBA\AccessData.cls">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Documents\Editor\VBA\Calculator.cls">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Documents\Editor\VBA\DataAccess.cls">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Documents\Editor\VBA\DataFile.cls">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Documents\Editor\VBA\DataFolder.cls">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Documents\Editor\VBA\DataPath.cls">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Documents\Editor\VBA\EmailBuilder.cls">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Documents\Editor\VBA\EmailManager.cls">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Documents\Editor\VBA\Employee.cls">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Documents\Editor\VBA\ExcelFile.cls">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Documents\Editor\VBA\ExcelReport.cls">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Documents\Editor\VBA\ExcelWorkbook.cls">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Documents\Editor\VBA\FederalHoliday.cls">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Documents\Editor\VBA\FormAction.cls">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Documents\Editor\VBA\PdfBrowser.cls">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Documents\Editor\VBA\PowerQuery.cls">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Documents\Editor\VBA\Strings.cls">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Resources\Fonts\Anonymous Pro.ttf">
@@ -960,13 +1160,6 @@
 
   <ItemGroup>
     <PackageReference Update="chromiumembeddedframework.runtime.win-x86" Version="131.3.5" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Resources\Documents\Editor\C\" />
-    <Folder Include="Resources\Documents\Editor\CPP\" />
-    <Folder Include="Resources\Documents\Editor\TXT\" />
-    <Folder Include="Resources\Documents\Editor\VBA\" />
   </ItemGroup>
 
 </Project>

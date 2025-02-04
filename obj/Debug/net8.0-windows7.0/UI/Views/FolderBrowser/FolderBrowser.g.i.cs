@@ -205,7 +205,7 @@ namespace Bubba {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/Bubba;V1.0.0.0;component/ui/views/folderbrowser/folderbrowser.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/Bubba;component/ui/views/folderbrowser/folderbrowser.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\..\..\UI\Views\FolderBrowser\FolderBrowser.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

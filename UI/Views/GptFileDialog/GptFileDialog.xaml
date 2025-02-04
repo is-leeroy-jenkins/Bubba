@@ -81,7 +81,9 @@
             Grid.Column="1"
             Grid.ColumnSpan="2"
             Margin="0,335,0,0">
-            <Grid Width="440" Height="88">
+            <Grid
+                Width="440"
+                Height="88">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition />
                     <ColumnDefinition />
@@ -134,7 +136,7 @@
             </Grid>
         </Canvas>
 
-        <b:MetroRadioButton
+        <RadioButton
             x:Name="PdfRadioButton"
             Grid.Row="1"
             Grid.Column="2"
@@ -148,11 +150,11 @@
             BorderThickness="1"
             Content="  .pdf"
             FontSize="12"
-            Foreground="{StaticResource BlueBorderBrush}"
+            Foreground="{StaticResource FormForeground}"
             Tag="PDF"
             ToolTip="application/pdf" />
 
-        <b:MetroRadioButton
+        <RadioButton
             x:Name="CRadioButton"
             Grid.Row="1"
             Grid.Column="2"
@@ -170,7 +172,7 @@
             Tag="C"
             ToolTip="text/x-c" />
 
-        <b:MetroRadioButton
+        <RadioButton
             x:Name="CppRadioButton"
             Grid.Row="1"
             Grid.Column="2"
@@ -188,7 +190,7 @@
             Tag="CPP"
             ToolTip="text/x-c++" />
 
-        <b:MetroRadioButton
+        <RadioButton
             x:Name="PyRadioButton"
             Grid.Row="1"
             Grid.Column="2"
@@ -206,7 +208,7 @@
             Tag="PY"
             ToolTip="text/x-python" />
 
-        <b:MetroRadioButton
+        <RadioButton
             x:Name="CssRadioButton"
             Grid.Row="1"
             Grid.Column="2"
@@ -224,7 +226,7 @@
             Tag="CSS"
             ToolTip="text/css" />
 
-        <b:MetroRadioButton
+        <RadioButton
             x:Name="DocRadioButton"
             Grid.Row="1"
             Grid.Column="2"
@@ -243,7 +245,7 @@
             Tag="DOC"
             ToolTip="application/msword" />
 
-        <b:MetroRadioButton
+        <RadioButton
             x:Name="DocxRadioButton"
             Grid.Row="1"
             Grid.Column="2"
@@ -261,7 +263,7 @@
             Tag="DOCX"
             ToolTip="application/vnd.openxmlformats-officedocument.wordprocessingml.document" />
 
-        <b:MetroRadioButton
+        <RadioButton
             x:Name="HtmlRadioButton"
             Grid.Row="1"
             Grid.Column="2"
@@ -279,7 +281,7 @@
             Tag="HTML"
             ToolTip="text/html" />
 
-        <b:MetroRadioButton
+        <RadioButton
             x:Name="JsRadioButton"
             Grid.Row="1"
             Grid.Column="2"
@@ -297,7 +299,7 @@
             Tag="JS"
             ToolTip="text/javascript" />
 
-        <b:MetroRadioButton
+        <RadioButton
             x:Name="MdRadioButton"
             Grid.Row="1"
             Grid.Column="2"
@@ -315,7 +317,7 @@
             Tag="MD"
             ToolTip="text/markdown" />
 
-        <b:MetroRadioButton
+        <RadioButton
             x:Name="JsonRadioButton"
             Grid.Row="1"
             Grid.Column="2"
@@ -334,7 +336,10 @@
             ToolTip="*.json files" />
 
 
-        <Grid Grid.RowSpan="2" Margin="0,34,0,0">
+        <Grid
+            Grid.Row="0"
+            Grid.RowSpan="2"
+            Margin="0,34,0,0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition />
                 <ColumnDefinition Width="2*" />
@@ -342,7 +347,9 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="30" />
                 <RowDefinition Height="30" />
-                <RowDefinition Height="Auto" MinHeight="20" />
+                <RowDefinition
+                    Height="Auto"
+                    MinHeight="20" />
             </Grid.RowDefinitions>
 
 
@@ -420,7 +427,9 @@
                 Foreground="{StaticResource BlueBorderBrush}" />
         </Canvas>
 
-        <Canvas Grid.Row="0" Grid.Column="3" />
+        <Canvas
+            Grid.Row="0"
+            Grid.Column="3" />
 
         <Label
             x:Name="TimeLabel"

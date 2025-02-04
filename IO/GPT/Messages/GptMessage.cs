@@ -1,10 +1,10 @@
 ﻿// ******************************************************************************************
 //     Assembly:                Bubba
 //     Author:                  Terry D. Eppler
-//     Created:                 01-19-2025
+//     Created:                 02-04-2025
 // 
 //     Last Modified By:        Terry D. Eppler
-//     Last Modified On:        01-19-2025
+//     Last Modified On:        02-04-2025
 // ******************************************************************************************
 // <copyright file="GptMessage.cs" company="Terry D. Eppler">
 //    Bubba is a small and simple windows (wpf) application for interacting with the OpenAI API
@@ -45,7 +45,9 @@ namespace Bubba
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
     using System.Linq;
+    using System.Text.Encodings.Web;
     using System.Text.Json;
+    using System.Text.Json.Serialization;
 
     /// <inheritdoc />
     /// <summary>
@@ -65,7 +67,7 @@ namespace Bubba
         /// <summary>
         /// The content
         /// </summary>
-        private protected string _content;
+        private protected IDictionary<string, string> _content;
 
         /// <summary>
         /// The type
@@ -90,6 +92,14 @@ namespace Bubba
             {
                 return _role;
             }
+            set
+            {
+                if( _role != value )
+                {
+                    _role = value;
+                    OnPropertyChanged( nameof( Role ) );
+                }
+            }
         }
 
         /// <summary>
@@ -98,7 +108,7 @@ namespace Bubba
         /// <value>
         /// The content.
         /// </value>
-        public virtual string Content
+        public virtual IDictionary<string, string> Content
         {
             get
             {
@@ -114,6 +124,12 @@ namespace Bubba
             }
         }
 
+        /// <summary>
+        /// Gets or sets the type.
+        /// </summary>
+        /// <value>
+        /// The type.
+        /// </value>
         public virtual string Type
         {
             get
@@ -122,10 +138,10 @@ namespace Bubba
             }
             set
             {
-                if(_type != value)
+                if( _type != value )
                 {
                     _type = value;
-                    OnPropertyChanged(nameof(Type));
+                    OnPropertyChanged( nameof( Type ) );
                 }
             }
         }
@@ -204,17 +220,29 @@ namespace Bubba
 
         /// <inheritdoc />
         /// <summary>
-        /// Returns a string that represents the current object.
+        /// Serializes the specified prompt.
         /// </summary>
         /// <returns>
-        /// A string that represents the current object.
         /// </returns>
-        public override string ToString( )
+        public virtual string Serialize( )
         {
             try
             {
-                var _text = JsonSerializer.Serialize(this);
-                return !string.IsNullOrEmpty(_text)
+                var _options = new JsonSerializerOptions
+                {
+                    PropertyNameCaseInsensitive = false,
+                    WriteIndented = true,
+                    AllowTrailingCommas = false,
+                    ReadCommentHandling = JsonCommentHandling.Skip,
+                    Encoder = JavaScriptEncoder.UnsafeRelaxedJsonEscaping,
+                    DictionaryKeyPolicy = JsonNamingPolicy.SnakeCaseLower,
+                    PropertyNamingPolicy = JsonNamingPolicy.SnakeCaseLower,
+                    DefaultIgnoreCondition = JsonIgnoreCondition.Always,
+                    IncludeFields = false
+                };
+
+                var _text = JsonSerializer.Serialize( this, _options );
+                return !string.IsNullOrEmpty( _text )
                     ? _text
                     : string.Empty;
             }

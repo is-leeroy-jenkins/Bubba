@@ -45,6 +45,7 @@ namespace Bubba
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
     using System.Linq;
+    using System.Text.Encodings.Web;
     using System.Text.Json;
     using System.Text.Json.Serialization;
     using Properties;
@@ -78,7 +79,7 @@ namespace Bubba
             _role = "system";
             _systemPrompt = OpenAI.BubbaPrompt;
             _data = new Dictionary<string, object>( );
-            _content = _systemPrompt;
+            _content = new Dictionary<string, string>( );
         }
 
         /// <inheritdoc />
@@ -90,7 +91,9 @@ namespace Bubba
         public SystemMessage( string prompt )
             : this( )
         {
-            _content = prompt;
+            _systemPrompt = prompt;
+            _content.Add( "type", "text" );
+            _content.Add( "text", prompt );
         }
 
         /// <summary>
@@ -109,7 +112,7 @@ namespace Bubba
         /// </summary>
         /// <param name="role">The role.</param>
         /// <param name="content">The content.</param>
-        public void Deconstruct( out string role, out string content )
+        public void Deconstruct( out string role, out IDictionary<string, string> content )
         {
             role = _role;
             content = _content;
@@ -139,7 +142,7 @@ namespace Bubba
         /// The content.
         /// </value>
         [ JsonPropertyName( "content" ) ]
-        public override string Content
+        public override IDictionary<string, string> Content
         {
             get
             {
@@ -165,7 +168,7 @@ namespace Bubba
                     _data.Add( "role", _role );
                 }
 
-                if( !string.IsNullOrEmpty( _content ) )
+                if( _content?.Any( ) == true )
                 {
                     _data.Add( "content", _content );
                 }
@@ -183,23 +186,35 @@ namespace Bubba
 
         /// <inheritdoc />
         /// <summary>
-        /// Returns a string that represents the current object.
+        /// Serializes the specified prompt.
         /// </summary>
         /// <returns>
-        /// A string that represents the current object.
         /// </returns>
-        public override string ToString( )
+        public override string Serialize( )
         {
             try
             {
-                var _text = JsonSerializer.Serialize(this);
+                var _options = new JsonSerializerOptions
+                {
+                    PropertyNameCaseInsensitive = false,
+                    WriteIndented = true,
+                    AllowTrailingCommas = false,
+                    ReadCommentHandling = JsonCommentHandling.Skip,
+                    Encoder = JavaScriptEncoder.UnsafeRelaxedJsonEscaping,
+                    DictionaryKeyPolicy = JsonNamingPolicy.SnakeCaseLower,
+                    PropertyNamingPolicy = JsonNamingPolicy.SnakeCaseLower,
+                    DefaultIgnoreCondition = JsonIgnoreCondition.Always,
+                    IncludeFields = false
+                };
+
+                var _text = JsonSerializer.Serialize(this, _options);
                 return !string.IsNullOrEmpty(_text)
                     ? _text
                     : string.Empty;
             }
-            catch( Exception ex )
+            catch(Exception ex)
             {
-                Fail( ex );
+                Fail(ex);
                 return string.Empty;
             }
         }

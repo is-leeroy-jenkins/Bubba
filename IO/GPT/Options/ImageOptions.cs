@@ -88,8 +88,6 @@ namespace Bubba
         public ImageOptions( )
             : base( )
         {
-            _model = "dall-e-3";
-            _endPoint = GptEndPoint.ImageGeneration;
             _store = false;
             _stream = true;
             _number = 1;
@@ -101,7 +99,7 @@ namespace Bubba
             _size = "1024x1024";
             _responseFormat = "url";
             _style = "natural";
-            _quality = "hd";
+            _quality = "standard";
             _stop = "['#', ';']";
         }
 
@@ -158,7 +156,7 @@ namespace Bubba
         /// <value>
         /// The prompt.
         /// </value>
-        public string Prompt
+        public string Input
         {
             get
             {
@@ -169,7 +167,7 @@ namespace Bubba
                 if( _prompt != value )
                 {
                     _prompt = value;
-                    OnPropertyChanged( nameof( Prompt ) );
+                    OnPropertyChanged( nameof( Input ) );
                 }
             }
         }

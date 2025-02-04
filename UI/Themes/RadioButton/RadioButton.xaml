@@ -14,7 +14,7 @@
     <Style TargetType="{x:Type RadioButton}">
         <Setter Property="Background" Value="{StaticResource TransparentBrush}" />
         <Setter Property="BorderBrush" Value="{StaticResource TransparentBrush}" />
-        <Setter Property="Foreground" Value="{StaticResource BlueBorderBrush}" />
+        <Setter Property="Foreground" Value="{StaticResource FormForeground}" />
         <Setter Property="BorderThickness" Value="0" />
         <Setter Property="HorizontalAlignment" Value="Stretch" />
         <Setter Property="VerticalAlignment" Value="Stretch" />
@@ -30,14 +30,14 @@
             <Trigger Property="IsEnabled" Value="True">
                 <Setter Property="Background" Value="{StaticResource TransparentBrush}" />
                 <Setter Property="BorderBrush" Value="{StaticResource TransparentBrush}" />
-                <Setter Property="Foreground" Value="{StaticResource BlueBorderBrush}" />
+                <Setter Property="Foreground" Value="{StaticResource FormForeground}" />
                 <Setter Property="FontWeight" Value="Regular" />
             </Trigger>
 
             <Trigger Property="IsEnabled" Value="False">
                 <Setter Property="Background" Value="{StaticResource TransparentBrush}" />
                 <Setter Property="BorderBrush" Value="{StaticResource TransparentBrush}" />
-                <Setter Property="Foreground" Value="{StaticResource BlueBorderBrush}" />
+                <Setter Property="Foreground" Value="{StaticResource FormForeground}" />
                 <Setter Property="FontWeight" Value="Regular" />
             </Trigger>
 
@@ -45,14 +45,14 @@
             <Trigger Property="IsMouseOver" Value="True">
                 <Setter Property="Background" Value="{StaticResource TransparentBrush}" />
                 <Setter Property="BorderBrush" Value="{StaticResource TransparentBrush}" />
-                <Setter Property="Foreground" Value="{StaticResource BlueBorderBrush}" />
+                <Setter Property="Foreground" Value="{StaticResource FormForeground}" />
                 <Setter Property="FontWeight" Value="Regular" />
             </Trigger>
 
             <Trigger Property="IsMouseOver" Value="False">
                 <Setter Property="Background" Value="{StaticResource TransparentBrush}" />
                 <Setter Property="BorderBrush" Value="{StaticResource TransparentBrush}" />
-                <Setter Property="Foreground" Value="{StaticResource BlueBorderBrush}" />
+                <Setter Property="Foreground" Value="{StaticResource FormForeground}" />
                 <Setter Property="FontWeight" Value="Regular" />
             </Trigger>
 

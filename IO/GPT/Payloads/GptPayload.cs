@@ -1,10 +1,10 @@
 ﻿// ******************************************************************************************
 //     Assembly:                Bubba
 //     Author:                  Terry D. Eppler
-//     Created:                 01-31-2025
+//     Created:                 02-04-2025
 // 
 //     Last Modified By:        Terry D. Eppler
-//     Last Modified On:        01-31-2025
+//     Last Modified On:        02-04-2025
 // ******************************************************************************************
 // <copyright file="GptPayload.cs" company="Terry D. Eppler">
 //    Bubba is a small and simple windows (wpf) application for interacting with the OpenAI API
@@ -188,28 +188,6 @@ namespace Bubba
             maximumTokens = _maximumTokens;
             store = _store;
             stream = _stream;
-        }
-
-        /// <summary>
-        /// Gets or sets the header.
-        /// </summary>
-        /// <value>
-        /// The header.
-        /// </value>
-        public virtual GptHeader Header
-        {
-            get
-            {
-                return _header;
-            }
-            set
-            {
-                if(_header != value)
-                {
-                    _header = value;
-                    OnPropertyChanged(nameof(Header));
-                }
-            }
         }
 
         /// <summary>

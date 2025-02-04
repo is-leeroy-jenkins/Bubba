@@ -279,12 +279,14 @@
 
         <!--  ******************************************** TOOLSTRIP BAR *********************************************  -->
 
-        <Canvas Grid.Row="2" Margin="1,4,0,25">
+        <Canvas
+            Grid.Row="2"
+            Margin="1,4,0,25">
 
             <ToolBar
                 x:Name="ToolStrip"
                 Canvas.Top="2"
-                Width="1249"
+                Width="1259"
                 Height="40"
                 HorizontalAlignment="Left"
                 VerticalAlignment="Center"
@@ -383,9 +385,22 @@
                     ToolTip="Show/Hide Toolbar" />
             </ToolBar>
         </Canvas>
-        <TabControl x:Name="TabControl" Grid.Row="1">
+        <TabControl
+            x:Name="TabControl"
+            Grid.Row="1">
             <TabItem x:Name="BrowserTab">
-                <web:ChromiumWebBrowser x:Name="Browser" />
+                <StackPanel
+                    x:Name="BrowserPanel"
+                    Height="650">
+                    <web:ChromiumWebBrowser
+                        x:Name="Browser"
+                        Height="650"
+                        Margin="1,1,1,1"
+                        Address="https://www.google.com/"
+                        IsHitTestVisible="False"
+                        ResizeHackEnabled="True"
+                        ScrollViewer.CanContentScroll="True" />
+                </StackPanel>
             </TabItem>
         </TabControl>
     </Grid>
