@@ -45,7 +45,6 @@ namespace Bubba
     using System.Diagnostics.CodeAnalysis;
     using System.Windows;
     using System.Windows.Controls;
-    using Syncfusion.Windows.Tools.Controls;
 
     /// <inheritdoc />
     /// <summary>
@@ -79,9 +78,9 @@ namespace Bubba
             FontFamily = _theme.FontFamily;
             FontSize = _theme.FontSize;
             Padding = new Thickness( 10, 1, 1, 1 );
-            BorderThickness = new Thickness( 2 );
+            BorderThickness = new Thickness( 1 );
             IsEditable = true;
-            IsTextSearchEnabled = true;
+            IsTextSearchEnabled = false;
             Background = _theme.ControlInterior;
             Foreground = _theme.FormForeground;
             BorderBrush = _theme.BorderBrush;

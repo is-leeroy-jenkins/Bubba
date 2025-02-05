@@ -312,7 +312,7 @@ namespace Bubba
             _topPercent = TopPercentSlider.Value;
             _presence = PresenceSlider.Value;
             _frequency = FrequencySlider.Value;
-            _maximumTokens = ( int )MaxTokenSlider.Value;
+            _maximumTokens = (int)MaxTokenSlider.Value;
             _imageSizes = new List<string>( );
 
             // Event Wiring
@@ -342,8 +342,8 @@ namespace Bubba
             try
             {
                 RequestLabel.Visibility = Visibility.Visible;
-                RequestLabel.Content = "Generative Pre-Trained Transformer";
-                ModelLabel.Content = "";
+                RequestLabel.Content = "";
+                ModelLabel.Content = "Generative Pre-Trained Transformer";
             }
             catch( Exception ex )
             {

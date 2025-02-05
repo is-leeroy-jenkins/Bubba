@@ -1,10 +1,10 @@
 ﻿// ******************************************************************************************
 //     Assembly:                Bubba
 //     Author:                  Terry D. Eppler
-//     Created:                 01-31-2025
+//     Created:                 02-04-2025
 // 
 //     Last Modified By:        Terry D. Eppler
-//     Last Modified On:        01-31-2025
+//     Last Modified On:        02-04-2025
 // ******************************************************************************************
 // <copyright file="AssistantRequest.cs" company="Terry D. Eppler">
 //    Bubba is a small and simple windows (wpf) application for interacting with the OpenAI API
@@ -357,29 +357,6 @@ namespace Bubba
 
         /// <inheritdoc />
         /// <summary>
-        /// Gets the chat model.
-        /// </summary>
-        /// <value>
-        /// The chat model.
-        /// </value>
-        public override GptBody Body
-        {
-            get
-            {
-                return _body;
-            }
-            set
-            {
-                if( _body != value )
-                {
-                    _body = value;
-                    OnPropertyChanged( nameof( Body ) );
-                }
-            }
-        }
-
-        /// <inheritdoc />
-        /// <summary>
         /// Gets the data.
         /// </summary>
         /// <returns></returns>
@@ -415,14 +392,16 @@ namespace Bubba
         /// Gets the chat response asynchronous.
         /// </summary>
         /// <returns></returns>
-        public override async Task<string> GetResponseAsync(string prompt)
+        public override async Task<string> GetResponseAsync( string prompt )
         {
             try
             {
-                ThrowIf.Empty(prompt, nameof(prompt));
+                ThrowIf.Empty( prompt, nameof( prompt ) );
                 _prompt = prompt;
-                _httpClient = new HttpClient();
-                _httpClient.DefaultRequestHeaders.Add("Authorization", $"Bearer {_header.ApiKey}");
+                _httpClient = new HttpClient( );
+                _httpClient.DefaultRequestHeaders.Add( "Authorization",
+                    $"Bearer {_header.ApiKey}" );
+
                 var _package = new AssistantPayload( )
                 {
                     Model = _model,

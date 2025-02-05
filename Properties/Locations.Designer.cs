@@ -97,6 +97,15 @@ namespace Bubba.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Resources\Documents\Editor\C.
+        /// </summary>
+        internal static string C {
+            get {
+                return ResourceManager.GetString("C", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to bubba://UI/Pages/CannotConnect.html.
         /// </summary>
         internal static string CannotConnect {
@@ -124,11 +133,29 @@ namespace Bubba.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Resources\Documents\Editor\CPP\.
+        /// </summary>
+        internal static string CPP {
+            get {
+                return ResourceManager.GetString("CPP", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to true.
         /// </summary>
         internal static string CrossDomainSecurity {
             get {
                 return ResourceManager.GetString("CrossDomainSecurity", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Resources\Documents\Editor\CS\.
+        /// </summary>
+        internal static string CS {
+            get {
+                return ResourceManager.GetString("CS", resourceCulture);
             }
         }
         
@@ -219,6 +246,15 @@ namespace Bubba.Properties {
         internal static string Internal {
             get {
                 return ResourceManager.GetString("Internal", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Resources\Documents\Editor\JS\.
+        /// </summary>
+        internal static string JS {
+            get {
+                return ResourceManager.GetString("JS", resourceCulture);
             }
         }
         
@@ -340,11 +376,29 @@ namespace Bubba.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Resources\Documents\Editor\SQL\.
+        /// </summary>
+        internal static string SQL {
+            get {
+                return ResourceManager.GetString("SQL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/104.0.5112.102 Safari/537.36 /CefSharp Browser.
         /// </summary>
         internal static string UserAgent {
             get {
                 return ResourceManager.GetString("UserAgent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Resources\Documents\Editor\VBA\.
+        /// </summary>
+        internal static string VBA {
+            get {
+                return ResourceManager.GetString("VBA", resourceCulture);
             }
         }
         

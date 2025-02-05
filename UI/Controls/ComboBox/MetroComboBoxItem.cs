@@ -45,7 +45,6 @@ namespace Bubba
     using System.Diagnostics.CodeAnalysis;
     using System.Windows;
     using System.Windows.Controls;
-    using Syncfusion.Windows.Tools.Controls;
 
     /// <inheritdoc />
     /// <summary>
@@ -98,10 +97,9 @@ namespace Bubba
             {
                 if( sender is ComboBoxItem _item )
                 {
-                    _item.Foreground = _theme.WhiteForeground;
+                    _item.Foreground = _theme.FormForeground;
                     _item.Background = _theme.SteelBlueBrush;
                     _item.BorderBrush = _theme.SteelBlueBrush;
-                    _item.FontWeight = FontWeights.Bold;
                 }
             }
             catch( Exception ex )
@@ -122,10 +120,9 @@ namespace Bubba
             {
                 if( sender is ComboBoxItem _item )
                 {
-                    _item.Foreground = _theme.Foreground;
+                    _item.Foreground = _theme.FormForeground;
                     _item.Background = _theme.ControlBackground;
                     _item.BorderBrush = _theme.ControlBackground;
-                    _item.FontWeight = FontWeights.Normal;
                 }
             }
             catch( Exception ex )

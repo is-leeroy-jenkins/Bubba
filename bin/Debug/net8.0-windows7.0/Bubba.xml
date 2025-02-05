@@ -19522,6 +19522,14 @@
             The content.
             </value>
         </member>
+        <member name="P:Bubba.GptMessage.Type">
+            <summary>
+            Gets or sets the type.
+            </summary>
+            <value>
+            The type.
+            </value>
+        </member>
         <member name="M:Bubba.GptMessage.PadQuotes(System.String)">
             <summary>
             Pads the quotes.
@@ -22892,15 +22900,6 @@
             The meta data.
             </value>
         </member>
-        <member name="P:Bubba.AssistantRequest.Body">
-            <inheritdoc />
-            <summary>
-            Gets the chat model.
-            </summary>
-            <value>
-            The chat model.
-            </value>
-        </member>
         <member name="M:Bubba.AssistantRequest.GetData">
             <inheritdoc />
             <summary>
@@ -23026,15 +23025,6 @@
             </summary>
             <value>
             The meta data.
-            </value>
-        </member>
-        <member name="P:Bubba.ChatCompletionRequest.Body">
-            <inheritdoc />
-            <summary>
-            Gets the chat model.
-            </summary>
-            <value>
-            The chat model.
             </value>
         </member>
         <member name="M:Bubba.ChatCompletionRequest.GetResponseAsync(System.String)">
@@ -23604,15 +23594,6 @@
             The response format.
             </value>
         </member>
-        <member name="P:Bubba.GptRequest.Body">
-            <inheritdoc />
-            <summary>
-            Gets the chat model.
-            </summary>
-            <value>
-            The chat model.
-            </value>
-        </member>
         <member name="M:Bubba.GptRequest.GetResponseAsync(System.String)">
             <summary>
             Generates the asynchronous.
@@ -24088,15 +24069,6 @@
             The response format.
             </value>
         </member>
-        <member name="P:Bubba.TextGenerationRequest.Body">
-            <inheritdoc />
-            <summary>
-            Gets the chat model.
-            </summary>
-            <value>
-            The chat model.
-            </value>
-        </member>
         <member name="M:Bubba.TextGenerationRequest.GetResponseAsync(System.String)">
             <inheritdoc />
             <summary>
@@ -24227,15 +24199,6 @@
             </summary>
             <value>
             The temperature.
-            </value>
-        </member>
-        <member name="P:Bubba.TranscriptionRequest.Body">
-            <inheritdoc />
-            <summary>
-            Gets the chat model.
-            </summary>
-            <value>
-            The chat model.
             </value>
         </member>
         <member name="M:Bubba.TranscriptionRequest.GetResponseAsync(System.String)">
@@ -24849,6 +24812,111 @@
             The usage.
             </value>
         </member>
+        <member name="T:Bubba.FileResponse">
+            <inheritdoc />
+            <summary>
+            </summary>
+            <seealso cref="T:Bubba.GptResponse" />
+        </member>
+        <member name="F:Bubba.FileResponse._filePath">
+            <summary>
+            The file path
+            </summary>
+        </member>
+        <member name="F:Bubba.FileResponse._generatedFile">
+            <summary>
+            The file path
+            </summary>
+        </member>
+        <member name="F:Bubba.FileResponse._rawResponse">
+            <summary>
+            The raw response
+            </summary>
+        </member>
+        <member name="M:Bubba.FileResponse.#ctor">
+            <summary>
+            Initializes a new instance of the
+            <see cref="T:Bubba.FileResponse"/> class.
+            </summary>
+            <inheritdoc />
+        </member>
+        <member name="P:Bubba.FileResponse.RawResponse">
+            <summary>
+            Gets or sets the raw response.
+            </summary>
+            <value>
+            The raw response.
+            </value>
+        </member>
+        <member name="P:Bubba.FileResponse.Id">
+            <inheritdoc />
+            <summary>
+            Gets or sets the identifier.
+            </summary>
+            <value>
+            The identifier.
+            </value>
+        </member>
+        <member name="P:Bubba.FileResponse.Object">
+            <inheritdoc />
+            <summary>
+            Gets or sets the object.
+            </summary>
+            <value>
+            The object.
+            </value>
+        </member>
+        <member name="P:Bubba.FileResponse.Created">
+            <inheritdoc />
+            <summary>
+            Gets or sets the created.
+            </summary>
+            <value>
+            The created.
+            </value>
+        </member>
+        <member name="P:Bubba.FileResponse.Model">
+            <inheritdoc />
+            <summary>
+            Gets or sets the model.
+            </summary>
+            <value>
+            The model.
+            </value>
+        </member>
+        <member name="P:Bubba.FileResponse.Choices">
+            <inheritdoc />
+            <summary>
+            Gets or sets the choices.
+            </summary>
+            <value>
+            The choices.
+            </value>
+        </member>
+        <member name="P:Bubba.FileResponse.Usage">
+            <inheritdoc />
+            <summary>
+            Gets or sets the usage.
+            </summary>
+            <value>
+            The usage.
+            </value>
+        </member>
+        <member name="M:Bubba.FileResponse.ExtractFile(System.String)">
+            <summary>
+            Extracts the file.
+            </summary>
+            <param name="jsonResponse">The json response.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Bubba.FileResponse.ExtractResponseData(System.String,System.String)">
+            <summary>
+            Extracts the message from response.
+            </summary>
+            <param name="jsonResponse">The json response.</param>
+            <param name="chatModel">The chat model.</param>
+            <returns></returns>
+        </member>
         <member name="T:Bubba.FineTuningResponse">
             <inheritdoc />
             <summary>
@@ -24940,111 +25008,6 @@
             <value>
             The usage.
             </value>
-        </member>
-        <member name="T:Bubba.GptFileResponse">
-            <inheritdoc />
-            <summary>
-            </summary>
-            <seealso cref="T:Bubba.GptResponse" />
-        </member>
-        <member name="F:Bubba.GptFileResponse._filePath">
-            <summary>
-            The file path
-            </summary>
-        </member>
-        <member name="F:Bubba.GptFileResponse._generatedFile">
-            <summary>
-            The file path
-            </summary>
-        </member>
-        <member name="F:Bubba.GptFileResponse._rawResponse">
-            <summary>
-            The raw response
-            </summary>
-        </member>
-        <member name="M:Bubba.GptFileResponse.#ctor">
-            <summary>
-            Initializes a new instance of the
-            <see cref="T:Bubba.GptFileResponse"/> class.
-            </summary>
-            <inheritdoc />
-        </member>
-        <member name="P:Bubba.GptFileResponse.RawResponse">
-            <summary>
-            Gets or sets the raw response.
-            </summary>
-            <value>
-            The raw response.
-            </value>
-        </member>
-        <member name="P:Bubba.GptFileResponse.Id">
-            <inheritdoc />
-            <summary>
-            Gets or sets the identifier.
-            </summary>
-            <value>
-            The identifier.
-            </value>
-        </member>
-        <member name="P:Bubba.GptFileResponse.Object">
-            <inheritdoc />
-            <summary>
-            Gets or sets the object.
-            </summary>
-            <value>
-            The object.
-            </value>
-        </member>
-        <member name="P:Bubba.GptFileResponse.Created">
-            <inheritdoc />
-            <summary>
-            Gets or sets the created.
-            </summary>
-            <value>
-            The created.
-            </value>
-        </member>
-        <member name="P:Bubba.GptFileResponse.Model">
-            <inheritdoc />
-            <summary>
-            Gets or sets the model.
-            </summary>
-            <value>
-            The model.
-            </value>
-        </member>
-        <member name="P:Bubba.GptFileResponse.Choices">
-            <inheritdoc />
-            <summary>
-            Gets or sets the choices.
-            </summary>
-            <value>
-            The choices.
-            </value>
-        </member>
-        <member name="P:Bubba.GptFileResponse.Usage">
-            <inheritdoc />
-            <summary>
-            Gets or sets the usage.
-            </summary>
-            <value>
-            The usage.
-            </value>
-        </member>
-        <member name="M:Bubba.GptFileResponse.ExtractFile(System.String)">
-            <summary>
-            Extracts the file.
-            </summary>
-            <param name="jsonResponse">The json response.</param>
-            <returns></returns>
-        </member>
-        <member name="M:Bubba.GptFileResponse.ExtractResponseData(System.String,System.String)">
-            <summary>
-            Extracts the message from response.
-            </summary>
-            <param name="jsonResponse">The json response.</param>
-            <param name="chatModel">The chat model.</param>
-            <returns></returns>
         </member>
         <member name="T:Bubba.GptResponse">
             <inheritdoc />
@@ -25155,111 +25118,6 @@
             to release both managed and unmanaged resources;
             <c>false</c> to release only unmanaged resources.
             </param>
-        </member>
-        <member name="T:Bubba.GptUploadResponse">
-            <inheritdoc />
-            <summary>
-            </summary>
-            <seealso cref="T:Bubba.GptResponse" />
-        </member>
-        <member name="F:Bubba.GptUploadResponse._filePath">
-            <summary>
-            The file path
-            </summary>
-        </member>
-        <member name="F:Bubba.GptUploadResponse._generatedUpload">
-            <summary>
-            The file path
-            </summary>
-        </member>
-        <member name="F:Bubba.GptUploadResponse._rawResponse">
-            <summary>
-            The raw response
-            </summary>
-        </member>
-        <member name="M:Bubba.GptUploadResponse.#ctor">
-            <summary>
-            Initializes a new instance of the
-            <see cref="T:Bubba.GptUploadResponse"/> class.
-            </summary>
-            <inheritdoc />
-        </member>
-        <member name="P:Bubba.GptUploadResponse.RawResponse">
-            <summary>
-            Gets or sets the raw response.
-            </summary>
-            <value>
-            The raw response.
-            </value>
-        </member>
-        <member name="P:Bubba.GptUploadResponse.FilePath">
-            <summary>
-            Gets or sets the file path.
-            </summary>
-            <value>
-            The file path.
-            </value>
-        </member>
-        <member name="P:Bubba.GptUploadResponse.Id">
-            <inheritdoc />
-            <summary>
-            Gets or sets the identifier.
-            </summary>
-            <value>
-            The identifier.
-            </value>
-        </member>
-        <member name="P:Bubba.GptUploadResponse.Object">
-            <inheritdoc />
-            <summary>
-            Gets or sets the object.
-            </summary>
-            <value>
-            The object.
-            </value>
-        </member>
-        <member name="P:Bubba.GptUploadResponse.Created">
-            <inheritdoc />
-            <summary>
-            Gets or sets the created.
-            </summary>
-            <value>
-            The created.
-            </value>
-        </member>
-        <member name="P:Bubba.GptUploadResponse.Model">
-            <inheritdoc />
-            <summary>
-            Gets or sets the model.
-            </summary>
-            <value>
-            The model.
-            </value>
-        </member>
-        <member name="P:Bubba.GptUploadResponse.Choices">
-            <inheritdoc />
-            <summary>
-            Gets or sets the choices.
-            </summary>
-            <value>
-            The choices.
-            </value>
-        </member>
-        <member name="P:Bubba.GptUploadResponse.Usage">
-            <inheritdoc />
-            <summary>
-            Gets or sets the usage.
-            </summary>
-            <value>
-            The usage.
-            </value>
-        </member>
-        <member name="M:Bubba.GptUploadResponse.ExtractUpload(System.String)">
-            <summary>
-            Extracts the upload.
-            </summary>
-            <param name="jsonResponse">The json response.</param>
-            <returns></returns>
         </member>
         <member name="T:Bubba.ImageGenerationResponse">
             <inheritdoc />
@@ -25836,6 +25694,111 @@
             Extracts the message from response.
             </summary>
             <param name="response">The json response.</param>
+            <returns></returns>
+        </member>
+        <member name="T:Bubba.UploadResponse">
+            <inheritdoc />
+            <summary>
+            </summary>
+            <seealso cref="T:Bubba.GptResponse" />
+        </member>
+        <member name="F:Bubba.UploadResponse._filePath">
+            <summary>
+            The file path
+            </summary>
+        </member>
+        <member name="F:Bubba.UploadResponse._generatedUpload">
+            <summary>
+            The file path
+            </summary>
+        </member>
+        <member name="F:Bubba.UploadResponse._rawResponse">
+            <summary>
+            The raw response
+            </summary>
+        </member>
+        <member name="M:Bubba.UploadResponse.#ctor">
+            <summary>
+            Initializes a new instance of the
+            <see cref="T:Bubba.UploadResponse"/> class.
+            </summary>
+            <inheritdoc />
+        </member>
+        <member name="P:Bubba.UploadResponse.RawResponse">
+            <summary>
+            Gets or sets the raw response.
+            </summary>
+            <value>
+            The raw response.
+            </value>
+        </member>
+        <member name="P:Bubba.UploadResponse.FilePath">
+            <summary>
+            Gets or sets the file path.
+            </summary>
+            <value>
+            The file path.
+            </value>
+        </member>
+        <member name="P:Bubba.UploadResponse.Id">
+            <inheritdoc />
+            <summary>
+            Gets or sets the identifier.
+            </summary>
+            <value>
+            The identifier.
+            </value>
+        </member>
+        <member name="P:Bubba.UploadResponse.Object">
+            <inheritdoc />
+            <summary>
+            Gets or sets the object.
+            </summary>
+            <value>
+            The object.
+            </value>
+        </member>
+        <member name="P:Bubba.UploadResponse.Created">
+            <inheritdoc />
+            <summary>
+            Gets or sets the created.
+            </summary>
+            <value>
+            The created.
+            </value>
+        </member>
+        <member name="P:Bubba.UploadResponse.Model">
+            <inheritdoc />
+            <summary>
+            Gets or sets the model.
+            </summary>
+            <value>
+            The model.
+            </value>
+        </member>
+        <member name="P:Bubba.UploadResponse.Choices">
+            <inheritdoc />
+            <summary>
+            Gets or sets the choices.
+            </summary>
+            <value>
+            The choices.
+            </value>
+        </member>
+        <member name="P:Bubba.UploadResponse.Usage">
+            <inheritdoc />
+            <summary>
+            Gets or sets the usage.
+            </summary>
+            <value>
+            The usage.
+            </value>
+        </member>
+        <member name="M:Bubba.UploadResponse.ExtractUpload(System.String)">
+            <summary>
+            Extracts the upload.
+            </summary>
+            <param name="jsonResponse">The json response.</param>
             <returns></returns>
         </member>
         <member name="T:Bubba.VectorResponse">
@@ -29854,6 +29817,11 @@
               Looks up a localized string similar to Bubba Browser.
             </summary>
         </member>
+        <member name="P:Bubba.Properties.Locations.C">
+            <summary>
+              Looks up a localized string similar to Resources\Documents\Editor\C.
+            </summary>
+        </member>
         <member name="P:Bubba.Properties.Locations.CannotConnect">
             <summary>
               Looks up a localized string similar to bubba://UI/Pages/CannotConnect.html.
@@ -29869,9 +29837,19 @@
               Looks up a localized string similar to Resources\Documents\CodeEditor\.
             </summary>
         </member>
+        <member name="P:Bubba.Properties.Locations.CPP">
+            <summary>
+              Looks up a localized string similar to Resources\Documents\Editor\CPP\.
+            </summary>
+        </member>
         <member name="P:Bubba.Properties.Locations.CrossDomainSecurity">
             <summary>
               Looks up a localized string similar to true.
+            </summary>
+        </member>
+        <member name="P:Bubba.Properties.Locations.CS">
+            <summary>
+              Looks up a localized string similar to Resources\Documents\Editor\CS\.
             </summary>
         </member>
         <member name="P:Bubba.Properties.Locations.DatabaseDirectory">
@@ -29922,6 +29900,11 @@
         <member name="P:Bubba.Properties.Locations.Internal">
             <summary>
               Looks up a localized string similar to UI\Pages\index.html.
+            </summary>
+        </member>
+        <member name="P:Bubba.Properties.Locations.JS">
+            <summary>
+              Looks up a localized string similar to Resources\Documents\Editor\JS\.
             </summary>
         </member>
         <member name="P:Bubba.Properties.Locations.Loading">
@@ -29989,9 +29972,19 @@
               Looks up a localized string similar to https://cse.google.com/cse?cx=e78aa3dcb21474bf4.
             </summary>
         </member>
+        <member name="P:Bubba.Properties.Locations.SQL">
+            <summary>
+              Looks up a localized string similar to Resources\Documents\Editor\SQL\.
+            </summary>
+        </member>
         <member name="P:Bubba.Properties.Locations.UserAgent">
             <summary>
               Looks up a localized string similar to Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/104.0.5112.102 Safari/537.36 /CefSharp Browser.
+            </summary>
+        </member>
+        <member name="P:Bubba.Properties.Locations.VBA">
+            <summary>
+              Looks up a localized string similar to Resources\Documents\Editor\VBA\.
             </summary>
         </member>
         <member name="P:Bubba.Properties.Locations.WebGL">
@@ -36500,6 +36493,12 @@
             <param name="form">The o.</param>
             <param name="interval">The interval.</param>
         </member>
+        <member name="M:Bubba.DocumentWindow.BuildPaths">
+            <summary>
+            Creates the paths.
+            </summary>
+            <returns></returns>
+        </member>
         <member name="M:Bubba.DocumentWindow.Busy">
             <summary>
             Begins the initialize.
@@ -36530,12 +36529,6 @@
         <member name="M:Bubba.DocumentWindow.GetFederalRegulationPaths">
             <summary>
             Gets the federal regulation paths.
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:Bubba.DocumentWindow.BuildPaths">
-            <summary>
-            Creates the paths.
             </summary>
             <returns></returns>
         </member>

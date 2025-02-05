@@ -219,4 +219,22 @@
   <data name="Documents" xml:space="preserve">
     <value>Resources\Documents\</value>
   </data>
+  <data name="C" xml:space="preserve">
+    <value>Resources\Documents\Editor\C</value>
+  </data>
+  <data name="CPP" xml:space="preserve">
+    <value>Resources\Documents\Editor\CPP\</value>
+  </data>
+  <data name="CS" xml:space="preserve">
+    <value>Resources\Documents\Editor\CS\</value>
+  </data>
+  <data name="JS" xml:space="preserve">
+    <value>Resources\Documents\Editor\JS\</value>
+  </data>
+  <data name="SQL" xml:space="preserve">
+    <value>Resources\Documents\Editor\SQL\</value>
+  </data>
+  <data name="VBA" xml:space="preserve">
+    <value>Resources\Documents\Editor\VBA\</value>
+  </data>
 </root>

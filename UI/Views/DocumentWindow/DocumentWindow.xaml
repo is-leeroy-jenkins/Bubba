@@ -10,9 +10,9 @@
     xmlns:sync="http://schemas.syncfusion.com/wpf"
     x:Name="DocViewer"
     Title="Documentation"
-    Width="1110"
-    Height="805"
-    MinWidth="1100"
+    Width="1120"
+    Height="780"
+    MinWidth="1120"
     MinHeight="500"
     MaxWidth="1500"
     MaxHeight="1000"
@@ -20,7 +20,7 @@
     sync:SfSkinManager.Theme="{skin:SkinManagerExtension ThemeName=FluentDark}"
     Background="{StaticResource FormBackground}"
     BorderBrush="{StaticResource BlueBorderBrush}"
-    BorderThickness="2"
+    BorderThickness="1"
     FontSize="12"
     Foreground="{StaticResource LightBlueBrush}"
     Icon="/Resources/Assets/ApplicationImages/Bubba.png"
@@ -153,7 +153,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="40" />
             <RowDefinition />
-            <RowDefinition Height="50" />
+            <RowDefinition Height="56" />
         </Grid.RowDefinitions>
 
         <Canvas Grid.Row="2">
@@ -293,7 +293,9 @@
 
         <Grid
             x:Name="DocumentGrid"
-            Grid.Row="1">
+            Grid.Row="1"
+            Height="670"
+            VerticalAlignment="Top">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="805*" />
                 <ColumnDefinition Width="321*" />
@@ -331,23 +333,24 @@
                     Foreground="{DynamicResource FormForeground}"
                     Tag="ExplanatoryStatements"
                     ToolTip="Committee Reports" />
+
                 <ListBox
                     x:Name="DocumentListBox"
                     Grid.Row="3"
                     Width="282"
-                    Height="500"
-                    Margin="10,36,23,0"
-                    VerticalAlignment="Top"
+                    Margin="0,36,23,10"
+                    HorizontalAlignment="Right"
                     d:ItemsSource="{d:SampleData ItemCount=5}"
                     BorderThickness="2,2,2,2" />
             </Grid>
             <pdf:PdfViewerControl
                 x:Name="PdfViewer"
-                Grid.Column="0"
-                Width="730"
-                Margin="30,10,0,50"
+                Width="771"
+                Height="650"
+                Margin="10,0,0,0"
                 Padding="1,1,1,1"
                 HorizontalAlignment="Left"
+                VerticalAlignment="Center"
                 BorderBrush="{DynamicResource BlueBorderBrush}"
                 BorderThickness="2,2,2,2"
                 FontFamily="Roboto" />

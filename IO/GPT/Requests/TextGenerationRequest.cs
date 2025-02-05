@@ -406,29 +406,6 @@ namespace Bubba
 
         /// <inheritdoc />
         /// <summary>
-        /// Gets the chat model.
-        /// </summary>
-        /// <value>
-        /// The chat model.
-        /// </value>
-        public override GptBody Body
-        {
-            get
-            {
-                return _body;
-            }
-            set
-            {
-                if( _body != value )
-                {
-                    _body = value;
-                    OnPropertyChanged( nameof( Body ) );
-                }
-            }
-        }
-
-        /// <inheritdoc />
-        /// <summary>
         /// Gets the text completion asynchronous.
         /// </summary>
         /// <returns></returns>

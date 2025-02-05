@@ -301,29 +301,6 @@ namespace Bubba
 
         /// <inheritdoc />
         /// <summary>
-        /// Gets the chat model.
-        /// </summary>
-        /// <value>
-        /// The chat model.
-        /// </value>
-        public override GptBody Body
-        {
-            get
-            {
-                return _body;
-            }
-            set
-            {
-                if( _body != value )
-                {
-                    _body = value;
-                    OnPropertyChanged( nameof( Body ) );
-                }
-            }
-        }
-
-        /// <inheritdoc />
-        /// <summary>
         /// Gets the chat response asynchronous.
         /// </summary>
         /// <returns></returns>
@@ -380,6 +357,7 @@ namespace Bubba
         {
             try
             {
+                ThrowIf.Empty( response, nameof( response ) );
                 using var _document = JsonDocument.Parse( response );
                 var _root = _document.RootElement;
                 if( _model.Contains( "gpt-3.5-turbo" ) )

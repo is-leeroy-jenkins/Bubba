@@ -7,7 +7,7 @@
     xmlns:sys="clr-namespace:System;assembly=mscorlib"
     xmlns:wpf="http://schemas.syncfusion.com/wpf">
 
-    <!--  *********************************************** Slider *****************************************************  -->
+    <!--  *********************************************** SfRangeSlider *****************************************************  -->
 
     <Style TargetType="{x:Type wpf:SfRangeSlider}">
         <Setter Property="Background" Value="{StaticResource GroupBoxBackground}" />
@@ -24,7 +24,7 @@
         <Setter Property="VerticalContentAlignment" Value="Center" />
         <Setter Property="Padding" Value="1" />
         <Setter Property="Width" Value="120" />
-        <Setter Property="Height" Value="45" />
+        <Setter Property="Height" Value="40" />
         <Setter Property="MinorTickLength" Value="5" />
         <Setter Property="TickLength" Value="10" />
         <Setter Property="SnapsTo" Value="Ticks" />
@@ -43,7 +43,7 @@
         <Setter Property="VerticalContentAlignment" Value="Center" />
         <Setter Property="Padding" Value="1" />
         <Setter Property="Width" Value="120" />
-        <Setter Property="Height" Value="45" />
+        <Setter Property="Height" Value="40" />
     </Style>
 
 

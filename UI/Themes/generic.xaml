@@ -6,9 +6,6 @@
     <!--  ******************************************** Resources *********************************************  -->
 
     <ResourceDictionary.MergedDictionaries>
-        <!--  COLORS  -->
-        <ResourceDictionary Source="/UI/Themes/Colors.xaml" />
-
         <!--  COMBOBOX  -->
         <ResourceDictionary Source="/UI/Themes/ComboBox/ComboBox.xaml" />
 

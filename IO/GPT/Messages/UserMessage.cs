@@ -1,10 +1,10 @@
 ﻿// ******************************************************************************************
 //     Assembly:                Bubba
 //     Author:                  Terry D. Eppler
-//     Created:                 02-03-2025
+//     Created:                 02-04-2025
 // 
 //     Last Modified By:        Terry D. Eppler
-//     Last Modified On:        02-03-2025
+//     Last Modified On:        02-04-2025
 // ******************************************************************************************
 // <copyright file="UserMessage.cs" company="Terry D. Eppler">
 //    Bubba is a small and simple windows (wpf) application for interacting with the OpenAI API
@@ -72,7 +72,7 @@ namespace Bubba
         /// Initializes a new instance of the
         /// <see cref="UserMessage"/> class.
         /// </summary>
-        public UserMessage( ) 
+        public UserMessage( )
             : base( )
         {
             _role = "user";
@@ -132,10 +132,10 @@ namespace Bubba
             }
             set
             {
-                if(_role != value)
+                if( _role != value )
                 {
                     _role = value;
-                    OnPropertyChanged(nameof(Role));
+                    OnPropertyChanged( nameof( Role ) );
                 }
             }
         }

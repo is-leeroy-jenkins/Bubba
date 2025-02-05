@@ -1,10 +1,10 @@
 ﻿// ******************************************************************************************
 //     Assembly:                Bubba
 //     Author:                  Terry D. Eppler
-//     Created:                 01-29-2025
+//     Created:                 02-04-2025
 // 
 //     Last Modified By:        Terry D. Eppler
-//     Last Modified On:        01-29-2025
+//     Last Modified On:        02-04-2025
 // ******************************************************************************************
 // <copyright file="DocumentWindow.xaml.cs" company="Terry D. Eppler">
 //    Bubba is a small and simple windows (wpf) application for interacting with the OpenAI API
@@ -402,6 +402,7 @@ namespace Bubba
         {
             try
             {
+                PdfViewer.Zoom = 75;
             }
             catch( Exception ex )
             {
@@ -464,6 +465,24 @@ namespace Bubba
                 }
 
                 form.Opacity = 0;
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+            }
+        }
+
+        /// <summary>
+        /// Creates the paths.
+        /// </summary>
+        /// <returns></returns>
+        private void BuildPaths( )
+        {
+            try
+            {
+                _explanatoryStatements = GetExplanatoryStatementPaths( );
+                _publicLaws = GetAppropriationPaths( );
+                _federalRegulations = GetFederalRegulationPaths( );
             }
             catch( Exception ex )
             {
@@ -620,24 +639,6 @@ namespace Bubba
             {
                 Fail( ex );
                 return default( IDictionary<string, string> );
-            }
-        }
-
-        /// <summary>
-        /// Creates the paths.
-        /// </summary>
-        /// <returns></returns>
-        private void BuildPaths( )
-        {
-            try
-            {
-                _explanatoryStatements = GetExplanatoryStatementPaths( );
-                _publicLaws = GetAppropriationPaths( );
-                _federalRegulations = GetFederalRegulationPaths( );
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
             }
         }
 
@@ -948,6 +949,7 @@ namespace Bubba
             {
                 InitializeTimer( );
                 InitializeToolbar( );
+                InitializeViewer( );
                 BuildPaths( );
             }
             catch( Exception ex )
@@ -1432,8 +1434,7 @@ namespace Bubba
             try
             {
                 var _listBox = sender as ListBox;
-                var _item = ( ( ListBoxItem )_listBox.SelectedItem).Tag;
-                _selectedPath = _item.ToString( );
+                _selectedPath = ( ( ListBoxItem )_listBox.SelectedItem ).Tag.ToString( );
                 PdfViewer.Load( _selectedPath );
             }
             catch( Exception ex )
@@ -1452,7 +1453,7 @@ namespace Bubba
         {
             try
             {
-                if( sender is RadioButton _radioButton 
+                if( sender is RadioButton _radioButton
                     && _radioButton.IsChecked == true )
                 {
                     var _item = _radioButton?.Tag?.ToString( );

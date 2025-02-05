@@ -147,7 +147,6 @@ namespace Bubba
             _topPercent = request.TopPercent;
             _temperature = request.Temperature;
             _maximumTokens = request.MaximumTokens;
-            _body = request.Body;
         }
 
         /// <summary>
@@ -261,29 +260,6 @@ namespace Bubba
                 {
                     _responseFormat = value;
                     OnPropertyChanged( nameof( ResponseFormat ) );
-                }
-            }
-        }
-
-        /// <inheritdoc />
-        /// <summary>
-        /// Gets the chat model.
-        /// </summary>
-        /// <value>
-        /// The chat model.
-        /// </value>
-        public virtual GptBody Body
-        {
-            get
-            {
-                return _body;
-            }
-            set
-            {
-                if( _body != value )
-                {
-                    _body = value;
-                    OnPropertyChanged( nameof( Body ) );
                 }
             }
         }

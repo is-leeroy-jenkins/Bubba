@@ -1,10 +1,10 @@
 ﻿// ******************************************************************************************
 //     Assembly:                Bubba
 //     Author:                  Terry D. Eppler
-//     Created:                 01-24-2025
+//     Created:                 02-04-2025
 // 
 //     Last Modified By:        Terry D. Eppler
-//     Last Modified On:        01-24-2025
+//     Last Modified On:        02-04-2025
 // ******************************************************************************************
 // <copyright file="App.xaml.cs" company="Terry D. Eppler">
 //    Bubba is a small and simple windows (wpf) application for interacting with the OpenAI API
@@ -259,25 +259,25 @@ namespace Bubba
                 AppDomain.CurrentDomain.UnhandledException += ( s, args ) =>
                     HandleException( args.ExceptionObject as Exception );
 
-                var _cefSettings = new CefSettings();
-                _cefSettings.RegisterScheme(new CefCustomScheme
+                var _cefSettings = new CefSettings( );
+                _cefSettings.RegisterScheme( new CefCustomScheme
                 {
                     SchemeName = Locations.Internal,
-                    SchemeHandlerFactory = new SchemaCallbackFactory()
-                });
+                    SchemeHandlerFactory = new SchemaCallbackFactory( )
+                } );
 
                 _cefSettings.UserAgent = Locations.UserAgent;
                 _cefSettings.AcceptLanguageList = Locations.AcceptLanguage;
                 _cefSettings.IgnoreCertificateErrors = true;
-                _cefSettings.CachePath = GetApplicationDirectory("Cache");
-                if(bool.Parse(Locations.Proxy))
+                _cefSettings.CachePath = GetApplicationDirectory( "Cache" );
+                if( bool.Parse( Locations.Proxy ) )
                 {
-                    CefSharpSettings.Proxy = new ProxyOptions(Locations.ProxyIP,
+                    CefSharpSettings.Proxy = new ProxyOptions( Locations.ProxyIP,
                         Locations.ProxyPort, Locations.ProxyUsername, Locations.ProxyPassword,
-                        Locations.ProxyBypassList);
+                        Locations.ProxyBypassList );
                 }
 
-                Cef.Initialize(_cefSettings);
+                Cef.Initialize( _cefSettings );
             }
             catch( Exception ex )
             {
