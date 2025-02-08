@@ -382,30 +382,6 @@ namespace Bubba
 
         /// <inheritdoc />
         /// <summary>
-        /// Gets or sets the response format.
-        /// </summary>
-        /// <value>
-        /// The response format.
-        /// </value>
-        [ JsonPropertyName( "respone_format" ) ]
-        public override string ResponseFormat
-        {
-            get
-            {
-                return _responseFormat;
-            }
-            set
-            {
-                if( _responseFormat != value )
-                {
-                    _responseFormat = value;
-                    OnPropertyChanged( nameof( ResponseFormat ) );
-                }
-            }
-        }
-
-        /// <inheritdoc />
-        /// <summary>
         /// Gets the text completion asynchronous.
         /// </summary>
         /// <returns></returns>

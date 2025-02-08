@@ -1,16 +1,16 @@
 ﻿// ******************************************************************************************
-//     Assembly:                Booger
+//     Assembly:                Bubba
 //     Author:                  Terry D. Eppler
-//     Created:                 08-08-2024
+//     Created:                 02-05-2025
 // 
 //     Last Modified By:        Terry D. Eppler
-//     Last Modified On:        08-08-2024
+//     Last Modified On:        02-05-2025
 // ******************************************************************************************
 // <copyright file="MetroComboBox.cs" company="Terry D. Eppler">
-//    Booger is a quick & dirty WPF application that interacts with OpenAI GPT-3.5 Turbo API
-//    based on NET6 and written in C-Sharp.
+//    Bubba is a small and simple windows (wpf) application for interacting with the OpenAI API
+//    that's developed in C-Sharp under the MIT license.C#.
 // 
-//    Copyright ©  2024  Terry D. Eppler
+//    Copyright ©  2020-2024 Terry D. Eppler
 // 
 //    Permission is hereby granted, free of charge, to any person obtaining a copy
 //    of this software and associated documentation files (the “Software”),
@@ -32,7 +32,7 @@
 //    ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 //    DEALINGS IN THE SOFTWARE.
 // 
-//    You can contact me at: terryeppler@gmail.com or eppler.terry@epa.gov
+//    You can contact me at:  terryeppler@gmail.com or eppler.terry@epa.gov
 // </copyright>
 // <summary>
 //   MetroComboBox.cs
@@ -45,6 +45,7 @@ namespace Bubba
     using System.Diagnostics.CodeAnalysis;
     using System.Windows;
     using System.Windows.Controls;
+    using Syncfusion.Windows.Tools.Controls;
 
     /// <inheritdoc />
     /// <summary>
@@ -77,10 +78,8 @@ namespace Bubba
             Height = 30;
             FontFamily = _theme.FontFamily;
             FontSize = _theme.FontSize;
-            Padding = new Thickness( 10, 1, 1, 1 );
+            Padding = new Thickness( 15, 1, 1, 1 );
             BorderThickness = new Thickness( 1 );
-            IsEditable = true;
-            IsTextSearchEnabled = false;
             Background = _theme.ControlInterior;
             Foreground = _theme.FormForeground;
             BorderBrush = _theme.BorderBrush;
@@ -94,7 +93,7 @@ namespace Bubba
         {
             try
             {
-                var _item = new ComboBoxItem
+                var _item = new MetroComboBoxItem
                 {
                     Background = _theme.ControlInterior,
                     Foreground = _theme.FormForeground,
@@ -121,7 +120,7 @@ namespace Bubba
         {
             try
             {
-                var _item = new ComboBoxItem
+                var _item = new MetroComboBoxItem
                 {
                     Background = _theme.ControlInterior,
                     Foreground = _theme.FormForeground,
@@ -133,9 +132,9 @@ namespace Bubba
 
                 Items.Add( _item );
             }
-            catch(Exception ex)
+            catch( Exception ex )
             {
-                Fail(ex);
+                Fail( ex );
             }
         }
 

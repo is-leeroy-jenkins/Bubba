@@ -45,6 +45,7 @@ namespace Bubba
     using System.Diagnostics.CodeAnalysis;
     using System.Windows;
     using System.Windows.Controls;
+    using Syncfusion.Windows.Tools.Controls;
 
     /// <inheritdoc />
     /// <summary>
@@ -57,6 +58,7 @@ namespace Bubba
     [ SuppressMessage( "ReSharper", "MemberCanBeInternal" ) ]
     [ SuppressMessage( "ReSharper", "ClassCanBeSealed.Global" ) ]
     [ SuppressMessage( "ReSharper", "MemberCanBeInternal" ) ]
+    [ SuppressMessage( "ReSharper", "ClassNeverInstantiated.Global" ) ]
     public class MetroComboBoxItem : ComboBoxItem
     {
         /// <summary>
@@ -73,9 +75,8 @@ namespace Bubba
             : base( )
         {
             // Control Properties
-            SetResourceReference( StyleProperty, typeof( ComboBoxItem ) );
             Height = 30;
-            Padding = new Thickness( 10, 1, 1, 1 );
+            Padding = new Thickness( 15, 1, 1, 1 );
             Background = _theme.ControlInterior;
             BorderBrush = _theme.ControlInterior;
             Foreground = _theme.FormForeground;
@@ -95,7 +96,7 @@ namespace Bubba
         {
             try
             {
-                if( sender is ComboBoxItem _item )
+                if( sender is MetroComboBoxItem _item )
                 {
                     _item.Foreground = _theme.FormForeground;
                     _item.Background = _theme.SteelBlueBrush;
@@ -118,7 +119,7 @@ namespace Bubba
         {
             try
             {
-                if( sender is ComboBoxItem _item )
+                if( sender is MetroComboBoxItem _item )
                 {
                     _item.Foreground = _theme.FormForeground;
                     _item.Background = _theme.ControlBackground;

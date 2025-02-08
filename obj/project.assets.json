@@ -2263,6 +2263,19 @@
           }
         }
       },
+      "Syncfusion.Data.WPF/24.1.41": {
+        "type": "package",
+        "compile": {
+          "lib/net6.0-windows7.0/Syncfusion.Data.WPF.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net6.0-windows7.0/Syncfusion.Data.WPF.dll": {
+            "related": ".xml"
+          }
+        }
+      },
       "Syncfusion.Edit.WPF/24.1.41": {
         "type": "package",
         "dependencies": {
@@ -2454,6 +2467,22 @@
           }
         }
       },
+      "Syncfusion.SfChart.WPF/24.1.41": {
+        "type": "package",
+        "dependencies": {
+          "Syncfusion.Licensing": "24.1.41"
+        },
+        "compile": {
+          "lib/net6.0-windows7.0/Syncfusion.SfChart.WPF.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net6.0-windows7.0/Syncfusion.SfChart.WPF.dll": {
+            "related": ".xml"
+          }
+        }
+      },
       "Syncfusion.SfGauge.WPF/24.1.41": {
         "type": "package",
         "dependencies": {
@@ -2467,6 +2496,24 @@
         },
         "runtime": {
           "lib/net6.0-windows7.0/Syncfusion.SfGauge.WPF.dll": {
+            "related": ".xml"
+          }
+        }
+      },
+      "Syncfusion.SfGrid.WPF/24.1.41": {
+        "type": "package",
+        "dependencies": {
+          "Syncfusion.Data.WPF": "24.1.41",
+          "Syncfusion.Licensing": "24.1.41",
+          "Syncfusion.Shared.WPF": "24.1.41"
+        },
+        "compile": {
+          "lib/net6.0-windows7.0/Syncfusion.SfGrid.WPF.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net6.0-windows7.0/Syncfusion.SfGrid.WPF.dll": {
             "related": ".xml"
           }
         }
@@ -7348,6 +7395,29 @@
         "syncfusion_logo.png"
       ]
     },
+    "Syncfusion.Data.WPF/24.1.41": {
+      "sha512": "UZ/GSMVJb16VhF55MhVEqA3TglRFAas00UeMpiZ7hP/nSp0YdRxia8A0zhJ05pVbfwlGTuydr67QWroJsjVG7Q==",
+      "type": "package",
+      "path": "syncfusion.data.wpf/24.1.41",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "LICENSE.txt",
+        "lib/net40/Syncfusion.Data.WPF.dll",
+        "lib/net40/Syncfusion.Data.WPF.xml",
+        "lib/net45/Syncfusion.Data.WPF.dll",
+        "lib/net45/Syncfusion.Data.WPF.xml",
+        "lib/net451/Syncfusion.Data.WPF.dll",
+        "lib/net451/Syncfusion.Data.WPF.xml",
+        "lib/net46/Syncfusion.Data.WPF.dll",
+        "lib/net46/Syncfusion.Data.WPF.xml",
+        "lib/net6.0-windows7.0/Syncfusion.Data.WPF.dll",
+        "lib/net6.0-windows7.0/Syncfusion.Data.WPF.xml",
+        "syncfusion.data.wpf.24.1.41.nupkg.sha512",
+        "syncfusion.data.wpf.nuspec",
+        "syncfusion_logo.png"
+      ]
+    },
     "Syncfusion.Edit.WPF/24.1.41": {
       "sha512": "OohImo+m7vu8K3FD4socMHRov0KbQsmXrZddrMqIMhznnD+wbI4c7rIueidcIrPLC3Wvz4OW+iTVGs0HU3zwcQ==",
       "type": "package",
@@ -7768,6 +7838,49 @@
         "tools/VisualStudioToolsManifest.xml"
       ]
     },
+    "Syncfusion.SfChart.WPF/24.1.41": {
+      "sha512": "TrNzh1pZhIn2VTEgnmHVlptqw37i9VEw4/9oUr6kxuNN2VEERp5si9EAjCDyacIqvcfI4/6/9GuNAIXUmBFAkg==",
+      "type": "package",
+      "path": "syncfusion.sfchart.wpf/24.1.41",
+      "hasTools": true,
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "LICENSE.txt",
+        "README.md",
+        "lib/net40/Design/Syncfusion.Design.Wpf.dll",
+        "lib/net40/Design/Syncfusion.SfChart.WPF.DesignTools.dll",
+        "lib/net40/Design/Syncfusion.SfChart.WPF.Expression.Design.dll",
+        "lib/net40/Design/Syncfusion.SfChart.WPF.VisualStudio.Design.dll",
+        "lib/net40/Syncfusion.SfChart.WPF.dll",
+        "lib/net40/Syncfusion.SfChart.WPF.xml",
+        "lib/net45/Design/Syncfusion.Design.Wpf.dll",
+        "lib/net45/Design/Syncfusion.SfChart.WPF.DesignTools.dll",
+        "lib/net45/Design/Syncfusion.SfChart.WPF.Expression.Design.dll",
+        "lib/net45/Design/Syncfusion.SfChart.WPF.VisualStudio.Design.dll",
+        "lib/net45/Syncfusion.SfChart.WPF.dll",
+        "lib/net45/Syncfusion.SfChart.WPF.xml",
+        "lib/net451/Design/Syncfusion.Design.Wpf.dll",
+        "lib/net451/Design/Syncfusion.SfChart.WPF.DesignTools.dll",
+        "lib/net451/Design/Syncfusion.SfChart.WPF.Expression.Design.dll",
+        "lib/net451/Design/Syncfusion.SfChart.WPF.VisualStudio.Design.dll",
+        "lib/net451/Syncfusion.SfChart.WPF.dll",
+        "lib/net451/Syncfusion.SfChart.WPF.xml",
+        "lib/net46/Design/Syncfusion.Design.Wpf.dll",
+        "lib/net46/Design/Syncfusion.SfChart.WPF.DesignTools.dll",
+        "lib/net46/Design/Syncfusion.SfChart.WPF.Expression.Design.dll",
+        "lib/net46/Design/Syncfusion.SfChart.WPF.VisualStudio.Design.dll",
+        "lib/net46/Syncfusion.SfChart.WPF.dll",
+        "lib/net46/Syncfusion.SfChart.WPF.xml",
+        "lib/net6.0-windows7.0/Design/Syncfusion.SfChart.WPF.DesignTools.dll",
+        "lib/net6.0-windows7.0/Syncfusion.SfChart.WPF.dll",
+        "lib/net6.0-windows7.0/Syncfusion.SfChart.WPF.xml",
+        "syncfusion.sfchart.wpf.24.1.41.nupkg.sha512",
+        "syncfusion.sfchart.wpf.nuspec",
+        "syncfusion_logo.png",
+        "tools/VisualStudioToolsManifest.xml"
+      ]
+    },
     "Syncfusion.SfGauge.WPF/24.1.41": {
       "sha512": "sllwXCzVgqI5LbhlWapCSoD/p2iGXpQMO+GMs2D+mhDEyK5I1KCB/absvs1uwl5B2jwEuHpYNS7ew9EIq2mCCA==",
       "type": "package",
@@ -7807,6 +7920,45 @@
         "lib/net6.0-windows7.0/Syncfusion.SfGauge.WPF.xml",
         "syncfusion.sfgauge.wpf.24.1.41.nupkg.sha512",
         "syncfusion.sfgauge.wpf.nuspec",
+        "syncfusion_logo.png",
+        "tools/VisualStudioToolsManifest.xml"
+      ]
+    },
+    "Syncfusion.SfGrid.WPF/24.1.41": {
+      "sha512": "mCbGiiJ1M0goPTHPIzfAYFqvg33d3Yx3n6/ZZqFu5N58xW3sAPODUrPhYiBydC9gIN+PcnS5aG+qPBNbLrLQzQ==",
+      "type": "package",
+      "path": "syncfusion.sfgrid.wpf/24.1.41",
+      "hasTools": true,
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "LICENSE.txt",
+        "README.md",
+        "lib/net40/Design/Syncfusion.SfGrid.WPF.DesignTools.dll",
+        "lib/net40/Design/Syncfusion.SfGrid.WPF.Expression.Design.dll",
+        "lib/net40/Design/Syncfusion.SfGrid.WPF.VisualStudio.Design.dll",
+        "lib/net40/Syncfusion.SfGrid.WPF.dll",
+        "lib/net40/Syncfusion.SfGrid.WPF.xml",
+        "lib/net45/Design/Syncfusion.SfGrid.WPF.DesignTools.dll",
+        "lib/net45/Design/Syncfusion.SfGrid.WPF.Expression.Design.dll",
+        "lib/net45/Design/Syncfusion.SfGrid.WPF.VisualStudio.Design.dll",
+        "lib/net45/Syncfusion.SfGrid.WPF.dll",
+        "lib/net45/Syncfusion.SfGrid.WPF.xml",
+        "lib/net451/Design/Syncfusion.SfGrid.WPF.DesignTools.dll",
+        "lib/net451/Design/Syncfusion.SfGrid.WPF.Expression.Design.dll",
+        "lib/net451/Design/Syncfusion.SfGrid.WPF.VisualStudio.Design.dll",
+        "lib/net451/Syncfusion.SfGrid.WPF.dll",
+        "lib/net451/Syncfusion.SfGrid.WPF.xml",
+        "lib/net46/Design/Syncfusion.SfGrid.WPF.DesignTools.dll",
+        "lib/net46/Design/Syncfusion.SfGrid.WPF.Expression.Design.dll",
+        "lib/net46/Design/Syncfusion.SfGrid.WPF.VisualStudio.Design.dll",
+        "lib/net46/Syncfusion.SfGrid.WPF.dll",
+        "lib/net46/Syncfusion.SfGrid.WPF.xml",
+        "lib/net6.0-windows7.0/Design/Syncfusion.SfGrid.WPF.DesignTools.dll",
+        "lib/net6.0-windows7.0/Syncfusion.SfGrid.WPF.dll",
+        "lib/net6.0-windows7.0/Syncfusion.SfGrid.WPF.xml",
+        "syncfusion.sfgrid.wpf.24.1.41.nupkg.sha512",
+        "syncfusion.sfgrid.wpf.nuspec",
         "syncfusion_logo.png",
         "tools/VisualStudioToolsManifest.xml"
       ]
@@ -9453,6 +9605,7 @@
       "SkiaSharp >= 3.116.1",
       "SqlServerCompact >= 4.0.8854.1",
       "Syncfusion.Edit.WPF >= 24.1.41",
+      "Syncfusion.Grid.WPF >= 24.1.41",
       "Syncfusion.Grouping.Base >= 24.1.41",
       "Syncfusion.Licensing >= 24.1.41",
       "Syncfusion.PivotTable.Wpf >= 24.1.41",
@@ -9460,7 +9613,9 @@
       "Syncfusion.SfAccordion.WPF >= 24.1.41",
       "Syncfusion.SfBarcode.WPF >= 24.1.41",
       "Syncfusion.SfBusyIndicator.WPF >= 24.1.41",
+      "Syncfusion.SfChart.WPF >= 24.1.41",
       "Syncfusion.SfGauge.WPF >= 24.1.41",
+      "Syncfusion.SfGrid.WPF >= 24.1.41",
       "Syncfusion.SfHubTile.WPF >= 24.1.41",
       "Syncfusion.SfInput.WPF >= 24.1.41",
       "Syncfusion.SfNavigationDrawer.WPF >= 24.1.41",
@@ -9645,6 +9800,10 @@
             "target": "Package",
             "version": "[24.1.41, )"
           },
+          "Syncfusion.Grid.WPF": {
+            "target": "Package",
+            "version": "[24.1.41, )"
+          },
           "Syncfusion.Grouping.Base": {
             "target": "Package",
             "version": "[24.1.41, )"
@@ -9673,7 +9832,15 @@
             "target": "Package",
             "version": "[24.1.41, )"
           },
+          "Syncfusion.SfChart.WPF": {
+            "target": "Package",
+            "version": "[24.1.41, )"
+          },
           "Syncfusion.SfGauge.WPF": {
+            "target": "Package",
+            "version": "[24.1.41, )"
+          },
+          "Syncfusion.SfGrid.WPF": {
             "target": "Package",
             "version": "[24.1.41, )"
           },

@@ -385,30 +385,6 @@ namespace Bubba
             }
         }
 
-        /// <inheritdoc />
-        /// <summary>
-        /// Gets or sets the response format.
-        /// </summary>
-        /// <value>
-        /// The response format.
-        /// </value>
-        [ JsonPropertyName( "response_format" ) ]
-        public override string ResponseFormat
-        {
-            get
-            {
-                return _responseFormat;
-            }
-            set
-            {
-                if( _responseFormat != value )
-                {
-                    _responseFormat = value;
-                    OnPropertyChanged( nameof( ResponseFormat ) );
-                }
-            }
-        }
-
         /// <summary>
         /// Uploads the training file asynchronous.
         /// </summary>

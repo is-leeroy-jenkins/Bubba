@@ -1,10 +1,10 @@
 // ******************************************************************************************
 //     Assembly:                Bubba
 //     Author:                  Terry D. Eppler
-//     Created:                 01-31-2025
+//     Created:                 02-06-2025
 // 
 //     Last Modified By:        Terry D. Eppler
-//     Last Modified On:        01-31-2025
+//     Last Modified On:        02-06-2025
 // ******************************************************************************************
 // <copyright file="SpeechOptions.cs" company="Terry D. Eppler">
 //    Bubba is a small and simple windows (wpf) application for interacting with the OpenAI API
@@ -42,7 +42,10 @@
 namespace Bubba
 {
     using System;
+    using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
+    using System.Linq;
+    using System.Text.Json.Serialization;
     using Properties;
 
     /// <inheritdoc />
@@ -96,7 +99,6 @@ namespace Bubba
             _model = "tts-1-hd";
             _endPoint = GptEndPoint.SpeechGeneration;
             _language = "en";
-            _responseFormat = "mp3";
             _voice = "fable";
             _speed = 1;
         }
@@ -236,11 +238,12 @@ namespace Bubba
 
         /// <inheritdoc />
         /// <summary>
-        /// Gets or sets the response format.
+        /// Gets or sets the modalities.
         /// </summary>
         /// <value>
-        /// The response format.
+        /// The modalities.
         /// </value>
+        [ JsonPropertyName( "response_format" ) ]
         public override string ResponseFormat
         {
             get
@@ -254,6 +257,93 @@ namespace Bubba
                     _responseFormat = value;
                     OnPropertyChanged( nameof( ResponseFormat ) );
                 }
+            }
+        }
+
+        /// <summary>
+        /// Gets the formats.
+        /// </summary>
+        /// <returns></returns>
+        public IList<string> GetFormatOptions( )
+        {
+            try
+            {
+                var _formats = new List<string>
+                {
+                    "mp3",
+                    "opus",
+                    "aac",
+                    "flac",
+                    "wav",
+                    "pcm"
+                };
+
+                return _formats?.Any( ) == true
+                    ? _formats
+                    : default( IList<string> );
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+                return default( IList<string> );
+            }
+        }
+
+        /// <summary>
+        /// Gets the formats.
+        /// </summary>
+        /// <returns></returns>
+        public IList<string> GetVoiceOptions( )
+        {
+            try
+            {
+                var _voices = new List<string>
+                {
+                    "alloy",
+                    "ash",
+                    "coral",
+                    "echo",
+                    "fable",
+                    "onyx",
+                    "nova",
+                    "sage",
+                    "shimmer"
+                };
+
+                return _voices?.Any( ) == true
+                    ? _voices
+                    : default( IList<string> );
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+                return default( IList<string> );
+            }
+        }
+
+        /// <summary>
+        /// Gets the speech rates.
+        /// </summary>
+        /// <returns></returns>
+        public IList<string> GetSpeeds( )
+        {
+            try
+            {
+                var _speeds = new List<string>
+                {
+                    "0.25",
+                    "4.00",
+                    "1.00"
+                };
+
+                return _speeds?.Any( ) == true
+                    ? _speeds
+                    : default( IList<string> );
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+                return default( IList<string> );
             }
         }
     }

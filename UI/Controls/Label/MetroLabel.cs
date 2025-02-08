@@ -45,7 +45,6 @@ namespace Bubba
     using System.Diagnostics.CodeAnalysis;
     using System.Windows;
     using System.Windows.Controls;
-    using System.Windows.Input;
     using System.Windows.Media;
 
     /// <inheritdoc />
@@ -75,69 +74,14 @@ namespace Bubba
             // Basic Properties
             FontFamily = new FontFamily( "Roboto" );
             FontSize = 12;
-            Width = 80;
+            Width = 150;
             Height = 22;
             HorizontalAlignment = HorizontalAlignment.Stretch;
             VerticalAlignment = VerticalAlignment.Stretch;
             VerticalContentAlignment = VerticalAlignment.Center;
-            HorizontalContentAlignment = HorizontalAlignment.Center;
+            HorizontalContentAlignment = HorizontalAlignment.Left;
             Background = _theme.TransparentBrush;
             Foreground = _theme.FormForeground;
-
-            // Event Wiring
-            MouseEnter += OnMouseEnter;
-            MouseLeave += OnMouseLeave;
-        }
-
-        /// <summary> Called when [mouse enter]. </summary>
-        /// <param name="sender"> The sender. </param>
-        /// <param name="e">
-        /// The
-        /// <see cref="EventArgs"/>
-        /// instance containing the event data.
-        /// </param>
-        private void OnMouseEnter( object sender, MouseEventArgs e )
-        {
-            try
-            {
-                Background = _theme.TransparentBrush;
-                Foreground = _theme.WhiteForeground;
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
-            }
-        }
-
-        /// <summary> Called when [mouse leave]. </summary>
-        /// <param name="sender"> The sender. </param>
-        /// <param name="e">
-        /// The
-        /// <see cref="EventArgs"/>
-        /// instance containing the event data.
-        /// </param>
-        private void OnMouseLeave( object sender, MouseEventArgs e )
-        {
-            try
-            {
-                Background = _theme.TransparentBrush;
-                Foreground = _theme.FormForeground;
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
-            }
-        }
-
-        /// <summary>
-        /// Fails the specified ex.
-        /// </summary>
-        /// <param name="ex">The ex.</param>
-        private protected void Fail( Exception ex )
-        {
-            var _error = new ErrorWindow( ex );
-            _error?.SetText( );
-            _error?.ShowDialog( );
         }
     }
 }

@@ -1878,6 +1878,14 @@
           }
         }
       },
+      "Syncfusion.Data.WPF/24.1.41": {
+        "runtime": {
+          "lib/net6.0-windows7.0/Syncfusion.Data.WPF.dll": {
+            "assemblyVersion": "24.1.41.0",
+            "fileVersion": "24.1.41.0"
+          }
+        }
+      },
       "Syncfusion.Edit.WPF/24.1.41": {
         "dependencies": {
           "Syncfusion.GridCommon.Wpf": "24.1.41",
@@ -2013,6 +2021,17 @@
           }
         }
       },
+      "Syncfusion.SfChart.WPF/24.1.41": {
+        "dependencies": {
+          "Syncfusion.Licensing": "24.1.41"
+        },
+        "runtime": {
+          "lib/net6.0-windows7.0/Syncfusion.SfChart.WPF.dll": {
+            "assemblyVersion": "24.1.41.0",
+            "fileVersion": "24.1.41.0"
+          }
+        }
+      },
       "Syncfusion.SfGauge.WPF/24.1.41": {
         "dependencies": {
           "Syncfusion.Licensing": "24.1.41",
@@ -2020,6 +2039,19 @@
         },
         "runtime": {
           "lib/net6.0-windows7.0/Syncfusion.SfGauge.WPF.dll": {
+            "assemblyVersion": "24.1.41.0",
+            "fileVersion": "24.1.41.0"
+          }
+        }
+      },
+      "Syncfusion.SfGrid.WPF/24.1.41": {
+        "dependencies": {
+          "Syncfusion.Data.WPF": "24.1.41",
+          "Syncfusion.Licensing": "24.1.41",
+          "Syncfusion.Shared.WPF": "24.1.41"
+        },
+        "runtime": {
+          "lib/net6.0-windows7.0/Syncfusion.SfGrid.WPF.dll": {
             "assemblyVersion": "24.1.41.0",
             "fileVersion": "24.1.41.0"
           }
@@ -3529,6 +3561,13 @@
       "path": "syncfusion.calculate.base/24.1.41",
       "hashPath": "syncfusion.calculate.base.24.1.41.nupkg.sha512"
     },
+    "Syncfusion.Data.WPF/24.1.41": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-UZ/GSMVJb16VhF55MhVEqA3TglRFAas00UeMpiZ7hP/nSp0YdRxia8A0zhJ05pVbfwlGTuydr67QWroJsjVG7Q==",
+      "path": "syncfusion.data.wpf/24.1.41",
+      "hashPath": "syncfusion.data.wpf.24.1.41.nupkg.sha512"
+    },
     "Syncfusion.Edit.WPF/24.1.41": {
       "type": "package",
       "serviceable": true,
@@ -3613,12 +3652,26 @@
       "path": "syncfusion.sfbusyindicator.wpf/24.1.41",
       "hashPath": "syncfusion.sfbusyindicator.wpf.24.1.41.nupkg.sha512"
     },
+    "Syncfusion.SfChart.WPF/24.1.41": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-TrNzh1pZhIn2VTEgnmHVlptqw37i9VEw4/9oUr6kxuNN2VEERp5si9EAjCDyacIqvcfI4/6/9GuNAIXUmBFAkg==",
+      "path": "syncfusion.sfchart.wpf/24.1.41",
+      "hashPath": "syncfusion.sfchart.wpf.24.1.41.nupkg.sha512"
+    },
     "Syncfusion.SfGauge.WPF/24.1.41": {
       "type": "package",
       "serviceable": true,
       "sha512": "sha512-sllwXCzVgqI5LbhlWapCSoD/p2iGXpQMO+GMs2D+mhDEyK5I1KCB/absvs1uwl5B2jwEuHpYNS7ew9EIq2mCCA==",
       "path": "syncfusion.sfgauge.wpf/24.1.41",
       "hashPath": "syncfusion.sfgauge.wpf.24.1.41.nupkg.sha512"
+    },
+    "Syncfusion.SfGrid.WPF/24.1.41": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-mCbGiiJ1M0goPTHPIzfAYFqvg33d3Yx3n6/ZZqFu5N58xW3sAPODUrPhYiBydC9gIN+PcnS5aG+qPBNbLrLQzQ==",
+      "path": "syncfusion.sfgrid.wpf/24.1.41",
+      "hashPath": "syncfusion.sfgrid.wpf.24.1.41.nupkg.sha512"
     },
     "Syncfusion.SfGridCommon.WPF/24.1.41": {
       "type": "package",

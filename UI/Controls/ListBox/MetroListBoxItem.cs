@@ -46,6 +46,7 @@ namespace Bubba
     using System.Windows;
     using System.Windows.Controls;
     using System.Windows.Input;
+    using System.Windows.Media;
 
     /// <inheritdoc />
     /// <summary>
@@ -79,11 +80,12 @@ namespace Bubba
             // Control Properties
             Height = 35;
             Background = _theme.ControlInterior;
-            Foreground = _theme.Foreground;
+            Foreground = _theme.FormForeground;
             BorderBrush = _theme.ControlInterior;
-            Margin = _theme.Margin;
-            Padding = new Thickness( 30, 1, 1, 1 );
-            BorderThickness = new Thickness( 0 );
+            Padding = new Thickness( 10 );
+            BorderThickness = new Thickness( 1 );
+            FontFamily = new FontFamily( "Roboto" );
+            FontSize = 12;
             HorizontalContentAlignment = HorizontalAlignment.Left;
             VerticalContentAlignment = VerticalAlignment.Center;
 
@@ -105,10 +107,9 @@ namespace Bubba
             {
                 if( sender is MetroListBoxItem _item )
                 {
-                    _item.Foreground = _theme.WhiteForeground;
+                    _item.Foreground = _theme.FormForeground;
                     _item.Background = _theme.SteelBlueBrush;
                     _item.BorderBrush = _theme.SteelBlueBrush;
-                    _item.FontWeight = FontWeights.Bold;
                 }
             }
             catch( Exception ex )
@@ -129,10 +130,9 @@ namespace Bubba
             {
                 if( sender is MetroListBoxItem _item )
                 {
-                    _item.Foreground = _theme.Foreground;
+                    _item.Foreground = _theme.FormForeground;
                     _item.Background = _theme.ControlInterior;
                     _item.BorderBrush = _theme.ControlInterior;
-                    _item.FontWeight = FontWeights.Normal;
                 }
             }
             catch( Exception ex )
@@ -154,10 +154,9 @@ namespace Bubba
                 if(sender is MetroListBoxItem _item 
                     && _item.IsSelected )
                 {
-                    _item.Foreground = _theme.WhiteForeground;
+                    _item.Foreground = _theme.FormForeground;
                     _item.Background = _theme.DarkGreenBrush;
                     _item.BorderBrush = _theme.GreenBrush;
-                    _item.FontWeight = FontWeights.Bold;
                 }
             }
             catch(Exception ex)

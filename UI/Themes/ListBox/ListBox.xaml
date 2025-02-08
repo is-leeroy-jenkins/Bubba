@@ -10,10 +10,10 @@
         <Setter Property="Background" Value="{StaticResource ControlInteriorBrush}" />
         <Setter Property="BorderBrush" Value="{StaticResource BlueBorderBrush}" />
         <Setter Property="Foreground" Value="{StaticResource FormForeground}" />
-        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="BorderThickness" Value="2" />
         <Setter Property="HorizontalContentAlignment" Value="Left" />
         <Setter Property="VerticalContentAlignment" Value="Center" />
-        <Setter Property="Padding" Value="1" />
+        <Setter Property="Padding" Value="3" />
         <Setter Property="Margin" Value="1" />
         <Setter Property="FontFamily" Value="Roboto" />
         <Setter Property="FontSize" Value="12" />
@@ -27,11 +27,11 @@
         <Setter Property="Background" Value="{StaticResource ControlInteriorBrush}" />
         <Setter Property="BorderBrush" Value="{StaticResource ControlInteriorBrush}" />
         <Setter Property="Foreground" Value="{StaticResource FormForeground}" />
-        <Setter Property="Height" Value="35" />
+        <Setter Property="Height" Value="40" />
         <Setter Property="BorderThickness" Value="1" />
         <Setter Property="HorizontalContentAlignment" Value="Left" />
         <Setter Property="VerticalContentAlignment" Value="Center" />
-        <Setter Property="Padding" Value="1" />
+        <Setter Property="Padding" Value="3" />
         <Setter Property="Margin" Value="1" />
         <Setter Property="FontFamily" Value="Roboto" />
         <Setter Property="FontSize" Value="12" />
@@ -42,29 +42,25 @@
             <Trigger Property="IsMouseOver" Value="True">
                 <Setter Property="Background" Value="{StaticResource SteelBlueBackground}" />
                 <Setter Property="BorderBrush" Value="{StaticResource SteelBlueBackground}" />
-                <Setter Property="Foreground" Value="{StaticResource WhiteForeground}" />
-                <Setter Property="FontWeight" Value="Bold" />
+                <Setter Property="Foreground" Value="{StaticResource FormForeground}" />
             </Trigger>
 
             <Trigger Property="IsMouseOver" Value="False">
                 <Setter Property="Background" Value="{StaticResource ControlInteriorBrush}" />
                 <Setter Property="BorderBrush" Value="{StaticResource ControlInteriorBrush}" />
                 <Setter Property="Foreground" Value="{StaticResource FormForeground}" />
-                <Setter Property="FontWeight" Value="Regular" />
             </Trigger>
 
             <Trigger Property="IsSelected" Value="True">
                 <Setter Property="Background" Value="{StaticResource GreenBackground}" />
                 <Setter Property="BorderBrush" Value="{StaticResource BrightGreenForeground}" />
-                <Setter Property="Foreground" Value="{StaticResource WhiteForeground}" />
-                <Setter Property="FontWeight" Value="Bold" />
+                <Setter Property="Foreground" Value="{StaticResource FormForeground}" />
             </Trigger>
 
             <Trigger Property="IsSelected" Value="False">
                 <Setter Property="Background" Value="{StaticResource ControlInteriorBrush}" />
                 <Setter Property="BorderBrush" Value="{StaticResource ControlInteriorBrush}" />
                 <Setter Property="Foreground" Value="{StaticResource FormForeground}" />
-                <Setter Property="FontWeight" Value="Regular" />
             </Trigger>
 
 

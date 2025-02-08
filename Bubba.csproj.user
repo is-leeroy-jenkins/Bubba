@@ -34,9 +34,6 @@
     <Compile Update="Data\Adapter\BubbaAdapter.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Update="UI\Views\WebBrowser\WebBrowser.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Page Update="UI\Themes\GroupBox\GroupBox.xaml">
@@ -202,9 +199,6 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="UI\Views\SplashWindow\SplashMessage.xaml">
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Update="UI\Views\WebBrowser\WebBrowser.xaml">
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>

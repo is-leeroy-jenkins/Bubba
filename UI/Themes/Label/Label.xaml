@@ -14,93 +14,10 @@
         <Setter Property="FontSize" Value="12" />
         <Setter Property="BorderThickness" Value="0" />
         <Setter Property="HorizontalAlignment" Value="Stretch" />
-        <Setter Property="HorizontalContentAlignment" Value="Center" />
-        <Setter Property="VerticalAlignment" Value="Stretch" />
-        <Setter Property="VerticalContentAlignment" Value="Center" />
-        <Setter Property="Padding" Value="1" />
-
-
-        <!--  ******************************************** TRIGGER *****************************************************  -->
-
-        <Style.Triggers>
-
-            <Trigger Property="IsEnabled" Value="True">
-                <Setter Property="Background" Value="{StaticResource TransparentBrush}" />
-                <Setter Property="BorderBrush" Value="{StaticResource TransparentBrush}" />
-                <Setter Property="Foreground" Value="{StaticResource FormForeground}" />
-            </Trigger>
-
-            <Trigger Property="IsEnabled" Value="False">
-                <Setter Property="Background" Value="{StaticResource TransparentBrush}" />
-                <Setter Property="BorderBrush" Value="{StaticResource TransparentBrush}" />
-                <Setter Property="Foreground" Value="{StaticResource FormForeground}" />
-            </Trigger>
-
-
-            <Trigger Property="IsMouseOver" Value="True">
-                <Setter Property="Background" Value="{StaticResource TransparentBrush}" />
-                <Setter Property="BorderBrush" Value="{StaticResource TransparentBrush}" />
-                <Setter Property="Foreground" Value="{StaticResource FormForeground}" />
-            </Trigger>
-
-            <Trigger Property="IsMouseOver" Value="False">
-                <Setter Property="Background" Value="{StaticResource TransparentBrush}" />
-                <Setter Property="BorderBrush" Value="{StaticResource TransparentBrush}" />
-                <Setter Property="Foreground" Value="{StaticResource FormForeground}" />
-            </Trigger>
-
-        </Style.Triggers>
-
-
-    </Style>
-
-    <!--  ******************************************** MetroLabelStyle *****************************************************  -->
-
-
-    <Style TargetType="{x:Type b:MetroLabel}">
-        <Setter Property="Background" Value="{StaticResource TransparentBrush}" />
-        <Setter Property="BorderBrush" Value="{StaticResource TransparentBrush}" />
-        <Setter Property="Foreground" Value="{StaticResource FormForeground}" />
-        <Setter Property="FontFamily" Value="Roboto" />
-        <Setter Property="FontSize" Value="12" />
-        <Setter Property="BorderThickness" Value="0" />
-        <Setter Property="HorizontalAlignment" Value="Stretch" />
-        <Setter Property="VerticalAlignment" Value="Stretch" />
         <Setter Property="HorizontalContentAlignment" Value="Left" />
+        <Setter Property="VerticalAlignment" Value="Stretch" />
         <Setter Property="VerticalContentAlignment" Value="Center" />
-        <Setter Property="Padding" Value="1" />
-
-
-        <!--  ******************************************** TRIGGER *****************************************************  -->
-
-        <Style.Triggers>
-
-            <Trigger Property="IsEnabled" Value="True">
-                <Setter Property="Background" Value="{StaticResource TransparentBrush}" />
-                <Setter Property="BorderBrush" Value="{StaticResource TransparentBrush}" />
-                <Setter Property="Foreground" Value="{StaticResource FormForeground}" />
-            </Trigger>
-
-            <Trigger Property="IsEnabled" Value="False">
-                <Setter Property="Background" Value="{StaticResource TransparentBrush}" />
-                <Setter Property="BorderBrush" Value="{StaticResource TransparentBrush}" />
-                <Setter Property="Foreground" Value="{StaticResource FormForeground}" />
-            </Trigger>
-
-
-            <Trigger Property="IsMouseOver" Value="True">
-                <Setter Property="Background" Value="{StaticResource TransparentBrush}" />
-                <Setter Property="BorderBrush" Value="{StaticResource TransparentBrush}" />
-                <Setter Property="Foreground" Value="{StaticResource FormForeground}" />
-            </Trigger>
-
-            <Trigger Property="IsMouseOver" Value="False">
-                <Setter Property="Background" Value="{StaticResource TransparentBrush}" />
-                <Setter Property="BorderBrush" Value="{StaticResource TransparentBrush}" />
-                <Setter Property="Foreground" Value="{StaticResource FormForeground}" />
-            </Trigger>
-
-        </Style.Triggers>
+        <Setter Property="Padding" Value="5" />
 
 
     </Style>

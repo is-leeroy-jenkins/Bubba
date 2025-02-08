@@ -1,10 +1,10 @@
 ﻿// ******************************************************************************************
 //     Assembly:                Bubba
 //     Author:                  Terry D. Eppler
-//     Created:                 01-31-2025
+//     Created:                 02-06-2025
 // 
 //     Last Modified By:        Terry D. Eppler
-//     Last Modified On:        01-31-2025
+//     Last Modified On:        02-06-2025
 // ******************************************************************************************
 // <copyright file="TranslationOptions.cs" company="Terry D. Eppler">
 //    Bubba is a small and simple windows (wpf) application for interacting with the OpenAI API
@@ -45,6 +45,7 @@ namespace Bubba
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
     using System.Linq;
+    using System.Text.Json.Serialization;
     using Properties;
 
     /// <inheritdoc />
@@ -86,7 +87,6 @@ namespace Bubba
             _frequencyPenalty = 0.00;
             _presencePenalty = 0.00;
             _maximumTokens = 2048;
-            _responseFormat = "text";
         }
 
         /// <summary>
@@ -133,6 +133,30 @@ namespace Bubba
             }
         }
 
+        /// <inheritdoc />
+        /// <summary>
+        /// Gets or sets the modalities.
+        /// </summary>
+        /// <value>
+        /// The modalities.
+        /// </value>
+        [ JsonPropertyName( "response_format" ) ]
+        public override string ResponseFormat
+        {
+            get
+            {
+                return _responseFormat;
+            }
+            set
+            {
+                if( _responseFormat != value )
+                {
+                    _responseFormat = value;
+                    OnPropertyChanged( nameof( ResponseFormat ) );
+                }
+            }
+        }
+
         /// <summary>
         /// Gets the chat model.
         /// </summary>
@@ -152,29 +176,6 @@ namespace Bubba
                 {
                     _model = value;
                     OnPropertyChanged( nameof( Model ) );
-                }
-            }
-        }
-
-        /// <inheritdoc />
-        /// <summary>
-        /// Gets or sets the response format.
-        /// </summary>
-        /// <value>
-        /// The response format.
-        /// </value>
-        public override string ResponseFormat
-        {
-            get
-            {
-                return _responseFormat;
-            }
-            set
-            {
-                if( _responseFormat != value )
-                {
-                    _responseFormat = value;
-                    OnPropertyChanged( nameof( ResponseFormat ) );
                 }
             }
         }
@@ -226,6 +227,66 @@ namespace Bubba
             {
                 Fail( ex );
                 return string.Empty;
+            }
+        }
+
+        /// <summary>
+        /// Gets the formats.
+        /// </summary>
+        /// <returns></returns>
+        public IList<string> GetResponseFormatOptions( )
+        {
+            try
+            {
+                var _options = new List<string>
+                {
+                    "json",
+                    "text",
+                    "srt",
+                    "verbose_json",
+                    "vtt"
+                };
+
+                return _options?.Any( ) == true
+                    ? _options
+                    : default( IList<string> );
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+                return default( IList<string> );
+            }
+        }
+
+        /// <summary>
+        /// Gets the formats.
+        /// </summary>
+        /// <returns></returns>
+        public IList<string> GetFileFormatOptions( )
+        {
+            try
+            {
+                var _options = new List<string>
+                {
+                    "flac",
+                    "mp3",
+                    "mp4",
+                    "mpeg",
+                    "mpga",
+                    "m4a",
+                    "ogg",
+                    "wav",
+                    "webm"
+                };
+
+                return _options?.Any( ) == true
+                    ? _options
+                    : default( IList<string> );
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+                return default( IList<string> );
             }
         }
     }

@@ -1,10 +1,10 @@
 ﻿// ******************************************************************************************
 //     Assembly:                Bubba
 //     Author:                  Terry D. Eppler
-//     Created:                 01-07-2025
+//     Created:                 02-06-2025
 // 
 //     Last Modified By:        Terry D. Eppler
-//     Last Modified On:        01-07-2025
+//     Last Modified On:        02-06-2025
 // ******************************************************************************************
 // <copyright file="GptResponseBase.cs" company="Terry D. Eppler">
 //    Bubba is a small and simple windows (wpf) application for interacting with the OpenAI API
@@ -74,6 +74,72 @@ namespace Bubba
         protected GptResponseBase( )
             : base( )
         {
+        }
+
+        /// <summary>
+        /// Gets or sets the identifier.
+        /// </summary>
+        /// <value>
+        /// The identifier.
+        /// </value>
+        public virtual string Id
+        {
+            get
+            {
+                return _id;
+            }
+            set
+            {
+                if( _id != value )
+                {
+                    _id = value;
+                    OnPropertyChanged( nameof( Id ) );
+                }
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the object.
+        /// </summary>
+        /// <value>
+        /// The object.
+        /// </value>
+        public virtual string Object
+        {
+            get
+            {
+                return _object;
+            }
+            set
+            {
+                if( _object != value )
+                {
+                    _object = value;
+                    OnPropertyChanged( nameof( Object ) );
+                }
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the created.
+        /// </summary>
+        /// <value>
+        /// The created.
+        /// </value>
+        public virtual DateTime Created
+        {
+            get
+            {
+                return _created;
+            }
+            set
+            {
+                if( _created != value )
+                {
+                    _created = value;
+                    OnPropertyChanged( nameof( Created ) );
+                }
+            }
         }
     }
 }

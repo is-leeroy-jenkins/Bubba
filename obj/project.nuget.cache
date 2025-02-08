@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "+tCxwTirzr0=",
+  "dgSpecHash": "e12rFZrKfNw=",
   "success": true,
   "projectFilePath": "C:\\Users\\terry\\source\\repos\\Bubba\\Bubba.csproj",
   "expectedPackageFiles": [
@@ -94,6 +94,7 @@
     "C:\\Users\\terry\\.nuget\\packages\\sqlservercompact\\4.0.8854.1\\sqlservercompact.4.0.8854.1.nupkg.sha512",
     "C:\\Users\\terry\\.nuget\\packages\\stub.system.data.sqlite.core.netstandard\\1.0.119\\stub.system.data.sqlite.core.netstandard.1.0.119.nupkg.sha512",
     "C:\\Users\\terry\\.nuget\\packages\\syncfusion.calculate.base\\24.1.41\\syncfusion.calculate.base.24.1.41.nupkg.sha512",
+    "C:\\Users\\terry\\.nuget\\packages\\syncfusion.data.wpf\\24.1.41\\syncfusion.data.wpf.24.1.41.nupkg.sha512",
     "C:\\Users\\terry\\.nuget\\packages\\syncfusion.edit.wpf\\24.1.41\\syncfusion.edit.wpf.24.1.41.nupkg.sha512",
     "C:\\Users\\terry\\.nuget\\packages\\syncfusion.grid.wpf\\24.1.41\\syncfusion.grid.wpf.24.1.41.nupkg.sha512",
     "C:\\Users\\terry\\.nuget\\packages\\syncfusion.gridcommon.wpf\\24.1.41\\syncfusion.gridcommon.wpf.24.1.41.nupkg.sha512",
@@ -106,7 +107,9 @@
     "C:\\Users\\terry\\.nuget\\packages\\syncfusion.sfaccordion.wpf\\24.1.41\\syncfusion.sfaccordion.wpf.24.1.41.nupkg.sha512",
     "C:\\Users\\terry\\.nuget\\packages\\syncfusion.sfbarcode.wpf\\24.1.41\\syncfusion.sfbarcode.wpf.24.1.41.nupkg.sha512",
     "C:\\Users\\terry\\.nuget\\packages\\syncfusion.sfbusyindicator.wpf\\24.1.41\\syncfusion.sfbusyindicator.wpf.24.1.41.nupkg.sha512",
+    "C:\\Users\\terry\\.nuget\\packages\\syncfusion.sfchart.wpf\\24.1.41\\syncfusion.sfchart.wpf.24.1.41.nupkg.sha512",
     "C:\\Users\\terry\\.nuget\\packages\\syncfusion.sfgauge.wpf\\24.1.41\\syncfusion.sfgauge.wpf.24.1.41.nupkg.sha512",
+    "C:\\Users\\terry\\.nuget\\packages\\syncfusion.sfgrid.wpf\\24.1.41\\syncfusion.sfgrid.wpf.24.1.41.nupkg.sha512",
     "C:\\Users\\terry\\.nuget\\packages\\syncfusion.sfgridcommon.wpf\\24.1.41\\syncfusion.sfgridcommon.wpf.24.1.41.nupkg.sha512",
     "C:\\Users\\terry\\.nuget\\packages\\syncfusion.sfhubtile.wpf\\24.1.41\\syncfusion.sfhubtile.wpf.24.1.41.nupkg.sha512",
     "C:\\Users\\terry\\.nuget\\packages\\syncfusion.sfinput.wpf\\24.1.41\\syncfusion.sfinput.wpf.24.1.41.nupkg.sha512",

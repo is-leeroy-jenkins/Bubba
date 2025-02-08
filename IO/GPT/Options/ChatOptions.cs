@@ -1,10 +1,10 @@
 ﻿// ******************************************************************************************
 //     Assembly:                Bubba
 //     Author:                  Terry D. Eppler
-//     Created:                 01-31-2025
+//     Created:                 02-06-2025
 // 
 //     Last Modified By:        Terry D. Eppler
-//     Last Modified On:        01-31-2025
+//     Last Modified On:        02-06-2025
 // ******************************************************************************************
 // <copyright file="ChatOptions.cs" company="Terry D. Eppler">
 //    Bubba is a small and simple windows (wpf) application for interacting with the OpenAI API
@@ -44,6 +44,7 @@ namespace Bubba
     using System;
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
+    using System.Text.Json.Serialization;
     using Properties;
 
     /// <inheritdoc />
@@ -292,38 +293,6 @@ namespace Bubba
             }
         }
 
-        /// <inheritdoc />
-        /// <summary>
-        /// An object specifying the format that the model must output. Setting to 
-        /// { "type": "json_schema", "json_schema": {...} } enables Structured Outputs
-        /// which ensures the model will match your supplied JSON schema.
-        /// Important: when using JSON mode, you must also instruct the model to produce
-        /// JSON yourself via a system or user message.Without this,
-        /// the model may generate an unending stream of whitespace until the generation
-        /// reaches the token limit, resulting in a long-running and seemingly "stuck" request.
-        /// Also note that the message content may be partially cut off if finish_reason= "length",
-        /// which indicates the generation exceeded max_tokens
-        /// or the conversation exceeded the max context length.
-        /// </summary>
-        /// <value>
-        /// The response format.
-        /// </value>
-        public override string ResponseFormat
-        {
-            get
-            {
-                return _responseFormat;
-            }
-            set
-            {
-                if( _responseFormat != value )
-                {
-                    _responseFormat = value;
-                    OnPropertyChanged( nameof( ResponseFormat ) );
-                }
-            }
-        }
-
         /// <summary>
         /// o1 models only.
         /// Constrains effort on reasoning for reasoning models.
@@ -346,6 +315,30 @@ namespace Bubba
                 {
                     _reasoningEffort = value;
                     OnPropertyChanged( nameof( ReasoningEffort ) );
+                }
+            }
+        }
+
+        /// <inheritdoc />
+        /// <summary>
+        /// Gets or sets the modalities.
+        /// </summary>
+        /// <value>
+        /// The modalities.
+        /// </value>
+        [ JsonPropertyName( "response_format" ) ]
+        public override string ResponseFormat
+        {
+            get
+            {
+                return _responseFormat;
+            }
+            set
+            {
+                if( _responseFormat != value )
+                {
+                    _responseFormat = value;
+                    OnPropertyChanged( nameof( ResponseFormat ) );
                 }
             }
         }
@@ -396,6 +389,23 @@ namespace Bubba
                     _metaData = value;
                     OnPropertyChanged( nameof( MetaData ) );
                 }
+            }
+        }
+
+        /// <summary>
+        /// Gets the formats.
+        /// </summary>
+        /// <returns></returns>
+        private protected IList<string> GetFormats( )
+        {
+            try
+            {
+                return default( IList<string> );
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+                return default( IList<string> );
             }
         }
     }

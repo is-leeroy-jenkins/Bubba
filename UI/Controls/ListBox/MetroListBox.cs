@@ -70,14 +70,13 @@ namespace Bubba
             : base( )
         {
             // Control Properties
-            Background = _theme.ControlInterior;
-            Foreground = _theme.Foreground;
+            Background = _theme.ControlBackground;
+            Foreground = _theme.FormForeground;
             BorderBrush = _theme.BorderBrush;
             Height = 60;
-            Width = 100;
-            Margin = _theme.Margin;
-            Padding = _theme.Padding;
-            BorderThickness = _theme.BorderThickness;
+            Width = 200;
+            BorderThickness = new Thickness( 2 );
+            Padding = new Thickness( 3 );
         }
 
         /// <summary>
@@ -92,14 +91,13 @@ namespace Bubba
                 var _item = new MetroListBoxItem
                 {
                     Background = _theme.ControlInterior,
-                    Foreground = _theme.Foreground,
                     BorderBrush = _theme.ControlInterior,
+                    Foreground = _theme.FormForeground,
                     Content = name,
-                    Tag = name,
                     Height = 35
                 };
 
-                Items.Add(_item);
+                Items.Add( _item );
             }
             catch(Exception ex)
             {

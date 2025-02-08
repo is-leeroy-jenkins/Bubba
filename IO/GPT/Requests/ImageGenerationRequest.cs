@@ -322,14 +322,13 @@ namespace Bubba
                 _data.Add( "model", _model );
                 _data.Add( "endpoint", _endPoint );
                 _data.Add( "n", _number.ToString( ) );
-                _data.Add( "max_completionTokens", _maximumTokens.ToString( ) );
+                _data.Add( "max_completion_tokens", _maximumTokens.ToString( ) );
                 _data.Add( "store", _store.ToString( ) );
                 _data.Add( "stream", _stream.ToString( ) );
                 _data.Add( "temperature", _temperature.ToString( ) );
                 _data.Add( "frequency_penalty", _frequencyPenalty.ToString( ) );
                 _data.Add( "presence_penalty", _presencePenalty.ToString() );
                 _data.Add( "top_p", _topPercent.ToString( ) );
-                _data.Add( "response_format", _responseFormat );
                 _data.Add( "style", _style );
                 _data.Add( "size", _size );
                 _data.Add( "quality", _quality );

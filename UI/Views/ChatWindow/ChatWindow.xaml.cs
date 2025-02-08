@@ -1,10 +1,10 @@
 ﻿// ******************************************************************************************
 //     Assembly:                Bubba
 //     Author:                  Terry D. Eppler
-//     Created:                 02-03-2025
+//     Created:                 02-07-2025
 // 
 //     Last Modified By:        Terry D. Eppler
-//     Last Modified On:        02-03-2025
+//     Last Modified On:        02-07-2025
 // ******************************************************************************************
 // <copyright file="ChatWindow.xaml.cs" company="Terry D. Eppler">
 //    Bubba is a small and simple windows (wpf) application for interacting with the OpenAI API
@@ -146,6 +146,11 @@ namespace Bubba
         /// The language
         /// </summary>
         private protected string _language;
+
+        /// <summary>
+        /// The selected document
+        /// </summary>
+        private protected string _selectedDocument;
 
         /// <summary>
         /// The theme
@@ -312,7 +317,7 @@ namespace Bubba
             _topPercent = TopPercentSlider.Value;
             _presence = PresenceSlider.Value;
             _frequency = FrequencySlider.Value;
-            _maximumTokens = (int)MaxTokenSlider.Value;
+            _maximumTokens = ( int )MaxTokenSlider.Value;
             _imageSizes = new List<string>( );
 
             // Event Wiring
@@ -618,31 +623,26 @@ namespace Bubba
             try
             {
                 ToolStripTextBox.TextChanged += OnToolStripTextBoxTextChanged;
-                FirstButton.Click += OnFirstButtonClick;
-                PreviousButton.Click += OnPreviousButtonClick;
-                NextButton.Click += OnNextButtonClick;
-                LastButton.Click += OnLastButtonClick;
                 RefreshButton.Click += OnRefreshButtonClick;
                 MenuButton.Click += OnToggleButtonClick;
-                BrowserButton.Click += OnWebBrowserButtonClick;
                 TemperatureTextBox.TextChanged += OnParameterTextBoxChanged;
                 PresenceTextBox.TextChanged += OnParameterTextBoxChanged;
                 FrequencyTextBox.TextChanged += OnParameterTextBoxChanged;
                 TopPercentTextBox.TextChanged += OnParameterTextBoxChanged;
-                DeleteButton.Click += OnDeleteButtonClick;
                 ClearButton.Click += OnClearButtonClick;
                 SendButton.Click += OnSendButtonClick;
-                LanguageListBox.SelectionChanged += OnLanguageChanged;
                 ListenCheckBox.Checked += OnListenCheckedChanged;
                 MuteCheckBox.Checked += OnMuteCheckedBoxChanged;
                 StoreCheckBox.Checked += OnStoreCheckBoxChecked;
-                GenerationComboBox.SelectionChanged += OnSelectedRequestChanged;
-                ImageSizeComboBox.SelectionChanged += OnSelectedImageSizeChanged;
+                GenerationListBox.SelectionChanged += OnRequestListBoxSelectionChanged;
+                ImageSizeListBox.SelectionChanged += OnImageSizeListBoxSelectionChanged;
                 RefreshButton.Click += OnRefreshButtonClick;
                 LookupButton.Click += OnGoButtonClicked;
                 GptFileButton.Click += OnFileApiButtonClick;
                 ChatRadioButton.Checked += OnRadioButtonSelected;
                 EditorRadioButton.Checked += OnRadioButtonSelected;
+                LanguageListBox.SelectionChanged += OnLanguageListBoxSelectionChanged;
+                DocumentListBox.SelectionChanged += OnDocumentListBoxSelectionChanged;
             }
             catch( Exception ex )
             {
@@ -658,31 +658,26 @@ namespace Bubba
             try
             {
                 ToolStripTextBox.TextChanged -= OnToolStripTextBoxTextChanged;
-                FirstButton.Click -= OnFirstButtonClick;
-                PreviousButton.Click -= OnPreviousButtonClick;
-                NextButton.Click -= OnNextButtonClick;
-                LastButton.Click -= OnLastButtonClick;
                 RefreshButton.Click -= OnRefreshButtonClick;
                 MenuButton.Click -= OnToggleButtonClick;
-                BrowserButton.Click -= OnWebBrowserButtonClick;
                 TemperatureTextBox.TextChanged -= OnParameterTextBoxChanged;
                 PresenceTextBox.TextChanged -= OnParameterTextBoxChanged;
                 FrequencyTextBox.TextChanged -= OnParameterTextBoxChanged;
                 TopPercentTextBox.TextChanged -= OnParameterTextBoxChanged;
-                DeleteButton.Click -= OnDeleteButtonClick;
                 ClearButton.Click -= OnClearButtonClick;
                 SendButton.Click -= OnSendButtonClick;
-                LanguageListBox.SelectionChanged -= OnLanguageChanged;
                 ListenCheckBox.Checked -= OnListenCheckedChanged;
                 MuteCheckBox.Checked -= OnMuteCheckedBoxChanged;
                 StoreCheckBox.Checked -= OnStoreCheckBoxChecked;
-                GenerationComboBox.SelectionChanged -= OnSelectedRequestChanged;
-                ImageSizeComboBox.SelectionChanged -= OnSelectedImageSizeChanged;
+                GenerationListBox.SelectionChanged -= OnRequestListBoxSelectionChanged;
+                ImageSizeListBox.SelectionChanged -= OnImageSizeListBoxSelectionChanged;
                 RefreshButton.Click -= OnRefreshButtonClick;
                 LookupButton.Click -= OnGoButtonClicked;
                 GptFileButton.Click -= OnFileApiButtonClick;
                 ChatRadioButton.Checked -= OnRadioButtonSelected;
                 EditorRadioButton.Checked -= OnRadioButtonSelected;
+                LanguageListBox.SelectionChanged -= OnLanguageListBoxSelectionChanged;
+                DocumentListBox.SelectionChanged -= OnDocumentListBoxSelectionChanged;
             }
             catch( Exception ex )
             {
@@ -841,10 +836,11 @@ namespace Bubba
         {
             try
             {
-                GenerationComboBox.SelectedIndex = -1;
-                ModelComboBox.SelectedIndex = -1;
-                VoiceComboBox.SelectedIndex = -1;
-                ImageSizeComboBox.SelectedIndex = -1;
+                GenerationListBox.SelectedIndex = -1;
+                ModelListBox.SelectedIndex = -1;
+                VoiceListBox.SelectedIndex = -1;
+                ImageSizeListBox.SelectedIndex = -1;
+                LanguageListBox.SelectedIndex = -1;
             }
             catch( Exception ex )
             {
@@ -859,8 +855,7 @@ namespace Bubba
         {
             try
             {
-                PopulateLanguageListBox( );
-                LanguageListBox.SelectedIndex = -1;
+                PopulateDocumentListBox( );
             }
             catch( Exception ex )
             {
@@ -1120,9 +1115,9 @@ namespace Bubba
                     _synthesizer.SetOutputToDefaultAudioDevice( );
                 }
 
-                if( VoiceComboBox.Text != "" )
+                if( VoiceListBox.SelectedItem.ToString( ) != "" )
                 {
-                    _synthesizer.SelectVoice( VoiceComboBox.Text );
+                    _synthesizer.SelectVoice( VoiceListBox.SelectedItem.ToString( ) );
                 }
 
                 _synthesizer.Speak( input );
@@ -1146,7 +1141,7 @@ namespace Bubba
                     {
                         PopulateCompletionModels( );
                         _endpoint = GptEndPoint.Assistants;
-                        RequestLabel.Content = "GPT - Assistant API";
+                        RequestLabel.Content = "Assistant API";
                         TabControl.SelectedIndex = 1;
                         break;
                     }
@@ -1154,7 +1149,7 @@ namespace Bubba
                     {
                         PopulateCompletionModels( );
                         _endpoint = GptEndPoint.Completions;
-                        RequestLabel.Content = "Chat Completion";
+                        RequestLabel.Content = "GPT Completion";
                         TabControl.SelectedIndex = 1;
                         break;
                     }
@@ -1162,7 +1157,7 @@ namespace Bubba
                     {
                         PopulateTextModels( );
                         _endpoint = GptEndPoint.TextGeneration;
-                        RequestLabel.Content = "GPT - Text Generation";
+                        RequestLabel.Content = "Text Generation";
                         TabControl.SelectedIndex = 1;
                         break;
                     }
@@ -1170,7 +1165,7 @@ namespace Bubba
                     {
                         PopulateImageModels( );
                         _endpoint = GptEndPoint.ImageGeneration;
-                        RequestLabel.Content = "GPT - Image Generation";
+                        RequestLabel.Content = "Image Generation";
                         TabControl.SelectedIndex = 1;
                         break;
                     }
@@ -1178,7 +1173,7 @@ namespace Bubba
                     {
                         PopulateTranslationModels( );
                         PopulateOpenAiVoices( );
-                        RequestLabel.Content = "GPT - Translation API";
+                        RequestLabel.Content = "Translation API";
                         _endpoint = GptEndPoint.Translations;
                         TabControl.SelectedIndex = 1;
                         break;
@@ -1186,7 +1181,7 @@ namespace Bubba
                     case GptRequests.Embeddings:
                     {
                         PopulateEmbeddingModels( );
-                        RequestLabel.Content = "GPT - Embeddings API";
+                        RequestLabel.Content = "Embeddings API";
                         _endpoint = GptEndPoint.Embeddings;
                         TabControl.SelectedIndex = 1;
                         break;
@@ -1195,7 +1190,7 @@ namespace Bubba
                     {
                         PopulateTranscriptionModels( );
                         PopulateOpenAiVoices( );
-                        RequestLabel.Content = "GPT - Transcription (Speech To Text)";
+                        RequestLabel.Content = "Transcription (Speech To Text)";
                         _endpoint = GptEndPoint.Transcriptions;
                         TabControl.SelectedIndex = 1;
                         break;
@@ -1203,7 +1198,7 @@ namespace Bubba
                     case GptRequests.VectorStores:
                     {
                         PopulateVectorStoreModels( );
-                        RequestLabel.Content = "GPT - Vector Stores API";
+                        RequestLabel.Content = "Vector Stores API";
                         _endpoint = GptEndPoint.VectorStores;
                         TabControl.SelectedIndex = 1;
                         break;
@@ -1212,7 +1207,7 @@ namespace Bubba
                     {
                         PopulateSpeechModels( );
                         PopulateOpenAiVoices( );
-                        RequestLabel.Content = "GPT - Speech Generation (Text To Speech)";
+                        RequestLabel.Content = "Speech Generation (Text To Speech)";
                         _endpoint = GptEndPoint.SpeechGeneration;
                         TabControl.SelectedIndex = 1;
                         break;
@@ -1220,7 +1215,7 @@ namespace Bubba
                     case GptRequests.FineTuning:
                     {
                         PopulateFineTuningModels( );
-                        RequestLabel.Content = "GPT - Fine-Tuning API";
+                        RequestLabel.Content = "Fine-Tuning API";
                         _endpoint = GptEndPoint.FineTuning;
                         TabControl.SelectedIndex = 1;
                         break;
@@ -1228,7 +1223,7 @@ namespace Bubba
                     case GptRequests.Files:
                     {
                         PopulateFileApiModels( );
-                        RequestLabel.Content = "GPT - Files API";
+                        RequestLabel.Content = "Files API";
                         _endpoint = GptEndPoint.Files;
                         TabControl.SelectedIndex = 1;
                         break;
@@ -1236,7 +1231,7 @@ namespace Bubba
                     case GptRequests.Uploads:
                     {
                         PopulateUploadApiModels( );
-                        RequestLabel.Content = "GPT - Uploads API";
+                        RequestLabel.Content = "Uploads API";
                         _endpoint = GptEndPoint.Uploads;
                         TabControl.SelectedIndex = 1;
                         break;
@@ -1244,7 +1239,7 @@ namespace Bubba
                     case GptRequests.Projects:
                     {
                         PopulateTextModels( );
-                        RequestLabel.Content = "GPT - Projects API";
+                        RequestLabel.Content = "Projects API";
                         _endpoint = GptEndPoint.Projects;
                         TabControl.SelectedIndex = 1;
                         break;
@@ -1252,7 +1247,7 @@ namespace Bubba
                     default:
                     {
                         PopulateModelsAsync( );
-                        RequestLabel.Content = "GPT - Chat Completion";
+                        RequestLabel.Content = "GPT Completion";
                         _endpoint = GptEndPoint.Completions;
                         TabControl.SelectedIndex = 1;
                         break;
@@ -1306,7 +1301,7 @@ namespace Bubba
                 _frequency = double.Parse( FrequencySlider.Value.ToString( "N2" ) );
                 _number = int.Parse( NumberTextBox.Text );
                 _maximumTokens = Convert.ToInt32( MaxTokenTextBox.Text );
-                _model = ModelComboBox.SelectedItem.ToString( ) ?? "gpt-4o";
+                _model = ModelListBox.SelectedItem.ToString( ) ?? "gpt-4o";
                 _prompt = _language == "Text"
                     ? ChatEditor.Text
                     : "";
@@ -1324,7 +1319,7 @@ namespace Bubba
         {
             try
             {
-                var _prefix = @"C:\Users\terry\source\repos\Bubba\";
+                var _prefix = @"C:\Users\terry\source\repos\Bubba\Resources\Documents\Editor\";
                 if( !string.IsNullOrEmpty( _language ) )
                 {
                     ChatEditor.Text = "";
@@ -1332,121 +1327,163 @@ namespace Bubba
                     {
                         case "TXT":
                         {
-                            var _path = _prefix + @"Resources\Documents\Editor\TXT\";
+                            var _pre = @"C:\Users\terry\source\repos\Bubba\Resources\Document\";
+                            var _path = _pre + @"Appropriations\";
                             TabControl.SelectedIndex = 0;
                             ChatEditor.DocumentLanguage = Languages.Text;
-                            LanguageListBox.Items?.Clear( );
-                            var _documents = Directory.EnumerateFiles( _path );
+                            DocumentListBox.Items?.Clear( );
+                            var _documents = Directory.GetFiles( _path );
                             foreach( var _file in _documents )
                             {
-                                var _name = Path.GetFileNameWithoutExtension( _file );
-                                LanguageListBox.Items?.Add( _name );
+                                var _item = new ListBoxItem
+                                {
+                                    Tag = _file,
+                                    Content = Path.GetFileNameWithoutExtension( _file )
+                                };
+
+                                DocumentListBox.Items?.Add( _item );
                             }
 
                             break;
                         }
                         case "CS":
                         {
-                            var _path = _prefix + @"Resources\Documents\Editor\CS\";
+                            var _path = _prefix + @"CS\";
                             TabControl.SelectedIndex = 0;
                             ChatEditor.DocumentLanguage = Languages.CSharp;
-                            LanguageListBox.Items?.Clear( );
-                            var _documents = Directory.EnumerateFiles( _path );
+                            DocumentListBox.Items?.Clear( );
+                            var _documents = Directory.GetFiles( _path );
                             foreach( var _file in _documents )
                             {
-                                var _name = Path.GetFileNameWithoutExtension( _file );
-                                LanguageListBox.Items?.Add( _name );
+                                var _item = new ListBoxItem
+                                {
+                                    Tag = _file,
+                                    Content = Path.GetFileNameWithoutExtension( _file )
+                                };
+
+                                DocumentListBox.Items?.Add( _item );
                             }
 
                             break;
                         }
                         case "PY":
                         {
-                            var _path = _prefix + @"Resources\Documents\Editor\PY\";
+                            var _path = _prefix + @"PY\";
                             TabControl.SelectedIndex = 0;
                             ChatEditor.DocumentLanguage = Languages.Text;
-                            LanguageListBox.Items?.Clear( );
-                            var _documents = Directory.EnumerateFiles( _path );
+                            DocumentListBox.Items?.Clear( );
+                            var _documents = Directory.GetFiles( _path );
                             foreach( var _file in _documents )
                             {
-                                var _name = Path.GetFileNameWithoutExtension( _file );
-                                LanguageListBox.Items?.Add( _name );
+                                var _item = new ListBoxItem
+                                {
+                                    Tag = _file,
+                                    Content = Path.GetFileNameWithoutExtension( _file )
+                                };
+
+                                DocumentListBox.Items?.Add( _item );
                             }
 
                             break;
                         }
                         case "SQL":
                         {
-                            var _path = _prefix + @"Resources\Documents\Editor\SQL\";
+                            var _path = _prefix + @"SQL\";
                             TabControl.SelectedIndex = 0;
                             ChatEditor.DocumentLanguage = Languages.SQL;
-                            LanguageListBox.Items?.Clear( );
-                            var _documents = Directory.EnumerateFiles( _path );
+                            DocumentListBox.Items?.Clear( );
+                            var _documents = Directory.GetFiles( _path );
                             foreach( var _file in _documents )
                             {
-                                var _name = Path.GetFileNameWithoutExtension( _file );
-                                LanguageListBox.Items?.Add( _name );
+                                var _item = new ListBoxItem
+                                {
+                                    Tag = _file,
+                                    Content = Path.GetFileNameWithoutExtension( _file )
+                                };
+
+                                DocumentListBox.Items?.Add( _item );
                             }
 
                             break;
                         }
                         case "JS":
                         {
-                            var _path = _prefix + @"Resources\Documents\Editor\JS\";
+                            var _path = _prefix + @"JS\";
                             TabControl.SelectedIndex = 0;
                             ChatEditor.DocumentLanguage = Languages.JScript;
-                            LanguageListBox.Items?.Clear( );
-                            var _documents = Directory.EnumerateFiles( _path );
+                            DocumentListBox.Items?.Clear( );
+                            var _documents = Directory.GetFiles( _path );
                             foreach( var _file in _documents )
                             {
-                                var _name = Path.GetFileNameWithoutExtension( _file );
-                                LanguageListBox.Items?.Add( _name );
+                                var _item = new ListBoxItem
+                                {
+                                    Tag = _file,
+                                    Content = Path.GetFileNameWithoutExtension( _file )
+                                };
+
+                                DocumentListBox.Items?.Add( _item );
                             }
 
                             break;
                         }
                         case "CPP":
                         {
-                            var _path = _prefix + @"Resources\Documents\Editor\CPP\";
+                            var _path = _prefix + @"CPP\";
                             TabControl.SelectedIndex = 0;
                             ChatEditor.DocumentLanguage = Languages.C;
                             ChatEditor.DocumentSource = _path;
-                            LanguageListBox.Items?.Clear( );
-                            var _documents = Directory.EnumerateFiles( _path );
+                            DocumentListBox.Items?.Clear( );
+                            var _documents = Directory.GetFiles( _path );
                             foreach( var _file in _documents )
                             {
-                                var _name = Path.GetFileNameWithoutExtension( _file );
-                                LanguageListBox.Items?.Add( _name );
+                                var _item = new ListBoxItem
+                                {
+                                    Tag = _file,
+                                    Content = Path.GetFileNameWithoutExtension( _file )
+                                };
+
+                                DocumentListBox.Items?.Add( _item );
                             }
 
                             break;
                         }
                         case "VBA":
                         {
-                            var _path = _prefix + @"Resources\Documents\Editor\VBA\";
+                            var _path = _prefix + @"VBA\";
                             TabControl.SelectedIndex = 0;
                             ChatEditor.DocumentLanguage = Languages.VisualBasic;
-                            LanguageListBox.Items?.Clear( );
-                            var _documents = Directory.EnumerateFiles( _path );
+                            DocumentListBox.Items?.Clear( );
+                            var _documents = Directory.GetFiles( _path );
                             foreach( var _file in _documents )
                             {
-                                var _name = Path.GetFileNameWithoutExtension( _file );
-                                LanguageListBox.Items?.Add( _name );
+                                var _item = new ListBoxItem
+                                {
+                                    Tag = _file,
+                                    Content = Path.GetFileNameWithoutExtension( _file )
+                                };
+
+                                DocumentListBox.Items?.Add( _item );
                             }
 
                             break;
                         }
                         default:
                         {
-                            var _path = _prefix + @"Resources\Documents\Editor\TXT\";
+                            var _pre = @"C:\Users\terry\source\repos\Bubba\Resources\Document\";
+                            var _path = _pre + @"Appropriations\";
                             TabControl.SelectedIndex = 0;
                             ChatEditor.DocumentLanguage = Languages.Text;
-                            LanguageListBox.Items?.Clear( );
-                            var _documents = Directory.EnumerateFiles( _path );
+                            DocumentListBox.Items?.Clear( );
+                            var _documents = Directory.GetFiles( _path );
                             foreach( var _file in _documents )
                             {
-                                var _name = Path.GetFileNameWithoutExtension( _file );
-                                LanguageListBox.Items?.Add( _name );
+                                var _item = new ListBoxItem
+                                {
+                                    Tag = _file,
+                                    Content = Path.GetFileNameWithoutExtension( _file )
+                                };
+
+                                DocumentListBox.Items?.Add( _item );
                             }
 
                             break;
@@ -1470,31 +1507,19 @@ namespace Bubba
             {
                 if( visible )
                 {
-                    FirstButton.Visibility = Visibility.Visible;
-                    PreviousButton.Visibility = Visibility.Visible;
-                    NextButton.Visibility = Visibility.Visible;
-                    LastButton.Visibility = Visibility.Visible;
                     ToolStripTextBox.Visibility = Visibility.Visible;
                     LookupButton.Visibility = Visibility.Visible;
                     RefreshButton.Visibility = Visibility.Visible;
                     ToolStripTextBox.Visibility = Visibility.Visible;
                     CancelButton.Visibility = Visibility.Visible;
-                    DeleteButton.Visibility = Visibility.Visible;
-                    BrowserButton.Visibility = Visibility.Visible;
                 }
                 else
                 {
-                    FirstButton.Visibility = Visibility.Hidden;
-                    PreviousButton.Visibility = Visibility.Hidden;
-                    NextButton.Visibility = Visibility.Hidden;
-                    LastButton.Visibility = Visibility.Hidden;
                     ToolStripTextBox.Visibility = Visibility.Hidden;
                     LookupButton.Visibility = Visibility.Hidden;
                     RefreshButton.Visibility = Visibility.Hidden;
                     ToolStripTextBox.Visibility = Visibility.Hidden;
                     CancelButton.Visibility = Visibility.Hidden;
-                    DeleteButton.Visibility = Visibility.Hidden;
-                    BrowserButton.Visibility = Visibility.Hidden;
                 }
             }
             catch( Exception ex )
@@ -1514,9 +1539,9 @@ namespace Bubba
                 | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls;
 
             // text-davinci-002, text-davinci-003
-            var _model = ModelComboBox.Text;
+            var _model = ModelListBox.SelectedItem.ToString( );
             var _url = "https://api.openai.com/v1/completions";
-            if( _model.IndexOf( "gpt-3.5-turbo" ) != -1 )
+            if( _model?.IndexOf( "gpt-3.5-turbo" ) != -1 )
             {
                 //Chat GTP 4 https://openai.com/research/gpt-4
                 _url = "https://api.openai.com/v1/chat/completions";
@@ -1541,7 +1566,7 @@ namespace Bubba
 
             var _userId = UserLabel.Content;
             var _data = "";
-            if( _model.IndexOf( "gpt-3.5-turbo" ) != -1 )
+            if( _model?.IndexOf( "gpt-3.5-turbo" ) != -1 )
             {
                 _data = "{";
                 _data += " \"model\":\"" + _model + "\",";
@@ -1765,69 +1790,6 @@ namespace Bubba
                 };
 
                 App.ActiveWindows.Add( "DocumentWindow", _folderBrowser );
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
-            }
-        }
-
-        /// <summary>
-        /// Opens the search dialog.
-        /// </summary>
-        private protected void OpenSearchDialog( )
-        {
-            try
-            {
-                Busy( );
-                if( App.ActiveWindows.Keys.Contains( "SearchDialog" ) )
-                {
-                    var _window = ( SearchDialog )App.ActiveWindows[ "SearchDialog" ];
-                    _window.Owner = this;
-                    _window.Show( );
-                }
-                else
-                {
-                    var _searchDialog = new SearchDialog
-                    {
-                        Topmost = true,
-                        Owner = this,
-                        WindowStartupLocation = WindowStartupLocation.CenterScreen
-                    };
-
-                    _searchDialog.Show( );
-                }
-
-                Chill( );
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
-            }
-        }
-
-        /// <summary>
-        /// Opens the chat window.
-        /// </summary>
-        private protected void OpenWebBrowser( )
-        {
-            try
-            {
-                Busy( );
-                if( App.ActiveWindows?.ContainsKey( "WebBrowser" ) == true )
-                {
-                    var _browser = ( WebBrowser )App.ActiveWindows[ "WebBrowser" ];
-                    _browser.Show( );
-                }
-                else
-                {
-                    var _webBrowser = new WebBrowser( );
-                    App.ActiveWindows?.Add( "WebBrowser", _webBrowser );
-                    _webBrowser.Show( );
-                }
-
-                Chill( );
-                Hide( );
             }
             catch( Exception ex )
             {
@@ -2116,20 +2078,20 @@ namespace Bubba
                 }
 
                 _models.Sort( );
-                ModelComboBox.Items.Clear( );
+                ModelListBox.Items.Clear( );
                 Dispatcher.BeginInvoke( ( ) =>
                 {
                     foreach( var _lm in _models )
                     {
                         if( !_lm.StartsWith( "ft" ) )
                         {
-                            ModelComboBox.Items.Add( _lm );
+                            ModelListBox.Items.Add( _lm );
                         }
                     }
                 } );
 
                 Chill( );
-                ModelComboBox.SelectedIndex = -1;
+                ModelListBox.SelectedIndex = -1;
             }
             catch( HttpRequestException ex )
             {
@@ -2148,15 +2110,15 @@ namespace Bubba
         {
             try
             {
-                ImageSizeComboBox.Items?.Clear( );
+                ImageSizeListBox.Items?.Clear( );
                 if( string.IsNullOrEmpty( _model ) )
                 {
-                    ImageSizeComboBox.Items.Add( "256 X 256" );
-                    ImageSizeComboBox.Items.Add( "512 X 512" );
-                    ImageSizeComboBox.Items.Add( "1024 X 1024" );
-                    ImageSizeComboBox.Items.Add( "1792 X 1024" );
-                    ImageSizeComboBox.Items.Add( "1024 X 1792" );
-                    ImageSizeComboBox.SelectedIndex = -1;
+                    ImageSizeListBox.Items.Add( "256 X 256" );
+                    ImageSizeListBox.Items.Add( "512 X 512" );
+                    ImageSizeListBox.Items.Add( "1024 X 1024" );
+                    ImageSizeListBox.Items.Add( "1792 X 1024" );
+                    ImageSizeListBox.Items.Add( "1024 X 1792" );
+                    ImageSizeListBox.SelectedIndex = -1;
                 }
                 else if( !string.IsNullOrEmpty( _model ) )
                 {
@@ -2164,28 +2126,28 @@ namespace Bubba
                     {
                         case "dall-e-2":
                         {
-                            ImageSizeComboBox.Items.Add( "256 X 256" );
-                            ImageSizeComboBox.Items.Add( "512 X 512" );
-                            ImageSizeComboBox.Items.Add( "1024 X 1024" );
-                            ImageSizeComboBox.SelectedIndex = -1;
+                            ImageSizeListBox.Items.Add( "256 X 256" );
+                            ImageSizeListBox.Items.Add( "512 X 512" );
+                            ImageSizeListBox.Items.Add( "1024 X 1024" );
+                            ImageSizeListBox.SelectedIndex = -1;
                             break;
                         }
                         case "dall-e-3":
                         {
-                            ImageSizeComboBox.Items.Add( "1024 X 1024" );
-                            ImageSizeComboBox.Items.Add( "1792 X 1024" );
-                            ImageSizeComboBox.Items.Add( "1024 X 1792" );
-                            ImageSizeComboBox.SelectedIndex = -1;
+                            ImageSizeListBox.Items.Add( "1024 X 1024" );
+                            ImageSizeListBox.Items.Add( "1792 X 1024" );
+                            ImageSizeListBox.Items.Add( "1024 X 1792" );
+                            ImageSizeListBox.SelectedIndex = -1;
                             break;
                         }
                         default:
                         {
-                            ImageSizeComboBox.Items.Add( "256 X 256" );
-                            ImageSizeComboBox.Items.Add( "512 X 512" );
-                            ImageSizeComboBox.Items.Add( "1024 X 1024" );
-                            ImageSizeComboBox.Items.Add( "1792 X 1024" );
-                            ImageSizeComboBox.Items.Add( "1024 X 1792" );
-                            ImageSizeComboBox.SelectedIndex = -1;
+                            ImageSizeListBox.Items.Add( "256 X 256" );
+                            ImageSizeListBox.Items.Add( "512 X 512" );
+                            ImageSizeListBox.Items.Add( "1024 X 1024" );
+                            ImageSizeListBox.Items.Add( "1792 X 1024" );
+                            ImageSizeListBox.Items.Add( "1024 X 1792" );
+                            ImageSizeListBox.SelectedIndex = -1;
                             break;
                         }
                     }
@@ -2204,19 +2166,19 @@ namespace Bubba
         {
             try
             {
-                ModelComboBox.Items?.Clear( );
-                ModelComboBox.Items.Add( "gpt-4-0613" );
-                ModelComboBox.Items.Add( "gpt-4-0314" );
-                ModelComboBox.Items.Add( "gpt-4-turbo-2024-04-09" );
-                ModelComboBox.Items.Add( "gpt-4o-2024-08-06" );
-                ModelComboBox.Items.Add( "gpt-4o-2024-11-20" );
-                ModelComboBox.Items.Add( "gpt-4o-2024-05-13" );
-                ModelComboBox.Items.Add( "gpt-4o-mini-2024-07-18" );
-                ModelComboBox.Items.Add( "o1-2024-12-17" );
-                ModelComboBox.Items.Add( "o1-mini-2024-09-12" );
-                ModelComboBox.Items.Add( "text-davinci-003" );
-                ModelComboBox.Items.Add( "text-curie-001" );
-                ModelComboBox.SelectedIndex = -1;
+                ModelListBox.Items?.Clear( );
+                ModelListBox.Items.Add( "gpt-4-0613" );
+                ModelListBox.Items.Add( "gpt-4-0314" );
+                ModelListBox.Items.Add( "gpt-4-turbo-2024-04-09" );
+                ModelListBox.Items.Add( "gpt-4o-2024-08-06" );
+                ModelListBox.Items.Add( "gpt-4o-2024-11-20" );
+                ModelListBox.Items.Add( "gpt-4o-2024-05-13" );
+                ModelListBox.Items.Add( "gpt-4o-mini-2024-07-18" );
+                ModelListBox.Items.Add( "o1-2024-12-17" );
+                ModelListBox.Items.Add( "o1-mini-2024-09-12" );
+                ModelListBox.Items.Add( "text-davinci-003" );
+                ModelListBox.Items.Add( "text-curie-001" );
+                ModelListBox.SelectedIndex = -1;
             }
             catch( Exception ex )
             {
@@ -2231,17 +2193,18 @@ namespace Bubba
         {
             try
             {
-                ModelComboBox.Items?.Clear( );
-                ModelComboBox.Items.Add( "gpt-4-0613" );
-                ModelComboBox.Items.Add( "gpt-4-0314" );
-                ModelComboBox.Items.Add( "gpt-4-turbo-2024-04-09" );
-                ModelComboBox.Items.Add( "gpt-4o-2024-08-06" );
-                ModelComboBox.Items.Add( "gpt-4o-2024-11-20" );
-                ModelComboBox.Items.Add( "gpt-4o-2024-05-13" );
-                ModelComboBox.Items.Add( "gpt-4o-mini-2024-07-18" );
-                ModelComboBox.Items.Add( "o1-2024-12-17" );
-                ModelComboBox.Items.Add( "o1-mini-2024-09-12" );
-                ModelComboBox.SelectedIndex = -1;
+                ModelListBox.Items?.Clear( );
+                ModelListBox.Items.Add( "gpt-4-0613" );
+                ModelListBox.Items.Add( "gpt-4-0314" );
+                ModelListBox.Items.Add( "gpt-4-turbo-2024-04-09" );
+                ModelListBox.Items.Add( "gpt-4o-2024-08-06" );
+                ModelListBox.Items.Add( "gpt-4o-2024-11-20" );
+                ModelListBox.Items.Add( "gpt-4o-2024-05-13" );
+                ModelListBox.Items.Add( "gpt-4o-mini-2024-07-18" );
+                ModelListBox.Items.Add( "o1-2024-12-17" );
+                ModelListBox.Items.Add( "o1-mini-2024-09-12" );
+                ModelListBox.Items.Add( "o3-mini-2025-01-31" );
+                ModelListBox.SelectedIndex = -1;
             }
             catch( Exception ex )
             {
@@ -2256,13 +2219,13 @@ namespace Bubba
         {
             try
             {
-                ModelComboBox.Items?.Clear( );
-                ModelComboBox.Items.Add( "dall-e-2" );
-                ModelComboBox.Items.Add( "dall-e-3" );
-                ModelComboBox.Items.Add( "gpt-4-0613" );
-                ModelComboBox.Items.Add( "gpt-4-0314" );
-                ModelComboBox.Items.Add( "gpt-4o-mini-2024-07-18" );
-                ModelComboBox.SelectedIndex = -1;
+                ModelListBox.Items?.Clear( );
+                ModelListBox.Items.Add( "dall-e-2" );
+                ModelListBox.Items.Add( "dall-e-3" );
+                ModelListBox.Items.Add( "gpt-4-0613" );
+                ModelListBox.Items.Add( "gpt-4-0314" );
+                ModelListBox.Items.Add( "gpt-4o-mini-2024-07-18" );
+                ModelListBox.SelectedIndex = -1;
             }
             catch( Exception ex )
             {
@@ -2277,13 +2240,13 @@ namespace Bubba
         {
             try
             {
-                ModelComboBox.Items?.Clear( );
-                ModelComboBox.Items.Add( "whisper-1" );
-                ModelComboBox.Items.Add( "gpt-4-0613" );
-                ModelComboBox.Items.Add( "gpt-4-0314" );
-                ModelComboBox.Items.Add( "gpt-4-turbo-2024-04-09" );
-                ModelComboBox.Items.Add( "text-davinci-003" );
-                ModelComboBox.SelectedIndex = -1;
+                ModelListBox.Items?.Clear( );
+                ModelListBox.Items.Add( "whisper-1" );
+                ModelListBox.Items.Add( "gpt-4-0613" );
+                ModelListBox.Items.Add( "gpt-4-0314" );
+                ModelListBox.Items.Add( "gpt-4-turbo-2024-04-09" );
+                ModelListBox.Items.Add( "text-davinci-003" );
+                ModelListBox.SelectedIndex = -1;
             }
             catch( Exception ex )
             {
@@ -2298,9 +2261,9 @@ namespace Bubba
         {
             try
             {
-                ModelComboBox.Items?.Clear( );
-                ModelComboBox.Items.Add( "whisper-1" );
-                ModelComboBox.SelectedIndex = -1;
+                ModelListBox.Items?.Clear( );
+                ModelListBox.Items.Add( "whisper-1" );
+                ModelListBox.SelectedIndex = -1;
             }
             catch( Exception ex )
             {
@@ -2315,11 +2278,11 @@ namespace Bubba
         {
             try
             {
-                ModelComboBox.Items?.Clear( );
-                ModelComboBox.Items.Add( "text-embedding-3-small" );
-                ModelComboBox.Items.Add( "text-embedding-3-large" );
-                ModelComboBox.Items.Add( "text-embedding-ada-002" );
-                ModelComboBox.SelectedIndex = -1;
+                ModelListBox.Items?.Clear( );
+                ModelListBox.Items.Add( "text-embedding-3-small" );
+                ModelListBox.Items.Add( "text-embedding-3-large" );
+                ModelListBox.Items.Add( "text-embedding-ada-002" );
+                ModelListBox.SelectedIndex = -1;
             }
             catch( Exception ex )
             {
@@ -2334,15 +2297,15 @@ namespace Bubba
         {
             try
             {
-                ModelComboBox.Items?.Clear( );
-                ModelComboBox.Items.Add( "gpt-4-0613" );
-                ModelComboBox.Items.Add( "gpt-4-0314" );
-                ModelComboBox.Items.Add( "gpt-4-turbo-2024-04-09" );
-                ModelComboBox.Items.Add( "gpt-4o-mini-2024-07-18" );
-                ModelComboBox.Items.Add( "gpt-4o-2024-08-06" );
-                ModelComboBox.Items.Add( "gpt-4o-2024-11-20" );
-                ModelComboBox.Items.Add( "gpt-4o-2024-05-13" );
-                ModelComboBox.SelectedIndex = -1;
+                ModelListBox.Items?.Clear( );
+                ModelListBox.Items.Add( "gpt-4-0613" );
+                ModelListBox.Items.Add( "gpt-4-0314" );
+                ModelListBox.Items.Add( "gpt-4-turbo-2024-04-09" );
+                ModelListBox.Items.Add( "gpt-4o-mini-2024-07-18" );
+                ModelListBox.Items.Add( "gpt-4o-2024-08-06" );
+                ModelListBox.Items.Add( "gpt-4o-2024-11-20" );
+                ModelListBox.Items.Add( "gpt-4o-2024-05-13" );
+                ModelListBox.SelectedIndex = -1;
             }
             catch( Exception ex )
             {
@@ -2357,13 +2320,13 @@ namespace Bubba
         {
             try
             {
-                ModelComboBox.Items?.Clear( );
-                ModelComboBox.Items.Add( "tts-1" );
-                ModelComboBox.Items.Add( "tts-1-hd" );
-                ModelComboBox.Items.Add( "gpt-4o-audio-preview-2024-12-17" );
-                ModelComboBox.Items.Add( "gpt-4o-audio-preview-2024-10-01" );
-                ModelComboBox.Items.Add( "gpt-4o-mini-audio-preview-2024-12-17" );
-                ModelComboBox.SelectedIndex = -1;
+                ModelListBox.Items?.Clear( );
+                ModelListBox.Items.Add( "tts-1" );
+                ModelListBox.Items.Add( "tts-1-hd" );
+                ModelListBox.Items.Add( "gpt-4o-audio-preview-2024-12-17" );
+                ModelListBox.Items.Add( "gpt-4o-audio-preview-2024-10-01" );
+                ModelListBox.Items.Add( "gpt-4o-mini-audio-preview-2024-12-17" );
+                ModelListBox.SelectedIndex = -1;
             }
             catch( Exception ex )
             {
@@ -2378,17 +2341,18 @@ namespace Bubba
         {
             try
             {
-                ModelComboBox.Items?.Clear( );
-                ModelComboBox.Items.Add( "gpt-4-0613" );
-                ModelComboBox.Items.Add( "gpt-4-0314" );
-                ModelComboBox.Items.Add( "gpt-4-turbo-2024-04-09" );
-                ModelComboBox.Items.Add( "gpt-4o-mini-2024-07-18" );
-                ModelComboBox.Items.Add( "gpt-4o-2024-08-06" );
-                ModelComboBox.Items.Add( "gpt-4o-2024-11-20" );
-                ModelComboBox.Items.Add( "gpt-4o-2024-05-13" );
-                ModelComboBox.Items.Add( "o1-2024-12-17" );
-                ModelComboBox.Items.Add( "o1-mini-2024-09-12" );
-                ModelComboBox.SelectedIndex = -1;
+                ModelListBox.Items?.Clear( );
+                ModelListBox.Items.Add( "gpt-4-0613" );
+                ModelListBox.Items.Add( "gpt-4-0314" );
+                ModelListBox.Items.Add( "gpt-4-turbo-2024-04-09" );
+                ModelListBox.Items.Add( "gpt-4o-mini-2024-07-18" );
+                ModelListBox.Items.Add( "gpt-4o-2024-08-06" );
+                ModelListBox.Items.Add( "gpt-4o-2024-11-20" );
+                ModelListBox.Items.Add( "gpt-4o-2024-05-13" );
+                ModelListBox.Items.Add( "o1-2024-12-17" );
+                ModelListBox.Items.Add( "o1-mini-2024-09-12" );
+                ModelListBox.Items.Add( "o3-mini-2025-01-31" );
+                ModelListBox.SelectedIndex = -1;
             }
             catch( Exception ex )
             {
@@ -2403,17 +2367,18 @@ namespace Bubba
         {
             try
             {
-                ModelComboBox.Items?.Clear( );
-                ModelComboBox.Items.Add( "gpt-4-0613" );
-                ModelComboBox.Items.Add( "gpt-4-0314" );
-                ModelComboBox.Items.Add( "gpt-4-turbo-2024-04-09" );
-                ModelComboBox.Items.Add( "gpt-4o-mini-2024-07-18" );
-                ModelComboBox.Items.Add( "gpt-4o-2024-08-06" );
-                ModelComboBox.Items.Add( "gpt-4o-2024-11-20" );
-                ModelComboBox.Items.Add( "gpt-4o-2024-05-13" );
-                ModelComboBox.Items.Add( "o1-2024-12-17" );
-                ModelComboBox.Items.Add( "o1-mini-2024-09-12" );
-                ModelComboBox.SelectedIndex = -1;
+                ModelListBox.Items?.Clear( );
+                ModelListBox.Items.Add( "gpt-4-0613" );
+                ModelListBox.Items.Add( "gpt-4-0314" );
+                ModelListBox.Items.Add( "gpt-4-turbo-2024-04-09" );
+                ModelListBox.Items.Add( "gpt-4o-mini-2024-07-18" );
+                ModelListBox.Items.Add( "gpt-4o-2024-08-06" );
+                ModelListBox.Items.Add( "gpt-4o-2024-11-20" );
+                ModelListBox.Items.Add( "gpt-4o-2024-05-13" );
+                ModelListBox.Items.Add( "o1-2024-12-17" );
+                ModelListBox.Items.Add( "o1-mini-2024-09-12" );
+                ModelListBox.Items.Add( "o3-mini-2025-01-31" );
+                ModelListBox.SelectedIndex = -1;
             }
             catch( Exception ex )
             {
@@ -2428,17 +2393,18 @@ namespace Bubba
         {
             try
             {
-                ModelComboBox.Items?.Clear( );
-                ModelComboBox.Items.Add( "gpt-4-0613" );
-                ModelComboBox.Items.Add( "gpt-4-0314" );
-                ModelComboBox.Items.Add( "gpt-4-turbo-2024-04-09" );
-                ModelComboBox.Items.Add( "gpt-4o-mini-2024-07-18" );
-                ModelComboBox.Items.Add( "gpt-4o-2024-08-06" );
-                ModelComboBox.Items.Add( "gpt-4o-2024-11-20" );
-                ModelComboBox.Items.Add( "gpt-4o-2024-05-13" );
-                ModelComboBox.Items.Add( "o1-2024-12-17" );
-                ModelComboBox.Items.Add( "o1-mini-2024-09-12" );
-                ModelComboBox.SelectedIndex = -1;
+                ModelListBox.Items?.Clear( );
+                ModelListBox.Items.Add( "gpt-4-0613" );
+                ModelListBox.Items.Add( "gpt-4-0314" );
+                ModelListBox.Items.Add( "gpt-4-turbo-2024-04-09" );
+                ModelListBox.Items.Add( "gpt-4o-mini-2024-07-18" );
+                ModelListBox.Items.Add( "gpt-4o-2024-08-06" );
+                ModelListBox.Items.Add( "gpt-4o-2024-11-20" );
+                ModelListBox.Items.Add( "gpt-4o-2024-05-13" );
+                ModelListBox.Items.Add( "o1-2024-12-17" );
+                ModelListBox.Items.Add( "o1-mini-2024-09-12" );
+                ModelListBox.Items.Add( "o3-mini-2025-01-31" );
+                ModelListBox.SelectedIndex = -1;
             }
             catch( Exception ex )
             {
@@ -2449,7 +2415,7 @@ namespace Bubba
         /// <summary>
         /// Populates the language ListBox.
         /// </summary>
-        private void PopulateLanguageListBox( )
+        private void PopulateDocumentListBox( )
         {
             try
             {
@@ -2459,29 +2425,242 @@ namespace Bubba
                     {
                         case "TXT":
                         {
+                            PopulateTextDocuments( );
                             break;
                         }
-                        case "C":
+                        case "CS":
                         {
+                            PopulateCSharpDocuments( );
                             break;
                         }
                         case "PY":
                         {
-                            break;
-                        }
-                        case "JS":
-                        {
+                            PopulatePythonDocuments( );
                             break;
                         }
                         case "SQL":
                         {
+                            PopulateSqlDocuments( );
+                            break;
+                        }
+                        case "JS":
+                        {
+                            PopulateJavaScriptDocuments( );
+                            break;
+                        }
+                        case "CPP":
+                        {
+                            PopulateCPlusDocuments( );
                             break;
                         }
                         case "VBA":
                         {
+                            PopulateVisualBasicDocuments( );
+                            break;
+                        }
+                        default:
+                        {
+                            PopulateTextDocuments( );
                             break;
                         }
                     }
+                }
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+            }
+        }
+
+        /// <summary>
+        /// Populates the visual basic documents.
+        /// </summary>
+        private void PopulateVisualBasicDocuments( )
+        {
+            var _path = Locations.PathPrefix + @"Resources\Documents\Editor\VBA\";
+            TabControl.SelectedIndex = 0;
+            ChatEditor.DocumentLanguage = Languages.VisualBasic;
+            DocumentListBox.Items?.Clear( );
+            var _documents = Directory.GetFiles( _path );
+            foreach( var _file in _documents )
+            {
+                var _item = new ListBoxItem
+                {
+                    Tag = _file,
+                    Content = Path.GetFileNameWithoutExtension( _file )
+                };
+
+                DocumentListBox.Items?.Add( _item );
+            }
+        }
+
+        /// <summary>
+        /// Populates the c plus documents.
+        /// </summary>
+        private void PopulateCPlusDocuments( )
+        {
+            try
+            {
+                var _path = Locations.PathPrefix + @"Resources\Documents\Editor\CPP\";
+                TabControl.SelectedIndex = 0;
+                ChatEditor.DocumentLanguage = Languages.C;
+                ChatEditor.DocumentSource = _path;
+                DocumentListBox.Items?.Clear( );
+                var _documents = Directory.GetFiles( _path );
+                foreach( var _file in _documents )
+                {
+                    var _item = new ListBoxItem
+                    {
+                        Tag = _file,
+                        Content = Path.GetFileNameWithoutExtension( _file )
+                    };
+
+                    DocumentListBox.Items?.Add( _item );
+                }
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+            }
+        }
+
+        /// <summary>
+        /// Populates the java script documents.
+        /// </summary>
+        private void PopulateJavaScriptDocuments( )
+        {
+            try
+            {
+                var _path = Locations.PathPrefix + @"Resources\Documents\Editor\JS\";
+                TabControl.SelectedIndex = 0;
+                ChatEditor.DocumentLanguage = Languages.JScript;
+                DocumentListBox.Items?.Clear( );
+                var _documents = Directory.GetFiles( _path );
+                foreach( var _file in _documents )
+                {
+                    var _item = new ListBoxItem
+                    {
+                        Tag = _file,
+                        Content = Path.GetFileNameWithoutExtension( _file )
+                    };
+
+                    DocumentListBox.Items?.Add( _item );
+                }
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+            }
+        }
+
+        /// <summary>
+        /// Populates the SQL documents.
+        /// </summary>
+        private void PopulateSqlDocuments( )
+        {
+            try
+            {
+                var _path = @"C:\Users\terry\source\repos\Bubba\Resources\Documents\Editor\SQL\";
+                TabControl.SelectedIndex = 0;
+                ChatEditor.DocumentLanguage = Languages.SQL;
+                DocumentListBox.Items?.Clear( );
+                var _documents = Directory.GetFiles( _path );
+                foreach( var _file in _documents )
+                {
+                    var _item = new ListBoxItem
+                    {
+                        Tag = _file,
+                        Content = Path.GetFileNameWithoutExtension( _file )
+                    };
+
+                    DocumentListBox.Items?.Add( _item );
+                }
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+            }
+        }
+
+        /// <summary>
+        /// Populates the python documents.
+        /// </summary>
+        private void PopulatePythonDocuments( )
+        {
+            try
+            {
+                var _path = Locations.PathPrefix + @"Resources\Documents\Editor\PY\";
+                TabControl.SelectedIndex = 0;
+                ChatEditor.DocumentLanguage = Languages.Text;
+                DocumentListBox.Items?.Clear( );
+                var _documents = Directory.GetFiles( _path );
+                foreach( var _file in _documents )
+                {
+                    var _item = new ListBoxItem
+                    {
+                        Tag = _file,
+                        Content = Path.GetFileNameWithoutExtension( _file )
+                    };
+
+                    DocumentListBox.Items?.Add( _item );
+                }
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+            }
+        }
+
+        /// <summary>
+        /// Populates the c sharp documents.
+        /// </summary>
+        private void PopulateCSharpDocuments( )
+        {
+            try
+            {
+                var _path = Locations.PathPrefix + @"Resources\Documents\Editor\CS\";
+                TabControl.SelectedIndex = 0;
+                ChatEditor.DocumentLanguage = Languages.CSharp;
+                DocumentListBox.Items?.Clear( );
+                var _documents = Directory.GetFiles( _path );
+                foreach( var _file in _documents )
+                {
+                    var _item = new ListBoxItem
+                    {
+                        Tag = _file,
+                        Content = Path.GetFileNameWithoutExtension( _file )
+                    };
+
+                    DocumentListBox.Items?.Add( _item );
+                }
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+            }
+        }
+
+        /// <summary>
+        /// Populates the text documents.
+        /// </summary>
+        private void PopulateTextDocuments( )
+        {
+            try
+            {
+                var _path = Locations.PathPrefix + @"Resources\Documents\Editor\TXT\";
+                TabControl.SelectedIndex = 0;
+                ChatEditor.DocumentLanguage = Languages.Text;
+                DocumentListBox.Items?.Clear( );
+                var _documents = Directory.GetFiles( _path );
+                foreach( var _file in _documents )
+                {
+                    var _item = new ListBoxItem
+                    {
+                        Tag = _file,
+                        Content = Path.GetFileNameWithoutExtension( _file )
+                    };
+
+                    DocumentListBox.Items?.Add( _item );
                 }
             }
             catch( Exception ex )
@@ -2498,11 +2677,11 @@ namespace Bubba
             try
             {
                 var _synth = new SpeechSynthesizer( );
-                VoiceComboBox.Items?.Clear( );
+                VoiceListBox.Items?.Clear( );
                 foreach( var _voice in _synth.GetInstalledVoices( ) )
                 {
                     var _info = _voice.VoiceInfo;
-                    VoiceComboBox.Items.Add( _info.Name );
+                    VoiceListBox.Items.Add( _info.Name );
                 }
             }
             catch( Exception ex )
@@ -2518,16 +2697,66 @@ namespace Bubba
         {
             try
             {
-                VoiceComboBox.Items?.Clear( );
-                VoiceComboBox.Items.Add( "alloy" );
-                VoiceComboBox.Items.Add( "ash" );
-                VoiceComboBox.Items.Add( "coral" );
-                VoiceComboBox.Items.Add( "echo" );
-                VoiceComboBox.Items.Add( "onyx" );
-                VoiceComboBox.Items.Add( "fable" );
-                VoiceComboBox.Items.Add( "nova" );
-                VoiceComboBox.Items.Add( "sage" );
-                VoiceComboBox.Items.Add( "shimmer" );
+                VoiceListBox.Items?.Clear( );
+                VoiceListBox.Items.Add( "alloy" );
+                VoiceListBox.Items.Add( "ash" );
+                VoiceListBox.Items.Add( "coral" );
+                VoiceListBox.Items.Add( "echo" );
+                VoiceListBox.Items.Add( "onyx" );
+                VoiceListBox.Items.Add( "fable" );
+                VoiceListBox.Items.Add( "nova" );
+                VoiceListBox.Items.Add( "sage" );
+                VoiceListBox.Items.Add( "shimmer" );
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+            }
+        }
+
+        /// <summary>
+        /// Populates the request types.
+        /// </summary>
+        private void PopulateRequestTypes( )
+        {
+            try
+            {
+                GenerationListBox.Items?.Clear( );
+                var _names = Enum.GetNames( typeof( GptRequests ) );
+                foreach( var _request in _names )
+                {
+                    var _item = new ListBoxItem
+                    {
+                        Tag = _request,
+                        Content = _request.SplitPascal( )
+                    };
+
+                    GenerationListBox.Items.Add( _item );
+                }
+
+                GenerationListBox.SelectedIndex = -1;
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+            }
+        }
+
+        /// <summary>
+        /// Populates the language ListBox.
+        /// </summary>
+        private void PopulateLanguageListBox( )
+        {
+            try
+            {
+                LanguageListBox.Items?.Clear( );
+                var _names = Enum.GetNames( typeof( GptLanguages ) );
+                foreach( var _request in _names )
+                {
+                    LanguageListBox.Items.Add( _request );
+                }
+
+                LanguageListBox.SelectedIndex = -1;
             }
             catch( Exception ex )
             {
@@ -2558,70 +2787,6 @@ namespace Bubba
             try
             {
                 InvokeIf( _statusUpdate );
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
-            }
-        }
-
-        /// <summary>
-        /// Moves to first.
-        /// </summary>
-        private protected void MoveToFirst( )
-        {
-            try
-            {
-                var _message = "NOT YET IMPLEMENTED!";
-                SendMessage( _message );
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
-            }
-        }
-
-        /// <summary>
-        /// Moves to previous.
-        /// </summary>
-        private protected void MoveToPrevious( )
-        {
-            try
-            {
-                var _message = "NOT YET IMPLEMENTED!";
-                SendMessage( _message );
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
-            }
-        }
-
-        /// <summary>
-        /// Moves to next.
-        /// </summary>
-        private protected void MoveToNext( )
-        {
-            try
-            {
-                var _message = "NOT YET IMPLEMENTED!";
-                SendMessage( _message );
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
-            }
-        }
-
-        /// <summary>
-        /// Moves to last.
-        /// </summary>
-        private protected void MoveToLast( )
-        {
-            try
-            {
-                var _message = "NOT YET IMPLEMENTED!";
-                SendMessage( _message );
             }
             catch( Exception ex )
             {
@@ -2674,15 +2839,17 @@ namespace Bubba
                 InitializeTimer( );
                 InitializeToolStrip( );
                 InitializeLabels( );
-                PopulateModelsAsync( );
+                PopulateRequestTypes( );
                 PopulateLanguageListBox( );
+                PopulateModelsAsync( );
+                PopulateDocumentListBox( );
                 PopulateInstalledVoices( );
                 PopulateImageSizes( );
                 ClearChatControls( );
                 InitializeChatEditor( );
                 _systemPrompt = OpenAI.BubbaPrompt;
                 StreamCheckBox.Checked += OnStreamCheckBoxChecked;
-                ModelComboBox.SelectionChanged += OnSelectedModelChanged;
+                ModelListBox.SelectionChanged += OnModelListBoxSelectionChanged;
                 UserLabel.Content = $@"User ID : {Environment.UserName}";
                 TabControl.SelectedIndex = 1;
                 App.ActiveWindows.Add( "ChatWindow", this );
@@ -3106,7 +3273,8 @@ namespace Bubba
         /// Called when [guidance option click].
         /// </summary>
         /// <param name="sender">The sender.</param>
-        /// <param name="e">The <see cref="RoutedEventArgs"/> instance containing the event data.</param>
+        /// <param name="e">The <see cref="RoutedEventArgs"/>
+        /// instance containing the event data.</param>
         private void OnGuidanceOptionClick( object sender, RoutedEventArgs e )
         {
             try
@@ -3258,28 +3426,6 @@ namespace Bubba
         }
 
         /// <summary>
-        /// Called when [WebBrowser button click].
-        /// </summary>
-        /// 
-        /// <param name="sender">The sender.</param>
-        /// <param name="e">The <see cref="RoutedEventArgs"/>
-        /// instance containing the event data.</param>
-        private protected void OnWebBrowserButtonClick( object sender, RoutedEventArgs e )
-        {
-            try
-            {
-                Busy( );
-                OpenWebBrowser( );
-                Chill( );
-                Hide( );
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
-            }
-        }
-
-        /// <summary>
         /// Called when [delete button click].
         /// </summary>
         /// <param name="sender">The sender.</param>
@@ -3346,7 +3492,7 @@ namespace Bubba
         {
             try
             {
-                SetToolbarVisibility( !FirstButton.IsVisible );
+                SetToolbarVisibility( !ToolStripTextBox.IsVisible );
             }
             catch( Exception ex )
             {
@@ -3405,14 +3551,14 @@ namespace Bubba
             if( MuteCheckBox.IsChecked == true )
             {
                 VoiceLabel.Visibility = Visibility.Visible;
-                VoiceComboBox.Visibility = Visibility.Visible;
+                VoiceListBox.Visibility = Visibility.Visible;
                 var _msg = "The GPT Audio Client has been activated!";
                 SendNotification( _msg );
             }
             else
             {
                 VoiceLabel.Visibility = Visibility.Hidden;
-                VoiceComboBox.Visibility = Visibility.Hidden;
+                VoiceListBox.Visibility = Visibility.Hidden;
             }
         }
 
@@ -3513,13 +3659,13 @@ namespace Bubba
         /// <param name="sender">The sender.</param>
         /// <param name="e">The <see cref="RoutedEventArgs"/>
         /// instance containing the event data.</param>
-        private void OnSelectedModelChanged( object sender, RoutedEventArgs e )
+        private void OnModelListBoxSelectionChanged( object sender, RoutedEventArgs e )
         {
             try
             {
-                if( ModelComboBox.SelectedIndex != -1 )
+                if( ModelListBox.SelectedIndex != -1 )
                 {
-                    _model = ModelComboBox.SelectedValue.ToString( );
+                    _model = ModelListBox.SelectedValue.ToString( );
                     ModelLabel.Content = $"LLM | {_model?.ToUpper( )}";
                     PopulateImageSizes( );
                 }
@@ -3531,19 +3677,22 @@ namespace Bubba
         }
 
         /// <summary>
-        /// Called when [language selection changed].
+        /// Called when [selected document changed].
         /// </summary>
         /// <param name="sender">The sender.</param>
         /// <param name="e">The <see cref="RoutedEventArgs"/>
         /// instance containing the event data.</param>
-        private void OnLanguageChanged( object sender, RoutedEventArgs e )
+        private void OnDocumentListBoxSelectionChanged( object sender, RoutedEventArgs e )
         {
             try
             {
-                if( LanguageComboBox.SelectedIndex != -1 )
+                if( DocumentListBox.SelectedIndex != -1 )
                 {
-                    _language = ( ( ComboBoxItem )LanguageComboBox.SelectedItem )?.Tag?.ToString( );
-                    PopulateDocuments( );
+                    ChatEditor.ClearAllText( );
+                    _selectedDocument = ( ( ListBoxItem )DocumentListBox.SelectedItem )?.Tag
+                        ?.ToString( );
+
+                    ChatEditor.LoadFile( _selectedDocument );
                 }
             }
             catch( Exception ex )
@@ -3556,14 +3705,15 @@ namespace Bubba
         /// Called when [document selection changed].
         /// </summary>
         /// <param name="sender">The sender.</param>
-        /// <param name="e">The <see cref="RoutedEventArgs"/> instance containing the event data.</param>
-        private void OnDocumentSelectionChanged( object sender, RoutedEventArgs e )
+        /// <param name="e">The <see cref="RoutedEventArgs"/>
+        /// instance containing the event data.</param>
+        private void OnLanguageListBoxSelectionChanged( object sender, RoutedEventArgs e )
         {
             try
             {
-                if( LanguageComboBox.SelectedIndex != -1 )
+                if( LanguageListBox.SelectedIndex != -1 )
                 {
-                    _language = ( ( ComboBoxItem )LanguageComboBox.SelectedItem )?.Tag?.ToString( );
+                    _language = LanguageListBox.SelectedItem.ToString( );
                     PopulateDocuments( );
                 }
             }
@@ -3579,15 +3729,15 @@ namespace Bubba
         /// <param name="sender">The sender.</param>
         /// <param name="e">The <see cref="RoutedEventArgs"/>
         /// instance containing the event data.</param>
-        private void OnSelectedRequestChanged( object sender, RoutedEventArgs e )
+        private void OnRequestListBoxSelectionChanged( object sender, RoutedEventArgs e )
         {
             try
             {
-                if( GenerationComboBox.SelectedIndex != -1 )
+                if( GenerationListBox.SelectedIndex != -1 )
                 {
-                    var _item = GenerationComboBox.SelectedItem;
-                    var _request = ( ( ComboBoxItem )_item ).Tag.ToString( );
-                    _requestType = ( GptRequests )Enum.Parse( typeof( GptRequests ), _request );
+                    var _item = ( ListBoxItem )GenerationListBox.SelectedItem;
+                    var _tag = _item.Tag?.ToString( );
+                    _requestType = ( GptRequests )Enum.Parse( typeof( GptRequests ), _tag );
                     SetRequestType( );
                 }
             }
@@ -3650,13 +3800,13 @@ namespace Bubba
         /// <param name="sender">The sender.</param>
         /// <param name="e">The <see cref="RoutedEventArgs"/>
         /// instance containing the event data.</param>
-        private void OnSelectedImageSizeChanged( object sender, RoutedEventArgs e )
+        private void OnImageSizeListBoxSelectionChanged( object sender, RoutedEventArgs e )
         {
             try
             {
-                if( ImageSizeComboBox.SelectedIndex != -1 )
+                if( ImageSizeListBox.SelectedIndex != -1 )
                 {
-                    var _image = ImageSizeComboBox.SelectedValue.ToString( );
+                    var _image = ImageSizeListBox.SelectedValue.ToString( );
                     _size = _image?.Replace( " ", "" );
                 }
             }
@@ -3707,7 +3857,8 @@ namespace Bubba
         /// Called when [RadioButton selected].
         /// </summary>
         /// <param name="sender">The sender.</param>
-        /// <param name="e">The <see cref="RoutedEventArgs"/> instance containing the event data.</param>
+        /// <param name="e">The <see cref="RoutedEventArgs"/>
+        /// instance containing the event data.</param>
         private protected void OnRadioButtonSelected( object sender, RoutedEventArgs e )
         {
             try

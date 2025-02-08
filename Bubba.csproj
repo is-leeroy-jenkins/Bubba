@@ -314,10 +314,12 @@
     <None Remove="Resources\Assets\ToolStripImages\ExitButton.png" />
     <None Remove="Resources\Assets\ToolStripImages\ExportButton.png" />
     <None Remove="Resources\Assets\ToolStripImages\FilterButton.png" />
+    <None Remove="Resources\Assets\ToolStripImages\FineTuningButton.png" />
     <None Remove="Resources\Assets\ToolStripImages\FirstButton.png" />
     <None Remove="Resources\Assets\ToolStripImages\GanttButton.png" />
     <None Remove="Resources\Assets\ToolStripImages\GoButton.png" />
     <None Remove="Resources\Assets\ToolStripImages\GoogleSearchButton.png" />
+    <None Remove="Resources\Assets\ToolStripImages\GptUploadButton.png" />
     <None Remove="Resources\Assets\ToolStripImages\GraphButton.png" />
     <None Remove="Resources\Assets\ToolStripImages\GridButton.png" />
     <None Remove="Resources\Assets\ToolStripImages\GroupButton.png" />
@@ -335,6 +337,7 @@
     <None Remove="Resources\Assets\ToolStripImages\PolarButton.png" />
     <None Remove="Resources\Assets\ToolStripImages\PreviousButton.png" />
     <None Remove="Resources\Assets\ToolStripImages\PrintButton.png" />
+    <None Remove="Resources\Assets\ToolStripImages\PromptButton.png" />
     <None Remove="Resources\Assets\ToolStripImages\RefreshButton.png" />
     <None Remove="Resources\Assets\ToolStripImages\RemoveButton.png" />
     <None Remove="Resources\Assets\ToolStripImages\ResetButton.png" />
@@ -469,6 +472,7 @@
     <PackageReference Include="SkiaSharp" Version="3.116.1" />
     <PackageReference Include="SqlServerCompact" Version="4.0.8854.1" />
     <PackageReference Include="Syncfusion.Edit.WPF" Version="24.1.41" />
+    <PackageReference Include="Syncfusion.Grid.WPF" Version="24.1.41" />
     <PackageReference Include="Syncfusion.Grouping.Base" Version="24.1.41" />
     <PackageReference Include="Syncfusion.Licensing" Version="24.1.41" />
     <PackageReference Include="Syncfusion.PivotTable.Wpf" Version="24.1.41" />
@@ -476,7 +480,9 @@
     <PackageReference Include="Syncfusion.SfAccordion.WPF" Version="24.1.41" />
     <PackageReference Include="Syncfusion.SfBarcode.WPF" Version="24.1.41" />
     <PackageReference Include="Syncfusion.SfBusyIndicator.WPF" Version="24.1.41" />
+    <PackageReference Include="Syncfusion.SfChart.WPF" Version="24.1.41" />
     <PackageReference Include="Syncfusion.SfGauge.WPF" Version="24.1.41" />
+    <PackageReference Include="Syncfusion.SfGrid.WPF" Version="24.1.41" />
     <PackageReference Include="Syncfusion.SfHubTile.WPF" Version="24.1.41" />
     <PackageReference Include="Syncfusion.SfInput.WPF" Version="24.1.41" />
     <PackageReference Include="Syncfusion.SfNavigationDrawer.WPF" Version="24.1.41" />
@@ -727,10 +733,12 @@
     <Resource Include="Resources\Assets\ToolStripImages\ExitButton.png" />
     <Resource Include="Resources\Assets\ToolStripImages\ExportButton.png" />
     <Resource Include="Resources\Assets\ToolStripImages\FilterButton.png" />
+    <Resource Include="Resources\Assets\ToolStripImages\FineTuningButton.png" />
     <Resource Include="Resources\Assets\ToolStripImages\FirstButton.png" />
     <Resource Include="Resources\Assets\ToolStripImages\GanttButton.png" />
     <Resource Include="Resources\Assets\ToolStripImages\GoButton.png" />
     <Resource Include="Resources\Assets\ToolStripImages\GoogleSearchButton.png" />
+    <Resource Include="Resources\Assets\ToolStripImages\GptUploadButton.png" />
     <Resource Include="Resources\Assets\ToolStripImages\GraphButton.png" />
     <Resource Include="Resources\Assets\ToolStripImages\GridButton.png" />
     <Resource Include="Resources\Assets\ToolStripImages\GroupButton.png" />
@@ -748,6 +756,7 @@
     <Resource Include="Resources\Assets\ToolStripImages\PolarButton.png" />
     <Resource Include="Resources\Assets\ToolStripImages\PreviousButton.png" />
     <Resource Include="Resources\Assets\ToolStripImages\PrintButton.png" />
+    <Resource Include="Resources\Assets\ToolStripImages\PromptButton.png" />
     <Resource Include="Resources\Assets\ToolStripImages\RefreshButton.png" />
     <Resource Include="Resources\Assets\ToolStripImages\RemoveButton.png" />
     <Resource Include="Resources\Assets\ToolStripImages\ResetButton.png" />

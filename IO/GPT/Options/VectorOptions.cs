@@ -104,7 +104,6 @@ namespace Bubba
             _presencePenalty = 0.00;
             _maximumTokens = 2048;
             _limit = 20;
-            _responseFormat = "text";
             _fileIds = new List<string>( );
             _metaData = new Dictionary<string, object>( );
         }
@@ -265,29 +264,6 @@ namespace Bubba
                 {
                     _metaData = value;
                     OnPropertyChanged( nameof( MetaData ) );
-                }
-            }
-        }
-
-        /// <inheritdoc />
-        /// <summary>
-        /// Gets or sets the response format.
-        /// </summary>
-        /// <value>
-        /// The response format.
-        /// </value>
-        public override string ResponseFormat
-        {
-            get
-            {
-                return _responseFormat;
-            }
-            set
-            {
-                if( _responseFormat != value )
-                {
-                    _responseFormat = value;
-                    OnPropertyChanged( nameof( ResponseFormat ) );
                 }
             }
         }

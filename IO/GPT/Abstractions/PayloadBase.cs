@@ -144,6 +144,11 @@ namespace Bubba
         private protected string _prompt;
 
         /// <summary>
+        /// The response format
+        /// </summary>
+        private protected string _responseFormat;
+
+        /// <summary>
         /// The messages
         /// </summary>
         private protected IList<IGptMessage> _messages;
@@ -465,6 +470,29 @@ namespace Bubba
                 {
                     _stop = value;
                     OnPropertyChanged( nameof( Stop ) );
+                }
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the modalities.
+        /// </summary>
+        /// <value>
+        /// The modalities.
+        /// </value>
+        [JsonPropertyName("response_format")]
+        public virtual string ResponseFormat
+        {
+            get
+            {
+                return _responseFormat;
+            }
+            set
+            {
+                if(_responseFormat != value)
+                {
+                    _responseFormat = value;
+                    OnPropertyChanged(nameof(ResponseFormat));
                 }
             }
         }

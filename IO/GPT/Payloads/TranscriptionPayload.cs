@@ -1,10 +1,10 @@
 ﻿// ******************************************************************************************
 //     Assembly:                Bubba
 //     Author:                  Terry D. Eppler
-//     Created:                 01-31-2025
+//     Created:                 02-06-2025
 // 
 //     Last Modified By:        Terry D. Eppler
-//     Last Modified On:        01-31-2025
+//     Last Modified On:        02-06-2025
 // ******************************************************************************************
 // <copyright file="TranscriptionPayload.cs" company="Terry D. Eppler">
 //    Bubba is a small and simple windows (wpf) application for interacting with the OpenAI API
@@ -73,11 +73,6 @@ namespace Bubba
         private protected object _audioFile;
 
         /// <summary>
-        /// The speed
-        /// </summary>
-        private protected string _responseFormat;
-
-        /// <summary>
         /// Initializes a new instance of the
         /// <see cref="TranscriptionPayload"/> class.
         /// </summary>
@@ -126,7 +121,6 @@ namespace Bubba
             _store = store;
             _stream = stream;
             _topPercent = topPercent;
-            _responseFormat = format;
             _stop = @"['#', ';']";
         }
 
@@ -148,7 +142,6 @@ namespace Bubba
             _stream = config.Stream;
             _topPercent = config.TopPercent;
             _stop = config.Stop;
-            _responseFormat = config.ResponseFormat;
         }
 
         /// <summary>
@@ -243,6 +236,30 @@ namespace Bubba
                 {
                     _model = value;
                     OnPropertyChanged( nameof( Model ) );
+                }
+            }
+        }
+
+        /// <inheritdoc />
+        /// <summary>
+        /// Gets or sets the modalities.
+        /// </summary>
+        /// <value>
+        /// The modalities.
+        /// </value>
+        [ JsonPropertyName( "response_format" ) ]
+        public override string ResponseFormat
+        {
+            get
+            {
+                return _responseFormat;
+            }
+            set
+            {
+                if( _responseFormat != value )
+                {
+                    _responseFormat = value;
+                    OnPropertyChanged( nameof( ResponseFormat ) );
                 }
             }
         }

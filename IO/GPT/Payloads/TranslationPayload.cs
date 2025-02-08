@@ -189,6 +189,30 @@ namespace Bubba
 
         /// <inheritdoc />
         /// <summary>
+        /// Gets or sets the modalities.
+        /// </summary>
+        /// <value>
+        /// The modalities.
+        /// </value>
+        [JsonPropertyName("response_format")]
+        public override string ResponseFormat
+        {
+            get
+            {
+                return _responseFormat;
+            }
+            set
+            {
+                if(_responseFormat != value)
+                {
+                    _responseFormat = value;
+                    OnPropertyChanged(nameof(ResponseFormat));
+                }
+            }
+        }
+
+        /// <inheritdoc />
+        /// <summary>
         /// Serializes the specified prompt.
         /// </summary>
         /// <returns>

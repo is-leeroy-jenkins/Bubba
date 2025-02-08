@@ -9800,44 +9800,49 @@
             The year
             </summary>
         </member>
-        <member name="T:Bubba.GptLanguage">
+        <member name="T:Bubba.GptLanguages">
             <summary>
             
             </summary>
         </member>
-        <member name="F:Bubba.GptLanguage.Text">
+        <member name="F:Bubba.GptLanguages.TXT">
             <summary>
             The text
             </summary>
         </member>
-        <member name="F:Bubba.GptLanguage.SQL">
+        <member name="F:Bubba.GptLanguages.SQL">
             <summary>
             The SQL
             </summary>
         </member>
-        <member name="F:Bubba.GptLanguage.CSharp">
+        <member name="F:Bubba.GptLanguages.CS">
             <summary>
             The c sharp
             </summary>
         </member>
-        <member name="F:Bubba.GptLanguage.Python">
+        <member name="F:Bubba.GptLanguages.PY">
             <summary>
             The python
             </summary>
         </member>
-        <member name="F:Bubba.GptLanguage.JavaScript">
+        <member name="F:Bubba.GptLanguages.JS">
             <summary>
             The java script
             </summary>
         </member>
-        <member name="F:Bubba.GptLanguage.VBA">
+        <member name="F:Bubba.GptLanguages.VBA">
             <summary>
             The vba
             </summary>
         </member>
-        <member name="F:Bubba.GptLanguage.C">
+        <member name="F:Bubba.GptLanguages.C">
             <summary>
             The c
+            </summary>
+        </member>
+        <member name="F:Bubba.GptLanguages.CPP">
+            <summary>
+            The CPP
             </summary>
         </member>
         <member name="T:Bubba.GptRequests">
@@ -18016,6 +18021,30 @@
             <see cref="T:Bubba.GptResponseBase" /> class.
             </summary>
         </member>
+        <member name="P:Bubba.GptResponseBase.Id">
+            <summary>
+            Gets or sets the identifier.
+            </summary>
+            <value>
+            The identifier.
+            </value>
+        </member>
+        <member name="P:Bubba.GptResponseBase.Object">
+            <summary>
+            Gets or sets the object.
+            </summary>
+            <value>
+            The object.
+            </value>
+        </member>
+        <member name="P:Bubba.GptResponseBase.Created">
+            <summary>
+            Gets or sets the created.
+            </summary>
+            <value>
+            The created.
+            </value>
+        </member>
         <member name="P:Bubba.IGptBody.Model">
             <summary>
             Gets or sets the model.
@@ -18237,14 +18266,6 @@
             The user identifier.
             </value>
         </member>
-        <member name="P:Bubba.IGptParameter.ResponseFormat">
-            <summary>
-            Gets or sets the response format.
-            </summary>
-            <value>
-            The response format.
-            </value>
-        </member>
         <member name="T:Bubba.IGptPayload">
             <summary>
             
@@ -18406,11 +18427,6 @@
             that can be generated for a completion
             </summary>
         </member>
-        <member name="F:Bubba.ParameterBase._responseFormat">
-            <summary>
-            The response format
-            </summary>
-        </member>
         <member name="F:Bubba.ParameterBase._systemPrompt">
             <summary>
             The system instructions
@@ -18563,14 +18579,6 @@
             The assistant prompt.
             </value>
         </member>
-        <member name="P:Bubba.ParameterBase.ResponseFormat">
-            <summary>
-            Gets or sets the response format.
-            </summary>
-            <value>
-            The response format.
-            </value>
-        </member>
         <member name="M:Bubba.ParameterBase.Fail(System.Exception)">
             <summary>
             Wraps error
@@ -18666,6 +18674,11 @@
         <member name="F:Bubba.PayloadBase._prompt">
             <summary>
             The user prompt
+            </summary>
+        </member>
+        <member name="F:Bubba.PayloadBase._responseFormat">
+            <summary>
+            The response format
             </summary>
         </member>
         <member name="F:Bubba.PayloadBase._messages">
@@ -18811,6 +18824,14 @@
             The stop sequences.
             </value>
         </member>
+        <member name="P:Bubba.PayloadBase.ResponseFormat">
+            <summary>
+            Gets or sets the modalities.
+            </summary>
+            <value>
+            The modalities.
+            </value>
+        </member>
         <member name="T:Bubba.GptClient">
             <inheritdoc />
             <summary>
@@ -18870,11 +18891,6 @@
             </summary>
             <seealso cref="T:Bubba.IGptBody" />
         </member>
-        <member name="F:Bubba.GptBody._responseFormat">
-            <summary>
-            The response format
-            </summary>
-        </member>
         <member name="F:Bubba.GptBody._model">
             <summary>
             The model
@@ -18924,14 +18940,11 @@
             </summary>
             <param name="gptBody">The GPT body.</param>
         </member>
-        <member name="M:Bubba.GptBody.Deconstruct(System.String@,System.String@,Bubba.SystemMessage@,Bubba.UserMessage@,System.Collections.Generic.IDictionary{System.String,System.Object}@,System.Collections.Generic.IList{Bubba.IGptMessage}@)">
+        <member name="M:Bubba.GptBody.Deconstruct(System.String@,Bubba.SystemMessage@,Bubba.UserMessage@,System.Collections.Generic.IDictionary{System.String,System.Object}@,System.Collections.Generic.IList{Bubba.IGptMessage}@)">
             <summary>
             Deconstructs the specified model.
             </summary>
             <param name="model">The model.</param>
-            <param name = "responseFormat" >
-            The format of the response
-            </param>
             <param name="system">The system.</param>
             <param name="user">The user.</param>
             <param name = "data" > </param>
@@ -18944,14 +18957,6 @@
             </summary>
             <value>
             The model.
-            </value>
-        </member>
-        <member name="P:Bubba.GptBody.ResponseFormat">
-            <summary>
-            Gets or sets the response format.
-            </summary>
-            <value>
-            The response format.
             </value>
         </member>
         <member name="P:Bubba.GptBody.Messages">
@@ -19821,24 +19826,6 @@
             The top percent.
             </value>
         </member>
-        <member name="P:Bubba.AssistantOptions.ResponseFormat">
-            <inheritdoc />
-            <summary>
-            An object specifying the format that the model must output. Setting to 
-            { "type": "json_schema", "json_schema": {...} } enables Structured Outputs
-            which ensures the model will match your supplied JSON schema.
-            Important: when using JSON mode, you must also instruct the model to produce
-            JSON yourself via a system or user message.Without this,
-            the model may generate an unending stream of whitespace until the generation
-            reaches the token limit, resulting in a long-running and seemingly "stuck" request.
-            Also note that the message content may be partially cut off if finish_reason= "length",
-            which indicates the generation exceeded max_tokens
-            or the conversation exceeded the max context length.
-            </summary>
-            <value>
-            The response format.
-            </value>
-        </member>
         <member name="M:Bubba.AssistantOptions.GetData">
             <inheritdoc />
             <summary>
@@ -19963,24 +19950,6 @@
             The top percent.
             </value>
         </member>
-        <member name="P:Bubba.ChatOptions.ResponseFormat">
-            <inheritdoc />
-            <summary>
-            An object specifying the format that the model must output. Setting to 
-            { "type": "json_schema", "json_schema": {...} } enables Structured Outputs
-            which ensures the model will match your supplied JSON schema.
-            Important: when using JSON mode, you must also instruct the model to produce
-            JSON yourself via a system or user message.Without this,
-            the model may generate an unending stream of whitespace until the generation
-            reaches the token limit, resulting in a long-running and seemingly "stuck" request.
-            Also note that the message content may be partially cut off if finish_reason= "length",
-            which indicates the generation exceeded max_tokens
-            or the conversation exceeded the max context length.
-            </summary>
-            <value>
-            The response format.
-            </value>
-        </member>
         <member name="P:Bubba.ChatOptions.ReasoningEffort">
             <summary>
             o1 models only.
@@ -19991,6 +19960,15 @@
             </summary>
             <value>
             The reasoning effort.
+            </value>
+        </member>
+        <member name="P:Bubba.ChatOptions.ResponseFormat">
+            <inheritdoc />
+            <summary>
+            Gets or sets the modalities.
+            </summary>
+            <value>
+            The modalities.
             </value>
         </member>
         <member name="P:Bubba.ChatOptions.Tools">
@@ -20013,6 +19991,12 @@
             <value>
             The meta data.
             </value>
+        </member>
+        <member name="M:Bubba.ChatOptions.GetFormats">
+            <summary>
+            Gets the formats.
+            </summary>
+            <returns></returns>
         </member>
         <member name="T:Bubba.EmbeddingOptions">
             <inheritdoc />
@@ -20061,15 +20045,6 @@
             </summary>
             <value>
             The end point.
-            </value>
-        </member>
-        <member name="P:Bubba.EmbeddingOptions.ResponseFormat">
-            <inheritdoc />
-            <summary>
-            Gets or sets the response format.
-            </summary>
-            <value>
-            The response format.
             </value>
         </member>
         <member name="P:Bubba.EmbeddingOptions.Model">
@@ -20368,15 +20343,6 @@
             </value>
             <inheritdoc />
         </member>
-        <member name="P:Bubba.FineTuningOptions.ResponseFormat">
-            <inheritdoc />
-            <summary>
-            Gets or sets the response format.
-            </summary>
-            <value>
-            The response format.
-            </value>
-        </member>
         <member name="M:Bubba.FineTuningOptions.GetData">
             <inheritdoc />
             <summary>
@@ -20401,6 +20367,11 @@
         <member name="F:Bubba.GptOptions._modalities">
             <summary>
             The modalities
+            </summary>
+        </member>
+        <member name="F:Bubba.GptOptions._responseFormat">
+            <summary>
+            The response format
             </summary>
         </member>
         <member name="M:Bubba.GptOptions.#ctor">
@@ -20513,6 +20484,15 @@
             The top percent.
             </value>
         </member>
+        <member name="P:Bubba.GptOptions.ResponseFormat">
+            <inheritdoc />
+            <summary>
+            Gets or sets the modalities.
+            </summary>
+            <value>
+            The modalities.
+            </value>
+        </member>
         <member name="M:Bubba.GptOptions.GetData">
             <summary>
             Gets the data.
@@ -20562,15 +20542,6 @@
             </summary>
             <value>
             The size of the image.
-            </value>
-        </member>
-        <member name="P:Bubba.ImageOptions.ResponseFormat">
-            <inheritdoc />
-            <summary>
-            Gets or sets the response format.
-            </summary>
-            <value>
-            The response format.
             </value>
         </member>
         <member name="P:Bubba.ImageOptions.Input">
@@ -20624,6 +20595,18 @@
             <inheritdoc />
             <summary>
             Gets the data.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Bubba.ImageOptions.GetFormatOptions">
+            <summary>
+            Gets the formats.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Bubba.ImageOptions.GetSizeOptions">
+            <summary>
+            Gets the size options.
             </summary>
             <returns></returns>
         </member>
@@ -20721,11 +20704,29 @@
         <member name="P:Bubba.SpeechOptions.ResponseFormat">
             <inheritdoc />
             <summary>
-            Gets or sets the response format.
+            Gets or sets the modalities.
             </summary>
             <value>
-            The response format.
+            The modalities.
             </value>
+        </member>
+        <member name="M:Bubba.SpeechOptions.GetFormatOptions">
+            <summary>
+            Gets the formats.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Bubba.SpeechOptions.GetVoiceOptions">
+            <summary>
+            Gets the formats.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Bubba.SpeechOptions.GetSpeeds">
+            <summary>
+            Gets the speech rates.
+            </summary>
+            <returns></returns>
         </member>
         <member name="T:Bubba.TextOptions">
             <inheritdoc />
@@ -20833,24 +20834,6 @@
             The top percent.
             </value>
         </member>
-        <member name="P:Bubba.TextOptions.ResponseFormat">
-            <inheritdoc />
-            <summary>
-            An object specifying the format that the model must output. Setting to 
-            { "type": "json_schema", "json_schema": {...} } enables Structured Outputs
-            which ensures the model will match your supplied JSON schema.
-            Important: when using JSON mode, you must also instruct the model to produce
-            JSON yourself via a system or user message.Without this,
-            the model may generate an unending stream of whitespace until the generation
-            reaches the token limit, resulting in a long-running and seemingly "stuck" request.
-            Also note that the message content may be partially cut off if finish_reason= "length",
-            which indicates the generation exceeded max_tokens
-            or the conversation exceeded the max context length.
-            </summary>
-            <value>
-            The response format.
-            </value>
-        </member>
         <member name="M:Bubba.TextOptions.GetData">
             <inheritdoc />
             <summary>
@@ -20882,6 +20865,11 @@
         <member name="F:Bubba.TranscriptionOptions._prompt">
             <summary>
             The input
+            </summary>
+        </member>
+        <member name="F:Bubba.TranscriptionOptions._formats">
+            <summary>
+            The formats
             </summary>
         </member>
         <member name="M:Bubba.TranscriptionOptions.#ctor">
@@ -20927,22 +20915,35 @@
             </value>
             <inheritdoc />
         </member>
+        <member name="P:Bubba.TranscriptionOptions.ResponseFormat">
+            <inheritdoc />
+            <summary>
+            Gets or sets the modalities.
+            </summary>
+            <value>
+            The modalities.
+            </value>
+        </member>
         <member name="P:Bubba.TranscriptionOptions.Prompt">
             <summary>
             Gets or sets the input.
             </summary>
             <value>
+            
             The input.
             </value>
         </member>
-        <member name="P:Bubba.TranscriptionOptions.ResponseFormat">
-            <inheritdoc />
+        <member name="M:Bubba.TranscriptionOptions.GetResponseFormatOptions">
             <summary>
-            Gets or sets the response format.
+            Gets the formats.
             </summary>
-            <value>
-            The response format.
-            </value>
+            <returns></returns>
+        </member>
+        <member name="M:Bubba.TranscriptionOptions.GetFileFormatOptions">
+            <summary>
+            Gets the formats.
+            </summary>
+            <returns></returns>
         </member>
         <member name="T:Bubba.TranslationOptions">
             <inheritdoc />
@@ -20983,6 +20984,15 @@
             The file path.
             </value>
         </member>
+        <member name="P:Bubba.TranslationOptions.ResponseFormat">
+            <inheritdoc />
+            <summary>
+            Gets or sets the modalities.
+            </summary>
+            <value>
+            The modalities.
+            </value>
+        </member>
         <member name="P:Bubba.TranslationOptions.Model">
             <summary>
             Gets the chat model.
@@ -20991,15 +21001,6 @@
             The chat model.
             </value>
             <inheritdoc />
-        </member>
-        <member name="P:Bubba.TranslationOptions.ResponseFormat">
-            <inheritdoc />
-            <summary>
-            Gets or sets the response format.
-            </summary>
-            <value>
-            The response format.
-            </value>
         </member>
         <member name="M:Bubba.TranslationOptions.GetData">
             <inheritdoc />
@@ -21015,6 +21016,18 @@
             <returns>
             A <see cref="T:System.String" /> that represents this instance.
             </returns>
+        </member>
+        <member name="M:Bubba.TranslationOptions.GetResponseFormatOptions">
+            <summary>
+            Gets the formats.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Bubba.TranslationOptions.GetFileFormatOptions">
+            <summary>
+            Gets the formats.
+            </summary>
+            <returns></returns>
         </member>
         <member name="T:Bubba.VectorOptions">
             <inheritdoc />
@@ -21119,15 +21132,6 @@
             </summary>
             <value>
             The meta data.
-            </value>
-        </member>
-        <member name="P:Bubba.VectorOptions.ResponseFormat">
-            <inheritdoc />
-            <summary>
-            Gets or sets the response format.
-            </summary>
-            <value>
-            The response format.
             </value>
         </member>
         <member name="T:Bubba.AssistantPayload">
@@ -22199,11 +22203,6 @@
             The input
             </summary>
         </member>
-        <member name="F:Bubba.SpeechPayload._responseFormat">
-            <summary>
-            The response format
-            </summary>
-        </member>
         <member name="M:Bubba.SpeechPayload.#ctor">
             <summary>
             Initializes a new instance of the
@@ -22283,6 +22282,7 @@
             </value>
         </member>
         <member name="P:Bubba.SpeechPayload.ResponseFormat">
+            <inheritdoc />
             <summary>
             Gets or sets the modalities.
             </summary>
@@ -22441,11 +22441,6 @@
             The file path
             </summary>
         </member>
-        <member name="F:Bubba.TranscriptionPayload._responseFormat">
-            <summary>
-            The speed
-            </summary>
-        </member>
         <member name="M:Bubba.TranscriptionPayload.#ctor">
             <summary>
             Initializes a new instance of the
@@ -22511,6 +22506,15 @@
             The chat model.
             </value>
             <inheritdoc />
+        </member>
+        <member name="P:Bubba.TranscriptionPayload.ResponseFormat">
+            <inheritdoc />
+            <summary>
+            Gets or sets the modalities.
+            </summary>
+            <value>
+            The modalities.
+            </value>
         </member>
         <member name="M:Bubba.TranscriptionPayload.GetSoundFile">
             <summary>
@@ -22587,6 +22591,15 @@
             The chat model.
             </value>
             <inheritdoc />
+        </member>
+        <member name="P:Bubba.TranslationPayload.ResponseFormat">
+            <inheritdoc />
+            <summary>
+            Gets or sets the modalities.
+            </summary>
+            <value>
+            The modalities.
+            </value>
         </member>
         <member name="M:Bubba.TranslationPayload.Serialize">
             <inheritdoc />
@@ -23569,7 +23582,7 @@
             The stop sequences.
             </value>
         </member>
-        <member name="P:Bubba.GptRequest.Modalities">
+        <member name="P:Bubba.GptRequest.ResponseFormat">
             <summary>
             Gets or sets the modalities.
             </summary>
@@ -23577,21 +23590,12 @@
             The modalities.
             </value>
         </member>
-        <member name="P:Bubba.GptRequest.ResponseFormat">
+        <member name="P:Bubba.GptRequest.Modalities">
             <summary>
-            An object specifying the format that the model must output. Setting to 
-            { "type": "json_schema", "json_schema": {...} } enables Structured Outputs
-            which ensures the model will match your supplied JSON schema.
-            Important: when using JSON mode, you must also instruct the model to produce
-            JSON yourself via a system or user message.Without this,
-            the model may generate an unending stream of whitespace until the generation
-            reaches the token limit, resulting in a long-running and seemingly "stuck" request.
-            Also note that the message content may be partially cut off if finish_reason= "length",
-            which indicates the generation exceeded max_tokens
-            or the conversation exceeded the max context length.
+            Gets or sets the modalities.
             </summary>
             <value>
-            The response format.
+            The modalities.
             </value>
         </member>
         <member name="M:Bubba.GptRequest.GetResponseAsync(System.String)">
@@ -23802,6 +23806,11 @@
             The input
             </summary>
         </member>
+        <member name="F:Bubba.SpeechGenerationReqeust._responseFormat">
+            <summary>
+            The response format
+            </summary>
+        </member>
         <member name="F:Bubba.SpeechGenerationReqeust._audioData">
             <summary>
             The audio data
@@ -23893,6 +23902,14 @@
             </summary>
             <value>
             The audio data.
+            </value>
+        </member>
+        <member name="P:Bubba.SpeechGenerationReqeust.ResponseFormat">
+            <summary>
+            Gets or sets the modalities.
+            </summary>
+            <value>
+            The modalities.
             </value>
         </member>
         <member name="M:Bubba.SpeechGenerationReqeust.GetData">
@@ -24058,15 +24075,6 @@
             </summary>
             <value>
             The presence.
-            </value>
-        </member>
-        <member name="P:Bubba.TextGenerationRequest.ResponseFormat">
-            <inheritdoc />
-            <summary>
-            Gets or sets the response format.
-            </summary>
-            <value>
-            The response format.
             </value>
         </member>
         <member name="M:Bubba.TextGenerationRequest.GetResponseAsync(System.String)">
@@ -24433,15 +24441,6 @@
             </summary>
             <value>
             The presence.
-            </value>
-        </member>
-        <member name="P:Bubba.UploadRequest.ResponseFormat">
-            <inheritdoc />
-            <summary>
-            Gets or sets the response format.
-            </summary>
-            <value>
-            The response format.
             </value>
         </member>
         <member name="M:Bubba.UploadRequest.UploadTrainingFileAsync(System.String)">
@@ -32167,22 +32166,6 @@
             <see cref="T:Baby.MetroDropDownItem" /> class.
             </summary>
         </member>
-        <member name="M:Bubba.MetroDropDownItem.OnItemMouseEnter(System.Object,System.EventArgs)">
-            <summary>
-            Called when [item mouse enter].
-            </summary>
-            <param name="sender">The sender.</param>
-            <param name="e">The <see cref="T:System.EventArgs"/>
-            instance containing the event data.</param>
-        </member>
-        <member name="M:Bubba.MetroDropDownItem.OnItemMouseLeave(System.Object,System.EventArgs)">
-            <summary>
-            Called when [item mouse leave].
-            </summary>
-            <param name="sender">The sender.</param>
-            <param name="e">The <see cref="T:System.EventArgs"/>
-            instance containing the event data.</param>
-        </member>
         <member name="M:Bubba.MetroDropDownItem.Fail(System.Exception)">
             <summary>
             Fails the specified ex.
@@ -32590,30 +32573,6 @@
             Initializes a new instance of the
             <see cref="T:Bubba.MetroLabel" /> class.
             </summary>
-        </member>
-        <member name="M:Bubba.MetroLabel.OnMouseEnter(System.Object,System.Windows.Input.MouseEventArgs)">
-            <summary> Called when [mouse enter]. </summary>
-            <param name="sender"> The sender. </param>
-            <param name="e">
-            The
-            <see cref="T:System.EventArgs"/>
-            instance containing the event data.
-            </param>
-        </member>
-        <member name="M:Bubba.MetroLabel.OnMouseLeave(System.Object,System.Windows.Input.MouseEventArgs)">
-            <summary> Called when [mouse leave]. </summary>
-            <param name="sender"> The sender. </param>
-            <param name="e">
-            The
-            <see cref="T:System.EventArgs"/>
-            instance containing the event data.
-            </param>
-        </member>
-        <member name="M:Bubba.MetroLabel.Fail(System.Exception)">
-            <summary>
-            Fails the specified ex.
-            </summary>
-            <param name="ex">The ex.</param>
         </member>
         <member name="T:Bubba.MetroListBox">
             <inheritdoc />
@@ -35242,6 +35201,11 @@
             The language
             </summary>
         </member>
+        <member name="F:Bubba.ChatWindow._selectedDocument">
+            <summary>
+            The selected document
+            </summary>
+        </member>
         <member name="F:Bubba.ChatWindow._theme">
             <summary>
             The theme
@@ -35672,16 +35636,6 @@
             Opens the folder browser.
             </summary>
         </member>
-        <member name="M:Bubba.ChatWindow.OpenSearchDialog">
-            <summary>
-            Opens the search dialog.
-            </summary>
-        </member>
-        <member name="M:Bubba.ChatWindow.OpenWebBrowser">
-            <summary>
-            Opens the chat window.
-            </summary>
-        </member>
         <member name="M:Bubba.ChatWindow.OpenFileBrowser">
             <summary>
             Opens the file browser.
@@ -35787,9 +35741,44 @@
             Populates the file API models.
             </summary>
         </member>
-        <member name="M:Bubba.ChatWindow.PopulateLanguageListBox">
+        <member name="M:Bubba.ChatWindow.PopulateDocumentListBox">
             <summary>
             Populates the language ListBox.
+            </summary>
+        </member>
+        <member name="M:Bubba.ChatWindow.PopulateVisualBasicDocuments">
+            <summary>
+            Populates the visual basic documents.
+            </summary>
+        </member>
+        <member name="M:Bubba.ChatWindow.PopulateCPlusDocuments">
+            <summary>
+            Populates the c plus documents.
+            </summary>
+        </member>
+        <member name="M:Bubba.ChatWindow.PopulateJavaScriptDocuments">
+            <summary>
+            Populates the java script documents.
+            </summary>
+        </member>
+        <member name="M:Bubba.ChatWindow.PopulateSqlDocuments">
+            <summary>
+            Populates the SQL documents.
+            </summary>
+        </member>
+        <member name="M:Bubba.ChatWindow.PopulatePythonDocuments">
+            <summary>
+            Populates the python documents.
+            </summary>
+        </member>
+        <member name="M:Bubba.ChatWindow.PopulateCSharpDocuments">
+            <summary>
+            Populates the c sharp documents.
+            </summary>
+        </member>
+        <member name="M:Bubba.ChatWindow.PopulateTextDocuments">
+            <summary>
+            Populates the text documents.
             </summary>
         </member>
         <member name="M:Bubba.ChatWindow.PopulateInstalledVoices">
@@ -35802,6 +35791,16 @@
             Populates the open ai voices.
             </summary>
         </member>
+        <member name="M:Bubba.ChatWindow.PopulateRequestTypes">
+            <summary>
+            Populates the request types.
+            </summary>
+        </member>
+        <member name="M:Bubba.ChatWindow.PopulateLanguageListBox">
+            <summary>
+            Populates the language ListBox.
+            </summary>
+        </member>
         <member name="M:Bubba.ChatWindow.UpdateStatus">
             <summary>
             Updates the status.
@@ -35810,26 +35809,6 @@
         <member name="M:Bubba.ChatWindow.UpdateStatus(System.Object)">
             <summary>
             Updates the status.
-            </summary>
-        </member>
-        <member name="M:Bubba.ChatWindow.MoveToFirst">
-            <summary>
-            Moves to first.
-            </summary>
-        </member>
-        <member name="M:Bubba.ChatWindow.MoveToPrevious">
-            <summary>
-            Moves to previous.
-            </summary>
-        </member>
-        <member name="M:Bubba.ChatWindow.MoveToNext">
-            <summary>
-            Moves to next.
-            </summary>
-        </member>
-        <member name="M:Bubba.ChatWindow.MoveToLast">
-            <summary>
-            Moves to last.
             </summary>
         </member>
         <member name="M:Bubba.ChatWindow.RunClient">
@@ -36016,7 +35995,8 @@
             Called when [guidance option click].
             </summary>
             <param name="sender">The sender.</param>
-            <param name="e">The <see cref="T:System.Windows.RoutedEventArgs"/> instance containing the event data.</param>
+            <param name="e">The <see cref="T:System.Windows.RoutedEventArgs"/>
+            instance containing the event data.</param>
         </member>
         <member name="M:Bubba.ChatWindow.OnFirstButtonClick(System.Object,System.Windows.RoutedEventArgs)">
             <summary>
@@ -36070,15 +36050,6 @@
             <summary>
             Called when [lookup button click].
             </summary>
-            <param name="sender">The sender.</param>
-            <param name="e">The <see cref="T:System.Windows.RoutedEventArgs"/>
-            instance containing the event data.</param>
-        </member>
-        <member name="M:Bubba.ChatWindow.OnWebBrowserButtonClick(System.Object,System.Windows.RoutedEventArgs)">
-            <summary>
-            Called when [WebBrowser button click].
-            </summary>
-            
             <param name="sender">The sender.</param>
             <param name="e">The <see cref="T:System.Windows.RoutedEventArgs"/>
             instance containing the event data.</param>
@@ -36171,7 +36142,7 @@
             <param name="e">The <see cref="T:System.Windows.RoutedEventArgs"/>
             instance containing the event data.</param>
         </member>
-        <member name="M:Bubba.ChatWindow.OnSelectedModelChanged(System.Object,System.Windows.RoutedEventArgs)">
+        <member name="M:Bubba.ChatWindow.OnModelListBoxSelectionChanged(System.Object,System.Windows.RoutedEventArgs)">
             <summary>
             Called when [model ComboBox selection changed].
             </summary>
@@ -36179,22 +36150,23 @@
             <param name="e">The <see cref="T:System.Windows.RoutedEventArgs"/>
             instance containing the event data.</param>
         </member>
-        <member name="M:Bubba.ChatWindow.OnLanguageChanged(System.Object,System.Windows.RoutedEventArgs)">
+        <member name="M:Bubba.ChatWindow.OnDocumentListBoxSelectionChanged(System.Object,System.Windows.RoutedEventArgs)">
             <summary>
-            Called when [language selection changed].
+            Called when [selected document changed].
             </summary>
             <param name="sender">The sender.</param>
             <param name="e">The <see cref="T:System.Windows.RoutedEventArgs"/>
             instance containing the event data.</param>
         </member>
-        <member name="M:Bubba.ChatWindow.OnDocumentSelectionChanged(System.Object,System.Windows.RoutedEventArgs)">
+        <member name="M:Bubba.ChatWindow.OnLanguageListBoxSelectionChanged(System.Object,System.Windows.RoutedEventArgs)">
             <summary>
             Called when [document selection changed].
             </summary>
             <param name="sender">The sender.</param>
-            <param name="e">The <see cref="T:System.Windows.RoutedEventArgs"/> instance containing the event data.</param>
+            <param name="e">The <see cref="T:System.Windows.RoutedEventArgs"/>
+            instance containing the event data.</param>
         </member>
-        <member name="M:Bubba.ChatWindow.OnSelectedRequestChanged(System.Object,System.Windows.RoutedEventArgs)">
+        <member name="M:Bubba.ChatWindow.OnRequestListBoxSelectionChanged(System.Object,System.Windows.RoutedEventArgs)">
             <summary>
             Called when [task selection changed].
             </summary>
@@ -36210,7 +36182,7 @@
             <param name="e">The <see cref="T:System.Windows.RoutedEventArgs"/>
             instance containing the event data.</param>
         </member>
-        <member name="M:Bubba.ChatWindow.OnSelectedImageSizeChanged(System.Object,System.Windows.RoutedEventArgs)">
+        <member name="M:Bubba.ChatWindow.OnImageSizeListBoxSelectionChanged(System.Object,System.Windows.RoutedEventArgs)">
             <summary>
             Called when [selected image size changed].
             </summary>
@@ -36231,7 +36203,8 @@
             Called when [RadioButton selected].
             </summary>
             <param name="sender">The sender.</param>
-            <param name="e">The <see cref="T:System.Windows.RoutedEventArgs"/> instance containing the event data.</param>
+            <param name="e">The <see cref="T:System.Windows.RoutedEventArgs"/>
+            instance containing the event data.</param>
         </member>
         <member name="M:Bubba.ChatWindow.Dispose">
             <inheritdoc />
@@ -40372,6 +40345,36 @@
         <member name="M:Bubba.WebBrowser.InitializeComponent">
             <summary>
             InitializeComponent
+            </summary>
+        </member>
+        <member name="T:XamlGeneratedNamespace.GeneratedInternalTypeHelper">
+            <summary>
+            GeneratedInternalTypeHelper
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.CreateInstance(System.Type,System.Globalization.CultureInfo)">
+            <summary>
+            CreateInstance
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.GetPropertyValue(System.Reflection.PropertyInfo,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            GetPropertyValue
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.SetPropertyValue(System.Reflection.PropertyInfo,System.Object,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            SetPropertyValue
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.CreateDelegate(System.Type,System.Object,System.String)">
+            <summary>
+            CreateDelegate
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.AddEventHandler(System.Reflection.EventInfo,System.Object,System.Delegate)">
+            <summary>
+            AddEventHandler
             </summary>
         </member>
     </members>

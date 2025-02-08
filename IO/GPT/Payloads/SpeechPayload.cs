@@ -90,11 +90,6 @@ namespace Bubba
         private protected string _input;
 
         /// <summary>
-        /// The response format
-        /// </summary>
-        private protected string _responseFormat;
-
-        /// <summary>
         /// Initializes a new instance of the
         /// <see cref="SpeechPayload"/> class.
         /// </summary>
@@ -164,6 +159,7 @@ namespace Bubba
             _stream = config.Stream;
             _topPercent = config.TopPercent;
             _stop = @"['#', ';']";
+            _responseFormat = "mp3";
             _messages = new List<IGptMessage>( );
         }
 
@@ -306,6 +302,7 @@ namespace Bubba
             }
         }
 
+        /// <inheritdoc />
         /// <summary>
         /// Gets or sets the modalities.
         /// </summary>
@@ -313,7 +310,7 @@ namespace Bubba
         /// The modalities.
         /// </value>
         [ JsonPropertyName( "response_format" ) ]
-        public string ResponseFormat
+        public override string ResponseFormat
         {
             get
             {

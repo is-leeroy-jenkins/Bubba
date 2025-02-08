@@ -98,7 +98,6 @@ namespace Bubba
             _temperature = 0.08;
             _maximumTokens = 2048;
             _number = 1;
-            _responseFormat = "text";
             _stop = "['#', ';']";
             _modalities = "['text','audio']";
         }
@@ -126,7 +125,6 @@ namespace Bubba
             _topPercent = parameter.TopPercent;
             _temperature = parameter.Temperature;
             _maximumTokens = parameter.MaximumTokens;
-            _responseFormat = parameter.ResponseFormat;
         }
 
         /// <inheritdoc />
@@ -215,7 +213,30 @@ namespace Bubba
         /// <value>
         /// The modalities.
         /// </value>
-        [ JsonPropertyName( "modalities" ) ]
+        [JsonPropertyName("response_format")]
+        public virtual string ResponseFormat
+        {
+            get
+            {
+                return _responseFormat;
+            }
+            set
+            {
+                if(_responseFormat != value)
+                {
+                    _responseFormat = value;
+                    OnPropertyChanged(nameof(ResponseFormat));
+                }
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the modalities.
+        /// </summary>
+        /// <value>
+        /// The modalities.
+        /// </value>
+        [JsonPropertyName( "modalities" ) ]
         public virtual string Modalities
         {
             get
@@ -228,38 +249,6 @@ namespace Bubba
                 {
                     _modalities = value;
                     OnPropertyChanged( nameof( Modalities ) );
-                }
-            }
-        }
-
-        /// <summary>
-        /// An object specifying the format that the model must output. Setting to 
-        /// { "type": "json_schema", "json_schema": {...} } enables Structured Outputs
-        /// which ensures the model will match your supplied JSON schema.
-        /// Important: when using JSON mode, you must also instruct the model to produce
-        /// JSON yourself via a system or user message.Without this,
-        /// the model may generate an unending stream of whitespace until the generation
-        /// reaches the token limit, resulting in a long-running and seemingly "stuck" request.
-        /// Also note that the message content may be partially cut off if finish_reason= "length",
-        /// which indicates the generation exceeded max_tokens
-        /// or the conversation exceeded the max context length.
-        /// </summary>
-        /// <value>
-        /// The response format.
-        /// </value>
-        [ JsonPropertyName( "response_format" ) ]
-        public virtual string ResponseFormat
-        {
-            get
-            {
-                return _responseFormat;
-            }
-            set
-            {
-                if( _responseFormat != value )
-                {
-                    _responseFormat = value;
-                    OnPropertyChanged( nameof( ResponseFormat ) );
                 }
             }
         }
@@ -370,7 +359,6 @@ namespace Bubba
                 _data.Add( "frequency_penalty", _frequencyPenalty.ToString( ) );
                 _data.Add( "presence_penalty", _presencePenalty.ToString( ) );
                 _data.Add( "top_p", _topPercent.ToString( ) );
-                _data.Add( "response_format", _responseFormat );
                 _data.Add( "stop", _stop );
                 _data.Add( "modalities", _modalities );
                 return _data;

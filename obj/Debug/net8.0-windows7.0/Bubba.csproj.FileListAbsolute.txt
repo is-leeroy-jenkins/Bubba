@@ -254,6 +254,7 @@ C:\Users\terry\source\repos\Bubba\bin\Debug\net8.0-windows7.0\SkiaSharp.Views.De
 C:\Users\terry\source\repos\Bubba\bin\Debug\net8.0-windows7.0\SkiaSharp.Views.WPF.dll
 C:\Users\terry\source\repos\Bubba\bin\Debug\net8.0-windows7.0\System.Data.SQLite.dll
 C:\Users\terry\source\repos\Bubba\bin\Debug\net8.0-windows7.0\Syncfusion.Calculate.Base.dll
+C:\Users\terry\source\repos\Bubba\bin\Debug\net8.0-windows7.0\Syncfusion.Data.WPF.dll
 C:\Users\terry\source\repos\Bubba\bin\Debug\net8.0-windows7.0\Syncfusion.Edit.WPF.dll
 C:\Users\terry\source\repos\Bubba\bin\Debug\net8.0-windows7.0\Syncfusion.Grid.WPF.dll
 C:\Users\terry\source\repos\Bubba\bin\Debug\net8.0-windows7.0\Syncfusion.GridCommon.WPF.dll
@@ -266,7 +267,9 @@ C:\Users\terry\source\repos\Bubba\bin\Debug\net8.0-windows7.0\Syncfusion.Propert
 C:\Users\terry\source\repos\Bubba\bin\Debug\net8.0-windows7.0\Syncfusion.SfAccordion.WPF.dll
 C:\Users\terry\source\repos\Bubba\bin\Debug\net8.0-windows7.0\Syncfusion.SfBarcode.WPF.dll
 C:\Users\terry\source\repos\Bubba\bin\Debug\net8.0-windows7.0\Syncfusion.SfBusyIndicator.WPF.dll
+C:\Users\terry\source\repos\Bubba\bin\Debug\net8.0-windows7.0\Syncfusion.SfChart.WPF.dll
 C:\Users\terry\source\repos\Bubba\bin\Debug\net8.0-windows7.0\Syncfusion.SfGauge.WPF.dll
+C:\Users\terry\source\repos\Bubba\bin\Debug\net8.0-windows7.0\Syncfusion.SfGrid.WPF.dll
 C:\Users\terry\source\repos\Bubba\bin\Debug\net8.0-windows7.0\Syncfusion.SfGridCommon.WPF.dll
 C:\Users\terry\source\repos\Bubba\bin\Debug\net8.0-windows7.0\Syncfusion.SfHubTile.WPF.dll
 C:\Users\terry\source\repos\Bubba\bin\Debug\net8.0-windows7.0\Syncfusion.SfInput.WPF.dll
@@ -278,7 +281,6 @@ C:\Users\terry\source\repos\Bubba\bin\Debug\net8.0-windows7.0\Syncfusion.Shared.
 C:\Users\terry\source\repos\Bubba\bin\Debug\net8.0-windows7.0\Syncfusion.Themes.FluentDark.WPF.dll
 C:\Users\terry\source\repos\Bubba\bin\Debug\net8.0-windows7.0\Syncfusion.Tools.WPF.dll
 C:\Users\terry\source\repos\Bubba\bin\Debug\net8.0-windows7.0\Syncfusion.Compression.Base.dll
-C:\Users\terry\source\repos\Bubba\bin\Debug\net8.0-windows7.0\Syncfusion.Data.WPF.dll
 C:\Users\terry\source\repos\Bubba\bin\Debug\net8.0-windows7.0\Syncfusion.DocIO.Base.dll
 C:\Users\terry\source\repos\Bubba\bin\Debug\net8.0-windows7.0\Syncfusion.DocToPDFConverter.Base.dll
 C:\Users\terry\source\repos\Bubba\bin\Debug\net8.0-windows7.0\Syncfusion.ExcelChartToImageConverter.WPF.dll
@@ -295,10 +297,8 @@ C:\Users\terry\source\repos\Bubba\bin\Debug\net8.0-windows7.0\Syncfusion.Present
 C:\Users\terry\source\repos\Bubba\bin\Debug\net8.0-windows7.0\Syncfusion.ProjIO.Base.dll
 C:\Users\terry\source\repos\Bubba\bin\Debug\net8.0-windows7.0\Syncfusion.SfBulletGraph.WPF.dll
 C:\Users\terry\source\repos\Bubba\bin\Debug\net8.0-windows7.0\Syncfusion.SfCellGrid.WPF.dll
-C:\Users\terry\source\repos\Bubba\bin\Debug\net8.0-windows7.0\Syncfusion.SfChart.WPF.dll
 C:\Users\terry\source\repos\Bubba\bin\Debug\net8.0-windows7.0\Syncfusion.SfDiagram.WPF.dll
 C:\Users\terry\source\repos\Bubba\bin\Debug\net8.0-windows7.0\Syncfusion.SfDiagramRibbon.WPF.dll
-C:\Users\terry\source\repos\Bubba\bin\Debug\net8.0-windows7.0\Syncfusion.SfGrid.WPF.dll
 C:\Users\terry\source\repos\Bubba\bin\Debug\net8.0-windows7.0\Syncfusion.SfHeatMap.WPF.dll
 C:\Users\terry\source\repos\Bubba\bin\Debug\net8.0-windows7.0\Syncfusion.SfImageEditor.WPF.dll
 C:\Users\terry\source\repos\Bubba\bin\Debug\net8.0-windows7.0\Syncfusion.SfKanban.WPF.dll

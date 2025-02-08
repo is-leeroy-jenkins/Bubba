@@ -125,7 +125,6 @@ namespace Bubba
             _echo = true;
             _logProbs = true;
             _bestOf = 3;
-            _responseFormat = "text";
         }
 
         /// <summary>
@@ -357,29 +356,6 @@ namespace Bubba
 
         /// <inheritdoc />
         /// <summary>
-        /// Gets or sets the response format.
-        /// </summary>
-        /// <value>
-        /// The response format.
-        /// </value>
-        public override string ResponseFormat
-        {
-            get
-            {
-                return _responseFormat;
-            }
-            set
-            {
-                if( _responseFormat != value )
-                {
-                    _responseFormat = value;
-                    OnPropertyChanged( nameof( ResponseFormat ) );
-                }
-            }
-        }
-
-        /// <inheritdoc />
-        /// <summary>
         /// Gets the data.
         /// </summary>
         /// <returns>
@@ -399,7 +375,6 @@ namespace Bubba
                 _data.Add( "frequency_penalty", _frequencyPenalty );
                 _data.Add( "presence_penalty", _presencePenalty );
                 _data.Add( "top_p", _topPercent );
-                _data.Add( "response_format", _responseFormat );
                 _data.Add( "endpoint", _endPoint );
                 _method.Add( "type", "supervised" );
                 _data.Add( "method", _method );

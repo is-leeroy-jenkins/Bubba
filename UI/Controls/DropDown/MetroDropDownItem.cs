@@ -57,6 +57,7 @@ namespace Bubba
     [ SuppressMessage( "ReSharper", "MemberCanBeInternal" ) ]
     [ SuppressMessage( "ReSharper", "ClassCanBeSealed.Global" ) ]
     [ SuppressMessage( "ReSharper", "MemberCanBeInternal" ) ]
+    [ SuppressMessage( "ReSharper", "ClassNeverInstantiated.Global" ) ]
     public class MetroDropDownItem : ComboBoxItemAdv
     {
         /// <summary>
@@ -82,62 +83,11 @@ namespace Bubba
             SetResourceReference( StyleProperty, typeof( ComboBoxItemAdv ) );
             Background = _theme.ControlInterior;
             BorderBrush = _theme.ControlInterior;
-            Foreground = _theme.LightBlueBrush;
-            Margin = new Thickness( 10, 1, 1, 1 );
-            Height = 24;
-            Padding = _theme.Padding;
-            BorderThickness = _theme.BorderThickness;
+            Foreground = _theme.FormForeground;
+            Padding = new Thickness( 15, 1, 1, 1 );
+            Height = 35;
+            BorderThickness = new Thickness( 1 );
             HorizontalContentAlignment = HorizontalAlignment.Left;
-
-            // Event Wiring
-            MouseEnter += OnItemMouseEnter;
-            MouseLeave += OnItemMouseLeave;
-        }
-
-        /// <summary>
-        /// Called when [item mouse enter].
-        /// </summary>
-        /// <param name="sender">The sender.</param>
-        /// <param name="e">The <see cref="EventArgs"/>
-        /// instance containing the event data.</param>
-        private protected void OnItemMouseEnter(object sender, EventArgs e)
-        {
-            try
-            {
-                if(sender is MetroDropDownItem _item )
-                {
-                    _item.Foreground = _theme.WhiteForeground;
-                    _item.Background = _theme.SteelBlueBrush;
-                    _item.BorderBrush = _theme.SteelBlueBrush;
-                }
-            }
-            catch(Exception ex)
-            {
-                Fail(ex);
-            }
-        }
-
-        /// <summary>
-        /// Called when [item mouse leave].
-        /// </summary>
-        /// <param name="sender">The sender.</param>
-        /// <param name="e">The <see cref="EventArgs"/>
-        /// instance containing the event data.</param>
-        private protected void OnItemMouseLeave(object sender, EventArgs e)
-        {
-            try
-            {
-                if(sender is MetroDropDownItem _item)
-                {
-                    _item.Foreground = _theme.Foreground;
-                    _item.Background = _theme.ControlInterior;
-                    _item.BorderBrush = _theme.ControlInterior;
-                }
-            }
-            catch(Exception ex)
-            {
-                Fail(ex);
-            }
         }
 
         /// <summary>

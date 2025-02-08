@@ -146,13 +146,5 @@ namespace Bubba
         /// The user identifier.
         /// </value>
         int Number { get; set; }
-
-        /// <summary>
-        /// Gets or sets the response format.
-        /// </summary>
-        /// <value>
-        /// The response format.
-        /// </value>
-        string ResponseFormat { get; set; }
     }
 }

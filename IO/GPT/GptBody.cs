@@ -59,11 +59,6 @@ namespace Bubba
     public class GptBody : PropertyChangedBase, IGptBody
     {
         /// <summary>
-        /// The response format
-        /// </summary>
-        private protected string _responseFormat;
-
-        /// <summary>
         /// The model
         /// </summary>
         private protected string _model;
@@ -94,7 +89,6 @@ namespace Bubba
         /// </summary>
         public GptBody( )
         {
-            _responseFormat = "text";
             _model = "gpt-4o-mini";
             _messages = new List<IGptMessage>( );
             _data = new Dictionary<string, object>( );
@@ -111,7 +105,6 @@ namespace Bubba
         public GptBody( string systemPrompt, string userPrompt, IGptParameter param )
             : this( )
         {
-            _responseFormat = param.ResponseFormat;
             _model = param.Model;
             _systemMessage = new SystemMessage( systemPrompt );
             _userMessage = new UserMessage( userPrompt );
@@ -131,7 +124,6 @@ namespace Bubba
             _model = gptBody.Model;
             _systemMessage = gptBody.SystemMessage;
             _userMessage = gptBody.UserMessage;
-            _responseFormat = gptBody.ResponseFormat;
             _messages = gptBody.Messages;
             _data = gptBody.Data;
         }
@@ -140,19 +132,14 @@ namespace Bubba
         /// Deconstructs the specified model.
         /// </summary>
         /// <param name="model">The model.</param>
-        /// <param name = "responseFormat" >
-        /// The format of the response
-        /// </param>
         /// <param name="system">The system.</param>
         /// <param name="user">The user.</param>
         /// <param name = "data" > </param>
         /// <param name = "messages" > </param>
-        public void Deconstruct( out string model, out string responseFormat,
-            out SystemMessage system, out UserMessage user, out IDictionary<string, object> data,
-            out IList<IGptMessage> messages )
+        public void Deconstruct( out string model, out SystemMessage system, out UserMessage user, 
+            out IDictionary<string, object> data, out IList<IGptMessage> messages )
         {
             model = _model;
-            responseFormat = _responseFormat;
             system = _systemMessage;
             user = _userMessage;
             data = _data;
@@ -179,29 +166,6 @@ namespace Bubba
                 {
                     _model = value;
                     OnPropertyChanged( nameof( Model ) );
-                }
-            }
-        }
-
-        /// <summary>
-        /// Gets or sets the response format.
-        /// </summary>
-        /// <value>
-        /// The response format.
-        /// </value>
-        [ JsonPropertyName( "response_format" ) ]
-        public string ResponseFormat
-        {
-            get
-            {
-                return _responseFormat;
-            }
-            set
-            {
-                if( _responseFormat != value )
-                {
-                    _responseFormat = value;
-                    OnPropertyChanged( nameof( ResponseFormat ) );
                 }
             }
         }
@@ -308,11 +272,6 @@ namespace Bubba
                 if( !string.IsNullOrEmpty( _model ) )
                 {
                     _data.Add( "model", _model );
-                }
-
-                if( !string.IsNullOrEmpty( _responseFormat ) )
-                {
-                    _data.Add( "response_format", _responseFormat );
                 }
 
                 if( _messages?.Any( ) == true )

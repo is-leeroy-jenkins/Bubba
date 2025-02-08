@@ -94,6 +94,11 @@ namespace Bubba
         private protected string _input;
 
         /// <summary>
+        /// The response format
+        /// </summary>
+        private protected string _responseFormat;
+
+        /// <summary>
         /// The audio data
         /// </summary>
         private protected byte[ ] _audioData;
@@ -156,7 +161,7 @@ namespace Bubba
         /// The messages.
         /// </value>
         [ JsonPropertyName( "messages" ) ]
-        public IList<IGptMessage> Messages
+        public override IList<IGptMessage> Messages
         {
             get
             {
@@ -330,6 +335,29 @@ namespace Bubba
                 {
                     _audioData = value;
                     OnPropertyChanged( nameof( AudioData ) );
+                }
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the modalities.
+        /// </summary>
+        /// <value>
+        /// The modalities.
+        /// </value>
+        [JsonPropertyName("response_format")]
+        public string ResponseFormat
+        {
+            get
+            {
+                return _responseFormat;
+            }
+            set
+            {
+                if(_responseFormat != value)
+                {
+                    _responseFormat = value;
+                    OnPropertyChanged(nameof(ResponseFormat));
                 }
             }
         }

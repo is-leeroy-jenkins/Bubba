@@ -1,10 +1,10 @@
 ﻿// ******************************************************************************************
 //     Assembly:                Bubba
 //     Author:                  Terry D. Eppler
-//     Created:                 01-31-2025
+//     Created:                 02-06-2025
 // 
 //     Last Modified By:        Terry D. Eppler
-//     Last Modified On:        01-31-2025
+//     Last Modified On:        02-06-2025
 // ******************************************************************************************
 // <copyright file="TranscriptionOptions.cs" company="Terry D. Eppler">
 //    Bubba is a small and simple windows (wpf) application for interacting with the OpenAI API
@@ -44,6 +44,8 @@ namespace Bubba
     using System;
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
+    using System.Linq;
+    using System.Text.Json.Serialization;
     using Properties;
 
     /// <inheritdoc />
@@ -76,6 +78,11 @@ namespace Bubba
         private protected string _prompt;
 
         /// <summary>
+        /// The formats
+        /// </summary>
+        private protected IList<string> _formats;
+
+        /// <summary>
         /// Initializes a new instance of the
         /// <see cref="TranscriptionOptions"/> class.
         /// </summary>
@@ -94,7 +101,7 @@ namespace Bubba
             _presencePenalty = 0.00;
             _maximumTokens = 2048;
             _language = "en";
-            _responseFormat = "text";
+            _responseFormat = "json";
         }
 
         /// <summary>
@@ -132,13 +139,13 @@ namespace Bubba
         {
             get
             {
-                return Temperature;
+                return _temperature;
             }
             set
             {
-                if( Temperature != value )
+                if( _temperature != value )
                 {
-                    Temperature = value;
+                    _temperature = value;
                     OnPropertyChanged( nameof( Temperature ) );
                 }
             }
@@ -189,10 +196,35 @@ namespace Bubba
             }
         }
 
+        /// <inheritdoc />
+        /// <summary>
+        /// Gets or sets the modalities.
+        /// </summary>
+        /// <value>
+        /// The modalities.
+        /// </value>
+        [ JsonPropertyName( "response_format" ) ]
+        public override string ResponseFormat
+        {
+            get
+            {
+                return _responseFormat;
+            }
+            set
+            {
+                if( _responseFormat != value )
+                {
+                    _responseFormat = value;
+                    OnPropertyChanged( nameof( ResponseFormat ) );
+                }
+            }
+        }
+
         /// <summary>
         /// Gets or sets the input.
         /// </summary>
         /// <value>
+        /// 
         /// The input.
         /// </value>
         public string Prompt
@@ -211,26 +243,63 @@ namespace Bubba
             }
         }
 
-        /// <inheritdoc />
         /// <summary>
-        /// Gets or sets the response format.
+        /// Gets the formats.
         /// </summary>
-        /// <value>
-        /// The response format.
-        /// </value>
-        public override string ResponseFormat
+        /// <returns></returns>
+        public IList<string> GetResponseFormatOptions( )
         {
-            get
+            try
             {
-                return _responseFormat;
-            }
-            set
-            {
-                if( _responseFormat != value )
+                var _options = new List<string>
                 {
-                    _responseFormat = value;
-                    OnPropertyChanged( nameof( ResponseFormat ) );
-                }
+                    "json",
+                    "text",
+                    "srt",
+                    "verbose_json",
+                    "vtt"
+                };
+
+                return _options?.Any( ) == true
+                    ? _options
+                    : default( IList<string> );
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+                return default( IList<string> );
+            }
+        }
+
+        /// <summary>
+        /// Gets the formats.
+        /// </summary>
+        /// <returns></returns>
+        public IList<string> GetFileFormatOptions( )
+        {
+            try
+            {
+                var _options = new List<string>
+                {
+                    "flac",
+                    "mp3",
+                    "mp4",
+                    "mpeg",
+                    "mpga",
+                    "m4a",
+                    "ogg",
+                    "wav",
+                    "webm"
+                };
+
+                return _options?.Any( ) == true
+                    ? _options
+                    : default( IList<string> );
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+                return default( IList<string> );
             }
         }
     }

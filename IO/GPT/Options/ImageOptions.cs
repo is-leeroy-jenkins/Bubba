@@ -1,10 +1,10 @@
 ﻿// ******************************************************************************************
 //     Assembly:                Bubba
 //     Author:                  Terry D. Eppler
-//     Created:                 01-31-2025
+//     Created:                 02-06-2025
 // 
 //     Last Modified By:        Terry D. Eppler
-//     Last Modified On:        01-31-2025
+//     Last Modified On:        02-06-2025
 // ******************************************************************************************
 // <copyright file="ImageOptions.cs" company="Terry D. Eppler">
 //    Bubba is a small and simple windows (wpf) application for interacting with the OpenAI API
@@ -97,10 +97,9 @@ namespace Bubba
             _presencePenalty = 0.00;
             _maximumTokens = 2048;
             _size = "1024x1024";
-            _responseFormat = "url";
             _style = "natural";
-            _quality = "standard";
             _stop = "['#', ';']";
+            _responseFormat = "url";
         }
 
         /// <summary>
@@ -121,29 +120,6 @@ namespace Bubba
                 {
                     _size = value;
                     OnPropertyChanged( nameof( Size ) );
-                }
-            }
-        }
-
-        /// <inheritdoc />
-        /// <summary>
-        /// Gets or sets the response format.
-        /// </summary>
-        /// <value>
-        /// The response format.
-        /// </value>
-        public override string ResponseFormat
-        {
-            get
-            {
-                return _responseFormat;
-            }
-            set
-            {
-                if( _responseFormat != value )
-                {
-                    _responseFormat = value;
-                    OnPropertyChanged( nameof( ResponseFormat ) );
                 }
             }
         }
@@ -291,6 +267,55 @@ namespace Bubba
             {
                 Fail( ex );
                 return default( IDictionary<string, object> );
+            }
+        }
+
+        /// <summary>
+        /// Gets the formats.
+        /// </summary>
+        /// <returns></returns>
+        private protected IList<string> GetFormatOptions( )
+        {
+            try
+            {
+                var _formats = new List<string>
+                {
+                    "url",
+                    "b64_json"
+                };
+
+                return _formats;
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+                return default( IList<string> );
+            }
+        }
+
+        /// <summary>
+        /// Gets the size options.
+        /// </summary>
+        /// <returns></returns>
+        private protected IList<string> GetSizeOptions( )
+        {
+            try
+            {
+                var _sizes = new List<string>
+                {
+                    "256X256",
+                    "512X512",
+                    "1024X1024",
+                    "1792x1024",
+                    "1024x1792"
+                };
+
+                return _sizes;
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+                return default( IList<string> );
             }
         }
     }

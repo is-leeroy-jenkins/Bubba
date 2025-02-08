@@ -19,42 +19,5 @@
         <Setter Property="FontSize" Value="12" />
         <Setter Property="BorderThickness" Value="1" />
 
-
-        <!--  ******************************************** TRIGGERS *****************************************************  -->
-
-        <Style.Triggers>
-
-            <Trigger Property="IsEnabled" Value="True">
-                <Setter Property="Background" Value="{StaticResource TransparentBrush}" />
-                <Setter Property="BorderBrush" Value="{StaticResource TransparentBrush}" />
-                <Setter Property="Foreground" Value="{StaticResource FormForeground}" />
-                <Setter Property="FontWeight" Value="Regular" />
-            </Trigger>
-
-            <Trigger Property="IsEnabled" Value="False">
-                <Setter Property="Background" Value="{StaticResource TransparentBrush}" />
-                <Setter Property="BorderBrush" Value="{StaticResource TransparentBrush}" />
-                <Setter Property="Foreground" Value="{StaticResource FormForeground}" />
-                <Setter Property="FontWeight" Value="Regular" />
-            </Trigger>
-
-
-            <Trigger Property="IsMouseOver" Value="True">
-                <Setter Property="Background" Value="{StaticResource TransparentBrush}" />
-                <Setter Property="BorderBrush" Value="{StaticResource TransparentBrush}" />
-                <Setter Property="Foreground" Value="{StaticResource FormForeground}" />
-                <Setter Property="FontWeight" Value="Regular" />
-            </Trigger>
-
-            <Trigger Property="IsMouseOver" Value="False">
-                <Setter Property="Background" Value="{StaticResource TransparentBrush}" />
-                <Setter Property="BorderBrush" Value="{StaticResource TransparentBrush}" />
-                <Setter Property="Foreground" Value="{StaticResource FormForeground}" />
-                <Setter Property="FontWeight" Value="Regular" />
-            </Trigger>
-
-        </Style.Triggers>
-
-
     </Style>
 </ResourceDictionary>

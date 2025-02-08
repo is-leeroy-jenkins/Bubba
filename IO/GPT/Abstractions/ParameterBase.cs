@@ -118,11 +118,6 @@ namespace Bubba
         private protected int _maximumTokens;
 
         /// <summary>
-        /// The response format
-        /// </summary>
-        private protected string _responseFormat;
-
-        /// <summary>
         /// The system instructions
         /// </summary>
         private protected string _systemPrompt;
@@ -466,28 +461,6 @@ namespace Bubba
                 {
                     _assistantPrompt = value;
                     OnPropertyChanged( nameof( AssistantPrompt ) );
-                }
-            }
-        }
-
-        /// <summary>
-        /// Gets or sets the response format.
-        /// </summary>
-        /// <value>
-        /// The response format.
-        /// </value>
-        public virtual string ResponseFormat
-        {
-            get
-            {
-                return _responseFormat;
-            }
-            set
-            {
-                if( _responseFormat != value )
-                {
-                    _responseFormat = value;
-                    OnPropertyChanged( nameof( ResponseFormat ) );
                 }
             }
         }
