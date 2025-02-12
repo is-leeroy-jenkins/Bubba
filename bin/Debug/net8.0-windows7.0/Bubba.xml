@@ -34700,12 +34700,74 @@
             </summary>
             <seealso cref="T:Badger.MetroTextBox" />
         </member>
+        <member name="F:Bubba.ToolStripTextBox._theme">
+            <summary>
+            The theme
+            </summary>
+        </member>
+        <member name="F:Bubba.ToolStripTextBox._inputText">
+            <summary>
+            The input text
+            </summary>
+        </member>
+        <member name="F:Bubba.ToolStripTextBox._tempText">
+            <summary>
+            The temporary text
+            </summary>
+        </member>
         <member name="M:Bubba.ToolStripTextBox.#ctor">
             <summary>
             Initializes a new instance of the
             <see cref="T:Bubba.ToolStripTextBox"/> class.
             </summary>
             <inheritdoc />
+        </member>
+        <member name="P:Bubba.ToolStripTextBox.InputText">
+            <summary>
+            Gets or sets the input text.
+            </summary>
+            <value>
+            The input text.
+            </value>
+        </member>
+        <member name="M:Bubba.ToolStripTextBox.OnMouseCapture(System.Object,System.Windows.RoutedEventArgs)">
+            <summary>
+            Called when [mouse enter].
+            </summary>
+            <param name="sender">The sender.</param>
+            <param name="e">The <see cref="T:System.Windows.RoutedEventArgs"/>
+            instance containing the event data.</param>
+        </member>
+        <member name="M:Bubba.ToolStripTextBox.OnMouseLeave(System.Object,System.Windows.RoutedEventArgs)">
+            <summary>
+            Called when [mouse leave].
+            </summary>
+            <param name="sender">The sender.</param>
+            <param name="e">The <see cref="T:System.Windows.RoutedEventArgs"/>
+            instance containing the event data.</param>
+        </member>
+        <member name="M:Bubba.ToolStripTextBox.OnTextChanged(System.Object,System.Windows.RoutedEventArgs)">
+            <summary>
+            Called when [un focused].
+            </summary>
+            <param name="sender">The sender.</param>
+            <param name="e">The <see cref="T:System.Windows.RoutedEventArgs"/>
+            instance containing the event data.
+            </param>
+        </member>
+        <member name="M:Bubba.ToolStripTextBox.OnFocusLost(System.Object,System.Windows.RoutedEventArgs)">
+            <summary>
+            Called when [focus lost].
+            </summary>
+            <param name="sender">The sender.</param>
+            <param name="e">The <see cref="T:System.Windows.RoutedEventArgs" />
+            instance containing the event data.</param>
+        </member>
+        <member name="M:Bubba.ToolStripTextBox.Fail(System.Exception)">
+            <summary>
+            Fails the specified ex.
+            </summary>
+            <param name="ex">The ex.</param>
         </member>
         <member name="T:Bubba.ToolStrip">
             <inheritdoc />
@@ -35204,6 +35266,11 @@
         <member name="F:Bubba.ChatWindow._selectedDocument">
             <summary>
             The selected document
+            </summary>
+        </member>
+        <member name="F:Bubba.ChatWindow._selectedRequest">
+            <summary>
+            The selected request
             </summary>
         </member>
         <member name="F:Bubba.ChatWindow._theme">
@@ -35990,14 +36057,6 @@
             <param name="e">The <see cref="T:System.Windows.RoutedEventArgs"/>
             instance containing the event data.</param>
         </member>
-        <member name="M:Bubba.ChatWindow.OnGuidanceOptionClick(System.Object,System.Windows.RoutedEventArgs)">
-            <summary>
-            Called when [guidance option click].
-            </summary>
-            <param name="sender">The sender.</param>
-            <param name="e">The <see cref="T:System.Windows.RoutedEventArgs"/>
-            instance containing the event data.</param>
-        </member>
         <member name="M:Bubba.ChatWindow.OnFirstButtonClick(System.Object,System.Windows.RoutedEventArgs)">
             <summary>
             Called when [first button click].
@@ -36201,6 +36260,14 @@
         <member name="M:Bubba.ChatWindow.OnRadioButtonSelected(System.Object,System.Windows.RoutedEventArgs)">
             <summary>
             Called when [RadioButton selected].
+            </summary>
+            <param name="sender">The sender.</param>
+            <param name="e">The <see cref="T:System.Windows.RoutedEventArgs"/>
+            instance containing the event data.</param>
+        </member>
+        <member name="M:Bubba.ChatWindow.OnGuidanceOptionClick(System.Object,System.Windows.RoutedEventArgs)">
+            <summary>
+            Called when [guidance option click].
             </summary>
             <param name="sender">The sender.</param>
             <param name="e">The <see cref="T:System.Windows.RoutedEventArgs"/>
@@ -40345,36 +40412,6 @@
         <member name="M:Bubba.WebBrowser.InitializeComponent">
             <summary>
             InitializeComponent
-            </summary>
-        </member>
-        <member name="T:XamlGeneratedNamespace.GeneratedInternalTypeHelper">
-            <summary>
-            GeneratedInternalTypeHelper
-            </summary>
-        </member>
-        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.CreateInstance(System.Type,System.Globalization.CultureInfo)">
-            <summary>
-            CreateInstance
-            </summary>
-        </member>
-        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.GetPropertyValue(System.Reflection.PropertyInfo,System.Object,System.Globalization.CultureInfo)">
-            <summary>
-            GetPropertyValue
-            </summary>
-        </member>
-        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.SetPropertyValue(System.Reflection.PropertyInfo,System.Object,System.Object,System.Globalization.CultureInfo)">
-            <summary>
-            SetPropertyValue
-            </summary>
-        </member>
-        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.CreateDelegate(System.Type,System.Object,System.String)">
-            <summary>
-            CreateDelegate
-            </summary>
-        </member>
-        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.AddEventHandler(System.Reflection.EventInfo,System.Object,System.Delegate)">
-            <summary>
-            AddEventHandler
             </summary>
         </member>
     </members>

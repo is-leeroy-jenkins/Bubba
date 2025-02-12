@@ -131,7 +131,7 @@ namespace Bubba
         {
             try
             {
-                Background = _theme.SteelBlueBrush;
+                Background = _theme.DarkBlueBrush;
                 BorderBrush = _theme.BorderBrush;
                 Foreground = _theme.WhiteForeground;
             }

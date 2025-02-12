@@ -1,3 +1,8 @@
+C:\Users\terry\source\repos\Bubba\bin\Debug\net8.0-windows7.0\runtimes\win-x64\native\locales\kn.pak
+C:\Users\terry\source\repos\Bubba\bin\Debug\net8.0-windows7.0\runtimes\win-x64\native\locales\nb.pak
+C:\Users\terry\source\repos\Bubba\bin\Debug\net8.0-windows7.0\runtimes\win-x64\native\locales\tr.pak
+C:\Users\terry\source\repos\Bubba\bin\Debug\net8.0-windows7.0\runtimes\win-x64\native\locales\ur.pak
+C:\Users\terry\source\repos\Bubba\bin\Debug\net8.0-windows7.0\runtimes\win-x86\native\resources.pak
 C:\Users\terry\source\repos\Bubba\bin\Debug\net8.0-windows7.0\runtimes\win-x86\native\locales\af.pak
 C:\Users\terry\source\repos\Bubba\bin\Debug\net8.0-windows7.0\runtimes\win-x86\native\locales\am.pak
 C:\Users\terry\source\repos\Bubba\bin\Debug\net8.0-windows7.0\runtimes\win-x86\native\locales\ar.pak
@@ -82,14 +87,12 @@ C:\Users\terry\source\repos\Bubba\bin\Debug\net8.0-windows7.0\runtimes\win-x64\n
 C:\Users\terry\source\repos\Bubba\bin\Debug\net8.0-windows7.0\runtimes\win-x64\native\locales\id.pak
 C:\Users\terry\source\repos\Bubba\bin\Debug\net8.0-windows7.0\runtimes\win-x64\native\locales\it.pak
 C:\Users\terry\source\repos\Bubba\bin\Debug\net8.0-windows7.0\runtimes\win-x64\native\locales\ja.pak
-C:\Users\terry\source\repos\Bubba\bin\Debug\net8.0-windows7.0\runtimes\win-x64\native\locales\kn.pak
 C:\Users\terry\source\repos\Bubba\bin\Debug\net8.0-windows7.0\runtimes\win-x64\native\locales\ko.pak
 C:\Users\terry\source\repos\Bubba\bin\Debug\net8.0-windows7.0\runtimes\win-x64\native\locales\lt.pak
 C:\Users\terry\source\repos\Bubba\bin\Debug\net8.0-windows7.0\runtimes\win-x64\native\locales\lv.pak
 C:\Users\terry\source\repos\Bubba\bin\Debug\net8.0-windows7.0\runtimes\win-x64\native\locales\ml.pak
 C:\Users\terry\source\repos\Bubba\bin\Debug\net8.0-windows7.0\runtimes\win-x64\native\locales\mr.pak
 C:\Users\terry\source\repos\Bubba\bin\Debug\net8.0-windows7.0\runtimes\win-x64\native\locales\ms.pak
-C:\Users\terry\source\repos\Bubba\bin\Debug\net8.0-windows7.0\runtimes\win-x64\native\locales\nb.pak
 C:\Users\terry\source\repos\Bubba\bin\Debug\net8.0-windows7.0\runtimes\win-x64\native\locales\nl.pak
 C:\Users\terry\source\repos\Bubba\bin\Debug\net8.0-windows7.0\runtimes\win-x64\native\locales\pl.pak
 C:\Users\terry\source\repos\Bubba\bin\Debug\net8.0-windows7.0\runtimes\win-x64\native\locales\pt-BR.pak
@@ -104,9 +107,7 @@ C:\Users\terry\source\repos\Bubba\bin\Debug\net8.0-windows7.0\runtimes\win-x64\n
 C:\Users\terry\source\repos\Bubba\bin\Debug\net8.0-windows7.0\runtimes\win-x64\native\locales\ta.pak
 C:\Users\terry\source\repos\Bubba\bin\Debug\net8.0-windows7.0\runtimes\win-x64\native\locales\te.pak
 C:\Users\terry\source\repos\Bubba\bin\Debug\net8.0-windows7.0\runtimes\win-x64\native\locales\th.pak
-C:\Users\terry\source\repos\Bubba\bin\Debug\net8.0-windows7.0\runtimes\win-x64\native\locales\tr.pak
 C:\Users\terry\source\repos\Bubba\bin\Debug\net8.0-windows7.0\runtimes\win-x64\native\locales\uk.pak
-C:\Users\terry\source\repos\Bubba\bin\Debug\net8.0-windows7.0\runtimes\win-x64\native\locales\ur.pak
 C:\Users\terry\source\repos\Bubba\bin\Debug\net8.0-windows7.0\runtimes\win-x64\native\locales\vi.pak
 C:\Users\terry\source\repos\Bubba\bin\Debug\net8.0-windows7.0\runtimes\win-x64\native\locales\zh-CN.pak
 C:\Users\terry\source\repos\Bubba\bin\Debug\net8.0-windows7.0\runtimes\win-x64\native\locales\zh-TW.pak
@@ -561,7 +562,6 @@ C:\Users\terry\source\repos\Bubba\bin\Debug\net8.0-windows7.0\runtimes\win-x86\n
 C:\Users\terry\source\repos\Bubba\bin\Debug\net8.0-windows7.0\runtimes\win-x86\native\libEGL.dll
 C:\Users\terry\source\repos\Bubba\bin\Debug\net8.0-windows7.0\runtimes\win-x86\native\libGLESv2.dll
 C:\Users\terry\source\repos\Bubba\bin\Debug\net8.0-windows7.0\runtimes\win-x86\native\libcef.dll
-C:\Users\terry\source\repos\Bubba\bin\Debug\net8.0-windows7.0\runtimes\win-x86\native\resources.pak
 C:\Users\terry\source\repos\Bubba\bin\Debug\net8.0-windows7.0\runtimes\win-x86\native\snapshot_blob.bin
 C:\Users\terry\source\repos\Bubba\bin\Debug\net8.0-windows7.0\runtimes\win-x86\native\v8_context_snapshot.bin
 C:\Users\terry\source\repos\Bubba\bin\Debug\net8.0-windows7.0\runtimes\win-x86\native\vk_swiftshader.dll
