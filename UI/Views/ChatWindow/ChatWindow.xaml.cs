@@ -1,10 +1,10 @@
 ﻿// ******************************************************************************************
 //     Assembly:                Bubba
 //     Author:                  Terry D. Eppler
-//     Created:                 02-09-2025
+//     Created:                 02-15-2025
 // 
 //     Last Modified By:        Terry D. Eppler
-//     Last Modified On:        02-09-2025
+//     Last Modified On:        02-15-2025
 // ******************************************************************************************
 // <copyright file="ChatWindow.xaml.cs" company="Terry D. Eppler">
 //    Bubba is a small and simple windows (wpf) application for interacting with the OpenAI API
@@ -351,6 +351,7 @@ namespace Bubba
         {
             try
             {
+                ModelLabel.Content = "";
                 ModelLabel.Content = "Generative Pre-Trained Transformer";
             }
             catch( Exception ex )
@@ -584,13 +585,13 @@ namespace Bubba
                 {
                     if( _busy )
                     {
-                        ProgressBar.Visibility = Visibility.Visible;
                         ProgressBar.IsIndeterminate = true;
+                        ProgressBar.Visibility = Visibility.Visible;
                     }
                     else
                     {
-                        ProgressBar.Visibility = Visibility.Hidden;
                         ProgressBar.IsIndeterminate = false;
+                        ProgressBar.Visibility = Visibility.Hidden;
                     }
                 }
             }
@@ -825,6 +826,7 @@ namespace Bubba
         {
             try
             {
+                ModelLabel.Content = "";
                 ModelLabel.Content = "Generative Pre-Trained Transformer";
             }
             catch( Exception ex )
@@ -1139,16 +1141,14 @@ namespace Bubba
         {
             try
             {
-                ModelLabel.Content = "";
-                var _prefix = $" Request - {_selectedRequest}  ";
-                ModelLabel.Content = _prefix;
+                RequestLabel.Content = "";
                 switch( _requestType )
                 {
                     case GptRequests.Assistants:
                     {
                         PopulateCompletionModels( );
                         _endpoint = GptEndPoint.Assistants;
-                        ModelLabel.Content += "GPT | Assistant API";
+                        RequestLabel.Content = " GPT | Assistant API";
                         TabControl.SelectedIndex = 1;
                         break;
                     }
@@ -1156,7 +1156,7 @@ namespace Bubba
                     {
                         PopulateCompletionModels( );
                         _endpoint = GptEndPoint.Completions;
-                        ModelLabel.Content += "GPT | Chat Completion";
+                        RequestLabel.Content = " GPT | Chat Completion";
                         TabControl.SelectedIndex = 1;
                         break;
                     }
@@ -1164,7 +1164,7 @@ namespace Bubba
                     {
                         PopulateTextModels( );
                         _endpoint = GptEndPoint.TextGeneration;
-                        ModelLabel.Content += "GPT | Text Generation";
+                        RequestLabel.Content = " GPT | Text Generation";
                         TabControl.SelectedIndex = 1;
                         break;
                     }
@@ -1172,7 +1172,7 @@ namespace Bubba
                     {
                         PopulateImageModels( );
                         _endpoint = GptEndPoint.ImageGeneration;
-                        ModelLabel.Content += "GPT | Image Generation";
+                        RequestLabel.Content = " GPT | Image Generation";
                         TabControl.SelectedIndex = 1;
                         break;
                     }
@@ -1180,7 +1180,7 @@ namespace Bubba
                     {
                         PopulateTranslationModels( );
                         PopulateOpenAiVoices( );
-                        ModelLabel.Content += "GPT | Translation API";
+                        RequestLabel.Content = " GPT | Translation API";
                         _endpoint = GptEndPoint.Translations;
                         TabControl.SelectedIndex = 1;
                         break;
@@ -1188,7 +1188,7 @@ namespace Bubba
                     case GptRequests.Embeddings:
                     {
                         PopulateEmbeddingModels( );
-                        ModelLabel.Content += "GPT | Embeddings API";
+                        RequestLabel.Content = " GPT | Embeddings API";
                         _endpoint = GptEndPoint.Embeddings;
                         TabControl.SelectedIndex = 1;
                         break;
@@ -1197,7 +1197,7 @@ namespace Bubba
                     {
                         PopulateTranscriptionModels( );
                         PopulateOpenAiVoices( );
-                        ModelLabel.Content += "GPT | Transcription (Speech To Text)";
+                        RequestLabel.Content = " GPT | Transcription (Speech To Text)";
                         _endpoint = GptEndPoint.Transcriptions;
                         TabControl.SelectedIndex = 1;
                         break;
@@ -1205,7 +1205,7 @@ namespace Bubba
                     case GptRequests.VectorStores:
                     {
                         PopulateVectorStoreModels( );
-                        ModelLabel.Content += "GPT | Vector Stores API";
+                        RequestLabel.Content = " GPT | Vector Stores API";
                         _endpoint = GptEndPoint.VectorStores;
                         TabControl.SelectedIndex = 1;
                         break;
@@ -1214,7 +1214,7 @@ namespace Bubba
                     {
                         PopulateSpeechModels( );
                         PopulateOpenAiVoices( );
-                        ModelLabel.Content += "GPT | Speech Generation (Text To Speech)";
+                        RequestLabel.Content = " GPT | Speech Generation (Text To Speech)";
                         _endpoint = GptEndPoint.SpeechGeneration;
                         TabControl.SelectedIndex = 1;
                         break;
@@ -1222,7 +1222,7 @@ namespace Bubba
                     case GptRequests.FineTuning:
                     {
                         PopulateFineTuningModels( );
-                        ModelLabel.Content += "GPT | Fine-Tuning API";
+                        RequestLabel.Content = " GPT | Fine-Tuning API";
                         _endpoint = GptEndPoint.FineTuning;
                         TabControl.SelectedIndex = 1;
                         break;
@@ -1230,7 +1230,7 @@ namespace Bubba
                     case GptRequests.Files:
                     {
                         PopulateFileApiModels( );
-                        ModelLabel.Content += "GPT | Files API";
+                        RequestLabel.Content = " GPT | Files API";
                         _endpoint = GptEndPoint.Files;
                         TabControl.SelectedIndex = 1;
                         break;
@@ -1238,7 +1238,7 @@ namespace Bubba
                     case GptRequests.Uploads:
                     {
                         PopulateUploadApiModels( );
-                        ModelLabel.Content += "GPT | Uploads API";
+                        RequestLabel.Content = " GPT | Uploads API";
                         _endpoint = GptEndPoint.Uploads;
                         TabControl.SelectedIndex = 1;
                         break;
@@ -1246,7 +1246,7 @@ namespace Bubba
                     case GptRequests.Projects:
                     {
                         PopulateTextModels( );
-                        ModelLabel.Content += "GPT | Projects API";
+                        RequestLabel.Content = " GPT | Projects API";
                         _endpoint = GptEndPoint.Projects;
                         TabControl.SelectedIndex = 1;
                         break;
@@ -1254,7 +1254,7 @@ namespace Bubba
                     default:
                     {
                         PopulateModelsAsync( );
-                        ModelLabel.Content += "GPT | GPT Completion";
+                        RequestLabel.Content = " GPT | GPT Completion";
                         _endpoint = GptEndPoint.Completions;
                         TabControl.SelectedIndex = 1;
                         break;
@@ -1312,191 +1312,6 @@ namespace Bubba
                 _prompt = _language == "Text"
                     ? ChatEditor.Text
                     : "";
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
-            }
-        }
-
-        /// <summary>
-        /// Sets the user document language.
-        /// </summary>
-        private protected void PopulateDocuments( )
-        {
-            try
-            {
-                var _prefix = @"C:\Users\terry\source\repos\Bubba\Resources\Documents\Editor\";
-                if( !string.IsNullOrEmpty( _language ) )
-                {
-                    ChatEditor.Text = "";
-                    switch( _language )
-                    {
-                        case "TXT":
-                        {
-                            var _pre = @"C:\Users\terry\source\repos\Bubba\Resources\Document\";
-                            var _path = _pre + @"Appropriations\";
-                            TabControl.SelectedIndex = 0;
-                            ChatEditor.DocumentLanguage = Languages.Text;
-                            DocumentListBox.Items?.Clear( );
-                            var _documents = Directory.GetFiles( _path );
-                            foreach( var _file in _documents )
-                            {
-                                var _item = new ListBoxItem
-                                {
-                                    Tag = _file,
-                                    Content = Path.GetFileNameWithoutExtension( _file )
-                                };
-
-                                DocumentListBox.Items?.Add( _item );
-                            }
-
-                            break;
-                        }
-                        case "CS":
-                        {
-                            var _path = _prefix + @"CS\";
-                            TabControl.SelectedIndex = 0;
-                            ChatEditor.DocumentLanguage = Languages.CSharp;
-                            DocumentListBox.Items?.Clear( );
-                            var _documents = Directory.GetFiles( _path );
-                            foreach( var _file in _documents )
-                            {
-                                var _item = new ListBoxItem
-                                {
-                                    Tag = _file,
-                                    Content = Path.GetFileNameWithoutExtension( _file )
-                                };
-
-                                DocumentListBox.Items?.Add( _item );
-                            }
-
-                            break;
-                        }
-                        case "PY":
-                        {
-                            var _path = _prefix + @"PY\";
-                            TabControl.SelectedIndex = 0;
-                            ChatEditor.DocumentLanguage = Languages.Text;
-                            DocumentListBox.Items?.Clear( );
-                            var _documents = Directory.GetFiles( _path );
-                            foreach( var _file in _documents )
-                            {
-                                var _item = new ListBoxItem
-                                {
-                                    Tag = _file,
-                                    Content = Path.GetFileNameWithoutExtension( _file )
-                                };
-
-                                DocumentListBox.Items?.Add( _item );
-                            }
-
-                            break;
-                        }
-                        case "SQL":
-                        {
-                            var _path = _prefix + @"SQL\";
-                            TabControl.SelectedIndex = 0;
-                            ChatEditor.DocumentLanguage = Languages.SQL;
-                            DocumentListBox.Items?.Clear( );
-                            var _documents = Directory.GetFiles( _path );
-                            foreach( var _file in _documents )
-                            {
-                                var _item = new ListBoxItem
-                                {
-                                    Tag = _file,
-                                    Content = Path.GetFileNameWithoutExtension( _file )
-                                };
-
-                                DocumentListBox.Items?.Add( _item );
-                            }
-
-                            break;
-                        }
-                        case "JS":
-                        {
-                            var _path = _prefix + @"JS\";
-                            TabControl.SelectedIndex = 0;
-                            ChatEditor.DocumentLanguage = Languages.JScript;
-                            DocumentListBox.Items?.Clear( );
-                            var _documents = Directory.GetFiles( _path );
-                            foreach( var _file in _documents )
-                            {
-                                var _item = new ListBoxItem
-                                {
-                                    Tag = _file,
-                                    Content = Path.GetFileNameWithoutExtension( _file )
-                                };
-
-                                DocumentListBox.Items?.Add( _item );
-                            }
-
-                            break;
-                        }
-                        case "CPP":
-                        {
-                            var _path = _prefix + @"CPP\";
-                            TabControl.SelectedIndex = 0;
-                            ChatEditor.DocumentLanguage = Languages.C;
-                            ChatEditor.DocumentSource = _path;
-                            DocumentListBox.Items?.Clear( );
-                            var _documents = Directory.GetFiles( _path );
-                            foreach( var _file in _documents )
-                            {
-                                var _item = new ListBoxItem
-                                {
-                                    Tag = _file,
-                                    Content = Path.GetFileNameWithoutExtension( _file )
-                                };
-
-                                DocumentListBox.Items?.Add( _item );
-                            }
-
-                            break;
-                        }
-                        case "VBA":
-                        {
-                            var _path = _prefix + @"VBA\";
-                            TabControl.SelectedIndex = 0;
-                            ChatEditor.DocumentLanguage = Languages.VisualBasic;
-                            DocumentListBox.Items?.Clear( );
-                            var _documents = Directory.GetFiles( _path );
-                            foreach( var _file in _documents )
-                            {
-                                var _item = new ListBoxItem
-                                {
-                                    Tag = _file,
-                                    Content = Path.GetFileNameWithoutExtension( _file )
-                                };
-
-                                DocumentListBox.Items?.Add( _item );
-                            }
-
-                            break;
-                        }
-                        default:
-                        {
-                            var _pre = @"C:\Users\terry\source\repos\Bubba\Resources\Document\";
-                            var _path = _pre + @"Appropriations\";
-                            TabControl.SelectedIndex = 0;
-                            ChatEditor.DocumentLanguage = Languages.Text;
-                            DocumentListBox.Items?.Clear( );
-                            var _documents = Directory.GetFiles( _path );
-                            foreach( var _file in _documents )
-                            {
-                                var _item = new ListBoxItem
-                                {
-                                    Tag = _file,
-                                    Content = Path.GetFileNameWithoutExtension( _file )
-                                };
-
-                                DocumentListBox.Items?.Add( _item );
-                            }
-
-                            break;
-                        }
-                    }
-                }
             }
             catch( Exception ex )
             {
@@ -1610,7 +1425,7 @@ namespace Bubba
             var _choices = _objects.Keys.ToList( );
             var _choice = _choices[ 0 ];
             var _message = "";
-            if( _model.IndexOf( "gpt-3.5-turbo" ) != -1 )
+            if( _model?.IndexOf( "gpt-3.5-turbo" ) != -1 )
             {
                 var _key = _objects[ "message" ];
                 var _kvp = new Dictionary<string, object>( );
@@ -2015,38 +1830,47 @@ namespace Bubba
         /// </returns>
         private string PadQuotes( string input )
         {
-            if( input.IndexOf( "\\" ) != -1 )
+            try
             {
-                input = input.Replace( "\\", @"\\" );
-            }
+                ThrowIf.Empty( input, nameof( input ) );
+                if( input.IndexOf( "\\" ) != -1 )
+                {
+                    input = input.Replace( "\\", @"\\" );
+                }
 
-            if( input.IndexOf( "\n\r" ) != -1 )
-            {
-                input = input.Replace( "\n\r", @"\n" );
-            }
+                if( input.IndexOf( "\n\r" ) != -1 )
+                {
+                    input = input.Replace( "\n\r", @"\n" );
+                }
 
-            if( input.IndexOf( "\r" ) != -1 )
-            {
-                input = input.Replace( "\r", @"\r" );
-            }
+                if( input.IndexOf( "\r" ) != -1 )
+                {
+                    input = input.Replace( "\r", @"\r" );
+                }
 
-            if( input.IndexOf( "\n" ) != -1 )
-            {
-                input = input.Replace( "\n", @"\n" );
-            }
+                if( input.IndexOf( "\n" ) != -1 )
+                {
+                    input = input.Replace( "\n", @"\n" );
+                }
 
-            if( input.IndexOf( "\t" ) != -1 )
-            {
-                input = input.Replace( "\t", @"\t" );
-            }
+                if( input.IndexOf( "\t" ) != -1 )
+                {
+                    input = input.Replace( "\t", @"\t" );
+                }
 
-            if( input.IndexOf( "\"" ) != -1 )
-            {
-                return input.Replace( "\"", @"""" );
+                if( input.IndexOf( "\"" ) != -1 )
+                {
+                    return input.Replace( "\"", @"""" );
+                }
+                else
+                {
+                    return input;
+                }
             }
-            else
+            catch( Exception ex )
             {
-                return input;
+                Fail( ex );
+                return string.Empty;
             }
         }
 
@@ -2768,6 +2592,191 @@ namespace Bubba
                 Fail( ex );
             }
         }
+        
+        /// <summary>
+        /// Sets the user document language.
+        /// </summary>
+        private protected void PopulateDocuments( )
+        {
+            try
+            {
+                var _prefix = @"C:\Users\terry\source\repos\Bubba\Resources\Documents\Editor\";
+                if( !string.IsNullOrEmpty( _language ) )
+                {
+                    ChatEditor.Text = "";
+                    switch( _language )
+                    {
+                        case "TXT":
+                        {
+                            var _pre = @"C:\Users\terry\source\repos\Bubba\Resources\Document\";
+                            var _path = _pre + @"Appropriations\";
+                            TabControl.SelectedIndex = 0;
+                            ChatEditor.DocumentLanguage = Languages.Text;
+                            DocumentListBox.Items?.Clear( );
+                            var _documents = Directory.GetFiles( _path );
+                            foreach( var _file in _documents )
+                            {
+                                var _item = new ListBoxItem
+                                {
+                                    Tag = _file,
+                                    Content = Path.GetFileNameWithoutExtension( _file )
+                                };
+
+                                DocumentListBox.Items?.Add( _item );
+                            }
+
+                            break;
+                        }
+                        case "CS":
+                        {
+                            var _path = _prefix + @"CS\";
+                            TabControl.SelectedIndex = 0;
+                            ChatEditor.DocumentLanguage = Languages.CSharp;
+                            DocumentListBox.Items?.Clear( );
+                            var _documents = Directory.GetFiles( _path );
+                            foreach( var _file in _documents )
+                            {
+                                var _item = new ListBoxItem
+                                {
+                                    Tag = _file,
+                                    Content = Path.GetFileNameWithoutExtension( _file )
+                                };
+
+                                DocumentListBox.Items?.Add( _item );
+                            }
+
+                            break;
+                        }
+                        case "PY":
+                        {
+                            var _path = _prefix + @"PY\";
+                            TabControl.SelectedIndex = 0;
+                            ChatEditor.DocumentLanguage = Languages.Text;
+                            DocumentListBox.Items?.Clear( );
+                            var _documents = Directory.GetFiles( _path );
+                            foreach( var _file in _documents )
+                            {
+                                var _item = new ListBoxItem
+                                {
+                                    Tag = _file,
+                                    Content = Path.GetFileNameWithoutExtension( _file )
+                                };
+
+                                DocumentListBox.Items?.Add( _item );
+                            }
+
+                            break;
+                        }
+                        case "SQL":
+                        {
+                            var _path = _prefix + @"SQL\";
+                            TabControl.SelectedIndex = 0;
+                            ChatEditor.DocumentLanguage = Languages.SQL;
+                            DocumentListBox.Items?.Clear( );
+                            var _documents = Directory.GetFiles( _path );
+                            foreach( var _file in _documents )
+                            {
+                                var _item = new ListBoxItem
+                                {
+                                    Tag = _file,
+                                    Content = Path.GetFileNameWithoutExtension( _file )
+                                };
+
+                                DocumentListBox.Items?.Add( _item );
+                            }
+
+                            break;
+                        }
+                        case "JS":
+                        {
+                            var _path = _prefix + @"JS\";
+                            TabControl.SelectedIndex = 0;
+                            ChatEditor.DocumentLanguage = Languages.JScript;
+                            DocumentListBox.Items?.Clear( );
+                            var _documents = Directory.GetFiles( _path );
+                            foreach( var _file in _documents )
+                            {
+                                var _item = new ListBoxItem
+                                {
+                                    Tag = _file,
+                                    Content = Path.GetFileNameWithoutExtension( _file )
+                                };
+
+                                DocumentListBox.Items?.Add( _item );
+                            }
+
+                            break;
+                        }
+                        case "CPP":
+                        {
+                            var _path = _prefix + @"CPP\";
+                            TabControl.SelectedIndex = 0;
+                            ChatEditor.DocumentLanguage = Languages.C;
+                            ChatEditor.DocumentSource = _path;
+                            DocumentListBox.Items?.Clear( );
+                            var _documents = Directory.GetFiles( _path );
+                            foreach( var _file in _documents )
+                            {
+                                var _item = new ListBoxItem
+                                {
+                                    Tag = _file,
+                                    Content = Path.GetFileNameWithoutExtension( _file )
+                                };
+
+                                DocumentListBox.Items?.Add( _item );
+                            }
+
+                            break;
+                        }
+                        case "VBA":
+                        {
+                            var _path = _prefix + @"VBA\";
+                            TabControl.SelectedIndex = 0;
+                            ChatEditor.DocumentLanguage = Languages.VisualBasic;
+                            DocumentListBox.Items?.Clear( );
+                            var _documents = Directory.GetFiles( _path );
+                            foreach( var _file in _documents )
+                            {
+                                var _item = new ListBoxItem
+                                {
+                                    Tag = _file,
+                                    Content = Path.GetFileNameWithoutExtension( _file )
+                                };
+
+                                DocumentListBox.Items?.Add( _item );
+                            }
+
+                            break;
+                        }
+                        default:
+                        {
+                            var _pre = @"C:\Users\terry\source\repos\Bubba\Resources\Document\";
+                            var _path = _pre + @"Appropriations\";
+                            TabControl.SelectedIndex = 0;
+                            ChatEditor.DocumentLanguage = Languages.Text;
+                            DocumentListBox.Items?.Clear( );
+                            var _documents = Directory.GetFiles( _path );
+                            foreach( var _file in _documents )
+                            {
+                                var _item = new ListBoxItem
+                                {
+                                    Tag = _file,
+                                    Content = Path.GetFileNameWithoutExtension( _file )
+                                };
+
+                                DocumentListBox.Items?.Add( _item );
+                            }
+
+                            break;
+                        }
+                    }
+                }
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+            }
+        }
 
         /// <summary>
         /// Updates the status.
@@ -3022,7 +3031,8 @@ namespace Bubba
         {
             try
             {
-                var _text = ToolStripTextBox.InputText;
+                var _textBox = sender as ToolStripTextBox;
+                var _text = _textBox?.InputText;
                 if( !string.IsNullOrEmpty( _text ) )
                 {
                     ChatEditor.Text = _text;
@@ -3644,14 +3654,18 @@ namespace Bubba
             {
                 if( ModelListBox.SelectedIndex != -1 )
                 {
+                    ModelLabel.Content = "";
                     _model = ModelListBox.SelectedValue.ToString( );
                     if( !string.IsNullOrEmpty( _selectedRequest ) )
                     {
-                        ModelLabel.Content += $"  Request - {_selectedRequest}  |  ";
+                        ModelLabel.Content = $"LLM | {_model?.ToUpper( )} ";
+                        PopulateImageSizes( );
                     }
-
-                    ModelLabel.Content += $"LLM | {_model?.ToUpper( )}";
-                    PopulateImageSizes( );
+                    else
+                    {
+                        ModelLabel.Content += $"LLM | {_model?.ToUpper( )} ";
+                        PopulateImageSizes( );
+                    }
                 }
             }
             catch( Exception ex )
@@ -3721,7 +3735,9 @@ namespace Bubba
                 {
                     var _item = ( ListBoxItem )GenerationListBox.SelectedItem;
                     _selectedRequest = _item.Tag?.ToString( );
-                    _requestType = ( GptRequests )Enum.Parse( typeof( GptRequests ), _selectedRequest );
+                    _requestType =
+                        ( GptRequests )Enum.Parse( typeof( GptRequests ), _selectedRequest );
+
                     SetRequestType( );
                 }
             }

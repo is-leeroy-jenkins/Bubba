@@ -8,6 +8,64 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("resources/documents/regulations/budget%20appendix%202025.pdf")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("resources/documents/regulations/chief%20financial%20officers%20act%20of%201990.pd" +
+    "f")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("resources/documents/regulations/digital%20accountability%20and%20transparency%20a" +
+    "ct%20of%202014.pdf")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("resources/documents/regulations/federal%20account%20symbols%20and%20titles%20book" +
+    ".pdf")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("resources/documents/regulations/federal%20acquisition%20regulation.pdf")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("resources/documents/regulations/federal%20government%20standards%20for%20internal" +
+    "%20controls.pdf")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("resources/documents/regulations/federal%20managers%20financial%20integrity%20act%" +
+    "20of%201982.pdf")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("resources/documents/regulations/federal%20trust%20fund%20accounting%20guide.pdf")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("resources/documents/regulations/financial%20resposibility%20act%20of%202023.pdf")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("resources/documents/regulations/government%20auditing%20standards.pdf")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("resources/documents/regulations/government%20invoicing%20user%20guide.pdf")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("resources/documents/regulations/government%20performance%20and%20results%20act%20" +
+    "of%201993.pdf")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("resources/documents/regulations/gpra%20modernization%20act%20of%202010.pdf")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("resources/documents/regulations/independent%20offices%20appropriation%20act,%2019" +
+    "53.pdf")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("resources/documents/regulations/inspector%20general%20act%20of%201978.pdf")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("resources/documents/regulations/omb%20circular%20a-11%20preparation%20submission%" +
+    "20and%20execution%20of%20the%20budget.pdf")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("resources/documents/regulations/omb%20circular%20a-11%20section%20100%20sequestra" +
+    "tion.pdf")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("resources/documents/regulations/omb%20circular%20a-11%20section%20120%20apportion" +
+    "ment%20process.pdf")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("resources/documents/regulations/omb%20circular%20a-123%20managements%20responsibi" +
+    "lity%20for%20enterprise%20risk%20management%20and%20internal%20control.pdf")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("resources/documents/regulations/principles%20of%20federal%20appropriations%20law%" +
+    "20volume%20one.pdf")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("resources/documents/regulations/principles%20of%20federal%20appropriations%20law%" +
+    "20volume%20two.pdf")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("resources/documents/regulations/statements%20of%20federal%20federal%20financial%2" +
+    "0accounting%20concepts%20and%20standards.pdf")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("resources/documents/regulations/supplemental%20appropriation%20act,%201955.pdf")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("resources/documents/regulations/the%20anti-deficiency%20act%20pl%2097-258.pdf")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("resources/documents/regulations/the%20anti-deficiency%20reform%20and%20enforcemen" +
+    "t%20act%20of%202018.pdf")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("resources/documents/regulations/the%20balanced%20budget%20and%20emergency%20defic" +
+    "it%20control%20act%20of%201985.pdf")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("resources/documents/regulations/the%20budget%20and%20accounting%20act%20of%201921" +
+    ".pdf")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("resources/documents/regulations/the%20budget%20control%20act.pdf")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("resources/documents/regulations/the%20economy%20act%20of%201932.pdf")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("resources/documents/regulations/the%20fiscal%20responsibility%20act%20of%202023.p" +
+    "df")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("resources/documents/regulations/the%20impoundment%20control%20act%20of%201974.pdf" +
+    "")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("resources/documents/regulations/the%20stafford%20act.pdf")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("resources/documents/regulations/title%202%20code%20of%20federal%20regulations%20-" +
+    "%20uniform%20administrative%20requirements,%20cost%20principles,%20and%20audit.p" +
+    "df")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("resources/documents/regulations/title%2031%20code%20of%20federal%20regulations%20" +
+    "-%20money%20and%20finance.pdf")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("resources/documents/regulations/u.s.%20standard%20general%20ledger%20accounts%20a" +
+    "nd%20definitions.pdf")]
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("af.pak")]
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("am.pak")]
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("ar.pak")]
