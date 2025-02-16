@@ -55,6 +55,7 @@ namespace Bubba
     using System.Windows;
     using System.Windows.Controls;
     using System.Xml.Linq;
+    using Microsoft.ML;
 
     /// <summary>
     /// 
@@ -270,7 +271,27 @@ namespace Bubba
                 }
                 case XAttribute _xAttribute:
                 {
-                    if(_xAttribute == null)
+                    if( _xAttribute == null )
+                    {
+                        var _message = @$"The '{paramName}' is null!";
+                        throw new ArgumentNullException(_message);
+                    }
+
+                    break;
+                }
+                case IDataView _view:
+                {
+                    if( _view == null )
+                    {
+                        var _message = @$"The '{paramName}' is null!";
+                        throw new ArgumentNullException( _message );
+                    }
+
+                    break;
+                }
+                case ITransformer _trans:
+                {
+                    if( _trans == null )
                     {
                         var _message = @$"The '{paramName}' is null!";
                         throw new ArgumentNullException(_message);
