@@ -35644,11 +35644,6 @@
             Sets the hyper parameters.
             </summary>
         </member>
-        <member name="M:Bubba.ChatWindow.PopulateDocuments">
-            <summary>
-            Sets the user document language.
-            </summary>
-        </member>
         <member name="M:Bubba.ChatWindow.SetToolbarVisibility(System.Boolean)">
             <summary>
             
@@ -35866,6 +35861,11 @@
         <member name="M:Bubba.ChatWindow.PopulateLanguageListBox">
             <summary>
             Populates the language ListBox.
+            </summary>
+        </member>
+        <member name="M:Bubba.ChatWindow.PopulateDocuments">
+            <summary>
+            Sets the user document language.
             </summary>
         </member>
         <member name="M:Bubba.ChatWindow.UpdateStatus">
@@ -36152,6 +36152,13 @@
             <param name="sender">The sender.</param>
             <param name="e">The <see cref="T:System.Windows.RoutedEventArgs"/>
             instance containing the event data.</param>
+        </member>
+        <member name="M:Bubba.ChatWindow.OnToolStripRefreshButtonClick(System.Object,System.Windows.RoutedEventArgs)">
+            <summary>
+            Called when [tool strip refresh button click].
+            </summary>
+            <param name="sender">The sender.</param>
+            <param name="e">The <see cref="T:System.Windows.RoutedEventArgs"/> instance containing the event data.</param>
         </member>
         <member name="M:Bubba.ChatWindow.OnListenCheckedChanged(System.Object,System.Windows.RoutedEventArgs)">
             <summary>
@@ -40412,36 +40419,6 @@
         <member name="M:Bubba.WebBrowser.InitializeComponent">
             <summary>
             InitializeComponent
-            </summary>
-        </member>
-        <member name="T:XamlGeneratedNamespace.GeneratedInternalTypeHelper">
-            <summary>
-            GeneratedInternalTypeHelper
-            </summary>
-        </member>
-        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.CreateInstance(System.Type,System.Globalization.CultureInfo)">
-            <summary>
-            CreateInstance
-            </summary>
-        </member>
-        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.GetPropertyValue(System.Reflection.PropertyInfo,System.Object,System.Globalization.CultureInfo)">
-            <summary>
-            GetPropertyValue
-            </summary>
-        </member>
-        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.SetPropertyValue(System.Reflection.PropertyInfo,System.Object,System.Object,System.Globalization.CultureInfo)">
-            <summary>
-            SetPropertyValue
-            </summary>
-        </member>
-        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.CreateDelegate(System.Type,System.Object,System.String)">
-            <summary>
-            CreateDelegate
-            </summary>
-        </member>
-        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.AddEventHandler(System.Reflection.EventInfo,System.Object,System.Delegate)">
-            <summary>
-            AddEventHandler
             </summary>
         </member>
     </members>

@@ -246,12 +246,13 @@
                     x:Name="ProgressBar"
                     Width="220"
                     Height="24"
+                    HorizontalContentAlignment="Right"
                     Background="{DynamicResource ControlBackground}"
                     BorderBrush="{DynamicResource ControlBackground}"
                     FontFamily="Roboto"
                     Foreground="{DynamicResource BlueBorderBrush}"
                     ProgressColor="{DynamicResource GreenBackground}"
-                    TrackColor="{DynamicResource BlueBackground}" HorizontalContentAlignment="Right" />
+                    TrackColor="{DynamicResource BlueBackground}" />
                 <Separator
                     Width="5"
                     Background="{x:Null}"
@@ -263,9 +264,10 @@
                     Width="40"
                     Height="30"
                     Margin="15,1,5,1"
+                    HorizontalAlignment="Right"
                     FontFamily="Roboto"
                     ImageSource="/Resources/Assets/ToolStripImages/ToggleButton.png"
-                    ToolTip="Show/Hide Toolbar" HorizontalAlignment="Right" />
+                    ToolTip="Show/Hide Toolbar" />
             </ToolBar>
         </Grid>
 
@@ -346,6 +348,7 @@
                             <RowDefinition />
                             <RowDefinition />
                         </Grid.RowDefinitions>
+
                         <CheckBox
                             x:Name="MuteCheckBox"
                             Height="22"
@@ -356,6 +359,7 @@
                             FontSize="14"
                             Foreground="{StaticResource FormForeground}"
                             ToolTip="Deactivates Text-to-speech (TTS)" />
+
                         <CheckBox
                             x:Name="ListenCheckBox"
                             Grid.Row="1"
@@ -373,71 +377,62 @@
 
                 <GroupBox
                     Grid.Column="1"
-                    Height="110"
-                    Margin="10,0,10,0"
-                    VerticalAlignment="Center"
+                    Margin="10,10,10,11"
                     Background="{StaticResource GroupBoxBackground}"
                     BorderBrush="{StaticResource MutedForeground}"
                     Foreground="{StaticResource LightBlueBrush}"
                     Header="Models">
-                    <Canvas>
+                    <Grid>
                         <b:MetroListBox
                             x:Name="ModelListBox"
-                            Canvas.Left="10"
-                            Canvas.Top="7"
-                            Width="292"
+                            Width="286"
                             Height="75"
+                            Margin="10,10,0,4"
                             Padding="3,3,3,3"
                             HorizontalAlignment="Left"
-                            VerticalAlignment="Center"
-                            VerticalContentAlignment="Top"
                             FontFamily="Roboto"
                             FontSize="12" />
-                    </Canvas>
+                    </Grid>
                 </GroupBox>
 
                 <GroupBox
                     x:Name="SpeechGroupBox"
                     Grid.Column="2"
-                    Height="111"
-                    VerticalAlignment="Center"
+                    Margin="9,10,10,10"
                     Background="{StaticResource GroupBoxBackground}"
                     BorderBrush="{StaticResource MutedForeground}"
                     FontSize="12"
                     Foreground="{StaticResource LightBlueBrush}"
-                    Header="Speech" Margin="9,0,10,0">
-                    <Canvas>
+                    Header="Speech">
+                    <Grid>
                         <b:MetroListBox
                             x:Name="VoiceListBox"
-                            Canvas.Left="14"
-                            Canvas.Top="6"
-                            Width="153"
-                            Height="75"
+                            Width="158"
+                            Margin="10,6,0,6"
                             Padding="3,3,3,3"
                             HorizontalAlignment="Left"
-                            VerticalAlignment="Center"
                             FontFamily="Roboto" />
-                    </Canvas>
+                    </Grid>
                 </GroupBox>
 
                 <GroupBox
                     x:Name="TaskGroupBox"
-                    Height="110"
-                    VerticalAlignment="Center"
+                    Grid.Column="0"
+                    Margin="10,10,10,11"
                     Background="{StaticResource GroupBoxBackground}"
                     BorderBrush="{StaticResource MutedForeground}"
                     Foreground="{StaticResource LightBlueBrush}"
-                    Header="Tasks" Margin="10,0,10,0">
-                    <Canvas>
+                    Header="Tasks">
+
+                    <Grid>
                         <b:MetroListBox
                             x:Name="GenerationListBox"
-                            Canvas.Left="7"
-                            Canvas.Top="7"
                             Width="203"
                             Height="75"
+                            Margin="7,7,0,0"
                             HorizontalAlignment="Left"
-                            VerticalAlignment="Center" />
-                    </Canvas>
+                            VerticalAlignment="Top" />
+                    </Grid>
                 </GroupBox>
 
                 <GroupBox
@@ -447,20 +442,19 @@
                     Background="{StaticResource GroupBoxBackground}"
                     Foreground="{StaticResource LightBlueBrush}"
                     Header="Sizes">
-                    <Canvas>
+                    <Grid>
                         <b:MetroListBox
                             x:Name="ImageSizeListBox"
-                            Canvas.Left="10"
-                            Canvas.Top="5"
-                            Width="135"
+                            Width="142"
                             Height="75"
+                            Margin="0,5,0,0"
                             Padding="3,3,3,3"
-                            HorizontalAlignment="Left"
-                            VerticalAlignment="Center"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Top"
                             VerticalContentAlignment="Top"
                             FontFamily="Roboto"
                             FontSize="12" />
-                    </Canvas>
+                    </Grid>
                 </GroupBox>
 
 
@@ -488,33 +482,33 @@
                     FontFamily="Roboto"
                     FontSize="12"
                     Foreground="{StaticResource LightBlueBrush}"
-                    Header="Randomness" >
+                    Header="Randomness">
                     <wpf:SfRangeSlider
-                    x:Name="TemperatureSlider"
-                    Height="44"
-                    Margin="10,58,10,0"
-                    VerticalAlignment="Top"
-                    ActiveMinorTickStroke="{StaticResource BlueBorderBrush}"
-                    ActiveTickStroke="{StaticResource BlueBorderBrush}"
-                    Background="{StaticResource BlueBorderBrush}"
-                    ClipToBounds="True"
-                    FontFamily="Roboto"
-                    Foreground="{StaticResource WhiteForeground}"
-                    LargeChange="0.05"
-                    Maximum="2"
-                    Minimum="0"
-                    MinorTickFrequency="0.125"
-                    MinorTickLength="6"
-                    MinorTickStroke="{StaticResource WhiteForeground}"
-                    SnapsTo="Ticks"
-                    SnapsToDevicePixels="True"
-                    ThumbToolTipPlacement="BottomRight"
-                    TickFrequency="0.10"
-                    TickLength="12"
-                    TickStroke="{StaticResource WhiteForeground}"
-                    ToolTip="A number between 0 and 2. Default=1"
-                    ToolTipFormat="P2"
-                    Value="0.08" />
+                        x:Name="TemperatureSlider"
+                        Height="44"
+                        Margin="10,58,10,0"
+                        VerticalAlignment="Top"
+                        ActiveMinorTickStroke="{StaticResource BlueBorderBrush}"
+                        ActiveTickStroke="{StaticResource BlueBorderBrush}"
+                        Background="{StaticResource BlueBorderBrush}"
+                        ClipToBounds="True"
+                        FontFamily="Roboto"
+                        Foreground="{StaticResource WhiteForeground}"
+                        LargeChange="0.05"
+                        Maximum="2"
+                        Minimum="0"
+                        MinorTickFrequency="0.125"
+                        MinorTickLength="6"
+                        MinorTickStroke="{StaticResource WhiteForeground}"
+                        SnapsTo="Ticks"
+                        SnapsToDevicePixels="True"
+                        ThumbToolTipPlacement="BottomRight"
+                        TickFrequency="0.10"
+                        TickLength="12"
+                        TickStroke="{StaticResource WhiteForeground}"
+                        ToolTip="A number between 0 and 2. Default=1"
+                        ToolTipFormat="P2"
+                        Value="0.08" />
                 </GroupBox>
 
 
@@ -567,37 +561,37 @@
                     FontFamily="Roboto"
                     FontSize="12"
                     Foreground="{StaticResource LightBlueBrush}"
-                    Header="Nucleus Sampling" >
+                    Header="Nucleus Sampling">
                     <wpf:SfRangeSlider
-                    x:Name="TopPercentSlider"
-                    Height="44"
-                    Margin="10,58,10,0"
-                    VerticalAlignment="Top"
-                    ActiveMinorTickStroke="{StaticResource LightBlueBrush}"
-                    ActiveTickStroke="{StaticResource BlueBorderBrush}"
-                    Background="{StaticResource BlueBorderBrush}"
-                    BorderBrush="{StaticResource GroupBoxBackground}"
-                    ClipToBounds="True"
-                    FontFamily="Roboto"
-                    LabelPlacement="BottomRight"
-                    LargeChange="0.10"
-                    Maximum="1.0"
-                    Minimum="0.0"
-                    MinorTickFrequency="0.125"
-                    MinorTickLength="5"
-                    MinorTickStroke="{StaticResource WhiteForeground}"
-                    SmallChange="0.05"
-                    SnapsTo="Ticks"
-                    SnapsToDevicePixels="True"
-                    Tag="TopPercent"
-                    ThumbToolTipPlacement="BottomRight"
-                    TickFrequency="0.05"
-                    TickLength="10"
-                    TickStroke="{StaticResource WhiteForeground}"
-                    ToolTip="A number between 0 and 1. (%) Default=0"
-                    ToolTipFormat="P2"
-                    ValuePlacement="TopLeft"
-                    Value="0.09" />
+                        x:Name="TopPercentSlider"
+                        Height="44"
+                        Margin="10,58,10,0"
+                        VerticalAlignment="Top"
+                        ActiveMinorTickStroke="{StaticResource LightBlueBrush}"
+                        ActiveTickStroke="{StaticResource BlueBorderBrush}"
+                        Background="{StaticResource BlueBorderBrush}"
+                        BorderBrush="{StaticResource GroupBoxBackground}"
+                        ClipToBounds="True"
+                        FontFamily="Roboto"
+                        LabelPlacement="BottomRight"
+                        LargeChange="0.10"
+                        Maximum="1.0"
+                        Minimum="0.0"
+                        MinorTickFrequency="0.125"
+                        MinorTickLength="5"
+                        MinorTickStroke="{StaticResource WhiteForeground}"
+                        SmallChange="0.05"
+                        SnapsTo="Ticks"
+                        SnapsToDevicePixels="True"
+                        Tag="TopPercent"
+                        ThumbToolTipPlacement="BottomRight"
+                        TickFrequency="0.05"
+                        TickLength="10"
+                        TickStroke="{StaticResource WhiteForeground}"
+                        ToolTip="A number between 0 and 1. (%) Default=0"
+                        ToolTipFormat="P2"
+                        ValuePlacement="TopLeft"
+                        Value="0.09" />
                 </GroupBox>
 
                 <GroupBox
@@ -611,36 +605,36 @@
                     FontFamily="Roboto"
                     FontSize="12"
                     Foreground="{StaticResource LightBlueBrush}"
-                    Header="Presence Penalty" >
+                    Header="Presence Penalty">
                     <wpf:SfRangeSlider
-                    x:Name="PresenceSlider"
-                    Height="44"
-                    Margin="10,58,10,0"
-                    VerticalAlignment="Top"
-                    ActiveMinorTickStroke="{StaticResource BlueBorderBrush}"
-                    ActiveTickStroke="{StaticResource BlueBorderBrush}"
-                    Background="{StaticResource BlueBorderBrush}"
-                    BorderBrush="{StaticResource GroupBoxBackground}"
-                    ClipToBounds="True"
-                    FontFamily="Roboto"
-                    LabelPlacement="BottomRight"
-                    LargeChange="0.10"
-                    Maximum="2"
-                    Minimum="-2"
-                    MinorTickFrequency="0.5"
-                    MinorTickLength="4"
-                    MinorTickStroke="{StaticResource WhiteForeground}"
-                    SmallChange="0.25"
-                    SnapsTo="Ticks"
-                    SnapsToDevicePixels="True"
-                    Tag="FrequencyPenalty"
-                    TickFrequency="0.2"
-                    TickLength="10"
-                    TickStroke="{StaticResource WhiteForeground}"
-                    ToolTip="A number between -2 and 2. Default=0"
-                    ToolTipFormat="P2"
-                    ValuePlacement="TopLeft"
-                    Value="0.00" />
+                        x:Name="PresenceSlider"
+                        Height="44"
+                        Margin="10,58,10,0"
+                        VerticalAlignment="Top"
+                        ActiveMinorTickStroke="{StaticResource BlueBorderBrush}"
+                        ActiveTickStroke="{StaticResource BlueBorderBrush}"
+                        Background="{StaticResource BlueBorderBrush}"
+                        BorderBrush="{StaticResource GroupBoxBackground}"
+                        ClipToBounds="True"
+                        FontFamily="Roboto"
+                        LabelPlacement="BottomRight"
+                        LargeChange="0.10"
+                        Maximum="2"
+                        Minimum="-2"
+                        MinorTickFrequency="0.5"
+                        MinorTickLength="4"
+                        MinorTickStroke="{StaticResource WhiteForeground}"
+                        SmallChange="0.25"
+                        SnapsTo="Ticks"
+                        SnapsToDevicePixels="True"
+                        Tag="FrequencyPenalty"
+                        TickFrequency="0.2"
+                        TickLength="10"
+                        TickStroke="{StaticResource WhiteForeground}"
+                        ToolTip="A number between -2 and 2. Default=0"
+                        ToolTipFormat="P2"
+                        ValuePlacement="TopLeft"
+                        Value="0.00" />
                 </GroupBox>
 
                 <GroupBox
@@ -653,36 +647,37 @@
                     FontFamily="Roboto"
                     FontSize="12"
                     Foreground="{StaticResource LightBlueBrush}"
-                    Header="Frequency Penalty" >
+                    Header="Frequency Penalty">
                     <wpf:SfRangeSlider
-                    x:Name="FrequencySlider"
-                    Height="44"
-                    Margin="10,58,10,0"
-                    VerticalAlignment="Top"
-                    ActiveMinorTickStroke="{StaticResource BlueBorderBrush}"
-                    ActiveTickStroke="{StaticResource BlueBorderBrush}"
-                    Background="{StaticResource BlueBorderBrush}"
-                    Foreground="{StaticResource WhiteForeground}"
-                    LabelPlacement="BottomRight"
-                    LargeChange="0.10"
-                    Maximum="2"
-                    Minimum="-2"
-                    MinorTickLength="4"
-                    MinorTickStroke="{StaticResource WhiteForeground}"
-                    SmallChange="0.20"
-                    SnapsTo="Ticks"
-                    Tag="FrequencyPenalty"
-                    TickFrequency="0.25"
-                    TickLength="10"
-                    TickStroke="{StaticResource WhiteForeground}"
-                    ToolTip="A number between -2 and 2. Default=0"
-                    ToolTipFormat="N2"
-                    ValuePlacement="TopLeft"
-                    Value="0.00" />
+                        x:Name="FrequencySlider"
+                        Height="44"
+                        Margin="10,58,10,0"
+                        VerticalAlignment="Top"
+                        ActiveMinorTickStroke="{StaticResource BlueBorderBrush}"
+                        ActiveTickStroke="{StaticResource BlueBorderBrush}"
+                        Background="{StaticResource BlueBorderBrush}"
+                        Foreground="{StaticResource WhiteForeground}"
+                        LabelPlacement="BottomRight"
+                        LargeChange="0.10"
+                        Maximum="2"
+                        Minimum="-2"
+                        MinorTickLength="4"
+                        MinorTickStroke="{StaticResource WhiteForeground}"
+                        SmallChange="0.20"
+                        SnapsTo="Ticks"
+                        Tag="FrequencyPenalty"
+                        TickFrequency="0.25"
+                        TickLength="10"
+                        TickStroke="{StaticResource WhiteForeground}"
+                        ToolTip="A number between -2 and 2. Default=0"
+                        ToolTipFormat="N2"
+                        ValuePlacement="TopLeft"
+                        Value="0.00" />
                 </GroupBox>
 
                 <TextBox
                     x:Name="TemperatureTextBox"
+                    Grid.Column="0"
                     Width="80"
                     Height="30"
                     Margin="76,145,0,0"
@@ -774,39 +769,40 @@
                     FontFamily="Roboto"
                     FontSize="12"
                     Foreground="{StaticResource LightBlueBrush}"
-                    Header="Responses" >
+                    Header="Responses">
                     <wpf:SfRangeSlider
-                    x:Name="NumberSlider"
-                    Height="48"
-                    Margin="10,58,10,0"
-                    VerticalAlignment="Top"
-                    ActiveMinorTickStroke="{StaticResource BlueBorderBrush}"
-                    ActiveTickStroke="{StaticResource BlueBorderBrush}"
-                    Background="{StaticResource BlueBorderBrush}"
-                    ClipToBounds="True"
-                    FontFamily="Roboto"
-                    Foreground="{StaticResource WhiteForeground}"
-                    LabelPlacement="BottomRight"
-                    LargeChange="4"
-                    Maximum="20"
-                    Minimum="1"
-                    MinorTickFrequency="1"
-                    MinorTickLength="4"
-                    MinorTickStroke="{StaticResource WhiteForeground}"
-                    SmallChange="1"
-                    SnapsTo="Ticks"
-                    SnapsToDevicePixels="True"
-                    TickFrequency="4"
-                    TickLength="10"
-                    TickStroke="{StaticResource WhiteForeground}"
-                    ToolTip="The number of responses (text, image, speech, etc)"
-                    ToolTipFormat="N1"
-                    ValuePlacement="TopLeft"
-                    Value="1" />
+                        x:Name="NumberSlider"
+                        Height="48"
+                        Margin="10,58,10,0"
+                        VerticalAlignment="Top"
+                        ActiveMinorTickStroke="{StaticResource BlueBorderBrush}"
+                        ActiveTickStroke="{StaticResource BlueBorderBrush}"
+                        Background="{StaticResource BlueBorderBrush}"
+                        ClipToBounds="True"
+                        FontFamily="Roboto"
+                        Foreground="{StaticResource WhiteForeground}"
+                        LabelPlacement="BottomRight"
+                        LargeChange="4"
+                        Maximum="20"
+                        Minimum="1"
+                        MinorTickFrequency="1"
+                        MinorTickLength="4"
+                        MinorTickStroke="{StaticResource WhiteForeground}"
+                        SmallChange="1"
+                        SnapsTo="Ticks"
+                        SnapsToDevicePixels="True"
+                        TickFrequency="4"
+                        TickLength="10"
+                        TickStroke="{StaticResource WhiteForeground}"
+                        ToolTip="The number of responses (text, image, speech, etc)"
+                        ToolTipFormat="N1"
+                        ValuePlacement="TopLeft"
+                        Value="1" />
                 </GroupBox>
 
                 <TextBlock
                     x:Name="TemperatureText"
+                    Grid.Column="0"
                     Margin="84,42,58,139"
                     FontFamily="Roboto"
                     FontSize="16"
@@ -891,6 +887,7 @@
                     FontSize="16"
                     Foreground="{StaticResource BlueBorderBrush}"
                     Text="{Binding Value, ElementName=NumberSlider, Mode=TwoWay, StringFormat=N0}" />
+
                 <TextBlock
                     x:Name="MaxTokenText"
                     Grid.Column="5"
@@ -936,15 +933,14 @@
                                 <ColumnDefinition Width="1041*" />
                             </Grid.ColumnDefinitions>
 
-                            <Canvas Grid.Column="1">
+                            <Grid Grid.Column="1">
                                 <b:MetroEditor
                                     x:Name="ChatEditor"
-                                    Canvas.Left="10"
-                                    Canvas.Top="10"
                                     Width="1063"
                                     Height="270"
+                                    Margin="5"
                                     Padding="5"
-                                    HorizontalAlignment="Left"
+                                    HorizontalAlignment="Right"
                                     VerticalAlignment="Center"
                                     Background="{StaticResource ControlInteriorBrush}"
                                     BorderThickness="2"
@@ -957,7 +953,7 @@
                                     OutliningAreaBackground="{DynamicResource ListBoxBackground}"
                                     OutliningAreaWidth="15"
                                     VerticalScrollBarVisibility="Visible" />
-                            </Canvas>
+                            </Grid>
 
                             <Grid Grid.Column="0">
                                 <Grid.RowDefinitions>
@@ -1189,8 +1185,8 @@
                 Grid.Column="0"
                 Margin="1,1,1,1"
                 HorizontalContentAlignment="Center"
-                VerticalContentAlignment="Center"
-                Content="Label"
+                VerticalContentAlignment="Bottom"
+                Content=""
                 FontFamily="Roboto"
                 FontSize="14"
                 Foreground="{DynamicResource FormForeground}" />
@@ -1200,8 +1196,8 @@
                 Grid.Column="1"
                 Margin="1,1,1,1"
                 HorizontalContentAlignment="Center"
-                VerticalContentAlignment="Center"
-                Content="Label"
+                VerticalContentAlignment="Bottom"
+                Content=""
                 FontFamily="Roboto"
                 FontSize="14"
                 Foreground="{DynamicResource FormForeground}" />
