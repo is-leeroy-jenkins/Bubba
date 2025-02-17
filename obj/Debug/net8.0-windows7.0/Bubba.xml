@@ -18832,6 +18832,158 @@
             The modalities.
             </value>
         </member>
+        <member name="T:Bubba.ChatLog">
+            <inheritdoc />
+            <summary>
+            </summary>
+        </member>
+        <member name="F:Bubba.ChatLog._userPrompts">
+            <summary>
+            The user prompts
+            </summary>
+        </member>
+        <member name="F:Bubba.ChatLog._systemPrompts">
+            <summary>
+            The system prompts
+            </summary>
+        </member>
+        <member name="F:Bubba.ChatLog._assistantPrompts">
+            <summary>
+            The assistant prompts
+            </summary>
+        </member>
+        <member name="F:Bubba.ChatLog._userMessages">
+            <summary>
+            The user messages
+            </summary>
+        </member>
+        <member name="F:Bubba.ChatLog._systemMessages">
+            <summary>
+            The system messages
+            </summary>
+        </member>
+        <member name="F:Bubba.ChatLog._assistantMessages">
+            <summary>
+            The assistant messages
+            </summary>
+        </member>
+        <member name="F:Bubba.ChatLog._messages">
+            <summary>
+            The messages
+            </summary>
+        </member>
+        <member name="F:Bubba.ChatLog._data">
+            <summary>
+            The data
+            </summary>
+        </member>
+        <member name="M:Bubba.ChatLog.#ctor">
+            <summary>
+            Initializes a new instance of the
+            <see cref="T:System.Object" /> class.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Bubba.ChatLog.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the
+            <see cref="T:Bubba.ChatLog"/> class.
+            </summary>
+            <param name="userPrompt">The user prompt.</param>
+        </member>
+        <member name="M:Bubba.ChatLog.#ctor(System.String,System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Bubba.ChatLog"/> class.
+            </summary>
+            <param name="systemPrompt">The system prompt.</param>
+            <param name="userPrompt">The user prompt.</param>
+        </member>
+        <member name="P:Bubba.ChatLog.UserPrompts">
+            <summary>
+            Gets or sets the user prompts.
+            </summary>
+            <value>
+            The user prompts.
+            </value>
+        </member>
+        <member name="P:Bubba.ChatLog.UserMessages">
+            <summary>
+            Gets or sets the user messages.
+            </summary>
+            <value>
+            The user messages.
+            </value>
+        </member>
+        <member name="P:Bubba.ChatLog.SystemMessages">
+            <summary>
+            Gets or sets the system messages.
+            </summary>
+            <value>
+            The system messages.
+            </value>
+        </member>
+        <member name="P:Bubba.ChatLog.AssistantMessages">
+            <summary>
+            Gets or sets the assistant messages.
+            </summary>
+            <value>
+            The assistant messages.
+            </value>
+        </member>
+        <member name="P:Bubba.ChatLog.SystemPrompts">
+            <summary>
+            Gets or sets the system prompts.
+            </summary>
+            <value>
+            The system prompts.
+            </value>
+        </member>
+        <member name="P:Bubba.ChatLog.AssistantPrompts">
+            <summary>
+            Gets or sets the assistant prompts.
+            </summary>
+            <value>
+            The assistant prompts.
+            </value>
+        </member>
+        <member name="M:Bubba.ChatLog.AddUserMessage(System.String)">
+            <summary>
+            Adds the user message.
+            </summary>
+            <param name="prompt">The prompt.</param>
+        </member>
+        <member name="M:Bubba.ChatLog.AddSystemMessage(System.String)">
+            <summary>
+            Adds the user message.
+            </summary>
+            <param name="prompt">The prompt.</param>
+        </member>
+        <member name="M:Bubba.ChatLog.AddAssistantMessage(System.String)">
+            <summary>
+            Adds the user message.
+            </summary>
+            <param name="prompt">The prompt.</param>
+        </member>
+        <member name="M:Bubba.ChatLog.GetData">
+            <inheritdoc />
+            <summary>
+            Gets the data.
+            </summary>
+            <returns>
+            </returns>
+        </member>
+        <member name="M:Bubba.ChatLog.Serialize">
+            <summary>
+            Serializes this instance.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Bubba.ChatLog.Fail(System.Exception)">
+            <summary>
+            Fails the specified ex.
+            </summary>
+            <param name="ex">The ex.</param>
+        </member>
         <member name="T:Bubba.GptClient">
             <inheritdoc />
             <summary>
@@ -27348,6 +27500,167 @@
             <param name="text">The text.</param>
             <returns></returns>
         </member>
+        <member name="T:Bubba.DataPreprocessor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Bubba.DataPreprocessor._context">
+            <summary>
+            The ml context
+            </summary>
+        </member>
+        <member name="F:Bubba.DataPreprocessor._pipeline">
+            <summary>
+            The pipeline
+            </summary>
+        </member>
+        <member name="M:Bubba.DataPreprocessor.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Bubba.DataPreprocessor"/> class.
+            </summary>
+        </member>
+        <member name="M:Bubba.DataPreprocessor.#ctor(System.String,System.String)">
+            <inheritdoc />
+            <summary>
+            Initializes a new instance of the <see cref="T:Bubba.DataPreprocessor" /> class.
+            </summary>
+            <param name="inputColumnName">Name of the input column.</param>
+            <param name="outputColumnName">Name of the output column.</param>
+        </member>
+        <member name="M:Bubba.DataPreprocessor.HandleMissingValues(System.String)">
+            <summary>
+            Handles missing values by replacing them
+            with the mean (for numerical) or mode (for categorical).
+            </summary>
+        </member>
+        <member name="M:Bubba.DataPreprocessor.Standardize(System.String)">
+            <summary>
+            Applies Z-score normalization to numerical features.
+            </summary>
+        </member>
+        <member name="M:Bubba.DataPreprocessor.Normalize(System.String)">
+            <summary>
+            Applies Min-Max Normalization to numerical features.
+            </summary>
+        </member>
+        <member name="M:Bubba.DataPreprocessor.TokenizeWords(System.String)">
+            <summary>
+            Tokenizes text into words.
+            </summary>
+        </member>
+        <member name="M:Bubba.DataPreprocessor.RemoveStopWords(System.String)">
+            <summary>
+            Removes stop words from tokenized text.
+            </summary>
+        </member>
+        <member name="M:Bubba.DataPreprocessor.ApplyNGrams(System.String,System.String,System.Int32)">
+            <summary>
+            Generates n-grams from tokenized text.
+            </summary>
+        </member>
+        <member name="M:Bubba.DataPreprocessor.ApplyWordEmbeddings(System.String,System.String)">
+            <summary>
+            Applies Word Embeddings (e.g., GloVe, FastText).
+            </summary>
+        </member>
+        <member name="M:Bubba.DataPreprocessor.OneHotEncode(System.String)">
+            <summary>
+            Converts categorical variables into one-hot encoded vectors.
+            </summary>
+        </member>
+        <member name="M:Bubba.DataPreprocessor.FeaturizeTextInverseFrequency(System.String,System.String)">
+            <summary>
+            Featurizes text using TF-IDF (useful for NLP tasks).
+            </summary>
+        </member>
+        <member name="M:Bubba.DataPreprocessor.ApplyComponentAnalysis(System.String,System.String,System.String,System.Int32)">
+            <summary>
+            Applies Principal Component Analysis (PCA) for dimensionality reduction.
+            </summary>
+        </member>
+        <member name="M:Bubba.DataPreprocessor.SelectTopFeatures(System.String,System.String,System.String,System.Int32)">
+            <summary>
+            Selects top N most relevant features using mutual information.
+            </summary>
+        </member>
+        <member name="M:Bubba.DataPreprocessor.Build(Microsoft.ML.IDataView)">
+            <summary>
+            Builds and fits the transformation pipeline.
+            </summary>
+        </member>
+        <member name="M:Bubba.DataPreprocessor.Transform(Microsoft.ML.ITransformer,Microsoft.ML.IDataView)">
+            <summary>
+            Transforms new data using the built pipeline.
+            </summary>
+        </member>
+        <member name="M:Bubba.DataPreprocessor.SaveTransformer(Microsoft.ML.ITransformer,System.String)">
+            <summary>
+            Saves the trained transformer to a file.
+            </summary>
+        </member>
+        <member name="M:Bubba.DataPreprocessor.LoadTransformer(System.String)">
+            <summary>
+            Loads a pre-trained transformer from a file.
+            </summary>
+        </member>
+        <member name="M:Bubba.DataPreprocessor.Fail(System.Exception)">
+            <summary>
+            Fails the specified ex.
+            </summary>
+            <param name="ex">The ex.</param>
+        </member>
+        <member name="T:Bubba.InputData">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Bubba.InputData.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Bubba.InputData"/> class.
+            </summary>
+        </member>
+        <member name="M:Bubba.InputData.#ctor(System.String,System.Single,System.String,System.Int32)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Bubba.InputData"/> class.
+            </summary>
+            <param name="text">The text.</param>
+            <param name="number">The number.</param>
+            <param name="category">The category.</param>
+            <param name="label">The label.</param>
+        </member>
+        <member name="P:Bubba.InputData.Text">
+            <summary>
+            Gets or sets the text.
+            </summary>
+            <value>
+            The text.
+            </value>
+        </member>
+        <member name="P:Bubba.InputData.Number">
+            <summary>
+            Gets or sets the number.
+            </summary>
+            <value>
+            The number.
+            </value>
+        </member>
+        <member name="P:Bubba.InputData.Category">
+            <summary>
+            Gets or sets the category.
+            </summary>
+            <value>
+            The category.
+            </value>
+        </member>
+        <member name="P:Bubba.InputData.Label">
+            <summary>
+            Gets or sets the label.
+            </summary>
+            <value>
+            The label.
+            </value>
+        </member>
         <member name="T:Bubba.LanguagePipeline">
             <summary>
             
@@ -27456,8 +27769,8 @@
             <returns></returns>
         </member>
         <member name="T:Bubba.TextPreprocessor">
+            <inheritdoc />
             <summary>
-            
             </summary>
             <seealso cref="T:Bubba.ILanguageProcessor" />
         </member>
@@ -27467,6 +27780,7 @@
             </summary>
         </member>
         <member name="M:Bubba.TextPreprocessor.Tokenize(System.String)">
+            <inheritdoc />
             <summary>
             Tokenizes the specified text.
             </summary>
@@ -27474,6 +27788,7 @@
             <returns></returns>
         </member>
         <member name="M:Bubba.TextPreprocessor.NormalizeText(System.String)">
+            <inheritdoc />
             <summary>
             Normalizes the text.
             </summary>
@@ -27481,6 +27796,7 @@
             <returns></returns>
         </member>
         <member name="M:Bubba.TextPreprocessor.RemoveStopWords(System.String[])">
+            <inheritdoc />
             <summary>
             Removes the stop words.
             </summary>
@@ -27488,11 +27804,18 @@
             <returns></returns>
         </member>
         <member name="M:Bubba.TextPreprocessor.StemWord(System.String)">
+            <inheritdoc />
             <summary>
             Stems the word.
             </summary>
             <param name="word">The word.</param>
             <returns></returns>
+        </member>
+        <member name="M:Bubba.TextPreprocessor.Fail(System.Exception)">
+            <summary>
+            Fails the specified ex.
+            </summary>
+            <param name="ex">The ex.</param>
         </member>
         <member name="T:Bubba.AsyncPathBase">
             <summary>
@@ -32446,6 +32769,26 @@
             </summary>
             <param name="_ex">The _ex.</param>
         </member>
+        <member name="T:Bubba.MetroGroupBox">
+            <inheritdoc />
+        </member>
+        <member name="F:Bubba.MetroGroupBox._theme">
+            <summary>
+            The theme
+            </summary>
+        </member>
+        <member name="M:Bubba.MetroGroupBox.#ctor">
+            <inheritdoc />
+            <summary>
+            Initializes a new instance of the <see cref="T:Bubba.MetroGroupBox" /> class.
+            </summary>
+        </member>
+        <member name="M:Bubba.MetroGroupBox.Fail(System.Exception)">
+            <summary>
+            Fails the specified _ex.
+            </summary>
+            <param name="_ex">The _ex.</param>
+        </member>
         <member name="T:Bubba.MetroHeaderBox">
             <summary>
             
@@ -35223,9 +35566,14 @@
             The system prompt fro the GPT
             </summary>
         </member>
-        <member name="F:Bubba.ChatWindow._prompt">
+        <member name="F:Bubba.ChatWindow._userPrompt">
             <summary>
             The user prompt for the GPT
+            </summary>
+        </member>
+        <member name="F:Bubba.ChatWindow._messages">
+            <summary>
+            The messages
             </summary>
         </member>
         <member name="F:Bubba.ChatWindow._keyWords">
@@ -35281,6 +35629,11 @@
         <member name="F:Bubba.ChatWindow._httpClient">
             <summary>
             The HTTP client
+            </summary>
+        </member>
+        <member name="F:Bubba.ChatWindow._options">
+            <summary>
+            The options
             </summary>
         </member>
         <member name="F:Bubba.ChatWindow.Assembly">
@@ -35347,6 +35700,11 @@
             </summary>
         </member>
         <member name="F:Bubba.ChatWindow._imageSizes">
+            <summary>
+            The image sizes
+            </summary>
+        </member>
+        <member name="F:Bubba.ChatWindow._voices">
             <summary>
             The image sizes
             </summary>
@@ -35462,6 +35820,11 @@
         <member name="M:Bubba.ChatWindow.ActivateChatTab">
             <summary>
             Activates the chat tab.
+            </summary>
+        </member>
+        <member name="M:Bubba.ChatWindow.ActivateNetworkTab">
+            <summary>
+            Activates the network tab.
             </summary>
         </member>
         <member name="M:Bubba.ChatWindow.InvokeIf(System.Action)">
@@ -35642,6 +36005,11 @@
         <member name="M:Bubba.ChatWindow.SetGptParameters">
             <summary>
             Sets the hyper parameters.
+            </summary>
+        </member>
+        <member name="M:Bubba.ChatWindow.SetGptOptions">
+            <summary>
+            Sets the GPT options.
             </summary>
         </member>
         <member name="M:Bubba.ChatWindow.SetToolbarVisibility(System.Boolean)">
@@ -35851,6 +36219,11 @@
         <member name="M:Bubba.ChatWindow.PopulateOpenAiVoices">
             <summary>
             Populates the open ai voices.
+            </summary>
+        </member>
+        <member name="M:Bubba.ChatWindow.PopulateVoices">
+            <summary>
+            Populates the voices.
             </summary>
         </member>
         <member name="M:Bubba.ChatWindow.PopulateRequestTypes">
@@ -40419,6 +40792,36 @@
         <member name="M:Bubba.WebBrowser.InitializeComponent">
             <summary>
             InitializeComponent
+            </summary>
+        </member>
+        <member name="T:XamlGeneratedNamespace.GeneratedInternalTypeHelper">
+            <summary>
+            GeneratedInternalTypeHelper
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.CreateInstance(System.Type,System.Globalization.CultureInfo)">
+            <summary>
+            CreateInstance
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.GetPropertyValue(System.Reflection.PropertyInfo,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            GetPropertyValue
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.SetPropertyValue(System.Reflection.PropertyInfo,System.Object,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            SetPropertyValue
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.CreateDelegate(System.Type,System.Object,System.String)">
+            <summary>
+            CreateDelegate
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.AddEventHandler(System.Reflection.EventInfo,System.Object,System.Delegate)">
+            <summary>
+            AddEventHandler
             </summary>
         </member>
     </members>

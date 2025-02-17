@@ -19,7 +19,7 @@ namespace Bubba
         /// <summary>
         /// The theme
         /// </summary>
-        private protected readonly DarkMode _theme = new DarkMode();
+        private protected readonly DarkMode _theme = new DarkMode( );
 
         /// <inheritdoc />
         /// <summary>
@@ -29,14 +29,14 @@ namespace Bubba
         public MetroSlider( )
             : base( )
         {
-            MinHeight = 45;
+            MinHeight = 40;
             MinWidth = 120;
             Background = _theme.TransparentBrush;
             BorderBrush = _theme.TransparentBrush;
             Foreground = _theme.LightBlueBrush;
             ActiveMinorTickStroke = _theme.LightBlueBrush;
-            ActiveTickStroke = _theme.GreenBrush;
-            MinorTickStroke = _theme.LightBlueBrush;
+            ActiveTickStroke = _theme.WhiteForeground;
+            MinorTickStroke = _theme.WhiteForeground;
             TickStroke = _theme.WhiteForeground;
             ClipToBounds = true;
             Orientation = Orientation.Horizontal;
@@ -45,9 +45,9 @@ namespace Bubba
             FontSize = 12;
             LabelOrientation = Orientation.Horizontal;
             SnapsTo = SliderSnapsTo.Ticks;
-            TickFrequency = 5;
+            TickFrequency = 6;
             TickPlacement = TickPlacement.Inline;
-            TickLength = 10;
+            TickLength = 12;
             MinorTickLength = 4;
             MinorTickStrokeThickness = 1;
             MoveToPoint = MovePoint.MoveToTapPosition;

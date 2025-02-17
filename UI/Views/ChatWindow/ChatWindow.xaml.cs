@@ -1,10 +1,10 @@
 ﻿// ******************************************************************************************
 //     Assembly:                Bubba
 //     Author:                  Terry D. Eppler
-//     Created:                 02-15-2025
+//     Created:                 02-17-2025
 // 
 //     Last Modified By:        Terry D. Eppler
-//     Last Modified On:        02-15-2025
+//     Last Modified On:        02-17-2025
 // ******************************************************************************************
 // <copyright file="ChatWindow.xaml.cs" company="Terry D. Eppler">
 //    Bubba is a small and simple windows (wpf) application for interacting with the OpenAI API
@@ -38,7 +38,6 @@
 //   ChatWindow.xaml.cs
 // </summary>
 // ******************************************************************************************
-
 namespace Bubba
 {
     using System;
@@ -90,6 +89,7 @@ namespace Bubba
     [ SuppressMessage( "ReSharper", "UnusedMethodReturnValue.Global" ) ]
     [ SuppressMessage( "ReSharper", "ConvertIfStatementToReturnStatement" ) ]
     [ SuppressMessage( "ReSharper", "UseCollectionExpression" ) ]
+    [ SuppressMessage( "ReSharper", "UseObjectOrCollectionInitializer" ) ]
     public partial class ChatWindow : Window, INotifyPropertyChanged, IDisposable
     {
         /// <summary>
@@ -110,7 +110,12 @@ namespace Bubba
         /// <summary>
         /// The user prompt for the GPT
         /// </summary>
-        private string _prompt;
+        private string _userPrompt;
+
+        /// <summary>
+        /// The messages
+        /// </summary>
+        private protected ChatLog _messages;
 
         /// <summary>
         /// The key words for the custome search engine
@@ -166,6 +171,11 @@ namespace Bubba
         /// The HTTP client
         /// </summary>
         private protected HttpClient _httpClient;
+
+        /// <summary>
+        /// The options
+        /// </summary>
+        private protected GptOptions _options;
 
         /// <summary>
         /// The assembly
@@ -234,6 +244,11 @@ namespace Bubba
         /// The image sizes
         /// </summary>
         private protected IList<string> _imageSizes;
+
+        /// <summary>
+        /// The image sizes
+        /// </summary>
+        private protected IDictionary<string, string> _voices;
 
         /// <summary>
         /// The chat model
@@ -324,6 +339,8 @@ namespace Bubba
             _frequency = FrequencySlider.Value;
             _maximumTokens = ( int )MaxTokenSlider.Value;
             _imageSizes = new List<string>( );
+            _voices = new Dictionary<string, string>();
+            _systemPrompt = OpenAI.BubbaPrompt;
 
             // Event Wiring
             Loaded += OnLoad;
@@ -508,16 +525,19 @@ namespace Bubba
             }
         }
 
-        private protected void ActivateNetworkTab()
+        /// <summary>
+        /// Activates the network tab.
+        /// </summary>
+        private protected void ActivateNetworkTab( )
         {
             try
             {
                 TabControl.SelectedIndex = 3;
                 NetworkTab.IsSelected = true;
             }
-            catch(Exception ex)
+            catch( Exception ex )
             {
-                Fail(ex);
+                Fail( ex );
             }
         }
 
@@ -940,9 +960,7 @@ namespace Bubba
             {
                 var _position = new PrimaryScreenPositionProvider( Corner.BottomRight, 10, 10 );
                 var _count = MaximumNotificationCount.UnlimitedNotifications( );
-                var _lifeTime =
-                    new TimeAndCountBasedLifetimeSupervisor( TimeSpan.FromSeconds( 5 ), _count );
-
+                var _lifeTime = new TimeAndCountBasedLifetimeSupervisor( TimeSpan.FromSeconds( 5 ), _count );
                 return new Notifier( cfg =>
                 {
                     cfg.LifetimeSupervisor = _lifeTime;
@@ -1026,10 +1044,8 @@ namespace Bubba
                 ThrowIf.Null( name, nameof( name ) );
                 var _winXpDir = @"C:\Documents and Settings\All Users\Application Data\";
                 return Directory.Exists( _winXpDir )
-                    ? _winXpDir + ConfigurationManager.AppSettings[ "Branding" ] + @"\" + name
-                    + @"\"
-                    : @"C:\ProgramData\" + ConfigurationManager.AppSettings[ "Branding" ] + @"\"
-                    + name + @"\";
+                    ? _winXpDir + ConfigurationManager.AppSettings[ "Branding" ] + @"\" + name + @"\"
+                    : @"C:\ProgramData\" + ConfigurationManager.AppSettings[ "Branding" ] + @"\" + name + @"\";
             }
             catch( Exception ex )
             {
@@ -1164,7 +1180,6 @@ namespace Bubba
                     {
                         PopulateCompletionModels( );
                         _endpoint = GptEndPoint.Assistants;
-                        RequestLabel.Content = " Transformer | Assistant API";
                         TabControl.SelectedIndex = 1;
                         break;
                     }
@@ -1172,7 +1187,6 @@ namespace Bubba
                     {
                         PopulateCompletionModels( );
                         _endpoint = GptEndPoint.Completions;
-                        RequestLabel.Content = " Transformer | Chat Completion";
                         TabControl.SelectedIndex = 1;
                         break;
                     }
@@ -1180,7 +1194,6 @@ namespace Bubba
                     {
                         PopulateTextModels( );
                         _endpoint = GptEndPoint.TextGeneration;
-                        RequestLabel.Content = " Transformer | Text Generation";
                         TabControl.SelectedIndex = 1;
                         break;
                     }
@@ -1188,7 +1201,6 @@ namespace Bubba
                     {
                         PopulateImageModels( );
                         _endpoint = GptEndPoint.ImageGeneration;
-                        RequestLabel.Content = " Transformer | Image Generation";
                         TabControl.SelectedIndex = 1;
                         break;
                     }
@@ -1196,7 +1208,6 @@ namespace Bubba
                     {
                         PopulateTranslationModels( );
                         PopulateOpenAiVoices( );
-                        RequestLabel.Content = " Transformer | Translation API";
                         _endpoint = GptEndPoint.Translations;
                         TabControl.SelectedIndex = 1;
                         break;
@@ -1204,7 +1215,6 @@ namespace Bubba
                     case GptRequests.Embeddings:
                     {
                         PopulateEmbeddingModels( );
-                        RequestLabel.Content = " Transformer | Embeddings API";
                         _endpoint = GptEndPoint.Embeddings;
                         TabControl.SelectedIndex = 1;
                         break;
@@ -1213,7 +1223,6 @@ namespace Bubba
                     {
                         PopulateTranscriptionModels( );
                         PopulateOpenAiVoices( );
-                        RequestLabel.Content = " Transformer | Transcription (Speech To Text)";
                         _endpoint = GptEndPoint.Transcriptions;
                         TabControl.SelectedIndex = 1;
                         break;
@@ -1221,7 +1230,6 @@ namespace Bubba
                     case GptRequests.VectorStores:
                     {
                         PopulateVectorStoreModels( );
-                        RequestLabel.Content = " Transformer | Vector Stores API";
                         _endpoint = GptEndPoint.VectorStores;
                         TabControl.SelectedIndex = 1;
                         break;
@@ -1230,7 +1238,6 @@ namespace Bubba
                     {
                         PopulateSpeechModels( );
                         PopulateOpenAiVoices( );
-                        RequestLabel.Content = " Transformer | Speech Generation (Text To Speech)";
                         _endpoint = GptEndPoint.SpeechGeneration;
                         TabControl.SelectedIndex = 1;
                         break;
@@ -1238,7 +1245,6 @@ namespace Bubba
                     case GptRequests.FineTuning:
                     {
                         PopulateFineTuningModels( );
-                        RequestLabel.Content = " Transformer | Fine-Tuning API";
                         _endpoint = GptEndPoint.FineTuning;
                         TabControl.SelectedIndex = 1;
                         break;
@@ -1246,7 +1252,6 @@ namespace Bubba
                     case GptRequests.Files:
                     {
                         PopulateFileApiModels( );
-                        RequestLabel.Content = " Transformer | Files API";
                         _endpoint = GptEndPoint.Files;
                         TabControl.SelectedIndex = 1;
                         break;
@@ -1254,7 +1259,6 @@ namespace Bubba
                     case GptRequests.Uploads:
                     {
                         PopulateUploadApiModels( );
-                        RequestLabel.Content = " Transformer | Uploads API";
                         _endpoint = GptEndPoint.Uploads;
                         TabControl.SelectedIndex = 1;
                         break;
@@ -1262,7 +1266,6 @@ namespace Bubba
                     case GptRequests.Projects:
                     {
                         PopulateTextModels( );
-                        RequestLabel.Content = " Transformer | Projects API";
                         _endpoint = GptEndPoint.Projects;
                         TabControl.SelectedIndex = 1;
                         break;
@@ -1270,7 +1273,6 @@ namespace Bubba
                     default:
                     {
                         PopulateModelsAsync( );
-                        RequestLabel.Content = " Transformer | Transformer Completion";
                         _endpoint = GptEndPoint.Completions;
                         TabControl.SelectedIndex = 1;
                         break;
@@ -1325,9 +1327,38 @@ namespace Bubba
                 _number = int.Parse( NumberTextBox.Text );
                 _maximumTokens = Convert.ToInt32( MaxTokenTextBox.Text );
                 _model = ModelListBox.SelectedItem.ToString( ) ?? "gpt-4o";
-                _prompt = _language == "Text"
+                _userPrompt = _language == "Text"
                     ? ChatEditor.Text
                     : "";
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+            }
+        }
+
+        /// <summary>
+        /// Sets the GPT options.
+        /// </summary>
+        private protected void SetGptOptions( )
+        {
+            try
+            {
+                _options = _requestType switch
+                {
+                    GptRequests.ChatCompletion => new ChatOptions( ),
+                    GptRequests.Assistants => new AssistantOptions(  ),
+                    GptRequests.TextGeneration => new TextOptions(  ),
+                    GptRequests.ImageGeneration => new ImageOptions(  ),
+                    GptRequests.Transcriptions => new TranscriptionOptions(  ),
+                    GptRequests.Files => new FileOptions( ),
+                    GptRequests.Embeddings => new EmbeddingOptions(  ),
+                    GptRequests.FineTuning => new FineTuningOptions(  ),
+                    GptRequests.VectorStores => new VectorOptions( ),
+                    GptRequests.Translations => new TranslationOptions( ),
+                    GptRequests.SpeechGeneration => new SpeechOptions( ),
+                    _ => new TextOptions( )
+                };
             }
             catch( Exception ex )
             {
@@ -1374,7 +1405,8 @@ namespace Bubba
         public string SendHttpMessage( string question )
         {
             ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12
-                | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls;
+                | SecurityProtocolType.Tls11
+                | SecurityProtocolType.Tls;
 
             // text-davinci-002, text-davinci-003
             var _model = ModelListBox.SelectedItem.ToString( );
@@ -1407,9 +1439,7 @@ namespace Bubba
             {
                 _data = "{";
                 _data += " \"model\":\"" + _model + "\",";
-                _data += " \"messages\": [{\"role\": \"user\", \"content\": \""
-                    + PadQuotes( question ) + "\"}]";
-
+                _data += " \"messages\": [{\"role\": \"user\", \"content\": \"" + PadQuotes( question ) + "\"}]";
                 _data += "}";
             }
             else
@@ -1901,8 +1931,8 @@ namespace Bubba
                 var _url = "https://api.openai.com/v1/models";
                 _httpClient = new HttpClient( );
                 _httpClient.Timeout = new TimeSpan( 0, 0, 3 );
-                _httpClient.DefaultRequestHeaders.Authorization =
-                    new AuthenticationHeaderValue( "Bearer", App.OpenAiKey );
+                _httpClient.DefaultRequestHeaders.Authorization = 
+                    new AuthenticationHeaderValue( "Bearer", OpenAI.BubbaKey );
 
                 var _async = await _httpClient.GetAsync( _url );
                 _async.EnsureSuccessStatusCode( );
@@ -2523,10 +2553,22 @@ namespace Bubba
             {
                 var _synth = new SpeechSynthesizer( );
                 VoiceListBox.Items?.Clear( );
+                _voices.Clear(  );
                 foreach( var _voice in _synth.GetInstalledVoices( ) )
                 {
                     var _info = _voice.VoiceInfo;
-                    VoiceListBox.Items.Add( _info.Name );
+                    var _start = "Microsoft".ToCharArray(  );
+                    var _end = "Desktop".ToCharArray( );
+                    var _name = _info.Name.TrimStart( _start ).TrimEnd( _end );
+                    var _lower = _name.ToLower(  );
+                    _voices.Add( _info.Name, _lower.ToLower( ) );
+                    var _item = new ListBoxItem
+                    {
+                        Tag = _info.Name,
+                        Content = _name.ToUpper(  )
+                    };
+
+                    VoiceListBox.Items.Add( _item );
                 }
             }
             catch( Exception ex )
@@ -2542,16 +2584,62 @@ namespace Bubba
         {
             try
             {
-                VoiceListBox.Items?.Clear( );
-                VoiceListBox.Items.Add( "alloy" );
-                VoiceListBox.Items.Add( "ash" );
-                VoiceListBox.Items.Add( "coral" );
-                VoiceListBox.Items.Add( "echo" );
-                VoiceListBox.Items.Add( "onyx" );
-                VoiceListBox.Items.Add( "fable" );
-                VoiceListBox.Items.Add( "nova" );
-                VoiceListBox.Items.Add( "sage" );
-                VoiceListBox.Items.Add( "shimmer" );
+                var _aiVoices = new Dictionary<string, string>( );
+                _aiVoices.Add( "alloy", "alloy" );
+                _aiVoices.Add( "ash", "ash" );
+                _aiVoices.Add( "coral", "coral" );
+                _aiVoices.Add( "echo", "echo" );
+                _aiVoices.Add( "onyx", "onyx" );
+                _aiVoices.Add( "fable", "fable" );
+                _aiVoices.Add( "nova", "nova" );
+                _aiVoices.Add( "sage", "sage" );
+                _aiVoices.Add( "shimmer", "shimer" );
+                VoiceListBox.Items.Clear(  );
+                foreach( var _voice in _aiVoices )
+                {
+                    var _item = new ListBoxItem
+                    {
+                        Tag = _voice.Key,
+                        Content = _voice.Value
+                    };
+
+                    VoiceListBox.Items.Add( _item );
+                }
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+            }
+        }
+
+        /// <summary>
+        /// Populates the voices.
+        /// </summary>
+        private void PopulateVoices( )
+        {
+            try
+            {
+                PopulateInstalledVoices(  );
+                var _aiVoices = new Dictionary<string, string>( );
+                _aiVoices.Add( "alloy", "alloy" );
+                _aiVoices.Add( "ash", "ash" );
+                _aiVoices.Add( "coral", "coral" );
+                _aiVoices.Add( "echo", "echo" );
+                _aiVoices.Add( "onyx", "onyx" );         
+                _aiVoices.Add( "fable", "fable" );
+                _aiVoices.Add( "nova", "nova" );
+                _aiVoices.Add( "sage", "sage" );
+                _aiVoices.Add( "shimmer", "shimer" );
+                foreach( var _voice in _aiVoices )
+                {
+                    var _item = new ListBoxItem
+                    {
+                        Tag = _voice.Key,
+                        Content = _voice.Value
+                    };
+
+                    VoiceListBox.Items.Add( _item );
+                }
             }
             catch( Exception ex )
             {
@@ -2572,6 +2660,7 @@ namespace Bubba
                 {
                     var _item = new ListBoxItem
                     {
+                        Height = 22,
                         Tag = _request,
                         Content = _request.SplitPascal( )
                     };
@@ -2608,7 +2697,7 @@ namespace Bubba
                 Fail( ex );
             }
         }
-        
+
         /// <summary>
         /// Sets the user document language.
         /// </summary>
@@ -2873,11 +2962,10 @@ namespace Bubba
                 PopulateLanguageListBox( );
                 PopulateModelsAsync( );
                 PopulateDocumentListBox( );
-                PopulateInstalledVoices( );
+                PopulateVoices( );
                 PopulateImageSizes( );
                 ClearChatControls( );
                 InitializeChatEditor( );
-                _systemPrompt = OpenAI.BubbaPrompt;
                 StreamCheckBox.Checked += OnStreamCheckBoxChecked;
                 ModelListBox.SelectionChanged += OnModelListBoxSelectionChanged;
                 App.ActiveWindows.Add( "ChatWindow", this );
@@ -3042,8 +3130,7 @@ namespace Bubba
         /// <param name="sender">The sender.</param>
         /// <param name="e">The <see cref="MouseEventArgs"/>
         /// instance containing the event data.</param>
-        private protected void OnToolStripTextBoxTextChanged( object sender,
-            TextChangedEventArgs e )
+        private protected void OnToolStripTextBoxTextChanged( object sender, TextChangedEventArgs e )
         {
             try
             {
@@ -3534,7 +3621,7 @@ namespace Bubba
         /// </summary>
         /// <param name="sender">The sender.</param>
         /// <param name="e">The <see cref="RoutedEventArgs"/> instance containing the event data.</param>
-        private void OnToolStripRefreshButtonClick(object sender, RoutedEventArgs e)
+        private void OnToolStripRefreshButtonClick( object sender, RoutedEventArgs e )
         {
             try
             {
@@ -3545,9 +3632,9 @@ namespace Bubba
                 PopulateInstalledVoices( );
                 ActivateChatTab( );
             }
-            catch(Exception ex)
+            catch( Exception ex )
             {
-                Fail(ex);
+                Fail( ex );
             }
         }
 
@@ -3696,16 +3783,7 @@ namespace Bubba
                 {
                     ModelLabel.Content = "";
                     _model = ModelListBox.SelectedValue.ToString( );
-                    if( !string.IsNullOrEmpty( _selectedRequest ) )
-                    {
-                        ModelLabel.Content = $"Language Model | {_model?.ToUpper( )} ";
-                        PopulateImageSizes( );
-                    }
-                    else
-                    {
-                        ModelLabel.Content += $"Language Model | {_model?.ToUpper( )} ";
-                        PopulateImageSizes( );
-                    }
+                    PopulateImageSizes( );
                 }
             }
             catch( Exception ex )
@@ -3727,9 +3805,7 @@ namespace Bubba
                 if( DocumentListBox.SelectedIndex != -1 )
                 {
                     ChatEditor.ClearAllText( );
-                    _selectedDocument = ( ( ListBoxItem )DocumentListBox.SelectedItem )?.Tag
-                        ?.ToString( );
-
+                    _selectedDocument = ( ( ListBoxItem )DocumentListBox.SelectedItem )?.Tag?.ToString( );
                     ChatEditor.LoadFile( _selectedDocument );
                 }
             }
@@ -3775,9 +3851,7 @@ namespace Bubba
                 {
                     var _item = ( ListBoxItem )GenerationListBox.SelectedItem;
                     _selectedRequest = _item.Tag?.ToString( );
-                    _requestType =
-                        ( GptRequests )Enum.Parse( typeof( GptRequests ), _selectedRequest );
-
+                    _requestType = ( GptRequests )Enum.Parse( typeof( GptRequests ), _selectedRequest );
                     SetRequestType( );
                 }
             }
