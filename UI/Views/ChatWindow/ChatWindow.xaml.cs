@@ -369,7 +369,6 @@ namespace Bubba
             try
             {
                 ModelLabel.Content = "";
-                ModelLabel.Content = "Generative Pre-Trained Transformer";
             }
             catch( Exception ex )
             {
