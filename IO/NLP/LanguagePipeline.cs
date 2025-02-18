@@ -84,8 +84,8 @@ namespace Bubba
         public void ProcessText( string text )
         {
             var _normalizedText = _processor.NormalizeText( text );
-            var Tokens = _processor.Tokenize( _normalizedText );
-            var _cleanTokens = _processor.RemoveStopWords( Tokens );
+            var _tokens = _processor.Tokenize( _normalizedText );
+            var _cleanTokens = _processor.RemoveStopWords( _tokens );
             foreach( var Token in _cleanTokens )
             {
                 Console.WriteLine( _processor.StemWord( Token ) );

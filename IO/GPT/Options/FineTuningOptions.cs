@@ -111,6 +111,7 @@ namespace Bubba
         public FineTuningOptions( )
             : base( )
         {
+            _endPoint = GptEndPoint.FineTuning;
             _store = false;
             _stream = true;
             _number = 1;
@@ -375,7 +376,6 @@ namespace Bubba
                 _data.Add( "frequency_penalty", _frequencyPenalty );
                 _data.Add( "presence_penalty", _presencePenalty );
                 _data.Add( "top_p", _topPercent );
-                _data.Add( "endpoint", _endPoint );
                 _method.Add( "type", "supervised" );
                 _data.Add( "method", _method );
                 _data.Add( "logprobs", _logProbs );

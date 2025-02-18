@@ -78,16 +78,6 @@
                 </wpf:MenuItemAdv.Icon>
             </wpf:MenuItemAdv>
 
-            <wpf:MenuItemAdv
-                Click="OnGuidanceOptionClick"
-                Header="Guidance"
-                ToolTip="Federal Regulations">
-                <wpf:MenuItemAdv.Icon>
-                    <Image Source="/Resources/Assets/MenuImages/DocumentaionItem.png" />
-                </wpf:MenuItemAdv.Icon>
-            </wpf:MenuItemAdv>
-
-
             <Separator Background="{StaticResource BlueBorderBrush}" />
 
             <wpf:MenuItemAdv
@@ -197,7 +187,7 @@
                 ClipToBounds="True"
                 FontFamily="Roboto"
                 Foreground="{StaticResource FormForeground}"
-                SnapsToDevicePixels="True">
+                SnapsToDevicePixels="True" Height="50">
 
                 <Label
                     x:Name="StatusLabel"
@@ -946,11 +936,8 @@
                             <Grid Grid.Column="1">
                                 <b:MetroEditor
                                     x:Name="ChatEditor"
-                                    Width="1063"
                                     Height="270"
-                                    Margin="5"
                                     Padding="5"
-                                    HorizontalAlignment="Right"
                                     VerticalAlignment="Center"
                                     Background="{StaticResource ControlInteriorBrush}"
                                     BorderThickness="2"
@@ -962,7 +949,7 @@
                                     LineNumberTextForeground="{DynamicResource GreenBackground}"
                                     OutliningAreaBackground="{DynamicResource ListBoxBackground}"
                                     OutliningAreaWidth="15"
-                                    VerticalScrollBarVisibility="Visible" />
+                                    VerticalScrollBarVisibility="Visible" HorizontalAlignment="Center" Width="1062" />
                             </Grid>
 
                             <Grid Grid.Column="0">
@@ -1077,7 +1064,7 @@
                                 ScrollViewer.VerticalScrollBarVisibility="Visible"
                                 Text=""
                                 TextWrapping="Wrap"
-                                Watermark="User Prompt" />
+                                Watermark="" />
 
                             <GroupBox
                                 x:Name="CommandGroupBox"

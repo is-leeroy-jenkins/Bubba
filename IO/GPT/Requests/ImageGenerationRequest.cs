@@ -1,12 +1,12 @@
 ﻿// ******************************************************************************************
 //     Assembly:                Bubba
 //     Author:                  Terry D. Eppler
-//     Created:                 01-15-2025
+//     Created:                 02-18-2025
 // 
 //     Last Modified By:        Terry D. Eppler
-//     Last Modified On:        01-15-2025
+//     Last Modified On:        02-18-2025
 // ******************************************************************************************
-// <copyright file="ImageRequest.cs" company="Terry D. Eppler">
+// <copyright file="ImageGenerationRequest.cs" company="Terry D. Eppler">
 //    Bubba is a small and simple windows (wpf) application for interacting with the OpenAI API
 //    that's developed in C-Sharp under the MIT license.C#.
 // 
@@ -35,10 +35,9 @@
 //    You can contact me at:  terryeppler@gmail.com or eppler.terry@epa.gov
 // </copyright>
 // <summary>
-//   ImageRequest.cs
+//   ImageGenerationRequest.cs
 // </summary>
 // ******************************************************************************************
-
 namespace Bubba
 {
     using System;
@@ -145,6 +144,7 @@ namespace Bubba
             }
         }
 
+        /// <inheritdoc />
         /// <summary>
         /// Gets or sets the prompt.
         /// </summary>
@@ -152,7 +152,7 @@ namespace Bubba
         /// The prompt.
         /// </value>
         [ JsonPropertyName( "prompt" ) ]
-        public string Prompt
+        public override string Prompt
         {
             get
             {
@@ -222,7 +222,7 @@ namespace Bubba
         /// The messages.
         /// </value>
         [ JsonPropertyName( "messages" ) ]
-        public IList<IGptMessage> Messages
+        public override IList<IGptMessage> Messages
         {
             get
             {
@@ -292,7 +292,7 @@ namespace Bubba
         /// <value>
         /// The maximum tokens.
         /// </value>
-        [ JsonPropertyName( "max_completionTokens" ) ]
+        [ JsonPropertyName( "max_completion_tokens" ) ]
         public override int MaximumTokens
         {
             get
@@ -327,7 +327,7 @@ namespace Bubba
                 _data.Add( "stream", _stream.ToString( ) );
                 _data.Add( "temperature", _temperature.ToString( ) );
                 _data.Add( "frequency_penalty", _frequencyPenalty.ToString( ) );
-                _data.Add( "presence_penalty", _presencePenalty.ToString() );
+                _data.Add( "presence_penalty", _presencePenalty.ToString( ) );
                 _data.Add( "top_p", _topPercent.ToString( ) );
                 _data.Add( "style", _style );
                 _data.Add( "size", _size );
@@ -373,11 +373,9 @@ namespace Bubba
             {
                 ThrowIf.Empty( prompt, nameof( prompt ) );
                 _prompt = prompt;
-                _httpClient = new HttpClient();
-                _httpClient.Timeout = new TimeSpan(0, 0, 3);
-                _httpClient.DefaultRequestHeaders.Authorization =
-                    new AuthenticationHeaderValue("Bearer", _header.ApiKey);
-
+                _httpClient = new HttpClient( );
+                _httpClient.Timeout = new TimeSpan( 0, 0, 3 );
+                _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue( "Bearer", _header.ApiKey );
                 var _payload = new ImagePayload( )
                 {
                     Prompt = prompt,
@@ -391,7 +389,7 @@ namespace Bubba
                 _response.EnsureSuccessStatusCode( );
                 var _responseData = await _response.Content.ReadAsStringAsync( );
                 var _imageData = ExtractContent( _responseData );
-                return ( _imageData?.Any( ) == true )
+                return _imageData?.Any( ) == true
                     ? _imageData
                     : default( string[ ] );
             }
@@ -417,9 +415,7 @@ namespace Bubba
                 var _urls = new List<string>( );
                 foreach( var _item in _root.EnumerateArray( ) )
                 {
-                    var _image = _item.GetProperty( "url" )
-                        .GetString( );
-
+                    var _image = _item.GetProperty( "url" ).GetString( );
                     _urls.Add( _image );
                 }
 

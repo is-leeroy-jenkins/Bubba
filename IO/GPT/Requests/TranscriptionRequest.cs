@@ -373,7 +373,10 @@ namespace Bubba
             {
                 ThrowIf.Empty( response, nameof( response ) );
                 using var _document = JsonDocument.Parse( response );
-                var _transcription = _document.RootElement.GetProperty( "text" ).GetString( );
+                var _transcription = _document.RootElement
+                    .GetProperty( "text" )
+                    .GetString( );
+
                 return !string.IsNullOrEmpty( _transcription )
                     ? _transcription
                     : string.Empty;

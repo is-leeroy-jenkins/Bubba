@@ -339,7 +339,7 @@ namespace Bubba
             _frequency = FrequencySlider.Value;
             _maximumTokens = ( int )MaxTokenSlider.Value;
             _imageSizes = new List<string>( );
-            _voices = new Dictionary<string, string>();
+            _voices = new Dictionary<string, string>( );
             _systemPrompt = OpenAI.BubbaPrompt;
 
             // Event Wiring
@@ -459,7 +459,6 @@ namespace Bubba
                 LoadGptFileDialog( );
                 LoadCalculator( );
                 LoadSystemDialog( );
-                LoadDocumentWindow( );
             }
             catch( Exception ex )
             {
@@ -477,7 +476,6 @@ namespace Bubba
                 if( _engine != null )
                 {
                     _engine.RecognizeAsync( RecognizeMode.Multiple );
-                    return;
                 }
 
                 _engine = new SpeechRecognitionEngine( new CultureInfo( "en-US" ) );
@@ -1357,7 +1355,7 @@ namespace Bubba
                     GptRequests.VectorStores => new VectorOptions( ),
                     GptRequests.Translations => new TranslationOptions( ),
                     GptRequests.SpeechGeneration => new SpeechOptions( ),
-                    _ => new TextOptions( )
+                    var _ => new TextOptions( )
                 };
             }
             catch( Exception ex )
@@ -1427,9 +1425,7 @@ namespace Bubba
             var _temp = double.Parse( TemperatureTextBox.Text );
             if( ( _temp < 0d ) | ( _temp > 1d ) )
             {
-                var _msg = "Randomness has to be between 0 and 2"
-                    + "with higher values resulting in more random text; Default 1 ";
-
+                var _msg = "Randomness has to be between 0 and 2" + "with higher values resulting in more random text; Default 1 ";
                 SendMessage( _msg );
                 return "";
             }
@@ -1642,28 +1638,6 @@ namespace Bubba
         }
 
         /// <summary>
-        /// Opens the folder browser.
-        /// </summary>
-        private protected void LoadDocumentWindow( )
-        {
-            try
-            {
-                var _folderBrowser = new DocumentWindow( )
-                {
-                    Topmost = true,
-                    Owner = this,
-                    WindowStartupLocation = WindowStartupLocation.CenterScreen
-                };
-
-                App.ActiveWindows.Add( "DocumentWindow", _folderBrowser );
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
-            }
-        }
-
-        /// <summary>
         /// Opens the file browser.
         /// </summary>
         private protected void OpenFileBrowser( )
@@ -1834,40 +1808,6 @@ namespace Bubba
         }
 
         /// <summary>
-        /// Opens the folder browser.
-        /// </summary>
-        private protected void OpenDocumentWindow( )
-        {
-            try
-            {
-                Busy( );
-                if( App.ActiveWindows.Keys.Contains( "DocumentWindow" ) )
-                {
-                    var _window = ( DocumentWindow )App.ActiveWindows[ "DocumentWindow" ];
-                    _window.Owner = this;
-                    _window.Show( );
-                }
-                else
-                {
-                    var _documentWindow = new DocumentWindow( )
-                    {
-                        Topmost = true,
-                        Owner = this,
-                        WindowStartupLocation = WindowStartupLocation.CenterScreen
-                    };
-
-                    _documentWindow.Show( );
-                }
-
-                Chill( );
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
-            }
-        }
-
-        /// <summary>
         /// Pads the quotes.
         /// </summary>
         /// <param name="input">The input.</param>
@@ -1932,7 +1872,7 @@ namespace Bubba
                 _httpClient = new HttpClient( );
                 _httpClient.Timeout = new TimeSpan( 0, 0, 3 );
                 _httpClient.DefaultRequestHeaders.Authorization = 
-                    new AuthenticationHeaderValue( "Bearer", OpenAI.BubbaKey );
+                    new AuthenticationHeaderValue( "Bearer", App.OpenAiKey );
 
                 var _async = await _httpClient.GetAsync( _url );
                 _async.EnsureSuccessStatusCode( );
@@ -2559,13 +2499,14 @@ namespace Bubba
                     var _info = _voice.VoiceInfo;
                     var _start = "Microsoft".ToCharArray(  );
                     var _end = "Desktop".ToCharArray( );
-                    var _name = _info.Name.TrimStart( _start ).TrimEnd( _end );
-                    var _lower = _name.ToLower(  );
-                    _voices.Add( _info.Name, _lower.ToLower( ) );
+                    var _first = _info.Name.TrimStart( _start );
+                    var _last = _first.TrimEnd( _end );
+                    var _lower = _last.ToLower(  );
+                    _voices.Add( _info.Name, _lower );
                     var _item = new ListBoxItem
                     {
                         Tag = _info.Name,
-                        Content = _name.ToUpper(  )
+                        Content = _lower
                     };
 
                     VoiceListBox.Items.Add( _item );
@@ -2625,7 +2566,7 @@ namespace Bubba
                 _aiVoices.Add( "ash", "ash" );
                 _aiVoices.Add( "coral", "coral" );
                 _aiVoices.Add( "echo", "echo" );
-                _aiVoices.Add( "onyx", "onyx" );         
+                _aiVoices.Add( "onyx", "onyx" );
                 _aiVoices.Add( "fable", "fable" );
                 _aiVoices.Add( "nova", "nova" );
                 _aiVoices.Add( "sage", "sage" );
@@ -4020,7 +3961,6 @@ namespace Bubba
             try
             {
                 Busy( );
-                OpenDocumentWindow( );
                 Chill( );
             }
             catch( Exception ex )

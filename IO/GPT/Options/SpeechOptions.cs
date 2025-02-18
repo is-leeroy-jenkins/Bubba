@@ -1,10 +1,10 @@
 // ******************************************************************************************
 //     Assembly:                Bubba
 //     Author:                  Terry D. Eppler
-//     Created:                 02-06-2025
+//     Created:                 02-17-2025
 // 
 //     Last Modified By:        Terry D. Eppler
-//     Last Modified On:        02-06-2025
+//     Last Modified On:        02-17-2025
 // ******************************************************************************************
 // <copyright file="SpeechOptions.cs" company="Terry D. Eppler">
 //    Bubba is a small and simple windows (wpf) application for interacting with the OpenAI API
@@ -38,7 +38,6 @@
 //   SpeechOptions.cs
 // </summary>
 // ******************************************************************************************
-
 namespace Bubba
 {
     using System;
@@ -265,7 +264,7 @@ namespace Bubba
         /// Gets the formats.
         /// </summary>
         /// <returns></returns>
-        public IList<string> GetFormatOptions( )
+        public IList<string> GetFormats( )
         {
             try
             {
@@ -294,7 +293,7 @@ namespace Bubba
         /// Gets the formats.
         /// </summary>
         /// <returns></returns>
-        public IList<string> GetVoiceOptions( )
+        public IList<string> GetVoices( )
         {
             try
             {
@@ -345,6 +344,41 @@ namespace Bubba
             {
                 Fail( ex );
                 return default( IList<string> );
+            }
+        }
+
+        /// <inheritdoc />
+        /// <summary>
+        /// Gets the data.
+        /// </summary>
+        /// <returns></returns>
+        public override IDictionary<string, object> GetData( )
+        {
+            try
+            {
+                _data.Add( "n", _number );
+                _data.Add( "model", _model );
+                _data.Add( "max_completion_tokens", _maximumTokens );
+                _data.Add( "store", _store );
+                _data.Add( "stream", _stream );
+                _data.Add( "temperature", _temperature );
+                _data.Add( "frequency_penalty", _frequencyPenalty );
+                _data.Add( "presence_penalty", _presencePenalty );
+                _data.Add( "top_p", _topPercent );
+                _data.Add( "stop", _stop );
+                _data.Add( "language", _language );
+                _data.Add( "voice", _voice );
+                _data.Add( "speed", _speed );
+                _data.Add( "input", _input );
+                _data.Add( "file", _file );
+                return _data?.Any( ) == true
+                    ? _data
+                    : default( IDictionary<string, object> );
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+                return default( IDictionary<string, object> );
             }
         }
     }

@@ -1,10 +1,10 @@
 ﻿// ******************************************************************************************
 //     Assembly:                Bubba
 //     Author:                  Terry D. Eppler
-//     Created:                 02-06-2025
+//     Created:                 02-17-2025
 // 
 //     Last Modified By:        Terry D. Eppler
-//     Last Modified On:        02-06-2025
+//     Last Modified On:        02-17-2025
 // ******************************************************************************************
 // <copyright file="TranslationOptions.cs" company="Terry D. Eppler">
 //    Bubba is a small and simple windows (wpf) application for interacting with the OpenAI API
@@ -38,7 +38,6 @@
 //   TranslationOptions.cs
 // </summary>
 // ******************************************************************************************
-
 namespace Bubba
 {
     using System;
@@ -190,7 +189,9 @@ namespace Bubba
             try
             {
                 _data.Add( "n", _number );
-                _data.Add( "max_completionTokens", _maximumTokens );
+                _data.Add( "model", _model );
+                _data.Add( "endpoint", _endPoint );
+                _data.Add( "max_completion_tokens", _maximumTokens );
                 _data.Add( "store", _store );
                 _data.Add( "stream", _stream );
                 _data.Add( "temperature", _temperature );
@@ -198,6 +199,8 @@ namespace Bubba
                 _data.Add( "presence_penalty", _presencePenalty );
                 _data.Add( "top_p", _topPercent );
                 _data.Add( "stop", _stop );
+                _data.Add( "response_format", _responseFormat );
+                _data.Add( "modalities", _modalities );
                 return _data?.Any( ) == true
                     ? _data
                     : default( IDictionary<string, object> );
@@ -234,7 +237,7 @@ namespace Bubba
         /// Gets the formats.
         /// </summary>
         /// <returns></returns>
-        public IList<string> GetResponseFormatOptions( )
+        public IList<string> GetResponseFormats( )
         {
             try
             {
@@ -262,7 +265,7 @@ namespace Bubba
         /// Gets the formats.
         /// </summary>
         /// <returns></returns>
-        public IList<string> GetFileFormatOptions( )
+        public IList<string> GetFileFormats( )
         {
             try
             {

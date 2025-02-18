@@ -4,17 +4,28 @@ namespace Bubba
 {
     using System;
     using System.Collections.Generic;
+    using System.Diagnostics.CodeAnalysis;
     using System.Linq;
-    using System.Text;
-    using System.Threading.Tasks;
     using Properties;
 
     /// <inheritdoc />
     /// <summary>
     /// </summary>
     /// <seealso cref="T:Bubba.GptOptions" />
+    [ SuppressMessage( "ReSharper", "ClassCanBeSealed.Global" ) ]
+    [ SuppressMessage( "ReSharper", "PreferConcreteValueOverDefault" ) ]
     public class AssistantOptions : GptOptions
     {
+        /// <summary>
+        /// The reasoning effort
+        /// </summary>
+        private protected string _reasoningEffort;
+
+        /// <summary>
+        /// The system prompt
+        /// </summary>
+        private protected string _instructions;
+
         /// <summary>
         /// Initializes a new instance of the
         /// <see cref="AssistantOptions"/> class.
@@ -23,6 +34,8 @@ namespace Bubba
         public AssistantOptions( ) 
             : base( )
         {
+            _model = "gpt-4o";
+            _endPoint = GptEndPoint.Assistants;
             _store = false;
             _stream = true;
             _number = 1;
@@ -263,6 +276,8 @@ namespace Bubba
             try
             {
                 _data.Add( "n", _number );
+                _data.Add( "model", _model );
+                _data.Add( "endpoint", _endPoint );
                 _data.Add( "max_completion_tokens", _maximumTokens );
                 _data.Add( "store", _store );
                 _data.Add( "stream", _stream );
@@ -271,6 +286,7 @@ namespace Bubba
                 _data.Add( "presence_penalty", _presencePenalty );
                 _data.Add( "top_p", _topPercent );
                 _data.Add( "stop", _stop );
+                _data.Add( "reasoning_effort", _reasoningEffort );
                 return _data?.Any( ) == true
                     ? _data
                     : default( IDictionary<string, object> );

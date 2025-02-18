@@ -88,8 +88,9 @@ namespace Bubba
         public ImageOptions( )
             : base( )
         {
+            _endPoint = GptEndPoint.ImageGeneration;
             _store = false;
-            _stream = true;
+            _stream = false;
             _number = 1;
             _temperature = 0.08;
             _topPercent = 0.09;
@@ -251,7 +252,7 @@ namespace Bubba
             try
             {
                 _data.Add( "n", _number );
-                _data.Add( "max_completionTokens", _maximumTokens );
+                _data.Add( "max_completion_tokens", _maximumTokens );
                 _data.Add( "store", _store );
                 _data.Add( "stream", _stream );
                 _data.Add( "temperature", _temperature );
@@ -259,6 +260,11 @@ namespace Bubba
                 _data.Add( "presence_penalty", _presencePenalty );
                 _data.Add( "top_p", _topPercent );
                 _data.Add( "stop", _stop );
+                _data.Add( "response_format", _responseFormat );
+                _data.Add( "style", _style );
+                _data.Add( "size", _size );
+                _data.Add( "quality", _quality );
+                _data.Add( "model", _model );
                 return _data?.Any( ) == true
                     ? _data
                     : default( IDictionary<string, object> );
@@ -274,7 +280,7 @@ namespace Bubba
         /// Gets the formats.
         /// </summary>
         /// <returns></returns>
-        private protected IList<string> GetFormatOptions( )
+        public IList<string> GetFormats( )
         {
             try
             {
@@ -297,7 +303,7 @@ namespace Bubba
         /// Gets the size options.
         /// </summary>
         /// <returns></returns>
-        private protected IList<string> GetSizeOptions( )
+        public IList<string> GetDalleTwoSizes( )
         {
             try
             {
@@ -305,9 +311,7 @@ namespace Bubba
                 {
                     "256X256",
                     "512X512",
-                    "1024X1024",
-                    "1792x1024",
-                    "1024x1792"
+                    "1024X1024"
                 };
 
                 return _sizes;
@@ -316,6 +320,29 @@ namespace Bubba
             {
                 Fail( ex );
                 return default( IList<string> );
+            }
+        }
+
+        /// <summary>
+        /// Gets the dalle three sizes.
+        /// </summary>
+        /// <returns></returns>
+        public IList<string> GetDalleThreeSizes( )
+        {
+            try
+            {
+                var _sizes = new List<string>
+                {
+                    "1792x1024",
+                    "1024x1792"
+                };
+
+                return _sizes;
+            }
+            catch(Exception ex)
+            {
+                Fail(ex);
+                return default(IList<string>);
             }
         }
     }

@@ -19877,6 +19877,16 @@
             </summary>
             <seealso cref="T:Bubba.GptOptions" />
         </member>
+        <member name="F:Bubba.AssistantOptions._reasoningEffort">
+            <summary>
+            The reasoning effort
+            </summary>
+        </member>
+        <member name="F:Bubba.AssistantOptions._instructions">
+            <summary>
+            The system prompt
+            </summary>
+        </member>
         <member name="M:Bubba.AssistantOptions.#ctor">
             <summary>
             Initializes a new instance of the
@@ -20150,6 +20160,13 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="M:Bubba.ChatOptions.GetData">
+            <inheritdoc />
+            <summary>
+            Gets the data.
+            </summary>
+            <returns></returns>
+        </member>
         <member name="T:Bubba.EmbeddingOptions">
             <inheritdoc />
             <summary>
@@ -20215,6 +20232,13 @@
             <value>
             The input.
             </value>
+        </member>
+        <member name="M:Bubba.EmbeddingOptions.GetData">
+            <inheritdoc />
+            <summary>
+            Gets the data.
+            </summary>
+            <returns></returns>
         </member>
         <member name="T:Bubba.FileOptions">
             <inheritdoc />
@@ -20350,6 +20374,13 @@
             <value>
             The name of the file.
             </value>
+        </member>
+        <member name="M:Bubba.FileOptions.GetData">
+            <inheritdoc />
+            <summary>
+            Gets the data.
+            </summary>
+            <returns></returns>
         </member>
         <member name="T:Bubba.FineTuningOptions">
             <inheritdoc />
@@ -20750,15 +20781,21 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="M:Bubba.ImageOptions.GetFormatOptions">
+        <member name="M:Bubba.ImageOptions.GetFormats">
             <summary>
             Gets the formats.
             </summary>
             <returns></returns>
         </member>
-        <member name="M:Bubba.ImageOptions.GetSizeOptions">
+        <member name="M:Bubba.ImageOptions.GetDalleTwoSizes">
             <summary>
             Gets the size options.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Bubba.ImageOptions.GetDalleThreeSizes">
+            <summary>
+            Gets the dalle three sizes.
             </summary>
             <returns></returns>
         </member>
@@ -20862,13 +20899,13 @@
             The modalities.
             </value>
         </member>
-        <member name="M:Bubba.SpeechOptions.GetFormatOptions">
+        <member name="M:Bubba.SpeechOptions.GetFormats">
             <summary>
             Gets the formats.
             </summary>
             <returns></returns>
         </member>
-        <member name="M:Bubba.SpeechOptions.GetVoiceOptions">
+        <member name="M:Bubba.SpeechOptions.GetVoices">
             <summary>
             Gets the formats.
             </summary>
@@ -20877,6 +20914,13 @@
         <member name="M:Bubba.SpeechOptions.GetSpeeds">
             <summary>
             Gets the speech rates.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Bubba.SpeechOptions.GetData">
+            <inheritdoc />
+            <summary>
+            Gets the data.
             </summary>
             <returns></returns>
         </member>
@@ -21169,13 +21213,13 @@
             A <see cref="T:System.String" /> that represents this instance.
             </returns>
         </member>
-        <member name="M:Bubba.TranslationOptions.GetResponseFormatOptions">
+        <member name="M:Bubba.TranslationOptions.GetResponseFormats">
             <summary>
             Gets the formats.
             </summary>
             <returns></returns>
         </member>
-        <member name="M:Bubba.TranslationOptions.GetFileFormatOptions">
+        <member name="M:Bubba.TranslationOptions.GetFileFormats">
             <summary>
             Gets the formats.
             </summary>
@@ -21285,6 +21329,13 @@
             <value>
             The meta data.
             </value>
+        </member>
+        <member name="M:Bubba.VectorOptions.GetData">
+            <inheritdoc />
+            <summary>
+            Gets the data.
+            </summary>
+            <returns></returns>
         </member>
         <member name="T:Bubba.AssistantPayload">
             <inheritdoc />
@@ -22832,14 +22883,6 @@
             <param name="store">if set to <c>true</c> [store].</param>
             <param name="stream">if set to <c>true</c> [stream].</param>
         </member>
-        <member name="M:Bubba.VectorPayload.#ctor(System.String,Bubba.GptOptions)">
-            <inheritdoc />
-            <summary>
-            Initializes a new instance of the <see cref="T:Bubba.VectorPayload" /> class.
-            </summary>
-            <param name="userPrompt">The user prompt.</param>
-            <param name="config">The configuration.</param>
-        </member>
         <member name="P:Bubba.VectorPayload.FilePath">
             <summary>
             Gets or sets the file path.
@@ -23839,6 +23882,7 @@
             </value>
         </member>
         <member name="P:Bubba.ImageGenerationRequest.Prompt">
+            <inheritdoc />
             <summary>
             Gets or sets the prompt.
             </summary>
@@ -23956,11 +24000,6 @@
         <member name="F:Bubba.SpeechGenerationReqeust._input">
             <summary>
             The input
-            </summary>
-        </member>
-        <member name="F:Bubba.SpeechGenerationReqeust._responseFormat">
-            <summary>
-            The response format
             </summary>
         </member>
         <member name="F:Bubba.SpeechGenerationReqeust._audioData">
@@ -27610,6 +27649,118 @@
             </summary>
             <param name="ex">The ex.</param>
         </member>
+        <member name="T:Bubba.EmbeddingPipeline">
+            <summary>
+            Encapsulates the logic for:
+            1) Loading text into ML.NET
+            2) Building and applying three transformations:
+               - FeaturizeText      => Embeddings
+               - ProduceWordBags    => Bag-of-Words
+               - TokenizeIntoWords  => Tokens
+            </summary>
+        </member>
+        <member name="F:Bubba.EmbeddingPipeline._context">
+            <summary>
+            The context
+            </summary>
+        </member>
+        <member name="F:Bubba.EmbeddingPipeline._filePath">
+            <summary>
+            The file path
+            </summary>
+        </member>
+        <member name="M:Bubba.EmbeddingPipeline.#ctor(Microsoft.ML.MLContext,System.String)">
+            <summary>
+            Constructor requires an MLContext and the path to the text file.
+            </summary>
+        </member>
+        <member name="M:Bubba.EmbeddingPipeline.LoadData">
+            <summary>
+            Loads text data into an IDataView from the specified file.
+            </summary>
+        </member>
+        <member name="M:Bubba.EmbeddingPipeline.TransformData(Microsoft.ML.IDataView)">
+            <summary>
+            Fits the pipeline to the data, transforming it into
+            EmbeddingFeatures, BagOfWordsFeatures, and Tokens columns.
+            </summary>
+        </member>
+        <member name="M:Bubba.EmbeddingPipeline.BuildPipeline">
+            <summary>
+            Builds an ML pipeline that converts text into embedding vectors.
+            </summary>
+        </member>
+        <member name="M:Bubba.EmbeddingPipeline.GetPipelineOutputs(Microsoft.ML.IDataView)">
+            <summary>
+            Converts the transformed IDataView into PipelineOutput objects.
+            </summary>
+        </member>
+        <member name="M:Bubba.EmbeddingPipeline.GenerateEmbeddings">
+            <summary>
+            Trains the pipeline and returns the transformed data (embedding vectors).
+            </summary>
+        </member>
+        <member name="M:Bubba.EmbeddingPipeline.GetEmbeddingVectors(Microsoft.ML.IDataView)">
+            <summary>
+            Converts the transformed IDataView into an array of TokenizedVector objects.
+            </summary>
+        </member>
+        <member name="M:Bubba.EmbeddingPipeline.Fail(System.Exception)">
+            <summary>
+            Fails the specified ex.
+            </summary>
+            <param name="ex">The ex.</param>
+        </member>
+        <member name="T:Bubba.FeatureVectors">
+            <inheritdoc />
+            <summary>
+            </summary>
+        </member>
+        <member name="F:Bubba.FeatureVectors._embeddings">
+            <summary>
+            The embedding
+            </summary>
+        </member>
+        <member name="F:Bubba.FeatureVectors._bagOfWords">
+            <summary>
+            The bag of words
+            </summary>
+        </member>
+        <member name="F:Bubba.FeatureVectors._tokens">
+            <summary>
+            The tokens
+            </summary>
+        </member>
+        <member name="M:Bubba.FeatureVectors.#ctor">
+            <summary>
+            Initializes a new instance of the
+            <see cref="T:Bubba.FeatureVectors"/> class.
+            </summary>
+        </member>
+        <member name="P:Bubba.FeatureVectors.Embeddings">
+            <summary>
+            Gets or sets the embedding.
+            </summary>
+            <value>
+            The embedding.
+            </value>
+        </member>
+        <member name="P:Bubba.FeatureVectors.BagOfWords">
+            <summary>
+            Gets or sets the bag of words.
+            </summary>
+            <value>
+            The bag of words.
+            </value>
+        </member>
+        <member name="P:Bubba.FeatureVectors.Tokens">
+            <summary>
+            Gets or sets the tokens.
+            </summary>
+            <value>
+            The tokens.
+            </value>
+        </member>
         <member name="T:Bubba.InputData">
             <summary>
             
@@ -27816,6 +27967,29 @@
             Fails the specified ex.
             </summary>
             <param name="ex">The ex.</param>
+        </member>
+        <member name="T:Bubba.TokenizedVector">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Bubba.TokenizedVector._embedding">
+            <summary>
+            The embedding
+            </summary>
+        </member>
+        <member name="M:Bubba.TokenizedVector.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Bubba.TokenizedVector"/> class.
+            </summary>
+        </member>
+        <member name="P:Bubba.TokenizedVector.Embedding">
+            <summary>
+            Gets or sets the embedding.
+            </summary>
+            <value>
+            The embedding.
+            </value>
         </member>
         <member name="T:Bubba.AsyncPathBase">
             <summary>
@@ -36061,11 +36235,6 @@
             Opens the calculator window.
             </summary>
         </member>
-        <member name="M:Bubba.ChatWindow.LoadDocumentWindow">
-            <summary>
-            Opens the folder browser.
-            </summary>
-        </member>
         <member name="M:Bubba.ChatWindow.OpenFileBrowser">
             <summary>
             Opens the file browser.
@@ -36090,11 +36259,6 @@
         <member name="M:Bubba.ChatWindow.OpenCalculator">
             <summary>
             Opens the calculator.
-            </summary>
-        </member>
-        <member name="M:Bubba.ChatWindow.OpenDocumentWindow">
-            <summary>
-            Opens the folder browser.
             </summary>
         </member>
         <member name="M:Bubba.ChatWindow.PadQuotes(System.String)">

@@ -113,7 +113,6 @@ namespace Bubba
         {
             _entry = new object( );
             _header = new GptHeader( );
-            _httpClient = new HttpClient( );
             _endPoint = GptEndPoint.Completions;
             _systemPrompt = App.Instructions;
             _userPrompt = user;

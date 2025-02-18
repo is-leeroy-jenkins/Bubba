@@ -94,11 +94,6 @@ namespace Bubba
         private protected string _input;
 
         /// <summary>
-        /// The response format
-        /// </summary>
-        private protected string _responseFormat;
-
-        /// <summary>
         /// The audio data
         /// </summary>
         private protected byte[ ] _audioData;

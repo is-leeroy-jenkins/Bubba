@@ -1,10 +1,10 @@
 ﻿// ******************************************************************************************
 //     Assembly:                Bubba
 //     Author:                  Terry D. Eppler
-//     Created:                 01-31-2025
+//     Created:                 02-17-2025
 // 
 //     Last Modified By:        Terry D. Eppler
-//     Last Modified On:        01-31-2025
+//     Last Modified On:        02-17-2025
 // ******************************************************************************************
 // <copyright file="FileOptions.cs" company="Terry D. Eppler">
 //    Bubba is a small and simple windows (wpf) application for interacting with the OpenAI API
@@ -38,11 +38,12 @@
 //   FileOptions.cs
 // </summary>
 // ******************************************************************************************
-
 namespace Bubba
 {
     using System;
+    using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
+    using System.Linq;
     using Properties;
 
     /// <inheritdoc />
@@ -111,6 +112,7 @@ namespace Bubba
         public FileOptions( )
             : base( )
         {
+            _endPoint = GptEndPoint.Files;
             _store = false;
             _stream = true;
             _number = 1;
@@ -305,6 +307,36 @@ namespace Bubba
                     _fileName = value;
                     OnPropertyChanged( nameof( FileName ) );
                 }
+            }
+        }
+
+        /// <inheritdoc />
+        /// <summary>
+        /// Gets the data.
+        /// </summary>
+        /// <returns></returns>
+        public override IDictionary<string, object> GetData( )
+        {
+            try
+            {
+                _data.Add( "n", _number );
+                _data.Add( "model", _model );
+                _data.Add( "max_completion_tokens", _maximumTokens );
+                _data.Add( "store", _store );
+                _data.Add( "stream", _stream );
+                _data.Add( "temperature", _temperature );
+                _data.Add( "frequency_penalty", _frequencyPenalty );
+                _data.Add( "presence_penalty", _presencePenalty );
+                _data.Add( "top_p", _topPercent );
+                _data.Add( "stop", _stop );
+                return _data?.Any( ) == true
+                    ? _data
+                    : default( IDictionary<string, object> );
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+                return default( IDictionary<string, object> );
             }
         }
     }

@@ -155,26 +155,6 @@ namespace Bubba
             _stop = "['#', ';']";
         }
 
-        /// <inheritdoc />
-        /// <summary>
-        /// Initializes a new instance of the <see cref="T:Bubba.VectorPayload" /> class.
-        /// </summary>
-        /// <param name="userPrompt">The user prompt.</param>
-        /// <param name="config">The configuration.</param>
-        public VectorPayload( string userPrompt, GptOptions config )
-            : this( )
-        {
-            _prompt = userPrompt;
-            _temperature = config.Temperature;
-            _maximumTokens = config.MaximumTokens;
-            _frequencyPenalty = config.FrequencyPenalty;
-            _presencePenalty = config.PresencePenalty;
-            _store = config.Store;
-            _stream = config.Stream;
-            _topPercent = config.TopPercent;
-            _stop = config.Stop;
-        }
-
         /// <summary>
         /// Gets or sets the file path.
         /// </summary>

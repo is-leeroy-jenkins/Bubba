@@ -1,10 +1,10 @@
 ﻿// ******************************************************************************************
 //     Assembly:                Bubba
 //     Author:                  Terry D. Eppler
-//     Created:                 01-31-2025
+//     Created:                 02-17-2025
 // 
 //     Last Modified By:        Terry D. Eppler
-//     Last Modified On:        01-31-2025
+//     Last Modified On:        02-17-2025
 // ******************************************************************************************
 // <copyright file="TextOptions.cs" company="Terry D. Eppler">
 //    Bubba is a small and simple windows (wpf) application for interacting with the OpenAI API
@@ -38,7 +38,6 @@
 //   TextOptions.cs
 // </summary>
 // ******************************************************************************************
-
 namespace Bubba
 {
     using System;
@@ -52,6 +51,7 @@ namespace Bubba
     /// </summary>
     [ SuppressMessage( "ReSharper", "UnusedType.Global" ) ]
     [ SuppressMessage( "ReSharper", "PreferConcreteValueOverDefault" ) ]
+    [ SuppressMessage( "ReSharper", "ClassCanBeSealed.Global" ) ]
     public class TextOptions : GptOptions
     {
         /// <summary>
@@ -62,6 +62,7 @@ namespace Bubba
         public TextOptions( )
             : base( )
         {
+            _endPoint = GptEndPoint.TextGeneration;
             _store = false;
             _stream = true;
             _number = 1;
@@ -302,6 +303,7 @@ namespace Bubba
             try
             {
                 _data.Add( "n", _number );
+                _data.Add( "model", _model );
                 _data.Add( "max_completion_tokens", _maximumTokens );
                 _data.Add( "store", _store );
                 _data.Add( "stream", _stream );

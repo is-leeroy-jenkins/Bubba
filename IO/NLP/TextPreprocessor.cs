@@ -52,6 +52,7 @@ namespace Bubba
     /// <seealso cref="T:Bubba.ILanguageProcessor" />
     [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
     [ SuppressMessage( "ReSharper", "PreferConcreteValueOverDefault" ) ]
+    [ SuppressMessage( "ReSharper", "UseCollectionExpression" ) ]
     public class TextPreprocessor : ILanguageProcessor
     {
         /// <summary>
@@ -84,6 +85,7 @@ namespace Bubba
         {
             try
             {
+                ThrowIf.Empty( text, nameof( text ) );
                 return text.Split( new[ ]
                 {
                     ' ',
@@ -126,13 +128,14 @@ namespace Bubba
         /// </summary>
         /// <param name="tokens">The tokens.</param>
         /// <returns></returns>
-        public string[ ] RemoveStopWords( string[ ] tokens )
+        public IEnumerable<string> RemoveStopWords( string[ ] tokens )
         {
             try
             {
                 ThrowIf.Null( tokens, nameof( tokens ) );
-                var _stops = tokens.Where( token => !_stopWords.Contains( token ) )
-                    .ToArray( );
+                var _stops = tokens
+                    ?.Where( token => !_stopWords.Contains( token ) )
+                    ?.ToArray( );
 
                 return ( _stops?.Any( ) == true )
                     ? _stops
