@@ -16,9 +16,6 @@
   </ItemGroup>
   <ImportGroup Condition=" '$(ExcludeRestorePackageImports)' != 'true' ">
     <Import Project="$(NuGetPackageRoot)\microsoft.ml\4.0.1\build\netstandard2.0\Microsoft.ML.props" Condition="Exists('$(NuGetPackageRoot)\microsoft.ml\4.0.1\build\netstandard2.0\Microsoft.ML.props')" />
-    <Import Project="$(NuGetPackageRoot)\chromiumembeddedframework.runtime.win-x86\131.3.5\buildTransitive\chromiumembeddedframework.runtime.win-x86.props" Condition="Exists('$(NuGetPackageRoot)\chromiumembeddedframework.runtime.win-x86\131.3.5\buildTransitive\chromiumembeddedframework.runtime.win-x86.props')" />
-    <Import Project="$(NuGetPackageRoot)\chromiumembeddedframework.runtime.win-x64\131.3.5\buildTransitive\chromiumembeddedframework.runtime.win-x64.props" Condition="Exists('$(NuGetPackageRoot)\chromiumembeddedframework.runtime.win-x64\131.3.5\buildTransitive\chromiumembeddedframework.runtime.win-x64.props')" />
-    <Import Project="$(NuGetPackageRoot)\chromiumembeddedframework.runtime.win-arm64\131.3.5\buildTransitive\chromiumembeddedframework.runtime.win-arm64.props" Condition="Exists('$(NuGetPackageRoot)\chromiumembeddedframework.runtime.win-arm64\131.3.5\buildTransitive\chromiumembeddedframework.runtime.win-arm64.props')" />
     <Import Project="$(NuGetPackageRoot)\chromiumembeddedframework.runtime\131.3.5\buildTransitive\chromiumembeddedframework.runtime.props" Condition="Exists('$(NuGetPackageRoot)\chromiumembeddedframework.runtime\131.3.5\buildTransitive\chromiumembeddedframework.runtime.props')" />
   </ImportGroup>
   <PropertyGroup Condition=" '$(ExcludeRestorePackageImports)' != 'true' ">

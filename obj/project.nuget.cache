@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "e12rFZrKfNw=",
+  "dgSpecHash": "1l3lbxrGbtY=",
   "success": true,
   "projectFilePath": "C:\\Users\\terry\\source\\repos\\Bubba\\Bubba.csproj",
   "expectedPackageFiles": [
@@ -10,9 +10,6 @@
     "C:\\Users\\terry\\.nuget\\packages\\cefsharp.winforms.netcore\\131.3.50\\cefsharp.winforms.netcore.131.3.50.nupkg.sha512",
     "C:\\Users\\terry\\.nuget\\packages\\cefsharp.wpf.netcore\\131.3.50\\cefsharp.wpf.netcore.131.3.50.nupkg.sha512",
     "C:\\Users\\terry\\.nuget\\packages\\chromiumembeddedframework.runtime\\131.3.5\\chromiumembeddedframework.runtime.131.3.5.nupkg.sha512",
-    "C:\\Users\\terry\\.nuget\\packages\\chromiumembeddedframework.runtime.win-arm64\\131.3.5\\chromiumembeddedframework.runtime.win-arm64.131.3.5.nupkg.sha512",
-    "C:\\Users\\terry\\.nuget\\packages\\chromiumembeddedframework.runtime.win-x64\\131.3.5\\chromiumembeddedframework.runtime.win-x64.131.3.5.nupkg.sha512",
-    "C:\\Users\\terry\\.nuget\\packages\\chromiumembeddedframework.runtime.win-x86\\131.3.5\\chromiumembeddedframework.runtime.win-x86.131.3.5.nupkg.sha512",
     "C:\\Users\\terry\\.nuget\\packages\\controlzex\\4.4.0\\controlzex.4.4.0.nupkg.sha512",
     "C:\\Users\\terry\\.nuget\\packages\\epplus\\7.5.3\\epplus.7.5.3.nupkg.sha512",
     "C:\\Users\\terry\\.nuget\\packages\\epplus.interfaces\\7.5.0\\epplus.interfaces.7.5.0.nupkg.sha512",

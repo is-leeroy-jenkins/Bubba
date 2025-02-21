@@ -278,18 +278,6 @@
             "ToastNotifications.Net6": {
               "target": "Package",
               "version": "[1.0.4, )"
-            },
-            "chromiumembeddedframework.runtime.win-arm64": {
-              "target": "Package",
-              "version": "[131.3.5, )"
-            },
-            "chromiumembeddedframework.runtime.win-x64": {
-              "target": "Package",
-              "version": "[131.3.5, )"
-            },
-            "chromiumembeddedframework.runtime.win-x86": {
-              "target": "Package",
-              "version": "[131.3.5, )"
             }
           },
           "imports": [
