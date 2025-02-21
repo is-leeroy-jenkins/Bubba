@@ -52,7 +52,9 @@ namespace Bubba
     using System.Data.SqlServerCe;
     using System.Diagnostics.CodeAnalysis;
     using System.Linq;
+    using System.Text.Encodings.Web;
     using System.Text.Json;
+    using System.Text.Json.Serialization;
 
     /// <summary>
     /// 
@@ -416,8 +418,15 @@ namespace Bubba
 
                 var _options = new JsonSerializerOptions
                 {
+                    PropertyNameCaseInsensitive = false,
                     WriteIndented = true,
-                    DictionaryKeyPolicy = JsonNamingPolicy.SnakeCaseLower
+                    AllowTrailingCommas = false,
+                    ReadCommentHandling = JsonCommentHandling.Skip,
+                    Encoder = JavaScriptEncoder.UnsafeRelaxedJsonEscaping,
+                    DictionaryKeyPolicy = JsonNamingPolicy.SnakeCaseLower,
+                    PropertyNamingPolicy = JsonNamingPolicy.SnakeCaseLower,
+                    DefaultIgnoreCondition = JsonIgnoreCondition.Always,
+                    IncludeFields = false
                 };
 
                 return JsonSerializer.Serialize( dict, typeof( Dictionary<string, object> ),
@@ -449,8 +458,15 @@ namespace Bubba
 
                 var _options = new JsonSerializerOptions
                 {
+                    PropertyNameCaseInsensitive = false,
                     WriteIndented = true,
-                    DictionaryKeyPolicy = JsonNamingPolicy.SnakeCaseLower
+                    AllowTrailingCommas = false,
+                    ReadCommentHandling = JsonCommentHandling.Skip,
+                    Encoder = JavaScriptEncoder.UnsafeRelaxedJsonEscaping,
+                    DictionaryKeyPolicy = JsonNamingPolicy.SnakeCaseLower,
+                    PropertyNamingPolicy = JsonNamingPolicy.SnakeCaseLower,
+                    DefaultIgnoreCondition = JsonIgnoreCondition.Always,
+                    IncludeFields = false
                 };
 
                 return JsonSerializer.Serialize( dict, typeof( Dictionary<string, object> ),

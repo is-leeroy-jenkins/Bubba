@@ -1,10 +1,10 @@
 ﻿// ******************************************************************************************
 //     Assembly:                Bubba
 //     Author:                  Terry D. Eppler
-//     Created:                 02-17-2025
+//     Created:                 02-21-2025
 // 
 //     Last Modified By:        Terry D. Eppler
-//     Last Modified On:        02-17-2025
+//     Last Modified On:        02-21-2025
 // ******************************************************************************************
 // <copyright file="FileOptions.cs" company="Terry D. Eppler">
 //    Bubba is a small and simple windows (wpf) application for interacting with the OpenAI API
@@ -45,6 +45,7 @@ namespace Bubba
     using System.Diagnostics.CodeAnalysis;
     using System.Linq;
     using Properties;
+    using Syncfusion.Styles;
 
     /// <inheritdoc />
     /// <summary>
@@ -53,6 +54,7 @@ namespace Bubba
     [ SuppressMessage( "ReSharper", "UnusedType.Global" ) ]
     [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
     [ SuppressMessage( "ReSharper", "PreferConcreteValueOverDefault" ) ]
+    [ SuppressMessage( "ReSharper", "FunctionComplexityOverflow" ) ]
     public class FileOptions : GptOptions
     {
         /// <summary>
@@ -81,6 +83,11 @@ namespace Bubba
         private protected string _order;
 
         /// <summary>
+        /// The file identifier
+        /// </summary>
+        private protected string _fileId;
+
+        /// <summary>
         /// A cursor for use in pagination. after is an object ID
         /// defines your place in the list. For instance, if you
         /// make a list request and receive 100 objects, ending with
@@ -103,6 +110,11 @@ namespace Bubba
         /// The file name
         /// </summary>
         private protected string _fileName;
+
+        /// <summary>
+        /// The MIME type
+        /// </summary>
+        private protected string _mimeType;
 
         /// <summary>
         /// Initializes a new instance of the
@@ -167,6 +179,28 @@ namespace Bubba
                 {
                     _purpose = value;
                     OnPropertyChanged( nameof( Purpose ) );
+                }
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the file identifier.
+        /// </summary>
+        /// <value>
+        /// The file identifier.
+        /// </value>
+        public string FileId
+        {
+            get
+            {
+                return _fileId;
+            }
+            set
+            {
+                if( _fileId != value )
+                {
+                    _fileId = value;
+                    OnPropertyChanged( nameof( FileId ) );
                 }
             }
         }
@@ -310,6 +344,28 @@ namespace Bubba
             }
         }
 
+        /// <summary>
+        /// Gets or sets the type of the MIME.
+        /// </summary>
+        /// <value>
+        /// The type of the MIME.
+        /// </value>
+        public string MimeType
+        {
+            get
+            {
+                return _mimeType;
+            }
+            set
+            {
+                if( _mimeType != value )
+                {
+                    _mimeType = value;
+                    OnPropertyChanged( nameof( MimeType ) );
+                }
+            }
+        }
+
         /// <inheritdoc />
         /// <summary>
         /// Gets the data.
@@ -329,6 +385,52 @@ namespace Bubba
                 _data.Add( "presence_penalty", _presencePenalty );
                 _data.Add( "top_p", _topPercent );
                 _data.Add( "stop", _stop );
+                _data.Add( "order", _order );
+                if( !string.IsNullOrEmpty( _id ) )
+                {
+                    _data.Add( "id", _id );
+                }
+
+                if( !string.IsNullOrEmpty( _purpose ) )
+                {
+                    _data.Add( "purpose", _purpose );
+                }
+
+                if( !string.IsNullOrEmpty( _fileId ) )
+                {
+                    _data.Add( "file_id", _fileId );
+                }
+
+                if( _createdAt > 0 )
+                {
+                    _data.Add( "created_at", _createdAt  );
+                }
+
+                if( _bytes > 0 )
+                {
+                    _data.Add( "bytes", _bytes );
+                }
+
+                if( !string.IsNullOrEmpty( _fileName ) )
+                {
+                    _data.Add( "file_name", _fileName );
+                }
+
+                if( !string.IsNullOrEmpty( _mimeType ) )
+                {
+                    _data.Add( "mime_type", _mimeType );
+                }
+
+                if( !string.IsNullOrEmpty( _order ) )
+                {
+                    _data.Add( "order", _order );
+                }
+
+                if( _limit > 0 )
+                {
+                    _data.Add( "limit", _limit );
+                }
+
                 return _data?.Any( ) == true
                     ? _data
                     : default( IDictionary<string, object> );

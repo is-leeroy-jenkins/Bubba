@@ -44,7 +44,11 @@ namespace Bubba
     using System;
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
+    using System.IO;
     using System.Linq;
+    using System.Text.RegularExpressions;
+    using System.Threading.Tasks;
+    using Newtonsoft.Json;
 
     /// <inheritdoc />
     /// <summary>
@@ -58,7 +62,7 @@ namespace Bubba
         /// <summary>
         /// The stop words
         /// </summary>
-        private protected static readonly HashSet<string> _stopWords = new HashSet<string>
+        private protected static HashSet<string> _stopWords = new HashSet<string>
         {
             "a",
             "an",
@@ -75,18 +79,42 @@ namespace Bubba
             "was"
         };
 
+        /// <summary>
+        /// Load stop words from an external JSON file.
+        /// </summary>
+        public void LoadStopWords( string filePath )
+        {
+            try
+            {
+                ThrowIf.Empty( filePath, nameof( filePath) );
+                if( !File.Exists( filePath ) )
+                {
+                    var _message = "Stop words file not found.";
+                    throw new FileNotFoundException( _message );
+                }
+
+                var content = File.ReadAllText( filePath );
+                _stopWords.Clear( );
+                _stopWords = JsonConvert.DeserializeObject<HashSet<string>>( content );
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+            }
+        }
+
         /// <inheritdoc />
         /// <summary>
         /// Tokenizes the specified text.
         /// </summary>
         /// <param name="text">The text.</param>
         /// <returns></returns>
-        public string[ ] Tokenize( string text )
+        public string[ ] TokenizeText( string text )
         {
             try
             {
                 ThrowIf.Empty( text, nameof( text ) );
-                return text.Split( new[ ]
+                var _split = text.Split( new[ ]
                 {
                     ' ',
                     '.',
@@ -94,6 +122,10 @@ namespace Bubba
                     '!',
                     '?'
                 }, StringSplitOptions.RemoveEmptyEntries );
+
+                return ( _split?.Any( ) == true )
+                    ? _split
+                    : default( string[ ] );
             }
             catch( Exception ex )
             {
@@ -113,7 +145,13 @@ namespace Bubba
             try
             {
                 ThrowIf.Negative( text, nameof( text ) );
-                return text.ToLowerInvariant( ).Trim( );
+                var _lower = text.ToLower( );
+                var _depunc = Regex.Replace( _lower, @"[^\w\s]", "" );  
+                var _despace = Regex.Replace( _depunc, @"\s+", " " );  
+                var _trim = _despace.Trim( );
+                return !string.IsNullOrEmpty( _trim )
+                    ? _trim
+                    : string.Empty;
             }
             catch( Exception ex )
             {
@@ -148,6 +186,39 @@ namespace Bubba
             }
         }
 
+        /// <summary>
+        /// Converts a text file to a JSONL (JSON Lines) file.
+        /// Each line in the text file is treated as a separate JSON object.
+        /// </summary>
+        /// <param name="inpath">Path to the input text file.</param>
+        /// <param name="outpath">Path to the output JSONL file.</param>
+        /// <param name="key">The key to assign to each line in the JSON object.</param>
+        public void ConvertToJsonl( string inpath, string outpath, string key = "text" )
+        {
+            try
+            {
+                if( !File.Exists( inpath ) )
+                {
+                    var _message = "Input file not found.";
+                    throw new FileNotFoundException( _message );
+                }
+
+                using var _reader = new StreamReader( inpath );
+                using var _writer = new StreamWriter( outpath );
+                string _line;
+                while( ( _line = _reader.ReadLine( ) ) != null )
+                {
+                    var _jsonObject = new Dictionary<string, string> { { key, _line } };
+                    var _jsonLine = JsonConvert.SerializeObject( _jsonObject );
+                    _writer.WriteLine( _jsonLine );
+                }
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+            }
+        }
+    
         /// <inheritdoc />
         /// <summary>
         /// Stems the word.
@@ -158,7 +229,7 @@ namespace Bubba
         {
             try
             {
-                // Basic stemming logic; replace with a robust stemming library as needed.
+                // Basic stemming logic;
                 ThrowIf.Empty( word, nameof( word ) );
                 if( word.EndsWith( "ing" ) )
                 {
@@ -171,6 +242,60 @@ namespace Bubba
                 }
 
                 return word;
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+                return string.Empty;
+            }
+        }
+
+        /// <summary>
+        /// Generate N-grams from text.
+        /// </summary>
+        public IList<string> GenerateNgrams( string text, int n )
+        {
+            try
+            {
+                ThrowIf.Empty( text, nameof( text ) );
+                ThrowIf.Negative( n, nameof( n ) );
+                var _tokens = TokenizeText( text )
+                    .ToList(  );
+
+                var _ngrams = new List<string>( );
+                for( var i = 0; i <= _tokens.Count - n; i++ )
+                {
+                    _ngrams.Add(string.Join(" ", _tokens.Skip(i).Take(n)));
+                }
+
+                return ( _ngrams?.Any( ) == true )
+                    ? _ngrams
+                    : default(IList<string> );
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+                return default( IList<string> );
+            }
+        }
+
+        /// <summary>
+        /// Remove URLs, emails, hashtags, and special characters.
+        /// </summary>
+        public string CleanText( string text )
+        {
+            try
+            {
+                ThrowIf.Empty( text, nameof( text ) );
+                var _deurl = Regex.Replace( text, @"http\S+|www\S+", "" );   
+                var _demail = Regex.Replace( _deurl, @"\S+@\S+\.\S+", ""); 
+                var _dehash = Regex.Replace( _demail, @"#\w+", "");   
+                var _dementions = Regex.Replace( _dehash, @"@\w+", "");   
+                var _dechars = Regex.Replace( _dementions, @"[^a-zA-Z0-9\s]", "");  
+                var _trim = _dechars.Trim(  );
+                return !string.IsNullOrEmpty( _trim )
+                    ? _trim
+                    : string.Empty;
             }
             catch( Exception ex )
             {

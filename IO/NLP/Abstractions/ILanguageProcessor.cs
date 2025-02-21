@@ -54,7 +54,7 @@ namespace Bubba
         /// </summary>
         /// <param name="text">The text.</param>
         /// <returns></returns>
-        public string[ ] Tokenize( string text );
+        public string[ ] TokenizeText( string text );
 
         /// <summary>
         /// Normalizes the text.

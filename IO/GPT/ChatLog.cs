@@ -371,7 +371,7 @@ namespace Bubba
         /// Serializes this instance.
         /// </summary>
         /// <returns></returns>
-        private protected string Serialize()
+        private protected string Serialize( )
         {
             try
             {
@@ -393,9 +393,9 @@ namespace Bubba
                     ? _text
                     : string.Empty;
             }
-            catch(Exception ex)
+            catch( Exception ex )
             {
-                Fail(ex);
+                Fail( ex );
                 return string.Empty;
             }
         }

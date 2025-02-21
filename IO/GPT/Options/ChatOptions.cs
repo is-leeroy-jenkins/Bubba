@@ -296,6 +296,28 @@ namespace Bubba
         }
 
         /// <summary>
+        /// Gets or sets the instructions.
+        /// </summary>
+        /// <value>
+        /// The instructions.
+        /// </value>
+        public string Instructions
+        {
+            get
+            {
+                return _instructions;
+            }
+            set
+            {
+                if( _instructions != value )
+                {
+                    _instructions = value;
+                    OnPropertyChanged( nameof( Instructions ) );
+                }
+            }
+        }
+
+        /// <summary>
         /// o1 models only.
         /// Constrains effort on reasoning for reasoning models.
         /// Currently supported values are low, medium, and high.

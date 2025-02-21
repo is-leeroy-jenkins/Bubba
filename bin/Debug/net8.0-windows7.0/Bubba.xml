@@ -27487,7 +27487,7 @@
             
             </summary>
         </member>
-        <member name="M:Bubba.ILanguageProcessor.Tokenize(System.String)">
+        <member name="M:Bubba.ILanguageProcessor.TokenizeText(System.String)">
             <summary>
             Tokenizes the specified text.
             </summary>
@@ -27930,7 +27930,12 @@
             The stop words
             </summary>
         </member>
-        <member name="M:Bubba.TextPreprocessor.Tokenize(System.String)">
+        <member name="M:Bubba.TextPreprocessor.LoadStopWords(System.String)">
+            <summary>
+            Load stop words from an external JSON file.
+            </summary>
+        </member>
+        <member name="M:Bubba.TextPreprocessor.TokenizeText(System.String)">
             <inheritdoc />
             <summary>
             Tokenizes the specified text.
@@ -27954,6 +27959,15 @@
             <param name="tokens">The tokens.</param>
             <returns></returns>
         </member>
+        <member name="M:Bubba.TextPreprocessor.ConvertToJsonl(System.String,System.String,System.String)">
+            <summary>
+            Converts a text file to a JSONL (JSON Lines) file.
+            Each line in the text file is treated as a separate JSON object.
+            </summary>
+            <param name="inpath">Path to the input text file.</param>
+            <param name="outpath">Path to the output JSONL file.</param>
+            <param name="key">The key to assign to each line in the JSON object.</param>
+        </member>
         <member name="M:Bubba.TextPreprocessor.StemWord(System.String)">
             <inheritdoc />
             <summary>
@@ -27961,6 +27975,16 @@
             </summary>
             <param name="word">The word.</param>
             <returns></returns>
+        </member>
+        <member name="M:Bubba.TextPreprocessor.GenerateNgrams(System.String,System.Int32)">
+            <summary>
+            Generate N-grams from text.
+            </summary>
+        </member>
+        <member name="M:Bubba.TextPreprocessor.CleanText(System.String)">
+            <summary>
+            Remove URLs, emails, hashtags, and special characters.
+            </summary>
         </member>
         <member name="M:Bubba.TextPreprocessor.Fail(System.Exception)">
             <summary>
@@ -30767,7 +30791,7 @@
         </member>
         <member name="P:Bubba.Properties.OpenAI.BubbaPrompt">
             <summary>
-              Looks up a localized string similar to You are the most knowledgeable Budget Analyst in the federal government who provides detailed responses based on your vast knowledge of budget legislation, and federal appropriations.  Your responses to questions about federal finance are complete, transparent, and very detailed using an academic format.  Your vast knowledge of and experience in Data Science makes you the best Data Analyst in the world. You are proficient in C#, Python, SQL, C++, JavaScript, and VBA. Whenever you are asked to draw, paint, o [rest of string was truncated]&quot;;.
+              Looks up a localized string similar to You are the most knowledgeable Budget Analyst in the federal government who provides detailed responses based on your vast knowledge of budget legislation, and federal appropriations.  Your responses to questions about federal finance are complete, transparent, and very detailed using an academic format.  Your vast knowledge of and experience in Data Science makes you the best Data Analyst in the world. You are proficient in C#, Python, SQL, C++, JavaScript, and VBA. You use US federal budget data from OMB, [rest of string was truncated]&quot;;.
             </summary>
         </member>
         <member name="P:Bubba.Properties.OpenAI.OrganizationID">
@@ -40956,6 +40980,36 @@
         <member name="M:Bubba.WebBrowser.InitializeComponent">
             <summary>
             InitializeComponent
+            </summary>
+        </member>
+        <member name="T:XamlGeneratedNamespace.GeneratedInternalTypeHelper">
+            <summary>
+            GeneratedInternalTypeHelper
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.CreateInstance(System.Type,System.Globalization.CultureInfo)">
+            <summary>
+            CreateInstance
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.GetPropertyValue(System.Reflection.PropertyInfo,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            GetPropertyValue
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.SetPropertyValue(System.Reflection.PropertyInfo,System.Object,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            SetPropertyValue
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.CreateDelegate(System.Type,System.Object,System.String)">
+            <summary>
+            CreateDelegate
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.AddEventHandler(System.Reflection.EventInfo,System.Object,System.Delegate)">
+            <summary>
+            AddEventHandler
             </summary>
         </member>
     </members>

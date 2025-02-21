@@ -1,10 +1,10 @@
 ﻿// ******************************************************************************************
 //     Assembly:                Bubba
 //     Author:                  Terry D. Eppler
-//     Created:                 01-16-2025
+//     Created:                 02-21-2025
 // 
 //     Last Modified By:        Terry D. Eppler
-//     Last Modified On:        01-16-2025
+//     Last Modified On:        02-21-2025
 // ******************************************************************************************
 // <copyright file="FileRequest.cs" company="Terry D. Eppler">
 //    Bubba is a small and simple windows (wpf) application for interacting with the OpenAI API
@@ -38,7 +38,6 @@
 //   FileRequest.cs
 // </summary>
 // ******************************************************************************************
-
 namespace Bubba
 {
     using System;
@@ -404,10 +403,8 @@ namespace Bubba
             try
             {
                 _httpClient = new HttpClient( );
-                _httpClient.DefaultRequestHeaders.Authorization =
-                    new AuthenticationHeaderValue( "Bearer", _apiKey );
-
-                using var _fileStream = new FileStream( filePath, FileMode.Open, FileAccess.Read );
+                _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue( "Bearer", _header.ApiKey );
+                await using var _fileStream = new FileStream( filePath, FileMode.Open, FileAccess.Read );
                 var _fileContent = new StreamContent( _fileStream );
                 _fileContent.Headers.ContentType = new MediaTypeHeaderValue( _header.ContentType );
                 var _formData = new MultipartFormDataContent
@@ -441,9 +438,7 @@ namespace Bubba
             try
             {
                 _httpClient = new HttpClient( );
-                _httpClient.DefaultRequestHeaders.Authorization =
-                    new AuthenticationHeaderValue( "Bearer", _apiKey );
-
+                _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue( "Bearer", _header.ApiKey );
                 var _response = await _httpClient.GetAsync( _endPoint );
                 _response.EnsureSuccessStatusCode( );
                 var _responseContent = await _response.Content.ReadAsStringAsync( );
@@ -469,9 +464,7 @@ namespace Bubba
             {
                 ThrowIf.Empty( fileId, nameof( fileId ) );
                 _httpClient = new HttpClient( );
-                _httpClient.DefaultRequestHeaders.Authorization =
-                    new AuthenticationHeaderValue( "Bearer", _apiKey );
-
+                _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue( "Bearer", _apiKey );
                 var _response = await _httpClient.GetAsync( $"{_endPoint}/{fileId}" );
                 _response.EnsureSuccessStatusCode( );
                 var _responseContent = await _response.Content.ReadAsStringAsync( );
@@ -487,32 +480,6 @@ namespace Bubba
         }
 
         /// <summary>
-        /// Gets the response asynchronous.
-        /// </summary>
-        /// <param name="prompt">The prompt.</param>
-        /// <param name="chunks">The context chunks.</param>
-        /// <returns>
-        /// </returns>
-        public async Task<string> GetResponseAsync( string prompt, IList<string> chunks )
-        {
-            var _context = string.Join( "\n\n", chunks );
-            var _payload = new GptPayload( );
-            _payload.Prompt = prompt;
-            _httpClient = new HttpClient( );
-            _httpClient.DefaultRequestHeaders.Add( "Authorization", $"Bearer {_apiKey}" );
-            var _json = JsonSerializer.Serialize( _payload );
-            var _content = new StringContent( _json, Encoding.UTF8, _header.ContentType );
-            var _response = await _httpClient.PostAsync( _endPoint, _content );
-            _response.EnsureSuccessStatusCode( );
-            var _jsonResponse = await _response.Content.ReadAsStringAsync( );
-            var _parsedResponse = JsonSerializer.Deserialize<JsonElement>( _jsonResponse );
-            return _parsedResponse.GetProperty( "choices" )[ 0 ]
-                .GetProperty( "message" )
-                .GetProperty( "content" )
-                .GetString( );
-        }
-
-        /// <summary>
         /// Deletes the file asynchronous.
         /// </summary>
         /// <param name="fileId">The file identifier.</param>
@@ -523,9 +490,7 @@ namespace Bubba
             {
                 ThrowIf.Empty( fileId, nameof( fileId ) );
                 _httpClient = new HttpClient( );
-                _httpClient.DefaultRequestHeaders.Authorization =
-                    new AuthenticationHeaderValue( "Bearer", App.OpenAiKey );
-
+                _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue( "Bearer", App.OpenAiKey );
                 var _response = await _httpClient.DeleteAsync( $"{_endPoint}/{fileId}" );
                 _response.EnsureSuccessStatusCode( );
                 var _responseContent = await _response.Content.ReadAsStringAsync( );
