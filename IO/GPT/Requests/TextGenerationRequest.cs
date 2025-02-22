@@ -1,10 +1,10 @@
 ﻿// ******************************************************************************************
 //     Assembly:                Bubba
 //     Author:                  Terry D. Eppler
-//     Created:                 01-31-2025
+//     Created:                 02-21-2025
 // 
 //     Last Modified By:        Terry D. Eppler
-//     Last Modified On:        01-31-2025
+//     Last Modified On:        02-21-2025
 // ******************************************************************************************
 // <copyright file="TextGenerationRequest.cs" company="Terry D. Eppler">
 //    Bubba is a small and simple windows (wpf) application for interacting with the OpenAI API
@@ -38,12 +38,12 @@
 //   TextGenerationRequest.cs
 // </summary>
 // ******************************************************************************************
-
 namespace Bubba
 {
     using System;
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
+    using System.Linq;
     using System.Net.Http;
     using System.Net.Http.Headers;
     using System.Text;
@@ -77,7 +77,6 @@ namespace Bubba
             _endPoint = GptEndPoint.TextGeneration;
             _messages.Add( new SystemMessage( _systemPrompt ) );
             _model = "gpt-4o";
-            _responseFormat = "text";
         }
 
         /// <inheritdoc />
@@ -393,7 +392,7 @@ namespace Bubba
                 _prompt = prompt;
                 _httpClient = new HttpClient( );
                 _httpClient.Timeout = new TimeSpan( 0, 0, 3 );
-                _httpClient.DefaultRequestHeaders.Authorization =
+                _httpClient.DefaultRequestHeaders.Authorization = 
                     new AuthenticationHeaderValue( "Bearer", _header.ApiKey );
 
                 var _text = new TextPayload
@@ -467,6 +466,58 @@ namespace Bubba
             catch( Exception ex )
             {
                 Fail( ex );
+                return string.Empty;
+            }
+        }
+
+        /// <inheritdoc />
+        /// <summary>
+        /// Gets the data.
+        /// </summary>
+        /// <returns></returns>
+        public override IDictionary<string, object> GetData( )
+        {
+            try
+            {
+                _data.Add( "n", _number.ToString( ) );
+                _data.Add( "max_completion_tokens", _maximumTokens.ToString( ) );
+                _data.Add( "store", _store.ToString( ) );
+                _data.Add( "stream", _stream.ToString( ) );
+                _data.Add( "temperature", _temperature.ToString( ) );
+                _data.Add( "frequency_penalty", _frequencyPenalty.ToString( ) );
+                _data.Add( "presence_penalty", _presencePenalty.ToString( ) );
+                _data.Add( "top_p", _topPercent.ToString( ) );
+                _data.Add( "stop", _stop );
+                _data.Add( "modalities", _modalities );
+                _data.Add( "model", _model );
+                _data.Add( "endpoint", _endPoint );
+                _data.Add( "messages", _messages );
+                return _data;
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+                return default( IDictionary<string, object> );
+            }
+        }
+
+        /// <summary>
+        /// Converts to string.
+        /// </summary>
+        /// <returns>
+        /// A <see cref="System.String" /> that represents this instance.
+        /// </returns>
+        public override string ToString()
+        {
+            try
+            {
+                return _data?.Any() == true
+                    ? _data.ToJson()
+                    : string.Empty;
+            }
+            catch(Exception ex)
+            {
+                Fail(ex);
                 return string.Empty;
             }
         }

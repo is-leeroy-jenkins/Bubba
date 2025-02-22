@@ -100,6 +100,7 @@ namespace Bubba
             _number = 1;
             _stop = "['#', ';']";
             _modalities = "['text','audio']";
+            _responseFormat = "text";
         }
 
         /// <inheritdoc />
@@ -108,8 +109,8 @@ namespace Bubba
         /// <see cref="T:Bubba.GptRequest" /> class.
         /// </summary>
         /// <param name = "user" > </param>
-        /// <param name = "parameter" > </param>
-        public GptRequest( string user, IGptParameter parameter )
+        /// <param name = "options" > </param>
+        public GptRequest( string user, IGptParameter options )
             : this( )
         {
             _header = new GptHeader( );
@@ -117,14 +118,14 @@ namespace Bubba
             _messages.Add( new SystemMessage( _systemPrompt ) );
             _messages.Add( new UserMessage( user ) );
             _apiKey = _header.ApiKey;
-            _number = parameter.Number;
-            _store = parameter.Store;
-            _stream = parameter.Stream;
-            _frequencyPenalty = parameter.FrequencyPenalty;
-            _presencePenalty = parameter.PresencePenalty;
-            _topPercent = parameter.TopPercent;
-            _temperature = parameter.Temperature;
-            _maximumTokens = parameter.MaximumTokens;
+            _number = options.Number;
+            _store = options.Store;
+            _stream = options.Stream;
+            _frequencyPenalty = options.FrequencyPenalty;
+            _presencePenalty = options.PresencePenalty;
+            _topPercent = options.TopPercent;
+            _temperature = options.Temperature;
+            _maximumTokens = options.MaximumTokens;
         }
 
         /// <inheritdoc />
@@ -346,7 +347,7 @@ namespace Bubba
         /// Gets the data.
         /// </summary>
         /// <returns></returns>
-        public virtual IDictionary<string, string> GetData( )
+        public virtual IDictionary<string, object> GetData( )
         {
             try
             {
@@ -366,7 +367,7 @@ namespace Bubba
             catch( Exception ex )
             {
                 Fail( ex );
-                return default( IDictionary<string, string> );
+                return default( IDictionary<string, object> );
             }
         }
 

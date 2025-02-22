@@ -297,7 +297,7 @@ namespace Bubba
         /// </summary>
         /// <returns>
         /// </returns>
-        public override IDictionary<string, string> GetData( )
+        public override IDictionary<string, object> GetData( )
         {
             try
             {
@@ -335,12 +335,12 @@ namespace Bubba
 
                 return _data?.Any( ) == true
                     ? _data
-                    : default( IDictionary<string, string> );
+                    : default( IDictionary<string, object> );
             }
             catch( Exception ex )
             {
                 Fail( ex );
-                return default( IDictionary<string, string> );
+                return default( IDictionary<string, object> );
             }
         }
 

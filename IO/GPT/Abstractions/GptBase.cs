@@ -163,7 +163,7 @@ namespace Bubba
         /// <summary>
         /// The data
         /// </summary>
-        private protected IDictionary<string, string> _data;
+        private protected IDictionary<string, object> _data;
 
         /// <summary>
         /// Initializes a new instance of the
