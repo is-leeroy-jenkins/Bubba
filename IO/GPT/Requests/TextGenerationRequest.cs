@@ -488,6 +488,7 @@ namespace Bubba
                 _data.Add( "presence_penalty", _presencePenalty );
                 _data.Add( "top_p", _topPercent );
                 _data.Add( "stop", _stop );
+                _data.Add( "response_format", _responseFormat );
                 _data.Add( "modalities", _modalities );
                 _data.Add( "messages", _messages );
                 return _data;

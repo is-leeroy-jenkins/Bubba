@@ -1,10 +1,10 @@
 ﻿// ******************************************************************************************
 //     Assembly:                Bubba
 //     Author:                  Terry D. Eppler
-//     Created:                 02-04-2025
+//     Created:                 02-23-2025
 // 
 //     Last Modified By:        Terry D. Eppler
-//     Last Modified On:        02-04-2025
+//     Last Modified On:        02-23-2025
 // ******************************************************************************************
 // <copyright file="UserMessage.cs" company="Terry D. Eppler">
 //    Bubba is a small and simple windows (wpf) application for interacting with the OpenAI API
@@ -38,7 +38,6 @@
 //   UserMessage.cs
 // </summary>
 // ******************************************************************************************
-
 namespace Bubba
 {
     using System;
@@ -61,6 +60,7 @@ namespace Bubba
     [ SuppressMessage( "ReSharper", "InconsistentNaming" ) ]
     [ SuppressMessage( "ReSharper", "PossibleUnintendedReferenceComparison" ) ]
     [ SuppressMessage( "ReSharper", "PreferConcreteValueOverDefault" ) ]
+    [ SuppressMessage( "ReSharper", "CanSimplifyDictionaryLookupWithTryGetValue" ) ]
     public class UserMessage : GptMessage, IGptMessage
     {
         /// <summary>
@@ -76,6 +76,7 @@ namespace Bubba
             : base( )
         {
             _role = "user";
+            _type = "text";
             _data = new Dictionary<string, object>( );
             _content = new Dictionary<string, string>( );
         }
@@ -89,9 +90,9 @@ namespace Bubba
         public UserMessage( string prompt )
             : this( )
         {
-            _userPrompt = prompt;
+            _text = prompt;
             _content.Add( "type", "text" );
-            _content.Add( "text", prompt );
+            _content.Add( "text", _text );
         }
 
         /// <summary>
@@ -103,6 +104,7 @@ namespace Bubba
         {
             _role = message.Role;
             _content = message.Content;
+            _type = message.Type;
         }
 
         /// <summary>
@@ -136,6 +138,52 @@ namespace Bubba
                 {
                     _role = value;
                     OnPropertyChanged( nameof( Role ) );
+                }
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the type.
+        /// </summary>
+        /// <value>
+        /// The type.
+        /// </value>
+        [ JsonPropertyName( "type" ) ]
+        public virtual string Type
+        {
+            get
+            {
+                return _type;
+            }
+            set
+            {
+                if( _type != value )
+                {
+                    _type = value;
+                    OnPropertyChanged( nameof( Type ) );
+                }
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the text.
+        /// </summary>
+        /// <value>
+        /// The text.
+        /// </value>
+        [ JsonPropertyName( "text" ) ]
+        public virtual string Text
+        {
+            get
+            {
+                return _text;
+            }
+            set
+            {
+                if( _text != value )
+                {
+                    _text = value;
+                    OnPropertyChanged( nameof( Text ) );
                 }
             }
         }
@@ -180,6 +228,16 @@ namespace Bubba
 
                 if( _content?.Any( ) == true )
                 {
+                    if( _content?.ContainsKey( "type" ) == true )
+                    {
+                        _data.Add( "type", _content[ "type" ] );
+                    }
+
+                    if( _content?.ContainsKey( "text" ) == true )
+                    {
+                        _data.Add( "text", _content[ "text" ] );
+                    }
+
                     _data.Add( "content", _content );
                 }
 
@@ -217,9 +275,9 @@ namespace Bubba
                     IncludeFields = false
                 };
 
-                var _text = JsonSerializer.Serialize( this, _options );
-                return !string.IsNullOrEmpty( _text )
-                    ? _text
+                var _serial = JsonSerializer.Serialize( this, _options );
+                return !string.IsNullOrEmpty( _serial )
+                    ? _serial
                     : string.Empty;
             }
             catch( Exception ex )
@@ -240,8 +298,8 @@ namespace Bubba
         {
             try
             {
-                return !string.IsNullOrEmpty( _userPrompt )
-                    ? _userPrompt
+                return !string.IsNullOrEmpty( _text )
+                    ? _text
                     : string.Empty;
             }
             catch( Exception ex )

@@ -91,7 +91,7 @@ namespace Bubba
         {
             _model = "gpt-4o";
             _endPoint = GptEndPoint.Completions;
-            _instructions = OpenAI.BubbaPrompt;
+            _instructions = App.Instructions;
             _store = false;
             _stream = true;
             _number = 1;

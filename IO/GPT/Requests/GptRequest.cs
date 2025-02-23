@@ -89,7 +89,7 @@ namespace Bubba
             _messages = new List<IGptMessage>( );
             _header = new GptHeader( );
             _apiKey = _header.ApiKey;
-            _systemPrompt = OpenAI.BubbaPrompt;
+            _systemPrompt = App.Instructions;
             _store = false;
             _stream = true;
             _presencePenalty = 0.00;

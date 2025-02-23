@@ -89,7 +89,7 @@ namespace Bubba
             _model = "gpt-4o";
             _number = 1;
             _endPoint = GptEndPoint.Assistants;
-            _instructions = OpenAI.BubbaPrompt;
+            _instructions = App.Instructions;
             _store = false;
             _stream = true;
             _temperature = 0.08;

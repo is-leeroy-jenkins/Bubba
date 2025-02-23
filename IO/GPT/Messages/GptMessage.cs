@@ -1,10 +1,10 @@
 ﻿// ******************************************************************************************
 //     Assembly:                Bubba
 //     Author:                  Terry D. Eppler
-//     Created:                 02-04-2025
+//     Created:                 02-23-2025
 // 
 //     Last Modified By:        Terry D. Eppler
-//     Last Modified On:        02-04-2025
+//     Last Modified On:        02-23-2025
 // ******************************************************************************************
 // <copyright file="GptMessage.cs" company="Terry D. Eppler">
 //    Bubba is a small and simple windows (wpf) application for interacting with the OpenAI API
@@ -38,7 +38,6 @@
 //   GptMessage.cs
 // </summary>
 // ******************************************************************************************
-
 namespace Bubba
 {
     using System;
@@ -75,6 +74,11 @@ namespace Bubba
         private protected string _type;
 
         /// <summary>
+        /// The text
+        /// </summary>
+        private protected string _text;
+
+        /// <summary>
         /// The data
         /// </summary>
         private protected IDictionary<string, object> _data;
@@ -86,6 +90,7 @@ namespace Bubba
         /// <value>
         /// The role.
         /// </value>
+        [ JsonPropertyName( "role" ) ]
         public virtual string Role
         {
             get
@@ -108,6 +113,7 @@ namespace Bubba
         /// <value>
         /// The content.
         /// </value>
+        [ JsonPropertyName( "content" ) ]
         public virtual IDictionary<string, string> Content
         {
             get
@@ -130,6 +136,7 @@ namespace Bubba
         /// <value>
         /// The type.
         /// </value>
+        [ JsonPropertyName( "type" ) ]
         public virtual string Type
         {
             get
@@ -142,6 +149,29 @@ namespace Bubba
                 {
                     _type = value;
                     OnPropertyChanged( nameof( Type ) );
+                }
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the text.
+        /// </summary>
+        /// <value>
+        /// The text.
+        /// </value>
+        [ JsonPropertyName( "text" ) ]
+        public virtual string Text
+        {
+            get
+            {
+                return _text;
+            }
+            set
+            {
+                if( _text != value )
+                {
+                    _text = value;
+                    OnPropertyChanged( nameof( Text ) );
                 }
             }
         }
@@ -250,6 +280,50 @@ namespace Bubba
             {
                 Fail( ex );
                 return string.Empty;
+            }
+        }
+
+        /// <summary>
+        /// Gets the roles.
+        /// </summary>
+        /// <returns></returns>
+        private protected IList<string> GetRoles( )
+        {
+            try
+            {
+                return new List<string>
+                {
+                    "assistant",
+                    "user",
+                    "system",
+                    "developer"
+                };
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+                return default( IList<string> );
+            }
+        }
+
+        /// <summary>
+        /// Gets the types.
+        /// </summary>
+        /// <returns></returns>
+        private protected IList<string> GetTypes( )
+        {
+            try
+            {
+                return new List<string>
+                {
+                    "text",
+                    "url"
+                };
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+                return default( IList<string> );
             }
         }
 

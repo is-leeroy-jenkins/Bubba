@@ -340,7 +340,7 @@ namespace Bubba
             _maximumTokens = ( int )MaxTokenSlider.Value;
             _imageSizes = new List<string>( );
             _voices = new Dictionary<string, string>( );
-            _systemPrompt = OpenAI.BubbaPrompt;
+            _systemPrompt = App.Instructions;
 
             // Event Wiring
             Loaded += OnLoad;
@@ -1597,7 +1597,7 @@ namespace Bubba
         {
             try
             {
-                var _default = OpenAI.BubbaPrompt;
+                var _default = App.Instructions;
                 var _systemDialog = new SystemDialog( )
                 {
                     Topmost = true,

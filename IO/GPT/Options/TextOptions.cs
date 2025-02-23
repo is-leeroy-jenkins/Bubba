@@ -303,7 +303,8 @@ namespace Bubba
             try
             {
                 _data.Add( "n", _number );
-                _data.Add( "model", _model );
+                _data.Add("model", _model);
+                _data.Add("endpoint", _endPoint);
                 _data.Add( "max_completion_tokens", _maximumTokens );
                 _data.Add( "store", _store );
                 _data.Add( "stream", _stream );
@@ -311,7 +312,8 @@ namespace Bubba
                 _data.Add( "frequency_penalty", _frequencyPenalty );
                 _data.Add( "presence_penalty", _presencePenalty );
                 _data.Add( "top_p", _topPercent );
-                _data.Add( "stop", _stop );
+                _data.Add("stop", _stop);
+                _data.Add("response_format", _responseFormat);
                 return _data?.Any( ) == true
                     ? _data
                     : default( IDictionary<string, object> );

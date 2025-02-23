@@ -78,7 +78,7 @@ namespace Bubba
         /// </summary>
         public GptPayload( )
         {
-            _systemPrompt = OpenAI.BubbaPrompt;
+            _systemPrompt = App.Instructions;
             _header = new GptHeader( );
             _temperature = 0.08;
             _topPercent = 0.09;

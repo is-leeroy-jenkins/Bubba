@@ -63,6 +63,11 @@ namespace Bubba
         /// <summary>
         /// The assistant
         /// </summary>
-        Assistant
+        Assistant,
+
+        /// <summary>
+        /// The developer
+        /// </summary>
+        Developer
     }
 }

@@ -1,10 +1,10 @@
 ﻿// ******************************************************************************************
 //     Assembly:                Bubba
 //     Author:                  Terry D. Eppler
-//     Created:                 01-19-2025
+//     Created:                 02-23-2025
 // 
 //     Last Modified By:        Terry D. Eppler
-//     Last Modified On:        01-19-2025
+//     Last Modified On:        02-23-2025
 // ******************************************************************************************
 // <copyright file="SystemMessage.cs" company="Terry D. Eppler">
 //    Bubba is a small and simple windows (wpf) application for interacting with the OpenAI API
@@ -38,7 +38,6 @@
 //   SystemMessage.cs
 // </summary>
 // ******************************************************************************************
-
 namespace Bubba
 {
     using System;
@@ -63,13 +62,9 @@ namespace Bubba
     [ SuppressMessage( "ReSharper", "ClassNeverInstantiated.Global" ) ]
     [ SuppressMessage( "ReSharper", "InconsistentNaming" ) ]
     [ SuppressMessage( "ReSharper", "PreferConcreteValueOverDefault" ) ]
+    [ SuppressMessage( "ReSharper", "CanSimplifyDictionaryLookupWithTryGetValue" ) ]
     public class SystemMessage : GptMessage, IGptMessage
     {
-        /// <summary>
-        /// The system prompt
-        /// </summary>
-        private protected string _systemPrompt;
-
         /// <summary>
         /// Initializes a new instance of the
         /// <see cref="SystemMessage"/> class.
@@ -77,7 +72,8 @@ namespace Bubba
         public SystemMessage( )
         {
             _role = "system";
-            _systemPrompt = OpenAI.BubbaPrompt;
+            _type = "text";
+            _text = App.Instructions;
             _data = new Dictionary<string, object>( );
             _content = new Dictionary<string, string>( );
         }
@@ -91,7 +87,7 @@ namespace Bubba
         public SystemMessage( string prompt )
             : this( )
         {
-            _systemPrompt = prompt;
+            _text = prompt;
             _content.Add( "type", "text" );
             _content.Add( "text", prompt );
         }
@@ -170,6 +166,16 @@ namespace Bubba
 
                 if( _content?.Any( ) == true )
                 {
+                    if( _content?.ContainsKey( "type" ) == true )
+                    {
+                        _data.Add( "type", _content[ "type" ] );
+                    }
+
+                    if( _content?.ContainsKey( "text" ) == true )
+                    {
+                        _data.Add( "text", _content[ "text" ] );
+                    }
+
                     _data.Add( "content", _content );
                 }
 
@@ -207,14 +213,14 @@ namespace Bubba
                     IncludeFields = false
                 };
 
-                var _text = JsonSerializer.Serialize(this, _options);
-                return !string.IsNullOrEmpty(_text)
+                var _text = JsonSerializer.Serialize( this, _options );
+                return !string.IsNullOrEmpty( _text )
                     ? _text
                     : string.Empty;
             }
-            catch(Exception ex)
+            catch( Exception ex )
             {
-                Fail(ex);
+                Fail( ex );
                 return string.Empty;
             }
         }

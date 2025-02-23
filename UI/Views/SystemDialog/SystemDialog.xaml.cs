@@ -122,7 +122,7 @@ namespace Bubba
             RegisterCallbacks( );
 
             // Dialog Properties
-            _systemPrompt = OpenAI.BubbaPrompt;
+            _systemPrompt = App.Instructions;
 
             //Event Wiring
             Loaded += OnLoad;

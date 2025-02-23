@@ -123,11 +123,11 @@ namespace Bubba
         /// <param name="userPrompt">The user prompt.</param>
         public ChatLog( string userPrompt )
         {
-            _systemPrompts.Add( OpenAI.BubbaPrompt );
-            _systemMessages.Add( new SystemMessage( OpenAI.BubbaPrompt ) );
+            _systemPrompts.Add( App.Instructions );
+            _systemMessages.Add( new SystemMessage( App.Instructions ) );
             _userPrompts.Add( userPrompt );
             _userMessages.Add( new UserMessage( userPrompt ) );
-            _messages.Add( DateTime.Now, new SystemMessage( OpenAI.BubbaPrompt ) );
+            _messages.Add( DateTime.Now, new SystemMessage( App.Instructions ) );
             _messages.Add( DateTime.Now, new UserMessage( userPrompt ) );
         }
 

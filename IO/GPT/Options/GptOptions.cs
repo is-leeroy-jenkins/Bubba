@@ -81,6 +81,7 @@ namespace Bubba
             _presencePenalty = 0.00;
             _maximumTokens = 2048;
             _stop = "['#', ';']";
+            _responseFormat = "text";
         }
 
         /// <inheritdoc />
