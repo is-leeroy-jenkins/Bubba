@@ -77,6 +77,7 @@ namespace Bubba
             _presencePenalty = 0.00;
             _maximumTokens = 2048;
             _stop = "['#', ';']";
+            _messages = new List<IGptMessage>();
         }
 
         /// <inheritdoc />
@@ -92,7 +93,7 @@ namespace Bubba
         /// <param name="store">if set to <c>true</c> [store].</param>
         /// <param name="stream">if set to <c>true</c> [stream].</param>
         public TextPayload( string userPrompt, double frequency = 0.00, double presence = 0.00,
-            double temperature = 0.08, double topPercent = 0.091, int maxTokens = 2048,
+            double temperature = 0.08, double topPercent = 0.09, int maxTokens = 2048,
             bool store = false, bool stream = true )
             : this( )
         {
@@ -104,8 +105,6 @@ namespace Bubba
             _store = store;
             _stream = stream;
             _topPercent = topPercent;
-            _stop = "['#', ';']";
-            _messages = new List<IGptMessage>( );
         }
 
         /// <inheritdoc />
@@ -125,8 +124,6 @@ namespace Bubba
             _store = config.Store;
             _stream = config.Stream;
             _topPercent = config.TopPercent;
-            _stop = "['#', ';']";
-            _messages = new List<IGptMessage>( );
         }
 
         /// <inheritdoc />

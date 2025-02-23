@@ -1,10 +1,10 @@
 ﻿// ******************************************************************************************
 //     Assembly:                Bubba
 //     Author:                  Terry D. Eppler
-//     Created:                 01-31-2025
+//     Created:                 02-22-2025
 // 
 //     Last Modified By:        Terry D. Eppler
-//     Last Modified On:        01-31-2025
+//     Last Modified On:        02-22-2025
 // ******************************************************************************************
 // <copyright file="SpeechGenerationReqeust.cs" company="Terry D. Eppler">
 //    Bubba is a small and simple windows (wpf) application for interacting with the OpenAI API
@@ -38,7 +38,6 @@
 //   SpeechGenerationReqeust.cs
 // </summary>
 // ******************************************************************************************
-
 namespace Bubba
 {
     using System;
@@ -334,14 +333,15 @@ namespace Bubba
             }
         }
 
+        /// <inheritdoc />
         /// <summary>
         /// Gets or sets the modalities.
         /// </summary>
         /// <value>
         /// The modalities.
         /// </value>
-        [JsonPropertyName("response_format")]
-        public string ResponseFormat
+        [ JsonPropertyName( "response_format" ) ]
+        public override string ResponseFormat
         {
             get
             {
@@ -349,10 +349,10 @@ namespace Bubba
             }
             set
             {
-                if(_responseFormat != value)
+                if( _responseFormat != value )
                 {
                     _responseFormat = value;
-                    OnPropertyChanged(nameof(ResponseFormat));
+                    OnPropertyChanged( nameof( ResponseFormat ) );
                 }
             }
         }
@@ -362,30 +362,30 @@ namespace Bubba
         /// Gets the data.
         /// </summary>
         /// <returns></returns>
-        public override IDictionary<string, string> GetData( )
+        public override IDictionary<string, object> GetData( )
         {
             try
             {
                 _data.Add( "model", _model );
-                _data.Add( "n", _number.ToString( ) );
-                _data.Add( "max_completion_tokens", _maximumTokens.ToString( ) );
-                _data.Add( "store", _store.ToString( ) );
-                _data.Add( "stream", _stream.ToString( ) );
-                _data.Add( "temperature", _temperature.ToString( ) );
-                _data.Add( "frequency_penalty", _frequencyPenalty.ToString( ) );
-                _data.Add( "presence_penalty", _presencePenalty.ToString( ) );
-                _data.Add( "top_p", _topPercent.ToString( ) );
+                _data.Add( "number", _number );
+                _data.Add( "max_completion_tokens", _maximumTokens );
+                _data.Add( "store", _store );
+                _data.Add( "stream", _stream );
+                _data.Add( "temperature", _temperature );
+                _data.Add( "frequency_penalty", _frequencyPenalty );
+                _data.Add( "presence_penalty", _presencePenalty );
+                _data.Add( "top_p", _topPercent );
                 _data.Add( "response_format", _responseFormat );
                 _data.Add( "stop", _stop );
                 _data.Add( "modalities", _modalities );
                 return _data?.Any( ) == true
                     ? _data
-                    : default( IDictionary<string, string> );
+                    : default( IDictionary<string, object> );
             }
             catch( Exception ex )
             {
                 Fail( ex );
-                return default( IDictionary<string, string> );
+                return default( IDictionary<string, object> );
             }
         }
 
@@ -403,8 +403,8 @@ namespace Bubba
                 ThrowIf.Empty( prompt, nameof( prompt ) );
                 _prompt = prompt;
                 _httpClient = new HttpClient( );
-                _httpClient.Timeout = new TimeSpan(0, 0, 3);
-                _httpClient.DefaultRequestHeaders.Authorization =
+                _httpClient.Timeout = new TimeSpan( 0, 0, 3 );
+                _httpClient.DefaultRequestHeaders.Authorization = 
                     new AuthenticationHeaderValue( "Bearer", _header.ApiKey );
 
                 var _speech = new SpeechPayload
@@ -446,7 +446,10 @@ namespace Bubba
             {
                 ThrowIf.Empty( response, nameof( response ) );
                 using var _document = JsonDocument.Parse( response );
-                var _text = _document.RootElement.GetProperty( "text" ).GetString( );
+                var _text = _document.RootElement
+                    .GetProperty( "text" )
+                    .GetString( );
+
                 return !string.IsNullOrEmpty( _text )
                     ? _text
                     : "Speech Generation Failed!";
@@ -468,7 +471,7 @@ namespace Bubba
             {
                 ThrowIf.Empty( filePath, nameof( filePath ) );
                 _httpClient = new HttpClient( );
-                _httpClient.DefaultRequestHeaders.Authorization =
+                _httpClient.DefaultRequestHeaders.Authorization = 
                     new AuthenticationHeaderValue( "Bearer", _header.ApiKey );
 
                 var _speech = new SpeechPayload
@@ -485,9 +488,7 @@ namespace Bubba
                 var _response = await _httpClient.PostAsync( _endPoint, _content );
                 _response.EnsureSuccessStatusCode( );
                 using var _responseStream = await _response.Content.ReadAsStreamAsync( );
-                using var _fileStream =
-                    new FileStream( filePath, FileMode.Create, FileAccess.Write );
-
+                using var _fileStream = new FileStream( filePath, FileMode.Create, FileAccess.Write );
                 await _responseStream.CopyToAsync( _fileStream );
             }
             catch( Exception ex )

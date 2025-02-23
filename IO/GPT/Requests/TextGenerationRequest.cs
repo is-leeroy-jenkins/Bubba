@@ -1,10 +1,10 @@
 ﻿// ******************************************************************************************
 //     Assembly:                Bubba
 //     Author:                  Terry D. Eppler
-//     Created:                 02-21-2025
+//     Created:                 02-23-2025
 // 
 //     Last Modified By:        Terry D. Eppler
-//     Last Modified On:        02-21-2025
+//     Last Modified On:        02-23-2025
 // ******************************************************************************************
 // <copyright file="TextGenerationRequest.cs" company="Terry D. Eppler">
 //    Bubba is a small and simple windows (wpf) application for interacting with the OpenAI API
@@ -392,9 +392,7 @@ namespace Bubba
                 _prompt = prompt;
                 _httpClient = new HttpClient( );
                 _httpClient.Timeout = new TimeSpan( 0, 0, 3 );
-                _httpClient.DefaultRequestHeaders.Authorization = 
-                    new AuthenticationHeaderValue( "Bearer", _header.ApiKey );
-
+                _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue( "Bearer", _header.ApiKey );
                 var _text = new TextPayload
                 {
                     Model = _model,
@@ -479,18 +477,18 @@ namespace Bubba
         {
             try
             {
-                _data.Add( "n", _number.ToString( ) );
-                _data.Add( "max_completion_tokens", _maximumTokens.ToString( ) );
-                _data.Add( "store", _store.ToString( ) );
-                _data.Add( "stream", _stream.ToString( ) );
-                _data.Add( "temperature", _temperature.ToString( ) );
-                _data.Add( "frequency_penalty", _frequencyPenalty.ToString( ) );
-                _data.Add( "presence_penalty", _presencePenalty.ToString( ) );
-                _data.Add( "top_p", _topPercent.ToString( ) );
-                _data.Add( "stop", _stop );
-                _data.Add( "modalities", _modalities );
+                _data.Add( "n", _number );
                 _data.Add( "model", _model );
                 _data.Add( "endpoint", _endPoint );
+                _data.Add( "max_completion_tokens", _maximumTokens );
+                _data.Add( "store", _store );
+                _data.Add( "stream", _stream );
+                _data.Add( "temperature", _temperature );
+                _data.Add( "frequency_penalty", _frequencyPenalty );
+                _data.Add( "presence_penalty", _presencePenalty );
+                _data.Add( "top_p", _topPercent );
+                _data.Add( "stop", _stop );
+                _data.Add( "modalities", _modalities );
                 _data.Add( "messages", _messages );
                 return _data;
             }
@@ -507,17 +505,17 @@ namespace Bubba
         /// <returns>
         /// A <see cref="System.String" /> that represents this instance.
         /// </returns>
-        public override string ToString()
+        public override string ToString( )
         {
             try
             {
-                return _data?.Any() == true
-                    ? _data.ToJson()
+                return _data?.Any( ) == true
+                    ? _data.ToJson( )
                     : string.Empty;
             }
-            catch(Exception ex)
+            catch( Exception ex )
             {
-                Fail(ex);
+                Fail( ex );
                 return string.Empty;
             }
         }

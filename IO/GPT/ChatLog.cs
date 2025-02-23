@@ -113,6 +113,7 @@ namespace Bubba
             _systemMessages = new List<IGptMessage>( );
             _assistantMessages = new List<IGptMessage>( );
             _data = new Dictionary<string, object>( );
+            _messages = new Dictionary<DateTime, IGptMessage>( );
         }
 
         /// <summary>

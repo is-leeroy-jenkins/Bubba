@@ -235,7 +235,7 @@ namespace Bubba
         /// <value>
         /// The data.
         /// </value>
-        public virtual IDictionary<string, string> Data
+        public virtual IDictionary<string, object> Data
         {
             get
             {

@@ -112,7 +112,7 @@ namespace Bubba
         public VectorPayload( )
             : base( )
         {
-            _model = "gpt-4o-mini";
+            _model = "gpt-4o";
             _endPoint = GptEndPoint.VectorStores;
             _store = false;
             _stream = true;
