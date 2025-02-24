@@ -2112,13 +2112,12 @@ namespace Bubba
             try
             {
                 ModelListBox.Items?.Clear( );
-                ModelListBox.Items.Add( "gpt-4-0613" );
-                ModelListBox.Items.Add( "gpt-4-0314" );
-                ModelListBox.Items.Add( "gpt-4-turbo-2024-04-09" );
-                ModelListBox.Items.Add( "gpt-4o-mini-2024-07-18" );
                 ModelListBox.Items.Add( "gpt-4o-2024-08-06" );
-                ModelListBox.Items.Add( "gpt-4o-2024-11-20" );
-                ModelListBox.Items.Add( "gpt-4o-2024-05-13" );
+                ModelListBox.Items.Add( "gpt-4o-mini-2024-07-18" );
+                ModelListBox.Items.Add( "gpt-4-0613" );
+                ModelListBox.Items.Add( "gpt-3.5-turbo-0125" );
+                ModelListBox.Items.Add( "gpt-3.5-turbo-1106" );
+                ModelListBox.Items.Add( "gpt-3.5-turbo-0613" );
                 ModelListBox.SelectedIndex = -1;
             }
             catch( Exception ex )

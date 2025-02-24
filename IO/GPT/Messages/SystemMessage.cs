@@ -190,6 +190,40 @@ namespace Bubba
             }
         }
 
+        /// <summary>
+        /// Dumps this instance.
+        /// </summary>
+        /// <returns></returns>
+        public string Dump( )
+        {
+            try
+            {
+                if( _data?.Any(  ) == false )
+                {
+                    var _message = "Data is null or has no items";
+                    throw new Exception( _message );
+                }
+                else
+                {
+                    var _newln = Environment.NewLine;
+                    var _payload = "Data Dump:" + _newln;
+                    var _space = " ";
+                    var _indent = "    ";
+                    foreach(var _kvp in _data)
+                    {
+                        _payload += _indent + $"{_kvp.Key}: {_kvp.Value}" + _newln;
+                    }
+
+                    return _payload;
+                }
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+                return string.Empty;
+            }
+        }
+
         /// <inheritdoc />
         /// <summary>
         /// Serializes the specified prompt.
@@ -213,9 +247,9 @@ namespace Bubba
                     IncludeFields = false
                 };
 
-                var _text = JsonSerializer.Serialize( this, _options );
-                return !string.IsNullOrEmpty( _text )
-                    ? _text
+                var _format = JsonSerializer.Serialize( this, _options );
+                return !string.IsNullOrEmpty( _format )
+                    ? _format
                     : string.Empty;
             }
             catch( Exception ex )

@@ -62,6 +62,7 @@ namespace Bubba
     [ SuppressMessage( "ReSharper", "InconsistentNaming" ) ]
     [ SuppressMessage( "ReSharper", "ClassNeverInstantiated.Global" ) ]
     [ SuppressMessage( "ReSharper", "PreferConcreteValueOverDefault" ) ]
+    [ SuppressMessage( "ReSharper", "PossibleUnintendedReferenceComparison" ) ]
     public class AssistantMessage : GptMessage, IGptMessage
     {
         /// <summary>
@@ -85,11 +86,13 @@ namespace Bubba
         /// Initializes a new instance of the
         /// <see cref="T:Bubba.AssistantMessage" /> class.
         /// </summary>
-        /// <param name="prompt">The prompt.</param>
+        /// <param name="prompt">
+        /// The prompt.
+        /// </param>
         public AssistantMessage( string prompt )
         {
             _role = "assistant";
-            _assistantPrompt = prompt;
+            _text = prompt;
             _content.Add( "type", "text" );
             _content.Add( "text", prompt );
         }
@@ -198,13 +201,51 @@ namespace Bubba
         {
             try
             {
-                return !string.IsNullOrEmpty( _assistantPrompt )
-                    ? _assistantPrompt
+                return !string.IsNullOrEmpty( _text )
+                    ? _text
                     : string.Empty;
             }
             catch( Exception ex )
             {
                 Fail( ex );
+                return string.Empty;
+            }
+        }
+
+        /// <summary>
+        /// Dumps this instance.
+        /// </summary>
+        /// <returns>
+        /// Data dump to a string
+        /// </returns>
+        /// <exception cref="Bubba.ErrorWindow.Exception">
+        /// </exception>
+        public string Dump( )
+        {
+            try
+            {
+                if(_data?.Any() == false)
+                {
+                    var _message = "Data is null or has no items";
+                    throw new Exception(_message);
+                }
+                else
+                {
+                    var _newln = Environment.NewLine;
+                    var _payload = "Data Dump:" + _newln;
+                    var _space = " ";
+                    var _indent = "    ";
+                    foreach(var _kvp in _data)
+                    {
+                        _payload += _indent + $"{_kvp.Key}: {_kvp.Value}" + _newln;
+                    }
+
+                    return _payload;
+                }
+            }
+            catch(Exception ex)
+            {
+                Fail(ex);
                 return string.Empty;
             }
         }
