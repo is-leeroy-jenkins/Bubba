@@ -1,10 +1,10 @@
 ﻿// ******************************************************************************************
 //     Assembly:                Bubba
 //     Author:                  Terry D. Eppler
-//     Created:                 02-16-2025
+//     Created:                 02-25-2025
 // 
 //     Last Modified By:        Terry D. Eppler
-//     Last Modified On:        02-16-2025
+//     Last Modified On:        02-25-2025
 // ******************************************************************************************
 // <copyright file="TextPreprocessor.cs" company="Terry D. Eppler">
 //    Bubba is a small and simple windows (wpf) application for interacting with the OpenAI API
@@ -38,7 +38,6 @@
 //   TextPreprocessor.cs
 // </summary>
 // ******************************************************************************************
-
 namespace Bubba
 {
     using System;
@@ -64,19 +63,133 @@ namespace Bubba
         /// </summary>
         private protected static HashSet<string> _stopWords = new HashSet<string>
         {
+            "i",
+            "me",
+            "my",
+            "myself",
+            "we",
+            "our",
+            "ours",
+            "ourselves",
+            "you",
+            "your",
+            "yours",
+            "yourself",
+            "yourselves",
+            "he",
+            "him",
+            "his",
+            "himself",
+            "she",
+            "her",
+            "hers",
+            "herself",
+            "it",
+            "its",
+            "itself",
+            "they",
+            "them",
+            "their",
+            "theirs",
+            "themselves",
+            "what",
+            "which",
+            "who",
+            "whom",
+            "this",
+            "that",
+            "these",
+            "those",
+            "am",
+            "is",
+            "are",
+            "was",
+            "were",
+            "be",
+            "been",
+            "being",
+            "have",
+            "has",
+            "had",
+            "having",
+            "do",
+            "does",
+            "did",
+            "doing",
             "a",
             "an",
             "the",
             "and",
-            "or",
             "but",
-            "on",
-            "in",
-            "with",
-            "to",
+            "if",
+            "or",
+            "because",
+            "as",
+            "until",
+            "while",
+            "of",
+            "at",
+            "by",
             "for",
-            "is",
-            "was"
+            "with",
+            "about",
+            "against",
+            "between",
+            "into",
+            "through",
+            "during",
+            "before",
+            "after",
+            "above",
+            "below",
+            "to",
+            "from",
+            "up",
+            "down",
+            "in",
+            "out",
+            "on",
+            "off",
+            "over",
+            "under",
+            "again",
+            "further",
+            "then",
+            "once",
+            "here",
+            "there",
+            "when",
+            "where",
+            "why",
+            "how",
+            "all",
+            "any",
+            "both",
+            "each",
+            "few",
+            "more",
+            "most",
+            "other",
+            "some",
+            "such",
+            "no",
+            "nor",
+            "not",
+            "only",
+            "own",
+            "same",
+            "so",
+            "than",
+            "too",
+            "very",
+            "s",
+            "t",
+            "can",
+            "will",
+            "just",
+            "don",
+            "should",
+            "now"
         };
 
         /// <summary>
@@ -86,7 +199,7 @@ namespace Bubba
         {
             try
             {
-                ThrowIf.Empty( filePath, nameof( filePath) );
+                ThrowIf.Empty( filePath, nameof( filePath ) );
                 if( !File.Exists( filePath ) )
                 {
                     var _message = "Stop words file not found.";
@@ -123,7 +236,7 @@ namespace Bubba
                     '?'
                 }, StringSplitOptions.RemoveEmptyEntries );
 
-                return ( _split?.Any( ) == true )
+                return _split?.Any( ) == true
                     ? _split
                     : default( string[ ] );
             }
@@ -144,10 +257,10 @@ namespace Bubba
         {
             try
             {
-                ThrowIf.Negative( text, nameof( text ) );
+                ThrowIf.Empty( text, nameof( text ) );
                 var _lower = text.ToLower( );
-                var _depunc = Regex.Replace( _lower, @"[^\w\s]", "" );  
-                var _despace = Regex.Replace( _depunc, @"\s+", " " );  
+                var _depunc = Regex.Replace( _lower, @"[^\w\s]", "" );
+                var _despace = Regex.Replace( _depunc, @"\s+", " " );
                 var _trim = _despace.Trim( );
                 return !string.IsNullOrEmpty( _trim )
                     ? _trim
@@ -166,16 +279,13 @@ namespace Bubba
         /// </summary>
         /// <param name="tokens">The tokens.</param>
         /// <returns></returns>
-        public IEnumerable<string> RemoveStopWords( string[ ] tokens )
+        public string[ ] RemoveStopWords( string[ ] tokens )
         {
             try
             {
                 ThrowIf.Null( tokens, nameof( tokens ) );
-                var _stops = tokens
-                    ?.Where( token => !_stopWords.Contains( token ) )
-                    ?.ToArray( );
-
-                return ( _stops?.Any( ) == true )
+                var _stops = tokens?.Where( token => !_stopWords.Contains( token ) )?.ToArray( );
+                return _stops?.Any( ) == true
                     ? _stops
                     : default( string[ ] );
             }
@@ -208,7 +318,13 @@ namespace Bubba
                 string _line;
                 while( ( _line = _reader.ReadLine( ) ) != null )
                 {
-                    var _jsonObject = new Dictionary<string, string> { { key, _line } };
+                    var _jsonObject = new Dictionary<string, string>
+                    {
+                        {
+                            key, _line
+                        }
+                    };
+
                     var _jsonLine = JsonConvert.SerializeObject( _jsonObject );
                     _writer.WriteLine( _jsonLine );
                 }
@@ -218,7 +334,7 @@ namespace Bubba
                 Fail( ex );
             }
         }
-    
+
         /// <inheritdoc />
         /// <summary>
         /// Stems the word.
@@ -259,18 +375,16 @@ namespace Bubba
             {
                 ThrowIf.Empty( text, nameof( text ) );
                 ThrowIf.Negative( n, nameof( n ) );
-                var _tokens = TokenizeText( text )
-                    .ToList(  );
-
+                var _tokens = TokenizeText( text ).ToList(  );
                 var _ngrams = new List<string>( );
-                for( var i = 0; i <= _tokens.Count - n; i++ )
+                for( var i = 0; i <= ( _tokens.Count - n ); i++ )
                 {
-                    _ngrams.Add(string.Join(" ", _tokens.Skip(i).Take(n)));
+                    _ngrams.Add( string.Join( " ", _tokens.Skip( i ).Take( n ) ) );
                 }
 
-                return ( _ngrams?.Any( ) == true )
+                return _ngrams?.Any( ) == true
                     ? _ngrams
-                    : default(IList<string> );
+                    : default( IList<string> );
             }
             catch( Exception ex )
             {
@@ -287,11 +401,11 @@ namespace Bubba
             try
             {
                 ThrowIf.Empty( text, nameof( text ) );
-                var _deurl = Regex.Replace( text, @"http\S+|www\S+", "" );   
-                var _demail = Regex.Replace( _deurl, @"\S+@\S+\.\S+", ""); 
-                var _dehash = Regex.Replace( _demail, @"#\w+", "");   
-                var _dementions = Regex.Replace( _dehash, @"@\w+", "");   
-                var _dechars = Regex.Replace( _dementions, @"[^a-zA-Z0-9\s]", "");  
+                var _deurl = Regex.Replace( text, @"http\S+|www\S+", "" );
+                var _demail = Regex.Replace( _deurl, @"\S+@\S+\.\S+", "" );
+                var _dehash = Regex.Replace( _demail, @"#\w+", "" );
+                var _dementions = Regex.Replace( _dehash, @"@\w+", "" );
+                var _dechars = Regex.Replace( _dementions, @"[^a-zA-Z0-9\s]", "" );
                 var _trim = _dechars.Trim(  );
                 return !string.IsNullOrEmpty( _trim )
                     ? _trim

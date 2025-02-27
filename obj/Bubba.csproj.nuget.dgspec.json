@@ -59,23 +59,23 @@
             },
             "CefSharp.Common.NETCore": {
               "target": "Package",
-              "version": "[131.3.50, )"
+              "version": "[133.4.21, )"
             },
             "CefSharp.OffScreen.NETCore": {
               "target": "Package",
-              "version": "[131.3.50, )"
+              "version": "[133.4.21, )"
             },
             "CefSharp.WinForms.NETCore": {
               "target": "Package",
-              "version": "[131.3.50, )"
+              "version": "[133.4.21, )"
             },
             "CefSharp.Wpf.NETCore": {
               "target": "Package",
-              "version": "[131.3.50, )"
+              "version": "[133.4.21, )"
             },
             "EPPlus": {
               "target": "Package",
-              "version": "[7.5.3, )"
+              "version": "[7.6.0, )"
             },
             "Google.Apis.CustomSearchAPI.v1": {
               "target": "Package",
@@ -137,7 +137,7 @@
             },
             "RestoreWindowPlace": {
               "target": "Package",
-              "version": "[2.1.0, )"
+              "version": "[3.0.0, )"
             },
             "ScottPlot": {
               "target": "Package",
@@ -245,7 +245,7 @@
             },
             "System.Data.OleDb": {
               "target": "Package",
-              "version": "[9.0.1, )"
+              "version": "[9.0.2, )"
             },
             "System.Data.SQLite.Core": {
               "target": "Package",
@@ -257,15 +257,15 @@
             },
             "System.Speech": {
               "target": "Package",
-              "version": "[9.0.1, )"
+              "version": "[9.0.2, )"
             },
             "System.Text.Encodings.Web": {
               "target": "Package",
-              "version": "[9.0.1, )"
+              "version": "[9.0.2, )"
             },
             "System.Text.Json": {
               "target": "Package",
-              "version": "[9.0.1, )"
+              "version": "[9.0.2, )"
             },
             "SystemExtensions.NetCore": {
               "target": "Package",
@@ -281,15 +281,15 @@
             },
             "chromiumembeddedframework.runtime.win-arm64": {
               "target": "Package",
-              "version": "[131.3.5, )"
+              "version": "[133.4.2, )"
             },
             "chromiumembeddedframework.runtime.win-x64": {
               "target": "Package",
-              "version": "[131.3.5, )"
+              "version": "[133.4.2, )"
             },
             "chromiumembeddedframework.runtime.win-x86": {
               "target": "Package",
-              "version": "[131.3.5, )"
+              "version": "[133.4.2, )"
             }
           },
           "imports": [

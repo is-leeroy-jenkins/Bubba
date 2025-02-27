@@ -68,7 +68,7 @@ namespace Bubba
         /// </summary>
         /// <param name="tokens">The tokens.</param>
         /// <returns></returns>
-        public IEnumerable<string> RemoveStopWords( string[ ] tokens );
+        public string[ ] RemoveStopWords( string[ ] tokens );
 
         /// <summary>
         /// Stems the word.

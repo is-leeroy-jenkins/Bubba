@@ -532,7 +532,6 @@ C:\Users\terry\source\repos\Bubba\bin\Debug\net8.0-windows7.0\runtimes\win-arm64
 C:\Users\terry\source\repos\Bubba\bin\Debug\net8.0-windows7.0\runtimes\win-arm64\native\libGLESv2.dll
 C:\Users\terry\source\repos\Bubba\bin\Debug\net8.0-windows7.0\runtimes\win-arm64\native\libcef.dll
 C:\Users\terry\source\repos\Bubba\bin\Debug\net8.0-windows7.0\runtimes\win-arm64\native\resources.pak
-C:\Users\terry\source\repos\Bubba\bin\Debug\net8.0-windows7.0\runtimes\win-arm64\native\snapshot_blob.bin
 C:\Users\terry\source\repos\Bubba\bin\Debug\net8.0-windows7.0\runtimes\win-arm64\native\v8_context_snapshot.bin
 C:\Users\terry\source\repos\Bubba\bin\Debug\net8.0-windows7.0\runtimes\win-arm64\native\vk_swiftshader.dll
 C:\Users\terry\source\repos\Bubba\bin\Debug\net8.0-windows7.0\runtimes\win-arm64\native\vk_swiftshader_icd.json
@@ -548,7 +547,6 @@ C:\Users\terry\source\repos\Bubba\bin\Debug\net8.0-windows7.0\runtimes\win-x64\n
 C:\Users\terry\source\repos\Bubba\bin\Debug\net8.0-windows7.0\runtimes\win-x64\native\libGLESv2.dll
 C:\Users\terry\source\repos\Bubba\bin\Debug\net8.0-windows7.0\runtimes\win-x64\native\libcef.dll
 C:\Users\terry\source\repos\Bubba\bin\Debug\net8.0-windows7.0\runtimes\win-x64\native\resources.pak
-C:\Users\terry\source\repos\Bubba\bin\Debug\net8.0-windows7.0\runtimes\win-x64\native\snapshot_blob.bin
 C:\Users\terry\source\repos\Bubba\bin\Debug\net8.0-windows7.0\runtimes\win-x64\native\v8_context_snapshot.bin
 C:\Users\terry\source\repos\Bubba\bin\Debug\net8.0-windows7.0\runtimes\win-x64\native\vk_swiftshader.dll
 C:\Users\terry\source\repos\Bubba\bin\Debug\net8.0-windows7.0\runtimes\win-x64\native\vk_swiftshader_icd.json
@@ -562,7 +560,6 @@ C:\Users\terry\source\repos\Bubba\bin\Debug\net8.0-windows7.0\runtimes\win-x86\n
 C:\Users\terry\source\repos\Bubba\bin\Debug\net8.0-windows7.0\runtimes\win-x86\native\libGLESv2.dll
 C:\Users\terry\source\repos\Bubba\bin\Debug\net8.0-windows7.0\runtimes\win-x86\native\libcef.dll
 C:\Users\terry\source\repos\Bubba\bin\Debug\net8.0-windows7.0\runtimes\win-x86\native\resources.pak
-C:\Users\terry\source\repos\Bubba\bin\Debug\net8.0-windows7.0\runtimes\win-x86\native\snapshot_blob.bin
 C:\Users\terry\source\repos\Bubba\bin\Debug\net8.0-windows7.0\runtimes\win-x86\native\v8_context_snapshot.bin
 C:\Users\terry\source\repos\Bubba\bin\Debug\net8.0-windows7.0\runtimes\win-x86\native\vk_swiftshader.dll
 C:\Users\terry\source\repos\Bubba\bin\Debug\net8.0-windows7.0\runtimes\win-x86\native\vk_swiftshader_icd.json
@@ -717,3 +714,7 @@ C:\Users\terry\source\repos\Bubba\obj\Debug\net8.0-windows7.0\refint\Bubba.dll
 C:\Users\terry\source\repos\Bubba\obj\Debug\net8.0-windows7.0\Bubba.xml
 C:\Users\terry\source\repos\Bubba\obj\Debug\net8.0-windows7.0\Bubba.genruntimeconfig.cache
 C:\Users\terry\source\repos\Bubba\obj\Debug\net8.0-windows7.0\ref\Bubba.dll
+C:\Users\terry\source\repos\Bubba\bin\Debug\net8.0-windows7.0\Microsoft.Bcl.Cryptography.dll
+C:\Users\terry\source\repos\Bubba\bin\Debug\net8.0-windows7.0\System.Formats.Asn1.dll
+C:\Users\terry\source\repos\Bubba\bin\Debug\net8.0-windows7.0\System.Text.Encoding.CodePages.dll
+C:\Users\terry\source\repos\Bubba\bin\Debug\net8.0-windows7.0\runtimes\win\lib\net8.0\System.Text.Encoding.CodePages.dll
