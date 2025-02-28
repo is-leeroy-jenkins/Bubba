@@ -42,17 +42,15 @@
 namespace Bubba
 {
     using System;
-    using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
-    using System.Linq;
-    using System.Text;
-    using System.Threading.Tasks;
     using Microsoft.ML.Data;
 
     /// <summary>
     /// 
     /// </summary>
     [ SuppressMessage( "ReSharper", "ClassCanBeSealed.Global" ) ]
+    [ SuppressMessage( "ReSharper", "ArrangeAccessorOwnerBody" ) ]
+    [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
     public class TokenizedVector
     {
         /// <summary>
@@ -74,6 +72,16 @@ namespace Bubba
         /// The embedding.
         /// </value>
         [ ColumnName( "Features" ) ]
-        public float[ ] Embedding { get; set; }
+        public float[ ] Embedding
+        {
+            get
+            {
+                return _embedding;
+            }
+            set
+            {
+                _embedding = value;
+            }
+        }
     }
 }

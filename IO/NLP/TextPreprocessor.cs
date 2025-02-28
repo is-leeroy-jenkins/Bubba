@@ -46,7 +46,6 @@ namespace Bubba
     using System.IO;
     using System.Linq;
     using System.Text.RegularExpressions;
-    using System.Threading.Tasks;
     using Newtonsoft.Json;
 
     /// <inheritdoc />
@@ -56,6 +55,8 @@ namespace Bubba
     [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
     [ SuppressMessage( "ReSharper", "PreferConcreteValueOverDefault" ) ]
     [ SuppressMessage( "ReSharper", "UseCollectionExpression" ) ]
+    [ SuppressMessage( "ReSharper", "ConvertIfStatementToReturnStatement" ) ]
+    [ SuppressMessage( "ReSharper", "ArrangeRedundantParentheses" ) ]
     public class TextPreprocessor : ILanguageProcessor
     {
         /// <summary>
@@ -200,19 +201,20 @@ namespace Bubba
             try
             {
                 ThrowIf.Empty( filePath, nameof( filePath ) );
+
                 if( !File.Exists( filePath ) )
                 {
                     var _message = "Stop words file not found.";
                     throw new FileNotFoundException( _message );
                 }
 
-                var content = File.ReadAllText( filePath );
+                var _content = File.ReadAllText( filePath );
                 _stopWords.Clear( );
-                _stopWords = JsonConvert.DeserializeObject<HashSet<string>>( content );
+                _stopWords = JsonConvert.DeserializeObject<HashSet<string>>( _content );
             }
-            catch( Exception ex )
+            catch( Exception _ex )
             {
-                Fail( ex );
+                Fail( _ex );
             }
         }
 
@@ -240,9 +242,9 @@ namespace Bubba
                     ? _split
                     : default( string[ ] );
             }
-            catch( Exception ex )
+            catch( Exception _ex )
             {
-                Fail( ex );
+                Fail( _ex );
                 return default( string[ ] );
             }
         }
@@ -266,9 +268,9 @@ namespace Bubba
                     ? _trim
                     : string.Empty;
             }
-            catch( Exception ex )
+            catch( Exception _ex )
             {
-                Fail( ex );
+                Fail( _ex );
                 return string.Empty;
             }
         }
@@ -289,9 +291,9 @@ namespace Bubba
                     ? _stops
                     : default( string[ ] );
             }
-            catch( Exception ex )
+            catch( Exception _ex )
             {
-                Fail( ex );
+                Fail( _ex );
                 return default( string[ ] );
             }
         }
@@ -329,9 +331,9 @@ namespace Bubba
                     _writer.WriteLine( _jsonLine );
                 }
             }
-            catch( Exception ex )
+            catch( Exception _ex )
             {
-                Fail( ex );
+                Fail( _ex );
             }
         }
 
@@ -359,9 +361,9 @@ namespace Bubba
 
                 return word;
             }
-            catch( Exception ex )
+            catch( Exception _ex )
             {
-                Fail( ex );
+                Fail( _ex );
                 return string.Empty;
             }
         }
@@ -377,18 +379,18 @@ namespace Bubba
                 ThrowIf.Negative( n, nameof( n ) );
                 var _tokens = TokenizeText( text ).ToList(  );
                 var _ngrams = new List<string>( );
-                for( var i = 0; i <= ( _tokens.Count - n ); i++ )
+                for( var _i = 0; _i <= ( _tokens.Count - n ); _i++ )
                 {
-                    _ngrams.Add( string.Join( " ", _tokens.Skip( i ).Take( n ) ) );
+                    _ngrams.Add( string.Join( " ", _tokens.Skip( _i ).Take( n ) ) );
                 }
 
                 return _ngrams?.Any( ) == true
                     ? _ngrams
                     : default( IList<string> );
             }
-            catch( Exception ex )
+            catch( Exception _ex )
             {
-                Fail( ex );
+                Fail( _ex );
                 return default( IList<string> );
             }
         }
@@ -411,9 +413,9 @@ namespace Bubba
                     ? _trim
                     : string.Empty;
             }
-            catch( Exception ex )
+            catch( Exception _ex )
             {
-                Fail( ex );
+                Fail( _ex );
                 return string.Empty;
             }
         }

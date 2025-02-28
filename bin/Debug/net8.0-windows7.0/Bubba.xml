@@ -27958,6 +27958,160 @@
             </summary>
             <param name="text">The text.</param>
         </member>
+        <member name="T:Bubba.NlpResult">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Bubba.NlpResult._tokens">
+            <summary>
+            The tokens
+            </summary>
+        </member>
+        <member name="F:Bubba.NlpResult._posTags">
+            <summary>
+            The position tags
+            </summary>
+        </member>
+        <member name="F:Bubba.NlpResult._namedEntities">
+            <summary>
+            The named entities
+            </summary>
+        </member>
+        <member name="F:Bubba.NlpResult._sentiment">
+            <summary>
+            The sentiment
+            </summary>
+        </member>
+        <member name="F:Bubba.NlpResult._inverseFrequencyScores">
+            <summary>
+            The inverse frequency scores
+            </summary>
+        </member>
+        <member name="F:Bubba.NlpResult._wordFrequencies">
+            <summary>
+            The word frequencies
+            </summary>
+        </member>
+        <member name="F:Bubba.NlpResult._topics">
+            <summary>
+            The topics
+            </summary>
+        </member>
+        <member name="F:Bubba.NlpResult._dependencyParse">
+            <summary>
+            The dependency parse
+            </summary>
+        </member>
+        <member name="F:Bubba.NlpResult._wordEmbeddings">
+            <summary>
+            The word embeddings
+            </summary>
+        </member>
+        <member name="F:Bubba.NlpResult._data">
+            <summary>
+            The data
+            </summary>
+        </member>
+        <member name="M:Bubba.NlpResult.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Bubba.NlpResult"/> class.
+            </summary>
+        </member>
+        <member name="M:Bubba.NlpResult.#ctor(System.String[],System.String[],System.String[],System.Collections.Generic.IDictionary{System.String,System.Single[]},System.String[])">
+            <summary>
+            Initializes a new instance of the <see cref="T:Bubba.NlpResult"/> class.
+            </summary>
+            <param name="tokens">The tokens.</param>
+            <param name="posTag">The position tag.</param>
+            <param name="dependencyParse">The dependency parse.</param>
+            <param name="wordEmbeddings">The word embeddings.</param>
+            <param name="topics">The topics.</param>
+        </member>
+        <member name="M:Bubba.NlpResult.#ctor(Bubba.NlpResult)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Bubba.NlpResult"/> class.
+            </summary>
+            <param name="result">The result.</param>
+        </member>
+        <member name="P:Bubba.NlpResult.Tokens">
+            <summary>
+            Gets or sets the tokens.
+            </summary>
+            <value>
+            The tokens.
+            </value>
+        </member>
+        <member name="P:Bubba.NlpResult.PosTags">
+            <summary>
+            Gets or sets the position tags.
+            </summary>
+            <value>
+            The position tags.
+            </value>
+        </member>
+        <member name="P:Bubba.NlpResult.NamedEntities">
+            <summary>
+            Gets or sets the named entities.
+            </summary>
+            <value>
+            The named entities.
+            </value>
+        </member>
+        <member name="P:Bubba.NlpResult.Sentiment">
+            <summary>
+            Gets or sets the sentiment.
+            </summary>
+            <value>
+            The sentiment.
+            </value>
+        </member>
+        <member name="P:Bubba.NlpResult.WordFrequencies">
+            <summary>
+            Gets or sets the word frequencies.
+            </summary>
+            <value>
+            The word frequencies.
+            </value>
+        </member>
+        <member name="P:Bubba.NlpResult.InverseFrequencyScores">
+            <summary>
+            Gets or sets the inverse frequency scores.
+            </summary>
+            <value>
+            The inverse frequency scores.
+            </value>
+        </member>
+        <member name="P:Bubba.NlpResult.Topics">
+            <summary>
+            Gets or sets the topics.
+            </summary>
+            <value>
+            The topics.
+            </value>
+        </member>
+        <member name="P:Bubba.NlpResult.DependencyParse">
+            <summary>
+            Gets or sets the dependency parse.
+            </summary>
+            <value>
+            The dependency parse.
+            </value>
+        </member>
+        <member name="P:Bubba.NlpResult.WordEmbeddings">
+            <summary>
+            Gets or sets the word embeddings.
+            </summary>
+            <value>
+            The word embeddings.
+            </value>
+        </member>
+        <member name="M:Bubba.NlpResult.Fail(System.Exception)">
+            <summary>
+            Fails the specified ex.
+            </summary>
+            <param name="ex">The ex.</param>
+        </member>
         <member name="T:Bubba.SentimentAnalyzer">
             <inheritdoc />
             <summary>
@@ -28120,6 +28274,41 @@
             </summary>
             <param name="text">The text.</param>
             <returns></returns>
+        </member>
+        <member name="T:Bubba.TextData">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Bubba.TextData._text">
+            <summary>
+            The text
+            </summary>
+        </member>
+        <member name="M:Bubba.TextData.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Bubba.TextData"/> class.
+            </summary>
+        </member>
+        <member name="M:Bubba.TextData.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Bubba.TextData"/> class.
+            </summary>
+            <param name="text">The text.</param>
+        </member>
+        <member name="P:Bubba.TextData.Text">
+            <summary>
+            Gets or sets the text.
+            </summary>
+            <value>
+            The text.
+            </value>
+        </member>
+        <member name="M:Bubba.TextData.Fail(System.Exception)">
+            <summary>
+            Fails the specified ex.
+            </summary>
+            <param name="ex">The ex.</param>
         </member>
         <member name="T:Bubba.TextExtractor">
             <inheritdoc />
@@ -28376,6 +28565,144 @@
             </summary>
             <param name="ex">The ex.</param>
         </member>
+        <member name="T:Bubba.TextProcessor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Bubba.TextProcessor._context">
+            <summary>
+            The ml context
+            </summary>
+        </member>
+        <member name="F:Bubba.TextProcessor._stopWords">
+            <summary>
+            The stop words
+            </summary>
+        </member>
+        <member name="F:Bubba.TextProcessor._wordVectorModel">
+            <summary>
+            The word2 vec model
+            </summary>
+        </member>
+        <member name="M:Bubba.TextProcessor.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Bubba.TextProcessor"/> class.
+            </summary>
+        </member>
+        <member name="M:Bubba.TextProcessor.ProcessFile(System.String)">
+            <summary>
+            Processes the file.
+            </summary>
+            <param name="filePath">The file path.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Bubba.TextProcessor.CleanText(System.String)">
+            <summary>
+            Cleans the text.
+            </summary>
+            <param name="text">The text.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Bubba.TextProcessor.CalculateFrequencies(System.String[],System.Collections.Generic.IDictionary{System.String,System.Int32})">
+            <summary>
+            Computes the tf idf.
+            </summary>
+            <param name="tokens">The tokens.</param>
+            <param name="frequencies">The word frequencies.</param>
+            <returns>
+            Dict
+            </returns>
+        </member>
+        <member name="M:Bubba.TextProcessor.Tokenize(System.String)">
+            <summary>
+            Tokenizes the specified text.
+            </summary>
+            <param name="text">The text.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Bubba.TextProcessor.RemoveStopWords(System.String[])">
+            <summary>
+            Removes the stop words.
+            </summary>
+            <param name="tokens">The tokens.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Bubba.TextProcessor.ApplyStemming(System.String[])">
+            <summary>
+            Applies the stemming.
+            </summary>
+            <param name="tokens">The tokens.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Bubba.TextProcessor.StemWord(System.String)">
+            <summary>
+            Stems the word.
+            </summary>
+            <param name="word">The word.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Bubba.TextProcessor.TrainWordVectors">
+            <summary>
+            Trains the word2 vec.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Bubba.TextProcessor.GenerateWordEmbeddings(System.String[])">
+            <summary>
+            Generates the word embeddings.
+            </summary>
+            <param name="tokens">The tokens.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Bubba.TextProcessor.PerformPosTagging(System.String[])">
+            <summary>
+            Performs the position tagging.
+            </summary>
+            <param name="tokens">The tokens.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Bubba.TextProcessor.PerformNamedEntityRecognition(System.String[])">
+            <summary>
+            Performs the named entity recognition.
+            </summary>
+            <param name="tokens">The tokens.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Bubba.TextProcessor.PerformSentimentAnalysis(System.String)">
+            <summary>
+            Performs the sentiment analysis.
+            </summary>
+            <param name="sentence">The sentence.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Bubba.TextProcessor.CalculateFrequencies(System.String[])">
+            <summary>
+            Gets the word frequencies.
+            </summary>
+            <param name="tokens">The tokens.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Bubba.TextProcessor.PerformTopicModeling(System.String)">
+            <summary>
+            Performs the topic modeling.
+            </summary>
+            <param name="text">The text.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Bubba.TextProcessor.PerformDependencyParsing(System.String[])">
+            <summary>
+            Performs the dependency parsing.
+            </summary>
+            <param name="tokens">The tokens.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Bubba.TextProcessor.Fail(System.Exception)">
+            <summary>
+            Fails the specified ex.
+            </summary>
+            <param name="ex">The ex.</param>
+        </member>
         <member name="T:Bubba.TextRetriever">
             <inheritdoc />
             <summary>
@@ -28455,6 +28782,41 @@
             </summary>
             <param name="ex">The ex.</param>
         </member>
+        <member name="T:Bubba.TokenizedText">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Bubba.TokenizedText._tokens">
+            <summary>
+            The tokens
+            </summary>
+        </member>
+        <member name="M:Bubba.TokenizedText.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Bubba.TokenizedText"/> class.
+            </summary>
+        </member>
+        <member name="M:Bubba.TokenizedText.#ctor(System.String[])">
+            <summary>
+            Initializes a new instance of the <see cref="T:Bubba.TokenizedText"/> class.
+            </summary>
+            <param name="tokens">The tokens.</param>
+        </member>
+        <member name="P:Bubba.TokenizedText.Tokens">
+            <summary>
+            Gets or sets the tokens.
+            </summary>
+            <value>
+            The tokens.
+            </value>
+        </member>
+        <member name="M:Bubba.TokenizedText.Fail(System.Exception)">
+            <summary>
+            Fails the specified ex.
+            </summary>
+            <param name="ex">The ex.</param>
+        </member>
         <member name="T:Bubba.TokenizedVector">
             <summary>
             
@@ -28477,6 +28839,56 @@
             <value>
             The embedding.
             </value>
+        </member>
+        <member name="T:Bubba.WordEmbeddingData">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Bubba.WordEmbeddingData._text">
+            <summary>
+            The text
+            </summary>
+        </member>
+        <member name="F:Bubba.WordEmbeddingData._wordEmbedding">
+            <summary>
+            The word embedding
+            </summary>
+        </member>
+        <member name="M:Bubba.WordEmbeddingData.#ctor">
+            <summary>
+            Initializes a new instance of the
+            <see cref="T:Bubba.WordEmbeddingData"/> class.
+            </summary>
+        </member>
+        <member name="M:Bubba.WordEmbeddingData.#ctor(System.Single[])">
+            <summary>
+            Initializes a new instance of the
+            <see cref="T:Bubba.WordEmbeddingData"/> class.
+            </summary>
+            <param name="wordEmbedding">The word embedding.</param>
+        </member>
+        <member name="P:Bubba.WordEmbeddingData.Text">
+            <summary>
+            Gets or sets the text.
+            </summary>
+            <value>
+            The text.
+            </value>
+        </member>
+        <member name="P:Bubba.WordEmbeddingData.WordEmbedding">
+            <summary>
+            Gets or sets the word embedding.
+            </summary>
+            <value>
+            The word embedding.
+            </value>
+        </member>
+        <member name="M:Bubba.WordEmbeddingData.Fail(System.Exception)">
+            <summary>
+            Fails the specified ex.
+            </summary>
+            <param name="ex">The ex.</param>
         </member>
         <member name="T:Bubba.AsyncPathBase">
             <summary>
@@ -30121,144 +30533,6 @@
             </summary>
             <param name="ex">The ex.</param>
         </member>
-        <member name="T:Bubba.NlpResult">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="F:Bubba.NlpResult._tokens">
-            <summary>
-            The tokens
-            </summary>
-        </member>
-        <member name="F:Bubba.NlpResult._posTags">
-            <summary>
-            The position tags
-            </summary>
-        </member>
-        <member name="F:Bubba.NlpResult._namedEntities">
-            <summary>
-            The named entities
-            </summary>
-        </member>
-        <member name="F:Bubba.NlpResult._sentiment">
-            <summary>
-            The sentiment
-            </summary>
-        </member>
-        <member name="F:Bubba.NlpResult._wordFrequencies">
-            <summary>
-            The word frequencies
-            </summary>
-        </member>
-        <member name="F:Bubba.NlpResult._inverseFrequencyScores">
-            <summary>
-            The inverse frequency scores
-            </summary>
-        </member>
-        <member name="F:Bubba.NlpResult._topics">
-            <summary>
-            The topics
-            </summary>
-        </member>
-        <member name="F:Bubba.NlpResult._dependencyParse">
-            <summary>
-            The dependency parse
-            </summary>
-        </member>
-        <member name="F:Bubba.NlpResult._wordEmbeddings">
-            <summary>
-            The word embeddings
-            </summary>
-        </member>
-        <member name="F:Bubba.NlpResult._data">
-            <summary>
-            The data
-            </summary>
-        </member>
-        <member name="M:Bubba.NlpResult.#ctor">
-            <summary>
-            Initializes a new instance of the <see cref="T:Bubba.NlpResult"/> class.
-            </summary>
-        </member>
-        <member name="M:Bubba.NlpResult.#ctor(Bubba.NlpResult)">
-            <summary>
-            Initializes a new instance of the <see cref="T:Bubba.NlpResult"/> class.
-            </summary>
-            <param name="result">The result.</param>
-        </member>
-        <member name="P:Bubba.NlpResult.Tokens">
-            <summary>
-            Gets or sets the tokens.
-            </summary>
-            <value>
-            The tokens.
-            </value>
-        </member>
-        <member name="P:Bubba.NlpResult.PosTags">
-            <summary>
-            Gets or sets the position tags.
-            </summary>
-            <value>
-            The position tags.
-            </value>
-        </member>
-        <member name="P:Bubba.NlpResult.NamedEntities">
-            <summary>
-            Gets or sets the named entities.
-            </summary>
-            <value>
-            The named entities.
-            </value>
-        </member>
-        <member name="P:Bubba.NlpResult.Sentiment">
-            <summary>
-            Gets or sets the sentiment.
-            </summary>
-            <value>
-            The sentiment.
-            </value>
-        </member>
-        <member name="P:Bubba.NlpResult.WordFrequencies">
-            <summary>
-            Gets or sets the word frequencies.
-            </summary>
-            <value>
-            The word frequencies.
-            </value>
-        </member>
-        <member name="P:Bubba.NlpResult.InverseFrequencyScores">
-            <summary>
-            Gets or sets the inverse frequency scores.
-            </summary>
-            <value>
-            The inverse frequency scores.
-            </value>
-        </member>
-        <member name="P:Bubba.NlpResult.Topics">
-            <summary>
-            Gets or sets the topics.
-            </summary>
-            <value>
-            The topics.
-            </value>
-        </member>
-        <member name="P:Bubba.NlpResult.DependencyParse">
-            <summary>
-            Gets or sets the dependency parse.
-            </summary>
-            <value>
-            The dependency parse.
-            </value>
-        </member>
-        <member name="P:Bubba.NlpResult.WordEmbeddings">
-            <summary>
-            Gets or sets the word embeddings.
-            </summary>
-            <value>
-            The word embeddings.
-            </value>
-        </member>
         <member name="T:Bubba.Properties.Definitions">
             <summary>
               A strongly-typed resource class, for looking up localized strings, etc.
@@ -31610,144 +31884,6 @@
             </summary>
         </member>
         <member name="M:Bubba.WinMinion.Fail(System.Exception)">
-            <summary>
-            Fails the specified ex.
-            </summary>
-            <param name="ex">The ex.</param>
-        </member>
-        <member name="T:Bubba.TextProcessor">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="F:Bubba.TextProcessor._context">
-            <summary>
-            The ml context
-            </summary>
-        </member>
-        <member name="F:Bubba.TextProcessor._stopWords">
-            <summary>
-            The stop words
-            </summary>
-        </member>
-        <member name="F:Bubba.TextProcessor._wordVectorModel">
-            <summary>
-            The word2 vec model
-            </summary>
-        </member>
-        <member name="M:Bubba.TextProcessor.#ctor">
-            <summary>
-            Initializes a new instance of the <see cref="T:Bubba.TextProcessor"/> class.
-            </summary>
-        </member>
-        <member name="M:Bubba.TextProcessor.ProcessFile(System.String)">
-            <summary>
-            Processes the file.
-            </summary>
-            <param name="filePath">The file path.</param>
-            <returns></returns>
-        </member>
-        <member name="M:Bubba.TextProcessor.CleanText(System.String)">
-            <summary>
-            Cleans the text.
-            </summary>
-            <param name="text">The text.</param>
-            <returns></returns>
-        </member>
-        <member name="M:Bubba.TextProcessor.ComputeFrequencies(System.String[],System.Collections.Generic.IDictionary{System.String,System.Int32})">
-            <summary>
-            Computes the tf idf.
-            </summary>
-            <param name="tokens">The tokens.</param>
-            <param name="frequencies">The word frequencies.</param>
-            <returns>
-            Dict
-            </returns>
-        </member>
-        <member name="M:Bubba.TextProcessor.Tokenize(System.String)">
-            <summary>
-            Tokenizes the specified text.
-            </summary>
-            <param name="text">The text.</param>
-            <returns></returns>
-        </member>
-        <member name="M:Bubba.TextProcessor.RemoveStopWords(System.String[])">
-            <summary>
-            Removes the stop words.
-            </summary>
-            <param name="tokens">The tokens.</param>
-            <returns></returns>
-        </member>
-        <member name="M:Bubba.TextProcessor.ApplyStemming(System.String[])">
-            <summary>
-            Applies the stemming.
-            </summary>
-            <param name="tokens">The tokens.</param>
-            <returns></returns>
-        </member>
-        <member name="M:Bubba.TextProcessor.StemWord(System.String)">
-            <summary>
-            Stems the word.
-            </summary>
-            <param name="word">The word.</param>
-            <returns></returns>
-        </member>
-        <member name="M:Bubba.TextProcessor.TrainWordVectors">
-            <summary>
-            Trains the word2 vec.
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:Bubba.TextProcessor.GenerateWordEmbeddings(System.String[])">
-            <summary>
-            Generates the word embeddings.
-            </summary>
-            <param name="tokens">The tokens.</param>
-            <returns></returns>
-        </member>
-        <member name="M:Bubba.TextProcessor.PerformPosTagging(System.String[])">
-            <summary>
-            Performs the position tagging.
-            </summary>
-            <param name="tokens">The tokens.</param>
-            <returns></returns>
-        </member>
-        <member name="M:Bubba.TextProcessor.PerformNamedEntityRecognition(System.String[])">
-            <summary>
-            Performs the named entity recognition.
-            </summary>
-            <param name="tokens">The tokens.</param>
-            <returns></returns>
-        </member>
-        <member name="M:Bubba.TextProcessor.PerformSentimentAnalysis(System.String)">
-            <summary>
-            Performs the sentiment analysis.
-            </summary>
-            <param name="sentence">The sentence.</param>
-            <returns></returns>
-        </member>
-        <member name="M:Bubba.TextProcessor.GetWordFrequencies(System.String[])">
-            <summary>
-            Gets the word frequencies.
-            </summary>
-            <param name="tokens">The tokens.</param>
-            <returns></returns>
-        </member>
-        <member name="M:Bubba.TextProcessor.PerformTopicModeling(System.String)">
-            <summary>
-            Performs the topic modeling.
-            </summary>
-            <param name="text">The text.</param>
-            <returns></returns>
-        </member>
-        <member name="M:Bubba.TextProcessor.PerformDependencyParsing(System.String[])">
-            <summary>
-            Performs the dependency parsing.
-            </summary>
-            <param name="tokens">The tokens.</param>
-            <returns></returns>
-        </member>
-        <member name="M:Bubba.TextProcessor.Fail(System.Exception)">
             <summary>
             Fails the specified ex.
             </summary>

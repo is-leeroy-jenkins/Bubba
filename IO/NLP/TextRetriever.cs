@@ -54,6 +54,8 @@ namespace Bubba
     [ SuppressMessage( "ReSharper", "FieldCanBeMadeReadOnly.Global" ) ]
     [ SuppressMessage( "ReSharper", "ClassNeverInstantiated.Global" ) ]
     [ SuppressMessage( "ReSharper", "PreferConcreteValueOverDefault" ) ]
+    [ SuppressMessage( "ReSharper", "ReturnTypeCanBeEnumerable.Global" ) ]
+    [ SuppressMessage( "ReSharper", "ParameterTypeCanBeEnumerable.Global" ) ]
     public class TextRetriever : IDisposable
     {
         /// <summary>
@@ -96,9 +98,9 @@ namespace Bubba
                     _busy = true;
                 }
             }
-            catch( Exception ex )
+            catch( Exception _ex )
             {
-                Fail( ex );
+                Fail( _ex );
             }
         }
 
@@ -114,9 +116,9 @@ namespace Bubba
                     _busy = false;
                 }
             }
-            catch( Exception ex )
+            catch( Exception _ex )
             {
-                Fail( ex );
+                Fail( _ex );
             }
         }
 
@@ -131,10 +133,13 @@ namespace Bubba
         {
             try
             {
+                ThrowIf.Empty( prompt, nameof( prompt ) );
+                ThrowIf.Null(chunks, nameof(chunks));
                 var _query = prompt.Split( ' ', StringSplitOptions.RemoveEmptyEntries );
                 var _scoredChunks = new List<(string Chunk, double Score)>( );
-                foreach( var _chunk in chunks )
+                for( var _index = 0; _index < chunks.Count; _index++ )
                 {
+                    var _chunk = chunks[ _index ];
                     var _tokens = _chunk.Split( ' ', StringSplitOptions.RemoveEmptyEntries );
                     var _score = CalculateCosineSimilarity( _query, _tokens );
                     _scoredChunks.Add( ( _chunk, _score ) );
@@ -145,9 +150,9 @@ namespace Bubba
                     .Select( c => c.Chunk )
                     .ToList( );
             }
-            catch( Exception ex )
+            catch( Exception _ex )
             {
-                Fail( ex );
+                Fail( _ex );
                 return default( IList<string> );
             }
         }
@@ -171,9 +176,9 @@ namespace Bubba
                 var _magnitudeB = Math.Sqrt( _setB.Length );
                 return _intersection / ( _magnitudeA * _magnitudeB );
             }
-            catch( Exception ex )
+            catch( Exception _ex )
             {
-                Fail( ex );
+                Fail( _ex );
                 return 0.00;
             }
         }

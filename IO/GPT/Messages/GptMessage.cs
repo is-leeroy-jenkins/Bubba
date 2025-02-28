@@ -221,9 +221,9 @@ namespace Bubba
                     return input;
                 }
             }
-            catch( Exception ex )
+            catch( Exception _ex )
             {
-                Fail( ex );
+                Fail( _ex );
                 return string.Empty;
             }
         }
@@ -241,9 +241,9 @@ namespace Bubba
                     ? _data
                     : default( IDictionary<string, object> );
             }
-            catch( Exception ex )
+            catch( Exception _ex )
             {
-                Fail( ex );
+                Fail( _ex );
                 return default( IDictionary<string, object> );
             }
         }
@@ -276,9 +276,9 @@ namespace Bubba
                     ? _text
                     : string.Empty;
             }
-            catch( Exception ex )
+            catch( Exception _ex )
             {
-                Fail( ex );
+                Fail( _ex );
                 return string.Empty;
             }
         }
@@ -299,9 +299,9 @@ namespace Bubba
                     "developer"
                 };
             }
-            catch( Exception ex )
+            catch( Exception _ex )
             {
-                Fail( ex );
+                Fail( _ex );
                 return default( IList<string> );
             }
         }
@@ -320,9 +320,9 @@ namespace Bubba
                     "url"
                 };
             }
-            catch( Exception ex )
+            catch( Exception _ex )
             {
-                Fail( ex );
+                Fail( _ex );
                 return default( IList<string> );
             }
         }

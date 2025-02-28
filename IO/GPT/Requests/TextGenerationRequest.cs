@@ -416,9 +416,9 @@ namespace Bubba
                     ? _content
                     : string.Empty;
             }
-            catch( Exception ex )
+            catch( Exception _ex )
             {
-                Fail( ex );
+                Fail( _ex );
                 _httpClient?.Dispose( );
                 return string.Empty;
             }
@@ -461,9 +461,9 @@ namespace Bubba
                     return _text;
                 }
             }
-            catch( Exception ex )
+            catch( Exception _ex )
             {
-                Fail( ex );
+                Fail( _ex );
                 return string.Empty;
             }
         }
@@ -493,9 +493,9 @@ namespace Bubba
                 _data.Add( "messages", _messages );
                 return _data;
             }
-            catch( Exception ex )
+            catch( Exception _ex )
             {
-                Fail( ex );
+                Fail( _ex );
                 return default( IDictionary<string, object> );
             }
         }
@@ -514,9 +514,9 @@ namespace Bubba
                     ? _data.ToJson( )
                     : string.Empty;
             }
-            catch( Exception ex )
+            catch( Exception _ex )
             {
-                Fail( ex );
+                Fail( _ex );
                 return string.Empty;
             }
         }

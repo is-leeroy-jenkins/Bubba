@@ -1,13 +1,13 @@
 ﻿// ************************************************************************************************
 //     Assembly:                Bubba
-//     File:                    TextData.cs
+//     File:                    TokenizedText.cs
 //     Author:                  Terry D. Eppler
 //     Created:                 02-24-2023
 // 
 //     Last Modified By:        Terry D. Eppler
 //     Last Modified On:        02-28-2025
 // ************************************************************************************************
-// <copyright file="TextData.cs" company="Terry Eppler">
+// <copyright file="TokenizedText.cs" company="Terry Eppler">
 //    Bubba is a Federal Budget, Finance, and Accounting application providing Machine Learning/AI functionality for
 //    analysts with the US Environmental Protection Agency (US EPA).
 //    Copyright �  2023  Terry Eppler
@@ -35,7 +35,7 @@
 //    You can contact me at:   terryeppler@gmail.com or eppler.terry@epa.gov
 // </copyright>
 // <summary>
-//   TextData.cs
+//   TokenizedText.cs
 // </summary>
 // ************************************************************************************************
 
@@ -43,51 +43,49 @@ namespace Bubba
 {
     using System;
     using System.Diagnostics.CodeAnalysis;
-    using Microsoft.ML.Data;
 
     /// <summary>
     /// 
     /// </summary>
-    [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
-    public class TextData
+    [ SuppressMessage( "ReSharper", "ConvertToAutoProperty" ) ]
+    public class TokenizedText
     {
         /// <summary>
-        /// The text
+        /// The tokens
         /// </summary>
-        private protected string _text;
+        private string[ ] _tokens;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="TextData"/> class.
+        /// Initializes a new instance of the <see cref="TokenizedText"/> class.
         /// </summary>
-        public TextData( )
+        public TokenizedText( )
         {
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="TextData"/> class.
+        /// Initializes a new instance of the <see cref="TokenizedText"/> class.
         /// </summary>
-        /// <param name="text">The text.</param>
-        public TextData( string text )
+        /// <param name="tokens">The tokens.</param>
+        public TokenizedText( string[ ] tokens )
         {
-            _text = text;
+            _tokens = tokens;
         }
 
         /// <summary>
-        /// Gets or sets the text.
+        /// Gets or sets the tokens.
         /// </summary>
         /// <value>
-        /// The text.
+        /// The tokens.
         /// </value>
-        [ LoadColumn( 0 ) ]
-        public string Text
+        public string[ ] Tokens
         {
             get
             {
-                return _text;
+                return _tokens;
             }
             set
             {
-                _text = value;
+                _tokens = value;
             }
         }
 
