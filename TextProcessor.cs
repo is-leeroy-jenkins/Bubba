@@ -1,43 +1,6 @@
-﻿// ******************************************************************************************
-//     Assembly:                Bubba
-//     Author:                  Terry D. Eppler
-//     Created:                 02-25-2025
-// 
-//     Last Modified By:        Terry D. Eppler
-//     Last Modified On:        02-25-2025
-// ******************************************************************************************
-// <copyright file="TextProcessor.cs" company="Terry D. Eppler">
-//    Bubba is a small and simple windows (wpf) application for interacting with the OpenAI API
-//    that's developed in C-Sharp under the MIT license.C#.
-// 
-//    Copyright ©  2020-2024 Terry D. Eppler
-// 
-//    Permission is hereby granted, free of charge, to any person obtaining a copy
-//    of this software and associated documentation files (the “Software”),
-//    to deal in the Software without restriction,
-//    including without limitation the rights to use,
-//    copy, modify, merge, publish, distribute, sublicense,
-//    and/or sell copies of the Software,
-//    and to permit persons to whom the Software is furnished to do so,
-//    subject to the following conditions:
-// 
-//    The above copyright notice and this permission notice shall be included in all
-//    copies or substantial portions of the Software.
-// 
-//    THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,
-//    INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-//    FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT.
-//    IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
-//    DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,
-//    ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
-//    DEALINGS IN THE SOFTWARE.
-// 
-//    You can contact me at:  terryeppler@gmail.com or eppler.terry@epa.gov
-// </copyright>
-// <summary>
-//   TextProcessor.cs
-// </summary>
-// ******************************************************************************************
+﻿// // <copyright file = "TextProcessor.cs" company = "Terry D. Eppler">
+// // Copyright (c) Terry D. Eppler. All rights reserved.
+// // </copyright>
 namespace Bubba
 {
     using System;
@@ -123,8 +86,8 @@ namespace Bubba
                 var posTags = PerformPosTagging( filteredTokens );
                 var namedEntities = PerformNamedEntityRecognition( filteredTokens );
                 var sentiment = PerformSentimentAnalysis( sentence );
-                var wordFrequencies = GetWordFrequencies( filteredTokens );
-                var tfIdfScores = ComputeFrequencies( filteredTokens, wordFrequencies );
+                var wordFrequencies = CalculateFrequencies( filteredTokens );
+                var tfIdfScores = CalculateFrequencies( filteredTokens, wordFrequencies );
                 var topics = PerformTopicModeling( sentence );
                 var dependencyParse = PerformDependencyParsing( tokens );
                 var wordEmbeddings = GenerateWordEmbeddings( filteredTokens );
@@ -177,7 +140,7 @@ namespace Bubba
         /// <returns>
         /// Dict
         /// </returns>
-        private IDictionary<string, double> ComputeFrequencies( string[ ] tokens, 
+        private IDictionary<string, double> CalculateFrequencies( string[ ] tokens,
             IDictionary<string, int> frequencies )
         {
             try
@@ -187,8 +150,7 @@ namespace Bubba
                 var _words = tokens.ToList(  ).Count;
                 if( _words > 0 )
                 {
-                    var _freq = 
-                        frequencies.ToDictionary( k => k.Key, p => ( double )p.Value / _words );
+                    var _freq = frequencies.ToDictionary( k => k.Key, p => ( double )p.Value / _words );
 
                     return _freq?.Any(  ) == true
                         ? _freq
@@ -245,7 +207,20 @@ namespace Bubba
         /// <returns></returns>
         private string[ ] RemoveStopWords( string[ ] tokens )
         {
-            return tokens.Where( token => !_stopWords.Contains( token ) ).ToArray( );
+            try
+            {
+                ThrowIf.Null( tokens, nameof( tokens ) );
+                var _rawData = tokens.Where( token => !_stopWords.Contains( token ) ).ToArray( );
+
+                return _rawData?.Any(  ) == true
+                    ? _rawData
+                    : default( string[ ] );
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+                return default( string[ ] );
+            }
         }
 
         /// <summary>
@@ -255,7 +230,16 @@ namespace Bubba
         /// <returns></returns>
         private string[ ] ApplyStemming( string[ ] tokens )
         {
-            return tokens.Select( StemWord ).ToArray( );
+            try
+            {
+                ThrowIf.Null( tokens, nameof( tokens ) );
+                return tokens.Select( StemWord ).ToArray( );
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+                return default( string[ ] );
+            }
         }
 
         /// <summary>
@@ -265,23 +249,31 @@ namespace Bubba
         /// <returns></returns>
         private string StemWord( string word )
         {
-            if( word.EndsWith( "ing" ) )
+            try
             {
-                return word[ ..^3 ];
-            }
+                if( word.EndsWith( "ing" ) )
+                {
+                    return word[ ..^3 ];
+                }
 
-            if( word.EndsWith( "ed" ) )
+                if( word.EndsWith( "ed" ) )
+                {
+                    return word[ ..^2 ];
+                }
+
+                if( word.EndsWith( "s" )
+                    && word.Length > 3 )
+                {
+                    return word[ ..^1 ];
+                }
+
+                return word;
+            }
+            catch( Exception ex )
             {
-                return word[ ..^2 ];
+                Fail( ex  );
+                return default( string );
             }
-
-            if( word.EndsWith( "s" )
-                && word.Length > 3 )
-            {
-                return word[ ..^1 ];
-            }
-
-            return word;
         }
 
         /// <summary>
@@ -290,11 +282,25 @@ namespace Bubba
         /// <returns></returns>
         private ITransformer TrainWordVectors( )
         {
-            var data = _context.Data.LoadFromEnumerable( new List<TextData>( ) );
-            var pipeline = _context.Transforms.Text.ApplyWordEmbedding( "WordEmbedding", "Text",
-                WordEmbeddingEstimator.PretrainedModelKind.SentimentSpecificWordEmbedding );
+            try
+            {
+                var _estimator = WordEmbeddingEstimator.PretrainedModelKind.SentimentSpecificWordEmbedding;
 
-            return pipeline.Fit( data );
+                var _rawData = _context.Data?.LoadFromEnumerable( new List<TextData>( ) );
+
+                var _pipeline =
+                    _context.Transforms?.Text.ApplyWordEmbedding( "WordEmbedding", "Text", _estimator );
+
+                var _model = _pipeline?.Fit( _rawData );
+                return _model != null
+                    ? _model
+                    : default( ITransformer );
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+                return default( ITransformer );
+            }
         }
 
         /// <summary>
@@ -302,18 +308,27 @@ namespace Bubba
         /// </summary>
         /// <param name="tokens">The tokens.</param>
         /// <returns></returns>
-        private Dictionary<string, float[ ]> GenerateWordEmbeddings( string[ ] tokens )
+        private IDictionary<string, float[ ]> GenerateWordEmbeddings( string[ ] tokens )
         {
-            var data = _context.Data.LoadFromEnumerable( tokens.Select( t => new TextData
+            try
             {
-                Text = t
-            } ) );
+                var data = _context.Data.LoadFromEnumerable( tokens.Select( t => new TextData
+                {
+                    Text = t
+                } ) );
 
-            var transformedData = _wordVectorModel.Transform( data );
-            var embeddings = _context.Data.CreateEnumerable<WordEmbeddingData>( transformedData, false )
-                .ToDictionary( e => e.Text, e => e.WordEmbedding );
+                var transformedData = _wordVectorModel.Transform( data );
+                var embeddings = _context.Data
+                    .CreateEnumerable<WordEmbeddingData>( transformedData, false )
+                    .ToDictionary( e => e.Text, e => e.WordEmbedding );
 
-            return embeddings;
+                return embeddings;
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+                return default( IDictionary<string, float[ ]> );
+            }
         }
 
         /// <summary>
@@ -323,13 +338,22 @@ namespace Bubba
         /// <returns></returns>
         private string[ ] PerformPosTagging( string[ ] tokens )
         {
-            return tokens.Select( token => token.EndsWith( "ing" )
-                ? "VERB"
-                : token.EndsWith( "ed" )
+            try
+            {
+                ThrowIf.Empty( tokens, nameof( tokens ) );
+                return tokens.Select( token => token.EndsWith( "ing" )
                     ? "VERB"
-                    : char.IsUpper( token[ 0 ] )
-                        ? "NOUN"
-                        : "OTHER" ).ToArray( );
+                    : token.EndsWith( "ed" )
+                        ? "VERB"
+                        : char.IsUpper( token[ 0 ] )
+                            ? "NOUN"
+                            : "OTHER" ).ToArray( );
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+                return default( string[ ] );
+            }
         }
 
         /// <summary>
@@ -362,12 +386,14 @@ namespace Bubba
         /// </summary>
         /// <param name="tokens">The tokens.</param>
         /// <returns></returns>
-        private IDictionary<string, int> GetWordFrequencies( string[ ] tokens )
+        private IDictionary<string, int> CalculateFrequencies( string[ ] tokens )
         {
             try
             {
                 ThrowIf.Null( tokens, nameof( tokens ) );
-                var _retval = tokens.GroupBy( t => t ).ToDictionary( g => g.Key, g => g.Count( ) );
+                var _retval = tokens.GroupBy( t => t )
+                    .ToDictionary( g => g.Key, g => g.Count( ) );
+
                 return _retval?.Any(  ) == true
                     ? _retval
                     : default( IDictionary<string, int> );

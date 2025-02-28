@@ -3,12 +3,16 @@
   "WorkspaceRootPath": "C:\\Users\\terry\\source\\repos\\Bubba\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{08012640-3765-4051-B5EB-4FF782150AEC}|Bubba.csproj|c:\\users\\terry\\source\\repos\\bubba\\io\\nlp\\textpreprocessor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{08012640-3765-4051-B5EB-4FF782150AEC}|Bubba.csproj|solutionrelative:io\\nlp\\textpreprocessor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{08012640-3765-4051-B5EB-4FF782150AEC}|Bubba.csproj|c:\\users\\terry\\source\\repos\\bubba\\textprocessor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{08012640-3765-4051-B5EB-4FF782150AEC}|Bubba.csproj|solutionrelative:textprocessor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{08012640-3765-4051-B5EB-4FF782150AEC}|Bubba.csproj|c:\\users\\terry\\source\\repos\\bubba\\.editorconfig||{68B46364-D378-42F2-9E72-37D86C5F4468}|",
+      "RelativeMoniker": "D:0:0:{08012640-3765-4051-B5EB-4FF782150AEC}|Bubba.csproj|solutionrelative:.editorconfig||{68B46364-D378-42F2-9E72-37D86C5F4468}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{08012640-3765-4051-B5EB-4FF782150AEC}|Bubba.csproj|c:\\users\\terry\\source\\repos\\bubba\\io\\nlp\\textpreprocessor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{08012640-3765-4051-B5EB-4FF782150AEC}|Bubba.csproj|solutionrelative:io\\nlp\\textpreprocessor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{08012640-3765-4051-B5EB-4FF782150AEC}|Bubba.csproj|c:\\users\\terry\\source\\repos\\bubba\\nlpresult.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -106,20 +110,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "UserMessage.cs",
-              "DocumentMoniker": "C:\\Users\\terry\\source\\repos\\Bubba\\IO\\GPT\\Messages\\UserMessage.cs",
-              "RelativeDocumentMoniker": "IO\\GPT\\Messages\\UserMessage.cs",
-              "ToolTip": "C:\\Users\\terry\\source\\repos\\Bubba\\IO\\GPT\\Messages\\UserMessage.cs",
-              "RelativeToolTip": "IO\\GPT\\Messages\\UserMessage.cs",
-              "ViewState": "AgIAACAAAAAAAAAAAAAAAD8AAAAkAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-23T13:09:37.921Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 6,
               "Title": "TextGenerationRequest.cs",
               "DocumentMoniker": "C:\\Users\\terry\\source\\repos\\Bubba\\IO\\GPT\\Requests\\TextGenerationRequest.cs",
               "RelativeDocumentMoniker": "IO\\GPT\\Requests\\TextGenerationRequest.cs",
@@ -127,12 +118,11 @@
               "RelativeToolTip": "IO\\GPT\\Requests\\TextGenerationRequest.cs",
               "ViewState": "AgIAAMUBAAAAAAAAAAAQwN8BAAAqAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-23T12:38:39.966Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-02-23T12:38:39.966Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 8,
               "Title": "TokenizedText.cs",
               "DocumentMoniker": "C:\\Users\\terry\\source\\repos\\Bubba\\TokenizedText.cs",
               "RelativeDocumentMoniker": "TokenizedText.cs",
@@ -140,12 +130,11 @@
               "RelativeToolTip": "TokenizedText.cs",
               "ViewState": "AgIAAA8AAAAAAAAAAAAQwBcAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-25T20:33:31.02Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-02-25T20:33:31.02Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 9,
               "Title": "TextData.cs",
               "DocumentMoniker": "C:\\Users\\terry\\source\\repos\\Bubba\\IO\\NLP\\TextData.cs",
               "RelativeDocumentMoniker": "IO\\NLP\\TextData.cs",
@@ -153,12 +142,11 @@
               "RelativeToolTip": "IO\\NLP\\TextData.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-25T20:33:37.891Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-02-25T20:33:37.891Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 7,
               "Title": "WordEmbeddingData.cs",
               "DocumentMoniker": "C:\\Users\\terry\\source\\repos\\Bubba\\WordEmbeddingData.cs",
               "RelativeDocumentMoniker": "WordEmbeddingData.cs",
@@ -166,12 +154,11 @@
               "RelativeToolTip": "WordEmbeddingData.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAjAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-25T20:37:43.874Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-02-25T20:37:43.874Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "NlpResult.cs",
               "DocumentMoniker": "C:\\Users\\terry\\source\\repos\\Bubba\\NlpResult.cs",
               "RelativeDocumentMoniker": "NlpResult.cs",
@@ -179,38 +166,37 @@
               "RelativeToolTip": "NlpResult.cs",
               "ViewState": "AgIAAHoAAAAAAAAAAAAswFMAAAAqAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-25T20:42:18.281Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-02-25T20:42:18.281Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 2,
               "Title": "TextPreprocessor.cs",
               "DocumentMoniker": "C:\\Users\\terry\\source\\repos\\Bubba\\IO\\NLP\\TextPreprocessor.cs",
               "RelativeDocumentMoniker": "IO\\NLP\\TextPreprocessor.cs",
               "ToolTip": "C:\\Users\\terry\\source\\repos\\Bubba\\IO\\NLP\\TextPreprocessor.cs",
               "RelativeToolTip": "IO\\NLP\\TextPreprocessor.cs",
-              "ViewState": "AgIAAGYBAAAAAAAAAAAgwHkBAAA+AAAAAAAAAA==",
+              "ViewState": "AgIAAH4BAAAAAAAAAAAwwI8BAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-02-25T20:52:31.462Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
               "Title": "TextProcessor.cs",
               "DocumentMoniker": "C:\\Users\\terry\\source\\repos\\Bubba\\TextProcessor.cs",
               "RelativeDocumentMoniker": "TextProcessor.cs",
               "ToolTip": "C:\\Users\\terry\\source\\repos\\Bubba\\TextProcessor.cs",
               "RelativeToolTip": "TextProcessor.cs",
-              "ViewState": "AgIAAKAAAAAAAAAAAAAAwMEAAAAfAAAAAAAAAA==",
+              "ViewState": "AgIAAI4AAAAAAAAAAAAAALMAAAA2AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-02-25T20:54:32.176Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 4,
               "Title": "GptMessage.cs",
               "DocumentMoniker": "C:\\Users\\terry\\source\\repos\\Bubba\\IO\\GPT\\Messages\\GptMessage.cs",
               "RelativeDocumentMoniker": "IO\\GPT\\Messages\\GptMessage.cs",
@@ -218,12 +204,35 @@
               "RelativeToolTip": "IO\\GPT\\Messages\\GptMessage.cs",
               "ViewState": "AgIAADQBAAAAAAAAAAAwwEgBAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-25T21:36:07.82Z",
+              "WhenOpened": "2025-02-25T21:36:07.82Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": ".editorconfig",
+              "DocumentMoniker": "C:\\Users\\terry\\source\\repos\\Bubba\\.editorconfig",
+              "RelativeDocumentMoniker": ".editorconfig",
+              "ToolTip": "C:\\Users\\terry\\source\\repos\\Bubba\\.editorconfig",
+              "RelativeToolTip": ".editorconfig",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2025-02-28T12:58:20.176Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 5,
+              "Title": "UserMessage.cs",
+              "DocumentMoniker": "C:\\Users\\terry\\source\\repos\\Bubba\\IO\\GPT\\Messages\\UserMessage.cs",
+              "RelativeDocumentMoniker": "IO\\GPT\\Messages\\UserMessage.cs",
+              "ToolTip": "C:\\Users\\terry\\source\\repos\\Bubba\\IO\\GPT\\Messages\\UserMessage.cs",
+              "RelativeToolTip": "IO\\GPT\\Messages\\UserMessage.cs",
+              "ViewState": "AgIAACAAAAAAAAAAAAAAAD8AAAAkAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-23T13:09:37.921Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
               "Title": "TokenizedVector.cs",
               "DocumentMoniker": "C:\\Users\\terry\\source\\repos\\Bubba\\IO\\NLP\\TokenizedVector.cs",
               "RelativeDocumentMoniker": "IO\\NLP\\TokenizedVector.cs",
@@ -231,12 +240,11 @@
               "RelativeToolTip": "IO\\NLP\\TokenizedVector.cs",
               "ViewState": "AgIAACEAAAAAAAAAAADwvzQAAAAIAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-25T20:34:26.285Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-02-25T20:34:26.285Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 11,
               "Title": "AssistantMessage.cs",
               "DocumentMoniker": "C:\\Users\\terry\\source\\repos\\Bubba\\IO\\GPT\\Messages\\AssistantMessage.cs",
               "RelativeDocumentMoniker": "IO\\GPT\\Messages\\AssistantMessage.cs",
@@ -244,12 +252,11 @@
               "RelativeToolTip": "IO\\GPT\\Messages\\AssistantMessage.cs",
               "ViewState": "AgIAAHYAAAAAAAAAAAAUwIcAAAANAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-23T13:09:42.554Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-02-23T13:09:42.554Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 12,
               "Title": "SystemMessage.cs",
               "DocumentMoniker": "C:\\Users\\terry\\source\\repos\\Bubba\\IO\\GPT\\Messages\\SystemMessage.cs",
               "RelativeDocumentMoniker": "IO\\GPT\\Messages\\SystemMessage.cs",
@@ -257,8 +264,7 @@
               "RelativeToolTip": "IO\\GPT\\Messages\\SystemMessage.cs",
               "ViewState": "AgIAALgAAAAAAAAAAAAowM0AAAAUAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-23T13:08:43.959Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-02-23T13:08:43.959Z"
             }
           ]
         },
