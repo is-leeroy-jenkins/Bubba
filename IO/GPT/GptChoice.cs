@@ -85,7 +85,8 @@ namespace Bubba
         /// Initializes a new instance of the
         /// <see cref="GptChoice"/> class.
         /// </summary>
-        public GptChoice( )
+        public GptChoice( ) 
+            : base( )
         {
         }
 
@@ -97,7 +98,8 @@ namespace Bubba
         /// <param name="logprobs">The logprobs.</param>
         /// <param name="finishReason">The finish reason.</param>
         public GptChoice( int index, string text, string logprobs,
-            string finishReason )
+            string finishReason ) 
+            : this( )
         {
             _index = index;
             _message = text;
@@ -124,8 +126,8 @@ namespace Bubba
         /// <param name="text">The text.</param>
         /// <param name="logprobs">The logprobs.</param>
         /// <param name="finishReason">The finish reason.</param>
-        public void Deconstruct( out int index, out string text, out string logprobs,
-            out string finishReason )
+        public void Deconstruct( out int index, out string text, out string logprobs, 
+                                 out string finishReason )
         {
             index = _index;
             text = _message;

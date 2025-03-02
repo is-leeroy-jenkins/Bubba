@@ -14304,6 +14304,71 @@
             </summary>
             <param name="ex">The ex.</param>
         </member>
+        <member name="T:Bubba.GptContent">
+            <inheritdoc />
+            <summary>
+            </summary>
+        </member>
+        <member name="F:Bubba.GptContent._type">
+            <summary>
+            The type
+            </summary>
+        </member>
+        <member name="F:Bubba.GptContent._text">
+            <summary>
+            The text
+            </summary>
+        </member>
+        <member name="F:Bubba.GptContent._data">
+            <summary>
+            The data
+            </summary>
+        </member>
+        <member name="M:Bubba.GptContent.#ctor">
+            <summary>
+            Initializes a new instance of the
+            <see cref="T:Bubba.GptContent"/> class.
+            </summary>
+        </member>
+        <member name="P:Bubba.GptContent.Type">
+            <summary>
+            Gets or sets the type.
+            </summary>
+            <value>
+            The type.
+            </value>
+        </member>
+        <member name="P:Bubba.GptContent.Text">
+            <summary>
+            Gets or sets the text.
+            </summary>
+            <value>
+            The text.
+            </value>
+        </member>
+        <member name="M:Bubba.GptContent.GetData">
+            <inheritdoc />
+            <summary>
+            Gets the data.
+            </summary>
+            <returns>
+            </returns>
+        </member>
+        <member name="M:Bubba.GptContent.ToString">
+            <inheritdoc />
+            <summary>
+            Converts to string.
+            </summary>
+            <returns>
+            A <see cref="T:System.String" /> that represents this instance.
+            </returns>
+        </member>
+        <member name="M:Bubba.GptContent.Fail(System.Exception)">
+            <summary>
+            Fails the specified ex.
+            </summary>
+            <param name="ex">The ex.</param>
+        </member>
         <member name="T:Bubba.AudioConverter">
             <summary>
             
