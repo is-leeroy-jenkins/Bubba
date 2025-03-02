@@ -3,12 +3,8 @@
   "WorkspaceRootPath": "C:\\Users\\terry\\source\\repos\\Bubba\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{08012640-3765-4051-B5EB-4FF782150AEC}|Bubba.csproj|c:\\users\\terry\\source\\repos\\bubba\\gptcontent.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{08012640-3765-4051-B5EB-4FF782150AEC}|Bubba.csproj|solutionrelative:gptcontent.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{08012640-3765-4051-B5EB-4FF782150AEC}|Bubba.csproj|c:\\users\\terry\\source\\repos\\bubba\\io\\gpt\\gptchoice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{08012640-3765-4051-B5EB-4FF782150AEC}|Bubba.csproj|solutionrelative:io\\gpt\\gptchoice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{08012640-3765-4051-B5EB-4FF782150AEC}|Bubba.csproj|c:\\users\\terry\\source\\repos\\bubba\\io\\nlp\\textpipeline.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{08012640-3765-4051-B5EB-4FF782150AEC}|Bubba.csproj|solutionrelative:io\\nlp\\textpipeline.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -18,7 +14,7 @@
       "DocumentGroups": [
         {
           "DockedHeight": 332,
-          "SelectedChildIndex": 12,
+          "SelectedChildIndex": 11,
           "Children": [
             {
               "$type": "Bookmark",
@@ -66,28 +62,15 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "GptChoice.cs",
-              "DocumentMoniker": "C:\\Users\\terry\\source\\repos\\Bubba\\IO\\GPT\\GptChoice.cs",
-              "RelativeDocumentMoniker": "IO\\GPT\\GptChoice.cs",
-              "ToolTip": "C:\\Users\\terry\\source\\repos\\Bubba\\IO\\GPT\\GptChoice.cs",
-              "RelativeToolTip": "IO\\GPT\\GptChoice.cs",
-              "ViewState": "AgIAAO0AAAAAAAAAAAAowAMBAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-01T22:25:24.934Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "GptContent.cs",
-              "DocumentMoniker": "C:\\Users\\terry\\source\\repos\\Bubba\\GptContent.cs",
-              "RelativeDocumentMoniker": "GptContent.cs",
-              "ToolTip": "C:\\Users\\terry\\source\\repos\\Bubba\\GptContent.cs",
-              "RelativeToolTip": "GptContent.cs",
-              "ViewState": "AgIAAGUAAAAAAAAAAAAAAH8AAAAJAAAAAAAAAA==",
+              "Title": "TextPipeline.cs",
+              "DocumentMoniker": "C:\\Users\\terry\\source\\repos\\Bubba\\IO\\NLP\\TextPipeline.cs",
+              "RelativeDocumentMoniker": "IO\\NLP\\TextPipeline.cs",
+              "ToolTip": "C:\\Users\\terry\\source\\repos\\Bubba\\IO\\NLP\\TextPipeline.cs",
+              "RelativeToolTip": "IO\\NLP\\TextPipeline.cs",
+              "ViewState": "AgIAAIMAAAAAAAAAAAAiwHAAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-01T22:28:49.381Z",
+              "WhenOpened": "2025-03-02T21:08:34.959Z",
               "EditorCaption": ""
             }
           ]

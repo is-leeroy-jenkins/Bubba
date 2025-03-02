@@ -28489,24 +28489,30 @@
             The timer callback
             </summary>
         </member>
-        <member name="F:Bubba.TextPipeline._textExtractor">
+        <member name="F:Bubba.TextPipeline._extractor">
             <summary>
             The textExtractor
             </summary>
         </member>
-        <member name="F:Bubba.TextPipeline._textChunker">
+        <member name="F:Bubba.TextPipeline._chunker">
             <summary>
             The textChunker
             </summary>
         </member>
-        <member name="F:Bubba.TextPipeline._textRetriever">
+        <member name="F:Bubba.TextPipeline._retriever">
             <summary>
             The textRetriever
             </summary>
         </member>
-        <member name="F:Bubba.TextPipeline._apiRequest">
+        <member name="F:Bubba.TextPipeline._request">
             <summary>
             The file apiRequest
+            </summary>
+        </member>
+        <member name="M:Bubba.TextPipeline.#ctor">
+            <summary>
+            Initializes a new instance of the
+            <see cref="T:Bubba.TextPipeline"/> class.
             </summary>
         </member>
         <member name="M:Bubba.TextPipeline.#ctor(Bubba.TextExtractor,Bubba.TextChunker,Bubba.TextRetriever,Bubba.FileRequest)">
@@ -28517,6 +28523,38 @@
             <param name="textChunker">The textChunker.</param>
             <param name="textRetriever">The textRetriever.</param>
             <param name="apiRequest">The file apiRequest.</param>
+        </member>
+        <member name="P:Bubba.TextPipeline.TextExtractor">
+            <summary>
+            Gets or sets the text extractor.
+            </summary>
+            <value>
+            The text extractor.
+            </value>
+        </member>
+        <member name="P:Bubba.TextPipeline.TextChunker">
+            <summary>
+            Gets or sets the text chunker.
+            </summary>
+            <value>
+            The text chunker.
+            </value>
+        </member>
+        <member name="P:Bubba.TextPipeline.TextRetriever">
+            <summary>
+            Gets or sets the text retriever.
+            </summary>
+            <value>
+            The text retriever.
+            </value>
+        </member>
+        <member name="P:Bubba.TextPipeline.ApiRequest">
+            <summary>
+            Gets or sets the API request.
+            </summary>
+            <value>
+            The API request.
+            </value>
         </member>
         <member name="M:Bubba.TextPipeline.Busy">
             <summary>

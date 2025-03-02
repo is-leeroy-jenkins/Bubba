@@ -52,6 +52,7 @@ namespace Bubba
     /// <seealso cref="T:System.IDisposable" />
     [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
     [ SuppressMessage( "ReSharper", "UnusedType.Global" ) ]
+    [ SuppressMessage( "ReSharper", "FieldCanBeMadeReadOnly.Global" ) ]
     public class TextPipeline : IDisposable
     {
         /// <summary>
@@ -82,22 +83,34 @@ namespace Bubba
         /// <summary>
         /// The textExtractor
         /// </summary>
-        private readonly TextExtractor _textExtractor;
+        private protected TextExtractor _extractor;
 
         /// <summary>
         /// The textChunker
         /// </summary>
-        private readonly TextChunker _textChunker;
+        private protected TextChunker _chunker;
 
         /// <summary>
         /// The textRetriever
         /// </summary>
-        private readonly TextRetriever _textRetriever;
+        private protected TextRetriever _retriever;
 
         /// <summary>
         /// The file apiRequest
         /// </summary>
-        private readonly FileRequest _apiRequest;
+        private protected FileRequest _request;
+
+        /// <summary>
+        /// Initializes a new instance of the
+        /// <see cref="TextPipeline"/> class.
+        /// </summary>
+        public TextPipeline( )
+        {
+            _extractor = new TextExtractor(  );
+            _chunker = new TextChunker( );
+            _retriever = new TextRetriever( );
+            _request = new FileRequest(  );
+        }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="TextPipeline"/> class.
@@ -106,13 +119,86 @@ namespace Bubba
         /// <param name="textChunker">The textChunker.</param>
         /// <param name="textRetriever">The textRetriever.</param>
         /// <param name="apiRequest">The file apiRequest.</param>
-        public TextPipeline( TextExtractor textExtractor, TextChunker textChunker, TextRetriever textRetriever,
-            FileRequest apiRequest )
+        public TextPipeline( TextExtractor textExtractor, TextChunker textChunker, 
+                             TextRetriever textRetriever, FileRequest apiRequest ) 
+            : this( )
         {
-            _textExtractor = textExtractor;
-            _textChunker = textChunker;
-            _textRetriever = textRetriever;
-            _apiRequest = apiRequest;
+            _extractor = textExtractor;
+            _chunker = textChunker;
+            _retriever = textRetriever;
+            _request = apiRequest;
+        }
+
+        /// <summary>
+        /// Gets or sets the text extractor.
+        /// </summary>
+        /// <value>
+        /// The text extractor.
+        /// </value>
+        public TextExtractor TextExtractor
+        {
+            get
+            {
+                return _extractor;
+            }
+            set
+            {
+                _extractor = value;
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the text chunker.
+        /// </summary>
+        /// <value>
+        /// The text chunker.
+        /// </value>
+        public TextChunker TextChunker
+        {
+            get
+            {
+                return _chunker;
+            }
+            set
+            {
+                _chunker = value;
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the text retriever.
+        /// </summary>
+        /// <value>
+        /// The text retriever.
+        /// </value>
+        public TextRetriever TextRetriever
+        {
+            get
+            {
+                return _retriever;
+            }
+            set
+            {
+                _retriever = value;
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the API request.
+        /// </summary>
+        /// <value>
+        /// The API request.
+        /// </value>
+        public FileRequest ApiRequest
+        {
+            get
+            {
+                return _request;
+            }
+            set
+            {
+                _request = value;
+            }
         }
 
         /// <summary>
@@ -164,10 +250,10 @@ namespace Bubba
                 Busy( );
                 ThrowIf.Empty( query, nameof( query ) );
                 ThrowIf.Empty( directory, nameof( directory ) );
-                var _texts = _textExtractor.GetFromFolder( directory );
-                var _text = _textChunker.ChunkText( _texts );
-                var _chunks = _textRetriever.GetChunks( query, _text );
-                var _response = await _apiRequest.GetResponseAsync( query );
+                var _texts = _extractor.GetFromFolder( directory );
+                var _text = _chunker.ChunkText( _texts );
+                var _chunks = _retriever.GetChunks( query, _text );
+                var _response = await _request.GetResponseAsync( query );
                 Chill( );
                 return !string.IsNullOrEmpty( _response )
                     ? _response
