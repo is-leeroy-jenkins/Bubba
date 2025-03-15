@@ -181,13 +181,14 @@
 
             <ToolBar
                 x:Name="ToolStrip"
+                Height="50"
                 Margin="0"
                 Background="{StaticResource FormBackground}"
                 BorderBrush="{StaticResource FormBackground}"
                 ClipToBounds="True"
                 FontFamily="Roboto"
                 Foreground="{StaticResource FormForeground}"
-                SnapsToDevicePixels="True" Height="50">
+                SnapsToDevicePixels="True">
 
                 <Label
                     x:Name="StatusLabel"
@@ -255,9 +256,10 @@
                     Height="30"
                     Margin="15,1,5,1"
                     HorizontalAlignment="Right"
+                    HorizontalContentAlignment="Right"
                     FontFamily="Roboto"
                     ImageSource="/Resources/Assets/ToolStripImages/ToggleButton.png"
-                    ToolTip="Show/Hide Toolbar" HorizontalContentAlignment="Right" />
+                    ToolTip="Show/Hide Toolbar" />
             </ToolBar>
         </Grid>
 
@@ -460,7 +462,7 @@
 
             </Grid>
             <Grid
-                x:Name="ParameterCanvas"
+                x:Name="ParameterGrid"
                 Grid.Row="1"
                 Margin="0,5,0,5">
                 <Grid.ColumnDefinitions>
@@ -474,6 +476,7 @@
 
 
                 <GroupBox
+                    x:Name="TemperatureGroupBox"
                     Height="188"
                     Margin="10,0,10,0"
                     VerticalAlignment="Top"
@@ -494,18 +497,18 @@
                         ClipToBounds="True"
                         FontFamily="Roboto"
                         Foreground="{DynamicResource BlueBorderBrush}"
+                        SnapsTo="Ticks"
+                        SnapsToDevicePixels="True"
                         LargeChange="0.25"
                         Maximum="2"
                         Minimum="0"
                         MinorTickFrequency="2"
                         MinorTickLength="6"
                         MinorTickStroke="{StaticResource WhiteForeground}"
-                        SnapsTo="Ticks"
-                        SnapsToDevicePixels="True"
                         ThumbToolTipPlacement="BottomRight"
+                        TickStroke="{StaticResource WhiteForeground}"
                         TickFrequency=".25"
                         TickLength="12"
-                        TickStroke="{StaticResource WhiteForeground}"
                         ToolTip="A number between 0 and 2"
                         ToolTipFormat="P2"
                         Value="0.08" />
@@ -573,6 +576,7 @@
                         Background="{DynamicResource TransparentBrush}"
                         ClipToBounds="True"
                         FontFamily="Roboto"
+                        Foreground="{DynamicResource BlueBorderBrush}"
                         LabelPlacement="BottomRight"
                         LargeChange="0.10"
                         Maximum="1.0"
@@ -591,7 +595,7 @@
                         ToolTip="A number between 0 and 1. (%)"
                         ToolTipFormat="P2"
                         ValuePlacement="TopLeft"
-                        Value="0.09" Foreground="{DynamicResource BlueBorderBrush}" />
+                        Value="0.09" />
                 </GroupBox>
 
                 <GroupBox
@@ -616,6 +620,7 @@
                         Background="{DynamicResource TransparentBrush}"
                         ClipToBounds="True"
                         FontFamily="Roboto"
+                        Foreground="{DynamicResource BlueBorderBrush}"
                         LabelPlacement="BottomRight"
                         LargeChange="0.10"
                         Maximum="2"
@@ -633,7 +638,7 @@
                         ToolTip="A number between -2 and 2. Default=0"
                         ToolTipFormat="P2"
                         ValuePlacement="TopLeft"
-                        Value="0.00" Foreground="{DynamicResource BlueBorderBrush}" />
+                        Value="0.00" />
                 </GroupBox>
 
                 <GroupBox
@@ -936,8 +941,10 @@
                             <Grid Grid.Column="1">
                                 <b:MetroEditor
                                     x:Name="ChatEditor"
+                                    Width="1062"
                                     Height="270"
                                     Padding="5"
+                                    HorizontalAlignment="Center"
                                     VerticalAlignment="Center"
                                     Background="{StaticResource ControlInteriorBrush}"
                                     BorderThickness="2"
@@ -949,7 +956,7 @@
                                     LineNumberTextForeground="{DynamicResource GreenBackground}"
                                     OutliningAreaBackground="{DynamicResource ListBoxBackground}"
                                     OutliningAreaWidth="15"
-                                    VerticalScrollBarVisibility="Visible" HorizontalAlignment="Center" Width="1062" />
+                                    VerticalScrollBarVisibility="Visible" />
                             </Grid>
 
                             <Grid Grid.Column="0">

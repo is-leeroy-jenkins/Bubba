@@ -76,9 +76,8 @@ namespace Bubba
             : base( )
         {
             _role = "user";
-            _type = "text";
             _data = new Dictionary<string, object>( );
-            _content = new Dictionary<string, string>( );
+            _type = "text";
         }
 
         /// <inheritdoc />
@@ -91,8 +90,7 @@ namespace Bubba
             : this( )
         {
             _text = prompt;
-            _content.Add( "type", "text" );
-            _content.Add( "text", _text );
+            _content = new GptContent( _type, prompt );
         }
 
         /// <summary>
@@ -105,6 +103,7 @@ namespace Bubba
             _role = message.Role;
             _content = message.Content;
             _type = message.Type;
+            _text = message.Text;
         }
 
         /// <summary>
@@ -112,7 +111,7 @@ namespace Bubba
         /// </summary>
         /// <param name="role">The role.</param>
         /// <param name="content">The content.</param>
-        public void Deconstruct( out string role, out IDictionary<string, string> content )
+        public void Deconstruct( out string role, out GptContent content )
         {
             role = _role;
             content = _content;
@@ -150,7 +149,7 @@ namespace Bubba
         /// The type.
         /// </value>
         [ JsonPropertyName( "type" ) ]
-        public  override string Type
+        public override string Type
         {
             get
             {
@@ -174,7 +173,7 @@ namespace Bubba
         /// The text.
         /// </value>
         [ JsonPropertyName( "text" ) ]
-        public  override string Text
+        public override string Text
         {
             get
             {
@@ -198,7 +197,7 @@ namespace Bubba
         /// The content.
         /// </value>
         [ JsonPropertyName( "content" ) ]
-        public override IDictionary<string, string> Content
+        public override GptContent Content
         {
             get
             {
@@ -228,18 +227,18 @@ namespace Bubba
                     _data.Add( "role", _role );
                 }
 
-                if( _content?.Any( ) == true )
+                if( !string.IsNullOrEmpty( _type ) )
                 {
-                    if( _content?.ContainsKey( "type" ) == true )
-                    {
-                        _data.Add( "type", _content[ "type" ] );
-                    }
+                    _data.Add( "type", _type );
+                }
 
-                    if( _content?.ContainsKey( "text" ) == true )
-                    {
-                        _data.Add( "text", _content[ "text" ] );
-                    }
+                if( !string.IsNullOrEmpty( _text ) )
+                {
+                    _data.Add( "text", _text );
+                }
 
+                if( _content != null )
+                {
                     _data.Add( "content", _content );
                 }
 

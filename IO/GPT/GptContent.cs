@@ -1,10 +1,10 @@
 ﻿// ******************************************************************************************
 //     Assembly:                Bubba
 //     Author:                  Terry D. Eppler
-//     Created:                 03-02-2025
+//     Created:                 03-10-2025
 // 
 //     Last Modified By:        Terry D. Eppler
-//     Last Modified On:        03-02-2025
+//     Last Modified On:        03-10-2025
 // ******************************************************************************************
 // <copyright file="GptContent.cs" company="Terry D. Eppler">
 //     Badger is a budget execution & data analysis tool for EPA analysts
@@ -82,6 +82,20 @@ namespace Bubba
         }
 
         /// <summary>
+        /// Initializes a new instance of the <see cref="GptContent"/> class.
+        /// </summary>
+        /// <param name="type">The type.</param>
+        /// <param name="text">The text.</param>
+        public GptContent( string type, string text )
+            : this( )
+        {
+            _type = type;
+            _text = text;
+            _data.Add( "text",  text ); 
+            _data.Add( "type", type );
+        }
+
+        /// <summary>
         /// Gets or sets the type.
         /// </summary>
         /// <value>
@@ -99,7 +113,7 @@ namespace Bubba
                 if( _type != value )
                 {
                     _type = value;
-                    OnPropertyChanged( nameof( GptContent.Type ) );
+                    OnPropertyChanged( nameof( Type ) );
                 }
             }
         }
@@ -122,7 +136,7 @@ namespace Bubba
                 if( _text != value )
                 {
                     _text = value;
-                    OnPropertyChanged( nameof( GptContent.Text ) );
+                    OnPropertyChanged( nameof( Text ) );
                 }
             }
         }

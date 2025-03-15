@@ -78,7 +78,7 @@ namespace Bubba
         {
             _role = "assistant";
             _data = new Dictionary<string, object>( );
-            _content = new Dictionary<string, string>( );
+            _type = "text";
         }
 
         /// <inheritdoc />
@@ -93,8 +93,7 @@ namespace Bubba
         {
             _role = "assistant";
             _text = prompt;
-            _content.Add( "type", "text" );
-            _content.Add( "text", prompt );
+            _content = new GptContent( "text", prompt );
         }
 
         /// <summary>
@@ -114,7 +113,7 @@ namespace Bubba
         /// </summary>
         /// <param name="role">The role.</param>
         /// <param name="content">The content.</param>
-        public void Deconstruct( out string role, out IDictionary<string, string> content )
+        public void Deconstruct( out string role, out GptContent content )
         {
             role = _role;
             content = _content;
@@ -144,7 +143,7 @@ namespace Bubba
         /// The content.
         /// </value>
         [ JsonPropertyName( "content" ) ]
-        public override IDictionary<string, string> Content
+        public override GptContent Content
         {
             get
             {
@@ -174,7 +173,17 @@ namespace Bubba
                     _data.Add( "role", _role );
                 }
 
-                if( _content?.Any( ) == true )
+                if( !string.IsNullOrEmpty( _type ) )
+                {
+                    _data.Add( "type", _type );
+                }
+
+                if( !string.IsNullOrEmpty( _text ) )
+                {
+                    _data.Add( "text", _text );
+                }
+
+                if( _content != null )
                 {
                     _data.Add( "content", _content );
                 }

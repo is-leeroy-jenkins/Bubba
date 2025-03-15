@@ -7,6 +7,9 @@
     </ApplicationDefinition>
   </ItemGroup>
   <ItemGroup>
+    <Compile Update="UI\Views\ChatWindow\ChatNew.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="UI\Views\PropertyDialog\PropertyDialog.xaml.cs">
       <SubType>Code</SubType>
     </Compile>

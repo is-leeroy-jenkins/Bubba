@@ -62,7 +62,7 @@ namespace Bubba
         /// <value>
         /// The content.
         /// </value>
-        IDictionary<string, string> Content { get; set; }
+        GptContent Content { get; set; }
 
         /// <summary>
         /// Returns a string that represents the current object.

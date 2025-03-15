@@ -66,7 +66,7 @@ namespace Bubba
         /// <summary>
         /// The content
         /// </summary>
-        private protected IDictionary<string, string> _content;
+        private protected GptContent _content;
 
         /// <summary>
         /// The type
@@ -114,7 +114,7 @@ namespace Bubba
         /// The content.
         /// </value>
         [ JsonPropertyName( "content" ) ]
-        public virtual IDictionary<string, string> Content
+        public virtual GptContent Content
         {
             get
             {

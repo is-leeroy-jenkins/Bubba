@@ -75,7 +75,7 @@ namespace Bubba
             _type = "text";
             _text = App.Instructions;
             _data = new Dictionary<string, object>( );
-            _content = new Dictionary<string, string>( );
+            _content = new GptContent( _type, _text );
         }
 
         /// <inheritdoc />
@@ -85,11 +85,11 @@ namespace Bubba
         /// </summary>
         /// <param name="prompt">The prompt.</param>
         public SystemMessage( string prompt )
-            : this( )
         {
+            _role = "system";
+            _type = "text";
             _text = prompt;
-            _content.Add( "type", "text" );
-            _content.Add( "text", prompt );
+            _content = new GptContent( _type, prompt );
         }
 
         /// <summary>
@@ -101,6 +101,8 @@ namespace Bubba
         {
             _role = message.Role;
             _content = message.Content;
+            _type = message.Type;
+            _text = message.Text;
         }
 
         /// <summary>
@@ -108,7 +110,7 @@ namespace Bubba
         /// </summary>
         /// <param name="role">The role.</param>
         /// <param name="content">The content.</param>
-        public void Deconstruct( out string role, out IDictionary<string, string> content )
+        public void Deconstruct( out string role, out GptContent content )
         {
             role = _role;
             content = _content;
@@ -138,7 +140,7 @@ namespace Bubba
         /// The content.
         /// </value>
         [ JsonPropertyName( "content" ) ]
-        public override IDictionary<string, string> Content
+        public override GptContent Content
         {
             get
             {
@@ -164,18 +166,18 @@ namespace Bubba
                     _data.Add( "role", _role );
                 }
 
-                if( _content?.Any( ) == true )
+                if( !string.IsNullOrEmpty( _type ) )
                 {
-                    if( _content?.ContainsKey( "type" ) == true )
-                    {
-                        _data.Add( "type", _content[ "type" ] );
-                    }
+                    _data.Add( "type", _type );
+                }
 
-                    if( _content?.ContainsKey( "text" ) == true )
-                    {
-                        _data.Add( "text", _content[ "text" ] );
-                    }
+                if( !string.IsNullOrEmpty( _text ) )
+                {
+                    _data.Add( "text", _text );
+                }
 
+                if( _content != null )
+                {
                     _data.Add( "content", _content );
                 }
 
@@ -209,7 +211,7 @@ namespace Bubba
                     var _payload = "Data Dump:" + _newln;
                     var _space = " ";
                     var _indent = "    ";
-                    foreach(var _kvp in _data)
+                    foreach( var _kvp in _data )
                     {
                         _payload += _indent + $"{_kvp.Key}: {_kvp.Value}" + _newln;
                     }

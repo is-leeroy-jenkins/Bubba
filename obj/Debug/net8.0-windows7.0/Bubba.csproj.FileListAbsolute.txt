@@ -718,3 +718,7 @@ C:\Users\terry\source\repos\Bubba\bin\Debug\net8.0-windows7.0\Microsoft.Bcl.Cryp
 C:\Users\terry\source\repos\Bubba\bin\Debug\net8.0-windows7.0\System.Formats.Asn1.dll
 C:\Users\terry\source\repos\Bubba\bin\Debug\net8.0-windows7.0\System.Text.Encoding.CodePages.dll
 C:\Users\terry\source\repos\Bubba\bin\Debug\net8.0-windows7.0\runtimes\win\lib\net8.0\System.Text.Encoding.CodePages.dll
+C:\Users\terry\source\repos\Bubba\bin\Debug\net8.0-windows7.0\fil-PH\ModernWpf.Controls.resources.dll
+C:\Users\terry\source\repos\Bubba\bin\Debug\net8.0-windows7.0\fil-PH\ModernWpf.resources.dll
+C:\Users\terry\source\repos\Bubba\obj\Debug\net8.0-windows7.0\UI\Views\ChatWindow\ChatNew.g.cs
+C:\Users\terry\source\repos\Bubba\obj\Debug\net8.0-windows7.0\UI\Views\ChatWindow\ChatNew.baml

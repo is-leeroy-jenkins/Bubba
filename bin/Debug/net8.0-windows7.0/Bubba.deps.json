@@ -1137,6 +1137,12 @@
           "lib/net5.0-windows7.0/fi-FI/ModernWpf.resources.dll": {
             "locale": "fi-FI"
           },
+          "lib/net5.0-windows7.0/fil-PH/ModernWpf.Controls.resources.dll": {
+            "locale": "fil-PH"
+          },
+          "lib/net5.0-windows7.0/fil-PH/ModernWpf.resources.dll": {
+            "locale": "fil-PH"
+          },
           "lib/net5.0-windows7.0/fr-CA/ModernWpf.Controls.resources.dll": {
             "locale": "fr-CA"
           },

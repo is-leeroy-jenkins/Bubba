@@ -298,6 +298,7 @@
     <None Remove="Resources\Assets\ToolStripImages\AreaButton.png" />
     <None Remove="Resources\Assets\ToolStripImages\AttachmentButton.png" />
     <None Remove="Resources\Assets\ToolStripImages\BackButton.png" />
+    <None Remove="Resources\Assets\ToolStripImages\BackspaceButton.png" />
     <None Remove="Resources\Assets\ToolStripImages\BarButton.png" />
     <None Remove="Resources\Assets\ToolStripImages\BlueChatButton.png" />
     <None Remove="Resources\Assets\ToolStripImages\BrowseButton.png" />
@@ -342,6 +343,7 @@
     <None Remove="Resources\Assets\ToolStripImages\RemoveButton.png" />
     <None Remove="Resources\Assets\ToolStripImages\ResetButton.png" />
     <None Remove="Resources\Assets\ToolStripImages\ResfreshButton.png" />
+    <None Remove="Resources\Assets\ToolStripImages\RetrievalButton.png" />
     <None Remove="Resources\Assets\ToolStripImages\SaveButton.png" />
     <None Remove="Resources\Assets\ToolStripImages\SchemaButton.png" />
     <None Remove="Resources\Assets\ToolStripImages\SmithButton.png" />
@@ -734,6 +736,7 @@
     <Resource Include="Resources\Assets\ToolStripImages\AreaButton.png" />
     <Resource Include="Resources\Assets\ToolStripImages\AttachmentButton.png" />
     <Resource Include="Resources\Assets\ToolStripImages\BackButton.png" />
+    <Resource Include="Resources\Assets\ToolStripImages\BackspaceButton.png" />
     <Resource Include="Resources\Assets\ToolStripImages\BarButton.png" />
     <Resource Include="Resources\Assets\ToolStripImages\BrowseButton.png" />
     <Resource Include="Resources\Assets\ToolStripImages\CancelButton.png" />
@@ -776,6 +779,7 @@
     <Resource Include="Resources\Assets\ToolStripImages\RefreshButton.png" />
     <Resource Include="Resources\Assets\ToolStripImages\RemoveButton.png" />
     <Resource Include="Resources\Assets\ToolStripImages\ResetButton.png" />
+    <Resource Include="Resources\Assets\ToolStripImages\RetrievalButton.png" />
     <Resource Include="Resources\Assets\ToolStripImages\SaveButton.png" />
     <Resource Include="Resources\Assets\ToolStripImages\SchemaButton.png" />
     <Resource Include="Resources\Assets\ToolStripImages\SmithButton.png" />
