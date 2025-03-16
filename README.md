@@ -25,8 +25,9 @@ generative AI, and machine-learning to project future outlays by agency and fisc
 
 - The [Balance Estimator](https://anaconda.cloud/share/notebooks/f2142932-7561-4bdf-862d-e1850b3e9211/overview) is a forecasting model that uses 
 historical data from 2017 to 2024 to project balances at the account-level.
--
-- Multi OS Support**: Compatible with Windows x64/x86/ARM, Linux and MacOS.
+<a target="_blank" href=https://anaconda.cloud/api/nbserve/launch_notebook?nb_url=https%3A%2F%2Fanaconda.cloud%2Fapi%2Fprojects%2F088fd703-e3a6-426c-af6b-3c80bf443a33%2Ffiles%2FBalanceEstimator.ipynb%3Fversion%3Dac106c51-bc0c-4e82-a9c0-1c59c48f4510><img src="https://static.anaconda.cloud/content/a22d04e8445b700f28937ab3231b8cded505d0395c63b7a269696722196d5415"/></a>
+
+- - Multi OS Support**: Compatible with Windows x64/x86/ARM, Linux and MacOS.
 
 ## ![](https://github.com/is-leeroy-jenkins/Bubba/blob/master/Resources/Assets/GitHubImages/csharp.png)  Code
 
