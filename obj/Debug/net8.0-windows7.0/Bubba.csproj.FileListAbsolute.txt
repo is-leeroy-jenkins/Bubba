@@ -190,6 +190,7 @@ C:\Users\terry\source\repos\Bubba\bin\Debug\net8.0-windows7.0\Google.Apis.Custom
 C:\Users\terry\source\repos\Bubba\bin\Debug\net8.0-windows7.0\HarfBuzzSharp.dll
 C:\Users\terry\source\repos\Bubba\bin\Debug\net8.0-windows7.0\LinqStatistics.dll
 C:\Users\terry\source\repos\Bubba\bin\Debug\net8.0-windows7.0\MahApps.Metro.dll
+C:\Users\terry\source\repos\Bubba\bin\Debug\net8.0-windows7.0\Microsoft.Bcl.Cryptography.dll
 C:\Users\terry\source\repos\Bubba\bin\Debug\net8.0-windows7.0\Microsoft.Extensions.Configuration.dll
 C:\Users\terry\source\repos\Bubba\bin\Debug\net8.0-windows7.0\Microsoft.Extensions.Configuration.Abstractions.dll
 C:\Users\terry\source\repos\Bubba\bin\Debug\net8.0-windows7.0\Microsoft.Extensions.Configuration.FileExtensions.dll
@@ -356,12 +357,14 @@ C:\Users\terry\source\repos\Bubba\bin\Debug\net8.0-windows7.0\System.Data.SqlCli
 C:\Users\terry\source\repos\Bubba\bin\Debug\net8.0-windows7.0\System.Diagnostics.EventLog.dll
 C:\Users\terry\source\repos\Bubba\bin\Debug\net8.0-windows7.0\System.Diagnostics.PerformanceCounter.dll
 C:\Users\terry\source\repos\Bubba\bin\Debug\net8.0-windows7.0\System.Drawing.Common.dll
+C:\Users\terry\source\repos\Bubba\bin\Debug\net8.0-windows7.0\System.Formats.Asn1.dll
 C:\Users\terry\source\repos\Bubba\bin\Debug\net8.0-windows7.0\System.IO.Pipelines.dll
 C:\Users\terry\source\repos\Bubba\bin\Debug\net8.0-windows7.0\System.Memory.Data.dll
 C:\Users\terry\source\repos\Bubba\bin\Debug\net8.0-windows7.0\System.Numerics.Tensors.dll
 C:\Users\terry\source\repos\Bubba\bin\Debug\net8.0-windows7.0\System.Security.Cryptography.Pkcs.dll
 C:\Users\terry\source\repos\Bubba\bin\Debug\net8.0-windows7.0\System.Security.Cryptography.ProtectedData.dll
 C:\Users\terry\source\repos\Bubba\bin\Debug\net8.0-windows7.0\System.Speech.dll
+C:\Users\terry\source\repos\Bubba\bin\Debug\net8.0-windows7.0\System.Text.Encoding.CodePages.dll
 C:\Users\terry\source\repos\Bubba\bin\Debug\net8.0-windows7.0\System.Text.Encodings.Web.dll
 C:\Users\terry\source\repos\Bubba\bin\Debug\net8.0-windows7.0\System.Text.Json.dll
 C:\Users\terry\source\repos\Bubba\bin\Debug\net8.0-windows7.0\SystemExtensions.NetCore.dll
@@ -409,6 +412,8 @@ C:\Users\terry\source\repos\Bubba\bin\Debug\net8.0-windows7.0\fa-IR\ModernWpf.Co
 C:\Users\terry\source\repos\Bubba\bin\Debug\net8.0-windows7.0\fa-IR\ModernWpf.resources.dll
 C:\Users\terry\source\repos\Bubba\bin\Debug\net8.0-windows7.0\fi-FI\ModernWpf.Controls.resources.dll
 C:\Users\terry\source\repos\Bubba\bin\Debug\net8.0-windows7.0\fi-FI\ModernWpf.resources.dll
+C:\Users\terry\source\repos\Bubba\bin\Debug\net8.0-windows7.0\fil-PH\ModernWpf.Controls.resources.dll
+C:\Users\terry\source\repos\Bubba\bin\Debug\net8.0-windows7.0\fil-PH\ModernWpf.resources.dll
 C:\Users\terry\source\repos\Bubba\bin\Debug\net8.0-windows7.0\fr-CA\ModernWpf.Controls.resources.dll
 C:\Users\terry\source\repos\Bubba\bin\Debug\net8.0-windows7.0\fr-CA\ModernWpf.resources.dll
 C:\Users\terry\source\repos\Bubba\bin\Debug\net8.0-windows7.0\fr-FR\ModernWpf.Controls.resources.dll
@@ -612,6 +617,7 @@ C:\Users\terry\source\repos\Bubba\bin\Debug\net8.0-windows7.0\runtimes\win\lib\n
 C:\Users\terry\source\repos\Bubba\bin\Debug\net8.0-windows7.0\runtimes\win\lib\net8.0\System.Diagnostics.PerformanceCounter.dll
 C:\Users\terry\source\repos\Bubba\bin\Debug\net8.0-windows7.0\runtimes\win\lib\net8.0\System.Security.Cryptography.Pkcs.dll
 C:\Users\terry\source\repos\Bubba\bin\Debug\net8.0-windows7.0\runtimes\win\lib\net8.0\System.Speech.dll
+C:\Users\terry\source\repos\Bubba\bin\Debug\net8.0-windows7.0\runtimes\win\lib\net8.0\System.Text.Encoding.CodePages.dll
 C:\Users\terry\source\repos\Bubba\bin\Debug\net8.0-windows7.0\runtimes\browser\lib\net8.0\System.Text.Encodings.Web.dll
 C:\Users\terry\source\repos\Bubba\obj\Debug\net8.0-windows7.0\Bubba.csproj.AssemblyReference.cache
 C:\Users\terry\source\repos\Bubba\obj\Debug\net8.0-windows7.0\UI\Themes\Colors.baml
@@ -714,11 +720,3 @@ C:\Users\terry\source\repos\Bubba\obj\Debug\net8.0-windows7.0\refint\Bubba.dll
 C:\Users\terry\source\repos\Bubba\obj\Debug\net8.0-windows7.0\Bubba.xml
 C:\Users\terry\source\repos\Bubba\obj\Debug\net8.0-windows7.0\Bubba.genruntimeconfig.cache
 C:\Users\terry\source\repos\Bubba\obj\Debug\net8.0-windows7.0\ref\Bubba.dll
-C:\Users\terry\source\repos\Bubba\bin\Debug\net8.0-windows7.0\Microsoft.Bcl.Cryptography.dll
-C:\Users\terry\source\repos\Bubba\bin\Debug\net8.0-windows7.0\System.Formats.Asn1.dll
-C:\Users\terry\source\repos\Bubba\bin\Debug\net8.0-windows7.0\System.Text.Encoding.CodePages.dll
-C:\Users\terry\source\repos\Bubba\bin\Debug\net8.0-windows7.0\runtimes\win\lib\net8.0\System.Text.Encoding.CodePages.dll
-C:\Users\terry\source\repos\Bubba\bin\Debug\net8.0-windows7.0\fil-PH\ModernWpf.Controls.resources.dll
-C:\Users\terry\source\repos\Bubba\bin\Debug\net8.0-windows7.0\fil-PH\ModernWpf.resources.dll
-C:\Users\terry\source\repos\Bubba\obj\Debug\net8.0-windows7.0\UI\Views\ChatWindow\ChatNew.g.cs
-C:\Users\terry\source\repos\Bubba\obj\Debug\net8.0-windows7.0\UI\Views\ChatWindow\ChatNew.baml

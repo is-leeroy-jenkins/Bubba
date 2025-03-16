@@ -36403,1084 +36403,7 @@
             InitializeComponent
             </summary>
         </member>
-        <member name="T:Bubba.ChatNew">
-            <summary>
-            Interaction logic for ChatNew.xaml
-            </summary>
-            <summary>
-            ChatNew
-            </summary>
-        </member>
-        <member name="F:Bubba.ChatNew._busy">
-            <summary>
-            The busy
-            </summary>
-        </member>
-        <member name="F:Bubba.ChatNew._entry">
-            <summary>
-            The entry
-            </summary>
-        </member>
-        <member name="F:Bubba.ChatNew._systemPrompt">
-            <summary>
-            The system prompt fro the GPT
-            </summary>
-        </member>
-        <member name="F:Bubba.ChatNew._userPrompt">
-            <summary>
-            The user prompt for the GPT
-            </summary>
-        </member>
-        <member name="F:Bubba.ChatNew._messages">
-            <summary>
-            The messages
-            </summary>
-        </member>
-        <member name="F:Bubba.ChatNew._keyWords">
-            <summary>
-            The key words for the custome search engine
-            </summary>
-        </member>
-        <member name="F:Bubba.ChatNew._role">
-            <summary>
-            The role
-            </summary>
-        </member>
-        <member name="F:Bubba.ChatNew._requestType">
-            <summary>
-            The role
-            </summary>
-        </member>
-        <member name="F:Bubba.ChatNew._voice">
-            <summary>
-            The role
-            </summary>
-        </member>
-        <member name="F:Bubba.ChatNew._endpoint">
-            <summary>
-            The endpoint
-            </summary>
-        </member>
-        <member name="F:Bubba.ChatNew._provider">
-            <summary>
-            The provider
-            </summary>
-        </member>
-        <member name="F:Bubba.ChatNew._language">
-            <summary>
-            The language
-            </summary>
-        </member>
-        <member name="F:Bubba.ChatNew._selectedDocument">
-            <summary>
-            The selected document
-            </summary>
-        </member>
-        <member name="F:Bubba.ChatNew._selectedRequest">
-            <summary>
-            The selected request
-            </summary>
-        </member>
-        <member name="F:Bubba.ChatNew._theme">
-            <summary>
-            The theme
-            </summary>
-        </member>
-        <member name="F:Bubba.ChatNew._httpClient">
-            <summary>
-            The HTTP client
-            </summary>
-        </member>
-        <member name="F:Bubba.ChatNew._options">
-            <summary>
-            The options
-            </summary>
-        </member>
-        <member name="F:Bubba.ChatNew.Assembly">
-            <summary>
-            The assembly
-            </summary>
-        </member>
-        <member name="F:Bubba.ChatNew._topPercent">
-            <summary>
-            An alternative to sampling with temperature,
-            called nucleus sampling, where the model considers
-            the results of the tokens with top_p probability mass.
-            So 0.1 means only the tokens comprising the top 10% probability
-            mass are considered. We generally recommend altering this
-            or temperature but not both.
-            </summary>
-        </member>
-        <member name="F:Bubba.ChatNew._store">
-            <summary>
-            The store
-            </summary>
-        </member>
-        <member name="F:Bubba.ChatNew._stream">
-            <summary>
-            The stream
-            </summary>
-        </member>
-        <member name="F:Bubba.ChatNew._size">
-            <summary>
-            The image size
-            </summary>
-        </member>
-        <member name="F:Bubba.ChatNew._temperature">
-            <summary>
-            A number between 0 and 2.0
-            Higher values like 0.8 will make the output more random,
-            while lower values like 0.2 will make it more focused and deterministic.
-            Default=1
-            </summary>
-        </member>
-        <member name="F:Bubba.ChatNew._maximumTokens">
-            <summary>
-            An upper bound for the number of tokens
-            that can be generated for a completion
-            </summary>
-        </member>
-        <member name="F:Bubba.ChatNew._frequency">
-            <summary>
-            A number between -2.0 and 2.0. Positive values penalize new
-            tokens based on their existing frequency in the text so far,
-            decreasing the model's likelihood to repeat the same line verbatim.
-            </summary>
-        </member>
-        <member name="F:Bubba.ChatNew._presence">
-            <summary>
-            Number between -2.0 and 2.0. Positive values penalize new tokens
-            based on whether they appear in the text so far,
-            increasing the model's likelihood to talk about new topics.
-            </summary>
-        </member>
-        <member name="F:Bubba.ChatNew._models">
-            <summary>
-            The models
-            </summary>
-        </member>
-        <member name="F:Bubba.ChatNew._imageSizes">
-            <summary>
-            The image sizes
-            </summary>
-        </member>
-        <member name="F:Bubba.ChatNew._voices">
-            <summary>
-            The image sizes
-            </summary>
-        </member>
-        <member name="F:Bubba.ChatNew._model">
-            <summary>
-            The chat model
-            </summary>
-        </member>
-        <member name="F:Bubba.ChatNew._engine">
-            <summary>
-            The speech recognition engine
-            </summary>
-        </member>
-        <member name="F:Bubba.ChatNew._synthesizer">
-            <summary>
-            The speech synthesizer
-            </summary>
-        </member>
-        <member name="F:Bubba.ChatNew._fullScreen">
-            <summary>
-            The full screen
-            </summary>
-        </member>
-        <member name="F:Bubba.ChatNew._time">
-            <summary>
-            The time
-            </summary>
-        </member>
-        <member name="F:Bubba.ChatNew._number">
-            <summary>
-            The number
-            </summary>
-        </member>
-        <member name="F:Bubba.ChatNew._timer">
-            <summary>
-            The timer
-            </summary>
-        </member>
-        <member name="F:Bubba.ChatNew._timerCallback">
-            <summary>
-            The timer callback
-            </summary>
-        </member>
-        <member name="F:Bubba.ChatNew._statusUpdate">
-            <summary>
-            The status update
-            </summary>
-        </member>
-        <member name="F:Bubba.ChatNew._x">
-            <summary>
-            The x
-            </summary>
-        </member>
-        <member name="F:Bubba.ChatNew._y">
-            <summary>
-            The y
-            </summary>
-        </member>
-        <member name="E:Bubba.ChatNew.PropertyChanged">
-            <inheritdoc />
-            <summary>
-            Occurs when a property value changes.
-            </summary>
-        </member>
-        <member name="M:Bubba.ChatNew.#ctor">
-            <summary>
-            Initializes a new instance of the
-            <see cref="T:Bubba.ChatNew"/> class.
-            </summary>
-        </member>
-        <member name="M:Bubba.ChatNew.InitializePlotter">
-            <summary>
-            Initializes the plotter.
-            </summary>
-        </member>
-        <member name="M:Bubba.ChatNew.InitializeDelegates">
-            <summary>
-            Initializes the delegates.
-            </summary>
-        </member>
-        <member name="M:Bubba.ChatNew.InitializeTimer">
-            <summary>
-            Initializes the timer.
-            </summary>
-        </member>
-        <member name="M:Bubba.ChatNew.InitializeToolStrip">
-            <summary>
-            Initializes the tool strip.
-            </summary>
-        </member>
-        <member name="M:Bubba.ChatNew.InitializeChatEditor">
-            <summary>
-            Initializes the user system text box.
-            </summary>
-        </member>
-        <member name="M:Bubba.ChatNew.InitializeInterface">
-            <summary>
-            Initializes the interface asynchronous.
-            </summary>
-        </member>
-        <member name="M:Bubba.ChatNew.InitializeSpeechEngine">
-            <summary>
-            Speeches to text.
-            </summary>
-        </member>
-        <member name="M:Bubba.ChatNew.RegisterCallbacks">
-            <summary>
-            Registers the callbacks.
-            </summary>
-        </member>
-        <member name="M:Bubba.ChatNew.InvokeIf(System.Action)">
-            <summary>
-            Invokes if.
-            </summary>
-            <param name="action">The action.</param>
-        </member>
-        <member name="M:Bubba.ChatNew.InvokeIf(System.Action{System.Object})">
-            <summary>
-            Invokes if.
-            </summary>
-            <param name="action">The action.</param>
-        </member>
-        <member name="M:Bubba.ChatNew.Busy">
-            <summary>
-            Begins the initialize.
-            </summary>
-        </member>
-        <member name="M:Bubba.ChatNew.CheckProgress">
-            <summary>
-            Shows the progress.
-            </summary>
-        </member>
-        <member name="M:Bubba.ChatNew.Chill">
-            <summary>
-            Ends the initialize.
-            </summary>
-        </member>
-        <member name="M:Bubba.ChatNew.ClearDelegates">
-            <summary>
-            Clears the callbacks.
-            </summary>
-        </member>
-        <member name="M:Bubba.ChatNew.ClearChatControls">
-            <summary>
-            Clears the controls.
-            </summary>
-        </member>
-        <member name="M:Bubba.ChatNew.ClearParameters">
-            <summary>
-            Clears the parameters.
-            </summary>
-        </member>
-        <member name="M:Bubba.ChatNew.CleanUrl(System.String)">
-            <summary>
-            Cleans the URL.
-            </summary>
-            <param name="url">The URL.</param>
-            <returns></returns>
-        </member>
-        <member name="M:Bubba.ChatNew.ClearCheckBoxes">
-            <summary>
-            Clears the filter.
-            </summary>
-        </member>
-        <member name="M:Bubba.ChatNew.ClearSliders">
-            <summary>
-            Clears the list boxes.
-            </summary>
-        </member>
-        <member name="M:Bubba.ChatNew.ClearLabels">
-            <summary>
-            Clears the labels.
-            </summary>
-        </member>
-        <member name="M:Bubba.ChatNew.ClearComboBoxes">
-            <summary>
-            Clears the combo boxes.
-            </summary>
-        </member>
-        <member name="M:Bubba.ChatNew.ClearListBoxes">
-            <summary>
-            Clears the list boxes.
-            </summary>
-        </member>
-        <member name="M:Bubba.ChatNew.ClearTextBoxes">
-            <summary>
-            Clears the text boxes.
-            </summary>
-        </member>
-        <member name="M:Bubba.ChatNew.ClearSelections">
-            <summary>
-            Clears the selections.
-            </summary>
-        </member>
-        <member name="M:Bubba.ChatNew.ClearCollections">
-            <summary>
-            Clears the collections.
-            </summary>
-        </member>
-        <member name="M:Bubba.ChatNew.CreateNotifier">
-            <summary>
-            Creates the notifier.
-            </summary>
-            <returns>
-            </returns>
-        </member>
-        <member name="M:Bubba.ChatNew.FadeInAsync(System.Windows.Window,System.Int32)">
-            <summary>
-            Fades the in asynchronous.
-            </summary>
-            <param name="form">The form.</param>
-            <param name="interval">The interval.</param>
-        </member>
-        <member name="M:Bubba.ChatNew.FadeOutAsync(System.Windows.Window,System.Int32)">
-            <summary>
-            Fades the out asynchronous.
-            </summary>
-            <param name="form">The form.</param>
-            <param name="interval">The interval.</param>
-        </member>
-        <member name="M:Bubba.ChatNew.SetToolbarVisibility(System.Boolean)">
-            <summary>
-            
-            Shows the items.
-            </summary>
-        </member>
-        <member name="M:Bubba.ChatNew.SendHttpMessage(System.String)">
-            <summary>
-            Sends the HTTP message.
-            </summary>
-            <param name="question">The question.</param>
-            <returns></returns>
-        </member>
-        <member name="M:Bubba.ChatNew.LoadGptFileDialog">
-            <summary>
-            Opens the GPT file dialog.
-            </summary>
-        </member>
-        <member name="M:Bubba.ChatNew.LoadFileBrowser">
-            <summary>
-            Opens the file browser.
-            </summary>
-        </member>
-        <member name="M:Bubba.ChatNew.LoadSearchDialog">
-            <summary>
-            Opens the search dialog.
-            </summary>
-        </member>
-        <member name="M:Bubba.ChatNew.LoadImageDialog">
-            <summary>
-            Initializes the image dialog asynchronous.
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:Bubba.ChatNew.LoadWebBrowser">
-            <summary>
-            Opens the WebBrowser.
-            </summary>
-        </member>
-        <member name="M:Bubba.ChatNew.LoadSystemDialog">
-            <summary>
-            Opens the prompt dialog.
-            </summary>
-        </member>
-        <member name="M:Bubba.ChatNew.LoadCalculator">
-            <summary>
-            Opens the calculator window.
-            </summary>
-        </member>
-        <member name="M:Bubba.ChatNew.OpenFileBrowser">
-            <summary>
-            Opens the file browser.
-            </summary>
-        </member>
-        <member name="M:Bubba.ChatNew.OpenSystemDialog">
-            <summary>
-            Opens the prompt dialog.
-            </summary>
-        </member>
-        <member name="M:Bubba.ChatNew.OpenCalculator">
-            <summary>
-            Opens the calculator.
-            </summary>
-        </member>
-        <member name="M:Bubba.ChatNew.OpenGptFileDialog">
-            <summary>
-            Opens the file browser.
-            </summary>
-        </member>
-        <member name="M:Bubba.ChatNew.OpenImageDialog">
-            <summary>
-            Initializes the image dialog asynchronous.
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:Bubba.ChatNew.PadQuotes(System.String)">
-            <summary>
-            Pads the quotes.
-            </summary>
-            <param name="input">The input.</param>
-            <returns>
-            string
-            </returns>
-        </member>
-        <member name="M:Bubba.ChatNew.PopulateModelsAsync">
-            <summary>
-            Sets the models.
-            </summary>
-        </member>
-        <member name="M:Bubba.ChatNew.PopulateImageSizes">
-            <summary>
-            Populates the image sizes.
-            </summary>
-        </member>
-        <member name="M:Bubba.ChatNew.PopulateTextModels">
-            <summary>
-            Populates the text generation models.
-            </summary>
-        </member>
-        <member name="M:Bubba.ChatNew.PopulateCompletionModels">
-            <summary>
-            Populates the completion models.
-            </summary>
-        </member>
-        <member name="M:Bubba.ChatNew.PopulateImageModels">
-            <summary>
-            Populates the image generation models.
-            </summary>
-        </member>
-        <member name="M:Bubba.ChatNew.PopulateTranslationModels">
-            <summary>
-            Populates the translation models.
-            </summary>
-        </member>
-        <member name="M:Bubba.ChatNew.PopulateTranscriptionModels">
-            <summary>
-            Populates the transcription models.
-            </summary>
-        </member>
-        <member name="M:Bubba.ChatNew.PopulateEmbeddingModels">
-            <summary>
-            Populates the embedding models.
-            </summary>
-        </member>
-        <member name="M:Bubba.ChatNew.PopulateFineTuningModels">
-            <summary>
-            Populates the fine tuning models.
-            </summary>
-        </member>
-        <member name="M:Bubba.ChatNew.PopulateSpeechModels">
-            <summary>
-            Populates the speech models.
-            </summary>
-        </member>
-        <member name="M:Bubba.ChatNew.PopulateUploadApiModels">
-            <summary>
-            Populates the upload API models.
-            </summary>
-        </member>
-        <member name="M:Bubba.ChatNew.PopulateVectorStoreModels">
-            <summary>
-            Populates the vector store models.
-            </summary>
-        </member>
-        <member name="M:Bubba.ChatNew.PopulateFileApiModels">
-            <summary>
-            Populates the file API models.
-            </summary>
-        </member>
-        <member name="M:Bubba.ChatNew.PopulateDocumentListBox">
-            <summary>
-            Populates the language ListBox.
-            </summary>
-        </member>
-        <member name="M:Bubba.ChatNew.PopulateVisualBasicDocuments">
-            <summary>
-            Populates the visual basic documents.
-            </summary>
-        </member>
-        <member name="M:Bubba.ChatNew.PopulateCPlusDocuments">
-            <summary>
-            Populates the c plus documents.
-            </summary>
-        </member>
-        <member name="M:Bubba.ChatNew.PopulateJavaScriptDocuments">
-            <summary>
-            Populates the java script documents.
-            </summary>
-        </member>
-        <member name="M:Bubba.ChatNew.PopulateSqlDocuments">
-            <summary>
-            Populates the SQL documents.
-            </summary>
-        </member>
-        <member name="M:Bubba.ChatNew.PopulatePythonDocuments">
-            <summary>
-            Populates the python documents.
-            </summary>
-        </member>
-        <member name="M:Bubba.ChatNew.PopulateCSharpDocuments">
-            <summary>
-            Populates the c sharp documents.
-            </summary>
-        </member>
-        <member name="M:Bubba.ChatNew.PopulateTextDocuments">
-            <summary>
-            Populates the text documents.
-            </summary>
-        </member>
-        <member name="M:Bubba.ChatNew.PopulateInstalledVoices">
-            <summary>
-            Populates the voices.
-            </summary>
-        </member>
-        <member name="M:Bubba.ChatNew.PopulateOpenAiVoices">
-            <summary>
-            Populates the open ai voices.
-            </summary>
-        </member>
-        <member name="M:Bubba.ChatNew.PopulateVoices">
-            <summary>
-            Populates the voices.
-            </summary>
-        </member>
-        <member name="M:Bubba.ChatNew.PopulateRequestTypes">
-            <summary>
-            Populates the request types.
-            </summary>
-        </member>
-        <member name="M:Bubba.ChatNew.PopulateLanguageListBox">
-            <summary>
-            Populates the language ListBox.
-            </summary>
-        </member>
-        <member name="M:Bubba.ChatNew.PopulateDocuments">
-            <summary>
-            Sets the user document language.
-            </summary>
-        </member>
-        <member name="M:Bubba.ChatNew.UpdateStatus">
-            <summary>
-            Updates the status.
-            </summary>
-        </member>
-        <member name="M:Bubba.ChatNew.UpdateStatus(System.Object)">
-            <summary>
-            Updates the status.
-            </summary>
-        </member>
-        <member name="M:Bubba.ChatNew.RunClient">
-            <summary>
-            Runs the client application.
-            </summary>
-        </member>
-        <member name="M:Bubba.ChatNew.SendMessage(System.String)">
-            <summary>
-            Sends the message.
-            </summary>
-            <param name="message">The message.</param>
-        </member>
-        <member name="M:Bubba.ChatNew.SendNotification(System.String)">
-            <summary>
-            Sends the notification.
-            </summary>
-        </member>
-        <member name="M:Bubba.ChatNew.SendErrorMessage(System.String)">
-            <summary>
-            Sends the error message.
-            </summary>
-            <param name="message">The message.</param>
-        </member>
-        <member name="M:Bubba.ChatNew.TextToSpeech(System.String)">
-            <summary>
-            Speeches to text.
-            </summary>
-            <param name="input">The input.</param>
-        </member>
-        <member name="M:Bubba.ChatNew.SetRequestType">
-            <summary>
-            Sets the end point.
-            </summary>
-        </member>
-        <member name="M:Bubba.ChatNew.SetTabControl">
-            <summary>
-            Sets the user mode.
-            </summary>
-        </member>
-        <member name="M:Bubba.ChatNew.SetGptParameters">
-            <summary>
-            Sets the hyper parameters.
-            </summary>
-        </member>
-        <member name="M:Bubba.ChatNew.SetGptOptions">
-            <summary>
-            Sets the GPT options.
-            </summary>
-        </member>
-        <member name="M:Bubba.ChatNew.OnLoad(System.Object,System.Windows.RoutedEventArgs)">
-            <summary>
-            Called when [load].
-            </summary>
-            <param name="sender">The sender.</param>
-            <param name="e">The <see cref="T:System.Windows.RoutedEventArgs"/>
-            instance containing the event data.
-            </param>
-        </member>
-        <member name="M:Bubba.ChatNew.OnPropertyChanged(System.String)">
-            <summary>
-            Called when [property changed].
-            </summary>
-            <param name="propertyName">Name of the property.</param>
-        </member>
-        <member name="M:Bubba.ChatNew.OnTabClosed(System.Object,System.Windows.RoutedEventArgs)">
-            <summary>
-            Called when [tab closed].
-            </summary>
-            <param name="sender">The sender.</param>
-            <param name="e">The <see cref="T:System.Windows.RoutedEventArgs"/>
-            instance containing the event data.</param>
-        </member>
-        <member name="M:Bubba.ChatNew.OnTabChanged(System.Object,System.Windows.RoutedEventArgs)">
-            <summary>
-            Called when [tab changed].
-            </summary>
-            <param name="sender">The sender.</param>
-            <param name="e">The <see cref="T:System.Windows.RoutedEventArgs"/>
-            instance containing the event data.</param>
-        </member>
-        <member name="M:Bubba.ChatNew.OnStatusUpdated(System.Object,CefSharp.StatusMessageEventArgs)">
-            <summary>
-            Called when [status updated].
-            </summary>
-            <param name="sender">The sender.</param>
-            <param name="e">The <see cref="T:CefSharp.StatusMessageEventArgs"/>
-            instance containing the event data.</param>
-        </member>
-        <member name="M:Bubba.ChatNew.OnSourceButtonClick(System.Object,System.EventArgs)">
-            <summary>
-            Called when [source button click].
-            </summary>
-            <param name="sender">The sender.</param>
-            <param name="e">The <see cref="T:System.EventArgs"/>
-            instance containing the event data.</param>
-        </member>
-        <member name="M:Bubba.ChatNew.OnStoreCheckBoxChecked(System.Object,System.EventArgs)">
-            <summary>
-            Called when [store box checked].
-            </summary>
-            <param name="sender">The sender.</param>
-            <param name="e">The <see cref="T:System.EventArgs"/>
-            instance containing the event data.</param>
-        </member>
-        <member name="M:Bubba.ChatNew.OnStreamCheckBoxChecked(System.Object,System.EventArgs)">
-            <summary>
-            Called when [stream box checked].
-            </summary>
-            <param name="sender">The sender.</param>
-            <param name="e">The <see cref="T:System.EventArgs"/>
-            instance containing the event data.</param>
-        </member>
-        <member name="M:Bubba.ChatNew.OnMouseMove(System.Object,System.Windows.Input.MouseEventArgs)">
-            <summary>
-            Called when [URL text box click].
-            </summary>
-            <param name="sender">The sender.</param>
-            <param name="e">The <see cref="T:System.Windows.Input.MouseEventArgs"/>
-            instance containing the event data.</param>
-        </member>
-        <member name="M:Bubba.ChatNew.OnToolStripTextBoxTextChanged(System.Object,System.Windows.Controls.TextChangedEventArgs)">
-            <summary>
-            Called when [tool strip text box click].
-            </summary>
-            <param name="sender">The sender.</param>
-            <param name="e">The <see cref="T:System.Windows.Input.MouseEventArgs"/>
-            instance containing the event data.</param>
-        </member>
-        <member name="M:Bubba.ChatNew.OnClosing(System.Object,System.ComponentModel.CancelEventArgs)">
-            <summary>
-            Called when [closing].
-            </summary>
-            <param name="sender">The sender.</param>
-            <param name="e">The <see cref="T:System.ComponentModel.CancelEventArgs"/>
-            instance containing the event data.</param>
-        </member>
-        <member name="M:Bubba.ChatNew.OnCloseButtonClick(System.Object,System.Windows.RoutedEventArgs)">
-            <summary>
-            Called when [close button click].
-            </summary>
-            <param name="sender">The sender.</param>
-            <param name="e">The <see cref="T:System.Windows.RoutedEventArgs"/>
-            instance containing the event data.</param>
-        </member>
-        <member name="M:Bubba.ChatNew.OnCalculatorMenuOptionClick(System.Object,System.Windows.RoutedEventArgs)">
-            <summary>
-            Called when [calculator menu option click].
-            </summary>
-            <param name="sender">The sender.</param>
-            <param name="e">The <see cref="T:System.Windows.RoutedEventArgs"/>
-            instance containing the event data.</param>
-        </member>
-        <member name="M:Bubba.ChatNew.OnFileMenuOptionClick(System.Object,System.Windows.RoutedEventArgs)">
-            <summary>
-            Called when [file menu option click].
-            </summary>
-            <param name="sender">The sender.</param>
-            <param name="e">The <see cref="T:System.Windows.RoutedEventArgs"/>
-            instance containing the event data.</param>
-        </member>
-        <member name="M:Bubba.ChatNew.OnControlPanelOptionClick(System.Object,System.Windows.RoutedEventArgs)">
-            <summary>
-            Called when [control panel option click].
-            </summary>
-            <param name="sender">The sender.</param>
-            <param name="e">The <see cref="T:System.Windows.RoutedEventArgs"/>
-            instance containing the event data.</param>
-        </member>
-        <member name="M:Bubba.ChatNew.OnFileApiButtonClick(System.Object,System.Windows.RoutedEventArgs)">
-            <summary>
-            Called when [file upload button click].
-            </summary>
-            <param name="sender">The sender.</param>
-            <param name="e">The <see cref="T:System.Windows.RoutedEventArgs"/>
-            instance containing the event data.</param>
-        </member>
-        <member name="M:Bubba.ChatNew.OnTaskManagerOptionClick(System.Object,System.Windows.RoutedEventArgs)">
-            <summary>
-            Called when [task manager option click].
-            </summary>
-            <param name="sender">The sender.</param>
-            <param name="e">The <see cref="T:System.Windows.RoutedEventArgs"/>
-            instance containing the event data.</param>
-        </member>
-        <member name="M:Bubba.ChatNew.OnCloseOptionClick(System.Object,System.Windows.RoutedEventArgs)">
-            <summary>
-            Called when [close option click].
-            </summary>
-            <param name="sender">The sender.</param>
-            <param name="e">The <see cref="T:System.Windows.RoutedEventArgs"/>
-            instance containing the event data.</param>
-        </member>
-        <member name="M:Bubba.ChatNew.OnChromeOptionClick(System.Object,System.Windows.RoutedEventArgs)">
-            <summary>
-            Called when [chrome option click].
-            </summary>
-            <param name="sender">The sender.</param>
-            <param name="e">The <see cref="T:System.Windows.RoutedEventArgs"/>
-            instance containing the event data.</param>
-        </member>
-        <member name="M:Bubba.ChatNew.OnEdgeOptionClick(System.Object,System.Windows.RoutedEventArgs)">
-            <summary>
-            Called when [edge option click].
-            </summary>
-            <param name="sender">The sender.</param>
-            <param name="e">The <see cref="T:System.Windows.RoutedEventArgs"/>
-            instance containing the event data.</param>
-        </member>
-        <member name="M:Bubba.ChatNew.OnFirefoxOptionClick(System.Object,System.Windows.RoutedEventArgs)">
-            <summary>
-            Called when [firefox option click].
-            </summary>
-            <param name="sender">The sender.</param>
-            <param name="e">The <see cref="T:System.Windows.RoutedEventArgs"/>
-            instance containing the event data.</param>
-        </member>
-        <member name="M:Bubba.ChatNew.OnPromptOptionClick(System.Object,System.Windows.RoutedEventArgs)">
-            <summary>
-            Called when [system prompt button click].
-            </summary>
-            <param name="sender">The sender.</param>
-            <param name="e">The <see cref="T:System.Windows.RoutedEventArgs"/>
-            instance containing the event data.</param>
-        </member>
-        <member name="M:Bubba.ChatNew.OnFirstButtonClick(System.Object,System.Windows.RoutedEventArgs)">
-            <summary>
-            Called when [first button click].
-            </summary>
-            <param name="sender">The sender.</param>
-            <param name="e">The <see cref="T:System.Windows.RoutedEventArgs"/>
-            instance containing the event data.</param>
-        </member>
-        <member name="M:Bubba.ChatNew.OnPreviousButtonClick(System.Object,System.Windows.RoutedEventArgs)">
-            <summary>
-            Called when [previous button click].
-            </summary>
-            <param name="sender">The sender.</param>
-            <param name="e">The <see cref="T:System.Windows.RoutedEventArgs"/>
-            instance containing the event data.</param>
-        </member>
-        <member name="M:Bubba.ChatNew.OnNextButtonClick(System.Object,System.Windows.RoutedEventArgs)">
-            <summary>
-            Called when [next button click].
-            </summary>
-            <param name="sender">The sender.</param>
-            <param name="e">The <see cref="T:System.Windows.RoutedEventArgs"/>
-            instance containing the event data.</param>
-        </member>
-        <member name="M:Bubba.ChatNew.OnLastButtonClick(System.Object,System.Windows.RoutedEventArgs)">
-            <summary>
-            Called when [last button click].
-            </summary>
-            <param name="sender">The sender.</param>
-            <param name="e">The <see cref="T:System.Windows.RoutedEventArgs"/>
-            instance containing the event data.</param>
-        </member>
-        <member name="M:Bubba.ChatNew.OnEditButtonClick(System.Object,System.Windows.RoutedEventArgs)">
-            <summary>
-            Called when [edit button click].
-            </summary>
-            <param name="sender">The sender.</param>
-            <param name="e">The <see cref="T:System.Windows.RoutedEventArgs"/>
-            instance containing the event data.</param>
-        </member>
-        <member name="M:Bubba.ChatNew.OnRefreshButtonClick(System.Object,System.EventArgs)">
-            <summary>
-            Called when [refresh button click].
-            </summary>
-            <param name="sender">The sender.</param>
-            <param name="e">The <see cref="T:System.EventArgs"/>
-            instance containing the event data.</param>
-        </member>
-        <member name="M:Bubba.ChatNew.OnLookupButtonClick(System.Object,System.Windows.RoutedEventArgs)">
-            <summary>
-            Called when [lookup button click].
-            </summary>
-            <param name="sender">The sender.</param>
-            <param name="e">The <see cref="T:System.Windows.RoutedEventArgs"/>
-            instance containing the event data.</param>
-        </member>
-        <member name="M:Bubba.ChatNew.OnDeleteButtonClick(System.Object,System.Windows.RoutedEventArgs)">
-            <summary>
-            Called when [delete button click].
-            </summary>
-            <param name="sender">The sender.</param>
-            <param name="e">The <see cref="T:System.Windows.RoutedEventArgs"/>
-            instance containing the event data.</param>
-        </member>
-        <member name="M:Bubba.ChatNew.OnSaveButtonClick(System.Object,System.Windows.RoutedEventArgs)">
-            <summary>
-            Called when [save button click].
-            </summary>
-            <param name="sender">The sender.</param>
-            <param name="e">The <see cref="T:System.Windows.RoutedEventArgs"/>
-            instance containing the event data.</param>
-        </member>
-        <member name="M:Bubba.ChatNew.OnMenuButtonClick(System.Object,System.Windows.RoutedEventArgs)">
-            <summary>
-            Called when [menu button click].
-            </summary>
-            <param name="sender">The sender.</param>
-            <param name="e">The <see cref="T:System.Windows.RoutedEventArgs"/>
-            instance containing the event data.</param>
-        </member>
-        <member name="M:Bubba.ChatNew.OnToggleButtonClick(System.Object,System.Windows.RoutedEventArgs)">
-            <summary>
-            Called when [toggle button click].
-            </summary>
-            <param name="sender">The sender.</param>
-            <param name="e">The <see cref="T:System.Windows.RoutedEventArgs"/>
-            instance containing the event data.</param>
-        </member>
-        <member name="M:Bubba.ChatNew.OnToolStripTextBoxMouseEnter(System.Object,System.Windows.RoutedEventArgs)">
-            <summary>
-            Called when [tool strip text box mouse enter].
-            </summary>
-            <param name="sender">The sender.</param>
-            <param name="e">The <see cref="T:System.Windows.RoutedEventArgs"/>
-            instance containing the event data.</param>
-        </member>
-        <member name="M:Bubba.ChatNew.OnToolStripRefreshButtonClick(System.Object,System.Windows.RoutedEventArgs)">
-            <summary>
-            Called when [tool strip refresh button click].
-            </summary>
-            <param name="sender">The sender.</param>
-            <param name="e">The <see cref="T:System.Windows.RoutedEventArgs"/> instance containing the event data.</param>
-        </member>
-        <member name="M:Bubba.ChatNew.OnListenCheckedChanged(System.Object,System.Windows.RoutedEventArgs)">
-            <summary>
-            Called when [listen checked changed].
-            </summary>
-            <param name="sender">The sender.</param>
-            <param name="e">The <see cref="T:System.Windows.RoutedEventArgs"/>
-            instance containing the event data.</param>
-        </member>
-        <member name="M:Bubba.ChatNew.OnMuteCheckedBoxChanged(System.Object,System.Windows.RoutedEventArgs)">
-            <summary>
-            Called when [mute checked box changed].
-            </summary>
-            <param name="sender">The sender.</param>
-            <param name="e">The <see cref="T:System.Windows.RoutedEventArgs"/>
-            instance containing the event data.</param>
-        </member>
-        <member name="M:Bubba.ChatNew.OnSpeechRecognized(System.Object,System.Speech.Recognition.SpeechRecognizedEventArgs)">
-            <summary>
-            Called when [speech recognized].
-            </summary>
-            <param name="sender">The sender.</param>
-            <param name="e">The <see cref="T:System.Speech.Recognition.SpeechRecognizedEventArgs"/>
-            instance containing the event data.</param>
-        </member>
-        <member name="M:Bubba.ChatNew.OnSpeechHypothesized(System.Object,System.Speech.Recognition.SpeechHypothesizedEventArgs)">
-            <summary>
-            Called when [speech hypothesized].
-            </summary>
-            <param name="sender">The sender.</param>
-            <param name="e">The <see cref="T:System.Speech.Recognition.SpeechHypothesizedEventArgs"/>
-            instance containing the event data.</param>
-        </member>
-        <member name="M:Bubba.ChatNew.OnSendButtonClick(System.Object,System.Windows.RoutedEventArgs)">
-            <summary>
-            Called when [send button click].
-            </summary>
-            <param name="sender">The sender.</param>
-            <param name="e">The <see cref="T:System.Windows.RoutedEventArgs"/>
-            instance containing the event data.</param>
-        </member>
-        <member name="M:Bubba.ChatNew.OnClearButtonClick(System.Object,System.Windows.RoutedEventArgs)">
-            <summary>
-            Called when [clear button click].
-            </summary>
-            <param name="sender">The sender.</param>
-            <param name="e">The <see cref="T:System.Windows.RoutedEventArgs"/>
-            instance containing the event data.</param>
-        </member>
-        <member name="M:Bubba.ChatNew.OnModelListBoxSelectionChanged(System.Object,System.Windows.RoutedEventArgs)">
-            <summary>
-            Called when [model ComboBox selection changed].
-            </summary>
-            <param name="sender">The sender.</param>
-            <param name="e">The <see cref="T:System.Windows.RoutedEventArgs"/>
-            instance containing the event data.</param>
-        </member>
-        <member name="M:Bubba.ChatNew.OnDocumentListBoxSelectionChanged(System.Object,System.Windows.RoutedEventArgs)">
-            <summary>
-            Called when [selected document changed].
-            </summary>
-            <param name="sender">The sender.</param>
-            <param name="e">The <see cref="T:System.Windows.RoutedEventArgs"/>
-            instance containing the event data.</param>
-        </member>
-        <member name="M:Bubba.ChatNew.OnLanguageListBoxSelectionChanged(System.Object,System.Windows.RoutedEventArgs)">
-            <summary>
-            Called when [document selection changed].
-            </summary>
-            <param name="sender">The sender.</param>
-            <param name="e">The <see cref="T:System.Windows.RoutedEventArgs"/>
-            instance containing the event data.</param>
-        </member>
-        <member name="M:Bubba.ChatNew.OnRequestListBoxSelectionChanged(System.Object,System.Windows.RoutedEventArgs)">
-            <summary>
-            Called when [task selection changed].
-            </summary>
-            <param name="sender">The sender.</param>
-            <param name="e">The <see cref="T:System.Windows.RoutedEventArgs"/>
-            instance containing the event data.</param>
-        </member>
-        <member name="M:Bubba.ChatNew.OnParameterTextBoxChanged(System.Object,System.Windows.RoutedEventArgs)">
-            <summary>
-            Called when [text box input changed].
-            </summary>
-            <param name="sender">The sender.</param>
-            <param name="e">The <see cref="T:System.Windows.RoutedEventArgs"/>
-            instance containing the event data.</param>
-        </member>
-        <member name="M:Bubba.ChatNew.OnImageSizeListBoxSelectionChanged(System.Object,System.Windows.RoutedEventArgs)">
-            <summary>
-            Called when [selected image size changed].
-            </summary>
-            <param name="sender">The sender.</param>
-            <param name="e">The <see cref="T:System.Windows.RoutedEventArgs"/>
-            instance containing the event data.</param>
-        </member>
-        <member name="M:Bubba.ChatNew.OnGoButtonClicked(System.Object,System.Windows.RoutedEventArgs)">
-            <summary>
-            Called when [go button clicked].
-            </summary>
-            <param name="sender">The sender.</param>
-            <param name="e">The <see cref="T:System.Windows.RoutedEventArgs"/>
-            instance containing the event data.</param>
-        </member>
-        <member name="M:Bubba.ChatNew.OnGuidanceOptionClick(System.Object,System.Windows.RoutedEventArgs)">
-            <summary>
-            Called when [guidance option click].
-            </summary>
-            <param name="sender">The sender.</param>
-            <param name="e">The <see cref="T:System.Windows.RoutedEventArgs"/>
-            instance containing the event data.</param>
-        </member>
-        <member name="M:Bubba.ChatNew.Dispose">
-            <inheritdoc />
-            <summary>
-            Releases unmanaged and - optionally - managed resources.
-            </summary>
-        </member>
-        <member name="M:Bubba.ChatNew.Dispose(System.Boolean)">
-            <summary>
-            Releases unmanaged and - optionally - managed resources.
-            </summary>
-            <param name="disposing"><c>true</c>
-            to release both managed and unmanaged resources;
-            <c>false</c> to release only unmanaged resources.
-            </param>
-        </member>
-        <member name="M:Bubba.ChatNew.Fail(System.Exception)">
-            <summary>
-            Fails the specified ex.
-            </summary>
-            <param name="ex">The ex.</param>
-        </member>
-        <member name="M:Bubba.ChatNew.InitializeComponent">
-            <summary>
-            InitializeComponent
-            </summary>
-        </member>
         <member name="T:Bubba.ChatWindow">
-            <inheritdoc />
             <summary>
             Interaction logic for ChatWindow.xaml
             </summary>
@@ -37496,6 +36419,31 @@
         <member name="F:Bubba.ChatWindow._entry">
             <summary>
             The entry
+            </summary>
+        </member>
+        <member name="F:Bubba.ChatWindow._finalUrl">
+            <summary>
+            The current clean URL
+            </summary>
+        </member>
+        <member name="F:Bubba.ChatWindow._lastSearch">
+            <summary>
+            The last search
+            </summary>
+        </member>
+        <member name="F:Bubba.ChatWindow._oldWindowState">
+            <summary>
+            The old window state
+            </summary>
+        </member>
+        <member name="F:Bubba.ChatWindow._originalUrl">
+            <summary>
+            The current full URL
+            </summary>
+        </member>
+        <member name="F:Bubba.ChatWindow._isSearchOpen">
+            <summary>
+            The search open
             </summary>
         </member>
         <member name="F:Bubba.ChatWindow._systemPrompt">
@@ -37571,11 +36519,6 @@
         <member name="F:Bubba.ChatWindow._options">
             <summary>
             The options
-            </summary>
-        </member>
-        <member name="F:Bubba.ChatWindow.Assembly">
-            <summary>
-            The assembly
             </summary>
         </member>
         <member name="F:Bubba.ChatWindow._topPercent">
@@ -37661,6 +36604,21 @@
             The speech synthesizer
             </summary>
         </member>
+        <member name="F:Bubba.ChatWindow._currentBrowser">
+            <summary>
+            The current browser
+            </summary>
+        </member>
+        <member name="F:Bubba.ChatWindow._downloadNames">
+            <summary>
+            The download names
+            </summary>
+        </member>
+        <member name="F:Bubba.ChatWindow._downloadItems">
+            <summary>
+            The downloads
+            </summary>
+        </member>
         <member name="F:Bubba.ChatWindow._fullScreen">
             <summary>
             The full screen
@@ -37676,9 +36634,39 @@
             The number
             </summary>
         </member>
+        <member name="F:Bubba.ChatWindow._cancelRequests">
+            <summary>
+            The download cancel requests
+            </summary>
+        </member>
         <member name="F:Bubba.ChatWindow._timer">
             <summary>
             The timer
+            </summary>
+        </member>
+        <member name="F:Bubba.ChatWindow._lifeSpanCallback">
+            <summary>
+            The life span handler
+            </summary>
+        </member>
+        <member name="F:Bubba.ChatWindow._keyboardCallback">
+            <summary>
+            The keyboard handler
+            </summary>
+        </member>
+        <member name="F:Bubba.ChatWindow._downloadCallback">
+            <summary>
+            The download handler
+            </summary>
+        </member>
+        <member name="F:Bubba.ChatWindow._requestCallback">
+            <summary>
+            The request handler
+            </summary>
+        </member>
+        <member name="F:Bubba.ChatWindow._hostCallback">
+            <summary>
+            The host
             </summary>
         </member>
         <member name="F:Bubba.ChatWindow._timerCallback">
@@ -37686,14 +36674,24 @@
             The timer callback
             </summary>
         </member>
+        <member name="F:Bubba.ChatWindow._browserCallback">
+            <summary>
+            The browser action
+            </summary>
+        </member>
         <member name="F:Bubba.ChatWindow._statusUpdate">
             <summary>
             The status update
             </summary>
         </member>
-        <member name="F:Bubba.ChatWindow.TimeLabel">
+        <member name="F:Bubba.ChatWindow._x">
             <summary>
-            The time label
+            The x
+            </summary>
+        </member>
+        <member name="F:Bubba.ChatWindow._y">
+            <summary>
+            The y
             </summary>
         </member>
         <member name="E:Bubba.ChatWindow.PropertyChanged">
@@ -37703,20 +36701,14 @@
             </summary>
         </member>
         <member name="M:Bubba.ChatWindow.#ctor">
-            <inheritdoc />
             <summary>
             Initializes a new instance of the
-            <see cref="T:Bubba.ChatWindow" /> class.
+            <see cref="T:Bubba.ChatWindow"/> class.
             </summary>
         </member>
-        <member name="M:Bubba.ChatWindow.InitializeTitle">
+        <member name="M:Bubba.ChatWindow.InitializePlotter">
             <summary>
-            Initializes the title.
-            </summary>
-        </member>
-        <member name="M:Bubba.ChatWindow.InitializeLabels">
-            <summary>
-            Initializes the label.
+            Initializes the plotter.
             </summary>
         </member>
         <member name="M:Bubba.ChatWindow.InitializeDelegates">
@@ -37749,19 +36741,23 @@
             Speeches to text.
             </summary>
         </member>
-        <member name="M:Bubba.ChatWindow.ActivateEditorTab">
+        <member name="M:Bubba.ChatWindow.InitializeDownloads">
             <summary>
-            Activates the editor tab.
+            we must store download metadata in a list,
+            since CefSharp does not
             </summary>
         </member>
-        <member name="M:Bubba.ChatWindow.ActivateChatTab">
+        <member name="M:Bubba.ChatWindow.InitializeHotkeys">
             <summary>
-            Activates the chat tab.
+            these hot keys work when the user
+            is focused on the .NET form and its controls,
+            AND when the user is focused on the browser
+            (CefSharp portion)
             </summary>
         </member>
-        <member name="M:Bubba.ChatWindow.ActivateNetworkTab">
+        <member name="M:Bubba.ChatWindow.RegisterCallbacks">
             <summary>
-            Activates the network tab.
+            Registers the callbacks.
             </summary>
         </member>
         <member name="M:Bubba.ChatWindow.InvokeIf(System.Action)">
@@ -37789,16 +36785,6 @@
         <member name="M:Bubba.ChatWindow.Chill">
             <summary>
             Ends the initialize.
-            </summary>
-        </member>
-        <member name="M:Bubba.ChatWindow.RegisterCallbacks">
-            <summary>
-            Registers the callbacks.
-            </summary>
-        </member>
-        <member name="M:Bubba.ChatWindow.ClearCallbacks">
-            <summary>
-            Clears the callbacks.
             </summary>
         </member>
         <member name="M:Bubba.ChatWindow.ClearDelegates">
@@ -37870,6 +36856,43 @@
             <returns>
             </returns>
         </member>
+        <member name="M:Bubba.ChatWindow.ConfigureBrowser(CefSharp.Wpf.ChromiumWebBrowser)">
+            <summary>
+            this is done every time a new tab is opened
+            </summary>
+            <param name="browser">The browser.</param>
+        </member>
+        <member name="M:Bubba.ChatWindow.CloseActiveTab">
+            <summary>
+            Closes the active tab.
+            </summary>
+        </member>
+        <member name="M:Bubba.ChatWindow.CloseSearch">
+            <summary>
+            Closes the search.
+            </summary>
+        </member>
+        <member name="M:Bubba.ChatWindow.DownloadsInProgress">
+            <summary>
+            DownloadItems the in progress.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Bubba.ChatWindow.EnableBackButton(System.Boolean)">
+            <summary>
+            Enables the back button.
+            </summary>
+            <param name="canGoBack">if set to
+            <c>true</c> [can go back].</param>
+        </member>
+        <member name="M:Bubba.ChatWindow.EnableForwardButton(System.Boolean)">
+            <summary>
+            Enables the forward button.
+            </summary>
+            <param name="canGoForward">
+            if set to <c>true</c> [can go forward].
+            </param>
+        </member>
         <member name="M:Bubba.ChatWindow.FadeInAsync(System.Windows.Window,System.Int32)">
             <summary>
             Fades the in asynchronous.
@@ -37883,71 +36906,6 @@
             </summary>
             <param name="form">The form.</param>
             <param name="interval">The interval.</param>
-        </member>
-        <member name="M:Bubba.ChatWindow.GetDownloadPath(CefSharp.DownloadItem)">
-            <summary>
-            Gets the download path.
-            </summary>
-            <param name="item">The item.</param>
-            <returns></returns>
-        </member>
-        <member name="M:Bubba.ChatWindow.GetApplicationDirectory(System.String)">
-            <summary>
-            Gets the application directory.
-            </summary>
-            <param name="name">The name.</param>
-            <returns></returns>
-        </member>
-        <member name="M:Bubba.ChatWindow.GetResourceStream(System.String,System.Boolean)">
-            <summary>
-            Gets the resource stream.
-            </summary>
-            <param name="fileName">Name of the file.</param>
-            <param name="nameSpace">if set to <c>true</c> [name space].</param>
-            <returns></returns>
-        </member>
-        <member name="M:Bubba.ChatWindow.SendMessage(System.String)">
-            <summary>
-            Sends the message.
-            </summary>
-            <param name="message">The message.</param>
-        </member>
-        <member name="M:Bubba.ChatWindow.SendNotification(System.String)">
-            <summary>
-            Sends the notification.
-            </summary>
-        </member>
-        <member name="M:Bubba.ChatWindow.SendErrorMessage(System.String)">
-            <summary>
-            Sends the error message.
-            </summary>
-            <param name="message">The message.</param>
-        </member>
-        <member name="M:Bubba.ChatWindow.TextToSpeech(System.String)">
-            <summary>
-            Speeches to text.
-            </summary>
-            <param name="input">The input.</param>
-        </member>
-        <member name="M:Bubba.ChatWindow.SetRequestType">
-            <summary>
-            Sets the end point.
-            </summary>
-        </member>
-        <member name="M:Bubba.ChatWindow.SetTabControl">
-            <summary>
-            Sets the user mode.
-            </summary>
-        </member>
-        <member name="M:Bubba.ChatWindow.SetGptParameters">
-            <summary>
-            Sets the hyper parameters.
-            </summary>
-        </member>
-        <member name="M:Bubba.ChatWindow.SetGptOptions">
-            <summary>
-            Sets the GPT options.
-            </summary>
         </member>
         <member name="M:Bubba.ChatWindow.SetToolbarVisibility(System.Boolean)">
             <summary>
@@ -38003,6 +36961,16 @@
             Opens the file browser.
             </summary>
         </member>
+        <member name="M:Bubba.ChatWindow.OpenSystemDialog">
+            <summary>
+            Opens the prompt dialog.
+            </summary>
+        </member>
+        <member name="M:Bubba.ChatWindow.OpenCalculator">
+            <summary>
+            Opens the calculator.
+            </summary>
+        </member>
         <member name="M:Bubba.ChatWindow.OpenGptFileDialog">
             <summary>
             Opens the file browser.
@@ -38014,14 +36982,19 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="M:Bubba.ChatWindow.OpenSystemDialog">
+        <member name="M:Bubba.ChatWindow.OpenSearch">
             <summary>
-            Opens the prompt dialog.
+            Opens the search.
             </summary>
         </member>
-        <member name="M:Bubba.ChatWindow.OpenCalculator">
+        <member name="M:Bubba.ChatWindow.OpenSearchDialog(System.Double,System.Double)">
             <summary>
-            Opens the calculator.
+            Shows the search dialog.
+            </summary>
+        </member>
+        <member name="M:Bubba.ChatWindow.OpenDeveloperTools">
+            <summary>
+            Opens the developer tools.
             </summary>
         </member>
         <member name="M:Bubba.ChatWindow.PadQuotes(System.String)">
@@ -38183,13 +37156,78 @@
             Runs the client application.
             </summary>
         </member>
+        <member name="M:Bubba.ChatWindow.RefreshActiveTab">
+            <summary>
+            Refreshes the active tab.
+            </summary>
+        </member>
+        <member name="M:Bubba.ChatWindow.SendMessage(System.String)">
+            <summary>
+            Sends the message.
+            </summary>
+            <param name="message">The message.</param>
+        </member>
+        <member name="M:Bubba.ChatWindow.SendNotification(System.String)">
+            <summary>
+            Sends the notification.
+            </summary>
+        </member>
+        <member name="M:Bubba.ChatWindow.SendErrorMessage(System.String)">
+            <summary>
+            Sends the error message.
+            </summary>
+            <param name="message">The message.</param>
+        </member>
+        <member name="M:Bubba.ChatWindow.SetRequestType">
+            <summary>
+            Sets the end point.
+            </summary>
+        </member>
+        <member name="M:Bubba.ChatWindow.SetTabControl">
+            <summary>
+            Sets the user mode.
+            </summary>
+        </member>
+        <member name="M:Bubba.ChatWindow.SetGptParameters">
+            <summary>
+            Sets the hyper parameters.
+            </summary>
+        </member>
+        <member name="M:Bubba.ChatWindow.SetGptOptions">
+            <summary>
+            Sets the GPT options.
+            </summary>
+        </member>
+        <member name="M:Bubba.ChatWindow.StopActiveTab">
+            <summary>
+            Stops the active tab.
+            </summary>
+        </member>
+        <member name="M:Bubba.ChatWindow.SetUrl(System.String)">
+            <summary>
+            Called by LoadURL to set the form URL.
+            </summary>
+            <param name="url">The URL.</param>
+        </member>
+        <member name="M:Bubba.ChatWindow.ToggleFullscreen">
+            <summary>
+            Toggles the fullscreen.
+            </summary>
+        </member>
+        <member name="M:Bubba.ChatWindow.TextToSpeech(System.String)">
+            <summary>
+            Speeches to text.
+            </summary>
+            <param name="input">The input.</param>
+        </member>
         <member name="M:Bubba.ChatWindow.OnLoad(System.Object,System.Windows.RoutedEventArgs)">
             <summary>
             Called when [load].
             </summary>
             <param name="sender">The sender.</param>
             <param name="e">The <see cref="T:System.Windows.RoutedEventArgs"/>
-            instance containing the event data.</param>
+            instance containing the event data.
+            </param>
         </member>
         <member name="M:Bubba.ChatWindow.OnPropertyChanged(System.String)">
             <summary>
@@ -38559,14 +37597,6 @@
         <member name="M:Bubba.ChatWindow.OnGoButtonClicked(System.Object,System.Windows.RoutedEventArgs)">
             <summary>
             Called when [go button clicked].
-            </summary>
-            <param name="sender">The sender.</param>
-            <param name="e">The <see cref="T:System.Windows.RoutedEventArgs"/>
-            instance containing the event data.</param>
-        </member>
-        <member name="M:Bubba.ChatWindow.OnRadioButtonSelected(System.Object,System.Windows.RoutedEventArgs)">
-            <summary>
-            Called when [RadioButton selected].
             </summary>
             <param name="sender">The sender.</param>
             <param name="e">The <see cref="T:System.Windows.RoutedEventArgs"/>
@@ -41541,6 +40571,31 @@
             The current title
             </summary>
         </member>
+        <member name="F:Bubba.WebBrowser._searchEngineId">
+            <summary>
+            The search engine identifier
+            </summary>
+        </member>
+        <member name="F:Bubba.WebBrowser._searchEngineProjectId">
+            <summary>
+            The search engine project identifier
+            </summary>
+        </member>
+        <member name="F:Bubba.WebBrowser._searchEngineName">
+            <summary>
+            The search engine name
+            </summary>
+        </member>
+        <member name="F:Bubba.WebBrowser._searchEngineProjectNumber">
+            <summary>
+            The search engine project number
+            </summary>
+        </member>
+        <member name="F:Bubba.WebBrowser._searchEngineKey">
+            <summary>
+            The search engine key
+            </summary>
+        </member>
         <member name="F:Bubba.WebBrowser._searchEngineUrl">
             <summary>
             The search engine URL
@@ -42107,19 +41162,14 @@
             Opens the fire fox browser.
             </summary>
         </member>
-        <member name="M:Bubba.WebBrowser.OpenSearch">
-            <summary>
-            Opens the search.
-            </summary>
-        </member>
-        <member name="M:Bubba.WebBrowser.OpenSearchDialog(System.Double,System.Double)">
-            <summary>
-            Shows the search dialog.
-            </summary>
-        </member>
         <member name="M:Bubba.WebBrowser.OpenChatWindow">
             <summary>
             Opens the chat window.
+            </summary>
+        </member>
+        <member name="M:Bubba.WebBrowser.OpenSearch">
+            <summary>
+            Opens the search.
             </summary>
         </member>
         <member name="M:Bubba.WebBrowser.SetTabText(CefSharp.Wpf.ChromiumWebBrowser,System.String)">

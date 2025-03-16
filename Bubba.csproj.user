@@ -7,7 +7,7 @@
     </ApplicationDefinition>
   </ItemGroup>
   <ItemGroup>
-    <Compile Update="UI\Views\ChatWindow\ChatNew.xaml.cs">
+    <Compile Update="UI\Views\ChatWindow\ChatWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="UI\Views\PropertyDialog\PropertyDialog.xaml.cs">
@@ -26,9 +26,6 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="UI\Views\GptFileDialog\GptFileDialog.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="UI\Views\ChatWindow\ChatWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="Data\Abstractions\AdapterBase.cs">
@@ -64,9 +61,6 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="UI\Views\GptFileDialog\GptFileDialog.xaml">
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Update="UI\Views\ChatWindow\ChatWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="UI\Themes\Editor\EditControl.xaml">

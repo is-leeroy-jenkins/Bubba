@@ -107,15 +107,30 @@ namespace Bubba
         /// </summary>
         private string _currentTitle;
 
-        private string _searchEngineId;
+        /// <summary>
+        /// The search engine identifier
+        /// </summary>
+        private protected string _searchEngineId;
 
-        private string _searchEngineProjectId;
+        /// <summary>
+        /// The search engine project identifier
+        /// </summary>
+        private protected string _searchEngineProjectId;
 
-        private string _searchEngineName;
+        /// <summary>
+        /// The search engine name
+        /// </summary>
+        private protected string _searchEngineName;
 
-        private string _searchEngineProjectNumber;
+        /// <summary>
+        /// The search engine project number
+        /// </summary>
+        private protected string _searchEngineProjectNumber;
 
-        private string _searchEngineKey;
+        /// <summary>
+        /// The search engine key
+        /// </summary>
+        private protected string _searchEngineKey;
 
         /// <summary>
         /// The search engine URL
@@ -1646,53 +1661,6 @@ namespace Bubba
         }
 
         /// <summary>
-        /// Opens the search.
-        /// </summary>
-        private void OpenSearch( )
-        {
-            if( !_isSearchOpen )
-            {
-                _isSearchOpen = true;
-                InvokeIf( ( ) =>
-                {
-                    UrlTextBox.Text = _lastSearch;
-                    UrlTextBox.Focus( );
-                    UrlTextBox.SelectAll( );
-                } );
-            }
-            else
-            {
-                InvokeIf( ( ) =>
-                {
-                    UrlTextBox.Focus( );
-                    UrlTextBox.SelectAll( );
-                } );
-            }
-        }
-
-        /// <summary>
-        /// Shows the search dialog.
-        /// </summary>
-        private protected virtual void OpenSearchDialog( double x, double y )
-        {
-            try
-            {
-                ThrowIf.Negative( x, nameof( x ) );
-                ThrowIf.Negative( y, nameof( y ) );
-                var _searchDialog = new SearchDialog( );
-                _searchDialog.Owner = this;
-                _searchDialog.Left = x;
-                _searchDialog.Top = y;
-                _searchDialog.Show( );
-                _searchDialog.SearchPanelTextBox.Focus( );
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
-            }
-        }
-
-        /// <summary>
         /// Opens the chat window.
         /// </summary>
         private void OpenChatWindow( )
@@ -1720,6 +1688,31 @@ namespace Bubba
             catch( Exception ex )
             {
                 Fail( ex );
+            }
+        }
+
+        /// <summary>
+        /// Opens the search.
+        /// </summary>
+        private void OpenSearch( )
+        {
+            if( !_isSearchOpen )
+            {
+                _isSearchOpen = true;
+                InvokeIf( ( ) =>
+                {
+                    UrlTextBox.Text = _lastSearch;
+                    UrlTextBox.Focus( );
+                    UrlTextBox.SelectAll( );
+                } );
+            }
+            else
+            {
+                InvokeIf( ( ) =>
+                {
+                    UrlTextBox.Focus( );
+                    UrlTextBox.SelectAll( );
+                } );
             }
         }
 
