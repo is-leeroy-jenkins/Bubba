@@ -24,7 +24,7 @@ generative AI, and machine-learning to project future outlays by agency and fisc
 
 [![open_in_anaconda](https://static.anaconda.cloud/content/a22d04e8445b700f28937ab3231b8cded505d0395c63b7a269696722196d5415)](https://anaconda.cloud/api/nbserve/launch_notebook?nb_url=https%3A%2F%2Fraw.githubusercontent.com%2Fis-leeroy-jenkins%2FBoo%2Fmain%2Fipynb%2Foutlays.ipynb)
 
-
+<a target="_blank" href=https://anaconda.cloud/api/nbserve/launch_notebook?nb_url=https%3A%2F%2Fanaconda.cloud%2Fapi%2Fprojects%2Fe06219c1-2321-4edf-ab5d-b21ca2026a75%2Ffiles%2FBalanceEstimator.ipynb%3Fversion%3D23417766-b609-4325-a6c9-16197df94c16><img src="https://static.anaconda.cloud/content/a22d04e8445b700f28937ab3231b8cded505d0395c63b7a269696722196d5415"/></a>
 - Multi OS Support**: Compatible with Windows x64/x86/ARM, Linux and MacOS.
 
 ## ![](https://github.com/is-leeroy-jenkins/Bubba/blob/master/Resources/Assets/GitHubImages/csharp.png)  Code
