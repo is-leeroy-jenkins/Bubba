@@ -17849,11 +17849,6 @@
             The messages
             </summary>
         </member>
-        <member name="F:Bubba.GptRequestBase._body">
-            <summary>
-            The body
-            </summary>
-        </member>
         <member name="F:Bubba.GptRequestBase._header">
             <summary>
             The header
@@ -18135,6 +18130,35 @@
             Called when [property changed].
             </summary>
             <param name="propertyName">Name of the property.</param>
+        </member>
+        <member name="T:Bubba.IGptContent">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Bubba.IGptContent.Type">
+            <summary>
+            Gets or sets the type.
+            </summary>
+            <value>
+            The type.
+            </value>
+        </member>
+        <member name="P:Bubba.IGptContent.Text">
+            <summary>
+            Gets or sets the text.
+            </summary>
+            <value>
+            The text.
+            </value>
+        </member>
+        <member name="M:Bubba.IGptContent.GetData">
+            <inheritdoc />
+            <summary>
+            Gets the data.
+            </summary>
+            <returns>
+            </returns>
         </member>
         <member name="T:Bubba.IGptMessage">
             <summary>
@@ -19042,141 +19066,6 @@
             The prompt.
             </value>
         </member>
-        <member name="T:Bubba.GptBody">
-            <inheritdoc />
-            <summary>
-            </summary>
-            <seealso cref="T:Bubba.IGptBody" />
-        </member>
-        <member name="F:Bubba.GptBody._model">
-            <summary>
-            The model
-            </summary>
-        </member>
-        <member name="F:Bubba.GptBody._messages">
-            <summary>
-            The messages
-            </summary>
-        </member>
-        <member name="F:Bubba.GptBody._userMessage">
-            <summary>
-            The message
-            </summary>
-        </member>
-        <member name="F:Bubba.GptBody._systemMessage">
-            <summary>
-            The system message
-            </summary>
-        </member>
-        <member name="F:Bubba.GptBody._data">
-            <summary>
-            The data
-            </summary>
-        </member>
-        <member name="M:Bubba.GptBody.#ctor">
-            <summary>
-            Initializes a new instance of the
-            <see cref="T:Bubba.GptBody"/> class.
-            </summary>
-        </member>
-        <member name="M:Bubba.GptBody.#ctor(System.String,System.String,Bubba.IGptParameter)">
-            <inheritdoc />
-            <summary>
-            Initializes a new instance of the
-            <see cref="T:Bubba.GptBody" /> class.
-            </summary>
-            <param name = "userPrompt" > </param>
-            <param name = "systemPrompt" > </param>
-            <param name = "param" > </param>
-        </member>
-        <member name="M:Bubba.GptBody.#ctor(Bubba.GptBody)">
-            <inheritdoc />
-            <summary>
-            Initializes a new instance of the
-            <see cref="T:Bubba.GptBody" /> class.
-            </summary>
-            <param name="gptBody">The GPT body.</param>
-        </member>
-        <member name="M:Bubba.GptBody.Deconstruct(System.String@,Bubba.SystemMessage@,Bubba.UserMessage@,System.Collections.Generic.IDictionary{System.String,System.Object}@,System.Collections.Generic.IList{Bubba.IGptMessage}@)">
-            <summary>
-            Deconstructs the specified model.
-            </summary>
-            <param name="model">The model.</param>
-            <param name="system">The system.</param>
-            <param name="user">The user.</param>
-            <param name = "data" > </param>
-            <param name = "messages" > </param>
-        </member>
-        <member name="P:Bubba.GptBody.Model">
-            <inheritdoc />
-            <summary>
-            Gets or sets the model.
-            </summary>
-            <value>
-            The model.
-            </value>
-        </member>
-        <member name="P:Bubba.GptBody.Messages">
-            <inheritdoc />
-            <summary>
-            Gets or sets the messages.
-            </summary>
-            <value>
-            The messages.
-            </value>
-        </member>
-        <member name="P:Bubba.GptBody.SystemMessage">
-            <summary>
-            Gets or sets the system message.
-            </summary>
-            <value>
-            The system message.
-            </value>
-        </member>
-        <member name="P:Bubba.GptBody.UserMessage">
-            <summary>
-            Gets or sets the user message.
-            </summary>
-            <value>
-            The user message.
-            </value>
-        </member>
-        <member name="P:Bubba.GptBody.Data">
-            <inheritdoc />
-            <summary>
-            Gets or sets the data.
-            </summary>
-            <value>
-            The data.
-            </value>
-        </member>
-        <member name="M:Bubba.GptBody.GetData">
-            <summary>
-            Gets the data.
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:Bubba.GptBody.GetMessages">
-            <summary>
-            Gets the messages.
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:Bubba.GptBody.ToString">
-            <inheritdoc />
-            <summary>
-            Returns a string that represents the current object.
-            </summary>
-            <returns>
-            A string that represents the current object.
-            </returns>
-        </member>
-        <member name="M:Bubba.GptBody.Fail(System.Exception)">
-            <summary>
-            Fails the specified ex.
-            </summary>
-            <param name="ex">The ex.</param>
-        </member>
         <member name="T:Bubba.GptChoice">
             <inheritdoc />
             <summary>
@@ -19564,35 +19453,6 @@
             Fails the specified ex.
             </summary>
             <param name="ex">The ex.</param>
-        </member>
-        <member name="T:Bubba.IGptContent">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="P:Bubba.IGptContent.Type">
-            <summary>
-            Gets or sets the type.
-            </summary>
-            <value>
-            The type.
-            </value>
-        </member>
-        <member name="P:Bubba.IGptContent.Text">
-            <summary>
-            Gets or sets the text.
-            </summary>
-            <value>
-            The text.
-            </value>
-        </member>
-        <member name="M:Bubba.IGptContent.GetData">
-            <inheritdoc />
-            <summary>
-            Gets the data.
-            </summary>
-            <returns>
-            </returns>
         </member>
         <member name="T:Bubba.AssistantMessage">
             <inheritdoc />

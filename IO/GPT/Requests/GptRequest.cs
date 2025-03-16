@@ -171,8 +171,6 @@ namespace Bubba
             out int tokens )
         {
             header = _header;
-            system = _body.SystemMessage.ToString( );
-            user = _body.UserMessage.ToString( );
             endPoint = _endPoint;
             store = _store;
             stream = _stream;
@@ -183,6 +181,8 @@ namespace Bubba
             temperature = _temperature;
             topPercent = _topPercent;
             tokens = _maximumTokens;
+            user = _userPrompt;
+            system = _systemPrompt;
         }
 
         /// <summary>

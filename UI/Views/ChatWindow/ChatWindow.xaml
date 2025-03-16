@@ -306,7 +306,7 @@
 
                 <TabItem
                     x:Name="ParameterTabItem"
-                    Header="Config">
+                    Header="Parameters">
                     <Grid
                         x:Name="ParameterTabGrid"
                         Height="Auto"
@@ -1045,7 +1045,7 @@
 
                 <TabItem
                     x:Name="EditorTabItem"
-                    Header="Code">
+                    Header="Editor">
                     <Grid
                         x:Name="EditorTabGrid"
                         Background="{StaticResource FormBackground}">
@@ -1294,13 +1294,14 @@
                     <Grid
                         x:Name="BusyTabGrid"
                         Background="{StaticResource FormBackground}">
+                        
                         <Image
                             Width="1288"
                             Height="Auto"
                             Margin="10,5,0,0"
-                            HorizontalAlignment="Left"
-                            VerticalAlignment="Top"
-                            Source="/Resources/Assets/LoaderImages/Loading.gif"
+                            HorizontalAlignment="Stretch"
+                            VerticalAlignment="Stretch"
+                            Source="/Resources/Assets/LoaderImages/Processing.gif"
                             Stretch="Fill" />
                     </Grid>
 

@@ -75,11 +75,6 @@ namespace Bubba
         private protected IList<IGptMessage> _messages;
 
         /// <summary>
-        /// The body
-        /// </summary>
-        private protected GptBody _body;
-
-        /// <summary>
         /// The header
         /// </summary>
         private protected GptHeader _header;
