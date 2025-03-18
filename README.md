@@ -19,15 +19,13 @@
 - Data Collection**: Collects data such as PDFs, CSVs, DOCX, XLS, PPTX, TXT, Images, Videos, JSON, DBSQL, XML, HTML, PHP, JS, Archives, and Miscellaneous files.
 - Database Integration**: Organizes scraped URLs into SQLite databases based on their file types.
 - Modern UI Design**: User-friendly WPF interface with rich text logging.
+- Multi OS Support**: Compatible with Windows x64/x86/ARM, Linux and MacOS.
+
 - The [Outlay Projector](https://anaconda.cloud/api/nbserve/launch_notebook?nb_url=https%3A%2F%2Fanaconda.cloud%2Fapi%2Fprojects%2Ff4ad0240-eaf1-4ad1-a8b4-99e630b46cda%2Ffiles%2Foutlays.ipynb%3Fversion%3D3c5763b3-e106-4e67-b314-3207f7f4ee71) is a forecasting model that uses historical expenditure data, 
 generative AI, and machine-learning to project future outlays by agency and fiscal year.
-- [![open_in_anaconda](https://static.anaconda.cloud/content/a22d04e8445b700f28937ab3231b8cded505d0395c63b7a269696722196d5415)](https://anaconda.cloud/api/nbserve/launch_notebook?nb_url=https%3A%2F%2Fraw.githubusercontent.com%2Fis-leeroy-jenkins%2FBoo%2Fmain%2Fipynb%2Foutlays.ipynb)
 
-- The [Balance Estimator](https://anaconda.cloud/share/notebooks/f2142932-7561-4bdf-862d-e1850b3e9211/overview) is a forecasting model that uses 
+- The [Balance Estimator](https://anaconda.cloud/api/nbserve/launch_notebook?nb_url=https%3A%2F%2Fanaconda.cloud%2Fapi%2Fprojects%2F088fd703-e3a6-426c-af6b3c80bf443a33%2Ffiles%2FBalanceEstimator.ipynb%3Fversion%3Dac106c51-bc0c-4e82-a9c0-1c59c48f4510) is a forecasting model that uses 
 historical data from 2017 to 2024 to project balances at the account-level.
-<a target="_blank" href=https://anaconda.cloud/api/nbserve/launch_notebook?nb_url=https%3A%2F%2Fanaconda.cloud%2Fapi%2Fprojects%2F088fd703-e3a6-426c-af6b-3c80bf443a33%2Ffiles%2FBalanceEstimator.ipynb%3Fversion%3Dac106c51-bc0c-4e82-a9c0-1c59c48f4510><img src="https://static.anaconda.cloud/content/a22d04e8445b700f28937ab3231b8cded505d0395c63b7a269696722196d5415"/></a>
-
-- - Multi OS Support**: Compatible with Windows x64/x86/ARM, Linux and MacOS.
 
 ## ![](https://github.com/is-leeroy-jenkins/Bubba/blob/master/Resources/Assets/GitHubImages/csharp.png)  Code
 
