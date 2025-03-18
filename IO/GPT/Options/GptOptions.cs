@@ -53,7 +53,7 @@ namespace Bubba
     [ SuppressMessage( "ReSharper", "UnusedType.Global" ) ]
     [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
     [ SuppressMessage( "ReSharper", "PreferConcreteValueOverDefault" ) ]
-    public class GptOptions : ParameterBase, IGptParameter
+    public class GptOptions : GptConfig, IGptParameter
     {
         /// <summary>
         /// The modalities
@@ -155,7 +155,7 @@ namespace Bubba
         /// <inheritdoc />
         /// <summary>
         /// Gets or sets a value indicating whether this
-        /// <see cref="T:Bubba.ParameterBase" /> is store.
+        /// <see cref="T:Bubba.GptConfig" /> is store.
         /// </summary>
         /// <value>
         ///   <c>true</c> if store; otherwise, <c>false</c>.
@@ -179,7 +179,7 @@ namespace Bubba
         /// <inheritdoc />
         /// <summary>
         /// Gets or sets a value indicating whether this
-        /// <see cref="T:Bubba.ParameterBase" /> is stream.
+        /// <see cref="T:Bubba.GptConfig" /> is stream.
         /// </summary>
         /// <value>
         ///   <c>true</c> if stream; otherwise, <c>false</c>.

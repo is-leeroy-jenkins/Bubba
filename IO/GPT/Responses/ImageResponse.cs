@@ -1,12 +1,12 @@
 ﻿// ******************************************************************************************
 //     Assembly:                Bubba
 //     Author:                  Terry D. Eppler
-//     Created:                 01-30-2025
+//     Created:                 01-07-2025
 // 
 //     Last Modified By:        Terry D. Eppler
-//     Last Modified On:        01-30-2025
+//     Last Modified On:        01-07-2025
 // ******************************************************************************************
-// <copyright file="GptResponse.cs" company="Terry D. Eppler">
+// <copyright file="ImageResponse.cs" company="Terry D. Eppler">
 //    Bubba is a small and simple windows (wpf) application for interacting with the OpenAI API
 //    that's developed in C-Sharp under the MIT license.C#.
 // 
@@ -35,7 +35,7 @@
 //    You can contact me at:  terryeppler@gmail.com or eppler.terry@epa.gov
 // </copyright>
 // <summary>
-//   GptResponse.cs
+//   ImageResponse.cs
 // </summary>
 // ******************************************************************************************
 
@@ -44,79 +44,132 @@ namespace Bubba
     using System;
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
-    using System.Linq;
-    using System.Net.Http;
     using System.Text.Json;
     using System.Text.Json.Serialization;
-    using Properties;
 
     /// <inheritdoc />
     /// <summary>
     /// </summary>
     [ SuppressMessage( "ReSharper", "UnusedType.Global" ) ]
     [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
-    [ SuppressMessage( "ReSharper", "MemberCanBeProtected.Global" ) ]
-    [ SuppressMessage( "ReSharper", "PreferConcreteValueOverDefault" ) ]
-    [ SuppressMessage( "ReSharper", "VirtualMemberNeverOverridden.Global" ) ]
     [ SuppressMessage( "ReSharper", "PossibleUnintendedReferenceComparison" ) ]
-    public class GptResponse : GptResponseBase, IDisposable
+    [ SuppressMessage( "ReSharper", "FunctionRecursiveOnAllPaths" ) ]
+    public class ImageResponse : GptResponse
     {
         /// <summary>
-        /// The choices
+        /// The resource locations
         /// </summary>
-        private protected IList<GptChoice> _choices;
+        private protected IList<string> _resourceLocations;
 
         /// <summary>
-        /// The usage
+        /// The transcribed text
         /// </summary>
-        private protected GptUsage _usage;
+        private protected string _transcribedText;
 
         /// <summary>
-        /// The HTTP client
+        /// The raw response
         /// </summary>
-        private protected HttpClient _httpClient;
+        private protected string _rawResponse;
+
+        /// <summary>
+        /// Initializes a new instance of the
+        /// <see cref="ImageResponse"/> class.
+        /// </summary>
+        /// <inheritdoc />
+        public ImageResponse( )
+            : base( )
+        {
+            _created = DateTime.Now;
+            _object = "chat.response";
+        }
 
         /// <inheritdoc />
         /// <summary>
         /// Initializes a new instance of the
-        /// <see cref="T:Bubba.GptResponse" /> class.
+        /// <see cref="T:Bubba.ImageResponse" /> class.
         /// </summary>
-        public GptResponse( )
-            : base( )
+        /// <param name="request">The request.</param>
+        public ImageResponse( ImageRequest request )
+            : base( request )
         {
-            _entry = new object( );
-            _model = "gpt-4o";
-            _endPoint = GptEndPoint.TextGeneration;
-            _presencePenalty = 0.0;
-            _frequencyPenalty = 0.0;
-            _maximumTokens = 2048;
-            _number = 1;
+            _model = request.Model;
+        }
+
+        /// <summary>
+        /// Gets or sets the image urls.
+        /// </summary>
+        /// <value>
+        /// The image urls.
+        /// </value>
+        public IList<string> ResourceLocations
+        {
+            get
+            {
+                return _resourceLocations;
+            }
+            set
+            {
+                if( _resourceLocations != value )
+                {
+                    _resourceLocations = value;
+                    OnPropertyChanged( nameof( ResourceLocations ) );
+                }
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the transcribed text.
+        /// </summary>
+        /// <value>
+        /// The transcribed text.
+        /// </value>
+        public string TranscribedText
+        {
+            get
+            {
+                return _transcribedText;
+            }
+            set
+            {
+                if( _transcribedText != value )
+                {
+                    _transcribedText = value;
+                    OnPropertyChanged( nameof( TranscribedText ) );
+                }
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the raw response.
+        /// </summary>
+        /// <value>
+        /// The raw response.
+        /// </value>
+        public string RawResponse
+        {
+            get
+            {
+                return _rawResponse;
+            }
+            set
+            {
+                if( _rawResponse != value )
+                {
+                    _rawResponse = value;
+                    OnPropertyChanged( nameof( RawResponse ) );
+                }
+            }
         }
 
         /// <inheritdoc />
-        /// <summary>
-        /// Initializes a new instance of the <see cref="T:Bubba.GptResponse" /> class.
-        /// </summary>
-        /// <param name="request">The request.</param>
-        public GptResponse( GptRequest request )
-            : this( )
-        {
-            _model = request.Model;
-            _endPoint = request.EndPoint;
-            _presencePenalty = request.PresencePenalty;
-            _frequencyPenalty = request.FrequencyPenalty;
-            _maximumTokens = request.MaximumTokens;
-            _number = request.Number;
-        }
-
         /// <summary>
         /// Gets or sets the identifier.
         /// </summary>
         /// <value>
         /// The identifier.
         /// </value>
-        [ JsonPropertyName( "id" ) ]
-        public  override string Id
+        [JsonPropertyName("id")]
+        public override string Id
         {
             get
             {
@@ -132,14 +185,15 @@ namespace Bubba
             }
         }
 
+        /// <inheritdoc />
         /// <summary>
         /// Gets or sets the object.
         /// </summary>
         /// <value>
         /// The object.
         /// </value>
-        [ JsonPropertyName( "object" ) ]
-        public  override string Object
+        [JsonPropertyName("object")]
+        public override string Object
         {
             get
             {
@@ -155,14 +209,15 @@ namespace Bubba
             }
         }
 
+        /// <inheritdoc />
         /// <summary>
         /// Gets or sets the created.
         /// </summary>
         /// <value>
         /// The created.
         /// </value>
-        [ JsonPropertyName( "created" ) ]
-        public  override DateTime Created
+        [JsonPropertyName("created")]
+        public override DateTime Created
         {
             get
             {
@@ -178,6 +233,7 @@ namespace Bubba
             }
         }
 
+        /// <inheritdoc />
         /// <summary>
         /// Gets or sets the model.
         /// </summary>
@@ -185,7 +241,7 @@ namespace Bubba
         /// The model.
         /// </value>
         [ JsonPropertyName( "model" ) ]
-        public virtual string Model
+        public override string Model
         {
             get
             {
@@ -201,14 +257,14 @@ namespace Bubba
             }
         }
 
+        /// <inheritdoc />
         /// <summary>
         /// Gets or sets the choices.
         /// </summary>
         /// <value>
         /// The choices.
         /// </value>
-        [ JsonPropertyName( "choices" ) ]
-        public virtual IList<GptChoice> Choices
+        public override IList<GptChoice> Choices
         {
             get
             {
@@ -224,14 +280,15 @@ namespace Bubba
             }
         }
 
+        /// <inheritdoc />
         /// <summary>
         /// Gets or sets the usage.
         /// </summary>
         /// <value>
         /// The usage.
         /// </value>
-        [ JsonPropertyName( "usage" ) ]
-        public virtual GptUsage Usage
+        [JsonPropertyName("usage")]
+        public override GptUsage Usage
         {
             get
             {
@@ -248,96 +305,52 @@ namespace Bubba
         }
 
         /// <summary>
+        /// Extracts the image.
+        /// </summary>
+        /// <param name="jsonResponse">The json response.</param>
+        /// <returns></returns>
+        private string ExtractImage( string jsonResponse )
+        {
+            using var _document = JsonDocument.Parse( jsonResponse );
+            return _document.RootElement.GetProperty( "choices" )[ 0 ].GetProperty( "text" )
+                .GetString( );
+        }
+
+        /// <summary>
         /// Extracts the message from response.
         /// </summary>
-        /// <param name="response">The json response.</param>
+        /// <param name="jsonResponse">The json response.</param>
+        /// <param name="chatModel">The chat model.</param>
         /// <returns></returns>
-        private protected virtual string ExtractContent( string response )
+        private string ExtractResponseData( string jsonResponse, string chatModel )
         {
             try
             {
-                ThrowIf.Empty( response, nameof( response ) );
-                using var _jsonDocument = JsonDocument.Parse( response );
-                var _root = _jsonDocument.RootElement;
-                if( _model.Contains( "gpt-3.5-turbo" ) )
+                ThrowIf.Empty( jsonResponse, nameof( jsonResponse ) );
+                ThrowIf.Empty( chatModel, nameof( chatModel ) );
+                using var _document = JsonDocument.Parse( jsonResponse );
+                var _root = _document.RootElement;
+                if( chatModel.Contains( "gpt-3.5-turbo" ) )
                 {
-                    var _property = _root.GetProperty( "choices" );
-                    if( _property.ValueKind == JsonValueKind.Array
-                        && _property.GetArrayLength( ) > 0 )
+                    var _element = _root.GetProperty( "choices" );
+                    if( _element.ValueKind == JsonValueKind.Array
+                        && _element.GetArrayLength( ) > 0 )
                     {
-                        var _msg = _property[ 0 ].GetProperty( "message" );
-                        var _cnt = _msg.GetProperty( "content" );
-                        var _txt = _cnt.GetString( );
-                        return _txt;
-                    }
-                    else
-                    {
-                        var _message = _property[ 0 ].GetProperty( "message" );
-                        var _text = _message.GetString( );
-                        return _text;
+                        var _messageElement = _element[ 0 ].GetProperty( "message" );
+                        return _messageElement.GetProperty( "content" ).GetString( );
                     }
                 }
                 else
                 {
-                    var _choice = _root.GetProperty( "choices" )[ 0 ];
-                    var _property = _choice.GetProperty( "text" );
-                    var _text = _property.GetString( );
-                    return _text;
+                    return _root.GetProperty( "choices" )[ 0 ].GetProperty( "text" ).GetString( );
                 }
+
+                return string.Empty;
             }
             catch( Exception ex )
             {
                 Fail( ex );
                 return string.Empty;
-            }
-        }
-
-        /// <summary>
-        /// Gets the data.
-        /// </summary>
-        /// <returns></returns>
-        public virtual IDictionary<string, object> GetData( )
-        {
-            try
-            {
-                _data.Add( "model", _model );
-                _data.Add( "id", _id );
-                _data.Add( "created", _created.ToString( ) );
-                _data.Add( "object", _object );
-                _data.Add( "usage", _usage.ToString( ) );
-                return _data?.Any( ) == true
-                    ? _data
-                    : default( IDictionary<string, object> );
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
-                return default( IDictionary<string, object> );
-            }
-        }
-
-        /// <inheritdoc />
-        /// <summary>
-        /// Releases unmanaged and - optionally - managed resources.
-        /// </summary>
-        public void Dispose( )
-        {
-            Dispose( true );
-            GC.SuppressFinalize( this );
-        }
-
-        /// <summary>
-        /// Releases unmanaged and - optionally - managed resources.
-        /// </summary>
-        /// <param name="disposing"><c>true</c>
-        /// to release both managed and unmanaged resources;
-        /// <c>false</c> to release only unmanaged resources.
-        /// </param>
-        private protected void Dispose( bool disposing )
-        {
-            if( disposing )
-            {
-                _httpClient?.Dispose( );
             }
         }
     }

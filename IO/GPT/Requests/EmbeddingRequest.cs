@@ -273,7 +273,7 @@ namespace Bubba
         /// <inheritdoc />
         /// <summary>
         /// Gets or sets a value indicating whether this
-        /// <see cref="T:Bubba.ParameterBase" /> is store.
+        /// <see cref="T:Bubba.GptConfig" /> is store.
         /// </summary>
         /// <value>
         ///   <c>true</c> if store; otherwise, <c>false</c>.

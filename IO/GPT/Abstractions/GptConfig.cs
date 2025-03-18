@@ -1,12 +1,12 @@
 ﻿// ******************************************************************************************
 //     Assembly:                Bubba
 //     Author:                  Terry D. Eppler
-//     Created:                 02-17-2025
+//     Created:                 01-07-2025
 // 
 //     Last Modified By:        Terry D. Eppler
-//     Last Modified On:        02-17-2025
+//     Last Modified On:        01-07-2025
 // ******************************************************************************************
-// <copyright file="ChatOptions.cs" company="Terry D. Eppler">
+// <copyright file="GptConfig.cs" company="Terry D. Eppler">
 //    Bubba is a small and simple windows (wpf) application for interacting with the OpenAI API
 //    that's developed in C-Sharp under the MIT license.C#.
 // 
@@ -35,77 +35,188 @@
 //    You can contact me at:  terryeppler@gmail.com or eppler.terry@epa.gov
 // </copyright>
 // <summary>
-//   ChatOptions.cs
+//   GptConfig.cs
 // </summary>
 // ******************************************************************************************
+
 namespace Bubba
 {
     using System;
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
-    using System.Linq;
-    using System.Text.Json.Serialization;
-    using Properties;
 
     /// <inheritdoc />
     /// <summary>
     /// </summary>
-    [ SuppressMessage( "ReSharper", "UnusedType.Global" ) ]
-    [ SuppressMessage( "ReSharper", "PreferConcreteValueOverDefault" ) ]
+    /// <seealso cref="T:Bubba.PropertyChangedBase" />
     [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
-    [ SuppressMessage( "ReSharper", "PossibleUnintendedReferenceComparison" ) ]
-    public class ChatOptions : GptOptions
+    [ SuppressMessage( "ReSharper", "UnusedType.Global" ) ]
+    [ SuppressMessage( "ReSharper", "ClassCanBeSealed.Global" ) ]
+    [ SuppressMessage( "ReSharper", "MemberCanBeProtected.Global" ) ]
+    public abstract class GptConfig : PropertyChangedBase
     {
         /// <summary>
-        /// The tools
+        /// The number responses to generate
         /// </summary>
-        private protected IList<string> _tools;
+        private protected int _number;
 
         /// <summary>
-        /// Developer-defined tags and values used for filtering completions
+        /// The chat model used
         /// </summary>
-        private protected IDictionary<string, object> _metaData;
+        private protected string _model;
 
         /// <summary>
-        /// The reasoning effort
+        /// The end point
         /// </summary>
-        private protected string _reasoningEffort;
+        private protected string _endPoint;
 
         /// <summary>
-        /// The system prompt
+        /// Whether or not to store the responses
         /// </summary>
-        private protected string _instructions;
+        private protected bool _store;
 
         /// <summary>
-        /// Initializes a new instance of the
-        /// <see cref="ChatOptions"/> class.
+        /// The stream
         /// </summary>
-        /// <inheritdoc />
-        public ChatOptions( )
-            : base( )
+        private protected bool _stream;
+
+        /// <summary>
+        /// A number between 1 and 0. An alternative to sampling with temperature,
+        /// called nucleus sampling, where the model considers
+        /// the results of the tokens with top_p probability mass.
+        /// So 0.1 means only the tokens comprising the top 10% probability
+        /// mass are considered. We generally recommend altering this
+        /// or temperature but not both.
+        /// </summary>
+        private protected double _topPercent;
+
+        /// <summary>
+        /// A number between 0.0 and 2.0   between 0 and 2.
+        /// Higher values like 0.8 will make the output more random,
+        /// while lower values like 0.2 will make it more focused and deterministic.
+        /// </summary>
+        private protected double _temperature;
+
+        /// <summary>
+        /// A number between -2.0 and 2.0. Positive values penalize new
+        /// tokens based on their existing frequency in the text so far,
+        /// decreasing the model's likelihood to repeat the same line verbatim.
+        /// </summary>
+        private protected double _frequencyPenalty;
+
+        /// <summary>
+        /// Number between -2.0 and 2.0. Positive values penalize new tokens
+        /// based on whether they appear in the text so far,
+        /// ncreasing the model's likelihood to talk about new topics.
+        /// </summary>
+        private protected double _presencePenalty;
+
+        /// <summary>
+        /// An upper bound for the number of tokens
+        /// that can be generated for a completion
+        /// </summary>
+        private protected int _maximumTokens;
+
+        /// <summary>
+        /// The system instructions
+        /// </summary>
+        private protected string _systemPrompt;
+
+        /// <summary>
+        /// The user prompt
+        /// </summary>
+        private protected string _userPrompt;
+
+        /// <summary>
+        /// The assistant prompt
+        /// </summary>
+        private protected string _assistantPrompt;
+
+        /// <summary>
+        /// The stop
+        /// </summary>
+        private protected string _stop;
+
+        /// <summary>
+        /// The data
+        /// </summary>
+        private protected IDictionary<string, object> _data;
+
+        /// <summary>
+        /// Gets or sets the end point.
+        /// </summary>
+        /// <value>
+        /// The end point.
+        /// </value>
+        public virtual string EndPoint
         {
-            _model = "gpt-4o";
-            _endPoint = GptEndPoint.Completions;
-            _store = false;
-            _stream = true;
-            _number = 1;
-            _temperature = 0.08;
-            _topPercent = 0.09;
-            _frequencyPenalty = 0.00;
-            _presencePenalty = 0.00;
-            _maximumTokens = 2048;
-            _stop = "['#', ';']";
-            _modalities = "['text', 'audio']";
+            get
+            {
+                return _endPoint;
+            }
+            set
+            {
+                if( _endPoint != value )
+                {
+                    _endPoint = value;
+                    OnPropertyChanged( nameof( EndPoint ) );
+                }
+            }
         }
 
         /// <inheritdoc />
+        /// <summary>
+        /// Gets the chat model.
+        /// </summary>
+        /// <value>
+        /// The chat model.
+        /// </value>
+        public virtual string Model
+        {
+            get
+            {
+                return _model;
+            }
+            set
+            {
+                if( _model != value )
+                {
+                    _model = value;
+                    OnPropertyChanged( nameof( Model ) );
+                }
+            }
+        }
+
+        /// <summary>
+        /// An upper bound for the number of tokens
+        /// that can be generated for a completion
+        /// </summary>
+        /// <value>
+        /// The maximum tokens.
+        /// </value>
+        public virtual int MaximumTokens
+        {
+            get
+            {
+                return _maximumTokens;
+            }
+            set
+            {
+                if( _maximumTokens != value )
+                {
+                    _maximumTokens = value;
+                    OnPropertyChanged( nameof( MaximumTokens ) );
+                }
+            }
+        }
+
         /// <summary>
         /// THe number 'n' of responses generatred.
         /// </summary>
         /// <value>
         /// The user identifier.
         /// </value>
-        public override int Number
+        public virtual int Number
         {
             get
             {
@@ -122,37 +233,35 @@ namespace Bubba
         }
 
         /// <summary>
-        /// Gets the chat model.
+        /// Gets or sets the stop.
         /// </summary>
         /// <value>
-        /// The chat model.
+        /// The stop.
         /// </value>
-        /// <inheritdoc />
-        public override string Model
+        public virtual string Stop
         {
             get
             {
-                return _model;
+                return _stop;
             }
             set
             {
-                if( _model != value )
+                if(_stop != value)
                 {
-                    _model = value;
-                    OnPropertyChanged( nameof( Model ) );
+                    _stop = value;
+                    OnPropertyChanged(nameof(Stop));
                 }
             }
         }
 
-        /// <inheritdoc />
         /// <summary>
         /// Gets or sets a value indicating whether this
-        /// <see cref="T:Bubba.GptConfig" /> is store.
+        /// <see cref="GptConfig"/> is store.
         /// </summary>
         /// <value>
         ///   <c>true</c> if store; otherwise, <c>false</c>.
         /// </value>
-        public override bool Store
+        public virtual bool Store
         {
             get
             {
@@ -168,15 +277,14 @@ namespace Bubba
             }
         }
 
-        /// <inheritdoc />
         /// <summary>
         /// Gets or sets a value indicating whether this
-        /// <see cref="T:Bubba.GptConfig" /> is stream.
+        /// <see cref="GptConfig"/> is stream.
         /// </summary>
         /// <value>
         ///   <c>true</c> if stream; otherwise, <c>false</c>.
         /// </value>
-        public override bool Stream
+        public virtual bool Stream
         {
             get
             {
@@ -192,7 +300,6 @@ namespace Bubba
             }
         }
 
-        /// <inheritdoc />
         /// <summary>
         /// A number between 0.0 and 2.0   between 0 and 2.
         /// Higher values like 0.8 will make the output more random,
@@ -201,23 +308,22 @@ namespace Bubba
         /// <value>
         /// The temperature.
         /// </value>
-        public override double Temperature
+        public virtual double Temperature
         {
             get
             {
-                return _temperature;
+                return Temperature;
             }
             set
             {
-                if( _temperature != value )
+                if( Temperature != value )
                 {
-                    _temperature = value;
+                    Temperature = value;
                     OnPropertyChanged( nameof( Temperature ) );
                 }
             }
         }
 
-        /// <inheritdoc />
         /// <summary>
         /// A number between -2.0 and 2.0. Positive values penalize new
         /// tokens based on their existing frequency in the text so far,
@@ -226,7 +332,7 @@ namespace Bubba
         /// <value>
         /// The frequency.
         /// </value>
-        public override double FrequencyPenalty
+        public virtual double FrequencyPenalty
         {
             get
             {
@@ -242,7 +348,6 @@ namespace Bubba
             }
         }
 
-        /// <inheritdoc />
         /// <summary>
         /// Number between -2.0 and 2.0. Positive values penalize new tokens
         /// based on whether they appear in the text so far,
@@ -251,7 +356,7 @@ namespace Bubba
         /// <value>
         /// The presence.
         /// </value>
-        public override double PresencePenalty
+        public virtual double PresencePenalty
         {
             get
             {
@@ -267,7 +372,6 @@ namespace Bubba
             }
         }
 
-        /// <inheritdoc />
         /// <summary>
         /// An alternative to sampling with temperature,
         /// called nucleus sampling, where the model considers
@@ -279,192 +383,97 @@ namespace Bubba
         /// <value>
         /// The top percent.
         /// </value>
-        public override double TopPercent
+        public virtual double TopPercent
         {
             get
             {
-                return _topPercent;
+                return TopPercent;
             }
             set
             {
-                if( _topPercent != value )
+                if( TopPercent != value )
                 {
-                    _topPercent = value;
+                    TopPercent = value;
                     OnPropertyChanged( nameof( TopPercent ) );
                 }
             }
         }
 
         /// <summary>
-        /// Gets or sets the instructions.
+        /// Gets or sets the system prompt.
         /// </summary>
         /// <value>
-        /// The instructions.
+        /// The system prompt.
         /// </value>
-        public string Instructions
+        public virtual string SystemPrompt
         {
             get
             {
-                return _instructions;
+                return _systemPrompt;
             }
             set
             {
-                if( _instructions != value )
+                if( _systemPrompt != value )
                 {
-                    _instructions = value;
-                    OnPropertyChanged( nameof( Instructions ) );
+                    _systemPrompt = value;
+                    OnPropertyChanged( nameof( SystemPrompt ) );
                 }
             }
         }
 
         /// <summary>
-        /// o1 models only.
-        /// Constrains effort on reasoning for reasoning models.
-        /// Currently supported values are low, medium, and high.
-        /// Reducing reasoning effort can result in faster responses
-        /// and fewer tokens used on reasoning in a response.
+        /// Gets or sets the user prompt.
         /// </summary>
         /// <value>
-        /// The reasoning effort.
+        /// The user prompt.
         /// </value>
-        public string ReasoningEffort
+        public virtual string UserPrompt
         {
             get
             {
-                return _reasoningEffort;
+                return _userPrompt;
             }
             set
             {
-                if( _reasoningEffort != value )
+                if( _userPrompt != value )
                 {
-                    _reasoningEffort = value;
-                    OnPropertyChanged( nameof( ReasoningEffort ) );
-                }
-            }
-        }
-
-        /// <inheritdoc />
-        /// <summary>
-        /// Gets or sets the modalities.
-        /// </summary>
-        /// <value>
-        /// The modalities.
-        /// </value>
-        [ JsonPropertyName( "response_format" ) ]
-        public override string ResponseFormat
-        {
-            get
-            {
-                return _responseFormat;
-            }
-            set
-            {
-                if( _responseFormat != value )
-                {
-                    _responseFormat = value;
-                    OnPropertyChanged( nameof( ResponseFormat ) );
+                    _userPrompt = value;
+                    OnPropertyChanged( nameof( UserPrompt ) );
                 }
             }
         }
 
         /// <summary>
-        /// A list of tool enabled on the assistant.
-        /// There can be a maximum of 128 tools per assistant.
-        /// Tools can be of types code_interpreter, file_search, or function.
+        /// Gets or sets the assistant prompt.
         /// </summary>
         /// <value>
-        /// The tools.
+        /// The assistant prompt.
         /// </value>
-        public IList<string> Tools
+        public virtual string AssistantPrompt
         {
             get
             {
-                return _tools;
+                return _assistantPrompt;
             }
             set
             {
-                if( _tools != value )
+                if( _assistantPrompt != value )
                 {
-                    _tools = value;
-                    OnPropertyChanged( nameof( Tools ) );
+                    _assistantPrompt = value;
+                    OnPropertyChanged( nameof( AssistantPrompt ) );
                 }
             }
         }
 
         /// <summary>
-        /// Set of 16 key-value pairs that can be attached to an object.
-        /// This can be useful for storing additional information about the
-        /// object in a structured format. Keys can be a maximum of 64 characters
-        /// long and values can be a maximum of 512 characters long.
+        /// Wraps error
         /// </summary>
-        /// <value>
-        /// The meta data.
-        /// </value>
-        public IDictionary<string, object> MetaData
+        /// <param name="ex">The ex.</param>
+        private protected void Fail(Exception ex)
         {
-            get
-            {
-                return _metaData;
-            }
-            set
-            {
-                if( _metaData != value )
-                {
-                    _metaData = value;
-                    OnPropertyChanged( nameof( MetaData ) );
-                }
-            }
-        }
-
-        /// <summary>
-        /// Gets the formats.
-        /// </summary>
-        /// <returns></returns>
-        private protected IList<string> GetFormats( )
-        {
-            try
-            {
-                return default( IList<string> );
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
-                return default( IList<string> );
-            }
-        }
-
-        /// <inheritdoc />
-        /// <summary>
-        /// Gets the data.
-        /// </summary>
-        /// <returns></returns>
-        public override IDictionary<string, object> GetData( )
-        {
-            try
-            {
-                _data.Add( "n", _number );
-                _data.Add( "model", _model );
-                _data.Add( "endpoint", _endPoint );
-                _data.Add( "max_completion_tokens", _maximumTokens );
-                _data.Add( "store", _store );
-                _data.Add( "stream", _stream );
-                _data.Add( "temperature", _temperature );
-                _data.Add( "frequency_penalty", _frequencyPenalty );
-                _data.Add( "presence_penalty", _presencePenalty );
-                _data.Add( "top_p", _topPercent );
-                _data.Add( "stop", _stop );
-                _data.Add( "response_format", _responseFormat  );
-                _data.Add( "reasoning_effort", _reasoningEffort );
-                _data.Add( "modalities", _modalities );
-                return _data?.Any( ) == true
-                    ? _data
-                    : default( IDictionary<string, object> );
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
-                return default( IDictionary<string, object> );
-            }
+            var _error = new ErrorWindow(ex);
+            _error?.SetText();
+            _error?.ShowDialog();
         }
     }
 }

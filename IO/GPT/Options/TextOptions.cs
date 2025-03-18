@@ -1,43 +1,14 @@
 ﻿// ******************************************************************************************
 //     Assembly:                Bubba
 //     Author:                  Terry D. Eppler
-//     Created:                 02-17-2025
+//     Created:                 03-16-2025
 // 
 //     Last Modified By:        Terry D. Eppler
-//     Last Modified On:        02-17-2025
+//     Last Modified On:        03-16-2025
 // ******************************************************************************************
 // <copyright file="TextOptions.cs" company="Terry D. Eppler">
-//    Bubba is a small and simple windows (wpf) application for interacting with the OpenAI API
-//    that's developed in C-Sharp under the MIT license.C#.
-// 
-//    Copyright ©  2020-2024 Terry D. Eppler
-// 
-//    Permission is hereby granted, free of charge, to any person obtaining a copy
-//    of this software and associated documentation files (the “Software”),
-//    to deal in the Software without restriction,
-//    including without limitation the rights to use,
-//    copy, modify, merge, publish, distribute, sublicense,
-//    and/or sell copies of the Software,
-//    and to permit persons to whom the Software is furnished to do so,
-//    subject to the following conditions:
-// 
-//    The above copyright notice and this permission notice shall be included in all
-//    copies or substantial portions of the Software.
-// 
-//    THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,
-//    INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-//    FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT.
-//    IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
-//    DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,
-//    ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
-//    DEALINGS IN THE SOFTWARE.
-// 
-//    You can contact me at:  terryeppler@gmail.com or eppler.terry@epa.gov
-// </copyright>
-// <summary>
-//   TextOptions.cs
-// </summary>
-// ******************************************************************************************
+//     Badger is a budget execution & data analysis tool for EPA analysts
+//     based on WPF, Net 6, and written in C
 namespace Bubba
 {
     using System;
@@ -62,6 +33,7 @@ namespace Bubba
         public TextOptions( )
             : base( )
         {
+            _model = "gpt-4o";
             _endPoint = GptEndPoint.TextGeneration;
             _store = false;
             _stream = true;
@@ -71,6 +43,7 @@ namespace Bubba
             _frequencyPenalty = 0.00;
             _presencePenalty = 0.00;
             _maximumTokens = 2048;
+            _responseFormat = "text";
         }
 
         /// <inheritdoc />
@@ -91,7 +64,7 @@ namespace Bubba
                 if( _number != value )
                 {
                     _number = value;
-                    OnPropertyChanged( nameof( Number ) );
+                    OnPropertyChanged( nameof( TextOptions.Number ) );
                 }
             }
         }
@@ -114,7 +87,7 @@ namespace Bubba
                 if( _model != value )
                 {
                     _model = value;
-                    OnPropertyChanged( nameof( Model ) );
+                    OnPropertyChanged( nameof( TextOptions.Model ) );
                 }
             }
         }
@@ -137,7 +110,7 @@ namespace Bubba
                 if( _endPoint != value )
                 {
                     _endPoint = value;
-                    OnPropertyChanged( nameof( EndPoint ) );
+                    OnPropertyChanged( nameof( TextOptions.EndPoint ) );
                 }
             }
         }
@@ -145,7 +118,7 @@ namespace Bubba
         /// <inheritdoc />
         /// <summary>
         /// Gets or sets a value indicating whether this
-        /// <see cref="T:Bubba.ParameterBase" /> is store.
+        /// <see cref="T:Bubba.GptConfig" /> is store.
         /// </summary>
         /// <value>
         ///   <c>true</c> if store; otherwise, <c>false</c>.
@@ -161,7 +134,7 @@ namespace Bubba
                 if( _store != value )
                 {
                     _store = value;
-                    OnPropertyChanged( nameof( Store ) );
+                    OnPropertyChanged( nameof( TextOptions.Store ) );
                 }
             }
         }
@@ -169,7 +142,7 @@ namespace Bubba
         /// <inheritdoc />
         /// <summary>
         /// Gets or sets a value indicating whether this
-        /// <see cref="T:Bubba.ParameterBase" /> is stream.
+        /// <see cref="T:Bubba.GptConfig" /> is stream.
         /// </summary>
         /// <value>
         ///   <c>true</c> if stream; otherwise, <c>false</c>.
@@ -185,7 +158,7 @@ namespace Bubba
                 if( _stream != value )
                 {
                     _stream = value;
-                    OnPropertyChanged( nameof( Stream ) );
+                    OnPropertyChanged( nameof( TextOptions.Stream ) );
                 }
             }
         }
@@ -210,7 +183,7 @@ namespace Bubba
                 if( _temperature != value )
                 {
                     _temperature = value;
-                    OnPropertyChanged( nameof( Temperature ) );
+                    OnPropertyChanged( nameof( TextOptions.Temperature ) );
                 }
             }
         }
@@ -235,7 +208,7 @@ namespace Bubba
                 if( _frequencyPenalty != value )
                 {
                     _frequencyPenalty = value;
-                    OnPropertyChanged( nameof( FrequencyPenalty ) );
+                    OnPropertyChanged( nameof( TextOptions.FrequencyPenalty ) );
                 }
             }
         }
@@ -260,14 +233,14 @@ namespace Bubba
                 if( _presencePenalty != value )
                 {
                     _presencePenalty = value;
-                    OnPropertyChanged( nameof( PresencePenalty ) );
+                    OnPropertyChanged( nameof( TextOptions.PresencePenalty ) );
                 }
             }
         }
 
         /// <inheritdoc />
         /// <summary>
-        /// An alternative to sampling with temperature,
+        /// A number between 0.00 and 1.00. An alternative to sampling with temperature,
         /// called nucleus sampling, where the model considers
         /// the results of the tokens with top_p probability mass.
         /// So 0.1 means only the tokens comprising the top 10% probability
@@ -288,7 +261,7 @@ namespace Bubba
                 if( _topPercent != value )
                 {
                     _topPercent = value;
-                    OnPropertyChanged( nameof( TopPercent ) );
+                    OnPropertyChanged( nameof( TextOptions.TopPercent ) );
                 }
             }
         }
@@ -303,8 +276,8 @@ namespace Bubba
             try
             {
                 _data.Add( "n", _number );
-                _data.Add("model", _model);
-                _data.Add("endpoint", _endPoint);
+                _data.Add( "model", _model );
+                _data.Add( "endpoint", _endPoint );
                 _data.Add( "max_completion_tokens", _maximumTokens );
                 _data.Add( "store", _store );
                 _data.Add( "stream", _stream );
@@ -312,8 +285,8 @@ namespace Bubba
                 _data.Add( "frequency_penalty", _frequencyPenalty );
                 _data.Add( "presence_penalty", _presencePenalty );
                 _data.Add( "top_p", _topPercent );
-                _data.Add("stop", _stop);
-                _data.Add("response_format", _responseFormat);
+                _data.Add( "stop", _stop );
+                _data.Add( "response_format", _responseFormat );
                 return _data?.Any( ) == true
                     ? _data
                     : default( IDictionary<string, object> );

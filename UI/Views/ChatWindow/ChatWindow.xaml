@@ -257,13 +257,15 @@
                     ToolTip="Show/Hide Toolbar" />
             </ToolBar>
 
-
             <!--  *********************************************  TAB CONTROL *************************************  -->
+
             <Grid Grid.Row="0" />
 
             <mah:MetroTabControl
                 x:Name="TabControl"
                 Grid.Row="0">
+
+                <!--  ********************************************* CHAT TAB *************************************  -->
 
                 <TabItem
                     x:Name="ChatTabItem"
@@ -299,6 +301,17 @@
                                 TextWrapping="Wrap" />
                         </GroupBox>
 
+                        <Label
+                            x:Name="TokenLabel"
+                            Width="930"
+                            Margin="30,574,0,0"
+                            HorizontalAlignment="Left"
+                            VerticalAlignment="Top"
+                            Content=""
+                            FontFamily="Roboto"
+                            FontSize="14"
+                            Foreground="{DynamicResource FormForeground}" />
+
                     </Grid>
                 </TabItem>
 
@@ -318,7 +331,7 @@
 
                         <GroupBox
                             Grid.Row="1"
-                            Margin="885,10,23,245"
+                            Margin="885,10,10,245"
                             Background="{StaticResource GroupBoxBackground}"
                             FontFamily="Roboto"
                             FontSize="14"
@@ -340,15 +353,20 @@
                                     Grid.Row="0"
                                     Grid.Column="0"
                                     Margin="20,20,25,10"
-                                    Content="Responses" Padding="3,3,3,3" UseLayoutRounding="True" FontSize="14" />
+                                    Padding="3,3,3,3"
+                                    Content="Responses"
+                                    FontSize="14"
+                                    UseLayoutRounding="True" />
 
                                 <b:MetroLabel
                                     x:Name="SpeedLabel"
                                     Grid.Row="0"
                                     Grid.Column="1"
-                                    Margin="20,10,10,0"
-                                    Content="Speed" 
-                                    FontSize="14" VerticalAlignment="Center" Padding="3,3,3,3" UseLayoutRounding="True" />
+                                    Margin="20,20,10,10"
+                                    Padding="3,3,3,3"
+                                    Content="Speech Rate"
+                                    FontSize="14"
+                                    UseLayoutRounding="True" />
 
                                 <wpf:IntegerTextBox
                                     x:Name="NumberTextBox"
@@ -368,8 +386,8 @@
                                     SelectionBrush="{StaticResource YellowBackground}"
                                     ShowSpinButton="True"
                                     Tag="Number"
-                                    Text="1"
-                                    ToolTip="GPT Responses" />
+                                    ToolTip="GPT Responses"
+                                    Value="1" />
 
                                 <wpf:IntegerTextBox
                                     Grid.Row="1"
@@ -385,16 +403,17 @@
                                     TextWrapping="Wrap"
                                     UseLayoutRounding="True"
                                     UseNullOption="True"
-                                    WatermarkText="Enter your age:"
+                                    WatermarkText="Enter Speech Rate:"
                                     WatermarkTextIsVisible="True"
                                     Value="1" />
 
                                 <b:MetroButton
                                     x:Name="ClearButton"
+                                    Grid.Row="0"
                                     Grid.Column="2"
                                     Width="70"
                                     Height="40"
-                                    Margin="20,0,0,0"
+                                    Margin="38,0,0,0"
                                     Padding="1,0,1,0"
                                     HorizontalAlignment="Left"
                                     VerticalAlignment="Center"
@@ -418,7 +437,7 @@
                                     Grid.Column="2"
                                     Width="70"
                                     Height="40"
-                                    Margin="20,14,0,15"
+                                    Margin="38,14,0,15"
                                     HorizontalAlignment="Left"
                                     Background="{DynamicResource ButtonBackground}"
                                     BorderBrush="{DynamicResource BlueBorderBrush}"
@@ -435,23 +454,52 @@
 
                         <GroupBox
                             Grid.Row="1"
-                            Margin="885,176,23,75"
+                            Margin="885,176,10,75"
                             Background="{StaticResource GroupBoxBackground}"
                             BorderBrush="{StaticResource MutedForeground}"
                             FontFamily="Roboto"
                             FontSize="14"
                             Foreground="{StaticResource FormForeground}"
-                            Header="Tokens" />
+                            Header="Tokens">
+                            <TextBox
+                                x:Name="MaxTokenTextBox"
+                                Height="40"
+                                Margin="315,0,5,0"
+                                HorizontalContentAlignment="Center"
+                                VerticalContentAlignment="Center"
+                                Background="{DynamicResource ControlInteriorBrush}"
+                                BorderBrush="{DynamicResource BlueBorderBrush}"
+                                FontFamily="Roboto"
+                                FontSize="14"
+                                Foreground="{StaticResource WhiteForeground}"
+                                Tag="MaxTokens"
+                                Text="{Binding Path=Value, StringFormat=N0, ElementName=MaxTokenSlider}"
+                                ToolTip="Upper limit on tokens per response" />
+                        </GroupBox>
 
                         <GroupBox
                             Grid.Row="1"
-                            Margin="20,13,913,248"
+                            Margin="10,13,913,248"
                             Background="{StaticResource GroupBoxBackground}"
                             BorderBrush="{StaticResource MutedForeground}"
                             FontFamily="Roboto"
                             FontSize="14"
                             Foreground="{StaticResource FormForeground}"
-                            Header="Randomness" />
+                            Header="Randomness">
+                            <TextBox
+                                x:Name="TemperatureTextBox"
+                                Height="40"
+                                Margin="290,0,7,0"
+                                HorizontalContentAlignment="Center"
+                                VerticalContentAlignment="Center"
+                                Background="{DynamicResource ControlInteriorBrush}"
+                                BorderBrush="{DynamicResource BlueBorderBrush}"
+                                FontFamily="Roboto"
+                                FontSize="14"
+                                Foreground="{StaticResource WhiteForeground}"
+                                Tag="Temperature"
+                                Text="{Binding ElementName=TemperatureSlider, Path=Value, StringFormat=N2, Mode=Default}" />
+                        </GroupBox>
 
                         <GroupBox
                             Grid.Row="1"
@@ -461,7 +509,21 @@
                             FontFamily="Roboto"
                             FontSize="14"
                             Foreground="{StaticResource FormForeground}"
-                            Header="Frequency Penalty" />
+                            Header="Frequency Penalty">
+                            <TextBox
+                                x:Name="FrequencyTextBox"
+                                Height="40"
+                                Margin="290,0,12,0"
+                                HorizontalContentAlignment="Center"
+                                VerticalContentAlignment="Center"
+                                Background="{DynamicResource ControlInteriorBrush}"
+                                BorderBrush="{DynamicResource BlueBorderBrush}"
+                                FontFamily="Roboto"
+                                FontSize="14"
+                                Foreground="{StaticResource WhiteForeground}"
+                                Tag="FrequencyPenalty"
+                                Text="{Binding ElementName=FrequencySlider, Path=Value, Mode=Default, StringFormat=N2}" />
+                        </GroupBox>
 
                         <GroupBox
                             Grid.Row="1"
@@ -472,71 +534,126 @@
                             FontFamily="Roboto"
                             FontSize="14"
                             Foreground="{StaticResource FormForeground}"
-                            Header="Presense Penalty" />
+                            Header="Presense Penalty">
+                            <TextBox
+                                x:Name="PresenseTextBox"
+                                Height="40"
+                                Margin="285,0,12,0"
+                                HorizontalContentAlignment="Center"
+                                VerticalContentAlignment="Center"
+                                Background="{DynamicResource ControlInteriorBrush}"
+                                BorderBrush="{DynamicResource BlueBorderBrush}"
+                                FontFamily="Roboto"
+                                FontSize="14"
+                                Foreground="{StaticResource WhiteForeground}"
+                                Tag="PresensePenalty"
+                                Text="{Binding ElementName=PresenceSlider, Path=Value, Mode=Default, StringFormat=N2}"
+                                TextWrapping="Wrap" />
+                        </GroupBox>
 
                         <GroupBox
                             Grid.Row="1"
                             Height="150"
-                            Margin="20,176,913,0"
+                            Margin="10,176,913,0"
                             VerticalAlignment="Top"
                             Background="{StaticResource GroupBoxBackground}"
                             BorderBrush="{StaticResource MutedForeground}"
                             FontFamily="Roboto"
                             FontSize="14"
                             Foreground="{StaticResource FormForeground}"
-                            Header="Top Percent" />
+                            Header="Top Percent">
+                            <TextBox
+                                x:Name="TopPercentTextBox"
+                                Width="70"
+                                Height="40"
+                                Margin="290,0,0,0"
+                                HorizontalAlignment="Left"
+                                HorizontalContentAlignment="Center"
+                                VerticalContentAlignment="Center"
+                                Background="{DynamicResource ControlInteriorBrush}"
+                                BorderBrush="{DynamicResource BlueBorderBrush}"
+                                FontFamily="Roboto"
+                                FontSize="14"
+                                Foreground="{StaticResource WhiteForeground}"
+                                Tag="TopPercent"
+                                Text="{Binding ElementName=TopPercentSlider, Path=Value, StringFormat=N2}" />
+                        </GroupBox>
 
                         <Grid
-                            x:Name="SystemCanvas"
+                            x:Name="SystemGrid"
                             Grid.Row="0"
                             Margin="0,0,10,10"
                             ClipToBounds="True">
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="258*" />
-                                <ColumnDefinition Width="354*" />
-                                <ColumnDefinition Width="215*" />
-                                <ColumnDefinition Width="200*" />
-                                <ColumnDefinition Width="121*" />
-                                <ColumnDefinition Width="137*" />
+                                <ColumnDefinition Width="261*" />
+                                <ColumnDefinition Width="358*" />
+                                <ColumnDefinition Width="181*" />
+                                <ColumnDefinition Width="181*" />
+                                <ColumnDefinition Width="195*" />
+                                <ColumnDefinition Width="123*" />
                             </Grid.ColumnDefinitions>
 
 
                             <GroupBox
                                 x:Name="InputGroupBox"
                                 Grid.Column="5"
-                                Height="125"
-                                Margin="10,22,10,10"
+                                Height="171"
+                                Margin="3,0,3,0"
+                                VerticalAlignment="Center"
                                 Background="{StaticResource GroupBoxBackground}"
                                 BorderBrush="{StaticResource MutedForeground}"
                                 FontFamily="Roboto"
                                 FontSize="14"
                                 Foreground="{StaticResource FormForeground}"
                                 Header="IO">
-                                <Grid Height="67">
+                                <Grid x:Name="InputOutputGrid">
                                     <Grid.RowDefinitions>
-                                        <RowDefinition />
-                                        <RowDefinition />
+                                        <RowDefinition Height="25*" />
+                                        <RowDefinition Height="25*" />
+                                        <RowDefinition Height="25*" />
+                                        <RowDefinition Height="25*" />
                                     </Grid.RowDefinitions>
-
-                                    <CheckBox
-                                        x:Name="StreamCheckBox"
-                                        Grid.Row="1"
-                                        Margin="22,0,10,-3"
-                                        Content="Stream"
-                                        FontFamily="Roboto"
-                                        FontSize="14"
-                                        Foreground="{StaticResource FormForeground}"
-                                        ToolTip="Streams the responses" />
 
                                     <CheckBox
                                         x:Name="StoreCheckBox"
                                         Grid.Row="0"
-                                        Margin="22,0,22,6"
+                                        Margin="3"
                                         Content="Store"
                                         FontFamily="Roboto"
                                         FontSize="14"
                                         Foreground="{StaticResource FormForeground}"
-                                        ToolTip="Save to the model" />
+                                        ToolTip="Store Output" />
+
+                                    <CheckBox
+                                        x:Name="StreamCheckBox"
+                                        Grid.Row="1"
+                                        Margin="3"
+                                        Content="Stream"
+                                        FontFamily="Roboto"
+                                        FontSize="14"
+                                        Foreground="{StaticResource FormForeground}"
+                                        ToolTip="Stream Output" />
+
+                                    <CheckBox
+                                        x:Name="ListenCheckBox"
+                                        Grid.Row="2"
+                                        Margin="3"
+                                        Content="Listen"
+                                        FontFamily="Roboto"
+                                        FontSize="14"
+                                        Foreground="{StaticResource FormForeground}"
+                                        ToolTip="Activate Audio" />
+
+                                    <CheckBox
+                                        x:Name="MuteCheckBox"
+                                        Grid.Row="3"
+                                        Margin="3"
+                                        Content="Mute"
+                                        FontFamily="Roboto"
+                                        FontSize="14"
+                                        Foreground="{StaticResource FormForeground}"
+                                        ToolTip="Deactivate Audio" />
+
                                 </Grid>
                             </GroupBox>
 
@@ -544,50 +661,104 @@
                             <GroupBox
                                 x:Name="VoiceLabel"
                                 Grid.Column="4"
-                                Width="100"
-                                Height="125"
-                                Margin="0,22,0,10"
-                                HorizontalAlignment="Center"
+                                Height="171"
+                                Margin="3,0,10,0"
+                                VerticalAlignment="Center"
                                 Background="{StaticResource GroupBoxBackground}"
                                 BorderBrush="{StaticResource MutedForeground}"
                                 FontFamily="Roboto"
                                 FontSize="14"
                                 Foreground="{StaticResource FormForeground}"
-                                Header="Audio">
-                                <Grid>
+                                Header="Formats">
+                                <Grid x:Name="AudioGrid">
                                     <Grid.RowDefinitions>
-                                        <RowDefinition />
-                                        <RowDefinition />
+                                        <RowDefinition Height="29*" />
+                                        <RowDefinition Height="10*" />
+                                        <RowDefinition Height="34*" />
                                     </Grid.RowDefinitions>
 
-                                    <CheckBox
-                                        x:Name="MuteCheckBox"
-                                        Height="22"
-                                        Margin="10,0,4,10"
-                                        VerticalAlignment="Bottom"
-                                        Content="Mute"
-                                        FontFamily="Roboto"
-                                        FontSize="14"
-                                        Foreground="{StaticResource FormForeground}"
-                                        ToolTip="Deactivates Text-to-speech (TTS)" />
+                                    <b:MetroDropDown
+                                        x:Name="ResponseFormatComboBox"
+                                        Grid.Row="0"
+                                        Width="147"
+                                        Height="39"
+                                        Margin="7,14,0,0"
+                                        HorizontalAlignment="Left"
+                                        VerticalAlignment="Top"
+                                        AllowMultiSelect="False"
+                                        Background="{DynamicResource ControlInteriorBrush}"
+                                        BorderThickness="1,1,1,1"
+                                        Tag="response_format"
+                                        Text="  Response Formats"
+                                        ToolTip="Select Response Format">
+                                        <b:MetroDropDownItem
+                                            Width="Auto"
+                                            Height="30"
+                                            Content="text"
+                                            FontFamily="Roboto" />
+                                        <b:MetroDropDownItem
+                                            Width="Auto"
+                                            Height="30"
+                                            Content="json"
+                                            FontFamily="Roboto" />
+                                        <b:MetroDropDownItem
+                                            Width="Auto"
+                                            Height="30"
+                                            Content="url"
+                                            FontFamily="Roboto" />
+                                    </b:MetroDropDown>
 
-                                    <CheckBox
-                                        x:Name="ListenCheckBox"
-                                        Grid.Row="1"
-                                        Margin="10,5,10,15"
-                                        Content="Listen"
-                                        FontFamily="Roboto"
-                                        FontSize="14"
-                                        Foreground="{StaticResource FormForeground}"
-                                        ToolTip="Transcribes audio" />
+                                    <b:MetroDropDown
+                                        x:Name="AudioFormatComboBox"
+                                        Grid.Row="2"
+                                        Width="147"
+                                        Height="39"
+                                        Margin="7,9,0,0"
+                                        HorizontalAlignment="Left"
+                                        VerticalAlignment="Top"
+                                        AllowMultiSelect="False"
+                                        Background="{DynamicResource ControlInteriorBrush}"
+                                        BorderThickness="1"
+                                        Tag="audio"
+                                        Text="  Audio Format"
+                                        ToolTip="Select Audio Format">
+                                        <b:MetroDropDownItem
+                                            Width="Auto"
+                                            Height="30"
+                                            Content="mp3" />
+
+                                        <b:MetroDropDownItem
+                                            Width="Auto"
+                                            Height="30"
+                                            Content="opus" />
+
+                                        <b:MetroDropDownItem
+                                            Width="Auto"
+                                            Height="30"
+                                            Content="aac" />
+
+                                        <b:MetroDropDownItem
+                                            Width="Auto"
+                                            Height="30"
+                                            Content="flac" />
+
+                                        <b:MetroDropDownItem
+                                            Width="Auto"
+                                            Height="30"
+                                            Content="wav" />
+
+                                        <b:MetroDropDownItem
+                                            Width="Auto"
+                                            Height="30"
+                                            Content="pcm" />
+                                    </b:MetroDropDown>
                                 </Grid>
                             </GroupBox>
 
 
                             <GroupBox
                                 Grid.Column="1"
-                                Height="128"
-                                Margin="10,19,10,10"
+                                Margin="5,12,10,10"
                                 Background="{StaticResource GroupBoxBackground}"
                                 BorderBrush="{StaticResource MutedForeground}"
                                 FontFamily="Roboto"
@@ -597,10 +768,9 @@
                                 <Grid>
                                     <b:MetroListBox
                                         x:Name="ModelListBox"
-                                        Width="296"
-                                        Height="94"
-                                        Margin="10,3,0,0"
-                                        Padding="3,3,3,3"
+                                        Width="305"
+                                        Height="119"
+                                        Margin="10,15,0,0"
                                         HorizontalAlignment="Left"
                                         VerticalAlignment="Top"
                                         FontFamily="Roboto"
@@ -611,21 +781,21 @@
                             <GroupBox
                                 x:Name="SpeechGroupBox"
                                 Grid.Column="2"
-                                Height="128"
-                                Margin="10,19,9,10"
+                                Height="171"
+                                Margin="5,0,10,0"
+                                VerticalAlignment="Center"
                                 Background="{StaticResource GroupBoxBackground}"
                                 BorderBrush="{StaticResource MutedForeground}"
                                 FontFamily="Roboto"
                                 FontSize="14"
                                 Foreground="{StaticResource FormForeground}"
-                                Header="Speech">
+                                Header="Sound">
                                 <Grid>
                                     <b:MetroListBox
                                         x:Name="VoiceListBox"
-                                        Width="158"
-                                        Height="94"
-                                        Margin="10,3,0,0"
-                                        Padding="3,3,3,3"
+                                        Width="128"
+                                        Height="126"
+                                        Margin="10,10,0,0"
                                         HorizontalAlignment="Left"
                                         VerticalAlignment="Top"
                                         FontFamily="Roboto" />
@@ -635,9 +805,7 @@
                             <GroupBox
                                 x:Name="TaskGroupBox"
                                 Grid.Column="0"
-                                Grid.ColumnSpan="2"
-                                Height="128"
-                                Margin="20,19,354,10"
+                                Margin="10,10,10,10"
                                 Background="{StaticResource GroupBoxBackground}"
                                 BorderBrush="{StaticResource MutedForeground}"
                                 FontFamily="Roboto"
@@ -649,8 +817,8 @@
                                     <b:MetroListBox
                                         x:Name="GenerationListBox"
                                         Width="203"
-                                        Height="94"
-                                        Margin="7,3,0,0"
+                                        Height="118"
+                                        Margin="10,18,0,0"
                                         HorizontalAlignment="Left"
                                         VerticalAlignment="Top" />
                                 </Grid>
@@ -659,25 +827,52 @@
                             <GroupBox
                                 x:Name="ImageSizeGroup"
                                 Grid.Column="3"
-                                Height="128"
-                                Margin="10,19,10,10"
+                                Height="171"
+                                Margin="5,0,5,0"
+                                VerticalAlignment="Center"
                                 Background="{StaticResource GroupBoxBackground}"
                                 FontFamily="Roboto"
                                 FontSize="14"
                                 Foreground="{StaticResource FormForeground}"
-                                Header="Sizes">
+                                Header="Vision">
                                 <Grid>
-                                    <b:MetroListBox
-                                        x:Name="ImageSizeListBox"
-                                        Width="142"
-                                        Height="94"
-                                        Margin="10,3,0,0"
-                                        Padding="3,3,3,3"
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="58*" />
+                                        <RowDefinition Height="25*" />
+                                        <RowDefinition Height="63*" />
+                                    </Grid.RowDefinitions>
+                                    <b:MetroDropDown
+                                        x:Name="ImageSizeDropDown"
+                                        Width="138"
+                                        Height="39"
+                                        Margin="5,0,0,5"
+                                        HorizontalAlignment="Left"
+                                        VerticalAlignment="Bottom"
+                                        FontFamily="Roboto"
+                                        Text="  Image Sizes" />
+                                    <b:MetroDropDown
+                                        x:Name="ImageQualityDropDown"
+                                        Grid.Row="2"
+                                        Width="138"
+                                        Height="39"
+                                        Margin="5,5,0,0"
                                         HorizontalAlignment="Left"
                                         VerticalAlignment="Top"
-                                        VerticalContentAlignment="Top"
-                                        FontFamily="Roboto"
-                                        FontSize="12" />
+                                        AllowMultiSelect="False"
+                                        Background="{DynamicResource ControlInteriorBrush}"
+                                        BorderThickness="1,1,1,1"
+                                        Tag="Quality"
+                                        Text="  Image Quality"
+                                        ToolTip="Select Image Quality">
+                                        <b:MetroDropDownItem
+                                            Width="Auto"
+                                            Height="30"
+                                            Content="standard" />
+                                        <b:MetroDropDownItem
+                                            Width="Auto"
+                                            Height="30"
+                                            Content="hd" />
+                                    </b:MetroDropDown>
                                 </Grid>
                             </GroupBox>
 
@@ -687,198 +882,129 @@
                         <wpf:SfRangeSlider
                             x:Name="TemperatureSlider"
                             Grid.Row="1"
-                            Width="220"
+                            Width="265"
                             Height="80"
-                            Margin="75,43,0,0"
+                            Margin="30,43,0,0"
                             Padding="1,1,1,1"
                             HorizontalAlignment="Left"
                             VerticalAlignment="Top"
-                            HorizontalContentAlignment="Stretch"
-                            VerticalContentAlignment="Stretch"
                             ActiveMinorTickStroke="{StaticResource WhiteForeground}"
                             ActiveTickStroke="{StaticResource WhiteForeground}"
-                            AllowRangeDrag="True"
+                            BorderThickness="0,0,0,0"
                             Foreground="{StaticResource FormForeground}"
-                            Maximum="100"
-                            Minimum="0"
+                            LargeChange="0.5"
+                            Maximum="2"
+                            Minimum="-2"
                             MinorTickFrequency="2"
-                            MinorTickLength="4"
+                            MinorTickLength="5"
                             MinorTickStroke="{StaticResource WhiteForeground}"
                             ShowValueLabels="True"
+                            SmallChange="0.1"
                             SnapsTo="Ticks"
-                            TickFrequency="20"
+                            TickFrequency="0.5"
                             TickPlacement="BottomRight"
                             TickStroke="{StaticResource WhiteForeground}"
-                            Value="40" />
+                            ToolTip="Lower values increase deterministic output"
+                            ToolTipFormat="P"
+                            Value="0.80" />
 
                         <wpf:SfRangeSlider
                             x:Name="PresenceSlider"
                             Grid.Row="1"
-                            Width="220"
+                            Width="265"
                             Height="80"
-                            Margin="480,43,0,0"
+                            Margin="455,43,0,0"
                             HorizontalAlignment="Left"
                             VerticalAlignment="Top"
                             ActiveMinorTickStroke="{StaticResource WhiteForeground}"
                             ActiveTickStroke="{StaticResource WhiteForeground}"
                             AllowRangeDrag="True"
-                            BorderThickness="0,2,0,0"
                             Foreground="{StaticResource FormForeground}"
-                            Maximum="100"
-                            Minimum="0"
+                            Maximum="2"
+                            Minimum="-2"
                             MinorTickFrequency="2"
-                            MinorTickLength="4"
+                            MinorTickLength="5"
+                            MinorTickStroke="{StaticResource WhiteForeground}"
                             ShowValueLabels="True"
                             SnapsTo="Ticks"
-                            ThumbInterval="1"
-                            ThumbToolTipPrecision="1"
-                            TickFrequency="20"
+                            TickFrequency="0.50"
                             TickPlacement="BottomRight"
                             TickStroke="{StaticResource WhiteForeground}"
-                            Value="40" />
+                            ToolTip="Positive values creative output"
+                            Value="0.00" />
 
                         <wpf:SfRangeSlider
                             x:Name="TopPercentSlider"
                             Grid.Row="1"
-                            Width="220"
+                            Width="265"
                             Height="90"
-                            Margin="75,200,0,0"
+                            Margin="30,200,0,0"
                             HorizontalAlignment="Left"
                             VerticalAlignment="Top"
                             ActiveMinorTickStroke="{StaticResource WhiteForeground}"
                             ActiveTickStroke="{StaticResource WhiteForeground}"
                             AllowRangeDrag="True"
                             Foreground="{StaticResource FormForeground}"
-                            Maximum="100"
+                            Maximum="1"
                             Minimum="0"
-                            MinorTickFrequency="2"
-                            MinorTickLength="4"
+                            MinorTickFrequency="1"
+                            MinorTickLength="5"
                             MinorTickStroke="{StaticResource WhiteForeground}"
                             ShowValueLabels="True"
                             SnapsTo="Ticks"
-                            TickFrequency="20"
+                            TickFrequency="0.10"
                             TickPlacement="BottomRight"
                             TickStroke="{StaticResource WhiteForeground}"
-                            Value="40" />
+                            ToolTip="top p% probability mass"
+                            Value="0.90" />
 
                         <wpf:SfRangeSlider
                             x:Name="FrequencySlider"
                             Grid.Row="1"
-                            Width="220"
+                            Width="265"
                             Height="80"
-                            Margin="480,200,0,0"
+                            Margin="455,200,0,0"
                             HorizontalAlignment="Left"
                             VerticalAlignment="Top"
                             ActiveMinorTickStroke="{StaticResource WhiteForeground}"
                             ActiveTickStroke="{StaticResource WhiteForeground}"
                             AllowRangeDrag="True"
-                            BorderThickness="0,2,0,0"
                             Foreground="{StaticResource FormForeground}"
-                            Maximum="100"
-                            Minimum="0"
+                            Maximum="2"
+                            Minimum="-2"
                             MinorTickFrequency="2"
-                            MinorTickLength="4"
+                            MinorTickLength="5"
+                            MinorTickStroke="{StaticResource WhiteForeground}"
                             ShowValueLabels="True"
                             SnapsTo="Ticks"
-                            ThumbInterval="1"
-                            ThumbToolTipPrecision="1"
-                            TickFrequency="20"
+                            Tag="FrequencyPenalty"
+                            TickFrequency="0.50"
                             TickPlacement="BottomRight"
                             TickStroke="{StaticResource WhiteForeground}"
-                            Value="40" />
+                            ToolTip="Positive values decrease reptition"
+                            Value="0.00" />
 
                         <wpf:SfRangeSlider
                             x:Name="MaxTokenSlider"
                             Grid.Row="1"
-                            Width="220"
                             Height="80"
-                            Margin="925,200,163,0"
+                            Margin="900,200,118,0"
                             VerticalAlignment="Top"
                             ActiveMinorTickStroke="{StaticResource WhiteForeground}"
                             ActiveTickStroke="{StaticResource WhiteForeground}"
                             AllowRangeDrag="True"
                             Foreground="{StaticResource FormForeground}"
-                            Maximum="100"
+                            Maximum="5000"
                             Minimum="0"
-                            MinorTickFrequency="2"
+                            MinorTickFrequency="4"
                             MinorTickLength="4"
                             MinorTickStroke="{StaticResource WhiteForeground}"
                             ShowValueLabels="True"
                             SnapsTo="Ticks"
-                            TickFrequency="20"
+                            TickFrequency="1000"
                             TickPlacement="BottomRight"
                             TickStroke="{StaticResource WhiteForeground}"
-                            Value="40" />
-
-                        <b:MetroTextBox
-                            x:Name="TemperatureTextBox"
-                            Grid.Row="1"
-                            Width="60"
-                            Height="40"
-                            Margin="315,43,0,0"
-                            HorizontalAlignment="Left"
-                            VerticalAlignment="Top"
-                            BorderThickness="2,2,2,2"
-                            FontFamily="Roboto"
-                            FontSize="14"
-                            Foreground="{StaticResource WhiteForeground}"
-                            Text="{Binding Source=TemperatureSlider, Path=Value}" />
-
-                        <b:MetroTextBox
-                            x:Name="TopPercentTextBox"
-                            Grid.Row="1"
-                            Width="60"
-                            Height="40"
-                            Margin="315,220,0,0"
-                            HorizontalAlignment="Left"
-                            VerticalAlignment="Top"
-                            BorderThickness="2,2,2,2"
-                            FontFamily="Roboto"
-                            FontSize="14"
-                            Foreground="{StaticResource WhiteForeground}"
-                            Text="{Binding Source=TopPercentSlider, Path=Value}" />
-
-                        <b:MetroTextBox
-                            x:Name="PresenseTextBox"
-                            Grid.Row="1"
-                            Width="80"
-                            Height="40"
-                            Margin="725,43,0,0"
-                            HorizontalAlignment="Left"
-                            VerticalAlignment="Top"
-                            BorderThickness="2"
-                            FontFamily="Roboto"
-                            FontSize="14"
-                            Foreground="{StaticResource WhiteForeground}"
-                            Text="{Binding Source=PresenseSlider, Path=Value}" />
-
-                        <b:MetroTextBox
-                            x:Name="FrequencyTextBox"
-                            Grid.Row="1"
-                            Width="80"
-                            Height="40"
-                            Margin="725,220,0,0"
-                            HorizontalAlignment="Left"
-                            VerticalAlignment="Top"
-                            BorderThickness="2"
-                            FontFamily="Roboto"
-                            FontSize="14"
-                            Foreground="{StaticResource WhiteForeground}"
-                            Text="{Binding Source=FrequencySlider, Path=Value}" />
-
-                        <b:MetroTextBox
-                            x:Name="MaxTokenTextBox"
-                            Grid.Row="1"
-                            Width="80"
-                            Height="40"
-                            Margin="1160,220,0,0"
-                            HorizontalAlignment="Left"
-                            VerticalAlignment="Top"
-                            BorderThickness="2"
-                            FontFamily="Roboto"
-                            FontSize="12"
-                            Foreground="{StaticResource WhiteForeground}"
-                            Text="{Binding Source=MaxTokenSlider, Path=Value}" />
+                            Value="2048" />
                     </Grid>
                 </TabItem>
 
@@ -1057,9 +1183,9 @@
                         <b:MetroEditor
                             x:Name="ChatEditor"
                             Grid.Column="1"
-                            Width="944"
+                            Width="985"
                             Height="405"
-                            Margin="30,82,0,0"
+                            Margin="10,82,0,0"
                             Padding="5"
                             HorizontalAlignment="Left"
                             VerticalAlignment="Top"
@@ -1077,6 +1203,7 @@
 
                         <Grid
                             x:Name="EditorLanguageGrid"
+                            Grid.Column="0"
                             Width="275"
                             HorizontalAlignment="Center">
 
@@ -1088,20 +1215,16 @@
                             <b:MetroListBox
                                 x:Name="DocumentListBox"
                                 Grid.Row="1"
-                                Width="215"
                                 Height="300"
-                                Margin="50,25,0,0"
+                                Margin="50,25,10,0"
                                 Padding="3,3,3,3"
-                                HorizontalAlignment="Left"
                                 VerticalAlignment="Top" />
 
                             <b:MetroListBox
                                 x:Name="LanguageListBox"
                                 Grid.Row="0"
-                                Width="215"
-                                Margin="50,67,0,24"
+                                Margin="50,75,10,32"
                                 Padding="3,3,3,3"
-                                HorizontalAlignment="Left"
                                 VerticalContentAlignment="Top"
                                 Background="{StaticResource ControlInteriorBrush}"
                                 BorderBrush="{StaticResource BlueBorderBrush}"
@@ -1147,6 +1270,37 @@
                     </Grid>
                 </TabItem>
 
+
+                <!--  *********************************************  IMAGE TAB *************************************  -->
+
+                <TabItem
+                    x:Name="ImageTabItem"
+                    Header="Image">
+                    <Grid
+                        x:Name="ImageTabGrid"
+                        Background="{StaticResource FormBackground}">
+                        <GroupBox
+                            x:Name="ImageGroupBox"
+                            Width="1240"
+                            Height="537"
+                            Margin="30,32,0,0"
+                            HorizontalAlignment="Left"
+                            VerticalAlignment="Top"
+                            Background="{StaticResource GroupBoxBackground}"
+                            Foreground="{StaticResource FormForeground}">
+
+                            <b:MetroImageEditor
+                                x:Name="ImageEditor"
+                                Width="1205"
+                                Height="504"
+                                Margin="14,0,0,0"
+                                HorizontalAlignment="Left" />
+
+                        </GroupBox>
+
+                    </Grid>
+                </TabItem>
+
                 <!--  *********************************************  CHART TAB *************************************  -->
 
                 <TabItem
@@ -1167,38 +1321,20 @@
                             BorderBrush="{StaticResource BlueBorderBrush}"
                             Foreground="{StaticResource FormForeground}"
                             TopWallBrush="{StaticResource FormBackground}" />
+
                         <b:MetroListBox
                             Grid.Column="1"
                             Height="350"
                             Margin="34,142,34,0"
                             VerticalAlignment="Top"
                             d:ItemsSource="{d:SampleData ItemCount=5}" />
+
                         <b:MetroDropDown
                             Grid.Column="1"
                             Height="30"
                             Margin="34,82,34,490"
                             AllowMultiSelect="True"
-                            DefaultText="ComboBox Items"
-                            RenderTransformOrigin="0.5,0.5">
-                            <b:MetroDropDown.RenderTransform>
-                                <TransformGroup>
-                                    <ScaleTransform />
-                                    <SkewTransform />
-                                    <RotateTransform Angle="-0.66" />
-                                    <TranslateTransform />
-                                </TransformGroup>
-                            </b:MetroDropDown.RenderTransform>
-                            <wpf:ComboBoxItemAdv Content="Item 1" />
-                            <wpf:ComboBoxItemAdv Content="Item 2" />
-                            <wpf:ComboBoxItemAdv Content="Item 3" />
-                            <wpf:ComboBoxItemAdv Content="Item 4" />
-                            <wpf:ComboBoxItemAdv Content="Item 5" />
-                            <wpf:ComboBoxItemAdv Content="Item 1" />
-                            <wpf:ComboBoxItemAdv Content="Item 2" />
-                            <wpf:ComboBoxItemAdv Content="Item 3" />
-                            <wpf:ComboBoxItemAdv Content="Item 4" />
-                            <wpf:ComboBoxItemAdv Content="Item 5" />
-                        </b:MetroDropDown>
+                            DefaultText="ComboBox Items" />
                     </Grid>
                 </TabItem>
 
@@ -1249,8 +1385,10 @@
                             <b:MetroListBox
                                 Grid.Row="2"
                                 Width="243"
-                                Margin="30,10,0,80"
-                                HorizontalAlignment="Left" />
+                                Height="360"
+                                Margin="30,25,0,0"
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Top" />
                         </Grid>
                         <Grid Grid.Column="0">
                             <Grid.RowDefinitions>
@@ -1294,7 +1432,7 @@
                     <Grid
                         x:Name="BusyTabGrid"
                         Background="{StaticResource FormBackground}">
-                        
+
                         <Image
                             Width="1288"
                             Height="Auto"

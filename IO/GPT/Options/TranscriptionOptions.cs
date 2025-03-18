@@ -101,7 +101,7 @@ namespace Bubba
             _presencePenalty = 0.00;
             _maximumTokens = 2048;
             _language = "en";
-            _responseFormat = "json";
+            _responseFormat = "text";
         }
 
         /// <summary>
@@ -253,8 +253,8 @@ namespace Bubba
             {
                 var _options = new List<string>
                 {
-                    "json",
                     "text",
+                    "json",
                     "srt",
                     "verbose_json",
                     "vtt"
@@ -275,7 +275,7 @@ namespace Bubba
         /// Gets the formats.
         /// </summary>
         /// <returns></returns>
-        public IList<string> GetFileFormatOptions( )
+        public IList<string> GetAudioFormatOptions( )
         {
             try
             {

@@ -17824,6 +17824,232 @@
             </summary>
             <param name="ex">The ex.</param>
         </member>
+        <member name="T:Bubba.GptConfig">
+            <inheritdoc />
+            <summary>
+            </summary>
+            <seealso cref="T:Bubba.PropertyChangedBase" />
+        </member>
+        <member name="F:Bubba.GptConfig._number">
+            <summary>
+            The number responses to generate
+            </summary>
+        </member>
+        <member name="F:Bubba.GptConfig._model">
+            <summary>
+            The chat model used
+            </summary>
+        </member>
+        <member name="F:Bubba.GptConfig._endPoint">
+            <summary>
+            The end point
+            </summary>
+        </member>
+        <member name="F:Bubba.GptConfig._store">
+            <summary>
+            Whether or not to store the responses
+            </summary>
+        </member>
+        <member name="F:Bubba.GptConfig._stream">
+            <summary>
+            The stream
+            </summary>
+        </member>
+        <member name="F:Bubba.GptConfig._topPercent">
+            <summary>
+            A number between 1 and 0. An alternative to sampling with temperature,
+            called nucleus sampling, where the model considers
+            the results of the tokens with top_p probability mass.
+            So 0.1 means only the tokens comprising the top 10% probability
+            mass are considered. We generally recommend altering this
+            or temperature but not both.
+            </summary>
+        </member>
+        <member name="F:Bubba.GptConfig._temperature">
+            <summary>
+            A number between 0.0 and 2.0   between 0 and 2.
+            Higher values like 0.8 will make the output more random,
+            while lower values like 0.2 will make it more focused and deterministic.
+            </summary>
+        </member>
+        <member name="F:Bubba.GptConfig._frequencyPenalty">
+            <summary>
+            A number between -2.0 and 2.0. Positive values penalize new
+            tokens based on their existing frequency in the text so far,
+            decreasing the model's likelihood to repeat the same line verbatim.
+            </summary>
+        </member>
+        <member name="F:Bubba.GptConfig._presencePenalty">
+            <summary>
+            Number between -2.0 and 2.0. Positive values penalize new tokens
+            based on whether they appear in the text so far,
+            ncreasing the model's likelihood to talk about new topics.
+            </summary>
+        </member>
+        <member name="F:Bubba.GptConfig._maximumTokens">
+            <summary>
+            An upper bound for the number of tokens
+            that can be generated for a completion
+            </summary>
+        </member>
+        <member name="F:Bubba.GptConfig._systemPrompt">
+            <summary>
+            The system instructions
+            </summary>
+        </member>
+        <member name="F:Bubba.GptConfig._userPrompt">
+            <summary>
+            The user prompt
+            </summary>
+        </member>
+        <member name="F:Bubba.GptConfig._assistantPrompt">
+            <summary>
+            The assistant prompt
+            </summary>
+        </member>
+        <member name="F:Bubba.GptConfig._stop">
+            <summary>
+            The stop
+            </summary>
+        </member>
+        <member name="F:Bubba.GptConfig._data">
+            <summary>
+            The data
+            </summary>
+        </member>
+        <member name="P:Bubba.GptConfig.EndPoint">
+            <summary>
+            Gets or sets the end point.
+            </summary>
+            <value>
+            The end point.
+            </value>
+        </member>
+        <member name="P:Bubba.GptConfig.Model">
+            <inheritdoc />
+            <summary>
+            Gets the chat model.
+            </summary>
+            <value>
+            The chat model.
+            </value>
+        </member>
+        <member name="P:Bubba.GptConfig.MaximumTokens">
+            <summary>
+            An upper bound for the number of tokens
+            that can be generated for a completion
+            </summary>
+            <value>
+            The maximum tokens.
+            </value>
+        </member>
+        <member name="P:Bubba.GptConfig.Number">
+            <summary>
+            THe number 'n' of responses generatred.
+            </summary>
+            <value>
+            The user identifier.
+            </value>
+        </member>
+        <member name="P:Bubba.GptConfig.Stop">
+            <summary>
+            Gets or sets the stop.
+            </summary>
+            <value>
+            The stop.
+            </value>
+        </member>
+        <member name="P:Bubba.GptConfig.Store">
+            <summary>
+            Gets or sets a value indicating whether this
+            <see cref="T:Bubba.GptConfig"/> is store.
+            </summary>
+            <value>
+              <c>true</c> if store; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:Bubba.GptConfig.Stream">
+            <summary>
+            Gets or sets a value indicating whether this
+            <see cref="T:Bubba.GptConfig"/> is stream.
+            </summary>
+            <value>
+              <c>true</c> if stream; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:Bubba.GptConfig.Temperature">
+            <summary>
+            A number between 0.0 and 2.0   between 0 and 2.
+            Higher values like 0.8 will make the output more random,
+            while lower values like 0.2 will make it more focused and deterministic.
+            </summary>
+            <value>
+            The temperature.
+            </value>
+        </member>
+        <member name="P:Bubba.GptConfig.FrequencyPenalty">
+            <summary>
+            A number between -2.0 and 2.0. Positive values penalize new
+            tokens based on their existing frequency in the text so far,
+            decreasing the model's likelihood to repeat the same line verbatim.
+            </summary>
+            <value>
+            The frequency.
+            </value>
+        </member>
+        <member name="P:Bubba.GptConfig.PresencePenalty">
+            <summary>
+            Number between -2.0 and 2.0. Positive values penalize new tokens
+            based on whether they appear in the text so far,
+            ncreasing the model's likelihood to talk about new topics.
+            </summary>
+            <value>
+            The presence.
+            </value>
+        </member>
+        <member name="P:Bubba.GptConfig.TopPercent">
+            <summary>
+            An alternative to sampling with temperature,
+            called nucleus sampling, where the model considers
+            the results of the tokens with top_p probability mass.
+            So 0.1 means only the tokens comprising the top 10% probability
+            mass are considered. We generally recommend altering this
+            or temperature but not both.
+            </summary>
+            <value>
+            The top percent.
+            </value>
+        </member>
+        <member name="P:Bubba.GptConfig.SystemPrompt">
+            <summary>
+            Gets or sets the system prompt.
+            </summary>
+            <value>
+            The system prompt.
+            </value>
+        </member>
+        <member name="P:Bubba.GptConfig.UserPrompt">
+            <summary>
+            Gets or sets the user prompt.
+            </summary>
+            <value>
+            The user prompt.
+            </value>
+        </member>
+        <member name="P:Bubba.GptConfig.AssistantPrompt">
+            <summary>
+            Gets or sets the assistant prompt.
+            </summary>
+            <value>
+            The assistant prompt.
+            </value>
+        </member>
+        <member name="M:Bubba.GptConfig.Fail(System.Exception)">
+            <summary>
+            Wraps error
+            </summary>
+            <param name="ex">The ex.</param>
+        </member>
         <member name="T:Bubba.GptRequestBase">
             <inheritdoc />
             <summary>
@@ -18198,7 +18424,7 @@
             <inheritdoc />
             <summary>
             Gets or sets a value indicating whether this
-            <see cref="T:Bubba.ParameterBase" /> is store.
+            <see cref="T:Bubba.GptConfig" /> is store.
             </summary>
             <value>
               <c>true</c> if store; otherwise, <c>false</c>.
@@ -18208,7 +18434,7 @@
             <inheritdoc />
             <summary>
             Gets or sets a value indicating whether this
-            <see cref="T:Bubba.ParameterBase" /> is stream.
+            <see cref="T:Bubba.GptConfig" /> is stream.
             </summary>
             <value>
               <c>true</c> if stream; otherwise, <c>false</c>.
@@ -18387,232 +18613,6 @@
             <value>
             The messages.
             </value>
-        </member>
-        <member name="T:Bubba.ParameterBase">
-            <inheritdoc />
-            <summary>
-            </summary>
-            <seealso cref="T:Bubba.PropertyChangedBase" />
-        </member>
-        <member name="F:Bubba.ParameterBase._number">
-            <summary>
-            The number responses to generate
-            </summary>
-        </member>
-        <member name="F:Bubba.ParameterBase._model">
-            <summary>
-            The chat model
-            </summary>
-        </member>
-        <member name="F:Bubba.ParameterBase._endPoint">
-            <summary>
-            The end point
-            </summary>
-        </member>
-        <member name="F:Bubba.ParameterBase._store">
-            <summary>
-            Whether or not to store the responses
-            </summary>
-        </member>
-        <member name="F:Bubba.ParameterBase._stream">
-            <summary>
-            The stream
-            </summary>
-        </member>
-        <member name="F:Bubba.ParameterBase._topPercent">
-            <summary>
-            An alternative to sampling with temperature,
-            called nucleus sampling, where the model considers
-            the results of the tokens with top_p probability mass.
-            So 0.1 means only the tokens comprising the top 10% probability
-            mass are considered. We generally recommend altering this
-            or temperature but not both.
-            </summary>
-        </member>
-        <member name="F:Bubba.ParameterBase._temperature">
-            <summary>
-            A number between 0.0 and 2.0   between 0 and 2.
-            Higher values like 0.8 will make the output more random,
-            while lower values like 0.2 will make it more focused and deterministic.
-            </summary>
-        </member>
-        <member name="F:Bubba.ParameterBase._frequencyPenalty">
-            <summary>
-            A number between -2.0 and 2.0. Positive values penalize new
-            tokens based on their existing frequency in the text so far,
-            decreasing the model's likelihood to repeat the same line verbatim.
-            </summary>
-        </member>
-        <member name="F:Bubba.ParameterBase._presencePenalty">
-            <summary>
-            Number between -2.0 and 2.0. Positive values penalize new tokens
-            based on whether they appear in the text so far,
-            ncreasing the model's likelihood to talk about new topics.
-            </summary>
-        </member>
-        <member name="F:Bubba.ParameterBase._maximumTokens">
-            <summary>
-            An upper bound for the number of tokens
-            that can be generated for a completion
-            </summary>
-        </member>
-        <member name="F:Bubba.ParameterBase._systemPrompt">
-            <summary>
-            The system instructions
-            </summary>
-        </member>
-        <member name="F:Bubba.ParameterBase._userPrompt">
-            <summary>
-            The user prompt
-            </summary>
-        </member>
-        <member name="F:Bubba.ParameterBase._assistantPrompt">
-            <summary>
-            The assistant prompt
-            </summary>
-        </member>
-        <member name="F:Bubba.ParameterBase._stop">
-            <summary>
-            The stop
-            </summary>
-        </member>
-        <member name="F:Bubba.ParameterBase._data">
-            <summary>
-            The data
-            </summary>
-        </member>
-        <member name="P:Bubba.ParameterBase.EndPoint">
-            <summary>
-            Gets or sets the end point.
-            </summary>
-            <value>
-            The end point.
-            </value>
-        </member>
-        <member name="P:Bubba.ParameterBase.Model">
-            <inheritdoc />
-            <summary>
-            Gets the chat model.
-            </summary>
-            <value>
-            The chat model.
-            </value>
-        </member>
-        <member name="P:Bubba.ParameterBase.MaximumTokens">
-            <summary>
-            An upper bound for the number of tokens
-            that can be generated for a completion
-            </summary>
-            <value>
-            The maximum tokens.
-            </value>
-        </member>
-        <member name="P:Bubba.ParameterBase.Number">
-            <summary>
-            THe number 'n' of responses generatred.
-            </summary>
-            <value>
-            The user identifier.
-            </value>
-        </member>
-        <member name="P:Bubba.ParameterBase.Stop">
-            <summary>
-            Gets or sets the stop.
-            </summary>
-            <value>
-            The stop.
-            </value>
-        </member>
-        <member name="P:Bubba.ParameterBase.Store">
-            <summary>
-            Gets or sets a value indicating whether this
-            <see cref="T:Bubba.ParameterBase"/> is store.
-            </summary>
-            <value>
-              <c>true</c> if store; otherwise, <c>false</c>.
-            </value>
-        </member>
-        <member name="P:Bubba.ParameterBase.Stream">
-            <summary>
-            Gets or sets a value indicating whether this
-            <see cref="T:Bubba.ParameterBase"/> is stream.
-            </summary>
-            <value>
-              <c>true</c> if stream; otherwise, <c>false</c>.
-            </value>
-        </member>
-        <member name="P:Bubba.ParameterBase.Temperature">
-            <summary>
-            A number between 0.0 and 2.0   between 0 and 2.
-            Higher values like 0.8 will make the output more random,
-            while lower values like 0.2 will make it more focused and deterministic.
-            </summary>
-            <value>
-            The temperature.
-            </value>
-        </member>
-        <member name="P:Bubba.ParameterBase.FrequencyPenalty">
-            <summary>
-            A number between -2.0 and 2.0. Positive values penalize new
-            tokens based on their existing frequency in the text so far,
-            decreasing the model's likelihood to repeat the same line verbatim.
-            </summary>
-            <value>
-            The frequency.
-            </value>
-        </member>
-        <member name="P:Bubba.ParameterBase.PresencePenalty">
-            <summary>
-            Number between -2.0 and 2.0. Positive values penalize new tokens
-            based on whether they appear in the text so far,
-            ncreasing the model's likelihood to talk about new topics.
-            </summary>
-            <value>
-            The presence.
-            </value>
-        </member>
-        <member name="P:Bubba.ParameterBase.TopPercent">
-            <summary>
-            An alternative to sampling with temperature,
-            called nucleus sampling, where the model considers
-            the results of the tokens with top_p probability mass.
-            So 0.1 means only the tokens comprising the top 10% probability
-            mass are considered. We generally recommend altering this
-            or temperature but not both.
-            </summary>
-            <value>
-            The top percent.
-            </value>
-        </member>
-        <member name="P:Bubba.ParameterBase.SystemPrompt">
-            <summary>
-            Gets or sets the system prompt.
-            </summary>
-            <value>
-            The system prompt.
-            </value>
-        </member>
-        <member name="P:Bubba.ParameterBase.UserPrompt">
-            <summary>
-            Gets or sets the user prompt.
-            </summary>
-            <value>
-            The user prompt.
-            </value>
-        </member>
-        <member name="P:Bubba.ParameterBase.AssistantPrompt">
-            <summary>
-            Gets or sets the assistant prompt.
-            </summary>
-            <value>
-            The assistant prompt.
-            </value>
-        </member>
-        <member name="M:Bubba.ParameterBase.Fail(System.Exception)">
-            <summary>
-            Wraps error
-            </summary>
-            <param name="ex">The ex.</param>
         </member>
         <member name="T:Bubba.PayloadBase">
             <inheritdoc />
@@ -19957,7 +19957,7 @@
             <inheritdoc />
             <summary>
             Gets or sets a value indicating whether this
-            <see cref="T:Bubba.ParameterBase" /> is store.
+            <see cref="T:Bubba.GptConfig" /> is store.
             </summary>
             <value>
               <c>true</c> if store; otherwise, <c>false</c>.
@@ -19967,7 +19967,7 @@
             <inheritdoc />
             <summary>
             Gets or sets a value indicating whether this
-            <see cref="T:Bubba.ParameterBase" /> is stream.
+            <see cref="T:Bubba.GptConfig" /> is stream.
             </summary>
             <value>
               <c>true</c> if stream; otherwise, <c>false</c>.
@@ -20081,7 +20081,7 @@
             <inheritdoc />
             <summary>
             Gets or sets a value indicating whether this
-            <see cref="T:Bubba.ParameterBase" /> is store.
+            <see cref="T:Bubba.GptConfig" /> is store.
             </summary>
             <value>
               <c>true</c> if store; otherwise, <c>false</c>.
@@ -20091,7 +20091,7 @@
             <inheritdoc />
             <summary>
             Gets or sets a value indicating whether this
-            <see cref="T:Bubba.ParameterBase" /> is stream.
+            <see cref="T:Bubba.GptConfig" /> is stream.
             </summary>
             <value>
               <c>true</c> if stream; otherwise, <c>false</c>.
@@ -20660,7 +20660,7 @@
             <inheritdoc />
             <summary>
             Gets or sets a value indicating whether this
-            <see cref="T:Bubba.ParameterBase" /> is store.
+            <see cref="T:Bubba.GptConfig" /> is store.
             </summary>
             <value>
               <c>true</c> if store; otherwise, <c>false</c>.
@@ -20670,7 +20670,7 @@
             <inheritdoc />
             <summary>
             Gets or sets a value indicating whether this
-            <see cref="T:Bubba.ParameterBase" /> is stream.
+            <see cref="T:Bubba.GptConfig" /> is stream.
             </summary>
             <value>
               <c>true</c> if stream; otherwise, <c>false</c>.
@@ -21033,7 +21033,7 @@
             <inheritdoc />
             <summary>
             Gets or sets a value indicating whether this
-            <see cref="T:Bubba.ParameterBase" /> is store.
+            <see cref="T:Bubba.GptConfig" /> is store.
             </summary>
             <value>
               <c>true</c> if store; otherwise, <c>false</c>.
@@ -21043,7 +21043,7 @@
             <inheritdoc />
             <summary>
             Gets or sets a value indicating whether this
-            <see cref="T:Bubba.ParameterBase" /> is stream.
+            <see cref="T:Bubba.GptConfig" /> is stream.
             </summary>
             <value>
               <c>true</c> if stream; otherwise, <c>false</c>.
@@ -21085,7 +21085,7 @@
         <member name="P:Bubba.TextOptions.TopPercent">
             <inheritdoc />
             <summary>
-            An alternative to sampling with temperature,
+            A number between 0.00 and 1.00. An alternative to sampling with temperature,
             called nucleus sampling, where the model considers
             the results of the tokens with top_p probability mass.
             So 0.1 means only the tokens comprising the top 10% probability
@@ -21201,7 +21201,7 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="M:Bubba.TranscriptionOptions.GetFileFormatOptions">
+        <member name="M:Bubba.TranscriptionOptions.GetAudioFormatOptions">
             <summary>
             Gets the formats.
             </summary>
@@ -21372,7 +21372,7 @@
             <inheritdoc />
             <summary>
             Gets or sets a value indicating whether this
-            <see cref="T:Bubba.ParameterBase" /> is store.
+            <see cref="T:Bubba.GptConfig" /> is store.
             </summary>
             <value>
               <c>true</c> if store; otherwise, <c>false</c>.
@@ -21382,7 +21382,7 @@
             <inheritdoc />
             <summary>
             Gets or sets a value indicating whether this
-            <see cref="T:Bubba.ParameterBase" /> is stream.
+            <see cref="T:Bubba.GptConfig" /> is stream.
             </summary>
             <value>
               <c>true</c> if stream; otherwise, <c>false</c>.
@@ -21511,7 +21511,7 @@
             <inheritdoc />
             <summary>
             Gets or sets a value indicating whether this
-            <see cref="T:Bubba.ParameterBase" /> is store.
+            <see cref="T:Bubba.GptConfig" /> is store.
             </summary>
             <value>
               <c>true</c> if store; otherwise, <c>false</c>.
@@ -21521,7 +21521,7 @@
             <inheritdoc />
             <summary>
             Gets or sets a value indicating whether this
-            <see cref="T:Bubba.ParameterBase" /> is stream.
+            <see cref="T:Bubba.GptConfig" /> is stream.
             </summary>
             <value>
               <c>true</c> if stream; otherwise, <c>false</c>.
@@ -21637,7 +21637,7 @@
             <inheritdoc />
             <summary>
             Gets or sets a value indicating whether this
-            <see cref="T:Bubba.ParameterBase" /> is store.
+            <see cref="T:Bubba.GptConfig" /> is store.
             </summary>
             <value>
               <c>true</c> if store; otherwise, <c>false</c>.
@@ -21647,7 +21647,7 @@
             <inheritdoc />
             <summary>
             Gets or sets a value indicating whether this
-            <see cref="T:Bubba.ParameterBase" /> is stream.
+            <see cref="T:Bubba.GptConfig" /> is stream.
             </summary>
             <value>
               <c>true</c> if stream; otherwise, <c>false</c>.
@@ -22245,7 +22245,7 @@
             <inheritdoc />
             <summary>
             Gets or sets a value indicating whether this
-            <see cref="T:Bubba.ParameterBase" /> is store.
+            <see cref="T:Bubba.GptConfig" /> is store.
             </summary>
             <value>
               <c>true</c> if store; otherwise, <c>false</c>.
@@ -22255,7 +22255,7 @@
             <inheritdoc />
             <summary>
             Gets or sets a value indicating whether this
-            <see cref="T:Bubba.ParameterBase" /> is stream.
+            <see cref="T:Bubba.GptConfig" /> is stream.
             </summary>
             <value>
               <c>true</c> if stream; otherwise, <c>false</c>.
@@ -22623,7 +22623,7 @@
             <inheritdoc />
             <summary>
             Gets or sets a value indicating whether this
-            <see cref="T:Bubba.ParameterBase" /> is store.
+            <see cref="T:Bubba.GptConfig" /> is store.
             </summary>
             <value>
               <c>true</c> if store; otherwise, <c>false</c>.
@@ -22633,7 +22633,7 @@
             <inheritdoc />
             <summary>
             Gets or sets a value indicating whether this
-            <see cref="T:Bubba.ParameterBase" /> is stream.
+            <see cref="T:Bubba.GptConfig" /> is stream.
             </summary>
             <value>
               <c>true</c> if stream; otherwise, <c>false</c>.
@@ -23019,7 +23019,7 @@
             <inheritdoc />
             <summary>
             Gets or sets a value indicating whether this
-            <see cref="T:Bubba.ParameterBase" /> is stream.
+            <see cref="T:Bubba.GptConfig" /> is stream.
             </summary>
             <value>
               <c>true</c> if stream; otherwise, <c>false</c>.
@@ -23196,40 +23196,40 @@
             <param name="response">The json response.</param>
             <returns></returns>
         </member>
-        <member name="T:Bubba.ChatCompletionRequest">
+        <member name="T:Bubba.ChatRequest">
             <inheritdoc />
             <summary>
             </summary>
-            <seealso cref="T:Bubba.TextGenerationRequest" />
+            <seealso cref="T:Bubba.TextRequest" />
         </member>
-        <member name="F:Bubba.ChatCompletionRequest._tools">
+        <member name="F:Bubba.ChatRequest._tools">
             <summary>
             The tools
             </summary>
         </member>
-        <member name="F:Bubba.ChatCompletionRequest._metaData">
+        <member name="F:Bubba.ChatRequest._metaData">
             <summary>
             Developer-defined tags and values used for filtering completions
             </summary>
         </member>
-        <member name="F:Bubba.ChatCompletionRequest._reasoningEffort">
+        <member name="F:Bubba.ChatRequest._reasoningEffort">
             <summary>
             The reasoning effort
             </summary>
         </member>
-        <member name="F:Bubba.ChatCompletionRequest._instructions">
+        <member name="F:Bubba.ChatRequest._instructions">
             <summary>
             The system prompt
             </summary>
         </member>
-        <member name="M:Bubba.ChatCompletionRequest.#ctor">
+        <member name="M:Bubba.ChatRequest.#ctor">
             <summary>
             Initializes a new instance of the
-            <see cref="T:Bubba.ChatCompletionRequest"/> class.
+            <see cref="T:Bubba.ChatRequest"/> class.
             </summary>
             <inheritdoc />
         </member>
-        <member name="M:Bubba.ChatCompletionRequest.#ctor(System.String,Bubba.GptOptions)">
+        <member name="M:Bubba.ChatRequest.#ctor(System.String,Bubba.GptOptions)">
             <inheritdoc />
             <summary>
             Initializes a new instance of the <see cref="T:Bubba.CompletionRequest" /> class.
@@ -23237,7 +23237,7 @@
             <param name="user">The user.</param>
             <param name="config">The configuration.</param>
         </member>
-        <member name="P:Bubba.ChatCompletionRequest.EndPoint">
+        <member name="P:Bubba.ChatRequest.EndPoint">
             <inheritdoc />
             <summary>
             Gets the end point.
@@ -23246,7 +23246,7 @@
             The end point.
             </value>
         </member>
-        <member name="P:Bubba.ChatCompletionRequest.Modalities">
+        <member name="P:Bubba.ChatRequest.Modalities">
             <inheritdoc />
             <summary>
             Gets or sets the modalities.
@@ -23255,7 +23255,7 @@
             The modalities.
             </value>
         </member>
-        <member name="P:Bubba.ChatCompletionRequest.Instructions">
+        <member name="P:Bubba.ChatRequest.Instructions">
             <summary>
             Gets or sets the instructions.
             </summary>
@@ -23263,7 +23263,7 @@
             The instructions.
             </value>
         </member>
-        <member name="P:Bubba.ChatCompletionRequest.Prompt">
+        <member name="P:Bubba.ChatRequest.Prompt">
             <inheritdoc />
             <summary>
             Gets or sets the user prompt.
@@ -23272,7 +23272,7 @@
             The user prompt.
             </value>
         </member>
-        <member name="P:Bubba.ChatCompletionRequest.ReasoningEffort">
+        <member name="P:Bubba.ChatRequest.ReasoningEffort">
             <summary>
             Gets or sets the reasoning effort.
             </summary>
@@ -23280,7 +23280,7 @@
             The reasoning effort.
             </value>
         </member>
-        <member name="P:Bubba.ChatCompletionRequest.Tools">
+        <member name="P:Bubba.ChatRequest.Tools">
             <summary>
             A list of tool enabled on the assistant.
             There can be a maximum of 128 tools per assistant.
@@ -23290,7 +23290,7 @@
             The tools.
             </value>
         </member>
-        <member name="P:Bubba.ChatCompletionRequest.MetaData">
+        <member name="P:Bubba.ChatRequest.MetaData">
             <summary>
             Set of 16 key-value pairs that can be attached to an object.
             This can be useful for storing additional information about the
@@ -23301,14 +23301,14 @@
             The meta data.
             </value>
         </member>
-        <member name="M:Bubba.ChatCompletionRequest.GetResponseAsync(System.String)">
+        <member name="M:Bubba.ChatRequest.GetResponseAsync(System.String)">
             <inheritdoc />
             <summary>
             Gets the chat response asynchronous.
             </summary>
             <returns></returns>
         </member>
-        <member name="M:Bubba.ChatCompletionRequest.ExtractContent(System.String)">
+        <member name="M:Bubba.ChatRequest.ExtractContent(System.String)">
             <inheritdoc />
             <summary>
             Extracts the message from response.
@@ -23419,7 +23419,7 @@
             <inheritdoc />
             <summary>
             Gets or sets a value indicating whether this
-            <see cref="T:Bubba.ParameterBase" /> is store.
+            <see cref="T:Bubba.GptConfig" /> is store.
             </summary>
             <value>
               <c>true</c> if store; otherwise, <c>false</c>.
@@ -23893,34 +23893,34 @@
             or resetting unmanaged resources.
             </summary>
         </member>
-        <member name="T:Bubba.ImageGenerationRequest">
+        <member name="T:Bubba.ImageRequest">
             <inheritdoc />
             <summary>
             </summary>
         </member>
-        <member name="F:Bubba.ImageGenerationRequest._size">
+        <member name="F:Bubba.ImageRequest._size">
             <summary>
             The image size
             </summary>
         </member>
-        <member name="F:Bubba.ImageGenerationRequest._quality">
+        <member name="F:Bubba.ImageRequest._quality">
             <summary>
             The quality
             </summary>
         </member>
-        <member name="F:Bubba.ImageGenerationRequest._style">
+        <member name="F:Bubba.ImageRequest._style">
             <summary>
             The style
             </summary>
         </member>
-        <member name="M:Bubba.ImageGenerationRequest.#ctor">
+        <member name="M:Bubba.ImageRequest.#ctor">
             <inheritdoc />
             <summary>
             Initializes a new instance of the
             <see cref="T:Bubba.ImageRequest" /> class.
             </summary>
         </member>
-        <member name="P:Bubba.ImageGenerationRequest.HttpClient">
+        <member name="P:Bubba.ImageRequest.HttpClient">
             <inheritdoc />
             <summary>
             Gets or sets a value indicating whether this
@@ -23930,7 +23930,7 @@
               <c>true</c> if store; otherwise, <c>false</c>.
             </value>
         </member>
-        <member name="P:Bubba.ImageGenerationRequest.Size">
+        <member name="P:Bubba.ImageRequest.Size">
             <summary>
             Gets or sets the size of the image.
             </summary>
@@ -23938,7 +23938,7 @@
             The size of the image.
             </value>
         </member>
-        <member name="P:Bubba.ImageGenerationRequest.Prompt">
+        <member name="P:Bubba.ImageRequest.Prompt">
             <inheritdoc />
             <summary>
             Gets or sets the prompt.
@@ -23947,7 +23947,7 @@
             The prompt.
             </value>
         </member>
-        <member name="P:Bubba.ImageGenerationRequest.Quality">
+        <member name="P:Bubba.ImageRequest.Quality">
             <summary>
             Gets or sets the quality.
             </summary>
@@ -23955,7 +23955,7 @@
             The quality.
             </value>
         </member>
-        <member name="P:Bubba.ImageGenerationRequest.Style">
+        <member name="P:Bubba.ImageRequest.Style">
             <summary>
             Gets or sets the style.
             </summary>
@@ -23963,7 +23963,7 @@
             The style.
             </value>
         </member>
-        <member name="P:Bubba.ImageGenerationRequest.Messages">
+        <member name="P:Bubba.ImageRequest.Messages">
             <inheritdoc />
             <summary>
             Gets or sets the messages.
@@ -23972,7 +23972,7 @@
             The messages.
             </value>
         </member>
-        <member name="P:Bubba.ImageGenerationRequest.EndPoint">
+        <member name="P:Bubba.ImageRequest.EndPoint">
             <inheritdoc />
             <summary>
             Gets the end point.
@@ -23981,7 +23981,7 @@
             The end point.
             </value>
         </member>
-        <member name="P:Bubba.ImageGenerationRequest.Number">
+        <member name="P:Bubba.ImageRequest.Number">
             <inheritdoc />
             <summary>
             THe number 'n' of responses returned by the API.
@@ -23990,7 +23990,7 @@
             The user identifier.
             </value>
         </member>
-        <member name="P:Bubba.ImageGenerationRequest.MaximumTokens">
+        <member name="P:Bubba.ImageRequest.MaximumTokens">
             <inheritdoc />
             <summary>
             Gets the maximum tokens.
@@ -23999,7 +23999,7 @@
             The maximum tokens.
             </value>
         </member>
-        <member name="M:Bubba.ImageGenerationRequest.GetData">
+        <member name="M:Bubba.ImageRequest.GetData">
             <inheritdoc />
             <summary>
             Gets the data.
@@ -24007,7 +24007,7 @@
             <returns>
             </returns>
         </member>
-        <member name="M:Bubba.ImageGenerationRequest.ToString">
+        <member name="M:Bubba.ImageRequest.ToString">
             <summary>
             Converts to string.
             </summary>
@@ -24015,68 +24015,68 @@
             A <see cref="T:System.String" /> that represents this instance.
             </returns>
         </member>
-        <member name="M:Bubba.ImageGenerationRequest.GetResponseAsync(System.String)">
+        <member name="M:Bubba.ImageRequest.GetResponseAsync(System.String)">
             <summary>
             Generates the images asynchronous.
             </summary>
             <param name="prompt">The prompt.</param>
             <returns></returns>
         </member>
-        <member name="M:Bubba.ImageGenerationRequest.ExtractContent(System.String)">
+        <member name="M:Bubba.ImageRequest.ExtractContent(System.String)">
             <summary>
             Extracts the image urls.
             </summary>
             <param name="jsonResponse">The json response.</param>
             <returns></returns>
         </member>
-        <member name="T:Bubba.SpeechGenerationReqeust">
+        <member name="T:Bubba.SpeechReqeust">
             <inheritdoc />
             <summary>
             </summary>
         </member>
-        <member name="F:Bubba.SpeechGenerationReqeust._file">
+        <member name="F:Bubba.SpeechReqeust._file">
             <summary>
             The file
             </summary>
         </member>
-        <member name="F:Bubba.SpeechGenerationReqeust._voice">
+        <member name="F:Bubba.SpeechReqeust._voice">
             <summary>
             The voice
             </summary>
         </member>
-        <member name="F:Bubba.SpeechGenerationReqeust._language">
+        <member name="F:Bubba.SpeechReqeust._language">
             <summary>
             The language
             </summary>
         </member>
-        <member name="F:Bubba.SpeechGenerationReqeust._speed">
+        <member name="F:Bubba.SpeechReqeust._speed">
             <summary>
             The speed
             </summary>
         </member>
-        <member name="F:Bubba.SpeechGenerationReqeust._input">
+        <member name="F:Bubba.SpeechReqeust._input">
             <summary>
             The input
             </summary>
         </member>
-        <member name="F:Bubba.SpeechGenerationReqeust._audioData">
+        <member name="F:Bubba.SpeechReqeust._audioData">
             <summary>
             The audio data
             </summary>
         </member>
-        <member name="F:Bubba.SpeechGenerationReqeust._audio">
+        <member name="F:Bubba.SpeechReqeust._audio">
             <summary>
             The audio
             </summary>
         </member>
-        <member name="M:Bubba.SpeechGenerationReqeust.#ctor">
+        <member name="M:Bubba.SpeechReqeust.#ctor">
             <summary>
             Initializes a new instance of the
-            <see cref="T:Bubba.SpeechGenerationReqeust"/> class.
+            <see cref="T:Bubba.SpeechReqeust"/> class.
             </summary>
             <inheritdoc />
         </member>
-        <member name="P:Bubba.SpeechGenerationReqeust.HttpClient">
+        <member name="P:Bubba.SpeechReqeust.HttpClient">
             <inheritdoc />
             <summary>
             Gets or sets a value indicating whether this
@@ -24086,7 +24086,7 @@
               <c>true</c> if store; otherwise, <c>false</c>.
             </value>
         </member>
-        <member name="P:Bubba.SpeechGenerationReqeust.Messages">
+        <member name="P:Bubba.SpeechReqeust.Messages">
             <inheritdoc />
             <summary>
             Gets or sets the messages.
@@ -24095,7 +24095,7 @@
             The messages.
             </value>
         </member>
-        <member name="P:Bubba.SpeechGenerationReqeust.Language">
+        <member name="P:Bubba.SpeechReqeust.Language">
             <summary>
             Gets or sets the language.
             </summary>
@@ -24103,7 +24103,7 @@
             The language.
             </value>
         </member>
-        <member name="P:Bubba.SpeechGenerationReqeust.Input">
+        <member name="P:Bubba.SpeechReqeust.Input">
             <summary>
             Gets or sets the input.
             </summary>
@@ -24111,7 +24111,7 @@
             The input.
             </value>
         </member>
-        <member name="P:Bubba.SpeechGenerationReqeust.Voice">
+        <member name="P:Bubba.SpeechReqeust.Voice">
             <summary>
             Gets or sets the voice.
             </summary>
@@ -24119,7 +24119,7 @@
             The voice.
             </value>
         </member>
-        <member name="P:Bubba.SpeechGenerationReqeust.Speed">
+        <member name="P:Bubba.SpeechReqeust.Speed">
             <summary>
             Gets or sets the speed.
             </summary>
@@ -24127,7 +24127,7 @@
             The speed.
             </value>
         </member>
-        <member name="P:Bubba.SpeechGenerationReqeust.Seed">
+        <member name="P:Bubba.SpeechReqeust.Seed">
             <inheritdoc />
             <summary>
             Gets or sets the seed.
@@ -24136,7 +24136,7 @@
             The seed.
             </value>
         </member>
-        <member name="P:Bubba.SpeechGenerationReqeust.File">
+        <member name="P:Bubba.SpeechReqeust.File">
             <summary>
             Gets or sets the file path.
             </summary>
@@ -24144,7 +24144,7 @@
             The file path.
             </value>
         </member>
-        <member name="P:Bubba.SpeechGenerationReqeust.AudioData">
+        <member name="P:Bubba.SpeechReqeust.AudioData">
             <summary>
             Gets or sets the audio data.
             </summary>
@@ -24152,7 +24152,7 @@
             The audio data.
             </value>
         </member>
-        <member name="P:Bubba.SpeechGenerationReqeust.ResponseFormat">
+        <member name="P:Bubba.SpeechReqeust.ResponseFormat">
             <inheritdoc />
             <summary>
             Gets or sets the modalities.
@@ -24161,14 +24161,14 @@
             The modalities.
             </value>
         </member>
-        <member name="M:Bubba.SpeechGenerationReqeust.GetData">
+        <member name="M:Bubba.SpeechReqeust.GetData">
             <inheritdoc />
             <summary>
             Gets the data.
             </summary>
             <returns></returns>
         </member>
-        <member name="M:Bubba.SpeechGenerationReqeust.GetResponseAsync(System.String)">
+        <member name="M:Bubba.SpeechReqeust.GetResponseAsync(System.String)">
             <inheritdoc />
             <summary>
             Generates the speech asynchronous.
@@ -24177,7 +24177,7 @@
             Task
             </returns>
         </member>
-        <member name="M:Bubba.SpeechGenerationReqeust.ExtractContent(System.String)">
+        <member name="M:Bubba.SpeechReqeust.ExtractContent(System.String)">
             <inheritdoc />
             <summary>
             Parses the generated speech.
@@ -24187,25 +24187,25 @@
             string
             </returns>
         </member>
-        <member name="M:Bubba.SpeechGenerationReqeust.SaveAsync(System.String)">
+        <member name="M:Bubba.SpeechReqeust.SaveAsync(System.String)">
             <summary>
             Saves the speech asynchronous.
             </summary>
             <param name="filePath">The file path.</param>
         </member>
-        <member name="T:Bubba.TextGenerationRequest">
+        <member name="T:Bubba.TextRequest">
             <inheritdoc />
             <summary>
             </summary>
         </member>
-        <member name="M:Bubba.TextGenerationRequest.#ctor">
+        <member name="M:Bubba.TextRequest.#ctor">
             <summary>
             Initializes a new instance of the
-            <see cref="T:Bubba.TextGenerationRequest"/> class.
+            <see cref="T:Bubba.TextRequest"/> class.
             </summary>
             <inheritdoc />
         </member>
-        <member name="P:Bubba.TextGenerationRequest.HttpClient">
+        <member name="P:Bubba.TextRequest.HttpClient">
             <inheritdoc />
             <summary>
             Gets or sets a value indicating whether this
@@ -24215,7 +24215,7 @@
               <c>true</c> if store; otherwise, <c>false</c>.
             </value>
         </member>
-        <member name="P:Bubba.TextGenerationRequest.Model">
+        <member name="P:Bubba.TextRequest.Model">
             <summary>
             Gets the chat model.
             </summary>
@@ -24224,7 +24224,7 @@
             </value>
             <inheritdoc />
         </member>
-        <member name="P:Bubba.TextGenerationRequest.Messages">
+        <member name="P:Bubba.TextRequest.Messages">
             <inheritdoc />
             <summary>
             Gets or sets the messages.
@@ -24233,7 +24233,7 @@
             The messages.
             </value>
         </member>
-        <member name="P:Bubba.TextGenerationRequest.EndPoint">
+        <member name="P:Bubba.TextRequest.EndPoint">
             <inheritdoc />
             <summary>
             Gets the end point.
@@ -24242,7 +24242,7 @@
             The end point.
             </value>
         </member>
-        <member name="P:Bubba.TextGenerationRequest.Number">
+        <member name="P:Bubba.TextRequest.Number">
             <inheritdoc />
             <summary>
             THe number 'n' of responses returned by the API.
@@ -24251,7 +24251,7 @@
             The user identifier.
             </value>
         </member>
-        <member name="P:Bubba.TextGenerationRequest.MaximumTokens">
+        <member name="P:Bubba.TextRequest.MaximumTokens">
             <inheritdoc />
             <summary>
             Gets the maximum tokens.
@@ -24260,7 +24260,7 @@
             The maximum tokens.
             </value>
         </member>
-        <member name="P:Bubba.TextGenerationRequest.Store">
+        <member name="P:Bubba.TextRequest.Store">
             <inheritdoc />
             <summary>
             Gets or sets a value indicating whether this
@@ -24270,7 +24270,7 @@
               <c>true</c> if store; otherwise, <c>false</c>.
             </value>
         </member>
-        <member name="P:Bubba.TextGenerationRequest.Stream">
+        <member name="P:Bubba.TextRequest.Stream">
             <inheritdoc />
             <summary>
             Gets or sets a value indicating whether this
@@ -24280,7 +24280,7 @@
               <c>true</c> if stream; otherwise, <c>false</c>.
             </value>
         </member>
-        <member name="P:Bubba.TextGenerationRequest.Temperature">
+        <member name="P:Bubba.TextRequest.Temperature">
             <inheritdoc />
             <summary>
             A number between -2.0 and 2.0 Positive value decrease the
@@ -24290,7 +24290,7 @@
             The temperature.
             </value>
         </member>
-        <member name="P:Bubba.TextGenerationRequest.TopPercent">
+        <member name="P:Bubba.TextRequest.TopPercent">
             <inheritdoc />
             <summary>
             An alternative to sampling with temperature,
@@ -24304,7 +24304,7 @@
             The top percent.
             </value>
         </member>
-        <member name="P:Bubba.TextGenerationRequest.FrequencyPenalty">
+        <member name="P:Bubba.TextRequest.FrequencyPenalty">
             <inheritdoc />
             <summary>
             Number between -2.0 and 2.0. Positive values penalize new tokens
@@ -24315,7 +24315,7 @@
             The frequency.
             </value>
         </member>
-        <member name="P:Bubba.TextGenerationRequest.PresencePenalty">
+        <member name="P:Bubba.TextRequest.PresencePenalty">
             <inheritdoc />
             <summary>
             Number between -2.0 and 2.0. Positive values penalize new tokens
@@ -24326,14 +24326,14 @@
             The presence.
             </value>
         </member>
-        <member name="M:Bubba.TextGenerationRequest.GetResponseAsync(System.String)">
+        <member name="M:Bubba.TextRequest.GetResponseAsync(System.String)">
             <inheritdoc />
             <summary>
             Gets the text completion asynchronous.
             </summary>
             <returns></returns>
         </member>
-        <member name="M:Bubba.TextGenerationRequest.ExtractContent(System.String)">
+        <member name="M:Bubba.TextRequest.ExtractContent(System.String)">
             <inheritdoc />
             <summary>
             Extracts the content of the response.
@@ -24341,14 +24341,14 @@
             <param name="response">The json response.</param>
             <returns></returns>
         </member>
-        <member name="M:Bubba.TextGenerationRequest.GetData">
+        <member name="M:Bubba.TextRequest.GetData">
             <inheritdoc />
             <summary>
             Gets the data.
             </summary>
             <returns></returns>
         </member>
-        <member name="M:Bubba.TextGenerationRequest.ToString">
+        <member name="M:Bubba.TextRequest.ToString">
             <summary>
             Converts to string.
             </summary>
@@ -25304,7 +25304,7 @@
             <summary>
             Initializes a new instance of the <see cref="T:Bubba.GptResponse" /> class.
             </summary>
-            <param name="generationRequest">The request.</param>
+            <param name="request">The request.</param>
         </member>
         <member name="P:Bubba.GptResponse.Id">
             <summary>
@@ -25382,42 +25382,42 @@
             <c>false</c> to release only unmanaged resources.
             </param>
         </member>
-        <member name="T:Bubba.ImageGenerationResponse">
+        <member name="T:Bubba.ImageResponse">
             <inheritdoc />
             <summary>
             </summary>
         </member>
-        <member name="F:Bubba.ImageGenerationResponse._resourceLocations">
+        <member name="F:Bubba.ImageResponse._resourceLocations">
             <summary>
             The resource locations
             </summary>
         </member>
-        <member name="F:Bubba.ImageGenerationResponse._transcribedText">
+        <member name="F:Bubba.ImageResponse._transcribedText">
             <summary>
             The transcribed text
             </summary>
         </member>
-        <member name="F:Bubba.ImageGenerationResponse._rawResponse">
+        <member name="F:Bubba.ImageResponse._rawResponse">
             <summary>
             The raw response
             </summary>
         </member>
-        <member name="M:Bubba.ImageGenerationResponse.#ctor">
+        <member name="M:Bubba.ImageResponse.#ctor">
             <summary>
             Initializes a new instance of the
-            <see cref="T:Bubba.ImageGenerationResponse"/> class.
+            <see cref="T:Bubba.ImageResponse"/> class.
             </summary>
             <inheritdoc />
         </member>
-        <member name="M:Bubba.ImageGenerationResponse.#ctor(Bubba.ImageGenerationRequest)">
+        <member name="M:Bubba.ImageResponse.#ctor(Bubba.ImageRequest)">
             <inheritdoc />
             <summary>
             Initializes a new instance of the
-            <see cref="T:Bubba.ImageGenerationResponse" /> class.
+            <see cref="T:Bubba.ImageResponse" /> class.
             </summary>
-            <param name="generationRequest">The request.</param>
+            <param name="request">The request.</param>
         </member>
-        <member name="P:Bubba.ImageGenerationResponse.ResourceLocations">
+        <member name="P:Bubba.ImageResponse.ResourceLocations">
             <summary>
             Gets or sets the image urls.
             </summary>
@@ -25425,7 +25425,7 @@
             The image urls.
             </value>
         </member>
-        <member name="P:Bubba.ImageGenerationResponse.TranscribedText">
+        <member name="P:Bubba.ImageResponse.TranscribedText">
             <summary>
             Gets or sets the transcribed text.
             </summary>
@@ -25433,7 +25433,7 @@
             The transcribed text.
             </value>
         </member>
-        <member name="P:Bubba.ImageGenerationResponse.RawResponse">
+        <member name="P:Bubba.ImageResponse.RawResponse">
             <summary>
             Gets or sets the raw response.
             </summary>
@@ -25441,7 +25441,7 @@
             The raw response.
             </value>
         </member>
-        <member name="P:Bubba.ImageGenerationResponse.Id">
+        <member name="P:Bubba.ImageResponse.Id">
             <inheritdoc />
             <summary>
             Gets or sets the identifier.
@@ -25450,7 +25450,7 @@
             The identifier.
             </value>
         </member>
-        <member name="P:Bubba.ImageGenerationResponse.Object">
+        <member name="P:Bubba.ImageResponse.Object">
             <inheritdoc />
             <summary>
             Gets or sets the object.
@@ -25459,7 +25459,7 @@
             The object.
             </value>
         </member>
-        <member name="P:Bubba.ImageGenerationResponse.Created">
+        <member name="P:Bubba.ImageResponse.Created">
             <inheritdoc />
             <summary>
             Gets or sets the created.
@@ -25468,7 +25468,7 @@
             The created.
             </value>
         </member>
-        <member name="P:Bubba.ImageGenerationResponse.Model">
+        <member name="P:Bubba.ImageResponse.Model">
             <inheritdoc />
             <summary>
             Gets or sets the model.
@@ -25477,7 +25477,7 @@
             The model.
             </value>
         </member>
-        <member name="P:Bubba.ImageGenerationResponse.Choices">
+        <member name="P:Bubba.ImageResponse.Choices">
             <inheritdoc />
             <summary>
             Gets or sets the choices.
@@ -25486,7 +25486,7 @@
             The choices.
             </value>
         </member>
-        <member name="P:Bubba.ImageGenerationResponse.Usage">
+        <member name="P:Bubba.ImageResponse.Usage">
             <inheritdoc />
             <summary>
             Gets or sets the usage.
@@ -25495,14 +25495,14 @@
             The usage.
             </value>
         </member>
-        <member name="M:Bubba.ImageGenerationResponse.ExtractImage(System.String)">
+        <member name="M:Bubba.ImageResponse.ExtractImage(System.String)">
             <summary>
             Extracts the image.
             </summary>
             <param name="jsonResponse">The json response.</param>
             <returns></returns>
         </member>
-        <member name="M:Bubba.ImageGenerationResponse.ExtractResponseData(System.String,System.String)">
+        <member name="M:Bubba.ImageResponse.ExtractResponseData(System.String,System.String)">
             <summary>
             Extracts the message from response.
             </summary>
@@ -25510,29 +25510,29 @@
             <param name="chatModel">The chat model.</param>
             <returns></returns>
         </member>
-        <member name="T:Bubba.SpeechGenerationResponse">
+        <member name="T:Bubba.SpeechResponse">
             <inheritdoc />
             <summary>
             </summary>
         </member>
-        <member name="F:Bubba.SpeechGenerationResponse._text">
+        <member name="F:Bubba.SpeechResponse._text">
             <summary>
             The text
             </summary>
         </member>
-        <member name="F:Bubba.SpeechGenerationResponse._rawResponse">
+        <member name="F:Bubba.SpeechResponse._rawResponse">
             <summary>
             The raw response
             </summary>
         </member>
-        <member name="M:Bubba.SpeechGenerationResponse.#ctor">
+        <member name="M:Bubba.SpeechResponse.#ctor">
             <summary>
             Initializes a new instance of the
-            <see cref="T:Bubba.SpeechGenerationResponse"/> class.
+            <see cref="T:Bubba.SpeechResponse"/> class.
             </summary>
             <inheritdoc />
         </member>
-        <member name="P:Bubba.SpeechGenerationResponse.Text">
+        <member name="P:Bubba.SpeechResponse.Text">
             <summary>
             Gets or sets the transcribed text.
             </summary>
@@ -25540,7 +25540,7 @@
             The transcribed text.
             </value>
         </member>
-        <member name="P:Bubba.SpeechGenerationResponse.RawResponse">
+        <member name="P:Bubba.SpeechResponse.RawResponse">
             <summary>
             Gets or sets the raw response.
             </summary>
@@ -25548,7 +25548,7 @@
             The raw response.
             </value>
         </member>
-        <member name="P:Bubba.SpeechGenerationResponse.Id">
+        <member name="P:Bubba.SpeechResponse.Id">
             <inheritdoc />
             <summary>
             Gets or sets the identifier.
@@ -25557,7 +25557,7 @@
             The identifier.
             </value>
         </member>
-        <member name="P:Bubba.SpeechGenerationResponse.Object">
+        <member name="P:Bubba.SpeechResponse.Object">
             <inheritdoc />
             <summary>
             Gets or sets the object.
@@ -25566,7 +25566,7 @@
             The object.
             </value>
         </member>
-        <member name="P:Bubba.SpeechGenerationResponse.Created">
+        <member name="P:Bubba.SpeechResponse.Created">
             <inheritdoc />
             <summary>
             Gets or sets the created.
@@ -25575,7 +25575,7 @@
             The created.
             </value>
         </member>
-        <member name="P:Bubba.SpeechGenerationResponse.Model">
+        <member name="P:Bubba.SpeechResponse.Model">
             <inheritdoc />
             <summary>
             Gets or sets the model.
@@ -25584,7 +25584,7 @@
             The model.
             </value>
         </member>
-        <member name="P:Bubba.SpeechGenerationResponse.Choices">
+        <member name="P:Bubba.SpeechResponse.Choices">
             <inheritdoc />
             <summary>
             Gets or sets the choices.
@@ -25593,7 +25593,7 @@
             The choices.
             </value>
         </member>
-        <member name="P:Bubba.SpeechGenerationResponse.Usage">
+        <member name="P:Bubba.SpeechResponse.Usage">
             <inheritdoc />
             <summary>
             Gets or sets the usage.
@@ -25602,14 +25602,14 @@
             The usage.
             </value>
         </member>
-        <member name="M:Bubba.SpeechGenerationResponse.ExtractAudioText(System.String)">
+        <member name="M:Bubba.SpeechResponse.ExtractAudioText(System.String)">
             <summary>
             Extracts the audio text.
             </summary>
             <param name="jsonResponse">The json response.</param>
             <returns></returns>
         </member>
-        <member name="M:Bubba.SpeechGenerationResponse.ExtractResponseData(System.String,System.String)">
+        <member name="M:Bubba.SpeechResponse.ExtractResponseData(System.String,System.String)">
             <summary>
             Extracts the message from response.
             </summary>
@@ -25617,37 +25617,37 @@
             <param name="chatModel">The chat model.</param>
             <returns></returns>
         </member>
-        <member name="T:Bubba.TextGenerationResponse">
+        <member name="T:Bubba.TextResponse">
             <inheritdoc />
             <summary>
             </summary>
         </member>
-        <member name="F:Bubba.TextGenerationResponse._generatedText">
+        <member name="F:Bubba.TextResponse._generatedText">
             <summary>
             The transcribed text
             </summary>
         </member>
-        <member name="F:Bubba.TextGenerationResponse._rawResponse">
+        <member name="F:Bubba.TextResponse._rawResponse">
             <summary>
             The raw response
             </summary>
         </member>
-        <member name="M:Bubba.TextGenerationResponse.#ctor">
+        <member name="M:Bubba.TextResponse.#ctor">
             <summary>
             Initializes a new instance of the
-            <see cref="T:Bubba.TextGenerationResponse"/> class.
+            <see cref="T:Bubba.TextResponse"/> class.
             </summary>
             <inheritdoc />
         </member>
-        <member name="M:Bubba.TextGenerationResponse.#ctor(System.String)">
+        <member name="M:Bubba.TextResponse.#ctor(System.String)">
             <inheritdoc />
             <summary>
             Initializes a new instance of the
-            <see cref="T:Bubba.TextGenerationResponse" /> class.
+            <see cref="T:Bubba.TextResponse" /> class.
             </summary>
             <param name="response">The request.</param>
         </member>
-        <member name="P:Bubba.TextGenerationResponse.GeneratedText">
+        <member name="P:Bubba.TextResponse.GeneratedText">
             <summary>
             Gets or sets the generated text.
             </summary>
@@ -25656,7 +25656,7 @@
             </value>
             
         </member>
-        <member name="P:Bubba.TextGenerationResponse.RawResponse">
+        <member name="P:Bubba.TextResponse.RawResponse">
             <summary>
             Gets or sets the raw response.
             </summary>
@@ -25664,7 +25664,7 @@
             The raw response.
             </value>
         </member>
-        <member name="P:Bubba.TextGenerationResponse.Id">
+        <member name="P:Bubba.TextResponse.Id">
             <inheritdoc />
             <summary>
             Gets or sets the identifier.
@@ -25673,7 +25673,7 @@
             The identifier.
             </value>
         </member>
-        <member name="P:Bubba.TextGenerationResponse.Object">
+        <member name="P:Bubba.TextResponse.Object">
             <inheritdoc />
             <summary>
             Gets or sets the object.
@@ -25682,7 +25682,7 @@
             The object.
             </value>
         </member>
-        <member name="P:Bubba.TextGenerationResponse.Created">
+        <member name="P:Bubba.TextResponse.Created">
             <inheritdoc />
             <summary>
             Gets or sets the created.
@@ -25691,7 +25691,7 @@
             The created.
             </value>
         </member>
-        <member name="P:Bubba.TextGenerationResponse.Model">
+        <member name="P:Bubba.TextResponse.Model">
             <inheritdoc />
             <summary>
             Gets or sets the model.
@@ -25700,7 +25700,7 @@
             The model.
             </value>
         </member>
-        <member name="P:Bubba.TextGenerationResponse.Choices">
+        <member name="P:Bubba.TextResponse.Choices">
             <inheritdoc />
             <summary>
             Gets or sets the choices.
@@ -25709,7 +25709,7 @@
             The choices.
             </value>
         </member>
-        <member name="P:Bubba.TextGenerationResponse.Usage">
+        <member name="P:Bubba.TextResponse.Usage">
             <inheritdoc />
             <summary>
             Gets or sets the usage.
@@ -25718,7 +25718,7 @@
             The usage.
             </value>
         </member>
-        <member name="M:Bubba.TextGenerationResponse.ToString">
+        <member name="M:Bubba.TextResponse.ToString">
             <inheritdoc />
             <summary>
             Converts to string.
@@ -36381,6 +36381,13 @@
             The options
             </summary>
         </member>
+        <member name="F:Bubba.ChatWindow._temperature">
+            <summary>
+            A number between 0.0 and 1.0   between 0 and 2.
+            Higher values like 0.8 will make the output more random,
+            while lower values like 0.2 will make it more focused and deterministic.
+            </summary>
+        </member>
         <member name="F:Bubba.ChatWindow._topPercent">
             <summary>
             An alternative to sampling with temperature,
@@ -36404,14 +36411,6 @@
         <member name="F:Bubba.ChatWindow._size">
             <summary>
             The image size
-            </summary>
-        </member>
-        <member name="F:Bubba.ChatWindow._temperature">
-            <summary>
-            A number between 0 and 2.0
-            Higher values like 0.8 will make the output more random,
-            while lower values like 0.2 will make it more focused and deterministic.
-            Default=1
             </summary>
         </member>
         <member name="F:Bubba.ChatWindow._maximumTokens">
@@ -37488,6 +37487,7 @@
         <member name="M:Bubba.ChatWindow.Fail(System.Exception)">
             <summary>
             Fails the specified ex.
+            
             </summary>
             <param name="ex">The ex.</param>
         </member>

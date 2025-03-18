@@ -1,14 +1,43 @@
 ﻿// ******************************************************************************************
 //     Assembly:                Bubba
 //     Author:                  Terry D. Eppler
-//     Created:                 03-13-2025
+//     Created:                 03-17-2025
 // 
 //     Last Modified By:        Terry D. Eppler
-//     Last Modified On:        03-13-2025
+//     Last Modified On:        03-17-2025
 // ******************************************************************************************
 // <copyright file="ChatWindow.xaml.cs" company="Terry D. Eppler">
 //     Badger is a budget execution & data analysis tool for EPA analysts
-//     based on WPF, Net 6, and written in C
+//     based on WPF, Net 6, and written in C Sharp.
+// 
+//     Copyright �  2022 Terry D. Eppler
+// 
+//    Permission is hereby granted, free of charge, to any person obtaining a copy
+//    of this software and associated documentation files (the �Software�),
+//    to deal in the Software without restriction,
+//    including without limitation the rights to use,
+//    copy, modify, merge, publish, distribute, sublicense,
+//    and/or sell copies of the Software,
+//    and to permit persons to whom the Software is furnished to do so,
+//    subject to the following conditions:
+// 
+//    The above copyright notice and this permission notice shall be included in all
+//    copies or substantial portions of the Software.
+// 
+//    THE SOFTWARE IS PROVIDED �AS IS�, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,
+//    INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+//    FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT.
+//    IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
+//    DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,
+//    ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
+//    DEALINGS IN THE SOFTWARE.
+// 
+//    You can contact me at:  terryeppler@gmail.com or eppler.terry@epa.gov
+// </copyright>
+// <summary>
+//   ChatWindow.xaml.cs
+// </summary>
+// ******************************************************************************************
 namespace Bubba
 {
     using System;
@@ -48,7 +77,7 @@ namespace Bubba
     /// Interaction logic for ChatWindow.xaml
     /// </summary>
     [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
-    [SuppressMessage( "ReSharper", "PreferConcreteValueOverDefault" )]
+    [ SuppressMessage( "ReSharper", "PreferConcreteValueOverDefault" ) ]
     public partial class ChatWindow : Window, INotifyPropertyChanged, IDisposable
     {
         /// <summary>
@@ -162,6 +191,13 @@ namespace Bubba
         private protected GptOptions _options;
 
         /// <summary>
+        /// A number between 0.0 and 1.0   between 0 and 2.
+        /// Higher values like 0.8 will make the output more random,
+        /// while lower values like 0.2 will make it more focused and deterministic.
+        /// </summary>
+        private protected double _temperature;
+
+        /// <summary>
         /// An alternative to sampling with temperature,
         /// called nucleus sampling, where the model considers
         /// the results of the tokens with top_p probability mass.
@@ -185,14 +221,6 @@ namespace Bubba
         /// The image size
         /// </summary>
         private protected string _size;
-
-        /// <summary>
-        /// A number between 0 and 2.0
-        /// Higher values like 0.8 will make the output more random,
-        /// while lower values like 0.2 will make it more focused and deterministic.
-        /// Default=1
-        /// </summary>
-        private protected double _temperature;
 
         /// <summary>
         /// An upper bound for the number of tokens
@@ -329,11 +357,11 @@ namespace Bubba
         /// </summary>
         private protected double[ ] _x =
         {
-                1,
-                2,
-                3,
-                4,
-                5
+            1,
+            2,
+            3,
+            4,
+            5
         };
 
         /// <summary>
@@ -341,11 +369,11 @@ namespace Bubba
         /// </summary>
         private protected double[ ] _y =
         {
-                1,
-                4,
-                9,
-                16,
-                25
+            1,
+            4,
+            9,
+            16,
+            25
         };
 
         /// <inheritdoc />
@@ -581,7 +609,7 @@ namespace Bubba
                 MuteCheckBox.Checked += OnMuteCheckedBoxChanged;
                 StoreCheckBox.Checked += OnStoreCheckBoxChecked;
                 GenerationListBox.SelectionChanged += OnRequestListBoxSelectionChanged;
-                ImageSizeListBox.SelectionChanged += OnImageSizeListBoxSelectionChanged;
+                ImageSizeDropDown.SelectionChanged += OnImageSizeListBoxSelectionChanged;
                 ToolStripRefreshButton.Click += OnRefreshButtonClick;
                 ToolStripSendButton.Click += OnGoButtonClicked;
                 GptFileButton.Click += OnFileApiButtonClick;
@@ -860,7 +888,7 @@ namespace Bubba
                 GenerationListBox.SelectedIndex = -1;
                 ModelListBox.SelectedIndex = -1;
                 VoiceListBox.SelectedIndex = -1;
-                ImageSizeListBox.SelectedIndex = -1;
+                ImageSizeDropDown.SelectedIndex = -1;
                 LanguageListBox.SelectedIndex = -1;
             }
             catch( Exception ex )
@@ -940,7 +968,9 @@ namespace Bubba
             {
                 var _position = new PrimaryScreenPositionProvider( Corner.BottomRight, 10, 10 );
                 var _count = MaximumNotificationCount.UnlimitedNotifications( );
-                var _lifeTime = new TimeAndCountBasedLifetimeSupervisor( TimeSpan.FromSeconds( 5 ), _count );
+                var _lifeTime =
+                    new TimeAndCountBasedLifetimeSupervisor( TimeSpan.FromSeconds( 5 ), _count );
+
                 return new Notifier( cfg =>
                 {
                     cfg.LifetimeSupervisor = _lifeTime;
@@ -984,7 +1014,7 @@ namespace Bubba
         {
             var _index = TabControl.Items.IndexOf( TabControl.SelectedItem );
             TabControl.Items.RemoveAt( _index );
-            if( TabControl.Items.Count - 1 > _index )
+            if( ( TabControl.Items.Count - 1 ) > _index )
             {
                 TabControl.SelectedItem = TabControl.Items[ _index ];
             }
@@ -1177,7 +1207,9 @@ namespace Bubba
             var _temp = double.Parse( TemperatureTextBox.Text );
             if( ( _temp < 0d ) | ( _temp > 1d ) )
             {
-                var _msg = "Randomness has to be between 0 and 2" + "with higher values resulting in more random text; Default 1 ";
+                var _msg = "Randomness has to be between 0 and 2"
+                    + "with higher values resulting in more random text; Default 1 ";
+
                 SendMessage( _msg );
                 return "";
             }
@@ -1187,7 +1219,9 @@ namespace Bubba
             {
                 _data = "{";
                 _data += " \"model\":\"" + _model + "\",";
-                _data += " \"messages\": [{\"role\": \"user\", \"content\": \"" + PadQuotes( question ) + "\"}]";
+                _data += " \"messages\": [{\"role\": \"user\", \"content\": \""
+                    + PadQuotes( question ) + "\"}]";
+
                 _data += "}";
             }
             else
@@ -1689,7 +1723,7 @@ namespace Bubba
                 var _url = "https://api.openai.com/v1/models";
                 _httpClient = new HttpClient( );
                 _httpClient.Timeout = new TimeSpan( 0, 0, 3 );
-                _httpClient.DefaultRequestHeaders.Authorization = 
+                _httpClient.DefaultRequestHeaders.Authorization =
                     new AuthenticationHeaderValue( "Bearer", App.OpenAiKey );
 
                 var _async = await _httpClient.GetAsync( _url );
@@ -1743,15 +1777,15 @@ namespace Bubba
         {
             try
             {
-                ImageSizeListBox.Items?.Clear( );
+                ImageSizeDropDown.Items?.Clear( );
                 if( string.IsNullOrEmpty( _model ) )
                 {
-                    ImageSizeListBox.Items.Add( "256 X 256" );
-                    ImageSizeListBox.Items.Add( "512 X 512" );
-                    ImageSizeListBox.Items.Add( "1024 X 1024" );
-                    ImageSizeListBox.Items.Add( "1792 X 1024" );
-                    ImageSizeListBox.Items.Add( "1024 X 1792" );
-                    ImageSizeListBox.SelectedIndex = -1;
+                    ImageSizeDropDown.Items.Add( "256 X 256" );
+                    ImageSizeDropDown.Items.Add( "512 X 512" );
+                    ImageSizeDropDown.Items.Add( "1024 X 1024" );
+                    ImageSizeDropDown.Items.Add( "1792 X 1024" );
+                    ImageSizeDropDown.Items.Add( "1024 X 1792" );
+                    ImageSizeDropDown.SelectedIndex = -1;
                 }
                 else if( !string.IsNullOrEmpty( _model ) )
                 {
@@ -1759,28 +1793,28 @@ namespace Bubba
                     {
                         case "dall-e-2":
                         {
-                            ImageSizeListBox.Items.Add( "256 X 256" );
-                            ImageSizeListBox.Items.Add( "512 X 512" );
-                            ImageSizeListBox.Items.Add( "1024 X 1024" );
-                            ImageSizeListBox.SelectedIndex = -1;
+                            ImageSizeDropDown.Items.Add( "256 X 256" );
+                            ImageSizeDropDown.Items.Add( "512 X 512" );
+                            ImageSizeDropDown.Items.Add( "1024 X 1024" );
+                            ImageSizeDropDown.SelectedIndex = -1;
                             break;
                         }
                         case "dall-e-3":
                         {
-                            ImageSizeListBox.Items.Add( "1024 X 1024" );
-                            ImageSizeListBox.Items.Add( "1792 X 1024" );
-                            ImageSizeListBox.Items.Add( "1024 X 1792" );
-                            ImageSizeListBox.SelectedIndex = -1;
+                            ImageSizeDropDown.Items.Add( "1024 X 1024" );
+                            ImageSizeDropDown.Items.Add( "1792 X 1024" );
+                            ImageSizeDropDown.Items.Add( "1024 X 1792" );
+                            ImageSizeDropDown.SelectedIndex = -1;
                             break;
                         }
                         default:
                         {
-                            ImageSizeListBox.Items.Add( "256 X 256" );
-                            ImageSizeListBox.Items.Add( "512 X 512" );
-                            ImageSizeListBox.Items.Add( "1024 X 1024" );
-                            ImageSizeListBox.Items.Add( "1792 X 1024" );
-                            ImageSizeListBox.Items.Add( "1024 X 1792" );
-                            ImageSizeListBox.SelectedIndex = -1;
+                            ImageSizeDropDown.Items.Add( "256 X 256" );
+                            ImageSizeDropDown.Items.Add( "512 X 512" );
+                            ImageSizeDropDown.Items.Add( "1024 X 1024" );
+                            ImageSizeDropDown.Items.Add( "1792 X 1024" );
+                            ImageSizeDropDown.Items.Add( "1024 X 1792" );
+                            ImageSizeDropDown.SelectedIndex = -1;
                             break;
                         }
                     }
@@ -2390,7 +2424,7 @@ namespace Bubba
                 _aiVoices.Add( "shimmer", "shimer" );
                 foreach( var _voice in _aiVoices )
                 {
-                    var _item = new ListBoxItem
+                    var _item = new MetroDropDownItem
                     {
                         Tag = _voice.Key,
                         Content = _voice.Value
@@ -2770,7 +2804,7 @@ namespace Bubba
                 Fail( ex );
             }
         }
-        
+
         /// <summary>
         /// Sets the end point.
         /// </summary>
@@ -3206,7 +3240,8 @@ namespace Bubba
         /// <param name="sender">The sender.</param>
         /// <param name="e">The <see cref="MouseEventArgs"/>
         /// instance containing the event data.</param>
-        private protected void OnToolStripTextBoxTextChanged( object sender, TextChangedEventArgs e )
+        private protected void OnToolStripTextBoxTextChanged(
+            object sender, TextChangedEventArgs e )
         {
             try
             {
@@ -3876,7 +3911,9 @@ namespace Bubba
                 if( DocumentListBox.SelectedIndex != -1 )
                 {
                     ChatEditor.ClearAllText( );
-                    _selectedDocument = ( ( ListBoxItem )DocumentListBox.SelectedItem )?.Tag?.ToString( );
+                    _selectedDocument =
+                        ( ( ListBoxItem )DocumentListBox.SelectedItem )?.Tag?.ToString( );
+
                     ChatEditor.LoadFile( _selectedDocument );
                 }
             }
@@ -3922,7 +3959,9 @@ namespace Bubba
                 {
                     var _item = ( ListBoxItem )GenerationListBox.SelectedItem;
                     _selectedRequest = _item.Tag?.ToString( );
-                    _requestType = ( GptRequests )Enum.Parse( typeof( GptRequests ), _selectedRequest );
+                    _requestType =
+                        ( GptRequests )Enum.Parse( typeof( GptRequests ), _selectedRequest );
+
                     SetRequestType( );
                 }
             }
@@ -3955,7 +3994,7 @@ namespace Bubba
                             {
                                 var _temp = _textBox.Text;
                                 var _value = double.Parse( _temp );
-                                _textBox.Text = _value.ToString( "N1" );
+                                _textBox.Text = _value.ToString( "N2" );
                                 break;
                             }
                             case "TopPercent":
@@ -3964,7 +4003,7 @@ namespace Bubba
                                 var _top = double.TryParse( _temp, out var _value );
                                 if( _top )
                                 {
-                                    _textBox.Text = _value.ToString( "P1" );
+                                    _textBox.Text = _value.ToString( "P2" );
                                 }
 
                                 break;
@@ -3989,9 +4028,9 @@ namespace Bubba
         {
             try
             {
-                if( ImageSizeListBox.SelectedIndex != -1 )
+                if( ImageSizeDropDown.SelectedIndex != -1 )
                 {
-                    var _image = ImageSizeListBox.SelectedValue.ToString( );
+                    var _image = ImageSizeDropDown.SelectedValue.ToString( );
                     _size = _image?.Replace( " ", "" );
                 }
             }
@@ -4084,6 +4123,7 @@ namespace Bubba
 
         /// <summary>
         /// Fails the specified ex.
+        /// 
         /// </summary>
         /// <param name="ex">The ex.</param>
         private protected void Fail( Exception ex )
