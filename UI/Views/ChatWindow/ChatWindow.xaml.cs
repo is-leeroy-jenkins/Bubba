@@ -888,7 +888,7 @@ namespace Bubba
             {
                 GenerationListBox.SelectedIndex = -1;
                 ModelDropDown.SelectedIndex = -1;
-                VoiceDropDown.SelectedIndex = -1;
+                //AiVoiceDropDown.SelectedIndex = -1;
                 ImageSizeDropDown.SelectedIndex = -1;
                 LanguageDropDown.SelectedIndex = -1;
             }
@@ -2345,7 +2345,7 @@ namespace Bubba
             try
             {
                 var _synth = new SpeechSynthesizer( );
-                VoiceDropDown.Items?.Clear( );
+                //AiVoiceDropDown.Items?.Clear( );
                 _voices.Clear(  );
                 foreach( var _voice in _synth.GetInstalledVoices( ) )
                 {
@@ -2362,7 +2362,7 @@ namespace Bubba
                         Content = _lower
                     };
 
-                    VoiceDropDown.Items.Add( _item );
+                    //AiVoiceDropDown.Items.Add( _item );
                 }
             }
             catch( Exception ex )
@@ -2388,7 +2388,7 @@ namespace Bubba
                 _aiVoices.Add( "nova", "nova" );
                 _aiVoices.Add( "sage", "sage" );
                 _aiVoices.Add( "shimmer", "shimer" );
-                VoiceDropDown.Items.Clear(  );
+                //AiVoiceDropDown.Items.Clear(  );
                 foreach( var _voice in _aiVoices )
                 {
                     var _item = new ListBoxItem
@@ -2397,7 +2397,7 @@ namespace Bubba
                         Content = _voice.Value
                     };
 
-                    VoiceDropDown.Items.Add( _item );
+                    //AiVoiceDropDown.Items.Add( _item );
                 }
             }
             catch( Exception ex )
@@ -2432,7 +2432,7 @@ namespace Bubba
                         Content = _voice.Value
                     };
 
-                    VoiceDropDown.Items.Add( _item );
+                    //AiVoiceDropDown.Items.Add( _item );
                 }
             }
             catch( Exception ex )
@@ -3161,9 +3161,9 @@ namespace Bubba
                     _synthesizer.SetOutputToDefaultAudioDevice( );
                 }
 
-                if( VoiceDropDown.SelectedItem.ToString( ) != "" )
+                //if( AiVoiceDropDown.SelectedItem.ToString( ) != "" )
                 {
-                    _synthesizer.SelectVoice( VoiceDropDown.SelectedItem.ToString( ) );
+                   // _synthesizer.SelectVoice( AiVoiceDropDown.SelectedItem.ToString( ) );
                 }
 
                 _synthesizer.Speak( input );
@@ -3876,14 +3876,14 @@ namespace Bubba
             if( MuteCheckBox.IsChecked == true )
             {
                 VoiceLabel.Visibility = Visibility.Visible;
-                VoiceDropDown.Visibility = Visibility.Visible;
+                //AiVoiceDropDown.Visibility = Visibility.Visible;
                 var _msg = "The GPT Audio Client has been activated!";
                 SendNotification( _msg );
             }
             else
             {
                 VoiceLabel.Visibility = Visibility.Hidden;
-                VoiceDropDown.Visibility = Visibility.Hidden;
+                //AiVoiceDropDown.Visibility = Visibility.Hidden;
             }
         }
 

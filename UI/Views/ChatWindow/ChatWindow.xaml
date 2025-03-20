@@ -374,16 +374,6 @@
                                     ToolTip="GPT Upload API"
                                     UseLayoutRounding="True" />
 
-                                <b:MetroDropDown
-                                    x:Name="VoiceDropDown"
-                                    Canvas.Left="10"
-                                    Canvas.Top="6"
-                                    Width="120"
-                                    Height="40"
-                                    HorizontalAlignment="Right"
-                                    FontFamily="Roboto"
-                                    Text="    Voices" />
-                                
                                 <b:MetroButton
                                     x:Name="ClearParameterButton"
                                     Canvas.Left="301"
@@ -406,6 +396,49 @@
                                     SmallIcon="/Resources/Assets/MenuImages/RefreshItem.png"
                                     ToolTip="Reset Parameters"
                                     UseLayoutRounding="True" />
+                                <wpf:IntegerTextBox
+                                    x:Name="SpeechRateTextBox"
+                                    Canvas.Left="198"
+                                    Canvas.Top="10"
+                                    Width="74"
+                                    Height="40"
+                                    HorizontalAlignment="Left"
+                                    VerticalAlignment="Top"
+                                    HorizontalContentAlignment="Center"
+                                    Background="{DynamicResource ControlInteriorBrush}"
+                                    BorderBrush="{DynamicResource BlueBorderBrush}"
+                                    BorderThickness="2"
+                                    Foreground="{StaticResource FormForeground}"
+                                    ShowSpinButton="True"
+                                    TextWrapping="Wrap"
+                                    ToolTip="Speech Rate"
+                                    UseLayoutRounding="True"
+                                    UseNullOption="True"
+                                    WatermarkText="Enter Speech Rate:"
+                                    WatermarkTextIsVisible="True"
+                                    Value="1" />
+                                <wpf:IntegerTextBox
+                                    x:Name="NumberTextBox"
+                                    Canvas.Left="198"
+                                    Canvas.Top="61"
+                                    Width="81"
+                                    Height="38"
+                                    Padding="5,1,1,1"
+                                    HorizontalAlignment="Left"
+                                    VerticalAlignment="Top"
+                                    HorizontalContentAlignment="Center"
+                                    ApplyNegativeForeground="True"
+                                    Background="{StaticResource ControlInteriorBrush}"
+                                    BorderBrush="{StaticResource BlueBorderBrush}"
+                                    BorderThickness="2,2,2,2"
+                                    FontFamily="Roboto"
+                                    FontSize="14"
+                                    NegativeForeground="{StaticResource RedForeground}"
+                                    SelectionBrush="{StaticResource YellowBackground}"
+                                    ShowSpinButton="True"
+                                    Tag="Number"
+                                    ToolTip="GPT Responses"
+                                    Value="1" />
                             </Canvas>
                         </GroupBox>
 
@@ -738,50 +771,16 @@
                                 <Canvas
                                     x:Name="SoundCanvas"
                                     Height="146">
-
-                                    <wpf:IntegerTextBox
-                                        x:Name="SpeechRateTextBox"
-                                        Canvas.Left="42"
-                                        Canvas.Top="96"
-                                        Width="75"
+                                    <b:MetroDropDown
+                                        x:Name="AiVoiceDropDown"
+                                        Canvas.Left="16"
+                                        Canvas.Top="10"
+                                        Width="120"
                                         Height="40"
                                         HorizontalAlignment="Left"
-                                        HorizontalContentAlignment="Center"
-                                        Background="{DynamicResource ControlInteriorBrush}"
-                                        BorderBrush="{DynamicResource BlueBorderBrush}"
-                                        BorderThickness="2"
-                                        Foreground="{StaticResource FormForeground}"
-                                        ShowSpinButton="True"
-                                        TextWrapping="Wrap"
-                                        ToolTip="Speech Rate"
-                                        UseLayoutRounding="True"
-                                        UseNullOption="True"
-                                        WatermarkText="Enter Speech Rate:"
-                                        WatermarkTextIsVisible="True"
-                                        Value="1" />
-
-                                    <wpf:IntegerTextBox
-                                        x:Name="NumberTextBox"
-                                        Canvas.Left="36"
-                                        Canvas.Top="10"
-                                        Width="81"
-                                        Height="38"
-                                        Padding="5,1,1,1"
-                                        VerticalAlignment="Stretch"
-                                        HorizontalContentAlignment="Center"
-                                        ApplyNegativeForeground="True"
-                                        Background="{StaticResource ControlInteriorBrush}"
-                                        BorderBrush="{StaticResource BlueBorderBrush}"
-                                        BorderThickness="2,2,2,2"
+                                        VerticalAlignment="Center"
                                         FontFamily="Roboto"
-                                        FontSize="14"
-                                        NegativeForeground="{StaticResource RedForeground}"
-                                        SelectionBrush="{StaticResource YellowBackground}"
-                                        ShowSpinButton="True"
-                                        Tag="Number"
-                                        ToolTip="GPT Responses"
-                                        Value="1" />
-
+                                        Text="  AIAIA  Voices" />
                                 </Canvas>
                             </GroupBox>
 
