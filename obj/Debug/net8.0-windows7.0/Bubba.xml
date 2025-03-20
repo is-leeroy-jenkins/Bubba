@@ -37000,6 +37000,41 @@
             Sets the user document language.
             </summary>
         </member>
+        <member name="M:Bubba.ChatWindow.ActivateChatTab">
+            <summary>
+            Activates the chat tab.
+            </summary>
+        </member>
+        <member name="M:Bubba.ChatWindow.ActivateEditorTab">
+            <summary>
+            Activates the editor tab.
+            </summary>
+        </member>
+        <member name="M:Bubba.ChatWindow.ActivateParameterTab">
+            <summary>
+            Activates the parameter tab.
+            </summary>
+        </member>
+        <member name="M:Bubba.ChatWindow.ActivateChartTab">
+            <summary>
+            Activates the chart tab.
+            </summary>
+        </member>
+        <member name="M:Bubba.ChatWindow.ActivateDataTab">
+            <summary>
+            Activates the data tab.
+            </summary>
+        </member>
+        <member name="M:Bubba.ChatWindow.ActivateGraphTab">
+            <summary>
+            Activates the graph tab.
+            </summary>
+        </member>
+        <member name="M:Bubba.ChatWindow.ActivateBusyTab">
+            <summary>
+            Activates the busy tab.
+            </summary>
+        </member>
         <member name="M:Bubba.ChatWindow.UpdateStatus">
             <summary>
             Updates the status.
@@ -41629,6 +41664,36 @@
         <member name="M:Bubba.WebBrowser.InitializeComponent">
             <summary>
             InitializeComponent
+            </summary>
+        </member>
+        <member name="T:XamlGeneratedNamespace.GeneratedInternalTypeHelper">
+            <summary>
+            GeneratedInternalTypeHelper
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.CreateInstance(System.Type,System.Globalization.CultureInfo)">
+            <summary>
+            CreateInstance
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.GetPropertyValue(System.Reflection.PropertyInfo,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            GetPropertyValue
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.SetPropertyValue(System.Reflection.PropertyInfo,System.Object,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            SetPropertyValue
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.CreateDelegate(System.Type,System.Object,System.String)">
+            <summary>
+            CreateDelegate
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.AddEventHandler(System.Reflection.EventInfo,System.Object,System.Delegate)">
+            <summary>
+            AddEventHandler
             </summary>
         </member>
     </members>

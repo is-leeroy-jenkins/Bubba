@@ -78,6 +78,7 @@ namespace Bubba
     /// </summary>
     [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
     [ SuppressMessage( "ReSharper", "PreferConcreteValueOverDefault" ) ]
+    [ SuppressMessage( "ReSharper", "LocalVariableHidesMember" ) ]
     public partial class ChatWindow : Window, INotifyPropertyChanged, IDisposable
     {
         /// <summary>
@@ -603,7 +604,7 @@ namespace Bubba
                 PresenseTextBox.TextChanged += OnParameterTextBoxChanged;
                 FrequencyTextBox.TextChanged += OnParameterTextBoxChanged;
                 TopPercentTextBox.TextChanged += OnParameterTextBoxChanged;
-                ClearButton.Click += OnClearButtonClick;
+                ClearParameterButton.Click += OnClearButtonClick;
                 ToolStripSendButton.Click += OnSendButtonClick;
                 ListenCheckBox.Checked += OnListenCheckedChanged;
                 MuteCheckBox.Checked += OnMuteCheckedBoxChanged;
@@ -613,7 +614,7 @@ namespace Bubba
                 ToolStripRefreshButton.Click += OnRefreshButtonClick;
                 ToolStripSendButton.Click += OnGoButtonClicked;
                 GptFileButton.Click += OnFileApiButtonClick;
-                LanguageListBox.SelectionChanged += OnLanguageListBoxSelectionChanged;
+                LanguageDropDown.SelectionChanged += OnLanguageListBoxSelectionChanged;
                 DocumentListBox.SelectionChanged += OnDocumentListBoxSelectionChanged;
             }
             catch( Exception ex )
@@ -886,10 +887,10 @@ namespace Bubba
             try
             {
                 GenerationListBox.SelectedIndex = -1;
-                ModelListBox.SelectedIndex = -1;
-                VoiceListBox.SelectedIndex = -1;
+                ModelDropDown.SelectedIndex = -1;
+                VoiceDropDown.SelectedIndex = -1;
                 ImageSizeDropDown.SelectedIndex = -1;
-                LanguageListBox.SelectedIndex = -1;
+                LanguageDropDown.SelectedIndex = -1;
             }
             catch( Exception ex )
             {
@@ -920,7 +921,7 @@ namespace Bubba
             try
             {
                 ChatEditor.Text = "";
-                ChatTextBox.Text = "";
+                GptTextBox.Text = "";
                 ToolStripTextBox.Text = "";
             }
             catch( Exception ex )
@@ -1069,11 +1070,11 @@ namespace Bubba
             {
                 if( canGoBack )
                 {
-                    SearchPanelBackButton.Visibility = Visibility.Visible;
+                    UrlPanelBackButton.Visibility = Visibility.Visible;
                 }
                 else
                 {
-                    SearchPanelBackButton.Visibility = Visibility.Hidden;
+                    UrlPanelBackButton.Visibility = Visibility.Hidden;
                 }
             } );
         }
@@ -1090,11 +1091,11 @@ namespace Bubba
             {
                 if( canGoForward )
                 {
-                    SearchPanelForwardButton.Visibility = Visibility.Visible;
+                    UrlPanelForwardButton.Visibility = Visibility.Visible;
                 }
                 else
                 {
-                    SearchPanelForwardButton.Visibility = Visibility.Hidden;
+                    UrlPanelForwardButton.Visibility = Visibility.Hidden;
                 }
             } );
         }
@@ -1183,13 +1184,14 @@ namespace Bubba
         /// <param name="question">The question.</param>
         /// <returns></returns>
         public string SendHttpMessage( string question )
+
         {
             ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12
                 | SecurityProtocolType.Tls11
                 | SecurityProtocolType.Tls;
 
             // text-davinci-002, text-davinci-003
-            var _model = ModelListBox.SelectedItem.ToString( );
+            var _model = ModelDropDown.SelectedItem.ToString( );
             var _url = "https://api.openai.com/v1/completions";
             if( _model?.IndexOf( "gpt-3.5-turbo" ) != -1 )
             {
@@ -1603,17 +1605,17 @@ namespace Bubba
                 _isSearchOpen = true;
                 InvokeIf( ( ) =>
                 {
-                    UrlTextBox.Text = _lastSearch;
-                    UrlTextBox.Focus( );
-                    UrlTextBox.SelectAll( );
+                    UrlPanelTextBox.Text = _lastSearch;
+                    UrlPanelTextBox.Focus( );
+                    UrlPanelTextBox.SelectAll( );
                 } );
             }
             else
             {
                 InvokeIf( ( ) =>
                 {
-                    UrlTextBox.Focus( );
-                    UrlTextBox.SelectAll( );
+                    UrlPanelTextBox.Focus( );
+                    UrlPanelTextBox.SelectAll( );
                 } );
             }
         }
@@ -1745,20 +1747,20 @@ namespace Bubba
                 }
 
                 _models.Sort( );
-                ModelListBox.Items.Clear( );
+                ModelDropDown.Items.Clear( );
                 Dispatcher.BeginInvoke( ( ) =>
                 {
                     foreach( var _lm in _models )
                     {
                         if( !_lm.StartsWith( "ft" ) )
                         {
-                            ModelListBox.Items.Add( _lm );
+                            ModelDropDown.Items.Add( _lm );
                         }
                     }
                 } );
 
                 Chill( );
-                ModelListBox.SelectedIndex = -1;
+                ModelDropDown.SelectedIndex = -1;
             }
             catch( HttpRequestException ex )
             {
@@ -1833,19 +1835,19 @@ namespace Bubba
         {
             try
             {
-                ModelListBox.Items?.Clear( );
-                ModelListBox.Items.Add( "gpt-4-0613" );
-                ModelListBox.Items.Add( "gpt-4-0314" );
-                ModelListBox.Items.Add( "gpt-4-turbo-2024-04-09" );
-                ModelListBox.Items.Add( "gpt-4o-2024-08-06" );
-                ModelListBox.Items.Add( "gpt-4o-2024-11-20" );
-                ModelListBox.Items.Add( "gpt-4o-2024-05-13" );
-                ModelListBox.Items.Add( "gpt-4o-mini-2024-07-18" );
-                ModelListBox.Items.Add( "o1-2024-12-17" );
-                ModelListBox.Items.Add( "o1-mini-2024-09-12" );
-                ModelListBox.Items.Add( "text-davinci-003" );
-                ModelListBox.Items.Add( "text-curie-001" );
-                ModelListBox.SelectedIndex = -1;
+                ModelDropDown.Items?.Clear( );
+                ModelDropDown.Items.Add( "gpt-4-0613" );
+                ModelDropDown.Items.Add( "gpt-4-0314" );
+                ModelDropDown.Items.Add( "gpt-4-turbo-2024-04-09" );
+                ModelDropDown.Items.Add( "gpt-4o-2024-08-06" );
+                ModelDropDown.Items.Add( "gpt-4o-2024-11-20" );
+                ModelDropDown.Items.Add( "gpt-4o-2024-05-13" );
+                ModelDropDown.Items.Add( "gpt-4o-mini-2024-07-18" );
+                ModelDropDown.Items.Add( "o1-2024-12-17" );
+                ModelDropDown.Items.Add( "o1-mini-2024-09-12" );
+                ModelDropDown.Items.Add( "text-davinci-003" );
+                ModelDropDown.Items.Add( "text-curie-001" );
+                ModelDropDown.SelectedIndex = -1;
             }
             catch( Exception ex )
             {
@@ -1860,18 +1862,18 @@ namespace Bubba
         {
             try
             {
-                ModelListBox.Items?.Clear( );
-                ModelListBox.Items.Add( "gpt-4-0613" );
-                ModelListBox.Items.Add( "gpt-4-0314" );
-                ModelListBox.Items.Add( "gpt-4-turbo-2024-04-09" );
-                ModelListBox.Items.Add( "gpt-4o-2024-08-06" );
-                ModelListBox.Items.Add( "gpt-4o-2024-11-20" );
-                ModelListBox.Items.Add( "gpt-4o-2024-05-13" );
-                ModelListBox.Items.Add( "gpt-4o-mini-2024-07-18" );
-                ModelListBox.Items.Add( "o1-2024-12-17" );
-                ModelListBox.Items.Add( "o1-mini-2024-09-12" );
-                ModelListBox.Items.Add( "o3-mini-2025-01-31" );
-                ModelListBox.SelectedIndex = -1;
+                ModelDropDown.Items?.Clear( );
+                ModelDropDown.Items.Add( "gpt-4-0613" );
+                ModelDropDown.Items.Add( "gpt-4-0314" );
+                ModelDropDown.Items.Add( "gpt-4-turbo-2024-04-09" );
+                ModelDropDown.Items.Add( "gpt-4o-2024-08-06" );
+                ModelDropDown.Items.Add( "gpt-4o-2024-11-20" );
+                ModelDropDown.Items.Add( "gpt-4o-2024-05-13" );
+                ModelDropDown.Items.Add( "gpt-4o-mini-2024-07-18" );
+                ModelDropDown.Items.Add( "o1-2024-12-17" );
+                ModelDropDown.Items.Add( "o1-mini-2024-09-12" );
+                ModelDropDown.Items.Add( "o3-mini-2025-01-31" );
+                ModelDropDown.SelectedIndex = -1;
             }
             catch( Exception ex )
             {
@@ -1886,13 +1888,13 @@ namespace Bubba
         {
             try
             {
-                ModelListBox.Items?.Clear( );
-                ModelListBox.Items.Add( "dall-e-2" );
-                ModelListBox.Items.Add( "dall-e-3" );
-                ModelListBox.Items.Add( "gpt-4-0613" );
-                ModelListBox.Items.Add( "gpt-4-0314" );
-                ModelListBox.Items.Add( "gpt-4o-mini-2024-07-18" );
-                ModelListBox.SelectedIndex = -1;
+                ModelDropDown.Items?.Clear( );
+                ModelDropDown.Items.Add( "dall-e-2" );
+                ModelDropDown.Items.Add( "dall-e-3" );
+                ModelDropDown.Items.Add( "gpt-4-0613" );
+                ModelDropDown.Items.Add( "gpt-4-0314" );
+                ModelDropDown.Items.Add( "gpt-4o-mini-2024-07-18" );
+                ModelDropDown.SelectedIndex = -1;
             }
             catch( Exception ex )
             {
@@ -1907,13 +1909,13 @@ namespace Bubba
         {
             try
             {
-                ModelListBox.Items?.Clear( );
-                ModelListBox.Items.Add( "whisper-1" );
-                ModelListBox.Items.Add( "gpt-4-0613" );
-                ModelListBox.Items.Add( "gpt-4-0314" );
-                ModelListBox.Items.Add( "gpt-4-turbo-2024-04-09" );
-                ModelListBox.Items.Add( "text-davinci-003" );
-                ModelListBox.SelectedIndex = -1;
+                ModelDropDown.Items?.Clear( );
+                ModelDropDown.Items.Add( "whisper-1" );
+                ModelDropDown.Items.Add( "gpt-4-0613" );
+                ModelDropDown.Items.Add( "gpt-4-0314" );
+                ModelDropDown.Items.Add( "gpt-4-turbo-2024-04-09" );
+                ModelDropDown.Items.Add( "text-davinci-003" );
+                ModelDropDown.SelectedIndex = -1;
             }
             catch( Exception ex )
             {
@@ -1928,9 +1930,9 @@ namespace Bubba
         {
             try
             {
-                ModelListBox.Items?.Clear( );
-                ModelListBox.Items.Add( "whisper-1" );
-                ModelListBox.SelectedIndex = -1;
+                ModelDropDown.Items?.Clear( );
+                ModelDropDown.Items.Add( "whisper-1" );
+                ModelDropDown.SelectedIndex = -1;
             }
             catch( Exception ex )
             {
@@ -1945,11 +1947,11 @@ namespace Bubba
         {
             try
             {
-                ModelListBox.Items?.Clear( );
-                ModelListBox.Items.Add( "text-embedding-3-small" );
-                ModelListBox.Items.Add( "text-embedding-3-large" );
-                ModelListBox.Items.Add( "text-embedding-ada-002" );
-                ModelListBox.SelectedIndex = -1;
+                ModelDropDown.Items?.Clear( );
+                ModelDropDown.Items.Add( "text-embedding-3-small" );
+                ModelDropDown.Items.Add( "text-embedding-3-large" );
+                ModelDropDown.Items.Add( "text-embedding-ada-002" );
+                ModelDropDown.SelectedIndex = -1;
             }
             catch( Exception ex )
             {
@@ -1964,14 +1966,14 @@ namespace Bubba
         {
             try
             {
-                ModelListBox.Items?.Clear( );
-                ModelListBox.Items.Add( "gpt-4o-2024-08-06" );
-                ModelListBox.Items.Add( "gpt-4o-mini-2024-07-18" );
-                ModelListBox.Items.Add( "gpt-4-0613" );
-                ModelListBox.Items.Add( "gpt-3.5-turbo-0125" );
-                ModelListBox.Items.Add( "gpt-3.5-turbo-1106" );
-                ModelListBox.Items.Add( "gpt-3.5-turbo-0613" );
-                ModelListBox.SelectedIndex = -1;
+                ModelDropDown.Items?.Clear( );
+                ModelDropDown.Items.Add( "gpt-4o-2024-08-06" );
+                ModelDropDown.Items.Add( "gpt-4o-mini-2024-07-18" );
+                ModelDropDown.Items.Add( "gpt-4-0613" );
+                ModelDropDown.Items.Add( "gpt-3.5-turbo-0125" );
+                ModelDropDown.Items.Add( "gpt-3.5-turbo-1106" );
+                ModelDropDown.Items.Add( "gpt-3.5-turbo-0613" );
+                ModelDropDown.SelectedIndex = -1;
             }
             catch( Exception ex )
             {
@@ -1986,13 +1988,13 @@ namespace Bubba
         {
             try
             {
-                ModelListBox.Items?.Clear( );
-                ModelListBox.Items.Add( "tts-1" );
-                ModelListBox.Items.Add( "tts-1-hd" );
-                ModelListBox.Items.Add( "gpt-4o-audio-preview-2024-12-17" );
-                ModelListBox.Items.Add( "gpt-4o-audio-preview-2024-10-01" );
-                ModelListBox.Items.Add( "gpt-4o-mini-audio-preview-2024-12-17" );
-                ModelListBox.SelectedIndex = -1;
+                ModelDropDown.Items?.Clear( );
+                ModelDropDown.Items.Add( "tts-1" );
+                ModelDropDown.Items.Add( "tts-1-hd" );
+                ModelDropDown.Items.Add( "gpt-4o-audio-preview-2024-12-17" );
+                ModelDropDown.Items.Add( "gpt-4o-audio-preview-2024-10-01" );
+                ModelDropDown.Items.Add( "gpt-4o-mini-audio-preview-2024-12-17" );
+                ModelDropDown.SelectedIndex = -1;
             }
             catch( Exception ex )
             {
@@ -2007,18 +2009,18 @@ namespace Bubba
         {
             try
             {
-                ModelListBox.Items?.Clear( );
-                ModelListBox.Items.Add( "gpt-4-0613" );
-                ModelListBox.Items.Add( "gpt-4-0314" );
-                ModelListBox.Items.Add( "gpt-4-turbo-2024-04-09" );
-                ModelListBox.Items.Add( "gpt-4o-mini-2024-07-18" );
-                ModelListBox.Items.Add( "gpt-4o-2024-08-06" );
-                ModelListBox.Items.Add( "gpt-4o-2024-11-20" );
-                ModelListBox.Items.Add( "gpt-4o-2024-05-13" );
-                ModelListBox.Items.Add( "o1-2024-12-17" );
-                ModelListBox.Items.Add( "o1-mini-2024-09-12" );
-                ModelListBox.Items.Add( "o3-mini-2025-01-31" );
-                ModelListBox.SelectedIndex = -1;
+                ModelDropDown.Items?.Clear( );
+                ModelDropDown.Items.Add( "gpt-4-0613" );
+                ModelDropDown.Items.Add( "gpt-4-0314" );
+                ModelDropDown.Items.Add( "gpt-4-turbo-2024-04-09" );
+                ModelDropDown.Items.Add( "gpt-4o-mini-2024-07-18" );
+                ModelDropDown.Items.Add( "gpt-4o-2024-08-06" );
+                ModelDropDown.Items.Add( "gpt-4o-2024-11-20" );
+                ModelDropDown.Items.Add( "gpt-4o-2024-05-13" );
+                ModelDropDown.Items.Add( "o1-2024-12-17" );
+                ModelDropDown.Items.Add( "o1-mini-2024-09-12" );
+                ModelDropDown.Items.Add( "o3-mini-2025-01-31" );
+                ModelDropDown.SelectedIndex = -1;
             }
             catch( Exception ex )
             {
@@ -2033,18 +2035,18 @@ namespace Bubba
         {
             try
             {
-                ModelListBox.Items?.Clear( );
-                ModelListBox.Items.Add( "gpt-4-0613" );
-                ModelListBox.Items.Add( "gpt-4-0314" );
-                ModelListBox.Items.Add( "gpt-4-turbo-2024-04-09" );
-                ModelListBox.Items.Add( "gpt-4o-mini-2024-07-18" );
-                ModelListBox.Items.Add( "gpt-4o-2024-08-06" );
-                ModelListBox.Items.Add( "gpt-4o-2024-11-20" );
-                ModelListBox.Items.Add( "gpt-4o-2024-05-13" );
-                ModelListBox.Items.Add( "o1-2024-12-17" );
-                ModelListBox.Items.Add( "o1-mini-2024-09-12" );
-                ModelListBox.Items.Add( "o3-mini-2025-01-31" );
-                ModelListBox.SelectedIndex = -1;
+                ModelDropDown.Items?.Clear( );
+                ModelDropDown.Items.Add( "gpt-4-0613" );
+                ModelDropDown.Items.Add( "gpt-4-0314" );
+                ModelDropDown.Items.Add( "gpt-4-turbo-2024-04-09" );
+                ModelDropDown.Items.Add( "gpt-4o-mini-2024-07-18" );
+                ModelDropDown.Items.Add( "gpt-4o-2024-08-06" );
+                ModelDropDown.Items.Add( "gpt-4o-2024-11-20" );
+                ModelDropDown.Items.Add( "gpt-4o-2024-05-13" );
+                ModelDropDown.Items.Add( "o1-2024-12-17" );
+                ModelDropDown.Items.Add( "o1-mini-2024-09-12" );
+                ModelDropDown.Items.Add( "o3-mini-2025-01-31" );
+                ModelDropDown.SelectedIndex = -1;
             }
             catch( Exception ex )
             {
@@ -2059,18 +2061,18 @@ namespace Bubba
         {
             try
             {
-                ModelListBox.Items?.Clear( );
-                ModelListBox.Items.Add( "gpt-4-0613" );
-                ModelListBox.Items.Add( "gpt-4-0314" );
-                ModelListBox.Items.Add( "gpt-4-turbo-2024-04-09" );
-                ModelListBox.Items.Add( "gpt-4o-mini-2024-07-18" );
-                ModelListBox.Items.Add( "gpt-4o-2024-08-06" );
-                ModelListBox.Items.Add( "gpt-4o-2024-11-20" );
-                ModelListBox.Items.Add( "gpt-4o-2024-05-13" );
-                ModelListBox.Items.Add( "o1-2024-12-17" );
-                ModelListBox.Items.Add( "o1-mini-2024-09-12" );
-                ModelListBox.Items.Add( "o3-mini-2025-01-31" );
-                ModelListBox.SelectedIndex = -1;
+                ModelDropDown.Items?.Clear( );
+                ModelDropDown.Items.Add( "gpt-4-0613" );
+                ModelDropDown.Items.Add( "gpt-4-0314" );
+                ModelDropDown.Items.Add( "gpt-4-turbo-2024-04-09" );
+                ModelDropDown.Items.Add( "gpt-4o-mini-2024-07-18" );
+                ModelDropDown.Items.Add( "gpt-4o-2024-08-06" );
+                ModelDropDown.Items.Add( "gpt-4o-2024-11-20" );
+                ModelDropDown.Items.Add( "gpt-4o-2024-05-13" );
+                ModelDropDown.Items.Add( "o1-2024-12-17" );
+                ModelDropDown.Items.Add( "o1-mini-2024-09-12" );
+                ModelDropDown.Items.Add( "o3-mini-2025-01-31" );
+                ModelDropDown.SelectedIndex = -1;
             }
             catch( Exception ex )
             {
@@ -2343,7 +2345,7 @@ namespace Bubba
             try
             {
                 var _synth = new SpeechSynthesizer( );
-                VoiceListBox.Items?.Clear( );
+                VoiceDropDown.Items?.Clear( );
                 _voices.Clear(  );
                 foreach( var _voice in _synth.GetInstalledVoices( ) )
                 {
@@ -2360,7 +2362,7 @@ namespace Bubba
                         Content = _lower
                     };
 
-                    VoiceListBox.Items.Add( _item );
+                    VoiceDropDown.Items.Add( _item );
                 }
             }
             catch( Exception ex )
@@ -2386,7 +2388,7 @@ namespace Bubba
                 _aiVoices.Add( "nova", "nova" );
                 _aiVoices.Add( "sage", "sage" );
                 _aiVoices.Add( "shimmer", "shimer" );
-                VoiceListBox.Items.Clear(  );
+                VoiceDropDown.Items.Clear(  );
                 foreach( var _voice in _aiVoices )
                 {
                     var _item = new ListBoxItem
@@ -2395,7 +2397,7 @@ namespace Bubba
                         Content = _voice.Value
                     };
 
-                    VoiceListBox.Items.Add( _item );
+                    VoiceDropDown.Items.Add( _item );
                 }
             }
             catch( Exception ex )
@@ -2430,7 +2432,7 @@ namespace Bubba
                         Content = _voice.Value
                     };
 
-                    VoiceListBox.Items.Add( _item );
+                    VoiceDropDown.Items.Add( _item );
                 }
             }
             catch( Exception ex )
@@ -2475,14 +2477,14 @@ namespace Bubba
         {
             try
             {
-                LanguageListBox.Items?.Clear( );
+                LanguageDropDown.Items?.Clear( );
                 var _names = Enum.GetNames( typeof( GptLanguages ) );
                 foreach( var _request in _names )
                 {
-                    LanguageListBox.Items.Add( _request );
+                    LanguageDropDown.Items.Add( _request );
                 }
 
-                LanguageListBox.SelectedIndex = -1;
+                LanguageDropDown.SelectedIndex = -1;
             }
             catch( Exception ex )
             {
@@ -2668,6 +2670,104 @@ namespace Bubba
                         }
                     }
                 }
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+            }
+        }
+
+        /// <summary>
+        /// Activates the chat tab.
+        /// </summary>
+        private protected void ActivateChatTab( )
+        {
+            try
+            {
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+            }
+        }
+
+        /// <summary>
+        /// Activates the editor tab.
+        /// </summary>
+        private protected void ActivateEditorTab( )
+        {
+            try
+            {
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+            }
+        }
+
+        /// <summary>
+        /// Activates the parameter tab.
+        /// </summary>
+        private protected void ActivateParameterTab( )
+        {
+            try
+            {
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+            }
+        }
+
+        /// <summary>
+        /// Activates the chart tab.
+        /// </summary>
+        private protected void ActivateChartTab( )
+        {
+            try
+            {
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+            }
+        }
+
+        /// <summary>
+        /// Activates the data tab.
+        /// </summary>
+        private protected void ActivateDataTab( )
+        {
+            try
+            {
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+            }
+        }
+
+        /// <summary>
+        /// Activates the graph tab.
+        /// </summary>
+        private protected void ActivateGraphTab( )
+        {
+            try
+            {
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+            }
+        }
+
+        /// <summary>
+        /// Activates the busy tab.
+        /// </summary>
+        private protected void ActivateBusyTab( )
+        {
+            try
+            {
             }
             catch( Exception ex )
             {
@@ -2952,7 +3052,7 @@ namespace Bubba
                 _frequency = double.Parse( FrequencySlider.Value.ToString( "N2" ) );
                 _number = int.Parse( NumberTextBox.Text );
                 _maximumTokens = Convert.ToInt32( MaxTokenTextBox.Text );
-                _model = ModelListBox.SelectedItem.ToString( ) ?? "gpt-4o";
+                _model = ModelDropDown.SelectedItem.ToString( ) ?? "gpt-4o";
                 _userPrompt = _language == "Text"
                     ? ChatEditor.Text
                     : "";
@@ -3011,7 +3111,7 @@ namespace Bubba
                 ThrowIf.Null( url, nameof( url ) );
                 _originalUrl = url;
                 _finalUrl = CleanUrl( url );
-                UrlTextBox.Text = _finalUrl;
+                UrlPanelTextBox.Text = _finalUrl;
                 _currentBrowser.LoadUrl( _finalUrl );
                 CloseSearch( );
             }
@@ -3061,9 +3161,9 @@ namespace Bubba
                     _synthesizer.SetOutputToDefaultAudioDevice( );
                 }
 
-                if( VoiceListBox.SelectedItem.ToString( ) != "" )
+                if( VoiceDropDown.SelectedItem.ToString( ) != "" )
                 {
-                    _synthesizer.SelectVoice( VoiceListBox.SelectedItem.ToString( ) );
+                    _synthesizer.SelectVoice( VoiceDropDown.SelectedItem.ToString( ) );
                 }
 
                 _synthesizer.Speak( input );
@@ -3250,7 +3350,7 @@ namespace Bubba
                 if( !string.IsNullOrEmpty( _text ) )
                 {
                     ChatEditor.Text = _text;
-                    ChatTextBox.Text = _text;
+                    GptTextBox.Text = _text;
                 }
             }
             catch( Exception ex )
@@ -3776,14 +3876,14 @@ namespace Bubba
             if( MuteCheckBox.IsChecked == true )
             {
                 VoiceLabel.Visibility = Visibility.Visible;
-                VoiceListBox.Visibility = Visibility.Visible;
+                VoiceDropDown.Visibility = Visibility.Visible;
                 var _msg = "The GPT Audio Client has been activated!";
                 SendNotification( _msg );
             }
             else
             {
                 VoiceLabel.Visibility = Visibility.Hidden;
-                VoiceListBox.Visibility = Visibility.Hidden;
+                VoiceDropDown.Visibility = Visibility.Hidden;
             }
         }
 
@@ -3886,9 +3986,9 @@ namespace Bubba
         {
             try
             {
-                if( ModelListBox.SelectedIndex != -1 )
+                if( ModelDropDown.SelectedIndex != -1 )
                 {
-                    _model = ModelListBox.SelectedValue.ToString( );
+                    _model = ModelDropDown.SelectedValue.ToString( );
                     PopulateImageSizes( );
                 }
             }
@@ -3933,9 +4033,9 @@ namespace Bubba
         {
             try
             {
-                if( LanguageListBox.SelectedIndex != -1 )
+                if( LanguageDropDown.SelectedIndex != -1 )
                 {
-                    _language = LanguageListBox.SelectedItem.ToString( );
+                    _language = LanguageDropDown.SelectedItem.ToString( );
                     PopulateDocuments( );
                 }
             }
@@ -4131,6 +4231,11 @@ namespace Bubba
             using var _error = new ErrorWindow( ex );
             _error?.SetText( );
             _error?.ShowDialog( );
+        }
+
+        private void GptFileButton_Click( object sender, RoutedEventArgs e )
+        {
+
         }
     }
 }
