@@ -79,6 +79,8 @@ namespace Bubba
     [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
     [ SuppressMessage( "ReSharper", "PreferConcreteValueOverDefault" ) ]
     [ SuppressMessage( "ReSharper", "LocalVariableHidesMember" ) ]
+    [ SuppressMessage( "ReSharper", "FieldCanBeMadeReadOnly.Local" ) ]
+    [ SuppressMessage( "ReSharper", "FieldCanBeMadeReadOnly.Global" ) ]
     public partial class ChatWindow : Window, INotifyPropertyChanged, IDisposable
     {
         /// <summary>
@@ -219,9 +221,46 @@ namespace Bubba
         private protected bool _stream;
 
         /// <summary>
+        /// Whether to return log probabilities of the output tokens or not.
+        /// If true, returns the log probabilities of each output token
+        /// returned in the content of message.
+        /// </summary>
+        private protected bool _logprobs;
+
+        /// <summary>
         /// The image size
         /// </summary>
         private protected string _size;
+
+        /// <summary>
+        /// The speed
+        /// </summary>
+        private protected int _speed;
+
+        /// <summary>
+        /// The response format
+        /// </summary>
+        private protected string _responseFormat;
+
+        /// <summary>
+        /// The reasoning effort
+        /// </summary>
+        private protected string _reasoningEffort;
+
+        /// <summary>
+        /// The audio format
+        /// </summary>
+        private protected string _audioFormat;
+
+        /// <summary>
+        /// The quality
+        /// </summary>
+        private protected string _quality;
+
+        /// <summary>
+        /// The detail
+        /// </summary>
+        private protected string _detail;
 
         /// <summary>
         /// An upper bound for the number of tokens
@@ -234,29 +273,66 @@ namespace Bubba
         /// tokens based on their existing frequency in the text so far,
         /// decreasing the model's likelihood to repeat the same line verbatim.
         /// </summary>
-        private protected double _frequency;
+        private protected double _frequencyPenalty;
 
         /// <summary>
         /// Number between -2.0 and 2.0. Positive values penalize new tokens
         /// based on whether they appear in the text so far,
         /// increasing the model's likelihood to talk about new topics.
         /// </summary>
-        private protected double _presence;
+        private protected double _presencePenalty;
+
+        /// <summary>
+        /// An integer between 0 and 20 specifying the number of most likely tokens
+        /// to return at each token position, each with an associated log probability.
+        /// logprobs must be set to true if this parameter is used.
+        /// </summary>
+        private protected int _topLogProbs;
 
         /// <summary>
         /// The models
         /// </summary>
-        private protected IList<string> _models;
+        private protected IList<string> _modelOptions;
 
         /// <summary>
         /// The image sizes
         /// </summary>
-        private protected IList<string> _imageSizes;
+        private protected IList<string> _sizeOptions;
 
         /// <summary>
         /// The image sizes
         /// </summary>
-        private protected IDictionary<string, string> _voices;
+        private protected IDictionary<string, string> _voiceOptions;
+
+        /// <summary>
+        /// The speed options
+        /// </summary>
+        private protected IList<string> _speedOptions;
+
+        /// <summary>
+        /// The reasoning options
+        /// </summary>
+        private protected IList<string> _reasoningOptions;
+
+        /// <summary>
+        /// The quality options
+        /// </summary>
+        private protected IList<string> _qualityOptions;
+
+        /// <summary>
+        /// The detail options
+        /// </summary>
+        private protected IList<string> _detailOptions;
+
+        /// <summary>
+        /// The response format options
+        /// </summary>
+        private protected IList<string> _responseFormatOptions;
+
+        /// <summary>
+        /// The audio format options
+        /// </summary>
+        private protected IList<string> _audioFormatOptions;
 
         /// <summary>
         /// The chat model
@@ -403,18 +479,23 @@ namespace Bubba
             TopPercentSlider.Value = 0.09;
             PresenceSlider.Value = 0.00;
             FrequencySlider.Value = 0.00;
-            MaxTokenSlider.Value = 2048;
+            SpeechRateSlider.Value = 1.0;
 
             // GPT Parameters
             _store = false;
             _stream = true;
             _temperature = TemperatureSlider.Value;
             _topPercent = TopPercentSlider.Value;
-            _presence = PresenceSlider.Value;
-            _frequency = FrequencySlider.Value;
-            _maximumTokens = ( int )MaxTokenSlider.Value;
-            _imageSizes = new List<string>( );
-            _voices = new Dictionary<string, string>( );
+            _presencePenalty = PresenceSlider.Value;
+            _frequencyPenalty = FrequencySlider.Value;
+            _maximumTokens = int.Parse( MaxTokenTextBox.Text );
+            _sizeOptions = new List<string>( );
+            _speedOptions = new List<string>( );
+            _qualityOptions = new List<string>( );
+            _reasoningOptions = new List<string>( );
+            _responseFormatOptions = new List<string>( );
+            _audioFormatOptions = new List<string>( );
+            _voiceOptions = new Dictionary<string, string>( );
             _systemPrompt = App.Instructions;
 
             // Event Wiring
@@ -610,7 +691,7 @@ namespace Bubba
                 MuteCheckBox.Checked += OnMuteCheckedBoxChanged;
                 StoreCheckBox.Checked += OnStoreCheckBoxChecked;
                 GenerationListBox.SelectionChanged += OnRequestListBoxSelectionChanged;
-                ImageSizeDropDown.SelectionChanged += OnImageSizeListBoxSelectionChanged;
+                ImageSizeDropDown.SelectionChanged += OnImageSizeDropDownSelectionChanged;
                 ToolStripRefreshButton.Click += OnRefreshButtonClick;
                 ToolStripSendButton.Click += OnGoButtonClicked;
                 GptFileButton.Click += OnFileApiButtonClick;
@@ -789,8 +870,8 @@ namespace Bubba
                 _maximumTokens = 2048;
                 _temperature = 0.08;
                 _topPercent = 0.09;
-                _frequency = 0.00;
-                _presence = 0.00;
+                _frequencyPenalty = 0.00;
+                _presencePenalty = 0.00;
                 _language = "";
                 _voice = "";
             }
@@ -857,7 +938,7 @@ namespace Bubba
                 FrequencySlider.Value = 0.00;
                 TemperatureSlider.Value = 0.08;
                 TopPercentSlider.Value = 0.09;
-                MaxTokenSlider.Value = 2048;
+                SpeechRateSlider.Value = 2048;
             }
             catch( Exception ex )
             {
@@ -888,7 +969,7 @@ namespace Bubba
             {
                 GenerationListBox.SelectedIndex = -1;
                 ModelDropDown.SelectedIndex = -1;
-                //AiVoiceDropDown.SelectedIndex = -1;
+                VoicesDropDown.SelectedIndex = -1;
                 ImageSizeDropDown.SelectedIndex = -1;
                 LanguageDropDown.SelectedIndex = -1;
             }
@@ -2345,8 +2426,8 @@ namespace Bubba
             try
             {
                 var _synth = new SpeechSynthesizer( );
-                //AiVoiceDropDown.Items?.Clear( );
-                _voices.Clear(  );
+                VoicesDropDown.Items?.Clear( );
+                _voiceOptions.Clear(  );
                 foreach( var _voice in _synth.GetInstalledVoices( ) )
                 {
                     var _info = _voice.VoiceInfo;
@@ -2355,14 +2436,14 @@ namespace Bubba
                     var _first = _info.Name.TrimStart( _start );
                     var _last = _first.TrimEnd( _end );
                     var _lower = _last.ToLower(  );
-                    _voices.Add( _info.Name, _lower );
+                    _voiceOptions.Add( _info.Name, _lower );
                     var _item = new ListBoxItem
                     {
                         Tag = _info.Name,
                         Content = _lower
                     };
 
-                    //AiVoiceDropDown.Items.Add( _item );
+                    VoicesDropDown.Items.Add( _item );
                 }
             }
             catch( Exception ex )
@@ -2388,7 +2469,7 @@ namespace Bubba
                 _aiVoices.Add( "nova", "nova" );
                 _aiVoices.Add( "sage", "sage" );
                 _aiVoices.Add( "shimmer", "shimer" );
-                //AiVoiceDropDown.Items.Clear(  );
+                VoicesDropDown.Items.Clear(  );
                 foreach( var _voice in _aiVoices )
                 {
                     var _item = new ListBoxItem
@@ -2432,7 +2513,7 @@ namespace Bubba
                         Content = _voice.Value
                     };
 
-                    //AiVoiceDropDown.Items.Add( _item );
+                    VoicesDropDown.Items.Add( _item );
                 }
             }
             catch( Exception ex )
@@ -3046,11 +3127,11 @@ namespace Bubba
             {
                 _store = StoreCheckBox.IsChecked ?? false;
                 _stream = StreamCheckBox.IsChecked ?? true;
-                _presence = double.Parse( PresenceSlider.Value.ToString( "N2" ) );
+                _presencePenalty = double.Parse( PresenceSlider.Value.ToString( "N2" ) );
                 _temperature = double.Parse( TemperatureSlider.Value.ToString( "N2" ) );
                 _topPercent = double.Parse( TopPercentSlider.Value.ToString( "N2" ) );
-                _frequency = double.Parse( FrequencySlider.Value.ToString( "N2" ) );
-                _number = int.Parse( NumberTextBox.Text );
+                _frequencyPenalty = double.Parse( FrequencySlider.Value.ToString( "N2" ) );
+                _number = int.Parse( MaxTokenTextBox.Text );
                 _maximumTokens = Convert.ToInt32( MaxTokenTextBox.Text );
                 _model = ModelDropDown.SelectedItem.ToString( ) ?? "gpt-4o";
                 _userPrompt = _language == "Text"
@@ -4124,7 +4205,7 @@ namespace Bubba
         /// <param name="sender">The sender.</param>
         /// <param name="e">The <see cref="RoutedEventArgs"/>
         /// instance containing the event data.</param>
-        private void OnImageSizeListBoxSelectionChanged( object sender, RoutedEventArgs e )
+        private void OnImageSizeDropDownSelectionChanged( object sender, RoutedEventArgs e )
         {
             try
             {
@@ -4183,7 +4264,46 @@ namespace Bubba
         /// <param name="sender">The sender.</param>
         /// <param name="e">The <see cref="RoutedEventArgs"/>
         /// instance containing the event data.</param>
-        private void OnGuidanceOptionClick( object sender, RoutedEventArgs e )
+        private void OnImageFormatSelectionChanged( object sender, RoutedEventArgs e )
+        {
+            try
+            {
+                Busy( );
+                Chill( );
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+            }
+        }
+
+        private void OnImageSizeSelectionChanged( object sender, RoutedEventArgs e )
+        {
+            try
+            {
+                Busy( );
+                Chill( );
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+            }
+        }
+
+        private void OnImageDetailSelectionChanged( object sender, RoutedEventArgs e )
+        {
+            try
+            {
+                Busy( );
+                Chill( );
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+            }
+        }
+
+        private void OnSpeechRateSelectionChanged( object sender, RoutedEventArgs e )
         {
             try
             {
@@ -4231,11 +4351,6 @@ namespace Bubba
             using var _error = new ErrorWindow( ex );
             _error?.SetText( );
             _error?.ShowDialog( );
-        }
-
-        private void GptFileButton_Click( object sender, RoutedEventArgs e )
-        {
-
         }
     }
 }

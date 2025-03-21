@@ -453,7 +453,6 @@
     <None Remove="Resources\Fonts\Roboto-Regular.ttf" />
     <None Remove="Resources\Reports\Report.xlsx" />
     <None Remove="SplashScreen.png" />
-    <None Remove="UI\Views\DocumentWindow\Badger.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -1060,7 +1059,6 @@
     <Resource Include="Resources\Reports\Report.xlsx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="UI\Views\DocumentWindow\Badger.png" />
   </ItemGroup>
 
   <ItemGroup>

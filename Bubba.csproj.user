@@ -39,9 +39,6 @@
     <Page Update="UI\Themes\GroupBox\GroupBox.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="UI\Views\DocumentWindow\DocumentWindow.xaml">
-      <SubType>Designer</SubType>
-    </Page>
     <Page Update="UI\Views\PropertyDialog\PropertyDialog.xaml">
       <SubType>Designer</SubType>
     </Page>

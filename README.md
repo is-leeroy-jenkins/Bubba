@@ -21,12 +21,6 @@
 - Modern UI Design**: User-friendly WPF interface with rich text logging.
 - Multi OS Support**: Compatible with Windows x64/x86/ARM, Linux and MacOS.
 
-- The [Outlay Projector](https://anaconda.cloud/api/nbserve/launch_notebook?nb_url=https%3A%2F%2Fanaconda.cloud%2Fapi%2Fprojects%2Ff4ad0240-eaf1-4ad1-a8b4-99e630b46cda%2Ffiles%2Foutlays.ipynb%3Fversion%3D3c5763b3-e106-4e67-b314-3207f7f4ee71) is a forecasting model that uses historical expenditure data, 
-generative AI, and machine-learning to project future outlays by agency and fiscal year.
-
-- The [Balance Estimator](https://anaconda.cloud/api/nbserve/launch_notebook?nb_url=https%3A%2F%2Fanaconda.cloud%2Fapi%2Fprojects%2F088fd703-e3a6-426c-af6b3c80bf443a33%2Ffiles%2FBalanceEstimator.ipynb%3Fversion%3Dac106c51-bc0c-4e82-a9c0-1c59c48f4510) is a forecasting model that uses 
-historical data from 2017 to 2024 to project balances at the account-level.
-
 ## ![](https://github.com/is-leeroy-jenkins/Bubba/blob/master/Resources/Assets/GitHubImages/csharp.png)  Code
 
 - Bubba supports x64 specific builds
@@ -59,9 +53,13 @@ historical data from 2017 to 2024 to project balances at the account-level.
 - #### [Federal Appropriations](https://github.com/is-leeroy-jenkins/Bubba/blob/master/Resources/Github/Appropriations.md) - vectorized dataset of federal appropriations available for fine-tuning machine learning models
 - #### [Federal Regulations](https://github.com/is-leeroy-jenkins/Bubba/blob/master/Resources/Github/Regulations.md) - vectorized dataset of federal finance regulations available for fine-tuning machine learning models
 - #### Real-world analysis on pre-trained, vectorized appropriations data that would typically require analysts considerable time in a matter of seconds. 
-- #### [Semantic Search](https://help.openai.com/en/articles/8868588-retrieval-augmented-generation-rag-and-semantic-search-for-gpts) on federal budget guidance with Vector Embeddings.
+- #### [Outlay Projector](https://anaconda.cloud/api/nbserve/launch_notebook?nb_url=https%3A%2F%2Fanaconda.cloud%2Fapi%2Fprojects%2Ff4ad0240-eaf1-4ad1-a8b4-99e630b46cda%2Ffiles%2Foutlays.ipynb%3Fversion%3D3c5763b3-e106-4e67-b314-3207f7f4ee71) is a forecasting model that uses historical expenditure data, 
+generative AI, and machine-learning to project future outlays by agency and fiscal year.
+- #### [Balance Estimator](https://anaconda.cloud/api/nbserve/launch_notebook?nb_url=https%3A%2F%2Fanaconda.cloud%2Fapi%2Fprojects%2F088fd703-e3a6-426c-af6b3c80bf443a33%2Ffiles%2FBalanceEstimator.ipynb%3Fversion%3Dac106c51-bc0c-4e82-a9c0-1c59c48f4510) is a forecasting model that uses 
+historical data from 2017 to 2024 to project balances at the account-level.
 
-### Ex. gpt-40-mini test run below
+
+- ### Ex. gpt-40-mini test run below
 
 - Bubba is prompted to review 10 years of appropriation data
 - Extrapolate the appropriated amounts.

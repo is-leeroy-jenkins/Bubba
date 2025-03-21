@@ -1,4 +1,4 @@
-﻿C:\Users\terry\source\repos\Bubba\obj\Debug\net8.0-windows7.0\GeneratedInternalTypeHelper.g.cs
+﻿
 FC:\Users\terry\source\repos\Bubba\App.xaml;;
 FC:\Users\terry\source\repos\Bubba\UI\Controls\Frame\MetroComboFrame.xaml;;
 FC:\Users\terry\source\repos\Bubba\UI\Controls\Frame\MetroTextInput.xaml;;
@@ -38,7 +38,6 @@ FC:\Users\terry\source\repos\Bubba\UI\Views\Calculator\CalculatorWindow.xaml;;
 FC:\Users\terry\source\repos\Bubba\UI\Views\ChatWindow\ChatWindow.xaml;;
 FC:\Users\terry\source\repos\Bubba\UI\Views\ColorDialog\ColorDialog.xaml;;
 FC:\Users\terry\source\repos\Bubba\UI\Views\Configuration\ConfigurationDialog.xaml;;
-FC:\Users\terry\source\repos\Bubba\UI\Views\DocumentWindow\DocumentWindow.xaml;;
 FC:\Users\terry\source\repos\Bubba\UI\Views\ErrorWindow\ErrorWindow.xaml;;
 FC:\Users\terry\source\repos\Bubba\UI\Views\FileBrowser\FileBrowser.xaml;;
 FC:\Users\terry\source\repos\Bubba\UI\Views\FolderBrowser\FolderBrowser.xaml;;
