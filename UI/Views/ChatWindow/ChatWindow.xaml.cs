@@ -230,7 +230,7 @@ namespace Bubba
         /// <summary>
         /// The image size
         /// </summary>
-        private protected string _size;
+        private protected string _imageSize;
 
         /// <summary>
         /// The speed
@@ -253,14 +253,19 @@ namespace Bubba
         private protected string _audioFormat;
 
         /// <summary>
+        /// The image format
+        /// </summary>
+        private protected string _imageFormat;
+
+        /// <summary>
         /// The quality
         /// </summary>
-        private protected string _quality;
+        private protected string _imageQuality;
 
         /// <summary>
         /// The detail
         /// </summary>
-        private protected string _detail;
+        private protected string _imageDetail;
 
         /// <summary>
         /// An upper bound for the number of tokens
@@ -691,12 +696,17 @@ namespace Bubba
                 MuteCheckBox.Checked += OnMuteCheckedBoxChanged;
                 StoreCheckBox.Checked += OnStoreCheckBoxChecked;
                 GenerationListBox.SelectionChanged += OnRequestListBoxSelectionChanged;
-                ImageSizeDropDown.SelectionChanged += OnImageSizeDropDownSelectionChanged;
                 ToolStripRefreshButton.Click += OnRefreshButtonClick;
                 ToolStripSendButton.Click += OnGoButtonClicked;
                 GptFileButton.Click += OnFileApiButtonClick;
                 LanguageDropDown.SelectionChanged += OnLanguageListBoxSelectionChanged;
                 DocumentListBox.SelectionChanged += OnDocumentListBoxSelectionChanged;
+                ResponseFormatDropDown.SelectionChanged += OnResponseFormatSelectionChanged;
+                ImageSizeDropDown.SelectionChanged += OnImageSizeSelectionChanged;
+                AudioFormatDropDown.SelectionChanged += OnAudioFormatSelectionChanged;
+                ImageFormatDropDown.SelectionChanged += OnImageFormatSelectionChanged;
+                ImageQualityDropDown.SelectionChanged += OnImageQualitySelectionChanged;
+                ImageDetailDropDown.SelectionChanged += OnImageDetailSelectionChanged;
             }
             catch( Exception ex )
             {
@@ -864,7 +874,7 @@ namespace Bubba
                 _store = false;
                 _stream = true;
                 _model = "";
-                _size = "";
+                _imageSize = "";
                 _endpoint = "";
                 _number = 1;
                 _maximumTokens = 2048;
@@ -4205,14 +4215,14 @@ namespace Bubba
         /// <param name="sender">The sender.</param>
         /// <param name="e">The <see cref="RoutedEventArgs"/>
         /// instance containing the event data.</param>
-        private void OnImageSizeDropDownSelectionChanged( object sender, RoutedEventArgs e )
+        private protected void OnImageFormatSelectionChanged( object sender, RoutedEventArgs e )
         {
             try
             {
                 if( ImageSizeDropDown.SelectedIndex != -1 )
                 {
                     var _image = ImageSizeDropDown.SelectedValue.ToString( );
-                    _size = _image?.Replace( " ", "" );
+                    _imageSize = _image?.Replace( " ", "" );
                 }
             }
             catch( Exception ex )
@@ -4227,7 +4237,7 @@ namespace Bubba
         /// <param name="sender">The sender.</param>
         /// <param name="e">The <see cref="RoutedEventArgs"/>
         /// instance containing the event data.</param>
-        private void OnGoButtonClicked( object sender, RoutedEventArgs e )
+        private protected void OnGoButtonClicked( object sender, RoutedEventArgs e )
         {
             try
             {
@@ -4259,17 +4269,46 @@ namespace Bubba
         }
 
         /// <summary>
+        /// Called when [response format selection changed].
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The <see cref="RoutedEventArgs"/>
+        /// instance containing the event data.</param>
+        private protected void OnResponseFormatSelectionChanged( object sender, RoutedEventArgs e )
+        {
+            try
+            {
+                if( ResponseFormatDropDown.SelectedIndex != -1 )
+                {
+                    var _image = ResponseFormatDropDown.SelectedValue.ToString( );
+                    _responseFormat = _image?.Replace( " ", "" );
+                    var _message = "ResponseFormat = " + _responseFormat;
+                    SendMessage( _message );
+                }
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+            }
+        }
+
+        /// <summary>
         /// Called when [guidance option click].
         /// </summary>
         /// <param name="sender">The sender.</param>
         /// <param name="e">The <see cref="RoutedEventArgs"/>
         /// instance containing the event data.</param>
-        private void OnImageFormatSelectionChanged( object sender, RoutedEventArgs e )
+        private protected void OnImageQualitySelectionChanged( object sender, RoutedEventArgs e )
         {
             try
             {
-                Busy( );
-                Chill( );
+                if( ImageQualityDropDown.SelectedIndex != -1 )
+                {
+                    var _image = ImageQualityDropDown.SelectedValue.ToString( );
+                    _imageQuality = _image?.Replace( " ", "" );
+                    var _message = "ImageQuality = " + _imageQuality;
+                    SendMessage( _message );
+                }
             }
             catch( Exception ex )
             {
@@ -4277,12 +4316,23 @@ namespace Bubba
             }
         }
 
-        private void OnImageSizeSelectionChanged( object sender, RoutedEventArgs e )
+        /// <summary>
+        /// Called when [audio format selection changed].
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The <see cref="RoutedEventArgs"/>
+        /// instance containing the event data.</param>
+        private protected void OnAudioFormatSelectionChanged( object sender, RoutedEventArgs e )
         {
             try
             {
-                Busy( );
-                Chill( );
+                if( AudioFormatDropDown.SelectedIndex != -1 )
+                {
+                    var _image = AudioFormatDropDown.SelectedValue.ToString( );
+                    _audioFormat = _image?.Replace( " ", "" );
+                    var _message = "AudioFormat = " + _audioFormat;
+                    SendMessage( _message );
+                }
             }
             catch( Exception ex )
             {
@@ -4290,12 +4340,23 @@ namespace Bubba
             }
         }
 
-        private void OnImageDetailSelectionChanged( object sender, RoutedEventArgs e )
+        /// <summary>
+        /// Called when [image size selection changed].
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The <see cref="RoutedEventArgs"/>
+        /// instance containing the event data.</param>
+        private protected void OnImageSizeSelectionChanged( object sender, RoutedEventArgs e )
         {
             try
             {
-                Busy( );
-                Chill( );
+                if( ImageSizeDropDown.SelectedIndex != -1 )
+                {
+                    var _image = ImageSizeDropDown.SelectedValue.ToString( );
+                    _imageSize = _image?.Replace( " ", "" );
+                    var _message = "ImageSize = " + _imageSize;
+                    SendMessage( _message );
+                }
             }
             catch( Exception ex )
             {
@@ -4303,12 +4364,47 @@ namespace Bubba
             }
         }
 
-        private void OnSpeechRateSelectionChanged( object sender, RoutedEventArgs e )
+        /// <summary>
+        /// Called when [image detail selection changed].
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The <see cref="RoutedEventArgs"/>
+        /// instance containing the event data.</param>
+        private protected void OnImageDetailSelectionChanged( object sender, RoutedEventArgs e )
         {
             try
             {
-                Busy( );
-                Chill( );
+                if( ImageDetailDropDown.SelectedIndex != -1 )
+                {
+                    var _image = ImageDetailDropDown.SelectedValue.ToString( );
+                    _imageDetail = _image?.Replace( " ", "" );
+                    var _message = "ImageDetail = " + _imageDetail;
+                    SendMessage( _message );
+                }
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+            }
+        }
+
+        /// <summary>
+        /// Called when [reasoning effort selection changed].
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The <see cref="RoutedEventArgs"/>
+        /// instance containing the event data.</param>
+        private protected void OnEffortSelectionChanged( object sender, RoutedEventArgs e )
+        {
+            try
+            {
+                if( EffortDropDown.SelectedIndex != -1 )
+                {
+                    var _image =  EffortDropDown.SelectedValue.ToString( );
+                    _reasoningEffort = _image?.Replace( " ", "" );
+                    var _message = "ReasoningEffort = " + _reasoningEffort;
+                    SendMessage( _message );
+                }
             }
             catch( Exception ex )
             {

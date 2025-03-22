@@ -36408,9 +36408,51 @@
             The stream
             </summary>
         </member>
-        <member name="F:Bubba.ChatWindow._size">
+        <member name="F:Bubba.ChatWindow._logprobs">
+            <summary>
+            Whether to return log probabilities of the output tokens or not.
+            If true, returns the log probabilities of each output token
+            returned in the content of message.
+            </summary>
+        </member>
+        <member name="F:Bubba.ChatWindow._imageSize">
             <summary>
             The image size
+            </summary>
+        </member>
+        <member name="F:Bubba.ChatWindow._speed">
+            <summary>
+            The speed
+            </summary>
+        </member>
+        <member name="F:Bubba.ChatWindow._responseFormat">
+            <summary>
+            The response format
+            </summary>
+        </member>
+        <member name="F:Bubba.ChatWindow._reasoningEffort">
+            <summary>
+            The reasoning effort
+            </summary>
+        </member>
+        <member name="F:Bubba.ChatWindow._audioFormat">
+            <summary>
+            The audio format
+            </summary>
+        </member>
+        <member name="F:Bubba.ChatWindow._imageFormat">
+            <summary>
+            The image format
+            </summary>
+        </member>
+        <member name="F:Bubba.ChatWindow._imageQuality">
+            <summary>
+            The quality
+            </summary>
+        </member>
+        <member name="F:Bubba.ChatWindow._imageDetail">
+            <summary>
+            The detail
             </summary>
         </member>
         <member name="F:Bubba.ChatWindow._maximumTokens">
@@ -36419,33 +36461,70 @@
             that can be generated for a completion
             </summary>
         </member>
-        <member name="F:Bubba.ChatWindow._frequency">
+        <member name="F:Bubba.ChatWindow._frequencyPenalty">
             <summary>
             A number between -2.0 and 2.0. Positive values penalize new
             tokens based on their existing frequency in the text so far,
             decreasing the model's likelihood to repeat the same line verbatim.
             </summary>
         </member>
-        <member name="F:Bubba.ChatWindow._presence">
+        <member name="F:Bubba.ChatWindow._presencePenalty">
             <summary>
             Number between -2.0 and 2.0. Positive values penalize new tokens
             based on whether they appear in the text so far,
             increasing the model's likelihood to talk about new topics.
             </summary>
         </member>
-        <member name="F:Bubba.ChatWindow._models">
+        <member name="F:Bubba.ChatWindow._topLogProbs">
+            <summary>
+            An integer between 0 and 20 specifying the number of most likely tokens
+            to return at each token position, each with an associated log probability.
+            logprobs must be set to true if this parameter is used.
+            </summary>
+        </member>
+        <member name="F:Bubba.ChatWindow._modelOptions">
             <summary>
             The models
             </summary>
         </member>
-        <member name="F:Bubba.ChatWindow._imageSizes">
+        <member name="F:Bubba.ChatWindow._sizeOptions">
             <summary>
             The image sizes
             </summary>
         </member>
-        <member name="F:Bubba.ChatWindow._voices">
+        <member name="F:Bubba.ChatWindow._voiceOptions">
             <summary>
             The image sizes
+            </summary>
+        </member>
+        <member name="F:Bubba.ChatWindow._speedOptions">
+            <summary>
+            The speed options
+            </summary>
+        </member>
+        <member name="F:Bubba.ChatWindow._reasoningOptions">
+            <summary>
+            The reasoning options
+            </summary>
+        </member>
+        <member name="F:Bubba.ChatWindow._qualityOptions">
+            <summary>
+            The quality options
+            </summary>
+        </member>
+        <member name="F:Bubba.ChatWindow._detailOptions">
+            <summary>
+            The detail options
+            </summary>
+        </member>
+        <member name="F:Bubba.ChatWindow._responseFormatOptions">
+            <summary>
+            The response format options
+            </summary>
+        </member>
+        <member name="F:Bubba.ChatWindow._audioFormatOptions">
+            <summary>
+            The audio format options
             </summary>
         </member>
         <member name="F:Bubba.ChatWindow._model">
@@ -37480,7 +37559,7 @@
             <param name="e">The <see cref="T:System.Windows.RoutedEventArgs"/>
             instance containing the event data.</param>
         </member>
-        <member name="M:Bubba.ChatWindow.OnImageSizeListBoxSelectionChanged(System.Object,System.Windows.RoutedEventArgs)">
+        <member name="M:Bubba.ChatWindow.OnImageFormatSelectionChanged(System.Object,System.Windows.RoutedEventArgs)">
             <summary>
             Called when [selected image size changed].
             </summary>
@@ -37496,9 +37575,49 @@
             <param name="e">The <see cref="T:System.Windows.RoutedEventArgs"/>
             instance containing the event data.</param>
         </member>
-        <member name="M:Bubba.ChatWindow.OnGuidanceOptionClick(System.Object,System.Windows.RoutedEventArgs)">
+        <member name="M:Bubba.ChatWindow.OnResponseFormatSelectionChanged(System.Object,System.Windows.RoutedEventArgs)">
+            <summary>
+            Called when [response format selection changed].
+            </summary>
+            <param name="sender">The sender.</param>
+            <param name="e">The <see cref="T:System.Windows.RoutedEventArgs"/>
+            instance containing the event data.</param>
+        </member>
+        <member name="M:Bubba.ChatWindow.OnImageQualitySelectionChanged(System.Object,System.Windows.RoutedEventArgs)">
             <summary>
             Called when [guidance option click].
+            </summary>
+            <param name="sender">The sender.</param>
+            <param name="e">The <see cref="T:System.Windows.RoutedEventArgs"/>
+            instance containing the event data.</param>
+        </member>
+        <member name="M:Bubba.ChatWindow.OnAudioFormatSelectionChanged(System.Object,System.Windows.RoutedEventArgs)">
+            <summary>
+            Called when [audio format selection changed].
+            </summary>
+            <param name="sender">The sender.</param>
+            <param name="e">The <see cref="T:System.Windows.RoutedEventArgs"/>
+            instance containing the event data.</param>
+        </member>
+        <member name="M:Bubba.ChatWindow.OnImageSizeSelectionChanged(System.Object,System.Windows.RoutedEventArgs)">
+            <summary>
+            Called when [image size selection changed].
+            </summary>
+            <param name="sender">The sender.</param>
+            <param name="e">The <see cref="T:System.Windows.RoutedEventArgs"/>
+            instance containing the event data.</param>
+        </member>
+        <member name="M:Bubba.ChatWindow.OnImageDetailSelectionChanged(System.Object,System.Windows.RoutedEventArgs)">
+            <summary>
+            Called when [image detail selection changed].
+            </summary>
+            <param name="sender">The sender.</param>
+            <param name="e">The <see cref="T:System.Windows.RoutedEventArgs"/>
+            instance containing the event data.</param>
+        </member>
+        <member name="M:Bubba.ChatWindow.OnEffortSelectionChanged(System.Object,System.Windows.RoutedEventArgs)">
+            <summary>
+            Called when [reasoning effort selection changed].
             </summary>
             <param name="sender">The sender.</param>
             <param name="e">The <see cref="T:System.Windows.RoutedEventArgs"/>
