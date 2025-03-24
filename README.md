@@ -57,11 +57,11 @@
 
 ## ![](https://github.com/is-leeroy-jenkins/Bubba/blob/master/Resources/Assets/GitHubImages/histogram.png)  Projection & Forecasting
 
-- ![Outlay Projections] (https://anaconda.cloud/api/nbserve/launch_notebook?nb_url=https%3A%2F%2Fanaconda.cloud%2Fapi%2Fprojects%2Ff4ad0240-eaf1-4ad1-a8b4-99e630b46cda%2Ffiles%2Foutlays.ipynb%3Fversion%3D3c5763b3-e106-4e67-b314-3207f7f4ee71) is a forecasting model that uses historical expenditure data, 
+- [Outlay Projections](https://anaconda.cloud/api/nbserve/launch_notebook?nb_url=https%3A%2F%2Fanaconda.cloud%2Fapi%2Fprojects%2Ff4ad0240-eaf1-4ad1-a8b4-99e630b46cda%2Ffiles%2Foutlays.ipynb%3Fversion%3D3c5763b3-e106-4e67-b314-3207f7f4ee71) is a forecasting model that uses historical expenditure data, 
 generative AI, and machine-learning to project future outlays by agency and fiscal year.
 
  
-- [Balance Estimator] (https://anaconda.cloud/api/nbserve/launch_notebook?nb_url=https%3A%2F%2Fanaconda.cloud%2Fapi%2Fprojects%2F088fd703-e3a6-426c-af6b3c80bf443a33%2Ffiles%2FBalanceEstimator.ipynb%3Fversion%3Dac106c51-bc0c-4e82-a9c0-1c59c48f4510) is a forecasting model that uses 
+- [Balance Estimator](https://anaconda.cloud/api/nbserve/launch_notebook?nb_url=https%3A%2F%2Fanaconda.cloud%2Fapi%2Fprojects%2F088fd703-e3a6-426c-af6b3c80bf443a33%2Ffiles%2FBalanceEstimator.ipynb%3Fversion%3Dac106c51-bc0c-4e82-a9c0-1c59c48f4510) is a forecasting model that uses 
 historical data from 2017 to 2024 to project balances at the account-level.
 
 
