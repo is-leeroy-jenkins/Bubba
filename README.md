@@ -50,7 +50,7 @@
 > It can help improve the execution speed and reduce the training time of your code. Bubba provides the following vector stores
 > on the OpenAI platform to support environmental data analysis with machine-learning:
 
-- #### [Federal Appropriations](https://github.com/is-leeroy-jenkins/Bubba/blob/master/Resources/Github/Appropriations.md) - vectorized dataset of federal appropriations available for fine-tuning machine learning models
+- #### [Federal Appropriations](https://github.com/is-leeroy-jenkins/Bubba/blob/master/Resources/Github/Appropriations.md) - vectorized dataset of federal appropriations available for fine-tuning machine learning models.  A
 - #### [Federal Regulations](https://github.com/is-leeroy-jenkins/Bubba/blob/master/Resources/Github/Regulations.md) - vectorized dataset of federal finance regulations available for fine-tuning machine learning models
 - #### Real-world analysis on pre-trained, vectorized appropriations data that would typically require analysts considerable time in a matter of seconds. 
 
