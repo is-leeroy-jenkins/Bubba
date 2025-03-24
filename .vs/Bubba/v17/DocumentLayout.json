@@ -7,12 +7,12 @@
       "RelativeMoniker": "D:0:0:{08012640-3765-4051-B5EB-4FF782150AEC}|Bubba.csproj|solutionrelative:.gitignore||{3B902123-F8A7-4915-9F01-361F908088D0}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{08012640-3765-4051-B5EB-4FF782150AEC}|Bubba.csproj|c:\\users\\terry\\source\\repos\\bubba\\ui\\views\\chatwindow\\chatwindow.xaml.cs||{8B382828-6202-11D1-8870-0000F87579D2}|",
-      "RelativeMoniker": "D:0:0:{08012640-3765-4051-B5EB-4FF782150AEC}|Bubba.csproj|solutionrelative:ui\\views\\chatwindow\\chatwindow.xaml.cs||{8B382828-6202-11D1-8870-0000F87579D2}|"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{08012640-3765-4051-B5EB-4FF782150AEC}|Bubba.csproj|c:\\users\\terry\\source\\repos\\bubba\\ui\\views\\chatwindow\\chatwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
       "RelativeMoniker": "D:0:0:{08012640-3765-4051-B5EB-4FF782150AEC}|Bubba.csproj|solutionrelative:ui\\views\\chatwindow\\chatwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{08012640-3765-4051-B5EB-4FF782150AEC}|Bubba.csproj|c:\\users\\terry\\source\\repos\\bubba\\ui\\views\\chatwindow\\chatwindow.xaml.cs||{8B382828-6202-11D1-8870-0000F87579D2}|",
+      "RelativeMoniker": "D:0:0:{08012640-3765-4051-B5EB-4FF782150AEC}|Bubba.csproj|solutionrelative:ui\\views\\chatwindow\\chatwindow.xaml.cs||{8B382828-6202-11D1-8870-0000F87579D2}|"
     }
   ],
   "DocumentGroupContainers": [
@@ -70,7 +70,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 1,
               "Title": "ChatWindow.xaml",
               "DocumentMoniker": "C:\\Users\\terry\\source\\repos\\Bubba\\UI\\Views\\ChatWindow\\ChatWindow.xaml",
               "RelativeDocumentMoniker": "UI\\Views\\ChatWindow\\ChatWindow.xaml",
@@ -82,7 +82,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "ChatWindow.xaml.cs",
               "DocumentMoniker": "C:\\Users\\terry\\source\\repos\\Bubba\\UI\\Views\\ChatWindow\\ChatWindow.xaml.cs",
               "RelativeDocumentMoniker": "UI\\Views\\ChatWindow\\ChatWindow.xaml.cs",
@@ -101,9 +101,9 @@
               "RelativeDocumentMoniker": ".gitignore",
               "ToolTip": "C:\\Users\\terry\\source\\repos\\Bubba\\.gitignore",
               "RelativeToolTip": ".gitignore",
-              "ViewState": "AgIAACsAAAAAAAAAAAAuwFsAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAACsAAAAAAAAAAAAwwFoAAAASAAAAAAAAAA==",
               "Icon": "00000000-0000-0000-0000-000000000000.000000|iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAF8SURBVDhPjVNLTgJBEG1lwpoFB3GNK9fieA48hD8iwT/ihwgSDAIHgAGXXsEV18CNzL/LquqZdsYM6kteXqcy3fWqpmpNRBgOhyABBEgpAFVKPIMUcYzUyOU\u002BXM/b2qtU3vkSfRjjZTCAMAw1A2LwzdFoBPP5HNqdzuL27n4juibWI\u002BUshBA1DIkhEx9iEorFotgslQqGYbxxAGFEqt1MxmPWJLbLZdZ\u002Bv89q5PMFPiTR6z2zdaxR0fXA0XTBcVywkb4fwHXjRteecIDNQ7UmExVYAdPcxYaqclN46na5WenMKjtlVnTYwcXlVYaDqImW9beD5N/TeGy32QHXm6hZ03ZgiSQHp2fnWQ4oBmJqWSqwAqZpZjt4aLXAD4J0VqyZsmoubfB8H2r1eoaD6NXZ9HcHO\u002BSA3f4AjifXl8rItOETM8ckB9WTWpYD9RdeZ1PWVWAHWXPQaDb59f/w8LiqHeh1pvGkCaP6qB8yXusoxmuNZ7XmII4O9vGuEF86osuDYRkpYQAAAABJRU5ErkJggg==",
-              "WhenOpened": "2025-03-24T13:33:03.602Z",
+              "WhenOpened": "2025-03-24T13:35:06.292Z",
               "EditorCaption": ""
             }
           ]

@@ -3,8 +3,8 @@
   "WorkspaceRootPath": "C:\\Users\\terry\\source\\repos\\Bubba\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{08012640-3765-4051-B5EB-4FF782150AEC}|Bubba.csproj|c:\\users\\terry\\source\\repos\\bubba\\readme.md||{EFC0BB08-EA7D-40C6-A696-C870411A895B}",
-      "RelativeMoniker": "D:0:0:{08012640-3765-4051-B5EB-4FF782150AEC}|Bubba.csproj|solutionrelative:readme.md||{EFC0BB08-EA7D-40C6-A696-C870411A895B}"
+      "AbsoluteMoniker": "D:0:0:{08012640-3765-4051-B5EB-4FF782150AEC}|Bubba.csproj|c:\\users\\terry\\source\\repos\\bubba\\.gitignore||{3B902123-F8A7-4915-9F01-361F908088D0}",
+      "RelativeMoniker": "D:0:0:{08012640-3765-4051-B5EB-4FF782150AEC}|Bubba.csproj|solutionrelative:.gitignore||{3B902123-F8A7-4915-9F01-361F908088D0}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{08012640-3765-4051-B5EB-4FF782150AEC}|Bubba.csproj|c:\\users\\terry\\source\\repos\\bubba\\ui\\views\\chatwindow\\chatwindow.xaml.cs||{8B382828-6202-11D1-8870-0000F87579D2}|",
@@ -96,14 +96,14 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "README.md",
-              "DocumentMoniker": "C:\\Users\\terry\\source\\repos\\Bubba\\README.md",
-              "RelativeDocumentMoniker": "README.md",
-              "ToolTip": "C:\\Users\\terry\\source\\repos\\Bubba\\README.md",
-              "RelativeToolTip": "README.md",
-              "ViewState": "AgIAADcAAAAAAAAAAAAIwEcAAAAsAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001818|",
-              "WhenOpened": "2025-03-24T12:30:53.505Z",
+              "Title": ".gitignore",
+              "DocumentMoniker": "C:\\Users\\terry\\source\\repos\\Bubba\\.gitignore",
+              "RelativeDocumentMoniker": ".gitignore",
+              "ToolTip": "C:\\Users\\terry\\source\\repos\\Bubba\\.gitignore",
+              "RelativeToolTip": ".gitignore",
+              "ViewState": "AgIAACsAAAAAAAAAAAAuwFsAAAAAAAAAAAAAAA==",
+              "Icon": "00000000-0000-0000-0000-000000000000.000000|iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAF8SURBVDhPjVNLTgJBEG1lwpoFB3GNK9fieA48hD8iwT/ihwgSDAIHgAGXXsEV18CNzL/LquqZdsYM6kteXqcy3fWqpmpNRBgOhyABBEgpAFVKPIMUcYzUyOU\u002BXM/b2qtU3vkSfRjjZTCAMAw1A2LwzdFoBPP5HNqdzuL27n4juibWI\u002BUshBA1DIkhEx9iEorFotgslQqGYbxxAGFEqt1MxmPWJLbLZdZ\u002Bv89q5PMFPiTR6z2zdaxR0fXA0XTBcVywkb4fwHXjRteecIDNQ7UmExVYAdPcxYaqclN46na5WenMKjtlVnTYwcXlVYaDqImW9beD5N/TeGy32QHXm6hZ03ZgiSQHp2fnWQ4oBmJqWSqwAqZpZjt4aLXAD4J0VqyZsmoubfB8H2r1eoaD6NXZ9HcHO\u002BSA3f4AjifXl8rItOETM8ckB9WTWpYD9RdeZ1PWVWAHWXPQaDb59f/w8LiqHeh1pvGkCaP6qB8yXusoxmuNZ7XmII4O9vGuEF86osuDYRkpYQAAAABJRU5ErkJggg==",
+              "WhenOpened": "2025-03-24T13:33:03.602Z",
               "EditorCaption": ""
             }
           ]

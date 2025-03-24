@@ -88,7 +88,7 @@ ScaffoldingReadMe.txt
 StyleCopReport.xml
 
 # ReSharper
-*.DotSettings*
+*.DotSettings.user
 
 # Files built by Visual Studio
 *_i.c
