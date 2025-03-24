@@ -36408,6 +36408,16 @@
             The stream
             </summary>
         </member>
+        <member name="F:Bubba.ChatWindow._listen">
+            <summary>
+            The listen
+            </summary>
+        </member>
+        <member name="F:Bubba.ChatWindow._mute">
+            <summary>
+            The mute
+            </summary>
+        </member>
         <member name="F:Bubba.ChatWindow._logprobs">
             <summary>
             Whether to return log probabilities of the output tokens or not.
@@ -36691,6 +36701,11 @@
             is focused on the .NET form and its controls,
             AND when the user is focused on the browser
             (CefSharp portion)
+            </summary>
+        </member>
+        <member name="M:Bubba.ChatWindow.InitializeParameters">
+            <summary>
+            Sets the hyper parameters.
             </summary>
         </member>
         <member name="M:Bubba.ChatWindow.RegisterCallbacks">
@@ -37161,11 +37176,6 @@
             Sets the user mode.
             </summary>
         </member>
-        <member name="M:Bubba.ChatWindow.SetGptParameters">
-            <summary>
-            Sets the hyper parameters.
-            </summary>
-        </member>
         <member name="M:Bubba.ChatWindow.SetGptOptions">
             <summary>
             Sets the GPT options.
@@ -37469,7 +37479,8 @@
             Called when [tool strip refresh button click].
             </summary>
             <param name="sender">The sender.</param>
-            <param name="e">The <see cref="T:System.Windows.RoutedEventArgs"/> instance containing the event data.</param>
+            <param name="e">The <see cref="T:System.Windows.RoutedEventArgs"/>
+            instance containing the event data.</param>
         </member>
         <member name="M:Bubba.ChatWindow.OnListenCheckedChanged(System.Object,System.Windows.RoutedEventArgs)">
             <summary>

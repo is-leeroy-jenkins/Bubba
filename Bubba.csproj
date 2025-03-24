@@ -301,9 +301,13 @@
     <None Remove="Resources\Assets\ToolStripImages\BackspaceButton.png" />
     <None Remove="Resources\Assets\ToolStripImages\BarButton.png" />
     <None Remove="Resources\Assets\ToolStripImages\BlueChatButton.png" />
+    <None Remove="Resources\Assets\ToolStripImages\Bot.png" />
     <None Remove="Resources\Assets\ToolStripImages\BrowseButton.png" />
     <None Remove="Resources\Assets\ToolStripImages\CancelButton.png" />
     <None Remove="Resources\Assets\ToolStripImages\ChatButton.png" />
+    <None Remove="Resources\Assets\ToolStripImages\ChatLog.png" />
+    <None Remove="Resources\Assets\ToolStripImages\CircleArrowLeft.png" />
+    <None Remove="Resources\Assets\ToolStripImages\CircleArrowRight.png" />
     <None Remove="Resources\Assets\ToolStripImages\CloseTabsButton.png" />
     <None Remove="Resources\Assets\ToolStripImages\ColumnButton.png" />
     <None Remove="Resources\Assets\ToolStripImages\DataSourceButton.png" />
@@ -333,6 +337,7 @@
     <None Remove="Resources\Assets\ToolStripImages\MapTile.png" />
     <None Remove="Resources\Assets\ToolStripImages\MenuButton.png" />
     <None Remove="Resources\Assets\ToolStripImages\NextButton.png" />
+    <None Remove="Resources\Assets\ToolStripImages\pi.png" />
     <None Remove="Resources\Assets\ToolStripImages\PieButton.png" />
     <None Remove="Resources\Assets\ToolStripImages\PlottButton.png" />
     <None Remove="Resources\Assets\ToolStripImages\PolarButton.png" />
@@ -344,6 +349,7 @@
     <None Remove="Resources\Assets\ToolStripImages\ResetButton.png" />
     <None Remove="Resources\Assets\ToolStripImages\ResfreshButton.png" />
     <None Remove="Resources\Assets\ToolStripImages\RetrievalButton.png" />
+    <None Remove="Resources\Assets\ToolStripImages\Robot.png" />
     <None Remove="Resources\Assets\ToolStripImages\SaveButton.png" />
     <None Remove="Resources\Assets\ToolStripImages\SchemaButton.png" />
     <None Remove="Resources\Assets\ToolStripImages\SmithButton.png" />
@@ -356,6 +362,23 @@
     <None Remove="Resources\Assets\ToolStripImages\WebDownload.png" />
     <None Remove="Resources\Assets\ToolStripImages\WebDownloadButton.png" />
     <None Remove="Resources\Assets\ToolStripImages\WebSearchButton.png" />
+    <None Remove="Resources\Assets\ToolTipImages\CircleCheck.png" />
+    <None Remove="Resources\Assets\ToolTipImages\Coin.png" />
+    <None Remove="Resources\Assets\ToolTipImages\Data.png" />
+    <None Remove="Resources\Assets\ToolTipImages\Funding.png" />
+    <None Remove="Resources\Assets\ToolTipImages\Guidance.png" />
+    <None Remove="Resources\Assets\ToolTipImages\Hand.png" />
+    <None Remove="Resources\Assets\ToolTipImages\Info.png" />
+    <None Remove="Resources\Assets\ToolTipImages\Information.png" />
+    <None Remove="Resources\Assets\ToolTipImages\Layers.png" />
+    <None Remove="Resources\Assets\ToolTipImages\Question.png" />
+    <None Remove="Resources\Assets\ToolTipImages\Robot.png" />
+    <None Remove="Resources\Assets\ToolTipImages\Shape.png" />
+    <None Remove="Resources\Assets\ToolTipImages\Table.png" />
+    <None Remove="Resources\Assets\ToolTipImages\Target.png" />
+    <None Remove="Resources\Assets\ToolTipImages\Tools.png" />
+    <None Remove="Resources\Assets\ToolTipImages\User.png" />
+    <None Remove="Resources\Assets\ToolTipImages\Warning.png" />
     <None Remove="Resources\Documents\Editor\CPP\Ex6_01.cpp" />
     <None Remove="Resources\Documents\Editor\CPP\Ex6_02.cpp" />
     <None Remove="Resources\Documents\Editor\CPP\Ex6_03.cpp" />
@@ -737,9 +760,13 @@
     <Resource Include="Resources\Assets\ToolStripImages\BackButton.png" />
     <Resource Include="Resources\Assets\ToolStripImages\BackspaceButton.png" />
     <Resource Include="Resources\Assets\ToolStripImages\BarButton.png" />
+    <Resource Include="Resources\Assets\ToolStripImages\Bot.png" />
     <Resource Include="Resources\Assets\ToolStripImages\BrowseButton.png" />
     <Resource Include="Resources\Assets\ToolStripImages\CancelButton.png" />
     <Resource Include="Resources\Assets\ToolStripImages\ChatButton.png" />
+    <Resource Include="Resources\Assets\ToolStripImages\ChatLog.png" />
+    <Resource Include="Resources\Assets\ToolStripImages\CircleArrowLeft.png" />
+    <Resource Include="Resources\Assets\ToolStripImages\CircleArrowRight.png" />
     <Resource Include="Resources\Assets\ToolStripImages\CloseTabsButton.png" />
     <Resource Include="Resources\Assets\ToolStripImages\ColumnButton.png" />
     <Resource Include="Resources\Assets\ToolStripImages\DataSourceButton.png" />
@@ -769,6 +796,7 @@
     <Resource Include="Resources\Assets\ToolStripImages\MapTile.png" />
     <Resource Include="Resources\Assets\ToolStripImages\MenuButton.png" />
     <Resource Include="Resources\Assets\ToolStripImages\NextButton.png" />
+    <Resource Include="Resources\Assets\ToolStripImages\pi.png" />
     <Resource Include="Resources\Assets\ToolStripImages\PieButton.png" />
     <Resource Include="Resources\Assets\ToolStripImages\PlottButton.png" />
     <Resource Include="Resources\Assets\ToolStripImages\PolarButton.png" />
@@ -779,6 +807,7 @@
     <Resource Include="Resources\Assets\ToolStripImages\RemoveButton.png" />
     <Resource Include="Resources\Assets\ToolStripImages\ResetButton.png" />
     <Resource Include="Resources\Assets\ToolStripImages\RetrievalButton.png" />
+    <Resource Include="Resources\Assets\ToolStripImages\Robot.png" />
     <Resource Include="Resources\Assets\ToolStripImages\SaveButton.png" />
     <Resource Include="Resources\Assets\ToolStripImages\SchemaButton.png" />
     <Resource Include="Resources\Assets\ToolStripImages\SmithButton.png" />
@@ -791,6 +820,23 @@
     <Resource Include="Resources\Assets\ToolStripImages\WebDownload.png" />
     <Resource Include="Resources\Assets\ToolStripImages\WebDownloadButton.png" />
     <Resource Include="Resources\Assets\ToolStripImages\WebSearchButton.png" />
+    <Resource Include="Resources\Assets\ToolTipImages\CircleCheck.png" />
+    <Resource Include="Resources\Assets\ToolTipImages\Coin.png" />
+    <Resource Include="Resources\Assets\ToolTipImages\Data.png" />
+    <Resource Include="Resources\Assets\ToolTipImages\Funding.png" />
+    <Resource Include="Resources\Assets\ToolTipImages\Guidance.png" />
+    <Resource Include="Resources\Assets\ToolTipImages\Hand.png" />
+    <Resource Include="Resources\Assets\ToolTipImages\Info.png" />
+    <Resource Include="Resources\Assets\ToolTipImages\Information.png" />
+    <Resource Include="Resources\Assets\ToolTipImages\Layers.png" />
+    <Resource Include="Resources\Assets\ToolTipImages\Question.png" />
+    <Resource Include="Resources\Assets\ToolTipImages\Robot.png" />
+    <Resource Include="Resources\Assets\ToolTipImages\Shape.png" />
+    <Resource Include="Resources\Assets\ToolTipImages\Table.png" />
+    <Resource Include="Resources\Assets\ToolTipImages\Target.png" />
+    <Resource Include="Resources\Assets\ToolTipImages\Tools.png" />
+    <Resource Include="Resources\Assets\ToolTipImages\User.png" />
+    <Resource Include="Resources\Assets\ToolTipImages\Warning.png" />
     <Resource Include="Resources\Documents\Editor\CPP\Ex6_01.cpp">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>

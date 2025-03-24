@@ -62,6 +62,7 @@ namespace Bubba
     using System.Windows.Forms;
     using CefSharp;
     using CefSharp.Wpf;
+    using MahApps.Metro.Controls;
     using Properties;
     using Syncfusion.SfSkinManager;
     using Syncfusion.Windows.Edit;
@@ -219,6 +220,16 @@ namespace Bubba
         /// The stream
         /// </summary>
         private protected bool _stream;
+
+        /// <summary>
+        /// The listen
+        /// </summary>
+        private protected bool _listen;
+
+        /// <summary>
+        /// The mute
+        /// </summary>
+        private protected bool _mute;
 
         /// <summary>
         /// Whether to return log probabilities of the output tokens or not.
@@ -577,16 +588,16 @@ namespace Bubba
         {
             try
             {
-                ChatEditor.EnableOutlining = true;
-                ChatEditor.EnableIntellisense = false;
-                ChatEditor.DocumentLanguage = Languages.Text;
-                ChatEditor.IsMultiLine = true;
-                ChatEditor.IsUndoEnabled = true;
-                ChatEditor.IsRedoEnabled = true;
-                ChatEditor.LineNumberAreaBackground = _theme.BlackBrush;
-                ChatEditor.LineNumberTextForeground = _theme.GreenBrush;
-                ChatEditor.SelectionBackground = _theme.SteelBlueBrush;
-                ChatEditor.SelectionForeground = _theme.WhiteForeground;
+                Editor.EnableOutlining = true;
+                Editor.EnableIntellisense = false;
+                Editor.DocumentLanguage = Languages.Text;
+                Editor.IsMultiLine = true;
+                Editor.IsUndoEnabled = true;
+                Editor.IsRedoEnabled = true;
+                Editor.LineNumberAreaBackground = _theme.BlackBrush;
+                Editor.LineNumberTextForeground = _theme.GreenBrush;
+                Editor.SelectionBackground = _theme.SteelBlueBrush;
+                Editor.SelectionForeground = _theme.WhiteForeground;
             }
             catch( Exception ex )
             {
@@ -670,6 +681,35 @@ namespace Bubba
                 KeyboardCallback.AddHotKey( this, CloseSearch, Keys.Escape );
                 KeyboardCallback.AddHotKey( this, StopActiveTab, Keys.Escape );
                 KeyboardCallback.AddHotKey( this, ToggleFullscreen, Keys.F11 );
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+            }
+        }
+
+        /// <summary>
+        /// Sets the hyper parameters.
+        /// </summary>
+        private protected void InitializeParameters( )
+        {
+            try
+            {
+                _store = StoreCheckBox.IsChecked ?? false;
+                _stream = StreamCheckBox.IsChecked ?? true;
+                _listen = ListenCheckBox.IsChecked ?? true;
+                _mute = MuteCheckBox.IsChecked ?? true;
+                _presencePenalty = double.Parse( PresenceSlider.Value.ToString( "N2" ) );
+                _temperature = double.Parse( TemperatureSlider.Value.ToString( "N2" ) );
+                _topPercent = double.Parse( TopPercentSlider.Value.ToString( "N2" ) );
+                _frequencyPenalty = double.Parse( FrequencySlider.Value.ToString( "N2" ) );
+                _topLogProbs = int.Parse( TopLogProbsSlider.Value.ToString( ) );
+                _number = int.Parse( MaxTokenTextBox.Text );
+                _maximumTokens = Convert.ToInt32( MaxTokenTextBox.Text );
+                _model = ModelDropDown.SelectedItem.ToString( ) ?? "gpt-4o";
+                _userPrompt = _language == "Text"
+                    ? Editor.Text
+                    : "";
             }
             catch( Exception ex )
             {
@@ -1011,7 +1051,7 @@ namespace Bubba
         {
             try
             {
-                ChatEditor.Text = "";
+                Editor.Text = "";
                 GptTextBox.Text = "";
                 ToolStripTextBox.Text = "";
             }
@@ -2238,7 +2278,7 @@ namespace Bubba
         {
             var _path = Locations.PathPrefix + @"Resources\Documents\Editor\VBA\";
             TabControl.SelectedIndex = 0;
-            ChatEditor.DocumentLanguage = Languages.VisualBasic;
+            Editor.DocumentLanguage = Languages.VisualBasic;
             DocumentListBox.Items?.Clear( );
             var _documents = Directory.GetFiles( _path );
             foreach( var _file in _documents )
@@ -2262,8 +2302,8 @@ namespace Bubba
             {
                 var _path = Locations.PathPrefix + @"Resources\Documents\Editor\CPP\";
                 TabControl.SelectedIndex = 0;
-                ChatEditor.DocumentLanguage = Languages.C;
-                ChatEditor.DocumentSource = _path;
+                Editor.DocumentLanguage = Languages.C;
+                Editor.DocumentSource = _path;
                 DocumentListBox.Items?.Clear( );
                 var _documents = Directory.GetFiles( _path );
                 foreach( var _file in _documents )
@@ -2292,7 +2332,7 @@ namespace Bubba
             {
                 var _path = Locations.PathPrefix + @"Resources\Documents\Editor\JS\";
                 TabControl.SelectedIndex = 0;
-                ChatEditor.DocumentLanguage = Languages.JScript;
+                Editor.DocumentLanguage = Languages.JScript;
                 DocumentListBox.Items?.Clear( );
                 var _documents = Directory.GetFiles( _path );
                 foreach( var _file in _documents )
@@ -2321,7 +2361,7 @@ namespace Bubba
             {
                 var _path = @"C:\Users\terry\source\repos\Bubba\Resources\Documents\Editor\SQL\";
                 TabControl.SelectedIndex = 0;
-                ChatEditor.DocumentLanguage = Languages.SQL;
+                Editor.DocumentLanguage = Languages.SQL;
                 DocumentListBox.Items?.Clear( );
                 var _documents = Directory.GetFiles( _path );
                 foreach( var _file in _documents )
@@ -2350,7 +2390,7 @@ namespace Bubba
             {
                 var _path = Locations.PathPrefix + @"Resources\Documents\Editor\PY\";
                 TabControl.SelectedIndex = 0;
-                ChatEditor.DocumentLanguage = Languages.Text;
+                Editor.DocumentLanguage = Languages.Text;
                 DocumentListBox.Items?.Clear( );
                 var _documents = Directory.GetFiles( _path );
                 foreach( var _file in _documents )
@@ -2379,7 +2419,7 @@ namespace Bubba
             {
                 var _path = Locations.PathPrefix + @"Resources\Documents\Editor\CS\";
                 TabControl.SelectedIndex = 0;
-                ChatEditor.DocumentLanguage = Languages.CSharp;
+                Editor.DocumentLanguage = Languages.CSharp;
                 DocumentListBox.Items?.Clear( );
                 var _documents = Directory.GetFiles( _path );
                 foreach( var _file in _documents )
@@ -2408,7 +2448,7 @@ namespace Bubba
             {
                 var _path = Locations.PathPrefix + @"Resources\Documents\Appropriations\";
                 TabControl.SelectedIndex = 0;
-                ChatEditor.DocumentLanguage = Languages.Text;
+                Editor.DocumentLanguage = Languages.Text;
                 DocumentListBox.Items?.Clear( );
                 var _documents = Directory.GetFiles( _path );
                 foreach( var _file in _documents )
@@ -2488,7 +2528,7 @@ namespace Bubba
                         Content = _voice.Value
                     };
 
-                    //AiVoiceDropDown.Items.Add( _item );
+                    VoicesDropDown.Items.Add( _item );
                 }
             }
             catch( Exception ex )
@@ -2593,7 +2633,7 @@ namespace Bubba
                 var _prefix = @"C:\Users\terry\source\repos\Bubba\Resources\Documents\Editor\";
                 if( !string.IsNullOrEmpty( _language ) )
                 {
-                    ChatEditor.Text = "";
+                    Editor.Text = "";
                     switch( _language )
                     {
                         case "TXT":
@@ -2601,7 +2641,7 @@ namespace Bubba
                             var _pre = @"C:\Users\terry\source\repos\Bubba\Resources\Document\";
                             var _path = _pre + @"Appropriations\";
                             TabControl.SelectedIndex = 0;
-                            ChatEditor.DocumentLanguage = Languages.Text;
+                            Editor.DocumentLanguage = Languages.Text;
                             DocumentListBox.Items?.Clear( );
                             var _documents = Directory.GetFiles( _path );
                             foreach( var _file in _documents )
@@ -2621,7 +2661,7 @@ namespace Bubba
                         {
                             var _path = _prefix + @"CS\";
                             TabControl.SelectedIndex = 0;
-                            ChatEditor.DocumentLanguage = Languages.CSharp;
+                            Editor.DocumentLanguage = Languages.CSharp;
                             DocumentListBox.Items?.Clear( );
                             var _documents = Directory.GetFiles( _path );
                             foreach( var _file in _documents )
@@ -2641,7 +2681,7 @@ namespace Bubba
                         {
                             var _path = _prefix + @"PY\";
                             TabControl.SelectedIndex = 0;
-                            ChatEditor.DocumentLanguage = Languages.Text;
+                            Editor.DocumentLanguage = Languages.Text;
                             DocumentListBox.Items?.Clear( );
                             var _documents = Directory.GetFiles( _path );
                             foreach( var _file in _documents )
@@ -2661,7 +2701,7 @@ namespace Bubba
                         {
                             var _path = _prefix + @"SQL\";
                             TabControl.SelectedIndex = 0;
-                            ChatEditor.DocumentLanguage = Languages.SQL;
+                            Editor.DocumentLanguage = Languages.SQL;
                             DocumentListBox.Items?.Clear( );
                             var _documents = Directory.GetFiles( _path );
                             foreach( var _file in _documents )
@@ -2681,7 +2721,7 @@ namespace Bubba
                         {
                             var _path = _prefix + @"JS\";
                             TabControl.SelectedIndex = 0;
-                            ChatEditor.DocumentLanguage = Languages.JScript;
+                            Editor.DocumentLanguage = Languages.JScript;
                             DocumentListBox.Items?.Clear( );
                             var _documents = Directory.GetFiles( _path );
                             foreach( var _file in _documents )
@@ -2701,8 +2741,8 @@ namespace Bubba
                         {
                             var _path = _prefix + @"CPP\";
                             TabControl.SelectedIndex = 0;
-                            ChatEditor.DocumentLanguage = Languages.C;
-                            ChatEditor.DocumentSource = _path;
+                            Editor.DocumentLanguage = Languages.C;
+                            Editor.DocumentSource = _path;
                             DocumentListBox.Items?.Clear( );
                             var _documents = Directory.GetFiles( _path );
                             foreach( var _file in _documents )
@@ -2722,7 +2762,7 @@ namespace Bubba
                         {
                             var _path = _prefix + @"VBA\";
                             TabControl.SelectedIndex = 0;
-                            ChatEditor.DocumentLanguage = Languages.VisualBasic;
+                            Editor.DocumentLanguage = Languages.VisualBasic;
                             DocumentListBox.Items?.Clear( );
                             var _documents = Directory.GetFiles( _path );
                             foreach( var _file in _documents )
@@ -2743,7 +2783,7 @@ namespace Bubba
                             var _pre = @"C:\Users\terry\source\repos\Bubba\Resources\Document\";
                             var _path = _pre + @"Appropriations\";
                             TabControl.SelectedIndex = 0;
-                            ChatEditor.DocumentLanguage = Languages.Text;
+                            Editor.DocumentLanguage = Languages.Text;
                             DocumentListBox.Items?.Clear( );
                             var _documents = Directory.GetFiles( _path );
                             foreach( var _file in _documents )
@@ -2775,6 +2815,7 @@ namespace Bubba
         {
             try
             {
+                var _tabPages = new Dictionary<string, MetroTabItem>( );
             }
             catch( Exception ex )
             {
@@ -3129,32 +3170,6 @@ namespace Bubba
         }
 
         /// <summary>
-        /// Sets the hyper parameters.
-        /// </summary>
-        private protected void SetGptParameters( )
-        {
-            try
-            {
-                _store = StoreCheckBox.IsChecked ?? false;
-                _stream = StreamCheckBox.IsChecked ?? true;
-                _presencePenalty = double.Parse( PresenceSlider.Value.ToString( "N2" ) );
-                _temperature = double.Parse( TemperatureSlider.Value.ToString( "N2" ) );
-                _topPercent = double.Parse( TopPercentSlider.Value.ToString( "N2" ) );
-                _frequencyPenalty = double.Parse( FrequencySlider.Value.ToString( "N2" ) );
-                _number = int.Parse( MaxTokenTextBox.Text );
-                _maximumTokens = Convert.ToInt32( MaxTokenTextBox.Text );
-                _model = ModelDropDown.SelectedItem.ToString( ) ?? "gpt-4o";
-                _userPrompt = _language == "Text"
-                    ? ChatEditor.Text
-                    : "";
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
-            }
-        }
-
-        /// <summary>
         /// Sets the GPT options.
         /// </summary>
         private protected void SetGptOptions( )
@@ -3167,12 +3182,12 @@ namespace Bubba
                     GptRequests.Assistants => new AssistantOptions(  ),
                     GptRequests.TextGeneration => new TextOptions(  ),
                     GptRequests.ImageGeneration => new ImageOptions(  ),
-                    GptRequests.Transcriptions => new TranscriptionOptions(  ),
+                    GptRequests.Transcriptions => new TranscriptionOptions( ),
+                    GptRequests.Translations => new TranslationOptions( ),
                     GptRequests.Files => new FileOptions( ),
                     GptRequests.Embeddings => new EmbeddingOptions(  ),
                     GptRequests.FineTuning => new FineTuningOptions(  ),
                     GptRequests.VectorStores => new VectorOptions( ),
-                    GptRequests.Translations => new TranslationOptions( ),
                     GptRequests.SpeechGeneration => new SpeechOptions( ),
                     var _ => new TextOptions( )
                 };
@@ -3252,9 +3267,9 @@ namespace Bubba
                     _synthesizer.SetOutputToDefaultAudioDevice( );
                 }
 
-                //if( AiVoiceDropDown.SelectedItem.ToString( ) != "" )
+                if( VoicesDropDown.SelectedItem.ToString( ) != "" )
                 {
-                   // _synthesizer.SelectVoice( AiVoiceDropDown.SelectedItem.ToString( ) );
+                    _synthesizer.SelectVoice( VoicesDropDown.SelectedItem.ToString( ) );
                 }
 
                 _synthesizer.Speak( input );
@@ -3440,7 +3455,7 @@ namespace Bubba
                 var _text = _textBox?.Text;
                 if( !string.IsNullOrEmpty( _text ) )
                 {
-                    ChatEditor.Text = _text;
+                    Editor.Text = _text;
                     GptTextBox.Text = _text;
                 }
             }
@@ -3921,7 +3936,8 @@ namespace Bubba
         /// Called when [tool strip refresh button click].
         /// </summary>
         /// <param name="sender">The sender.</param>
-        /// <param name="e">The <see cref="RoutedEventArgs"/> instance containing the event data.</param>
+        /// <param name="e">The <see cref="RoutedEventArgs"/>
+        /// instance containing the event data.</param>
         private void OnToolStripRefreshButtonClick( object sender, RoutedEventArgs e )
         {
             try
@@ -3967,14 +3983,14 @@ namespace Bubba
             if( MuteCheckBox.IsChecked == true )
             {
                 VoiceLabel.Visibility = Visibility.Visible;
-                //AiVoiceDropDown.Visibility = Visibility.Visible;
+                VoicesDropDown.Visibility = Visibility.Visible;
                 var _msg = "The GPT Audio Client has been activated!";
                 SendNotification( _msg );
             }
             else
             {
                 VoiceLabel.Visibility = Visibility.Hidden;
-                //AiVoiceDropDown.Visibility = Visibility.Hidden;
+                VoicesDropDown.Visibility = Visibility.Hidden;
             }
         }
 
@@ -3987,13 +4003,13 @@ namespace Bubba
         private void OnSpeechRecognized( object sender, SpeechRecognizedEventArgs e )
         {
             // Reset Hypothesized text
-            if( ChatEditor.Text != "" )
+            if( Editor.Text != "" )
             {
-                ChatEditor.Text += "\n";
+                Editor.Text += "\n";
             }
 
             var _text = e.Result.Text;
-            ChatEditor.Text += _text;
+            Editor.Text += _text;
         }
 
         /// <summary>
@@ -4016,30 +4032,30 @@ namespace Bubba
         private void OnSendButtonClick( object sender, RoutedEventArgs e )
         {
             {
-                var _userInput = ChatEditor.Text;
+                var _userInput = Editor.Text;
                 if( string.IsNullOrEmpty( _userInput ) )
                 {
                     MessageBox.Show( "Type in your question!" );
-                    ChatEditor.Focus( );
+                    Editor.Focus( );
                     return;
                 }
 
-                if( ChatEditor.Text != "" )
+                if( Editor.Text != "" )
                 {
-                    ChatEditor.AppendText( "\r\n" );
+                    Editor.AppendText( "\r\n" );
                 }
 
-                ChatEditor.AppendText( "User: " + _userInput + "\r\n" );
-                ChatEditor.Text = "";
+                Editor.AppendText( "User: " + _userInput + "\r\n" );
+                Editor.Text = "";
                 try
                 {
                     var _answer = SendHttpMessage( _userInput ) + "";
-                    ChatEditor.AppendText( "Bubba: " + _answer.Replace( "\n", "\r\n" ).Trim( ) );
+                    Editor.AppendText( "Bubba: " + _answer.Replace( "\n", "\r\n" ).Trim( ) );
                     TextToSpeech( _answer );
                 }
                 catch( Exception ex )
                 {
-                    ChatEditor.AppendText( "Error: " + ex.Message );
+                    Editor.AppendText( "Error: " + ex.Message );
                 }
             }
         }
@@ -4101,11 +4117,11 @@ namespace Bubba
             {
                 if( DocumentListBox.SelectedIndex != -1 )
                 {
-                    ChatEditor.ClearAllText( );
+                    Editor.ClearAllText( );
                     _selectedDocument =
                         ( ( ListBoxItem )DocumentListBox.SelectedItem )?.Tag?.ToString( );
 
-                    ChatEditor.LoadFile( _selectedDocument );
+                    Editor.LoadFile( _selectedDocument );
                 }
             }
             catch( Exception ex )
@@ -4258,7 +4274,7 @@ namespace Bubba
                         _item += _result;
                     }
 
-                    ChatEditor.Text = _item;
+                    Editor.Text = _item;
                     Chill( );
                 }
             }
