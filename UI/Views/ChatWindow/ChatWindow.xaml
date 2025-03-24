@@ -378,7 +378,7 @@
                                 FontSize="14"
                                 Foreground="{StaticResource WhiteForeground}"
                                 Tag="SpeechRate"
-                                Text="{Binding Value, ElementName=SpeecRateSlider, Mode=Default, StringFormat=N2}" />
+                                Text="{Binding ElementName=SpeechRateSlider, Path=Value, Mode=Default, StringFormat=N0}" />
                         </GroupBox>
 
                         <GroupBox
@@ -1065,7 +1065,7 @@
                             FontSize="14"
                             Foreground="{StaticResource WhiteForeground}"
                             Tag="FrequencyPenalty"
-                            Text="{Binding Value, ElementName=TopLogProbsSlider, Mode=Default, StringFormat=N2}" />
+                            Text="{Binding Value, ElementName=TopLogProbsSlider, Mode=Default, StringFormat=N0}" />
                     </Grid>
                 </TabItem>
 
@@ -1257,6 +1257,7 @@
                             VerticalAlignment="Top"
                             BorderThickness="2"
                             ClipToBounds="True"
+                            CollapsedTextForeground="{DynamicResource MutedForeground}"
                             FontFamily="Source Code Pro"
                             FontSize="12"
                             Foreground="{StaticResource WhiteForeground}"
@@ -1264,7 +1265,8 @@
                             LineNumberTextForeground="{DynamicResource RadioButtonActiveBrush}"
                             OutliningAreaBackground="{DynamicResource ScrollBarGlyph}"
                             OutliningAreaWidth="15"
-                            VerticalScrollBarVisibility="Visible" SelectionBackground="{DynamicResource YellowBackground}" CollapsedTextForeground="{DynamicResource MutedForeground}">
+                            SelectionBackground="{DynamicResource YellowBackground}"
+                            VerticalScrollBarVisibility="Visible">
                             <b:MetroEditor.Background>
                                 <SolidColorBrush Color="{DynamicResource BlackColor}" />
                             </b:MetroEditor.Background>
@@ -1363,9 +1365,10 @@
                         <Canvas Grid.Column="1">
                             <wpf:ColorEdit
                                 x:Name="ColorEdit"
-                                Canvas.Top="42"
-                                Width="293"
-                                Height="275"
+                                Canvas.Left="15"
+                                Canvas.Top="57"
+                                Width="273"
+                                Height="259"
                                 HorizontalAlignment="Center"
                                 VerticalAlignment="Top"
                                 Background="{DynamicResource ControlBackground}"
@@ -1387,7 +1390,6 @@
                             VerticalAlignment="Top"
                             Header=""
                             ImageSource="/Resources/Assets/ToolStripImages/DeleteButton.png" />
-                        <wpf:ColorEdit Brush="Blue" Grid.Column="1" HorizontalAlignment="Left" Height="250" Margin="70,392,0,0" VerticalAlignment="Top" Width="300"/>
 
                     </Grid>
                 </TabItem>
@@ -1402,7 +1404,7 @@
                         Height="Auto"
                         Background="{StaticResource FormBackground}">
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="515*"/>
+                            <ColumnDefinition Width="515*" />
                             <ColumnDefinition Width="139*" />
                         </Grid.ColumnDefinitions>
 
@@ -1413,18 +1415,26 @@
                             Foreground="{StaticResource FormForeground}"
                             TopWallBrush="{StaticResource FormBackground}" />
 
+                        <Canvas Grid.Column="1" />
                         <b:MetroListBox
                             Grid.Column="1"
-                            Margin="0,142,59,85"
-                            d:ItemsSource="{d:SampleData ItemCount=5}" HorizontalAlignment="Right" Width="200" />
+                            Width="231"
+                            Height="370"
+                            Margin="19,0,0,85"
+                            HorizontalAlignment="Left"
+                            VerticalAlignment="Bottom"
+                            d:ItemsSource="{d:SampleData ItemCount=5}" />
 
                         <b:MetroDropDown
                             Grid.Column="1"
+                            Width="231"
                             Height="35"
-                            Margin="0,82,59,0"
+                            Margin="19,82,0,0"
+                            HorizontalAlignment="Left"
                             VerticalAlignment="Top"
                             AllowMultiSelect="True"
-                            DefaultText="ComboBox Items" HorizontalAlignment="Right" Width="200" />
+                            DefaultText="ComboBox Items" />
+                        <Canvas Grid.Column="1" />
                     </Grid>
                 </TabItem>
 

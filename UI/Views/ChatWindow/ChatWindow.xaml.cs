@@ -82,6 +82,7 @@ namespace Bubba
     [ SuppressMessage( "ReSharper", "LocalVariableHidesMember" ) ]
     [ SuppressMessage( "ReSharper", "FieldCanBeMadeReadOnly.Local" ) ]
     [ SuppressMessage( "ReSharper", "FieldCanBeMadeReadOnly.Global" ) ]
+    [ SuppressMessage( "ReSharper", "RedundantExtendsListEntry" ) ]
     public partial class ChatWindow : Window, INotifyPropertyChanged, IDisposable
     {
         /// <summary>
@@ -303,7 +304,7 @@ namespace Bubba
         /// to return at each token position, each with an associated log probability.
         /// logprobs must be set to true if this parameter is used.
         /// </summary>
-        private protected int _topLogProbs;
+        private protected double _topLogProbs;
 
         /// <summary>
         /// The models
@@ -496,6 +497,7 @@ namespace Bubba
             PresenceSlider.Value = 0.00;
             FrequencySlider.Value = 0.00;
             SpeechRateSlider.Value = 1.0;
+            TopLogProbsSlider.Value = 0;
 
             // GPT Parameters
             _store = false;
@@ -504,7 +506,7 @@ namespace Bubba
             _topPercent = TopPercentSlider.Value;
             _presencePenalty = PresenceSlider.Value;
             _frequencyPenalty = FrequencySlider.Value;
-            _maximumTokens = int.Parse( MaxTokenTextBox.Text );
+            _maximumTokens = int.Parse( MaxTokenTextBox.Value.ToString(  ) );
             _sizeOptions = new List<string>( );
             _speedOptions = new List<string>( );
             _qualityOptions = new List<string>( );
@@ -526,6 +528,25 @@ namespace Bubba
         {
             try
             {
+                Plotter.Plot.Clear( );
+                var  _x = new[ ]
+                {
+                    1,
+                    2,
+                    3,
+                    4,
+                    5
+                };
+
+                var _y = new[ ]
+                {
+                    1,
+                    4,
+                    9,
+                    16,
+                    25
+                };
+
                 Plotter.Plot.Add.Scatter( _x, _y );
                 Plotter.Refresh( );
             }
@@ -707,6 +728,7 @@ namespace Bubba
                 _number = int.Parse( MaxTokenTextBox.Text );
                 _maximumTokens = Convert.ToInt32( MaxTokenTextBox.Text );
                 _model = ModelDropDown.SelectedItem.ToString( ) ?? "gpt-4o";
+                _speed = int.Parse( SpeechRateSlider.Value.ToString( "N0"  ) );
                 _userPrompt = _language == "Text"
                     ? Editor.Text
                     : "";
