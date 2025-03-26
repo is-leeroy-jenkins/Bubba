@@ -76,28 +76,12 @@ namespace Bubba
         {
             // Control Properties
             SetResourceReference( StyleProperty, typeof( CheckListBox ) );
-            Width = 225.0;
-            Height = 200.0;
             Background = _theme.ControlInterior;
             Foreground = _theme.FormForeground;
-            BorderBrush = _theme.BorderBrush;
-            Padding = new Thickness( 10, 1, 1, 1 );
-            BorderThickness = new Thickness( 1 );
-            VerticalAlignment = VerticalAlignment.Stretch;
-            HorizontalAlignment = HorizontalAlignment.Center;
-            HorizontalContentAlignment = HorizontalAlignment.Left;
-            VerticalContentAlignment = VerticalAlignment.Bottom;
-        }
-
-        /// <summary>
-        /// Fails the specified _ex.
-        /// </summary>
-        /// <param name="_ex">The _ex.</param>
-        private protected void Fail( Exception _ex )
-        {
-            var _error = new ErrorWindow( _ex );
-            _error?.SetText( );
-            _error?.ShowDialog( );
+            BorderBrush = _theme.BlueBorderBrush;
+            BorderThickness = _theme.BorderThickness;
+            HorizontalAlignment = _theme.HorizontalAlignment;
+            VerticalAlignment = _theme.VerticalAlignment;
         }
     }
 }

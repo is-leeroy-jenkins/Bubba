@@ -74,15 +74,14 @@ namespace Bubba
             : base( )
 
         {
-            Width = 100;
-            Height = 30;
             FontFamily = _theme.FontFamily;
             FontSize = _theme.FontSize;
             Padding = new Thickness( 15, 1, 1, 1 );
-            BorderThickness = new Thickness( 1 );
+            BorderThickness = _theme.BorderThickness;
             Background = _theme.ControlInterior;
             Foreground = _theme.FormForeground;
-            BorderBrush = _theme.BorderBrush;
+            BorderBrush = _theme.BlueBorderBrush;
+            IsEditable = true;
         }
 
         /// <summary>
@@ -100,7 +99,7 @@ namespace Bubba
                     BorderBrush = _theme.ControlInterior,
                     Content = name,
                     Tag = name,
-                    Height = 30
+                    Height = 40
                 };
 
                 Items.Add( _item );
@@ -127,7 +126,7 @@ namespace Bubba
                     BorderBrush = _theme.ControlInterior,
                     Content = name,
                     Tag = tag,
-                    Height = 30
+                    Height = 40
                 };
 
                 Items.Add( _item );

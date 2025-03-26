@@ -74,20 +74,9 @@ namespace Bubba
 
             FontFamily = new FontFamily( "Roboto" );
             FontSize = 12;
-            Background = _theme.Background;
-            Foreground = _theme.BorderBrush;
-            BorderBrush = _theme.BorderBrush;
-        }
-
-        /// <summary>
-        /// Fails the specified _ex.
-        /// </summary>
-        /// <param name="_ex">The _ex.</param>
-        private protected void Fail( Exception _ex )
-        {
-            var _error = new ErrorWindow( _ex );
-            _error?.SetText( );
-            _error?.ShowDialog( );
+            Background = _theme.FormBackground;
+            Foreground = _theme.BlueBorderBrush;
+            BorderBrush = _theme.BlueBorderBrush;
         }
     }
 }

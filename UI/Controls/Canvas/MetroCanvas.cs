@@ -71,12 +71,9 @@ namespace Bubba
             : base( )
         {
             // Basic Properties
-            Width = 325;
-            Height = 350;
-            HorizontalAlignment = HorizontalAlignment.Center;
+            HorizontalAlignment = HorizontalAlignment.Stretch;
             VerticalAlignment = VerticalAlignment.Stretch;
-            Margin = new Thickness( 3 );
-            Background = _theme.BorderBrush;
+            Background = _theme.FormBackground;
         }
 
         /// <summary>

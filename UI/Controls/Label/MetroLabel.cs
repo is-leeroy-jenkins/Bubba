@@ -74,13 +74,11 @@ namespace Bubba
             // Basic Properties
             FontFamily = new FontFamily( "Roboto" );
             FontSize = 12;
-            Width = 150;
-            Height = 22;
             HorizontalAlignment = HorizontalAlignment.Stretch;
             VerticalAlignment = VerticalAlignment.Stretch;
             VerticalContentAlignment = VerticalAlignment.Center;
             HorizontalContentAlignment = HorizontalAlignment.Left;
-            Background = _theme.TransparentBrush;
+            Background = _theme.Transparent;
             Foreground = _theme.FormForeground;
         }
     }

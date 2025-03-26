@@ -76,19 +76,14 @@ namespace Bubba
         {
             // Control Properties
             SetResourceReference( StyleProperty, typeof( ComboBoxAdv ) );
-            Width = 200;
-            Height = 35;
             FontFamily = new FontFamily( "Roboto" );
             FontSize = 12;
-            Padding = new Thickness( 15, 1, 1, 1 );
-            BorderThickness = new Thickness( 2 );
+            BorderThickness = _theme.BorderThickness;
             HorizontalAlignment = HorizontalAlignment.Stretch;
             VerticalAlignment = VerticalAlignment.Stretch;
-            HorizontalContentAlignment = HorizontalAlignment.Left;
-            VerticalContentAlignment = VerticalAlignment.Center;
             Background = _theme.ControlInterior;
             Foreground = _theme.FormForeground;
-            BorderBrush = _theme.BorderBrush;
+            BorderBrush = _theme.BlueBorderBrush;
             IsEditable = true;
         }
 

@@ -80,7 +80,7 @@ namespace Bubba
                     DarkBlueBrush,
                     KhakiBrush,
                     GreenBrush,
-                    LightBlueBrush
+                    FormForeground
                 };
 
                 return _array?.Length > 0
@@ -114,7 +114,7 @@ namespace Bubba
                     DarkBlueBrush,
                     KhakiBrush,
                     GreenBrush,
-                    LightBlueBrush
+                    FormForeground
                 };
 
                 return _list?.Count > 0
@@ -147,7 +147,7 @@ namespace Bubba
                 _map.Add( "DarkBlueColor", DarkBlueBrush );
                 _map.Add( "KhakiColor", KhakiBrush );
                 _map.Add( "GreenColor", GreenBrush );
-                _map.Add( "LightBlue", LightBlueBrush );
+                _map.Add( "LightBlueBrush", LightBlueBrush );
                 return _map?.Count > 0
                     ? _map
                     : default( IDictionary<string, Brush> );
@@ -167,15 +167,15 @@ namespace Bubba
         public DarkMode( )
             : base( )
         {
-            Foreground = new SolidColorBrush( _foreColor );
-            Background = new SolidColorBrush( _backColor );
-            BorderBrush = new SolidColorBrush( _borderColor );
+            Foreground = new SolidColorBrush( _foreground );
+            FormBackground = new SolidColorBrush( _formBackground );
+            BlueBorderBrush = new SolidColorBrush( _blueBorderColor );
             WallBrush = new SolidColorBrush( _wallColor );
-            ControlBackground = new SolidColorBrush( _controlBackColor );
+            ControlBackground = new SolidColorBrush( _controlBackground );
             ControlInterior = new SolidColorBrush( _controlInteriorColor );
-            MutedBorderBrush = new SolidColorBrush( _mutedBorderColor );
+            MutedBorderBrush = new SolidColorBrush( _mutedForeground );
             SteelBlueBrush = new SolidColorBrush( _steelBlueColor );
-            FormForeground = new SolidColorBrush( _lightBlue );
+            FormForeground = new SolidColorBrush( _formForeground );
             GrayBrush = new SolidColorBrush( Colors.DarkGray );
             YellowBrush = new SolidColorBrush( _yellowColor );
             RedBrush = new SolidColorBrush( _redColor );
@@ -185,22 +185,39 @@ namespace Bubba
             DarkYellowBrush = new SolidColorBrush( _darkGreenColor );
             KhakiBrush = new SolidColorBrush( _khakiColor );
             GreenBrush = new SolidColorBrush( _greenColor );
-            LightBlueBrush = new SolidColorBrush( _lightBlue );
-            BlackBrush = new SolidColorBrush( _blackColor );
-            WhiteForeground = new SolidColorBrush( _whiteColor );
+            LightBlueBrush = new SolidColorBrush( _formForeground );
+            BlackBackground = new SolidColorBrush( _blackBackground );
+            WhiteForeground = new SolidColorBrush( _whiteForeground );
             GroupBoxBackground = new SolidColorBrush( _groupBoxBackground );
-            FontFamily = new FontFamily( "Roboto Regular" );
-            FontSize = 11;
-            Padding = new Thickness( 1 );
-            Margin = new Thickness( 1 );
+            MutedForeground = new SolidColorBrush( _mutedForeground );
+            FontFamily = new FontFamily( "Roboto" );
+            FontSize = 12;
             BorderThickness = new Thickness( 1 );
             WindowStyle = WindowStyle.SingleBorderWindow;
             SizeMode = ResizeMode.CanResize;
+            HorizontalAlignment = HorizontalAlignment.Stretch;
+            VerticalAlignment = VerticalAlignment.Stretch;
             StartLocation = WindowStartupLocation.CenterScreen;
             _color = CreateColors( );
             _colorModel = CreateColorModel( );
             _colorMap = CreateColorMap( );
         }
+
+        /// <summary>
+        /// Gets the horizontal alignment.
+        /// </summary>
+        /// <value>
+        /// The horizontal alignment.
+        /// </value>
+        public HorizontalAlignment HorizontalAlignment { get; private protected init; }
+
+        /// <summary>
+        /// Gets the vertical alignment.
+        /// </summary>
+        /// <value>
+        /// The vertical alignment.
+        /// </value>
+        public VerticalAlignment VerticalAlignment { get; private protected init; }
 
         /// <summary>
         /// Gets the color of the dark blue.

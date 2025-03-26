@@ -82,26 +82,16 @@ namespace Bubba
             FontFamily = _theme.FontFamily;
             FontSize = _theme.FontSize;
             Height = 40;
-            Width = 800;
             GripperVisibility = Visibility.Hidden;
             OverflowButtonVisibility = Visibility.Collapsed;
             Padding = _theme.Padding;
             Margin = new Thickness( 3, 1, 1, 1 );
             BorderThickness = _theme.BorderThickness;
-            Background = _theme.Background;
+            Background = _theme.FormBackground;
             Foreground = _theme.Foreground;
-            BorderBrush = _theme.Background;
-        }
-
-        /// <summary>
-        /// Fails the specified _ex.
-        /// </summary>
-        /// <param name="_ex">The _ex.</param>
-        private protected void Fail( Exception _ex )
-        {
-            var _error = new ErrorWindow( _ex );
-            _error?.SetText( );
-            _error?.ShowDialog( );
+            BorderBrush = _theme.FormBackground;
+            HorizontalAlignment = HorizontalAlignment.Stretch;
+            VerticalAlignment = VerticalAlignment.Stretch;
         }
     }
 }

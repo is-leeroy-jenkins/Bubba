@@ -45,6 +45,7 @@ namespace Bubba
     using System;
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
+    using System.Windows;
     using System.Windows.Media;
     using Color = System.Windows.Media.Color;
     using Colors = System.Windows.Media.Colors;
@@ -59,13 +60,14 @@ namespace Bubba
     [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
     [ SuppressMessage( "ReSharper", "RedundantExplicitArrayCreation" ) ]
     [ SuppressMessage( "ReSharper", "MemberCanBeInternal" ) ]
+    [ SuppressMessage( "ReSharper", "PreferConcreteValueOverDefault" ) ]
     public abstract class Palette : Dimensions
     {
         /// <inheritdoc />
         /// <summary>
         /// The back color
         /// </summary>
-        private protected Color _backColor = new Color( )
+        private protected Color _formBackground = new Color( )
         {
             A = 255,
             R = 20,
@@ -76,7 +78,7 @@ namespace Bubba
         /// <summary>
         /// The black color
         /// </summary>
-        private protected Color _blackColor = new Color( )
+        private protected Color _blackBackground = new Color( )
         {
             A = 255,
             R = 0,
@@ -87,7 +89,7 @@ namespace Bubba
         /// <summary>
         /// The border color
         /// </summary>
-        private protected Color _borderColor = new Color( )
+        private protected Color _blueBorderColor = new Color( )
         {
             A = 255,
             R = 0,
@@ -113,7 +115,7 @@ namespace Bubba
         /// <summary>
         /// The control color
         /// </summary>
-        private protected Color _controlBackColor = new Color( )
+        private protected Color _controlBackground = new Color( )
         {
             A = 255,
             R = 40,
@@ -146,7 +148,7 @@ namespace Bubba
         /// <summary>
         /// The fore color
         /// </summary>
-        private protected Color _foreColor = new Color( )
+        private protected Color _foreground = new Color( )
         {
             A = 255,
             R = 222,
@@ -191,7 +193,7 @@ namespace Bubba
         /// <summary>
         /// The light blue
         /// </summary>
-        private protected Color _lightBlue = new Color( )
+        private protected Color _formForeground = new Color( )
         {
             A = 255,
             R = 160,
@@ -208,7 +210,7 @@ namespace Bubba
         /// <summary>
         /// The transparent color
         /// </summary>
-        private protected Color TransparentColor = new Color( )
+        private protected Color _transparent = new Color( )
         {
             A = 0,
             R = 0,
@@ -230,7 +232,7 @@ namespace Bubba
         /// <summary>
         /// The black color
         /// </summary>
-        private protected Color _whiteColor = new Color( )
+        private protected Color _whiteForeground = new Color( )
         {
             A = 255,
             R = 255,
@@ -247,7 +249,7 @@ namespace Bubba
         /// <summary>
         /// The muted border color
         /// </summary>
-        private protected Color _mutedBorderColor = new Color( )
+        private protected Color _mutedForeground = new Color( )
         {
             A = 255,
             R = 90,
@@ -377,7 +379,7 @@ namespace Bubba
         /// <value>
         /// The color of the fore.
         /// </value>
-        public SolidColorBrush TransparentBrush { get; private protected init; }
+        public SolidColorBrush Transparent { get; private protected init; }
 
         /// <inheritdoc />
         /// <summary>
@@ -386,7 +388,7 @@ namespace Bubba
         /// <value>
         /// The color of the black.
         /// </value>
-        public SolidColorBrush BlackBrush { get; private protected init; }
+        public SolidColorBrush BlackBackground { get; private protected init; }
 
         /// <inheritdoc />
         /// <summary>
@@ -404,7 +406,7 @@ namespace Bubba
         /// <value>
         /// The color of the back.
         /// </value>
-        public SolidColorBrush Background { get; private protected init; }
+        public SolidColorBrush FormBackground { get; private protected init; }
 
         /// <summary>
         /// Gets the group box background.
@@ -421,7 +423,7 @@ namespace Bubba
         /// <value>
         /// The color of the border.
         /// </value>
-        public SolidColorBrush BorderBrush { get; private protected init; }
+        public SolidColorBrush BlueBorderBrush { get; private protected init; }
 
         /// <inheritdoc />
         /// <summary>
@@ -503,6 +505,14 @@ namespace Bubba
         /// </value>
         public SolidColorBrush YellowBrush { get; private protected init; }
 
+        /// <summary>
+        /// Gets the muted foreground.
+        /// </summary>
+        /// <value>
+        /// The muted foreground.
+        /// </value>
+        public SolidColorBrush MutedForeground { get; private protected init; }
+
         /// <inheritdoc />
         /// <summary>
         /// Gets the color of the gray.
@@ -528,7 +538,7 @@ namespace Bubba
                     RedBrush,
                     KhakiBrush,
                     GreenBrush,
-                    LightBlueBrush
+                    FormForeground
                 };
 
                 return _array?.Length > 0
@@ -559,7 +569,7 @@ namespace Bubba
                     RedBrush,
                     KhakiBrush,
                     GreenBrush,
-                    LightBlueBrush
+                    FormForeground
                 };
 
                 return _list?.Count > 0
@@ -589,7 +599,7 @@ namespace Bubba
                 _map.Add( "RedColor", RedBrush );
                 _map.Add( "KhakiColor", KhakiBrush );
                 _map.Add( "GreenColor", GreenBrush );
-                _map.Add( "LightBlue", LightBlueBrush );
+                _map.Add( "FormForeground", LightBlueBrush );
                 return _map?.Count > 0
                     ? _map
                     : default( IDictionary<string, Brush> );

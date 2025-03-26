@@ -72,27 +72,14 @@ namespace Bubba
             : base( )
         {
             // Basic Settings
-            Height = 24;
-            Width = 124;
             FontFamily = _theme.FontFamily;
             FontSize = _theme.FontSize;
             BorderThickness = new Thickness( 0 );
-            Background = _theme.TransparentBrush;
-            BorderBrush = _theme.TransparentBrush;
+            Background = _theme.Transparent;
+            BorderBrush = _theme.Transparent;
             Foreground = _theme.FormForeground;
             HorizontalAlignment = HorizontalAlignment.Stretch;
             VerticalAlignment = VerticalAlignment.Stretch;
-        }
-
-        /// <summary>
-        /// Fails the specified ex.
-        /// </summary>
-        /// <param name="ex">The ex.</param>
-        private protected void Fail( Exception ex )
-        {
-            var _error = new ErrorWindow( ex );
-            _error?.SetText( );
-            _error?.ShowDialog( );
         }
     }
 }

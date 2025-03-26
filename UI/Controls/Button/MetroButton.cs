@@ -75,8 +75,6 @@ namespace Bubba
             SetResourceReference( StyleProperty, typeof( ButtonAdv ) );
             FontFamily = _theme.FontFamily;
             FontSize = _theme.FontSize;
-            Width = 140;
-            Height = 50;
             IconHeight = 16;
             IconWidth = 16;
             SizeMode = SizeMode.Normal;
@@ -85,7 +83,7 @@ namespace Bubba
             BorderThickness = _theme.BorderThickness;
             Background = _theme.ControlInterior;
             Foreground = _theme.Foreground;
-            BorderBrush = _theme.BorderBrush;
+            BorderBrush = _theme.BlueBorderBrush;
 
             // Event Wiring
             MouseEnter += OnMouseEnter;
@@ -103,9 +101,9 @@ namespace Bubba
         {
             try
             {
-                Background = _theme.ControlInterior;
-                BorderBrush = _theme.SteelBlueBrush;
-                Foreground = _theme.LightBlueBrush;
+                Background = _theme.SteelBlueBrush;
+                BorderBrush = _theme.LightBlueBrush;
+                Foreground = _theme.WhiteForeground;
             }
             catch( Exception ex )
             {

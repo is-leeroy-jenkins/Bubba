@@ -42,23 +42,54 @@
 namespace Bubba
 {
     using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
-    using System.Threading.Tasks;
+    using System.Diagnostics.CodeAnalysis;
 
     /// <summary>
     /// 
     /// </summary>
-    public class SentimentData
+    [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
+    public class SentimentData : PropertyChangedBase
     {
+        /// <summary>
+        /// The text
+        /// </summary>
+        private protected string _text;
+
+        /// <summary>
+        /// The sentiment
+        /// </summary>
+        private protected bool _sentiment;
+
+        /// <summary>
+        /// Initializes a new instance of the
+        ///
+        /// <see cref="SentimentData"/> class.
+        /// </summary>
+        public SentimentData( )
+        {
+        }
+
         /// <summary>
         /// Gets or sets the text.
         /// </summary>
         /// <value>
         /// The text.
         /// </value>
-        public string Text { get; set; }
+        public string Text
+        {
+            get
+            {
+                return _text;
+            }
+            set
+            {
+                if( _text != value )
+                {
+                    _text = value;
+                    OnPropertyChanged( nameof( Text ) );
+                }
+            }
+        }
 
         /// <summary>
         /// Gets or sets a value indicating whether this
@@ -67,6 +98,20 @@ namespace Bubba
         /// <value>
         ///   <c>true</c> if sentiment; otherwise, <c>false</c>.
         /// </value>
-        public bool Sentiment { get; set; }
+        public bool Sentiment
+        {
+            get
+            {
+                return _sentiment;
+            }
+            set
+            {
+                if( _sentiment != value )
+                {
+                    _sentiment = value;
+                    OnPropertyChanged( nameof( Sentiment ) );
+                }
+            }
+        }
     }
 }

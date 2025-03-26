@@ -42,6 +42,7 @@
 namespace Bubba
 {
     using System;
+    using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
     using System.Windows;
     using Syncfusion.Windows.Controls.Input;
@@ -72,6 +73,11 @@ namespace Bubba
         private protected string _tempText;
 
         /// <summary>
+        /// The tokens
+        /// </summary>
+        private protected int _tokens;
+
+        /// <summary>
         /// Initializes a new instance of the
         /// <see cref="ToolStripTextBox"/> class.
         /// </summary>
@@ -80,17 +86,18 @@ namespace Bubba
             : base( )
         {
             SetResourceReference( StyleProperty, typeof( SfTextBoxExt ) );
-            Width = 100;
-            Height = 24;
             FontFamily = _theme.FontFamily;
             FontSize = _theme.FontSize;
-            Padding = new Thickness( 1 );
+            Padding = new Thickness( 15, 1, 1, 1 );
+            HorizontalAlignment = HorizontalAlignment.Stretch;
+            VerticalAlignment = VerticalAlignment.Stretch;
             Background = _theme.ControlBackground;
             Foreground = _theme.LightBlueBrush;
-            BorderBrush = _theme.BorderBrush;
+            BorderBrush = _theme.BlueBorderBrush;
             SelectionBrush = _theme.SteelBlueBrush;
             _inputText = "";
             _tempText = "";
+            _tokens = 0;
 
             // Event Wiring
             GotMouseCapture += OnMouseCapture;
@@ -118,6 +125,24 @@ namespace Bubba
         }
 
         /// <summary>
+        /// Gets or sets the tokens.
+        /// </summary>
+        /// <value>
+        /// The tokens.
+        /// </value>
+        public int Tokens
+        {
+            get
+            {
+                return _tokens;
+            }
+            set
+            {
+                _tokens = value;
+            }
+        }
+
+        /// <summary>
         /// Called when [mouse enter].
         /// </summary>
         /// <param name="sender">The sender.</param>
@@ -127,8 +152,8 @@ namespace Bubba
         {
             try
             {
-                Background = _theme.BlackBrush;
-                BorderBrush = _theme.BorderBrush;
+                Background = _theme.BlackBackground;
+                BorderBrush = _theme.BlueBorderBrush;
                 Foreground = _theme.WhiteForeground;
             }
             catch( Exception ex )
@@ -148,7 +173,7 @@ namespace Bubba
             try
             {
                 Background = _theme.ControlInterior;
-                BorderBrush = _theme.BorderBrush;
+                BorderBrush = _theme.BlueBorderBrush;
                 Foreground = _theme.FormForeground;
             }
             catch( Exception ex )
@@ -171,7 +196,23 @@ namespace Bubba
                 if( sender is ToolStripTextBox _textBox
                     && !string.IsNullOrEmpty( _textBox.Text ) )
                 {
+                    _inputText = _textBox.Text;
                     _tempText = _textBox.Text;
+                    var _words = _tempText.Split(  );
+                    var _counter = new List<char>( );
+                    foreach( var _str in _words )
+                    {
+                        var _chars = _str.ToCharArray( );
+                        foreach( var _char in _chars )
+                        {
+                            _counter.Add( _char );
+                        }
+                    }
+
+                    if( _counter.Count > 4 )
+                    {
+                        _tokens = _counter.Count / 4;
+                    }
                 }
             }
             catch( Exception ex )
@@ -190,6 +231,7 @@ namespace Bubba
         {
             try
             {
+                _tokens = 0;
                 if( !string.IsNullOrEmpty( _tempText )
                     && !string.IsNullOrEmpty( _inputText )
                     && _tempText != _inputText )

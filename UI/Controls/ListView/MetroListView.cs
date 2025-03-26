@@ -75,17 +75,8 @@ namespace Bubba
             Margin = _theme.Margin;
             Padding = _theme.Padding;
             BorderThickness = _theme.BorderThickness;
-        }
-
-        /// <summary>
-        /// Fails the specified _ex.
-        /// </summary>
-        /// <param name="_ex">The _ex.</param>
-        private protected void Fail( Exception _ex )
-        {
-            var _error = new ErrorWindow( _ex );
-            _error?.SetText( );
-            _error?.ShowDialog( );
+            HorizontalAlignment = _theme.HorizontalAlignment;
+            VerticalAlignment = _theme.VerticalAlignment;
         }
     }
 }

@@ -87,20 +87,11 @@ namespace Bubba
             Padding = _theme.Padding;
             Margin = new Thickness( 3, 1, 1, 1 );
             BorderThickness = _theme.BorderThickness;
-            Background = _theme.Background;
+            Background = _theme.FormBackground;
             Foreground = _theme.Foreground;
-            BorderBrush = _theme.Background;
-        }
-
-        /// <summary>
-        /// Fails the specified _ex.
-        /// </summary>
-        /// <param name="_ex">The _ex.</param>
-        private protected void Fail( Exception _ex )
-        {
-            var _error = new ErrorWindow( _ex );
-            _error?.SetText( );
-            _error?.ShowDialog( );
+            BorderBrush = _theme.FormBackground;
+            HorizontalAlignment = HorizontalAlignment.Stretch;
+            VerticalAlignment = VerticalAlignment.Stretch;
         }
     }
 }

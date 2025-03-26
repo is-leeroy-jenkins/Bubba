@@ -79,16 +79,13 @@ namespace Bubba
         {
             // Control Properties
             SetResourceReference( StyleProperty, typeof( SfTextInputLayout ) );
-            Height = 150;
-            Width = 150;
-            _textBox.Margin = new Thickness(10);
             _textBox.Padding = new Thickness( 10, 1, 1, 1 );
             FontFamily = new FontFamily( "Roboto" );
             FontSize = 12;
             Background = _theme.ControlBackground;
             Foreground = _theme.Foreground;
-            BorderBrush = _theme.BorderBrush;
-            ContainerBackground = _theme.TransparentBrush;
+            BorderBrush = _theme.BlueBorderBrush;
+            ContainerBackground = _theme.Transparent;
             FocusedBorderBrush = _theme.Foreground;
             FocusedForeground = _theme.WhiteForeground;
             Hint = "Name";

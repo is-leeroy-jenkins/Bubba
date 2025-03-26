@@ -71,24 +71,11 @@ namespace Bubba
         {
             // Control Properties
             SetResourceReference( StyleProperty, typeof( GridControl ) );
-            Width = 250;
-            Height = 200;
             Model.HeaderStyle.Background = _theme.SteelBlueBrush;
             Model.Options.AllowExcelLikeResizing = true;
             Model.Options.AllowSelection = GridSelectionFlags.Row;
             Model.Options.ExcelLikeCurrentCell = true;
             Model.Options.ExcelLikeSelection = true;
-        }
-
-        /// <summary>
-        /// Fails the specified _ex. 
-        /// </summary>
-        /// <param name="_ex">The _ex.</param>
-        private protected void Fail( Exception _ex )
-        {
-            var _error = new ErrorWindow( _ex );
-            _error?.SetText( );
-            _error?.ShowDialog( );
         }
     }
 }

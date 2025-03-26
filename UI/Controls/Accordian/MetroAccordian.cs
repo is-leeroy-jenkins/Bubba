@@ -74,23 +74,10 @@ namespace Bubba
             SetResourceReference( StyleProperty, typeof( SfAccordion ) );
             FontSize = 12;
             FontFamily = new FontFamily( "Roboto" );
-            Width = 250;
-            Height = 250;
             AccentBrush = _theme.SteelBlueBrush;
-            Background = _theme.Background;
-            BorderBrush = _theme.BorderBrush;
-            Foreground = _theme.Foreground;
-        }
-
-        /// <summary>
-        /// Fails the specified _ex.
-        /// </summary>
-        /// <param name="_ex">The _ex.</param>
-        private protected void Fail( Exception _ex )
-        {
-            var _error = new ErrorWindow( _ex );
-            _error?.SetText( );
-            _error?.ShowDialog( );
+            Background = _theme.FormBackground;
+            BorderBrush = _theme.BlueBorderBrush;
+            Foreground = _theme.LightBlueBrush;
         }
     }
 }

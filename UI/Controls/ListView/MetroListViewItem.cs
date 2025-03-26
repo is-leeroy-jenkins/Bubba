@@ -81,11 +81,11 @@ namespace Bubba
             Height = 40;
             Background = _theme.ControlInterior;
             BorderBrush = _theme.ControlInterior;
-            BorderBrush = _theme.ControlInterior;
-            Margin = new Thickness( 1 );
-            Padding = new Thickness( 30, 10, 1, 1 );
+            Foreground = _theme.FormForeground;
+            Padding = new Thickness( 10, 10, 1, 1 );
             BorderThickness = new Thickness( 0 );
-            HorizontalAlignment = HorizontalAlignment.Left;
+            HorizontalAlignment = _theme.HorizontalAlignment;
+            VerticalAlignment = _theme.VerticalAlignment;
 
             // Event Wiring
             MouseEnter += OnItemMouseEnter;

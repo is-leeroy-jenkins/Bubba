@@ -171,16 +171,5 @@ namespace Bubba
             WeekNumberSelectionForeground = new SolidColorBrush( Colors.White );
             WeekNumberSelectionBorderBrush = new SolidColorBrush( Colors.SteelBlue );
         }
-
-        /// <summary>
-        /// Fails the specified _ex.
-        /// </summary>
-        /// <param name="_ex">The _ex.</param>
-        private protected void Fail( Exception _ex )
-        {
-            var _error = new ErrorWindow( _ex );
-            _error?.SetText( );
-            _error?.ShowDialog( );
-        }
     }
 }

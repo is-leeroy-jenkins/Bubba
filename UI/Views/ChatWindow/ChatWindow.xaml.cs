@@ -615,7 +615,7 @@ namespace Bubba
                 Editor.IsMultiLine = true;
                 Editor.IsUndoEnabled = true;
                 Editor.IsRedoEnabled = true;
-                Editor.LineNumberAreaBackground = _theme.BlackBrush;
+                Editor.LineNumberAreaBackground = _theme.BlackBackground;
                 Editor.LineNumberTextForeground = _theme.GreenBrush;
                 Editor.SelectionBackground = _theme.SteelBlueBrush;
                 Editor.SelectionForeground = _theme.WhiteForeground;
@@ -1905,9 +1905,10 @@ namespace Bubba
                 {
                     foreach( var _lm in _models )
                     {
+                        var _item = new MetroDropDownItem( _lm );
                         if( !_lm.StartsWith( "ft" ) )
                         {
-                            ModelDropDown.Items.Add( _lm );
+                            ModelDropDown.Items.Add( _item );
                         }
                     }
                 } );
@@ -2305,7 +2306,7 @@ namespace Bubba
             var _documents = Directory.GetFiles( _path );
             foreach( var _file in _documents )
             {
-                var _item = new ListBoxItem
+                var _item = new MetroListBoxItem(  )
                 {
                     Tag = _file,
                     Content = Path.GetFileNameWithoutExtension( _file )
@@ -2330,7 +2331,7 @@ namespace Bubba
                 var _documents = Directory.GetFiles( _path );
                 foreach( var _file in _documents )
                 {
-                    var _item = new ListBoxItem
+                    var _item = new MetroListBoxItem(  )
                     {
                         Tag = _file,
                         Content = Path.GetFileNameWithoutExtension( _file )
@@ -2359,7 +2360,8 @@ namespace Bubba
                 var _documents = Directory.GetFiles( _path );
                 foreach( var _file in _documents )
                 {
-                    var _item = new ListBoxItem
+                    var _item = new MetroListBoxItem(  )
+
                     {
                         Tag = _file,
                         Content = Path.GetFileNameWithoutExtension( _file )
@@ -2388,7 +2390,7 @@ namespace Bubba
                 var _documents = Directory.GetFiles( _path );
                 foreach( var _file in _documents )
                 {
-                    var _item = new ListBoxItem
+                    var _item = new MetroListBoxItem(  )
                     {
                         Tag = _file,
                         Content = Path.GetFileNameWithoutExtension( _file )
@@ -2417,7 +2419,7 @@ namespace Bubba
                 var _documents = Directory.GetFiles( _path );
                 foreach( var _file in _documents )
                 {
-                    var _item = new ListBoxItem
+                    var _item = new MetroListBoxItem( )
                     {
                         Tag = _file,
                         Content = Path.GetFileNameWithoutExtension( _file )
@@ -2446,7 +2448,7 @@ namespace Bubba
                 var _documents = Directory.GetFiles( _path );
                 foreach( var _file in _documents )
                 {
-                    var _item = new ListBoxItem
+                    var _item = new MetroListBoxItem( )
                     {
                         Tag = _file,
                         Content = Path.GetFileNameWithoutExtension( _file )
@@ -2475,7 +2477,7 @@ namespace Bubba
                 var _documents = Directory.GetFiles( _path );
                 foreach( var _file in _documents )
                 {
-                    var _item = new ListBoxItem
+                    var _item = new  MetroListBoxItem( )
                     {
                         Tag = _file,
                         Content = Path.GetFileNameWithoutExtension( _file )
@@ -2509,7 +2511,7 @@ namespace Bubba
                     var _last = _first.TrimEnd( _end );
                     var _lower = _last.ToLower(  );
                     _voiceOptions.Add( _info.Name, _lower );
-                    var _item = new ListBoxItem
+                    var _item = new MetroDropDownItem( )
                     {
                         Tag = _info.Name,
                         Content = _lower
@@ -2544,7 +2546,7 @@ namespace Bubba
                 VoicesDropDown.Items.Clear(  );
                 foreach( var _voice in _aiVoices )
                 {
-                    var _item = new ListBoxItem
+                    var _item = new MetroDropDownItem( )
                     {
                         Tag = _voice.Key,
                         Content = _voice.Value
@@ -2605,9 +2607,9 @@ namespace Bubba
                 var _names = Enum.GetNames( typeof( GptRequests ) );
                 foreach( var _request in _names )
                 {
-                    var _item = new ListBoxItem
+                    var _item = new MetroDropDownItem( )
                     {
-                        Height = 22,
+                        Height = 35,
                         Tag = _request,
                         Content = _request.SplitPascal( )
                     };
@@ -2634,7 +2636,14 @@ namespace Bubba
                 var _names = Enum.GetNames( typeof( GptLanguages ) );
                 foreach( var _request in _names )
                 {
-                    LanguageDropDown.Items.Add( _request );
+                    var _item = new MetroDropDownItem( )
+                    {
+                        Height = 35,
+                        Tag = _request,
+                        Content = _request.SplitPascal( )
+                    };
+
+                    LanguageDropDown.Items.Add( _item );
                 }
 
                 LanguageDropDown.SelectedIndex = -1;
@@ -2668,7 +2677,7 @@ namespace Bubba
                             var _documents = Directory.GetFiles( _path );
                             foreach( var _file in _documents )
                             {
-                                var _item = new ListBoxItem
+                                var _item = new MetroListBoxItem
                                 {
                                     Tag = _file,
                                     Content = Path.GetFileNameWithoutExtension( _file )
@@ -2688,7 +2697,7 @@ namespace Bubba
                             var _documents = Directory.GetFiles( _path );
                             foreach( var _file in _documents )
                             {
-                                var _item = new ListBoxItem
+                                var _item = new MetroListBoxItem
                                 {
                                     Tag = _file,
                                     Content = Path.GetFileNameWithoutExtension( _file )
@@ -2708,7 +2717,7 @@ namespace Bubba
                             var _documents = Directory.GetFiles( _path );
                             foreach( var _file in _documents )
                             {
-                                var _item = new ListBoxItem
+                                var _item = new MetroListBoxItem
                                 {
                                     Tag = _file,
                                     Content = Path.GetFileNameWithoutExtension( _file )
@@ -2728,7 +2737,7 @@ namespace Bubba
                             var _documents = Directory.GetFiles( _path );
                             foreach( var _file in _documents )
                             {
-                                var _item = new ListBoxItem
+                                var _item = new MetroListBoxItem
                                 {
                                     Tag = _file,
                                     Content = Path.GetFileNameWithoutExtension( _file )
@@ -2748,7 +2757,7 @@ namespace Bubba
                             var _documents = Directory.GetFiles( _path );
                             foreach( var _file in _documents )
                             {
-                                var _item = new ListBoxItem
+                                var _item = new MetroListBoxItem
                                 {
                                     Tag = _file,
                                     Content = Path.GetFileNameWithoutExtension( _file )
@@ -2769,7 +2778,7 @@ namespace Bubba
                             var _documents = Directory.GetFiles( _path );
                             foreach( var _file in _documents )
                             {
-                                var _item = new ListBoxItem
+                                var _item = new MetroListBoxItem
                                 {
                                     Tag = _file,
                                     Content = Path.GetFileNameWithoutExtension( _file )
@@ -2789,7 +2798,7 @@ namespace Bubba
                             var _documents = Directory.GetFiles( _path );
                             foreach( var _file in _documents )
                             {
-                                var _item = new ListBoxItem
+                                var _item = new MetroListBoxItem
                                 {
                                     Tag = _file,
                                     Content = Path.GetFileNameWithoutExtension( _file )
@@ -2810,7 +2819,7 @@ namespace Bubba
                             var _documents = Directory.GetFiles( _path );
                             foreach( var _file in _documents )
                             {
-                                var _item = new ListBoxItem
+                                var _item = new MetroListBoxItem
                                 {
                                     Tag = _file,
                                     Content = Path.GetFileNameWithoutExtension( _file )
@@ -4004,15 +4013,8 @@ namespace Bubba
         {
             if( MuteCheckBox.IsChecked == true )
             {
-                VoiceLabel.Visibility = Visibility.Visible;
-                VoicesDropDown.Visibility = Visibility.Visible;
                 var _msg = "The GPT Audio Client has been activated!";
                 SendNotification( _msg );
-            }
-            else
-            {
-                VoiceLabel.Visibility = Visibility.Hidden;
-                VoicesDropDown.Visibility = Visibility.Hidden;
             }
         }
 
@@ -4186,7 +4188,7 @@ namespace Bubba
             {
                 if( GenerationListBox.SelectedIndex != -1 )
                 {
-                    var _item = ( ListBoxItem )GenerationListBox.SelectedItem;
+                    var _item = ( MetroDropDownItem )GenerationListBox.SelectedItem;
                     _selectedRequest = _item.Tag?.ToString( );
                     _requestType =
                         ( GptRequests )Enum.Parse( typeof( GptRequests ), _selectedRequest );

@@ -69,9 +69,7 @@ namespace Bubba
         public ToolPanel( )
             : base( )
         {
-            Width = 1400;
-            Height = 40;
-            Background = _theme.Background;
+            Background = _theme.FormBackground;
         }
     }
 }

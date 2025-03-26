@@ -82,12 +82,24 @@ namespace Bubba
             // Control Properties
             SetResourceReference( StyleProperty, typeof( ComboBoxItemAdv ) );
             Background = _theme.ControlInterior;
-            BorderBrush = _theme.ControlInterior;
             Foreground = _theme.FormForeground;
             Padding = new Thickness( 15, 1, 1, 1 );
-            Height = 35;
-            BorderThickness = new Thickness( 1 );
+            Height = 40;
+            HorizontalAlignment = HorizontalAlignment.Stretch;
+            VerticalAlignment = VerticalAlignment.Stretch;
             HorizontalContentAlignment = HorizontalAlignment.Left;
+            VerticalContentAlignment = VerticalAlignment.Center;
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="MetroDropDownItem"/> class.
+        /// </summary>
+        /// <param name="text">The text.</param>
+        public MetroDropDownItem( string text ) 
+            : this( )
+        {
+            Content = text;
+            Tag = text;
         }
 
         /// <summary>
@@ -97,8 +109,8 @@ namespace Bubba
         private protected void Fail(Exception ex)
         {
             var _error = new ErrorWindow(ex);
-            _error?.SetText();
-            _error?.ShowDialog();
+            _error?.SetText( );
+            _error?.ShowDialog() ;
         }
     }
 }

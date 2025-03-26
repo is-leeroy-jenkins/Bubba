@@ -75,7 +75,6 @@ namespace Bubba
             : base( )
         {
             // Control Properties
-            Height = 30;
             Padding = new Thickness( 15, 1, 1, 1 );
             Background = _theme.ControlInterior;
             BorderBrush = _theme.ControlInterior;
@@ -98,7 +97,7 @@ namespace Bubba
             {
                 if( sender is MetroComboBoxItem _item )
                 {
-                    _item.Foreground = _theme.FormForeground;
+                    _item.Foreground = _theme.WhiteForeground;
                     _item.Background = _theme.SteelBlueBrush;
                     _item.BorderBrush = _theme.SteelBlueBrush;
                 }
@@ -122,8 +121,8 @@ namespace Bubba
                 if( sender is MetroComboBoxItem _item )
                 {
                     _item.Foreground = _theme.FormForeground;
-                    _item.Background = _theme.ControlBackground;
-                    _item.BorderBrush = _theme.ControlBackground;
+                    _item.Background = _theme.ControlInterior;
+                    _item.BorderBrush = _theme.ControlInterior;
                 }
             }
             catch( Exception ex )

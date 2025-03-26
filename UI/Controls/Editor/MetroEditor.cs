@@ -76,11 +76,9 @@ namespace Bubba
             // Control Properties
             FontFamily = new FontFamily( "Roboto" );
             FontSize = 12;
-            Width = 400;
-            Height = 100;
             Background = _theme.ControlBackground;
             Foreground = _theme.Foreground;
-            BorderBrush = _theme.BorderBrush;
+            BorderBrush = _theme.BlueBorderBrush;
         }
 
         /// <summary>

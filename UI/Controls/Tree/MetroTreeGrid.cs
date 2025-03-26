@@ -75,7 +75,7 @@ namespace Bubba
             FontFamily = _theme.FontFamily;
             Background = _theme.DarkBlueBrush;
             Foreground = _theme.Foreground;
-            BorderBrush = _theme.BorderBrush;
+            BorderBrush = _theme.BlueBorderBrush;
         }
 
         /// <summary>

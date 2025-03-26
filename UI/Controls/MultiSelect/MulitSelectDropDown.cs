@@ -72,26 +72,15 @@ namespace Bubba
             SetResourceReference( StyleProperty,
                 typeof( SfMultiColumnDropDownControl ) );
 
-            Width = 175;
-            Height = 30;
             FontFamily = new FontFamily( "Roboto" );
             FontSize = 12;
             Background = _theme.ControlBackground;
             Foreground = _theme.LightBlueBrush;
-            BorderBrush = _theme.BorderBrush;
+            BorderBrush = _theme.BlueBorderBrush;
             PopupBorderThickness = new Thickness( 1 );
-            PopupBorderBrush = _theme.BorderBrush;
-        }
-
-        /// <summary>
-        /// Fails the specified _ex.
-        /// </summary>
-        /// <param name="_ex">The _ex.</param>
-        private protected void Fail( Exception _ex )
-        {
-            var _error = new ErrorWindow( _ex );
-            _error?.SetText( );
-            _error?.ShowDialog( );
+            PopupBorderBrush = _theme.BlueBorderBrush;
+            HorizontalAlignment = _theme.HorizontalAlignment;
+            VerticalAlignment = _theme.VerticalAlignment;
         }
     }
 }

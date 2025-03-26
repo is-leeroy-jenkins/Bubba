@@ -72,9 +72,9 @@ namespace Bubba
             SetResourceReference( StyleProperty, typeof( SfStepProgressBar ) );
             FontFamily = new FontFamily( "Roboto" );
             FontSize = 12;
-            Background = _theme.Background;
-            Foreground = _theme.BorderBrush;
-            BorderBrush = _theme.BorderBrush;
+            Background = _theme.FormBackground;
+            Foreground = _theme.WhiteForeground;
+            BorderBrush = _theme.BlueBorderBrush;
         }
 
         /// <summary>

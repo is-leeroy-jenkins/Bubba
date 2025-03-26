@@ -76,17 +76,12 @@ namespace Bubba
         {
             // Control Properties
             SetResourceReference( StyleProperty, typeof( CheckListBoxItem ) );
-            Width = 225;
-            Height = 24;
             Background = _theme.ControlInterior;
             Foreground = _theme.Foreground;
-            BorderBrush = _theme.ControlInterior;
             Padding = new Thickness( 10, 1, 1, 1 );
-            BorderThickness = new Thickness( 1 );
-            VerticalAlignment = VerticalAlignment.Stretch;
-            HorizontalAlignment = HorizontalAlignment.Center;
-            HorizontalContentAlignment = HorizontalAlignment.Left;
-            VerticalContentAlignment = VerticalAlignment.Bottom;
+            BorderThickness = _theme.BorderThickness;
+            VerticalAlignment = _theme.VerticalAlignment;
+            HorizontalContentAlignment = _theme.HorizontalAlignment;
 
             // Event Wiring
             MouseEnter += OnItemMouseEnter;

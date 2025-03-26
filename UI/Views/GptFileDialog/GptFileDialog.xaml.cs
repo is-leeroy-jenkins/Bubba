@@ -215,7 +215,7 @@ namespace Bubba
             WindowStyle = WindowStyle.None;
             Background = _theme.ControlBackground;
             Foreground = _theme.LightBlueBrush;
-            BorderBrush = _theme.BorderBrush;
+            BorderBrush = _theme.BlueBorderBrush;
             _filePaths = new List<string>( );
 
             // Timer Properties

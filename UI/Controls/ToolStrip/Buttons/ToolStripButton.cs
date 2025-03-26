@@ -76,9 +76,9 @@ namespace Bubba
             Header = "";
             Title = "";
             Padding = new Thickness( 1 );
-            Margin = new Thickness( 1 );
-            Background = _theme.Background;
-            BorderBrush = _theme.Background;
+            Margin = new Thickness( 5, 1, 5, 1 );
+            Background = _theme.FormBackground;
+            BorderBrush = _theme.FormBackground;
             Foreground = _theme.LightBlueBrush;
 
             // Wire Events
@@ -120,8 +120,8 @@ namespace Bubba
         {
             try
             {
-                Background = _theme.Background;
-                BorderBrush = _theme.Background;
+                Background = _theme.FormBackground;
+                BorderBrush = _theme.FormBackground;
                 Foreground = _theme.LightBlueBrush;
             }
             catch(Exception ex)

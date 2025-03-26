@@ -68,12 +68,10 @@ namespace Bubba
             : base( )
         {
             // Basic Settings
-            Height = 200;
-            Width = 200;
             FontFamily = new FontFamily( "Roboto" );
             FontSize = 12;
-            Background = _theme.Background;
-            BorderBrush = _theme.BorderBrush;
+            Background = _theme.FormBackground;
+            BorderBrush = _theme.BlueBorderBrush;
             Foreground = _theme.Foreground;
         }
 

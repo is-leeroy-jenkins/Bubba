@@ -73,8 +73,8 @@ namespace Bubba
             SetResourceReference( StyleProperty, typeof( SfCalculator ) );
             FontFamily = _theme.FontFamily;
             FontSize = _theme.FontSize;
-            Background = _theme.Background;
-            BorderBrush = _theme.BorderBrush;
+            Background = _theme.FormBackground;
+            BorderBrush = _theme.BlueBorderBrush;
             Foreground = _theme.Foreground;
         }
 

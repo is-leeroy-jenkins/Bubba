@@ -69,24 +69,11 @@ namespace Bubba
         {
             // Control Properties
             SetResourceReference( StyleProperty, typeof( SfTreeView ) );
-            Width = 400;
-            Height = 400;
             FontSize = _theme.FontSize;
             FontFamily = _theme.FontFamily;
-            Background = _theme.Background;
+            Background = _theme.FormBackground;
             Foreground = _theme.Foreground;
-            BorderBrush = _theme.BorderBrush;
-        }
-
-        /// <summary>
-        /// Fails the specified _ex.
-        /// </summary>
-        /// <param name="_ex">The _ex.</param>
-        private protected void Fail( Exception _ex )
-        {
-            var _error = new ErrorWindow( _ex );
-            _error?.SetText( );
-            _error?.ShowDialog( );
+            BorderBrush = _theme.BlueBorderBrush;
         }
     }
 }

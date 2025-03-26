@@ -68,21 +68,10 @@ namespace Bubba
         public MetroText( )
             : base( )
         {
-            Background = _theme.TransparentBrush;
-            Foreground = _theme.BorderBrush;
+            Background = _theme.Transparent;
+            Foreground = _theme.FormForeground;
             FontSize = 12;
-            FontFamily = new FontFamily( "Roboto Regular" );
-        }
-
-        /// <summary>
-        /// Fails the specified _ex.
-        /// </summary>
-        /// <param name="_ex">The _ex.</param>
-        private protected void Fail( Exception _ex )
-        {
-            var _error = new ErrorWindow( _ex );
-            _error?.SetText( );
-            _error?.ShowDialog( );
+            FontFamily = new FontFamily( "Roboto" );
         }
     }
 }

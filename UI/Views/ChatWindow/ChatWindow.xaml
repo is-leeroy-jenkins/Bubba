@@ -909,6 +909,7 @@
                                         HorizontalAlignment="Left"
                                         VerticalAlignment="Top"
                                         Text="  Tasks" />
+                                    
                                     <b:MetroDropDown
                                         x:Name="ModelDropDown"
                                         Canvas.Left="48"
@@ -978,8 +979,7 @@
                             TickFrequency="0.50"
                             TickPlacement="BottomRight"
                             TickStroke="{StaticResource WhiteForeground}"
-                            ToolTip="Positive values creative output"
-                            Value="0.00" />
+                            ToolTip="Positive values creative output" />
 
                         <wpf:SfRangeSlider
                             x:Name="TopPercentSlider"

@@ -16,8 +16,20 @@
         <Setter Property="HorizontalContentAlignment" Value="Center" />
         <Setter Property="VerticalContentAlignment" Value="Center" />
         <Setter Property="BorderThickness" Value="1" />
-
-
     </Style>
+
+    <Style TargetType="{x:Type b:MetroGroupBox}">
+        <Setter Property="Background" Value="{StaticResource GroupBoxBackground}" />
+        <Setter Property="BorderBrush" Value="{StaticResource MutedForeground}" />
+        <Setter Property="Foreground" Value="{StaticResource FormForeground}" />
+        <Setter Property="FontFamily" Value="Roboto" />
+        <Setter Property="FontSize" Value="12" />
+        <Setter Property="HorizontalAlignment" Value="Stretch" />
+        <Setter Property="VerticalAlignment" Value="Stretch" />
+        <Setter Property="HorizontalContentAlignment" Value="Center" />
+        <Setter Property="VerticalContentAlignment" Value="Center" />
+        <Setter Property="BorderThickness" Value="1" />
+    </Style>
+
 
 </ResourceDictionary>

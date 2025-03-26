@@ -78,14 +78,15 @@ namespace Bubba
             : base( )
         {
             // Control Properties
-            Height = 35;
+            Height = 40;
             Background = _theme.ControlInterior;
             Foreground = _theme.FormForeground;
-            BorderBrush = _theme.ControlInterior;
-            Padding = new Thickness( 10 );
-            BorderThickness = new Thickness( 1 );
+            Padding = new Thickness( 10, 1, 1, 1 );
+            BorderThickness = _theme.BorderThickness;
             FontFamily = new FontFamily( "Roboto" );
             FontSize = 12;
+            HorizontalAlignment = _theme.HorizontalAlignment;
+            VerticalAlignment = _theme.VerticalAlignment;
             HorizontalContentAlignment = HorizontalAlignment.Left;
             VerticalContentAlignment = VerticalAlignment.Center;
 
@@ -151,7 +152,7 @@ namespace Bubba
         {
             try
             {
-                if(sender is MetroListBoxItem _item 
+                if( sender is MetroListBoxItem _item 
                     && _item.IsSelected )
                 {
                     _item.Foreground = _theme.FormForeground;

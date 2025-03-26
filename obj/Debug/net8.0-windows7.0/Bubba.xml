@@ -28083,6 +28083,23 @@
             
             </summary>
         </member>
+        <member name="F:Bubba.SentimentData._text">
+            <summary>
+            The text
+            </summary>
+        </member>
+        <member name="F:Bubba.SentimentData._sentiment">
+            <summary>
+            The sentiment
+            </summary>
+        </member>
+        <member name="M:Bubba.SentimentData.#ctor">
+             <summary>
+             Initializes a new instance of the
+            
+             <see cref="T:Bubba.SentimentData"/> class.
+             </summary>
+        </member>
         <member name="P:Bubba.SentimentData.Text">
             <summary>
             Gets or sets the text.
@@ -31870,6 +31887,59 @@
             </summary>
             <param name="ex">The ex.</param>
         </member>
+        <member name="T:Bubba.TextConverter">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Bubba.TextConverter._enable">
+            <summary>
+            The enable NLP tokenization
+            </summary>
+        </member>
+        <member name="M:Bubba.TextConverter.#ctor">
+            <summary>
+            Initializes a new instance of the
+            <see cref="T:Bubba.TextConverter"/> class.
+            </summary>
+        </member>
+        <member name="M:Bubba.TextConverter.#ctor(System.Boolean)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Bubba.TextConverter"/> class.
+            </summary>
+            <param name="enable">if set to <c>true</c>
+            [enable NLP tokenization].</param>
+        </member>
+        <member name="M:Bubba.TextConverter.ConvertAsync(System.String,System.String)">
+            <summary>
+            Converts the asynchronous.
+            </summary>
+            <param name="input">The input file path.</param>
+            <param name="output">The output file path.</param>
+            <exception cref="T:System.IO.FileNotFoundException">
+            Input file not found: {input}</exception>
+        </member>
+        <member name="M:Bubba.TextConverter.CleanLine(System.String)">
+            <summary>
+            Cleans the line.
+            </summary>
+            <param name="input">The input.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Bubba.TextConverter.Tokenize(System.String)">
+            <summary>
+            Tokenizes the specified cleaned line.
+            </summary>
+            <param name="line">The cleaned line.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Bubba.TextConverter.Fail(System.Exception)">
+            <summary>
+            Fails the specified ex.
+            
+            </summary>
+            <param name="ex">The ex.</param>
+        </member>
         <member name="T:Bubba.IGraphing">
             <summary>
             
@@ -31983,12 +32053,6 @@
             Initializes a new instance of the
             <see cref="T:Badger.MetroAccordian" /> class.
             </summary>
-        </member>
-        <member name="M:Bubba.MetroAccordian.Fail(System.Exception)">
-            <summary>
-            Fails the specified _ex.
-            </summary>
-            <param name="_ex">The _ex.</param>
         </member>
         <member name="T:Bubba.MetroButton">
             <inheritdoc />
@@ -32104,12 +32168,6 @@
             <see cref="T:Badger.Calendar" /> class.
             </summary>
         </member>
-        <member name="M:Bubba.MetroCalendar.Fail(System.Exception)">
-            <summary>
-            Fails the specified _ex.
-            </summary>
-            <param name="_ex">The _ex.</param>
-        </member>
         <member name="T:Bubba.MetroCanvas">
             <inheritdoc />
             <summary>
@@ -32152,12 +32210,6 @@
             <see cref="T:Bubba.MetroCarousel" /> class.
             </summary>
         </member>
-        <member name="M:Bubba.MetroCarousel.Fail(System.Exception)">
-            <summary>
-            Fails the specified _ex.
-            </summary>
-            <param name="_ex">The _ex.</param>
-        </member>
         <member name="T:Bubba.MetroCheckListBox">
             <inheritdoc />
             <summary>
@@ -32179,12 +32231,6 @@
             The <see cref="T:Syncfusion.Windows.Tools.Controls.CheckListBox" />
             displays items with a checkbox to enable multiple selection of items.
             </remarks>
-        </member>
-        <member name="M:Bubba.MetroCheckListBox.Fail(System.Exception)">
-            <summary>
-            Fails the specified _ex.
-            </summary>
-            <param name="_ex">The _ex.</param>
         </member>
         <member name="T:Bubba.MetroCheckListItem">
             <inheritdoc />
@@ -32269,6 +32315,22 @@
             Initializes a new instance of the
             <see cref="T:Badger.DarkTheme" /> class.
             </summary>
+        </member>
+        <member name="P:Bubba.DarkMode.HorizontalAlignment">
+            <summary>
+            Gets the horizontal alignment.
+            </summary>
+            <value>
+            The horizontal alignment.
+            </value>
+        </member>
+        <member name="P:Bubba.DarkMode.VerticalAlignment">
+            <summary>
+            Gets the vertical alignment.
+            </summary>
+            <value>
+            The vertical alignment.
+            </value>
         </member>
         <member name="P:Bubba.DarkMode.DarkBlueBrush">
             <summary>
@@ -32665,18 +32727,18 @@
             </summary>
             <seealso cref="T:Bubba.Dimensions" />
         </member>
-        <member name="F:Bubba.Palette._backColor">
+        <member name="F:Bubba.Palette._formBackground">
             <inheritdoc />
             <summary>
             The back color
             </summary>
         </member>
-        <member name="F:Bubba.Palette._blackColor">
+        <member name="F:Bubba.Palette._blackBackground">
             <summary>
             The black color
             </summary>
         </member>
-        <member name="F:Bubba.Palette._borderColor">
+        <member name="F:Bubba.Palette._blueBorderColor">
             <summary>
             The border color
             </summary>
@@ -32696,7 +32758,7 @@
             The model palette
             </summary>
         </member>
-        <member name="F:Bubba.Palette._controlBackColor">
+        <member name="F:Bubba.Palette._controlBackground">
             <summary>
             The control color
             </summary>
@@ -32711,7 +32773,7 @@
             The control hover color
             </summary>
         </member>
-        <member name="F:Bubba.Palette._foreColor">
+        <member name="F:Bubba.Palette._foreground">
             <summary>
             The fore color
             </summary>
@@ -32744,7 +32806,7 @@
             The yellow
             </summary>
         </member>
-        <member name="F:Bubba.Palette._lightBlue">
+        <member name="F:Bubba.Palette._formForeground">
             <summary>
             The light blue
             </summary>
@@ -32755,7 +32817,7 @@
             The maroon
             </summary>
         </member>
-        <member name="F:Bubba.Palette.TransparentColor">
+        <member name="F:Bubba.Palette._transparent">
             <summary>
             The transparent color
             </summary>
@@ -32765,7 +32827,7 @@
             The wall color
             </summary>
         </member>
-        <member name="F:Bubba.Palette._whiteColor">
+        <member name="F:Bubba.Palette._whiteForeground">
             <summary>
             The black color
             </summary>
@@ -32776,7 +32838,7 @@
             The orange
             </summary>
         </member>
-        <member name="F:Bubba.Palette._mutedBorderColor">
+        <member name="F:Bubba.Palette._mutedForeground">
             <summary>
             The muted border color
             </summary>
@@ -32845,7 +32907,7 @@
             The color model.
             </value>
         </member>
-        <member name="P:Bubba.Palette.TransparentBrush">
+        <member name="P:Bubba.Palette.Transparent">
             <inheritdoc />
             <summary>
             Gets the color of the fore.
@@ -32854,7 +32916,7 @@
             The color of the fore.
             </value>
         </member>
-        <member name="P:Bubba.Palette.BlackBrush">
+        <member name="P:Bubba.Palette.BlackBackground">
             <inheritdoc />
             <summary>
             Gets the color of the black.
@@ -32872,7 +32934,7 @@
             The color of the fore.
             </value>
         </member>
-        <member name="P:Bubba.Palette.Background">
+        <member name="P:Bubba.Palette.FormBackground">
             <inheritdoc />
             <summary>
             Gets the color of the back.
@@ -32889,7 +32951,7 @@
             The group box background.
             </value>
         </member>
-        <member name="P:Bubba.Palette.BorderBrush">
+        <member name="P:Bubba.Palette.BlueBorderBrush">
             <inheritdoc />
             <summary>
             Gets the color of the border.
@@ -32976,6 +33038,14 @@
             </summary>
             <value>
             The color of the yellow.
+            </value>
+        </member>
+        <member name="P:Bubba.Palette.MutedForeground">
+            <summary>
+            Gets the muted foreground.
+            </summary>
+            <value>
+            The muted foreground.
             </value>
         </member>
         <member name="P:Bubba.Palette.GrayBrush">
@@ -33209,6 +33279,12 @@
             Initializes a new instance of the
             <see cref="T:Baby.MetroDropDownItem" /> class.
             </summary>
+        </member>
+        <member name="M:Bubba.MetroDropDownItem.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Bubba.MetroDropDownItem"/> class.
+            </summary>
+            <param name="text">The text.</param>
         </member>
         <member name="M:Bubba.MetroDropDownItem.Fail(System.Exception)">
             <summary>
@@ -33484,12 +33560,6 @@
             <see cref="T:Bubba.MetroGridControl" /> class.
             </summary>
         </member>
-        <member name="M:Bubba.MetroGridControl.Fail(System.Exception)">
-            <summary>
-            Fails the specified _ex. 
-            </summary>
-            <param name="_ex">The _ex.</param>
-        </member>
         <member name="T:Bubba.MetroGroupBox">
             <inheritdoc />
         </member>
@@ -33503,12 +33573,6 @@
             <summary>
             Initializes a new instance of the <see cref="T:Bubba.MetroGroupBox" /> class.
             </summary>
-        </member>
-        <member name="M:Bubba.MetroGroupBox.Fail(System.Exception)">
-            <summary>
-            Fails the specified _ex.
-            </summary>
-            <param name="_ex">The _ex.</param>
         </member>
         <member name="T:Bubba.MetroHeaderBox">
             <summary>
@@ -33526,12 +33590,6 @@
             Initializes a new instance of the
             <see cref="T:Bubba.MetroHeaderBox"/> class.
             </summary>
-        </member>
-        <member name="M:Bubba.MetroHeaderBox.Fail(System.Exception)">
-            <summary>
-            Fails the specified _ex.
-            </summary>
-            <param name="_ex">The _ex.</param>
         </member>
         <member name="T:Bubba.Hyperlink">
             <inheritdoc />
@@ -33739,12 +33797,6 @@
             <see cref="T:Bubba.MetroListView" /> class.
             </summary>
         </member>
-        <member name="M:Bubba.MetroListView.Fail(System.Exception)">
-            <summary>
-            Fails the specified _ex.
-            </summary>
-            <param name="_ex">The _ex.</param>
-        </member>
         <member name="T:Bubba.MetroListViewItem">
             <inheritdoc />
             <summary>
@@ -33809,12 +33861,6 @@
             <see cref="T:Badger.MetroMultiSelect" /> class.
             </summary>
         </member>
-        <member name="M:Bubba.MulitSelectDropDown.Fail(System.Exception)">
-            <summary>
-            Fails the specified _ex.
-            </summary>
-            <param name="_ex">The _ex.</param>
-        </member>
         <member name="T:Bubba.CircurlarProgress">
             <summary>
             
@@ -33833,12 +33879,6 @@
             <see cref="T:Bubba.CircurlarProgress" /> class.
             </summary>
         </member>
-        <member name="M:Bubba.CircurlarProgress.Fail(System.Exception)">
-            <summary>
-            Fails the specified _ex.
-            </summary>
-            <param name="_ex">The _ex.</param>
-        </member>
         <member name="T:Bubba.LinearProgress">
             <inheritdoc />
             <summary>
@@ -33856,12 +33896,6 @@
             Initializes a new instance of the
             <see cref="T:Booger.MetroLinearProgress" /> class.
             </summary>
-        </member>
-        <member name="M:Bubba.LinearProgress.Fail(System.Exception)">
-            <summary>
-            Fails the specified _ex.
-            </summary>
-            <param name="_ex">The _ex.</param>
         </member>
         <!-- Badly formed XML comment ignored for member "T:Bubba.LoadingCircle" -->
         <member name="T:Bubba.StepProgress">
@@ -33905,12 +33939,6 @@
             Initializes a new instance of the
             <see cref="T:Bubba.MetroRadioButton" /> class.
             </summary>
-        </member>
-        <member name="M:Bubba.MetroRadioButton.Fail(System.Exception)">
-            <summary>
-            Fails the specified ex.
-            </summary>
-            <param name="ex">The ex.</param>
         </member>
         <member name="T:Bubba.MetroSlider">
             <inheritdoc />
@@ -35410,12 +35438,6 @@
             <see cref="T:Badger.MetroTextBlock" /> class.
             </summary>
         </member>
-        <member name="M:Bubba.MetroText.Fail(System.Exception)">
-            <summary>
-            Fails the specified _ex.
-            </summary>
-            <param name="_ex">The _ex.</param>
-        </member>
         <member name="T:Bubba.MetroTextBox">
             <inheritdoc />
             <summary>
@@ -35734,12 +35756,6 @@
             </summary>
             <inheritdoc />
         </member>
-        <member name="M:Bubba.MetroToolStrip.Fail(System.Exception)">
-            <summary>
-            Fails the specified _ex.
-            </summary>
-            <param name="_ex">The _ex.</param>
-        </member>
         <member name="T:Bubba.ToolPanel">
             <inheritdoc />
             <summary>
@@ -35779,6 +35795,11 @@
             The temporary text
             </summary>
         </member>
+        <member name="F:Bubba.ToolStripTextBox._tokens">
+            <summary>
+            The tokens
+            </summary>
+        </member>
         <member name="M:Bubba.ToolStripTextBox.#ctor">
             <summary>
             Initializes a new instance of the
@@ -35792,6 +35813,14 @@
             </summary>
             <value>
             The input text.
+            </value>
+        </member>
+        <member name="P:Bubba.ToolStripTextBox.Tokens">
+            <summary>
+            Gets or sets the tokens.
+            </summary>
+            <value>
+            The tokens.
             </value>
         </member>
         <member name="M:Bubba.ToolStripTextBox.OnMouseCapture(System.Object,System.Windows.RoutedEventArgs)">
@@ -35856,12 +35885,6 @@
             </summary>
             <inheritdoc />
         </member>
-        <member name="M:Bubba.ToolStrip.Fail(System.Exception)">
-            <summary>
-            Fails the specified _ex.
-            </summary>
-            <param name="_ex">The _ex.</param>
-        </member>
         <member name="T:Bubba.MetroTreeGrid">
             <inheritdoc />
             <summary>
@@ -35902,12 +35925,6 @@
             Initializes a new instance of the
             <see cref="T:Bubba.MetroTreeView" /> class.
             </summary>
-        </member>
-        <member name="M:Bubba.MetroTreeView.Fail(System.Exception)">
-            <summary>
-            Fails the specified _ex.
-            </summary>
-            <param name="_ex">The _ex.</param>
         </member>
         <member name="T:Bubba.Graphing">
             <inheritdoc />

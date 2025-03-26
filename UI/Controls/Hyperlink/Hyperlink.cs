@@ -68,12 +68,11 @@ namespace Bubba
             : base( )
         {
             // Basic Settings
-            Height = 22;
             FontFamily = new FontFamily( "Roboto" );
             FontSize = 12;
-            Background = _theme.TransparentBrush;
-            Foreground = _theme.BorderBrush;
-            BorderBrush = _theme.TransparentBrush;
+            Background = _theme.Transparent;
+            Foreground = _theme.BlueBorderBrush;
+            BorderBrush = _theme.Transparent;
         }
 
         /// <summary>
@@ -95,7 +94,7 @@ namespace Bubba
         /// </summary>
         /// <param name="text">The text.</param>
         /// <param name="uri">The URI.</param>
-        public Hyperlink(string text, Uri uri)
+        public Hyperlink( string text, Uri uri )
             : this()
         {
             Content = text;

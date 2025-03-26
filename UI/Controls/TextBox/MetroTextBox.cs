@@ -91,7 +91,7 @@ namespace Bubba
             Padding = new Thickness( 1 );
             Background = _theme.ControlBackground;
             Foreground = _theme.LightBlueBrush;
-            BorderBrush = _theme.BorderBrush;
+            BorderBrush = _theme.BlueBorderBrush;
             SelectionBrush = _theme.SteelBlueBrush;
             _inputText = "";
             _tempText = "";
@@ -132,7 +132,7 @@ namespace Bubba
             try
             {
                 Background = _theme.DarkBlueBrush;
-                BorderBrush = _theme.BorderBrush;
+                BorderBrush = _theme.BlueBorderBrush;
                 Foreground = _theme.WhiteForeground;
             }
             catch( Exception ex )
@@ -152,7 +152,7 @@ namespace Bubba
             try
             {
                 Background = _theme.ControlInterior;
-                BorderBrush = _theme.BorderBrush;
+                BorderBrush = _theme.BlueBorderBrush;
                 Foreground = _theme.FormForeground;
             }
             catch( Exception ex )

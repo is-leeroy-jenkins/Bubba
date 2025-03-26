@@ -1,19 +1,19 @@
 ﻿// ******************************************************************************************
-//     Assembly:                Badger
+//     Assembly:                Bubba
 //     Author:                  Terry D. Eppler
-//     Created:                 08-01-2022
+//     Created:                 03-24-2025
 // 
 //     Last Modified By:        Terry D. Eppler
-//     Last Modified On:        08-01-2022
+//     Last Modified On:        03-24-2025
 // ******************************************************************************************
 // <copyright file="MetroListBox.cs" company="Terry D. Eppler">
-//    Badger is data analysis and reporting tool for EPA Analysts
-//    based on WPF, NET6.0, and written in C-Sharp.
+//     Badger is a budget execution & data analysis tool for EPA analysts
+//     based on WPF, Net 6, and written in C Sharp.
 // 
-//    Copyright ©  2022  Terry D. Eppler
+//     Copyright �  2022 Terry D. Eppler
 // 
 //    Permission is hereby granted, free of charge, to any person obtaining a copy
-//    of this software and associated documentation files (the “Software”),
+//    of this software and associated documentation files (the �Software�),
 //    to deal in the Software without restriction,
 //    including without limitation the rights to use,
 //    copy, modify, merge, publish, distribute, sublicense,
@@ -24,7 +24,7 @@
 //    The above copyright notice and this permission notice shall be included in all
 //    copies or substantial portions of the Software.
 // 
-//    THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,
+//    THE SOFTWARE IS PROVIDED �AS IS�, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,
 //    INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
 //    FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT.
 //    IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
@@ -32,13 +32,12 @@
 //    ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 //    DEALINGS IN THE SOFTWARE.
 // 
-//    You can contact me at: terryeppler@gmail.com or eppler.terry@epa.gov
+//    You can contact me at:  terryeppler@gmail.com or eppler.terry@epa.gov
 // </copyright>
 // <summary>
 //   MetroListBox.cs
 // </summary>
 // ******************************************************************************************
-
 namespace Bubba
 {
     using System;
@@ -71,12 +70,10 @@ namespace Bubba
         {
             // Control Properties
             Background = _theme.ControlBackground;
-            Foreground = _theme.FormForeground;
-            BorderBrush = _theme.BorderBrush;
-            Height = 60;
-            Width = 200;
-            BorderThickness = new Thickness( 2 );
-            Padding = new Thickness( 3 );
+            Foreground = _theme.Foreground;
+            BorderBrush = _theme.BlueBorderBrush;
+            HorizontalAlignment = _theme.HorizontalAlignment;
+            VerticalAlignment = _theme.VerticalAlignment;
         }
 
         /// <summary>
@@ -90,18 +87,15 @@ namespace Bubba
                 Items?.Clear( );
                 var _item = new MetroListBoxItem
                 {
-                    Background = _theme.ControlInterior,
-                    BorderBrush = _theme.ControlInterior,
-                    Foreground = _theme.FormForeground,
-                    Content = name,
-                    Height = 35
+                    Foreground = _theme.Foreground,
+                    Content = name
                 };
 
                 Items.Add( _item );
             }
-            catch(Exception ex)
+            catch( Exception ex )
             {
-                Fail(ex);
+                Fail( ex );
             }
         }
 

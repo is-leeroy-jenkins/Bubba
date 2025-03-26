@@ -75,7 +75,7 @@ namespace Bubba
             SetResourceReference( StyleProperty, typeof( SfDataGrid ) );
             FontFamily = _theme.FontFamily;
             FontSize = _theme.FontSize;
-            BorderBrush = _theme.BorderBrush;
+            BorderBrush = _theme.BlueBorderBrush;
             CurrentCellBorderBrush = _theme.LightBlueBrush;
             GroupRowSelectionBrush = _theme.SteelBlueBrush;
             RowSelectionBrush = _theme.SteelBlueBrush;
