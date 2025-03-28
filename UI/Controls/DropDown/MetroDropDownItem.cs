@@ -82,7 +82,7 @@ namespace Bubba
             // Control Properties
             SetResourceReference( StyleProperty, typeof( ComboBoxItemAdv ) );
             Background = _theme.ControlInterior;
-            Foreground = _theme.FormForeground;
+            Foreground = _theme.WhiteForeground;
             Padding = new Thickness( 15, 1, 1, 1 );
             Height = 40;
             HorizontalAlignment = HorizontalAlignment.Stretch;

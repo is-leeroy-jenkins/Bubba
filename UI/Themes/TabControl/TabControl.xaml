@@ -3,6 +3,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:b="clr-namespace:Bubba"
     xmlns:local="clr-namespace:Syncfusion.Windows.Tools.Controls;assembly=Syncfusion.Shared.WPF"
+    xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
     xmlns:skin="clr-namespace:Syncfusion.SfSkinManager;assembly=Syncfusion.SfSkinManager.WPF"
     xmlns:sync="clr-namespace:Syncfusion.Windows.Shared;assembly=Syncfusion.Shared.WPF"
     xmlns:sys="clr-namespace:System;assembly=mscorlib"
@@ -11,9 +12,23 @@
 
     <!--  *********************************************** TAB CONTROL  *****************************************************  -->
 
-    <Style
-        x:Key="MetroTabControlStyle"
-        TargetType="{x:Type TabControl}">
+    <Style TargetType="{x:Type TabControl}">
+        <Setter Property="Background" Value="{DynamicResource FormBackground}" />
+        <Setter Property="BorderBrush" Value="{DynamicResource FormBackground}" />
+        <Setter Property="Foreground" Value="{DynamicResource FormForeground}" />
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="HorizontalAlignment" Value="Stretch" />
+        <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+        <Setter Property="VerticalAlignment" Value="Stretch" />
+        <Setter Property="VerticalContentAlignment" Value="Stretch" />
+        <Setter Property="Padding" Value="1" />
+        <Setter Property="Margin" Value="1" />
+    </Style>
+
+
+    <!--  *********************************************** TAB CONTROL  *****************************************************  -->
+
+    <Style TargetType="{x:Type mah:MetroTabControl}">
         <Setter Property="Background" Value="{DynamicResource FormBackground}" />
         <Setter Property="BorderBrush" Value="{DynamicResource FormBackground}" />
         <Setter Property="Foreground" Value="{DynamicResource FormForeground}" />

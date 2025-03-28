@@ -1905,9 +1905,9 @@ namespace Bubba
                 {
                     foreach( var _lm in _models )
                     {
-                        var _item = new MetroDropDownItem( _lm );
                         if( !_lm.StartsWith( "ft" ) )
                         {
+                            var _item = new MetroDropDownItem( _lm );
                             ModelDropDown.Items.Add( _item );
                         }
                     }
@@ -3322,7 +3322,20 @@ namespace Bubba
         {
             InitializePlotter( );
             InitializeHotkeys( );
-            InitializeChatEditor(  );
+            InitializeTimer( );
+            InitializeToolStrip( );
+            PopulateRequestTypes( );
+            PopulateLanguageListBox( );
+            PopulateModelsAsync( );
+            PopulateDocumentListBox( );
+            PopulateVoices( );
+            PopulateImageSizes( );
+            ClearChatControls( );
+            InitializeChatEditor( );
+            StreamCheckBox.Checked += OnStreamCheckBoxChecked;
+            ModelDropDown.SelectionChanged += OnModelListBoxSelectionChanged;
+            App.ActiveWindows.Add( "ChatWindow", this );
+            InitializeInterface( );
         }
 
         /// <summary>

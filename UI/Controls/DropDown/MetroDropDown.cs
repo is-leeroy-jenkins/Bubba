@@ -82,7 +82,7 @@ namespace Bubba
             HorizontalAlignment = HorizontalAlignment.Stretch;
             VerticalAlignment = VerticalAlignment.Stretch;
             Background = _theme.ControlInterior;
-            Foreground = _theme.FormForeground;
+            Foreground = _theme.WhiteForeground;
             BorderBrush = _theme.BlueBorderBrush;
             IsEditable = true;
         }

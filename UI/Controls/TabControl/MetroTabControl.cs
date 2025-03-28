@@ -186,7 +186,7 @@ namespace Bubba
             BorderThickness = _theme.BorderThickness;
             Background = _theme.FormBackground;
             BorderBrush = _theme.FormBackground;
-            Foreground = _theme.Foreground;
+            Foreground = _theme.FormForeground;
             BeginInit( );
             Items = new BrowserTabCollection( );
             Items.CollectionChanged += OnCollectionChanged;

@@ -13,7 +13,7 @@
     <Style TargetType="{x:Type b:MetroDropDown}">
         <Setter Property="Background" Value="{StaticResource ControlInteriorBrush}" />
         <Setter Property="BorderBrush" Value="{StaticResource BlueBorderBrush}" />
-        <Setter Property="Foreground" Value="{StaticResource FormForeground}" />
+        <Setter Property="Foreground" Value="{StaticResource WhiteForeground}" />
         <Setter Property="BorderThickness" Value="1" />
         <Setter Property="HorizontalContentAlignment" Value="Left" />
         <Setter Property="VerticalContentAlignment" Value="Center" />
@@ -28,7 +28,7 @@
     <Style TargetType="{x:Type b:MetroDropDownItem}">
         <Setter Property="Background" Value="{StaticResource ControlInteriorBrush}" />
         <Setter Property="Background" Value="{StaticResource ControlInteriorBrush}" />
-        <Setter Property="Foreground" Value="{StaticResource FormForeground}" />
+        <Setter Property="Foreground" Value="{StaticResource WhiteForeground}" />
         <Setter Property="Height" Value="40" />
         <Setter Property="BorderThickness" Value="1" />
         <Setter Property="HorizontalContentAlignment" Value="Left" />
@@ -47,7 +47,7 @@
             <Trigger Property="IsMouseOver" Value="False">
                 <Setter Property="Background" Value="{StaticResource ControlInteriorBrush}" />
                 <Setter Property="Background" Value="{StaticResource ControlInteriorBrush}" />
-                <Setter Property="Foreground" Value="{StaticResource FormForeground}" />
+                <Setter Property="Foreground" Value="{StaticResource WhiteForeground}" />
             </Trigger>
 
 
