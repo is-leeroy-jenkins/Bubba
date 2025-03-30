@@ -536,7 +536,7 @@
                             Header="Top Log-Probabilites">
 
                             <wpf:SfRangeSlider
-                                x:Name="TopLogProbsSlider"
+                                x:Name="TopLogProbSlider"
                                 Width="250"
                                 Height="81"
                                 Margin="10,0,0,0"
@@ -670,7 +670,7 @@
                                         HorizontalAlignment="Center"
                                         Background="{StaticResource ControlInteriorBrush}"
                                         BorderBrush="{StaticResource BlueBorderBrush}"
-                                        BorderThickness="2,2,2,2"
+                                        BorderThickness="1"
                                         ClipToBounds="True"
                                         FontFamily="Roboto"
                                         FontSize="12"
@@ -684,7 +684,7 @@
                                         ToolTip="Upper Limit on Tokens"
                                         UseNullOption="True"
                                         WatermarkTextIsVisible="True"
-                                        Value="2048" />
+                                        Value="12000" />
 
                                     <ComboBox
                                         x:Name="EffortDropDown"
@@ -697,8 +697,9 @@
                                         Background="{StaticResource ControlInteriorBrush}"
                                         BorderBrush="{StaticResource BlueBorderBrush}"
                                         BorderThickness="1"
-                                        Tag="ReasoningEffort"
-                                        Text="  Reasoning" />
+                                        ToolTip="Reasoning Effort"
+                                        Tag="ReasoningEffort"/>
+                                    
                                     <Label
                                         x:Name="TokenLabel1"
                                         Canvas.Left="15"
@@ -728,6 +729,7 @@
                                         BorderBrush="{StaticResource BlueBorderBrush}"
                                         BorderThickness="1"
                                         FontFamily="Roboto"
+                                        ToolTip="AI Voices"
                                         Tag="Voice"
                                         Text="  Voices" />
                                 </Canvas>
@@ -1012,7 +1014,7 @@
                         </Grid>
 
                         <TextBox
-                            x:Name="TopLogProbsTextBox"
+                            x:Name="TopLogProbTextBox"
                             Grid.Row="1"
                             Margin="1223,99,25,253"
                             HorizontalContentAlignment="Center"
@@ -1026,6 +1028,7 @@
                             Text="{Binding Value, ElementName=TopLogProbsSlider, Mode=Default, StringFormat=N0}" />
 
                         <TextBox
+                            x:Name="TemperatureTextBox"
                             Grid.Row="1"
                             Width="75"
                             Height="40"
@@ -1035,10 +1038,13 @@
                             Background="{StaticResource ControlInteriorBrush}"
                             BorderBrush="{StaticResource BlueBorderBrush}"
                             BorderThickness="1"
-                            Text="TextBox"
+                            HorizontalContentAlignment="Center"
+                            VerticalContentAlignment="Center"
+                            Text="{Binding ElementName=TemperatureSlider, Mode=Default, Path=Value, StringFormat=N2}"
                             TextWrapping="Wrap" />
 
                         <TextBox
+                            x:Name="TopPercentTextBox"
                             Grid.Row="1"
                             Width="75"
                             Height="40"
@@ -1048,10 +1054,13 @@
                             Background="{StaticResource ControlInteriorBrush}"
                             BorderBrush="{StaticResource BlueBorderBrush}"
                             BorderThickness="1"
-                            Text="TextBox"
+                            HorizontalContentAlignment="Center"
+                            VerticalContentAlignment="Center"
+                            Text="{Binding ElementName=TopPercentSlider, Mode=Default, Path=Value, StringFormat=N2}"
                             TextWrapping="Wrap" />
 
                         <TextBox
+                            x:Name="TopLogProbsTextBox"
                             Grid.Row="1"
                             Width="75"
                             Height="40"
@@ -1061,10 +1070,13 @@
                             Background="{StaticResource ControlInteriorBrush}"
                             BorderBrush="{StaticResource BlueBorderBrush}"
                             BorderThickness="1"
-                            Text="TextBox"
+                            HorizontalContentAlignment="Center"
+                            VerticalContentAlignment="Center"
+                            Text="{Binding ElementName=TopLogProbSlider, Mode=Default, Path=Value, StringFormat=N2}"
                             TextWrapping="Wrap" />
 
                         <TextBox
+                            x:Name="PresencePenaltyTextBox"
                             Grid.Row="1"
                             Width="75"
                             Height="40"
@@ -1074,10 +1086,13 @@
                             Background="{StaticResource ControlInteriorBrush}"
                             BorderBrush="{StaticResource BlueBorderBrush}"
                             BorderThickness="1"
-                            Text="TextBox"
+                            HorizontalContentAlignment="Center"
+                            VerticalContentAlignment="Center"
+                            Text="{Binding ElementName=PresenceSlider, Mode=Default, Path=Value, StringFormat=N2}"
                             TextWrapping="Wrap" />
 
                         <TextBox
+                            x:Name="FrequencyPenaltyTextBox"
                             Grid.Row="1"
                             Width="75"
                             Height="40"
@@ -1087,10 +1102,14 @@
                             Background="{StaticResource ControlInteriorBrush}"
                             BorderBrush="{StaticResource BlueBorderBrush}"
                             BorderThickness="1"
-                            Text="TextBox"
+                            Tag="FrequencyPenalty"
+                            HorizontalContentAlignment="Center"
+                            VerticalContentAlignment="Center"
+                            Text="{Binding ElementName=FrequencySlider, Mode=Default, Path=Value, StringFormat=N2}"
                             TextWrapping="Wrap" />
 
                         <TextBox
+                            x:Name="SpeechRateTextBox"
                             Grid.Row="1"
                             Width="75"
                             Height="40"
@@ -1100,7 +1119,9 @@
                             Background="{StaticResource ControlInteriorBrush}"
                             BorderBrush="{StaticResource BlueBorderBrush}"
                             BorderThickness="1"
-                            Text="TextBox"
+                            HorizontalContentAlignment="Center"
+                            VerticalContentAlignment="Center"
+                            Text="{Binding ElementName=SpeechRateSlider, Mode=Default, Path=Value, StringFormat=N1}"
                             TextWrapping="Wrap" />
                     </Grid>
                 </TabItem>

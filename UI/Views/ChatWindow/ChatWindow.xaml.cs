@@ -497,7 +497,7 @@ namespace Bubba
             PresenceSlider.Value = 0.00;
             FrequencySlider.Value = 0.00;
             SpeechRateSlider.Value = 1.0;
-            TopLogProbsSlider.Value = 0;
+            TopLogProbSlider.Value = 0;
 
             // GPT Parameters
             _store = false;
@@ -724,7 +724,7 @@ namespace Bubba
                 _temperature = double.Parse( TemperatureSlider.Value.ToString( "N2" ) );
                 _topPercent = double.Parse( TopPercentSlider.Value.ToString( "N2" ) );
                 _frequencyPenalty = double.Parse( FrequencySlider.Value.ToString( "N2" ) );
-                _topLogProbs = int.Parse( TopLogProbsSlider.Value.ToString( ) );
+                _topLogProbs = int.Parse( TopLogProbSlider.Value.ToString( ) );
                 _number = int.Parse( MaxTokenTextBox.Text );
                 _maximumTokens = Convert.ToInt32( MaxTokenTextBox.Text );
                 _model = ModelDropDown.SelectedItem.ToString( ) ?? "gpt-4o";
@@ -749,8 +749,8 @@ namespace Bubba
                 ToolStripTextBox.TextChanged += OnToolStripTextBoxTextChanged;
                 ToolStripMenuButton.Click += OnToggleButtonClick;
                 TemperatureTextBox.TextChanged += OnParameterTextBoxChanged;
-                PresenseTextBox.TextChanged += OnParameterTextBoxChanged;
-                FrequencyTextBox.TextChanged += OnParameterTextBoxChanged;
+                PresencePenaltyTextBox.TextChanged += OnParameterTextBoxChanged;
+                FrequencyPenaltyTextBox.TextChanged += OnParameterTextBoxChanged;
                 TopPercentTextBox.TextChanged += OnParameterTextBoxChanged;
                 ClearParameterButton.Click += OnClearButtonClick;
                 ToolStripSendButton.Click += OnSendButtonClick;
