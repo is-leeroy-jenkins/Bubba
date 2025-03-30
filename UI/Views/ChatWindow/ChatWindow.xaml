@@ -697,9 +697,9 @@
                                         Background="{StaticResource ControlInteriorBrush}"
                                         BorderBrush="{StaticResource BlueBorderBrush}"
                                         BorderThickness="1"
-                                        ToolTip="Reasoning Effort"
-                                        Tag="ReasoningEffort"/>
-                                    
+                                        Tag="ReasoningEffort"
+                                        ToolTip="Reasoning Effort" />
+
                                     <Label
                                         x:Name="TokenLabel1"
                                         Canvas.Left="15"
@@ -729,9 +729,9 @@
                                         BorderBrush="{StaticResource BlueBorderBrush}"
                                         BorderThickness="1"
                                         FontFamily="Roboto"
-                                        ToolTip="AI Voices"
                                         Tag="Voice"
-                                        Text="  Voices" />
+                                        Text="  Voices"
+                                        ToolTip="AI Voices" />
                                 </Canvas>
                             </GroupBox>
 
@@ -1035,11 +1035,11 @@
                             Margin="302,85,0,0"
                             HorizontalAlignment="Left"
                             VerticalAlignment="Top"
+                            HorizontalContentAlignment="Center"
+                            VerticalContentAlignment="Center"
                             Background="{StaticResource ControlInteriorBrush}"
                             BorderBrush="{StaticResource BlueBorderBrush}"
                             BorderThickness="1"
-                            HorizontalContentAlignment="Center"
-                            VerticalContentAlignment="Center"
                             Text="{Binding ElementName=TemperatureSlider, Mode=Default, Path=Value, StringFormat=N2}"
                             TextWrapping="Wrap" />
 
@@ -1051,11 +1051,11 @@
                             Margin="302,233,0,0"
                             HorizontalAlignment="Left"
                             VerticalAlignment="Top"
+                            HorizontalContentAlignment="Center"
+                            VerticalContentAlignment="Center"
                             Background="{StaticResource ControlInteriorBrush}"
                             BorderBrush="{StaticResource BlueBorderBrush}"
                             BorderThickness="1"
-                            HorizontalContentAlignment="Center"
-                            VerticalContentAlignment="Center"
                             Text="{Binding ElementName=TopPercentSlider, Mode=Default, Path=Value, StringFormat=N2}"
                             TextWrapping="Wrap" />
 
@@ -1067,11 +1067,11 @@
                             Margin="1202,81,0,0"
                             HorizontalAlignment="Left"
                             VerticalAlignment="Top"
+                            HorizontalContentAlignment="Center"
+                            VerticalContentAlignment="Center"
                             Background="{StaticResource ControlInteriorBrush}"
                             BorderBrush="{StaticResource BlueBorderBrush}"
                             BorderThickness="1"
-                            HorizontalContentAlignment="Center"
-                            VerticalContentAlignment="Center"
                             Text="{Binding ElementName=TopLogProbSlider, Mode=Default, Path=Value, StringFormat=N2}"
                             TextWrapping="Wrap" />
 
@@ -1083,11 +1083,11 @@
                             Margin="747,85,0,0"
                             HorizontalAlignment="Left"
                             VerticalAlignment="Top"
+                            HorizontalContentAlignment="Center"
+                            VerticalContentAlignment="Center"
                             Background="{StaticResource ControlInteriorBrush}"
                             BorderBrush="{StaticResource BlueBorderBrush}"
                             BorderThickness="1"
-                            HorizontalContentAlignment="Center"
-                            VerticalContentAlignment="Center"
                             Text="{Binding ElementName=PresenceSlider, Mode=Default, Path=Value, StringFormat=N2}"
                             TextWrapping="Wrap" />
 
@@ -1099,12 +1099,12 @@
                             Margin="747,233,0,0"
                             HorizontalAlignment="Left"
                             VerticalAlignment="Top"
+                            HorizontalContentAlignment="Center"
+                            VerticalContentAlignment="Center"
                             Background="{StaticResource ControlInteriorBrush}"
                             BorderBrush="{StaticResource BlueBorderBrush}"
                             BorderThickness="1"
                             Tag="FrequencyPenalty"
-                            HorizontalContentAlignment="Center"
-                            VerticalContentAlignment="Center"
                             Text="{Binding ElementName=FrequencySlider, Mode=Default, Path=Value, StringFormat=N2}"
                             TextWrapping="Wrap" />
 
@@ -1116,11 +1116,11 @@
                             Margin="1202,233,0,0"
                             HorizontalAlignment="Left"
                             VerticalAlignment="Top"
+                            HorizontalContentAlignment="Center"
+                            VerticalContentAlignment="Center"
                             Background="{StaticResource ControlInteriorBrush}"
                             BorderBrush="{StaticResource BlueBorderBrush}"
                             BorderThickness="1"
-                            HorizontalContentAlignment="Center"
-                            VerticalContentAlignment="Center"
                             Text="{Binding ElementName=SpeechRateSlider, Mode=Default, Path=Value, StringFormat=N1}"
                             TextWrapping="Wrap" />
                     </Grid>

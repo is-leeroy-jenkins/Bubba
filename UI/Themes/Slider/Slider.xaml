@@ -8,7 +8,7 @@
     <!--  *********************************************** SfRangeSlider *****************************************************  -->
 
     <Style TargetType="{x:Type wpf:SfRangeSlider}">
-        <Setter Property="Background" Value="{StaticResource TransparentBrush}" />
+        <Setter Property="Background" Value="{StaticResource BlueBorderBrush}" />
         <Setter Property="Foreground" Value="{StaticResource FormForeground}" />
         <Setter Property="MinorTickStroke" Value="{StaticResource WhiteForeground}" />
         <Setter Property="TickStroke" Value="{StaticResource WhiteForeground}" />
@@ -28,7 +28,7 @@
     <!--  *********************************************** Slider *****************************************************  -->
 
     <Style TargetType="{x:Type Slider}">
-        <Setter Property="Background" Value="{StaticResource TransparentBrush}" />
+        <Setter Property="Background" Value="{StaticResource BlueBorderBrush}" />
         <Setter Property="Foreground" Value="{StaticResource FormForeground}" />
         <Setter Property="BorderThickness" Value="0" />
         <Setter Property="HorizontalAlignment" Value="Stretch" />

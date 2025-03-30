@@ -28235,6 +28235,59 @@
             <param name="text">The text.</param>
             <returns></returns>
         </member>
+        <member name="T:Bubba.TextConverter">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Bubba.TextConverter._enable">
+            <summary>
+            The enable NLP tokenization
+            </summary>
+        </member>
+        <member name="M:Bubba.TextConverter.#ctor">
+            <summary>
+            Initializes a new instance of the
+            <see cref="T:Bubba.TextConverter"/> class.
+            </summary>
+        </member>
+        <member name="M:Bubba.TextConverter.#ctor(System.Boolean)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Bubba.TextConverter"/> class.
+            </summary>
+            <param name="enable">if set to <c>true</c>
+            [enable NLP tokenization].</param>
+        </member>
+        <member name="M:Bubba.TextConverter.ConvertAsync(System.String,System.String)">
+            <summary>
+            Converts the asynchronous.
+            </summary>
+            <param name="input">The input file path.</param>
+            <param name="output">The output file path.</param>
+            <exception cref="T:System.IO.FileNotFoundException">
+            Input file not found: {input}</exception>
+        </member>
+        <member name="M:Bubba.TextConverter.CleanLine(System.String)">
+            <summary>
+            Cleans the line.
+            </summary>
+            <param name="input">The input.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Bubba.TextConverter.Tokenize(System.String)">
+            <summary>
+            Tokenizes the specified cleaned line.
+            </summary>
+            <param name="line">The cleaned line.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Bubba.TextConverter.Fail(System.Exception)">
+            <summary>
+            Fails the specified ex.
+            
+            </summary>
+            <param name="ex">The ex.</param>
+        </member>
         <member name="T:Bubba.TextData">
             <summary>
             
@@ -31884,59 +31937,6 @@
         <member name="M:Bubba.WinMinion.Fail(System.Exception)">
             <summary>
             Fails the specified ex.
-            </summary>
-            <param name="ex">The ex.</param>
-        </member>
-        <member name="T:Bubba.TextConverter">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="F:Bubba.TextConverter._enable">
-            <summary>
-            The enable NLP tokenization
-            </summary>
-        </member>
-        <member name="M:Bubba.TextConverter.#ctor">
-            <summary>
-            Initializes a new instance of the
-            <see cref="T:Bubba.TextConverter"/> class.
-            </summary>
-        </member>
-        <member name="M:Bubba.TextConverter.#ctor(System.Boolean)">
-            <summary>
-            Initializes a new instance of the <see cref="T:Bubba.TextConverter"/> class.
-            </summary>
-            <param name="enable">if set to <c>true</c>
-            [enable NLP tokenization].</param>
-        </member>
-        <member name="M:Bubba.TextConverter.ConvertAsync(System.String,System.String)">
-            <summary>
-            Converts the asynchronous.
-            </summary>
-            <param name="input">The input file path.</param>
-            <param name="output">The output file path.</param>
-            <exception cref="T:System.IO.FileNotFoundException">
-            Input file not found: {input}</exception>
-        </member>
-        <member name="M:Bubba.TextConverter.CleanLine(System.String)">
-            <summary>
-            Cleans the line.
-            </summary>
-            <param name="input">The input.</param>
-            <returns></returns>
-        </member>
-        <member name="M:Bubba.TextConverter.Tokenize(System.String)">
-            <summary>
-            Tokenizes the specified cleaned line.
-            </summary>
-            <param name="line">The cleaned line.</param>
-            <returns></returns>
-        </member>
-        <member name="M:Bubba.TextConverter.Fail(System.Exception)">
-            <summary>
-            Fails the specified ex.
-            
             </summary>
             <param name="ex">The ex.</param>
         </member>

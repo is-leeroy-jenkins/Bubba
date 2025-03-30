@@ -30,7 +30,7 @@
         <Style.Triggers>
 
             <Trigger Property="IsFocused" Value="True">
-                <Setter Property="Background" Value="{StaticResource DarkBlueBackground}" />
+                <Setter Property="Background" Value="{StaticResource BlackBackground}" />
                 <Setter Property="BorderBrush" Value="{StaticResource LightBlueBrush}" />
                 <Setter Property="Foreground" Value="{StaticResource WhiteForeground}" />
             </Trigger>
