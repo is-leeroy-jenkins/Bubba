@@ -9,8 +9,8 @@
 
     <Style TargetType="{x:Type b:MetroTile}">
 
-        <Setter Property="Background" Value="{StaticResource FormBackground}" />
-        <Setter Property="BorderBrush" Value="{StaticResource FormBackground}" />
+        <Setter Property="Background" Value="{StaticResource ControlBackground}" />
+        <Setter Property="BorderBrush" Value="{StaticResource ControlBackground}" />
         <Setter Property="Foreground" Value="{StaticResource FormForeground}" />
         <Setter Property="FontFamily" Value="Roboto" />
         <Setter Property="FontSize" Value="12" />
@@ -31,8 +31,8 @@
             </Trigger>
 
             <Trigger Property="IsMouseOver" Value="False">
-                <Setter Property="Background" Value="{StaticResource FormBackground}" />
-                <Setter Property="BorderBrush" Value="{StaticResource FormBackground}" />
+                <Setter Property="Background" Value="{StaticResource ControlBackground}" />
+                <Setter Property="BorderBrush" Value="{StaticResource ControlBackground}" />
                 <Setter Property="Foreground" Value="{StaticResource FormForeground}" />
                 <Setter Property="FontWeight" Value="Normal" />
             </Trigger>
@@ -46,7 +46,7 @@
     <!--  *********************************************** MetroTile *****************************************************  -->
     <Style TargetType="{x:Type sync:SfHubTile}">
 
-        <Setter Property="Background" Value="{StaticResource ControlInteriorColor}" />
+        <Setter Property="Background" Value="{StaticResource ControlBackground}" />
         <Setter Property="BorderBrush" Value="{StaticResource BlueBorderBrush}" />
         <Setter Property="Foreground" Value="{StaticResource FormForeground}" />
         <Setter Property="FontFamily" Value="Roboto" />
@@ -68,7 +68,7 @@
             </Trigger>
 
             <Trigger Property="IsMouseOver" Value="False">
-                <Setter Property="Background" Value="{StaticResource ControlInteriorColor}" />
+                <Setter Property="Background" Value="{StaticResource ControlBackground}" />
                 <Setter Property="BorderBrush" Value="{StaticResource BlueBorderBrush}" />
                 <Setter Property="Foreground" Value="{StaticResource FormForeground}" />
                 <Setter Property="FontWeight" Value="Normal" />
@@ -83,7 +83,7 @@
         x:Key="MetroPulsingTileStyle"
         TargetType="{x:Type sync:SfPulsingTile}">
 
-        <Setter Property="Background" Value="{StaticResource ControlInteriorColor}" />
+        <Setter Property="Background" Value="{StaticResource ControlBackground}" />
         <Setter Property="BorderBrush" Value="{StaticResource BlueBorderBrush}" />
         <Setter Property="Foreground" Value="{StaticResource FormForeground}" />
         <Setter Property="FontFamily" Value="Roboto" />
@@ -105,7 +105,7 @@
             </Trigger>
 
             <Trigger Property="IsMouseOver" Value="False">
-                <Setter Property="Background" Value="{StaticResource ControlInteriorColor}" />
+                <Setter Property="Background" Value="{StaticResource ControlBackground}" />
                 <Setter Property="BorderBrush" Value="{StaticResource BlueBorderBrush}" />
                 <Setter Property="Foreground" Value="{StaticResource FormForeground}" />
                 <Setter Property="FontWeight" Value="Normal" />

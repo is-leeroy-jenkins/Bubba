@@ -14,7 +14,7 @@
     xmlns:web="clr-namespace:CefSharp.Wpf;assembly=CefSharp.Wpf"
     xmlns:wpf="http://schemas.syncfusion.com/wpf"
     Title="Bubba"
-    Width="1330"
+    Width="1350"
     Height="700"
     MinWidth="1000"
     MinHeight="400"
@@ -218,7 +218,10 @@
 
                 <b:ToolStripButton
                     x:Name="ToolStripSendButton"
+                    Width="40"
+                    Height="30"
                     Margin="5,1,5,1"
+                    FontFamily="Roboto"
                     ImageSource="/Resources/Assets/ToolStripImages/PromptButton.png"
                     ToolTip="Send Text" />
 
@@ -412,13 +415,13 @@
 
                         <GroupBox
                             Grid.Row="1"
-                            Margin="10,176,1025,26"
+                            Margin="10,176,0,26"
                             Background="{StaticResource GroupBoxBackground}"
                             BorderBrush="{StaticResource MutedForeground}"
                             FontFamily="Roboto"
                             FontSize="14"
                             Foreground="{StaticResource FormForeground}"
-                            Header="Nucleus Sampling">
+                            Header="Nucleus Sampling" HorizontalAlignment="Left" Width="287">
                             <wpf:SfRangeSlider
                                 x:Name="TopPercentSlider"
                                 Width="250"
@@ -481,7 +484,7 @@
 
                         <GroupBox
                             Grid.Row="1"
-                            Margin="902,176,125,26"
+                            Margin="902,176,0,26"
                             Background="{StaticResource GroupBoxBackground}"
                             BorderBrush="{StaticResource MutedForeground}"
                             FontFamily="Roboto"
@@ -489,7 +492,7 @@
                             Foreground="{StaticResource FormForeground}"
                             Header="Speech Rate"
                             RenderTransformOrigin="0.5,0.5"
-                            ToolTip="Speed">
+                            ToolTip="Speed" HorizontalAlignment="Left" Width="295">
                             <GroupBox.RenderTransform>
                                 <TransformGroup>
                                     <ScaleTransform />

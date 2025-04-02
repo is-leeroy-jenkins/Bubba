@@ -2086,6 +2086,8 @@ namespace Bubba
             {
                 ModelDropDown.Items?.Clear( );
                 ModelDropDown.Items.Add( "whisper-1" );
+                ModelDropDown.Items.Add( "gpt-4o-mini-transcribe" );
+                ModelDropDown.Items.Add( "gpt-4o-transcribe" );
                 ModelDropDown.SelectedIndex = -1;
             }
             catch( Exception ex )
