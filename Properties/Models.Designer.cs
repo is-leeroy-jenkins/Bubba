@@ -394,6 +394,15 @@ namespace Bubba.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to o3-mini.
+        /// </summary>
+        internal static string o3_mini {
+            get {
+                return ResourceManager.GetString("o3-mini", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to text-embedding-3-large;  Embeddings are a numerical representation of text that can be used to measure the relatedness between two pieces of text. Embeddings are useful for search, clustering, recommendations, anomaly detection, and classification tasks.
         /// </summary>
         internal static string text_embedding_3_large {

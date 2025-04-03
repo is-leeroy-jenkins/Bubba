@@ -172,4 +172,8 @@
   <data name="Assistants" xml:space="preserve">
     <value>https://api.openai.com/v1/assistants</value>
   </data>
+  <data name="Responses" xml:space="preserve">
+    <value>https://api.openai.com/v1/responses</value>
+    <comment>URL to the openai responses api</comment>
+  </data>
 </root>

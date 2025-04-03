@@ -133,6 +133,15 @@ namespace Bubba.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to https://api.openai.com/v1/responses.
+        /// </summary>
+        internal static string Responses {
+            get {
+                return ResourceManager.GetString("Responses", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to https://api.openai.com/v1/audio/speech.
         /// </summary>
         internal static string SpeechGeneration {
