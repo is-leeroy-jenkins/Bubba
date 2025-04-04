@@ -83,6 +83,7 @@ namespace Bubba
     [ SuppressMessage( "ReSharper", "FieldCanBeMadeReadOnly.Local" ) ]
     [ SuppressMessage( "ReSharper", "FieldCanBeMadeReadOnly.Global" ) ]
     [ SuppressMessage( "ReSharper", "RedundantExtendsListEntry" ) ]
+    [ SuppressMessage( "ReSharper", "UseNullPropagation" ) ]
     public partial class ChatWindow : Window, INotifyPropertyChanged, IDisposable
     {
         /// <summary>
@@ -148,7 +149,7 @@ namespace Bubba
         /// <summary>
         /// The role
         /// </summary>
-        private protected GptRequests _requestType;
+        private protected GptApi _requestType;
 
         /// <summary>
         /// The role
@@ -2025,6 +2026,33 @@ namespace Bubba
                 ModelDropDown.Items.Add( "gpt-4o-2024-05-13" );
                 ModelDropDown.Items.Add( "gpt-4o-mini-2024-07-18" );
                 ModelDropDown.Items.Add( "o1-2024-12-17" );
+                ModelDropDown.Items.Add( "o1-pro-2025-03-19" );
+                ModelDropDown.Items.Add( "o1-mini-2024-09-12" );
+                ModelDropDown.Items.Add( "o3-mini-2025-01-31" );
+                ModelDropDown.SelectedIndex = -1;
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+            }
+        }
+
+        /// <summary>
+        /// Populates the assistant models.
+        /// </summary>
+        private void PopulateAssistantModels( )
+        {
+            try
+            {
+                ModelDropDown.Items?.Clear( );
+                ModelDropDown.Items.Add( "gpt-4-0613" );
+                ModelDropDown.Items.Add( "gpt-4-0314" );
+                ModelDropDown.Items.Add( "gpt-4-turbo-2024-04-09" );
+                ModelDropDown.Items.Add( "gpt-4o-2024-08-06" );
+                ModelDropDown.Items.Add( "gpt-4o-2024-11-20" );
+                ModelDropDown.Items.Add( "gpt-4o-2024-05-13" );
+                ModelDropDown.Items.Add( "gpt-4o-mini-2024-07-18" );
+                ModelDropDown.Items.Add( "o1-2024-12-17" );
                 ModelDropDown.Items.Add( "o1-mini-2024-09-12" );
                 ModelDropDown.Items.Add( "o3-mini-2025-01-31" );
                 ModelDropDown.SelectedIndex = -1;
@@ -2057,18 +2085,48 @@ namespace Bubba
         }
 
         /// <summary>
-        /// Populates the translation models.
+        /// Populates the reasoning models.
         /// </summary>
-        private void PopulateTranslationModels( )
+        private void PopulateReasoningModels( )
         {
             try
             {
                 ModelDropDown.Items?.Clear( );
-                ModelDropDown.Items.Add( "whisper-1" );
+                ModelDropDown.Items.Add( "gpt-4o-2024-08-06" );
+                ModelDropDown.Items.Add( "gpt-4o-2024-11-20" );
+                ModelDropDown.Items.Add( "gpt-4o-2024-05-13" );
+                ModelDropDown.Items.Add( "gpt-4o-mini-2024-07-18" );
+                ModelDropDown.Items.Add( "o1-2024-12-17" );
+                ModelDropDown.Items.Add( "o1-pro-2025-03-19" );
+                ModelDropDown.Items.Add( "o1-mini-2024-09-12" );
+                ModelDropDown.Items.Add( "o3-mini-2025-01-31" );
+                ModelDropDown.SelectedIndex = -1;
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+            }
+        }
+
+        /// <summary>
+        /// Populates the translation models.
+        /// </summary>
+        private void PopulateResponseModels( )
+        {
+            try
+            {
+                ModelDropDown.Items?.Clear( );
                 ModelDropDown.Items.Add( "gpt-4-0613" );
                 ModelDropDown.Items.Add( "gpt-4-0314" );
                 ModelDropDown.Items.Add( "gpt-4-turbo-2024-04-09" );
-                ModelDropDown.Items.Add( "text-davinci-003" );
+                ModelDropDown.Items.Add( "gpt-4o-2024-08-06" );
+                ModelDropDown.Items.Add( "gpt-4o-2024-11-20" );
+                ModelDropDown.Items.Add( "gpt-4o-2024-05-13" );
+                ModelDropDown.Items.Add( "gpt-4o-mini-2024-07-18" );
+                ModelDropDown.Items.Add( "o1-2024-12-17" );
+                ModelDropDown.Items.Add( "o1-pro-2025-03-19" );
+                ModelDropDown.Items.Add( "o1-mini-2024-09-12" );
+                ModelDropDown.Items.Add( "o3-mini-2025-01-31" );
                 ModelDropDown.SelectedIndex = -1;
             }
             catch( Exception ex )
@@ -2088,6 +2146,23 @@ namespace Bubba
                 ModelDropDown.Items.Add( "whisper-1" );
                 ModelDropDown.Items.Add( "gpt-4o-mini-transcribe" );
                 ModelDropDown.Items.Add( "gpt-4o-transcribe" );
+                ModelDropDown.SelectedIndex = -1;
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+            }
+        }
+
+        /// <summary>
+        /// Populates the translation models.
+        /// </summary>
+        private void PopulateTranslationModels( )
+        {
+            try
+            {
+                ModelDropDown.Items?.Clear( );
+                ModelDropDown.Items.Add( "whisper-1" );
                 ModelDropDown.SelectedIndex = -1;
             }
             catch( Exception ex )
@@ -2123,12 +2198,14 @@ namespace Bubba
             try
             {
                 ModelDropDown.Items?.Clear( );
-                ModelDropDown.Items.Add( "gpt-4o-2024-08-06" );
-                ModelDropDown.Items.Add( "gpt-4o-mini-2024-07-18" );
-                ModelDropDown.Items.Add( "gpt-4-0613" );
                 ModelDropDown.Items.Add( "gpt-3.5-turbo-0125" );
                 ModelDropDown.Items.Add( "gpt-3.5-turbo-1106" );
                 ModelDropDown.Items.Add( "gpt-3.5-turbo-0613" );
+                ModelDropDown.Items.Add( "gpt-4-0613" );
+                ModelDropDown.Items.Add( "gpt-4o-mini-2024-07-18" );
+                ModelDropDown.Items.Add( "gpt-4o-2024-08-06" );
+                ModelDropDown.Items.Add( "gpt-4o-2024-11-20" );
+                ModelDropDown.Items.Add( "gpt-4o-2024-05-13" );
                 ModelDropDown.SelectedIndex = -1;
             }
             catch( Exception ex )
@@ -2159,9 +2236,28 @@ namespace Bubba
         }
 
         /// <summary>
+        /// Populates the text to speech models.
+        /// </summary>
+        private void PopulateTextToSpeechModels( )
+        {
+            try
+            {
+                ModelDropDown.Items?.Clear( );
+                ModelDropDown.Items.Add( "tts-1" );
+                ModelDropDown.Items.Add( "tts-1-hd" );
+                ModelDropDown.Items.Add( "gpt-4o-mini-tts" );
+                ModelDropDown.SelectedIndex = -1;
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+            }
+        }
+
+        /// <summary>
         /// Populates the upload API models.
         /// </summary>
-        private void PopulateUploadApiModels( )
+        private void PopulateUploadModels( )
         {
             try
             {
@@ -2213,7 +2309,7 @@ namespace Bubba
         /// <summary>
         /// Populates the file API models.
         /// </summary>
-        private void PopulateFileApiModels( )
+        private void PopulateFileModels( )
         {
             try
             {
@@ -2606,7 +2702,7 @@ namespace Bubba
             try
             {
                 GenerationListBox.Items?.Clear( );
-                var _names = Enum.GetNames( typeof( GptRequests ) );
+                var _names = Enum.GetNames( typeof( GptApi ) );
                 foreach( var _request in _names )
                 {
                     var _item = new MetroDropDownItem( )
@@ -3079,65 +3175,49 @@ namespace Bubba
             {
                 switch( _requestType )
                 {
-                    case GptRequests.Assistants:
+                    case GptApi.Assistants:
                     {
-                        PopulateCompletionModels( );
+                        PopulateAssistantModels( );
                         _endpoint = GptEndPoint.Assistants;
                         TabControl.SelectedIndex = 1;
                         break;
                     }
-                    case GptRequests.ChatCompletion:
+                    case GptApi.ChatCompletion:
                     {
                         PopulateCompletionModels( );
                         _endpoint = GptEndPoint.Completions;
                         TabControl.SelectedIndex = 1;
                         break;
                     }
-                    case GptRequests.TextGeneration:
+                    case GptApi.TextGeneration:
                     {
                         PopulateTextModels( );
                         _endpoint = GptEndPoint.TextGeneration;
                         TabControl.SelectedIndex = 1;
                         break;
                     }
-                    case GptRequests.ImageGeneration:
+                    case GptApi.ImageGeneration:
                     {
                         PopulateImageModels( );
                         _endpoint = GptEndPoint.ImageGeneration;
                         TabControl.SelectedIndex = 1;
                         break;
                     }
-                    case GptRequests.Translations:
-                    {
-                        PopulateTranslationModels( );
-                        PopulateOpenAiVoices( );
-                        _endpoint = GptEndPoint.Translations;
-                        TabControl.SelectedIndex = 1;
-                        break;
-                    }
-                    case GptRequests.Embeddings:
+                    case GptApi.Embeddings:
                     {
                         PopulateEmbeddingModels( );
                         _endpoint = GptEndPoint.Embeddings;
                         TabControl.SelectedIndex = 1;
                         break;
                     }
-                    case GptRequests.Transcriptions:
-                    {
-                        PopulateTranscriptionModels( );
-                        PopulateOpenAiVoices( );
-                        _endpoint = GptEndPoint.Transcriptions;
-                        TabControl.SelectedIndex = 1;
-                        break;
-                    }
-                    case GptRequests.VectorStores:
+                    case GptApi.VectorStores:
                     {
                         PopulateVectorStoreModels( );
                         _endpoint = GptEndPoint.VectorStores;
                         TabControl.SelectedIndex = 1;
                         break;
                     }
-                    case GptRequests.SpeechGeneration:
+                    case GptApi.SpeechGeneration:
                     {
                         PopulateSpeechModels( );
                         PopulateOpenAiVoices( );
@@ -3145,28 +3225,59 @@ namespace Bubba
                         TabControl.SelectedIndex = 1;
                         break;
                     }
-                    case GptRequests.FineTuning:
+                    case GptApi.TextToSpeech:
+                    {
+                        PopulateTextToSpeechModels( );
+                        PopulateOpenAiVoices( );
+                        _endpoint = GptEndPoint.SpeechGeneration;
+                        TabControl.SelectedIndex = 1;
+                        break;
+                    }
+                    case GptApi.Translations:
+                    {
+                        PopulateTranslationModels( );
+                        PopulateOpenAiVoices( );
+                        _endpoint = GptEndPoint.Translations;
+                        TabControl.SelectedIndex = 1;
+                        break;
+                    }
+                    case GptApi.Transcriptions:
+                    {
+                        PopulateTranscriptionModels( );
+                        PopulateOpenAiVoices( );
+                        _endpoint = GptEndPoint.Transcriptions;
+                        TabControl.SelectedIndex = 1;
+                        break;
+                    }
+                    case GptApi.FineTuning:
                     {
                         PopulateFineTuningModels( );
                         _endpoint = GptEndPoint.FineTuning;
                         TabControl.SelectedIndex = 1;
                         break;
                     }
-                    case GptRequests.Files:
+                    case GptApi.Responses:
                     {
-                        PopulateFileApiModels( );
+                        PopulateResponseModels( );
+                        _endpoint = GptEndPoint.Responses;
+                        TabControl.SelectedIndex = 1;
+                        break;
+                    }
+                    case GptApi.Files:
+                    {
+                        PopulateFileModels( );
                         _endpoint = GptEndPoint.Files;
                         TabControl.SelectedIndex = 1;
                         break;
                     }
-                    case GptRequests.Uploads:
+                    case GptApi.Uploads:
                     {
-                        PopulateUploadApiModels( );
+                        PopulateUploadModels( );
                         _endpoint = GptEndPoint.Uploads;
                         TabControl.SelectedIndex = 1;
                         break;
                     }
-                    case GptRequests.Projects:
+                    case GptApi.Projects:
                     {
                         PopulateTextModels( );
                         _endpoint = GptEndPoint.Projects;
@@ -3211,17 +3322,17 @@ namespace Bubba
             {
                 _options = _requestType switch
                 {
-                    GptRequests.ChatCompletion => new ChatOptions( ),
-                    GptRequests.Assistants => new AssistantOptions(  ),
-                    GptRequests.TextGeneration => new TextOptions(  ),
-                    GptRequests.ImageGeneration => new ImageOptions(  ),
-                    GptRequests.Transcriptions => new TranscriptionOptions( ),
-                    GptRequests.Translations => new TranslationOptions( ),
-                    GptRequests.Files => new FileOptions( ),
-                    GptRequests.Embeddings => new EmbeddingOptions(  ),
-                    GptRequests.FineTuning => new FineTuningOptions(  ),
-                    GptRequests.VectorStores => new VectorOptions( ),
-                    GptRequests.SpeechGeneration => new SpeechOptions( ),
+                    GptApi.ChatCompletion => new ChatOptions( ),
+                    GptApi.Assistants => new AssistantOptions(  ),
+                    GptApi.TextGeneration => new TextOptions(  ),
+                    GptApi.ImageGeneration => new ImageOptions(  ),
+                    GptApi.Transcriptions => new TranscriptionOptions( ),
+                    GptApi.Translations => new TranslationOptions( ),
+                    GptApi.Files => new FileOptions( ),
+                    GptApi.Embeddings => new EmbeddingOptions(  ),
+                    GptApi.FineTuning => new FineTuningOptions(  ),
+                    GptApi.VectorStores => new VectorOptions( ),
+                    GptApi.SpeechGeneration => new SpeechOptions( ),
                     var _ => new TextOptions( )
                 };
             }
@@ -4206,7 +4317,7 @@ namespace Bubba
                     var _item = ( MetroDropDownItem )GenerationListBox.SelectedItem;
                     _selectedRequest = _item.Tag?.ToString( );
                     _requestType =
-                        ( GptRequests )Enum.Parse( typeof( GptRequests ), _selectedRequest );
+                        ( GptApi )Enum.Parse( typeof( GptApi ), _selectedRequest );
 
                     SetRequestType( );
                 }

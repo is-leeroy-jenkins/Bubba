@@ -68,6 +68,11 @@ namespace Bubba
         /// <summary>
         /// The developer
         /// </summary>
-        Developer
+        Developer,
+
+        /// <summary>
+        /// The tool
+        /// </summary>
+        Tool
     }
 }
