@@ -415,13 +415,15 @@
 
                         <GroupBox
                             Grid.Row="1"
+                            Width="287"
                             Margin="10,176,0,26"
+                            HorizontalAlignment="Left"
                             Background="{StaticResource GroupBoxBackground}"
                             BorderBrush="{StaticResource MutedForeground}"
                             FontFamily="Roboto"
                             FontSize="14"
                             Foreground="{StaticResource FormForeground}"
-                            Header="Nucleus Sampling" HorizontalAlignment="Left" Width="287">
+                            Header="Nucleus Sampling">
                             <wpf:SfRangeSlider
                                 x:Name="TopPercentSlider"
                                 Width="250"
@@ -484,7 +486,9 @@
 
                         <GroupBox
                             Grid.Row="1"
+                            Width="295"
                             Margin="902,176,0,26"
+                            HorizontalAlignment="Left"
                             Background="{StaticResource GroupBoxBackground}"
                             BorderBrush="{StaticResource MutedForeground}"
                             FontFamily="Roboto"
@@ -492,7 +496,7 @@
                             Foreground="{StaticResource FormForeground}"
                             Header="Speech Rate"
                             RenderTransformOrigin="0.5,0.5"
-                            ToolTip="Speed" HorizontalAlignment="Left" Width="295">
+                            ToolTip="Speed">
                             <GroupBox.RenderTransform>
                                 <TransformGroup>
                                     <ScaleTransform />
@@ -581,7 +585,7 @@
                                     x:Name="VisionCanvas"
                                     Height="186">
 
-                                    <ComboBox
+                                    <b:MetroDropDown
                                         x:Name="ImageSizeDropDown"
                                         Canvas.Left="16"
                                         Canvas.Top="10"
@@ -595,7 +599,7 @@
                                         FontFamily="Roboto"
                                         Text="    Sizes" />
 
-                                    <ComboBox
+                                    <b:MetroDropDown
                                         x:Name="ImageQualityDropDown"
                                         Canvas.Left="16"
                                         Canvas.Top="76"
@@ -610,18 +614,18 @@
                                         Text="    Quality"
                                         ToolTip="Select Image Quality">
 
-                                        <ComboBoxItem
+                                        <b:MetroDropDownItem
                                             Width="Auto"
                                             Height="40"
                                             Content="standard" />
 
-                                        <ComboBoxItem
+                                        <b:MetroDropDownItem
                                             Width="Auto"
                                             Height="40"
                                             Content="hd" />
-                                    </ComboBox>
+                                    </b:MetroDropDown>
 
-                                    <ComboBox
+                                    <b:MetroDropDown
                                         x:Name="ImageDetailDropDown"
                                         Canvas.Left="16"
                                         Canvas.Top="141"
@@ -631,23 +635,24 @@
                                         VerticalAlignment="Top"
                                         Background="{StaticResource ControlInteriorBrush}"
                                         BorderBrush="{StaticResource BlueBorderBrush}"
-                                        BorderThickness="1">
+                                        BorderThickness="1"
+                                        Text="Image Detail">
 
-                                        <ComboBoxItem
+                                        <b:MetroDropDownItem
                                             Width="Auto"
                                             Height="40"
                                             Content="low" />
 
-                                        <ComboBoxItem
+                                        <b:MetroDropDownItem
                                             Width="Auto"
                                             Height="40"
                                             Content="medium" />
 
-                                        <ComboBoxItem
+                                        <b:MetroDropDownItem
                                             Width="Auto"
                                             Height="40"
                                             Content="high" />
-                                    </ComboBox>
+                                    </b:MetroDropDown>
                                 </Canvas>
                             </GroupBox>
 
@@ -689,7 +694,7 @@
                                         WatermarkTextIsVisible="True"
                                         Value="12000" />
 
-                                    <ComboBox
+                                    <b:MetroDropDown
                                         x:Name="EffortDropDown"
                                         Canvas.Left="20"
                                         Canvas.Top="85"
@@ -701,6 +706,7 @@
                                         BorderBrush="{StaticResource BlueBorderBrush}"
                                         BorderThickness="1"
                                         Tag="ReasoningEffort"
+                                        Text="  Reasoning Effort"
                                         ToolTip="Reasoning Effort" />
 
                                     <Label
@@ -720,7 +726,7 @@
                                         ScrollViewer.CanContentScroll="False"
                                         UseLayoutRounding="True" />
 
-                                    <ComboBox
+                                    <b:MetroDropDown
                                         x:Name="VoicesDropDown"
                                         Canvas.Left="20"
                                         Canvas.Top="145"
@@ -855,7 +861,7 @@
                                     x:Name="AudioCanvas"
                                     Height="189">
 
-                                    <ComboBox
+                                    <b:MetroDropDown
                                         x:Name="ResponseFormatDropDown"
                                         Canvas.Left="23"
                                         Canvas.Top="10"
@@ -867,45 +873,46 @@
                                         BorderBrush="{StaticResource ResourceKey=BlueBorderBrush}"
                                         BorderThickness="1"
                                         Tag="response_format"
+                                        Text="  Response Format"
                                         ToolTip="Select Response Format">
-                                        <ComboBoxItem
+                                        <b:MetroDropDownItem
                                             Width="Auto"
                                             Height="30"
                                             Content="text"
                                             FontFamily="Roboto" />
-                                        <ComboBoxItem
+                                        <b:MetroDropDownItem
                                             Width="Auto"
                                             Height="30"
                                             Content="json"
                                             FontFamily="Roboto" />
-                                        <ComboBoxItem
+                                        <b:MetroDropDownItem
                                             Width="Auto"
                                             Height="30"
                                             Content="url"
                                             FontFamily="Roboto" />
-                                        <ComboBoxItem
+                                        <b:MetroDropDownItem
                                             Width="Auto"
                                             Height="30"
                                             Content="json_schema"
                                             FontFamily="Roboto" />
-                                        <ComboBoxItem
+                                        <b:MetroDropDownItem
                                             Width="Auto"
                                             Height="30"
                                             Content="json_obect"
                                             FontFamily="Roboto" />
-                                        <ComboBoxItem
+                                        <b:MetroDropDownItem
                                             Width="Auto"
                                             Height="30"
                                             Content="base64"
                                             FontFamily="Roboto" />
-                                        <ComboBoxItem
+                                        <b:MetroDropDownItem
                                             Width="Auto"
                                             Height="30"
                                             Content="float"
                                             FontFamily="Roboto" />
-                                    </ComboBox>
+                                    </b:MetroDropDown>
 
-                                    <ComboBox
+                                    <b:MetroDropDown
                                         x:Name="AudioFormatDropDown"
                                         Canvas.Left="23"
                                         Canvas.Top="77"
@@ -917,39 +924,40 @@
                                         BorderBrush="{StaticResource BlueBorderBrush}"
                                         BorderThickness="1"
                                         Tag="audio"
+                                        Text="  Audio Format"
                                         ToolTip="Select Audio Format">
-                                        <ComboBoxItem
+                                        <b:MetroDropDownItem
                                             Width="Auto"
                                             Height="40"
                                             Content="mp3" />
 
-                                        <ComboBoxItem
+                                        <b:MetroDropDownItem
                                             Width="Auto"
                                             Height="40"
                                             Content="opus" />
 
-                                        <ComboBoxItem
+                                        <b:MetroDropDownItem
                                             Width="Auto"
                                             Height="40"
                                             Content="aac" />
 
-                                        <ComboBoxItem
+                                        <b:MetroDropDownItem
                                             Width="Auto"
                                             Height="40"
                                             Content="flac" />
 
-                                        <ComboBoxItem
+                                        <b:MetroDropDownItem
                                             Width="Auto"
                                             Height="40"
                                             Content="wav" />
 
-                                        <ComboBoxItem
+                                        <b:MetroDropDownItem
                                             Width="Auto"
                                             Height="40"
                                             Content="pcm" />
-                                    </ComboBox>
+                                    </b:MetroDropDown>
 
-                                    <ComboBox
+                                    <b:MetroDropDown
                                         x:Name="ImageFormatDropDown"
                                         Canvas.Left="23"
                                         Canvas.Top="144"
@@ -957,18 +965,19 @@
                                         Height="40"
                                         Background="{StaticResource ControlInteriorBrush}"
                                         BorderBrush="{StaticResource BlueBorderBrush}"
-                                        BorderThickness="1">
+                                        BorderThickness="1"
+                                        Text="  Image Format">
 
-                                        <ComboBoxItem
+                                        <b:MetroDropDownItem
                                             Width="Auto"
                                             Height="40"
                                             Content="url" />
 
-                                        <ComboBoxItem
+                                        <b:MetroDropDownItem
                                             Width="Auto"
                                             Height="40"
                                             Content="b64_json" />
-                                    </ComboBox>
+                                    </b:MetroDropDown>
                                 </Canvas>
                             </GroupBox>
 
@@ -984,25 +993,27 @@
                                 Header="GPT">
 
                                 <Canvas Height="186">
-                                    <ComboBox
+                                    <b:MetroDropDown
                                         x:Name="GenerationListBox"
-                                        Canvas.Left="50"
-                                        Canvas.Top="28"
+                                        Canvas.Left="49"
+                                        Canvas.Top="10"
                                         Width="276"
                                         Height="40"
                                         HorizontalAlignment="Left"
                                         VerticalAlignment="Top"
                                         Background="{StaticResource ControlInteriorBrush}"
                                         BorderBrush="{StaticResource BlueBorderBrush}"
-                                        BorderThickness="1" />
+                                        BorderThickness="1"
+                                        Text="  GPT Request" />
 
-                                    <ComboBox
-                                        x:Name="ModelDropDown"
-                                        Canvas.Left="50"
-                                        Canvas.Top="108"
-                                        Width="275"
+                                    <b:MetroDropDown
+                                        x:Name="ModelListBox"
+                                        Canvas.Left="49"
+                                        Canvas.Top="93"
+                                        Width="276"
                                         Height="40"
-                                        HorizontalAlignment="Left"
+                                        Text=" Language Models"
+                                        HorizontalAlignment="Center"
                                         VerticalAlignment="Top"
                                         Background="{StaticResource ControlInteriorBrush}"
                                         BorderBrush="{StaticResource BlueBorderBrush}"

@@ -45,7 +45,6 @@ namespace Bubba
     using OfficeOpenXml;
     using OfficeOpenXml.Style;
     using System;
-    using System.Configuration;
     using System.Data;
     using System.Diagnostics.CodeAnalysis;
     using System.Drawing;
@@ -293,12 +292,12 @@ namespace Bubba
             {
                 for( var _i = 0; _i < _excelWorkbook.Worksheets.Count; _i++ )
                 {
-                    _excelWorkbook.Worksheets[ _i ].PrinterSettings.LeftMargin = _leftMargin;
-                    _excelWorkbook.Worksheets[ _i ].PrinterSettings.RightMargin = _rightMargin;
-                    _excelWorkbook.Worksheets[ _i ].PrinterSettings.HeaderMargin = _headerMargin;
-                    _excelWorkbook.Worksheets[ _i ].PrinterSettings.FooterMargin = _footerMargin;
-                    _excelWorkbook.Worksheets[ _i ].PrinterSettings.TopMargin = _topMargin;
-                    _excelWorkbook.Worksheets[ _i ].PrinterSettings.BottomMargin = _bottomMargin;
+                    _excelWorkbook.Worksheets[ _i ].PrinterSettings.LeftMargin = ( double )_leftMargin;
+                    _excelWorkbook.Worksheets[ _i ].PrinterSettings.RightMargin =  ( double )_rightMargin;
+                    _excelWorkbook.Worksheets[ _i ].PrinterSettings.HeaderMargin =  ( double )_headerMargin;
+                    _excelWorkbook.Worksheets[ _i ].PrinterSettings.FooterMargin =  ( double )_footerMargin;
+                    _excelWorkbook.Worksheets[ _i ].PrinterSettings.TopMargin =  ( double )_topMargin;
+                    _excelWorkbook.Worksheets[ _i ].PrinterSettings.BottomMargin =  ( double )_bottomMargin;
                     _excelWorkbook.Worksheets[ _i ].PrinterSettings.Orientation =
                         eOrientation.Landscape;
                 }

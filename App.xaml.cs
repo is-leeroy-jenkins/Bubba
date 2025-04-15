@@ -139,7 +139,7 @@ namespace Bubba
             OpenAiKey = Environment.GetEnvironmentVariable( "OPENAI_API_KEY" );
             GoogleKey = Environment.GetEnvironmentVariable( "GOOGLE_API_KEY" );
             Instructions = OpenAI.BubbaPrompt;
-            ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
+            ExcelPackage.License.SetNonCommercialPersonal( "Terry Eppler" );
             RegisterTheme( );
             ActiveWindows = new Dictionary<string, Window>( );
 
@@ -172,7 +172,7 @@ namespace Bubba
             {
                 PrimaryBackground = new SolidColorBrush( Color.FromRgb( 20, 20, 20 ) ),
                 PrimaryColorForeground = new SolidColorBrush( Color.FromRgb( 0, 120, 212 ) ),
-                PrimaryForeground = new SolidColorBrush( Color.FromRgb( 222, 222, 222 ) ),
+                PrimaryForeground = new SolidColorBrush( Color.FromRgb( 160, 189, 252 ) ),
                 BodyFontSize = 12,
                 HeaderFontSize = 16,
                 SubHeaderFontSize = 14,

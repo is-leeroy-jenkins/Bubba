@@ -342,7 +342,9 @@
             SnapsToDevicePixels="True"
             Source="/Resources/Assets/ExtensionImages/XLSX.png" />
 
-        <Grid Grid.RowSpan="2" Margin="0,34,0,0">
+        <Grid
+            Grid.RowSpan="2"
+            Margin="0,34,0,0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="10*" />
                 <ColumnDefinition Width="17*" />
@@ -350,7 +352,9 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="40" />
                 <RowDefinition Height="30" />
-                <RowDefinition Height="Auto" MinHeight="10" />
+                <RowDefinition
+                    Height="Auto"
+                    MinHeight="10" />
             </Grid.RowDefinitions>
 
 
@@ -427,7 +431,9 @@
                 Foreground="{StaticResource BlueBorderBrush}" />
         </Canvas>
 
-        <Canvas Grid.Row="0" Grid.Column="3" />
+        <Canvas
+            Grid.Row="0"
+            Grid.Column="3" />
 
         <Label
             x:Name="TimeLabel"

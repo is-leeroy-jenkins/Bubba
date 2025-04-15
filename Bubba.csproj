@@ -484,15 +484,15 @@
 
   <ItemGroup>
     <PackageReference Include="AngleSharp" Version="1.2.0" />
-    <PackageReference Include="CefSharp.Common.NETCore" Version="133.4.21" />
-    <PackageReference Include="CefSharp.OffScreen.NETCore" Version="133.4.21" />
-    <PackageReference Include="CefSharp.WinForms.NETCore" Version="133.4.21" />
-    <PackageReference Include="CefSharp.Wpf.NETCore" Version="133.4.21" />
-    <PackageReference Include="EPPlus" Version="7.6.0" />
+    <PackageReference Include="CefSharp.Common.NETCore" Version="135.0.170" />
+    <PackageReference Include="CefSharp.OffScreen.NETCore" Version="135.0.170" />
+    <PackageReference Include="CefSharp.WinForms.NETCore" Version="135.0.170" />
+    <PackageReference Include="CefSharp.Wpf.NETCore" Version="135.0.170" />
+    <PackageReference Include="EPPlus" Version="8.0.1" />
     <PackageReference Include="Google.Apis.CustomSearchAPI.v1" Version="1.68.0.3520" />
     <PackageReference Include="LinqStatistics" Version="3.0.1" />
     <PackageReference Include="MahApps.Metro" Version="2.4.10" />
-    <PackageReference Include="Microsoft.ML" Version="4.0.1" />
+    <PackageReference Include="Microsoft.ML" Version="4.0.2" />
     <PackageReference Include="Microsoft.NETFramework.ReferenceAssemblies" Version="1.0.3">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
@@ -506,9 +506,9 @@
     <PackageReference Include="OpenAI" Version="2.1.0" />
     <PackageReference Include="PDFsharp" Version="6.1.1" />
     <PackageReference Include="QRCoder" Version="1.6.0" />
-    <PackageReference Include="RestoreWindowPlace" Version="3.0.0" />
-    <PackageReference Include="ScottPlot" Version="5.0.54" />
-    <PackageReference Include="ScottPlot.WPF" Version="5.0.54" />
+    <PackageReference Include="RestoreWindowPlace" Version="3.1.0" />
+    <PackageReference Include="ScottPlot" Version="5.0.55" />
+    <PackageReference Include="ScottPlot.WPF" Version="5.0.55" />
     <PackageReference Include="SkiaSharp" Version="3.116.1" />
     <PackageReference Include="SqlServerCompact" Version="4.0.8854.1" />
     <PackageReference Include="Syncfusion.Edit.WPF" Version="24.1.41" />
@@ -533,12 +533,12 @@
     <PackageReference Include="Syncfusion.Themes.FluentDark.WPF" Version="24.1.41" />
     <PackageReference Include="Syncfusion.Tools.WPF" Version="24.1.41" />
     <PackageReference Include="Syncfusion.UI.WPF.NET" Version="24.1.41" />
-    <PackageReference Include="System.Data.OleDb" Version="9.0.2" />
+    <PackageReference Include="System.Data.OleDb" Version="9.0.4" />
     <PackageReference Include="System.Data.SqlClient" Version="4.9.0" />
     <PackageReference Include="System.Data.SQLite.Core" Version="1.0.119" />
-    <PackageReference Include="System.Speech" Version="9.0.2" />
-    <PackageReference Include="System.Text.Encodings.Web" Version="9.0.2" />
-    <PackageReference Include="System.Text.Json" Version="9.0.2" />
+    <PackageReference Include="System.Speech" Version="9.0.4" />
+    <PackageReference Include="System.Text.Encodings.Web" Version="9.0.4" />
+    <PackageReference Include="System.Text.Json" Version="9.0.4" />
     <PackageReference Include="SystemExtensions.NetCore" Version="1.6.11" />
     <PackageReference Include="ToastNotifications.Messages.Net6" Version="1.0.4" />
     <PackageReference Include="ToastNotifications.Net6" Version="1.0.4" />
@@ -1157,6 +1157,11 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>SearchEngine.resx</DependentUpon>
     </Compile>
+    <Compile Update="Properties\VectorStores.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>VectorStores.resx</DependentUpon>
+    </Compile>
   </ItemGroup>
 
   <ItemGroup>
@@ -1189,18 +1194,22 @@
       <LastGenOutput>SearchEngine.Designer.cs</LastGenOutput>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </EmbeddedResource>
+    <EmbeddedResource Update="Properties\VectorStores.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>VectorStores.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Update="chromiumembeddedframework.runtime.win-arm64" Version="133.4.2" />
+    <PackageReference Update="chromiumembeddedframework.runtime.win-arm64" Version="135.0.17" />
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Update="chromiumembeddedframework.runtime.win-x64" Version="133.4.2" />
+    <PackageReference Update="chromiumembeddedframework.runtime.win-x64" Version="135.0.17" />
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Update="chromiumembeddedframework.runtime.win-x86" Version="133.4.2" />
+    <PackageReference Update="chromiumembeddedframework.runtime.win-x86" Version="135.0.17" />
   </ItemGroup>
 
 </Project>

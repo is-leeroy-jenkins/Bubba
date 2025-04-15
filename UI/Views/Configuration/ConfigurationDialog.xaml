@@ -54,7 +54,9 @@
                     FontFamily="Roboto"
                     FontSize="9"
                     Hint="Name">
-                    <TextBox FontFamily="Roboto" Text="John" />
+                    <TextBox
+                        FontFamily="Roboto"
+                        Text="John" />
                 </wpf:SfTextInputLayout>
                 <wpf:SfTextInputLayout
                     Canvas.Left="10"
@@ -65,7 +67,9 @@
                     ContainerType="Outlined"
                     FontSize="9"
                     Hint="Name">
-                    <TextBox FontFamily="Roboto" Text="John" />
+                    <TextBox
+                        FontFamily="Roboto"
+                        Text="John" />
                 </wpf:SfTextInputLayout>
             </Canvas>
         </Grid>

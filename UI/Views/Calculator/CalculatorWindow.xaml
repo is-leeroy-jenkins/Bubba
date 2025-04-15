@@ -2,9 +2,9 @@
     x:Class="Bubba.CalculatorWindow"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:b="clr-namespace:Bubba"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:b="clr-namespace:Bubba"
     xmlns:skin="clr-namespace:Syncfusion.SfSkinManager;assembly=Syncfusion.SfSkinManager.WPF"
     xmlns:sync="http://schemas.syncfusion.com/wpf"
     x:Name="CalculationView"
@@ -14,9 +14,9 @@
     sync:SfSkinManager.Theme="{skin:SkinManagerExtension ThemeName=FluentDark}"
     Background="{StaticResource BlackBackground}"
     BorderBrush="{StaticResource BlueBorderBrush}"
-    Foreground="{StaticResource FormForeground}"
     BorderThickness="1"
     FontSize="11"
+    Foreground="{StaticResource FormForeground}"
     Topmost="True"
     WindowStartupLocation="CenterScreen"
     WindowStyle="None"
@@ -59,8 +59,8 @@
             HorizontalAlignment="Left"
             VerticalAlignment="Center"
             Source="/Resources/Assets/CalculatorImages/WindowsCalculatorButton.png"
-            ToolTip="Windows Calculator"
-            Stretch="None" />
+            Stretch="None"
+            ToolTip="Windows Calculator" />
 
         <Image
             x:Name="CloseButton"
@@ -70,7 +70,7 @@
             Height="16"
             Margin="5"
             Source="/Resources/Assets/CalculatorImages/CalculatorCloseButton.png"
-            ToolTip="Close Calculator"
-            Stretch="None" />
+            Stretch="None"
+            ToolTip="Close Calculator" />
     </Canvas>
 </Window>

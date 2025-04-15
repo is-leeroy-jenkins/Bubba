@@ -197,7 +197,7 @@ namespace Bubba
         private protected GptOptions _options;
 
         /// <summary>
-        /// A number between 0.0 and 1.0   between 0 and 2.
+        /// A number between 0 and 2.
         /// Higher values like 0.8 will make the output more random,
         /// while lower values like 0.2 will make it more focused and deterministic.
         /// </summary>
@@ -595,7 +595,7 @@ namespace Bubba
         {
             try
             {
-                SetToolbarVisibility( false );
+                SetToolbarVisibility( true );
             }
             catch( Exception ex )
             {
@@ -728,7 +728,7 @@ namespace Bubba
                 _topLogProbs = int.Parse( TopLogProbSlider.Value.ToString( ) );
                 _number = int.Parse( MaxTokenTextBox.Text );
                 _maximumTokens = Convert.ToInt32( MaxTokenTextBox.Text );
-                _model = ModelDropDown.SelectedItem.ToString( ) ?? "gpt-4o";
+                _model = ModelListBox.SelectedItem.ToString( ) ?? "gpt-4o";
                 _speed = int.Parse( SpeechRateSlider.Value.ToString( "N0"  ) );
                 _userPrompt = _language == "Text"
                     ? Editor.Text
@@ -759,6 +759,7 @@ namespace Bubba
                 MuteCheckBox.Checked += OnMuteCheckedBoxChanged;
                 StoreCheckBox.Checked += OnStoreCheckBoxChecked;
                 GenerationListBox.SelectionChanged += OnRequestListBoxSelectionChanged;
+                ModelListBox.SelectionChanged += OnModelDropDownSelectionChanged;
                 ToolStripRefreshButton.Click += OnRefreshButtonClick;
                 ToolStripSendButton.Click += OnGoButtonClicked;
                 GptFileButton.Click += OnFileApiButtonClick;
@@ -1041,7 +1042,7 @@ namespace Bubba
             try
             {
                 GenerationListBox.SelectedIndex = -1;
-                ModelDropDown.SelectedIndex = -1;
+                ModelListBox.SelectedIndex = -1;
                 VoicesDropDown.SelectedIndex = -1;
                 ImageSizeDropDown.SelectedIndex = -1;
                 LanguageDropDown.SelectedIndex = -1;
@@ -1345,7 +1346,7 @@ namespace Bubba
                 | SecurityProtocolType.Tls;
 
             // text-davinci-002, text-davinci-003
-            var _model = ModelDropDown.SelectedItem.ToString( );
+            var _model = ModelListBox.SelectedItem.ToString( );
             var _url = "https://api.openai.com/v1/completions";
             if( _model?.IndexOf( "gpt-3.5-turbo" ) != -1 )
             {
@@ -1901,21 +1902,27 @@ namespace Bubba
                 }
 
                 _models.Sort( );
-                ModelDropDown.Items.Clear( );
+                ModelListBox.Items.Clear( );
                 Dispatcher.BeginInvoke( ( ) =>
                 {
                     foreach( var _lm in _models )
                     {
                         if( !_lm.StartsWith( "ft" ) )
                         {
-                            var _item = new MetroDropDownItem( _lm );
-                            ModelDropDown.Items.Add( _item );
+                            var _item = new MetroDropDownItem( )
+                            {
+                                Height = 35,
+                                Tag = _lm,
+                                Content = _lm
+                            };
+
+                            ModelListBox.Items.Add( _item );
                         }
                     }
                 } );
 
                 Chill( );
-                ModelDropDown.SelectedIndex = -1;
+                ModelListBox.SelectedIndex = -1;
             }
             catch( HttpRequestException ex )
             {
@@ -1990,19 +1997,21 @@ namespace Bubba
         {
             try
             {
-                ModelDropDown.Items?.Clear( );
-                ModelDropDown.Items.Add( "gpt-4-0613" );
-                ModelDropDown.Items.Add( "gpt-4-0314" );
-                ModelDropDown.Items.Add( "gpt-4-turbo-2024-04-09" );
-                ModelDropDown.Items.Add( "gpt-4o-2024-08-06" );
-                ModelDropDown.Items.Add( "gpt-4o-2024-11-20" );
-                ModelDropDown.Items.Add( "gpt-4o-2024-05-13" );
-                ModelDropDown.Items.Add( "gpt-4o-mini-2024-07-18" );
-                ModelDropDown.Items.Add( "o1-2024-12-17" );
-                ModelDropDown.Items.Add( "o1-mini-2024-09-12" );
-                ModelDropDown.Items.Add( "text-davinci-003" );
-                ModelDropDown.Items.Add( "text-curie-001" );
-                ModelDropDown.SelectedIndex = -1;
+                ModelListBox.Items?.Clear( );
+                ModelListBox.Items.Add( "gpt-4-0613" );
+                ModelListBox.Items.Add( "gpt-4-0314" );
+                ModelListBox.Items.Add( "gpt-4-turbo-2024-04-09" );
+                ModelListBox.Items.Add( "gpt-4o-2024-08-06" );
+                ModelListBox.Items.Add( "gpt-4o-2024-11-20" );
+                ModelListBox.Items.Add( "gpt-4o-2024-05-13" );
+                ModelListBox.Items.Add( "gpt-4o-mini-2024-07-18" );
+                ModelListBox.Items.Add( "o1-2024-12-17" );
+                ModelListBox.Items.Add( "o1-pro-2025-03-19" );
+                ModelListBox.Items.Add( "o1-mini-2024-09-12" );
+                ModelListBox.Items.Add( "o3-mini-2025-01-31"  );
+                ModelListBox.Items.Add( "text-davinci-003" );
+                ModelListBox.Items.Add( "text-curie-001" );
+                ModelListBox.SelectedIndex = -1;
             }
             catch( Exception ex )
             {
@@ -2017,19 +2026,19 @@ namespace Bubba
         {
             try
             {
-                ModelDropDown.Items?.Clear( );
-                ModelDropDown.Items.Add( "gpt-4-0613" );
-                ModelDropDown.Items.Add( "gpt-4-0314" );
-                ModelDropDown.Items.Add( "gpt-4-turbo-2024-04-09" );
-                ModelDropDown.Items.Add( "gpt-4o-2024-08-06" );
-                ModelDropDown.Items.Add( "gpt-4o-2024-11-20" );
-                ModelDropDown.Items.Add( "gpt-4o-2024-05-13" );
-                ModelDropDown.Items.Add( "gpt-4o-mini-2024-07-18" );
-                ModelDropDown.Items.Add( "o1-2024-12-17" );
-                ModelDropDown.Items.Add( "o1-pro-2025-03-19" );
-                ModelDropDown.Items.Add( "o1-mini-2024-09-12" );
-                ModelDropDown.Items.Add( "o3-mini-2025-01-31" );
-                ModelDropDown.SelectedIndex = -1;
+                ModelListBox.Items?.Clear( );
+                ModelListBox.Items.Add( "gpt-4-0613" );
+                ModelListBox.Items.Add( "gpt-4-0314" );
+                ModelListBox.Items.Add( "gpt-4-turbo-2024-04-09" );
+                ModelListBox.Items.Add( "gpt-4o-2024-08-06" );
+                ModelListBox.Items.Add( "gpt-4o-2024-11-20" );
+                ModelListBox.Items.Add( "gpt-4o-2024-05-13" );
+                ModelListBox.Items.Add( "gpt-4o-mini-2024-07-18" );
+                ModelListBox.Items.Add( "o1-2024-12-17" );
+                ModelListBox.Items.Add( "o1-pro-2025-03-19" );
+                ModelListBox.Items.Add( "o1-mini-2024-09-12" );
+                ModelListBox.Items.Add( "o3-mini-2025-01-31" );
+                ModelListBox.SelectedIndex = -1;
             }
             catch( Exception ex )
             {
@@ -2044,18 +2053,19 @@ namespace Bubba
         {
             try
             {
-                ModelDropDown.Items?.Clear( );
-                ModelDropDown.Items.Add( "gpt-4-0613" );
-                ModelDropDown.Items.Add( "gpt-4-0314" );
-                ModelDropDown.Items.Add( "gpt-4-turbo-2024-04-09" );
-                ModelDropDown.Items.Add( "gpt-4o-2024-08-06" );
-                ModelDropDown.Items.Add( "gpt-4o-2024-11-20" );
-                ModelDropDown.Items.Add( "gpt-4o-2024-05-13" );
-                ModelDropDown.Items.Add( "gpt-4o-mini-2024-07-18" );
-                ModelDropDown.Items.Add( "o1-2024-12-17" );
-                ModelDropDown.Items.Add( "o1-mini-2024-09-12" );
-                ModelDropDown.Items.Add( "o3-mini-2025-01-31" );
-                ModelDropDown.SelectedIndex = -1;
+                ModelListBox.Items?.Clear( );
+                ModelListBox.Items.Add( "gpt-4-0613" );
+                ModelListBox.Items.Add( "gpt-4-0314" );
+                ModelListBox.Items.Add( "gpt-4-turbo-2024-04-09" );
+                ModelListBox.Items.Add( "gpt-4o-2024-08-06" );
+                ModelListBox.Items.Add( "gpt-4o-2024-11-20" );
+                ModelListBox.Items.Add( "gpt-4o-2024-05-13" );
+                ModelListBox.Items.Add( "gpt-4o-mini-2024-07-18" );
+                ModelListBox.Items.Add( "o1-2024-12-17" );
+                ModelListBox.Items.Add( "o1-pro-2025-03-19" );
+                ModelListBox.Items.Add( "o1-mini-2024-09-12" );
+                ModelListBox.Items.Add( "o3-mini-2025-01-31" );
+                ModelListBox.SelectedIndex = -1;
             }
             catch( Exception ex )
             {
@@ -2070,13 +2080,13 @@ namespace Bubba
         {
             try
             {
-                ModelDropDown.Items?.Clear( );
-                ModelDropDown.Items.Add( "dall-e-2" );
-                ModelDropDown.Items.Add( "dall-e-3" );
-                ModelDropDown.Items.Add( "gpt-4-0613" );
-                ModelDropDown.Items.Add( "gpt-4-0314" );
-                ModelDropDown.Items.Add( "gpt-4o-mini-2024-07-18" );
-                ModelDropDown.SelectedIndex = -1;
+                ModelListBox.Items?.Clear( );
+                ModelListBox.Items.Add( "dall-e-2" );
+                ModelListBox.Items.Add( "dall-e-3" );
+                ModelListBox.Items.Add( "gpt-4-0613" );
+                ModelListBox.Items.Add( "gpt-4-0314" );
+                ModelListBox.Items.Add( "gpt-4o-mini-2024-07-18" );
+                ModelListBox.SelectedIndex = -1;
             }
             catch( Exception ex )
             {
@@ -2091,16 +2101,12 @@ namespace Bubba
         {
             try
             {
-                ModelDropDown.Items?.Clear( );
-                ModelDropDown.Items.Add( "gpt-4o-2024-08-06" );
-                ModelDropDown.Items.Add( "gpt-4o-2024-11-20" );
-                ModelDropDown.Items.Add( "gpt-4o-2024-05-13" );
-                ModelDropDown.Items.Add( "gpt-4o-mini-2024-07-18" );
-                ModelDropDown.Items.Add( "o1-2024-12-17" );
-                ModelDropDown.Items.Add( "o1-pro-2025-03-19" );
-                ModelDropDown.Items.Add( "o1-mini-2024-09-12" );
-                ModelDropDown.Items.Add( "o3-mini-2025-01-31" );
-                ModelDropDown.SelectedIndex = -1;
+                ModelListBox.Items?.Clear( );
+                ModelListBox.Items.Add( "o1-2024-12-17" );
+                ModelListBox.Items.Add( "o1-pro-2025-03-19" );
+                ModelListBox.Items.Add( "o1-mini-2024-09-12" );
+                ModelListBox.Items.Add( "o3-mini-2025-01-31" );
+                ModelListBox.SelectedIndex = -1;
             }
             catch( Exception ex )
             {
@@ -2115,19 +2121,19 @@ namespace Bubba
         {
             try
             {
-                ModelDropDown.Items?.Clear( );
-                ModelDropDown.Items.Add( "gpt-4-0613" );
-                ModelDropDown.Items.Add( "gpt-4-0314" );
-                ModelDropDown.Items.Add( "gpt-4-turbo-2024-04-09" );
-                ModelDropDown.Items.Add( "gpt-4o-2024-08-06" );
-                ModelDropDown.Items.Add( "gpt-4o-2024-11-20" );
-                ModelDropDown.Items.Add( "gpt-4o-2024-05-13" );
-                ModelDropDown.Items.Add( "gpt-4o-mini-2024-07-18" );
-                ModelDropDown.Items.Add( "o1-2024-12-17" );
-                ModelDropDown.Items.Add( "o1-pro-2025-03-19" );
-                ModelDropDown.Items.Add( "o1-mini-2024-09-12" );
-                ModelDropDown.Items.Add( "o3-mini-2025-01-31" );
-                ModelDropDown.SelectedIndex = -1;
+                ModelListBox.Items?.Clear( );
+                ModelListBox.Items.Add( "gpt-4-0613" );
+                ModelListBox.Items.Add( "gpt-4-0314" );
+                ModelListBox.Items.Add( "gpt-4-turbo-2024-04-09" );
+                ModelListBox.Items.Add( "gpt-4o-2024-08-06" );
+                ModelListBox.Items.Add( "gpt-4o-2024-11-20" );
+                ModelListBox.Items.Add( "gpt-4o-2024-05-13" );
+                ModelListBox.Items.Add( "gpt-4o-mini-2024-07-18" );
+                ModelListBox.Items.Add( "o1-2024-12-17" );
+                ModelListBox.Items.Add( "o1-pro-2025-03-19" );
+                ModelListBox.Items.Add( "o1-mini-2024-09-12" );
+                ModelListBox.Items.Add( "o3-mini-2025-01-31" );
+                ModelListBox.SelectedIndex = -1;
             }
             catch( Exception ex )
             {
@@ -2142,11 +2148,11 @@ namespace Bubba
         {
             try
             {
-                ModelDropDown.Items?.Clear( );
-                ModelDropDown.Items.Add( "whisper-1" );
-                ModelDropDown.Items.Add( "gpt-4o-mini-transcribe" );
-                ModelDropDown.Items.Add( "gpt-4o-transcribe" );
-                ModelDropDown.SelectedIndex = -1;
+                ModelListBox.Items?.Clear( );
+                ModelListBox.Items.Add( "whisper-1" );
+                ModelListBox.Items.Add( "gpt-4o-mini-transcribe" );
+                ModelListBox.Items.Add( "gpt-4o-transcribe" );
+                ModelListBox.SelectedIndex = -1;
             }
             catch( Exception ex )
             {
@@ -2161,9 +2167,9 @@ namespace Bubba
         {
             try
             {
-                ModelDropDown.Items?.Clear( );
-                ModelDropDown.Items.Add( "whisper-1" );
-                ModelDropDown.SelectedIndex = -1;
+                ModelListBox.Items?.Clear( );
+                ModelListBox.Items.Add( "whisper-1" );
+                ModelListBox.SelectedIndex = -1;
             }
             catch( Exception ex )
             {
@@ -2178,11 +2184,11 @@ namespace Bubba
         {
             try
             {
-                ModelDropDown.Items?.Clear( );
-                ModelDropDown.Items.Add( "text-embedding-3-small" );
-                ModelDropDown.Items.Add( "text-embedding-3-large" );
-                ModelDropDown.Items.Add( "text-embedding-ada-002" );
-                ModelDropDown.SelectedIndex = -1;
+                ModelListBox.Items?.Clear( );
+                ModelListBox.Items.Add( "text-embedding-3-small" );
+                ModelListBox.Items.Add( "text-embedding-3-large" );
+                ModelListBox.Items.Add( "text-embedding-ada-002" );
+                ModelListBox.SelectedIndex = -1;
             }
             catch( Exception ex )
             {
@@ -2197,16 +2203,16 @@ namespace Bubba
         {
             try
             {
-                ModelDropDown.Items?.Clear( );
-                ModelDropDown.Items.Add( "gpt-3.5-turbo-0125" );
-                ModelDropDown.Items.Add( "gpt-3.5-turbo-1106" );
-                ModelDropDown.Items.Add( "gpt-3.5-turbo-0613" );
-                ModelDropDown.Items.Add( "gpt-4-0613" );
-                ModelDropDown.Items.Add( "gpt-4o-mini-2024-07-18" );
-                ModelDropDown.Items.Add( "gpt-4o-2024-08-06" );
-                ModelDropDown.Items.Add( "gpt-4o-2024-11-20" );
-                ModelDropDown.Items.Add( "gpt-4o-2024-05-13" );
-                ModelDropDown.SelectedIndex = -1;
+                ModelListBox.Items?.Clear( );
+                ModelListBox.Items.Add( "gpt-3.5-turbo-0125" );
+                ModelListBox.Items.Add( "gpt-3.5-turbo-1106" );
+                ModelListBox.Items.Add( "gpt-3.5-turbo-0613" );
+                ModelListBox.Items.Add( "gpt-4-0613" );
+                ModelListBox.Items.Add( "gpt-4o-mini-2024-07-18" );
+                ModelListBox.Items.Add( "gpt-4o-2024-08-06" );
+                ModelListBox.Items.Add( "gpt-4o-2024-11-20" );
+                ModelListBox.Items.Add( "gpt-4o-2024-05-13" );
+                ModelListBox.SelectedIndex = -1;
             }
             catch( Exception ex )
             {
@@ -2221,13 +2227,14 @@ namespace Bubba
         {
             try
             {
-                ModelDropDown.Items?.Clear( );
-                ModelDropDown.Items.Add( "tts-1" );
-                ModelDropDown.Items.Add( "tts-1-hd" );
-                ModelDropDown.Items.Add( "gpt-4o-audio-preview-2024-12-17" );
-                ModelDropDown.Items.Add( "gpt-4o-audio-preview-2024-10-01" );
-                ModelDropDown.Items.Add( "gpt-4o-mini-audio-preview-2024-12-17" );
-                ModelDropDown.SelectedIndex = -1;
+                ModelListBox.Items?.Clear( );
+                ModelListBox.Items.Add( "tts-1" );
+                ModelListBox.Items.Add( "tts-1-hd" );
+                ModelListBox.Items.Add( "gpt-4o-mini-tts"  );
+                ModelListBox.Items.Add( "gpt-4o-audio-preview-2024-12-17" );
+                ModelListBox.Items.Add( "gpt-4o-audio-preview-2024-10-01" );
+                ModelListBox.Items.Add( "gpt-4o-mini-audio-preview-2024-12-17" );
+                ModelListBox.SelectedIndex = -1;
             }
             catch( Exception ex )
             {
@@ -2242,11 +2249,11 @@ namespace Bubba
         {
             try
             {
-                ModelDropDown.Items?.Clear( );
-                ModelDropDown.Items.Add( "tts-1" );
-                ModelDropDown.Items.Add( "tts-1-hd" );
-                ModelDropDown.Items.Add( "gpt-4o-mini-tts" );
-                ModelDropDown.SelectedIndex = -1;
+                ModelListBox.Items?.Clear( );
+                ModelListBox.Items.Add( "tts-1" );
+                ModelListBox.Items.Add( "tts-1-hd" );
+                ModelListBox.Items.Add( "gpt-4o-mini-tts" );
+                ModelListBox.SelectedIndex = -1;
             }
             catch( Exception ex )
             {
@@ -2261,18 +2268,18 @@ namespace Bubba
         {
             try
             {
-                ModelDropDown.Items?.Clear( );
-                ModelDropDown.Items.Add( "gpt-4-0613" );
-                ModelDropDown.Items.Add( "gpt-4-0314" );
-                ModelDropDown.Items.Add( "gpt-4-turbo-2024-04-09" );
-                ModelDropDown.Items.Add( "gpt-4o-mini-2024-07-18" );
-                ModelDropDown.Items.Add( "gpt-4o-2024-08-06" );
-                ModelDropDown.Items.Add( "gpt-4o-2024-11-20" );
-                ModelDropDown.Items.Add( "gpt-4o-2024-05-13" );
-                ModelDropDown.Items.Add( "o1-2024-12-17" );
-                ModelDropDown.Items.Add( "o1-mini-2024-09-12" );
-                ModelDropDown.Items.Add( "o3-mini-2025-01-31" );
-                ModelDropDown.SelectedIndex = -1;
+                ModelListBox.Items?.Clear( );
+                ModelListBox.Items.Add( "gpt-4-0613" );
+                ModelListBox.Items.Add( "gpt-4-0314" );
+                ModelListBox.Items.Add( "gpt-4-turbo-2024-04-09" );
+                ModelListBox.Items.Add( "gpt-4o-mini-2024-07-18" );
+                ModelListBox.Items.Add( "gpt-4o-2024-08-06" );
+                ModelListBox.Items.Add( "gpt-4o-2024-11-20" );
+                ModelListBox.Items.Add( "gpt-4o-2024-05-13" );
+                ModelListBox.Items.Add( "o1-2024-12-17" );
+                ModelListBox.Items.Add( "o1-mini-2024-09-12" );
+                ModelListBox.Items.Add( "o3-mini-2025-01-31" );
+                ModelListBox.SelectedIndex = -1;
             }
             catch( Exception ex )
             {
@@ -2287,18 +2294,18 @@ namespace Bubba
         {
             try
             {
-                ModelDropDown.Items?.Clear( );
-                ModelDropDown.Items.Add( "gpt-4-0613" );
-                ModelDropDown.Items.Add( "gpt-4-0314" );
-                ModelDropDown.Items.Add( "gpt-4-turbo-2024-04-09" );
-                ModelDropDown.Items.Add( "gpt-4o-mini-2024-07-18" );
-                ModelDropDown.Items.Add( "gpt-4o-2024-08-06" );
-                ModelDropDown.Items.Add( "gpt-4o-2024-11-20" );
-                ModelDropDown.Items.Add( "gpt-4o-2024-05-13" );
-                ModelDropDown.Items.Add( "o1-2024-12-17" );
-                ModelDropDown.Items.Add( "o1-mini-2024-09-12" );
-                ModelDropDown.Items.Add( "o3-mini-2025-01-31" );
-                ModelDropDown.SelectedIndex = -1;
+                ModelListBox.Items?.Clear( );
+                ModelListBox.Items.Add( "gpt-4-0613" );
+                ModelListBox.Items.Add( "gpt-4-0314" );
+                ModelListBox.Items.Add( "gpt-4-turbo-2024-04-09" );
+                ModelListBox.Items.Add( "gpt-4o-mini-2024-07-18" );
+                ModelListBox.Items.Add( "gpt-4o-2024-08-06" );
+                ModelListBox.Items.Add( "gpt-4o-2024-11-20" );
+                ModelListBox.Items.Add( "gpt-4o-2024-05-13" );
+                ModelListBox.Items.Add( "o1-2024-12-17" );
+                ModelListBox.Items.Add( "o1-mini-2024-09-12" );
+                ModelListBox.Items.Add( "o3-mini-2025-01-31" );
+                ModelListBox.SelectedIndex = -1;
             }
             catch( Exception ex )
             {
@@ -2313,18 +2320,18 @@ namespace Bubba
         {
             try
             {
-                ModelDropDown.Items?.Clear( );
-                ModelDropDown.Items.Add( "gpt-4-0613" );
-                ModelDropDown.Items.Add( "gpt-4-0314" );
-                ModelDropDown.Items.Add( "gpt-4-turbo-2024-04-09" );
-                ModelDropDown.Items.Add( "gpt-4o-mini-2024-07-18" );
-                ModelDropDown.Items.Add( "gpt-4o-2024-08-06" );
-                ModelDropDown.Items.Add( "gpt-4o-2024-11-20" );
-                ModelDropDown.Items.Add( "gpt-4o-2024-05-13" );
-                ModelDropDown.Items.Add( "o1-2024-12-17" );
-                ModelDropDown.Items.Add( "o1-mini-2024-09-12" );
-                ModelDropDown.Items.Add( "o3-mini-2025-01-31" );
-                ModelDropDown.SelectedIndex = -1;
+                ModelListBox.Items?.Clear( );
+                ModelListBox.Items.Add( "gpt-4-0613" );
+                ModelListBox.Items.Add( "gpt-4-0314" );
+                ModelListBox.Items.Add( "gpt-4-turbo-2024-04-09" );
+                ModelListBox.Items.Add( "gpt-4o-mini-2024-07-18" );
+                ModelListBox.Items.Add( "gpt-4o-2024-08-06" );
+                ModelListBox.Items.Add( "gpt-4o-2024-11-20" );
+                ModelListBox.Items.Add( "gpt-4o-2024-05-13" );
+                ModelListBox.Items.Add( "o1-2024-12-17" );
+                ModelListBox.Items.Add( "o1-mini-2024-09-12" );
+                ModelListBox.Items.Add( "o3-mini-2025-01-31" );
+                ModelListBox.SelectedIndex = -1;
             }
             catch( Exception ex )
             {
@@ -3446,7 +3453,7 @@ namespace Bubba
             ClearChatControls( );
             InitializeChatEditor( );
             StreamCheckBox.Checked += OnStreamCheckBoxChecked;
-            ModelDropDown.SelectionChanged += OnModelListBoxSelectionChanged;
+            ModelListBox.SelectionChanged += OnModelDropDownSelectionChanged;
             App.ActiveWindows.Add( "ChatWindow", this );
             InitializeInterface( );
         }
@@ -4239,13 +4246,13 @@ namespace Bubba
         /// <param name="sender">The sender.</param>
         /// <param name="e">The <see cref="RoutedEventArgs"/>
         /// instance containing the event data.</param>
-        private void OnModelListBoxSelectionChanged( object sender, RoutedEventArgs e )
+        private void OnModelDropDownSelectionChanged( object sender, RoutedEventArgs e )
         {
             try
             {
-                if( ModelDropDown.SelectedIndex != -1 )
+                if( ModelListBox.SelectedIndex != -1 )
                 {
-                    _model = ModelDropDown.SelectedValue.ToString( );
+                    _model = ModelListBox.SelectedItem.ToString( );
                     PopulateImageSizes( );
                 }
             }

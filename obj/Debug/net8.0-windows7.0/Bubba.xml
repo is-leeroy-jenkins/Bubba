@@ -27824,6 +27824,11 @@
               resource lookups using this strongly typed resource class.
             </summary>
         </member>
+        <member name="P:Bubba.Properties.OpenAI.BroPrompt">
+            <summary>
+              Looks up a localized string similar to You are an assistant who is the most knowledgeable Data Scientist in the world.   You provide detailed responses based on your vast knowledge of federal appropriations and your knowledge of computer programming.  Your responses to questions are always complete and detailed using an academic format.  Your vast knowledge of and experience in Data Science makes you the best Analyst in the world. You are an expert programmer proficient in C#, Python, SQL, C++, JavaScript, and VBA.  Your name is Bro because your [rest of string was truncated]&quot;;.
+            </summary>
+        </member>
         <member name="P:Bubba.Properties.OpenAI.BubbaFiles">
             <summary>
               Looks up a localized string similar to file-Bauvjn4JRo31ERGDfqUyjy.
@@ -27846,7 +27851,7 @@
         </member>
         <member name="P:Bubba.Properties.OpenAI.BubbaPrompt">
             <summary>
-              Looks up a localized string similar to You are the most knowledgeable Budget Analyst in the federal government who provides detailed responses based on your vast knowledge of budget legislation, and federal appropriations.  Your responses to questions about federal finance are complete, transparent, and very detailed using an academic format.  Your vast knowledge of and experience in Data Science makes you the best Data Analyst in the world. You are proficient in C#, Python, SQL, C++, JavaScript, and VBA. You use US federal budget data from OMB, [rest of string was truncated]&quot;;.
+              Looks up a localized string similar to You are the most knowledgeable Budget Analyst in the federal government who provides detailed responses based on your vast knowledge of budget legislation, and federal appropriations.  Your responses to questions about federal finance are complete, transparent, and very detailed using an academic format.   Your vast knowledge of and experience in Data Science makes you the best Data Analyst in the world. You are proficient in C#, Python, SQL, C++, JavaScript, and VBA.  You use US federal budget data from OM [rest of string was truncated]&quot;;.
             </summary>
         </member>
         <member name="P:Bubba.Properties.OpenAI.OrganizationID">
@@ -27903,6 +27908,37 @@
         <member name="P:Bubba.Properties.SearchEngine.URL">
             <summary>
               Looks up a localized string similar to https://cse.google.com/cse?cx=e78aa3dcb21474bf4.
+            </summary>
+        </member>
+        <member name="T:Bubba.Properties.VectorStores">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:Bubba.Properties.VectorStores.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:Bubba.Properties.VectorStores.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="P:Bubba.Properties.VectorStores.Appropriations">
+            <summary>
+              Looks up a localized string similar to vs_8fEoYp1zVvk5D8atfWLbEupN.
+            </summary>
+        </member>
+        <member name="P:Bubba.Properties.VectorStores.Code">
+            <summary>
+              Looks up a localized string similar to vs_67e83bdf8abc81918bda0d6b39a19372.
+            </summary>
+        </member>
+        <member name="P:Bubba.Properties.VectorStores.Guidance">
+            <summary>
+              Looks up a localized string similar to vs_712r5W5833G6aLxIYIbuvVcK.
             </summary>
         </member>
         <member name="T:Bubba.DataMinion">
@@ -32880,7 +32916,7 @@
         </member>
         <member name="F:Bubba.ChatWindow._temperature">
             <summary>
-            A number between 0.0 and 1.0   between 0 and 2.
+            A number between 0 and 2.
             Higher values like 0.8 will make the output more random,
             while lower values like 0.2 will make it more focused and deterministic.
             </summary>
@@ -34047,7 +34083,7 @@
             <param name="e">The <see cref="T:System.Windows.RoutedEventArgs"/>
             instance containing the event data.</param>
         </member>
-        <member name="M:Bubba.ChatWindow.OnModelListBoxSelectionChanged(System.Object,System.Windows.RoutedEventArgs)">
+        <member name="M:Bubba.ChatWindow.OnModelDropDownSelectionChanged(System.Object,System.Windows.RoutedEventArgs)">
             <summary>
             Called when [model ComboBox selection changed].
             </summary>
@@ -37739,6 +37775,36 @@
         <member name="M:Bubba.WebBrowser.InitializeComponent">
             <summary>
             InitializeComponent
+            </summary>
+        </member>
+        <member name="T:XamlGeneratedNamespace.GeneratedInternalTypeHelper">
+            <summary>
+            GeneratedInternalTypeHelper
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.CreateInstance(System.Type,System.Globalization.CultureInfo)">
+            <summary>
+            CreateInstance
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.GetPropertyValue(System.Reflection.PropertyInfo,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            GetPropertyValue
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.SetPropertyValue(System.Reflection.PropertyInfo,System.Object,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            SetPropertyValue
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.CreateDelegate(System.Type,System.Object,System.String)">
+            <summary>
+            CreateDelegate
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.AddEventHandler(System.Reflection.EventInfo,System.Object,System.Delegate)">
+            <summary>
+            AddEventHandler
             </summary>
         </member>
     </members>

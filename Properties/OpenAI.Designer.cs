@@ -61,6 +61,15 @@ namespace Bubba.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to You are an assistant who is the most knowledgeable Data Scientist in the world.   You provide detailed responses based on your vast knowledge of federal appropriations and your knowledge of computer programming.  Your responses to questions are always complete and detailed using an academic format.  Your vast knowledge of and experience in Data Science makes you the best Analyst in the world. You are an expert programmer proficient in C#, Python, SQL, C++, JavaScript, and VBA.  Your name is Bro because your [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string BroPrompt {
+            get {
+                return ResourceManager.GetString("BroPrompt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to file-Bauvjn4JRo31ERGDfqUyjy.
         /// </summary>
         internal static string BubbaFiles {
@@ -97,7 +106,7 @@ namespace Bubba.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to You are the most knowledgeable Budget Analyst in the federal government who provides detailed responses based on your vast knowledge of budget legislation, and federal appropriations.  Your responses to questions about federal finance are complete, transparent, and very detailed using an academic format.  Your vast knowledge of and experience in Data Science makes you the best Data Analyst in the world. You are proficient in C#, Python, SQL, C++, JavaScript, and VBA. You use US federal budget data from OMB, [rest of string was truncated]&quot;;.
+        ///   Looks up a localized string similar to You are the most knowledgeable Budget Analyst in the federal government who provides detailed responses based on your vast knowledge of budget legislation, and federal appropriations.  Your responses to questions about federal finance are complete, transparent, and very detailed using an academic format.   Your vast knowledge of and experience in Data Science makes you the best Data Analyst in the world. You are proficient in C#, Python, SQL, C++, JavaScript, and VBA.  You use US federal budget data from OM [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string BubbaPrompt {
             get {

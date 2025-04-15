@@ -36,19 +36,25 @@
 
     <Window.ContextMenu>
         <ContextMenu x:Name="BrowserContextMenu">
-            <wpf:MenuItemAdv Header="File" ToolTip="Browse File System">
+            <wpf:MenuItemAdv
+                Header="File"
+                ToolTip="Browse File System">
                 <wpf:MenuItemAdv.Icon>
                     <Image Source="/Resources/Assets/MenuImages/FileItem.png" />
                 </wpf:MenuItemAdv.Icon>
             </wpf:MenuItemAdv>
 
-            <wpf:MenuItemAdv Header="Folder" ToolTip="Browse Directories">
+            <wpf:MenuItemAdv
+                Header="Folder"
+                ToolTip="Browse Directories">
                 <wpf:MenuItemAdv.Icon>
                     <Image Source="/Resources/Assets/MenuImages/FolderItem.png" />
                 </wpf:MenuItemAdv.Icon>
             </wpf:MenuItemAdv>
 
-            <wpf:MenuItemAdv Header="Copy" ToolTip="Copy Prompt">
+            <wpf:MenuItemAdv
+                Header="Copy"
+                ToolTip="Copy Prompt">
                 <wpf:MenuItemAdv.Icon>
                     <Image Source="/Resources/Assets/DialogImages/CopyRecordButton.png" />
                 </wpf:MenuItemAdv.Icon>

@@ -15,8 +15,8 @@
     Foreground="{StaticResource LightBlueBrush}"
     Icon="/Resources/Assets/DialogImages/SplashNotification.png"
     ResizeMode="NoResize"
-    WindowStyle="None"
     WindowStartupLocation="CenterScreen"
+    WindowStyle="None"
     mc:Ignorable="d">
     <Grid>
         <Grid.ColumnDefinitions>

@@ -119,7 +119,7 @@
   </resheader>
   <data name="BaseUrl" xml:space="preserve">
     <value>https://api.openai.com/</value>
-    <comment>url to the openai api</comment>
+    <comment>URL to the openai api</comment>
   </data>
   <data name="Files" xml:space="preserve">
     <value>https://api.openai.com/v1/files</value>
@@ -171,6 +171,7 @@
   </data>
   <data name="Assistants" xml:space="preserve">
     <value>https://api.openai.com/v1/assistants</value>
+    <comment>URL to the openai assistants api</comment>
   </data>
   <data name="Responses" xml:space="preserve">
     <value>https://api.openai.com/v1/responses</value>
