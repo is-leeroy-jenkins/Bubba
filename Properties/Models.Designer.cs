@@ -178,6 +178,15 @@ namespace Bubba.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to gpt-4.1-2025-04-14.
+        /// </summary>
+        internal static string gpt_4_1_2025_04_14_ {
+            get {
+                return ResourceManager.GetString("gpt-4.1-2025-04-14 ", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to gpt-4-1106-preview; GPT-4 is an older version of a high-intelligence GPT model, usable in Chat Completions. .
         /// </summary>
         internal static string gpt_4_1106_preview {

@@ -80,6 +80,7 @@ namespace Bubba
             FontSize = 12;
             BorderThickness = _theme.BorderThickness;
             HorizontalAlignment = HorizontalAlignment.Stretch;
+            HorizontalContentAlignment = HorizontalAlignment.Center;
             VerticalAlignment = VerticalAlignment.Stretch;
             Background = _theme.ControlInterior;
             Foreground = _theme.WhiteForeground;

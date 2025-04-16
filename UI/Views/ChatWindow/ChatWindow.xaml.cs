@@ -771,6 +771,8 @@ namespace Bubba
                 ImageFormatDropDown.SelectionChanged += OnImageFormatSelectionChanged;
                 ImageQualityDropDown.SelectionChanged += OnImageQualitySelectionChanged;
                 ImageDetailDropDown.SelectionChanged += OnImageDetailSelectionChanged;
+                EffortDropDown.SelectionChanged += OnEffortSelectionChanged;
+                VoicesDropDown.SelectionChanged += OnVoiceSelectionChanged;
             }
             catch( Exception ex )
             {
@@ -2786,7 +2788,7 @@ namespace Bubba
                     {
                         case "TXT":
                         {
-                            var _pre = @"C:\Users\terry\source\repos\Bubba\Resources\Document\";
+                            var _pre = @"C:\Users\terry\source\repos\Bubba\Resources\Documents\";
                             var _path = _pre + @"Appropriations\";
                             TabControl.SelectedIndex = 0;
                             Editor.DocumentLanguage = Languages.Text;
@@ -2794,13 +2796,8 @@ namespace Bubba
                             var _documents = Directory.GetFiles( _path );
                             foreach( var _file in _documents )
                             {
-                                var _item = new MetroListBoxItem
-                                {
-                                    Tag = _file,
-                                    Content = Path.GetFileNameWithoutExtension( _file )
-                                };
-
-                                DocumentListBox.Items?.Add( _item );
+                                var _filePath = Path.GetFileNameWithoutExtension( _file );
+                                DocumentListBox.Items.Add( _filePath );
                             }
 
                             break;
@@ -2814,13 +2811,8 @@ namespace Bubba
                             var _documents = Directory.GetFiles( _path );
                             foreach( var _file in _documents )
                             {
-                                var _item = new MetroListBoxItem
-                                {
-                                    Tag = _file,
-                                    Content = Path.GetFileNameWithoutExtension( _file )
-                                };
-
-                                DocumentListBox.Items?.Add( _item );
+                                var _filePath = Path.GetFileNameWithoutExtension( _file );
+                                DocumentListBox.Items.Add( _filePath );
                             }
 
                             break;
@@ -2834,13 +2826,8 @@ namespace Bubba
                             var _documents = Directory.GetFiles( _path );
                             foreach( var _file in _documents )
                             {
-                                var _item = new MetroListBoxItem
-                                {
-                                    Tag = _file,
-                                    Content = Path.GetFileNameWithoutExtension( _file )
-                                };
-
-                                DocumentListBox.Items?.Add( _item );
+                                var _filePath = Path.GetFileNameWithoutExtension( _file );
+                                DocumentListBox.Items.Add( _filePath );
                             }
 
                             break;
@@ -2854,13 +2841,8 @@ namespace Bubba
                             var _documents = Directory.GetFiles( _path );
                             foreach( var _file in _documents )
                             {
-                                var _item = new MetroListBoxItem
-                                {
-                                    Tag = _file,
-                                    Content = Path.GetFileNameWithoutExtension( _file )
-                                };
-
-                                DocumentListBox.Items?.Add( _item );
+                                var _filePath = Path.GetFileNameWithoutExtension( _file );
+                                DocumentListBox.Items.Add( _filePath );
                             }
 
                             break;
@@ -2874,13 +2856,8 @@ namespace Bubba
                             var _documents = Directory.GetFiles( _path );
                             foreach( var _file in _documents )
                             {
-                                var _item = new MetroListBoxItem
-                                {
-                                    Tag = _file,
-                                    Content = Path.GetFileNameWithoutExtension( _file )
-                                };
-
-                                DocumentListBox.Items?.Add( _item );
+                                var _filePath = Path.GetFileNameWithoutExtension( _file );
+                                DocumentListBox.Items.Add( _filePath );
                             }
 
                             break;
@@ -2895,13 +2872,8 @@ namespace Bubba
                             var _documents = Directory.GetFiles( _path );
                             foreach( var _file in _documents )
                             {
-                                var _item = new MetroListBoxItem
-                                {
-                                    Tag = _file,
-                                    Content = Path.GetFileNameWithoutExtension( _file )
-                                };
-
-                                DocumentListBox.Items?.Add( _item );
+                                var _filePath = Path.GetFileNameWithoutExtension( _file );
+                                DocumentListBox.Items.Add( _filePath );
                             }
 
                             break;
@@ -2915,20 +2887,15 @@ namespace Bubba
                             var _documents = Directory.GetFiles( _path );
                             foreach( var _file in _documents )
                             {
-                                var _item = new MetroListBoxItem
-                                {
-                                    Tag = _file,
-                                    Content = Path.GetFileNameWithoutExtension( _file )
-                                };
-
-                                DocumentListBox.Items?.Add( _item );
+                                var _filePath = Path.GetFileNameWithoutExtension( _file );
+                                DocumentListBox.Items.Add( _filePath );
                             }
 
                             break;
                         }
                         default:
                         {
-                            var _pre = @"C:\Users\terry\source\repos\Bubba\Resources\Document\";
+                            var _pre = @"C:\Users\terry\source\repos\Bubba\Resources\Documents\";
                             var _path = _pre + @"Appropriations\";
                             TabControl.SelectedIndex = 0;
                             Editor.DocumentLanguage = Languages.Text;
@@ -2936,13 +2903,8 @@ namespace Bubba
                             var _documents = Directory.GetFiles( _path );
                             foreach( var _file in _documents )
                             {
-                                var _item = new MetroListBoxItem
-                                {
-                                    Tag = _file,
-                                    Content = Path.GetFileNameWithoutExtension( _file )
-                                };
-
-                                DocumentListBox.Items?.Add( _item );
+                                var _filePath = Path.GetFileNameWithoutExtension( _file );
+                                DocumentListBox.Items.Add( _filePath );
                             }
 
                             break;
@@ -4266,9 +4228,8 @@ namespace Bubba
             {
                 if( ModelDropDown.SelectedIndex != -1 )
                 {
-                    _model = ( ( MetroDropDownItem )ModelDropDown.SelectedItem ).Tag.ToString(  );
+                    _model = ModelDropDown.SelectedValue.ToString(  );
                     PopulateImageSizes( );
-
                     var _message = "Model = " + _model;
                     SendMessage( _message );
                 }
@@ -4292,10 +4253,9 @@ namespace Bubba
                 if( DocumentListBox.SelectedIndex != -1 )
                 {
                     Editor.ClearAllText( );
-                    _selectedDocument =
-                        ( ( MetroListBoxItem )DocumentListBox.SelectedItem )?.Tag?.ToString( );
-
+                    _selectedDocument = DocumentListBox.SelectedValue.ToString( );
                     Editor.LoadFile( _selectedDocument );
+                    TabControl.SelectedIndex = 3;
                     var _message = "Document = " + _selectedDocument;
                     SendMessage( _message );
                 }
@@ -4318,9 +4278,9 @@ namespace Bubba
             {
                 if( LanguageDropDown.SelectedIndex != -1 )
                 {
-                    _language = ( ( MetroDropDownItem)LanguageDropDown.SelectedValue).ToString( );
-
+                    _language = LanguageDropDown.SelectedValue.ToString( );
                     PopulateDocuments( );
+                    TabControl.SelectedIndex = 3;
                     var _message = "Language = " + _language;
                     SendMessage( _message );
                 }
@@ -4343,11 +4303,8 @@ namespace Bubba
             {
                 if( GenerationListBox.SelectedIndex != -1 )
                 {
-                    var _item = ( MetroDropDownItem )GenerationListBox.SelectedItem;
-                    _selectedRequest = _item.Tag?.ToString( );
-                    _requestType =
-                        ( GptApi )Enum.Parse( typeof( GptApi ), _selectedRequest );
-
+                    var _item = GenerationListBox.SelectedItem.ToString( );
+                    _requestType = ( GptApi )Enum.Parse( typeof( GptApi ), _item );
                     SetRequestType( );
 
                     var _message = "Request Type = " + _requestType;
@@ -4417,12 +4374,10 @@ namespace Bubba
         {
             try
             {
-                if( ImageSizeDropDown.SelectedIndex != -1 )
+                if( ImageFormatDropDown.SelectedIndex != -1 )
                 {
-                    var _image = ((MetroDropDown)ImageSizeDropDown.SelectedItem)
-                        ?.Tag.ToString( );
-
-                    _imageSize = _image?.Replace( " ", "" );
+                    var _image = ImageFormatDropDown.SelectedValue.ToString( );
+                    _imageFormat = _image?.Replace( " ", "" );
                     var _message = "Image Format = " + _imageFormat;
                     SendMessage( _message );
                 }
@@ -4602,10 +4557,30 @@ namespace Bubba
             {
                 if( EffortDropDown.SelectedIndex != -1 )
                 {
-                    _reasoningEffort = ( ( MetroDropDownItem )EffortDropDown.SelectedItem )
-                        .Tag.ToString(  );
-
+                    _reasoningEffort = EffortDropDown.SelectedValue.ToString( );
                     var _message = "ReasoningEffort = " + _reasoningEffort;
+                    SendMessage( _message );
+                }
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+            }
+        }
+
+        /// <summary>
+        /// Called when [voice selection changed].
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The <see cref="RoutedEventArgs"/> instance containing the event data.</param>
+        private protected void OnVoiceSelectionChanged( object sender, RoutedEventArgs e )
+        {
+            try
+            {
+                if( VoicesDropDown.SelectedIndex != -1 )
+                {
+                    _voice = VoicesDropDown.SelectedValue.ToString( );
+                    var _message = "Voice = " + _voice;
                     SendMessage( _message );
                 }
             }

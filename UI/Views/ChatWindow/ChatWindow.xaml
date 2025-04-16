@@ -280,12 +280,14 @@
 
             <mah:MetroTabControl
                 x:Name="TabControl"
-                Grid.Row="0">
+                Grid.Row="0"
+                Foreground="{DynamicResource FormForeground}">
 
                 <!--  ********************************************* CHAT TAB *************************************  -->
 
                 <TabItem
                     x:Name="ChatTabItem"
+                    Foreground="{StaticResource FormForeground}"
                     Header="Chat">
                     <Grid
                         x:Name="ChatTabGrid"
@@ -325,6 +327,9 @@
 
                 <TabItem
                     x:Name="ParameterTabItem"
+                    Height="22"
+                    VerticalAlignment="Top"
+                    Foreground="{StaticResource FormForeground}"
                     Header="GPT">
                     <Grid
                         x:Name="ParameterTabGrid"
@@ -337,7 +342,7 @@
 
                         <GroupBox
                             Grid.Row="1"
-                            Width="287"
+                            Width="415"
                             Margin="10,10,0,192"
                             HorizontalAlignment="Left"
                             Background="{StaticResource GroupBoxBackground}"
@@ -358,16 +363,16 @@
                                 ActiveTickStroke="{StaticResource WhiteForeground}"
                                 BorderThickness="0,0,0,0"
                                 Foreground="{StaticResource FormForeground}"
-                                LargeChange="0.5"
+                                LargeChange="0.25"
                                 Maximum="2"
                                 Minimum="-2"
                                 MinorTickFrequency="2"
                                 MinorTickLength="5"
                                 MinorTickStroke="{StaticResource WhiteForeground}"
                                 ShowValueLabels="True"
-                                SmallChange="0.1"
+                                SmallChange="0.01"
                                 SnapsTo="Ticks"
-                                TickFrequency="0.5"
+                                TickFrequency="0.275"
                                 TickPlacement="BottomRight"
                                 TickStroke="{StaticResource WhiteForeground}"
                                 ToolTip="Lower values increase deterministic output"
@@ -378,7 +383,7 @@
 
                         <GroupBox
                             Grid.Row="1"
-                            Width="284"
+                            Width="415"
                             Margin="443,176,0,26"
                             HorizontalAlignment="Left"
                             Background="{StaticResource GroupBoxBackground}"
@@ -406,7 +411,7 @@
                                 ShowValueLabels="True"
                                 SnapsTo="Ticks"
                                 Tag="FrequencyPenalty"
-                                TickFrequency="0.50"
+                                TickFrequency="0.295"
                                 TickPlacement="BottomRight"
                                 TickStroke="{StaticResource WhiteForeground}"
                                 ToolTip="Positive values decrease reptition"
@@ -415,7 +420,7 @@
 
                         <GroupBox
                             Grid.Row="1"
-                            Width="287"
+                            Width="415"
                             Margin="10,176,0,26"
                             HorizontalAlignment="Left"
                             Background="{StaticResource GroupBoxBackground}"
@@ -442,7 +447,7 @@
                                 MinorTickStroke="{StaticResource WhiteForeground}"
                                 ShowValueLabels="True"
                                 SnapsTo="Ticks"
-                                TickFrequency="0.10"
+                                TickFrequency="0.075"
                                 TickPlacement="BottomRight"
                                 TickStroke="{StaticResource WhiteForeground}"
                                 ToolTip="top p% probability mass"
@@ -451,7 +456,7 @@
 
                         <GroupBox
                             Grid.Row="1"
-                            Width="288"
+                            Width="415"
                             Margin="439,10,0,192"
                             HorizontalAlignment="Left"
                             Background="{StaticResource GroupBoxBackground}"
@@ -478,7 +483,7 @@
                                 MinorTickStroke="{StaticResource WhiteForeground}"
                                 ShowValueLabels="True"
                                 SnapsTo="Ticks"
-                                TickFrequency="0.50"
+                                TickFrequency="0.295"
                                 TickPlacement="BottomRight"
                                 TickStroke="{StaticResource WhiteForeground}"
                                 ToolTip="Positive values creative output" />
@@ -486,7 +491,7 @@
 
                         <GroupBox
                             Grid.Row="1"
-                            Width="295"
+                            Width="415"
                             Margin="902,176,0,26"
                             HorizontalAlignment="Left"
                             Background="{StaticResource GroupBoxBackground}"
@@ -524,6 +529,7 @@
                                 MinorTickStroke="{StaticResource WhiteForeground}"
                                 ShowValueLabels="True"
                                 SnapsTo="Ticks"
+                                Tag="speed"
                                 TickFrequency="1"
                                 TickPlacement="BottomRight"
                                 TickStroke="{StaticResource WhiteForeground}"
@@ -533,7 +539,7 @@
                         <GroupBox
                             x:Name="LogProbsGroupBox"
                             Grid.Row="1"
-                            Width="295"
+                            Width="415"
                             Margin="902,10,0,192"
                             HorizontalAlignment="Left"
                             Background="{StaticResource GroupBoxBackground}"
@@ -552,7 +558,7 @@
                                 Minimum="0"
                                 MinorTickFrequency="1"
                                 ShowValueLabels="True"
-                                TickFrequency="2"
+                                TickFrequency="1"
                                 TickPlacement="BottomRight"
                                 Value="40" />
                         </GroupBox>
@@ -779,10 +785,13 @@
                                         x:Name="StreamCheckBox"
                                         Canvas.Left="10"
                                         Canvas.Top="74"
-                                        Width="63"
+                                        Width="70"
                                         Height="20"
-                                        HorizontalAlignment="Center"
+                                        Margin="1,1,1,1"
+                                        Padding="2,0,0,0"
+                                        HorizontalAlignment="Left"
                                         VerticalAlignment="Top"
+                                        VerticalContentAlignment="Top"
                                         Content="Stream"
                                         FontFamily="Roboto"
                                         FontSize="14"
@@ -1012,14 +1021,14 @@
                                         Canvas.Top="93"
                                         Width="276"
                                         Height="40"
-                                        Text=" Language Models"
                                         HorizontalAlignment="Center"
                                         VerticalAlignment="Top"
                                         Background="{StaticResource ControlInteriorBrush}"
                                         BorderBrush="{StaticResource BlueBorderBrush}"
                                         BorderThickness="1"
                                         FontFamily="Roboto"
-                                        FontSize="12" />
+                                        FontSize="12"
+                                        Text=" Language Models" />
                                 </Canvas>
 
                             </GroupBox>
@@ -1044,7 +1053,7 @@
                         <TextBox
                             x:Name="TemperatureTextBox"
                             Grid.Row="1"
-                            Width="75"
+                            Width="65"
                             Height="40"
                             Margin="312,85,0,0"
                             HorizontalAlignment="Left"
@@ -1060,7 +1069,7 @@
                         <TextBox
                             x:Name="TopPercentTextBox"
                             Grid.Row="1"
-                            Width="75"
+                            Width="65"
                             Height="40"
                             Margin="312,233,0,0"
                             HorizontalAlignment="Left"
@@ -1076,7 +1085,7 @@
                         <TextBox
                             x:Name="TopLogProbsTextBox"
                             Grid.Row="1"
-                            Width="75"
+                            Width="65"
                             Height="40"
                             Margin="1222,81,0,0"
                             HorizontalAlignment="Left"
@@ -1092,7 +1101,7 @@
                         <TextBox
                             x:Name="PresencePenaltyTextBox"
                             Grid.Row="1"
-                            Width="75"
+                            Width="65"
                             Height="40"
                             Margin="747,85,0,0"
                             HorizontalAlignment="Left"
@@ -1108,7 +1117,7 @@
                         <TextBox
                             x:Name="FrequencyPenaltyTextBox"
                             Grid.Row="1"
-                            Width="75"
+                            Width="65"
                             Height="40"
                             Margin="747,233,0,0"
                             HorizontalAlignment="Left"
@@ -1125,7 +1134,7 @@
                         <TextBox
                             x:Name="SpeechRateTextBox"
                             Grid.Row="1"
-                            Width="75"
+                            Width="65"
                             Height="40"
                             Margin="1222,233,0,0"
                             HorizontalAlignment="Left"
@@ -1144,6 +1153,8 @@
 
                 <TabItem
                     x:Name="BrowserTabItem"
+                    BorderBrush="{x:Null}"
+                    Foreground="{StaticResource FormForeground}"
                     Header="Web">
                     <Grid
                         x:Name="BroswerTabGrid"
@@ -1308,6 +1319,7 @@
 
                 <TabItem
                     x:Name="EditorTabItem"
+                    Foreground="{StaticResource FormForeground}"
                     Header="Editor">
                     <Grid
                         x:Name="EditorTabGrid"
@@ -1409,6 +1421,8 @@
 
                 <TabItem
                     x:Name="ImageTabItem"
+                    BorderBrush="{x:Null}"
+                    Foreground="{StaticResource FormForeground}"
                     Header="Image">
                     <Grid
                         x:Name="ImageTabGrid"
@@ -1430,7 +1444,8 @@
                             <b:MetroImageEditor
                                 x:Name="ImageEditor"
                                 Height="472"
-                                Margin="14,0,12,0" />
+                                Margin="14,0,12,0"
+                                Background="{StaticResource ControlInteriorBrush}" />
 
                         </GroupBox>
                         <Canvas Grid.Column="1">
@@ -1448,20 +1463,18 @@
                                 Brush="Blue"
                                 FontFamily="Roboto"
                                 UseLayoutRounding="True" />
+                            <b:MetroTile
+                                x:Name="DeleteImageButton"
+                                Title=""
+                                Canvas.Left="15"
+                                Canvas.Top="399"
+                                Width="70"
+                                Height="50"
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Center"
+                                Header=""
+                                ImageSource="/Resources/Assets/ToolStripImages/DeleteButton.png" />
                         </Canvas>
-                        <Canvas Grid.Column="0" />
-
-                        <b:MetroTile
-                            x:Name="DeleteImageButton"
-                            Title=""
-                            Width="70"
-                            Height="50"
-                            Margin="805,547,0,0"
-                            HorizontalAlignment="Left"
-                            VerticalAlignment="Top"
-                            Header=""
-                            ImageSource="/Resources/Assets/ToolStripImages/DeleteButton.png" />
-
                     </Grid>
                 </TabItem>
 
@@ -1469,6 +1482,8 @@
 
                 <TabItem
                     x:Name="ChartTabItem"
+                    BorderBrush="{x:Null}"
+                    Foreground="{StaticResource FormForeground}"
                     Header="Chart">
                     <Grid
                         x:Name="ChartTabGrid"
@@ -1513,6 +1528,7 @@
 
                 <TabItem
                     x:Name="DataTabItem"
+                    Foreground="{StaticResource FormForeground}"
                     Header="Data">
 
                     <Grid
@@ -1569,6 +1585,7 @@
 
                 <TabItem
                     x:Name="PlotTabItem"
+                    Foreground="{StaticResource FormForeground}"
                     Header="Graph">
 
                     <Grid
@@ -1593,6 +1610,8 @@
 
                 <TabItem
                     x:Name="BusyTabItem"
+                    BorderBrush="{x:Null}"
+                    Foreground="{StaticResource FormForeground}"
                     Header="Busy">
 
                     <Grid

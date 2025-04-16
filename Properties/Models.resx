@@ -252,4 +252,7 @@
   <data name="o3-mini" xml:space="preserve">
     <value>o3-mini</value>
   </data>
+  <data name="gpt-4.1-2025-04-14 " xml:space="preserve">
+    <value>gpt-4.1-2025-04-14</value>
+  </data>
 </root>

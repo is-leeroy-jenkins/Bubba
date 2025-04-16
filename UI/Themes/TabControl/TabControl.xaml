@@ -15,7 +15,7 @@
     <Style TargetType="{x:Type TabControl}">
         <Setter Property="Background" Value="{StaticResource FormBackground}" />
         <Setter Property="BorderBrush" Value="{StaticResource FormBackground}" />
-        <Setter Property="Foreground" Value="{StaticResource FormForeground}" />
+        <Setter Property="Foreground" Value="{StaticResource LightBlueBrush}" />
         <Setter Property="BorderThickness" Value="1" />
         <Setter Property="HorizontalAlignment" Value="Stretch" />
         <Setter Property="VerticalAlignment" Value="Stretch" />
@@ -29,7 +29,7 @@
     <Style TargetType="{x:Type mah:MetroTabControl}">
         <Setter Property="Background" Value="{StaticResource FormBackground}" />
         <Setter Property="BorderBrush" Value="{StaticResource FormBackground}" />
-        <Setter Property="Foreground" Value="{StaticResource FormForeground}" />
+        <Setter Property="Foreground" Value="{StaticResource LightBlueBrush}" />
         <Setter Property="BorderThickness" Value="1" />
         <Setter Property="HorizontalAlignment" Value="Stretch" />
         <Setter Property="VerticalAlignment" Value="Stretch" />

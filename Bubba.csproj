@@ -1168,22 +1168,27 @@
     <EmbeddedResource Update="Properties\Models.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Models.Designer.cs</LastGenOutput>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </EmbeddedResource>
     <EmbeddedResource Update="Properties\Definitions.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Definitions.Designer.cs</LastGenOutput>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </EmbeddedResource>
     <EmbeddedResource Update="Properties\GptEndPoint.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>GptEndPoint.Designer.cs</LastGenOutput>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </EmbeddedResource>
     <EmbeddedResource Update="Properties\Locations.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Locations.Designer.cs</LastGenOutput>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </EmbeddedResource>
     <EmbeddedResource Update="Properties\OpenAI.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>OpenAI.Designer.cs</LastGenOutput>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </EmbeddedResource>
     <EmbeddedResource Update="ResourceLocations.resx">
       <Generator>ResXFileCodeGenerator</Generator>
