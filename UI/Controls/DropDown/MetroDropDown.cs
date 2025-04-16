@@ -88,6 +88,26 @@ namespace Bubba
         }
 
         /// <summary>
+        /// Adds the item.
+        /// </summary>
+        /// <param name="name">The name.</param>
+        public void AddItem( string name )
+        {
+            try
+            {
+                ThrowIf.Empty( name, nameof( name ) );
+                var _item = new MetroDropDownItem( );
+                _item.Tag = name;
+                _item.Content = name;
+                Items.Add( _item );
+            }
+            catch( Exception ex )
+            {
+                Fail( ex  );
+            }
+        }
+
+        /// <summary>
         /// Fails the specified _ex.
         /// </summary>
         /// <param name="_ex">The _ex.</param>

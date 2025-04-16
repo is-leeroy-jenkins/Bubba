@@ -636,7 +636,7 @@
                                         Background="{StaticResource ControlInteriorBrush}"
                                         BorderBrush="{StaticResource BlueBorderBrush}"
                                         BorderThickness="1"
-                                        Text="Image Detail">
+                                        Text="   Detail">
 
                                         <b:MetroDropDownItem
                                             Width="Auto"
@@ -689,7 +689,7 @@
                                         Tag="max_completion_tokens"
                                         Text=""
                                         TextWrapping="Wrap"
-                                        ToolTip="Upper Limit on Tokens"
+                                        ToolTip="Upper Limit on Token Usage"
                                         UseNullOption="True"
                                         WatermarkTextIsVisible="True"
                                         Value="12000" />
@@ -710,7 +710,7 @@
                                         ToolTip="Reasoning Effort" />
 
                                     <Label
-                                        x:Name="TokenLabel1"
+                                        x:Name="MaxTokenLabel"
                                         Canvas.Left="15"
                                         Canvas.Top="20"
                                         Width="39"
@@ -1007,7 +1007,7 @@
                                         Text="  GPT Request" />
 
                                     <b:MetroDropDown
-                                        x:Name="ModelListBox"
+                                        x:Name="ModelDropDown"
                                         Canvas.Left="49"
                                         Canvas.Top="93"
                                         Width="276"
@@ -1046,7 +1046,7 @@
                             Grid.Row="1"
                             Width="75"
                             Height="40"
-                            Margin="302,85,0,0"
+                            Margin="312,85,0,0"
                             HorizontalAlignment="Left"
                             VerticalAlignment="Top"
                             HorizontalContentAlignment="Center"
@@ -1062,7 +1062,7 @@
                             Grid.Row="1"
                             Width="75"
                             Height="40"
-                            Margin="302,233,0,0"
+                            Margin="312,233,0,0"
                             HorizontalAlignment="Left"
                             VerticalAlignment="Top"
                             HorizontalContentAlignment="Center"
@@ -1078,7 +1078,7 @@
                             Grid.Row="1"
                             Width="75"
                             Height="40"
-                            Margin="1202,81,0,0"
+                            Margin="1222,81,0,0"
                             HorizontalAlignment="Left"
                             VerticalAlignment="Top"
                             HorizontalContentAlignment="Center"
@@ -1127,7 +1127,7 @@
                             Grid.Row="1"
                             Width="75"
                             Height="40"
-                            Margin="1202,233,0,0"
+                            Margin="1222,233,0,0"
                             HorizontalAlignment="Left"
                             VerticalAlignment="Top"
                             HorizontalContentAlignment="Center"

@@ -77,7 +77,7 @@ namespace Bubba
             BorderThickness = new Thickness( 0 );
             Background = _theme.Transparent;
             BorderBrush = _theme.Transparent;
-            Foreground = _theme.FormForeground;
+            Foreground = _theme.LightBlueBrush;
             HorizontalAlignment = HorizontalAlignment.Stretch;
             VerticalAlignment = VerticalAlignment.Stretch;
         }

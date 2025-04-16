@@ -29766,6 +29766,12 @@
             <see cref="T:Badger.ComboBox" /> class.
             </summary>
         </member>
+        <member name="M:Bubba.MetroDropDown.AddItem(System.String)">
+            <summary>
+            Adds the item.
+            </summary>
+            <param name="name">The name.</param>
+        </member>
         <member name="M:Bubba.MetroDropDown.Fail(System.Exception)">
             <summary>
             Fails the specified _ex.
@@ -33575,6 +33581,11 @@
         <member name="M:Bubba.ChatWindow.PopulateFileModels">
             <summary>
             Populates the file API models.
+            </summary>
+        </member>
+        <member name="M:Bubba.ChatWindow.PopulateEffortDropDown">
+            <summary>
+            Populates the effort drop down.
             </summary>
         </member>
         <member name="M:Bubba.ChatWindow.PopulateDocumentListBox">
