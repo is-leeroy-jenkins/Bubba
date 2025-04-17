@@ -70,18 +70,19 @@ namespace Bubba
         /// Initializes a new instance of the
         /// <see cref="T:Bubba.GptOptions" /> class.
         /// </summary>
-        public GptOptions( )
+        public GptOptions( ) 
+            : base( )
         {
-            _store = false;
+            _store = true;
             _stream = true;
             _number = 1;
-            _temperature = 0.08;
-            _topPercent = 0.09;
+            _temperature = 0.80;
+            _topPercent = 0.90;
             _frequencyPenalty = 0.00;
             _presencePenalty = 0.00;
             _maximumTokens = 2048;
             _stop = "['#', ';']";
-            _responseFormat = "text";
+            _responseFormat = "auto";
         }
 
         /// <inheritdoc />
@@ -148,6 +149,28 @@ namespace Bubba
                 {
                     _model = value;
                     OnPropertyChanged( nameof( Model ) );
+                }
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the instructions.
+        /// </summary>
+        /// <value>
+        /// The instructions.
+        /// </value>
+        public override string Instructions
+        {
+            get
+            {
+                return _instructions;
+            }
+            set
+            {
+                if( _instructions != value )
+                {
+                    _instructions = value;
+                    OnPropertyChanged( nameof( Instructions ) );
                 }
             }
         }

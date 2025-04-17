@@ -90,10 +90,10 @@ namespace Bubba
             _number = 1;
             _endPoint = GptEndPoint.Assistants;
             _instructions = App.Instructions;
-            _store = false;
+            _store = true;
             _stream = true;
-            _temperature = 0.08;
-            _topPercent = 0.09;
+            _temperature = 0.80;
+            _topPercent = 0.90;
             _frequencyPenalty = 0.00;
             _presencePenalty = 0.00;
             _maximumTokens = 2048;

@@ -80,12 +80,12 @@ namespace Bubba
         {
             _systemPrompt = App.Instructions;
             _header = new GptHeader( );
-            _temperature = 0.08;
-            _topPercent = 0.09;
+            _temperature = 0.80;
+            _topPercent = 0.90;
             _maximumTokens = 2048;
             _frequencyPenalty = 0.00;
             _presencePenalty = 0.00;
-            _store = false;
+            _store = true;
             _stream = true;
             _stop = "['#', ';']";
             _messages = new List<IGptMessage>( );

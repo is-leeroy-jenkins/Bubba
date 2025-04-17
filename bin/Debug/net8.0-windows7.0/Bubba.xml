@@ -14359,6 +14359,11 @@
             The assistant prompt
             </summary>
         </member>
+        <member name="F:Bubba.GptConfig._instructions">
+            <summary>
+            The instructions
+            </summary>
+        </member>
         <member name="F:Bubba.GptConfig._stop">
             <summary>
             The stop
@@ -14437,6 +14442,14 @@
             </summary>
             <value>
             The temperature.
+            </value>
+        </member>
+        <member name="P:Bubba.GptConfig.Instructions">
+            <summary>
+            Gets or sets the instructions.
+            </summary>
+            <value>
+            The instructions.
             </value>
         </member>
         <member name="P:Bubba.GptConfig.FrequencyPenalty">
@@ -16366,11 +16379,6 @@
             The reasoning effort
             </summary>
         </member>
-        <member name="F:Bubba.AssistantOptions._instructions">
-            <summary>
-            The system prompt
-            </summary>
-        </member>
         <member name="M:Bubba.AssistantOptions.#ctor">
             <summary>
             Initializes a new instance of the
@@ -16497,11 +16505,6 @@
         <member name="F:Bubba.ChatOptions._reasoningEffort">
             <summary>
             The reasoning effort
-            </summary>
-        </member>
-        <member name="F:Bubba.ChatOptions._instructions">
-            <summary>
-            The system prompt
             </summary>
         </member>
         <member name="M:Bubba.ChatOptions.#ctor">
@@ -17108,6 +17111,14 @@
             </value>
             <inheritdoc />
         </member>
+        <member name="P:Bubba.GptOptions.Instructions">
+            <summary>
+            Gets or sets the instructions.
+            </summary>
+            <value>
+            The instructions.
+            </value>
+        </member>
         <member name="P:Bubba.GptOptions.Store">
             <inheritdoc />
             <summary>
@@ -17546,6 +17557,15 @@
             </summary>
             <value>
             The top percent.
+            </value>
+        </member>
+        <member name="P:Bubba.TextOptions.ResponseFormat">
+            <inheritdoc />
+            <summary>
+            Gets or sets the modalities.
+            </summary>
+            <value>
+            The modalities.
             </value>
         </member>
         <member name="M:Bubba.TextOptions.GetData">
@@ -27648,6 +27668,11 @@
               Looks up a localized string similar to gpt-4 is an older version of a high-intelligence GPT model, usable in Chat Completions. .
             </summary>
         </member>
+        <member name="P:Bubba.Properties.Models.gpt_4_1_2025_04_14_">
+            <summary>
+              Looks up a localized string similar to gpt-4.1-2025-04-14.
+            </summary>
+        </member>
         <member name="P:Bubba.Properties.Models.gpt_4_1106_preview">
             <summary>
               Looks up a localized string similar to gpt-4-1106-preview; GPT-4 is an older version of a high-intelligence GPT model, usable in Chat Completions. .
@@ -34104,7 +34129,8 @@
         </member>
         <member name="M:Bubba.ChatWindow.OnDocumentListBoxSelectionChanged(System.Object,System.Windows.RoutedEventArgs)">
             <summary>
-            Called when [selected document changed].
+            Called when [select
+            ed document changed].
             </summary>
             <param name="sender">The sender.</param>
             <param name="e">The <see cref="T:System.Windows.RoutedEventArgs"/>

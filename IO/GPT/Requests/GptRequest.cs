@@ -90,12 +90,12 @@ namespace Bubba
             _header = new GptHeader( );
             _apiKey = _header.ApiKey;
             _systemPrompt = App.Instructions;
-            _store = false;
+            _store = true;
             _stream = true;
             _presencePenalty = 0.00;
             _frequencyPenalty = 0.00;
-            _topPercent = 0.09;
-            _temperature = 0.08;
+            _topPercent = 0.90;
+            _temperature = 0.80;
             _maximumTokens = 2048;
             _number = 1;
             _stop = "['#', ';']";

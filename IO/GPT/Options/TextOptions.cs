@@ -15,6 +15,7 @@ namespace Bubba
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
     using System.Linq;
+    using System.Text.Json.Serialization;
     using Properties;
 
     /// <inheritdoc />
@@ -33,17 +34,20 @@ namespace Bubba
         public TextOptions( )
             : base( )
         {
-            _model = "gpt-4o";
+            _model = "gpt-4o-mini";
             _endPoint = GptEndPoint.TextGeneration;
-            _store = false;
+            _instructions = OpenAI.BubbaPrompt;
+            _store = true;
             _stream = true;
             _number = 1;
-            _temperature = 0.08;
-            _topPercent = 0.09;
+            _temperature = 0.80;
+            _topPercent = 0.90;
             _frequencyPenalty = 0.00;
             _presencePenalty = 0.00;
             _maximumTokens = 2048;
             _responseFormat = "text";
+            _stop = "['#', ';']";
+            _modalities = "['text', 'audio']";
         }
 
         /// <inheritdoc />
@@ -64,7 +68,7 @@ namespace Bubba
                 if( _number != value )
                 {
                     _number = value;
-                    OnPropertyChanged( nameof( TextOptions.Number ) );
+                    OnPropertyChanged( nameof( Number ) );
                 }
             }
         }
@@ -87,7 +91,7 @@ namespace Bubba
                 if( _model != value )
                 {
                     _model = value;
-                    OnPropertyChanged( nameof( TextOptions.Model ) );
+                    OnPropertyChanged( nameof(  Model ) );
                 }
             }
         }
@@ -110,7 +114,7 @@ namespace Bubba
                 if( _endPoint != value )
                 {
                     _endPoint = value;
-                    OnPropertyChanged( nameof( TextOptions.EndPoint ) );
+                    OnPropertyChanged( nameof( EndPoint ) );
                 }
             }
         }
@@ -134,7 +138,7 @@ namespace Bubba
                 if( _store != value )
                 {
                     _store = value;
-                    OnPropertyChanged( nameof( TextOptions.Store ) );
+                    OnPropertyChanged( nameof( Store ) );
                 }
             }
         }
@@ -158,7 +162,7 @@ namespace Bubba
                 if( _stream != value )
                 {
                     _stream = value;
-                    OnPropertyChanged( nameof( TextOptions.Stream ) );
+                    OnPropertyChanged( nameof( Stream ) );
                 }
             }
         }
@@ -183,7 +187,7 @@ namespace Bubba
                 if( _temperature != value )
                 {
                     _temperature = value;
-                    OnPropertyChanged( nameof( TextOptions.Temperature ) );
+                    OnPropertyChanged( nameof( Temperature ) );
                 }
             }
         }
@@ -208,7 +212,7 @@ namespace Bubba
                 if( _frequencyPenalty != value )
                 {
                     _frequencyPenalty = value;
-                    OnPropertyChanged( nameof( TextOptions.FrequencyPenalty ) );
+                    OnPropertyChanged( nameof( FrequencyPenalty ) );
                 }
             }
         }
@@ -232,8 +236,8 @@ namespace Bubba
             {
                 if( _presencePenalty != value )
                 {
-                    _presencePenalty = value;
-                    OnPropertyChanged( nameof( TextOptions.PresencePenalty ) );
+                    _presencePenalty = value;   
+                    OnPropertyChanged( nameof( PresencePenalty ) );
                 }
             }
         }
@@ -261,7 +265,31 @@ namespace Bubba
                 if( _topPercent != value )
                 {
                     _topPercent = value;
-                    OnPropertyChanged( nameof( TextOptions.TopPercent ) );
+                    OnPropertyChanged( nameof( TopPercent ) );
+                }
+            }
+        }
+
+        /// <inheritdoc />
+        /// <summary>
+        /// Gets or sets the modalities.
+        /// </summary>
+        /// <value>
+        /// The modalities.
+        /// </value>
+        [ JsonPropertyName( "response_format" ) ]
+        public override string ResponseFormat
+        {
+            get
+            {
+                return _responseFormat;
+            }
+            set
+            {
+                if( _responseFormat != value )
+                {
+                    _responseFormat = value;
+                    OnPropertyChanged( nameof( ResponseFormat ) );
                 }
             }
         }

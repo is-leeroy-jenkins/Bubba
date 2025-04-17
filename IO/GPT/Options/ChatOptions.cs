@@ -72,11 +72,6 @@ namespace Bubba
         private protected string _reasoningEffort;
 
         /// <summary>
-        /// The system prompt
-        /// </summary>
-        private protected string _instructions;
-
-        /// <summary>
         /// Initializes a new instance of the
         /// <see cref="ChatOptions"/> class.
         /// </summary>
@@ -84,18 +79,20 @@ namespace Bubba
         public ChatOptions( )
             : base( )
         {
-            _model = "gpt-4o";
+            _model = "gpt-4o-mini";
             _endPoint = GptEndPoint.Completions;
-            _store = false;
+            _instructions = OpenAI.BubbaPrompt;
+            _store = true;
             _stream = true;
             _number = 1;
-            _temperature = 0.08;
-            _topPercent = 0.09;
+            _temperature = 0.80;
+            _topPercent = 0.90;
             _frequencyPenalty = 0.00;
             _presencePenalty = 0.00;
             _maximumTokens = 2048;
             _stop = "['#', ';']";
             _modalities = "['text', 'audio']";
+            _responseFormat = "auto";
         }
 
         /// <inheritdoc />

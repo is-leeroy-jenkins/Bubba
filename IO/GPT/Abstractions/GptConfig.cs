@@ -133,6 +133,11 @@ namespace Bubba
         private protected string _assistantPrompt;
 
         /// <summary>
+        /// The instructions
+        /// </summary>
+        private protected string _instructions;
+
+        /// <summary>
         /// The stop
         /// </summary>
         private protected string _stop;
@@ -320,6 +325,28 @@ namespace Bubba
                 {
                     Temperature = value;
                     OnPropertyChanged( nameof( Temperature ) );
+                }
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the instructions.
+        /// </summary>
+        /// <value>
+        /// The instructions.
+        /// </value>
+        public virtual string Instructions
+        {
+            get
+            {
+                return _instructions;
+            }
+            set
+            {
+                if( _instructions != value )
+                {
+                    _instructions = value;
+                    OnPropertyChanged( nameof( Instructions ) );
                 }
             }
         }

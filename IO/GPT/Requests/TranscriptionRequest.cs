@@ -101,7 +101,7 @@ namespace Bubba
             _speed = 1;
             _language = "en";
             _responseFormat = "text";
-            _temperature = 0.08;
+            _temperature = 0.80;
             _modalities = "['text','audio']";
         }
 

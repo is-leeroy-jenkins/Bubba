@@ -501,7 +501,7 @@ namespace Bubba
             TopLogProbSlider.Value = 0;
 
             // GPT Parameters
-            _store = false;
+            _store = true;
             _stream = true;
             _temperature = TemperatureSlider.Value;
             _topPercent = TopPercentSlider.Value;
@@ -937,15 +937,15 @@ namespace Bubba
         {
             try
             {
-                _store = false;
+                _store = true;
                 _stream = true;
                 _model = "";
                 _imageSize = "";
                 _endpoint = "";
                 _number = 1;
                 _maximumTokens = 2048;
-                _temperature = 0.08;
-                _topPercent = 0.09;
+                _temperature = 0.80;
+                _topPercent = 0.90;
                 _frequencyPenalty = 0.00;
                 _presencePenalty = 0.00;
                 _language = "";
@@ -2427,7 +2427,7 @@ namespace Bubba
             {
                 var _item = new MetroListBoxItem(  )
                 {
-                    Tag = _file,
+                    Tag = Path.GetFullPath( _file ),
                     Content = Path.GetFileNameWithoutExtension( _file )
                 };
 
@@ -2452,7 +2452,7 @@ namespace Bubba
                 {
                     var _item = new MetroListBoxItem(  )
                     {
-                        Tag = _file,
+                        Tag = Path.GetFullPath( _file ),
                         Content = Path.GetFileNameWithoutExtension( _file )
                     };
 
@@ -2482,7 +2482,7 @@ namespace Bubba
                     var _item = new MetroListBoxItem(  )
 
                     {
-                        Tag = _file,
+                        Tag = Path.GetFullPath( _file ),
                         Content = Path.GetFileNameWithoutExtension( _file )
                     };
 
@@ -2511,7 +2511,7 @@ namespace Bubba
                 {
                     var _item = new MetroListBoxItem(  )
                     {
-                        Tag = _file,
+                        Tag = Path.GetFullPath( _file ),
                         Content = Path.GetFileNameWithoutExtension( _file )
                     };
 
@@ -2540,7 +2540,7 @@ namespace Bubba
                 {
                     var _item = new MetroListBoxItem( )
                     {
-                        Tag = _file,
+                        Tag = Path.GetFullPath( _file ),
                         Content = Path.GetFileNameWithoutExtension( _file )
                     };
 
@@ -2569,7 +2569,7 @@ namespace Bubba
                 {
                     var _item = new MetroListBoxItem( )
                     {
-                        Tag = _file,
+                        Tag = Path.GetFullPath( _file ),
                         Content = Path.GetFileNameWithoutExtension( _file )
                     };
 
@@ -2598,7 +2598,7 @@ namespace Bubba
                 {
                     var _item = new  MetroListBoxItem( )
                     {
-                        Tag = _file,
+                        Tag = Path.GetFullPath( _file ),
                         Content = Path.GetFileNameWithoutExtension( _file )
                     };
 
@@ -2925,7 +2925,9 @@ namespace Bubba
         {
             try
             {
+                TabControl.SelectedIndex = 0;
                 var _tabPages = new Dictionary<string, MetroTabItem>( );
+                SetToolbarVisibility( true );
             }
             catch( Exception ex )
             {
@@ -2940,8 +2942,10 @@ namespace Bubba
         {
             try
             {
+                TabControl.SelectedIndex = 3;
                 PopulateLanguageListBox(  );
-                PopulateDocumentListBox(  );
+                PopulateDocumentListBox( );
+                SetToolbarVisibility( true );
             }
             catch( Exception ex )
             {
@@ -2956,6 +2960,8 @@ namespace Bubba
         {
             try
             {
+                TabControl.SelectedIndex = 1;
+                SetToolbarVisibility( true );
                 PopulateRequestTypes( );
                 PopulateModelsAsync( );
                 PopulateVoices( );
@@ -2976,6 +2982,8 @@ namespace Bubba
         {
             try
             {
+                TabControl.SelectedIndex = 5;
+                SetToolbarVisibility( true );
             }
             catch( Exception ex )
             {
@@ -2990,6 +2998,8 @@ namespace Bubba
         {
             try
             {
+                TabControl.SelectedIndex = 6;
+                SetToolbarVisibility( true );
             }
             catch( Exception ex )
             {
@@ -3004,6 +3014,8 @@ namespace Bubba
         {
             try
             {
+                TabControl.SelectedIndex = 7;
+                SetToolbarVisibility( true );
             }
             catch( Exception ex )
             {
@@ -3018,6 +3030,8 @@ namespace Bubba
         {
             try
             {
+                TabControl.SelectedIndex = 8;
+                SetToolbarVisibility( false );
             }
             catch( Exception ex )
             {
@@ -4228,7 +4242,9 @@ namespace Bubba
             {
                 if( ModelDropDown.SelectedIndex != -1 )
                 {
-                    _model = ModelDropDown.SelectedValue.ToString(  );
+                    _model = ( (MetroDropDownItem)ModelDropDown.SelectedItem )
+                        ?.Tag.ToString( );
+
                     PopulateImageSizes( );
                     var _message = "Model = " + _model;
                     SendMessage( _message );
@@ -4241,7 +4257,8 @@ namespace Bubba
         }
 
         /// <summary>
-        /// Called when [selected document changed].
+        /// Called when [select
+        /// ed document changed].
         /// </summary>
         /// <param name="sender">The sender.</param>
         /// <param name="e">The <see cref="RoutedEventArgs"/>
@@ -4253,7 +4270,9 @@ namespace Bubba
                 if( DocumentListBox.SelectedIndex != -1 )
                 {
                     Editor.ClearAllText( );
-                    _selectedDocument = DocumentListBox.SelectedValue.ToString( );
+                    _selectedDocument = ( ( MetroListBoxItem )DocumentListBox.SelectedItem )
+                        ?.Tag.ToString( );
+                    
                     Editor.LoadFile( _selectedDocument );
                     TabControl.SelectedIndex = 3;
                     var _message = "Document = " + _selectedDocument;
@@ -4278,7 +4297,10 @@ namespace Bubba
             {
                 if( LanguageDropDown.SelectedIndex != -1 )
                 {
-                    _language = LanguageDropDown.SelectedValue.ToString( );
+                    _language =
+                        ( ( MetroDropDownItem )LanguageDropDown.SelectedItem )
+                        ?.Tag.ToString(  );
+
                     PopulateDocuments( );
                     TabControl.SelectedIndex = 3;
                     var _message = "Language = " + _language;
@@ -4303,7 +4325,9 @@ namespace Bubba
             {
                 if( GenerationListBox.SelectedIndex != -1 )
                 {
-                    var _item = GenerationListBox.SelectedItem.ToString( );
+                    var _item = ( ( MetroDropDownItem )GenerationListBox.SelectedItem )
+                        ?.Tag.ToString( );
+
                     _requestType = ( GptApi )Enum.Parse( typeof( GptApi ), _item );
                     SetRequestType( );
 

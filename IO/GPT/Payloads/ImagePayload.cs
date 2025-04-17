@@ -77,11 +77,11 @@ namespace Bubba
         {
             _model = "dall-e-3";
             _endPoint = GptEndPoint.ImageGeneration;
-            _store = false;
+            _store = true;
             _stream = true;
             _number = 1;
-            _temperature = 0.08;
-            _topPercent = 0.09;
+            _temperature = 0.80;
+            _topPercent = 0.90;
             _frequencyPenalty = 0.00;
             _presencePenalty = 0.00;
             _maximumTokens = 2048;

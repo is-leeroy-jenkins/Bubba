@@ -78,8 +78,8 @@ namespace Bubba
             _model = "gpt-4o-mini";
             _presencePenalty = 0.00;
             _frequencyPenalty = 0.00;
-            _topPercent = 0.09;
-            _temperature = 0.08;
+            _topPercent = 0.90;
+            _temperature = 0.80;
             _maximumTokens = 2048;
             _number = 1;
         }

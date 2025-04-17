@@ -286,7 +286,7 @@
                 <!--  ********************************************* CHAT TAB *************************************  -->
 
                 <TabItem
-                    x:Name="ChatTabItem"
+                    x:Name="ChatTab"
                     Foreground="{StaticResource FormForeground}"
                     Header="Chat">
                     <Grid
@@ -326,7 +326,7 @@
                 <!--  ********************************************* PARAMETER TAB *************************************  -->
 
                 <TabItem
-                    x:Name="ParameterTabItem"
+                    x:Name="ParameterTab"
                     Height="22"
                     VerticalAlignment="Top"
                     Foreground="{StaticResource FormForeground}"
@@ -361,6 +361,7 @@
                                 VerticalAlignment="Center"
                                 ActiveMinorTickStroke="{StaticResource WhiteForeground}"
                                 ActiveTickStroke="{StaticResource WhiteForeground}"
+                                Background="{DynamicResource BlueBorderBrush}"
                                 BorderThickness="0,0,0,0"
                                 Foreground="{StaticResource FormForeground}"
                                 LargeChange="0.25"
@@ -401,7 +402,7 @@
                                 VerticalAlignment="Center"
                                 ActiveMinorTickStroke="{StaticResource WhiteForeground}"
                                 ActiveTickStroke="{StaticResource WhiteForeground}"
-                                AllowRangeDrag="True"
+                                Background="{DynamicResource BlueBorderBrush}"
                                 Foreground="{StaticResource FormForeground}"
                                 Maximum="2"
                                 Minimum="-2"
@@ -439,6 +440,7 @@
                                 ActiveMinorTickStroke="{StaticResource WhiteForeground}"
                                 ActiveTickStroke="{StaticResource WhiteForeground}"
                                 AllowRangeDrag="True"
+                                Background="{DynamicResource BlueBorderBrush}"
                                 Foreground="{StaticResource FormForeground}"
                                 Maximum="1"
                                 Minimum="0"
@@ -474,7 +476,7 @@
                                 VerticalAlignment="Center"
                                 ActiveMinorTickStroke="{StaticResource WhiteForeground}"
                                 ActiveTickStroke="{StaticResource WhiteForeground}"
-                                AllowRangeDrag="True"
+                                Background="{DynamicResource BlueBorderBrush}"
                                 Foreground="{StaticResource FormForeground}"
                                 Maximum="2"
                                 Minimum="-2"
@@ -520,7 +522,7 @@
                                 VerticalAlignment="Center"
                                 ActiveMinorTickStroke="{StaticResource WhiteForeground}"
                                 ActiveTickStroke="{StaticResource WhiteForeground}"
-                                AllowRangeDrag="True"
+                                Background="{DynamicResource BlueBorderBrush}"
                                 Foreground="{StaticResource FormForeground}"
                                 Maximum="4"
                                 Minimum="1"
@@ -554,6 +556,9 @@
                                 Height="81"
                                 Margin="10,0,0,0"
                                 HorizontalAlignment="Left"
+                                ActiveMinorTickStroke="{DynamicResource WhiteForeground}"
+                                ActiveTickStroke="{DynamicResource WhiteForeground}"
+                                Background="{DynamicResource BlueBorderBrush}"
                                 Maximum="20"
                                 Minimum="0"
                                 MinorTickFrequency="1"
