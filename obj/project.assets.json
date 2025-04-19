@@ -2,7 +2,7 @@
   "version": 3,
   "targets": {
     "net8.0-windows7.0": {
-      "AngleSharp/1.2.0": {
+      "AngleSharp/1.3.0": {
         "type": "package",
         "compile": {
           "lib/net8.0/AngleSharp.dll": {
@@ -392,7 +392,7 @@
           "Microsoft.WindowsDesktop.App.WPF"
         ]
       },
-      "EPPlus/8.0.1": {
+      "EPPlus/8.0.2": {
         "type": "package",
         "dependencies": {
           "EPPlus.Interfaces": "8.0.0",
@@ -3821,24 +3821,20 @@
     }
   },
   "libraries": {
-    "AngleSharp/1.2.0": {
-      "sha512": "uF/PzSCVcb+b2nqVvHZbOqexoJ9R6QLjonugPf0PQl+0h7YKaFZeXyspctbHe5HGlx7/Iuk5BErtk+t63ac/ZA==",
+    "AngleSharp/1.3.0": {
+      "sha512": "iHzfn4cK6CmhuURNdEpmSQCq5/HZFldEpkbnmqT9My8+6l2Sz3F+NxoqRA8z/jTkWB+SAu5boRdp4v/WtyjuIQ==",
       "type": "package",
-      "path": "anglesharp/1.2.0",
+      "path": "anglesharp/1.3.0",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "README.md",
-        "anglesharp.1.2.0.nupkg.sha512",
+        "anglesharp.1.3.0.nupkg.sha512",
         "anglesharp.nuspec",
         "lib/net462/AngleSharp.dll",
         "lib/net462/AngleSharp.xml",
         "lib/net472/AngleSharp.dll",
         "lib/net472/AngleSharp.xml",
-        "lib/net6.0/AngleSharp.dll",
-        "lib/net6.0/AngleSharp.xml",
-        "lib/net7.0/AngleSharp.dll",
-        "lib/net7.0/AngleSharp.xml",
         "lib/net8.0/AngleSharp.dll",
         "lib/net8.0/AngleSharp.xml",
         "lib/netstandard2.0/AngleSharp.dll",
@@ -4407,15 +4403,15 @@
         "logo-mini.png"
       ]
     },
-    "EPPlus/8.0.1": {
-      "sha512": "Lk46SFgp9P58+SB8ZHhsAmXlw3skC3+Ky2Nd3xmB+R01z7ZK8AUxivkOg20PZ/O94xMLqQxmORRH5tRr2JmKew==",
+    "EPPlus/8.0.2": {
+      "sha512": "zPzYp/6ozosQ1dU7YAc2QnpLtduMf0w+ic5rIDqR8pkcQEg5cl1jUgqZGdfue6xc3oKas5LvZqTMwtAGkWM67A==",
       "type": "package",
-      "path": "epplus/8.0.1",
+      "path": "epplus/8.0.2",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "EPPlusLogo.png",
-        "epplus.8.0.1.nupkg.sha512",
+        "epplus.8.0.2.nupkg.sha512",
         "epplus.nuspec",
         "lib/net35/EPPlus.dll",
         "lib/net35/EPPlus.xml",
@@ -9589,12 +9585,12 @@
   },
   "projectFileDependencyGroups": {
     "net8.0-windows7.0": [
-      "AngleSharp >= 1.2.0",
+      "AngleSharp >= 1.3.0",
       "CefSharp.Common.NETCore >= 135.0.170",
       "CefSharp.OffScreen.NETCore >= 135.0.170",
       "CefSharp.WinForms.NETCore >= 135.0.170",
       "CefSharp.Wpf.NETCore >= 135.0.170",
-      "EPPlus >= 8.0.1",
+      "EPPlus >= 8.0.2",
       "Google.Apis.CustomSearchAPI.v1 >= 1.68.0.3520",
       "LinqStatistics >= 3.0.1",
       "MahApps.Metro >= 2.4.10",
@@ -9706,7 +9702,7 @@
         "dependencies": {
           "AngleSharp": {
             "target": "Package",
-            "version": "[1.2.0, )"
+            "version": "[1.3.0, )"
           },
           "CefSharp.Common.NETCore": {
             "target": "Package",
@@ -9726,7 +9722,7 @@
           },
           "EPPlus": {
             "target": "Package",
-            "version": "[8.0.1, )"
+            "version": "[8.0.2, )"
           },
           "Google.Apis.CustomSearchAPI.v1": {
             "target": "Package",

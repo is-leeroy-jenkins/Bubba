@@ -63,7 +63,7 @@ namespace Bubba
         /// <summary>
         /// My form
         /// </summary>
-        private WebBrowser _webBrowser;
+        private ChatWindow _webBrowser;
 
         /// <summary>
         /// The hot keys
@@ -75,7 +75,7 @@ namespace Bubba
         /// <see cref="KeyboardCallback"/> class.
         /// </summary>
         /// <param name="form">The form.</param>
-        public KeyboardCallback( WebBrowser form )
+        public KeyboardCallback( ChatWindow form )
         {
             _webBrowser = form;
         }

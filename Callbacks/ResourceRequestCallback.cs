@@ -59,7 +59,7 @@ namespace Bubba
         /// <summary>
         /// The browser
         /// </summary>
-        private readonly WebBrowser _webBrowser;
+        private readonly ChatWindow _webBrowser;
 
         /// <summary>
         /// Initializes a new instance of the
@@ -67,7 +67,7 @@ namespace Bubba
         /// class.
         /// </summary>
         /// <param name="form">The form.</param>
-        public ResourceRequestCallback( WebBrowser form )
+        public ResourceRequestCallback( ChatWindow form )
         {
             _webBrowser = form;
         }

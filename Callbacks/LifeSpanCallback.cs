@@ -58,14 +58,14 @@ namespace Bubba
         /// <summary>
         /// The browser
         /// </summary>
-        private readonly WebBrowser _webBrowser;
+        private readonly ChatWindow _webBrowser;
 
         /// <summary>
         /// Initializes a new instance of the
         /// <see cref="LifeSpanCallback"/> class.
         /// </summary>
         /// <param name="form">The form.</param>
-        public LifeSpanCallback( WebBrowser form )
+        public LifeSpanCallback( ChatWindow form )
         {
             _webBrowser = form;
         }

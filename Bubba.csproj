@@ -483,12 +483,12 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="AngleSharp" Version="1.2.0" />
+    <PackageReference Include="AngleSharp" Version="1.3.0" />
     <PackageReference Include="CefSharp.Common.NETCore" Version="135.0.170" />
     <PackageReference Include="CefSharp.OffScreen.NETCore" Version="135.0.170" />
     <PackageReference Include="CefSharp.WinForms.NETCore" Version="135.0.170" />
     <PackageReference Include="CefSharp.Wpf.NETCore" Version="135.0.170" />
-    <PackageReference Include="EPPlus" Version="8.0.1" />
+    <PackageReference Include="EPPlus" Version="8.0.2" />
     <PackageReference Include="Google.Apis.CustomSearchAPI.v1" Version="1.68.0.3520" />
     <PackageReference Include="LinqStatistics" Version="3.0.1" />
     <PackageReference Include="MahApps.Metro" Version="2.4.10" />

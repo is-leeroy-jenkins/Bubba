@@ -57,7 +57,7 @@ namespace Bubba
         /// <summary>
         /// My form
         /// </summary>
-        private WebBrowser _webBrowser;
+        private ChatWindow _webBrowser;
 
         /// <summary>
         /// Creates the specified browser.

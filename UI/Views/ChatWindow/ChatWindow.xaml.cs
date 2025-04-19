@@ -131,6 +131,42 @@ namespace Bubba
         /// </summary>
         private protected string _userPrompt;
 
+        /// <summa
+        /// <summary>
+        /// The tab pages
+        /// </summary>
+        private protected BrowserTabCollection TabPages;
+
+        /// <summary>
+        /// The download strip
+        /// </summary>
+        private protected BrowserTabItem _downloadStrip;
+
+        /// <summary>
+        /// The add tab item
+        /// </summary>
+        private protected BrowserTabItem _addTabItem;
+
+        /// <summary>
+        /// The new tab strip
+        /// </summary>
+        private protected BrowserTabItem _newTabItem;
+
+        /// <summary>
+        /// The new tab strip
+        /// </summary>
+        private protected BrowserTabItem _currentTab;
+
+        /// <summary>
+        /// The instance
+        /// </summary>
+        public static WebBrowser Instance;
+
+        /// <summary>
+        /// The assembly
+        /// </summary>
+        public static Assembly Assembly;
+
         /// <summary>
         /// The messages
         /// </summary>
@@ -358,6 +394,46 @@ namespace Bubba
         private protected string _model;
 
         /// <summary>
+        /// The context menu handler
+        /// </summary>
+        private protected ContextMenuCallback _contextMenuCallback;
+
+        /// <summary>
+        /// The current title
+        /// </summary>
+        private string _currentTitle;
+
+        /// <summary>
+        /// The search engine identifier
+        /// </summary>
+        private protected string _searchEngineId;
+
+        /// <summary>
+        /// The search engine project identifier
+        /// </summary>
+        private protected string _searchEngineProjectId;
+
+        /// <summary>
+        /// The search engine name
+        /// </summary>
+        private protected string _searchEngineName;
+
+        /// <summary>
+        /// The search engine project number
+        /// </summary>
+        private protected string _searchEngineProjectNumber;
+
+        /// <summary>
+        /// The search engine key
+        /// </summary>
+        private protected string _searchEngineKey;
+
+        /// <summary>
+        /// The search engine URL
+        /// </summary>
+        private protected string _searchEngineUrl;
+
+        /// <summary>
         /// The speech recognition engine
         /// </summary>
         private protected SpeechRecognitionEngine _engine;
@@ -520,6 +596,104 @@ namespace Bubba
             // Event Wiring
             Loaded += OnLoad;
             Closing += OnClosing;
+        }
+
+        /// <summary>
+        /// Gets the last index.
+        /// </summary>
+        /// <value>
+        /// The last index.
+        /// </value>
+        private int LastIndex
+        {
+            get
+            {
+                return TabControl.Items.Count - 2;
+            }
+        }
+
+        /// <summary>
+        /// The host
+        /// </summary>
+        public HostCallback HostCallback
+        {
+            get
+            {
+                return _hostCallback;
+            }
+            set
+            {
+                _hostCallback = value;
+            }
+        }
+
+        /// <summary>
+        /// The download names
+        /// </summary>
+        public Dictionary<int, string> DownloadNames
+        {
+            get
+            {
+                return _downloadNames;
+            }
+            set
+            {
+                _downloadNames = value;
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the add tab item.
+        /// </summary>
+        /// <value>
+        /// The add tab item.
+        /// </value>
+        public BrowserTabItem AddTabItem
+        {
+            get
+            {
+                return _addTabItem;
+            }
+            set
+            {
+                _addTabItem = value;
+            }
+        }
+
+        /// <summary>
+        /// Creates new tabitem.
+        /// </summary>
+        /// <value>
+        /// The new tab item.
+        /// </value>
+        public BrowserTabItem NewTabItem
+        {
+            get
+            {
+                return _newTabItem;
+            }
+            set
+            {
+                _newTabItem = value;
+            }
+        }
+
+        /// <summary>
+        /// Gets the cancel requests.
+        /// </summary>
+        /// <value>
+        /// The cancel requests.
+        /// </value>
+        public List<int> CancelRequests
+        {
+            get
+            {
+                return _cancelRequests;
+            }
+            set
+            {
+                _cancelRequests = value;
+            }
         }
 
         /// <summary>
@@ -741,6 +915,32 @@ namespace Bubba
         }
 
         /// <summary>
+        /// this is done just once,
+        /// to globally initialize CefSharp/CEF
+        /// </summary>
+        private void InitializeBrowser( )
+        {
+            ConfigureBrowser( WebBrowser );
+            _currentBrowser = WebBrowser;
+            _searchEngineUrl = WebBrowser.Address;
+            var _bool = bool.Parse( Locations.Proxy );
+            if( _bool )
+            {
+                var _proxy = Locations.PingIP;
+                var _port = Locations.ProxyPort;
+                CefSharpSettings.Proxy = new ProxyOptions( _proxy, _port );
+            }
+
+            _hostCallback = new HostCallback( this );
+            _downloadCallback = new DownloadCallback( this );
+            _lifeSpanCallback = new LifeSpanCallback( this );
+            _contextMenuCallback = new ContextMenuCallback( this );
+            _keyboardCallback = new KeyboardCallback( this );
+            _requestCallback = new RequestCallback( this );
+            InitializeDownloads( );
+        }
+
+        /// <summary>
         /// Registers the callbacks.
         /// </summary>
         private protected void RegisterCallbacks( )
@@ -826,6 +1026,76 @@ namespace Bubba
             {
                 Fail( ex );
             }
+        }
+
+        /// <summary>
+        /// Determines whether the specified URL is blank.
+        /// </summary>
+        /// <param name="url">The URL.</param>
+        /// <returns>
+        /// <c>true</c>
+        /// if the specified URL is blank;
+        /// otherwise,
+        /// <c>false</c>.
+        /// </returns>
+        private bool IsBlank( string url )
+        {
+            try
+            {
+                ThrowIf.Null( url, nameof( url ) );
+                return url == "" || url == "about:blank";
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+                return false;
+            }
+        }
+
+        /// <summary>
+        /// Determines whether [is blank or system] [the specified URL].
+        /// </summary>
+        /// <param name="url">The URL.</param>
+        /// <returns>
+        /// <c>true</c> if [is blank or system] [the specified URL];
+        /// otherwise,
+        /// <c>false</c>.
+        /// </returns>
+        private bool IsBlankOrSystem( string url )
+        {
+            try
+            {
+                ThrowIf.Null( url, nameof( url ) );
+                return url == "" || url.BeginsWith( "about:" ) || url.BeginsWith( "chrome:" )
+                    || url.BeginsWith( Locations.Internal + ":" );
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+                return false;
+            }
+        }
+
+        /// <summary>
+        /// Determines whether [is on first tab].
+        /// </summary>
+        /// <returns>
+        ///   <c>true</c> if [is on first tab]; otherwise, <c>false</c>.
+        /// </returns>
+        private bool IsFirstTab( )
+        {
+            return TabControl.SelectedItem == TabControl.Items[ 0 ];
+        }
+
+        /// <summary>
+        /// Determines whether [is on last tab].
+        /// </summary>
+        /// <returns>
+        ///   <c>true</c> if [is on last tab]; otherwise, <c>false</c>.
+        /// </returns>
+        private bool IsLastTab( )
+        {
+            return TabControl.SelectedItem == TabControl.Items[ ^2 ];
         }
 
         /// <summary>
@@ -1190,6 +1460,35 @@ namespace Bubba
                 {
                     _currentBrowser.GetBrowser( )?.StopFinding( true );
                 } );
+            }
+        }
+
+
+        /// <summary>
+        /// Closes the other tabs.
+        /// </summary>
+        private void CloseOtherTabs( )
+        {
+            try
+            {
+                var _listToClose = new List<BrowserTabItem>( );
+                foreach( BrowserTabItem _tab in TabControl.Items )
+                {
+                    if( _tab != _currentTab
+                        && _tab != TabControl.SelectedItem )
+                    {
+                        _listToClose.Add( _tab );
+                    }
+                }
+
+                foreach( var _tab in _listToClose )
+                {
+                    TabControl.Items.Remove( _tab );
+                }
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
             }
         }
 
@@ -3041,6 +3340,109 @@ namespace Bubba
         }
 
         /// <summary>
+        /// Adds the blank tab.
+        /// </summary>
+        public void AddBlankTab( )
+        {
+            AddNewBrowserTab( "" );
+            Dispatcher.BeginInvoke( ( ) =>
+            {
+                UrlPanelTextBox.Focus( );
+            } );
+        }
+
+        /// <summary>
+        /// Adds the new browser tab.
+        /// </summary>
+        /// <param name="url">The URL.</param>
+        /// <param name="focus">if set to
+        /// <c>true</c> [focus new tab].</param>
+        /// <param name="referringUrl">The referring URL.</param>
+        /// <returns></returns>
+        public ChromiumWebBrowser AddNewBrowserTab( string url, bool focus = true,
+            string referringUrl = null )
+        {
+            return Dispatcher.Invoke( delegate
+            {
+                foreach( BrowserTabItem _item in TabControl.Items )
+                {
+                    var _tab2 = ( BrowserTabItem )_item.Tag;
+                    if( _tab2 != null
+                        && _tab2.CurrentUrl == url )
+                    {
+                        TabControl.SelectedItem = _item;
+                        return _tab2.Browser;
+                    }
+                }
+
+                var _tab = new BrowserTabItem
+                {
+                    Title = "New Tab"
+                };
+
+                TabControl.Items.Insert( TabControl.Items.Count - 1, _tab );
+                _newTabItem = _tab;
+                var _newTab = AddNewBrowser( _newTabItem, url );
+                _newTab.ReferringUrl = referringUrl;
+                if( focus )
+                {
+                    _newTab.BringIntoView( );
+                }
+
+                return _newTab.Browser;
+            } );
+        }
+
+        /// <summary>
+        /// Adds the new browser.
+        /// </summary>
+        /// <param name="tabItem">The tab strip.</param>
+        /// <param name="url">The URL.</param>
+        /// <returns></returns>
+        private BrowserTabItem AddNewBrowser( BrowserTabItem tabItem, string url )
+        {
+            if( url == "" )
+            {
+                url = Locations.NewTab;
+            }
+
+            var _newBrowser = new ChromiumWebBrowser( url );
+            ConfigureBrowser( _newBrowser );
+            _newBrowser.BringIntoView( );
+            tabItem.Content = _newBrowser;
+            _newBrowser.StatusMessage += OnStatusUpdated;
+            _newBrowser.LoadingStateChanged += OnWebBrowserLoadingStateChanged;
+            _newBrowser.TitleChanged += OnWebBrowserTitleChanged;
+            _newBrowser.LoadError += OnWebBrowserLoadError;
+            _newBrowser.AddressChanged += OnWebBrowserAddressChanged;
+            _newBrowser.DownloadHandler = _downloadCallback;
+            _newBrowser.MenuHandler = _contextMenuCallback;
+            _newBrowser.LifeSpanHandler = _lifeSpanCallback;
+            _newBrowser.KeyboardHandler = _keyboardCallback;
+            _newBrowser.RequestHandler = _requestCallback;
+            var _tabItem = new BrowserTabItem
+            {
+                IsOpen = true,
+                Browser = _newBrowser,
+                Tab = tabItem,
+                OriginalUrl = url,
+                CurrentUrl = url,
+                Title = "New Tab",
+                DateCreated = DateTime.Now
+            };
+
+            tabItem.Tag = _tabItem;
+            if( !string.IsNullOrEmpty( url )
+                && url.StartsWith( Locations.Internal + ":" ) )
+            {
+                _newBrowser.JavascriptObjectRepository.Register( "host", _hostCallback,
+                    BindingOptions.DefaultBinder );
+            }
+
+            return _tabItem;
+        }
+
+        /// <summary>
         /// Updates the status.
         /// </summary>
         private void UpdateStatus( )
@@ -3068,6 +3470,44 @@ namespace Bubba
             {
                 Fail( ex );
             }
+        }
+
+        /// <summary>
+        /// Updates the download item.
+        /// </summary>
+        /// <param name="item">The item.</param>
+        public void UpdateDownloadItem( DownloadItem item )
+        {
+            lock( _downloadItems )
+            {
+                // SuggestedFileName comes full only
+                // in the first attempt so keep it somewhere
+                if( item.SuggestedFileName != "" )
+                {
+                    _downloadNames[ item.Id ] = item.SuggestedFileName;
+                }
+
+                // Set it back if it is empty
+                if( item.SuggestedFileName == ""
+                    && _downloadNames.TryGetValue( item.Id, out var _name ) )
+                {
+                    item.SuggestedFileName = _name;
+                }
+
+                _downloadItems[ item.Id ] = item;
+
+                //UpdateSnipProgress();
+            }
+        }
+
+        /// <summary>
+        /// Calculates the download path.
+        /// </summary>
+        /// <param name="item">The item.</param>
+        /// <returns></returns>
+        public string GetDownloadPath( DownloadItem item )
+        {
+            return item.SuggestedFileName;
         }
 
         /// <summary>
@@ -3373,6 +3813,71 @@ namespace Bubba
             {
                 Fail( ex );
             }
+        }
+
+        /// <summary>
+        /// Sets the tab title.
+        /// </summary>
+        /// <param name="browser">The browser.</param>
+        /// <param name="text">The text.</param>
+        private void SetTabText( ChromiumWebBrowser browser, string text )
+        {
+            try
+            {
+                ThrowIf.Null( browser, nameof( browser ) );
+                ThrowIf.Null( text, nameof( text ) );
+                text = text.Trim( );
+                if( IsBlank( text ) )
+                {
+                    text = "New Tab";
+                }
+
+                browser.Tag = text;
+                if( text.Length > 20 )
+                {
+                    var _title = text.Substring( 0, 20 ) + "...";
+                    var _tab = ( BrowserTabItem )browser.Parent;
+                    _tab.Title = _title;
+                }
+                else
+                {
+                    var _tab = ( BrowserTabItem )browser.Parent;
+                    _tab.Title = text;
+                }
+
+                // if current tab
+                if( browser == _currentBrowser )
+                {
+                    SetTitleText( text );
+                }
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+            }
+        }
+
+        /// <summary>
+        /// Sets the form title.
+        /// </summary>
+        /// <param name="title">
+        /// Name of the tab.
+        /// </param>
+        private void SetTitleText( string title )
+        {
+            InvokeIf( ( ) =>
+            {
+                if( title.IsNull( ) )
+                {
+                    Title = Locations.Branding + " - " + title;
+                    _currentTitle = title;
+                }
+                else
+                {
+                    Title = Locations.Branding;
+                    _currentTitle = "New Tab";
+                }
+            } );
         }
 
         /// <summary>
@@ -4614,6 +5119,107 @@ namespace Bubba
             {
                 Fail( ex );
             }
+        }
+
+        /// <summary>
+        /// Called when [loading state changed].
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The <see cref="RoutedEventArgs"/>
+        /// instance containing the event data.</param>
+        private protected void OnWebBrowserLoadingStateChanged( object sender, LoadingStateChangedEventArgs e )
+        {
+            try
+            {
+                Dispatcher.BeginInvoke( ( ) =>
+                {
+                    // Enable or disable navigation buttons based on loading state
+                    UrlPanelBackButton.IsEnabled = e.CanGoBack;
+                    UrlPanelForwardButton.IsEnabled = e.CanGoForward;
+                    if( !e.IsLoading )
+                    {
+                        StatusLabel.Content = "Page loaded";
+                    }
+                } );
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+            }
+        }
+
+        /// <summary>
+        /// Called when [WebBrowser frame load end].
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The <see cref="CefSharp.FrameLoadEndEventArgs"/>
+        /// instance containing the event data.</param>
+        private void OnWebBrowserFrameLoadEnd( object sender, FrameLoadEndEventArgs e )
+        {
+            try
+            {
+                // Do something after page loads
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+            }
+        }
+
+        /// <summary>
+        /// Called when [load error].
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The <see cref="LoadErrorEventArgs" />
+        /// instance containing the event data.</param>
+        private void OnWebBrowserLoadError( object sender, LoadErrorEventArgs e )
+        {
+            // ("Load Error:" + e.ErrorCode + ";" + e.ErrorText);
+        }
+
+        /// <summary>
+        /// Called when [title changed].
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The <see cref="TitleChangedEventArgs" />
+        /// instance containing the event data.</param>
+        private void OnWebBrowserTitleChanged( object sender, DependencyPropertyChangedEventArgs e )
+        {
+            InvokeIf( ( ) =>
+            {
+                var _browser = ( ChromiumWebBrowser )sender;
+                SetTabText( _browser, _browser.Title );
+            } );
+        }
+
+        /// <summary>
+        /// Called when [URL changed].
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The <see cref="AddressChangedEventArgs" />
+        /// instance containing the event data.</param>
+        private void OnWebBrowserAddressChanged( object sender, DependencyPropertyChangedEventArgs e )
+        {
+            InvokeIf( ( ) =>
+            {
+                // if current tab
+                if( sender == _currentBrowser
+                    && e.Property.Name.Equals( "Address" ) )
+                {
+                    if( !NetUtility.IsFocused( UrlPanelTextBox ) )
+                    {
+                        var _url = e.NewValue.ToString( );
+                        SetUrl( _url );
+                    }
+
+                    EnableBackButton( _currentBrowser.CanGoBack );
+                    EnableForwardButton( _currentBrowser.CanGoForward );
+                    SetTabText( ( ChromiumWebBrowser )sender, "Loading..." );
+                    ToolStripRefreshButton.Visibility = Visibility.Hidden;
+                    UrlPanelCancelButton.Visibility = Visibility.Visible;
+                    _currentTab.DateCreated = DateTime.Now;
+                }
+            } );
         }
 
         /// <inheritdoc />

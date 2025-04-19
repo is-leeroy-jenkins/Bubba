@@ -64,7 +64,7 @@ namespace Bubba
         /// <summary>
         /// My form
         /// </summary>
-        private readonly WebBrowser _webBrowser;
+        private readonly ChatWindow _webBrowser;
 
         /// <summary>
         /// The show dev tools
@@ -123,7 +123,7 @@ namespace Bubba
         /// <param name="form">
         /// The form.
         /// </param>
-        public ContextMenuCallback( WebBrowser form )
+        public ContextMenuCallback( ChatWindow form )
         {
             _webBrowser = form;
         }

@@ -75,7 +75,7 @@ namespace Bubba
         /// <summary>
         /// The browser
         /// </summary>
-        private WebBrowser _webBrowser;
+        private ChatWindow _webBrowser;
 
         /// <summary>
         /// The stream
@@ -98,7 +98,7 @@ namespace Bubba
         /// <see cref="SchemaCallback"/> class.
         /// </summary>
         /// <param name="form">The form.</param>
-        public SchemaCallback( WebBrowser form )
+        public SchemaCallback( ChatWindow form )
         {
             _webBrowser = form;
         }

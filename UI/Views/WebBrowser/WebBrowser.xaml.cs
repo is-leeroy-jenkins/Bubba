@@ -603,11 +603,6 @@ namespace Bubba
             }
 
             _hostCallback = new HostCallback( this );
-            _downloadCallback = new DownloadCallback( this );
-            _lifeSpanCallback = new LifeSpanCallback( this );
-            _contextMenuCallback = new ContextMenuCallback( this );
-            _keyboardCallback = new KeyboardCallback( this );
-            _requestCallback = new RequestCallback( this );
             InitializeDownloads( );
         }
 
