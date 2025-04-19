@@ -57,11 +57,6 @@ namespace Bubba
     public class ChatOptions : GptOptions
     {
         /// <summary>
-        /// The tools
-        /// </summary>
-        private protected IList<string> _tools;
-
-        /// <summary>
         /// Developer-defined tags and values used for filtering completions
         /// </summary>
         private protected IDictionary<string, object> _metaData;
@@ -70,6 +65,41 @@ namespace Bubba
         /// The reasoning effort
         /// </summary>
         private protected string _reasoningEffort;
+
+        /// <summary>
+        /// The tool choice
+        /// </summary>
+        private protected string _toolChoice;
+
+        /// <summary>
+        /// The tools
+        /// </summary>
+        private protected IList<string> _tools;
+
+        /// <summary>
+        /// The image URL
+        /// </summary>
+        private protected string _imageUrl;
+
+        /// <summary>
+        /// The file
+        /// </summary>
+        private protected object _file;
+
+        /// <summary>
+        /// The file path
+        /// </summary>
+        private protected string _filePath;
+
+        /// <summary>
+        /// The vector store ids
+        /// </summary>
+        private protected IList<string> _vectorStoreIds;
+
+        /// <summary>
+        /// The input
+        /// </summary>
+        private protected IList<string> _input;
 
         /// <summary>
         /// Initializes a new instance of the
@@ -95,210 +125,13 @@ namespace Bubba
             _responseFormat = "auto";
         }
 
-        /// <inheritdoc />
-        /// <summary>
-        /// THe number 'n' of responses generatred.
-        /// </summary>
-        /// <value>
-        /// The user identifier.
-        /// </value>
-        public override int Number
-        {
-            get
-            {
-                return _number;
-            }
-            set
-            {
-                if( _number != value )
-                {
-                    _number = value;
-                    OnPropertyChanged( nameof( Number ) );
-                }
-            }
-        }
-
-        /// <summary>
-        /// Gets the chat model.
-        /// </summary>
-        /// <value>
-        /// The chat model.
-        /// </value>
-        /// <inheritdoc />
-        public override string Model
-        {
-            get
-            {
-                return _model;
-            }
-            set
-            {
-                if( _model != value )
-                {
-                    _model = value;
-                    OnPropertyChanged( nameof( Model ) );
-                }
-            }
-        }
-
-        /// <inheritdoc />
-        /// <summary>
-        /// Gets or sets a value indicating whether this
-        /// <see cref="T:Bubba.GptConfig" /> is store.
-        /// </summary>
-        /// <value>
-        ///   <c>true</c> if store; otherwise, <c>false</c>.
-        /// </value>
-        public override bool Store
-        {
-            get
-            {
-                return _store;
-            }
-            set
-            {
-                if( _store != value )
-                {
-                    _store = value;
-                    OnPropertyChanged( nameof( Store ) );
-                }
-            }
-        }
-
-        /// <inheritdoc />
-        /// <summary>
-        /// Gets or sets a value indicating whether this
-        /// <see cref="T:Bubba.GptConfig" /> is stream.
-        /// </summary>
-        /// <value>
-        ///   <c>true</c> if stream; otherwise, <c>false</c>.
-        /// </value>
-        public override bool Stream
-        {
-            get
-            {
-                return _stream;
-            }
-            set
-            {
-                if( _stream != value )
-                {
-                    _stream = value;
-                    OnPropertyChanged( nameof( Stream ) );
-                }
-            }
-        }
-
-        /// <inheritdoc />
-        /// <summary>
-        /// A number between 0.0 and 2.0   between 0 and 2.
-        /// Higher values like 0.8 will make the output more random,
-        /// while lower values like 0.2 will make it more focused and deterministic.
-        /// </summary>
-        /// <value>
-        /// The temperature.
-        /// </value>
-        public override double Temperature
-        {
-            get
-            {
-                return _temperature;
-            }
-            set
-            {
-                if( _temperature != value )
-                {
-                    _temperature = value;
-                    OnPropertyChanged( nameof( Temperature ) );
-                }
-            }
-        }
-
-        /// <inheritdoc />
-        /// <summary>
-        /// A number between -2.0 and 2.0. Positive values penalize new
-        /// tokens based on their existing frequency in the text so far,
-        /// decreasing the model's likelihood to repeat the same line verbatim.
-        /// </summary>
-        /// <value>
-        /// The frequency.
-        /// </value>
-        public override double FrequencyPenalty
-        {
-            get
-            {
-                return _frequencyPenalty;
-            }
-            set
-            {
-                if( _frequencyPenalty != value )
-                {
-                    _frequencyPenalty = value;
-                    OnPropertyChanged( nameof( FrequencyPenalty ) );
-                }
-            }
-        }
-
-        /// <inheritdoc />
-        /// <summary>
-        /// Number between -2.0 and 2.0. Positive values penalize new tokens
-        /// based on whether they appear in the text so far,
-        /// ncreasing the model's likelihood to talk about new topics.
-        /// </summary>
-        /// <value>
-        /// The presence.
-        /// </value>
-        public override double PresencePenalty
-        {
-            get
-            {
-                return _presencePenalty;
-            }
-            set
-            {
-                if( _presencePenalty != value )
-                {
-                    _presencePenalty = value;
-                    OnPropertyChanged( nameof( PresencePenalty ) );
-                }
-            }
-        }
-
-        /// <inheritdoc />
-        /// <summary>
-        /// An alternative to sampling with temperature,
-        /// called nucleus sampling, where the model considers
-        /// the results of the tokens with top_p probability mass.
-        /// So 0.1 means only the tokens comprising the top 10% probability
-        /// mass are considered. We generally recommend altering this
-        /// or temperature but not both.
-        /// </summary>
-        /// <value>
-        /// The top percent.
-        /// </value>
-        public override double TopPercent
-        {
-            get
-            {
-                return _topPercent;
-            }
-            set
-            {
-                if( _topPercent != value )
-                {
-                    _topPercent = value;
-                    OnPropertyChanged( nameof( TopPercent ) );
-                }
-            }
-        }
-
         /// <summary>
         /// Gets or sets the instructions.
         /// </summary>
         /// <value>
         /// The instructions.
         /// </value>
-        public string Instructions
+        public override string Instructions
         {
             get
             {
@@ -389,6 +222,28 @@ namespace Bubba
         }
 
         /// <summary>
+        /// Gets or sets the tool choice.
+        /// </summary>
+        /// <value>
+        /// The tool choice.
+        /// </value>
+        public string ToolChoice
+        {
+            get
+            {
+                return _toolChoice;
+            }
+            set
+            {
+                if( _toolChoice != value )
+                {
+                    _toolChoice = value;
+                    OnPropertyChanged( ToolChoice );
+                }
+            }
+        }
+
+        /// <summary>
         /// Set of 16 key-value pairs that can be attached to an object.
         /// This can be useful for storing additional information about the
         /// object in a structured format. Keys can be a maximum of 64 characters
@@ -409,6 +264,116 @@ namespace Bubba
                 {
                     _metaData = value;
                     OnPropertyChanged( nameof( MetaData ) );
+                }
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the image URL.
+        /// </summary>
+        /// <value>
+        /// The image URL.
+        /// </value>
+        public string ImageUrl
+        {
+            get
+            {
+                return _imageUrl;
+            }
+            set
+            {
+                if( _imageUrl != value )
+                {
+                    _imageUrl = value;
+                    OnPropertyChanged( nameof( ImageUrl ) );
+                }
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the file path.
+        /// </summary>
+        /// <value>
+        /// The file path.
+        /// </value>
+        public string FilePath
+        {
+            get
+            {
+                return _filePath;
+            }
+            set
+            {
+                if( _filePath != value )
+                {
+                    _filePath = value;
+                    OnPropertyChanged( nameof( FilePath ) );
+                }
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the file.
+        /// </summary>
+        /// <value>
+        /// The file.
+        /// </value>
+        public object File
+        {
+            get
+            {
+                return _file;
+            }
+            set
+            {
+                if( _file != value )
+                {
+                    _file = value;
+                    OnPropertyChanged( nameof( File ) );
+                }
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the vector store ids.
+        /// </summary>
+        /// <value>
+        /// The vector store ids.
+        /// </value>
+        public IList<string> VectorStoreIds
+        {
+            get
+            {
+                return _vectorStoreIds;
+            }
+            set
+            {
+                if( _vectorStoreIds != value )
+                {
+                    _vectorStoreIds = value;
+                    OnPropertyChanged( nameof( VectorStoreIds ) );
+                }
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the input.
+        /// </summary>
+        /// <value>
+        /// The input.
+        /// </value>
+        public IList<string> Input
+        {
+            get
+            {
+                return _input;
+            }
+            set
+            {
+                if( _input != value )
+                {
+                    _input = value;
+                    OnPropertyChanged( nameof( Input ) );
                 }
             }
         }

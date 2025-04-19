@@ -15724,6 +15724,65 @@
             </summary>
             <param name="ex">The ex.</param>
         </member>
+        <member name="T:Bubba.GptFunction">
+            <summary>
+            
+            </summary>
+            <seealso cref="T:Bubba.PropertyChangedBase" />
+        </member>
+        <member name="F:Bubba.GptFunction._toolChoice">
+            <summary>
+            The tool choice
+            </summary>
+        </member>
+        <member name="F:Bubba.GptFunction._strict">
+            <summary>
+            The strict
+            </summary>
+        </member>
+        <member name="F:Bubba.GptFunction._type">
+            <summary>
+            The type
+            </summary>
+        </member>
+        <member name="M:Bubba.GptFunction.#ctor">
+            <summary>
+            Initializes a new instance of the
+            <see cref="T:Bubba.GptFunction"/> class.
+            </summary>
+        </member>
+        <member name="P:Bubba.GptFunction.ToolChoice">
+            <summary>
+            Gets or sets the tool choice.
+            </summary>
+            <value>
+            The tool choice.
+            </value>
+        </member>
+        <member name="P:Bubba.GptFunction.Strict">
+            <summary>
+            Gets or sets a value indicating whether this
+            <see cref="T:Bubba.GptFunction"/> is strict.
+            </summary>
+            <value>
+              <c>true</c> if strict; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:Bubba.GptFunction.Type">
+            <summary>
+            Gets or sets the type.
+            </summary>
+            <value>
+            The type.
+            </value>
+        </member>
+        <member name="M:Bubba.GptFunction.Fail(System.Exception)">
+            <summary>
+            Fails the specified ex.
+            
+            </summary>
+            <param name="ex">The ex.</param>
+        </member>
         <member name="T:Bubba.GptHeader">
             <inheritdoc />
             <summary>
@@ -16379,6 +16438,41 @@
             The reasoning effort
             </summary>
         </member>
+        <member name="F:Bubba.AssistantOptions._toolChoice">
+            <summary>
+            The tool choice
+            </summary>
+        </member>
+        <member name="F:Bubba.AssistantOptions._tools">
+            <summary>
+            The tools
+            </summary>
+        </member>
+        <member name="F:Bubba.AssistantOptions._imageUrl">
+            <summary>
+            The image URL
+            </summary>
+        </member>
+        <member name="F:Bubba.AssistantOptions._file">
+            <summary>
+            The file
+            </summary>
+        </member>
+        <member name="F:Bubba.AssistantOptions._filePath">
+            <summary>
+            The file path
+            </summary>
+        </member>
+        <member name="F:Bubba.AssistantOptions._vectorStoreIds">
+            <summary>
+            The vector store ids
+            </summary>
+        </member>
+        <member name="F:Bubba.AssistantOptions._input">
+            <summary>
+            The input
+            </summary>
+        </member>
         <member name="M:Bubba.AssistantOptions.#ctor">
             <summary>
             Initializes a new instance of the
@@ -16386,98 +16480,76 @@
             </summary>
             <inheritdoc />
         </member>
-        <member name="P:Bubba.AssistantOptions.Number">
-            <inheritdoc />
+        <member name="P:Bubba.AssistantOptions.ReasoningEffort">
             <summary>
-            THe number 'n' of responses generatred.
+            Gets or sets the reasoning effort.
             </summary>
             <value>
-            The user identifier.
+            The reasoning effort.
             </value>
         </member>
-        <member name="P:Bubba.AssistantOptions.Model">
+        <member name="P:Bubba.AssistantOptions.ToolChoice">
             <summary>
-            Gets the chat model.
+            Gets or sets the tool choice.
             </summary>
             <value>
-            The chat model.
-            </value>
-            <inheritdoc />
-        </member>
-        <member name="P:Bubba.AssistantOptions.EndPoint">
-            <inheritdoc />
-            <summary>
-            Gets or sets the end point.
-            </summary>
-            <value>
-            The end point.
+            The tool choice.
             </value>
         </member>
-        <member name="P:Bubba.AssistantOptions.Store">
-            <inheritdoc />
+        <member name="P:Bubba.AssistantOptions.Tools">
             <summary>
-            Gets or sets a value indicating whether this
-            <see cref="T:Bubba.GptConfig" /> is store.
+            Gets or sets the tools.
             </summary>
             <value>
-              <c>true</c> if store; otherwise, <c>false</c>.
+            The tools.
             </value>
         </member>
-        <member name="P:Bubba.AssistantOptions.Stream">
-            <inheritdoc />
+        <member name="P:Bubba.AssistantOptions.ImageUrl">
             <summary>
-            Gets or sets a value indicating whether this
-            <see cref="T:Bubba.GptConfig" /> is stream.
+            Gets or sets the image URL.
             </summary>
             <value>
-              <c>true</c> if stream; otherwise, <c>false</c>.
+            The image URL.
             </value>
         </member>
-        <member name="P:Bubba.AssistantOptions.Temperature">
-            <inheritdoc />
+        <member name="P:Bubba.AssistantOptions.Instructions">
             <summary>
-            A number between 0.0 and 2.0   between 0 and 2.
-            Higher values like 0.8 will make the output more random,
-            while lower values like 0.2 will make it more focused and deterministic.
+            Gets or sets the instructions.
             </summary>
             <value>
-            The temperature.
+            The instructions.
             </value>
         </member>
-        <member name="P:Bubba.AssistantOptions.FrequencyPenalty">
-            <inheritdoc />
+        <member name="P:Bubba.AssistantOptions.FilePath">
             <summary>
-            A number between -2.0 and 2.0. Positive values penalize new
-            tokens based on their existing frequency in the text so far,
-            decreasing the model's likelihood to repeat the same line verbatim.
+            Gets or sets the file path.
             </summary>
             <value>
-            The frequency.
+            The file path.
             </value>
         </member>
-        <member name="P:Bubba.AssistantOptions.PresencePenalty">
-            <inheritdoc />
+        <member name="P:Bubba.AssistantOptions.File">
             <summary>
-            Number between -2.0 and 2.0. Positive values penalize new tokens
-            based on whether they appear in the text so far,
-            ncreasing the model's likelihood to talk about new topics.
+            Gets or sets the file.
             </summary>
             <value>
-            The presence.
+            The file.
             </value>
         </member>
-        <member name="P:Bubba.AssistantOptions.TopPercent">
-            <inheritdoc />
+        <member name="P:Bubba.AssistantOptions.VectorStoreIds">
             <summary>
-            An alternative to sampling with temperature,
-            called nucleus sampling, where the model considers
-            the results of the tokens with top_p probability mass.
-            So 0.1 means only the tokens comprising the top 10% probability
-            mass are considered. We generally recommend altering this
-            or temperature but not both.
+            Gets or sets the vector store ids.
             </summary>
             <value>
-            The top percent.
+            The vector store ids.
+            </value>
+        </member>
+        <member name="P:Bubba.AssistantOptions.Input">
+            <summary>
+            Gets or sets the input.
+            </summary>
+            <value>
+            The input.
             </value>
         </member>
         <member name="M:Bubba.AssistantOptions.GetData">
@@ -16492,11 +16564,6 @@
             <summary>
             </summary>
         </member>
-        <member name="F:Bubba.ChatOptions._tools">
-            <summary>
-            The tools
-            </summary>
-        </member>
         <member name="F:Bubba.ChatOptions._metaData">
             <summary>
             Developer-defined tags and values used for filtering completions
@@ -16507,97 +16574,47 @@
             The reasoning effort
             </summary>
         </member>
+        <member name="F:Bubba.ChatOptions._toolChoice">
+            <summary>
+            The tool choice
+            </summary>
+        </member>
+        <member name="F:Bubba.ChatOptions._tools">
+            <summary>
+            The tools
+            </summary>
+        </member>
+        <member name="F:Bubba.ChatOptions._imageUrl">
+            <summary>
+            The image URL
+            </summary>
+        </member>
+        <member name="F:Bubba.ChatOptions._file">
+            <summary>
+            The file
+            </summary>
+        </member>
+        <member name="F:Bubba.ChatOptions._filePath">
+            <summary>
+            The file path
+            </summary>
+        </member>
+        <member name="F:Bubba.ChatOptions._vectorStoreIds">
+            <summary>
+            The vector store ids
+            </summary>
+        </member>
+        <member name="F:Bubba.ChatOptions._input">
+            <summary>
+            The input
+            </summary>
+        </member>
         <member name="M:Bubba.ChatOptions.#ctor">
             <summary>
             Initializes a new instance of the
             <see cref="T:Bubba.ChatOptions"/> class.
             </summary>
             <inheritdoc />
-        </member>
-        <member name="P:Bubba.ChatOptions.Number">
-            <inheritdoc />
-            <summary>
-            THe number 'n' of responses generatred.
-            </summary>
-            <value>
-            The user identifier.
-            </value>
-        </member>
-        <member name="P:Bubba.ChatOptions.Model">
-            <summary>
-            Gets the chat model.
-            </summary>
-            <value>
-            The chat model.
-            </value>
-            <inheritdoc />
-        </member>
-        <member name="P:Bubba.ChatOptions.Store">
-            <inheritdoc />
-            <summary>
-            Gets or sets a value indicating whether this
-            <see cref="T:Bubba.GptConfig" /> is store.
-            </summary>
-            <value>
-              <c>true</c> if store; otherwise, <c>false</c>.
-            </value>
-        </member>
-        <member name="P:Bubba.ChatOptions.Stream">
-            <inheritdoc />
-            <summary>
-            Gets or sets a value indicating whether this
-            <see cref="T:Bubba.GptConfig" /> is stream.
-            </summary>
-            <value>
-              <c>true</c> if stream; otherwise, <c>false</c>.
-            </value>
-        </member>
-        <member name="P:Bubba.ChatOptions.Temperature">
-            <inheritdoc />
-            <summary>
-            A number between 0.0 and 2.0   between 0 and 2.
-            Higher values like 0.8 will make the output more random,
-            while lower values like 0.2 will make it more focused and deterministic.
-            </summary>
-            <value>
-            The temperature.
-            </value>
-        </member>
-        <member name="P:Bubba.ChatOptions.FrequencyPenalty">
-            <inheritdoc />
-            <summary>
-            A number between -2.0 and 2.0. Positive values penalize new
-            tokens based on their existing frequency in the text so far,
-            decreasing the model's likelihood to repeat the same line verbatim.
-            </summary>
-            <value>
-            The frequency.
-            </value>
-        </member>
-        <member name="P:Bubba.ChatOptions.PresencePenalty">
-            <inheritdoc />
-            <summary>
-            Number between -2.0 and 2.0. Positive values penalize new tokens
-            based on whether they appear in the text so far,
-            ncreasing the model's likelihood to talk about new topics.
-            </summary>
-            <value>
-            The presence.
-            </value>
-        </member>
-        <member name="P:Bubba.ChatOptions.TopPercent">
-            <inheritdoc />
-            <summary>
-            An alternative to sampling with temperature,
-            called nucleus sampling, where the model considers
-            the results of the tokens with top_p probability mass.
-            So 0.1 means only the tokens comprising the top 10% probability
-            mass are considered. We generally recommend altering this
-            or temperature but not both.
-            </summary>
-            <value>
-            The top percent.
-            </value>
         </member>
         <member name="P:Bubba.ChatOptions.Instructions">
             <summary>
@@ -16638,6 +16655,14 @@
             The tools.
             </value>
         </member>
+        <member name="P:Bubba.ChatOptions.ToolChoice">
+            <summary>
+            Gets or sets the tool choice.
+            </summary>
+            <value>
+            The tool choice.
+            </value>
+        </member>
         <member name="P:Bubba.ChatOptions.MetaData">
             <summary>
             Set of 16 key-value pairs that can be attached to an object.
@@ -16647,6 +16672,46 @@
             </summary>
             <value>
             The meta data.
+            </value>
+        </member>
+        <member name="P:Bubba.ChatOptions.ImageUrl">
+            <summary>
+            Gets or sets the image URL.
+            </summary>
+            <value>
+            The image URL.
+            </value>
+        </member>
+        <member name="P:Bubba.ChatOptions.FilePath">
+            <summary>
+            Gets or sets the file path.
+            </summary>
+            <value>
+            The file path.
+            </value>
+        </member>
+        <member name="P:Bubba.ChatOptions.File">
+            <summary>
+            Gets or sets the file.
+            </summary>
+            <value>
+            The file.
+            </value>
+        </member>
+        <member name="P:Bubba.ChatOptions.VectorStoreIds">
+            <summary>
+            Gets or sets the vector store ids.
+            </summary>
+            <value>
+            The vector store ids.
+            </value>
+        </member>
+        <member name="P:Bubba.ChatOptions.Input">
+            <summary>
+            Gets or sets the input.
+            </summary>
+            <value>
+            The input.
             </value>
         </member>
         <member name="M:Bubba.ChatOptions.GetFormats">
@@ -17679,6 +17744,12 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="M:Bubba.TranscriptionOptions.GetVoiceOptions">
+            <summary>
+            Gets the voice options.
+            </summary>
+            <returns></returns>
+        </member>
         <member name="T:Bubba.TranslationOptions">
             <inheritdoc />
             <summary>
@@ -17760,6 +17831,18 @@
         <member name="M:Bubba.TranslationOptions.GetFileFormats">
             <summary>
             Gets the formats.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Bubba.TranslationOptions.GetVoiceOptions">
+            <summary>
+            Gets the voice options.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Bubba.TranslationOptions.GetModelOptions">
+            <summary>
+            Gets the model options.
             </summary>
             <returns></returns>
         </member>
@@ -22632,6 +22715,82 @@
             </summary>
             <param name="response">The json response.</param>
             <returns></returns>
+        </member>
+        <member name="T:Bubba.UserLocation">
+            <summary>
+            
+            </summary>
+            <seealso cref="T:Bubba.PropertyChangedBase" />
+        </member>
+        <member name="F:Bubba.UserLocation._city">
+            <summary>
+            The city
+            </summary>
+        </member>
+        <member name="F:Bubba.UserLocation._region">
+            <summary>
+            The region
+            </summary>
+        </member>
+        <member name="F:Bubba.UserLocation._country">
+            <summary>
+            The country
+            </summary>
+        </member>
+        <member name="F:Bubba.UserLocation._state">
+            <summary>
+            The state
+            </summary>
+        </member>
+        <member name="F:Bubba.UserLocation._zipCode">
+            <summary>
+            The zip code
+            </summary>
+        </member>
+        <member name="M:Bubba.UserLocation.#ctor">
+            <summary>
+            Initializes a new instance of the
+            <see cref="T:Bubba.UserLocation"/> class.
+            </summary>
+        </member>
+        <member name="P:Bubba.UserLocation.City">
+            <summary>
+            Gets or sets the city.
+            </summary>
+            <value>
+            The city.
+            </value>
+        </member>
+        <member name="P:Bubba.UserLocation.Region">
+            <summary>
+            Gets or sets the region.
+            </summary>
+            <value>
+            The region.
+            </value>
+        </member>
+        <member name="P:Bubba.UserLocation.State">
+            <summary>
+            Gets or sets the state.
+            </summary>
+            <value>
+            The state.
+            </value>
+        </member>
+        <member name="P:Bubba.UserLocation.ZipCode">
+            <summary>
+            Gets or sets the zip code.
+            </summary>
+            <value>
+            The zip code.
+            </value>
+        </member>
+        <member name="M:Bubba.UserLocation.Fail(System.Exception)">
+            <summary>
+            Fails the specified ex.
+            
+            </summary>
+            <param name="ex">The ex.</param>
         </member>
         <member name="T:Bubba.HtmlAttribute">
             <inheritdoc />
@@ -34229,7 +34388,8 @@
             Called when [voice selection changed].
             </summary>
             <param name="sender">The sender.</param>
-            <param name="e">The <see cref="T:System.Windows.RoutedEventArgs"/> instance containing the event data.</param>
+            <param name="e">The <see cref="T:System.Windows.RoutedEventArgs"/>
+            instance containing the event data.</param>
         </member>
         <member name="M:Bubba.ChatWindow.Dispose">
             <inheritdoc />
@@ -37819,6 +37979,36 @@
         <member name="M:Bubba.WebBrowser.InitializeComponent">
             <summary>
             InitializeComponent
+            </summary>
+        </member>
+        <member name="T:XamlGeneratedNamespace.GeneratedInternalTypeHelper">
+            <summary>
+            GeneratedInternalTypeHelper
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.CreateInstance(System.Type,System.Globalization.CultureInfo)">
+            <summary>
+            CreateInstance
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.GetPropertyValue(System.Reflection.PropertyInfo,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            GetPropertyValue
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.SetPropertyValue(System.Reflection.PropertyInfo,System.Object,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            SetPropertyValue
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.CreateDelegate(System.Type,System.Object,System.String)">
+            <summary>
+            CreateDelegate
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.AddEventHandler(System.Reflection.EventInfo,System.Object,System.Delegate)">
+            <summary>
+            AddEventHandler
             </summary>
         </member>
     </members>

@@ -292,5 +292,64 @@ namespace Bubba
                 return default( IList<string> );
             }
         }
+
+        /// <summary>
+        /// Gets the voice options.
+        /// </summary>
+        /// <returns></returns>
+        public IList<string> GetVoiceOptions( )
+        {
+            try
+            {
+                var _options = new List<string>
+                {
+                    "alloy",
+                    "ash",
+                    "ballad",
+                    "coral",
+                    "echo",
+                    "fable",
+                    "onyx",
+                    "nova",
+                    "sage",
+                    "shimmer"
+                };
+
+                return _options?.Any( ) == true
+                    ? _options
+                    : default( IList<string> );
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+                return default( IList<string> );
+            }
+        }
+
+        /// <summary>
+        /// Gets the model options.
+        /// </summary>
+        /// <returns></returns>
+        public IList<string> GetModelOptions( )
+        {
+            try
+            {
+                var _options = new List<string>
+                {
+                    "tts-1",
+                    "tts-1-hd",
+                    "gpt-4o-mini-tts"
+                };
+
+                return _options?.Any( ) == true
+                    ? _options
+                    : default( IList<string> );
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+                return default( IList<string> );
+            }
+        }
     }
 }

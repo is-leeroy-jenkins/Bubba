@@ -14,12 +14,50 @@ namespace Bubba
     /// <seealso cref="T:Bubba.GptOptions" />
     [ SuppressMessage( "ReSharper", "ClassCanBeSealed.Global" ) ]
     [ SuppressMessage( "ReSharper", "PreferConcreteValueOverDefault" ) ]
+    [ SuppressMessage( "ReSharper", "PossibleUnintendedReferenceComparison" ) ]
+    [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
+    [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
     public class AssistantOptions : GptOptions
     {
         /// <summary>
         /// The reasoning effort
         /// </summary>
         private protected string _reasoningEffort;
+
+        /// <summary>
+        /// The tool choice
+        /// </summary>
+        private protected string _toolChoice;
+
+        /// <summary>
+        /// The tools
+        /// </summary>
+        private protected IList<string> _tools;
+
+        /// <summary>
+        /// The image URL
+        /// </summary>
+        private protected string _imageUrl;
+
+        /// <summary>
+        /// The file
+        /// </summary>
+        private protected object _file;
+
+        /// <summary>
+        /// The file path
+        /// </summary>
+        private protected string _filePath;
+
+        /// <summary>
+        /// The vector store ids
+        /// </summary>
+        private protected IList<string> _vectorStoreIds;
+
+        /// <summary>
+        /// The input
+        /// </summary>
+        private protected IList<string> _input;
 
         /// <summary>
         /// Initializes a new instance of the
@@ -45,222 +83,200 @@ namespace Bubba
             _responseFormat = "auto";
         }
 
-        /// <inheritdoc />
         /// <summary>
-        /// THe number 'n' of responses generatred.
+        /// Gets or sets the reasoning effort.
         /// </summary>
         /// <value>
-        /// The user identifier.
+        /// The reasoning effort.
         /// </value>
-        public override int Number
+        public string ReasoningEffort
         {
             get
             {
-                return _number;
+                return _reasoningEffort;
             }
             set
             {
-                if( _number != value )
+                if( _reasoningEffort != value )
                 {
-                    _number = value;
-                    OnPropertyChanged( nameof( Number ) );
+                    _reasoningEffort = value;
+                    OnPropertyChanged( ReasoningEffort );
                 }
             }
         }
 
         /// <summary>
-        /// Gets the chat model.
+        /// Gets or sets the tool choice.
         /// </summary>
         /// <value>
-        /// The chat model.
+        /// The tool choice.
         /// </value>
-        /// <inheritdoc />
-        public override string Model
+        public string ToolChoice
         {
             get
             {
-                return _model;
+                return _toolChoice;
             }
             set
             {
-                if( _model != value )
+                if( _toolChoice != value )
                 {
-                    _model = value;
-                    OnPropertyChanged( nameof( Model ) );
+                    _toolChoice = value;
+                    OnPropertyChanged( ToolChoice );
                 }
             }
         }
 
-        /// <inheritdoc />
         /// <summary>
-        /// Gets or sets the end point.
+        /// Gets or sets the tools.
         /// </summary>
         /// <value>
-        /// The end point.
+        /// The tools.
         /// </value>
-        public override string EndPoint
+        public IList<string> Tools
         {
             get
             {
-                return _endPoint;
+                return _tools;
             }
             set
             {
-                if( _endPoint != value )
+                if( _tools != value )
                 {
-                    _endPoint = value;
-                    OnPropertyChanged( nameof( EndPoint ) );
+                    _tools = value;
+                    OnPropertyChanged( nameof( Tools ) );
                 }
             }
         }
 
-        /// <inheritdoc />
         /// <summary>
-        /// Gets or sets a value indicating whether this
-        /// <see cref="T:Bubba.GptConfig" /> is store.
+        /// Gets or sets the image URL.
         /// </summary>
         /// <value>
-        ///   <c>true</c> if store; otherwise, <c>false</c>.
+        /// The image URL.
         /// </value>
-        public override bool Store
+        public string ImageUrl
         {
             get
             {
-                return _store;
+                return _imageUrl;
             }
             set
             {
-                if( _store != value )
+                if( _imageUrl != value )
                 {
-                    _store = value;
-                    OnPropertyChanged( nameof( Store ) );
+                    _imageUrl = value;
+                    OnPropertyChanged( nameof( ImageUrl ) );
                 }
             }
         }
 
-        /// <inheritdoc />
         /// <summary>
-        /// Gets or sets a value indicating whether this
-        /// <see cref="T:Bubba.GptConfig" /> is stream.
+        /// Gets or sets the instructions.
         /// </summary>
         /// <value>
-        ///   <c>true</c> if stream; otherwise, <c>false</c>.
+        /// The instructions.
         /// </value>
-        public override bool Stream
+        public override string Instructions
         {
             get
             {
-                return _stream;
+                return _instructions;
             }
             set
             {
-                if( _stream != value )
+                if( _instructions != value )
                 {
-                    _stream = value;
-                    OnPropertyChanged( nameof( Stream ) );
+                    _instructions = value;
+                    OnPropertyChanged( nameof( Instructions ) );
                 }
             }
         }
 
-        /// <inheritdoc />
         /// <summary>
-        /// A number between 0.0 and 2.0   between 0 and 2.
-        /// Higher values like 0.8 will make the output more random,
-        /// while lower values like 0.2 will make it more focused and deterministic.
+        /// Gets or sets the file path.
         /// </summary>
         /// <value>
-        /// The temperature.
+        /// The file path.
         /// </value>
-        public override double Temperature
+        public string FilePath
         {
             get
             {
-                return _temperature;
+                return _filePath;
             }
             set
             {
-                if( _temperature != value )
+                if( _filePath != value )
                 {
-                    _temperature = value;
-                    OnPropertyChanged( nameof( Temperature ) );
+                    _filePath = value;
+                    OnPropertyChanged( nameof( FilePath ) );
                 }
             }
         }
 
-        /// <inheritdoc />
         /// <summary>
-        /// A number between -2.0 and 2.0. Positive values penalize new
-        /// tokens based on their existing frequency in the text so far,
-        /// decreasing the model's likelihood to repeat the same line verbatim.
+        /// Gets or sets the file.
         /// </summary>
         /// <value>
-        /// The frequency.
+        /// The file.
         /// </value>
-        public override double FrequencyPenalty
+        public object File
         {
             get
             {
-                return _frequencyPenalty;
+                return _file;
             }
             set
             {
-                if( _frequencyPenalty != value )
+                if( _file != value )
                 {
-                    _frequencyPenalty = value;
-                    OnPropertyChanged( nameof( FrequencyPenalty ) );
+                    _file = value;
+                    OnPropertyChanged( nameof( File ) );
                 }
             }
         }
 
-        /// <inheritdoc />
         /// <summary>
-        /// Number between -2.0 and 2.0. Positive values penalize new tokens
-        /// based on whether they appear in the text so far,
-        /// ncreasing the model's likelihood to talk about new topics.
+        /// Gets or sets the vector store ids.
         /// </summary>
         /// <value>
-        /// The presence.
+        /// The vector store ids.
         /// </value>
-        public override double PresencePenalty
+        public IList<string> VectorStoreIds
         {
             get
             {
-                return _presencePenalty;
+                return _vectorStoreIds;
             }
             set
             {
-                if( _presencePenalty != value )
+                if( _vectorStoreIds != value )
                 {
-                    _presencePenalty = value;
-                    OnPropertyChanged( nameof( PresencePenalty ) );
+                    _vectorStoreIds = value;
+                    OnPropertyChanged( nameof( VectorStoreIds ) );
                 }
             }
         }
 
-        /// <inheritdoc />
         /// <summary>
-        /// An alternative to sampling with temperature,
-        /// called nucleus sampling, where the model considers
-        /// the results of the tokens with top_p probability mass.
-        /// So 0.1 means only the tokens comprising the top 10% probability
-        /// mass are considered. We generally recommend altering this
-        /// or temperature but not both.
+        /// Gets or sets the input.
         /// </summary>
         /// <value>
-        /// The top percent.
+        /// The input.
         /// </value>
-        public override double TopPercent
+        public IList<string> Input
         {
             get
             {
-                return _topPercent;
+                return _input;
             }
             set
             {
-                if( _topPercent != value )
+                if( _input != value )
                 {
-                    _topPercent = value;
-                    OnPropertyChanged( nameof( TopPercent ) );
+                    _input = value;
+                    OnPropertyChanged( nameof( Input ) );
                 }
             }
         }

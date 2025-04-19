@@ -370,8 +370,9 @@
                                 MinorTickFrequency="2"
                                 MinorTickLength="5"
                                 MinorTickStroke="{StaticResource WhiteForeground}"
+                                ShowRange="True"
                                 ShowValueLabels="True"
-                                SmallChange="0.01"
+                                SmallChange="0.05"
                                 SnapsTo="Ticks"
                                 TickFrequency="0.275"
                                 TickPlacement="BottomRight"
@@ -1167,24 +1168,8 @@
                         Background="{StaticResource FormBackground}">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="47" />
-                            <RowDefinition />
+                            <RowDefinition Height="Auto" />
                         </Grid.RowDefinitions>
-
-                        <StackPanel
-                            x:Name="BrowserPanel"
-                            Grid.Row="1"
-                            Height="544">
-                            <web:ChromiumWebBrowser
-                                x:Name="Browser"
-                                Height="540"
-                                Margin="1,1,1,1"
-                                HorizontalAlignment="Stretch"
-                                Address="https://www.google.com/"
-                                IsHitTestVisible="False"
-                                ResizeHackEnabled="True"
-                                ScrollViewer.CanContentScroll="True" />
-                        </StackPanel>
-
                         <Grid
                             x:Name="ControlBox"
                             Grid.Row="0"
@@ -1200,7 +1185,6 @@
                                 <ColumnDefinition Width="50" />
                                 <ColumnDefinition Width="50" />
                                 <ColumnDefinition Width="415" />
-                                <ColumnDefinition Width="275" />
                                 <ColumnDefinition Width="55" />
                                 <ColumnDefinition Width="55" />
                                 <ColumnDefinition Width="203" />
@@ -1266,7 +1250,7 @@
                                 FontFamily="Roboto"
                                 FontSize="16"
                                 Foreground="{StaticResource FormForeground}"
-                                Text="{Binding Address, ElementName=Browser}"
+                                Text="{Binding Address, ElementName=WebBrowser}"
                                 TextWrapping="NoWrap"
                                 ToolTip="Web URL" />
 
@@ -1317,6 +1301,16 @@
                                 ImageSource="/Resources/Assets/ToolStripImages/HomeButton.png"
                                 ToolTip="Home Page" />
                         </Grid>
+                        <Canvas
+                            Grid.Row="1"
+                            Height="550"
+                            Margin="1" />
+
+                        <web:ChromiumWebBrowser
+                            x:Name="WebBrowser"
+                            Grid.Row="1"
+                            Height="Auto" />
+
                     </Grid>
                 </TabItem>
 
@@ -1456,10 +1450,10 @@
                         <Canvas Grid.Column="1">
                             <wpf:ColorEdit
                                 x:Name="ColorEdit"
-                                Canvas.Left="15"
-                                Canvas.Top="57"
-                                Width="273"
-                                Height="259"
+                                Canvas.Left="10"
+                                Canvas.Top="52"
+                                Width="286"
+                                Height="264"
                                 HorizontalAlignment="Center"
                                 VerticalAlignment="Top"
                                 Background="{DynamicResource ControlBackground}"
@@ -1472,11 +1466,11 @@
                                 x:Name="DeleteImageButton"
                                 Title=""
                                 Canvas.Left="15"
-                                Canvas.Top="399"
+                                Canvas.Top="546"
                                 Width="70"
-                                Height="50"
-                                HorizontalAlignment="Left"
-                                VerticalAlignment="Center"
+                                Height="40"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Top"
                                 Header=""
                                 ImageSource="/Resources/Assets/ToolStripImages/DeleteButton.png" />
                         </Canvas>

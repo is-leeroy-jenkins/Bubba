@@ -1874,6 +1874,7 @@ namespace Bubba
         /// <summary>
         /// Sets the models.
         /// </summary>
+        /// 
         private async void PopulateModelsAsync( )
         {
             try
@@ -4596,7 +4597,8 @@ namespace Bubba
         /// Called when [voice selection changed].
         /// </summary>
         /// <param name="sender">The sender.</param>
-        /// <param name="e">The <see cref="RoutedEventArgs"/> instance containing the event data.</param>
+        /// <param name="e">The <see cref="RoutedEventArgs"/>
+        /// instance containing the event data.</param>
         private protected void OnVoiceSelectionChanged( object sender, RoutedEventArgs e )
         {
             try
