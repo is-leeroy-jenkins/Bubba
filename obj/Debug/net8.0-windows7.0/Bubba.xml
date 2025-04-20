@@ -377,7 +377,7 @@
             The print
             </summary>
         </member>
-        <member name="M:Bubba.ContextMenuCallback.#ctor(Bubba.WebBrowser)">
+        <member name="M:Bubba.ContextMenuCallback.#ctor(Bubba.ChatWindow)">
             <summary>
             Initializes a new instance of the
             <see cref="T:Bubba.ContextMenuCallback"/> class.
@@ -476,7 +476,7 @@
             The browser
             </summary>
         </member>
-        <member name="M:Bubba.DownloadCallback.#ctor(Bubba.WebBrowser)">
+        <member name="M:Bubba.DownloadCallback.#ctor(Bubba.ChatWindow)">
             <summary>
             Initializes a new instance of the
             <see cref="T:Bubba.DownloadCallback"/>
@@ -576,7 +576,7 @@
             The hot keys
             </summary>
         </member>
-        <member name="M:Bubba.KeyboardCallback.#ctor(Bubba.WebBrowser)">
+        <member name="M:Bubba.KeyboardCallback.#ctor(Bubba.ChatWindow)">
             <summary>
             Initializes a new instance of the
             <see cref="T:Bubba.KeyboardCallback"/> class.
@@ -717,7 +717,7 @@
             The browser
             </summary>
         </member>
-        <member name="M:Bubba.LifeSpanCallback.#ctor(Bubba.WebBrowser)">
+        <member name="M:Bubba.LifeSpanCallback.#ctor(Bubba.ChatWindow)">
             <summary>
             Initializes a new instance of the
             <see cref="T:Bubba.LifeSpanCallback"/> class.
@@ -779,7 +779,7 @@
             The browser
             </summary>
         </member>
-        <member name="M:Bubba.RequestCallback.#ctor(Bubba.WebBrowser)">
+        <member name="M:Bubba.RequestCallback.#ctor(Bubba.ChatWindow)">
             <summary>
             Initializes a new instance of the
             <see cref="T:Bubba.RequestCallback"/> class.
@@ -945,7 +945,7 @@
             The browser
             </summary>
         </member>
-        <member name="M:Bubba.ResourceRequestCallback.#ctor(Bubba.WebBrowser)">
+        <member name="M:Bubba.ResourceRequestCallback.#ctor(Bubba.ChatWindow)">
             <summary>
             Initializes a new instance of the
             <see cref="T:Bubba.ResourceRequestCallback"/>
@@ -1082,7 +1082,7 @@
             The application path
             </summary>
         </member>
-        <member name="M:Bubba.SchemaCallback.#ctor(Bubba.WebBrowser)">
+        <member name="M:Bubba.SchemaCallback.#ctor(Bubba.ChatWindow)">
             <summary>
             Initializes a new instance of the
             <see cref="T:Bubba.SchemaCallback"/> class.
@@ -33039,6 +33039,37 @@
             The user prompt for the GPT
             </summary>
         </member>
+        <!-- Badly formed XML comment ignored for member "F:Bubba.ChatWindow.TabPages" -->
+        <member name="F:Bubba.ChatWindow._downloadStrip">
+            <summary>
+            The download strip
+            </summary>
+        </member>
+        <member name="F:Bubba.ChatWindow._addTabItem">
+            <summary>
+            The add tab item
+            </summary>
+        </member>
+        <member name="F:Bubba.ChatWindow._newTabItem">
+            <summary>
+            The new tab strip
+            </summary>
+        </member>
+        <member name="F:Bubba.ChatWindow._currentTab">
+            <summary>
+            The new tab strip
+            </summary>
+        </member>
+        <member name="F:Bubba.ChatWindow.Instance">
+            <summary>
+            The instance
+            </summary>
+        </member>
+        <member name="F:Bubba.ChatWindow.Assembly">
+            <summary>
+            The assembly
+            </summary>
+        </member>
         <member name="F:Bubba.ChatWindow._messages">
             <summary>
             The messages
@@ -33265,6 +33296,46 @@
             The chat model
             </summary>
         </member>
+        <member name="F:Bubba.ChatWindow._contextMenuCallback">
+            <summary>
+            The context menu handler
+            </summary>
+        </member>
+        <member name="F:Bubba.ChatWindow._currentTitle">
+            <summary>
+            The current title
+            </summary>
+        </member>
+        <member name="F:Bubba.ChatWindow._searchEngineId">
+            <summary>
+            The search engine identifier
+            </summary>
+        </member>
+        <member name="F:Bubba.ChatWindow._searchEngineProjectId">
+            <summary>
+            The search engine project identifier
+            </summary>
+        </member>
+        <member name="F:Bubba.ChatWindow._searchEngineName">
+            <summary>
+            The search engine name
+            </summary>
+        </member>
+        <member name="F:Bubba.ChatWindow._searchEngineProjectNumber">
+            <summary>
+            The search engine project number
+            </summary>
+        </member>
+        <member name="F:Bubba.ChatWindow._searchEngineKey">
+            <summary>
+            The search engine key
+            </summary>
+        </member>
+        <member name="F:Bubba.ChatWindow._searchEngineUrl">
+            <summary>
+            The search engine URL
+            </summary>
+        </member>
         <member name="F:Bubba.ChatWindow._engine">
             <summary>
             The speech recognition engine
@@ -33377,6 +33448,48 @@
             <see cref="T:Bubba.ChatWindow"/> class.
             </summary>
         </member>
+        <member name="P:Bubba.ChatWindow.LastIndex">
+            <summary>
+            Gets the last index.
+            </summary>
+            <value>
+            The last index.
+            </value>
+        </member>
+        <member name="P:Bubba.ChatWindow.HostCallback">
+            <summary>
+            The host
+            </summary>
+        </member>
+        <member name="P:Bubba.ChatWindow.DownloadNames">
+            <summary>
+            The download names
+            </summary>
+        </member>
+        <member name="P:Bubba.ChatWindow.AddTabItem">
+            <summary>
+            Gets or sets the add tab item.
+            </summary>
+            <value>
+            The add tab item.
+            </value>
+        </member>
+        <member name="P:Bubba.ChatWindow.NewTabItem">
+            <summary>
+            Creates new tabitem.
+            </summary>
+            <value>
+            The new tab item.
+            </value>
+        </member>
+        <member name="P:Bubba.ChatWindow.CancelRequests">
+            <summary>
+            Gets the cancel requests.
+            </summary>
+            <value>
+            The cancel requests.
+            </value>
+        </member>
         <member name="M:Bubba.ChatWindow.InitializePlotter">
             <summary>
             Initializes the plotter.
@@ -33431,6 +33544,12 @@
             Sets the hyper parameters.
             </summary>
         </member>
+        <member name="M:Bubba.ChatWindow.InitializeBrowser">
+            <summary>
+            this is done just once,
+            to globally initialize CefSharp/CEF
+            </summary>
+        </member>
         <member name="M:Bubba.ChatWindow.RegisterCallbacks">
             <summary>
             Registers the callbacks.
@@ -33447,6 +33566,45 @@
             Invokes if.
             </summary>
             <param name="action">The action.</param>
+        </member>
+        <member name="M:Bubba.ChatWindow.IsBlank(System.String)">
+            <summary>
+            Determines whether the specified URL is blank.
+            </summary>
+            <param name="url">The URL.</param>
+            <returns>
+            <c>true</c>
+            if the specified URL is blank;
+            otherwise,
+            <c>false</c>.
+            </returns>
+        </member>
+        <member name="M:Bubba.ChatWindow.IsBlankOrSystem(System.String)">
+            <summary>
+            Determines whether [is blank or system] [the specified URL].
+            </summary>
+            <param name="url">The URL.</param>
+            <returns>
+            <c>true</c> if [is blank or system] [the specified URL];
+            otherwise,
+            <c>false</c>.
+            </returns>
+        </member>
+        <member name="M:Bubba.ChatWindow.IsFirstTab">
+            <summary>
+            Determines whether [is on first tab].
+            </summary>
+            <returns>
+              <c>true</c> if [is on first tab]; otherwise, <c>false</c>.
+            </returns>
+        </member>
+        <member name="M:Bubba.ChatWindow.IsLastTab">
+            <summary>
+            Determines whether [is on last tab].
+            </summary>
+            <returns>
+              <c>true</c> if [is on last tab]; otherwise, <c>false</c>.
+            </returns>
         </member>
         <member name="M:Bubba.ChatWindow.Busy">
             <summary>
@@ -33546,6 +33704,11 @@
         <member name="M:Bubba.ChatWindow.CloseSearch">
             <summary>
             Closes the search.
+            </summary>
+        </member>
+        <member name="M:Bubba.ChatWindow.CloseOtherTabs">
+            <summary>
+            Closes the other tabs.
             </summary>
         </member>
         <member name="M:Bubba.ChatWindow.DownloadsInProgress">
@@ -33686,6 +33849,7 @@
             <summary>
             Sets the models.
             </summary>
+            
         </member>
         <member name="M:Bubba.ChatWindow.PopulateImageSizes">
             <summary>
@@ -33847,6 +34011,11 @@
             Activates the chat tab.
             </summary>
         </member>
+        <member name="M:Bubba.ChatWindow.ActivateBrowserTab">
+            <summary>
+            Activates the chat tab.
+            </summary>
+        </member>
         <member name="M:Bubba.ChatWindow.ActivateEditorTab">
             <summary>
             Activates the editor tab.
@@ -33877,6 +34046,29 @@
             Activates the busy tab.
             </summary>
         </member>
+        <member name="M:Bubba.ChatWindow.AddBlankTab">
+            <summary>
+            Adds the blank tab.
+            </summary>
+        </member>
+        <member name="M:Bubba.ChatWindow.AddNewBrowserTab(System.String,System.Boolean,System.String)">
+            <summary>
+            Adds the new browser tab.
+            </summary>
+            <param name="url">The URL.</param>
+            <param name="focus">if set to
+            <c>true</c> [focus new tab].</param>
+            <param name="referringUrl">The referring URL.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Bubba.ChatWindow.AddNewBrowser(Bubba.BrowserTabItem,System.String)">
+            <summary>
+            Adds the new browser.
+            </summary>
+            <param name="tabItem">The tab strip.</param>
+            <param name="url">The URL.</param>
+            <returns></returns>
+        </member>
         <member name="M:Bubba.ChatWindow.UpdateStatus">
             <summary>
             Updates the status.
@@ -33886,6 +34078,19 @@
             <summary>
             Updates the status.
             </summary>
+        </member>
+        <member name="M:Bubba.ChatWindow.UpdateDownloadItem(CefSharp.DownloadItem)">
+            <summary>
+            Updates the download item.
+            </summary>
+            <param name="item">The item.</param>
+        </member>
+        <member name="M:Bubba.ChatWindow.GetDownloadPath(CefSharp.DownloadItem)">
+            <summary>
+            Calculates the download path.
+            </summary>
+            <param name="item">The item.</param>
+            <returns></returns>
         </member>
         <member name="M:Bubba.ChatWindow.RunClient">
             <summary>
@@ -33939,6 +34144,21 @@
             Called by LoadURL to set the form URL.
             </summary>
             <param name="url">The URL.</param>
+        </member>
+        <member name="M:Bubba.ChatWindow.SetTabText(CefSharp.Wpf.ChromiumWebBrowser,System.String)">
+            <summary>
+            Sets the tab title.
+            </summary>
+            <param name="browser">The browser.</param>
+            <param name="text">The text.</param>
+        </member>
+        <member name="M:Bubba.ChatWindow.SetTitleText(System.String)">
+            <summary>
+            Sets the form title.
+            </summary>
+            <param name="title">
+            Name of the tab.
+            </param>
         </member>
         <member name="M:Bubba.ChatWindow.ToggleFullscreen">
             <summary>
@@ -34389,6 +34609,46 @@
             </summary>
             <param name="sender">The sender.</param>
             <param name="e">The <see cref="T:System.Windows.RoutedEventArgs"/>
+            instance containing the event data.</param>
+        </member>
+        <member name="M:Bubba.ChatWindow.OnWebBrowserLoadingStateChanged(System.Object,CefSharp.LoadingStateChangedEventArgs)">
+            <summary>
+            Called when [loading state changed].
+            </summary>
+            <param name="sender">The sender.</param>
+            <param name="e">The <see cref="T:System.Windows.RoutedEventArgs"/>
+            instance containing the event data.</param>
+        </member>
+        <member name="M:Bubba.ChatWindow.OnWebBrowserFrameLoadEnd(System.Object,CefSharp.FrameLoadEndEventArgs)">
+            <summary>
+            Called when [WebBrowser frame load end].
+            </summary>
+            <param name="sender">The sender.</param>
+            <param name="e">The <see cref="T:CefSharp.FrameLoadEndEventArgs"/>
+            instance containing the event data.</param>
+        </member>
+        <member name="M:Bubba.ChatWindow.OnWebBrowserLoadError(System.Object,CefSharp.LoadErrorEventArgs)">
+            <summary>
+            Called when [load error].
+            </summary>
+            <param name="sender">The sender.</param>
+            <param name="e">The <see cref="T:CefSharp.LoadErrorEventArgs" />
+            instance containing the event data.</param>
+        </member>
+        <member name="M:Bubba.ChatWindow.OnWebBrowserTitleChanged(System.Object,System.Windows.DependencyPropertyChangedEventArgs)">
+            <summary>
+            Called when [title changed].
+            </summary>
+            <param name="sender">The sender.</param>
+            <param name="e">The <see cref="T:CefSharp.TitleChangedEventArgs" />
+            instance containing the event data.</param>
+        </member>
+        <member name="M:Bubba.ChatWindow.OnWebBrowserAddressChanged(System.Object,System.Windows.DependencyPropertyChangedEventArgs)">
+            <summary>
+            Called when [URL changed].
+            </summary>
+            <param name="sender">The sender.</param>
+            <param name="e">The <see cref="T:CefSharp.AddressChangedEventArgs" />
             instance containing the event data.</param>
         </member>
         <member name="M:Bubba.ChatWindow.Dispose">
@@ -37979,36 +38239,6 @@
         <member name="M:Bubba.WebBrowser.InitializeComponent">
             <summary>
             InitializeComponent
-            </summary>
-        </member>
-        <member name="T:XamlGeneratedNamespace.GeneratedInternalTypeHelper">
-            <summary>
-            GeneratedInternalTypeHelper
-            </summary>
-        </member>
-        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.CreateInstance(System.Type,System.Globalization.CultureInfo)">
-            <summary>
-            CreateInstance
-            </summary>
-        </member>
-        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.GetPropertyValue(System.Reflection.PropertyInfo,System.Object,System.Globalization.CultureInfo)">
-            <summary>
-            GetPropertyValue
-            </summary>
-        </member>
-        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.SetPropertyValue(System.Reflection.PropertyInfo,System.Object,System.Object,System.Globalization.CultureInfo)">
-            <summary>
-            SetPropertyValue
-            </summary>
-        </member>
-        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.CreateDelegate(System.Type,System.Object,System.String)">
-            <summary>
-            CreateDelegate
-            </summary>
-        </member>
-        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.AddEventHandler(System.Reflection.EventInfo,System.Object,System.Delegate)">
-            <summary>
-            AddEventHandler
             </summary>
         </member>
     </members>

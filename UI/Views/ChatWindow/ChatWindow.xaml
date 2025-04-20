@@ -281,14 +281,14 @@
             <mah:MetroTabControl
                 x:Name="TabControl"
                 Grid.Row="0"
-                Foreground="{DynamicResource FormForeground}">
+                Foreground="{StaticResource FormForeground}">
 
                 <!--  ********************************************* CHAT TAB *************************************  -->
 
                 <TabItem
                     x:Name="ChatTab"
                     Foreground="{StaticResource FormForeground}"
-                    Header="Chat">
+                    Header="Chat" Tag="Chat">
                     <Grid
                         x:Name="ChatTabGrid"
                         Background="{StaticResource FormBackground}">
@@ -330,7 +330,7 @@
                     Height="22"
                     VerticalAlignment="Top"
                     Foreground="{StaticResource FormForeground}"
-                    Header="GPT">
+                    Header="GPT" Tag="GPT">
                     <Grid
                         x:Name="ParameterTabGrid"
                         Height="Auto"
@@ -1161,7 +1161,7 @@
                     x:Name="BrowserTabItem"
                     BorderBrush="{x:Null}"
                     Foreground="{StaticResource FormForeground}"
-                    Header="Web">
+                    Header="Web" Tag="Web">
                     <Grid
                         x:Name="BroswerTabGrid"
                         Height="Auto"
@@ -1319,7 +1319,7 @@
                 <TabItem
                     x:Name="EditorTabItem"
                     Foreground="{StaticResource FormForeground}"
-                    Header="Editor">
+                    Header="Editor" Tag="Editor">
                     <Grid
                         x:Name="EditorTabGrid"
                         Background="{StaticResource FormBackground}">
@@ -1422,7 +1422,7 @@
                     x:Name="ImageTabItem"
                     BorderBrush="{x:Null}"
                     Foreground="{StaticResource FormForeground}"
-                    Header="Image">
+                    Header="Image" Tag="Image">
                     <Grid
                         x:Name="ImageTabGrid"
                         Background="{StaticResource FormBackground}">
@@ -1483,7 +1483,7 @@
                     x:Name="ChartTabItem"
                     BorderBrush="{x:Null}"
                     Foreground="{StaticResource FormForeground}"
-                    Header="Chart">
+                    Header="Chart" Tag="Chart">
                     <Grid
                         x:Name="ChartTabGrid"
                         Height="Auto"
@@ -1528,7 +1528,7 @@
                 <TabItem
                     x:Name="DataTabItem"
                     Foreground="{StaticResource FormForeground}"
-                    Header="Data">
+                    Header="Data" Tag="Data">
 
                     <Grid
                         x:Name="DatabaseGrid"
@@ -1585,7 +1585,7 @@
                 <TabItem
                     x:Name="PlotTabItem"
                     Foreground="{StaticResource FormForeground}"
-                    Header="Graph">
+                    Header="Graph" Tag="Graph">
 
                     <Grid
                         x:Name="PlotTabGrid"
@@ -1611,7 +1611,7 @@
                     x:Name="BusyTabItem"
                     BorderBrush="{x:Null}"
                     Foreground="{StaticResource FormForeground}"
-                    Header="Busy">
+                    Header="Busy" Tag="Busy">
 
                     <Grid
                         x:Name="BusyTabGrid"
@@ -1628,7 +1628,6 @@
                     </Grid>
 
                 </TabItem>
-                <Grid />
 
             </mah:MetroTabControl>
         </Grid>

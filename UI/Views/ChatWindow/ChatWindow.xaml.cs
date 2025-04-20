@@ -72,6 +72,7 @@ namespace Bubba
     using ToastNotifications.Position;
     using MessageBox = System.Windows.MessageBox;
     using MouseEventArgs = System.Windows.Input.MouseEventArgs;
+    using TabControl = System.Windows.Controls.TabControl;
     using Timer = System.Threading.Timer;
 
     /// <summary>
@@ -891,9 +892,9 @@ namespace Bubba
         {
             try
             {
-                _store = StoreCheckBox.IsChecked ?? false;
+                _store = StoreCheckBox.IsChecked ?? true;
                 _stream = StreamCheckBox.IsChecked ?? true;
-                _listen = ListenCheckBox.IsChecked ?? true;
+                _listen = ListenCheckBox.IsChecked ?? false;
                 _mute = MuteCheckBox.IsChecked ?? true;
                 _presencePenalty = double.Parse( PresenceSlider.Value.ToString( "N2" ) );
                 _temperature = double.Parse( TemperatureSlider.Value.ToString( "N2" ) );
@@ -902,7 +903,7 @@ namespace Bubba
                 _topLogProbs = int.Parse( TopLogProbSlider.Value.ToString( ) );
                 _number = int.Parse( MaxTokenTextBox.Text );
                 _maximumTokens = Convert.ToInt32( MaxTokenTextBox.Text );
-                _model = ModelDropDown.SelectedItem.ToString( ) ?? "gpt-4o";
+                _model = ModelDropDown.SelectedItem.ToString( ) ?? "gpt-4o-mini";
                 _speed = int.Parse( SpeechRateSlider.Value.ToString( "N0"  ) );
                 _userPrompt = _language == "Text"
                     ? Editor.Text
@@ -1602,6 +1603,17 @@ namespace Bubba
             {
                 Fail( ex );
             }
+        }
+
+        private static string GetAppDir( string name )
+        {
+            string winXPDir = @"C:\Documents and Settings\All Users\Application Data\";
+            if( Directory.Exists( winXPDir ) )
+            {
+                return winXPDir + BrowserConfig.Branding + @"\" + name + @"\";
+            }
+            return @"C:\ProgramData\" + BrowserConfig.Branding + @"\" + name + @"\";
+
         }
 
         /// <summary>
@@ -3236,6 +3248,23 @@ namespace Bubba
         }
 
         /// <summary>
+        /// Activates the chat tab.
+        /// </summary>
+        private protected void ActivateBrowserTab( )
+        {
+            try
+            {
+                TabControl.SelectedIndex = 2;
+                WebBrowser.Address = Locations.Google;
+                SetToolbarVisibility( true );
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+            }
+        }
+
+        /// <summary>
         /// Activates the editor tab.
         /// </summary>
         private protected void ActivateEditorTab( )
@@ -3245,6 +3274,22 @@ namespace Bubba
                 TabControl.SelectedIndex = 3;
                 PopulateLanguageListBox(  );
                 PopulateDocumentListBox( );
+                SetToolbarVisibility( true );
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+            }
+        }
+
+        /// <summary>
+        /// Activates the image tab.
+        /// </summary>
+        private protected void ActivateImageTab( )
+        {
+            try
+            {
+                TabControl.SelectedIndex = 4;
                 SetToolbarVisibility( true );
             }
             catch( Exception ex )
@@ -3951,7 +3996,9 @@ namespace Bubba
             StreamCheckBox.Checked += OnStreamCheckBoxChecked;
             ModelDropDown.SelectionChanged += OnModelDropDownSelectionChanged;
             App.ActiveWindows.Add( "ChatWindow", this );
+            InitializeBrowser(  );
             InitializeInterface( );
+            TabControl.SelectionChanged += OnTabControlSelectionChanged;
         }
 
         /// <summary>
@@ -3960,7 +4007,14 @@ namespace Bubba
         /// <param name="propertyName">Name of the property.</param>
         public void OnPropertyChanged( [ CallerMemberName ] string propertyName = null )
         {
-            PropertyChanged?.Invoke( this, new PropertyChangedEventArgs( propertyName ) );
+            try
+            {
+                PropertyChanged?.Invoke( this, new PropertyChangedEventArgs( propertyName ) );
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+            }
         }
 
         /// <summary>
@@ -5220,6 +5274,80 @@ namespace Bubba
                     _currentTab.DateCreated = DateTime.Now;
                 }
             } );
+        }
+
+        /// <summary>
+        /// Called when [tab control index changed].
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The <see cref="RoutedEventArgs"/>
+        /// instance containing the event data.</param>
+        private void OnTabControlSelectionChanged( object sender, SelectionChangedEventArgs e )
+        {
+            try
+            {
+                if( sender is MetroTabControl tabControl 
+                    && tabControl.SelectedIndex >= 0 )
+                {
+                    var _index = tabControl.SelectedItem.Tag.ToString(  );
+                    switch( _index )
+                    {
+                        case "Chat":
+                        {
+                            ActivateChatTab( );
+                            break;
+                        }
+                        case "GPT":
+                        {
+                            ActivateParameterTab( );
+                            break;
+                        }
+                        case "Web":
+                        {
+                            ActivateBrowserTab( );
+                            break;
+                        }
+                        case "Editor":
+                        {
+                            ActivateEditorTab( );
+                            break;
+                        }
+                        case "Image":
+                        {
+                            break;
+                        }
+                        case "Data":
+                        {
+                            ActivateDataTab( );
+                            break;
+                        }
+                        case "Chart":
+                        {
+                            ActivateChartTab( );
+                            break;
+                        }
+                        case "Graph":
+                        {
+                            ActivateGraphTab( );
+                            break;
+                        }
+                        case "Busy":
+                        {
+                            ActivateBusyTab( );
+                            break;
+                        }
+                        default:
+                        {
+                            ActivateChatTab( );
+                            break;
+                        }
+                    }
+                }
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+            }
         }
 
         /// <inheritdoc />

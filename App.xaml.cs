@@ -191,7 +191,7 @@ namespace Bubba
         /// </summary>
         /// <param name="name">The name.</param>
         /// <returns></returns>
-        private protected static string GetApplicationDirectory( string name )
+        public static string GetApplicationDirectory( string name )
         {
             try
             {
