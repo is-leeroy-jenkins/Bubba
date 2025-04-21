@@ -136,7 +136,7 @@ namespace Bubba
         /// <summary>
         /// The tab pages
         /// </summary>
-        private protected BrowserTabCollection TabPages;
+        private protected BrowserTabCollection _tabPages;
 
         /// <summary>
         /// The download strip

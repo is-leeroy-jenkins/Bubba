@@ -33039,7 +33039,7 @@
             The user prompt for the GPT
             </summary>
         </member>
-        <!-- Badly formed XML comment ignored for member "F:Bubba.ChatWindow.TabPages" -->
+        <!-- Badly formed XML comment ignored for member "F:Bubba.ChatWindow._tabPages" -->
         <member name="F:Bubba.ChatWindow._downloadStrip">
             <summary>
             The download strip
@@ -34021,6 +34021,11 @@
             Activates the editor tab.
             </summary>
         </member>
+        <member name="M:Bubba.ChatWindow.ActivateImageTab">
+            <summary>
+            Activates the image tab.
+            </summary>
+        </member>
         <member name="M:Bubba.ChatWindow.ActivateParameterTab">
             <summary>
             Activates the parameter tab.
@@ -34649,6 +34654,14 @@
             </summary>
             <param name="sender">The sender.</param>
             <param name="e">The <see cref="T:CefSharp.AddressChangedEventArgs" />
+            instance containing the event data.</param>
+        </member>
+        <member name="M:Bubba.ChatWindow.OnTabControlSelectionChanged(System.Object,System.Windows.Controls.SelectionChangedEventArgs)">
+            <summary>
+            Called when [tab control index changed].
+            </summary>
+            <param name="sender">The sender.</param>
+            <param name="e">The <see cref="T:System.Windows.RoutedEventArgs"/>
             instance containing the event data.</param>
         </member>
         <member name="M:Bubba.ChatWindow.Dispose">

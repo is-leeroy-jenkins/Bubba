@@ -138,8 +138,8 @@ namespace Bubba
             SyncfusionLicenseProvider.RegisterLicense( _key );
             OpenAiKey = Environment.GetEnvironmentVariable( "OPENAI_API_KEY" );
             GoogleKey = Environment.GetEnvironmentVariable( "GOOGLE_API_KEY" );
-            Instructions = OpenAI.BubbaPrompt;
             ExcelPackage.License.SetNonCommercialPersonal( "Terry Eppler" );
+            Instructions = OpenAI.BubbaPrompt;
             RegisterTheme( );
             ActiveWindows = new Dictionary<string, Window>( );
 
