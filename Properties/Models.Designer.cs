@@ -79,6 +79,15 @@ namespace Bubba.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to computer-use-preview-2025-03-11.
+        /// </summary>
+        internal static string computer_use_preview_2025_03_11 {
+            get {
+                return ResourceManager.GetString("computer-use-preview-2025-03-11", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to curie-001;  GPT base models can understand and generate natural language or code but are not trained with instruction following. These models are made to be replacements for the original GPT-3 base models and use the legacy Completions API. .
         /// </summary>
         internal static string curie_001 {
@@ -183,6 +192,15 @@ namespace Bubba.Properties {
         internal static string gpt_4_1_2025_04_14_ {
             get {
                 return ResourceManager.GetString("gpt-4.1-2025-04-14 ", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to gpt-4.1-mini-2025-04-14.
+        /// </summary>
+        internal static string gpt_4_1_mini_2025_04_14 {
+            get {
+                return ResourceManager.GetString("gpt-4.1-mini-2025-04-14", resourceCulture);
             }
         }
         
@@ -322,6 +340,15 @@ namespace Bubba.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to gpt-4o-mini-search-preview-2025-03-11.
+        /// </summary>
+        internal static string gpt_4o_mini_search_preview_2025_03_11 {
+            get {
+                return ResourceManager.GetString("gpt-4o-mini-search-preview-2025-03-11", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to gpt-4o-realtime-preview;   These models are capable of responding to audio and text inputs in realtime over WebRTC or a WebSocket interface. The knowledge cutoff for GPT-4o Realtime models is October, 2023..
         /// </summary>
         internal static string gpt_4o_realtime_preview {
@@ -345,6 +372,15 @@ namespace Bubba.Properties {
         internal static string gpt_4o_realtime_preview_2024_12_17 {
             get {
                 return ResourceManager.GetString("gpt-4o-realtime-preview-2024-12-17", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to gpt-4o-search-preview-2025-03-11.
+        /// </summary>
+        internal static string gpt_4o_search_preview_2025_03_11 {
+            get {
+                return ResourceManager.GetString("gpt-4o-search-preview-2025-03-11", resourceCulture);
             }
         }
         
@@ -403,11 +439,38 @@ namespace Bubba.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to o1-pro-2025-03-19.
+        /// </summary>
+        internal static string o1_pro_2025_03_19 {
+            get {
+                return ResourceManager.GetString("o1-pro-2025-03-19", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to o3-2025-04-16.
+        /// </summary>
+        internal static string o3_2025_04_16 {
+            get {
+                return ResourceManager.GetString("o3-2025-04-16", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to o3-mini.
         /// </summary>
         internal static string o3_mini {
             get {
                 return ResourceManager.GetString("o3-mini", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to o4-mini-2025-04-16.
+        /// </summary>
+        internal static string o4_mini_2025_04_16 {
+            get {
+                return ResourceManager.GetString("o4-mini-2025-04-16", resourceCulture);
             }
         }
         

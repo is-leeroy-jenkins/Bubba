@@ -255,4 +255,25 @@
   <data name="gpt-4.1-2025-04-14 " xml:space="preserve">
     <value>gpt-4.1-2025-04-14</value>
   </data>
+  <data name="o4-mini-2025-04-16" xml:space="preserve">
+    <value>o4-mini-2025-04-16</value>
+  </data>
+  <data name="o1-pro-2025-03-19" xml:space="preserve">
+    <value>o1-pro-2025-03-19</value>
+  </data>
+  <data name="o3-2025-04-16" xml:space="preserve">
+    <value>o3-2025-04-16</value>
+  </data>
+  <data name="gpt-4.1-mini-2025-04-14" xml:space="preserve">
+    <value>gpt-4.1-mini-2025-04-14</value>
+  </data>
+  <data name="gpt-4o-search-preview-2025-03-11" xml:space="preserve">
+    <value>gpt-4o-search-preview-2025-03-11</value>
+  </data>
+  <data name="computer-use-preview-2025-03-11" xml:space="preserve">
+    <value>computer-use-preview-2025-03-11</value>
+  </data>
+  <data name="gpt-4o-mini-search-preview-2025-03-11" xml:space="preserve">
+    <value>gpt-4o-mini-search-preview-2025-03-11</value>
+  </data>
 </root>

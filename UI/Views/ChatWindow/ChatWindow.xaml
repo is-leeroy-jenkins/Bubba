@@ -288,7 +288,8 @@
                 <TabItem
                     x:Name="ChatTab"
                     Foreground="{StaticResource FormForeground}"
-                    Header="Chat" Tag="Chat">
+                    Header="Chat"
+                    Tag="Chat">
                     <Grid
                         x:Name="ChatTabGrid"
                         Background="{StaticResource FormBackground}">
@@ -330,7 +331,8 @@
                     Height="22"
                     VerticalAlignment="Top"
                     Foreground="{StaticResource FormForeground}"
-                    Header="GPT" Tag="GPT">
+                    Header="GPT"
+                    Tag="GPT">
                     <Grid
                         x:Name="ParameterTabGrid"
                         Height="Auto"
@@ -1161,7 +1163,8 @@
                     x:Name="BrowserTabItem"
                     BorderBrush="{x:Null}"
                     Foreground="{StaticResource FormForeground}"
-                    Header="Web" Tag="Web">
+                    Header="Web"
+                    Tag="Web">
                     <Grid
                         x:Name="BroswerTabGrid"
                         Height="Auto"
@@ -1184,11 +1187,11 @@
                                 <ColumnDefinition Width="95" />
                                 <ColumnDefinition Width="50" />
                                 <ColumnDefinition Width="50" />
-                                <ColumnDefinition Width="415" />
+                                <ColumnDefinition Width="532" />
+                                <ColumnDefinition Width="65" />
                                 <ColumnDefinition Width="55" />
-                                <ColumnDefinition Width="55" />
-                                <ColumnDefinition Width="203" />
-                                <ColumnDefinition Width="0*" />
+                                <ColumnDefinition Width="90" />
+                                <ColumnDefinition />
                             </Grid.ColumnDefinitions>
 
 
@@ -1198,7 +1201,7 @@
                             <b:ToolStripButton
                                 x:Name="UrlPanelForwardButton"
                                 Title=""
-                                Grid.Column="7"
+                                Grid.Column="6"
                                 Width="40"
                                 Height="30"
                                 Padding="1"
@@ -1216,7 +1219,7 @@
                             <b:ToolStripButton
                                 x:Name="UrlPanelCancelButton"
                                 Title=""
-                                Grid.Column="8"
+                                Grid.Column="7"
                                 Width="40"
                                 Height="30"
                                 Padding="1"
@@ -1234,10 +1237,8 @@
                             <b:MetroTextBox
                                 x:Name="UrlPanelTextBox"
                                 Grid.Column="5"
-                                Grid.ColumnSpan="2"
                                 Height="30"
-                                MinWidth="670"
-                                Margin="10,0,10,0"
+                                Margin="1,0,1,0"
                                 Padding="30,1,1,1"
                                 VerticalAlignment="Center"
                                 HorizontalContentAlignment="Left"
@@ -1273,7 +1274,7 @@
                             <Label
                                 x:Name="UrlPanelDateLabel"
                                 Grid.Column="9"
-                                Margin="10,5,10,5"
+                                Margin="1,5,4,5"
                                 Padding="1,1,1,1"
                                 HorizontalContentAlignment="Right"
                                 VerticalContentAlignment="Center"
@@ -1309,7 +1310,8 @@
                         <web:ChromiumWebBrowser
                             x:Name="WebBrowser"
                             Grid.Row="1"
-                            Height="Auto" />
+                            Height="Auto"
+                            Address="https://www.google.com" />
 
                     </Grid>
                 </TabItem>
@@ -1319,7 +1321,8 @@
                 <TabItem
                     x:Name="EditorTabItem"
                     Foreground="{StaticResource FormForeground}"
-                    Header="Editor" Tag="Editor">
+                    Header="Editor"
+                    Tag="Editor">
                     <Grid
                         x:Name="EditorTabGrid"
                         Background="{StaticResource FormBackground}">
@@ -1422,7 +1425,8 @@
                     x:Name="ImageTabItem"
                     BorderBrush="{x:Null}"
                     Foreground="{StaticResource FormForeground}"
-                    Header="Image" Tag="Image">
+                    Header="Image"
+                    Tag="Image">
                     <Grid
                         x:Name="ImageTabGrid"
                         Background="{StaticResource FormBackground}">
@@ -1483,7 +1487,8 @@
                     x:Name="ChartTabItem"
                     BorderBrush="{x:Null}"
                     Foreground="{StaticResource FormForeground}"
-                    Header="Chart" Tag="Chart">
+                    Header="Chart"
+                    Tag="Chart">
                     <Grid
                         x:Name="ChartTabGrid"
                         Height="Auto"
@@ -1528,7 +1533,8 @@
                 <TabItem
                     x:Name="DataTabItem"
                     Foreground="{StaticResource FormForeground}"
-                    Header="Data" Tag="Data">
+                    Header="Data"
+                    Tag="Data">
 
                     <Grid
                         x:Name="DatabaseGrid"
@@ -1585,7 +1591,8 @@
                 <TabItem
                     x:Name="PlotTabItem"
                     Foreground="{StaticResource FormForeground}"
-                    Header="Graph" Tag="Graph">
+                    Header="Graph"
+                    Tag="Graph">
 
                     <Grid
                         x:Name="PlotTabGrid"
@@ -1611,7 +1618,8 @@
                     x:Name="BusyTabItem"
                     BorderBrush="{x:Null}"
                     Foreground="{StaticResource FormForeground}"
-                    Header="Busy" Tag="Busy">
+                    Header="Busy"
+                    Tag="Busy">
 
                     <Grid
                         x:Name="BusyTabGrid"

@@ -191,14 +191,14 @@ namespace Bubba
         /// </summary>
         /// <param name="name">The name.</param>
         /// <returns></returns>
-        public static string GetApplicationDirectory( string name )
+        private static string GetApplicationDirectory( string name )
         {
             try
             {
                 ThrowIf.Empty( name, nameof( name ) );
-                var _winXpDir = @"C:\Documents and Settings\All Users\Application Data\";
-                return Directory.Exists( _winXpDir )
-                    ? _winXpDir + Locations.Branding + @"\" + name + @"\"
+                var _directory = @"C:\Documents and Settings\All Users\Application Data\";
+                return Directory.Exists( _directory )
+                    ? _directory + Locations.Branding + @"\" + name + @"\"
                     : @"C:\ProgramData\" + Locations.Branding + @"\" + name + @"\";
             }
             catch( Exception ex )

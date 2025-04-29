@@ -923,7 +923,7 @@ namespace Bubba
         {
             ConfigureBrowser( WebBrowser );
             _currentBrowser = WebBrowser;
-            _searchEngineUrl = WebBrowser.Address;
+            _searchEngineUrl = Locations.Google;
             var _bool = bool.Parse( Locations.Proxy );
             if( _bool )
             {
@@ -3255,7 +3255,8 @@ namespace Bubba
             try
             {
                 TabControl.SelectedIndex = 2;
-                WebBrowser.Address = Locations.Google;
+                WebBrowser.Address = _searchEngineUrl;
+                InitializeBrowser( );
                 SetToolbarVisibility( true );
             }
             catch( Exception ex )
@@ -3996,7 +3997,6 @@ namespace Bubba
             StreamCheckBox.Checked += OnStreamCheckBoxChecked;
             ModelDropDown.SelectionChanged += OnModelDropDownSelectionChanged;
             App.ActiveWindows.Add( "ChatWindow", this );
-            InitializeBrowser(  );
             InitializeInterface( );
             TabControl.SelectionChanged += OnTabControlSelectionChanged;
         }

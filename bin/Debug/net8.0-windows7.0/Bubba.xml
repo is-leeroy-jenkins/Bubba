@@ -27772,6 +27772,11 @@
               Looks up a localized string similar to Model continuously points to the version of GPT-4o used in ChatGPT. It is updated frequently, when there are significant changes to ChatGPT&apos;s GPT-4o model. The knowledge cutoff for GPT-4o models is October, 2023..
             </summary>
         </member>
+        <member name="P:Bubba.Properties.Models.computer_use_preview_2025_03_11">
+            <summary>
+              Looks up a localized string similar to computer-use-preview-2025-03-11.
+            </summary>
+        </member>
         <member name="P:Bubba.Properties.Models.curie_001">
             <summary>
               Looks up a localized string similar to curie-001;  GPT base models can understand and generate natural language or code but are not trained with instruction following. These models are made to be replacements for the original GPT-3 base models and use the legacy Completions API. .
@@ -27830,6 +27835,11 @@
         <member name="P:Bubba.Properties.Models.gpt_4_1_2025_04_14_">
             <summary>
               Looks up a localized string similar to gpt-4.1-2025-04-14.
+            </summary>
+        </member>
+        <member name="P:Bubba.Properties.Models.gpt_4_1_mini_2025_04_14">
+            <summary>
+              Looks up a localized string similar to gpt-4.1-mini-2025-04-14.
             </summary>
         </member>
         <member name="P:Bubba.Properties.Models.gpt_4_1106_preview">
@@ -27907,6 +27917,11 @@
               Looks up a localized string similar to gpt-4o-mini-realtime-preview-2024-12-17;  These models are capable of responding to audio and text inputs in realtime over WebRTC or a WebSocket interface. The knowledge cutoff for GPT-4o Realtime models is October, 2023..
             </summary>
         </member>
+        <member name="P:Bubba.Properties.Models.gpt_4o_mini_search_preview_2025_03_11">
+            <summary>
+              Looks up a localized string similar to gpt-4o-mini-search-preview-2025-03-11.
+            </summary>
+        </member>
         <member name="P:Bubba.Properties.Models.gpt_4o_realtime_preview">
             <summary>
               Looks up a localized string similar to gpt-4o-realtime-preview;   These models are capable of responding to audio and text inputs in realtime over WebRTC or a WebSocket interface. The knowledge cutoff for GPT-4o Realtime models is October, 2023..
@@ -27920,6 +27935,11 @@
         <member name="P:Bubba.Properties.Models.gpt_4o_realtime_preview_2024_12_17">
             <summary>
               Looks up a localized string similar to gpt-4o-realtime-preview-2024-12-17;  These models are capable of responding to audio and text inputs in realtime over WebRTC or a WebSocket interface. The knowledge cutoff for GPT-4o Realtime models is October, 2023..
+            </summary>
+        </member>
+        <member name="P:Bubba.Properties.Models.gpt_4o_search_preview_2025_03_11">
+            <summary>
+              Looks up a localized string similar to gpt-4o-search-preview-2025-03-11.
             </summary>
         </member>
         <member name="P:Bubba.Properties.Models.o1">
@@ -27952,9 +27972,24 @@
               Looks up a localized string similar to o1-preview-2024-09-12;  The o1 series of models are trained with reinforcement learning to perform complex reasoning. o1 models think before they answer, producing a long internal chain of thought before responding to the user..
             </summary>
         </member>
+        <member name="P:Bubba.Properties.Models.o1_pro_2025_03_19">
+            <summary>
+              Looks up a localized string similar to o1-pro-2025-03-19.
+            </summary>
+        </member>
+        <member name="P:Bubba.Properties.Models.o3_2025_04_16">
+            <summary>
+              Looks up a localized string similar to o3-2025-04-16.
+            </summary>
+        </member>
         <member name="P:Bubba.Properties.Models.o3_mini">
             <summary>
               Looks up a localized string similar to o3-mini.
+            </summary>
+        </member>
+        <member name="P:Bubba.Properties.Models.o4_mini_2025_04_16">
+            <summary>
+              Looks up a localized string similar to o4-mini-2025-04-16.
             </summary>
         </member>
         <member name="P:Bubba.Properties.Models.text_embedding_3_large">
