@@ -66,6 +66,11 @@ namespace Bubba
     public class SystemMessage : GptMessage, IGptMessage
     {
         /// <summary>
+        /// The instructions
+        /// </summary>
+        private protected string _instructions;
+
+        /// <summary>
         /// Initializes a new instance of the
         /// <see cref="SystemMessage"/> class.
         /// </summary>
@@ -73,9 +78,9 @@ namespace Bubba
         {
             _role = "system";
             _type = "text";
-            _text = App.Instructions;
+            _instructions = App.Instructions;
             _data = new Dictionary<string, object>( );
-            _content = new GptContent( _type, _text );
+            _content = new GptContent( _type, _instructions );
         }
 
         /// <inheritdoc />
