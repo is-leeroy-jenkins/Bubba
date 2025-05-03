@@ -12,11 +12,7 @@
         <!--  GROUPBOX  -->
         <ResourceDictionary Source="/UI/Themes/GroupBox/GroupBox.xaml" />
 
-        <!--  COMMON  -->
-        <ResourceDictionary Source="/UI/Themes/Common/Fonts.xaml" />
-
         <!--  BUTTONS  -->
-
         <ResourceDictionary Source="/UI/Themes/Button/Button.xaml" />
         <ResourceDictionary Source="/UI/Themes/RadioButton/RadioButton.xaml" />
 
