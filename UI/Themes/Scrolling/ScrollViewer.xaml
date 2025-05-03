@@ -1,19 +1,15 @@
 ﻿<ResourceDictionary
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:b="clr-namespace:Bubba"
-    xmlns:skin="clr-namespace:Syncfusion.SfSkinManager;assembly=Syncfusion.SfSkinManager.WPF"
-    xmlns:sync="http://schemas.syncfusion.com/wpf">
+    xmlns:b="clr-namespace:Bubba">
 
     <!--  ***************************************** SCROLL VIEWER ***********************************************  -->
 
-    <Style
-        x:Key="ScrollViewerStyle"
-        TargetType="{x:Type ScrollViewer}">
+    <Style TargetType="{x:Type ScrollViewer}">
 
-        <Setter Property="Background" Value="{StaticResource ControlInteriorBrush}" />
-        <Setter Property="BorderBrush" Value="{StaticResource ControlInteriorBrush}" />
-        <Setter Property="Foreground" Value="{StaticResource LightBlueBrush}" />
+        <Setter Property="Background" Value="{StaticResource FormBackground}" />
+        <Setter Property="BorderBrush" Value="{StaticResource MutedForeground}" />
+        <Setter Property="Foreground" Value="{StaticResource FormForeground}" />
         <Setter Property="BorderThickness" Value="1" />
         <Setter Property="Padding" Value="30,5,5,5" />
         <Setter Property="Margin" Value="1" />

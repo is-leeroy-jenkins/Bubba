@@ -79,16 +79,8 @@ namespace Bubba
         {
             // Control Properties
             Height = 40;
-            Background = _theme.ControlInterior;
-            Foreground = _theme.FormForeground;
-            Padding = new Thickness( 10, 1, 1, 1 );
-            BorderThickness = _theme.BorderThickness;
             FontFamily = new FontFamily( "Roboto" );
             FontSize = 12;
-            HorizontalAlignment = _theme.HorizontalAlignment;
-            VerticalAlignment = _theme.VerticalAlignment;
-            HorizontalContentAlignment = HorizontalAlignment.Left;
-            VerticalContentAlignment = VerticalAlignment.Center;
 
             // Event Wiring
             MouseEnter += OnMouseEnter;

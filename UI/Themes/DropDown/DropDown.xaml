@@ -3,10 +3,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:b="clr-namespace:Bubba"
     xmlns:local="clr-namespace:Syncfusion.Windows.Tools.Controls;assembly=Syncfusion.Shared.WPF"
-    xmlns:skin="clr-namespace:Syncfusion.SfSkinManager;assembly=Syncfusion.SfSkinManager.WPF"
-    xmlns:sync="clr-namespace:Syncfusion.Windows.Shared;assembly=Syncfusion.Shared.WPF"
-    xmlns:theme="clr-namespace:Syncfusion.Themes.FluentDark.WPF"
-    xmlns:wpf="clr-namespace:Syncfusion.Themes.FluentDark.WPF;assembly=Syncfusion.Themes.FluentDark.WPF">
+    xmlns:sync="clr-namespace:Syncfusion.Windows.Shared;assembly=Syncfusion.Shared.WPF">
 
     <!--  *********************************************** METRO DROP DOWN *****************************************************  -->
 
@@ -26,7 +23,6 @@
 
 
     <Style TargetType="{x:Type b:MetroDropDownItem}">
-        <Setter Property="Background" Value="{StaticResource ControlInteriorBrush}" />
         <Setter Property="Background" Value="{StaticResource ControlInteriorBrush}" />
         <Setter Property="Foreground" Value="{StaticResource WhiteForeground}" />
         <Setter Property="Height" Value="40" />

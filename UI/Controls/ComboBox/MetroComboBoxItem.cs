@@ -1,5 +1,5 @@
 ﻿// ******************************************************************************************
-//     Assembly:                Booger
+//     Assembly:                Bubba
 //     Author:                  Terry D. Eppler
 //     Created:                 08-08-2024
 // 
@@ -76,9 +76,6 @@ namespace Bubba
         {
             // Control Properties
             Padding = new Thickness( 15, 1, 1, 1 );
-            Background = _theme.ControlInterior;
-            BorderBrush = _theme.ControlInterior;
-            Foreground = _theme.FormForeground;
 
             // Event Wiring
             MouseEnter += OnItemMouseEnter;

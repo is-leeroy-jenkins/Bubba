@@ -1,30 +1,7 @@
 ﻿<ResourceDictionary
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:b="clr-namespace:Bubba"
-    xmlns:sys="clr-namespace:System;assembly=mscorlib"
-    xmlns:wpf="http://schemas.syncfusion.com/wpf">
-
-    <!--  *********************************************** SfRangeSlider *****************************************************  -->
-
-    <Style TargetType="{x:Type wpf:SfRangeSlider}">
-        <Setter Property="Background" Value="{StaticResource BlueBorderBrush}" />
-        <Setter Property="Foreground" Value="{StaticResource FormForeground}" />
-        <Setter Property="MinorTickStroke" Value="{StaticResource WhiteForeground}" />
-        <Setter Property="TickStroke" Value="{StaticResource WhiteForeground}" />
-        <Setter Property="ActiveTickStroke" Value="{StaticResource WhiteForeground}" />
-        <Setter Property="ActiveMinorTickStroke" Value="{StaticResource WhiteForeground}" />
-        <Setter Property="BorderThickness" Value="0" />
-        <Setter Property="HorizontalAlignment" Value="Stretch" />
-        <Setter Property="HorizontalContentAlignment" Value="Left" />
-        <Setter Property="VerticalAlignment" Value="Stretch" />
-        <Setter Property="VerticalContentAlignment" Value="Center" />
-        <Setter Property="Padding" Value="1" />
-        <Setter Property="MinorTickLength" Value="6" />
-        <Setter Property="TickLength" Value="12" />
-        <Setter Property="SnapsTo" Value="Ticks" />
-    </Style>
-
+    xmlns:b="clr-namespace:Bubba">
     <!--  *********************************************** Slider *****************************************************  -->
 
     <Style TargetType="{x:Type Slider}">

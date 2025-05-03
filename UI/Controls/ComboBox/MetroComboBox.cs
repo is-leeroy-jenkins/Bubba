@@ -74,13 +74,6 @@ namespace Bubba
             : base( )
 
         {
-            FontFamily = _theme.FontFamily;
-            FontSize = _theme.FontSize;
-            Padding = new Thickness( 15, 1, 1, 1 );
-            BorderThickness = _theme.BorderThickness;
-            Background = _theme.ControlInterior;
-            Foreground = _theme.FormForeground;
-            BorderBrush = _theme.BlueBorderBrush;
             IsEditable = true;
         }
 

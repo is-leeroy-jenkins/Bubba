@@ -76,8 +76,6 @@ namespace Bubba
         {
             // Control Properties
             SetResourceReference( StyleProperty, typeof( CheckListBoxItem ) );
-            Background = _theme.ControlInterior;
-            Foreground = _theme.Foreground;
             Padding = new Thickness( 10, 1, 1, 1 );
             BorderThickness = _theme.BorderThickness;
             VerticalAlignment = _theme.VerticalAlignment;

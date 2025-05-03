@@ -73,8 +73,6 @@ namespace Bubba
             // Control Properties
             SetResourceReference(StyleProperty, typeof(ColorEdit));
             FontFamily = new FontFamily( "Roboto" );
-            Width = 250;
-            Height = 200;
         }
 
         /// <summary>

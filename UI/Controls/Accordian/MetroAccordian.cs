@@ -1,5 +1,5 @@
 ﻿// ******************************************************************************************
-//     Assembly:                Bocifus
+//     Assembly:                Bubba
 //     Author:                  Terry D. Eppler
 //     Created:                 08-08-2024
 // 
@@ -75,9 +75,6 @@ namespace Bubba
             FontSize = 12;
             FontFamily = new FontFamily( "Roboto" );
             AccentBrush = _theme.SteelBlueBrush;
-            Background = _theme.FormBackground;
-            BorderBrush = _theme.BlueBorderBrush;
-            Foreground = _theme.LightBlueBrush;
         }
     }
 }

@@ -37,27 +37,27 @@
 
 
             <Trigger Property="IsMouseOver" Value="True">
-                <Setter Property="Background" Value="{StaticResource DarkBlueBackground}" />
-                <Setter Property="BorderBrush" Value="{StaticResource BlueBorderBrush}" />
+                <Setter Property="Background" Value="{StaticResource SteelBlueBackground}" />
+                <Setter Property="BorderBrush" Value="{StaticResource FormForeground}" />
                 <Setter Property="Foreground" Value="{StaticResource WhiteForeground}" />
             </Trigger>
 
             <Trigger Property="IsMouseOver" Value="False">
                 <Setter Property="Background" Value="{StaticResource ControlInteriorBrush}" />
-                <Setter Property="BorderBrush" Value="{StaticResource ControlInteriorBrush}" />
+                <Setter Property="BorderBrush" Value="{StaticResource BlueBorderBrush}" />
                 <Setter Property="Foreground" Value="{StaticResource FormForeground}" />
             </Trigger>
 
 
             <Trigger Property="IsMouseCaptured" Value="True">
-                <Setter Property="Background" Value="{StaticResource BlackBackground}" />
+                <Setter Property="Background" Value="{StaticResource DarkBlueBackground}" />
                 <Setter Property="BorderBrush" Value="{StaticResource BlueBorderBrush}" />
                 <Setter Property="Foreground" Value="{StaticResource WhiteForeground}" />
             </Trigger>
 
             <Trigger Property="IsMouseCaptured" Value="False">
                 <Setter Property="Background" Value="{StaticResource ControlInteriorBrush}" />
-                <Setter Property="BorderBrush" Value="{StaticResource ControlInteriorBrush}" />
+                <Setter Property="BorderBrush" Value="{StaticResource BlueBorderBrush}" />
                 <Setter Property="Foreground" Value="{StaticResource FormForeground}" />
             </Trigger>
 
@@ -106,12 +106,12 @@
 
             <Trigger Property="IsMouseOver" Value="False">
                 <Setter Property="Background" Value="{StaticResource ControlInteriorBrush}" />
-                <Setter Property="BorderBrush" Value="{StaticResource ControlInteriorBrush}" />
+                <Setter Property="BorderBrush" Value="{StaticResource BlueBorderBrush}" />
                 <Setter Property="Foreground" Value="{StaticResource FormForeground}" />
             </Trigger>
 
             <Trigger Property="IsMouseCaptured" Value="True">
-                <Setter Property="Background" Value="{StaticResource BlackBackground}" />
+                <Setter Property="Background" Value="{StaticResource DarkBlueBackground}" />
                 <Setter Property="BorderBrush" Value="{StaticResource BlueBorderBrush}" />
                 <Setter Property="Foreground" Value="{StaticResource FormForeground}" />
             </Trigger>

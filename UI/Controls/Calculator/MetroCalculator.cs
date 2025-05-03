@@ -1,5 +1,5 @@
 ﻿// ******************************************************************************************
-//     Assembly:                Booger
+//     Assembly:                Bubba
 //     Author:                  Terry D. Eppler
 //     Created:                 08-08-2024
 // 
@@ -73,9 +73,6 @@ namespace Bubba
             SetResourceReference( StyleProperty, typeof( SfCalculator ) );
             FontFamily = _theme.FontFamily;
             FontSize = _theme.FontSize;
-            Background = _theme.FormBackground;
-            BorderBrush = _theme.BlueBorderBrush;
-            Foreground = _theme.Foreground;
         }
 
         /// <summary>

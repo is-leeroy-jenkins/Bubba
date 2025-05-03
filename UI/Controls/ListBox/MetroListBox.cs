@@ -69,9 +69,6 @@ namespace Bubba
             : base( )
         {
             // Control Properties
-            Background = _theme.ControlBackground;
-            Foreground = _theme.Foreground;
-            BorderBrush = _theme.BlueBorderBrush;
             HorizontalAlignment = _theme.HorizontalAlignment;
             VerticalAlignment = _theme.VerticalAlignment;
         }

@@ -80,10 +80,6 @@ namespace Bubba
             SizeMode = SizeMode.Normal;
             HorizontalContentAlignment = HorizontalAlignment.Center;
             VerticalContentAlignment = VerticalAlignment.Center;
-            BorderThickness = _theme.BorderThickness;
-            Background = _theme.ControlInterior;
-            Foreground = _theme.Foreground;
-            BorderBrush = _theme.BlueBorderBrush;
 
             // Event Wiring
             MouseEnter += OnMouseEnter;
