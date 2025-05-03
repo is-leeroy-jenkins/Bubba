@@ -66,12 +66,6 @@
     <Page Update="UI\Themes\MultiSelectDropDown\MultiSelectDropDown.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="UI\Themes\Common\Brushes.xaml">
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Update="UI\Themes\Common\Common.xaml">
-      <SubType>Designer</SubType>
-    </Page>
     <Page Update="UI\Controls\Frame\MetroComboFrame.xaml">
       <SubType>Designer</SubType>
     </Page>
@@ -94,15 +88,6 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="UI\Themes\ComboBox\ComboBox.xaml">
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Update="UI\Themes\Common\All.xaml">
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Update="UI\Themes\Common\Fonts.xaml">
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Update="UI\Themes\Common\Sizes.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="UI\Themes\DropDown\DropDown.xaml">

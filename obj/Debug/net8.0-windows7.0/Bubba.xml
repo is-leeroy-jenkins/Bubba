@@ -15715,7 +15715,8 @@
             Converts to string.
             </summary>
             <returns>
-            A <see cref="T:System.String" /> that represents this instance.
+            A <see cref="T:System.String" />
+            that represents this instance.
             </returns>
         </member>
         <member name="M:Bubba.GptContent.Fail(System.Exception)">
