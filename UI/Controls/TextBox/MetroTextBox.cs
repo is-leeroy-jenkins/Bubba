@@ -88,11 +88,6 @@ namespace Bubba
             Height = 24;
             FontFamily = _theme.FontFamily;
             FontSize = _theme.FontSize;
-            Padding = new Thickness( 1 );
-            Background = _theme.ControlBackground;
-            Foreground = _theme.LightBlueBrush;
-            BorderBrush = _theme.BlueBorderBrush;
-            SelectionBrush = _theme.SteelBlueBrush;
             _inputText = "";
             _tempText = "";
 

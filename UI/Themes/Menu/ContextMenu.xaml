@@ -5,8 +5,7 @@
 
     <!--  ******************************************** RESOURCE *********************************************  -->
 
-    <Style
-        TargetType="{x:Type ContextMenu}">
+    <Style TargetType="{x:Type ContextMenu}">
         <Setter Property="Foreground" Value="{StaticResource FormForeground}" />
         <Setter Property="Background" Value="{StaticResource BlackBackground}" />
         <Setter Property="BorderBrush" Value="{StaticResource BlueBorderBrush}" />

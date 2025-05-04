@@ -1,19 +1,19 @@
 ﻿// ******************************************************************************************
-//     Assembly:                Badger
+//     Assembly:                Bubba
 //     Author:                  Terry D. Eppler
-//     Created:                 09-07-2020
+//     Created:                 05-03-2025
 // 
 //     Last Modified By:        Terry D. Eppler
-//     Last Modified On:        09-07-2024
+//     Last Modified On:        05-03-2025
 // ******************************************************************************************
 // <copyright file="ToolStripButton.cs" company="Terry D. Eppler">
-//    Badger is data analysis and reporting tool for EPA Analysts
-//    that is based on WPF, NET6.0, and written in C-Sharp.
+//     Badger is a budget execution & data analysis tool for EPA analysts
+//     based on WPF, Net 6, and written in C Sharp.
 // 
-//     Copyright ©  2020, 2022, 2204 Terry D. Eppler
+//     Copyright �  2022 Terry D. Eppler
 // 
 //    Permission is hereby granted, free of charge, to any person obtaining a copy
-//    of this software and associated documentation files (the “Software”),
+//    of this software and associated documentation files (the �Software�),
 //    to deal in the Software without restriction,
 //    including without limitation the rights to use,
 //    copy, modify, merge, publish, distribute, sublicense,
@@ -24,7 +24,7 @@
 //    The above copyright notice and this permission notice shall be included in all
 //    copies or substantial portions of the Software.
 // 
-//    THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,
+//    THE SOFTWARE IS PROVIDED �AS IS�, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,
 //    INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
 //    FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT.
 //    IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
@@ -38,7 +38,6 @@
 //   ToolStripButton.cs
 // </summary>
 // ******************************************************************************************
-
 namespace Bubba
 {
     using System;
@@ -68,18 +67,11 @@ namespace Bubba
         public ToolStripButton( )
             : base( )
         {
-            SetResourceReference( StyleProperty, typeof( SfHubTile ) );
-
             // Basic Properties
             Width = 40;
             Height = 30;
             Header = "";
             Title = "";
-            Padding = new Thickness( 1 );
-            Margin = new Thickness( 5, 1, 5, 1 );
-            Background = _theme.FormBackground;
-            BorderBrush = _theme.FormBackground;
-            Foreground = _theme.LightBlueBrush;
 
             // Wire Events
             MouseEnter += OnMouseEnter;
@@ -94,7 +86,7 @@ namespace Bubba
         /// <see cref="T:System.EventArgs" />
         /// instance containing the event data.
         /// </param>
-        private protected override void OnMouseEnter(object sender, MouseEventArgs e)
+        private protected override void OnMouseEnter( object sender, MouseEventArgs e )
         {
             try
             {
@@ -102,9 +94,9 @@ namespace Bubba
                 BorderBrush = _theme.LightBlueBrush;
                 Foreground = _theme.WhiteForeground;
             }
-            catch(Exception ex)
+            catch( Exception ex )
             {
-                Fail(ex);
+                Fail( ex );
             }
         }
 
@@ -116,7 +108,7 @@ namespace Bubba
         /// <see cref="T:System.EventArgs" />
         /// instance containing the event data.
         /// </param>
-        private protected override void OnMouseLeave(object sender, MouseEventArgs e)
+        private protected override void OnMouseLeave( object sender, MouseEventArgs e )
         {
             try
             {
@@ -124,9 +116,9 @@ namespace Bubba
                 BorderBrush = _theme.FormBackground;
                 Foreground = _theme.LightBlueBrush;
             }
-            catch(Exception ex)
+            catch( Exception ex )
             {
-                Fail(ex);
+                Fail( ex );
             }
         }
     }

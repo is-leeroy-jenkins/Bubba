@@ -3,6 +3,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:b="clr-namespace:Bubba"
     xmlns:local="clr-namespace:Syncfusion.Windows.Tools.Controls;assembly=Syncfusion.Shared.WPF"
+    xmlns:sf="http://schemas.syncfusion.com/wpf"
     xmlns:skin="clr-namespace:Syncfusion.SfSkinManager;assembly=Syncfusion.SfSkinManager.WPF"
     xmlns:sync="clr-namespace:Syncfusion.Windows.Shared;assembly=Syncfusion.Shared.WPF"
     xmlns:theme="clr-namespace:Syncfusion.Themes.FluentDark.WPF"
@@ -10,7 +11,7 @@
 
     <!--  *********************************************** METRO DROP DOWN *****************************************************  -->
 
-    <Style TargetType="{x:Type b:MulitSelectDropDown}">
+    <Style TargetType="{x:Type sf:SfMultiColumnDropDownControl}">
         <Setter Property="Background" Value="{StaticResource ControlInteriorBrush}" />
         <Setter Property="BorderBrush" Value="{StaticResource BlueBorderBrush}" />
         <Setter Property="Foreground" Value="{StaticResource FormForeground}" />
@@ -20,40 +21,5 @@
         <Setter Property="FontFamily" Value="Roboto" />
         <Setter Property="FontSize" Value="12" />
     </Style>
-
-
-    <!--  *********************************************** DropDownItem *****************************************************  -->
-
-
-    <Style TargetType="{x:Type b:MetroDropDownItem}">
-        <Setter Property="Foreground" Value="{StaticResource LightBlueBrush}" />
-        <Setter Property="Height" Value="40" />
-        <Setter Property="BorderThickness" Value="1" />
-        <Setter Property="HorizontalContentAlignment" Value="Left" />
-        <Setter Property="VerticalContentAlignment" Value="Center" />
-        <Setter Property="Padding" Value="5,1,1,1" />
-        <Setter Property="Margin" Value="1" />
-
-        <Style.Triggers>
-
-            <Trigger Property="IsMouseOver" Value="True">
-                <Setter Property="Background" Value="{StaticResource SteelBlueBackground}" />
-                <Setter Property="BorderBrush" Value="{StaticResource SteelBlueBackground}" />
-                <Setter Property="Foreground" Value="{StaticResource WhiteForeground}" />
-                <Setter Property="FontWeight" Value="Bold" />
-            </Trigger>
-
-            <Trigger Property="IsMouseOver" Value="False">
-                <Setter Property="Background" Value="{StaticResource ControlInteriorBrush}" />
-                <Setter Property="Background" Value="{StaticResource ControlInteriorBrush}" />
-                <Setter Property="Foreground" Value="{StaticResource LightBlueBrush}" />
-                <Setter Property="FontWeight" Value="Normal" />
-            </Trigger>
-
-
-        </Style.Triggers>
-
-    </Style>
-
 
 </ResourceDictionary>

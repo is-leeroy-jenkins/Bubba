@@ -31,7 +31,7 @@
 
             <Trigger Property="IsFocused" Value="False">
                 <Setter Property="Background" Value="{StaticResource ControlInteriorBrush}" />
-                <Setter Property="BorderBrush" Value="{StaticResource ControlInteriorBrush}" />
+                <Setter Property="BorderBrush" Value="{StaticResource BlueBorderBrush}" />
                 <Setter Property="Foreground" Value="{StaticResource FormForeground}" />
             </Trigger>
 

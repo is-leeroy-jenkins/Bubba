@@ -1464,7 +1464,6 @@ namespace Bubba
             }
         }
 
-
         /// <summary>
         /// Closes the other tabs.
         /// </summary>
@@ -1605,15 +1604,20 @@ namespace Bubba
             }
         }
 
+        /// <summary>
+        /// Gets the application dir.
+        /// </summary>
+        /// <param name="name">The name.</param>
+        /// <returns></returns>
         private static string GetAppDir( string name )
         {
-            string winXPDir = @"C:\Documents and Settings\All Users\Application Data\";
+            var winXPDir = @"C:\Documents and Settings\All Users\Application Data\";
             if( Directory.Exists( winXPDir ) )
             {
                 return winXPDir + BrowserConfig.Branding + @"\" + name + @"\";
             }
-            return @"C:\ProgramData\" + BrowserConfig.Branding + @"\" + name + @"\";
 
+            return @"C:\ProgramData\" + BrowserConfig.Branding + @"\" + name + @"\";
         }
 
         /// <summary>
@@ -2018,41 +2022,6 @@ namespace Bubba
                     };
 
                     _fileDialog.Show( );
-                }
-
-                Chill( );
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
-            }
-        }
-
-        /// <summary>
-        /// Initializes the image dialog asynchronous.
-        /// </summary>
-        /// <returns></returns>
-        private protected void OpenImageDialog( )
-        {
-            try
-            {
-                Busy( );
-                if( App.ActiveWindows.Keys.Contains( "GptImageDialog" ) )
-                {
-                    var _window = ( GptImageDialog )App.ActiveWindows[ "GptImageDialog" ];
-                    _window.Owner = this;
-                    _window.Show( );
-                }
-                else
-                {
-                    var _gptImageDialog = new GptImageDialog
-                    {
-                        Topmost = true,
-                        Owner = this,
-                        WindowStartupLocation = WindowStartupLocation.CenterScreen
-                    };
-
-                    _gptImageDialog.Show( );
                 }
 
                 Chill( );
@@ -4155,31 +4124,6 @@ namespace Bubba
         }
 
         /// <summary>
-        /// Called when [tool strip text box click].
-        /// </summary>
-        /// <param name="sender">The sender.</param>
-        /// <param name="e">The <see cref="MouseEventArgs"/>
-        /// instance containing the event data.</param>
-        private protected void OnToolStripTextBoxTextChanged(
-            object sender, TextChangedEventArgs e )
-        {
-            try
-            {
-                var _textBox = sender as ToolStripTextBox;
-                var _text = _textBox?.Text;
-                if( !string.IsNullOrEmpty( _text ) )
-                {
-                    Editor.Text = _text;
-                    GptTextBox.Text = _text;
-                }
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
-            }
-        }
-
-        /// <summary>
         /// Called when [closing].
         /// </summary>
         /// <param name="sender">The sender.</param>
@@ -4661,6 +4605,30 @@ namespace Bubba
                 ClearLabels( );
                 PopulateModelsAsync( );
                 PopulateInstalledVoices( );
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+            }
+        }
+
+        /// <summary>
+        /// Called when [tool strip text box click].
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The <see cref="MouseEventArgs"/>
+        /// instance containing the event data.</param>
+        private protected void OnToolStripTextBoxTextChanged( object sender, TextChangedEventArgs e )
+        {
+            try
+            {
+                var _textBox = sender as ToolStripTextBox;
+                var _text = _textBox?.Text;
+                if( !string.IsNullOrEmpty( _text ) )
+                {
+                    Editor.Text = _text;
+                    GptTextBox.Text = _text;
+                }
             }
             catch( Exception ex )
             {

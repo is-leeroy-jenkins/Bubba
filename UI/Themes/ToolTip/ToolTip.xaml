@@ -5,7 +5,7 @@
 
     <!--  *********************************************** TextBox*****************************************************  -->
 
-    <Style TargetType="ToolTip">
+    <Style TargetType="{x:Type ToolTip}">
         <Setter Property="Background" Value="{StaticResource BlackBackground}" />
         <Setter Property="Foreground" Value="{StaticResource BlueBorderBrush}" />
         <Setter Property="Padding" Value="10" />

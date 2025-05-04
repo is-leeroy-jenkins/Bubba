@@ -33997,6 +33997,13 @@
             <param name="form">The form.</param>
             <param name="interval">The interval.</param>
         </member>
+        <member name="M:Bubba.ChatWindow.GetAppDir(System.String)">
+            <summary>
+            Gets the application dir.
+            </summary>
+            <param name="name">The name.</param>
+            <returns></returns>
+        </member>
         <member name="M:Bubba.ChatWindow.SetToolbarVisibility(System.Boolean)">
             <summary>
             
@@ -34065,12 +34072,6 @@
             <summary>
             Opens the file browser.
             </summary>
-        </member>
-        <member name="M:Bubba.ChatWindow.OpenImageDialog">
-            <summary>
-            Initializes the image dialog asynchronous.
-            </summary>
-            <returns></returns>
         </member>
         <member name="M:Bubba.ChatWindow.OpenSearch">
             <summary>
@@ -34498,14 +34499,6 @@
             <param name="e">The <see cref="T:System.Windows.Input.MouseEventArgs"/>
             instance containing the event data.</param>
         </member>
-        <member name="M:Bubba.ChatWindow.OnToolStripTextBoxTextChanged(System.Object,System.Windows.Controls.TextChangedEventArgs)">
-            <summary>
-            Called when [tool strip text box click].
-            </summary>
-            <param name="sender">The sender.</param>
-            <param name="e">The <see cref="T:System.Windows.Input.MouseEventArgs"/>
-            instance containing the event data.</param>
-        </member>
         <member name="M:Bubba.ChatWindow.OnClosing(System.Object,System.ComponentModel.CancelEventArgs)">
             <summary>
             Called when [closing].
@@ -34704,6 +34697,14 @@
             </summary>
             <param name="sender">The sender.</param>
             <param name="e">The <see cref="T:System.Windows.RoutedEventArgs"/>
+            instance containing the event data.</param>
+        </member>
+        <member name="M:Bubba.ChatWindow.OnToolStripTextBoxTextChanged(System.Object,System.Windows.Controls.TextChangedEventArgs)">
+            <summary>
+            Called when [tool strip text box click].
+            </summary>
+            <param name="sender">The sender.</param>
+            <param name="e">The <see cref="T:System.Windows.Input.MouseEventArgs"/>
             instance containing the event data.</param>
         </member>
         <member name="M:Bubba.ChatWindow.OnListenCheckedChanged(System.Object,System.Windows.RoutedEventArgs)">

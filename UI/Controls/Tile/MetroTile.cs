@@ -77,18 +77,10 @@ namespace Bubba
         {
             // Control Properties
             SetResourceReference( StyleProperty, typeof( SfHubTile ) );
-            Width = 200;
-            Height = 100;
-            FontFamily = _theme.FontFamily;
-            FontSize = _theme.FontSize;
-            Padding = _theme.Padding;
-            Margin = _theme.Margin;
-            BorderThickness = _theme.BorderThickness;
-            Background = _theme.ControlBackground;
-            Foreground = _theme.LightBlueBrush;
-            BorderBrush = _theme.ControlBackground;
-            HorizontalAlignment = HorizontalAlignment.Stretch;
-            VerticalAlignment = VerticalAlignment.Stretch;
+            MinWidth = 40;
+            MinHeight = 30;
+            Header = "";
+            Title = "";
 
             // Wire Events
             MouseEnter += OnMouseEnter;

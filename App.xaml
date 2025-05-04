@@ -8,7 +8,6 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:num="clr-namespace:System.Globalization;assembly=System.Runtime"
     xmlns:plt="clr-namespace:ScottPlot.WPF;assembly=ScottPlot.WPF"
-    xmlns:skin="clr-namespace:Syncfusion.SfSkinManager;assembly=Syncfusion.SfSkinManager.WPF"
     xmlns:sp="clr-namespace:ScottPlot.WPF;assembly=ScottPlot.WPF"
     xmlns:ui="http://schemas.modernwpf.com/2019"
     xmlns:web="clr-namespace:CefSharp.Wpf;assembly=CefSharp.Wpf"
@@ -22,7 +21,7 @@
         <ResourceDictionary>
 
             <ResourceDictionary.MergedDictionaries>
-                <!--  COLORS  -->
+        <!--  COLORS  -->
                 <ResourceDictionary Source="/UI/Themes/Colors.xaml" />
                 <ResourceDictionary Source="UI/Themes/generic.xaml" />
                 <ResourceDictionary>

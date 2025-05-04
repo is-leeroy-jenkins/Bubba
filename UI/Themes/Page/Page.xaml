@@ -5,12 +5,12 @@
 
     <!--  ******************************************** RESOURCES *********************************************  -->
 
-    <Style TargetType="Page">
+    <Style TargetType="{x:Type Page}">
         <Setter Property="Background" Value="{StaticResource FormBackground}" />
         <Setter Property="Foreground" Value="{StaticResource FormForeground}" />
         <Setter Property="FontFamily" Value="Roboto" />
         <Setter Property="FontSize" Value="12" />
-        <Setter Property="Margin" Value="1" />
+        <Setter Property="Margin" Value="3" />
     </Style>
 
 </ResourceDictionary>

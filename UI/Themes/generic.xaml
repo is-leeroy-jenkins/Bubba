@@ -7,6 +7,9 @@
 
     <ResourceDictionary.MergedDictionaries>
         <!--  COMBOBOX  -->
+        <ResourceDictionary Source="/UI/Themes/Window/Window.xaml" />
+
+        <!--  COMBOBOX  -->
         <ResourceDictionary Source="/UI/Themes/ComboBox/ComboBox.xaml" />
 
         <!--  GROUPBOX  -->
@@ -14,14 +17,21 @@
 
         <!--  BUTTONS  -->
         <ResourceDictionary Source="/UI/Themes/Button/Button.xaml" />
+
+
+        <!--  RADIO BUTTONS  -->
         <ResourceDictionary Source="/UI/Themes/RadioButton/RadioButton.xaml" />
 
         <!--  COMMON  -->
 
         <!--  TAB CONTROL  -->
-        <ResourceDictionary Source="/UI/Themes/TabControl/BrowserTabItem.xaml" />
         <ResourceDictionary Source="/UI/Themes/TabControl/TabControl.xaml" />
+        <ResourceDictionary Source="/UI/Themes/TabControl/BrowserTabItem.xaml" />
 
+        <!--  MENU  -->
+        <ResourceDictionary Source="/UI/Themes/Menu/ContextMenu.xaml" />
+        <ResourceDictionary Source="/UI/Themes/Menu/Menu.xaml" />
+        <ResourceDictionary Source="/UI/Themes/Menu/MenuItem.xaml" />
 
         <!--  TEXT  -->
         <ResourceDictionary Source="/UI/Themes/TextBox/TextBox.xaml" />
@@ -45,6 +55,9 @@
 
         <!--  SLIDER  -->
         <ResourceDictionary Source="/UI/Themes/Slider/Slider.xaml" />
+
+        <!--  ToolTip  -->
+        <ResourceDictionary Source="/UI/Themes/ToolTip/ToolTip.xaml" />
 
 
     </ResourceDictionary.MergedDictionaries>

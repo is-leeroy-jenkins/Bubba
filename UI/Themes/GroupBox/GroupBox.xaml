@@ -18,6 +18,9 @@
         <Setter Property="BorderThickness" Value="1" />
     </Style>
 
+
+    <!--  *********************************************** METROGROUP BOX  *****************************************************  -->
+
     <Style TargetType="{x:Type b:MetroGroupBox}">
         <Setter Property="Background" Value="{StaticResource GroupBoxBackground}" />
         <Setter Property="BorderBrush" Value="{StaticResource MutedForeground}" />

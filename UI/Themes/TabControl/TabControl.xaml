@@ -14,7 +14,7 @@
         <Setter Property="HorizontalAlignment" Value="Stretch" />
         <Setter Property="VerticalAlignment" Value="Stretch" />
         <Setter Property="Padding" Value="1" />
-        <Setter Property="Margin" Value="1" />
+        <Setter Property="Margin" Value="3" />
     </Style>
 
 
@@ -28,7 +28,7 @@
         <Setter Property="HorizontalAlignment" Value="Stretch" />
         <Setter Property="VerticalAlignment" Value="Stretch" />
         <Setter Property="Padding" Value="1" />
-        <Setter Property="Margin" Value="1" />
+        <Setter Property="Margin" Value="3" />
     </Style>
 
 </ResourceDictionary>
