@@ -61,7 +61,7 @@ namespace Bubba.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to babbage-002Replacement for the GPT-3 ada and babbage base models. GPT base models can understand and generate natural language or code but are not trained with instruction following. These models are made to be replacements for the original GPT-3 base models and use the legacy Completions API. .
+        ///   Looks up a localized string similar to babbage-002.
         /// </summary>
         internal static string babbage_002 {
             get {
@@ -70,7 +70,25 @@ namespace Bubba.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Model continuously points to the version of GPT-4o used in ChatGPT. It is updated frequently, when there are significant changes to ChatGPT&apos;s GPT-4o model. The knowledge cutoff for GPT-4o models is October, 2023..
+        ///   Looks up a localized string similar to ft:gpt-4o-2024-08-06:leeroy-jenkins:bro-fine-tuned:BTc3PMb5.
+        /// </summary>
+        internal static string Bro {
+            get {
+                return ResourceManager.GetString("Bro", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ft:gpt-4o-2024-08-06:leeroy-jenkins:bubba-budget-training:BGVjoSXv.
+        /// </summary>
+        internal static string Bubba {
+            get {
+                return ResourceManager.GetString("Bubba", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to chatgpt-4o-latest.
         /// </summary>
         internal static string chatgpt_4o_latest {
             get {
@@ -88,7 +106,7 @@ namespace Bubba.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to curie-001;  GPT base models can understand and generate natural language or code but are not trained with instruction following. These models are made to be replacements for the original GPT-3 base models and use the legacy Completions API. .
+        ///   Looks up a localized string similar to curie-001.
         /// </summary>
         internal static string curie_001 {
             get {
@@ -97,7 +115,7 @@ namespace Bubba.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to dall-e-2;  DALL·E is a AI system that can create realistic images and art from a description in natural language. DALL·E 3 currently supports the ability, given a prompt, to create a new image with a specific size. DALL·E 2 also support the ability to edit an existing image, or create variations of a user provided image.   .
+        ///   Looks up a localized string similar to dall-e-2.
         /// </summary>
         internal static string dall_e_2 {
             get {
@@ -106,7 +124,7 @@ namespace Bubba.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to dall-e-3;  DALL·E is a AI system that can create realistic images and art from a description in natural language. DALL·E 3 currently supports the ability, given a prompt, to create a new image with a specific size. DALL·E 2 also support the ability to edit an existing image, or create variations of a user provided image..
+        ///   Looks up a localized string similar to dall-e-3.
         /// </summary>
         internal static string dall_e_3 {
             get {
@@ -115,7 +133,7 @@ namespace Bubba.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to davinci-002;  GPT base models can understand and generate natural language or code but are not trained with instruction following. These models are made to be replacements for the original GPT-3 base models and use the legacy Completions API. .
+        ///   Looks up a localized string similar to davinci-002.
         /// </summary>
         internal static string davinci_002 {
             get {
@@ -124,7 +142,7 @@ namespace Bubba.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to davinci-003;  GPT base models can understand and generate natural language or code but are not trained with instruction following. These models are made to be replacements for the original GPT-3 base models and use the legacy Completions API. .
+        ///   Looks up a localized string similar to davinci-003.
         /// </summary>
         internal static string davinci_003 {
             get {
@@ -133,7 +151,7 @@ namespace Bubba.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to gpt-3.5-turbo; Currently points to gpt-3.5-turbo-0125..
+        ///   Looks up a localized string similar to gpt-3.5-turbo.
         /// </summary>
         internal static string gpt_3_5_turbo {
             get {
@@ -142,7 +160,7 @@ namespace Bubba.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to gpt-3.5-turbo-0125; GPT-3.5 Turbo models can understand and generate natural language or code and have been optimized for chat using the Chat Completions API but work well for non-chat tasks as well..
+        ///   Looks up a localized string similar to gpt-3.5-turbo-0125.
         /// </summary>
         internal static string gpt_3_5_turbo_0125 {
             get {
@@ -151,7 +169,7 @@ namespace Bubba.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ;  GPT-4 is an older version of a high-intelligence GPT model, usable in Chat Completions. .
+        ///   Looks up a localized string similar to gpt-4.
         /// </summary>
         internal static string gpt_4 {
             get {
@@ -160,7 +178,7 @@ namespace Bubba.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to gpt-4-0125-preview;  GPT-4 is an older version of a high-intelligence GPT model, usable in Chat Completions. .
+        ///   Looks up a localized string similar to gpt-4-0125-preview.
         /// </summary>
         internal static string gpt_4_0125_preview {
             get {
@@ -169,7 +187,7 @@ namespace Bubba.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to gpt-4-0314;  GPT-4 is an older version of a high-intelligence GPT model, usable in Chat Completions. .
+        ///   Looks up a localized string similar to gpt-4-0314.
         /// </summary>
         internal static string gpt_4_0314 {
             get {
@@ -178,7 +196,7 @@ namespace Bubba.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to gpt-4 is an older version of a high-intelligence GPT model, usable in Chat Completions. .
+        ///   Looks up a localized string similar to gpt-4-0613.
         /// </summary>
         internal static string gpt_4_0613 {
             get {
@@ -205,7 +223,7 @@ namespace Bubba.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to gpt-4-1106-preview; GPT-4 is an older version of a high-intelligence GPT model, usable in Chat Completions. .
+        ///   Looks up a localized string similar to gpt-4-1106-preview.
         /// </summary>
         internal static string gpt_4_1106_preview {
             get {
@@ -214,7 +232,7 @@ namespace Bubba.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to gpt-4-turbo;  GPT-4 is an older version of a high-intelligence GPT model, usable in Chat Completions. Image inputs via the o1, gpt-4o, gpt-4o-mini, chatgpt-4o-latest, or gpt-4-turbo models (or previously gpt-4-vision-preview) are not eligible for zero retention..
+        ///   Looks up a localized string similar to gpt-4-turbo.
         /// </summary>
         internal static string gpt_4_turbo {
             get {
@@ -223,7 +241,7 @@ namespace Bubba.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to gpt-4-turbo-2024-04-09.  GPT-4 is an older version of a high-intelligence GPT model, usable in Chat Completions. Image inputs via the o1, gpt-4o, gpt-4o-mini, chatgpt-4o-latest, or gpt-4-turbo models (or previously gpt-4-vision-preview) are not eligible for zero retention..
+        ///   Looks up a localized string similar to gpt-4-turbo-2024-04-09.
         /// </summary>
         internal static string gpt_4_turbo_2024_04_09 {
             get {
@@ -232,7 +250,7 @@ namespace Bubba.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to gpt-4-turbo-preview;  GPT-4 is an older version of a high-intelligence GPT model, usable in Chat Completions. Image inputs via the o1, gpt-4o, gpt-4o-mini, chatgpt-4o-latest, or gpt-4-turbo models (or previously gpt-4-vision-preview) are not eligible for zero retention..
+        ///   Looks up a localized string similar to gpt-4-turbo-preview.
         /// </summary>
         internal static string gpt_4_turbo_preview {
             get {
@@ -241,7 +259,7 @@ namespace Bubba.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to gpt-4o (“o” for “omni”) a versatile, high-intelligence flagship model. It accepts both text and image inputs, and produces text outputs (including Structured Outputs).  Image inputs via the o1, gpt-4o, gpt-4o-mini, chatgpt-4o-latest, or gpt-4-turbo models (or previously gpt-4-vision-preview) are not eligible for zero retention..
+        ///   Looks up a localized string similar to gpt-4o.
         /// </summary>
         internal static string gpt_4o {
             get {
@@ -250,7 +268,7 @@ namespace Bubba.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to gpt-4o-2024-05-13 (“o” for “omni”) a versatile, high-intelligence flagship model. It accepts both text and image inputs, and produces text outputs (including Structured Outputs).  Image inputs via the o1, gpt-4o, gpt-4o-mini, chatgpt-4o-latest, or gpt-4-turbo models (or previously gpt-4-vision-preview) are not eligible for zero retention..
+        ///   Looks up a localized string similar to gpt-4o-2024-05-13.
         /// </summary>
         internal static string gpt_4o_2024_05_13 {
             get {
@@ -259,7 +277,7 @@ namespace Bubba.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to gpt-4o-2024-08-06 (“o” for “omni”) a versatile, high-intelligence flagship model. It accepts both text and image inputs, and produces text outputs (including Structured Outputs). Image inputs via the o1, gpt-4o, gpt-4o-mini, chatgpt-4o-latest, or gpt-4-turbo models (or previously gpt-4-vision-preview) are not eligible for zero retention..
+        ///   Looks up a localized string similar to gpt-4o-2024-08-06 .
         /// </summary>
         internal static string gpt_4o_2024_08_06 {
             get {
@@ -268,7 +286,7 @@ namespace Bubba.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to GPT-4o-2024-11-20 (“o” for “omni”) is a versatile, high-intelligence flagship model. It accepts both text and image inputs, and produces text outputs (including Structured Outputs). Image inputs via the o1, gpt-4o, gpt-4o-mini, chatgpt-4o-latest, or gpt-4-turbo models (or previously gpt-4-vision-preview) are not eligible for zero retention..
+        ///   Looks up a localized string similar to GPT-4o-2024-11-20 .
         /// </summary>
         internal static string gpt_4o_2024_11_20 {
             get {
@@ -277,7 +295,7 @@ namespace Bubba.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to gpt-4o-audio-preview; These models accept audio inputs and outputs, and can be used in the Chat Completions REST API..
+        ///   Looks up a localized string similar to gpt-4o-audio-preview .
         /// </summary>
         internal static string gpt_4o_audio_preview {
             get {
@@ -286,7 +304,7 @@ namespace Bubba.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to gpt-4o-audio-preview-2024-10-01;  These models accept audio inputs and outputs, and can be used in the Chat Completions REST API.
+        ///   Looks up a localized string similar to gpt-4o-audio-preview-2024-10-01.
         /// </summary>
         internal static string gpt_4o_audio_preview_2024_10_01 {
             get {
@@ -295,7 +313,7 @@ namespace Bubba.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to gpt-4o-audio-preview-2024-12-17;  These models accept audio inputs and outputs, and can be used in the Chat Completions REST API..
+        ///   Looks up a localized string similar to gpt-4o-audio-preview-2024-12-17.
         /// </summary>
         internal static string gpt_4o_audio_preview_2024_12_17 {
             get {
@@ -304,7 +322,7 @@ namespace Bubba.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to gpt-4o-mini (“o” for “omni”) is a versatile, high-intelligence flagship model. It accepts both text and image inputs, and produces text outputs (including Structured Outputs). Image inputs via the o1, gpt-4o, gpt-4o-mini, chatgpt-4o-latest, or gpt-4-turbo models (or previously gpt-4-vision-preview) are not eligible for zero retention..
+        ///   Looks up a localized string similar to gpt-4o-mini.
         /// </summary>
         internal static string gpt_4o_mini {
             get {
@@ -313,7 +331,7 @@ namespace Bubba.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to gpt-4o-mini-2024-07-18 (“o” for “omni”) is a versatile, high-intelligence flagship model. It accepts both text and image inputs, and produces text outputs (including Structured Outputs). Image inputs via the o1, gpt-4o, gpt-4o-mini, chatgpt-4o-latest, or gpt-4-turbo models (or previously gpt-4-vision-preview) are not eligible for zero retention..
+        ///   Looks up a localized string similar to gpt-4o-mini-2024-07-18.
         /// </summary>
         internal static string gpt_4o_mini_2024_07_18 {
             get {
@@ -322,7 +340,7 @@ namespace Bubba.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to gpt-4o-mini-realtime-preview;  These models are capable of responding to audio and text inputs in realtime over WebRTC or a WebSocket interface. The knowledge cutoff for GPT-4o Realtime models is October, 2023..
+        ///   Looks up a localized string similar to gpt-4o-mini-realtime-preview.
         /// </summary>
         internal static string gpt_4o_mini_realtime_preview {
             get {
@@ -331,7 +349,7 @@ namespace Bubba.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to gpt-4o-mini-realtime-preview-2024-12-17;  These models are capable of responding to audio and text inputs in realtime over WebRTC or a WebSocket interface. The knowledge cutoff for GPT-4o Realtime models is October, 2023..
+        ///   Looks up a localized string similar to gpt-4o-mini-realtime-preview-2024-12-17.
         /// </summary>
         internal static string gpt_4o_mini_realtime_preview_2024_12_17 {
             get {
@@ -340,7 +358,7 @@ namespace Bubba.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to gpt-4o-mini-search-preview-2025-03-11.
+        ///   Looks up a localized string similar to gpt-4o-mini-search-preview-2025-03-1.
         /// </summary>
         internal static string gpt_4o_mini_search_preview_2025_03_11 {
             get {
@@ -349,7 +367,7 @@ namespace Bubba.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to gpt-4o-realtime-preview;   These models are capable of responding to audio and text inputs in realtime over WebRTC or a WebSocket interface. The knowledge cutoff for GPT-4o Realtime models is October, 2023..
+        ///   Looks up a localized string similar to gpt-4o-realtime-preview.
         /// </summary>
         internal static string gpt_4o_realtime_preview {
             get {
@@ -358,7 +376,7 @@ namespace Bubba.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to gpt-4o-realtime-preview-2024-10-01;  These models are capable of responding to audio and text inputs in realtime over WebRTC or a WebSocket interface. The knowledge cutoff for GPT-4o Realtime models is October, 2023..
+        ///   Looks up a localized string similar to gpt-4o-realtime-preview-2024-10-01.
         /// </summary>
         internal static string gpt_4o_realtime_preview_2024_10_01 {
             get {
@@ -367,7 +385,7 @@ namespace Bubba.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to gpt-4o-realtime-preview-2024-12-17;  These models are capable of responding to audio and text inputs in realtime over WebRTC or a WebSocket interface. The knowledge cutoff for GPT-4o Realtime models is October, 2023..
+        ///   Looks up a localized string similar to gpt-4o-realtime-preview-2024-12-17.
         /// </summary>
         internal static string gpt_4o_realtime_preview_2024_12_17 {
             get {
@@ -385,7 +403,7 @@ namespace Bubba.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The o1 series of models are trained with reinforcement learning to perform complex reasoning. o1 models think before they answer, producing a long internal chain of thought before responding to the user. .
+        ///   Looks up a localized string similar to o1.
         /// </summary>
         internal static string o1 {
             get {
@@ -394,7 +412,7 @@ namespace Bubba.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The o1 series of models are trained with reinforcement learning to perform complex reasoning. o1 models think before they answer, producing a long internal chain of thought. o1: reasoning model designed to solve hard problems across domains user..
+        ///   Looks up a localized string similar to o1-2024-12-17.
         /// </summary>
         internal static string o1_2024_12_17 {
             get {
@@ -403,7 +421,7 @@ namespace Bubba.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The o1 series of models are trained with reinforcement learning to perform complex reasoning. o1 models think before they answer, producing a long internal chain of thought before responding to the user..
+        ///   Looks up a localized string similar to o1-mini.
         /// </summary>
         internal static string o1_mini {
             get {
@@ -412,7 +430,7 @@ namespace Bubba.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to o1-mini-2024-09-12; The o1 series of models are trained with reinforcement learning to perform complex reasoning. o1 models think before they answer, producing a long internal chain of thought before responding to the user..
+        ///   Looks up a localized string similar to o1-mini-2024-09-12.
         /// </summary>
         internal static string o1_mini_2024_09_12 {
             get {
@@ -421,7 +439,7 @@ namespace Bubba.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to o1-preview;  The o1 series of models are trained with reinforcement learning to perform complex reasoning. o1 models think before they answer, producing a long internal chain of thought before responding to the user..
+        ///   Looks up a localized string similar to o1-preview.
         /// </summary>
         internal static string o1_preview {
             get {
@@ -430,7 +448,7 @@ namespace Bubba.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to o1-preview-2024-09-12;  The o1 series of models are trained with reinforcement learning to perform complex reasoning. o1 models think before they answer, producing a long internal chain of thought before responding to the user..
+        ///   Looks up a localized string similar to o1-preview-2024-09-12.
         /// </summary>
         internal static string o1_preview_2024_09_12 {
             get {
@@ -475,7 +493,7 @@ namespace Bubba.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to text-embedding-3-large;  Embeddings are a numerical representation of text that can be used to measure the relatedness between two pieces of text. Embeddings are useful for search, clustering, recommendations, anomaly detection, and classification tasks.
+        ///   Looks up a localized string similar to text-embedding-3-large.
         /// </summary>
         internal static string text_embedding_3_large {
             get {
@@ -484,7 +502,7 @@ namespace Bubba.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to text-embedding-3-small;  Embeddings are a numerical representation of text that can be used to measure the relatedness between two pieces of text. Embeddings are useful for search, clustering, recommendations, anomaly detection, and classification tasks..
+        ///   Looks up a localized string similar to text-embedding-3-small.
         /// </summary>
         internal static string text_embedding_3_small {
             get {
@@ -493,7 +511,7 @@ namespace Bubba.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to text-embedding-ada-002; Embeddings are a numerical representation of text that can be used to measure the relatedness between two pieces of text. Embeddings are useful for search, clustering, recommendations, anomaly detection, and classification tasks..
+        ///   Looks up a localized string similar to text-embedding-ada-002.
         /// </summary>
         internal static string text_embedding_ada_002 {
             get {
@@ -502,7 +520,7 @@ namespace Bubba.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to tts-1;  TTS is an AI model that converts text to natural sounding spoken text. We offer two different model variates, tts-1 is optimized for real time text to speech use cases and tts-1-hd is optimized for quality. These models can be used with the Speech endpoint in the Audio API. Audio outputs are stored for 1 hour to enable multi-turn conversations, and are not currently eligible for zero retention..
+        ///   Looks up a localized string similar to tts-1.
         /// </summary>
         internal static string tts_1 {
             get {
@@ -511,7 +529,7 @@ namespace Bubba.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to tts-1-hd; TTS is an AI model that converts text to natural sounding spoken text. We offer two different model variates, tts-1 is optimized for real time text to speech use cases and tts-1-hd is optimized for quality. These models can be used with the Speech endpoint in the Audio API. Audio outputs are stored for 1 hour to enable multi-turn conversations, and are not currently eligible for zero retention..
+        ///   Looks up a localized string similar to tts-1-hd.
         /// </summary>
         internal static string tts_1_hd {
             get {
@@ -520,7 +538,7 @@ namespace Bubba.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Whisper is a general-purpose speech recognition model. It is trained on a large dataset of diverse audio and is also a multi-task model that can perform multilingual speech recognition as well as speech translation and language identification. The Whisper v2-large model is currently available through our API with the whisper-1 model name. Audio outputs are stored for 1 hour to enable multi-turn conversations, and are not currently eligible for zero retention..
+        ///   Looks up a localized string similar to whisper-1.
         /// </summary>
         internal static string whisper_1 {
             get {
@@ -529,7 +547,7 @@ namespace Bubba.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to whisper-2;  Whisper is a general-purpose speech recognition model. It is trained on a large dataset of diverse audio and is also a multi-task model that can perform multilingual speech recognition as well as speech translation and language identification. The Whisper v2-large model is currently available through our API with the whisper-1 model name. Audio outputs are stored for 1 hour to enable multi-turn conversations, and are not currently eligible for zero retention..
+        ///   Looks up a localized string similar to whisper-2.
         /// </summary>
         internal static string whisper_2 {
             get {
