@@ -3,10 +3,6 @@
   "WorkspaceRootPath": "C:\\Users\\terry\\source\\repos\\Bubba\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{08012640-3765-4051-B5EB-4FF782150AEC}|Bubba.csproj|c:\\users\\terry\\source\\repos\\bubba\\readme.md||{EFC0BB08-EA7D-40C6-A696-C870411A895B}",
-      "RelativeMoniker": "D:0:0:{08012640-3765-4051-B5EB-4FF782150AEC}|Bubba.csproj|solutionrelative:readme.md||{EFC0BB08-EA7D-40C6-A696-C870411A895B}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{08012640-3765-4051-B5EB-4FF782150AEC}|Bubba.csproj|c:\\users\\terry\\source\\repos\\bubba\\ui\\controls\\toolstrip\\textboxes\\toolstriptextbox.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{08012640-3765-4051-B5EB-4FF782150AEC}|Bubba.csproj|solutionrelative:ui\\controls\\toolstrip\\textboxes\\toolstriptextbox.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -26,7 +22,7 @@
       "DocumentGroups": [
         {
           "DockedHeight": 332,
-          "SelectedChildIndex": 14,
+          "SelectedChildIndex": 13,
           "Children": [
             {
               "$type": "Bookmark",
@@ -74,7 +70,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 1,
               "Title": "ChatWindow.xaml.cs",
               "DocumentMoniker": "C:\\Users\\terry\\source\\repos\\Bubba\\UI\\Views\\ChatWindow\\ChatWindow.xaml.cs",
               "RelativeDocumentMoniker": "UI\\Views\\ChatWindow\\ChatWindow.xaml.cs",
@@ -87,7 +83,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 2,
               "Title": "App.xaml",
               "DocumentMoniker": "C:\\Users\\terry\\source\\repos\\Bubba\\App.xaml",
               "RelativeDocumentMoniker": "App.xaml",
@@ -98,28 +94,15 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
               "Title": "ToolStripTextBox.cs",
               "DocumentMoniker": "C:\\Users\\terry\\source\\repos\\Bubba\\UI\\Controls\\ToolStrip\\TextBoxes\\ToolStripTextBox.cs",
               "RelativeDocumentMoniker": "UI\\Controls\\ToolStrip\\TextBoxes\\ToolStripTextBox.cs",
               "ToolTip": "C:\\Users\\terry\\source\\repos\\Bubba\\UI\\Controls\\ToolStrip\\TextBoxes\\ToolStripTextBox.cs",
               "RelativeToolTip": "UI\\Controls\\ToolStrip\\TextBoxes\\ToolStripTextBox.cs",
-              "ViewState": "AgIAAC0AAAAAAAAAAAAQwEAAAAAVAAAAAAAAAA==",
+              "ViewState": "AgIAAIkAAAAAAAAAAAAAAHMAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-05-04T15:17:39.739Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "README.md",
-              "DocumentMoniker": "C:\\Users\\terry\\source\\repos\\Bubba\\README.md",
-              "RelativeDocumentMoniker": "README.md",
-              "ToolTip": "C:\\Users\\terry\\source\\repos\\Bubba\\README.md",
-              "RelativeToolTip": "README.md",
-              "ViewState": "AgIAAB4AAAAAAAAAAADwvz8AAAAmAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001818|",
-              "WhenOpened": "2025-05-10T20:34:44.165Z",
               "EditorCaption": ""
             }
           ]
