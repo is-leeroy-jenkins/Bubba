@@ -21,6 +21,7 @@
 - Modern UI Design**: User-friendly WPF interface with rich text logging.
 - Multi OS Support**: Compatible with Windows x64/x86/ARM, Linux and MacOS.
 
+![](https://github.com/is-leeroy-jenkins/Bocifus/blob/main/Resources/Assets/DemoImages/OpenAIOnWPF.gif)
 ## ![](https://github.com/is-leeroy-jenkins/Bubba/blob/master/Resources/Assets/GitHubImages/csharp.png)  Code
 
 - Bubba supports x64 specific builds
