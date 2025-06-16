@@ -2,7 +2,6 @@
 
 
 <img src="https://github.com/is-leeroy-jenkins/Bubba/blob/master/Resources/Assets/GitHubImages/bubbles.gif" style="width:850px;height:200px">
-___
 <div align="left">
   <p>
     <a href="https://github.com/is-leeroy-jenkins/Bubba/tree/master/Resources/Github/Users.md">Download</a> •  <a href="">Documentation</a> •<a href="https://github.com/is-leeroy-jenkins/Bubba/tree/master/Resources/Github/Compilation.md">Build</a> • <a href="#-license">License</a>
@@ -37,6 +36,7 @@ ___
 - [Callbacks](https://github.com/is-leeroy-jenkins/Bubba/tree/master/Callbacks) - events, delegates, and event-handlers used in the application
 - [Data](https://github.com/is-leeroy-jenkins/Bubba/tree/master/Data) - data classes used by Bubba
 ___
+
 ![](https://github.com/is-leeroy-jenkins/Bocifus/blob/main/Resources/Assets/DemoImages/OpenAIOnWPF.gif)
 
 ### ![](https://github.com/is-leeroy-jenkins/Bubba/blob/master/Resources/Assets/GitHubImages/documentation.png)  Documentation
@@ -53,8 +53,6 @@ ___
 > Vectorization is the process of converting textual data into numerical vectors and is a process that is usually applied once the text is cleaned.
 > It can help improve the execution speed and reduce the training time of your code. Bubba provides the following vector stores
 > on the OpenAI platform to support environmental data analysis with machine-learning:
-
-___
 
 
 ### 📦 Fine-tuning Datasets
@@ -96,11 +94,11 @@ generative AI, and machine-learning to project future outlays by agency and fisc
 - [Balance Estimator](https://anaconda.cloud/api/nbserve/launch_notebook?nb_url=https%3A%2F%2Fanaconda.cloud%2Fapi%2Fprojects%2F088fd703-e3a6-426c-af6b3c80bf443a33%2Ffiles%2FBalanceEstimator.ipynb%3Fversion%3Dac106c51-bc0c-4e82-a9c0-1c59c48f4510) is a forecasting model that uses 
 historical data from 2017 to 2024 to project balances at the account-level.
 
-
+___
 
   
 
-## ![](https://github.com/is-leeroy-jenkins/Bubba/blob/master/Resources/Assets/GitHubImages/tools.png) Build
+### ![](https://github.com/is-leeroy-jenkins/Bubba/blob/master/Resources/Assets/GitHubImages/tools.png) Build
 
 - [x] VisualStudio 2022
 - [x] Based on .NET8 and WPF
@@ -147,7 +145,7 @@ You can build the application like any other .NET / WPF application on Windows.
    > ```
 
 
-## 🙏 Acknowledgements
+### 🙏 Acknowledgements
 
 Bubba uses the following projects and libraries. Please consider supporting them as well (e.g., by starring their repositories):
 
@@ -178,7 +176,7 @@ Bubba uses the following projects and libraries. Please consider supporting them
 | [Syncfusion.Tools.WPF 24.1.41](https://www.nuget.org/packages/Syncfusion.Tools.WPF)          | This package contains WPF AutoComplete, WPF DockingManager, WPF Navigation Pane, WPF Hierarchy Navigator, WPF Range Slider, WPF Ribbon, WPF TabControl, WPF Wizard, and WPF Badge components for WPF application.                               |
 | [Syncfusion.UI.WPF.NET 24.1.41](https://www.nuget.org/packages/Syncfusion.UI.WPF.NET)          | Syncfusion WPF Controls is a library of 100+ WPF UI components and file formats to build modern WPF applications. 
 
-## ![](https://github.com/is-leeroy-jenkins/Bubba/blob/master/Resources/Assets/GitHubImages/chrome.png) CefSharp Requirements
+### ![](https://github.com/is-leeroy-jenkins/Bubba/blob/master/Resources/Assets/GitHubImages/chrome.png) CefSharp Requirements
 
 #### The binaries directory must contain these required dependencies:
 
@@ -207,7 +205,7 @@ Bubba uses the following projects and libraries. Please consider supporting them
 #### By default `CEF` has it's own log file, `Debug.log` which is located in your executing folder. e.g. `bin`
 
 
-## ![](https://github.com/is-leeroy-jenkins/Bubba/blob/master/Resources/Assets/GitHubImages/signature.png)  Code Signing 
+### ![](https://github.com/is-leeroy-jenkins/Bubba/blob/master/Resources/Assets/GitHubImages/signature.png)  Code Signing 
 
 Bubba uses free code signing provided by [SignPath.io](https://signpath.io/) and a free code signing certificate
 from [SignPath Foundation](https://signpath.org/).
@@ -217,7 +215,7 @@ Build artifacts are automatically sent to [SignPath.io](https://signpath.io/) vi
 The signed binaries are then uploaded to the [GitHub releases](https://github.com/is-leeroy-jenkins/Bubba/releases) page.
 
 
-## ![](https://github.com/is-leeroy-jenkins/Bubba/blob/master/Resources/Assets/GitHubImages/web.png) Privacy Policy
+### ![](https://github.com/is-leeroy-jenkins/Bubba/blob/master/Resources/Assets/GitHubImages/web.png) Privacy Policy
 
 This program will not transfer any information to other networked systems unless specifically requested by the user or the person installing or operating it.
 
