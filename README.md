@@ -1,7 +1,5 @@
 ###### Bubba
-
-
-<img src="https://github.com/is-leeroy-jenkins/Bubba/blob/master/Resources/Assets/GitHubImages/bubbles.gif" style="width:850px;height:200px">
+![](https://github.com/is-leeroy-jenkins/Bubba/blob/master/Resources/Assets/GitHubImages/project_bubba.png)
 <div align="left">
   <p>
     <a href="https://github.com/is-leeroy-jenkins/Bubba/tree/master/Resources/Github/Users.md">Download</a> •  <a href="">Documentation</a> •<a href="https://github.com/is-leeroy-jenkins/Bubba/tree/master/Resources/Github/Compilation.md">Build</a> • <a href="#-license">License</a>
