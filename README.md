@@ -2,6 +2,7 @@
 
 
 <img src="https://github.com/is-leeroy-jenkins/Bubba/blob/master/Resources/Assets/GitHubImages/bubbles.gif" style="width:850px;height:200px">
+___
 <div align="left">
   <p>
     <a href="https://github.com/is-leeroy-jenkins/Bubba/tree/master/Resources/Github/Users.md">Download</a> •  <a href="">Documentation</a> •<a href="https://github.com/is-leeroy-jenkins/Bubba/tree/master/Resources/Github/Compilation.md">Build</a> • <a href="#-license">License</a>
@@ -45,13 +46,15 @@ ___
 - [Configuration Guide](https://github.com/is-leeroy-jenkins/Bubba/tree/master/Resources/Github/Configuration.md) - information for the Bubba configuration file. 
 - [Distribution Guide](https://github.com/is-leeroy-jenkins/Bubba/tree/master/Resources/Github/Distribution.md) -  distributing Bubba.
 
-
+___
 
 ### ![](https://github.com/is-leeroy-jenkins/Bubba/blob/master/Resources/Assets/GitHubImages/openai.png)  Generative AI
 
 > Vectorization is the process of converting textual data into numerical vectors and is a process that is usually applied once the text is cleaned.
 > It can help improve the execution speed and reduce the training time of your code. Bubba provides the following vector stores
 > on the OpenAI platform to support environmental data analysis with machine-learning:
+
+___
 
 
 ### 📦 Fine-tuning Datasets
@@ -69,7 +72,8 @@ ___
 
 ___
 
-- ### Ex. gpt-40-mini test run below
+
+###  gpt-4o
 
 - Bubba is prompted to review 10 years of appropriation data
 - Extrapolate the appropriated amounts.
