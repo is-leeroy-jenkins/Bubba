@@ -47,7 +47,7 @@
           "auditLevel": "low",
           "auditMode": "direct"
         },
-        "SdkAnalysisLevel": "9.0.200"
+        "SdkAnalysisLevel": "9.0.300"
       },
       "frameworks": {
         "net8.0-windows7.0": {
@@ -59,23 +59,23 @@
             },
             "CefSharp.Common.NETCore": {
               "target": "Package",
-              "version": "[135.0.170, )"
+              "version": "[137.0.100, )"
             },
             "CefSharp.OffScreen.NETCore": {
               "target": "Package",
-              "version": "[135.0.170, )"
+              "version": "[137.0.100, )"
             },
             "CefSharp.WinForms.NETCore": {
               "target": "Package",
-              "version": "[135.0.170, )"
+              "version": "[137.0.100, )"
             },
             "CefSharp.Wpf.NETCore": {
               "target": "Package",
-              "version": "[135.0.170, )"
+              "version": "[137.0.100, )"
             },
             "EPPlus": {
               "target": "Package",
-              "version": "[8.0.2, )"
+              "version": "[8.0.5, )"
             },
             "Google.Apis.CustomSearchAPI.v1": {
               "target": "Package",
@@ -129,7 +129,7 @@
             },
             "PDFsharp": {
               "target": "Package",
-              "version": "[6.1.1, )"
+              "version": "[6.2.0, )"
             },
             "QRCoder": {
               "target": "Package",
@@ -149,7 +149,7 @@
             },
             "SkiaSharp": {
               "target": "Package",
-              "version": "[3.116.1, )"
+              "version": "[3.119.0, )"
             },
             "SqlServerCompact": {
               "target": "Package",
@@ -245,7 +245,7 @@
             },
             "System.Data.OleDb": {
               "target": "Package",
-              "version": "[9.0.4, )"
+              "version": "[9.0.6, )"
             },
             "System.Data.SQLite.Core": {
               "target": "Package",
@@ -257,11 +257,11 @@
             },
             "System.Speech": {
               "target": "Package",
-              "version": "[9.0.4, )"
+              "version": "[9.0.6, )"
             },
             "System.Text.Encodings.Web": {
               "target": "Package",
-              "version": "[9.0.4, )"
+              "version": "[9.0.6, )"
             },
             "System.Text.Json": {
               "target": "Package",
@@ -269,7 +269,7 @@
             },
             "SystemExtensions.NetCore": {
               "target": "Package",
-              "version": "[1.6.11, )"
+              "version": "[1.6.12, )"
             },
             "ToastNotifications.Messages.Net6": {
               "target": "Package",
@@ -281,15 +281,15 @@
             },
             "chromiumembeddedframework.runtime.win-arm64": {
               "target": "Package",
-              "version": "[135.0.17, )"
+              "version": "[137.0.10, )"
             },
             "chromiumembeddedframework.runtime.win-x64": {
               "target": "Package",
-              "version": "[135.0.17, )"
+              "version": "[137.0.10, )"
             },
             "chromiumembeddedframework.runtime.win-x86": {
               "target": "Package",
-              "version": "[135.0.17, )"
+              "version": "[137.0.10, )"
             }
           },
           "imports": [
@@ -311,7 +311,7 @@
               "privateAssets": "none"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.203/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.301/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

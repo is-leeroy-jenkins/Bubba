@@ -501,8 +501,6 @@ C:\Users\terry\source\repos\Bubba\bin\Debug\net8.0-windows7.0\uz-Latn-UZ\ModernW
 C:\Users\terry\source\repos\Bubba\bin\Debug\net8.0-windows7.0\uz-Latn-UZ\ModernWpf.resources.dll
 C:\Users\terry\source\repos\Bubba\bin\Debug\net8.0-windows7.0\vi-VN\ModernWpf.Controls.resources.dll
 C:\Users\terry\source\repos\Bubba\bin\Debug\net8.0-windows7.0\vi-VN\ModernWpf.resources.dll
-C:\Users\terry\source\repos\Bubba\bin\Debug\net8.0-windows7.0\de\PdfSharp.Charting.resources.dll
-C:\Users\terry\source\repos\Bubba\bin\Debug\net8.0-windows7.0\de\PdfSharp.resources.dll
 C:\Users\terry\source\repos\Bubba\bin\Debug\net8.0-windows7.0\runtimes\win-arm64\lib\netcoreapp3.1\CefSharp.Core.Runtime.dll
 C:\Users\terry\source\repos\Bubba\bin\Debug\net8.0-windows7.0\runtimes\win-arm64\lib\netcoreapp3.1\CefSharp.Core.dll
 C:\Users\terry\source\repos\Bubba\bin\Debug\net8.0-windows7.0\runtimes\win-arm64\lib\netcoreapp3.1\CefSharp.dll
@@ -713,3 +711,6 @@ C:\Users\terry\source\repos\Bubba\obj\Debug\net8.0-windows7.0\refint\Bubba.dll
 C:\Users\terry\source\repos\Bubba\obj\Debug\net8.0-windows7.0\Bubba.xml
 C:\Users\terry\source\repos\Bubba\obj\Debug\net8.0-windows7.0\Bubba.genruntimeconfig.cache
 C:\Users\terry\source\repos\Bubba\obj\Debug\net8.0-windows7.0\ref\Bubba.dll
+C:\Users\terry\source\repos\Bubba\bin\Debug\net8.0-windows7.0\PdfSharp.BarCodes.dll
+C:\Users\terry\source\repos\Bubba\bin\Debug\net8.0-windows7.0\PdfSharp.Cryptography.dll
+C:\Users\terry\source\repos\Bubba\bin\Debug\net8.0-windows7.0\PdfSharp.Shared.dll
