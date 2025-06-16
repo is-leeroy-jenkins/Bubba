@@ -80,7 +80,7 @@ ___
 ## ![](https://github.com/is-leeroy-jenkins/Bubba/blob/master/Resources/Assets/GitHubImages/Bubba.gif) 
 
 
-## ![](https://github.com/is-leeroy-jenkins/Badger/blob/main/Resources/Assets/GitHubImages/graph.png) Maching Learning
+### ![](https://github.com/is-leeroy-jenkins/Badger/blob/main/Resources/Assets/GitHubImages/graph.png) Maching Learning
 
 - Bubba uses `gpt-4-turbo` for Embedding & fine-tuning regulatory guidance.  
 - Large-Language Models `gpt-4o-mini`, `o1`, and `davinci` are used for Budget-reasonsing
