@@ -1,7 +1,5 @@
 ###### Bubba
-
-
-<img src="https://github.com/is-leeroy-jenkins/Bubba/blob/master/Resources/Assets/GitHubImages/bubbles.gif" style="width:850px;height:225px">
+![](https://github.com/is-leeroy-jenkins/Bubba/blob/master/Resources/Assets/GitHubImages/project_bubba.png)
 <div align="left">
   <p>
     <a href="https://github.com/is-leeroy-jenkins/Bubba/tree/master/Resources/Github/Users.md">Download</a> •  <a href="">Documentation</a> •<a href="https://github.com/is-leeroy-jenkins/Bubba/tree/master/Resources/Github/Compilation.md">Build</a> • <a href="#-license">License</a>
@@ -12,46 +10,16 @@
 
 
 
-## ![](https://github.com/is-leeroy-jenkins/Bubba/blob/master/Resources/Assets/GitHubImages/features.png) Features
+### ![](https://github.com/is-leeroy-jenkins/Bubba/blob/master/Resources/Assets/GitHubImages/features.png) Features
 
 - An open source tool for connecting and interacting through a single, windows interface!
 - Connect and interact with ChatGPT through a single user interface.
 - Asynchronous ChatGPT Interaction: Efficiently sent prompts to the OpenAI Completions and Assistants API.
-- Data Collection**: Collects data such as PDFs, CSVs, DOCX, XLS, PPTX, TXT, Images, Videos, JSON, DBSQL, XML, HTML, PHP, JS, Archives, and Miscellaneous files.
-- Database Integration**: Organizes scraped URLs into SQLite databases based on their file types.
-- Modern UI Design**: User-friendly WPF interface with rich text logging.
-- Multi OS Support**: Compatible with Windows x64/x86/ARM, Linux and MacOS.
+- **Data Collection**: Collects data such as PDFs, CSVs, DOCX, XLS, PPTX, TXT, Images, Videos, JSON, DBSQL, XML, HTML, PHP, JS, Archives, and Miscellaneous files.
+- **Database Integration**: Organizes scraped URLs into SQLite databases based on their file types.
+- **Modern UI Design**: User-friendly WPF interface with rich text logging.
+- **Multi OS Support**: Compatible with Windows x64/x86/ARM, Linux and MacOS.
 ___
-
-![](https://github.com/is-leeroy-jenkins/Bocifus/blob/main/Resources/Assets/DemoImages/OpenAIOnWPF.gif)
-## ![](https://github.com/is-leeroy-jenkins/Bubba/blob/master/Resources/Assets/GitHubImages/csharp.png)  Code
-
-- Bubba supports x64 specific builds
-- [Enumerations](https://github.com/is-leeroy-jenkins/Bubba/tree/master/Enumerations) - enumerations used in the applications.
-- [Extensions](https://github.com/is-leeroy-jenkins/Bubba/tree/master/Extensions) - extension classes for Collections, DataTables, DataRows, LINQ, etc.
-- [IO](https://github.com/is-leeroy-jenkins/Bubba/tree/master/IO)- classes providing input/output and networking functionality.
-- [Resources](https://github.com/is-leeroy-jenkins/Bubba/tree/master/Resources) - images, documentation, and other assets used in the applications
-- [Controls](https://github.com/is-leeroy-jenkins/Bubba/tree/master/UI/Controls) - classes used for interacting with the user interface. 
-- [Themes](https://github.com/is-leeroy-jenkins/Bubba/tree/master/UI/Themes) - classes defining styles & themes for the user interface. 
-- [Views](https://github.com/is-leeroy-jenkins/Bubba/tree/master/UI/Views) - windows used by Bubba.
-- [Callbacks](https://github.com/is-leeroy-jenkins/Bubba/tree/master/Callbacks) - events, delegates, and event-handlers used in the application
-- [Data](https://github.com/is-leeroy-jenkins/Bubba/tree/master/Data) - data classes used by Bubba
-
-
-## ![](https://github.com/is-leeroy-jenkins/Bubba/blob/master/Resources/Assets/GitHubImages/documentation.png)  Documentation
-
-- [User Guide](https://github.com/is-leeroy-jenkins/Bubba/tree/master/Resources/Github/Users.md) - how to use Bubba.
-- [Compilation Guide](https://github.com/is-leeroy-jenkins/Bubba/tree/master/Resources/Github/Compilation.md) - instructions on how to compile Bubba.
-- [Configuration Guide](https://github.com/is-leeroy-jenkins/Bubba/tree/master/Resources/Github/Configuration.md) - information for the Bubba configuration file. 
-- [Distribution Guide](https://github.com/is-leeroy-jenkins/Bubba/tree/master/Resources/Github/Distribution.md) -  distributing Bubba.
-
-
-
-## ![](https://github.com/is-leeroy-jenkins/Bubba/blob/master/Resources/Assets/GitHubImages/openai.png)  Generative AI
-
-> Vectorization is the process of converting textual data into numerical vectors and is a process that is usually applied once the text is cleaned.
-> It can help improve the execution speed and reduce the training time of your code. Bubba provides the following vector stores
-> on the OpenAI platform to support environmental data analysis with machine-learning:
 
 
 ### 📦 Fine-tuning Datasets
@@ -69,7 +37,40 @@ ___
 
 ___
 
-- ### Ex. gpt-40-mini test run below
+
+![](https://github.com/is-leeroy-jenkins/Bocifus/blob/main/Resources/Assets/DemoImages/OpenAIOnWPF.gif)
+
+### ![](https://github.com/is-leeroy-jenkins/Bubba/blob/master/Resources/Assets/GitHubImages/csharp.png)  Code
+
+- Bubba supports x64 specific builds
+- [Enumerations](https://github.com/is-leeroy-jenkins/Bubba/tree/master/Enumerations) - enumerations used in the applications.
+- [Extensions](https://github.com/is-leeroy-jenkins/Bubba/tree/master/Extensions) - extension classes for Collections, DataTables, DataRows, LINQ, etc.
+- [IO](https://github.com/is-leeroy-jenkins/Bubba/tree/master/IO)- classes providing input/output and networking functionality.
+- [Resources](https://github.com/is-leeroy-jenkins/Bubba/tree/master/Resources) - images, documentation, and other assets used in the applications
+- [Controls](https://github.com/is-leeroy-jenkins/Bubba/tree/master/UI/Controls) - classes used for interacting with the user interface. 
+- [Themes](https://github.com/is-leeroy-jenkins/Bubba/tree/master/UI/Themes) - classes defining styles & themes for the user interface. 
+- [Views](https://github.com/is-leeroy-jenkins/Bubba/tree/master/UI/Views) - windows used by Bubba.
+- [Callbacks](https://github.com/is-leeroy-jenkins/Bubba/tree/master/Callbacks) - events, delegates, and event-handlers used in the application
+- [Data](https://github.com/is-leeroy-jenkins/Bubba/tree/master/Data) - data classes used by Bubba
+___
+
+### ![](https://github.com/is-leeroy-jenkins/Bubba/blob/master/Resources/Assets/GitHubImages/documentation.png)  Documentation
+
+- [User Guide](https://github.com/is-leeroy-jenkins/Bubba/tree/master/Resources/Github/Users.md) - how to use Bubba.
+- [Compilation Guide](https://github.com/is-leeroy-jenkins/Bubba/tree/master/Resources/Github/Compilation.md) - instructions on how to compile Bubba.
+- [Configuration Guide](https://github.com/is-leeroy-jenkins/Bubba/tree/master/Resources/Github/Configuration.md) - information for the Bubba configuration file. 
+- [Distribution Guide](https://github.com/is-leeroy-jenkins/Bubba/tree/master/Resources/Github/Distribution.md) -  distributing Bubba.
+
+___
+
+### ![](https://github.com/is-leeroy-jenkins/Bubba/blob/master/Resources/Assets/GitHubImages/openai.png)  Generative AI
+
+> Vectorization is the process of converting textual data into numerical vectors and is a process that is usually applied once the text is cleaned.
+> It can help improve the execution speed and reduce the training time of your code. Bubba provides the following vector stores
+> on the OpenAI platform to support environmental data analysis with machine-learning:
+
+
+###  gpt-4o
 
 - Bubba is prompted to review 10 years of appropriation data
 - Extrapolate the appropriated amounts.
@@ -79,7 +80,7 @@ ___
 ## ![](https://github.com/is-leeroy-jenkins/Bubba/blob/master/Resources/Assets/GitHubImages/Bubba.gif) 
 
 
-## ![](https://github.com/is-leeroy-jenkins/Badger/blob/main/Resources/Assets/GitHubImages/graph.png) Maching Learning
+### ![](https://github.com/is-leeroy-jenkins/Badger/blob/main/Resources/Assets/GitHubImages/graph.png) Maching Learning
 
 - Bubba uses `gpt-4-turbo` for Embedding & fine-tuning regulatory guidance.  
 - Large-Language Models `gpt-4o-mini`, `o1`, and `davinci` are used for Budget-reasonsing
@@ -92,11 +93,11 @@ generative AI, and machine-learning to project future outlays by agency and fisc
 - [Balance Estimator](https://anaconda.cloud/api/nbserve/launch_notebook?nb_url=https%3A%2F%2Fanaconda.cloud%2Fapi%2Fprojects%2F088fd703-e3a6-426c-af6b3c80bf443a33%2Ffiles%2FBalanceEstimator.ipynb%3Fversion%3Dac106c51-bc0c-4e82-a9c0-1c59c48f4510) is a forecasting model that uses 
 historical data from 2017 to 2024 to project balances at the account-level.
 
-
+___
 
   
 
-## ![](https://github.com/is-leeroy-jenkins/Bubba/blob/master/Resources/Assets/GitHubImages/tools.png) Build
+### ![](https://github.com/is-leeroy-jenkins/Bubba/blob/master/Resources/Assets/GitHubImages/tools.png) Build
 
 - [x] VisualStudio 2022
 - [x] Based on .NET8 and WPF
@@ -143,7 +144,7 @@ You can build the application like any other .NET / WPF application on Windows.
    > ```
 
 
-## 🙏 Acknowledgements
+### 🙏 Acknowledgements
 
 Bubba uses the following projects and libraries. Please consider supporting them as well (e.g., by starring their repositories):
 
@@ -174,7 +175,7 @@ Bubba uses the following projects and libraries. Please consider supporting them
 | [Syncfusion.Tools.WPF 24.1.41](https://www.nuget.org/packages/Syncfusion.Tools.WPF)          | This package contains WPF AutoComplete, WPF DockingManager, WPF Navigation Pane, WPF Hierarchy Navigator, WPF Range Slider, WPF Ribbon, WPF TabControl, WPF Wizard, and WPF Badge components for WPF application.                               |
 | [Syncfusion.UI.WPF.NET 24.1.41](https://www.nuget.org/packages/Syncfusion.UI.WPF.NET)          | Syncfusion WPF Controls is a library of 100+ WPF UI components and file formats to build modern WPF applications. 
 
-## ![](https://github.com/is-leeroy-jenkins/Bubba/blob/master/Resources/Assets/GitHubImages/chrome.png) CefSharp Requirements
+### ![](https://github.com/is-leeroy-jenkins/Bubba/blob/master/Resources/Assets/GitHubImages/chrome.png) CefSharp Requirements
 
 #### The binaries directory must contain these required dependencies:
 
@@ -203,7 +204,7 @@ Bubba uses the following projects and libraries. Please consider supporting them
 #### By default `CEF` has it's own log file, `Debug.log` which is located in your executing folder. e.g. `bin`
 
 
-## ![](https://github.com/is-leeroy-jenkins/Bubba/blob/master/Resources/Assets/GitHubImages/signature.png)  Code Signing 
+### ![](https://github.com/is-leeroy-jenkins/Bubba/blob/master/Resources/Assets/GitHubImages/signature.png)  Code Signing 
 
 Bubba uses free code signing provided by [SignPath.io](https://signpath.io/) and a free code signing certificate
 from [SignPath Foundation](https://signpath.org/).
@@ -213,7 +214,7 @@ Build artifacts are automatically sent to [SignPath.io](https://signpath.io/) vi
 The signed binaries are then uploaded to the [GitHub releases](https://github.com/is-leeroy-jenkins/Bubba/releases) page.
 
 
-## ![](https://github.com/is-leeroy-jenkins/Bubba/blob/master/Resources/Assets/GitHubImages/web.png) Privacy Policy
+### ![](https://github.com/is-leeroy-jenkins/Bubba/blob/master/Resources/Assets/GitHubImages/web.png) Privacy Policy
 
 This program will not transfer any information to other networked systems unless specifically requested by the user or the person installing or operating it.
 
