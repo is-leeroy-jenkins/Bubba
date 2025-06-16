@@ -117,98 +117,32 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="o1-mini" xml:space="preserve">
-    <value>o1-mini</value>
-  </data>
   <data name="chatgpt-4o-latest" xml:space="preserve">
     <value>chatgpt-4o-latest</value>
   </data>
-  <data name="gpt-4o" xml:space="preserve">
-    <value>gpt-4o</value>
-  </data>
-  <data name="gpt-4o-2024-05-13" xml:space="preserve">
-    <value>gpt-4o-2024-05-13</value>
-  </data>
-  <data name="gpt-4o-2024-08-06" xml:space="preserve">
+  <data name="gpt-4o " xml:space="preserve">
     <value>gpt-4o-2024-08-06 </value>
   </data>
-  <data name="gpt-4o-2024-11-20" xml:space="preserve">
-    <value>GPT-4o-2024-11-20 </value>
-  </data>
   <data name="gpt-4o-mini" xml:space="preserve">
-    <value>gpt-4o-mini</value>
-  </data>
-  <data name="gpt-4o-mini-2024-07-18" xml:space="preserve">
     <value>gpt-4o-mini-2024-07-18</value>
   </data>
   <data name="o1" xml:space="preserve">
-    <value>o1</value>
-  </data>
-  <data name="o1-2024-12-17" xml:space="preserve">
     <value>o1-2024-12-17</value>
   </data>
-  <data name="o1-mini-2024-09-12" xml:space="preserve">
-    <value>o1-mini-2024-09-12</value>
-  </data>
-  <data name="o1-preview" xml:space="preserve">
-    <value>o1-preview</value>
-  </data>
-  <data name="o1-preview-2024-09-12" xml:space="preserve">
-    <value>o1-preview-2024-09-12</value>
-  </data>
-  <data name="gpt-4o-realtime-preview" xml:space="preserve">
-    <value>gpt-4o-realtime-preview</value>
-  </data>
-  <data name="gpt-4o-realtime-preview-2024-12-17" xml:space="preserve">
-    <value>gpt-4o-realtime-preview-2024-12-17</value>
-  </data>
-  <data name="gpt-4o-realtime-preview-2024-10-01" xml:space="preserve">
-    <value>gpt-4o-realtime-preview-2024-10-01</value>
-  </data>
   <data name="gpt-4o-mini-realtime-preview" xml:space="preserve">
-    <value>gpt-4o-mini-realtime-preview</value>
-  </data>
-  <data name="gpt-4o-mini-realtime-preview-2024-12-17" xml:space="preserve">
     <value>gpt-4o-mini-realtime-preview-2024-12-17</value>
   </data>
-  <data name="gpt-4o-audio-preview" xml:space="preserve">
-    <value>gpt-4o-audio-preview </value>
-  </data>
-  <data name="gpt-4o-audio-preview-2024-12-17" xml:space="preserve">
+  <data name="gpt-4o-audio-preview " xml:space="preserve">
     <value>gpt-4o-audio-preview-2024-12-17</value>
   </data>
-  <data name="gpt-4o-audio-preview-2024-10-01" xml:space="preserve">
-    <value>gpt-4o-audio-preview-2024-10-01</value>
-  </data>
   <data name="gpt-4-turbo" xml:space="preserve">
-    <value>gpt-4-turbo</value>
-  </data>
-  <data name="gpt-4-turbo-2024-04-09" xml:space="preserve">
     <value>gpt-4-turbo-2024-04-09</value>
   </data>
-  <data name="gpt-4-turbo-preview" xml:space="preserve">
-    <value>gpt-4-turbo-preview</value>
-  </data>
-  <data name="gpt-4-0125-preview" xml:space="preserve">
-    <value>gpt-4-0125-preview</value>
-  </data>
-  <data name="gpt-4-1106-preview" xml:space="preserve">
-    <value>gpt-4-1106-preview</value>
-  </data>
   <data name="gpt-4" xml:space="preserve">
-    <value>gpt-4</value>
-  </data>
-  <data name="gpt-4-0613" xml:space="preserve">
     <value>gpt-4-0613</value>
   </data>
-  <data name="gpt-4-0314" xml:space="preserve">
-    <value>gpt-4-0314</value>
-  </data>
-  <data name="gpt-3.5-turbo-0125" xml:space="preserve">
-    <value>gpt-3.5-turbo-0125</value>
-  </data>
   <data name="gpt-3.5-turbo" xml:space="preserve">
-    <value>gpt-3.5-turbo</value>
+    <value>gpt-3.5-turbo-0125</value>
   </data>
   <data name="dall-e-3" xml:space="preserve">
     <value>dall-e-3</value>
@@ -249,31 +183,28 @@
   <data name="curie-001" xml:space="preserve">
     <value>curie-001</value>
   </data>
-  <data name="o3-mini" xml:space="preserve">
-    <value>o3-mini</value>
-  </data>
-  <data name="gpt-4.1-2025-04-14 " xml:space="preserve">
+  <data name="gpt-4.1 " xml:space="preserve">
     <value>gpt-4.1-2025-04-14</value>
   </data>
-  <data name="o4-mini-2025-04-16" xml:space="preserve">
+  <data name="o4-mini" xml:space="preserve">
     <value>o4-mini-2025-04-16</value>
   </data>
-  <data name="o1-pro-2025-03-19" xml:space="preserve">
+  <data name="o1-pro" xml:space="preserve">
     <value>o1-pro-2025-03-19</value>
   </data>
-  <data name="o3-2025-04-16" xml:space="preserve">
+  <data name="o3" xml:space="preserve">
     <value>o3-2025-04-16</value>
   </data>
-  <data name="gpt-4.1-mini-2025-04-14" xml:space="preserve">
+  <data name="gpt-4.1-mini " xml:space="preserve">
     <value>gpt-4.1-mini-2025-04-14</value>
   </data>
-  <data name="gpt-4o-search-preview-2025-03-11" xml:space="preserve">
+  <data name="gpt-4o-search-preview" xml:space="preserve">
     <value>gpt-4o-search-preview-2025-03-11</value>
   </data>
-  <data name="computer-use-preview-2025-03-11" xml:space="preserve">
+  <data name="computer-use-preview" xml:space="preserve">
     <value>computer-use-preview-2025-03-11</value>
   </data>
-  <data name="gpt-4o-mini-search-preview-2025-03-11" xml:space="preserve">
+  <data name="gpt-4o-mini-search-preview" xml:space="preserve">
     <value>gpt-4o-mini-search-preview-2025-03-1</value>
   </data>
   <data name="Bubba" xml:space="preserve">
@@ -283,5 +214,29 @@
   <data name="Bro" xml:space="preserve">
     <value>ft:gpt-4o-2024-08-06:leeroy-jenkins:bro-fine-tuned:BTc3PMb5</value>
     <comment>fine-tuned for data analysis</comment>
+  </data>
+  <data name="gpt-4o-transcribe" xml:space="preserve">
+    <value>gpt-4o-transcribe</value>
+  </data>
+  <data name="gpt-4o-mini-transcribe" xml:space="preserve">
+    <value>gpt-4o-mini-transcribe</value>
+  </data>
+  <data name="o3-mini" xml:space="preserve">
+    <value>o3-mini-2025-01-31</value>
+  </data>
+  <data name="gpt-4.1-nano " xml:space="preserve">
+    <value>gpt-4.1-nano-2025-04-14</value>
+  </data>
+  <data name="gpt-image-1" xml:space="preserve">
+    <value>gpt-image-1</value>
+  </data>
+  <data name="gpt-4o-mini-tts" xml:space="preserve">
+    <value>gpt-4o-mini-tts</value>
+  </data>
+  <data name="gpt-4o-realtime-preview" xml:space="preserve">
+    <value>gpt-4o-realtime-preview-2025-06-03</value>
+  </data>
+  <data name="codex-mini-latest" xml:space="preserve">
+    <value>codex-mini-latest</value>
   </data>
 </root>

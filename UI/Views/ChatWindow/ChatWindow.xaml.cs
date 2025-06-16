@@ -2378,6 +2378,10 @@ namespace Bubba
             try
             {
                 ModelDropDown.Items?.Clear( );
+                ModelDropDown.AddItem( "gpt-4o-2024-08-06" );
+                ModelDropDown.AddItem( "gpt-4o-2024-11-20" );
+                ModelDropDown.AddItem( "gpt-4o-2024-05-13" );
+                ModelDropDown.AddItem( "gpt-4o-mini-2024-07-18" );
                 ModelDropDown.AddItem( "o1-2024-12-17" );
                 ModelDropDown.AddItem( "o1-pro-2025-03-19" );
                 ModelDropDown.AddItem( "o1-mini-2024-09-12" );

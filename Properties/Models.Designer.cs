@@ -97,11 +97,20 @@ namespace Bubba.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to codex-mini-latest.
+        /// </summary>
+        internal static string codex_mini_latest {
+            get {
+                return ResourceManager.GetString("codex-mini-latest", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to computer-use-preview-2025-03-11.
         /// </summary>
-        internal static string computer_use_preview_2025_03_11 {
+        internal static string computer_use_preview {
             get {
-                return ResourceManager.GetString("computer-use-preview-2025-03-11", resourceCulture);
+                return ResourceManager.GetString("computer-use-preview", resourceCulture);
             }
         }
         
@@ -151,7 +160,7 @@ namespace Bubba.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to gpt-3.5-turbo.
+        ///   Looks up a localized string similar to gpt-3.5-turbo-0125.
         /// </summary>
         internal static string gpt_3_5_turbo {
             get {
@@ -160,16 +169,7 @@ namespace Bubba.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to gpt-3.5-turbo-0125.
-        /// </summary>
-        internal static string gpt_3_5_turbo_0125 {
-            get {
-                return ResourceManager.GetString("gpt-3.5-turbo-0125", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to gpt-4.
+        ///   Looks up a localized string similar to gpt-4-0613.
         /// </summary>
         internal static string gpt_4 {
             get {
@@ -178,61 +178,34 @@ namespace Bubba.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to gpt-4-0125-preview.
-        /// </summary>
-        internal static string gpt_4_0125_preview {
-            get {
-                return ResourceManager.GetString("gpt-4-0125-preview", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to gpt-4-0314.
-        /// </summary>
-        internal static string gpt_4_0314 {
-            get {
-                return ResourceManager.GetString("gpt-4-0314", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to gpt-4-0613.
-        /// </summary>
-        internal static string gpt_4_0613 {
-            get {
-                return ResourceManager.GetString("gpt-4-0613", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to gpt-4.1-2025-04-14.
         /// </summary>
-        internal static string gpt_4_1_2025_04_14_ {
+        internal static string gpt_4_1_ {
             get {
-                return ResourceManager.GetString("gpt-4.1-2025-04-14 ", resourceCulture);
+                return ResourceManager.GetString("gpt-4.1 ", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to gpt-4.1-mini-2025-04-14.
         /// </summary>
-        internal static string gpt_4_1_mini_2025_04_14 {
+        internal static string gpt_4_1_mini_ {
             get {
-                return ResourceManager.GetString("gpt-4.1-mini-2025-04-14", resourceCulture);
+                return ResourceManager.GetString("gpt-4.1-mini ", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to gpt-4-1106-preview.
+        ///   Looks up a localized string similar to gpt-4.1-nano-2025-04-14.
         /// </summary>
-        internal static string gpt_4_1106_preview {
+        internal static string gpt_4_1_nano_ {
             get {
-                return ResourceManager.GetString("gpt-4-1106-preview", resourceCulture);
+                return ResourceManager.GetString("gpt-4.1-nano ", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to gpt-4-turbo.
+        ///   Looks up a localized string similar to gpt-4-turbo-2024-04-09.
         /// </summary>
         internal static string gpt_4_turbo {
             get {
@@ -241,88 +214,25 @@ namespace Bubba.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to gpt-4-turbo-2024-04-09.
-        /// </summary>
-        internal static string gpt_4_turbo_2024_04_09 {
-            get {
-                return ResourceManager.GetString("gpt-4-turbo-2024-04-09", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to gpt-4-turbo-preview.
-        /// </summary>
-        internal static string gpt_4_turbo_preview {
-            get {
-                return ResourceManager.GetString("gpt-4-turbo-preview", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to gpt-4o.
-        /// </summary>
-        internal static string gpt_4o {
-            get {
-                return ResourceManager.GetString("gpt-4o", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to gpt-4o-2024-05-13.
-        /// </summary>
-        internal static string gpt_4o_2024_05_13 {
-            get {
-                return ResourceManager.GetString("gpt-4o-2024-05-13", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to gpt-4o-2024-08-06 .
         /// </summary>
-        internal static string gpt_4o_2024_08_06 {
+        internal static string gpt_4o_ {
             get {
-                return ResourceManager.GetString("gpt-4o-2024-08-06", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to GPT-4o-2024-11-20 .
-        /// </summary>
-        internal static string gpt_4o_2024_11_20 {
-            get {
-                return ResourceManager.GetString("gpt-4o-2024-11-20", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to gpt-4o-audio-preview .
-        /// </summary>
-        internal static string gpt_4o_audio_preview {
-            get {
-                return ResourceManager.GetString("gpt-4o-audio-preview", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to gpt-4o-audio-preview-2024-10-01.
-        /// </summary>
-        internal static string gpt_4o_audio_preview_2024_10_01 {
-            get {
-                return ResourceManager.GetString("gpt-4o-audio-preview-2024-10-01", resourceCulture);
+                return ResourceManager.GetString("gpt-4o ", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to gpt-4o-audio-preview-2024-12-17.
         /// </summary>
-        internal static string gpt_4o_audio_preview_2024_12_17 {
+        internal static string gpt_4o_audio_preview_ {
             get {
-                return ResourceManager.GetString("gpt-4o-audio-preview-2024-12-17", resourceCulture);
+                return ResourceManager.GetString("gpt-4o-audio-preview ", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to gpt-4o-mini.
+        ///   Looks up a localized string similar to gpt-4o-mini-2024-07-18.
         /// </summary>
         internal static string gpt_4o_mini {
             get {
@@ -331,16 +241,7 @@ namespace Bubba.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to gpt-4o-mini-2024-07-18.
-        /// </summary>
-        internal static string gpt_4o_mini_2024_07_18 {
-            get {
-                return ResourceManager.GetString("gpt-4o-mini-2024-07-18", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to gpt-4o-mini-realtime-preview.
+        ///   Looks up a localized string similar to gpt-4o-mini-realtime-preview-2024-12-17.
         /// </summary>
         internal static string gpt_4o_mini_realtime_preview {
             get {
@@ -349,25 +250,34 @@ namespace Bubba.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to gpt-4o-mini-realtime-preview-2024-12-17.
-        /// </summary>
-        internal static string gpt_4o_mini_realtime_preview_2024_12_17 {
-            get {
-                return ResourceManager.GetString("gpt-4o-mini-realtime-preview-2024-12-17", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to gpt-4o-mini-search-preview-2025-03-1.
         /// </summary>
-        internal static string gpt_4o_mini_search_preview_2025_03_11 {
+        internal static string gpt_4o_mini_search_preview {
             get {
-                return ResourceManager.GetString("gpt-4o-mini-search-preview-2025-03-11", resourceCulture);
+                return ResourceManager.GetString("gpt-4o-mini-search-preview", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to gpt-4o-realtime-preview.
+        ///   Looks up a localized string similar to gpt-4o-mini-transcribe.
+        /// </summary>
+        internal static string gpt_4o_mini_transcribe {
+            get {
+                return ResourceManager.GetString("gpt-4o-mini-transcribe", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to gpt-4o-mini-tts.
+        /// </summary>
+        internal static string gpt_4o_mini_tts {
+            get {
+                return ResourceManager.GetString("gpt-4o-mini-tts", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to gpt-4o-realtime-preview-2025-06-03.
         /// </summary>
         internal static string gpt_4o_realtime_preview {
             get {
@@ -376,34 +286,34 @@ namespace Bubba.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to gpt-4o-realtime-preview-2024-10-01.
-        /// </summary>
-        internal static string gpt_4o_realtime_preview_2024_10_01 {
-            get {
-                return ResourceManager.GetString("gpt-4o-realtime-preview-2024-10-01", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to gpt-4o-realtime-preview-2024-12-17.
-        /// </summary>
-        internal static string gpt_4o_realtime_preview_2024_12_17 {
-            get {
-                return ResourceManager.GetString("gpt-4o-realtime-preview-2024-12-17", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to gpt-4o-search-preview-2025-03-11.
         /// </summary>
-        internal static string gpt_4o_search_preview_2025_03_11 {
+        internal static string gpt_4o_search_preview {
             get {
-                return ResourceManager.GetString("gpt-4o-search-preview-2025-03-11", resourceCulture);
+                return ResourceManager.GetString("gpt-4o-search-preview", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to o1.
+        ///   Looks up a localized string similar to gpt-4o-transcribe.
+        /// </summary>
+        internal static string gpt_4o_transcribe {
+            get {
+                return ResourceManager.GetString("gpt-4o-transcribe", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to gpt-image-1.
+        /// </summary>
+        internal static string gpt_image_1 {
+            get {
+                return ResourceManager.GetString("gpt-image-1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to o1-2024-12-17.
         /// </summary>
         internal static string o1 {
             get {
@@ -412,70 +322,25 @@ namespace Bubba.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to o1-2024-12-17.
-        /// </summary>
-        internal static string o1_2024_12_17 {
-            get {
-                return ResourceManager.GetString("o1-2024-12-17", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to o1-mini.
-        /// </summary>
-        internal static string o1_mini {
-            get {
-                return ResourceManager.GetString("o1-mini", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to o1-mini-2024-09-12.
-        /// </summary>
-        internal static string o1_mini_2024_09_12 {
-            get {
-                return ResourceManager.GetString("o1-mini-2024-09-12", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to o1-preview.
-        /// </summary>
-        internal static string o1_preview {
-            get {
-                return ResourceManager.GetString("o1-preview", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to o1-preview-2024-09-12.
-        /// </summary>
-        internal static string o1_preview_2024_09_12 {
-            get {
-                return ResourceManager.GetString("o1-preview-2024-09-12", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to o1-pro-2025-03-19.
         /// </summary>
-        internal static string o1_pro_2025_03_19 {
+        internal static string o1_pro {
             get {
-                return ResourceManager.GetString("o1-pro-2025-03-19", resourceCulture);
+                return ResourceManager.GetString("o1-pro", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to o3-2025-04-16.
         /// </summary>
-        internal static string o3_2025_04_16 {
+        internal static string o3 {
             get {
-                return ResourceManager.GetString("o3-2025-04-16", resourceCulture);
+                return ResourceManager.GetString("o3", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to o3-mini.
+        ///   Looks up a localized string similar to o3-mini-2025-01-31.
         /// </summary>
         internal static string o3_mini {
             get {
@@ -486,9 +351,9 @@ namespace Bubba.Properties {
         /// <summary>
         ///   Looks up a localized string similar to o4-mini-2025-04-16.
         /// </summary>
-        internal static string o4_mini_2025_04_16 {
+        internal static string o4_mini {
             get {
-                return ResourceManager.GetString("o4-mini-2025-04-16", resourceCulture);
+                return ResourceManager.GetString("o4-mini", resourceCulture);
             }
         }
         

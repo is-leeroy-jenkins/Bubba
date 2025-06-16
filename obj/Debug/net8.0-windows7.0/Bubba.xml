@@ -28022,7 +28022,12 @@
               Looks up a localized string similar to chatgpt-4o-latest.
             </summary>
         </member>
-        <member name="P:Bubba.Properties.Models.computer_use_preview_2025_03_11">
+        <member name="P:Bubba.Properties.Models.codex_mini_latest">
+            <summary>
+              Looks up a localized string similar to codex-mini-latest.
+            </summary>
+        </member>
+        <member name="P:Bubba.Properties.Models.computer_use_preview">
             <summary>
               Looks up a localized string similar to computer-use-preview-2025-03-11.
             </summary>
@@ -28054,190 +28059,110 @@
         </member>
         <member name="P:Bubba.Properties.Models.gpt_3_5_turbo">
             <summary>
-              Looks up a localized string similar to gpt-3.5-turbo.
-            </summary>
-        </member>
-        <member name="P:Bubba.Properties.Models.gpt_3_5_turbo_0125">
-            <summary>
               Looks up a localized string similar to gpt-3.5-turbo-0125.
             </summary>
         </member>
         <member name="P:Bubba.Properties.Models.gpt_4">
             <summary>
-              Looks up a localized string similar to gpt-4.
-            </summary>
-        </member>
-        <member name="P:Bubba.Properties.Models.gpt_4_0125_preview">
-            <summary>
-              Looks up a localized string similar to gpt-4-0125-preview.
-            </summary>
-        </member>
-        <member name="P:Bubba.Properties.Models.gpt_4_0314">
-            <summary>
-              Looks up a localized string similar to gpt-4-0314.
-            </summary>
-        </member>
-        <member name="P:Bubba.Properties.Models.gpt_4_0613">
-            <summary>
               Looks up a localized string similar to gpt-4-0613.
             </summary>
         </member>
-        <member name="P:Bubba.Properties.Models.gpt_4_1_2025_04_14_">
+        <member name="P:Bubba.Properties.Models.gpt_4_1_">
             <summary>
               Looks up a localized string similar to gpt-4.1-2025-04-14.
             </summary>
         </member>
-        <member name="P:Bubba.Properties.Models.gpt_4_1_mini_2025_04_14">
+        <member name="P:Bubba.Properties.Models.gpt_4_1_mini_">
             <summary>
               Looks up a localized string similar to gpt-4.1-mini-2025-04-14.
             </summary>
         </member>
-        <member name="P:Bubba.Properties.Models.gpt_4_1106_preview">
+        <member name="P:Bubba.Properties.Models.gpt_4_1_nano_">
             <summary>
-              Looks up a localized string similar to gpt-4-1106-preview.
+              Looks up a localized string similar to gpt-4.1-nano-2025-04-14.
             </summary>
         </member>
         <member name="P:Bubba.Properties.Models.gpt_4_turbo">
             <summary>
-              Looks up a localized string similar to gpt-4-turbo.
-            </summary>
-        </member>
-        <member name="P:Bubba.Properties.Models.gpt_4_turbo_2024_04_09">
-            <summary>
               Looks up a localized string similar to gpt-4-turbo-2024-04-09.
             </summary>
         </member>
-        <member name="P:Bubba.Properties.Models.gpt_4_turbo_preview">
-            <summary>
-              Looks up a localized string similar to gpt-4-turbo-preview.
-            </summary>
-        </member>
-        <member name="P:Bubba.Properties.Models.gpt_4o">
-            <summary>
-              Looks up a localized string similar to gpt-4o.
-            </summary>
-        </member>
-        <member name="P:Bubba.Properties.Models.gpt_4o_2024_05_13">
-            <summary>
-              Looks up a localized string similar to gpt-4o-2024-05-13.
-            </summary>
-        </member>
-        <member name="P:Bubba.Properties.Models.gpt_4o_2024_08_06">
+        <member name="P:Bubba.Properties.Models.gpt_4o_">
             <summary>
               Looks up a localized string similar to gpt-4o-2024-08-06 .
             </summary>
         </member>
-        <member name="P:Bubba.Properties.Models.gpt_4o_2024_11_20">
-            <summary>
-              Looks up a localized string similar to GPT-4o-2024-11-20 .
-            </summary>
-        </member>
-        <member name="P:Bubba.Properties.Models.gpt_4o_audio_preview">
-            <summary>
-              Looks up a localized string similar to gpt-4o-audio-preview .
-            </summary>
-        </member>
-        <member name="P:Bubba.Properties.Models.gpt_4o_audio_preview_2024_10_01">
-            <summary>
-              Looks up a localized string similar to gpt-4o-audio-preview-2024-10-01.
-            </summary>
-        </member>
-        <member name="P:Bubba.Properties.Models.gpt_4o_audio_preview_2024_12_17">
+        <member name="P:Bubba.Properties.Models.gpt_4o_audio_preview_">
             <summary>
               Looks up a localized string similar to gpt-4o-audio-preview-2024-12-17.
             </summary>
         </member>
         <member name="P:Bubba.Properties.Models.gpt_4o_mini">
             <summary>
-              Looks up a localized string similar to gpt-4o-mini.
-            </summary>
-        </member>
-        <member name="P:Bubba.Properties.Models.gpt_4o_mini_2024_07_18">
-            <summary>
               Looks up a localized string similar to gpt-4o-mini-2024-07-18.
             </summary>
         </member>
         <member name="P:Bubba.Properties.Models.gpt_4o_mini_realtime_preview">
             <summary>
-              Looks up a localized string similar to gpt-4o-mini-realtime-preview.
-            </summary>
-        </member>
-        <member name="P:Bubba.Properties.Models.gpt_4o_mini_realtime_preview_2024_12_17">
-            <summary>
               Looks up a localized string similar to gpt-4o-mini-realtime-preview-2024-12-17.
             </summary>
         </member>
-        <member name="P:Bubba.Properties.Models.gpt_4o_mini_search_preview_2025_03_11">
+        <member name="P:Bubba.Properties.Models.gpt_4o_mini_search_preview">
             <summary>
               Looks up a localized string similar to gpt-4o-mini-search-preview-2025-03-1.
             </summary>
         </member>
+        <member name="P:Bubba.Properties.Models.gpt_4o_mini_transcribe">
+            <summary>
+              Looks up a localized string similar to gpt-4o-mini-transcribe.
+            </summary>
+        </member>
+        <member name="P:Bubba.Properties.Models.gpt_4o_mini_tts">
+            <summary>
+              Looks up a localized string similar to gpt-4o-mini-tts.
+            </summary>
+        </member>
         <member name="P:Bubba.Properties.Models.gpt_4o_realtime_preview">
             <summary>
-              Looks up a localized string similar to gpt-4o-realtime-preview.
+              Looks up a localized string similar to gpt-4o-realtime-preview-2025-06-03.
             </summary>
         </member>
-        <member name="P:Bubba.Properties.Models.gpt_4o_realtime_preview_2024_10_01">
-            <summary>
-              Looks up a localized string similar to gpt-4o-realtime-preview-2024-10-01.
-            </summary>
-        </member>
-        <member name="P:Bubba.Properties.Models.gpt_4o_realtime_preview_2024_12_17">
-            <summary>
-              Looks up a localized string similar to gpt-4o-realtime-preview-2024-12-17.
-            </summary>
-        </member>
-        <member name="P:Bubba.Properties.Models.gpt_4o_search_preview_2025_03_11">
+        <member name="P:Bubba.Properties.Models.gpt_4o_search_preview">
             <summary>
               Looks up a localized string similar to gpt-4o-search-preview-2025-03-11.
             </summary>
         </member>
-        <member name="P:Bubba.Properties.Models.o1">
+        <member name="P:Bubba.Properties.Models.gpt_4o_transcribe">
             <summary>
-              Looks up a localized string similar to o1.
+              Looks up a localized string similar to gpt-4o-transcribe.
             </summary>
         </member>
-        <member name="P:Bubba.Properties.Models.o1_2024_12_17">
+        <member name="P:Bubba.Properties.Models.gpt_image_1">
+            <summary>
+              Looks up a localized string similar to gpt-image-1.
+            </summary>
+        </member>
+        <member name="P:Bubba.Properties.Models.o1">
             <summary>
               Looks up a localized string similar to o1-2024-12-17.
             </summary>
         </member>
-        <member name="P:Bubba.Properties.Models.o1_mini">
-            <summary>
-              Looks up a localized string similar to o1-mini.
-            </summary>
-        </member>
-        <member name="P:Bubba.Properties.Models.o1_mini_2024_09_12">
-            <summary>
-              Looks up a localized string similar to o1-mini-2024-09-12.
-            </summary>
-        </member>
-        <member name="P:Bubba.Properties.Models.o1_preview">
-            <summary>
-              Looks up a localized string similar to o1-preview.
-            </summary>
-        </member>
-        <member name="P:Bubba.Properties.Models.o1_preview_2024_09_12">
-            <summary>
-              Looks up a localized string similar to o1-preview-2024-09-12.
-            </summary>
-        </member>
-        <member name="P:Bubba.Properties.Models.o1_pro_2025_03_19">
+        <member name="P:Bubba.Properties.Models.o1_pro">
             <summary>
               Looks up a localized string similar to o1-pro-2025-03-19.
             </summary>
         </member>
-        <member name="P:Bubba.Properties.Models.o3_2025_04_16">
+        <member name="P:Bubba.Properties.Models.o3">
             <summary>
               Looks up a localized string similar to o3-2025-04-16.
             </summary>
         </member>
         <member name="P:Bubba.Properties.Models.o3_mini">
             <summary>
-              Looks up a localized string similar to o3-mini.
+              Looks up a localized string similar to o3-mini-2025-01-31.
             </summary>
         </member>
-        <member name="P:Bubba.Properties.Models.o4_mini_2025_04_16">
+        <member name="P:Bubba.Properties.Models.o4_mini">
             <summary>
               Looks up a localized string similar to o4-mini-2025-04-16.
             </summary>

@@ -69,7 +69,7 @@ namespace Bubba
         /// <summary>
         /// The data
         /// </summary>
-        private protected IDictionary<string, object> _data;
+        private protected IDictionary<string, object> _data = new Dictionary<string, object>( );
 
         /// <summary>
         /// Initializes a new instance of the
@@ -78,7 +78,8 @@ namespace Bubba
         public GptContent( )
             : base( )
         {
-            _data = new Dictionary<string, object>( );
+            _type = "Text";
+            _data.Add( "type", _type ); 
         }
 
         /// <summary>
