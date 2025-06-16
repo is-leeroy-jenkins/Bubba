@@ -7,7 +7,7 @@
   </p>
 </div>
 
-![](https://github.com/is-leeroy-jenkins/Bubba/blob/master/Resources/Assets/GitHubImages/bubbles.gif)
+<img src="ttps://github.com/is-leeroy-jenkins/Bubba/blob/master/Resources/Assets/GitHubImages/bubbles.gif" style="width:950px;height:275px">
 
 
 
