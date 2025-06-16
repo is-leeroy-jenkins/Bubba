@@ -21,37 +21,6 @@
 - **Multi OS Support**: Compatible with Windows x64/x86/ARM, Linux and MacOS.
 ___
 
-### ![](https://github.com/is-leeroy-jenkins/Bubba/blob/master/Resources/Assets/GitHubImages/csharp.png)  Code
-
-- Bubba supports x64 specific builds
-- [Enumerations](https://github.com/is-leeroy-jenkins/Bubba/tree/master/Enumerations) - enumerations used in the applications.
-- [Extensions](https://github.com/is-leeroy-jenkins/Bubba/tree/master/Extensions) - extension classes for Collections, DataTables, DataRows, LINQ, etc.
-- [IO](https://github.com/is-leeroy-jenkins/Bubba/tree/master/IO)- classes providing input/output and networking functionality.
-- [Resources](https://github.com/is-leeroy-jenkins/Bubba/tree/master/Resources) - images, documentation, and other assets used in the applications
-- [Controls](https://github.com/is-leeroy-jenkins/Bubba/tree/master/UI/Controls) - classes used for interacting with the user interface. 
-- [Themes](https://github.com/is-leeroy-jenkins/Bubba/tree/master/UI/Themes) - classes defining styles & themes for the user interface. 
-- [Views](https://github.com/is-leeroy-jenkins/Bubba/tree/master/UI/Views) - windows used by Bubba.
-- [Callbacks](https://github.com/is-leeroy-jenkins/Bubba/tree/master/Callbacks) - events, delegates, and event-handlers used in the application
-- [Data](https://github.com/is-leeroy-jenkins/Bubba/tree/master/Data) - data classes used by Bubba
-___
-
-![](https://github.com/is-leeroy-jenkins/Bocifus/blob/main/Resources/Assets/DemoImages/OpenAIOnWPF.gif)
-
-### ![](https://github.com/is-leeroy-jenkins/Bubba/blob/master/Resources/Assets/GitHubImages/documentation.png)  Documentation
-
-- [User Guide](https://github.com/is-leeroy-jenkins/Bubba/tree/master/Resources/Github/Users.md) - how to use Bubba.
-- [Compilation Guide](https://github.com/is-leeroy-jenkins/Bubba/tree/master/Resources/Github/Compilation.md) - instructions on how to compile Bubba.
-- [Configuration Guide](https://github.com/is-leeroy-jenkins/Bubba/tree/master/Resources/Github/Configuration.md) - information for the Bubba configuration file. 
-- [Distribution Guide](https://github.com/is-leeroy-jenkins/Bubba/tree/master/Resources/Github/Distribution.md) -  distributing Bubba.
-
-___
-
-### ![](https://github.com/is-leeroy-jenkins/Bubba/blob/master/Resources/Assets/GitHubImages/openai.png)  Generative AI
-
-> Vectorization is the process of converting textual data into numerical vectors and is a process that is usually applied once the text is cleaned.
-> It can help improve the execution speed and reduce the training time of your code. Bubba provides the following vector stores
-> on the OpenAI platform to support environmental data analysis with machine-learning:
-
 
 ### 📦 Fine-tuning Datasets
 
@@ -67,6 +36,38 @@ ___
 - [Redbook](https://huggingface.co/datasets/leeroy-jankins/RedBook) - The Principles of Appropriations Law (Volumes I & II).
 
 ___
+
+
+![](https://github.com/is-leeroy-jenkins/Bocifus/blob/main/Resources/Assets/DemoImages/OpenAIOnWPF.gif)
+
+### ![](https://github.com/is-leeroy-jenkins/Bubba/blob/master/Resources/Assets/GitHubImages/csharp.png)  Code
+
+- Bubba supports x64 specific builds
+- [Enumerations](https://github.com/is-leeroy-jenkins/Bubba/tree/master/Enumerations) - enumerations used in the applications.
+- [Extensions](https://github.com/is-leeroy-jenkins/Bubba/tree/master/Extensions) - extension classes for Collections, DataTables, DataRows, LINQ, etc.
+- [IO](https://github.com/is-leeroy-jenkins/Bubba/tree/master/IO)- classes providing input/output and networking functionality.
+- [Resources](https://github.com/is-leeroy-jenkins/Bubba/tree/master/Resources) - images, documentation, and other assets used in the applications
+- [Controls](https://github.com/is-leeroy-jenkins/Bubba/tree/master/UI/Controls) - classes used for interacting with the user interface. 
+- [Themes](https://github.com/is-leeroy-jenkins/Bubba/tree/master/UI/Themes) - classes defining styles & themes for the user interface. 
+- [Views](https://github.com/is-leeroy-jenkins/Bubba/tree/master/UI/Views) - windows used by Bubba.
+- [Callbacks](https://github.com/is-leeroy-jenkins/Bubba/tree/master/Callbacks) - events, delegates, and event-handlers used in the application
+- [Data](https://github.com/is-leeroy-jenkins/Bubba/tree/master/Data) - data classes used by Bubba
+___
+
+### ![](https://github.com/is-leeroy-jenkins/Bubba/blob/master/Resources/Assets/GitHubImages/documentation.png)  Documentation
+
+- [User Guide](https://github.com/is-leeroy-jenkins/Bubba/tree/master/Resources/Github/Users.md) - how to use Bubba.
+- [Compilation Guide](https://github.com/is-leeroy-jenkins/Bubba/tree/master/Resources/Github/Compilation.md) - instructions on how to compile Bubba.
+- [Configuration Guide](https://github.com/is-leeroy-jenkins/Bubba/tree/master/Resources/Github/Configuration.md) - information for the Bubba configuration file. 
+- [Distribution Guide](https://github.com/is-leeroy-jenkins/Bubba/tree/master/Resources/Github/Distribution.md) -  distributing Bubba.
+
+___
+
+### ![](https://github.com/is-leeroy-jenkins/Bubba/blob/master/Resources/Assets/GitHubImages/openai.png)  Generative AI
+
+> Vectorization is the process of converting textual data into numerical vectors and is a process that is usually applied once the text is cleaned.
+> It can help improve the execution speed and reduce the training time of your code. Bubba provides the following vector stores
+> on the OpenAI platform to support environmental data analysis with machine-learning:
 
 
 ###  gpt-4o
