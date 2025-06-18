@@ -11,10 +11,6 @@
       "RelativeMoniker": "D:0:0:{08012640-3765-4051-B5EB-4FF782150AEC}|Bubba.csproj|solutionrelative:io\\gpt\\gptchoice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{08012640-3765-4051-B5EB-4FF782150AEC}|Bubba.csproj|c:\\users\\terry\\source\\repos\\bubba\\io\\gpt\\messages\\systemmessage.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{08012640-3765-4051-B5EB-4FF782150AEC}|Bubba.csproj|solutionrelative:io\\gpt\\messages\\systemmessage.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{08012640-3765-4051-B5EB-4FF782150AEC}|Bubba.csproj|c:\\users\\terry\\source\\repos\\bubba\\ui\\controls\\toolstrip\\textboxes\\toolstriptextbox.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{08012640-3765-4051-B5EB-4FF782150AEC}|Bubba.csproj|solutionrelative:ui\\controls\\toolstrip\\textboxes\\toolstriptextbox.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -82,7 +78,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 3,
               "Title": "ChatWindow.xaml.cs",
               "DocumentMoniker": "C:\\Users\\terry\\source\\repos\\Bubba\\UI\\Views\\ChatWindow\\ChatWindow.xaml.cs",
               "RelativeDocumentMoniker": "UI\\Views\\ChatWindow\\ChatWindow.xaml.cs",
@@ -95,7 +91,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 2,
               "Title": "ToolStripTextBox.cs",
               "DocumentMoniker": "C:\\Users\\terry\\source\\repos\\Bubba\\UI\\Controls\\ToolStrip\\TextBoxes\\ToolStripTextBox.cs",
               "RelativeDocumentMoniker": "UI\\Controls\\ToolStrip\\TextBoxes\\ToolStripTextBox.cs",
@@ -114,22 +110,9 @@
               "RelativeDocumentMoniker": "IO\\GPT\\Responses\\GptResponse.cs",
               "ToolTip": "C:\\Users\\terry\\source\\repos\\Bubba\\IO\\GPT\\Responses\\GptResponse.cs",
               "RelativeToolTip": "IO\\GPT\\Responses\\GptResponse.cs",
-              "ViewState": "AgIAAGUAAAAAAAAAAAAQwH4AAAAiAAAAAAAAAA==",
+              "ViewState": "AgIAAGUAAAAAAAAAAAAQwIAAAAAgAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-06-16T11:38:31.797Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "SystemMessage.cs",
-              "DocumentMoniker": "C:\\Users\\terry\\source\\repos\\Bubba\\IO\\GPT\\Messages\\SystemMessage.cs",
-              "RelativeDocumentMoniker": "IO\\GPT\\Messages\\SystemMessage.cs",
-              "ToolTip": "C:\\Users\\terry\\source\\repos\\Bubba\\IO\\GPT\\Messages\\SystemMessage.cs",
-              "RelativeToolTip": "IO\\GPT\\Messages\\SystemMessage.cs",
-              "ViewState": "AgIAANgAAAAAAAAAAAAiwPgAAABKAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-18T15:07:22.562Z",
               "EditorCaption": ""
             },
             {

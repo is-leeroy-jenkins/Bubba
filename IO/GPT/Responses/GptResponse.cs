@@ -116,7 +116,7 @@ namespace Bubba
         /// The identifier.
         /// </value>
         [ JsonPropertyName( "id" ) ]
-        public  override string Id
+        public override string Id
         {
             get
             {
