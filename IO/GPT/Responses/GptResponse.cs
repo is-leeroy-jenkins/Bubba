@@ -139,7 +139,7 @@ namespace Bubba
         /// The object.
         /// </value>
         [ JsonPropertyName( "object" ) ]
-        public  override string Object
+        public override string Object
         {
             get
             {
