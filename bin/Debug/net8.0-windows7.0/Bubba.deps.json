@@ -60,7 +60,7 @@
           "System.Data.SqlClient": "4.9.0",
           "System.Speech": "9.0.6",
           "System.Text.Encodings.Web": "9.0.6",
-          "System.Text.Json": "9.0.4",
+          "System.Text.Json": "9.0.6",
           "SystemExtensions.NetCore": "1.6.12",
           "ToastNotifications.Messages.Net6": "1.0.4",
           "ToastNotifications.Net6": "1.0.4",
@@ -487,7 +487,7 @@
       "ControlzEx/4.4.0": {
         "dependencies": {
           "Microsoft.Xaml.Behaviors.Wpf": "1.1.19",
-          "System.Text.Json": "9.0.4"
+          "System.Text.Json": "9.0.6"
         },
         "runtime": {
           "lib/netcoreapp3.1/ControlzEx.dll": {
@@ -2474,7 +2474,7 @@
       "System.ClientModel/1.2.1": {
         "dependencies": {
           "System.Memory.Data": "6.0.0",
-          "System.Text.Json": "9.0.4"
+          "System.Text.Json": "9.0.6"
         },
         "runtime": {
           "lib/net6.0/System.ClientModel.dll": {
@@ -2599,18 +2599,18 @@
           "Microsoft.Win32.SystemEvents": "6.0.0"
         }
       },
-      "System.IO.Pipelines/9.0.4": {
+      "System.IO.Pipelines/9.0.6": {
         "runtime": {
           "lib/net8.0/System.IO.Pipelines.dll": {
             "assemblyVersion": "9.0.0.0",
-            "fileVersion": "9.0.425.16305"
+            "fileVersion": "9.0.625.26613"
           }
         }
       },
       "System.Memory/4.6.0": {},
       "System.Memory.Data/6.0.0": {
         "dependencies": {
-          "System.Text.Json": "9.0.4"
+          "System.Text.Json": "9.0.6"
         },
         "runtime": {
           "lib/net6.0/System.Memory.Data.dll": {
@@ -2704,15 +2704,15 @@
           }
         }
       },
-      "System.Text.Json/9.0.4": {
+      "System.Text.Json/9.0.6": {
         "dependencies": {
-          "System.IO.Pipelines": "9.0.4",
+          "System.IO.Pipelines": "9.0.6",
           "System.Text.Encodings.Web": "9.0.6"
         },
         "runtime": {
           "lib/net8.0/System.Text.Json.dll": {
             "assemblyVersion": "9.0.0.0",
-            "fileVersion": "9.0.425.16305"
+            "fileVersion": "9.0.625.26613"
           }
         }
       },
@@ -3663,12 +3663,12 @@
       "path": "system.drawing.common/6.0.0",
       "hashPath": "system.drawing.common.6.0.0.nupkg.sha512"
     },
-    "System.IO.Pipelines/9.0.4": {
+    "System.IO.Pipelines/9.0.6": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-luF2Xba+lTe2GOoNQdZLe8q7K6s7nSpWZl9jIwWNMszN4/Yv0lmxk9HISgMmwdyZ83i3UhAGXaSY9o6IJBUuuA==",
-      "path": "system.io.pipelines/9.0.4",
-      "hashPath": "system.io.pipelines.9.0.4.nupkg.sha512"
+      "sha512": "sha512-0nlr0reXrRmkZNKifKqh2DgGhQgfkT7Qa3gQxIn/JI7/y3WDiTz67M+Sq3vFhUqcG8O5zVrpqHvIHeGPGUBsEw==",
+      "path": "system.io.pipelines/9.0.6",
+      "hashPath": "system.io.pipelines.9.0.6.nupkg.sha512"
     },
     "System.Memory/4.6.0": {
       "type": "package",
@@ -3761,12 +3761,12 @@
       "path": "system.text.encodings.web/9.0.6",
       "hashPath": "system.text.encodings.web.9.0.6.nupkg.sha512"
     },
-    "System.Text.Json/9.0.4": {
+    "System.Text.Json/9.0.6": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-pYtmpcO6R3Ef1XilZEHgXP2xBPVORbYEzRP7dl0IAAbN8Dm+kfwio8aCKle97rAWXOExr292MuxWYurIuwN62g==",
-      "path": "system.text.json/9.0.4",
-      "hashPath": "system.text.json.9.0.4.nupkg.sha512"
+      "sha512": "sha512-h+ZtYTyTnTh5Ju6mHCKb3FPGx4ylJZgm9W7Y2psUnkhQRPMOIxX+TCN0ZgaR/+Yea+93XHWAaMzYTar1/EHIPg==",
+      "path": "system.text.json/9.0.6",
+      "hashPath": "system.text.json.9.0.6.nupkg.sha512"
     },
     "System.Threading.Channels/8.0.0": {
       "type": "package",
