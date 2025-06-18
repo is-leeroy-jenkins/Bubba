@@ -358,7 +358,7 @@ namespace Bubba
             {
                 _data.Add( "n", _number );
                 _data.Add( "model", _model );
-                _data.Add( "max_completion_tokens", _maximumTokens );
+                _data.Add( "max_completion_tokens", _maxCompletionTokens );
                 _data.Add( "store", _store );
                 _data.Add( "stream", _stream );
                 _data.Add( "temperature", _temperature );

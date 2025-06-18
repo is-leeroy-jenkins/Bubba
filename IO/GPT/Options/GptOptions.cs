@@ -76,11 +76,11 @@ namespace Bubba
             _store = true;
             _stream = true;
             _number = 1;
-            _temperature = 0.80;
-            _topPercent = 0.90;
+            _temperature = 0.08;
+            _topPercent = 0.09;
             _frequencyPenalty = 0.00;
             _presencePenalty = 0.00;
-            _maximumTokens = 2048;
+            _maxCompletionTokens = 10000;
             _stop = "['#', ';']";
             _responseFormat = "auto";
         }
@@ -154,7 +154,10 @@ namespace Bubba
         }
 
         /// <summary>
-        /// Gets or sets the instructions.
+        /// The instructions parameter gives the model high-level instructions on
+        /// how it should behave while generating a response, including tone, goals,
+        /// and examples of correct responses. Any instructions provided this way
+        /// will take priority over a prompt in the input parameter.
         /// </summary>
         /// <value>
         /// The instructions.
@@ -223,6 +226,28 @@ namespace Bubba
             }
         }
 
+        /// <summary>
+        /// Gets or sets the stop.
+        /// </summary>
+        /// <value>
+        /// The stop.
+        /// </value>
+        public override string Stop
+        {
+            get
+            {
+                return _stop;
+            }
+            set
+            {
+                if( _stop != value )
+                {
+                    _stop = value;
+                    OnPropertyChanged( nameof( Stop ) );
+                }
+            }
+        }
+
         /// <inheritdoc />
         /// <summary>
         /// A number between 0.0 and 2.0   between 0 and 2.
@@ -256,18 +281,18 @@ namespace Bubba
         /// <value>
         /// The maximum tokens.
         /// </value>
-        public override int MaximumTokens
+        public override int MaxCompletionTokens
         {
             get
             {
-                return _maximumTokens;
+                return _maxCompletionTokens;
             }
             set
             {
-                if( _maximumTokens != value )
+                if( _maxCompletionTokens != value )
                 {
-                    _maximumTokens = value;
-                    OnPropertyChanged( nameof( MaximumTokens ) );
+                    _maxCompletionTokens = value;
+                    OnPropertyChanged( nameof( GptOptions.MaxCompletionTokens ) );
                 }
             }
         }
@@ -366,10 +391,10 @@ namespace Bubba
             }
             set
             {
-                if(_responseFormat != value)
+                if( _responseFormat != value )
                 {
                     _responseFormat = value;
-                    OnPropertyChanged(nameof(ResponseFormat));
+                    OnPropertyChanged( nameof( ResponseFormat ) );
                 }
             }
         }
@@ -383,7 +408,7 @@ namespace Bubba
             try
             {
                 _data.Add( "n", _number );
-                _data.Add( "max_completion_tokens", _maximumTokens );
+                _data.Add( "max_completion_tokens", _maxCompletionTokens );
                 _data.Add( "store", _store );
                 _data.Add( "stream", _stream );
                 _data.Add( "temperature", _temperature );

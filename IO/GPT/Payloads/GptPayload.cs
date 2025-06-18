@@ -80,9 +80,9 @@ namespace Bubba
         {
             _systemPrompt = App.Instructions;
             _header = new GptHeader( );
-            _temperature = 0.80;
-            _topPercent = 0.90;
-            _maximumTokens = 2048;
+            _temperature = 0.08;
+            _topPercent = 0.09;
+            _maximumTokens = 10000;
             _frequencyPenalty = 0.00;
             _presencePenalty = 0.00;
             _store = true;
@@ -95,7 +95,7 @@ namespace Bubba
         /// <summary>
         /// Initializes a new instance of the <see cref="T:Bubba.GptPayload" /> class.
         /// </summary>
-        /// <param name="userPrompt"> </param>
+        /// <param name="inputText"> </param>
         /// <param name="frequency">The frequency penalty.</param>
         /// <param name="presence">The presence penalty.</param>
         /// <param name="temperature">The temperature.</param>
@@ -103,12 +103,12 @@ namespace Bubba
         /// <param name="maxTokens">The maximum tokens.</param>
         /// <param name="store">if set to <c>true</c> [store].</param>
         /// <param name="stream">if set to <c>true</c> [stream].</param>
-        public GptPayload( string userPrompt, double frequency = 0.00, double presence = 0.00,
-            double temperature = 0.08, double topPercent = 0.09, int maxTokens = 2048,
+        public GptPayload( string inputText, double frequency = 0.00, double presence = 0.00,
+            double temperature = 0.08, double topPercent = 0.09, int maxTokens = 10000,
             bool store = false, bool stream = true )
             : this( )
         {
-            _prompt = userPrompt;
+            _inputText = inputText;
             _frequencyPenalty = frequency;
             _presencePenalty = presence;
             _temperature = temperature;
@@ -125,14 +125,14 @@ namespace Bubba
         /// Initializes a new instance of the
         /// <see cref="T:Bubba.GptPayload" /> class.
         /// </summary>
-        /// <param name="userPrompt">The user prompt.</param>
+        /// <param name="inputText">The user prompt.</param>
         /// <param name="config">The configuration.</param>
-        public GptPayload( string userPrompt, GptOptions config )
+        public GptPayload( string inputText, GptOptions config )
             : this( )
         {
-            _prompt = userPrompt;
+            _inputText = inputText;
             _temperature = config.Temperature;
-            _maximumTokens = config.MaximumTokens;
+            _maximumTokens = config.MaxCompletionTokens;
             _frequencyPenalty = config.FrequencyPenalty;
             _presencePenalty = config.PresencePenalty;
             _store = config.Store;
@@ -149,21 +149,21 @@ namespace Bubba
         /// <param name="gptPayload">The payload.</param>
         public GptPayload( GptPayload gptPayload )
         {
-            _prompt = gptPayload.Prompt;
+            _inputText = gptPayload.InputText;
             _temperature = gptPayload.Temperature;
             _maximumTokens = gptPayload.MaximumTokens;
             _frequencyPenalty = gptPayload.FrequencyPenalty;
             _presencePenalty = gptPayload.PresencePenalty;
-            _systemPrompt = gptPayload.Prompt;
+            _systemPrompt = gptPayload.InputText;
             _store = gptPayload.Store;
             _stream = gptPayload.Stream;
             _stop = gptPayload.Stop;
         }
 
         /// <summary>
-        /// Deconstructs the specified prompt.
+        /// Deconstructs the specified inputText.
         /// </summary>
-        /// <param name="prompt">The prompt.</param>
+        /// <param name="inputText">The inputText.</param>
         /// <param name="userId">The user identifier.</param>
         /// <param name="model">The model.</param>
         /// <param name="frequency">The frequency.</param>
@@ -173,12 +173,12 @@ namespace Bubba
         /// <param name="store">if set to <c>true</c> [store].</param>
         /// <param name="stream">if set to <c>true</c> [stream].</param>
         /// <param name = "header" > </param>
-        public void Deconstruct( out string prompt, out string userId, out string model,
+        public void Deconstruct( out string inputText, out string userId, out string model,
             out double frequency, out double presence, out double temperature,
             out int maximumTokens, out bool store, out bool stream,
             out GptHeader header )
         {
-            prompt = _prompt;
+            inputText = _inputText;
             userId = _id;
             model = _model;
             header = _header;

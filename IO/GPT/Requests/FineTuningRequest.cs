@@ -74,13 +74,13 @@ namespace Bubba
             _entry = new object( );
             _header = new GptHeader( );
             _endPoint = GptEndPoint.FineTuning;
-            _messages.Add( new SystemMessage( _systemPrompt ) );
+            _messages.Add( new SystemMessage( _instructions ) );
             _model = "gpt-4o-mini";
             _presencePenalty = 0.00;
             _frequencyPenalty = 0.00;
-            _topPercent = 0.90;
-            _temperature = 0.80;
-            _maximumTokens = 2048;
+            _topPercent = 0.09;
+            _temperature = 0.08;
+            _maxCompletionTokens = 10000;
             _number = 1;
         }
 
@@ -116,7 +116,7 @@ namespace Bubba
         /// The messages.
         /// </value>
         [ JsonPropertyName( "messages" ) ]
-        public IList<IGptMessage> Messages
+        public override IList<IGptMessage> Messages
         {
             get
             {
@@ -187,18 +187,18 @@ namespace Bubba
         /// The maximum tokens.
         /// </value>
         [ JsonPropertyName( "max_completionTokens" ) ]
-        public override int MaximumTokens
+        public override int MaxCompletionTokens
         {
             get
             {
-                return _maximumTokens;
+                return _maxCompletionTokens;
             }
             set
             {
-                if( _maximumTokens != value )
+                if( _maxCompletionTokens != value )
                 {
-                    _maximumTokens = value;
-                    OnPropertyChanged( nameof( MaximumTokens ) );
+                    _maxCompletionTokens = value;
+                    OnPropertyChanged( nameof( MaxCompletionTokens ) );
                 }
             }
         }
@@ -369,7 +369,7 @@ namespace Bubba
             try
             {
                 ThrowIf.Empty( prompt, nameof( prompt ) );
-                _prompt = prompt;
+                _inputText = prompt;
                 _httpClient = new HttpClient();
                 _httpClient.Timeout = new TimeSpan(0, 0, 3);
                 _httpClient.DefaultRequestHeaders.Authorization =
@@ -378,7 +378,7 @@ namespace Bubba
                 var _text = new TextPayload
                 {
                     Model = _model,
-                    Prompt = _prompt,
+                    InputText = _inputText,
                     Temperature = _temperature,
                     Store = _store,
                     Stream = _stream,

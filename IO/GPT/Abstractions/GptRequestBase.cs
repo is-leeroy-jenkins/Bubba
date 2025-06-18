@@ -62,12 +62,12 @@ namespace Bubba
         /// <summary>
         /// The system prompt
         /// </summary>
-        private protected string _systemPrompt;
+        private protected string _instructions;
 
         /// <summary>
         /// The user prompt
         /// </summary>
-        private protected string _userPrompt;
+        private protected string _inputText;
 
         /// <summary>
         /// The messages
@@ -98,10 +98,10 @@ namespace Bubba
             }
             set
             {
-                if(_header != value)
+                if( _header != value )
                 {
                     _header = value;
-                    OnPropertyChanged(nameof(Header));
+                    OnPropertyChanged( nameof( Header ) );
                 }
             }
         }
@@ -186,18 +186,18 @@ namespace Bubba
         /// The maximum tokens.
         /// </value>
         [ JsonPropertyName( "max_completion_tokens" ) ]
-        public virtual int MaximumTokens
+        public virtual int MaxCompletionTokens
         {
             get
             {
-                return _maximumTokens;
+                return _maxCompletionTokens;
             }
             set
             {
-                if( _maximumTokens != value )
+                if( _maxCompletionTokens != value )
                 {
-                    _maximumTokens = value;
-                    OnPropertyChanged( nameof( MaximumTokens ) );
+                    _maxCompletionTokens = value;
+                    OnPropertyChanged( nameof( MaxCompletionTokens ) );
                 }
             }
         }
@@ -237,7 +237,7 @@ namespace Bubba
         ///   <c>true</c> if store; otherwise, <c>false</c>.
         /// </value>
         [ JsonPropertyName( "store" ) ]
-        public virtual bool Store
+        public  override bool Store
         {
             get
             {
@@ -261,7 +261,7 @@ namespace Bubba
         ///   <c>true</c> if stream; otherwise, <c>false</c>.
         /// </value>
         [ JsonPropertyName( "stream" ) ]
-        public virtual bool Stream
+        public  override bool Stream
         {
             get
             {
@@ -285,7 +285,7 @@ namespace Bubba
         /// The temperature.
         /// </value>
         [ JsonPropertyName( "temperature" ) ]
-        public virtual double Temperature
+        public  override double Temperature
         {
             get
             {
@@ -394,10 +394,10 @@ namespace Bubba
             }
             set
             {
-                if(_messages != value)
+                if( _messages != value )
                 {
                     _messages = value;
-                    OnPropertyChanged(nameof(Messages));
+                    OnPropertyChanged( nameof( Messages ) );
                 }
             }
         }
@@ -418,10 +418,10 @@ namespace Bubba
             }
             set
             {
-                if(_httpClient != value)
+                if( _httpClient != value )
                 {
                     _httpClient = value;
-                    OnPropertyChanged(nameof(HttpClient));
+                    OnPropertyChanged( nameof( HttpClient ) );
                 }
             }
         }

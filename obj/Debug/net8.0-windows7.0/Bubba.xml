@@ -10756,6 +10756,180 @@
             </summary>
             <param name="ex">The ex.</param>
         </member>
+        <member name="T:Bubba.GptError">
+            <summary>
+            
+            </summary>
+            <seealso cref="T:Bubba.PropertyChangedBase" />
+        </member>
+        <member name="F:Bubba.GptError._code">
+            <summary>
+            The code
+            </summary>
+        </member>
+        <member name="F:Bubba.GptError._message">
+            <summary>
+            The message
+            </summary>
+        </member>
+        <member name="M:Bubba.GptError.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Bubba.GptError"/> class.
+            </summary>
+        </member>
+        <member name="P:Bubba.GptError.Code">
+            <summary>
+            Gets or sets the code.
+            </summary>
+            <value>
+            The code.
+            </value>
+        </member>
+        <member name="P:Bubba.GptError.Message">
+            <summary>
+            Gets or sets the message.
+            </summary>
+            <value>
+            The message.
+            </value>
+        </member>
+        <member name="M:Bubba.GptError.Fail(System.Exception)">
+            <summary>
+            Wraps error
+            </summary>
+            <param name="ex">The ex.</param>
+        </member>
+        <member name="M:Bubba.GptFormat.Fail(System.Exception)">
+            <summary>
+            Wraps error
+            </summary>
+            <param name="ex">The ex.</param>
+        </member>
+        <member name="T:Bubba.GptPrompt">
+            <summary>
+            
+            </summary>
+            <seealso cref="T:Bubba.PropertyChangedBase" />
+        </member>
+        <member name="F:Bubba.GptPrompt._id">
+            <summary>
+            The identifier
+            </summary>
+        </member>
+        <member name="F:Bubba.GptPrompt._version">
+            <summary>
+            The version
+            </summary>
+        </member>
+        <member name="F:Bubba.GptPrompt._variables">
+            <summary>
+            The variables
+            </summary>
+        </member>
+        <member name="M:Bubba.GptPrompt.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Bubba.GptPrompt"/> class.
+            </summary>
+        </member>
+        <member name="P:Bubba.GptPrompt.Id">
+            <summary>
+            Gets or sets the identifier.
+            </summary>
+            <value>
+            The identifier.
+            </value>
+        </member>
+        <member name="P:Bubba.GptPrompt.Version">
+            <summary>
+            Gets or sets the identifier.
+            </summary>
+            <value>
+            The identifier.
+            </value>
+        </member>
+        <member name="P:Bubba.GptPrompt.Variables">
+            <summary>
+            Gets or sets the previous identifier.
+            </summary>
+            <value>
+            The previous identifier.
+            </value>
+        </member>
+        <member name="M:Bubba.GptPrompt.Fail(System.Exception)">
+            <summary>
+            Wraps error
+            </summary>
+            <param name="ex">The ex.</param>
+        </member>
+        <member name="T:Bubba.GptReasoning">
+            <inheritdoc />
+        </member>
+        <member name="F:Bubba.GptReasoning._effort">
+            <summary>
+            The effort
+            </summary>
+        </member>
+        <member name="F:Bubba.GptReasoning._summary">
+            <summary>
+            The summary
+            </summary>
+        </member>
+        <member name="M:Bubba.GptReasoning.#ctor">
+            <summary>
+            Initializes a new instance of the
+            <see cref="T:Bubba.GptReasoning"/> class.
+            </summary>
+        </member>
+        <member name="P:Bubba.GptReasoning.Effort">
+            <summary>
+            Gets or sets the code.
+            </summary>
+            <value>
+            The code.
+            </value>
+        </member>
+        <member name="P:Bubba.GptReasoning.Summary">
+            <summary>
+            Gets or sets the message.
+            </summary>
+            <value>
+            The message.
+            </value>
+        </member>
+        <member name="M:Bubba.GptReasoning.Fail(System.Exception)">
+            <summary>
+            Wraps error
+            </summary>
+            <param name="ex">The ex.</param>
+        </member>
+        <member name="T:Bubba.GptText">
+            <inheritdoc />
+        </member>
+        <member name="F:Bubba.GptText._format">
+            <summary>
+            The format
+            </summary>
+        </member>
+        <member name="M:Bubba.GptText.#ctor">
+            <summary>
+            Initializes a new instance of the
+            <see cref="T:Bubba.GptText"/> class.
+            </summary>
+        </member>
+        <member name="P:Bubba.GptText.Format">
+            <summary>
+            Gets or sets the format.
+            </summary>
+            <value>
+            The format.
+            </value>
+        </member>
+        <member name="M:Bubba.GptText.Fail(System.Exception)">
+            <summary>
+            Wraps error
+            </summary>
+            <param name="ex">The ex.</param>
+        </member>
         <member name="T:Bubba.AudioConverter">
             <summary>
             
@@ -14178,9 +14352,14 @@
             or temperature but not both.
             </summary>
         </member>
-        <member name="F:Bubba.GptBase._maximumTokens">
+        <member name="F:Bubba.GptBase._maxCompletionTokens">
             <summary>
             The maximum tokens
+            </summary>
+        </member>
+        <member name="F:Bubba.GptBase._maxOutputTokens">
+            <summary>
+            The maximum output tokens
             </summary>
         </member>
         <member name="F:Bubba.GptBase._role">
@@ -14228,6 +14407,34 @@
             <c> true </c>
             if this instance is busy; otherwise,
             <c> false </c>
+            </value>
+        </member>
+        <member name="P:Bubba.GptBase.Store">
+            <summary>
+            Gets or sets a value indicating whether this
+            <see cref="T:Bubba.GptConfig"/> is store.
+            </summary>
+            <value>
+              <c>true</c> if store; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:Bubba.GptBase.Stream">
+            <summary>
+            Gets or sets a value indicating whether this
+            <see cref="T:Bubba.GptConfig"/> is stream.
+            </summary>
+            <value>
+              <c>true</c> if stream; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:Bubba.GptBase.Temperature">
+            <summary>
+            A number between 0.0 and 2.0   between 0 and 2.
+            Higher values like 0.8 will make the output more random,
+            while lower values like 0.2 will make it more focused and deterministic.
+            </summary>
+            <value>
+            The temperature.
             </value>
         </member>
         <member name="P:Bubba.GptBase.Data">
@@ -14338,25 +14545,10 @@
             ncreasing the model's likelihood to talk about new topics.
             </summary>
         </member>
-        <member name="F:Bubba.GptConfig._maximumTokens">
+        <member name="F:Bubba.GptConfig._maxCompletionTokens">
             <summary>
             An upper bound for the number of tokens
             that can be generated for a completion
-            </summary>
-        </member>
-        <member name="F:Bubba.GptConfig._systemPrompt">
-            <summary>
-            The system instructions
-            </summary>
-        </member>
-        <member name="F:Bubba.GptConfig._userPrompt">
-            <summary>
-            The user prompt
-            </summary>
-        </member>
-        <member name="F:Bubba.GptConfig._assistantPrompt">
-            <summary>
-            The assistant prompt
             </summary>
         </member>
         <member name="F:Bubba.GptConfig._instructions">
@@ -14391,7 +14583,7 @@
             The chat model.
             </value>
         </member>
-        <member name="P:Bubba.GptConfig.MaximumTokens">
+        <member name="P:Bubba.GptConfig.MaxCompletionTokens">
             <summary>
             An upper bound for the number of tokens
             that can be generated for a completion
@@ -14446,7 +14638,10 @@
         </member>
         <member name="P:Bubba.GptConfig.Instructions">
             <summary>
-            Gets or sets the instructions.
+            The instructions parameter gives the model high-level instructions on
+            how it should behave while generating a response, including tone, goals,
+            and examples of correct responses. Any instructions provided this way
+            will take priority over a prompt in the input parameter.
             </summary>
             <value>
             The instructions.
@@ -14485,30 +14680,6 @@
             The top percent.
             </value>
         </member>
-        <member name="P:Bubba.GptConfig.SystemPrompt">
-            <summary>
-            Gets or sets the system prompt.
-            </summary>
-            <value>
-            The system prompt.
-            </value>
-        </member>
-        <member name="P:Bubba.GptConfig.UserPrompt">
-            <summary>
-            Gets or sets the user prompt.
-            </summary>
-            <value>
-            The user prompt.
-            </value>
-        </member>
-        <member name="P:Bubba.GptConfig.AssistantPrompt">
-            <summary>
-            Gets or sets the assistant prompt.
-            </summary>
-            <value>
-            The assistant prompt.
-            </value>
-        </member>
         <member name="M:Bubba.GptConfig.Fail(System.Exception)">
             <summary>
             Wraps error
@@ -14525,12 +14696,12 @@
             The HTTP client
             </summary>
         </member>
-        <member name="F:Bubba.GptRequestBase._systemPrompt">
+        <member name="F:Bubba.GptRequestBase._instructions">
             <summary>
             The system prompt
             </summary>
         </member>
-        <member name="F:Bubba.GptRequestBase._userPrompt">
+        <member name="F:Bubba.GptRequestBase._inputText">
             <summary>
             The user prompt
             </summary>
@@ -14586,7 +14757,7 @@
             The user identifier.
             </value>
         </member>
-        <member name="P:Bubba.GptRequestBase.MaximumTokens">
+        <member name="P:Bubba.GptRequestBase.MaxCompletionTokens">
             <summary>
             Gets the maximum tokens.
             </summary>
@@ -14695,6 +14866,16 @@
             The identifier
             </summary>
         </member>
+        <member name="F:Bubba.GptResponseBase._previousId">
+            <summary>
+            The identifier
+            </summary>
+        </member>
+        <member name="F:Bubba.GptResponseBase._outputText">
+            <summary>
+            The input text
+            </summary>
+        </member>
         <member name="F:Bubba.GptResponseBase._object">
             <summary>
             The object
@@ -14703,6 +14884,11 @@
         <member name="F:Bubba.GptResponseBase._created">
             <summary>
             The created
+            </summary>
+        </member>
+        <member name="F:Bubba.GptResponseBase._background">
+            <summary>
+            The background
             </summary>
         </member>
         <member name="M:Bubba.GptResponseBase.#ctor">
@@ -14720,12 +14906,37 @@
             The identifier.
             </value>
         </member>
+        <member name="P:Bubba.GptResponseBase.OutputText">
+            <summary>
+            Gets or sets the identifier.
+            </summary>
+            <value>
+            The identifier.
+            </value>
+        </member>
+        <member name="P:Bubba.GptResponseBase.PreviousId">
+            <summary>
+            Gets or sets the previous identifier.
+            </summary>
+            <value>
+            The previous identifier.
+            </value>
+        </member>
         <member name="P:Bubba.GptResponseBase.Object">
             <summary>
             Gets or sets the object.
             </summary>
             <value>
             The object.
+            </value>
+        </member>
+        <member name="P:Bubba.GptResponseBase.Background">
+            <summary>
+            Gets or sets whether to run the model response
+            <see cref="T:Bubba.GptResponseBase"/> in the background.
+            </summary>
+            <value>
+              <c>true</c> if background; otherwise, <c>false</c>.
             </value>
         </member>
         <member name="P:Bubba.GptResponseBase.Created">
@@ -14969,7 +15180,7 @@
             The chat model.
             </value>
         </member>
-        <member name="P:Bubba.IGptParameter.MaximumTokens">
+        <member name="P:Bubba.IGptParameter.MaxCompletionTokens">
             <summary>
             An upper bound for the number of tokens
             that can be generated for a completion
@@ -15055,7 +15266,7 @@
             The size of the image.
             </value>
         </member>
-        <member name="P:Bubba.IGptPayload.Prompt">
+        <member name="P:Bubba.IGptPayload.InputText">
             <summary>
             Gets the prompt.
             </summary>
@@ -15165,7 +15376,7 @@
             The string provided to GPT
             </summary>
         </member>
-        <member name="F:Bubba.PayloadBase._prompt">
+        <member name="F:Bubba.PayloadBase._inputText">
             <summary>
             The user prompt
             </summary>
@@ -15274,7 +15485,7 @@
         <member name="P:Bubba.PayloadBase.Model">
             <inheritdoc />
             <summary>
-            Gets the Large Language Model.
+            Gets or sets the Large Language Model.
             </summary>
             <value>
             The chat model.
@@ -15289,7 +15500,7 @@
             The size of the image.
             </value>
         </member>
-        <member name="P:Bubba.PayloadBase.Prompt">
+        <member name="P:Bubba.PayloadBase.InputText">
             <inheritdoc />
             <summary>
             Gets the user prompt.
@@ -16641,7 +16852,10 @@
         </member>
         <member name="P:Bubba.AssistantOptions.Instructions">
             <summary>
-            Gets or sets the instructions.
+            The instructions parameter gives the model high-level instructions on
+            how it should behave while generating a response, including tone, goals,
+            and examples of correct responses. Any instructions provided this way
+            will take priority over a prompt in the input parameter.
             </summary>
             <value>
             The instructions.
@@ -16745,7 +16959,10 @@
         </member>
         <member name="P:Bubba.ChatOptions.Instructions">
             <summary>
-            Gets or sets the instructions.
+            The instructions parameter gives the model high-level instructions on
+            how it should behave while generating a response, including tone, goals,
+            and examples of correct responses. Any instructions provided this way
+            will take priority over a prompt in the input parameter.
             </summary>
             <value>
             The instructions.
@@ -17305,7 +17522,10 @@
         </member>
         <member name="P:Bubba.GptOptions.Instructions">
             <summary>
-            Gets or sets the instructions.
+            The instructions parameter gives the model high-level instructions on
+            how it should behave while generating a response, including tone, goals,
+            and examples of correct responses. Any instructions provided this way
+            will take priority over a prompt in the input parameter.
             </summary>
             <value>
             The instructions.
@@ -17331,6 +17551,14 @@
               <c>true</c> if stream; otherwise, <c>false</c>.
             </value>
         </member>
+        <member name="P:Bubba.GptOptions.Stop">
+            <summary>
+            Gets or sets the stop.
+            </summary>
+            <value>
+            The stop.
+            </value>
+        </member>
         <member name="P:Bubba.GptOptions.Temperature">
             <inheritdoc />
             <summary>
@@ -17342,7 +17570,7 @@
             The temperature.
             </value>
         </member>
-        <member name="P:Bubba.GptOptions.MaximumTokens">
+        <member name="P:Bubba.GptOptions.MaxCompletionTokens">
             <inheritdoc />
             <summary>
             An upper bound for the number of tokens
@@ -17656,6 +17884,17 @@
             <see cref="T:Bubba.TextOptions"/> class.
             </summary>
             <inheritdoc />
+        </member>
+        <member name="P:Bubba.TextOptions.Instructions">
+            <summary>
+            The instructions parameter gives the model high-level instructions on
+            how it should behave while generating a response, including tone, goals,
+            and examples of correct responses. Any instructions provided this way
+            will take priority over a prompt in the input parameter.
+            </summary>
+            <value>
+            The instructions.
+            </value>
         </member>
         <member name="P:Bubba.TextOptions.Number">
             <inheritdoc />
@@ -18279,7 +18518,7 @@
             <summary>
             Initializes a new instance of the <see cref="T:Bubba.ChatPayload" /> class.
             </summary>
-            <param name="userPrompt"></param>
+            <param name="inputText"></param>
             <param name="frequency">The frequency penalty.</param>
             <param name="presence">The presence penalty.</param>
             <param name="temperature">The temperature.</param>
@@ -18293,7 +18532,7 @@
             <summary>
             Initializes a new instance of the <see cref="T:Bubba.ChatPayload" /> class.
             </summary>
-            <param name="userPrompt">The user prompt.</param>
+            <param name="inputText">The user prompt.</param>
             <param name="systemPrompt">The system prompt.</param>
             <param name="config">The configuration.</param>
         </member>
@@ -18441,11 +18680,6 @@
             The file path
             </summary>
         </member>
-        <member name="F:Bubba.EmbeddingPayload._input">
-            <summary>
-            The input
-            </summary>
-        </member>
         <member name="F:Bubba.EmbeddingPayload._encodingFormat">
             <summary>
             The encoding format
@@ -18468,7 +18702,7 @@
             <summary>
             Initializes a new instance of the <see cref="T:Bubba.EmbeddingPayload" /> class.
             </summary>
-            <param name="userPrompt"></param>
+            <param name="inputText"></param>
             <param name="frequency">The frequency penalty.</param>
             <param name="presence">The presence penalty.</param>
             <param name="temperature">The temperature.</param>
@@ -18482,7 +18716,7 @@
             <summary>
             Initializes a new instance of the <see cref="T:Bubba.EmbeddingPayload" /> class.
             </summary>
-            <param name="userPrompt">The user prompt.</param>
+            <param name="inputText">The user prompt.</param>
             <param name="config">The configuration.</param>
         </member>
         <member name="P:Bubba.EmbeddingPayload.FilePath">
@@ -18502,7 +18736,7 @@
             </value>
             <inheritdoc />
         </member>
-        <member name="P:Bubba.EmbeddingPayload.Input">
+        <member name="P:Bubba.EmbeddingPayload.InputText">
             <summary>
             Input text to embed, encoded as a string or array of tokens.
             To embed multiple inputs in a single request, pass an array of strings
@@ -18873,7 +19107,7 @@
             <summary>
             Initializes a new instance of the <see cref="T:Bubba.GptPayload" /> class.
             </summary>
-            <param name="userPrompt"> </param>
+            <param name="inputText"> </param>
             <param name="frequency">The frequency penalty.</param>
             <param name="presence">The presence penalty.</param>
             <param name="temperature">The temperature.</param>
@@ -18888,7 +19122,7 @@
             Initializes a new instance of the
             <see cref="T:Bubba.GptPayload" /> class.
             </summary>
-            <param name="userPrompt">The user prompt.</param>
+            <param name="inputText">The user prompt.</param>
             <param name="config">The configuration.</param>
         </member>
         <member name="M:Bubba.GptPayload.#ctor(Bubba.GptPayload)">
@@ -18901,9 +19135,9 @@
         </member>
         <member name="M:Bubba.GptPayload.Deconstruct(System.String@,System.String@,System.String@,System.Double@,System.Double@,System.Double@,System.Int32@,System.Boolean@,System.Boolean@,Bubba.GptHeader@)">
             <summary>
-            Deconstructs the specified prompt.
+            Deconstructs the specified inputText.
             </summary>
-            <param name="prompt">The prompt.</param>
+            <param name="inputText">The inputText.</param>
             <param name="userId">The user identifier.</param>
             <param name="model">The model.</param>
             <param name="frequency">The frequency.</param>
@@ -19746,6 +19980,11 @@
             The reasoning effort
             </summary>
         </member>
+        <member name="F:Bubba.AssistantRequest._inputText">
+            <summary>
+            The input text
+            </summary>
+        </member>
         <member name="F:Bubba.AssistantRequest._instructions">
             <summary>
             The system prompt
@@ -19899,11 +20138,6 @@
             The reasoning effort
             </summary>
         </member>
-        <member name="F:Bubba.ChatRequest._instructions">
-            <summary>
-            The system prompt
-            </summary>
-        </member>
         <member name="M:Bubba.ChatRequest.#ctor">
             <summary>
             Initializes a new instance of the
@@ -19911,14 +20145,7 @@
             </summary>
             <inheritdoc />
         </member>
-        <member name="M:Bubba.ChatRequest.#ctor(System.String,Bubba.GptOptions)">
-            <inheritdoc />
-            <summary>
-            Initializes a new instance of the <see cref="T:Bubba.CompletionRequest" /> class.
-            </summary>
-            <param name="user">The user.</param>
-            <param name="config">The configuration.</param>
-        </member>
+        <!-- Badly formed XML comment ignored for member "M:Bubba.ChatRequest.#ctor(System.String,Bubba.GptOptions)" -->
         <member name="P:Bubba.ChatRequest.EndPoint">
             <inheritdoc />
             <summary>
@@ -20358,7 +20585,7 @@
             The user identifier.
             </value>
         </member>
-        <member name="P:Bubba.FineTuningRequest.MaximumTokens">
+        <member name="P:Bubba.FineTuningRequest.MaxCompletionTokens">
             <inheritdoc />
             <summary>
             Gets the maximum tokens.
@@ -20473,15 +20700,7 @@
             <see cref="T:Bubba.GptRequest" /> class.
             </summary>
         </member>
-        <member name="M:Bubba.GptRequest.#ctor(System.String,Bubba.IGptParameter)">
-            <inheritdoc />
-            <summary>
-            Initializes a new instance of the
-            <see cref="T:Bubba.GptRequest" /> class.
-            </summary>
-            <param name = "user" > </param>
-            <param name = "options" > </param>
-        </member>
+        <!-- Badly formed XML comment ignored for member "M:Bubba.GptRequest.#ctor(System.String,Bubba.IGptParameter)" -->
         <member name="M:Bubba.GptRequest.#ctor(Bubba.GptRequest)">
             <inheritdoc />
             <summary>
@@ -20672,7 +20891,7 @@
             The user identifier.
             </value>
         </member>
-        <member name="P:Bubba.ImageRequest.MaximumTokens">
+        <member name="P:Bubba.ImageRequest.MaxCompletionTokens">
             <inheritdoc />
             <summary>
             Gets the maximum tokens.
@@ -20736,7 +20955,7 @@
             The speed
             </summary>
         </member>
-        <member name="F:Bubba.SpeechReqeust._input">
+        <member name="F:Bubba.SpeechReqeust._inputText">
             <summary>
             The input
             </summary>
@@ -20785,7 +21004,7 @@
             The language.
             </value>
         </member>
-        <member name="P:Bubba.SpeechReqeust.Input">
+        <member name="P:Bubba.SpeechReqeust.InputText">
             <summary>
             Gets or sets the input.
             </summary>
@@ -20933,7 +21152,7 @@
             The user identifier.
             </value>
         </member>
-        <member name="P:Bubba.TextRequest.MaximumTokens">
+        <member name="P:Bubba.TextRequest.MaxCompletionTokens">
             <inheritdoc />
             <summary>
             Gets the maximum tokens.
@@ -21314,7 +21533,7 @@
             The user identifier.
             </value>
         </member>
-        <member name="P:Bubba.UploadRequest.MaximumTokens">
+        <member name="P:Bubba.UploadRequest.MaxCompletionTokens">
             <inheritdoc />
             <summary>
             Gets the maximum tokens.
@@ -21969,9 +22188,9 @@
             The usage
             </summary>
         </member>
-        <member name="F:Bubba.GptResponse._httpClient">
+        <member name="F:Bubba.GptResponse._status">
             <summary>
-            The HTTP client
+            The status
             </summary>
         </member>
         <member name="M:Bubba.GptResponse.#ctor">
@@ -21996,12 +22215,28 @@
             The identifier.
             </value>
         </member>
+        <member name="P:Bubba.GptResponse.MaxOutputTokens">
+            <summary>
+            Gets or sets the maximum output tokens.
+            </summary>
+            <value>
+            The maximum output tokens.
+            </value>
+        </member>
         <member name="P:Bubba.GptResponse.Object">
             <summary>
             Gets or sets the object.
             </summary>
             <value>
             The object.
+            </value>
+        </member>
+        <member name="P:Bubba.GptResponse.Status">
+            <summary>
+            Gets or sets the status.
+            </summary>
+            <value>
+            The status.
             </value>
         </member>
         <member name="P:Bubba.GptResponse.Created">

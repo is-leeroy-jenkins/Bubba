@@ -42,7 +42,6 @@
 namespace Bubba
 {
     using System;
-    using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
     using System.Text.Encodings.Web;
     using System.Text.Json;
@@ -108,7 +107,7 @@ namespace Bubba
             int maxTokens = 2048, bool store = false, bool stream = true )
             : this( )
         {
-            _prompt = userPrompt;
+            _inputText = userPrompt;
             _temperature = temperature;
             _maximumTokens = maxTokens;
             _frequencyPenalty = frequency;
@@ -129,9 +128,9 @@ namespace Bubba
         public TranslationPayload( string userPrompt, GptOptions config )
             : this( )
         {
-            _prompt = userPrompt;
+            _inputText = userPrompt;
             _temperature = config.Temperature;
-            _maximumTokens = config.MaximumTokens;
+            _maximumTokens = config.MaxCompletionTokens;
             _frequencyPenalty = config.FrequencyPenalty;
             _presencePenalty = config.PresencePenalty;
             _store = config.Store;
@@ -194,7 +193,7 @@ namespace Bubba
         /// <value>
         /// The modalities.
         /// </value>
-        [JsonPropertyName("response_format")]
+        [ JsonPropertyName("response_format") ]
         public override string ResponseFormat
         {
             get
@@ -203,10 +202,10 @@ namespace Bubba
             }
             set
             {
-                if(_responseFormat != value)
+                if( _responseFormat != value )
                 {
                     _responseFormat = value;
-                    OnPropertyChanged(nameof(ResponseFormat));
+                    OnPropertyChanged( nameof( ResponseFormat ) );
                 }
             }
         }

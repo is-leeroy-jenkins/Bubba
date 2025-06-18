@@ -97,7 +97,7 @@ namespace Bubba
             bool store = false, bool stream = true )
             : this( )
         {
-            _prompt = userPrompt;
+            _inputText = userPrompt;
             _temperature = temperature;
             _maximumTokens = maxTokens;
             _frequencyPenalty = frequency;
@@ -116,9 +116,9 @@ namespace Bubba
         public TextPayload( string userPrompt, GptOptions config )
             : this( )
         {
-            _prompt = userPrompt;
+            _inputText = userPrompt;
             _temperature = config.Temperature;
-            _maximumTokens = config.MaximumTokens;
+            _maximumTokens = config.MaxCompletionTokens;
             _frequencyPenalty = config.FrequencyPenalty;
             _presencePenalty = config.PresencePenalty;
             _store = config.Store;

@@ -97,7 +97,7 @@ namespace Bubba
             _header = new GptHeader( );
             _endPoint = GptEndPoint.Embeddings;
             _model = "text-embedding-3";
-            _messages.Add( new SystemMessage( _systemPrompt ) );
+            _messages.Add( new SystemMessage( _instructions ) );
             _encodingFormat = "float";
         }
 
@@ -305,7 +305,7 @@ namespace Bubba
             try
             {
                 ThrowIf.Empty( query, nameof( query ) );
-                _prompt = query;
+                _inputText = query;
                 _httpClient = new HttpClient( );
                 _httpClient.Timeout = new TimeSpan( 0, 0, 3 );
                 _httpClient.DefaultRequestHeaders.Authorization =
@@ -314,7 +314,7 @@ namespace Bubba
                 var _file = new EmbeddingPayload( )
                 {
                     Model = "text-embedding-ada-002",
-                    Input = _prompt
+                    InputText = _inputText
                 };
 
                 var _message = _file.Serialize( );

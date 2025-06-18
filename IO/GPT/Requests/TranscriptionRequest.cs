@@ -95,7 +95,7 @@ namespace Bubba
             _entry = new object( );
             _header = new GptHeader( );
             _endPoint = GptEndPoint.Transcriptions;
-            _messages.Add( new SystemMessage( _systemPrompt ) );
+            _messages.Add( new SystemMessage( _instructions ) );
             _model = "whisper-1";
             _number = 1;
             _speed = 1;
@@ -256,7 +256,7 @@ namespace Bubba
         /// The input.
         /// </value>
         [ JsonPropertyName( "prompt" ) ]
-        public override string Prompt
+        public override GptPrompt Prompt
         {
             get
             {
@@ -327,7 +327,7 @@ namespace Bubba
             try
             {
                 ThrowIf.Empty( prompt, nameof( prompt ) );
-                _prompt = prompt;
+                _inputText = prompt;
                 _httpClient = new HttpClient( );
                 _httpClient.DefaultRequestHeaders.Add( "Authorization",
                     $"Bearer {_header.ApiKey}" );

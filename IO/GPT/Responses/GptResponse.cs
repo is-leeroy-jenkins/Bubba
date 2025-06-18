@@ -72,9 +72,9 @@ namespace Bubba
         private protected GptUsage _usage;
 
         /// <summary>
-        /// The HTTP client
+        /// The status
         /// </summary>
-        private protected HttpClient _httpClient;
+        private protected string _status;
 
         /// <inheritdoc />
         /// <summary>
@@ -85,11 +85,12 @@ namespace Bubba
             : base( )
         {
             _entry = new object( );
+            _object = "response";
             _model = "gpt-4o-mini";
             _endPoint = GptEndPoint.TextGeneration;
             _presencePenalty = 0.0;
             _frequencyPenalty = 0.0;
-            _maximumTokens = 10000;
+            _maxOutputTokens = 10000;
             _number = 1;
         }
 
@@ -101,11 +102,13 @@ namespace Bubba
         public GptResponse( GptRequest request )
             : this( )
         {
+            _entry = new object( );
+            _object = "response";
             _model = request.Model;
             _endPoint = request.EndPoint;
             _presencePenalty = request.PresencePenalty;
             _frequencyPenalty = request.FrequencyPenalty;
-            _maximumTokens = request.MaximumTokens;
+            _maxOutputTokens = request.MaxCompletionTokens;
             _number = request.Number;
         }
 
@@ -133,12 +136,34 @@ namespace Bubba
         }
 
         /// <summary>
+        /// Gets or sets the maximum output tokens.
+        /// </summary>
+        /// <value>
+        /// The maximum output tokens.
+        /// </value>
+        public virtual int MaxOutputTokens
+        {
+            get
+            {
+                return _maxOutputTokens;
+            }
+            set
+            {
+                if( _maxOutputTokens != value )
+                {
+                    _maxOutputTokens = value;
+                    OnPropertyChanged( nameof( MaxOutputTokens ) );
+                }
+            }
+        }
+
+        /// <summary>
         /// Gets or sets the object.
         /// </summary>
         /// <value>
         /// The object.
         /// </value>
-        [ JsonPropertyName( "object" ) ]
+        [JsonPropertyName( "object" ) ]
         public override string Object
         {
             get
@@ -156,13 +181,36 @@ namespace Bubba
         }
 
         /// <summary>
+        /// Gets or sets the status.
+        /// </summary>
+        /// <value>
+        /// The status.
+        /// </value>
+        [ JsonPropertyName( "status" ) ] 
+        public virtual string Status
+        {
+            get
+            {
+                return _status;
+            }
+            set
+            {
+                if( _status != value )
+                {
+                    _status = value;
+                    OnPropertyChanged( nameof( Status ) );
+                }
+            }
+        }
+
+        /// <summary>
         /// Gets or sets the created.
         /// </summary>
         /// <value>
         /// The created.
         /// </value>
         [ JsonPropertyName( "created" ) ]
-        public  override DateTime Created
+        public override DateTime Created
         {
             get
             {
@@ -337,7 +385,7 @@ namespace Bubba
         {
             if( disposing )
             {
-                _httpClient?.Dispose( );
+                Dispose( );
             }
         }
     }

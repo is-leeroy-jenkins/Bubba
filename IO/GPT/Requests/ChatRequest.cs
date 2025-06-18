@@ -76,12 +76,6 @@ namespace Bubba
         /// The reasoning effort
         /// </summary>
         private protected string _reasoningEffort;
-
-        /// <summary>
-        /// The system prompt
-        /// </summary>
-        private protected string _instructions;
-
         /// <summary>
         /// Initializes a new instance of the
         /// <see cref="ChatRequest"/> class.
@@ -90,10 +84,11 @@ namespace Bubba
         public ChatRequest( )
             : base( )
         {
+            _instructions = App.Instructions;
             _entry = new object( );
             _header = new GptHeader( );
             _endPoint = GptEndPoint.Completions;
-            _messages.Add( new SystemMessage( _systemPrompt ) );
+            _messages.Add( new SystemMessage( _instructions ) );
             _model = "gpt-4o";
             _stop = "['#', ';']";
             _tools = new List<string>( );
@@ -106,16 +101,16 @@ namespace Bubba
         /// <summary>
         /// Initializes a new instance of the <see cref="T:Bubba.CompletionRequest" /> class.
         /// </summary>
-        /// <param name="user">The user.</param>
+        /// <param name="inputText>The inputText.</param>
         /// <param name="config">The configuration.</param>
-        public ChatRequest( string user, GptOptions config )
+        public ChatRequest( string inputText, GptOptions config )
             : base( )
         {
             _entry = new object( );
             _header = new GptHeader( );
             _endPoint = GptEndPoint.Completions;
-            _systemPrompt = App.Instructions;
-            _userPrompt = user;
+            _instructions = App.Instructions;
+            _inputText = inputText;
             _model = config.Model;
             _store = config.Store;
             _stream = config.Stream;
@@ -124,7 +119,7 @@ namespace Bubba
             _frequencyPenalty = config.FrequencyPenalty;
             _temperature = config.Temperature;
             _topPercent = config.TopPercent;
-            _maximumTokens = config.MaximumTokens;
+            _maxCompletionTokens = config.MaxCompletionTokens;
             _stop = config.Stop;
             _modalities = config.Modalities;
         }
@@ -208,7 +203,7 @@ namespace Bubba
         /// The user prompt.
         /// </value>
         [ JsonPropertyName( "prompt" ) ]
-        public override string Prompt
+        public override GptPrompt Prompt
         {
             get
             {
@@ -219,7 +214,7 @@ namespace Bubba
                 if( _prompt != value )
                 {
                     _prompt = value;
-                    OnPropertyChanged( nameof( Prompt ) );
+                    OnPropertyChanged( nameof( ChatRequest.Prompt ) );
                 }
             }
         }
@@ -308,7 +303,7 @@ namespace Bubba
             try
             {
                 ThrowIf.Empty( prompt, nameof( prompt ) );
-                _prompt = prompt;
+                _inputText = prompt;
                 _httpClient = new HttpClient( );
                 _httpClient.Timeout = new TimeSpan( 0, 0, 3 );
                 _httpClient.DefaultRequestHeaders.Authorization =
@@ -317,7 +312,7 @@ namespace Bubba
                 var _chat = new ChatPayload( )
                 {
                     Model = _model,
-                    Prompt = _prompt,
+                    InputText = _inputText,
                     Temperature = _temperature,
                     Store = _store,
                     Stream = _stream,

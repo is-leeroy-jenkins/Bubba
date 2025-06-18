@@ -99,7 +99,7 @@ namespace Bubba
             _topPercent = 0.90;
             _frequencyPenalty = 0.00;
             _presencePenalty = 0.00;
-            _maximumTokens = 2048;
+            _maxCompletionTokens = 2048;
             _language = "en";
             _responseFormat = "text";
         }

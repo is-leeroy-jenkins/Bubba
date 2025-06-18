@@ -40,14 +40,39 @@ namespace Bubba
             _store = true;
             _stream = true;
             _number = 1;
-            _temperature = 0.80;
-            _topPercent = 0.90;
+            _temperature = 0.08;
+            _topPercent = 0.09;
             _frequencyPenalty = 0.00;
             _presencePenalty = 0.00;
-            _maximumTokens = 2048;
+            _maxCompletionTokens = 10000;
             _responseFormat = "text";
             _stop = "['#', ';']";
             _modalities = "['text', 'audio']";
+        }
+
+        /// <summary>
+        /// The instructions parameter gives the model high-level instructions on
+        /// how it should behave while generating a response, including tone, goals,
+        /// and examples of correct responses. Any instructions provided this way
+        /// will take priority over a prompt in the input parameter.
+        /// </summary>
+        /// <value>
+        /// The instructions.
+        /// </value>
+        public override string Instructions
+        {
+            get
+            {
+                return _instructions;
+            }
+            set
+            {
+                if( _instructions != value )
+                {
+                    _instructions = value;
+                    OnPropertyChanged( nameof( Instructions ) );
+                }
+            }
         }
 
         /// <inheritdoc />
@@ -306,7 +331,7 @@ namespace Bubba
                 _data.Add( "n", _number );
                 _data.Add( "model", _model );
                 _data.Add( "endpoint", _endPoint );
-                _data.Add( "max_completion_tokens", _maximumTokens );
+                _data.Add( "max_completion_tokens", _maxCompletionTokens );
                 _data.Add( "store", _store );
                 _data.Add( "stream", _stream );
                 _data.Add( "temperature", _temperature );

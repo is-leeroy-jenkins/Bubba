@@ -75,8 +75,8 @@ namespace Bubba
             _entry = new object( );
             _header = new GptHeader( );
             _endPoint = GptEndPoint.TextGeneration;
-            _messages.Add( new SystemMessage( _systemPrompt ) );
-            _model = "gpt-4o";
+            _messages.Add( new SystemMessage( _instructions ) );
+            _model = "gpt-4o-mini";
         }
 
         /// <inheritdoc />
@@ -207,18 +207,18 @@ namespace Bubba
         /// The maximum tokens.
         /// </value>
         [ JsonPropertyName( "max_completion_tokens" ) ]
-        public override int MaximumTokens
+        public override int MaxCompletionTokens
         {
             get
             {
-                return _maximumTokens;
+                return _maxCompletionTokens;
             }
             set
             {
-                if( _maximumTokens != value )
+                if( _maxCompletionTokens != value )
                 {
-                    _maximumTokens = value;
-                    OnPropertyChanged( nameof( MaximumTokens ) );
+                    _maxCompletionTokens = value;
+                    OnPropertyChanged( nameof( MaxCompletionTokens ) );
                 }
             }
         }
@@ -389,14 +389,14 @@ namespace Bubba
             try
             {
                 ThrowIf.Empty( prompt, nameof( prompt ) );
-                _prompt = prompt;
+                _inputText = prompt;
                 _httpClient = new HttpClient( );
                 _httpClient.Timeout = new TimeSpan( 0, 0, 3 );
                 _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue( "Bearer", _header.ApiKey );
                 var _text = new TextPayload
                 {
                     Model = _model,
-                    Prompt = _prompt,
+                    InputText = _inputText,
                     Temperature = _temperature,
                     Store = _store,
                     Stream = _stream,
@@ -480,7 +480,7 @@ namespace Bubba
                 _data.Add( "n", _number );
                 _data.Add( "model", _model );
                 _data.Add( "endpoint", _endPoint );
-                _data.Add( "max_completion_tokens", _maximumTokens );
+                _data.Add( "max_completion_tokens", _maxCompletionTokens );
                 _data.Add( "store", _store );
                 _data.Add( "stream", _stream );
                 _data.Add( "temperature", _temperature );

@@ -144,7 +144,7 @@ namespace Bubba
             bool store = false, bool stream = true )
             : this( )
         {
-            _prompt = userPrompt;
+            _inputText = userPrompt;
             _temperature = temperature;
             _maximumTokens = maxTokens;
             _frequencyPenalty = frequency;

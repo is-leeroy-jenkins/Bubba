@@ -115,22 +115,7 @@ namespace Bubba
         /// An upper bound for the number of tokens
         /// that can be generated for a completion
         /// </summary>
-        private protected int _maximumTokens;
-
-        /// <summary>
-        /// The system instructions
-        /// </summary>
-        private protected string _systemPrompt;
-
-        /// <summary>
-        /// The user prompt
-        /// </summary>
-        private protected string _userPrompt;
-
-        /// <summary>
-        /// The assistant prompt
-        /// </summary>
-        private protected string _assistantPrompt;
+        private protected int _maxCompletionTokens;
 
         /// <summary>
         /// The instructions
@@ -199,18 +184,18 @@ namespace Bubba
         /// <value>
         /// The maximum tokens.
         /// </value>
-        public virtual int MaximumTokens
+        public virtual int MaxCompletionTokens
         {
             get
             {
-                return _maximumTokens;
+                return _maxCompletionTokens;
             }
             set
             {
-                if( _maximumTokens != value )
+                if( _maxCompletionTokens != value )
                 {
-                    _maximumTokens = value;
-                    OnPropertyChanged( nameof( MaximumTokens ) );
+                    _maxCompletionTokens = value;
+                    OnPropertyChanged( nameof( MaxCompletionTokens ) );
                 }
             }
         }
@@ -251,10 +236,10 @@ namespace Bubba
             }
             set
             {
-                if(_stop != value)
+                if( _stop != value )
                 {
                     _stop = value;
-                    OnPropertyChanged(nameof(Stop));
+                    OnPropertyChanged( nameof( Stop ) );
                 }
             }
         }
@@ -330,7 +315,10 @@ namespace Bubba
         }
 
         /// <summary>
-        /// Gets or sets the instructions.
+        /// The instructions parameter gives the model high-level instructions on
+        /// how it should behave while generating a response, including tone, goals,
+        /// and examples of correct responses. Any instructions provided this way
+        /// will take priority over a prompt in the input parameter.
         /// </summary>
         /// <value>
         /// The instructions.
@@ -427,80 +415,14 @@ namespace Bubba
         }
 
         /// <summary>
-        /// Gets or sets the system prompt.
-        /// </summary>
-        /// <value>
-        /// The system prompt.
-        /// </value>
-        public virtual string SystemPrompt
-        {
-            get
-            {
-                return _systemPrompt;
-            }
-            set
-            {
-                if( _systemPrompt != value )
-                {
-                    _systemPrompt = value;
-                    OnPropertyChanged( nameof( SystemPrompt ) );
-                }
-            }
-        }
-
-        /// <summary>
-        /// Gets or sets the user prompt.
-        /// </summary>
-        /// <value>
-        /// The user prompt.
-        /// </value>
-        public virtual string UserPrompt
-        {
-            get
-            {
-                return _userPrompt;
-            }
-            set
-            {
-                if( _userPrompt != value )
-                {
-                    _userPrompt = value;
-                    OnPropertyChanged( nameof( UserPrompt ) );
-                }
-            }
-        }
-
-        /// <summary>
-        /// Gets or sets the assistant prompt.
-        /// </summary>
-        /// <value>
-        /// The assistant prompt.
-        /// </value>
-        public virtual string AssistantPrompt
-        {
-            get
-            {
-                return _assistantPrompt;
-            }
-            set
-            {
-                if( _assistantPrompt != value )
-                {
-                    _assistantPrompt = value;
-                    OnPropertyChanged( nameof( AssistantPrompt ) );
-                }
-            }
-        }
-
-        /// <summary>
         /// Wraps error
         /// </summary>
         /// <param name="ex">The ex.</param>
-        private protected void Fail(Exception ex)
+        private protected void Fail( Exception ex )
         {
-            var _error = new ErrorWindow(ex);
-            _error?.SetText();
-            _error?.ShowDialog();
+            var _error = new ErrorWindow( ex );
+            _error?.SetText( );
+            _error?.ShowDialog( );
         }
     }
 }

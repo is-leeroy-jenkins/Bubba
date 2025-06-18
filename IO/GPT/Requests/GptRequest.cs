@@ -89,14 +89,14 @@ namespace Bubba
             _messages = new List<IGptMessage>( );
             _header = new GptHeader( );
             _apiKey = _header.ApiKey;
-            _systemPrompt = App.Instructions;
+            _instructions = App.Instructions;
             _store = true;
             _stream = true;
             _presencePenalty = 0.00;
             _frequencyPenalty = 0.00;
-            _topPercent = 0.90;
-            _temperature = 0.80;
-            _maximumTokens = 2048;
+            _topPercent = 0.09;
+            _temperature = 0.08;
+            _maxCompletionTokens = 10000;
             _number = 1;
             _stop = "['#', ';']";
             _modalities = "['text','audio']";
@@ -108,15 +108,15 @@ namespace Bubba
         /// Initializes a new instance of the
         /// <see cref="T:Bubba.GptRequest" /> class.
         /// </summary>
-        /// <param name = "user" > </param>
+        /// <param name = "input > </param>
         /// <param name = "options" > </param>
-        public GptRequest( string user, IGptParameter options )
+        public GptRequest( string input, IGptParameter options )
             : this( )
         {
             _header = new GptHeader( );
-            _userPrompt = user;
-            _messages.Add( new SystemMessage( _systemPrompt ) );
-            _messages.Add( new UserMessage( user ) );
+            _inputText = input;
+            _messages.Add( new SystemMessage( _instructions ) );
+            _messages.Add( new UserMessage( input ) );
             _apiKey = _header.ApiKey;
             _number = options.Number;
             _store = options.Store;
@@ -125,7 +125,7 @@ namespace Bubba
             _presencePenalty = options.PresencePenalty;
             _topPercent = options.TopPercent;
             _temperature = options.Temperature;
-            _maximumTokens = options.MaximumTokens;
+            _maxCompletionTokens = options.MaxCompletionTokens;
         }
 
         /// <inheritdoc />
@@ -145,7 +145,7 @@ namespace Bubba
             _presencePenalty = request.PresencePenalty;
             _topPercent = request.TopPercent;
             _temperature = request.Temperature;
-            _maximumTokens = request.MaximumTokens;
+            _maxCompletionTokens = request.MaxCompletionTokens;
         }
 
         /// <summary>
@@ -180,9 +180,9 @@ namespace Bubba
             frequency = _frequencyPenalty;
             temperature = _temperature;
             topPercent = _topPercent;
-            tokens = _maximumTokens;
-            user = _userPrompt;
-            system = _systemPrompt;
+            tokens = _maxCompletionTokens;
+            user = _inputText;
+            system = _instructions;
         }
 
         /// <summary>
@@ -223,10 +223,10 @@ namespace Bubba
             }
             set
             {
-                if(_responseFormat != value)
+                if( _responseFormat != value )
                 {
                     _responseFormat = value;
-                    OnPropertyChanged(nameof(ResponseFormat));
+                    OnPropertyChanged( nameof( ResponseFormat ) );
                 }
             }
         }
@@ -261,12 +261,12 @@ namespace Bubba
         /// <exception cref="System.Net.Http.HttpRequestException">
         /// Error: {_response.StatusCode}, {_error}
         /// </exception>
-        public virtual async Task<string> GetResponseAsync( string prompt )
+        public virtual async Task<string> GetResponseAsync( string inputText )
         {
             try
             {
-                ThrowIf.Empty( prompt, nameof( prompt ) );
-                _prompt = prompt;
+                ThrowIf.Empty( inputText, nameof( inputText ) );
+                _inputText = inputText;
                 _httpClient = new HttpClient( );
                 _httpClient.Timeout = new TimeSpan( 0, 0, 3 );
                 _httpClient.DefaultRequestHeaders.Authorization =
@@ -353,7 +353,7 @@ namespace Bubba
             {
                 _data.Add( "model", _model );
                 _data.Add( "n", _number.ToString( ) );
-                _data.Add( "max_completion_tokens", _maximumTokens.ToString( ) );
+                _data.Add( "max_completion_tokens", _maxCompletionTokens.ToString( ) );
                 _data.Add( "store", _store.ToString( ) );
                 _data.Add( "stream", _stream.ToString( ) );
                 _data.Add( "temperature", _temperature.ToString( ) );

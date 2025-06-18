@@ -108,7 +108,7 @@ namespace Bubba
         /// <summary>
         /// Initializes a new instance of the <see cref="T:Bubba.ChatPayload" /> class.
         /// </summary>
-        /// <param name="userPrompt"></param>
+        /// <param name="inputText"></param>
         /// <param name="frequency">The frequency penalty.</param>
         /// <param name="presence">The presence penalty.</param>
         /// <param name="temperature">The temperature.</param>
@@ -116,11 +116,11 @@ namespace Bubba
         /// <param name="maxTokens">The maximum tokens.</param>
         /// <param name="store">if set to <c>true</c> [store].</param>
         /// <param name="stream">if set to <c>true</c> [stream].</param>
-        public ChatPayload( string userPrompt, double frequency = 0.00, double presence = 0.00,
+        public ChatPayload( string inputText, double frequency = 0.00, double presence = 0.00,
             double temperature = 0.08, double topPercent = 0.09, int maxTokens = 2048,
             bool store = false, bool stream = true )
         {
-            _prompt = userPrompt;
+            _inputText = inputText;
             _temperature = temperature;
             _maximumTokens = maxTokens;
             _frequencyPenalty = frequency;
@@ -136,15 +136,15 @@ namespace Bubba
         /// <summary>
         /// Initializes a new instance of the <see cref="T:Bubba.ChatPayload" /> class.
         /// </summary>
-        /// <param name="userPrompt">The user prompt.</param>
+        /// <param name="inputText">The user prompt.</param>
         /// <param name="systemPrompt">The system prompt.</param>
         /// <param name="config">The configuration.</param>
-        public ChatPayload( string userPrompt, string systemPrompt, GptOptions config )
+        public ChatPayload( string inputText, string systemPrompt, GptOptions config )
         {
-            _prompt = userPrompt;
+            _inputText = inputText;
             _systemPrompt = systemPrompt;
             _temperature = config.Temperature;
-            _maximumTokens = config.MaximumTokens;
+            _maximumTokens = config.MaxCompletionTokens;
             _frequencyPenalty = config.FrequencyPenalty;
             _presencePenalty = config.PresencePenalty;
             _store = config.Store;

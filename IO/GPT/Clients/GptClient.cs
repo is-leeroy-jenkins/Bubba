@@ -139,7 +139,7 @@ namespace Bubba
         /// The prompt.
         /// </value>
         [ JsonPropertyName( "prompt" ) ]
-        public override string Prompt
+        public override GptPrompt Prompt
         {
             get
             {
@@ -150,7 +150,7 @@ namespace Bubba
                 if( _prompt != value )
                 {
                     _prompt = value;
-                    OnPropertyChanged( nameof( Prompt ) );
+                    OnPropertyChanged( nameof( GptClient.Prompt ) );
                 }
             }
         }

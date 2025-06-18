@@ -148,7 +148,12 @@ namespace Bubba
         /// <summary>
         /// The maximum tokens
         /// </summary>
-        private protected int _maximumTokens;
+        private protected int _maxCompletionTokens;
+
+        /// <summary>
+        /// The maximum output tokens
+        /// </summary>
+        private protected int _maxOutputTokens;
 
         /// <summary>
         /// The role
@@ -158,7 +163,7 @@ namespace Bubba
         /// <summary>
         /// The prompt
         /// </summary>
-        private protected string _prompt;
+        private protected GptPrompt _prompt;
 
         /// <summary>
         /// The data
@@ -193,7 +198,7 @@ namespace Bubba
         /// <value>
         /// The prompt.
         /// </value>
-        public virtual string Prompt
+        public virtual GptPrompt Prompt
         {
             get
             {
@@ -224,6 +229,76 @@ namespace Bubba
                 lock( _entry )
                 {
                     return _busy;
+                }
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether this
+        /// <see cref="GptConfig"/> is store.
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if store; otherwise, <c>false</c>.
+        /// </value>
+        public virtual bool Store
+        {
+            get
+            {
+                return _store;
+            }
+            set
+            {
+                if( _store != value )
+                {
+                    _store = value;
+                    OnPropertyChanged( nameof( Store ) );
+                }
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether this
+        /// <see cref="GptConfig"/> is stream.
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if stream; otherwise, <c>false</c>.
+        /// </value>
+        public virtual bool Stream
+        {
+            get
+            {
+                return _stream;
+            }
+            set
+            {
+                if( _stream != value )
+                {
+                    _stream = value;
+                    OnPropertyChanged( nameof( Stream ) );
+                }
+            }
+        }
+
+        /// <summary>
+        /// A number between 0.0 and 2.0   between 0 and 2.
+        /// Higher values like 0.8 will make the output more random,
+        /// while lower values like 0.2 will make it more focused and deterministic.
+        /// </summary>
+        /// <value>
+        /// The temperature.
+        /// </value>
+        public virtual double Temperature
+        {
+            get
+            {
+                return Temperature;
+            }
+            set
+            {
+                if( Temperature != value )
+                {
+                    Temperature = value;
+                    OnPropertyChanged( nameof( Temperature ) );
                 }
             }
         }

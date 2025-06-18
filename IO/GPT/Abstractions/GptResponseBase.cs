@@ -49,12 +49,23 @@ namespace Bubba
     /// </summary>
     /// <seealso cref="T:Bubba.GptBase" />
     [ SuppressMessage( "ReSharper", "UnusedType.Global" ) ]
+    [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
     public class GptResponseBase : GptBase
     {
         /// <summary>
         /// The identifier
         /// </summary>
         private protected string _id;
+
+        /// <summary>
+        /// The identifier
+        /// </summary>
+        private protected string _previousId;
+
+        /// <summary>
+        /// The input text
+        /// </summary>
+        private protected string _outputText;
 
         /// <summary>
         /// The object
@@ -65,6 +76,11 @@ namespace Bubba
         /// The created
         /// </summary>
         private protected DateTime _created;
+
+        /// <summary>
+        /// The background
+        /// </summary>
+        private protected bool _background;
 
         /// <inheritdoc />
         /// <summary>
@@ -99,6 +115,50 @@ namespace Bubba
         }
 
         /// <summary>
+        /// Gets or sets the identifier.
+        /// </summary>
+        /// <value>
+        /// The identifier.
+        /// </value>
+        public virtual string OutputText
+        {
+            get
+            {
+                return _outputText;
+            }
+            set
+            {
+                if( _outputText != value )
+                {
+                    _outputText = value;
+                    OnPropertyChanged( nameof( OutputText ) );
+                }
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the previous identifier.
+        /// </summary>
+        /// <value>
+        /// The previous identifier.
+        /// </value>
+        public virtual string PreviousId
+        {
+            get
+            {
+                return _previousId;
+            }
+            set
+            {
+                if( _previousId != value )
+                {
+                    _previousId = value;
+                    OnPropertyChanged( nameof( PreviousId ) );
+                }
+            }
+        }
+
+        /// <summary>
         /// Gets or sets the object.
         /// </summary>
         /// <value>
@@ -116,6 +176,29 @@ namespace Bubba
                 {
                     _object = value;
                     OnPropertyChanged( nameof( Object ) );
+                }
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets whether to run the model response
+        /// <see cref="GptResponseBase"/> in the background.
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if background; otherwise, <c>false</c>.
+        /// </value>
+        public virtual bool Background
+        {
+            get
+            {
+                return _background;
+            }
+            set
+            {
+                if( _background != value )
+                {
+                    _background = value;
+                    OnPropertyChanged( nameof( Background ) );
                 }
             }
         }

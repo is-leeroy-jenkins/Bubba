@@ -89,7 +89,7 @@ namespace Bubba
             _entry = new object( );
             _header = new GptHeader( );
             _endPoint = GptEndPoint.ImageGeneration;
-            _messages.Add( new SystemMessage( _systemPrompt ) );
+            _messages.Add( new SystemMessage( _instructions ) );
             _model = "dall-e-3";
             _style = "natural";
             _quality = "hd";
@@ -152,7 +152,7 @@ namespace Bubba
         /// The prompt.
         /// </value>
         [ JsonPropertyName( "prompt" ) ]
-        public override string Prompt
+        public override GptPrompt Prompt
         {
             get
             {
@@ -163,7 +163,7 @@ namespace Bubba
                 if( _prompt != value )
                 {
                     _prompt = value;
-                    OnPropertyChanged( nameof( Prompt ) );
+                    OnPropertyChanged( nameof( ImageRequest.Prompt ) );
                 }
             }
         }
@@ -293,18 +293,18 @@ namespace Bubba
         /// The maximum tokens.
         /// </value>
         [ JsonPropertyName( "max_completion_tokens" ) ]
-        public override int MaximumTokens
+        public override int MaxCompletionTokens
         {
             get
             {
-                return _maximumTokens;
+                return _maxCompletionTokens;
             }
             set
             {
-                if( _maximumTokens != value )
+                if( _maxCompletionTokens != value )
                 {
-                    _maximumTokens = value;
-                    OnPropertyChanged( nameof( MaximumTokens ) );
+                    _maxCompletionTokens = value;
+                    OnPropertyChanged( nameof( MaxCompletionTokens ) );
                 }
             }
         }
@@ -322,7 +322,7 @@ namespace Bubba
                 _data.Add( "model", _model );
                 _data.Add( "endpoint", _endPoint );
                 _data.Add( "n", _number.ToString( ) );
-                _data.Add( "max_completion_tokens", _maximumTokens.ToString( ) );
+                _data.Add( "max_completion_tokens", _maxCompletionTokens.ToString( ) );
                 _data.Add( "store", _store.ToString( ) );
                 _data.Add( "stream", _stream.ToString( ) );
                 _data.Add( "temperature", _temperature.ToString( ) );
@@ -372,13 +372,13 @@ namespace Bubba
             try
             {
                 ThrowIf.Empty( prompt, nameof( prompt ) );
-                _prompt = prompt;
+                _inputText = prompt;
                 _httpClient = new HttpClient( );
                 _httpClient.Timeout = new TimeSpan( 0, 0, 3 );
                 _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue( "Bearer", _header.ApiKey );
                 var _payload = new ImagePayload( )
                 {
-                    Prompt = prompt,
+                    InputText = prompt,
                     Number = _number,
                     Size = _size
                 };

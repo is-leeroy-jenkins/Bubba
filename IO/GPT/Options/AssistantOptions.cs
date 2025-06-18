@@ -77,7 +77,7 @@ namespace Bubba
             _topPercent = 0.90;
             _frequencyPenalty = 0.00;
             _presencePenalty = 0.00;
-            _maximumTokens = 2048;
+            _maxCompletionTokens = 2048;
             _stop = "['#', ';']";
             _modalities = "['text', 'audio']";
             _responseFormat = "auto";
@@ -172,7 +172,10 @@ namespace Bubba
         }
 
         /// <summary>
-        /// Gets or sets the instructions.
+        /// The instructions parameter gives the model high-level instructions on
+        /// how it should behave while generating a response, including tone, goals,
+        /// and examples of correct responses. Any instructions provided this way
+        /// will take priority over a prompt in the input parameter.
         /// </summary>
         /// <value>
         /// The instructions.
@@ -293,7 +296,7 @@ namespace Bubba
                 _data.Add( "n", _number );
                 _data.Add( "model", _model );
                 _data.Add( "endpoint", _endPoint );
-                _data.Add( "max_completion_tokens", _maximumTokens );
+                _data.Add( "max_completion_tokens", _maxCompletionTokens );
                 _data.Add( "store", _store );
                 _data.Add( "stream", _stream );
                 _data.Add( "temperature", _temperature );

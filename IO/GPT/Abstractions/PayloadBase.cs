@@ -141,7 +141,7 @@ namespace Bubba
         /// <summary>
         /// The user prompt
         /// </summary>
-        private protected string _prompt;
+        private protected string _inputText;
 
         /// <summary>
         /// The response format
@@ -204,7 +204,7 @@ namespace Bubba
         /// <value>
         /// The maximum tokens.
         /// </value>
-        [ JsonPropertyName( "max_completionTokens" ) ]
+        [ JsonPropertyName( "max_completion_tokens" ) ]
         public virtual int MaximumTokens
         {
             get
@@ -354,12 +354,12 @@ namespace Bubba
 
         /// <inheritdoc />
         /// <summary>
-        /// Gets the Large Language Model.
+        /// Gets or sets the Large Language Model.
         /// </summary>
         /// <value>
         /// The chat model.
         /// </value>
-        [ JsonPropertyName( "models" ) ]
+        [ JsonPropertyName( "model" ) ]
         public virtual string Model
         {
             get
@@ -407,19 +407,19 @@ namespace Bubba
         /// <value>
         /// The prompt.
         /// </value>
-        [ JsonPropertyName( "prompt" ) ]
-        public virtual string Prompt
+        [ JsonPropertyName( "input" ) ]
+        public virtual string InputText
         {
             get
             {
-                return _prompt;
+                return _inputText;
             }
             set
             {
-                if( _prompt != value )
+                if( _inputText != value )
                 {
-                    _prompt = value;
-                    OnPropertyChanged( nameof( Prompt ) );
+                    _inputText = value;
+                    OnPropertyChanged( nameof( InputText ) );
                 }
             }
         }

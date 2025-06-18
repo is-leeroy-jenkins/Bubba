@@ -123,7 +123,7 @@ namespace Bubba
             _entry = new object( );
             _header = new GptHeader( );
             _endPoint = GptEndPoint.Files;
-            _messages.Add( new SystemMessage( _systemPrompt ) );
+            _messages.Add( new SystemMessage( _instructions ) );
             _model = "gpt-4o-mini";
             _limit = 10000;
             _order = "desc";

@@ -46,7 +46,6 @@ namespace Bubba
     using System.Diagnostics.CodeAnalysis;
     using System.Linq;
     using System.Net.Http;
-    using System.Net.Http.Headers;
     using System.Text;
     using System.Text.Json;
     using System.Text.Json.Serialization;
@@ -77,6 +76,11 @@ namespace Bubba
         /// The reasoning effort
         /// </summary>
         private protected string _reasoningEffort;
+
+        /// <summary>
+        /// The input text
+        /// </summary>
+        private protected string _inputText;
 
         /// <summary>
         /// The system prompt
@@ -124,7 +128,7 @@ namespace Bubba
             _frequencyPenalty = config.FrequencyPenalty;
             _temperature = config.Temperature;
             _topPercent = config.TopPercent;
-            _maximumTokens = config.MaximumTokens;
+            _maxCompletionTokens = config.MaxCompletionTokens;
             _stop = config.Stop;
             _modalities = config.Modalities;
         }
@@ -149,7 +153,7 @@ namespace Bubba
             _frequencyPenalty = request.FrequencyPenalty;
             _temperature = request.Temperature;
             _topPercent = request.TopPercent;
-            _maximumTokens = request.MaximumTokens;
+            _maxCompletionTokens = request.MaxCompletionTokens;
             _stop = request.Stop;
             _modalities = request.Modalities;
         }
@@ -183,7 +187,7 @@ namespace Bubba
             frequency = _frequencyPenalty;
             temperature = Temperature;
             topPercent = TopPercent;
-            tokens = _maximumTokens;
+            tokens = _maxCompletionTokens;
         }
 
         /// <inheritdoc />
@@ -265,7 +269,7 @@ namespace Bubba
         /// The user prompt.
         /// </value>
         [ JsonPropertyName( "prompt" ) ]
-        public override string Prompt
+        public override GptPrompt Prompt
         {
             get
             {
@@ -276,7 +280,7 @@ namespace Bubba
                 if( _prompt != value )
                 {
                     _prompt = value;
-                    OnPropertyChanged( nameof( Prompt ) );
+                    OnPropertyChanged( nameof( AssistantRequest.Prompt ) );
                 }
             }
         }
@@ -366,7 +370,7 @@ namespace Bubba
             {
                 _data.Add( "model", _model );
                 _data.Add( "n", _number.ToString( ) );
-                _data.Add( "max_completion_tokens", _maximumTokens.ToString( ) );
+                _data.Add( "max_completion_tokens", _maxCompletionTokens.ToString( ) );
                 _data.Add( "store", _store.ToString( ) );
                 _data.Add( "stream", _stream.ToString( ) );
                 _data.Add( "temperature", _temperature.ToString( ) );
@@ -383,7 +387,7 @@ namespace Bubba
             catch( Exception ex )
             {
                 Fail( ex );
-                return default( IDictionary<string,object> );
+                return default( IDictionary<string, object> );
             }
         }
 
@@ -397,7 +401,7 @@ namespace Bubba
             try
             {
                 ThrowIf.Empty( prompt, nameof( prompt ) );
-                _prompt = prompt;
+                _inputText = prompt;
                 _httpClient = new HttpClient( );
                 _httpClient.DefaultRequestHeaders.Add( "Authorization",
                     $"Bearer {_header.ApiKey}" );
@@ -412,7 +416,7 @@ namespace Bubba
                     TopPercent = _topPercent,
                     FrequencyPenalty = _frequencyPenalty,
                     PresencePenalty = _presencePenalty,
-                    Prompt = _prompt
+                    InputText = _inputText
                 };
 
                 var _serial = _package.Serialize( );

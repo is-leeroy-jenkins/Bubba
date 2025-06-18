@@ -90,7 +90,7 @@ namespace Bubba
         /// <summary>
         /// The input
         /// </summary>
-        private protected string _input;
+        private protected string _inputText;
 
         /// <summary>
         /// The audio data
@@ -114,7 +114,7 @@ namespace Bubba
             _header = new GptHeader( );
             _endPoint = GptEndPoint.SpeechGeneration;
             _model = "tts-1-hd";
-            _messages.Add( new SystemMessage( _systemPrompt ) );
+            _messages.Add( new SystemMessage( _instructions ) );
             _speed = 1;
             _language = "en";
             _responseFormat = "mp3";
@@ -201,18 +201,18 @@ namespace Bubba
         /// The input.
         /// </value>
         [ JsonPropertyName( "input" ) ]
-        public string Input
+        public string InputText
         {
             get
             {
-                return _input;
+                return _inputText;
             }
             set
             {
-                if( _input != value )
+                if( _inputText != value )
                 {
-                    _input = value;
-                    OnPropertyChanged( nameof( Input ) );
+                    _inputText = value;
+                    OnPropertyChanged( nameof( InputText ) );
                 }
             }
         }
@@ -368,7 +368,7 @@ namespace Bubba
             {
                 _data.Add( "model", _model );
                 _data.Add( "number", _number );
-                _data.Add( "max_completion_tokens", _maximumTokens );
+                _data.Add( "max_completion_tokens", _maxCompletionTokens );
                 _data.Add( "store", _store );
                 _data.Add( "stream", _stream );
                 _data.Add( "temperature", _temperature );
@@ -401,7 +401,7 @@ namespace Bubba
             try
             {
                 ThrowIf.Empty( prompt, nameof( prompt ) );
-                _prompt = prompt;
+                _inputText = prompt;
                 _httpClient = new HttpClient( );
                 _httpClient.Timeout = new TimeSpan( 0, 0, 3 );
                 _httpClient.DefaultRequestHeaders.Authorization = 
@@ -411,7 +411,7 @@ namespace Bubba
                 {
                     Model = _model,
                     Language = _language,
-                    Input = _prompt
+                    InputText = _inputText
                 };
 
                 var _message = _speech.Serialize( );
@@ -477,7 +477,7 @@ namespace Bubba
                 var _speech = new SpeechPayload
                 {
                     Model = _model,
-                    Input = _prompt,
+                    InputText = _inputText,
                     Language = _language,
                     Voice = _voice,
                     Speed = _speed

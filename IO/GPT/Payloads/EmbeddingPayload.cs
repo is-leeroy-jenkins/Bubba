@@ -61,12 +61,7 @@ namespace Bubba
         /// The file path
         /// </summary>
         private protected string _filePath;
-
-        /// <summary>
-        /// The input
-        /// </summary>
-        private protected string _input;
-
+         
         /// <summary>
         /// The encoding format
         /// </summary>
@@ -102,7 +97,7 @@ namespace Bubba
         /// <summary>
         /// Initializes a new instance of the <see cref="T:Bubba.EmbeddingPayload" /> class.
         /// </summary>
-        /// <param name="userPrompt"></param>
+        /// <param name="inputText"></param>
         /// <param name="frequency">The frequency penalty.</param>
         /// <param name="presence">The presence penalty.</param>
         /// <param name="temperature">The temperature.</param>
@@ -110,12 +105,12 @@ namespace Bubba
         /// <param name="maxTokens">The maximum tokens.</param>
         /// <param name="store">if set to <c>true</c> [store].</param>
         /// <param name="stream">if set to <c>true</c> [stream].</param>
-        public EmbeddingPayload( string userPrompt, double frequency = 0.00, double presence = 0.00,
+        public EmbeddingPayload( string inputText, double frequency = 0.00, double presence = 0.00,
             double temperature = 0.08, double topPercent = 0.09, int maxTokens = 2048,
             bool store = false, bool stream = true )
             : this( )
         {
-            _prompt = userPrompt;
+            _inputText = inputText;
             _temperature = temperature;
             _maximumTokens = maxTokens;
             _frequencyPenalty = frequency;
@@ -130,14 +125,14 @@ namespace Bubba
         /// <summary>
         /// Initializes a new instance of the <see cref="T:Bubba.EmbeddingPayload" /> class.
         /// </summary>
-        /// <param name="userPrompt">The user prompt.</param>
+        /// <param name="inputText">The user prompt.</param>
         /// <param name="config">The configuration.</param>
-        public EmbeddingPayload( string userPrompt, GptOptions config )
+        public EmbeddingPayload( string inputText, GptOptions config )
             : this( )
         {
-            _prompt = userPrompt;
+            _inputText = inputText;
             _temperature = config.Temperature;
-            _maximumTokens = config.MaximumTokens;
+            _maximumTokens = config.MaxCompletionTokens;
             _frequencyPenalty = config.FrequencyPenalty;
             _presencePenalty = config.PresencePenalty;
             _store = config.Store;
@@ -206,18 +201,18 @@ namespace Bubba
         /// The input.
         /// </value>
         [ JsonPropertyName( "input" ) ]
-        public string Input
+        public override string InputText
         {
             get
             {
-                return _input;
+                return _inputText;
             }
             set
             {
-                if( _input != value )
+                if( _inputText != value )
                 {
-                    _input = value;
-                    OnPropertyChanged( nameof( Input ) );
+                    _inputText = value;
+                    OnPropertyChanged( nameof( InputText ) );
                 }
             }
         }

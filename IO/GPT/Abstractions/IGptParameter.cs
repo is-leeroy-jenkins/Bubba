@@ -137,7 +137,7 @@ namespace Bubba
         /// <value>
         /// The maximum tokens.
         /// </value>
-        int MaximumTokens { get; set; }
+        int MaxCompletionTokens { get; set; }
 
         /// <summary>
         /// THe number 'n' of responses generatred.

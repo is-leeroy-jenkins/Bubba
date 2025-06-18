@@ -119,7 +119,7 @@ namespace Bubba
             _topPercent = 0.90;
             _frequencyPenalty = 0.00;
             _presencePenalty = 0.00;
-            _maximumTokens = 2048;
+            _maxCompletionTokens = 2048;
             _stop = "['#', ';']";
             _method = new Dictionary<string, object>( );
             _logitBias = new Dictionary<string, object>( );
@@ -368,7 +368,7 @@ namespace Bubba
                 _data.Add( "model", _model );
                 _data.Add( "endpoint", _endPoint );
                 _data.Add( "number", _number );
-                _data.Add( "max_completion_tokens", _maximumTokens );
+                _data.Add( "max_completion_tokens", _maxCompletionTokens );
                 _data.Add( "stop", _stop );
                 _data.Add( "store", _store );
                 _data.Add( "stream", _stream );

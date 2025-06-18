@@ -76,13 +76,13 @@ namespace Bubba
             _entry = new object( );
             _header = new GptHeader( );
             _endPoint = GptEndPoint.Uploads;
-            _messages.Add( new SystemMessage( _systemPrompt ) );
+            _messages.Add( new SystemMessage( _instructions ) );
             _model = "gpt-4o-mini";
             _presencePenalty = 0.00;
             _frequencyPenalty = 0.00;
             _topPercent = 0.90;
             _temperature = 0.80;
-            _maximumTokens = 2048;
+            _maxCompletionTokens = 10000;
             _number = 1;
         }
 
@@ -213,18 +213,18 @@ namespace Bubba
         /// The maximum tokens.
         /// </value>
         [ JsonPropertyName( "max_completionTokens" ) ]
-        public override int MaximumTokens
+        public override int MaxCompletionTokens
         {
             get
             {
-                return _maximumTokens;
+                return _maxCompletionTokens;
             }
             set
             {
-                if( _maximumTokens != value )
+                if( _maxCompletionTokens != value )
                 {
-                    _maximumTokens = value;
-                    OnPropertyChanged( nameof( MaximumTokens ) );
+                    _maxCompletionTokens = value;
+                    OnPropertyChanged( nameof( MaxCompletionTokens ) );
                 }
             }
         }
@@ -430,20 +430,20 @@ namespace Bubba
         /// </summary>
         /// <param name="fileId">The file identifier.</param>
         /// <returns></returns>
-        public override async Task<string> GetResponseAsync(string fileId )
+        public override async Task<string> GetResponseAsync( string fileId )
         {
             try
             {
-                ThrowIf.Empty(fileId, nameof(fileId));
-                _prompt = fileId;
-                _httpClient = new HttpClient();
-                _httpClient.Timeout = new TimeSpan(0, 0, 3);
+                ThrowIf.Empty( fileId, nameof( fileId ) );
+                _inputText = fileId;
+                _httpClient = new HttpClient( );
+                _httpClient.Timeout = new TimeSpan( 0, 0, 3 );
                 _httpClient.DefaultRequestHeaders.Authorization =
-                    new AuthenticationHeaderValue("Bearer", _header.ApiKey);
+                    new AuthenticationHeaderValue( "Bearer", _header.ApiKey );
 
                 var _file = new FineTuningPayload( )
                 {
-                    TrainingFile = _prompt,
+                    TrainingFile = _inputText,
                     Model = "curie"
                 };
 
