@@ -63,6 +63,7 @@ namespace Bubba
     [ SuppressMessage( "ReSharper", "InconsistentNaming" ) ]
     [ SuppressMessage( "ReSharper", "PreferConcreteValueOverDefault" ) ]
     [ SuppressMessage( "ReSharper", "CanSimplifyDictionaryLookupWithTryGetValue" ) ]
+    [ SuppressMessage( "ReSharper", "PossibleUnintendedReferenceComparison" ) ]
     public class SystemMessage : GptMessage, IGptMessage
     {
         /// <summary>
@@ -79,8 +80,6 @@ namespace Bubba
             _role = "system";
             _type = "text";
             _instructions = App.Instructions;
-            _data = new Dictionary<string, object>( );
-            _content = new GptContent( _type, _instructions );
         }
 
         /// <inheritdoc />
@@ -93,8 +92,7 @@ namespace Bubba
         {
             _role = "system";
             _type = "text";
-            _text = prompt;
-            _content = new GptContent( _type, prompt );
+            _content.Add( _type, prompt );
         }
 
         /// <summary>
@@ -105,9 +103,8 @@ namespace Bubba
         public SystemMessage( SystemMessage message )
         {
             _role = message.Role;
-            _content = message.Content;
             _type = message.Type;
-            _text = message.Text;
+            _content = message.Content;
         }
 
         /// <summary>
@@ -115,7 +112,7 @@ namespace Bubba
         /// </summary>
         /// <param name="role">The role.</param>
         /// <param name="content">The content.</param>
-        public void Deconstruct( out string role, out GptContent content )
+        public void Deconstruct( out string role, out IDictionary<string, string> content )
         {
             role = _role;
             content = _content;
@@ -135,6 +132,14 @@ namespace Bubba
             {
                 return _role;
             }
+            set
+            {
+                if( _role != value )
+                {
+                    _role = value;
+                    OnPropertyChanged( Role );
+                }
+            }
         }
 
         /// <inheritdoc />
@@ -145,7 +150,7 @@ namespace Bubba
         /// The content.
         /// </value>
         [ JsonPropertyName( "content" ) ]
-        public override GptContent Content
+        public override IDictionary<string, string> Content
         {
             get
             {
@@ -153,7 +158,11 @@ namespace Bubba
             }
             set
             {
-                _content = value;
+                if( _content != value )
+                {
+                    _content = value;
+                    OnPropertyChanged( nameof( Content ) );
+                }
             }
         }
 
@@ -169,16 +178,6 @@ namespace Bubba
                 if( !string.IsNullOrEmpty( _role ) )
                 {
                     _data.Add( "role", _role );
-                }
-
-                if( !string.IsNullOrEmpty( _type ) )
-                {
-                    _data.Add( "type", _type );
-                }
-
-                if( !string.IsNullOrEmpty( _text ) )
-                {
-                    _data.Add( "text", _text );
                 }
 
                 if( _content != null )

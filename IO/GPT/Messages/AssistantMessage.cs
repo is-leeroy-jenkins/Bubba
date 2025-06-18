@@ -78,7 +78,7 @@ namespace Bubba
         {
             _role = "assistant";
             _data = new Dictionary<string, object>( );
-            _type = "text";
+            _content = new Dictionary<string, string>( );
         }
 
         /// <inheritdoc />
@@ -92,8 +92,7 @@ namespace Bubba
         public AssistantMessage( string prompt )
         {
             _role = "assistant";
-            _text = prompt;
-            _content = new GptContent( "text", prompt );
+            _content.Add( "text", prompt );
         }
 
         /// <summary>
@@ -113,7 +112,7 @@ namespace Bubba
         /// </summary>
         /// <param name="role">The role.</param>
         /// <param name="content">The content.</param>
-        public void Deconstruct( out string role, out GptContent content )
+        public void Deconstruct( out string role, out IDictionary<string, string> content )
         {
             role = _role;
             content = _content;
@@ -143,7 +142,7 @@ namespace Bubba
         /// The content.
         /// </value>
         [ JsonPropertyName( "content" ) ]
-        public override GptContent Content
+        public override IDictionary<string, string> Content
         {
             get
             {
@@ -173,16 +172,6 @@ namespace Bubba
                     _data.Add( "role", _role );
                 }
 
-                if( !string.IsNullOrEmpty( _type ) )
-                {
-                    _data.Add( "type", _type );
-                }
-
-                if( !string.IsNullOrEmpty( _text ) )
-                {
-                    _data.Add( "text", _text );
-                }
-
                 if( _content != null )
                 {
                     _data.Add( "content", _content );
@@ -210,8 +199,8 @@ namespace Bubba
         {
             try
             {
-                return !string.IsNullOrEmpty( _text )
-                    ? _text
+                return !string.IsNullOrEmpty( _content[ "Text" ] )
+                    ? _content[ "Text" ]
                     : string.Empty;
             }
             catch( Exception ex )
@@ -233,10 +222,10 @@ namespace Bubba
         {
             try
             {
-                if(_data?.Any() == false)
+                if( _data?.Any( ) == false )
                 {
                     var _message = "Data is null or has no items";
-                    throw new Exception(_message);
+                    throw new Exception( _message );
                 }
                 else
                 {

@@ -66,18 +66,14 @@ namespace Bubba
         /// <summary>
         /// The content
         /// </summary>
-        private protected GptContent _content;
+        private protected IDictionary<string, string> _content;
 
         /// <summary>
         /// The type
         /// </summary>
         private protected string _type;
 
-        /// <summary>
-        /// The text
-        /// </summary>
-        private protected string _text;
-
+        /// <s
         /// <summary>
         /// The data
         /// </summary>
@@ -114,7 +110,7 @@ namespace Bubba
         /// The content.
         /// </value>
         [ JsonPropertyName( "content" ) ]
-        public virtual GptContent Content
+        public virtual IDictionary<string, string> Content
         {
             get
             {
@@ -149,29 +145,6 @@ namespace Bubba
                 {
                     _type = value;
                     OnPropertyChanged( nameof( Type ) );
-                }
-            }
-        }
-
-        /// <summary>
-        /// Gets or sets the text.
-        /// </summary>
-        /// <value>
-        /// The text.
-        /// </value>
-        [ JsonPropertyName( "text" ) ]
-        public virtual string Text
-        {
-            get
-            {
-                return _text;
-            }
-            set
-            {
-                if( _text != value )
-                {
-                    _text = value;
-                    OnPropertyChanged( nameof( Text ) );
                 }
             }
         }
@@ -271,9 +244,9 @@ namespace Bubba
                     IncludeFields = false
                 };
 
-                var _text = JsonSerializer.Serialize( this, _options );
-                return !string.IsNullOrEmpty( _text )
-                    ? _text
+                _content[ "Text" ] = JsonSerializer.Serialize( this, _options );
+                return !string.IsNullOrEmpty( _content[ "Text" ]  )
+                    ? _content[ "Text" ] 
                     : string.Empty;
             }
             catch( Exception _ex )

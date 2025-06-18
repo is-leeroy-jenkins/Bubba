@@ -85,11 +85,11 @@ namespace Bubba
             : base( )
         {
             _entry = new object( );
-            _model = "gpt-4o";
+            _model = "gpt-4o-mini";
             _endPoint = GptEndPoint.TextGeneration;
             _presencePenalty = 0.0;
             _frequencyPenalty = 0.0;
-            _maximumTokens = 2048;
+            _maximumTokens = 10000;
             _number = 1;
         }
 

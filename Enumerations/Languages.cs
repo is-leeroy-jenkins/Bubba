@@ -1,12 +1,12 @@
 ﻿// ******************************************************************************************
 //     Assembly:                Bubba
 //     Author:                  Terry D. Eppler
-//     Created:                 12-12-2024
+//     Created:                 01-06-2025
 // 
 //     Last Modified By:        Terry D. Eppler
-//     Last Modified On:        12-12-2024
+//     Last Modified On:        01-06-2025
 // ******************************************************************************************
-// <copyright file="GptApi.cs" company="Terry D. Eppler">
+// <copyright file="Languages.cs" company="Terry D. Eppler">
 //    Bubba is a small and simple windows (wpf) application for interacting with the OpenAI API
 //    that's developed in C-Sharp under the MIT license.C#.
 // 
@@ -35,7 +35,7 @@
 //    You can contact me at:  terryeppler@gmail.com or eppler.terry@epa.gov
 // </copyright>
 // <summary>
-//   GptApi.cs
+//   Languages.cs
 // </summary>
 // ******************************************************************************************
 
@@ -48,81 +48,47 @@ namespace Bubba
     /// 
     /// </summary>
     [ SuppressMessage( "ReSharper", "UnusedType.Global" ) ]
-    public enum GptApi
+    [ SuppressMessage( "ReSharper", "InconsistentNaming" ) ]
+    public enum Languages
     {
         /// <summary>
-        /// The chat completion
+        /// The text
         /// </summary>
-        ChatCompletion,
+        TXT,
 
         /// <summary>
-        /// The text generation
+        /// The SQL
         /// </summary>
-        TextGeneration,
+        SQL,
 
         /// <summary>
-        /// The image generation
+        /// The c sharp
         /// </summary>
-        ImageGeneration,
+        CS,
 
         /// <summary>
-        /// The speech generation
+        /// The python
         /// </summary>
-        SpeechGeneration,
+        PY,
 
         /// <summary>
-        /// The speech translation
+        /// The java script
         /// </summary>
-        Translations,
+        JS,
 
         /// <summary>
-        /// The text to speech
+        /// The vba
         /// </summary>
-        TextToSpeech,
+        VBA,
 
         /// <summary>
-        /// The sound transcribing
+        /// The c
         /// </summary>
-        Transcriptions,
+        C,
 
         /// <summary>
-        /// The assistants
+        /// The CPP
         /// </summary>
-        Assistants,
-
-        /// <summary>
-        /// The responses
-        /// </summary>
-        Responses,
-
-        /// <summary>
-        /// The files
-        /// </summary>
-        Files,
-
-        /// <summary>
-        /// The uploads
-        /// </summary>
-        Uploads,
-
-        /// <summary>
-        /// The fine tuning
-        /// </summary>
-        FineTuning,
-
-        /// <summary>
-        /// The vector embeddings
-        /// </summary>
-        Embeddings,
-
-        /// <summary>
-        /// The vector stores
-        /// </summary>
-        VectorStores,
-
-        /// <summary>
-        /// The projects
-        /// </summary>
-        Projects
+        CPP
     }
 }

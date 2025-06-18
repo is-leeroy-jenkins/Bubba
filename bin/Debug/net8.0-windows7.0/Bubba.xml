@@ -7447,6 +7447,86 @@
             The attachment Access data type
             </summary>
         </member>
+        <member name="T:Bubba.API">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Bubba.API.ChatCompletion">
+            <summary>
+            The chat completion
+            </summary>
+        </member>
+        <member name="F:Bubba.API.TextGeneration">
+            <summary>
+            The text generation
+            </summary>
+        </member>
+        <member name="F:Bubba.API.ImageGeneration">
+            <summary>
+            The image generation
+            </summary>
+        </member>
+        <member name="F:Bubba.API.SpeechGeneration">
+            <summary>
+            The speech generation
+            </summary>
+        </member>
+        <member name="F:Bubba.API.Translations">
+            <summary>
+            The speech translation
+            </summary>
+        </member>
+        <member name="F:Bubba.API.TextToSpeech">
+            <summary>
+            The text to speech
+            </summary>
+        </member>
+        <member name="F:Bubba.API.Transcriptions">
+            <summary>
+            The sound transcribing
+            </summary>
+        </member>
+        <member name="F:Bubba.API.Assistants">
+            <summary>
+            The assistants
+            </summary>
+        </member>
+        <member name="F:Bubba.API.Responses">
+            <summary>
+            The responses
+            </summary>
+        </member>
+        <member name="F:Bubba.API.Files">
+            <summary>
+            The files
+            </summary>
+        </member>
+        <member name="F:Bubba.API.Uploads">
+            <summary>
+            The uploads
+            </summary>
+        </member>
+        <member name="F:Bubba.API.FineTuning">
+            <summary>
+            The fine tuning
+            </summary>
+        </member>
+        <member name="F:Bubba.API.Embeddings">
+            <summary>
+            The vector embeddings
+            </summary>
+        </member>
+        <member name="F:Bubba.API.VectorStores">
+            <summary>
+            The vector stores
+            </summary>
+        </member>
+        <member name="F:Bubba.API.Projects">
+            <summary>
+            The projects
+            </summary>
+        </member>
         <member name="T:Bubba.ChangeType">
             <summary>
             
@@ -7677,161 +7757,6 @@
             The Power Point Extension
             </summary>
         </member>
-        <member name="T:Bubba.GptApi">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="F:Bubba.GptApi.ChatCompletion">
-            <summary>
-            The chat completion
-            </summary>
-        </member>
-        <member name="F:Bubba.GptApi.TextGeneration">
-            <summary>
-            The text generation
-            </summary>
-        </member>
-        <member name="F:Bubba.GptApi.ImageGeneration">
-            <summary>
-            The image generation
-            </summary>
-        </member>
-        <member name="F:Bubba.GptApi.SpeechGeneration">
-            <summary>
-            The speech generation
-            </summary>
-        </member>
-        <member name="F:Bubba.GptApi.Translations">
-            <summary>
-            The speech translation
-            </summary>
-        </member>
-        <member name="F:Bubba.GptApi.TextToSpeech">
-            <summary>
-            The text to speech
-            </summary>
-        </member>
-        <member name="F:Bubba.GptApi.Transcriptions">
-            <summary>
-            The sound transcribing
-            </summary>
-        </member>
-        <member name="F:Bubba.GptApi.Assistants">
-            <summary>
-            The assistants
-            </summary>
-        </member>
-        <member name="F:Bubba.GptApi.Responses">
-            <summary>
-            The responses
-            </summary>
-        </member>
-        <member name="F:Bubba.GptApi.Files">
-            <summary>
-            The files
-            </summary>
-        </member>
-        <member name="F:Bubba.GptApi.Uploads">
-            <summary>
-            The uploads
-            </summary>
-        </member>
-        <member name="F:Bubba.GptApi.FineTuning">
-            <summary>
-            The fine tuning
-            </summary>
-        </member>
-        <member name="F:Bubba.GptApi.Embeddings">
-            <summary>
-            The vector embeddings
-            </summary>
-        </member>
-        <member name="F:Bubba.GptApi.VectorStores">
-            <summary>
-            The vector stores
-            </summary>
-        </member>
-        <member name="F:Bubba.GptApi.Projects">
-            <summary>
-            The projects
-            </summary>
-        </member>
-        <member name="T:Bubba.GptLanguages">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="F:Bubba.GptLanguages.TXT">
-            <summary>
-            The text
-            </summary>
-        </member>
-        <member name="F:Bubba.GptLanguages.SQL">
-            <summary>
-            The SQL
-            </summary>
-        </member>
-        <member name="F:Bubba.GptLanguages.CS">
-            <summary>
-            The c sharp
-            </summary>
-        </member>
-        <member name="F:Bubba.GptLanguages.PY">
-            <summary>
-            The python
-            </summary>
-        </member>
-        <member name="F:Bubba.GptLanguages.JS">
-            <summary>
-            The java script
-            </summary>
-        </member>
-        <member name="F:Bubba.GptLanguages.VBA">
-            <summary>
-            The vba
-            </summary>
-        </member>
-        <member name="F:Bubba.GptLanguages.C">
-            <summary>
-            The c
-            </summary>
-        </member>
-        <member name="F:Bubba.GptLanguages.CPP">
-            <summary>
-            The CPP
-            </summary>
-        </member>
-        <member name="T:Bubba.GptRoles">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="F:Bubba.GptRoles.System">
-            <summary>
-            The system
-            </summary>
-        </member>
-        <member name="F:Bubba.GptRoles.User">
-            <summary>
-            The user
-            </summary>
-        </member>
-        <member name="F:Bubba.GptRoles.Assistant">
-            <summary>
-            The assistant
-            </summary>
-        </member>
-        <member name="F:Bubba.GptRoles.Developer">
-            <summary>
-            The developer
-            </summary>
-        </member>
-        <member name="F:Bubba.GptRoles.Tool">
-            <summary>
-            The tool
-            </summary>
-        </member>
         <member name="T:Bubba.HitResult">
             <summary>
             
@@ -7911,6 +7836,51 @@
         <member name="F:Bubba.IconSize.Small">
             <summary>
             The small
+            </summary>
+        </member>
+        <member name="T:Bubba.Languages">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Bubba.Languages.TXT">
+            <summary>
+            The text
+            </summary>
+        </member>
+        <member name="F:Bubba.Languages.SQL">
+            <summary>
+            The SQL
+            </summary>
+        </member>
+        <member name="F:Bubba.Languages.CS">
+            <summary>
+            The c sharp
+            </summary>
+        </member>
+        <member name="F:Bubba.Languages.PY">
+            <summary>
+            The python
+            </summary>
+        </member>
+        <member name="F:Bubba.Languages.JS">
+            <summary>
+            The java script
+            </summary>
+        </member>
+        <member name="F:Bubba.Languages.VBA">
+            <summary>
+            The vba
+            </summary>
+        </member>
+        <member name="F:Bubba.Languages.C">
+            <summary>
+            The c
+            </summary>
+        </member>
+        <member name="F:Bubba.Languages.CPP">
+            <summary>
+            The CPP
             </summary>
         </member>
         <member name="T:Bubba.MenuItem">
@@ -8125,6 +8095,36 @@
         <member name="F:Bubba.Provider.Text">
             <summary>
             The TXT data provider
+            </summary>
+        </member>
+        <member name="T:Bubba.Roles">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Bubba.Roles.System">
+            <summary>
+            The system
+            </summary>
+        </member>
+        <member name="F:Bubba.Roles.User">
+            <summary>
+            The user
+            </summary>
+        </member>
+        <member name="F:Bubba.Roles.Assistant">
+            <summary>
+            The assistant
+            </summary>
+        </member>
+        <member name="F:Bubba.Roles.Developer">
+            <summary>
+            The developer
+            </summary>
+        </member>
+        <member name="F:Bubba.Roles.Tool">
+            <summary>
+            The tool
             </summary>
         </member>
         <member name="T:Bubba.Source">
@@ -15652,79 +15652,6 @@
             </summary>
             <param name="ex">The ex.</param>
         </member>
-        <member name="T:Bubba.GptContent">
-            <inheritdoc />
-            <summary>
-            </summary>
-        </member>
-        <member name="F:Bubba.GptContent._type">
-            <summary>
-            The type
-            </summary>
-        </member>
-        <member name="F:Bubba.GptContent._text">
-            <summary>
-            The text
-            </summary>
-        </member>
-        <member name="F:Bubba.GptContent._data">
-            <summary>
-            The data
-            </summary>
-        </member>
-        <member name="M:Bubba.GptContent.#ctor">
-            <summary>
-            Initializes a new instance of the
-            <see cref="T:Bubba.GptContent"/> class.
-            </summary>
-        </member>
-        <member name="M:Bubba.GptContent.#ctor(System.String,System.String)">
-            <summary>
-            Initializes a new instance of the <see cref="T:Bubba.GptContent"/> class.
-            </summary>
-            <param name="type">The type.</param>
-            <param name="text">The text.</param>
-        </member>
-        <member name="P:Bubba.GptContent.Type">
-            <summary>
-            Gets or sets the type.
-            </summary>
-            <value>
-            The type.
-            </value>
-        </member>
-        <member name="P:Bubba.GptContent.Text">
-            <summary>
-            Gets or sets the text.
-            </summary>
-            <value>
-            The text.
-            </value>
-        </member>
-        <member name="M:Bubba.GptContent.GetData">
-            <inheritdoc />
-            <summary>
-            Gets the data.
-            </summary>
-            <returns>
-            </returns>
-        </member>
-        <member name="M:Bubba.GptContent.ToString">
-            <inheritdoc />
-            <summary>
-            Converts to string.
-            </summary>
-            <returns>
-            A <see cref="T:System.String" />
-            that represents this instance.
-            </returns>
-        </member>
-        <member name="M:Bubba.GptContent.Fail(System.Exception)">
-            <summary>
-            Fails the specified ex.
-            </summary>
-            <param name="ex">The ex.</param>
-        </member>
         <member name="T:Bubba.GptFile">
             <summary>
             
@@ -16248,7 +16175,7 @@
             </summary>
             <param name="message">The message.</param>
         </member>
-        <member name="M:Bubba.AssistantMessage.Deconstruct(System.String@,Bubba.GptContent@)">
+        <member name="M:Bubba.AssistantMessage.Deconstruct(System.String@,System.Collections.Generic.IDictionary{System.String,System.String}@)">
             <summary>
             Deconstructs the specified role.
             </summary>
@@ -16304,11 +16231,6 @@
             <summary>
             </summary>
             <seealso cref="T:Bubba.GptMessage" />
-        </member>
-        <member name="F:Bubba.DeveloperMessage._developerPrompt">
-            <summary>
-            The developer prompt
-            </summary>
         </member>
         <member name="M:Bubba.DeveloperMessage.#ctor">
             <summary>
@@ -16394,16 +16316,7 @@
             The type
             </summary>
         </member>
-        <member name="F:Bubba.GptMessage._text">
-            <summary>
-            The text
-            </summary>
-        </member>
-        <member name="F:Bubba.GptMessage._data">
-            <summary>
-            The data
-            </summary>
-        </member>
+        <!-- Badly formed XML comment ignored for member "F:Bubba.GptMessage._data" -->
         <member name="P:Bubba.GptMessage.Role">
             <inheritdoc />
             <summary>
@@ -16427,14 +16340,6 @@
             </summary>
             <value>
             The type.
-            </value>
-        </member>
-        <member name="P:Bubba.GptMessage.Text">
-            <summary>
-            Gets or sets the text.
-            </summary>
-            <value>
-            The text.
             </value>
         </member>
         <member name="M:Bubba.GptMessage.PadQuotes(System.String)">
@@ -16511,7 +16416,7 @@
             </summary>
             <param name="message">The message.</param>
         </member>
-        <member name="M:Bubba.SystemMessage.Deconstruct(System.String@,Bubba.GptContent@)">
+        <member name="M:Bubba.SystemMessage.Deconstruct(System.String@,System.Collections.Generic.IDictionary{System.String,System.String}@)">
             <summary>
             Deconstructs the specified role.
             </summary>
@@ -16590,7 +16495,7 @@
             </summary>
             <param name="message">The message.</param>
         </member>
-        <member name="M:Bubba.UserMessage.Deconstruct(System.String@,Bubba.GptContent@)">
+        <member name="M:Bubba.UserMessage.Deconstruct(System.String@,System.Collections.Generic.IDictionary{System.String,System.String}@)">
             <summary>
             Deconstructs the specified role.
             </summary>
@@ -16604,24 +16509,6 @@
             </summary>
             <value>
             The role.
-            </value>
-        </member>
-        <member name="P:Bubba.UserMessage.Type">
-            <inheritdoc />
-            <summary>
-            Gets or sets the type.
-            </summary>
-            <value>
-            The type.
-            </value>
-        </member>
-        <member name="P:Bubba.UserMessage.Text">
-            <inheritdoc />
-            <summary>
-            Gets or sets the text.
-            </summary>
-            <value>
-            The text.
             </value>
         </member>
         <member name="P:Bubba.UserMessage.Content">

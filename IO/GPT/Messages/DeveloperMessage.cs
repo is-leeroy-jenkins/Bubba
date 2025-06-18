@@ -59,13 +59,9 @@ namespace Bubba
     [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
     [ SuppressMessage( "ReSharper", "FieldCanBeMadeReadOnly.Global" ) ]
     [ SuppressMessage( "ReSharper", "PreferConcreteValueOverDefault" ) ]
+    [ SuppressMessage( "ReSharper", "PossibleUnintendedReferenceComparison" ) ]
     public class DeveloperMessage : GptMessage, IGptMessage
     {
-        /// <summary>
-        /// The developer prompt
-        /// </summary>
-        private protected string _developerPrompt;
-
         /// <summary>
         /// Initializes a new instance of the
         /// <see cref="DeveloperMessage"/> class.
@@ -75,7 +71,7 @@ namespace Bubba
         {
             _role = "developer";
             _data = new Dictionary<string, object>( );
-            _type = "text";
+            _content = new Dictionary<string, string>( );
         }
 
         /// <inheritdoc />
@@ -87,8 +83,7 @@ namespace Bubba
         public DeveloperMessage( string prompt )
             : this( )
         {
-            _developerPrompt = prompt;
-            _content = new GptContent( _type, prompt );
+            _content.Add( "text", prompt  );
         }
 
         /// <summary>
@@ -126,7 +121,7 @@ namespace Bubba
         /// The content.
         /// </value>
         [ JsonPropertyName( "content" ) ]
-        public override GptContent Content
+        public override IDictionary<string, string> Content
         {
             get
             {
@@ -154,16 +149,6 @@ namespace Bubba
                 if( !string.IsNullOrEmpty( _role ) )
                 {
                     _data.Add( "role", _role );
-                }
-
-                if( !string.IsNullOrEmpty( _type ) )
-                {
-                    _data.Add( "type", _type );
-                }
-
-                if( !string.IsNullOrEmpty( _text ) )
-                {
-                    _data.Add( "text", _text );
                 }
 
                 if( _content != null )
@@ -228,8 +213,8 @@ namespace Bubba
         {
             try
             {
-                return !string.IsNullOrEmpty( _developerPrompt )
-                    ? _developerPrompt
+                return !string.IsNullOrEmpty( _content[ "Text" ] )
+                    ? _content[ "Text" ]
                     : string.Empty;
             }
             catch( Exception ex )

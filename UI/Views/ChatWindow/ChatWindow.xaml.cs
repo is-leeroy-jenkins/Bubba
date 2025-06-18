@@ -186,7 +186,7 @@ namespace Bubba
         /// <summary>
         /// The role
         /// </summary>
-        private protected GptApi _requestType;
+        private protected API _requestType;
 
         /// <summary>
         /// The role
@@ -787,7 +787,7 @@ namespace Bubba
             {
                 Editor.EnableOutlining = true;
                 Editor.EnableIntellisense = false;
-                Editor.DocumentLanguage = Languages.Text;
+                Editor.DocumentLanguage = Syncfusion.Windows.Edit.Languages.Text;
                 Editor.IsMultiLine = true;
                 Editor.IsUndoEnabled = true;
                 Editor.IsRedoEnabled = true;
@@ -2705,7 +2705,7 @@ namespace Bubba
         {
             var _path = Locations.PathPrefix + @"Resources\Documents\Editor\VBA\";
             TabControl.SelectedIndex = 0;
-            Editor.DocumentLanguage = Languages.VisualBasic;
+            Editor.DocumentLanguage = Syncfusion.Windows.Edit.Languages.VisualBasic;
             DocumentListBox.Items?.Clear( );
             var _documents = Directory.GetFiles( _path );
             foreach( var _file in _documents )
@@ -2729,7 +2729,7 @@ namespace Bubba
             {
                 var _path = Locations.PathPrefix + @"Resources\Documents\Editor\CPP\";
                 TabControl.SelectedIndex = 0;
-                Editor.DocumentLanguage = Languages.C;
+                Editor.DocumentLanguage = Syncfusion.Windows.Edit.Languages.C;
                 Editor.DocumentSource = _path;
                 DocumentListBox.Items?.Clear( );
                 var _documents = Directory.GetFiles( _path );
@@ -2759,7 +2759,7 @@ namespace Bubba
             {
                 var _path = Locations.PathPrefix + @"Resources\Documents\Editor\JS\";
                 TabControl.SelectedIndex = 0;
-                Editor.DocumentLanguage = Languages.JScript;
+                Editor.DocumentLanguage = Syncfusion.Windows.Edit.Languages.JScript;
                 DocumentListBox.Items?.Clear( );
                 var _documents = Directory.GetFiles( _path );
                 foreach( var _file in _documents )
@@ -2789,7 +2789,7 @@ namespace Bubba
             {
                 var _path = @"C:\Users\terry\source\repos\Bubba\Resources\Documents\Editor\SQL\";
                 TabControl.SelectedIndex = 0;
-                Editor.DocumentLanguage = Languages.SQL;
+                Editor.DocumentLanguage = Syncfusion.Windows.Edit.Languages.SQL;
                 DocumentListBox.Items?.Clear( );
                 var _documents = Directory.GetFiles( _path );
                 foreach( var _file in _documents )
@@ -2818,7 +2818,7 @@ namespace Bubba
             {
                 var _path = Locations.PathPrefix + @"Resources\Documents\Editor\PY\";
                 TabControl.SelectedIndex = 0;
-                Editor.DocumentLanguage = Languages.Text;
+                Editor.DocumentLanguage = Syncfusion.Windows.Edit.Languages.Text;
                 DocumentListBox.Items?.Clear( );
                 var _documents = Directory.GetFiles( _path );
                 foreach( var _file in _documents )
@@ -2847,7 +2847,7 @@ namespace Bubba
             {
                 var _path = Locations.PathPrefix + @"Resources\Documents\Editor\CS\";
                 TabControl.SelectedIndex = 0;
-                Editor.DocumentLanguage = Languages.CSharp;
+                Editor.DocumentLanguage = Syncfusion.Windows.Edit.Languages.CSharp;
                 DocumentListBox.Items?.Clear( );
                 var _documents = Directory.GetFiles( _path );
                 foreach( var _file in _documents )
@@ -2876,7 +2876,7 @@ namespace Bubba
             {
                 var _path = Locations.PathPrefix + @"Resources\Documents\Appropriations\";
                 TabControl.SelectedIndex = 0;
-                Editor.DocumentLanguage = Languages.Text;
+                Editor.DocumentLanguage = Syncfusion.Windows.Edit.Languages.Text;
                 DocumentListBox.Items?.Clear( );
                 var _documents = Directory.GetFiles( _path );
                 foreach( var _file in _documents )
@@ -3008,7 +3008,7 @@ namespace Bubba
             try
             {
                 GenerationListBox.Items?.Clear( );
-                var _names = Enum.GetNames( typeof( GptApi ) );
+                var _names = Enum.GetNames( typeof( API ) );
                 foreach( var _request in _names )
                 {
                     var _item = new MetroDropDownItem( )
@@ -3037,7 +3037,7 @@ namespace Bubba
             try
             {
                 LanguageDropDown.Items?.Clear( );
-                var _names = Enum.GetNames( typeof( GptLanguages ) );
+                var _names = Enum.GetNames( typeof( Languages ) );
                 foreach( var _request in _names )
                 {
                     var _item = new MetroDropDownItem( )
@@ -3076,7 +3076,7 @@ namespace Bubba
                             var _pre = @"C:\Users\terry\source\repos\Bubba\Resources\Documents\";
                             var _path = _pre + @"Appropriations\";
                             TabControl.SelectedIndex = 0;
-                            Editor.DocumentLanguage = Languages.Text;
+                            Editor.DocumentLanguage = Syncfusion.Windows.Edit.Languages.Text;
                             DocumentListBox.Items?.Clear( );
                             var _documents = Directory.GetFiles( _path );
                             foreach( var _file in _documents )
@@ -3091,7 +3091,7 @@ namespace Bubba
                         {
                             var _path = _prefix + @"CS\";
                             TabControl.SelectedIndex = 0;
-                            Editor.DocumentLanguage = Languages.CSharp;
+                            Editor.DocumentLanguage = Syncfusion.Windows.Edit.Languages.CSharp;
                             DocumentListBox.Items?.Clear( );
                             var _documents = Directory.GetFiles( _path );
                             foreach( var _file in _documents )
@@ -3106,7 +3106,7 @@ namespace Bubba
                         {
                             var _path = _prefix + @"PY\";
                             TabControl.SelectedIndex = 0;
-                            Editor.DocumentLanguage = Languages.Text;
+                            Editor.DocumentLanguage = Syncfusion.Windows.Edit.Languages.Text;
                             DocumentListBox.Items?.Clear( );
                             var _documents = Directory.GetFiles( _path );
                             foreach( var _file in _documents )
@@ -3121,7 +3121,7 @@ namespace Bubba
                         {
                             var _path = _prefix + @"SQL\";
                             TabControl.SelectedIndex = 0;
-                            Editor.DocumentLanguage = Languages.SQL;
+                            Editor.DocumentLanguage = Syncfusion.Windows.Edit.Languages.SQL;
                             DocumentListBox.Items?.Clear( );
                             var _documents = Directory.GetFiles( _path );
                             foreach( var _file in _documents )
@@ -3136,7 +3136,7 @@ namespace Bubba
                         {
                             var _path = _prefix + @"JS\";
                             TabControl.SelectedIndex = 0;
-                            Editor.DocumentLanguage = Languages.JScript;
+                            Editor.DocumentLanguage = Syncfusion.Windows.Edit.Languages.JScript;
                             DocumentListBox.Items?.Clear( );
                             var _documents = Directory.GetFiles( _path );
                             foreach( var _file in _documents )
@@ -3151,7 +3151,7 @@ namespace Bubba
                         {
                             var _path = _prefix + @"CPP\";
                             TabControl.SelectedIndex = 0;
-                            Editor.DocumentLanguage = Languages.C;
+                            Editor.DocumentLanguage = Syncfusion.Windows.Edit.Languages.C;
                             Editor.DocumentSource = _path;
                             DocumentListBox.Items?.Clear( );
                             var _documents = Directory.GetFiles( _path );
@@ -3167,7 +3167,7 @@ namespace Bubba
                         {
                             var _path = _prefix + @"VBA\";
                             TabControl.SelectedIndex = 0;
-                            Editor.DocumentLanguage = Languages.VisualBasic;
+                            Editor.DocumentLanguage = Syncfusion.Windows.Edit.Languages.VisualBasic;
                             DocumentListBox.Items?.Clear( );
                             var _documents = Directory.GetFiles( _path );
                             foreach( var _file in _documents )
@@ -3183,7 +3183,7 @@ namespace Bubba
                             var _pre = @"C:\Users\terry\source\repos\Bubba\Resources\Documents\";
                             var _path = _pre + @"Appropriations\";
                             TabControl.SelectedIndex = 0;
-                            Editor.DocumentLanguage = Languages.Text;
+                            Editor.DocumentLanguage = Syncfusion.Windows.Edit.Languages.Text;
                             DocumentListBox.Items?.Clear( );
                             var _documents = Directory.GetFiles( _path );
                             foreach( var _file in _documents )
@@ -3638,49 +3638,49 @@ namespace Bubba
             {
                 switch( _requestType )
                 {
-                    case GptApi.Assistants:
+                    case API.Assistants:
                     {
                         PopulateAssistantModels( );
                         _endpoint = GptEndPoint.Assistants;
                         TabControl.SelectedIndex = 1;
                         break;
                     }
-                    case GptApi.ChatCompletion:
+                    case API.ChatCompletion:
                     {
                         PopulateCompletionModels( );
                         _endpoint = GptEndPoint.Completions;
                         TabControl.SelectedIndex = 1;
                         break;
                     }
-                    case GptApi.TextGeneration:
+                    case API.TextGeneration:
                     {
                         PopulateTextModels( );
                         _endpoint = GptEndPoint.TextGeneration;
                         TabControl.SelectedIndex = 1;
                         break;
                     }
-                    case GptApi.ImageGeneration:
+                    case API.ImageGeneration:
                     {
                         PopulateImageModels( );
                         _endpoint = GptEndPoint.ImageGeneration;
                         TabControl.SelectedIndex = 1;
                         break;
                     }
-                    case GptApi.Embeddings:
+                    case API.Embeddings:
                     {
                         PopulateEmbeddingModels( );
                         _endpoint = GptEndPoint.Embeddings;
                         TabControl.SelectedIndex = 1;
                         break;
                     }
-                    case GptApi.VectorStores:
+                    case API.VectorStores:
                     {
                         PopulateVectorStoreModels( );
                         _endpoint = GptEndPoint.VectorStores;
                         TabControl.SelectedIndex = 1;
                         break;
                     }
-                    case GptApi.SpeechGeneration:
+                    case API.SpeechGeneration:
                     {
                         PopulateSpeechModels( );
                         PopulateOpenAiVoices( );
@@ -3688,7 +3688,7 @@ namespace Bubba
                         TabControl.SelectedIndex = 1;
                         break;
                     }
-                    case GptApi.TextToSpeech:
+                    case API.TextToSpeech:
                     {
                         PopulateTextToSpeechModels( );
                         PopulateOpenAiVoices( );
@@ -3696,7 +3696,7 @@ namespace Bubba
                         TabControl.SelectedIndex = 1;
                         break;
                     }
-                    case GptApi.Translations:
+                    case API.Translations:
                     {
                         PopulateTranslationModels( );
                         PopulateOpenAiVoices( );
@@ -3704,7 +3704,7 @@ namespace Bubba
                         TabControl.SelectedIndex = 1;
                         break;
                     }
-                    case GptApi.Transcriptions:
+                    case API.Transcriptions:
                     {
                         PopulateTranscriptionModels( );
                         PopulateOpenAiVoices( );
@@ -3712,35 +3712,35 @@ namespace Bubba
                         TabControl.SelectedIndex = 1;
                         break;
                     }
-                    case GptApi.FineTuning:
+                    case API.FineTuning:
                     {
                         PopulateFineTuningModels( );
                         _endpoint = GptEndPoint.FineTuning;
                         TabControl.SelectedIndex = 1;
                         break;
                     }
-                    case GptApi.Responses:
+                    case API.Responses:
                     {
                         PopulateResponseModels( );
                         _endpoint = GptEndPoint.Responses;
                         TabControl.SelectedIndex = 1;
                         break;
                     }
-                    case GptApi.Files:
+                    case API.Files:
                     {
                         PopulateFileModels( );
                         _endpoint = GptEndPoint.Files;
                         TabControl.SelectedIndex = 1;
                         break;
                     }
-                    case GptApi.Uploads:
+                    case API.Uploads:
                     {
                         PopulateUploadModels( );
                         _endpoint = GptEndPoint.Uploads;
                         TabControl.SelectedIndex = 1;
                         break;
                     }
-                    case GptApi.Projects:
+                    case API.Projects:
                     {
                         PopulateTextModels( );
                         _endpoint = GptEndPoint.Projects;
@@ -3785,17 +3785,17 @@ namespace Bubba
             {
                 _options = _requestType switch
                 {
-                    GptApi.ChatCompletion => new ChatOptions( ),
-                    GptApi.Assistants => new AssistantOptions(  ),
-                    GptApi.TextGeneration => new TextOptions(  ),
-                    GptApi.ImageGeneration => new ImageOptions(  ),
-                    GptApi.Transcriptions => new TranscriptionOptions( ),
-                    GptApi.Translations => new TranslationOptions( ),
-                    GptApi.Files => new FileOptions( ),
-                    GptApi.Embeddings => new EmbeddingOptions(  ),
-                    GptApi.FineTuning => new FineTuningOptions(  ),
-                    GptApi.VectorStores => new VectorOptions( ),
-                    GptApi.SpeechGeneration => new SpeechOptions( ),
+                    API.ChatCompletion => new ChatOptions( ),
+                    API.Assistants => new AssistantOptions(  ),
+                    API.TextGeneration => new TextOptions(  ),
+                    API.ImageGeneration => new ImageOptions(  ),
+                    API.Transcriptions => new TranscriptionOptions( ),
+                    API.Translations => new TranslationOptions( ),
+                    API.Files => new FileOptions( ),
+                    API.Embeddings => new EmbeddingOptions(  ),
+                    API.FineTuning => new FineTuningOptions(  ),
+                    API.VectorStores => new VectorOptions( ),
+                    API.SpeechGeneration => new SpeechOptions( ),
                     var _ => new TextOptions( )
                 };
             }
@@ -4860,7 +4860,7 @@ namespace Bubba
                     var _item = ( ( MetroDropDownItem )GenerationListBox.SelectedItem )
                         ?.Tag.ToString( );
 
-                    _requestType = ( GptApi )Enum.Parse( typeof( GptApi ), _item );
+                    _requestType = ( API )Enum.Parse( typeof( API ), _item );
                     SetRequestType( );
 
                     var _message = "Request Type = " + _requestType;

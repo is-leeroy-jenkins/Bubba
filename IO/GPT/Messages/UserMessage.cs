@@ -77,7 +77,7 @@ namespace Bubba
         {
             _role = "user";
             _data = new Dictionary<string, object>( );
-            _type = "text";
+            _content = new Dictionary<string, string>( );
         }
 
         /// <inheritdoc />
@@ -89,8 +89,7 @@ namespace Bubba
         public UserMessage( string prompt )
             : this( )
         {
-            _text = prompt;
-            _content = new GptContent( _type, prompt );
+            _content.Add( _type, prompt );
         }
 
         /// <summary>
@@ -102,8 +101,6 @@ namespace Bubba
         {
             _role = message.Role;
             _content = message.Content;
-            _type = message.Type;
-            _text = message.Text;
         }
 
         /// <summary>
@@ -111,7 +108,7 @@ namespace Bubba
         /// </summary>
         /// <param name="role">The role.</param>
         /// <param name="content">The content.</param>
-        public void Deconstruct( out string role, out GptContent content )
+        public void Deconstruct( out string role, out IDictionary<string, string> content )
         {
             role = _role;
             content = _content;
@@ -143,61 +140,13 @@ namespace Bubba
 
         /// <inheritdoc />
         /// <summary>
-        /// Gets or sets the type.
-        /// </summary>
-        /// <value>
-        /// The type.
-        /// </value>
-        [ JsonPropertyName( "type" ) ]
-        public override string Type
-        {
-            get
-            {
-                return _type;
-            }
-            set
-            {
-                if( _type != value )
-                {
-                    _type = value;
-                    OnPropertyChanged( nameof( Type ) );
-                }
-            }
-        }
-
-        /// <inheritdoc />
-        /// <summary>
-        /// Gets or sets the text.
-        /// </summary>
-        /// <value>
-        /// The text.
-        /// </value>
-        [ JsonPropertyName( "text" ) ]
-        public override string Text
-        {
-            get
-            {
-                return _text;
-            }
-            set
-            {
-                if( _text != value )
-                {
-                    _text = value;
-                    OnPropertyChanged( nameof( Text ) );
-                }
-            }
-        }
-
-        /// <inheritdoc />
-        /// <summary>
         /// Gets the content.
         /// </summary>
         /// <value>
         /// The content.
         /// </value>
         [ JsonPropertyName( "content" ) ]
-        public override GptContent Content
+        public override IDictionary<string, string> Content
         {
             get
             {
@@ -225,16 +174,6 @@ namespace Bubba
                 if( !string.IsNullOrEmpty( _role ) )
                 {
                     _data.Add( "role", _role );
-                }
-
-                if( !string.IsNullOrEmpty( _type ) )
-                {
-                    _data.Add( "type", _type );
-                }
-
-                if( !string.IsNullOrEmpty( _text ) )
-                {
-                    _data.Add( "text", _text );
                 }
 
                 if( _content != null )
@@ -337,8 +276,8 @@ namespace Bubba
         {
             try
             {
-                return !string.IsNullOrEmpty( _text )
-                    ? _text
+                return !string.IsNullOrEmpty( _content[ "Text" ] )
+                    ? _content[ "Text" ]
                     : string.Empty;
             }
             catch( Exception ex )
