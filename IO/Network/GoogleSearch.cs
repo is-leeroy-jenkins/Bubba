@@ -65,7 +65,7 @@ namespace Bubba
     [ SuppressMessage( "ReSharper", "RedundantBaseConstructorCall" ) ]
     [ SuppressMessage( "ReSharper", "UnusedType.Global" ) ]
     [ SuppressMessage( "ReSharper", "PreferConcreteValueOverDefault" ) ]
-    public class GoogleSearch : WebSearch
+    public class GoogleSearch : SearchBase
     {
         /// <summary>
         /// The key
@@ -125,6 +125,160 @@ namespace Bubba
                 {
                     _keyWords = value;
                     OnPropertyChanged( nameof( KeyWords ) );
+                }
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the link.
+        /// </summary>
+        /// <value>
+        /// The link.
+        /// </value>
+        public override string Link
+        {
+            get
+            {
+                return _link;
+            }
+            set
+            {
+                if( _link != value )
+                {
+                    _link = value;
+                    OnPropertyChanged( nameof( Link ) );
+                }
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the project identifier.
+        /// </summary>
+        /// <value>
+        /// The project identifier.
+        /// </value>
+        public override string ProjectId
+        {
+            get
+            {
+                return _projectId;
+            }
+            set
+            {
+                if( _link != value )
+                {
+                    _projectId = value;
+                    OnPropertyChanged( nameof( ProjectId ) );
+                }
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the project number.
+        /// </summary>
+        /// <value>
+        /// The project number.
+        /// </value>
+        public override string ProjectNumber
+        {
+            get
+            {
+                return _projectNumber;
+            }
+            set
+            {
+                if( _projectNumber != value )
+                {
+                    _projectNumber = value;
+                    OnPropertyChanged( nameof( ProjectNumber ) );
+                }
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the URL.
+        /// </summary>
+        /// <value>
+        /// The URL.
+        /// </value>
+        public override string Url
+        {
+            get
+            {
+                return _url;
+            }
+            set
+            {
+                if( _url != value )
+                {
+                    _url = value;
+                    OnPropertyChanged( nameof( Url ) );
+                }
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the name.
+        /// </summary>
+        /// <value>
+        /// The name.
+        /// </value>
+        public override string Name
+        {
+            get
+            {
+                return _name;
+            }
+            set
+            {
+                if( _name != value )
+                {
+                    _name = value;
+                    OnPropertyChanged( nameof( Name ) );
+                }
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the content.
+        /// </summary>
+        /// <value>
+        /// The content.
+        /// </value>
+        public override string Content
+        {
+            get
+            {
+                return _content;
+            }
+            set
+            {
+                if( _content != value )
+                {
+                    _content = value;
+                    OnPropertyChanged( nameof( Content ) );
+                }
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the title.
+        /// </summary>
+        /// <value>
+        /// The title.
+        /// </value>
+        public override string Title
+        {
+            get
+            {
+                return _title;
+            }
+            set
+            {
+                if( _title != value )
+                {
+                    _title = value;
+                    OnPropertyChanged( nameof( Title ) );
                 }
             }
         }

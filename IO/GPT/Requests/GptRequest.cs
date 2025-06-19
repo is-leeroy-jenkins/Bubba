@@ -108,15 +108,15 @@ namespace Bubba
         /// Initializes a new instance of the
         /// <see cref="T:Bubba.GptRequest" /> class.
         /// </summary>
-        /// <param name = "input > </param>
+        /// <param name = "inputText > </param>
         /// <param name = "options" > </param>
-        public GptRequest( string input, IGptParameter options )
+        public GptRequest( string inputText, IGptParameter options )
             : this( )
         {
             _header = new GptHeader( );
-            _inputText = input;
+            _inputText = inputText;
             _messages.Add( new SystemMessage( _instructions ) );
-            _messages.Add( new UserMessage( input ) );
+            _messages.Add( new UserMessage( inputText ) );
             _apiKey = _header.ApiKey;
             _number = options.Number;
             _store = options.Store;
@@ -158,12 +158,12 @@ namespace Bubba
         /// <param name = "store" > </param>
         /// <param name = "stream" > </param>
         /// <param name = "model" > </param>
-        /// <param name="number">The user identifier.</param>
-        /// <param name="presence">The presence.</param>
-        /// <param name="frequency">The frequency.</param>
-        /// <param name="temperature">The temperature.</param>
+        /// <param name = "number" >The user identifier.</param>
+        /// <param name = "presence" >The presence.</param>
+        /// <param name = "frequency" >The frequency.</param>
+        /// <param name = "temperature" >The temperature.</param>
         /// <param name = "topPercent" > </param>
-        /// <param name="tokens">The maximum tokens.</param>
+        /// <param name = "tokens">The maximum tokens.</param>
         public void Deconstruct( out GptHeader header, out string endPoint, out string user,
             out string system, out bool store, out bool stream,
             out string model, out int number, out double presence,

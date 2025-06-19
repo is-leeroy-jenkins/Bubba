@@ -84,7 +84,6 @@ namespace Bubba
         public GptResponse( )
             : base( )
         {
-            _entry = new object( );
             _object = "response";
             _model = "gpt-4o-mini";
             _endPoint = GptEndPoint.TextGeneration;
@@ -102,8 +101,6 @@ namespace Bubba
         public GptResponse( GptRequest request )
             : this( )
         {
-            _entry = new object( );
-            _object = "response";
             _model = request.Model;
             _endPoint = request.EndPoint;
             _presencePenalty = request.PresencePenalty;

@@ -52,6 +52,7 @@ namespace Bubba
     /// </summary>
     [ SuppressMessage( "ReSharper", "UnusedType.Global" ) ]
     [ SuppressMessage( "ReSharper", "MemberCanBeProtected.Global" ) ]
+    [ SuppressMessage( "ReSharper", "PossibleUnintendedReferenceComparison" ) ]
     public abstract class GptRequestBase : GptBase
     {
         /// <summary>
@@ -261,7 +262,7 @@ namespace Bubba
         ///   <c>true</c> if stream; otherwise, <c>false</c>.
         /// </value>
         [ JsonPropertyName( "stream" ) ]
-        public  override bool Stream
+        public override bool Stream
         {
             get
             {
@@ -285,7 +286,7 @@ namespace Bubba
         /// The temperature.
         /// </value>
         [ JsonPropertyName( "temperature" ) ]
-        public  override double Temperature
+        public override double Temperature
         {
             get
             {
@@ -385,7 +386,7 @@ namespace Bubba
         /// <value>
         /// The system message.
         /// </value>
-        [JsonPropertyName("messages")]
+        [ JsonPropertyName( "messages" ) ]
         public virtual IList<IGptMessage> Messages
         {
             get

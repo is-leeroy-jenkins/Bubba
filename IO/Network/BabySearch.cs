@@ -65,7 +65,7 @@ namespace Bubba
     [ SuppressMessage( "ReSharper", "RedundantBaseConstructorCall" ) ]
     [ SuppressMessage( "ReSharper", "UnusedType.Global" ) ]
     [ SuppressMessage( "ReSharper", "PreferConcreteValueOverDefault" ) ]
-    public class BabySearch : WebSearch
+    public class BabySearch : SearchBase
     {
         /// <summary>
         /// The key

@@ -53,7 +53,7 @@ namespace Bubba
     [ SuppressMessage( "ReSharper", "ConvertToAutoProperty" ) ]
     [ SuppressMessage( "ReSharper", "PropertyCanBeMadeInitOnly.Local" ) ]
     [ SuppressMessage( "ReSharper", "ConvertToAutoPropertyWhenPossible" ) ]
-    public class SearchResult : WebSearch
+    public class SearchResult : SearchBase
     {
         /// <inheritdoc />
         /// <summary>

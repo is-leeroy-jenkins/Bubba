@@ -10756,180 +10756,6 @@
             </summary>
             <param name="ex">The ex.</param>
         </member>
-        <member name="T:Bubba.GptError">
-            <summary>
-            
-            </summary>
-            <seealso cref="T:Bubba.PropertyChangedBase" />
-        </member>
-        <member name="F:Bubba.GptError._code">
-            <summary>
-            The code
-            </summary>
-        </member>
-        <member name="F:Bubba.GptError._message">
-            <summary>
-            The message
-            </summary>
-        </member>
-        <member name="M:Bubba.GptError.#ctor">
-            <summary>
-            Initializes a new instance of the <see cref="T:Bubba.GptError"/> class.
-            </summary>
-        </member>
-        <member name="P:Bubba.GptError.Code">
-            <summary>
-            Gets or sets the code.
-            </summary>
-            <value>
-            The code.
-            </value>
-        </member>
-        <member name="P:Bubba.GptError.Message">
-            <summary>
-            Gets or sets the message.
-            </summary>
-            <value>
-            The message.
-            </value>
-        </member>
-        <member name="M:Bubba.GptError.Fail(System.Exception)">
-            <summary>
-            Wraps error
-            </summary>
-            <param name="ex">The ex.</param>
-        </member>
-        <member name="M:Bubba.GptFormat.Fail(System.Exception)">
-            <summary>
-            Wraps error
-            </summary>
-            <param name="ex">The ex.</param>
-        </member>
-        <member name="T:Bubba.GptPrompt">
-            <summary>
-            
-            </summary>
-            <seealso cref="T:Bubba.PropertyChangedBase" />
-        </member>
-        <member name="F:Bubba.GptPrompt._id">
-            <summary>
-            The identifier
-            </summary>
-        </member>
-        <member name="F:Bubba.GptPrompt._version">
-            <summary>
-            The version
-            </summary>
-        </member>
-        <member name="F:Bubba.GptPrompt._variables">
-            <summary>
-            The variables
-            </summary>
-        </member>
-        <member name="M:Bubba.GptPrompt.#ctor">
-            <summary>
-            Initializes a new instance of the <see cref="T:Bubba.GptPrompt"/> class.
-            </summary>
-        </member>
-        <member name="P:Bubba.GptPrompt.Id">
-            <summary>
-            Gets or sets the identifier.
-            </summary>
-            <value>
-            The identifier.
-            </value>
-        </member>
-        <member name="P:Bubba.GptPrompt.Version">
-            <summary>
-            Gets or sets the identifier.
-            </summary>
-            <value>
-            The identifier.
-            </value>
-        </member>
-        <member name="P:Bubba.GptPrompt.Variables">
-            <summary>
-            Gets or sets the previous identifier.
-            </summary>
-            <value>
-            The previous identifier.
-            </value>
-        </member>
-        <member name="M:Bubba.GptPrompt.Fail(System.Exception)">
-            <summary>
-            Wraps error
-            </summary>
-            <param name="ex">The ex.</param>
-        </member>
-        <member name="T:Bubba.GptReasoning">
-            <inheritdoc />
-        </member>
-        <member name="F:Bubba.GptReasoning._effort">
-            <summary>
-            The effort
-            </summary>
-        </member>
-        <member name="F:Bubba.GptReasoning._summary">
-            <summary>
-            The summary
-            </summary>
-        </member>
-        <member name="M:Bubba.GptReasoning.#ctor">
-            <summary>
-            Initializes a new instance of the
-            <see cref="T:Bubba.GptReasoning"/> class.
-            </summary>
-        </member>
-        <member name="P:Bubba.GptReasoning.Effort">
-            <summary>
-            Gets or sets the code.
-            </summary>
-            <value>
-            The code.
-            </value>
-        </member>
-        <member name="P:Bubba.GptReasoning.Summary">
-            <summary>
-            Gets or sets the message.
-            </summary>
-            <value>
-            The message.
-            </value>
-        </member>
-        <member name="M:Bubba.GptReasoning.Fail(System.Exception)">
-            <summary>
-            Wraps error
-            </summary>
-            <param name="ex">The ex.</param>
-        </member>
-        <member name="T:Bubba.GptText">
-            <inheritdoc />
-        </member>
-        <member name="F:Bubba.GptText._format">
-            <summary>
-            The format
-            </summary>
-        </member>
-        <member name="M:Bubba.GptText.#ctor">
-            <summary>
-            Initializes a new instance of the
-            <see cref="T:Bubba.GptText"/> class.
-            </summary>
-        </member>
-        <member name="P:Bubba.GptText.Format">
-            <summary>
-            Gets or sets the format.
-            </summary>
-            <value>
-            The format.
-            </value>
-        </member>
-        <member name="M:Bubba.GptText.Fail(System.Exception)">
-            <summary>
-            Wraps error
-            </summary>
-            <param name="ex">The ex.</param>
-        </member>
         <member name="T:Bubba.AudioConverter">
             <summary>
             
@@ -15863,6 +15689,50 @@
             </summary>
             <param name="ex">The ex.</param>
         </member>
+        <member name="T:Bubba.GptError">
+            <summary>
+            
+            </summary>
+            <seealso cref="T:Bubba.PropertyChangedBase" />
+        </member>
+        <member name="F:Bubba.GptError._code">
+            <summary>
+            The code
+            </summary>
+        </member>
+        <member name="F:Bubba.GptError._message">
+            <summary>
+            The message
+            </summary>
+        </member>
+        <member name="M:Bubba.GptError.#ctor">
+            <summary>
+            Initializes a new instance of the
+            <see cref="T:Bubba.GptError"/> class.
+            </summary>
+        </member>
+        <member name="P:Bubba.GptError.Code">
+            <summary>
+            Gets or sets the code.
+            </summary>
+            <value>
+            The code.
+            </value>
+        </member>
+        <member name="P:Bubba.GptError.Message">
+            <summary>
+            Gets or sets the message.
+            </summary>
+            <value>
+            The message.
+            </value>
+        </member>
+        <member name="M:Bubba.GptError.Fail(System.Exception)">
+            <summary>
+            Wraps error
+            </summary>
+            <param name="ex">The ex.</param>
+        </member>
         <member name="T:Bubba.GptFile">
             <summary>
             
@@ -15970,6 +15840,42 @@
         <member name="M:Bubba.GptFile.Fail(System.Exception)">
             <summary>
             Fails the specified ex.
+            </summary>
+            <param name="ex">The ex.</param>
+        </member>
+        <member name="T:Bubba.GptFormat">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Bubba.GptFormat._type">
+            <summary>
+            The type
+            </summary>
+        </member>
+        <member name="M:Bubba.GptFormat.#ctor">
+            <summary>
+            Initializes a new instance of the
+            <see cref="T:Bubba.GptFormat"/> class.
+            </summary>
+        </member>
+        <member name="P:Bubba.GptFormat.Type">
+            <summary>
+            Gets or sets the type.
+            </summary>
+            <value>
+            The type.
+            </value>
+        </member>
+        <member name="M:Bubba.GptFormat.GetTypes">
+            <summary>
+            Gets the type options.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Bubba.GptFormat.Fail(System.Exception)">
+            <summary>
+            Wraps error
             </summary>
             <param name="ex">The ex.</param>
         </member>
@@ -16125,6 +16031,142 @@
             Fails the specified ex.
             </summary>
             <param name="ex">The ex.</param>
+        </member>
+        <member name="T:Bubba.GptPrompt">
+            <summary>
+            
+            </summary>
+            <seealso cref="T:Bubba.PropertyChangedBase" />
+        </member>
+        <member name="F:Bubba.GptPrompt._id">
+            <summary>
+            The identifier
+            </summary>
+        </member>
+        <member name="F:Bubba.GptPrompt._version">
+            <summary>
+            The version
+            </summary>
+        </member>
+        <member name="F:Bubba.GptPrompt._variables">
+            <summary>
+            The variables
+            </summary>
+        </member>
+        <member name="M:Bubba.GptPrompt.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Bubba.GptPrompt"/> class.
+            </summary>
+        </member>
+        <member name="P:Bubba.GptPrompt.Id">
+            <summary>
+            Gets or sets the identifier.
+            </summary>
+            <value>
+            The identifier.
+            </value>
+        </member>
+        <member name="P:Bubba.GptPrompt.Version">
+            <summary>
+            Gets or sets the identifier.
+            </summary>
+            <value>
+            The identifier.
+            </value>
+        </member>
+        <member name="P:Bubba.GptPrompt.Variables">
+            <summary>
+            Gets or sets the previous identifier.
+            </summary>
+            <value>
+            The previous identifier.
+            </value>
+        </member>
+        <member name="M:Bubba.GptPrompt.Fail(System.Exception)">
+            <summary>
+            Wraps error
+            </summary>
+            <param name="ex">The ex.</param>
+        </member>
+        <member name="T:Bubba.GptReasoning">
+            <inheritdoc />
+        </member>
+        <member name="F:Bubba.GptReasoning._effort">
+            <summary>
+            The effort
+            </summary>
+        </member>
+        <member name="F:Bubba.GptReasoning._summary">
+            <summary>
+            The summary
+            </summary>
+        </member>
+        <member name="M:Bubba.GptReasoning.#ctor">
+            <summary>
+            Initializes a new instance of the
+            <see cref="T:Bubba.GptReasoning"/> class.
+            </summary>
+        </member>
+        <member name="P:Bubba.GptReasoning.Effort">
+            <summary>
+            Gets or sets the code.
+            </summary>
+            <value>
+            The code.
+            </value>
+        </member>
+        <member name="P:Bubba.GptReasoning.Summary">
+            <summary>
+            Gets or sets the message.
+            </summary>
+            <value>
+            The message.
+            </value>
+        </member>
+        <member name="M:Bubba.GptReasoning.Fail(System.Exception)">
+            <summary>
+            Wraps error
+            </summary>
+            <param name="ex">The ex.</param>
+        </member>
+        <member name="T:Bubba.GptText">
+            <inheritdoc />
+        </member>
+        <member name="F:Bubba.GptText._format">
+            <summary>
+            The format
+            </summary>
+        </member>
+        <member name="M:Bubba.GptText.#ctor">
+            <summary>
+            Initializes a new instance of the
+            <see cref="T:Bubba.GptText"/> class.
+            </summary>
+        </member>
+        <member name="P:Bubba.GptText.Format">
+            <summary>
+            Gets or sets the format.
+            </summary>
+            <value>
+            The format.
+            </value>
+        </member>
+        <member name="M:Bubba.GptText.Fail(System.Exception)">
+            <summary>
+            Wraps error
+            </summary>
+            <param name="ex">The ex.</param>
+        </member>
+        <member name="T:Bubba.GptTool">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Bubba.GptTool.#ctor">
+            <summary>
+            Initializes a new instance of the
+            <see cref="T:Bubba.GptTool"/> class.
+            </summary>
         </member>
         <member name="T:Bubba.GptUpload">
             <summary>
@@ -20720,12 +20762,12 @@
             <param name = "store" > </param>
             <param name = "stream" > </param>
             <param name = "model" > </param>
-            <param name="number">The user identifier.</param>
-            <param name="presence">The presence.</param>
-            <param name="frequency">The frequency.</param>
-            <param name="temperature">The temperature.</param>
+            <param name = "number" >The user identifier.</param>
+            <param name = "presence" >The presence.</param>
+            <param name = "frequency" >The frequency.</param>
+            <param name = "temperature" >The temperature.</param>
             <param name = "topPercent" > </param>
-            <param name="tokens">The maximum tokens.</param>
+            <param name = "tokens">The maximum tokens.</param>
         </member>
         <member name="P:Bubba.GptRequest.Stop">
             <summary>
