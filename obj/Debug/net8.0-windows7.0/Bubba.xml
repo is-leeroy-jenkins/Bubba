@@ -34140,6 +34140,11 @@
             to globally initialize CefSharp/CEF
             </summary>
         </member>
+        <member name="M:Bubba.ChatWindow.RegisterCallbacks">
+            <summary>
+            Registers the callbacks.
+            </summary>
+        </member>
         <member name="M:Bubba.ChatWindow.InvokeIf(System.Action)">
             <summary>
             Invokes if.
@@ -34508,11 +34513,6 @@
         <member name="M:Bubba.ChatWindow.PopulateFileModels">
             <summary>
             Populates the file API models.
-            </summary>
-        </member>
-        <member name="M:Bubba.ChatWindow.PopulateEffortDropDown">
-            <summary>
-            Populates the effort drop down.
             </summary>
         </member>
         <member name="M:Bubba.ChatWindow.PopulateDocumentListBox">

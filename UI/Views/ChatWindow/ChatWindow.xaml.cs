@@ -565,6 +565,7 @@ namespace Bubba
 
             // Window Initialization
             InitializeComponent( );
+            RegisterCallbacks( );
             InitializeDelegates( );
             InitializeToolStrip( );
 
@@ -925,6 +926,45 @@ namespace Bubba
             _keyboardCallback = new KeyboardCallback( this );
             _requestCallback = new RequestCallback( this );
             InitializeDownloads( );
+        }
+
+        /// <summary>
+        /// Registers the callbacks.
+        /// </summary>
+        private protected void RegisterCallbacks( )
+        {
+            try
+            {
+                ModelDropDown.SelectionChanged += OnModelDropDownSelectionChanged;
+                ToolStripTextBox.TextChanged += OnToolStripTextBoxTextChanged;
+                ToolStripMenuButton.Click += OnToggleButtonClick;
+                ToolStripRefreshButton.Click += OnRefreshButtonClick;
+                ToolStripSendButton.Click += OnGoButtonClicked;
+                TemperatureTextBox.TextChanged += OnParameterTextBoxChanged;
+                PresencePenaltyTextBox.TextChanged += OnParameterTextBoxChanged;
+                FrequencyPenaltyTextBox.TextChanged += OnParameterTextBoxChanged;
+                TopPercentTextBox.TextChanged += OnParameterTextBoxChanged;
+                ClearParameterButton.Click += OnClearButtonClick;
+                ListenCheckBox.Checked += OnListenCheckedChanged;
+                MuteCheckBox.Checked += OnMuteCheckedBoxChanged;
+                StoreCheckBox.Checked += OnStoreCheckBoxChecked;
+                GenerationListBox.SelectionChanged += OnRequestListBoxSelectionChanged;
+                GptFileButton.Click += OnFileApiButtonClick;
+                LanguageDropDown.SelectionChanged += OnLanguageListBoxSelectionChanged;
+                DocumentListBox.SelectionChanged += OnDocumentListBoxSelectionChanged;
+                ResponseFormatDropDown.SelectionChanged += OnResponseFormatSelectionChanged;
+                ImageSizeDropDown.SelectionChanged += OnImageSizeSelectionChanged;
+                ImageFormatDropDown.SelectionChanged += OnImageFormatSelectionChanged;
+                ImageQualityDropDown.SelectionChanged += OnImageQualitySelectionChanged;
+                ImageDetailDropDown.SelectionChanged += OnImageDetailSelectionChanged;
+                EffortDropDown.SelectionChanged += OnEffortSelectionChanged;
+                AudioFormatDropDown.SelectionChanged += OnAudioFormatSelectionChanged;
+                VoicesDropDown.SelectionChanged += OnVoiceSelectionChanged;
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+            }
         }
 
         /// <summary>
@@ -2305,8 +2345,9 @@ namespace Bubba
                 ModelDropDown.AddItem( "gpt-4o-mini-2024-07-18" );
                 ModelDropDown.AddItem( "o1-2024-12-17" );
                 ModelDropDown.AddItem( "o1-pro-2025-03-19" );
-                ModelDropDown.AddItem( "o1-mini-2024-09-12" );
+                ModelDropDown.AddItem( "o3-2025-04-16" );
                 ModelDropDown.AddItem( "o3-mini-2025-01-31" );
+                ModelDropDown.AddItem( "o4-mini-2025-04-16" );
             }
             catch( Exception ex )
             {
@@ -2522,24 +2563,6 @@ namespace Bubba
                 ModelDropDown.Items.Add( "o1-2024-12-17" );
                 ModelDropDown.Items.Add( "o1-mini-2024-09-12" );
                 ModelDropDown.Items.Add( "o3-mini-2025-01-31" );
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
-            }
-        }
-
-        /// <summary>
-        /// Populates the effort drop down.
-        /// </summary>
-        private void PopulateEffortDropDown( )
-        {
-            try
-            {
-                EffortDropDown.Items?.Clear( );
-                EffortDropDown.AddItem( "auto" );
-                EffortDropDown.AddItem( "low" );
-                EffortDropDown.AddItem( "high" );
             }
             catch( Exception ex )
             {
@@ -3172,7 +3195,6 @@ namespace Bubba
                 PopulateModelsAsync( );
                 PopulateVoices( );
                 PopulateImageSizes( );
-                PopulateEffortDropDown(  );
                 ClearChatControls( );
             }
             catch( Exception ex )
@@ -3525,42 +3547,36 @@ namespace Bubba
                     {
                         PopulateAssistantModels( );
                         _endpoint = GptEndPoint.Assistants;
-                        TabControl.SelectedIndex = 1;
                         break;
                     }
                     case API.ChatCompletion:
                     {
                         PopulateCompletionModels( );
                         _endpoint = GptEndPoint.Completions;
-                        TabControl.SelectedIndex = 1;
                         break;
                     }
                     case API.TextGeneration:
                     {
                         PopulateTextModels( );
                         _endpoint = GptEndPoint.TextGeneration;
-                        TabControl.SelectedIndex = 1;
                         break;
                     }
                     case API.ImageGeneration:
                     {
                         PopulateImageModels( );
                         _endpoint = GptEndPoint.ImageGeneration;
-                        TabControl.SelectedIndex = 1;
                         break;
                     }
                     case API.Embeddings:
                     {
                         PopulateEmbeddingModels( );
                         _endpoint = GptEndPoint.Embeddings;
-                        TabControl.SelectedIndex = 1;
                         break;
                     }
                     case API.VectorStores:
                     {
                         PopulateVectorStoreModels( );
                         _endpoint = GptEndPoint.VectorStores;
-                        TabControl.SelectedIndex = 1;
                         break;
                     }
                     case API.SpeechGeneration:
@@ -3568,7 +3584,6 @@ namespace Bubba
                         PopulateSpeechModels( );
                         PopulateOpenAiVoices( );
                         _endpoint = GptEndPoint.SpeechGeneration;
-                        TabControl.SelectedIndex = 1;
                         break;
                     }
                     case API.TextToSpeech:
@@ -3576,7 +3591,6 @@ namespace Bubba
                         PopulateTextToSpeechModels( );
                         PopulateOpenAiVoices( );
                         _endpoint = GptEndPoint.SpeechGeneration;
-                        TabControl.SelectedIndex = 1;
                         break;
                     }
                     case API.Translations:
@@ -3584,7 +3598,6 @@ namespace Bubba
                         PopulateTranslationModels( );
                         PopulateOpenAiVoices( );
                         _endpoint = GptEndPoint.Translations;
-                        TabControl.SelectedIndex = 1;
                         break;
                     }
                     case API.Transcriptions:
@@ -3592,49 +3605,42 @@ namespace Bubba
                         PopulateTranscriptionModels( );
                         PopulateOpenAiVoices( );
                         _endpoint = GptEndPoint.Transcriptions;
-                        TabControl.SelectedIndex = 1;
                         break;
                     }
                     case API.FineTuning:
                     {
                         PopulateFineTuningModels( );
                         _endpoint = GptEndPoint.FineTuning;
-                        TabControl.SelectedIndex = 1;
                         break;
                     }
                     case API.Responses:
                     {
                         PopulateResponseModels( );
                         _endpoint = GptEndPoint.Responses;
-                        TabControl.SelectedIndex = 1;
                         break;
                     }
                     case API.Files:
                     {
                         PopulateFileModels( );
                         _endpoint = GptEndPoint.Files;
-                        TabControl.SelectedIndex = 1;
                         break;
                     }
                     case API.Uploads:
                     {
                         PopulateUploadModels( );
                         _endpoint = GptEndPoint.Uploads;
-                        TabControl.SelectedIndex = 1;
                         break;
                     }
                     case API.Projects:
                     {
                         PopulateTextModels( );
                         _endpoint = GptEndPoint.Projects;
-                        TabControl.SelectedIndex = 1;
                         break;
                     }
                     default:
                     {
                         PopulateModelsAsync( );
                         _endpoint = GptEndPoint.Completions;
-                        TabControl.SelectedIndex = 1;
                         break;
                     }
                 }
@@ -3844,11 +3850,11 @@ namespace Bubba
         /// </param>
         private protected void OnLoad( object sender, RoutedEventArgs e )
         {
+            PopulateRequestTypes( );
             InitializePlotter( );
             InitializeHotkeys( );
             InitializeTimer( );
             InitializeToolStrip( );
-            ActivateParameterTab( );
             InitializeEditor( );
             App.ActiveWindows.Add( "ChatWindow", this );
             InitializeInterface( );
@@ -5118,8 +5124,7 @@ namespace Bubba
         {
             try
             {
-                if( sender is MetroTabControl tabControl 
-                    && tabControl.SelectedIndex >= 0 )
+                if( sender is MetroTabControl tabControl )
                 {
                     var _index = tabControl.SelectedItem.Tag.ToString(  );
                     switch( _index )

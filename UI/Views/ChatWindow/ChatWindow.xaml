@@ -63,7 +63,8 @@
     <!--  *********************************************  CONTEXT MENU *************************************  -->
 
     <Window.ContextMenu>
-        <ContextMenu x:Name="ChatWindowContextMenu">
+        <ContextMenu 
+            x:Name="ChatWindowContextMenu">
             <wpf:MenuItemAdv
                 Click="OnFileMenuOptionClick"
                 Header="File"
@@ -195,7 +196,6 @@
 
                 <b:ToolStripTextBox
                     x:Name="ToolStripTextBox"
-                    TextChanged="OnToolStripTextBoxTextChanged"
                     Width="576"
                     Height="35"
                     Padding="15,1,1,1"
@@ -209,6 +209,7 @@
                     Foreground="{StaticResource WhiteForeground}"
                     SelectionBackgroundColor="{StaticResource ControlHoverBrush}"
                     SelectionBrush="{StaticResource GreenBackground}"
+                    TextChanged="OnToolStripTextBoxTextChanged"
                     ToolTip="Input Text" />
 
                 <Separator
@@ -219,18 +220,18 @@
 
                 <b:ToolStripButton
                     x:Name="ToolStripSendButton"
-                    Click="OnSendButtonClick"
                     Width="40"
                     Height="30"
                     Margin="5,1,5,1"
+                    Click="OnSendButtonClick"
                     FontFamily="Roboto"
                     ImageSource="/Resources/Assets/ToolStripImages/PromptButton.png"
                     ToolTip="Send Text" />
 
                 <b:ToolStripButton
                     x:Name="ToolStripRefreshButton"
-                    Click="OnToolStripRefreshButtonClick"
                     Margin="5,1,5,1"
+                    Click="OnToolStripRefreshButtonClick"
                     ImageSource="/Resources/Assets/MenuImages/RefreshItem.png"
                     ToolTip="Clear Propmt Text" />
 
@@ -267,12 +268,12 @@
 
                 <b:ToolStripButton
                     x:Name="ToolStripMenuButton"
-                    Click="OnToggleButtonClick"
                     Width="40"
                     Height="30"
                     Margin="15,1,5,1"
                     HorizontalAlignment="Right"
                     HorizontalContentAlignment="Right"
+                    Click="OnToggleButtonClick"
                     FontFamily="Roboto"
                     ImageSource="/Resources/Assets/ToolStripImages/ToggleButton.png"
                     ToolTip="Show/Hide Toolbar" />
@@ -285,7 +286,6 @@
             <mah:MetroTabControl
                 x:Name="TabControl"
                 Grid.Row="0"
-                SelectionChanged="OnTabControlSelectionChanged"
                 Foreground="{StaticResource FormForeground}">
 
                 <!--  ********************************************* CHAT TAB *************************************  -->
@@ -715,7 +715,6 @@
 
                                     <b:MetroDropDown
                                         x:Name="EffortDropDown"
-                                        SelectionChanged="OnEffortSelectionChanged"
                                         Canvas.Left="20"
                                         Canvas.Top="85"
                                         Width="132"
@@ -725,9 +724,30 @@
                                         Background="{StaticResource ControlInteriorBrush}"
                                         BorderBrush="{StaticResource BlueBorderBrush}"
                                         BorderThickness="1"
-                                        Tag="ReasoningEffort"
+                                        SelectedValueDelimiter=""
+                                        Tag="reasoning_effort"
                                         Text="  Reasoning Effort"
-                                        ToolTip="Reasoning Effort" />
+                                        ToolTip="Reasoning Effort">
+                                        
+                                        <b:MetroDropDownItem
+                                            Height="30"
+                                            Margin="3,3,3,3"
+                                            Content="auto"
+                                            FontFamily="Roboto" />
+                                        
+                                        <b:MetroDropDownItem
+                                            Height="30"
+                                            Margin="3,3,3,3"
+                                            Content="low"
+                                            FontFamily="Roboto" />
+                                        
+                                        <b:MetroDropDownItem
+                                            Height="30"
+                                            Margin="3,3,3,3"
+                                            Content="high"
+                                            FontFamily="Roboto" />
+                                        
+                                    </b:MetroDropDown>
 
                                     <Label
                                         x:Name="MaxTokenLabel"
@@ -754,7 +774,6 @@
                                         Height="40"
                                         HorizontalAlignment="Center"
                                         VerticalAlignment="Center"
-                                        SelectionChanged="OnVoiceSelectionChanged"
                                         Background="{StaticResource ControlInteriorBrush}"
                                         BorderBrush="{StaticResource BlueBorderBrush}"
                                         BorderThickness="1"
@@ -790,10 +809,10 @@
                                         Height="20"
                                         HorizontalAlignment="Center"
                                         VerticalAlignment="Top"
+                                        Checked="OnStoreCheckBoxChecked"
                                         Content="Store"
                                         FontFamily="Roboto"
                                         FontSize="14"
-                                        Checked="OnStoreCheckBoxChecked"
                                         Foreground="{StaticResource FormForeground}"
                                         ToolTip="Store Output" />
 
@@ -808,10 +827,10 @@
                                         HorizontalAlignment="Left"
                                         VerticalAlignment="Top"
                                         VerticalContentAlignment="Top"
+                                        Checked="OnStreamCheckBoxChecked"
                                         Content="Stream"
                                         FontFamily="Roboto"
                                         FontSize="14"
-                                        Checked="OnStreamCheckBoxChecked"
                                         Foreground="{StaticResource FormForeground}"
                                         ToolTip="Stream Output" />
 
@@ -823,10 +842,10 @@
                                         Height="24"
                                         HorizontalAlignment="Center"
                                         VerticalAlignment="Top"
+                                        Checked="OnListenCheckedChanged"
                                         Content="Listen"
                                         FontFamily="Roboto"
                                         FontSize="14"
-                                        Checked="OnListenCheckedChanged"
                                         Foreground="{StaticResource FormForeground}"
                                         ToolTip="Activate Audio" />
 
@@ -839,10 +858,10 @@
                                         Height="24"
                                         HorizontalAlignment="Center"
                                         VerticalAlignment="Top"
+                                        Checked="OnMuteCheckedBoxChanged"
                                         Content="Mute"
                                         FontFamily="Roboto"
                                         FontSize="14"
-                                        Checked="OnMuteCheckedBoxChanged"
                                         Foreground="{StaticResource FormForeground}"
                                         ToolTip="Deactivate Audio" />
 
@@ -868,9 +887,9 @@
                                         HorizontalAlignment="Center"
                                         VerticalAlignment="Top"
                                         Background="{DynamicResource GroupBoxBackground}"
+                                        Click="OnClearButtonClick"
                                         Content=""
                                         FontFamily="Roboto"
-                                        Click="OnClearButtonClick"
                                         ImageSource="/Resources/Assets/MenuImages/RefreshItem.png"
                                         ToolTip="Clear Parameters" />
                                 </Canvas>
@@ -899,7 +918,6 @@
                                         Height="40"
                                         HorizontalAlignment="Left"
                                         VerticalAlignment="Top"
-                                        SelectionChanged="OnResponseFormatSelectionChanged"
                                         Background="{StaticResource ControlInteriorBrush}"
                                         BorderBrush="{StaticResource ResourceKey=BlueBorderBrush}"
                                         BorderThickness="1"
@@ -951,7 +969,6 @@
                                         Height="40"
                                         HorizontalAlignment="Left"
                                         VerticalAlignment="Top"
-                                        SelectionChanged="OnAudioFormatSelectionChanged"
                                         Background="{StaticResource ControlInteriorBrush}"
                                         BorderBrush="{StaticResource BlueBorderBrush}"
                                         BorderThickness="1"
@@ -995,7 +1012,6 @@
                                         Canvas.Top="144"
                                         Width="144"
                                         Height="40"
-                                        SelectionChanged="OnImageFormatSelectionChanged"
                                         Background="{StaticResource ControlInteriorBrush}"
                                         BorderBrush="{StaticResource BlueBorderBrush}"
                                         BorderThickness="1"
@@ -1034,7 +1050,6 @@
                                         Height="40"
                                         HorizontalAlignment="Left"
                                         VerticalAlignment="Top"
-                                        SelectionChanged="OnRequestListBoxSelectionChanged"
                                         Background="{StaticResource ControlInteriorBrush}"
                                         BorderBrush="{StaticResource BlueBorderBrush}"
                                         BorderThickness="1"
@@ -1048,7 +1063,6 @@
                                         Height="40"
                                         HorizontalAlignment="Center"
                                         VerticalAlignment="Top"
-                                        SelectionChanged="OnModelDropDownSelectionChanged"
                                         Background="{StaticResource ControlInteriorBrush}"
                                         BorderBrush="{StaticResource BlueBorderBrush}"
                                         BorderThickness="1"
@@ -1074,8 +1088,7 @@
                             FontSize="14"
                             Foreground="{StaticResource WhiteForeground}"
                             Tag="Top Log Probabilities"
-                            Text="{Binding ElementName=TopLogProbSlider, Mode=Default, Path=Value, StringFormat=N2}"
-                            TextChanged="OnParameterTextBoxChanged"/>
+                            Text="{Binding ElementName=TopLogProbSlider, Mode=Default, Path=Value, StringFormat=N2}" />
 
                         <TextBox
                             x:Name="TemperatureTextBox"
@@ -1091,7 +1104,6 @@
                             BorderBrush="{StaticResource BlueBorderBrush}"
                             BorderThickness="1"
                             Text="{Binding ElementName=TemperatureSlider, Mode=Default, Path=Value, StringFormat=N2}"
-                            TextChanged="OnParameterTextBoxChanged"
                             TextWrapping="Wrap" />
 
                         <TextBox
@@ -1108,7 +1120,6 @@
                             BorderBrush="{StaticResource BlueBorderBrush}"
                             BorderThickness="1"
                             Text="{Binding ElementName=TopPercentSlider, Mode=Default, Path=Value, StringFormat=N2}"
-                            TextChanged="OnParameterTextBoxChanged"
                             TextWrapping="Wrap" />
 
                         <TextBox
@@ -1141,7 +1152,6 @@
                             BorderBrush="{StaticResource BlueBorderBrush}"
                             BorderThickness="1"
                             Text="{Binding ElementName=PresenceSlider, Mode=Default, Path=Value, StringFormat=N2}"
-                            TextChanged="OnParameterTextBoxChanged"
                             TextWrapping="Wrap" />
 
                         <TextBox
@@ -1159,7 +1169,6 @@
                             BorderThickness="1"
                             Tag="FrequencyPenalty"
                             Text="{Binding ElementName=FrequencySlider, Mode=Default, Path=Value, StringFormat=N2}"
-                            TextChanged="OnParameterTextBoxChanged"
                             TextWrapping="Wrap" />
 
                         <TextBox
@@ -1176,7 +1185,6 @@
                             BorderBrush="{StaticResource BlueBorderBrush}"
                             BorderThickness="1"
                             Text="{Binding ElementName=SpeechRateSlider, Mode=Default, Path=Value, StringFormat=N1}"
-                            TextChanged="OnParameterTextBoxChanged"
                             TextWrapping="Wrap" />
                     </Grid>
                 </TabItem>
@@ -1393,7 +1401,6 @@
                                 Width="200"
                                 Height="345"
                                 Padding="3,3,3,3"
-                                SelectionChanged="OnDocumentListBoxSelectionChanged"
                                 VerticalAlignment="Top" />
 
                             <b:MetroDropDown
@@ -1409,7 +1416,6 @@
                                 BorderThickness="2"
                                 ClipToBounds="True"
                                 FontFamily="Roboto"
-                                SelectionChanged="OnLanguageListBoxSelectionChanged"
                                 Foreground="{StaticResource FormForeground}"
                                 SnapsToDevicePixels="True">
                                 <b:MetroDropDownItem
