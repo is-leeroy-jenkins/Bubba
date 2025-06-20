@@ -63,8 +63,7 @@
     <!--  *********************************************  CONTEXT MENU *************************************  -->
 
     <Window.ContextMenu>
-        <ContextMenu 
-            x:Name="ChatWindowContextMenu">
+        <ContextMenu x:Name="ChatWindowContextMenu">
             <wpf:MenuItemAdv
                 Click="OnFileMenuOptionClick"
                 Header="File"
@@ -298,33 +297,298 @@
                     <Grid
                         x:Name="ChatTabGrid"
                         Background="{StaticResource FormBackground}">
-                        <GroupBox
-                            x:Name="ChatLogGroupBox"
-                            Width="1252"
-                            Margin="30,37,0,33"
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="935*" />
+                            <ColumnDefinition Width="403*" />
+                        </Grid.ColumnDefinitions>
+
+                        <wpf:SfTextBoxExt
+                            x:Name="ChatTextBox"
+                            Grid.Column="0"
+                            Width="920"
+                            Height="572"
+                            Margin="5,0,0,0"
                             HorizontalAlignment="Left"
-                            Background="{StaticResource GroupBoxBackground}"
-                            Foreground="{StaticResource FormForeground}">
+                            VerticalAlignment="Center"
+                            Text=""
+                            TextWrapping="Wrap" />
 
-                            <wpf:SfTextBoxExt
-                                x:Name="ChatTextBox"
-                                Height="469"
-                                Margin="25,0,22,0"
-                                Text=""
-                                TextWrapping="Wrap" />
+                        <mah:MetroTabControl
+                            x:Name="ParamTabControl"
+                              Background="{DynamicResource BackgroundBrush}"
+                            Grid.Column="1">
 
-                        </GroupBox>
+                            <TabItem
+                                x:Name="RequestTab"
+                                Margin="3,3,3,3"
+                                Background="{DynamicResource BackgroundBrush}"
+                                Foreground="{DynamicResource FormForeground}"
+                                Header="Request">
 
-                        <Label
-                            x:Name="TokenLabel"
-                            Width="930"
-                            Margin="30,574,0,0"
-                            HorizontalAlignment="Left"
-                            VerticalAlignment="Top"
-                            Content=""
-                            FontFamily="Roboto"
-                            FontSize="14"
-                            Foreground="{StaticResource FormForeground}" />
+                                <Grid Background="{DynamicResource BackgroundBrush}">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition />
+                                    </Grid.RowDefinitions>
+
+                                    <Canvas Margin="10,10,198,350">
+
+                                        <StackPanel
+                                            Canvas.Left="5"
+                                            Canvas.Top="10"
+                                            Width="175"
+                                            Height="169"
+                                            HorizontalAlignment="Stretch">
+
+                                            <b:MetroDropDown
+                                                x:Name="RequestDropDown"
+                                                Width="160"
+                                                Height="40"
+                                                Margin="3,10,10,3"
+                                                HorizontalAlignment="Stretch"
+                                                Background="{StaticResource ControlInteriorBrush}"
+                                                BorderBrush="{StaticResource BlueBorderBrush}"
+                                                BorderThickness="1"
+                                                FontFamily="Roboto"
+                                                Text="    API Requests" />
+
+                                            <b:MetroDropDown
+                                                x:Name="ModelDropDown"
+                                                Width="160"
+                                                Height="40"
+                                                Margin="3,10,10,3"
+                                                HorizontalAlignment="Stretch"
+                                                Background="{StaticResource ControlInteriorBrush}"
+                                                BorderBrush="{StaticResource BlueBorderBrush}"
+                                                BorderThickness="1"
+                                                FontFamily="Roboto"
+                                                Text="    Language Models" />
+
+                                            <b:MetroDropDown
+                                                x:Name="ResponseFormatDropDown"
+                                                Width="160"
+                                                Height="40"
+                                                Margin="3,10,10,3"
+                                                HorizontalAlignment="Stretch"
+                                                Background="{StaticResource ControlInteriorBrush}"
+                                                BorderBrush="{StaticResource BlueBorderBrush}"
+                                                BorderThickness="1"
+                                                FontFamily="Roboto"
+                                                Text="    Response Formats" />
+
+                                        </StackPanel>
+                                    </Canvas>
+
+                                    <Canvas 
+                                        Margin="200,20,10,375">
+
+                                        <StackPanel
+                                            Width="173"
+                                            Height="149" HorizontalAlignment="Left" VerticalAlignment="Center">
+
+                                            <CheckBox
+                                                x:Name="StoreCheck"
+                                                Width="96"
+                                                Height="35"
+                                                HorizontalAlignment="Center"
+                                                Content="Stream" />
+
+                                            <CheckBox
+                                                x:Name="StreamCheck"
+                                                Width="96"
+                                                Height="35"
+                                                Content="Store" />
+
+                                            <CheckBox
+                                                x:Name="MuteCheck"
+                                                Width="96"
+                                                Height="35"
+                                                Content="Mute" />
+
+                                            <CheckBox
+                                                x:Name="ListenCheck"
+                                                Width="96"
+                                                Height="35"
+                                                Content="Listen" />
+
+                                        </StackPanel>
+
+                                    </Canvas>
+
+                                    <Canvas Margin="201,214,10,165" />
+
+                                    <StackPanel Margin="201,230,10,165">
+
+                                        <b:MetroDropDown
+                                            x:Name="ImageDetailDropDown"
+                                            Width="160"
+                                            Height="40"
+                                            Margin="10,3,10,3"
+                                            HorizontalAlignment="Stretch"
+                                            Background="{StaticResource ControlInteriorBrush}"
+                                            BorderBrush="{StaticResource BlueBorderBrush}"
+                                            BorderThickness="1"
+                                            FontFamily="Roboto"
+                                            Text="    Detail" />
+
+                                        <b:MetroDropDown
+                                            x:Name="ImageQualityDropDown"
+                                            Width="160"
+                                            Height="40"
+                                            Margin="10,3,10,3"
+                                            HorizontalAlignment="Stretch"
+                                            Background="{StaticResource ControlInteriorBrush}"
+                                            BorderBrush="{StaticResource BlueBorderBrush}"
+                                            BorderThickness="1"
+                                            FontFamily="Roboto"
+                                            Text="    Qualtiy" />
+
+                                        <b:MetroDropDown
+                                            x:Name="ImageSizeDropDown"
+                                            Width="160"
+                                            Height="40"
+                                            Margin="10,3,10,3"
+                                            HorizontalAlignment="Stretch"
+                                            Background="{StaticResource ControlInteriorBrush}"
+                                            BorderBrush="{StaticResource BlueBorderBrush}"
+                                            BorderThickness="1"
+                                            FontFamily="Roboto"
+                                            Text="   Size" />
+
+                                    </StackPanel>
+
+                                    <Canvas Margin="10,230,197,165" />
+
+                                    <StackPanel Margin="10,230,197,180">
+
+                                        <b:MetroDropDown
+                                            x:Name="ResponseDropDown"
+                                            Width="160"
+                                            Height="40"
+                                            Margin="10,3,10,3"
+                                            HorizontalAlignment="Stretch"
+                                            Background="{StaticResource ControlInteriorBrush}"
+                                            BorderBrush="{StaticResource BlueBorderBrush}"
+                                            BorderThickness="1"
+                                            FontFamily="Roboto"
+                                            Text="    Response Format" />
+
+                                        <b:MetroDropDown
+                                            x:Name="AudioFormatDropDown"
+                                            Width="160"
+                                            Height="40"
+                                            Margin="10,3,10,3"
+                                            HorizontalAlignment="Stretch"
+                                            Background="{StaticResource ControlInteriorBrush}"
+                                            BorderBrush="{StaticResource BlueBorderBrush}"
+                                            BorderThickness="1"
+                                            FontFamily="Roboto"
+                                            Text="    Audio Format" />
+
+                                        <b:MetroDropDown
+                                            x:Name="ImageFormatDropDown"
+                                            Width="160"
+                                            Height="40"
+                                            Margin="10,3,10,3"
+                                            HorizontalAlignment="Stretch"
+                                            Background="{StaticResource ControlInteriorBrush}"
+                                            BorderBrush="{StaticResource BlueBorderBrush}"
+                                            BorderThickness="1"
+                                            FontFamily="Roboto"
+                                            Text="   Image Format" />
+
+                                    </StackPanel>
+
+                                    <Canvas
+                                        Canvas.Left="175"
+                                        Canvas.Top="394"
+                                        Height="140"
+                                        Margin="14,409,218,0"
+                                        VerticalAlignment="Top">
+
+                                        <StackPanel/>
+                                        <wpf:IntegerTextBox
+                                                x:Name="MaxTokenTextBox"
+                                                Canvas.Left="77"
+                                                Width="84"
+                                                Height="40"
+                                                Padding="5,1,1,1"
+                                                HorizontalAlignment="Left"
+                                                Background="{StaticResource ControlInteriorBrush}"
+                                                BorderBrush="{StaticResource BlueBorderBrush}"
+                                                BorderThickness="1"
+                                                ClipToBounds="True"
+                                                FontFamily="Roboto"
+                                                FontSize="12"
+                                                MaxValue="14000"
+                                                MinValue="1"
+                                                NumberGroupSeparator=","
+                                                ShowSpinButton="True"
+                                                Tag="max_completion_tokens"
+                                                Text=""
+                                                TextWrapping="Wrap"
+                                                ToolTip="Upper Limit on Token Usage"
+                                                UseNullOption="True"
+                                                WatermarkTextIsVisible="True"
+                                                Value="10000" />
+
+                                    </Canvas>
+                                    <StackPanel
+                                        Width="192"
+                                        Height="140"
+                                        Margin="0,0,0,10"
+                                        HorizontalAlignment="Right"
+                                        VerticalAlignment="Bottom">
+
+                                        <b:MetroDropDown
+                                            x:Name="ReasoingDropDown"
+                                            Width="160"
+                                            Height="40"
+                                            Margin="10,3,10,3"
+                                            HorizontalAlignment="Stretch"
+                                            Background="{StaticResource ControlInteriorBrush}"
+                                            BorderBrush="{StaticResource BlueBorderBrush}"
+                                            BorderThickness="1"
+                                            FontFamily="Roboto"
+                                            Text="    Reasoning Effort" />
+
+                                        <b:MetroDropDown
+                                            x:Name="VoiceDropDown"
+                                            Width="160"
+                                            Height="40"
+                                            Margin="10,3,10,3"
+                                            HorizontalAlignment="Stretch"
+                                            Background="{StaticResource ControlInteriorBrush}"
+                                            BorderBrush="{StaticResource BlueBorderBrush}"
+                                            BorderThickness="1"
+                                            FontFamily="Roboto"
+                                            Text="   Sound/Voice" />
+
+                                    </StackPanel>
+
+                                </Grid>
+
+                            </TabItem>
+                            <TabItem
+                                x:Name="SettingTab"
+                                Margin="3,3,3,3"
+                                Background="{DynamicResource BackgroundBrush}"
+                                Foreground="{DynamicResource FormForeground}"
+                                Header="Setting" />
+                            <TabItem
+                                x:Name="AudioTab"
+                                Margin="3,3,3,3"
+                                Background="{DynamicResource BackgroundBrush}"
+                                Foreground="{DynamicResource FormForeground}"
+                                Header="Audio" />
+                            <TabItem
+                                x:Name="ImageTab"
+                                Margin="3,3,3,3"
+                                Background="{DynamicResource BackgroundBrush}"
+                                Foreground="{DynamicResource FormForeground}"
+                                Header="Image">
+                                <Grid Background="#FFE5E5E5" />
+                            </TabItem>
+                        </mah:MetroTabControl>
 
                     </Grid>
                 </TabItem>
@@ -605,7 +869,7 @@
                                     Height="186">
 
                                     <b:MetroDropDown
-                                        x:Name="ImageSizeDropDown"
+                                        x:Name="SizeDropDown"
                                         Canvas.Left="16"
                                         Canvas.Top="10"
                                         Width="141"
@@ -619,7 +883,7 @@
                                         Text="    Sizes" />
 
                                     <b:MetroDropDown
-                                        x:Name="ImageQualityDropDown"
+                                        x:Name="QualityDropDown"
                                         Canvas.Left="16"
                                         Canvas.Top="76"
                                         Width="141"
@@ -645,7 +909,7 @@
                                     </b:MetroDropDown>
 
                                     <b:MetroDropDown
-                                        x:Name="ImageDetailDropDown"
+                                        x:Name="DetailDropDown"
                                         Canvas.Left="16"
                                         Canvas.Top="141"
                                         Width="141"
@@ -688,7 +952,7 @@
                                 Header="Options">
                                 <Canvas>
                                     <wpf:IntegerTextBox
-                                        x:Name="MaxTokenTextBox"
+                                        x:Name="TokenTextBox"
                                         Canvas.Left="64"
                                         Canvas.Top="15"
                                         Width="85"
@@ -728,25 +992,25 @@
                                         Tag="reasoning_effort"
                                         Text="  Reasoning Effort"
                                         ToolTip="Reasoning Effort">
-                                        
+
                                         <b:MetroDropDownItem
                                             Height="30"
                                             Margin="3,3,3,3"
                                             Content="auto"
                                             FontFamily="Roboto" />
-                                        
+
                                         <b:MetroDropDownItem
                                             Height="30"
                                             Margin="3,3,3,3"
                                             Content="low"
                                             FontFamily="Roboto" />
-                                        
+
                                         <b:MetroDropDownItem
                                             Height="30"
                                             Margin="3,3,3,3"
                                             Content="high"
                                             FontFamily="Roboto" />
-                                        
+
                                     </b:MetroDropDown>
 
                                     <Label
@@ -911,7 +1175,7 @@
                                     Height="189">
 
                                     <b:MetroDropDown
-                                        x:Name="ResponseFormatDropDown"
+                                        x:Name="ResponsesDropDown"
                                         Canvas.Left="23"
                                         Canvas.Top="10"
                                         Width="147"
@@ -962,7 +1226,7 @@
                                     </b:MetroDropDown>
 
                                     <b:MetroDropDown
-                                        x:Name="AudioFormatDropDown"
+                                        x:Name="AudioDropDown"
                                         Canvas.Left="23"
                                         Canvas.Top="77"
                                         Width="144"
@@ -1007,7 +1271,7 @@
                                     </b:MetroDropDown>
 
                                     <b:MetroDropDown
-                                        x:Name="ImageFormatDropDown"
+                                        x:Name="ImageDropDown"
                                         Canvas.Left="23"
                                         Canvas.Top="144"
                                         Width="144"
@@ -1041,35 +1305,7 @@
                                 Foreground="{StaticResource FormForeground}"
                                 Header="GPT">
 
-                                <Canvas Height="186">
-                                    <b:MetroDropDown
-                                        x:Name="GenerationListBox"
-                                        Canvas.Left="49"
-                                        Canvas.Top="10"
-                                        Width="276"
-                                        Height="40"
-                                        HorizontalAlignment="Left"
-                                        VerticalAlignment="Top"
-                                        Background="{StaticResource ControlInteriorBrush}"
-                                        BorderBrush="{StaticResource BlueBorderBrush}"
-                                        BorderThickness="1"
-                                        Text="  GPT Request" />
-
-                                    <b:MetroDropDown
-                                        x:Name="ModelDropDown"
-                                        Canvas.Left="49"
-                                        Canvas.Top="93"
-                                        Width="276"
-                                        Height="40"
-                                        HorizontalAlignment="Center"
-                                        VerticalAlignment="Top"
-                                        Background="{StaticResource ControlInteriorBrush}"
-                                        BorderBrush="{StaticResource BlueBorderBrush}"
-                                        BorderThickness="1"
-                                        FontFamily="Roboto"
-                                        FontSize="12"
-                                        Text=" Language Models" />
-                                </Canvas>
+                                <Canvas Height="186" />
 
                             </GroupBox>
 

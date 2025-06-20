@@ -5223,5 +5223,10 @@ namespace Bubba
             _error?.SetText( );
             _error?.ShowDialog( );
         }
+
+        private void MetroDropDown_SelectionChanged( object sender, SelectionChangedEventArgs e )
+        {
+
+        }
     }
 }
