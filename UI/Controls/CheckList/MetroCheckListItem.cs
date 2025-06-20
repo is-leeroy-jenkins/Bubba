@@ -80,10 +80,6 @@ namespace Bubba
             BorderThickness = _theme.BorderThickness;
             VerticalAlignment = _theme.VerticalAlignment;
             HorizontalContentAlignment = _theme.HorizontalAlignment;
-
-            // Event Wiring
-            MouseEnter += OnItemMouseEnter;
-            MouseLeave += OnItemMouseLeave;
         }
 
         /// <summary>

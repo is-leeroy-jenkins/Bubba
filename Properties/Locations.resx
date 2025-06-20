@@ -154,10 +154,10 @@
     <value>123.123.123.123</value>
   </data>
   <data name="PingIP" xml:space="preserve">
-    <value>8.8.8.8</value>
+    <value>127.0.0.1</value>
   </data>
   <data name="ProxyPort" xml:space="preserve">
-    <value>123</value>
+    <value>8080</value>
   </data>
   <data name="ProxyBypassList" xml:space="preserve">
     <value>*.google.com, localhost</value>

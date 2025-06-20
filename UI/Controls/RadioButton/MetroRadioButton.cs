@@ -74,10 +74,7 @@ namespace Bubba
             // Basic Settings
             FontFamily = _theme.FontFamily;
             FontSize = _theme.FontSize;
-            BorderThickness = new Thickness( 0 );
-            Background = _theme.Transparent;
-            BorderBrush = _theme.Transparent;
-            Foreground = _theme.LightBlueBrush;
+            BorderThickness = new Thickness( 1 );
             HorizontalAlignment = HorizontalAlignment.Stretch;
             VerticalAlignment = VerticalAlignment.Stretch;
         }

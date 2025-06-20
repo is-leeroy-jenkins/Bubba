@@ -74,11 +74,7 @@ namespace Bubba
 
             FontFamily = new FontFamily( "Roboto" );
             FontSize = 12;
-            Background = _theme.ControlBackground;
-            Foreground = _theme.LightBlueBrush;
-            BorderBrush = _theme.BlueBorderBrush;
             PopupBorderThickness = new Thickness( 1 );
-            PopupBorderBrush = _theme.BlueBorderBrush;
             HorizontalAlignment = _theme.HorizontalAlignment;
             VerticalAlignment = _theme.VerticalAlignment;
         }

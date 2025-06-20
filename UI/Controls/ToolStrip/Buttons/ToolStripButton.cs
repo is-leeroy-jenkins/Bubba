@@ -72,10 +72,8 @@ namespace Bubba
             Height = 30;
             Header = "";
             Title = "";
-
-            // Wire Events
-            MouseEnter += OnMouseEnter;
-            MouseLeave += OnMouseLeave;
+            Background = _theme.FormBackground;
+            Foreground = _theme.FormForeground;
         }
 
         /// <inheritdoc />

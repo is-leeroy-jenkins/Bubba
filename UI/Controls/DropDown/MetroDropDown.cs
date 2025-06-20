@@ -82,9 +82,6 @@ namespace Bubba
             HorizontalAlignment = HorizontalAlignment.Stretch;
             HorizontalContentAlignment = HorizontalAlignment.Center;
             VerticalAlignment = VerticalAlignment.Stretch;
-            Background = _theme.ControlInterior;
-            Foreground = _theme.WhiteForeground;
-            BorderBrush = _theme.BlueBorderBrush;
             IsEditable = true;
         }
 

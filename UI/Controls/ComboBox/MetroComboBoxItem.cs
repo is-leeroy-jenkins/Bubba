@@ -76,10 +76,6 @@ namespace Bubba
         {
             // Control Properties
             Padding = new Thickness( 15, 1, 1, 1 );
-
-            // Event Wiring
-            MouseEnter += OnItemMouseEnter;
-            MouseLeave += OnItemMouseLeave;
         }
 
         /// <summary>

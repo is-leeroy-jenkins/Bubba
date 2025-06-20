@@ -58,8 +58,7 @@ namespace Bubba
         private protected GptFormat _format;
 
         /// <summary>
-        /// Initializes a new instance of the
-        /// <see cref="GptText"/> class.
+        /// Initializes a new instance of the <see cref="GptText"/> class.
         /// </summary>
         public GptText( )
         {

@@ -92,8 +92,6 @@ namespace Bubba
             _tempText = "";
 
             // Event Wiring
-            MouseEnter += OnMouseEnter;
-            MouseLeave += OnMouseLeave;
             TextChanged += OnTextChanged;
             LostFocus += OnFocusLost;
         }

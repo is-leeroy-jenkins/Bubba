@@ -45,10 +45,8 @@ namespace Bubba
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
     using System.Linq;
-    using System.Net.Http;
     using System.Text.Json;
     using System.Text.Json.Serialization;
-    using Properties;
 
     /// <inheritdoc />
     /// <summary>
@@ -86,7 +84,6 @@ namespace Bubba
         {
             _object = "response";
             _model = "gpt-4o-mini";
-            _endPoint = GptEndPoint.TextGeneration;
             _presencePenalty = 0.0;
             _frequencyPenalty = 0.0;
             _maxOutputTokens = 10000;
@@ -160,7 +157,7 @@ namespace Bubba
         /// <value>
         /// The object.
         /// </value>
-        [JsonPropertyName( "object" ) ]
+        [ JsonPropertyName( "object" ) ]
         public override string Object
         {
             get
@@ -345,11 +342,13 @@ namespace Bubba
         {
             try
             {
-                _data.Add( "model", _model );
-                _data.Add( "id", _id );
-                _data.Add( "created", _created.ToString( ) );
-                _data.Add( "object", _object );
-                _data.Add( "usage", _usage.ToString( ) );
+                _data.Add( "model", $"{_model}" );
+                _data.Add( "id", $"{_id}" );
+                _data.Add( "max_output_tokens", $"{_maxOutputTokens}" );
+                _data.Add( "status", $"{_status}" );
+                _data.Add( "created", $"{_created}" );
+                _data.Add( "object",  $"{_object}" );
+                _data.Add( "usage",  $"{_usage}" );
                 return _data?.Any( ) == true
                     ? _data
                     : default( IDictionary<string, object> );

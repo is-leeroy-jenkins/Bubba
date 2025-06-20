@@ -74,7 +74,6 @@ namespace Bubba
             SetResourceReference( StyleProperty, typeof( SfAccordion ) );
             FontSize = 12;
             FontFamily = new FontFamily( "Roboto" );
-            AccentBrush = _theme.SteelBlueBrush;
         }
     }
 }

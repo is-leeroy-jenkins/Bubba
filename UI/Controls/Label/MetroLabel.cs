@@ -78,8 +78,6 @@ namespace Bubba
             VerticalAlignment = VerticalAlignment.Stretch;
             VerticalContentAlignment = VerticalAlignment.Center;
             HorizontalContentAlignment = HorizontalAlignment.Left;
-            Background = _theme.Transparent;
-            Foreground = _theme.FormForeground;
         }
     }
 }

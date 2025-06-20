@@ -31,13 +31,6 @@ namespace Bubba
         {
             MinHeight = 40;
             MinWidth = 120;
-            Background = _theme.Transparent;
-            BorderBrush = _theme.Transparent;
-            Foreground = _theme.LightBlueBrush;
-            ActiveMinorTickStroke = _theme.LightBlueBrush;
-            ActiveTickStroke = _theme.WhiteForeground;
-            MinorTickStroke = _theme.WhiteForeground;
-            TickStroke = _theme.WhiteForeground;
             ClipToBounds = true;
             Orientation = Orientation.Horizontal;
             SnapsToDevicePixels = true;

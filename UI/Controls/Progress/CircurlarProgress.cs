@@ -72,9 +72,6 @@ namespace Bubba
             SetResourceReference( StyleProperty, typeof( SfCircularProgressBar ) );
             FontFamily = new FontFamily( "Roboto" );
             FontSize = 12;
-            Background = _theme.FormBackground;
-            Foreground = _theme.Foreground;
-            BorderBrush = _theme.BlueBorderBrush;
         }
     }
 }

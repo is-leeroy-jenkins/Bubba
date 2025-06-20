@@ -121,6 +121,7 @@ namespace Bubba
             "ButtonAdv",
             "Carousel",
             "ColorEdit",
+            "SfHubTile",
             "SfCalculator",
             "SfMultiColumnDropDownControl",
             "SfImageEditor",
@@ -269,12 +270,11 @@ namespace Bubba
                 _cefSettings.UserAgent = Locations.UserAgent;
                 _cefSettings.AcceptLanguageList = Locations.AcceptLanguage;
                 _cefSettings.IgnoreCertificateErrors = true;
-                _cefSettings.CachePath = GetApplicationDirectory( "Cache" );
+                _cefSettings.CachePath = GetApplicationDirectory( "CefSharp\\Cache" );
                 if( bool.Parse( Locations.Proxy ) )
                 {
-                    CefSharpSettings.Proxy = new ProxyOptions( Locations.ProxyIP,
-                        Locations.ProxyPort, Locations.ProxyUsername, Locations.ProxyPassword,
-                        Locations.ProxyBypassList );
+                    CefSharpSettings.Proxy = new ProxyOptions( Locations.ProxyIP, Locations.ProxyPort, 
+                        Locations.ProxyUsername, Locations.ProxyPassword, Locations.ProxyBypassList );
                 }
 
                 Cef.Initialize( _cefSettings );

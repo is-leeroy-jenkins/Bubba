@@ -40,10 +40,6 @@
             Padding = new Thickness( 1 );
             BorderThickness = _theme.BorderThickness;
             Padding = _theme.Padding;
-            Background = _theme.ControlInterior;
-            Foreground = _theme.WhiteForeground;
-            BorderBrush = _theme.LightBlueBrush;
-            SelectionBrush = _theme.SteelBlueBrush;
             HorizontalAlignment = HorizontalAlignment.Stretch;
             VerticalAlignment = VerticalAlignment.Stretch;
 

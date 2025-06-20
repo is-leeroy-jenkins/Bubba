@@ -72,9 +72,6 @@ namespace Bubba
             SetResourceReference( StyleProperty, typeof( Carousel ) );
             FontSize = 12;
             FontFamily = new FontFamily( "Roboto" );
-            Background = _theme.FormBackground;
-            BorderBrush = _theme.BlueBorderBrush;
-            Foreground = _theme.Foreground;
             EnableRotationAnimation = true;
             ScalingEnabled = true;
             RadiusX = 250;

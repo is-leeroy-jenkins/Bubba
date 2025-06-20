@@ -286,7 +286,7 @@ namespace Bubba.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 8.8.8.8.
+        ///   Looks up a localized string similar to 127.0.0.1.
         /// </summary>
         internal static string PingIP {
             get {
@@ -331,7 +331,7 @@ namespace Bubba.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 123.
+        ///   Looks up a localized string similar to 8080.
         /// </summary>
         internal static string ProxyPort {
             get {

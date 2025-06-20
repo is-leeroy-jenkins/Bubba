@@ -1288,6 +1288,73 @@
             <param name="value">The value to convert to JSON.</param>
             <param name="options">An object that specifies serialization options to use.</param>
         </member>
+        <member name="T:Bubba.EnvironmentConverter">
+            <summary>
+            
+            </summary>
+            <seealso cref="T:System.Windows.Data.IValueConverter" />
+        </member>
+        <member name="M:Bubba.EnvironmentConverter.System#Windows#Data#IValueConverter#Convert(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            Converts a value.
+            </summary>
+            <param name="value">The value produced by the binding source.</param>
+            <param name="targetType">The type of the binding target property.</param>
+            <param name="parameter">The converter parameter to use.</param>
+            <param name="culture">The culture to use in the converter.</param>
+            <returns>
+            A converted value. If the method returns <see langword="null" />, the valid null value is used.
+            </returns>
+        </member>
+        <member name="M:Bubba.EnvironmentConverter.System#Windows#Data#IValueConverter#ConvertBack(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            Converts a value.
+            </summary>
+            <param name="value">The value that is produced by the binding target.</param>
+            <param name="targetType">The type to convert to.</param>
+            <param name="parameter">The converter parameter to use.</param>
+            <param name="culture">The culture to use in the converter.</param>
+            <returns>
+            A converted value. If the method returns <see langword="null" />, the valid null value is used.
+            </returns>
+        </member>
+        <member name="T:Bubba.TitleConverter">
+            <summary>
+            
+            </summary>
+            <seealso cref="T:System.Windows.Data.IValueConverter" />
+        </member>
+        <member name="F:Bubba.TitleConverter._build">
+            <summary>
+            The build
+            </summary>
+        </member>
+        <member name="M:Bubba.TitleConverter.System#Windows#Data#IValueConverter#Convert(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            Converts a value.
+            </summary>
+            <param name="value">The value produced by the binding source.</param>
+            <param name="targetType">The type of the binding target property.</param>
+            <param name="parameter">The converter parameter to use.</param>
+            <param name="culture">The culture to use in the converter.</param>
+            <returns>
+            A converted value. If the method returns <see langword="null" />,
+            the valid null value is used.
+            </returns>
+        </member>
+        <member name="M:Bubba.TitleConverter.System#Windows#Data#IValueConverter#ConvertBack(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            Converts a value.
+            </summary>
+            <param name="value">The value that is produced by the binding target.</param>
+            <param name="targetType">The type to convert to.</param>
+            <param name="parameter">The converter parameter to use.</param>
+            <param name="culture">The culture to use in the converter.</param>
+            <returns>
+            A converted value. If the method returns <see langword="null" />,
+            the valid null value is used.
+            </returns>
+        </member>
         <member name="T:Bubba.AdapterBase">
             <inheritdoc/>
             <summary> </summary>
@@ -16139,8 +16206,7 @@
         </member>
         <member name="M:Bubba.GptText.#ctor">
             <summary>
-            Initializes a new instance of the
-            <see cref="T:Bubba.GptText"/> class.
+            Initializes a new instance of the <see cref="T:Bubba.GptText"/> class.
             </summary>
         </member>
         <member name="P:Bubba.GptText.Format">
@@ -16156,17 +16222,6 @@
             Wraps error
             </summary>
             <param name="ex">The ex.</param>
-        </member>
-        <member name="T:Bubba.GptTool">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="M:Bubba.GptTool.#ctor">
-            <summary>
-            Initializes a new instance of the
-            <see cref="T:Bubba.GptTool"/> class.
-            </summary>
         </member>
         <member name="T:Bubba.GptUpload">
             <summary>
@@ -23120,6 +23175,98 @@
             <param name="response">The json response.</param>
             <returns></returns>
         </member>
+        <member name="T:Bubba.CodeInterpreter">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Bubba.CodeInterpreter.#ctor">
+            <summary>
+            Initializes a new instance of the
+            <see cref="T:Bubba.CodeInterpreter"/> class.
+            </summary>
+        </member>
+        <member name="T:Bubba.ComputerUse">
+            <summary>
+            
+            </summary>
+            <seealso cref="T:Bubba.GptTool" />
+        </member>
+        <member name="M:Bubba.ComputerUse.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Bubba.ComputerUse"/> class.
+            </summary>
+        </member>
+        <member name="T:Bubba.FunctionCall">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Bubba.FunctionCall.#ctor">
+            <summary>
+            Initializes a new instance of the
+            <see cref="T:Bubba.FunctionCall"/> class.
+            </summary>
+        </member>
+        <member name="T:Bubba.GptTool">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Bubba.GptTool._name">
+            <summary>
+            The name
+            </summary>
+        </member>
+        <member name="F:Bubba.GptTool._type">
+            <summary>
+            The type
+            </summary>
+        </member>
+        <member name="M:Bubba.GptTool.#ctor">
+            <summary>
+            Initializes a new instance of the
+            <see cref="T:Bubba.GptTool"/> class.
+            </summary>
+        </member>
+        <member name="P:Bubba.GptTool.Name">
+            <summary>
+            Gets or sets the name.
+            </summary>
+            <value>
+            The name.
+            </value>
+        </member>
+        <member name="P:Bubba.GptTool.Type">
+            <summary>
+            Gets or sets the type.
+            </summary>
+            <value>
+            The type.
+            </value>
+        </member>
+        <member name="M:Bubba.GptTool.Fail(System.Exception)">
+            <summary>
+            Wraps error
+            </summary>
+            <param name="ex">The ex.</param>
+        </member>
+        <member name="M:Bubba.ImageGeneration.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Bubba.ImageGeneration"/> class.
+            </summary>
+        </member>
+        <member name="T:Bubba.WebSearch">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Bubba.WebSearch.#ctor">
+            <summary>
+            Initializes a new instance of the
+            <see cref="T:Bubba.WebSearch"/> class.
+            </summary>
+        </member>
         <member name="T:Bubba.UserLocation">
             <summary>
             
@@ -23773,6 +23920,167 @@
             </summary>
             <param name="ex">The ex.</param>
         </member>
+        <member name="T:Bubba.SearchBase">
+            <inheritdoc />
+            <summary>
+            </summary>
+        </member>
+        <member name="F:Bubba.SearchBase._entry">
+            <summary>
+            The locked object
+            </summary>
+        </member>
+        <member name="F:Bubba.SearchBase._busy">
+            <summary>
+            The busy
+            </summary>
+        </member>
+        <member name="F:Bubba.SearchBase._keyWords">
+            <summary>
+            The query
+            </summary>
+        </member>
+        <member name="F:Bubba.SearchBase._link">
+            <summary>
+            The link
+            </summary>
+        </member>
+        <member name="F:Bubba.SearchBase._name">
+            <summary>
+            The name
+            </summary>
+        </member>
+        <member name="F:Bubba.SearchBase._content">
+            <summary>
+            The content
+            </summary>
+        </member>
+        <member name="F:Bubba.SearchBase._title">
+            <summary>
+            The title
+            </summary>
+        </member>
+        <member name="F:Bubba.SearchBase._projectId">
+            <summary>
+            The project identifier
+            </summary>
+        </member>
+        <member name="F:Bubba.SearchBase._projectNumber">
+            <summary>
+            The project number
+            </summary>
+        </member>
+        <member name="F:Bubba.SearchBase._url">
+            <summary>
+            The URL
+            </summary>
+        </member>
+        <member name="P:Bubba.SearchBase.IsBusy">
+            <summary>
+            Gets a value indicating whether this instance is busy.
+            </summary>
+            <value>
+            <c> true </c>
+            if this instance is busy; otherwise,
+            <c> false </c>
+            </value>
+        </member>
+        <member name="P:Bubba.SearchBase.KeyWords">
+            <summary>
+            Gets or sets the query.
+            </summary>
+            <value>
+            The query.
+            </value>
+        </member>
+        <member name="P:Bubba.SearchBase.Link">
+            <summary>
+            Gets or sets the link.
+            </summary>
+            <value>
+            The link.
+            </value>
+        </member>
+        <member name="P:Bubba.SearchBase.ProjectId">
+            <summary>
+            Gets or sets the project identifier.
+            </summary>
+            <value>
+            The project identifier.
+            </value>
+        </member>
+        <member name="P:Bubba.SearchBase.ProjectNumber">
+            <summary>
+            Gets or sets the project number.
+            </summary>
+            <value>
+            The project number.
+            </value>
+        </member>
+        <member name="P:Bubba.SearchBase.Url">
+            <summary>
+            Gets or sets the URL.
+            </summary>
+            <value>
+            The URL.
+            </value>
+        </member>
+        <member name="P:Bubba.SearchBase.Name">
+            <summary>
+            Gets or sets the name.
+            </summary>
+            <value>
+            The name.
+            </value>
+        </member>
+        <member name="P:Bubba.SearchBase.Content">
+            <summary>
+            Gets or sets the content.
+            </summary>
+            <value>
+            The content.
+            </value>
+        </member>
+        <member name="P:Bubba.SearchBase.Title">
+            <summary>
+            Gets or sets the title.
+            </summary>
+            <value>
+            The title.
+            </value>
+        </member>
+        <member name="M:Bubba.SearchBase.PingNetwork(System.String)">
+            <summary>
+            Pings the network.
+            </summary>
+            <param name="ipAddress">
+            The host name or address.
+            </param>
+            <returns>
+            bool
+            </returns>
+        </member>
+        <member name="M:Bubba.SearchBase.SendNotification(System.String)">
+            <summary>
+            Notifies this instance.
+            </summary>
+        </member>
+        <member name="M:Bubba.SearchBase.Busy">
+            <summary>
+            Begins the initialize.
+            </summary>
+        </member>
+        <member name="M:Bubba.SearchBase.Chill">
+            <summary>
+            Ends the initialize.
+            </summary>
+        </member>
+        <member name="M:Bubba.SearchBase.Fail(System.Exception)">
+            <summary>
+            Fails the specified ex.
+            </summary>
+            <param name="ex">The ex.</param>
+        </member>
         <member name="T:Bubba.ServerBase">
             <inheritdoc />
              <summary>
@@ -24232,6 +24540,62 @@
             The query.
             </value>
         </member>
+        <member name="P:Bubba.GoogleSearch.Link">
+            <summary>
+            Gets or sets the link.
+            </summary>
+            <value>
+            The link.
+            </value>
+        </member>
+        <member name="P:Bubba.GoogleSearch.ProjectId">
+            <summary>
+            Gets or sets the project identifier.
+            </summary>
+            <value>
+            The project identifier.
+            </value>
+        </member>
+        <member name="P:Bubba.GoogleSearch.ProjectNumber">
+            <summary>
+            Gets or sets the project number.
+            </summary>
+            <value>
+            The project number.
+            </value>
+        </member>
+        <member name="P:Bubba.GoogleSearch.Url">
+            <summary>
+            Gets or sets the URL.
+            </summary>
+            <value>
+            The URL.
+            </value>
+        </member>
+        <member name="P:Bubba.GoogleSearch.Name">
+            <summary>
+            Gets or sets the name.
+            </summary>
+            <value>
+            The name.
+            </value>
+        </member>
+        <member name="P:Bubba.GoogleSearch.Content">
+            <summary>
+            Gets or sets the content.
+            </summary>
+            <value>
+            The content.
+            </value>
+        </member>
+        <member name="P:Bubba.GoogleSearch.Title">
+            <summary>
+            Gets or sets the title.
+            </summary>
+            <value>
+            The title.
+            </value>
+        </member>
         <member name="M:Bubba.GoogleSearch.GetResults">
             <summary>
             Gets the results.
@@ -24422,173 +24786,6 @@
             Gets the string.
             </summary>
             <returns></returns>
-        </member>
-        <member name="T:Bubba.WebSearch">
-            <inheritdoc />
-            <summary>
-            </summary>
-        </member>
-        <member name="F:Bubba.WebSearch._entry">
-            <summary>
-            The locked object
-            </summary>
-        </member>
-        <member name="F:Bubba.WebSearch._busy">
-            <summary>
-            The busy
-            </summary>
-        </member>
-        <member name="F:Bubba.WebSearch._keyWords">
-            <summary>
-            The query
-            </summary>
-        </member>
-        <member name="F:Bubba.WebSearch._link">
-            <summary>
-            The link
-            </summary>
-        </member>
-        <member name="F:Bubba.WebSearch._name">
-            <summary>
-            The name
-            </summary>
-        </member>
-        <member name="F:Bubba.WebSearch._content">
-            <summary>
-            The content
-            </summary>
-        </member>
-        <member name="F:Bubba.WebSearch._title">
-            <summary>
-            The title
-            </summary>
-        </member>
-        <member name="F:Bubba.WebSearch._projectId">
-            <summary>
-            The project identifier
-            </summary>
-        </member>
-        <member name="F:Bubba.WebSearch._projectNumber">
-            <summary>
-            The project number
-            </summary>
-        </member>
-        <member name="F:Bubba.WebSearch._url">
-            <summary>
-            The URL
-            </summary>
-        </member>
-        <member name="P:Bubba.WebSearch.IsBusy">
-            <summary>
-            Gets a value indicating whether this instance is busy.
-            </summary>
-            <value>
-            <c> true </c>
-            if this instance is busy; otherwise,
-            <c> false </c>
-            </value>
-        </member>
-        <member name="M:Bubba.WebSearch.#ctor">
-            <summary>
-            Initializes a new instance of the
-            <see cref="T:Bubba.WebSearch"/> class.
-            </summary>
-        </member>
-        <member name="P:Bubba.WebSearch.KeyWords">
-            <summary>
-            Gets or sets the query.
-            </summary>
-            <value>
-            The query.
-            </value>
-        </member>
-        <member name="P:Bubba.WebSearch.Link">
-            <summary>
-            Gets or sets the link.
-            </summary>
-            <value>
-            The link.
-            </value>
-        </member>
-        <member name="P:Bubba.WebSearch.ProjectId">
-            <summary>
-            Gets or sets the project identifier.
-            </summary>
-            <value>
-            The project identifier.
-            </value>
-        </member>
-        <member name="P:Bubba.WebSearch.ProjectNumber">
-            <summary>
-            Gets or sets the project number.
-            </summary>
-            <value>
-            The project number.
-            </value>
-        </member>
-        <member name="P:Bubba.WebSearch.Url">
-            <summary>
-            Gets or sets the URL.
-            </summary>
-            <value>
-            The URL.
-            </value>
-        </member>
-        <member name="P:Bubba.WebSearch.Name">
-            <summary>
-            Gets or sets the name.
-            </summary>
-            <value>
-            The name.
-            </value>
-        </member>
-        <member name="P:Bubba.WebSearch.Content">
-            <summary>
-            Gets or sets the content.
-            </summary>
-            <value>
-            The content.
-            </value>
-        </member>
-        <member name="P:Bubba.WebSearch.Title">
-            <summary>
-            Gets or sets the title.
-            </summary>
-            <value>
-            The title.
-            </value>
-        </member>
-        <member name="M:Bubba.WebSearch.PingNetwork(System.String)">
-            <summary>
-            Pings the network.
-            </summary>
-            <param name="ipAddress">
-            The host name or address.
-            </param>
-            <returns>
-            bool
-            </returns>
-        </member>
-        <member name="M:Bubba.WebSearch.SendNotification(System.String)">
-            <summary>
-            Notifies this instance.
-            </summary>
-        </member>
-        <member name="M:Bubba.WebSearch.Busy">
-            <summary>
-            Begins the initialize.
-            </summary>
-        </member>
-        <member name="M:Bubba.WebSearch.Chill">
-            <summary>
-            Ends the initialize.
-            </summary>
-        </member>
-        <member name="M:Bubba.WebSearch.Fail(System.Exception)">
-            <summary>
-            Fails the specified ex.
-            </summary>
-            <param name="ex">The ex.</param>
         </member>
         <member name="T:Bubba.ILanguageProcessor">
             <summary>
@@ -28077,7 +28274,7 @@
         </member>
         <member name="P:Bubba.Properties.Locations.PingIP">
             <summary>
-              Looks up a localized string similar to 8.8.8.8.
+              Looks up a localized string similar to 127.0.0.1.
             </summary>
         </member>
         <member name="P:Bubba.Properties.Locations.Proxy">
@@ -28102,7 +28299,7 @@
         </member>
         <member name="P:Bubba.Properties.Locations.ProxyPort">
             <summary>
-              Looks up a localized string similar to 123.
+              Looks up a localized string similar to 8080.
             </summary>
         </member>
         <member name="P:Bubba.Properties.Locations.ProxyUsername">
@@ -29109,6 +29306,79 @@
             Called when [property changed].
             </summary>
             <param name="propertyName">Name of the property.</param>
+        </member>
+        <member name="T:Bubba.HoverLinkBehavior">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Bubba.HoverLinkBehavior.HoverLinkProperty">
+            <summary>
+            The hover link property
+            </summary>
+        </member>
+        <member name="P:Bubba.HoverLinkBehavior.HoverLink">
+            <summary>
+            Gets or sets the hover link.
+            </summary>
+            <value>
+            The hover link.
+            </value>
+        </member>
+        <member name="M:Bubba.HoverLinkBehavior.OnAttached">
+            <summary>
+            Called after the behavior is attached to an AssociatedObject.
+            </summary>
+            <remarks>
+            Override this to hook up functionality to the AssociatedObject.
+            </remarks>
+        </member>
+        <member name="M:Bubba.HoverLinkBehavior.OnDetaching">
+            <summary>
+            Called when the behavior is being detached from its AssociatedObject,
+            but before it has actually occurred.
+            </summary>
+            <remarks>
+            Override this to unhook functionality from the AssociatedObject.
+            </remarks>
+        </member>
+        <member name="M:Bubba.HoverLinkBehavior.OnStatusMessageChanged(System.Object,CefSharp.StatusMessageEventArgs)">
+            <summary>
+            Called when [status message changed].
+            </summary>
+            <param name="sender">The sender.</param>
+            <param name="e">The <see cref="T:CefSharp.StatusMessageEventArgs"/>
+            instance containing the event data.</param>
+        </member>
+        <member name="T:Bubba.TextBoxBindingUpdateOnEnterBehaviour">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Bubba.TextBoxBindingUpdateOnEnterBehaviour.OnAttached">
+            <summary>
+            Called after the behavior is attached to an AssociatedObject.
+            </summary>
+            <remarks>
+            Override this to hook up functionality to the AssociatedObject.
+            </remarks>
+        </member>
+        <member name="M:Bubba.TextBoxBindingUpdateOnEnterBehaviour.OnDetaching">
+            <summary>
+            Called when the behavior is being detached from its AssociatedObject,
+            but before it has actually occurred.
+            </summary>
+            <remarks>
+            Override this to unhook functionality from the AssociatedObject.
+            </remarks>
+        </member>
+        <member name="M:Bubba.TextBoxBindingUpdateOnEnterBehaviour.OnTextBoxKeyDown(System.Object,System.Windows.Input.KeyEventArgs)">
+            <summary>
+            Called when [text box key down].
+            </summary>
+            <param name="sender">The sender.</param>
+            <param name="e">The <see cref="T:System.Windows.Input.KeyEventArgs"/>
+            instance containing the event data.</param>
         </member>
         <member name="T:Bubba.MetroAccordian">
             <inheritdoc />
@@ -32618,36 +32888,6 @@
             </summary>
             <seealso cref="T:Syncfusion.Windows.Shared.TileViewControl" />
         </member>
-        <member name="F:Bubba.MetroTileView._backColor">
-            <summary>
-            The back color
-            </summary>
-        </member>
-        <member name="F:Bubba.MetroTileView._backHover">
-            <summary>
-            The back hover color
-            </summary>
-        </member>
-        <member name="F:Bubba.MetroTileView._borderColor">
-            <summary>
-            The border color
-            </summary>
-        </member>
-        <member name="F:Bubba.MetroTileView._borderHover">
-            <summary>
-            The border hover color
-            </summary>
-        </member>
-        <member name="F:Bubba.MetroTileView._foreColor">
-            <summary>
-            The fore color
-            </summary>
-        </member>
-        <member name="F:Bubba.MetroTileView._foreHover">
-            <summary>
-            The fore hover color
-            </summary>
-        </member>
         <member name="M:Bubba.MetroTileView.#ctor">
             <inheritdoc />
             <summary>
@@ -33860,7 +34100,7 @@
             Initializes the tool strip.
             </summary>
         </member>
-        <member name="M:Bubba.ChatWindow.InitializeChatEditor">
+        <member name="M:Bubba.ChatWindow.InitializeEditor">
             <summary>
             Initializes the user system text box.
             </summary>
@@ -33898,11 +34138,6 @@
             <summary>
             this is done just once,
             to globally initialize CefSharp/CEF
-            </summary>
-        </member>
-        <member name="M:Bubba.ChatWindow.RegisterCallbacks">
-            <summary>
-            Registers the callbacks.
             </summary>
         </member>
         <member name="M:Bubba.ChatWindow.InvokeIf(System.Action)">
@@ -34095,13 +34330,6 @@
             </summary>
             <param name="form">The form.</param>
             <param name="interval">The interval.</param>
-        </member>
-        <member name="M:Bubba.ChatWindow.GetAppDir(System.String)">
-            <summary>
-            Gets the application dir.
-            </summary>
-            <param name="name">The name.</param>
-            <returns></returns>
         </member>
         <member name="M:Bubba.ChatWindow.SetToolbarVisibility(System.Boolean)">
             <summary>
@@ -38603,6 +38831,36 @@
         <member name="M:Bubba.WebBrowser.InitializeComponent">
             <summary>
             InitializeComponent
+            </summary>
+        </member>
+        <member name="T:XamlGeneratedNamespace.GeneratedInternalTypeHelper">
+            <summary>
+            GeneratedInternalTypeHelper
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.CreateInstance(System.Type,System.Globalization.CultureInfo)">
+            <summary>
+            CreateInstance
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.GetPropertyValue(System.Reflection.PropertyInfo,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            GetPropertyValue
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.SetPropertyValue(System.Reflection.PropertyInfo,System.Object,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            SetPropertyValue
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.CreateDelegate(System.Type,System.Object,System.String)">
+            <summary>
+            CreateDelegate
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.AddEventHandler(System.Reflection.EventInfo,System.Object,System.Delegate)">
+            <summary>
+            AddEventHandler
             </summary>
         </member>
     </members>

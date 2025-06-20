@@ -70,9 +70,6 @@ namespace Bubba
             // Basic Settings
             FontFamily = new FontFamily( "Roboto" );
             FontSize = 12;
-            Background = _theme.FormBackground;
-            BorderBrush = _theme.BlueBorderBrush;
-            Foreground = _theme.Foreground;
         }
 
         /// <summary>

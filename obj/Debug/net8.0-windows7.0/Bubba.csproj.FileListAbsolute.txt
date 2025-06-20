@@ -242,8 +242,11 @@ C:\Users\terry\source\repos\Bubba\bin\Debug\net8.0-windows7.0\OpenTK.OpenAL.dll
 C:\Users\terry\source\repos\Bubba\bin\Debug\net8.0-windows7.0\OpenTK.Windowing.Common.dll
 C:\Users\terry\source\repos\Bubba\bin\Debug\net8.0-windows7.0\OpenTK.Windowing.Desktop.dll
 C:\Users\terry\source\repos\Bubba\bin\Debug\net8.0-windows7.0\OpenTK.Windowing.GraphicsLibraryFramework.dll
+C:\Users\terry\source\repos\Bubba\bin\Debug\net8.0-windows7.0\PdfSharp.BarCodes.dll
 C:\Users\terry\source\repos\Bubba\bin\Debug\net8.0-windows7.0\PdfSharp.Charting.dll
+C:\Users\terry\source\repos\Bubba\bin\Debug\net8.0-windows7.0\PdfSharp.Cryptography.dll
 C:\Users\terry\source\repos\Bubba\bin\Debug\net8.0-windows7.0\PdfSharp.Quality.dll
+C:\Users\terry\source\repos\Bubba\bin\Debug\net8.0-windows7.0\PdfSharp.Shared.dll
 C:\Users\terry\source\repos\Bubba\bin\Debug\net8.0-windows7.0\PdfSharp.Snippets.dll
 C:\Users\terry\source\repos\Bubba\bin\Debug\net8.0-windows7.0\PdfSharp.System.dll
 C:\Users\terry\source\repos\Bubba\bin\Debug\net8.0-windows7.0\PdfSharp.WPFonts.dll
@@ -711,6 +714,3 @@ C:\Users\terry\source\repos\Bubba\obj\Debug\net8.0-windows7.0\refint\Bubba.dll
 C:\Users\terry\source\repos\Bubba\obj\Debug\net8.0-windows7.0\Bubba.xml
 C:\Users\terry\source\repos\Bubba\obj\Debug\net8.0-windows7.0\Bubba.genruntimeconfig.cache
 C:\Users\terry\source\repos\Bubba\obj\Debug\net8.0-windows7.0\ref\Bubba.dll
-C:\Users\terry\source\repos\Bubba\bin\Debug\net8.0-windows7.0\PdfSharp.BarCodes.dll
-C:\Users\terry\source\repos\Bubba\bin\Debug\net8.0-windows7.0\PdfSharp.Cryptography.dll
-C:\Users\terry\source\repos\Bubba\bin\Debug\net8.0-windows7.0\PdfSharp.Shared.dll

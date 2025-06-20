@@ -73,9 +73,6 @@ namespace Bubba
             Height = 400;
             FontSize = _theme.FontSize;
             FontFamily = _theme.FontFamily;
-            Background = _theme.DarkBlueBrush;
-            Foreground = _theme.Foreground;
-            BorderBrush = _theme.BlueBorderBrush;
         }
 
         /// <summary>

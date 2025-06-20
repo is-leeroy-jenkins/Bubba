@@ -80,10 +80,6 @@ namespace Bubba
             SizeMode = SizeMode.Normal;
             HorizontalContentAlignment = HorizontalAlignment.Center;
             VerticalContentAlignment = VerticalAlignment.Center;
-
-            // Event Wiring
-            MouseEnter += OnMouseEnter;
-            MouseLeave += OnMouseLeave;
         }
 
         /// <summary> Called when [mouse enter]. </summary>

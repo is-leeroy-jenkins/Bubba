@@ -195,6 +195,7 @@
 
                 <b:ToolStripTextBox
                     x:Name="ToolStripTextBox"
+                    TextChanged="OnToolStripTextBoxTextChanged"
                     Width="576"
                     Height="35"
                     Padding="15,1,1,1"
@@ -202,7 +203,7 @@
                     VerticalContentAlignment="Center"
                     Background="{StaticResource ControlInteriorBrush}"
                     BorderBrush="{StaticResource BlueBorderBrush}"
-                    BorderThickness="2"
+                    BorderThickness="1"
                     FontFamily="Roboto"
                     FontSize="14"
                     Foreground="{StaticResource WhiteForeground}"
@@ -218,6 +219,7 @@
 
                 <b:ToolStripButton
                     x:Name="ToolStripSendButton"
+                    Click="OnSendButtonClick"
                     Width="40"
                     Height="30"
                     Margin="5,1,5,1"
@@ -227,6 +229,7 @@
 
                 <b:ToolStripButton
                     x:Name="ToolStripRefreshButton"
+                    Click="OnToolStripRefreshButtonClick"
                     Margin="5,1,5,1"
                     ImageSource="/Resources/Assets/MenuImages/RefreshItem.png"
                     ToolTip="Clear Propmt Text" />
@@ -264,6 +267,7 @@
 
                 <b:ToolStripButton
                     x:Name="ToolStripMenuButton"
+                    Click="OnToggleButtonClick"
                     Width="40"
                     Height="30"
                     Margin="15,1,5,1"
@@ -281,6 +285,7 @@
             <mah:MetroTabControl
                 x:Name="TabControl"
                 Grid.Row="0"
+                SelectionChanged="OnTabControlSelectionChanged"
                 Foreground="{StaticResource FormForeground}">
 
                 <!--  ********************************************* CHAT TAB *************************************  -->
@@ -302,7 +307,7 @@
                             Foreground="{StaticResource FormForeground}">
 
                             <wpf:SfTextBoxExt
-                                x:Name="GptTextBox"
+                                x:Name="ChatTextBox"
                                 Height="469"
                                 Margin="25,0,22,0"
                                 Text=""
@@ -358,13 +363,13 @@
                                 Width="250"
                                 Height="80"
                                 Margin="10,0,0,0"
-                                Padding="1,1,1,1"
+                                Padding="1"
                                 HorizontalAlignment="Left"
                                 VerticalAlignment="Center"
                                 ActiveMinorTickStroke="{StaticResource WhiteForeground}"
                                 ActiveTickStroke="{StaticResource WhiteForeground}"
                                 Background="{DynamicResource BlueBorderBrush}"
-                                BorderThickness="0,0,0,0"
+                                BorderThickness="1"
                                 Foreground="{StaticResource FormForeground}"
                                 LargeChange="0.25"
                                 Maximum="2"
@@ -381,7 +386,7 @@
                                 TickStroke="{StaticResource WhiteForeground}"
                                 ToolTip="Lower values increase deterministic output"
                                 ToolTipFormat="P"
-                                Value="0.80" />
+                                Value="0.08" />
 
                         </GroupBox>
 
@@ -456,7 +461,7 @@
                                 TickPlacement="BottomRight"
                                 TickStroke="{StaticResource WhiteForeground}"
                                 ToolTip="top p% probability mass"
-                                Value="0.90" />
+                                Value="0.09" />
                         </GroupBox>
 
                         <GroupBox
@@ -706,10 +711,11 @@
                                         ToolTip="Upper Limit on Token Usage"
                                         UseNullOption="True"
                                         WatermarkTextIsVisible="True"
-                                        Value="12000" />
+                                        Value="10000" />
 
                                     <b:MetroDropDown
                                         x:Name="EffortDropDown"
+                                        SelectionChanged="OnEffortSelectionChanged"
                                         Canvas.Left="20"
                                         Canvas.Top="85"
                                         Width="132"
@@ -748,6 +754,7 @@
                                         Height="40"
                                         HorizontalAlignment="Center"
                                         VerticalAlignment="Center"
+                                        SelectionChanged="OnVoiceSelectionChanged"
                                         Background="{StaticResource ControlInteriorBrush}"
                                         BorderBrush="{StaticResource BlueBorderBrush}"
                                         BorderThickness="1"
@@ -786,6 +793,7 @@
                                         Content="Store"
                                         FontFamily="Roboto"
                                         FontSize="14"
+                                        Checked="OnStoreCheckBoxChecked"
                                         Foreground="{StaticResource FormForeground}"
                                         ToolTip="Store Output" />
 
@@ -803,6 +811,7 @@
                                         Content="Stream"
                                         FontFamily="Roboto"
                                         FontSize="14"
+                                        Checked="OnStreamCheckBoxChecked"
                                         Foreground="{StaticResource FormForeground}"
                                         ToolTip="Stream Output" />
 
@@ -817,6 +826,7 @@
                                         Content="Listen"
                                         FontFamily="Roboto"
                                         FontSize="14"
+                                        Checked="OnListenCheckedChanged"
                                         Foreground="{StaticResource FormForeground}"
                                         ToolTip="Activate Audio" />
 
@@ -832,6 +842,7 @@
                                         Content="Mute"
                                         FontFamily="Roboto"
                                         FontSize="14"
+                                        Checked="OnMuteCheckedBoxChanged"
                                         Foreground="{StaticResource FormForeground}"
                                         ToolTip="Deactivate Audio" />
 
@@ -844,6 +855,7 @@
                                         HorizontalAlignment="Center"
                                         VerticalAlignment="Top"
                                         Background="{DynamicResource GroupBoxBackground}"
+                                        Click="OnFileApiButtonClick"
                                         ImageSource="/Resources/Assets/ToolStripImages/GptUploadButton.png"
                                         ToolTip="Upload to API" />
 
@@ -858,6 +870,7 @@
                                         Background="{DynamicResource GroupBoxBackground}"
                                         Content=""
                                         FontFamily="Roboto"
+                                        Click="OnClearButtonClick"
                                         ImageSource="/Resources/Assets/MenuImages/RefreshItem.png"
                                         ToolTip="Clear Parameters" />
                                 </Canvas>
@@ -886,6 +899,7 @@
                                         Height="40"
                                         HorizontalAlignment="Left"
                                         VerticalAlignment="Top"
+                                        SelectionChanged="OnResponseFormatSelectionChanged"
                                         Background="{StaticResource ControlInteriorBrush}"
                                         BorderBrush="{StaticResource ResourceKey=BlueBorderBrush}"
                                         BorderThickness="1"
@@ -937,6 +951,7 @@
                                         Height="40"
                                         HorizontalAlignment="Left"
                                         VerticalAlignment="Top"
+                                        SelectionChanged="OnAudioFormatSelectionChanged"
                                         Background="{StaticResource ControlInteriorBrush}"
                                         BorderBrush="{StaticResource BlueBorderBrush}"
                                         BorderThickness="1"
@@ -980,6 +995,7 @@
                                         Canvas.Top="144"
                                         Width="144"
                                         Height="40"
+                                        SelectionChanged="OnImageFormatSelectionChanged"
                                         Background="{StaticResource ControlInteriorBrush}"
                                         BorderBrush="{StaticResource BlueBorderBrush}"
                                         BorderThickness="1"
@@ -1018,6 +1034,7 @@
                                         Height="40"
                                         HorizontalAlignment="Left"
                                         VerticalAlignment="Top"
+                                        SelectionChanged="OnRequestListBoxSelectionChanged"
                                         Background="{StaticResource ControlInteriorBrush}"
                                         BorderBrush="{StaticResource BlueBorderBrush}"
                                         BorderThickness="1"
@@ -1031,6 +1048,7 @@
                                         Height="40"
                                         HorizontalAlignment="Center"
                                         VerticalAlignment="Top"
+                                        SelectionChanged="OnModelDropDownSelectionChanged"
                                         Background="{StaticResource ControlInteriorBrush}"
                                         BorderBrush="{StaticResource BlueBorderBrush}"
                                         BorderThickness="1"
@@ -1056,7 +1074,8 @@
                             FontSize="14"
                             Foreground="{StaticResource WhiteForeground}"
                             Tag="Top Log Probabilities"
-                            Text="{Binding ElementName=TopLogProbSlider, Mode=Default, Path=Value, StringFormat=N2}" />
+                            Text="{Binding ElementName=TopLogProbSlider, Mode=Default, Path=Value, StringFormat=N2}"
+                            TextChanged="OnParameterTextBoxChanged"/>
 
                         <TextBox
                             x:Name="TemperatureTextBox"
@@ -1072,6 +1091,7 @@
                             BorderBrush="{StaticResource BlueBorderBrush}"
                             BorderThickness="1"
                             Text="{Binding ElementName=TemperatureSlider, Mode=Default, Path=Value, StringFormat=N2}"
+                            TextChanged="OnParameterTextBoxChanged"
                             TextWrapping="Wrap" />
 
                         <TextBox
@@ -1088,6 +1108,7 @@
                             BorderBrush="{StaticResource BlueBorderBrush}"
                             BorderThickness="1"
                             Text="{Binding ElementName=TopPercentSlider, Mode=Default, Path=Value, StringFormat=N2}"
+                            TextChanged="OnParameterTextBoxChanged"
                             TextWrapping="Wrap" />
 
                         <TextBox
@@ -1120,6 +1141,7 @@
                             BorderBrush="{StaticResource BlueBorderBrush}"
                             BorderThickness="1"
                             Text="{Binding ElementName=PresenceSlider, Mode=Default, Path=Value, StringFormat=N2}"
+                            TextChanged="OnParameterTextBoxChanged"
                             TextWrapping="Wrap" />
 
                         <TextBox
@@ -1137,6 +1159,7 @@
                             BorderThickness="1"
                             Tag="FrequencyPenalty"
                             Text="{Binding ElementName=FrequencySlider, Mode=Default, Path=Value, StringFormat=N2}"
+                            TextChanged="OnParameterTextBoxChanged"
                             TextWrapping="Wrap" />
 
                         <TextBox
@@ -1153,6 +1176,7 @@
                             BorderBrush="{StaticResource BlueBorderBrush}"
                             BorderThickness="1"
                             Text="{Binding ElementName=SpeechRateSlider, Mode=Default, Path=Value, StringFormat=N1}"
+                            TextChanged="OnParameterTextBoxChanged"
                             TextWrapping="Wrap" />
                     </Grid>
                 </TabItem>
@@ -1369,6 +1393,7 @@
                                 Width="200"
                                 Height="345"
                                 Padding="3,3,3,3"
+                                SelectionChanged="OnDocumentListBoxSelectionChanged"
                                 VerticalAlignment="Top" />
 
                             <b:MetroDropDown
@@ -1384,6 +1409,7 @@
                                 BorderThickness="2"
                                 ClipToBounds="True"
                                 FontFamily="Roboto"
+                                SelectionChanged="OnLanguageListBoxSelectionChanged"
                                 Foreground="{StaticResource FormForeground}"
                                 SnapsToDevicePixels="True">
                                 <b:MetroDropDownItem

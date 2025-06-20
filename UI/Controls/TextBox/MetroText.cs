@@ -68,8 +68,7 @@ namespace Bubba
         public MetroText( )
             : base( )
         {
-            Background = _theme.Transparent;
-            Foreground = _theme.FormForeground;
+            SetResourceReference( StyleProperty, typeof( TextBlock ) );
             FontSize = 12;
             FontFamily = new FontFamily( "Roboto" );
         }

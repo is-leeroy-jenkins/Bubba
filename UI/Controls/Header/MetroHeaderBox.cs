@@ -72,9 +72,6 @@ namespace Bubba
             // Basic Settings
             FontFamily = _theme.FontFamily;
             FontSize = _theme.FontSize;
-            Background = _theme.FormBackground;
-            Foreground = _theme.Foreground;
-            BorderBrush = _theme.MutedForeground;
             HorizontalAlignment = _theme.HorizontalAlignment;
             VerticalAlignment = _theme.VerticalAlignment;
         }

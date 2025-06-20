@@ -69,9 +69,6 @@ namespace Bubba
             : base( )
         {
             // Control Properties
-            Foreground = _theme.Foreground;
-            Background = _theme.ControlBackground;
-            BorderBrush = _theme.ControlBackground;
             Margin = _theme.Margin;
             Padding = _theme.Padding;
             BorderThickness = _theme.BorderThickness;

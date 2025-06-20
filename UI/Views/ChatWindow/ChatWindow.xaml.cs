@@ -565,7 +565,6 @@ namespace Bubba
 
             // Window Initialization
             InitializeComponent( );
-            RegisterCallbacks( );
             InitializeDelegates( );
             InitializeToolStrip( );
 
@@ -781,20 +780,16 @@ namespace Bubba
         /// <summary>
         /// Initializes the user system text box.
         /// </summary>
-        private void InitializeChatEditor( )
+        private void InitializeEditor( )
         {
             try
             {
                 Editor.EnableOutlining = true;
-                Editor.EnableIntellisense = false;
+                Editor.EnableIntellisense = true;
                 Editor.DocumentLanguage = Syncfusion.Windows.Edit.Languages.Text;
                 Editor.IsMultiLine = true;
                 Editor.IsUndoEnabled = true;
                 Editor.IsRedoEnabled = true;
-                Editor.LineNumberAreaBackground = _theme.BlackBackground;
-                Editor.LineNumberTextForeground = _theme.GreenBrush;
-                Editor.SelectionBackground = _theme.SteelBlueBrush;
-                Editor.SelectionForeground = _theme.WhiteForeground;
             }
             catch( Exception ex )
             {
@@ -809,7 +804,6 @@ namespace Bubba
         {
             try
             {
-                TabControl.SelectedIndex = 1;
                 LoadFileBrowser( );
                 LoadGptFileDialog( );
                 LoadCalculator( );
@@ -924,14 +918,6 @@ namespace Bubba
             ConfigureBrowser( WebBrowser );
             _currentBrowser = WebBrowser;
             _searchEngineUrl = Locations.Google;
-            var _bool = bool.Parse( Locations.Proxy );
-            if( _bool )
-            {
-                var _proxy = Locations.PingIP;
-                var _port = Locations.ProxyPort;
-                CefSharpSettings.Proxy = new ProxyOptions( _proxy, _port );
-            }
-
             _hostCallback = new HostCallback( this );
             _downloadCallback = new DownloadCallback( this );
             _lifeSpanCallback = new LifeSpanCallback( this );
@@ -939,46 +925,6 @@ namespace Bubba
             _keyboardCallback = new KeyboardCallback( this );
             _requestCallback = new RequestCallback( this );
             InitializeDownloads( );
-        }
-
-        /// <summary>
-        /// Registers the callbacks.
-        /// </summary>
-        private protected void RegisterCallbacks( )
-        {
-            try
-            {
-                ToolStripTextBox.TextChanged += OnToolStripTextBoxTextChanged;
-                ToolStripMenuButton.Click += OnToggleButtonClick;
-                TemperatureTextBox.TextChanged += OnParameterTextBoxChanged;
-                PresencePenaltyTextBox.TextChanged += OnParameterTextBoxChanged;
-                FrequencyPenaltyTextBox.TextChanged += OnParameterTextBoxChanged;
-                TopPercentTextBox.TextChanged += OnParameterTextBoxChanged;
-                ClearParameterButton.Click += OnClearButtonClick;
-                ToolStripSendButton.Click += OnSendButtonClick;
-                ListenCheckBox.Checked += OnListenCheckedChanged;
-                MuteCheckBox.Checked += OnMuteCheckedBoxChanged;
-                StoreCheckBox.Checked += OnStoreCheckBoxChecked;
-                GenerationListBox.SelectionChanged += OnRequestListBoxSelectionChanged;
-                ModelDropDown.SelectionChanged += OnModelDropDownSelectionChanged;
-                ToolStripRefreshButton.Click += OnRefreshButtonClick;
-                ToolStripSendButton.Click += OnGoButtonClicked;
-                GptFileButton.Click += OnFileApiButtonClick;
-                LanguageDropDown.SelectionChanged += OnLanguageListBoxSelectionChanged;
-                DocumentListBox.SelectionChanged += OnDocumentListBoxSelectionChanged;
-                ResponseFormatDropDown.SelectionChanged += OnResponseFormatSelectionChanged;
-                ImageSizeDropDown.SelectionChanged += OnImageSizeSelectionChanged;
-                AudioFormatDropDown.SelectionChanged += OnAudioFormatSelectionChanged;
-                ImageFormatDropDown.SelectionChanged += OnImageFormatSelectionChanged;
-                ImageQualityDropDown.SelectionChanged += OnImageQualitySelectionChanged;
-                ImageDetailDropDown.SelectionChanged += OnImageDetailSelectionChanged;
-                EffortDropDown.SelectionChanged += OnEffortSelectionChanged;
-                VoicesDropDown.SelectionChanged += OnVoiceSelectionChanged;
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
-            }
         }
 
         /// <summary>
@@ -1214,9 +1160,9 @@ namespace Bubba
                 _imageSize = "";
                 _endpoint = "";
                 _number = 1;
-                _maximumTokens = 2048;
-                _temperature = 0.80;
-                _topPercent = 0.90;
+                _maximumTokens = 10000;
+                _temperature = 0.08;
+                _topPercent = 0.09;
                 _frequencyPenalty = 0.00;
                 _presencePenalty = 0.00;
                 _language = "";
@@ -1285,7 +1231,7 @@ namespace Bubba
                 FrequencySlider.Value = 0.00;
                 TemperatureSlider.Value = 0.08;
                 TopPercentSlider.Value = 0.09;
-                SpeechRateSlider.Value = 2048;
+                SpeechRateSlider.Value = 2;
             }
             catch( Exception ex )
             {
@@ -1349,7 +1295,7 @@ namespace Bubba
             try
             {
                 Editor.Text = "";
-                GptTextBox.Text = "";
+                ChatTextBox.Text = "";
                 ToolStripTextBox.Text = "";
             }
             catch( Exception ex )
@@ -1602,22 +1548,6 @@ namespace Bubba
             {
                 Fail( ex );
             }
-        }
-
-        /// <summary>
-        /// Gets the application dir.
-        /// </summary>
-        /// <param name="name">The name.</param>
-        /// <returns></returns>
-        private static string GetAppDir( string name )
-        {
-            var winXPDir = @"C:\Documents and Settings\All Users\Application Data\";
-            if( Directory.Exists( winXPDir ) )
-            {
-                return winXPDir + BrowserConfig.Branding + @"\" + name + @"\";
-            }
-
-            return @"C:\ProgramData\" + BrowserConfig.Branding + @"\" + name + @"\";
         }
 
         /// <summary>
@@ -2198,7 +2128,6 @@ namespace Bubba
                 } );
 
                 Chill( );
-                ModelDropDown.SelectedIndex = -1;
             }
             catch( HttpRequestException ex )
             {
@@ -2225,7 +2154,6 @@ namespace Bubba
                     ImageSizeDropDown.AddItem( "1024 X 1024" );
                     ImageSizeDropDown.AddItem( "1792 X 1024" );
                     ImageSizeDropDown.AddItem( "1024 X 1792" );
-                    ImageSizeDropDown.SelectedIndex = -1;
                 }
                 else if( !string.IsNullOrEmpty( _model ) )
                 {
@@ -2236,7 +2164,6 @@ namespace Bubba
                             ImageSizeDropDown.AddItem( "256 X 256" );
                             ImageSizeDropDown.AddItem( "512 X 512" );
                             ImageSizeDropDown.AddItem( "1024 X 1024" );
-                            ImageSizeDropDown.SelectedIndex = -1;
                             break;
                         }
                         case "dall-e-3":
@@ -2244,7 +2171,6 @@ namespace Bubba
                             ImageSizeDropDown.AddItem( "1024 X 1024" );
                             ImageSizeDropDown.AddItem( "1792 X 1024" );
                             ImageSizeDropDown.AddItem( "1024 X 1792" );
-                            ImageSizeDropDown.SelectedIndex = -1;
                             break;
                         }
                         default:
@@ -2253,7 +2179,6 @@ namespace Bubba
                             ImageSizeDropDown.AddItem( "1024 X 1024" );
                             ImageSizeDropDown.AddItem( "1792 X 1024" );
                             ImageSizeDropDown.AddItem( "1024 X 1792" );
-                            ImageSizeDropDown.SelectedIndex = -1;
 
                             break;
                         }
@@ -2287,7 +2212,6 @@ namespace Bubba
                 ModelDropDown.AddItem( "o3-mini-2025-01-31"  );
                 ModelDropDown.AddItem( "text-davinci-003" );
                 ModelDropDown.AddItem( "text-curie-001" );
-                ModelDropDown.SelectedIndex = -1;
             }
             catch( Exception ex )
             {
@@ -2314,7 +2238,6 @@ namespace Bubba
                 ModelDropDown.AddItem( "o1-pro-2025-03-19" );
                 ModelDropDown.AddItem( "o1-mini-2024-09-12" );
                 ModelDropDown.AddItem( "o3-mini-2025-01-31" );
-                ModelDropDown.SelectedIndex = -1;
             }
             catch( Exception ex )
             {
@@ -2341,7 +2264,6 @@ namespace Bubba
                 ModelDropDown.AddItem( "o1-pro-2025-03-19" );
                 ModelDropDown.AddItem( "o1-mini-2024-09-12" );
                 ModelDropDown.AddItem( "o3-mini-2025-01-31" );
-                ModelDropDown.SelectedIndex = -1;
             }
             catch( Exception ex )
             {
@@ -2362,7 +2284,6 @@ namespace Bubba
                 ModelDropDown.AddItem( "gpt-4-0613" );
                 ModelDropDown.AddItem( "gpt-4-0314" );
                 ModelDropDown.AddItem( "gpt-4o-mini-2024-07-18" );
-                ModelDropDown.SelectedIndex = -1;
             }
             catch( Exception ex )
             {
@@ -2386,7 +2307,6 @@ namespace Bubba
                 ModelDropDown.AddItem( "o1-pro-2025-03-19" );
                 ModelDropDown.AddItem( "o1-mini-2024-09-12" );
                 ModelDropDown.AddItem( "o3-mini-2025-01-31" );
-                ModelDropDown.SelectedIndex = -1;
             }
             catch( Exception ex )
             {
@@ -2413,7 +2333,6 @@ namespace Bubba
                 ModelDropDown.AddItem( "o1-pro-2025-03-19" );
                 ModelDropDown.AddItem( "o1-mini-2024-09-12" );
                 ModelDropDown.AddItem( "o3-mini-2025-01-31" );
-                ModelDropDown.SelectedIndex = -1;
             }
             catch( Exception ex )
             {
@@ -2432,7 +2351,6 @@ namespace Bubba
                 ModelDropDown.AddItem( "whisper-1" );
                 ModelDropDown.AddItem( "gpt-4o-mini-transcribe" );
                 ModelDropDown.AddItem( "gpt-4o-transcribe" );
-                ModelDropDown.SelectedIndex = -1;
             }
             catch( Exception ex )
             {
@@ -2449,7 +2367,6 @@ namespace Bubba
             {
                 ModelDropDown.Items?.Clear( );
                 ModelDropDown.AddItem( "whisper-1" );
-                ModelDropDown.SelectedIndex = -1;
             }
             catch( Exception ex )
             {
@@ -2468,7 +2385,6 @@ namespace Bubba
                 ModelDropDown.AddItem( "text-embedding-3-small" );
                 ModelDropDown.AddItem( "text-embedding-3-large" );
                 ModelDropDown.AddItem( "text-embedding-ada-002" );
-                ModelDropDown.SelectedIndex = -1;
             }
             catch( Exception ex )
             {
@@ -2492,7 +2408,6 @@ namespace Bubba
                 ModelDropDown.AddItem( "gpt-4o-2024-08-06" );
                 ModelDropDown.AddItem( "gpt-4o-2024-11-20" );
                 ModelDropDown.AddItem( "gpt-4o-2024-05-13" );
-                ModelDropDown.SelectedIndex = -1;
             }
             catch( Exception ex )
             {
@@ -2514,7 +2429,6 @@ namespace Bubba
                 ModelDropDown.AddItem( "gpt-4o-audio-preview-2024-12-17" );
                 ModelDropDown.AddItem( "gpt-4o-audio-preview-2024-10-01" );
                 ModelDropDown.AddItem( "gpt-4o-mini-audio-preview-2024-12-17" );
-                ModelDropDown.SelectedIndex = -1;
             }
             catch( Exception ex )
             {
@@ -2533,7 +2447,6 @@ namespace Bubba
                 ModelDropDown.AddItem( "tts-1" );
                 ModelDropDown.AddItem( "tts-1-hd" );
                 ModelDropDown.AddItem( "gpt-4o-mini-tts" );
-                ModelDropDown.SelectedIndex = -1;
             }
             catch( Exception ex )
             {
@@ -2559,7 +2472,6 @@ namespace Bubba
                 ModelDropDown.AddItem( "o1-2024-12-17" );
                 ModelDropDown.AddItem( "o1-mini-2024-09-12" );
                 ModelDropDown.AddItem( "o3-mini-2025-01-31" );
-                ModelDropDown.SelectedIndex = -1;
             }
             catch( Exception ex )
             {
@@ -2585,7 +2497,6 @@ namespace Bubba
                 ModelDropDown.AddItem( "o1-2024-12-17" );
                 ModelDropDown.AddItem( "o1-mini-2024-09-12" );
                 ModelDropDown.AddItem( "o3-mini-2025-01-31" );
-                ModelDropDown.SelectedIndex = -1;
             }
             catch( Exception ex )
             {
@@ -2611,7 +2522,6 @@ namespace Bubba
                 ModelDropDown.Items.Add( "o1-2024-12-17" );
                 ModelDropDown.Items.Add( "o1-mini-2024-09-12" );
                 ModelDropDown.Items.Add( "o3-mini-2025-01-31" );
-                ModelDropDown.SelectedIndex = -1;
             }
             catch( Exception ex )
             {
@@ -2630,7 +2540,6 @@ namespace Bubba
                 EffortDropDown.AddItem( "auto" );
                 EffortDropDown.AddItem( "low" );
                 EffortDropDown.AddItem( "high" );
-                EffortDropDown.SelectedIndex = -1;
             }
             catch( Exception ex )
             {
@@ -2788,7 +2697,6 @@ namespace Bubba
             try
             {
                 var _path = @"C:\Users\terry\source\repos\Bubba\Resources\Documents\Editor\SQL\";
-                TabControl.SelectedIndex = 0;
                 Editor.DocumentLanguage = Syncfusion.Windows.Edit.Languages.SQL;
                 DocumentListBox.Items?.Clear( );
                 var _documents = Directory.GetFiles( _path );
@@ -2817,7 +2725,6 @@ namespace Bubba
             try
             {
                 var _path = Locations.PathPrefix + @"Resources\Documents\Editor\PY\";
-                TabControl.SelectedIndex = 0;
                 Editor.DocumentLanguage = Syncfusion.Windows.Edit.Languages.Text;
                 DocumentListBox.Items?.Clear( );
                 var _documents = Directory.GetFiles( _path );
@@ -2846,7 +2753,6 @@ namespace Bubba
             try
             {
                 var _path = Locations.PathPrefix + @"Resources\Documents\Editor\CS\";
-                TabControl.SelectedIndex = 0;
                 Editor.DocumentLanguage = Syncfusion.Windows.Edit.Languages.CSharp;
                 DocumentListBox.Items?.Clear( );
                 var _documents = Directory.GetFiles( _path );
@@ -2875,7 +2781,6 @@ namespace Bubba
             try
             {
                 var _path = Locations.PathPrefix + @"Resources\Documents\Appropriations\";
-                TabControl.SelectedIndex = 0;
                 Editor.DocumentLanguage = Syncfusion.Windows.Edit.Languages.Text;
                 DocumentListBox.Items?.Clear( );
                 var _documents = Directory.GetFiles( _path );
@@ -3020,8 +2925,6 @@ namespace Bubba
 
                     GenerationListBox.Items.Add( _item );
                 }
-
-                GenerationListBox.SelectedIndex = -1;
             }
             catch( Exception ex )
             {
@@ -3049,8 +2952,6 @@ namespace Bubba
 
                     LanguageDropDown.Items.Add( _item );
                 }
-
-                LanguageDropDown.SelectedIndex = -1;
             }
             catch( Exception ex )
             {
@@ -3075,7 +2976,6 @@ namespace Bubba
                         {
                             var _pre = @"C:\Users\terry\source\repos\Bubba\Resources\Documents\";
                             var _path = _pre + @"Appropriations\";
-                            TabControl.SelectedIndex = 0;
                             Editor.DocumentLanguage = Syncfusion.Windows.Edit.Languages.Text;
                             DocumentListBox.Items?.Clear( );
                             var _documents = Directory.GetFiles( _path );
@@ -3090,7 +2990,6 @@ namespace Bubba
                         case "CS":
                         {
                             var _path = _prefix + @"CS\";
-                            TabControl.SelectedIndex = 0;
                             Editor.DocumentLanguage = Syncfusion.Windows.Edit.Languages.CSharp;
                             DocumentListBox.Items?.Clear( );
                             var _documents = Directory.GetFiles( _path );
@@ -3105,7 +3004,6 @@ namespace Bubba
                         case "PY":
                         {
                             var _path = _prefix + @"PY\";
-                            TabControl.SelectedIndex = 0;
                             Editor.DocumentLanguage = Syncfusion.Windows.Edit.Languages.Text;
                             DocumentListBox.Items?.Clear( );
                             var _documents = Directory.GetFiles( _path );
@@ -3120,7 +3018,6 @@ namespace Bubba
                         case "SQL":
                         {
                             var _path = _prefix + @"SQL\";
-                            TabControl.SelectedIndex = 0;
                             Editor.DocumentLanguage = Syncfusion.Windows.Edit.Languages.SQL;
                             DocumentListBox.Items?.Clear( );
                             var _documents = Directory.GetFiles( _path );
@@ -3135,7 +3032,6 @@ namespace Bubba
                         case "JS":
                         {
                             var _path = _prefix + @"JS\";
-                            TabControl.SelectedIndex = 0;
                             Editor.DocumentLanguage = Syncfusion.Windows.Edit.Languages.JScript;
                             DocumentListBox.Items?.Clear( );
                             var _documents = Directory.GetFiles( _path );
@@ -3150,7 +3046,6 @@ namespace Bubba
                         case "CPP":
                         {
                             var _path = _prefix + @"CPP\";
-                            TabControl.SelectedIndex = 0;
                             Editor.DocumentLanguage = Syncfusion.Windows.Edit.Languages.C;
                             Editor.DocumentSource = _path;
                             DocumentListBox.Items?.Clear( );
@@ -3166,7 +3061,6 @@ namespace Bubba
                         case "VBA":
                         {
                             var _path = _prefix + @"VBA\";
-                            TabControl.SelectedIndex = 0;
                             Editor.DocumentLanguage = Syncfusion.Windows.Edit.Languages.VisualBasic;
                             DocumentListBox.Items?.Clear( );
                             var _documents = Directory.GetFiles( _path );
@@ -3182,7 +3076,6 @@ namespace Bubba
                         {
                             var _pre = @"C:\Users\terry\source\repos\Bubba\Resources\Documents\";
                             var _path = _pre + @"Appropriations\";
-                            TabControl.SelectedIndex = 0;
                             Editor.DocumentLanguage = Syncfusion.Windows.Edit.Languages.Text;
                             DocumentListBox.Items?.Clear( );
                             var _documents = Directory.GetFiles( _path );
@@ -3210,7 +3103,6 @@ namespace Bubba
         {
             try
             {
-                TabControl.SelectedIndex = 0;
                 var _tabPages = new Dictionary<string, MetroTabItem>( );
                 SetToolbarVisibility( true );
             }
@@ -3227,8 +3119,6 @@ namespace Bubba
         {
             try
             {
-                TabControl.SelectedIndex = 2;
-                WebBrowser.Address = _searchEngineUrl;
                 InitializeBrowser( );
                 SetToolbarVisibility( true );
             }
@@ -3245,7 +3135,6 @@ namespace Bubba
         {
             try
             {
-                TabControl.SelectedIndex = 3;
                 PopulateLanguageListBox(  );
                 PopulateDocumentListBox( );
                 SetToolbarVisibility( true );
@@ -3263,7 +3152,6 @@ namespace Bubba
         {
             try
             {
-                TabControl.SelectedIndex = 4;
                 SetToolbarVisibility( true );
             }
             catch( Exception ex )
@@ -3279,7 +3167,6 @@ namespace Bubba
         {
             try
             {
-                TabControl.SelectedIndex = 1;
                 SetToolbarVisibility( true );
                 PopulateRequestTypes( );
                 PopulateModelsAsync( );
@@ -3301,7 +3188,6 @@ namespace Bubba
         {
             try
             {
-                TabControl.SelectedIndex = 5;
                 SetToolbarVisibility( true );
             }
             catch( Exception ex )
@@ -3317,7 +3203,6 @@ namespace Bubba
         {
             try
             {
-                TabControl.SelectedIndex = 6;
                 SetToolbarVisibility( true );
             }
             catch( Exception ex )
@@ -3333,7 +3218,6 @@ namespace Bubba
         {
             try
             {
-                TabControl.SelectedIndex = 7;
                 SetToolbarVisibility( true );
             }
             catch( Exception ex )
@@ -3349,7 +3233,6 @@ namespace Bubba
         {
             try
             {
-                TabControl.SelectedIndex = 8;
                 SetToolbarVisibility( false );
             }
             catch( Exception ex )
@@ -3966,12 +3849,9 @@ namespace Bubba
             InitializeTimer( );
             InitializeToolStrip( );
             ActivateParameterTab( );
-            InitializeChatEditor( );
-            StreamCheckBox.Checked += OnStreamCheckBoxChecked;
-            ModelDropDown.SelectionChanged += OnModelDropDownSelectionChanged;
+            InitializeEditor( );
             App.ActiveWindows.Add( "ChatWindow", this );
             InitializeInterface( );
-            TabControl.SelectionChanged += OnTabControlSelectionChanged;
         }
 
         /// <summary>
@@ -4102,6 +3982,7 @@ namespace Bubba
                 Fail( ex );
             }
         }
+
 
         /// <summary>
         /// Called when [URL text box click].
@@ -4631,7 +4512,7 @@ namespace Bubba
                 if( !string.IsNullOrEmpty( _text ) )
                 {
                     Editor.Text = _text;
-                    GptTextBox.Text = _text;
+                    ChatTextBox.Text = _text;
                 }
             }
             catch( Exception ex )
@@ -4991,13 +4872,10 @@ namespace Bubba
         {
             try
             {
-                if( ResponseFormatDropDown.SelectedIndex != -1 )
-                {
-                    var _image = ResponseFormatDropDown.SelectedValue.ToString( );
-                    _responseFormat = _image?.Replace( " ", "" );
-                    var _message = "ResponseFormat = " + _responseFormat;
-                    SendMessage( _message );
-                }
+                var _image = ResponseFormatDropDown.SelectedValue.ToString( );
+                _responseFormat = _image?.Replace( " ", "" );
+                var _message = "ResponseFormat = " + _responseFormat;
+                SendMessage( _message );
             }
             catch( Exception ex )
             {
@@ -5015,13 +4893,10 @@ namespace Bubba
         {
             try
             {
-                if( ImageQualityDropDown.SelectedIndex != -1 )
-                {
-                    var _image = ImageQualityDropDown.SelectedValue.ToString( );
-                    _imageQuality = _image?.Replace( " ", "" );
-                    var _message = "ImageQuality = " + _imageQuality;
-                    SendMessage( _message );
-                }
+                var _image = ImageQualityDropDown.SelectedValue.ToString( );
+                _imageQuality = _image?.Replace( " ", "" );
+                var _message = "ImageQuality = " + _imageQuality;
+                SendMessage( _message );
             }
             catch( Exception ex )
             {
@@ -5039,13 +4914,10 @@ namespace Bubba
         {
             try
             {
-                if( AudioFormatDropDown.SelectedIndex != -1 )
-                {
-                    var _image = AudioFormatDropDown.SelectedValue.ToString( );
-                    _audioFormat = _image?.Replace( " ", "" );
-                    var _message = "AudioFormat = " + _audioFormat;
-                    SendMessage( _message );
-                }
+                var _image = AudioFormatDropDown.SelectedValue.ToString( );
+                _audioFormat = _image?.Replace( " ", "" );
+                var _message = "AudioFormat = " + _audioFormat;
+                SendMessage( _message );
             }
             catch( Exception ex )
             {
@@ -5063,13 +4935,10 @@ namespace Bubba
         {
             try
             {
-                if( ImageSizeDropDown.SelectedIndex != -1 )
-                {
-                    var _image = ImageSizeDropDown.SelectedValue.ToString( );
-                    _imageSize = _image?.Replace( " ", "" );
-                    var _message = "ImageSize = " + _imageSize;
-                    SendMessage( _message );
-                }
+                var _image = ImageSizeDropDown.SelectedValue.ToString( );
+                _imageSize = _image?.Replace( " ", "" );
+                var _message = "ImageSize = " + _imageSize;
+                SendMessage( _message );
             }
             catch( Exception ex )
             {
@@ -5087,13 +4956,10 @@ namespace Bubba
         {
             try
             {
-                if( ImageDetailDropDown.SelectedIndex != -1 )
-                {
-                    var _image = ImageDetailDropDown.SelectedValue.ToString( );
-                    _imageDetail = _image?.Replace( " ", "" );
-                    var _message = "ImageDetail = " + _imageDetail;
-                    SendMessage( _message );
-                }
+                var _image = ImageDetailDropDown.SelectedValue.ToString( );
+                _imageDetail = _image?.Replace( " ", "" );
+                var _message = "ImageDetail = " + _imageDetail;
+                SendMessage( _message );
             }
             catch( Exception ex )
             {
@@ -5111,12 +4977,9 @@ namespace Bubba
         {
             try
             {
-                if( EffortDropDown.SelectedIndex != -1 )
-                {
-                    _reasoningEffort = EffortDropDown.SelectedValue.ToString( );
-                    var _message = "ReasoningEffort = " + _reasoningEffort;
-                    SendMessage( _message );
-                }
+                _reasoningEffort = EffortDropDown.SelectedValue.ToString( );
+                var _message = "ReasoningEffort = " + _reasoningEffort;
+                SendMessage( _message );
             }
             catch( Exception ex )
             {
@@ -5134,12 +4997,9 @@ namespace Bubba
         {
             try
             {
-                if( VoicesDropDown.SelectedIndex != -1 )
-                {
-                    _voice = VoicesDropDown.SelectedValue.ToString( );
-                    var _message = "Voice = " + _voice;
-                    SendMessage( _message );
-                }
+                _voice = VoicesDropDown.SelectedValue.ToString( );
+                var _message = "Voice = " + _voice;
+                SendMessage( _message );
             }
             catch( Exception ex )
             {

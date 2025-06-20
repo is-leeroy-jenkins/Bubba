@@ -71,7 +71,6 @@ namespace Bubba
         {
             // Control Properties
             SetResourceReference( StyleProperty, typeof( GridControl ) );
-            Model.HeaderStyle.Background = _theme.SteelBlueBrush;
             Model.Options.AllowExcelLikeResizing = true;
             Model.Options.AllowSelection = GridSelectionFlags.Row;
             Model.Options.ExcelLikeCurrentCell = true;

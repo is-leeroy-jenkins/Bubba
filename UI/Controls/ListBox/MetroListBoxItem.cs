@@ -81,11 +81,6 @@ namespace Bubba
             Height = 40;
             FontFamily = new FontFamily( "Roboto" );
             FontSize = 12;
-
-            // Event Wiring
-            MouseEnter += OnMouseEnter;
-            MouseLeave += OnMouseLeave;
-            Selected += OnItemSelected;
         }
 
         /// <summary>

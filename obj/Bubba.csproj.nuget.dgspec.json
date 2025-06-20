@@ -57,6 +57,10 @@
               "target": "Package",
               "version": "[1.3.0, )"
             },
+            "CefSharp.Common": {
+              "target": "Package",
+              "version": "[137.0.100, )"
+            },
             "CefSharp.Common.NETCore": {
               "target": "Package",
               "version": "[137.0.100, )"

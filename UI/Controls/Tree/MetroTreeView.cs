@@ -71,9 +71,6 @@ namespace Bubba
             SetResourceReference( StyleProperty, typeof( SfTreeView ) );
             FontSize = _theme.FontSize;
             FontFamily = _theme.FontFamily;
-            Background = _theme.FormBackground;
-            Foreground = _theme.Foreground;
-            BorderBrush = _theme.BlueBorderBrush;
         }
     }
 }

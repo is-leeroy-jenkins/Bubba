@@ -484,6 +484,7 @@
 
   <ItemGroup>
     <PackageReference Include="AngleSharp" Version="1.3.0" />
+    <PackageReference Include="CefSharp.Common" Version="137.0.100" />
     <PackageReference Include="CefSharp.Common.NETCore" Version="137.0.100" />
     <PackageReference Include="CefSharp.OffScreen.NETCore" Version="137.0.100" />
     <PackageReference Include="CefSharp.WinForms.NETCore" Version="137.0.100" />
