@@ -2939,7 +2939,7 @@ namespace Bubba
                     {
                         Height = 35,
                         Tag = _request,
-                        Content = _request.SplitPascal( )
+                        Content = _request
                     };
 
                     LanguageDropDown.Items.Add( _item );

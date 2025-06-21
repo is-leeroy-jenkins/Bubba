@@ -88,15 +88,6 @@ namespace Bubba.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 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.
-        /// </summary>
-        internal static string BubbaKey {
-            get {
-                return ResourceManager.GetString("BubbaKey", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to proj_4OQYEZava5a8a5AfFDmRtggo.
         /// </summary>
         internal static string BubbaProjectID {

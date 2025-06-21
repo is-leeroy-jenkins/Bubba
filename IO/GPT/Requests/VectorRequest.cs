@@ -374,7 +374,7 @@ namespace Bubba
         {
             _httpClient = new HttpClient( );
             _httpClient.DefaultRequestHeaders.Authorization =
-                new AuthenticationHeaderValue( "Bearer", OpenAI.BubbaKey );
+                new AuthenticationHeaderValue( "Bearer", App.OpenAiKey );
 
             var _fileContent = new ByteArrayContent( File.ReadAllBytes( filePath ) );
             var _formData = new MultipartFormDataContent

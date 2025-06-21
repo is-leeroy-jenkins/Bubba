@@ -28594,11 +28594,6 @@
               Looks up a localized string similar to vs_8fEoYp1zVvk5D8atfWLbEupN.
             </summary>
         </member>
-        <member name="P:Bubba.Properties.OpenAI.BubbaKey">
-            <summary>
-              Looks up a localized string similar to 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.
-            </summary>
-        </member>
         <member name="P:Bubba.Properties.OpenAI.BubbaProjectID">
             <summary>
               Looks up a localized string similar to proj_4OQYEZava5a8a5AfFDmRtggo.

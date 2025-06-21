@@ -330,7 +330,7 @@
                             Grid.Column="0"
                             Width="920"
                             Height="572"
-                            Margin="5,0,0,0"
+                            Margin="5"
                             FontSize="16"
                             BorderBrush="{StaticResource BlueBorderBrush}"
                             HorizontalAlignment="Left"
@@ -455,7 +455,7 @@
                                                     Height="40"
                                                     Margin="3,3,3,3"
                                                     FontSize="14"
-                                                    VerticalAlignment="Bottom"
+                                                    VerticalAlignment="Center"
                                                     VerticalContentAlignment="Center"
                                                     Background="{StaticResource ControlInteriorBrush}"
                                                     BorderBrush="{StaticResource BlueBorderBrush}"
@@ -472,7 +472,7 @@
 
                                             <GroupBox
                                                 x:Name="LanguageModelGroupBox"
-                                                Height="100"
+                                                Height="80"
                                                 Margin="10,1,10,1"
                                                 Padding="1"
                                                 HorizontalContentAlignment="Stretch"
@@ -486,10 +486,10 @@
 
                                                 <b:MetroDropDown
                                                     x:Name="ModelDropDown"
-                                                    Height="40"
+                                                    Height="30"
                                                     Margin="3,3,3,3"
                                                     FontSize="14"
-                                                    VerticalAlignment="Bottom"
+                                                    VerticalAlignment="Center"
                                                     VerticalContentAlignment="Center"
                                                     Background="{StaticResource ControlInteriorBrush}"
                                                     BorderBrush="{StaticResource BlueBorderBrush}"
@@ -506,7 +506,7 @@
 
                                             <GroupBox
                                                 x:Name="ResponseFormatGroupBox"
-                                                Height="100"
+                                                Height="80"
                                                 Margin="10,1,10,1"
                                                 Padding="1"
                                                 HorizontalContentAlignment="Stretch"
@@ -523,7 +523,7 @@
                                                     Height="40"
                                                     Margin="3,3,3,3"
                                                     FontSize="14"
-                                                    VerticalAlignment="Bottom"
+                                                    VerticalAlignment="Center"
                                                     VerticalContentAlignment="Center"
                                                     Background="{StaticResource ControlInteriorBrush}"
                                                     BorderBrush="{StaticResource BlueBorderBrush}"
@@ -539,7 +539,7 @@
 
                                             <GroupBox
                                                 x:Name="ReasoningGroupBox"
-                                                Height="100"
+                                                Height="80"
                                                 Margin="10,1,10,1"
                                                 Padding="1"
                                                 HorizontalContentAlignment="Stretch"
@@ -556,7 +556,7 @@
                                                     Height="40"
                                                     Margin="3,3,3,3"
                                                     FontSize="14"
-                                                    VerticalAlignment="Bottom"
+                                                    VerticalAlignment="Center"
                                                     VerticalContentAlignment="Center"
                                                     Background="{StaticResource ControlInteriorBrush}"
                                                     BorderBrush="{StaticResource BlueBorderBrush}"
@@ -739,7 +739,7 @@
                                                     Value="0.00" />
 
                                             </GroupBox>
-                                            
+
                                             <Separator
                                                 Height="5"
                                                 Background="{x:Null}"
@@ -794,7 +794,7 @@
                                             <GroupBox
                                                 x:Name="ProbsGroupBox"
                                                 Height="95"
-                                                Margin="10,1,10,1"
+                                                Margin="1"
                                                 Padding="1"
                                                 HorizontalContentAlignment="Center"
                                                 VerticalContentAlignment="Top"
@@ -803,14 +803,12 @@
                                                 FontFamily="Roboto"
                                                 FontSize="12"
                                                 Foreground="{StaticResource FormForeground}"
-                                                Header="Top Log-Probability">
+                                                Header="Top Log-Probability" Width="250">
 
                                                 <wpf:SfRangeSlider
                                                     x:Name="TopLogProbSlider"
-                                                    Width="240"
                                                     Height="75"
-                                                    Margin="1"
-                                                    HorizontalAlignment="Left"
+                                                    Margin="1,0,1,0"
                                                     ActiveMinorTickStroke="{DynamicResource WhiteForeground}"
                                                     ActiveTickStroke="{DynamicResource WhiteForeground}"
                                                     Background="{DynamicResource BlueBorderBrush}"
