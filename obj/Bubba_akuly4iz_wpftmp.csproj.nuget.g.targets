@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<Project ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ImportGroup Condition=" '$(ExcludeRestorePackageImports)' != 'true' ">
+    <Import Project="$(NuGetPackageRoot)\microsoft.extensions.logging.abstractions\8.0.2\buildTransitive\net6.0\Microsoft.Extensions.Logging.Abstractions.targets" Condition="Exists('$(NuGetPackageRoot)\microsoft.extensions.logging.abstractions\8.0.2\buildTransitive\net6.0\Microsoft.Extensions.Logging.Abstractions.targets')" />
+    <Import Project="$(NuGetPackageRoot)\system.text.json\9.0.6\buildTransitive\net8.0\System.Text.Json.targets" Condition="Exists('$(NuGetPackageRoot)\system.text.json\9.0.6\buildTransitive\net8.0\System.Text.Json.targets')" />
+    <Import Project="$(NuGetPackageRoot)\microsoft.extensions.options\8.0.2\buildTransitive\net6.0\Microsoft.Extensions.Options.targets" Condition="Exists('$(NuGetPackageRoot)\microsoft.extensions.options\8.0.2\buildTransitive\net6.0\Microsoft.Extensions.Options.targets')" />
+    <Import Project="$(NuGetPackageRoot)\microsoft.netframework.referenceassemblies.net461\1.0.3\build\Microsoft.NETFramework.ReferenceAssemblies.net461.targets" Condition="Exists('$(NuGetPackageRoot)\microsoft.netframework.referenceassemblies.net461\1.0.3\build\Microsoft.NETFramework.ReferenceAssemblies.net461.targets')" />
+    <Import Project="$(NuGetPackageRoot)\microsoft.netframework.referenceassemblies.net45\1.0.3\build\Microsoft.NETFramework.ReferenceAssemblies.net45.targets" Condition="Exists('$(NuGetPackageRoot)\microsoft.netframework.referenceassemblies.net45\1.0.3\build\Microsoft.NETFramework.ReferenceAssemblies.net45.targets')" />
+    <Import Project="$(NuGetPackageRoot)\microsoft.ml\4.0.2\build\netstandard2.0\Microsoft.ML.targets" Condition="Exists('$(NuGetPackageRoot)\microsoft.ml\4.0.2\build\netstandard2.0\Microsoft.ML.targets')" />
+    <Import Project="$(NuGetPackageRoot)\cefsharp.common.netcore\137.0.100\buildTransitive\CefSharp.Common.NETCore.targets" Condition="Exists('$(NuGetPackageRoot)\cefsharp.common.netcore\137.0.100\buildTransitive\CefSharp.Common.NETCore.targets')" />
+    <Import Project="$(NuGetPackageRoot)\cefsharp.common\137.0.100\buildTransitive\CefSharp.Common.targets" Condition="Exists('$(NuGetPackageRoot)\cefsharp.common\137.0.100\buildTransitive\CefSharp.Common.targets')" />
+  </ImportGroup>
+</Project>

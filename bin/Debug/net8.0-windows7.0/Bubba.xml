@@ -34336,12 +34336,6 @@
             <param name="form">The form.</param>
             <param name="interval">The interval.</param>
         </member>
-        <member name="M:Bubba.ChatWindow.SetToolbarVisibility(System.Boolean)">
-            <summary>
-            
-            Shows the items.
-            </summary>
-        </member>
         <member name="M:Bubba.ChatWindow.SendHttpMessage(System.String)">
             <summary>
             Sends the HTTP message.
@@ -34735,6 +34729,12 @@
             </summary>
             <param name="browser">The browser.</param>
             <param name="text">The text.</param>
+        </member>
+        <member name="M:Bubba.ChatWindow.SetToolbarVisibility(System.Boolean)">
+            <summary>
+            
+            Shows the items.
+            </summary>
         </member>
         <member name="M:Bubba.ChatWindow.SetTitleText(System.String)">
             <summary>

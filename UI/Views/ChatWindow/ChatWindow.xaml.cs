@@ -944,12 +944,11 @@ namespace Bubba
                 PresencePenaltyTextBox.TextChanged += OnParameterTextBoxChanged;
                 FrequencyPenaltyTextBox.TextChanged += OnParameterTextBoxChanged;
                 TopPercentTextBox.TextChanged += OnParameterTextBoxChanged;
-                ClearParameterButton.Click += OnClearButtonClick;
                 ListenCheckBox.Checked += OnListenCheckedChanged;
                 MuteCheckBox.Checked += OnMuteCheckedBoxChanged;
                 StoreCheckBox.Checked += OnStoreCheckBoxChecked;
                 GenerationListBox.SelectionChanged += OnRequestListBoxSelectionChanged;
-                GptFileButton.Click += OnFileApiButtonClick;
+                ToolStripFileButton.Click += OnFileApiButtonClick;
                 LanguageDropDown.SelectionChanged += OnLanguageListBoxSelectionChanged;
                 DocumentListBox.SelectionChanged += OnDocumentListBoxSelectionChanged;
                 ResponseFormatDropDown.SelectionChanged += OnResponseFormatSelectionChanged;
@@ -1583,36 +1582,6 @@ namespace Bubba
                 }
 
                 form.Opacity = 0;
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
-            }
-        }
-
-        /// <summary>
-        /// 
-        /// Shows the items.
-        /// </summary>
-        private void SetToolbarVisibility( bool visible = true )
-        {
-            try
-            {
-                if( visible )
-                {
-                    ToolStripTextBox.Visibility = Visibility.Visible;
-                    ToolStripSendButton.Visibility = Visibility.Visible;
-                    ToolStripRefreshButton.Visibility = Visibility.Visible;
-                    ToolStripTextBox.Visibility = Visibility.Visible;
-                    ToolStripCancelButton.Visibility = Visibility.Visible;
-                }
-                else
-                {
-                    ToolStripTextBox.Visibility = Visibility.Hidden;
-                    ToolStripSendButton.Visibility = Visibility.Hidden;
-                    ToolStripRefreshButton.Visibility = Visibility.Hidden;
-                    ToolStripCancelButton.Visibility = Visibility.Hidden;
-                }
             }
             catch( Exception ex )
             {
@@ -3766,6 +3735,40 @@ namespace Bubba
         }
 
         /// <summary>
+        /// 
+        /// Shows the items.
+        /// </summary>
+        private void SetToolbarVisibility( bool visible = true )
+        {
+            try
+            {
+                if( visible )
+                {
+                    ToolStripTextBox.Visibility = Visibility.Visible;
+                    ToolStripSendButton.Visibility = Visibility.Visible;
+                    ToolStripRefreshButton.Visibility = Visibility.Visible;
+                    ToolStripTextBox.Visibility = Visibility.Visible;
+                    ToolStripCancelButton.Visibility = Visibility.Visible;
+                    ToolStripFileButton.Visibility = Visibility.Visible;
+                    ToolStripRemoveButton.Visibility = Visibility.Visible;
+                }
+                else
+                {
+                    ToolStripTextBox.Visibility = Visibility.Hidden;
+                    ToolStripSendButton.Visibility = Visibility.Hidden;
+                    ToolStripRefreshButton.Visibility = Visibility.Hidden;
+                    ToolStripCancelButton.Visibility = Visibility.Hidden;
+                    ToolStripFileButton.Visibility = Visibility.Hidden;
+                    ToolStripRemoveButton.Visibility = Visibility.Hidden;
+                }
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+            }
+        }
+
+        /// <summary>
         /// Sets the form title.
         /// </summary>
         /// <param name="title">
@@ -5222,11 +5225,6 @@ namespace Bubba
             using var _error = new ErrorWindow( ex );
             _error?.SetText( );
             _error?.ShowDialog( );
-        }
-
-        private void MetroDropDown_SelectionChanged( object sender, SelectionChangedEventArgs e )
-        {
-
         }
     }
 }
