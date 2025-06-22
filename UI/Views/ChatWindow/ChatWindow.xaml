@@ -208,7 +208,6 @@
                     Foreground="{StaticResource WhiteForeground}"
                     SelectionBackgroundColor="{StaticResource ControlHoverBrush}"
                     SelectionBrush="{StaticResource GreenBackground}"
-                    TextChanged="OnToolStripTextBoxTextChanged"
                     ToolTip="Input Text" />
 
                 <Separator
@@ -331,6 +330,7 @@
                             Width="920"
                             Height="572"
                             Margin="5"
+                            Padding="3"
                             FontSize="16"
                             BorderBrush="{StaticResource BlueBorderBrush}"
                             HorizontalAlignment="Left"
@@ -452,7 +452,7 @@
 
                                                 <b:MetroDropDown
                                                     x:Name="GenerationListBox"
-                                                    Height="40"
+                                                    Height="30"
                                                     Margin="3,3,3,3"
                                                     FontSize="14"
                                                     VerticalAlignment="Center"
@@ -520,7 +520,7 @@
 
                                                 <b:MetroDropDown
                                                     x:Name="ResponseFormatDropDown"
-                                                    Height="40"
+                                                    Height="30"
                                                     Margin="3,3,3,3"
                                                     FontSize="14"
                                                     VerticalAlignment="Center"
@@ -553,7 +553,7 @@
 
                                                 <b:MetroDropDown
                                                     x:Name="EffortDropDown"
-                                                    Height="40"
+                                                    Height="30"
                                                     Margin="3,3,3,3"
                                                     FontSize="14"
                                                     VerticalAlignment="Center"

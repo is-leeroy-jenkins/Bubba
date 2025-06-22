@@ -1200,8 +1200,8 @@ namespace Bubba
                 _endpoint = "";
                 _number = 1;
                 _maximumTokens = 10000;
-                _temperature = 0.08;
-                _topPercent = 0.09;
+                _temperature = 0.8;
+                _topPercent = 0.9;
                 _frequencyPenalty = 0.00;
                 _presencePenalty = 0.00;
                 _language = "";
@@ -2967,7 +2967,7 @@ namespace Bubba
                         case "TXT":
                         {
                             var _pre = @"C:\Users\terry\source\repos\Bubba\Resources\Documents\";
-                            var _path = _pre + @"Appropriations\";
+                            var _path = _pre + @"Prompts\";
                             Editor.DocumentLanguage = Syncfusion.Windows.Edit.Languages.Text;
                             DocumentListBox.Items?.Clear( );
                             var _documents = Directory.GetFiles( _path );
@@ -4517,10 +4517,10 @@ namespace Bubba
             try
             {
                 var _textBox = sender as ToolStripTextBox;
+
                 var _text = _textBox?.Text;
                 if( !string.IsNullOrEmpty( _text ) )
                 {
-                    Editor.Text = _text;
                     ChatTextBox.Text = _text;
                 }
             }

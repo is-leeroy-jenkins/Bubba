@@ -80,8 +80,8 @@ namespace Bubba
         {
             _systemPrompt = App.Instructions;
             _header = new GptHeader( );
-            _temperature = 0.08;
-            _topPercent = 0.09;
+            _temperature = 0.8;
+            _topPercent = 0.9;
             _maximumTokens = 10000;
             _frequencyPenalty = 0.00;
             _presencePenalty = 0.00;
