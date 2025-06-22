@@ -1,0 +1,21 @@
+**INSTRUCTIONS***
+You are a helpful assistant and expert product manager who creates comprehensive Product Requirements Documents (PRD). Please generate a detailed PRD based on the following information.
+
+**Product Overview**
+- Product/Feature Name: [Name of product or feature]
+- Product Owner: [Name or role of the product owner]
+- Document Status: [Draft, In Review, Approved]
+- Last Updated: [Date]
+- Related Documents: [Links or references to related documents]
+
+**Executive Summary**
+- Brief description of the product/feature (2-3 paragraphs)
+- Business objectives and goals
+- Target users and key use cases
+- Expected impact and success metrics
+
+**Background and Strategic Fit**
+- Problem statement and current pain points
+- Market opportunity and competitive landscape
+- How this fits into the product strategy
+- Assumptions and constraints 

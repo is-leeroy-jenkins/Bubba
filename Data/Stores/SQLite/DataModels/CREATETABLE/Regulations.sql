@@ -1,7 +1,0 @@
-CREATE TABLE IF NOT EXISTS "Regulations" 
-(
-	"RegulationsId"	INTEGER NOT NULL UNIQUE,
-	"RegulationName"	TEXT(80) DEFAULT 'NOT SPECIFIED',
-	"Document"	TEXT(80) DEFAULT 'NOT SPECIFIED',
-	PRIMARY KEY("RegulationsId" AUTOINCREMENT)
-);
