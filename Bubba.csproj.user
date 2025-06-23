@@ -22,9 +22,6 @@
     <Compile Update="UI\Views\GptImageDialog\GptImageDialog.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="UI\Views\Configuration\ConfigurationDialog.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Update="UI\Views\GptFileDialog\GptFileDialog.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -49,9 +46,6 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="UI\Views\GptImageDialog\GptImageDialog.xaml">
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Update="UI\Views\Configuration\ConfigurationDialog.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="UI\Themes\Slider\Slider.xaml">
@@ -169,9 +163,6 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="UI\Views\FileBrowser\FileBrowser.xaml">
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Update="UI\Views\FolderBrowser\FolderBrowser.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="UI\Views\Notification\Notification.xaml">

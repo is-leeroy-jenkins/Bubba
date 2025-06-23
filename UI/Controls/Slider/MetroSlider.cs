@@ -38,7 +38,7 @@ namespace Bubba
             FontSize = 12;
             LabelOrientation = Orientation.Horizontal;
             SnapsTo = SliderSnapsTo.Ticks;
-            TickFrequency = 6;
+            TickFrequency = 1;
             TickPlacement = TickPlacement.Inline;
             TickLength = 12;
             MinorTickLength = 4;

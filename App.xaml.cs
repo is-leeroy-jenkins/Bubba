@@ -125,7 +125,8 @@ namespace Bubba
             "SfCalculator",
             "SfMultiColumnDropDownControl",
             "SfImageEditor",
-            "SfBusyIndicator"
+            "SfBusyIndicator",
+            "SfRangeSlider"
         };
 
         /// <inheritdoc />

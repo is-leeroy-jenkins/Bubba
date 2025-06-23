@@ -159,11 +159,6 @@ namespace Bubba
         private protected BrowserTabItem _currentTab;
 
         /// <summary>
-        /// The instance
-        /// </summary>
-        public static WebBrowser Instance;
-
-        /// <summary>
         /// The assembly
         /// </summary>
         public static Assembly Assembly;
@@ -939,7 +934,7 @@ namespace Bubba
                 ModelDropDown.SelectionChanged += OnModelDropDownSelectionChanged;
                 ToolStripTextBox.TextChanged += OnToolStripTextBoxTextChanged;
                 ToolStripMenuButton.Click += OnToggleButtonClick;
-                ToolStripRefreshButton.Click += OnRefreshButtonClick;
+                ToolStripRefreshButton.Click += OnToolStripRefreshButtonClick;
                 ToolStripSendButton.Click += OnGoButtonClicked;
                 TemperatureTextBox.TextChanged += OnParameterTextBoxChanged;
                 PresencePenaltyTextBox.TextChanged += OnParameterTextBoxChanged;
@@ -1739,51 +1734,6 @@ namespace Bubba
 
                 App.ActiveWindows.Add( "SearchDialog", _searchDialog );
                 _searchDialog.Hide( );
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
-            }
-        }
-
-        /// <summary>
-        /// Initializes the image dialog asynchronous.
-        /// </summary>
-        /// <returns></returns>
-        private protected void LoadImageDialog( )
-        {
-            try
-            {
-                var _gptImageDialog = new GptImageDialog
-                {
-                    Topmost = true,
-                    WindowStartupLocation = WindowStartupLocation.CenterScreen
-                };
-
-                App.ActiveWindows.Add( "GptImageDialog", _gptImageDialog );
-                _gptImageDialog.Hide( );
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
-            }
-        }
-
-        /// <summary>
-        /// Opens the WebBrowser.
-        /// </summary>
-        private protected void LoadWebBrowser( )
-        {
-            try
-            {
-                var _web = new WebBrowser( )
-                {
-                    Topmost = true,
-                    WindowStartupLocation = WindowStartupLocation.CenterScreen
-                };
-
-                App.ActiveWindows.Add( "WebBrowser", _web );
-                _web.Hide( );
             }
             catch( Exception ex )
             {
@@ -3130,7 +3080,6 @@ namespace Bubba
             {
                 PopulateLanguageListBox(  );
                 PopulateDocumentListBox( );
-                SetToolbarVisibility( true );
             }
             catch( Exception ex )
             {
@@ -3145,7 +3094,6 @@ namespace Bubba
         {
             try
             {
-                SetToolbarVisibility( true );
             }
             catch( Exception ex )
             {

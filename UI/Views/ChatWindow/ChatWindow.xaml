@@ -221,7 +221,6 @@
                     Width="40"
                     Height="30"
                     Margin="5,1,5,1"
-                    Click="OnSendButtonClick"
                     FontFamily="Roboto"
                     ImageSource="/Resources/Assets/ToolStripImages/PromptButton.png"
                     ToolTip="Send Text" />
@@ -229,7 +228,6 @@
                 <b:ToolStripButton
                     x:Name="ToolStripRefreshButton"
                     Margin="5,1,5,1"
-                    Click="OnToolStripRefreshButtonClick"
                     ImageSource="/Resources/Assets/MenuImages/RefreshItem.png"
                     ToolTip="Clear Propmt Text" />
 
@@ -251,7 +249,6 @@
                     Width="40"
                     Height="30"
                     Margin="5,1,5,1"
-                    Click="OnSendButtonClick"
                     FontFamily="Roboto"
                     ImageSource="/Resources/Assets/ToolStripImages/DeleteButton.png"
                     ToolTip="Send Text" />
@@ -294,7 +291,6 @@
                     Margin="15,1,5,1"
                     HorizontalAlignment="Right"
                     HorizontalContentAlignment="Right"
-                    Click="OnToggleButtonClick"
                     FontFamily="Roboto"
                     ImageSource="/Resources/Assets/ToolStripImages/ToggleButton.png"
                     ToolTip="Show/Hide Toolbar" />
@@ -307,7 +303,9 @@
             <mah:MetroTabControl
                 x:Name="TabControl"
                 Grid.Row="0"
-                Foreground="{StaticResource FormForeground}">
+                mah:HeaderedControlHelper.HeaderFontFamily="Roboto"
+                Foreground="{StaticResource FormForeground}"
+                SelectedIndex="0">
 
                 <!--  ********************************************* CHAT TAB *************************************  -->
 
@@ -316,9 +314,7 @@
                     Foreground="{StaticResource FormForeground}"
                     Header="Chat"
                     Tag="Chat">
-                    <Grid
-                        x:Name="ChatTabGrid"
-                        Background="{StaticResource FormBackground}">
+                    <Grid x:Name="ChatTabGrid" Background="{StaticResource FormBackground}">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="935*" />
                             <ColumnDefinition Width="403*" />
@@ -369,14 +365,12 @@
                                             Background="{StaticResource FormBackground}">
 
                                             <Separator
-                                                Height="15"
+                                                Height="35"
                                                 Background="{x:Null}"
                                                 BorderBrush="{x:Null}"
                                                 Foreground="{x:Null}" />
 
-                                            <Grid
-                                                x:Name="ApiGrid"
-                                                Height="40">
+                                            <Grid x:Name="ApiGrid" Height="40">
                                                 <Grid.ColumnDefinitions>
                                                     <ColumnDefinition Width="8*" />
                                                     <ColumnDefinition Width="8*" />
@@ -529,7 +523,29 @@
                                                     BorderBrush="{StaticResource BlueBorderBrush}"
                                                     FontSize="14"
                                                     Foreground="{StaticResource FormForeground}"
-                                                    Text="Select Format" />
+                                                    Text="Select Format">
+
+                                                    <b:MetroDropDownItem
+                                                        Height="35"
+                                                        Content="text"
+                                                        FontFamily="Roboto"
+                                                        FontSize="14"
+                                                        Foreground="{StaticResource WhiteForeground}" />
+
+                                                    <b:MetroDropDownItem
+                                                        Height="35"
+                                                        Content="json_object"
+                                                        FontFamily="Roboto"
+                                                        FontSize="14"
+                                                        Foreground="{StaticResource WhiteForeground}" />
+
+                                                    <b:MetroDropDownItem
+                                                        Height="35"
+                                                        Content="json_schema"
+                                                        FontFamily="Roboto"
+                                                        FontSize="14"
+                                                        Foreground="{StaticResource WhiteForeground}" />
+                                                </b:MetroDropDown>
                                             </GroupBox>
 
                                             <Separator
@@ -560,32 +576,32 @@
                                                     VerticalContentAlignment="Center"
                                                     Background="{StaticResource ControlInteriorBrush}"
                                                     BorderBrush="{StaticResource BlueBorderBrush}"
-                                                    Foreground="{StaticResource FormForeground}"
                                                     FontSize="14"
+                                                    Foreground="{StaticResource FormForeground}"
                                                     Text="Select Effort">
-                                                    
+
                                                     <b:MetroDropDownItem
                                                         Height="35"
                                                         Background="{StaticResource ControlInteriorBrush}"
-                                                        Foreground="{DynamicResource WhiteForeground}"
                                                         Content="low"
                                                         FontFamily="Roboto"
-                                                        FontSize="14" />
-                                                    
+                                                        FontSize="14"
+                                                        Foreground="{DynamicResource WhiteForeground}" />
+
                                                     <b:MetroDropDownItem
                                                         Height="35"
                                                         Background="{StaticResource ControlInteriorBrush}"
-                                                        Foreground="{DynamicResource WhiteForeground}"
                                                         Content="medium"
                                                         FontFamily="Roboto"
-                                                        FontSize="14" />
-                                                    
+                                                        FontSize="14"
+                                                        Foreground="{DynamicResource WhiteForeground}" />
+
                                                     <b:MetroDropDownItem
                                                         Height="35"
                                                         Background="{StaticResource ControlInteriorBrush}"
-                                                        Foreground="{DynamicResource WhiteForeground}"
                                                         Content="high"
-                                                        FontFamily="Roboto" />
+                                                        FontFamily="Roboto"
+                                                        Foreground="{DynamicResource WhiteForeground}" />
                                                 </b:MetroDropDown>
                                             </GroupBox>
 
@@ -614,7 +630,7 @@
 
                                         <StackPanel
                                             Canvas.Left="10"
-                                            Canvas.Top="10"
+                                            Canvas.Top="19"
                                             Width="270"
                                             Height="506"
                                             HorizontalAlignment="Center"
@@ -639,31 +655,37 @@
                                                 <wpf:SfRangeSlider
                                                     x:Name="TemperatureSlider"
                                                     Width="230"
-                                                    Height="60"
+                                                    Height="70"
                                                     Margin="3"
                                                     Padding="1"
                                                     HorizontalAlignment="Stretch"
                                                     VerticalAlignment="Stretch"
-                                                    ActiveMinorTickStroke="{StaticResource WhiteForeground}"
-                                                    ActiveTickStroke="{StaticResource WhiteForeground}"
-                                                    Background="{DynamicResource BlueBorderBrush}"
+                                                    VerticalContentAlignment="Top"
+                                                    ActiveMinorTickStroke="{DynamicResource FormForeground}"
+                                                    ActiveTickStroke="{DynamicResource WhiteForeground}"
+                                                    ActiveTrackStyle="{StaticResource ActiveTrackStyle}"
+                                                    AllowRangeDrag="True"
+                                                    Background="{StaticResource BlueBorderBrush}"
                                                     BorderThickness="1"
                                                     Foreground="{StaticResource FormForeground}"
+                                                    LabelPlacement="BottomRight"
                                                     LargeChange="0.25"
                                                     Maximum="2"
                                                     Minimum="-2"
-                                                    MinorTickFrequency="2"
+                                                    MinorTickFrequency="1"
                                                     MinorTickLength="5"
-                                                    MinorTickStroke="{StaticResource WhiteForeground}"
-                                                    ShowRange="True"
-                                                    ShowValueLabels="False"
-                                                    SmallChange="0.05"
+                                                    MinorTickStroke="{DynamicResource WhiteForeground}"
+                                                    ShowRange="False"
+                                                    ShowValueLabels="True"
+                                                    SmallChange="0.1"
                                                     SnapsTo="Ticks"
+                                                    ThumbStyle="{StaticResource ThumbStyle}"
                                                     TickFrequency="0.5"
                                                     TickPlacement="BottomRight"
-                                                    TickStroke="{StaticResource WhiteForeground}"
+                                                    TickStroke="{DynamicResource WhiteForeground}"
                                                     ToolTip="Lower values increase deterministic output"
                                                     ToolTipFormat="P"
+                                                    UseLayoutRounding="True"
                                                     Value="0.08" />
                                             </GroupBox>
 
@@ -684,11 +706,12 @@
                                                 <wpf:SfRangeSlider
                                                     x:Name="TopPercentSlider"
                                                     Width="230"
-                                                    Height="60"
-                                                    Margin="3"
+                                                    Height="70"
+                                                    Margin="1"
                                                     Padding="1"
                                                     HorizontalAlignment="Stretch"
-                                                    VerticalAlignment="Stretch"
+                                                    VerticalAlignment="Top"
+                                                    VerticalContentAlignment="Stretch"
                                                     ActiveMinorTickStroke="{StaticResource WhiteForeground}"
                                                     ActiveTickStroke="{StaticResource WhiteForeground}"
                                                     AllowRangeDrag="True"
@@ -696,12 +719,13 @@
                                                     Foreground="{StaticResource FormForeground}"
                                                     Maximum="1"
                                                     Minimum="0"
-                                                    MinorTickFrequency="1"
+                                                    MinorTickFrequency="0.2"
                                                     MinorTickLength="5"
                                                     MinorTickStroke="{StaticResource WhiteForeground}"
-                                                    ShowValueLabels="False"
+                                                    ThumbStyle="{StaticResource ThumbStyle}"
+                                                    ShowValueLabels="True"
                                                     SnapsTo="Ticks"
-                                                    TickFrequency="0.2"
+                                                    TickFrequency="0.1"
                                                     TickPlacement="BottomRight"
                                                     TickStroke="{StaticResource WhiteForeground}"
                                                     ToolTip="top p% probability mass"
@@ -725,10 +749,11 @@
                                                 <wpf:SfRangeSlider
                                                     x:Name="FrequencySlider"
                                                     Width="230"
-                                                    Height="60"
-                                                    Margin="3"
+                                                    Height="70"
+                                                    Margin="1"
                                                     HorizontalAlignment="Stretch"
-                                                    VerticalAlignment="Stretch"
+                                                    VerticalAlignment="Top"
+                                                    VerticalContentAlignment="Stretch"
                                                     ActiveMinorTickStroke="{StaticResource WhiteForeground}"
                                                     ActiveTickStroke="{StaticResource WhiteForeground}"
                                                     Background="{DynamicResource BlueBorderBrush}"
@@ -738,11 +763,12 @@
                                                     MinorTickFrequency="2"
                                                     MinorTickLength="5"
                                                     MinorTickStroke="{StaticResource WhiteForeground}"
-                                                    ShowValueLabels="False"
+                                                    ShowValueLabels="True"
                                                     SnapsTo="Ticks"
                                                     Tag="FrequencyPenalty"
                                                     TickFrequency="0.5"
                                                     TickPlacement="BottomRight"
+                                                    ThumbStyle="{StaticResource ThumbStyle}"
                                                     TickStroke="{StaticResource WhiteForeground}"
                                                     ToolTip="Positive values decrease reptition"
                                                     Value="0.00" />
@@ -766,10 +792,11 @@
                                                 <wpf:SfRangeSlider
                                                     x:Name="PresenceSlider"
                                                     Width="230"
-                                                    Height="60"
+                                                    Height="75"
                                                     Margin="3"
                                                     HorizontalAlignment="Stretch"
                                                     VerticalAlignment="Stretch"
+                                                    ThumbStyle="{StaticResource ThumbStyle}"
                                                     ActiveMinorTickStroke="{StaticResource WhiteForeground}"
                                                     ActiveTickStroke="{StaticResource WhiteForeground}"
                                                     Background="{DynamicResource BlueBorderBrush}"
@@ -806,8 +833,9 @@
                                                 <wpf:SfRangeSlider
                                                     x:Name="TopLogProbSlider"
                                                     Width="230"
-                                                    Height="60"
+                                                    Height="75"
                                                     Margin="3"
+                                                    ThumbStyle="{StaticResource ThumbStyle}"
                                                     ActiveMinorTickStroke="{DynamicResource WhiteForeground}"
                                                     ActiveTickStroke="{DynamicResource WhiteForeground}"
                                                     Background="{DynamicResource BlueBorderBrush}"
@@ -826,7 +854,7 @@
                                         <b:MetroTextBox
                                             x:Name="TopLogProbsTextBox"
                                             Canvas.Left="285"
-                                            Canvas.Top="426"
+                                            Canvas.Top="446"
                                             Width="70"
                                             Height="40"
                                             HorizontalAlignment="Center"
@@ -843,7 +871,7 @@
                                         <b:MetroTextBox
                                             x:Name="PresencePenaltyTextBox"
                                             Canvas.Left="285"
-                                            Canvas.Top="326"
+                                            Canvas.Top="346"
                                             Width="70"
                                             Height="40"
                                             HorizontalAlignment="Center"
@@ -860,7 +888,7 @@
                                         <b:MetroTextBox
                                             x:Name="FrequencyPenaltyTextBox"
                                             Canvas.Left="285"
-                                            Canvas.Top="231"
+                                            Canvas.Top="251"
                                             Width="70"
                                             Height="40"
                                             HorizontalAlignment="Center"
@@ -877,7 +905,7 @@
                                         <b:MetroTextBox
                                             x:Name="TopPercentTextBox"
                                             Canvas.Left="285"
-                                            Canvas.Top="131"
+                                            Canvas.Top="151"
                                             Width="70"
                                             Height="40"
                                             HorizontalAlignment="Center"
@@ -894,7 +922,7 @@
                                         <b:MetroTextBox
                                             x:Name="TemperatureTextBox"
                                             Canvas.Left="285"
-                                            Canvas.Top="37"
+                                            Canvas.Top="50"
                                             Width="70"
                                             Height="40"
                                             HorizontalAlignment="Center"
@@ -1055,8 +1083,8 @@
 
                                                 <wpf:SfRangeSlider
                                                     x:Name="SpeechRateSlider"
-                                                    Height="65"
-                                                    Margin="5,0,5,0"
+                                                    Height="70"
+                                                    Margin="1"
                                                     VerticalAlignment="Top"
                                                     ActiveMinorTickStroke="{StaticResource WhiteForeground}"
                                                     ActiveTickStroke="{StaticResource WhiteForeground}"
@@ -1067,6 +1095,7 @@
                                                     MinorTickFrequency="4"
                                                     MinorTickLength="4"
                                                     MinorTickStroke="{StaticResource WhiteForeground}"
+                                                    ThumbStyle="{StaticResource ThumbStyle}"
                                                     ShowValueLabels="False"
                                                     SnapsTo="Ticks"
                                                     Tag="speed"
@@ -1116,8 +1145,8 @@
                                     <Canvas Margin="5">
 
                                         <StackPanel
-                                            Canvas.Left="56"
-                                            Canvas.Top="3"
+                                            Canvas.Left="40"
+                                            Canvas.Top="2"
                                             Width="270"
                                             Height="524"
                                             HorizontalAlignment="Left"
@@ -1125,7 +1154,7 @@
                                             Background="{StaticResource FormBackground}">
 
                                             <Separator
-                                                Height="25"
+                                                Height="63"
                                                 Background="{x:Null}"
                                                 BorderBrush="{x:Null}"
                                                 Foreground="{x:Null}" />
@@ -1215,7 +1244,20 @@
                                                     Background="{StaticResource ControlInteriorBrush}"
                                                     BorderBrush="{StaticResource BlueBorderBrush}"
                                                     FontSize="14"
-                                                    Foreground="{StaticResource WhiteForeground}" />
+                                                    Foreground="{StaticResource WhiteForeground}">
+                                                    <b:MetroDropDownItem
+                                                        Height="35"
+                                                        Margin="3,3,3,3"
+                                                        Content="auto"
+                                                        FontFamily="Roboto"
+                                                        Foreground="{DynamicResource WhiteForeground}" />
+                                                    <b:MetroDropDownItem
+                                                        Height="35"
+                                                        Margin="3,3,3,3"
+                                                        Content="hi"
+                                                        FontFamily="Roboto" />
+                                                    <b:MetroDropDownItem Content="low" FontFamily="Roboto" />
+                                                </b:MetroDropDown>
 
                                             </GroupBox>
 
@@ -1441,9 +1483,7 @@
                     Foreground="{StaticResource FormForeground}"
                     Header="Editor"
                     Tag="Editor">
-                    <Grid
-                        x:Name="EditorTabGrid"
-                        Background="{StaticResource FormBackground}">
+                    <Grid x:Name="EditorTabGrid" Background="{StaticResource FormBackground}">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="275*" />
                             <ColumnDefinition Width="1033*" />
@@ -1504,35 +1544,17 @@
                                 FontFamily="Roboto"
                                 Foreground="{StaticResource FormForeground}"
                                 SnapsToDevicePixels="True">
-                                <b:MetroDropDownItem
-                                    Content="Text"
-                                    Tag="TXT" />
-                                <b:MetroDropDownItem
-                                    Content="SQL"
-                                    Tag="SQL" />
-                                <b:MetroDropDownItem
-                                    Content="C"
-                                    Tag="C" />
-                                <b:MetroDropDownItem
-                                    Content="C++"
-                                    Tag="CPP" />
-                                <b:MetroDropDownItem
-                                    Content="C#"
-                                    Tag="CS" />
-                                <b:MetroDropDownItem
-                                    Content="Python"
-                                    Tag="PY" />
-                                <b:MetroDropDownItem
-                                    Content="JavaScript"
-                                    Tag="JS" />
-                                <b:MetroDropDownItem
-                                    Content="VBA"
-                                    Tag="VBA" />
+                                <b:MetroDropDownItem Content="Text" Tag="TXT" />
+                                <b:MetroDropDownItem Content="SQL" Tag="SQL" />
+                                <b:MetroDropDownItem Content="C" Tag="C" />
+                                <b:MetroDropDownItem Content="C++" Tag="CPP" />
+                                <b:MetroDropDownItem Content="C#" Tag="CS" />
+                                <b:MetroDropDownItem Content="Python" Tag="PY" />
+                                <b:MetroDropDownItem Content="JavaScript" Tag="JS" />
+                                <b:MetroDropDownItem Content="VBA" Tag="VBA" />
                             </b:MetroDropDown>
                         </Canvas>
-                        <Canvas
-                            x:Name="EditorCanvas"
-                            Grid.Column="1" />
+                        <Canvas x:Name="EditorCanvas" Grid.Column="1" />
                     </Grid>
                 </TabItem>
 
@@ -1545,9 +1567,7 @@
                     Foreground="{StaticResource FormForeground}"
                     Header="Image"
                     Tag="Image">
-                    <Grid
-                        x:Name="ImageTabGrid"
-                        Background="{StaticResource FormBackground}">
+                    <Grid x:Name="ImageTabGrid" Background="{StaticResource FormBackground}">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="335*" />
                             <ColumnDefinition Width="101*" />
@@ -1659,9 +1679,7 @@
                     Header="Data"
                     Tag="Data">
 
-                    <Grid
-                        x:Name="DatabaseGrid"
-                        Background="{StaticResource FormBackground}">
+                    <Grid x:Name="DatabaseGrid" Background="{StaticResource FormBackground}">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="165*" />
                             <ColumnDefinition Width="53*" />
@@ -1672,9 +1690,7 @@
                             Margin="40,60,30,80"
                             BorderBrush="{StaticResource BlueBorderBrush}"
                             BorderThickness="2" />
-                        <Canvas
-                            x:Name="DataFilterGrid"
-                            Grid.Column="1">
+                        <Canvas x:Name="DataFilterGrid" Grid.Column="1">
 
                             <b:MetroDropDown
                                 x:Name="DataComboBox"
@@ -1719,9 +1735,7 @@
                     Header="Graph"
                     Tag="Graph">
 
-                    <Grid
-                        x:Name="PlotTabGrid"
-                        Background="{StaticResource FormBackground}">
+                    <Grid x:Name="PlotTabGrid" Background="{StaticResource FormBackground}">
 
                         <sp:WpfPlot
                             x:Name="Plotter"
@@ -1746,9 +1760,7 @@
                     Header="Busy"
                     Tag="Busy">
 
-                    <Grid
-                        x:Name="BusyTabGrid"
-                        Background="{StaticResource FormBackground}">
+                    <Grid x:Name="BusyTabGrid" Background="{StaticResource FormBackground}">
 
                         <Image
                             Width="1288"

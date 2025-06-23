@@ -33580,11 +33580,6 @@
             The new tab strip
             </summary>
         </member>
-        <member name="F:Bubba.ChatWindow.Instance">
-            <summary>
-            The instance
-            </summary>
-        </member>
         <member name="F:Bubba.ChatWindow.Assembly">
             <summary>
             The assembly
@@ -34287,17 +34282,6 @@
         <member name="M:Bubba.ChatWindow.LoadSearchDialog">
             <summary>
             Opens the search dialog.
-            </summary>
-        </member>
-        <member name="M:Bubba.ChatWindow.LoadImageDialog">
-            <summary>
-            Initializes the image dialog asynchronous.
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:Bubba.ChatWindow.LoadWebBrowser">
-            <summary>
-            Opens the WebBrowser.
             </summary>
         </member>
         <member name="M:Bubba.ChatWindow.LoadSystemDialog">
@@ -35214,19 +35198,6 @@
             InitializeComponent
             </summary>
         </member>
-        <member name="T:Bubba.ConfigurationDialog">
-            <summary>
-            Interaction logic for ConfigurationDialog.xaml
-            </summary>
-            <summary>
-            ConfigurationDialog
-            </summary>
-        </member>
-        <member name="M:Bubba.ConfigurationDialog.InitializeComponent">
-            <summary>
-            InitializeComponent
-            </summary>
-        </member>
         <member name="T:Bubba.ErrorWindow">
             <inheritdoc />
             <summary>
@@ -35822,257 +35793,6 @@
             <param name="ex">The ex.</param>
         </member>
         <member name="M:Bubba.FileBrowser.InitializeComponent">
-            <summary>
-            InitializeComponent
-            </summary>
-        </member>
-        <member name="T:Bubba.FolderBrowser">
-            <inheritdoc />
-            <summary>
-            Interaction logic for FolderBrowser.xaml
-            </summary>
-            <summary>
-            FolderBrowser
-            </summary>
-        </member>
-        <member name="F:Bubba.FolderBrowser._theme">
-            <summary>
-            The theme
-            </summary>
-        </member>
-        <member name="F:Bubba.FolderBrowser._dirPaths">
-            <summary>
-            The dir paths
-            </summary>
-        </member>
-        <member name="F:Bubba.FolderBrowser._entry">
-            <summary>
-            The locked object
-            </summary>
-        </member>
-        <member name="F:Bubba.FolderBrowser._busy">
-            <summary>
-            The busy
-            </summary>
-        </member>
-        <member name="F:Bubba.FolderBrowser._statusUpdate">
-            <summary>
-            The status update
-            </summary>
-        </member>
-        <member name="F:Bubba.FolderBrowser._timerCallback">
-            <summary>
-            The timer
-            </summary>
-        </member>
-        <member name="E:Bubba.FolderBrowser.PropertyChanged">
-            <inheritdoc />
-            <summary>
-            Occurs when a property value changes.
-            </summary>
-        </member>
-        <member name="F:Bubba.FolderBrowser._timer">
-            <summary>
-            The timer
-            </summary>
-        </member>
-        <member name="F:Bubba.FolderBrowser._time">
-            <summary>
-            The time
-            </summary>
-        </member>
-        <member name="F:Bubba.FolderBrowser._count">
-            <summary>
-            The count
-            </summary>
-        </member>
-        <member name="F:Bubba.FolderBrowser._seconds">
-            <summary>
-            The seconds
-            </summary>
-        </member>
-        <member name="F:Bubba.FolderBrowser._duration">
-            <summary>
-            The duration
-            </summary>
-        </member>
-        <member name="F:Bubba.FolderBrowser._data">
-            <summary>
-            The data
-            </summary>
-        </member>
-        <member name="F:Bubba.FolderBrowser._selectedPath">
-            <summary>
-            The selected path
-            </summary>
-        </member>
-        <member name="F:Bubba.FolderBrowser._selectedFolder">
-            <summary>
-            The selected file
-            </summary>
-        </member>
-        <member name="F:Bubba.FolderBrowser._initialDirectory">
-            <summary>
-            The initial directory
-            </summary>
-        </member>
-        <member name="F:Bubba.FolderBrowser._filePaths">
-            <summary>
-            The file paths
-            </summary>
-        </member>
-        <member name="F:Bubba.FolderBrowser._searchPaths">
-            <summary>
-            The initial dir paths
-            </summary>
-        </member>
-        <member name="M:Bubba.FolderBrowser.#ctor">
-            <inheritdoc />
-            <summary>
-            Initializes a new instance of the
-            <see cref="T:Bubba.FolderBrowser" /> class.
-            </summary>
-        </member>
-        <member name="M:Bubba.FolderBrowser.RegisterCallbacks">
-            <summary>
-            Initializes the callbacks.
-            </summary>
-        </member>
-        <member name="M:Bubba.FolderBrowser.InitializeDelegates">
-            <summary>
-            Initializes the delegates.
-            </summary>
-        </member>
-        <member name="M:Bubba.FolderBrowser.InitializeLabels">
-            <summary>
-            Initializes the labels.
-            </summary>
-        </member>
-        <member name="M:Bubba.FolderBrowser.InitializeTextBoxes">
-            <summary>
-            Initializes the text box.
-            </summary>
-        </member>
-        <member name="M:Bubba.FolderBrowser.InitializeTimer">
-            <summary>
-            Initializes the timer.
-            </summary>
-        </member>
-        <member name="M:Bubba.FolderBrowser.InvokeIf(System.Action)">
-            <summary>
-            Invokes if needed.
-            </summary>
-            <param name="action">The action.</param>
-        </member>
-        <member name="M:Bubba.FolderBrowser.InvokeIf(System.Action{System.Object})">
-            <summary>
-            Invokes if.
-            </summary>
-            <param name="action">The action.</param>
-        </member>
-        <member name="M:Bubba.FolderBrowser.SendNotification(System.String)">
-            <summary>
-            Sends the notification.
-            </summary>
-            <param name="message">
-            The message.
-            </param>
-        </member>
-        <member name="M:Bubba.FolderBrowser.SendMessage(System.String)">
-            <summary>
-            Shows the splash message.
-            </summary>
-        </member>
-        <member name="M:Bubba.FolderBrowser.UpdateStatus">
-            <summary>
-            Updates the status.
-            </summary>
-        </member>
-        <member name="M:Bubba.FolderBrowser.UpdateStatus(System.Object)">
-            <summary>
-            Updates the state.
-            </summary>
-        </member>
-        <member name="M:Bubba.FolderBrowser.PopulateListBox">
-            <summary>
-            Populates the ListBox.
-            </summary>
-        </member>
-        <member name="M:Bubba.FolderBrowser.ClearCallbacks">
-            <summary>
-            Clears the callbacks.
-            </summary>
-        </member>
-        <member name="M:Bubba.FolderBrowser.CreateInitialSearchPaths">
-            <summary>
-            Gets the initial dir paths.
-            </summary>
-            <returns>
-            IList(string)
-            </returns>
-        </member>
-        <member name="M:Bubba.FolderBrowser.GetListViewFolderPaths">
-            <summary>
-            Gets the ListView paths.
-            </summary>
-            <returns> </returns>
-        </member>
-        <member name="M:Bubba.FolderBrowser.OnLoaded(System.Object,System.EventArgs)">
-            <summary>
-            Called when [load].
-            </summary>
-            <param name="sender">The sender.</param>
-            <param name="e">The <see cref="T:System.EventArgs"/>
-            instance containing the event data.</param>
-        </member>
-        <member name="M:Bubba.FolderBrowser.OnClosing(System.Object,System.ComponentModel.CancelEventArgs)">
-            <summary>
-            Called when [closing].
-            </summary>
-            <param name="sender">The sender.</param>
-            <param name="e">The <see cref="T:System.Windows.RoutedEventArgs"/>
-            instance containing the event data.</param>
-        </member>
-        <member name="M:Bubba.FolderBrowser.OnCloseButtonClick(System.Object,System.Windows.RoutedEventArgs)">
-            <summary>
-            Called when [close button click].
-            </summary>
-            <param name="sender">The sender.</param>
-            <param name="e">The <see cref="T:System.Windows.RoutedEventArgs"/>
-            instance containing the event data.</param>
-        </member>
-        <member name="M:Bubba.FolderBrowser.OnPropertyChanged(System.String)">
-            <summary>
-            Called when [property changed].
-            </summary>
-            <param name="propertyName">Name of the property.</param>
-        </member>
-        <member name="M:Bubba.FolderBrowser.Dispose">
-            <inheritdoc />
-            <summary>
-            Performs application-defined tasks
-            associated with freeing, releasing,
-            or resetting unmanaged resources.
-            </summary>
-        </member>
-        <member name="M:Bubba.FolderBrowser.Dispose(System.Boolean)">
-            <summary>
-            Releases unmanaged and - optionally - managed resources.
-            </summary>
-            <param name="disposing">
-            <c>true</c>
-            to release both managed
-            and unmanaged resources;
-            <c>false</c> to release only unmanaged resources.
-            </param>
-        </member>
-        <member name="M:Bubba.FolderBrowser.Fail(System.Exception)">
-            <summary>
-            Fails the specified ex.
-            </summary>
-            <param name="ex">The ex.</param>
-        </member>
-        <member name="M:Bubba.FolderBrowser.InitializeComponent">
             <summary>
             InitializeComponent
             </summary>
@@ -38762,36 +38482,6 @@
         <member name="M:Bubba.WebBrowser.InitializeComponent">
             <summary>
             InitializeComponent
-            </summary>
-        </member>
-        <member name="T:XamlGeneratedNamespace.GeneratedInternalTypeHelper">
-            <summary>
-            GeneratedInternalTypeHelper
-            </summary>
-        </member>
-        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.CreateInstance(System.Type,System.Globalization.CultureInfo)">
-            <summary>
-            CreateInstance
-            </summary>
-        </member>
-        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.GetPropertyValue(System.Reflection.PropertyInfo,System.Object,System.Globalization.CultureInfo)">
-            <summary>
-            GetPropertyValue
-            </summary>
-        </member>
-        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.SetPropertyValue(System.Reflection.PropertyInfo,System.Object,System.Object,System.Globalization.CultureInfo)">
-            <summary>
-            SetPropertyValue
-            </summary>
-        </member>
-        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.CreateDelegate(System.Type,System.Object,System.String)">
-            <summary>
-            CreateDelegate
-            </summary>
-        </member>
-        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.AddEventHandler(System.Reflection.EventInfo,System.Object,System.Delegate)">
-            <summary>
-            AddEventHandler
             </summary>
         </member>
     </members>

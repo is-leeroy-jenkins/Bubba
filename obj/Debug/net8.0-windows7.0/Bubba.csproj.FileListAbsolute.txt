@@ -631,10 +631,8 @@ C:\Users\terry\source\repos\Bubba\obj\Debug\net8.0-windows7.0\UI\Controls\Frame\
 C:\Users\terry\source\repos\Bubba\obj\Debug\net8.0-windows7.0\UI\Views\Calculator\CalculatorWindow.g.cs
 C:\Users\terry\source\repos\Bubba\obj\Debug\net8.0-windows7.0\UI\Views\ChatWindow\ChatWindow.g.cs
 C:\Users\terry\source\repos\Bubba\obj\Debug\net8.0-windows7.0\UI\Views\ColorDialog\ColorDialog.g.cs
-C:\Users\terry\source\repos\Bubba\obj\Debug\net8.0-windows7.0\UI\Views\Configuration\ConfigurationDialog.g.cs
 C:\Users\terry\source\repos\Bubba\obj\Debug\net8.0-windows7.0\UI\Views\ErrorWindow\ErrorWindow.g.cs
 C:\Users\terry\source\repos\Bubba\obj\Debug\net8.0-windows7.0\UI\Views\FileBrowser\FileBrowser.g.cs
-C:\Users\terry\source\repos\Bubba\obj\Debug\net8.0-windows7.0\UI\Views\FolderBrowser\FolderBrowser.g.cs
 C:\Users\terry\source\repos\Bubba\obj\Debug\net8.0-windows7.0\UI\Views\GptFileDialog\GptFileDialog.g.cs
 C:\Users\terry\source\repos\Bubba\obj\Debug\net8.0-windows7.0\UI\Views\GptImageDialog\GptImageDialog.g.cs
 C:\Users\terry\source\repos\Bubba\obj\Debug\net8.0-windows7.0\UI\Views\Notification\Notification.g.cs
@@ -683,10 +681,8 @@ C:\Users\terry\source\repos\Bubba\obj\Debug\net8.0-windows7.0\UI\Themes\Window\W
 C:\Users\terry\source\repos\Bubba\obj\Debug\net8.0-windows7.0\UI\Views\Calculator\CalculatorWindow.baml
 C:\Users\terry\source\repos\Bubba\obj\Debug\net8.0-windows7.0\UI\Views\ChatWindow\ChatWindow.baml
 C:\Users\terry\source\repos\Bubba\obj\Debug\net8.0-windows7.0\UI\Views\ColorDialog\ColorDialog.baml
-C:\Users\terry\source\repos\Bubba\obj\Debug\net8.0-windows7.0\UI\Views\Configuration\ConfigurationDialog.baml
 C:\Users\terry\source\repos\Bubba\obj\Debug\net8.0-windows7.0\UI\Views\ErrorWindow\ErrorWindow.baml
 C:\Users\terry\source\repos\Bubba\obj\Debug\net8.0-windows7.0\UI\Views\FileBrowser\FileBrowser.baml
-C:\Users\terry\source\repos\Bubba\obj\Debug\net8.0-windows7.0\UI\Views\FolderBrowser\FolderBrowser.baml
 C:\Users\terry\source\repos\Bubba\obj\Debug\net8.0-windows7.0\UI\Views\GptFileDialog\GptFileDialog.baml
 C:\Users\terry\source\repos\Bubba\obj\Debug\net8.0-windows7.0\UI\Views\GptImageDialog\GptImageDialog.baml
 C:\Users\terry\source\repos\Bubba\obj\Debug\net8.0-windows7.0\UI\Views\PropertyDialog\PropertyDialog.baml
