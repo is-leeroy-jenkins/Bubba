@@ -8199,7 +8199,7 @@
       ]
     },
     "Syncfusion.Licensing/24.1.41": {
-      "sha512": "XwXq2h7CXQunmkLf3buo6xiNy0OM33UvIl6wvsrKzMSFiVUQKPZwlZUOOhqX6kWpTP0owNKCMt54TdidreJY2g==",
+      "sha512": "/8l+5x11RGlQhn3lv6S4AuwOM3i1kbt8Eul5gZ45rHbcEWM6Pt1so71j71w3sE+blkPSDJ2nhdiXQQLBFTKi3g==",
       "type": "package",
       "path": "syncfusion.licensing/24.1.41",
       "files": [
@@ -8486,7 +8486,7 @@
       ]
     },
     "Syncfusion.SfChart.WPF/24.1.41": {
-      "sha512": "TrNzh1pZhIn2VTEgnmHVlptqw37i9VEw4/9oUr6kxuNN2VEERp5si9EAjCDyacIqvcfI4/6/9GuNAIXUmBFAkg==",
+      "sha512": "ZjfH8FJvcMF5vnomXYuoLHiU9+JhJVQSG0QRurcOwzu0CrIY1fSGeKjP1SL0sPrxxhvDOKaUYlHpF7ghrMHTnw==",
       "type": "package",
       "path": "syncfusion.sfchart.wpf/24.1.41",
       "hasTools": true,
@@ -8972,7 +8972,7 @@
       ]
     },
     "Syncfusion.UI.WPF.NET/24.1.41": {
-      "sha512": "zW2012+C80AduAcqJHBYCC/BLdoqVaHXOFpt/AsMtfaWnLeRnFKMOBXZyHgeFXhI5Qc4NeZFGO/RfLiYtNKmiw==",
+      "sha512": "C1KC55ePGQZUiSskcO4OBizkIzYUbLS3YHGdVDBZtzX0hUkXJt+SDrbfnwavTvJakVD3iKSgMkPQ8xYAFfbqPg==",
       "type": "package",
       "path": "syncfusion.ui.wpf.net/24.1.41",
       "hasTools": true,

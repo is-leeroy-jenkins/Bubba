@@ -23,7 +23,7 @@
     <Import Project="$(NuGetPackageRoot)\cefsharp.common\137.0.100\buildTransitive\CefSharp.Common.props" Condition="Exists('$(NuGetPackageRoot)\cefsharp.common\137.0.100\buildTransitive\CefSharp.Common.props')" />
   </ImportGroup>
   <PropertyGroup Condition=" '$(ExcludeRestorePackageImports)' != 'true' ">
-    <PkgSyncfusion_UI_WPF_NET Condition=" '$(PkgSyncfusion_UI_WPF_NET)' == '' ">C:\Users\terry\.nuget\packages\syncfusion.ui.wpf.net\24.1.41</PkgSyncfusion_UI_WPF_NET>
+    <PkgSyncfusion_UI_WPF_NET Condition=" '$(PkgSyncfusion_UI_WPF_NET)' == '' ">C:\Program Files (x86)\Syncfusion\Essential Studio\WPF\24.1.41\ToolboxNuGetPackages\syncfusion.ui.wpf.net\24.1.41</PkgSyncfusion_UI_WPF_NET>
     <PkgSyncfusion_Shared_WPF Condition=" '$(PkgSyncfusion_Shared_WPF)' == '' ">C:\Users\terry\.nuget\packages\syncfusion.shared.wpf\24.1.41</PkgSyncfusion_Shared_WPF>
     <PkgSyncfusion_Tools_WPF Condition=" '$(PkgSyncfusion_Tools_WPF)' == '' ">C:\Users\terry\.nuget\packages\syncfusion.tools.wpf\24.1.41</PkgSyncfusion_Tools_WPF>
     <PkgSyncfusion_Shared_Base Condition=" '$(PkgSyncfusion_Shared_Base)' == '' ">C:\Users\terry\.nuget\packages\syncfusion.shared.base\24.1.41</PkgSyncfusion_Shared_Base>

@@ -33913,6 +33913,7 @@
         </member>
         <member name="F:Bubba.ChatWindow._keyboardCallback">
             <summary>
+            
             The keyboard handler
             </summary>
         </member>

@@ -490,6 +490,7 @@ namespace Bubba
         private protected LifeSpanCallback _lifeSpanCallback;
 
         /// <summary>
+        /// 
         /// The keyboard handler
         /// </summary>
         private protected KeyboardCallback _keyboardCallback;
@@ -3854,6 +3855,7 @@ namespace Bubba
         private protected void OnLoad( object sender, RoutedEventArgs e )
         {
             PopulateRequestTypes( );
+            PopulateVoices( );
             InitializePlotter( );
             InitializeHotkeys( );
             InitializeTimer( );
@@ -4664,9 +4666,7 @@ namespace Bubba
             {
                 if( ModelDropDown.SelectedIndex != -1 )
                 {
-                    _model = ( (MetroDropDownItem)ModelDropDown.SelectedItem )
-                        ?.Tag.ToString( );
-
+                    _model = ( (MetroDropDownItem)ModelDropDown.SelectedItem )?.Tag.ToString( );
                     PopulateImageSizes( );
                     var _message = "Model = " + _model;
                     SendMessage( _message );
