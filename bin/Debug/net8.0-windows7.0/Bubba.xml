@@ -34733,14 +34733,7 @@
             <param name="e">The <see cref="T:System.EventArgs"/>
             instance containing the event data.</param>
         </member>
-        <member name="M:Bubba.ChatWindow.OnMouseMove(System.Object,System.Windows.Input.MouseEventArgs)">
-            <summary>
-            Called when [URL text box click].
-            </summary>
-            <param name="sender">The sender.</param>
-            <param name="e">The <see cref="T:System.Windows.Input.MouseEventArgs"/>
-            instance containing the event data.</param>
-        </member>
+        <!-- Badly formed XML comment ignored for member "M:Bubba.ChatWindow.OnMouseMove(System.Object,System.Windows.Input.MouseEventArgs)" -->
         <member name="M:Bubba.ChatWindow.OnClosing(System.Object,System.ComponentModel.CancelEventArgs)">
             <summary>
             Called when [closing].
@@ -34857,6 +34850,7 @@
             <summary>
             Called when [next button click].
             </summary>
+            
             <param name="sender">The sender.</param>
             <param name="e">The <see cref="T:System.Windows.RoutedEventArgs"/>
             instance containing the event data.</param>

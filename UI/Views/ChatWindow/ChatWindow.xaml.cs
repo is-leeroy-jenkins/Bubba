@@ -2222,7 +2222,6 @@ namespace Bubba
                 ModelDropDown.AddItem( "gpt-4o-mini-2024-07-18" );
                 ModelDropDown.AddItem( "o1-2024-12-17" );
                 ModelDropDown.AddItem( "o1-pro-2025-03-19" );
-                ModelDropDown.AddItem( "o1-mini-2024-09-12" );
                 ModelDropDown.AddItem( "o3-mini-2025-01-31" );
             }
             catch( Exception ex )
@@ -2234,16 +2233,43 @@ namespace Bubba
         /// <summary>
         /// Populates the image generation models.
         /// </summary>
-        private void PopulateImageModels( )
+        private void PopulateImageEditingModels( )
         {
             try
             {
                 ModelDropDown.Items?.Clear( );
+                ModelDropDown.AddItem( "gpt-image-1" );
                 ModelDropDown.AddItem( "dall-e-2" );
                 ModelDropDown.AddItem( "dall-e-3" );
                 ModelDropDown.AddItem( "gpt-4-0613" );
                 ModelDropDown.AddItem( "gpt-4-0314" );
+                ModelDropDown.AddItem( "gpt-4o-2024-11-20" );
                 ModelDropDown.AddItem( "gpt-4o-mini-2024-07-18" );
+                ModelDropDown.AddItem( "gpt-4.1-2025-04-14" );
+                ModelDropDown.AddItem( "gpt-4.1-mini-2025-04-14" );
+                ModelDropDown.AddItem( "gpt-4.1-nano-2025-04-14" );
+                ModelDropDown.AddItem( "o1-2024-12-17" );
+                ModelDropDown.AddItem( "o3-2025-04-16" );
+                ModelDropDown.AddItem( "o3-mini-2025-01-31" );
+                ModelDropDown.AddItem( "o4-mini-2025-04-16" );
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+            }
+        }
+
+        /// <summary>
+        /// Populates the image generation models.
+        /// </summary>
+        private void PopulateImageGenerationModels( )
+        {
+            try
+            {
+                ModelDropDown.Items?.Clear( );
+                ModelDropDown.AddItem( "gpt-image-1" );
+                ModelDropDown.AddItem( "dall-e-2" );
+                ModelDropDown.AddItem( "dall-e-3" );
             }
             catch( Exception ex )
             {
@@ -2723,7 +2749,7 @@ namespace Bubba
         {
             try
             {
-                var _path = Locations.PathPrefix + @"Resources\Documents\Appropriations\";
+                var _path = Locations.PathPrefix + @"Resources\Documents\Prompts\";
                 Editor.DocumentLanguage = Syncfusion.Windows.Edit.Languages.Text;
                 DocumentListBox.Items?.Clear( );
                 var _documents = Directory.GetFiles( _path );
@@ -2822,15 +2848,15 @@ namespace Bubba
             {
                 PopulateInstalledVoices(  );
                 var _aiVoices = new Dictionary<string, string>( );
-                _aiVoices.Add( "alloy", "alloy" );
-                _aiVoices.Add( "ash", "ash" );
-                _aiVoices.Add( "coral", "coral" );
-                _aiVoices.Add( "echo", "echo" );
-                _aiVoices.Add( "onyx", "onyx" );
-                _aiVoices.Add( "fable", "fable" );
-                _aiVoices.Add( "nova", "nova" );
-                _aiVoices.Add( "sage", "sage" );
-                _aiVoices.Add( "shimmer", "shimer" );
+                _aiVoices.Add( "alloy", "Alloy" );
+                _aiVoices.Add( "ash", "Ash" );
+                _aiVoices.Add( "coral", "Coral" );
+                _aiVoices.Add( "echo", "Echo" );
+                _aiVoices.Add( "onyx", "Onyx" );
+                _aiVoices.Add( "fable", "Fable" );
+                _aiVoices.Add( "nova", "Nova" );
+                _aiVoices.Add( "sage", "Sage" );
+                _aiVoices.Add( "shimmer", "Shimer" );
                 foreach( var _voice in _aiVoices )
                 {
                     var _item = new MetroDropDownItem
@@ -3481,7 +3507,7 @@ namespace Bubba
                     }
                     case API.ImageGeneration:
                     {
-                        PopulateImageModels( );
+                        PopulateImageEditingModels( );
                         _endpoint = GptEndPoint.ImageGeneration;
                         break;
                     }
@@ -3665,7 +3691,7 @@ namespace Bubba
                     var _tab = ( BrowserTabItem )browser.Parent;
                     _tab.Title = _title;
                 }
-                else
+                else 
                 {
                     var _tab = ( BrowserTabItem )browser.Parent;
                     _tab.Title = text;
@@ -3699,6 +3725,7 @@ namespace Bubba
                     ToolStripTextBox.Visibility = Visibility.Visible;
                     ToolStripCancelButton.Visibility = Visibility.Visible;
                     ToolStripFileButton.Visibility = Visibility.Visible;
+                    ToolStripDeleteButton.Visibility = Visibility.Visible;
                     ToolStripRemoveButton.Visibility = Visibility.Visible;
                 }
                 else
@@ -3708,6 +3735,7 @@ namespace Bubba
                     ToolStripRefreshButton.Visibility = Visibility.Hidden;
                     ToolStripCancelButton.Visibility = Visibility.Hidden;
                     ToolStripFileButton.Visibility = Visibility.Hidden;
+                    ToolStripDeleteButton.Visibility = Visibility.Hidden;
                     ToolStripRemoveButton.Visibility = Visibility.Hidden;
                 }
             }
@@ -3803,6 +3831,7 @@ namespace Bubba
         private protected void OnLoad( object sender, RoutedEventArgs e )
         {
             PopulateRequestTypes( );
+            PopulateModelsAsync(  );
             PopulateVoices( );
             InitializePlotter( );
             InitializeHotkeys( );
@@ -3840,7 +3869,7 @@ namespace Bubba
             try
             {
                 var _message = "NOT YET IMPLEMENTED!";
-                SendMessage( _message );
+                SendNotification( _message );
             }
             catch( Exception ex )
             {
@@ -3859,7 +3888,7 @@ namespace Bubba
             try
             {
                 var _message = "NOT YET IMPLEMENTED!";
-                SendMessage( _message );
+                SendNotification( _message );
             }
             catch( Exception ex )
             {
@@ -3878,7 +3907,7 @@ namespace Bubba
             try
             {
                 var _message = "NOT YET IMPLEMENTED!";
-                SendMessage( _message );
+                SendNotification( _message );
             }
             catch( Exception ex )
             {
@@ -3916,7 +3945,11 @@ namespace Bubba
         {
             try
             {
-                _store = StoreCheckBox.IsChecked == true;
+                if( StoreCheckBox.IsChecked == true )
+                {
+                    var _msg = "The Chats are now being stored!";
+                    SendNotification( _msg );
+                }
             }
             catch( Exception ex )
             {
@@ -3934,7 +3967,11 @@ namespace Bubba
         {
             try
             {
-                _stream = StreamCheckBox.IsChecked == true;
+                if( StreamCheckBox.IsChecked == true )
+                {
+                    var _msg = "The Responses are now being streamed!";
+                    SendNotification( _msg );
+                }
             }
             catch( Exception ex )
             {
@@ -3942,8 +3979,7 @@ namespace Bubba
             }
         }
 
-
-        /// <summary>
+        /// <summary
         /// Called when [URL text box click].
         /// </summary>
         /// <param name="sender">The sender.</param>
@@ -4215,7 +4251,7 @@ namespace Bubba
             try
             {
                 var _message = "NOT YET IMPLEMENTED!";
-                SendMessage( _message );
+                SendNotification( _message );
             }
             catch( Exception ex )
             {
@@ -4234,7 +4270,7 @@ namespace Bubba
             try
             {
                 var _message = "NOT YET IMPLEMENTED!";
-                SendMessage( _message );
+                SendNotification( _message );
             }
             catch( Exception ex )
             {
@@ -4245,6 +4281,7 @@ namespace Bubba
         /// <summary>
         /// Called when [next button click].
         /// </summary>
+        /// 
         /// <param name="sender">The sender.</param>
         /// <param name="e">The <see cref="RoutedEventArgs"/>
         /// instance containing the event data.</param>
@@ -4253,7 +4290,7 @@ namespace Bubba
             try
             {
                 var _message = "NOT YET IMPLEMENTED!";
-                SendMessage( _message );
+                SendNotification( _message );
             }
             catch( Exception ex )
             {
@@ -4272,7 +4309,7 @@ namespace Bubba
             try
             {
                 var _message = "NOT YET IMPLEMENTED!";
-                SendMessage( _message );
+                SendNotification( _message );
             }
             catch( Exception ex )
             {
@@ -4291,7 +4328,7 @@ namespace Bubba
             try
             {
                 var _message = "NOT YET IMPLEMENTED!";
-                SendMessage( _message );
+                SendNotification( _message );
             }
             catch( Exception ex )
             {
@@ -4332,7 +4369,7 @@ namespace Bubba
             try
             {
                 var _message = "NOT YET IMPLEMENTED!";
-                SendMessage( _message );
+                SendNotification( _message );
             }
             catch( Exception ex )
             {
@@ -4351,7 +4388,7 @@ namespace Bubba
             try
             {
                 var _message = "NOT YET IMPLEMENTED!";
-                SendMessage( _message );
+                SendNotification( _message );
             }
             catch( Exception ex )
             {
@@ -4370,7 +4407,7 @@ namespace Bubba
             try
             {
                 var _message = "NOT YET IMPLEMENTED!";
-                SendMessage( _message );
+                SendNotification( _message );
             }
             catch( Exception ex )
             {
@@ -4491,6 +4528,8 @@ namespace Bubba
             if( ListenCheckBox.IsChecked == true )
             {
                 InitializeSpeechEngine( );
+                var _msg = "The Speech Engine has been activated!";
+                SendNotification( _msg );
             }
             else
             {
@@ -4668,11 +4707,9 @@ namespace Bubba
                 if( LanguageDropDown.SelectedIndex != -1 )
                 {
                     _language =
-                        ( ( MetroDropDownItem )LanguageDropDown.SelectedItem )
-                        ?.Tag.ToString(  );
+                        ( ( MetroDropDownItem )LanguageDropDown.SelectedItem )?.Tag.ToString(  );
 
                     PopulateDocuments( );
-                    TabControl.SelectedIndex = 3;
                     var _message = "Language = " + _language;
                     SendMessage( _message );
                 }
@@ -4737,6 +4774,7 @@ namespace Bubba
                                 _textBox.Text = _value.ToString( "N2" );
                                 break;
                             }
+                            case "TopLogProbs":
                             case "TopPercent":
                             {
                                 var _temp = _textBox.Text;
@@ -4830,7 +4868,6 @@ namespace Bubba
             try
             {
                 var _image = ResponseFormatDropDown.SelectedValue.ToString( );
-                _responseFormat = _image?.Replace( " ", "" );
                 var _message = "ResponseFormat = " + _responseFormat;
                 SendMessage( _message );
             }
@@ -4851,7 +4888,6 @@ namespace Bubba
             try
             {
                 var _image = ImageQualityDropDown.SelectedValue.ToString( );
-                _imageQuality = _image?.Replace( " ", "" );
                 var _message = "ImageQuality = " + _imageQuality;
                 SendMessage( _message );
             }
@@ -4872,7 +4908,6 @@ namespace Bubba
             try
             {
                 var _image = AudioFormatDropDown.SelectedValue.ToString( );
-                _audioFormat = _image?.Replace( " ", "" );
                 var _message = "AudioFormat = " + _audioFormat;
                 SendMessage( _message );
             }
@@ -4914,7 +4949,6 @@ namespace Bubba
             try
             {
                 var _image = ImageDetailDropDown.SelectedValue.ToString( );
-                _imageDetail = _image?.Replace( " ", "" );
                 var _message = "ImageDetail = " + _imageDetail;
                 SendMessage( _message );
             }

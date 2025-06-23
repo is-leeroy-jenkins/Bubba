@@ -14,8 +14,8 @@
     xmlns:web="clr-namespace:CefSharp.Wpf;assembly=CefSharp.Wpf"
     xmlns:wpf="http://schemas.syncfusion.com/wpf"
     Title="Bubba"
-    Width="1350"
-    Height="700"
+    Width="1360"
+    Height="710"
     MinWidth="1000"
     MinHeight="400"
     wpf:SfSkinManager.Theme="{wpf:SkinManager ThemeName=FluentDark}"
@@ -324,7 +324,7 @@
                             x:Name="ChatTextBox"
                             Grid.Column="0"
                             Width="920"
-                            Height="572"
+                            Height="570"
                             Margin="5"
                             Padding="3"
                             HorizontalAlignment="Left"
@@ -381,10 +381,9 @@
                                                     x:Name="StreamCheckBox"
                                                     Width="65"
                                                     Height="40"
-                                                    Margin="0,1,0,1"
+                                                    Margin="3,0,0,0"
                                                     HorizontalAlignment="Left"
                                                     HorizontalContentAlignment="Left"
-                                                    Checked="OnStreamCheckBoxChecked"
                                                     Content="Stream"
                                                     FontFamily="Roboto"
                                                     Foreground="{DynamicResource FormForeground}"
@@ -396,9 +395,12 @@
                                                     x:Name="StoreCheckBox"
                                                     Grid.Column="1"
                                                     Margin="3,0,0,0"
-                                                    Checked="OnStoreCheckBoxChecked"
                                                     Content="Store"
+                                                    Width="65"
+                                                    Height="40"
                                                     FontFamily="Roboto"
+                                                    HorizontalAlignment="Left"
+                                                    HorizontalContentAlignment="Left"
                                                     Foreground="{DynamicResource FormForeground}"
                                                     IsChecked="True"
                                                     Tag="store"
@@ -409,11 +411,11 @@
                                                     Grid.Column="2"
                                                     Width="90"
                                                     Height="35"
-                                                    Margin="10,0,0,0"
+                                                    Margin="10,0,0,1"
                                                     HorizontalAlignment="Left"
                                                     HorizontalContentAlignment="Center"
                                                     AutomationProperties.HelpText="Maximum Tokens"
-                                                    BorderBrush="{DynamicResource BlueBorderBrush}"
+                                                    BorderBrush="{StaticResource BlueBorderBrush}"
                                                     FontFamily="Roboto"
                                                     ShowSpinButton="True"
                                                     TextWrapping="Wrap"
@@ -545,6 +547,22 @@
                                                         FontFamily="Roboto"
                                                         FontSize="14"
                                                         Foreground="{StaticResource WhiteForeground}" />
+                                                    
+
+                                                    <b:MetroDropDownItem
+                                                        Height="35"
+                                                        Content="url"
+                                                        FontFamily="Roboto"
+                                                        FontSize="14"
+                                                        Foreground="{StaticResource WhiteForeground}" />
+
+                                                    <b:MetroDropDownItem
+                                                        Height="35"
+                                                        Content="base64_json"
+                                                        FontFamily="Roboto"
+                                                        FontSize="14"
+                                                        Foreground="{StaticResource WhiteForeground}" />
+
                                                 </b:MetroDropDown>
                                             </GroupBox>
 
@@ -619,7 +637,8 @@
                                 Padding="10"
                                 Background="{DynamicResource BackgroundBrush}"
                                 Foreground="{DynamicResource FormForeground}"
-                                Header="Parameters">
+                                Header="Parameters"
+                                Tag="GPT">
 
                                 <Grid Background="{DynamicResource BackgroundBrush}">
                                     <Grid.RowDefinitions>
@@ -679,6 +698,7 @@
                                                     ShowValueLabels="True"
                                                     SmallChange="0.1"
                                                     SnapsTo="Ticks"
+                                                    Tag="Temperature"
                                                     ThumbStyle="{StaticResource ThumbStyle}"
                                                     TickFrequency="0.5"
                                                     TickPlacement="BottomRight"
@@ -722,9 +742,10 @@
                                                     MinorTickFrequency="0.2"
                                                     MinorTickLength="5"
                                                     MinorTickStroke="{StaticResource WhiteForeground}"
-                                                    ThumbStyle="{StaticResource ThumbStyle}"
                                                     ShowValueLabels="True"
                                                     SnapsTo="Ticks"
+                                                    Tag="TopPercent"
+                                                    ThumbStyle="{StaticResource ThumbStyle}"
                                                     TickFrequency="0.1"
                                                     TickPlacement="BottomRight"
                                                     TickStroke="{StaticResource WhiteForeground}"
@@ -766,9 +787,9 @@
                                                     ShowValueLabels="True"
                                                     SnapsTo="Ticks"
                                                     Tag="FrequencyPenalty"
+                                                    ThumbStyle="{StaticResource ThumbStyle}"
                                                     TickFrequency="0.5"
                                                     TickPlacement="BottomRight"
-                                                    ThumbStyle="{StaticResource ThumbStyle}"
                                                     TickStroke="{StaticResource WhiteForeground}"
                                                     ToolTip="Positive values decrease reptition"
                                                     Value="0.00" />
@@ -796,7 +817,6 @@
                                                     Margin="3"
                                                     HorizontalAlignment="Stretch"
                                                     VerticalAlignment="Stretch"
-                                                    ThumbStyle="{StaticResource ThumbStyle}"
                                                     ActiveMinorTickStroke="{StaticResource WhiteForeground}"
                                                     ActiveTickStroke="{StaticResource WhiteForeground}"
                                                     Background="{DynamicResource BlueBorderBrush}"
@@ -808,6 +828,8 @@
                                                     MinorTickStroke="{StaticResource WhiteForeground}"
                                                     ShowValueLabels="False"
                                                     SnapsTo="Ticks"
+                                                    Tag="PresensePenalty"
+                                                    ThumbStyle="{StaticResource ThumbStyle}"
                                                     TickFrequency="0.5"
                                                     TickPlacement="BottomRight"
                                                     TickStroke="{StaticResource WhiteForeground}"
@@ -835,7 +857,6 @@
                                                     Width="230"
                                                     Height="75"
                                                     Margin="3"
-                                                    ThumbStyle="{StaticResource ThumbStyle}"
                                                     ActiveMinorTickStroke="{DynamicResource WhiteForeground}"
                                                     ActiveTickStroke="{DynamicResource WhiteForeground}"
                                                     Background="{DynamicResource BlueBorderBrush}"
@@ -843,6 +864,8 @@
                                                     Minimum="0"
                                                     MinorTickFrequency="1"
                                                     ShowValueLabels="False"
+                                                    Tag="TopLogProbs"
+                                                    ThumbStyle="{StaticResource ThumbStyle}"
                                                     TickFrequency="2"
                                                     TickPlacement="BottomRight"
                                                     Value="15" />
@@ -864,6 +887,7 @@
                                             Background="{StaticResource ControlInteriorBrush}"
                                             BorderBrush="{StaticResource BlueBorderBrush}"
                                             FontSize="14"
+                                            Tag="TopLogProbs"
                                             Text="{Binding ElementName=TopLogProbSlider, Path=Value, StringFormat=N0}"
                                             TextWrapping="Wrap"
                                             Watermark="Top Log-Probability" />
@@ -881,6 +905,7 @@
                                             Background="{StaticResource ControlInteriorBrush}"
                                             BorderBrush="{StaticResource BlueBorderBrush}"
                                             FontSize="14"
+                                            Tag="PresensePenalty"
                                             Text="{Binding ElementName=PresenceSlider, Path=Value, StringFormat=N2}"
                                             TextWrapping="Wrap"
                                             Watermark="Presence" />
@@ -898,6 +923,7 @@
                                             Background="{StaticResource ControlInteriorBrush}"
                                             BorderBrush="{StaticResource BlueBorderBrush}"
                                             FontSize="14"
+                                            Tag="FrequencyPenalty"
                                             Text="{Binding ElementName=FrequencySlider, Path=Value, StringFormat=N2}"
                                             TextWrapping="Wrap"
                                             Watermark="Frequency" />
@@ -915,6 +941,7 @@
                                             Background="{StaticResource ControlInteriorBrush}"
                                             BorderBrush="{StaticResource BlueBorderBrush}"
                                             FontSize="14"
+                                            Tag="TopPercent"
                                             Text="{Binding ElementName=TopPercentSlider, Path=Value, StringFormat=P2}"
                                             TextWrapping="Wrap"
                                             Watermark="Top Percent" />
@@ -932,6 +959,7 @@
                                             Background="{StaticResource ControlInteriorBrush}"
                                             BorderBrush="{StaticResource BlueBorderBrush}"
                                             FontSize="14"
+                                            Tag="Temperature"
                                             Text="{Binding ElementName=TemperatureSlider, Path=Value, StringFormat=P2}"
                                             TextWrapping="Wrap"
                                             Watermark="Temperature" />
@@ -1095,10 +1123,10 @@
                                                     MinorTickFrequency="4"
                                                     MinorTickLength="4"
                                                     MinorTickStroke="{StaticResource WhiteForeground}"
-                                                    ThumbStyle="{StaticResource ThumbStyle}"
                                                     ShowValueLabels="False"
                                                     SnapsTo="Ticks"
                                                     Tag="speed"
+                                                    ThumbStyle="{StaticResource ThumbStyle}"
                                                     TickFrequency="1"
                                                     TickPlacement="BottomRight"
                                                     TickStroke="{StaticResource WhiteForeground}"
@@ -1119,6 +1147,7 @@
                                             VerticalContentAlignment="Center"
                                             BorderBrush="{StaticResource BlueBorderBrush}"
                                             FontSize="14"
+                                            Tag="Speed"
                                             Text="{Binding ElementName=SpeechRateSlider, Path=Value, StringFormat=N2}"
                                             TextWrapping="Wrap"
                                             Watermark="Select a speech-rate" />
@@ -1294,13 +1323,18 @@
 
                                                     <b:MetroDropDownItem
                                                         Width="Auto"
-                                                        Height="40"
-                                                        Content="url" />
+                                                        Height="35"
+                                                        Content="png" />
 
                                                     <b:MetroDropDownItem
                                                         Width="Auto"
-                                                        Height="40"
-                                                        Content="b64_json" />
+                                                        Height="35"
+                                                        Content="jpeg" />
+
+                                                    <b:MetroDropDownItem
+                                                        Width="Auto"
+                                                        Height="35"
+                                                        Content="webp" />
 
                                                 </b:MetroDropDown>
                                             </GroupBox>
@@ -1468,8 +1502,7 @@
                         <web:ChromiumWebBrowser
                             x:Name="WebBrowser"
                             Grid.Row="1"
-                            Height="Auto"
-                            Margin="3"
+                            Margin="5"
                             Padding="1"
                             Address="https://www.google.com" />
 
