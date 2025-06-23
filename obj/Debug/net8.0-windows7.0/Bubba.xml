@@ -34364,7 +34364,12 @@
             Populates the assistant models.
             </summary>
         </member>
-        <member name="M:Bubba.ChatWindow.PopulateImageModels">
+        <member name="M:Bubba.ChatWindow.PopulateImageEditingModels">
+            <summary>
+            Populates the image generation models.
+            </summary>
+        </member>
+        <member name="M:Bubba.ChatWindow.PopulateImageGenerationModels">
             <summary>
             Populates the image generation models.
             </summary>

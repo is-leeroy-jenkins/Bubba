@@ -313,6 +313,11 @@ namespace Bubba
         private protected string _imageDetail;
 
         /// <summary>
+        /// The detail
+        /// </summary>
+        private protected string _imageBackground;
+
+        /// <summary>
         /// An upper bound for the number of tokens
         /// that can be generated for a completion
         /// </summary>
@@ -566,8 +571,8 @@ namespace Bubba
             InitializeToolStrip( );
 
             // Control Properties
-            TemperatureSlider.Value = 0.08;
-            TopPercentSlider.Value = 0.09;
+            TemperatureSlider.Value = 0.8;
+            TopPercentSlider.Value = 0.9;
             PresenceSlider.Value = 0.00;
             FrequencySlider.Value = 0.00;
             SpeechRateSlider.Value = 1.0;
@@ -931,20 +936,22 @@ namespace Bubba
         {
             try
             {
+                GenerationListBox.SelectionChanged += OnRequestListBoxSelectionChanged;
                 ModelDropDown.SelectionChanged += OnModelDropDownSelectionChanged;
                 ToolStripTextBox.TextChanged += OnToolStripTextBoxTextChanged;
                 ToolStripMenuButton.Click += OnToggleButtonClick;
                 ToolStripRefreshButton.Click += OnToolStripRefreshButtonClick;
                 ToolStripSendButton.Click += OnGoButtonClicked;
+                ToolStripFileButton.Click += OnFileApiButtonClick;
                 TemperatureTextBox.TextChanged += OnParameterTextBoxChanged;
                 PresencePenaltyTextBox.TextChanged += OnParameterTextBoxChanged;
                 FrequencyPenaltyTextBox.TextChanged += OnParameterTextBoxChanged;
                 TopPercentTextBox.TextChanged += OnParameterTextBoxChanged;
+                SpeechRateTextBox.TextChanged += OnParameterTextBoxChanged;
                 ListenCheckBox.Checked += OnListenCheckedChanged;
                 MuteCheckBox.Checked += OnMuteCheckedBoxChanged;
                 StoreCheckBox.Checked += OnStoreCheckBoxChecked;
-                GenerationListBox.SelectionChanged += OnRequestListBoxSelectionChanged;
-                ToolStripFileButton.Click += OnFileApiButtonClick;
+                StreamCheckBox.Checked += OnStreamCheckBoxChecked;
                 LanguageDropDown.SelectionChanged += OnLanguageListBoxSelectionChanged;
                 DocumentListBox.SelectionChanged += OnDocumentListBoxSelectionChanged;
                 ResponseFormatDropDown.SelectionChanged += OnResponseFormatSelectionChanged;
@@ -1619,7 +1626,7 @@ namespace Bubba
                 var _msg = "Randomness has to be between 0 and 2"
                     + "with higher values resulting in more random text; Default 1 ";
 
-                SendMessage( _msg );
+                SendNotification( _msg );
                 return "";
             }
 
@@ -1978,7 +1985,7 @@ namespace Bubba
             if( _currentBrowser == null )
             {
                 var _message = "CurrentBrowser is null!";
-                SendMessage( _message );
+                SendNotification( _message );
             }
             else
             {
@@ -4426,7 +4433,7 @@ namespace Bubba
             try
             {
                 var _message = "NOT YET IMPLEMENTED!";
-                SendMessage( _message );
+                SendNotification( _message );
             }
             catch( Exception ex )
             {
@@ -4463,7 +4470,7 @@ namespace Bubba
             try
             {
                 var _message = "NOT YET IMPLEMENTED!";
-                SendMessage( _message );
+                SendNotification( _message );
             }
             catch( Exception ex )
             {
@@ -4656,7 +4663,7 @@ namespace Bubba
                     _model = ( (MetroDropDownItem)ModelDropDown.SelectedItem )?.Tag.ToString( );
                     PopulateImageSizes( );
                     var _message = "Model = " + _model;
-                    SendMessage( _message );
+                    SendNotification( _message );
                 }
             }
             catch( Exception ex )
@@ -4685,7 +4692,7 @@ namespace Bubba
                     Editor.LoadFile( _selectedDocument );
                     TabControl.SelectedIndex = 3;
                     var _message = "Document = " + _selectedDocument;
-                    SendMessage( _message );
+                    SendNotification( _message );
                 }
             }
             catch( Exception ex )
@@ -4711,7 +4718,7 @@ namespace Bubba
 
                     PopulateDocuments( );
                     var _message = "Language = " + _language;
-                    SendMessage( _message );
+                    SendNotification( _message );
                 }
             }
             catch( Exception ex )
@@ -4739,7 +4746,7 @@ namespace Bubba
                     SetRequestType( );
 
                     var _message = "Request Type = " + _requestType;
-                    SendMessage( _message );
+                    SendNotification( _message );
                 }
             }
             catch( Exception ex )
@@ -4767,7 +4774,6 @@ namespace Bubba
                         {
                             case "FrequencyPenalty":
                             case "PresencePenalty":
-                            case "Temperature":
                             {
                                 var _temp = _textBox.Text;
                                 var _value = double.Parse( _temp );
@@ -4775,6 +4781,7 @@ namespace Bubba
                                 break;
                             }
                             case "TopLogProbs":
+                            case "Temperature":
                             case "TopPercent":
                             {
                                 var _temp = _textBox.Text;
@@ -4809,9 +4816,8 @@ namespace Bubba
                 if( ImageFormatDropDown.SelectedIndex != -1 )
                 {
                     var _image = ImageFormatDropDown.SelectedValue.ToString( );
-                    _imageFormat = _image?.Replace( " ", "" );
                     var _message = "Image Format = " + _imageFormat;
-                    SendMessage( _message );
+                    SendNotification( _message );
                 }
             }
             catch( Exception ex )
@@ -4835,7 +4841,7 @@ namespace Bubba
                 if( !string.IsNullOrEmpty( _keyWords ) )
                 {
                     var _message = "The search keywords are empty!";
-                    SendMessage( _message );
+                    SendNotification( _message );
                 }
                 else
                 {
@@ -4869,7 +4875,7 @@ namespace Bubba
             {
                 var _image = ResponseFormatDropDown.SelectedValue.ToString( );
                 var _message = "ResponseFormat = " + _responseFormat;
-                SendMessage( _message );
+                SendNotification( _message );
             }
             catch( Exception ex )
             {
@@ -4887,9 +4893,9 @@ namespace Bubba
         {
             try
             {
-                var _image = ImageQualityDropDown.SelectedValue.ToString( );
+                _imageQuality = ImageQualityDropDown.SelectedValue.ToString( );
                 var _message = "ImageQuality = " + _imageQuality;
-                SendMessage( _message );
+                SendNotification( _message );
             }
             catch( Exception ex )
             {
@@ -4907,9 +4913,9 @@ namespace Bubba
         {
             try
             {
-                var _image = AudioFormatDropDown.SelectedValue.ToString( );
+                _audioFormat = AudioFormatDropDown.SelectedValue.ToString( );
                 var _message = "AudioFormat = " + _audioFormat;
-                SendMessage( _message );
+                SendNotification( _message );
             }
             catch( Exception ex )
             {
@@ -4930,7 +4936,7 @@ namespace Bubba
                 var _image = ImageSizeDropDown.SelectedValue.ToString( );
                 _imageSize = _image?.Replace( " ", "" );
                 var _message = "ImageSize = " + _imageSize;
-                SendMessage( _message );
+                SendNotification( _message );
             }
             catch( Exception ex )
             {
@@ -4948,9 +4954,28 @@ namespace Bubba
         {
             try
             {
-                var _image = ImageDetailDropDown.SelectedValue.ToString( );
+                _imageDetail = ImageDetailDropDown.SelectedValue.ToString( );
                 var _message = "ImageDetail = " + _imageDetail;
-                SendMessage( _message );
+                SendNotification( _message );
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+            }
+        }
+
+        /// <summary>
+        /// Called when [image background selection changed].
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The <see cref="RoutedEventArgs"/> instance containing the event data.</param>
+        private protected void OnImageBackgroundSelectionChanged( object sender, RoutedEventArgs e )
+        {
+            try
+            {
+                _imageBackground = ImageBackgroundDropDown.SelectedValue.ToString( );
+                var _message = "ImageBackground = " + _imageBackground;
+                SendNotification( _message );
             }
             catch( Exception ex )
             {
@@ -4970,7 +4995,7 @@ namespace Bubba
             {
                 _reasoningEffort = EffortDropDown.SelectedValue.ToString( );
                 var _message = "ReasoningEffort = " + _reasoningEffort;
-                SendMessage( _message );
+                SendNotification( _message );
             }
             catch( Exception ex )
             {
@@ -4990,7 +5015,7 @@ namespace Bubba
             {
                 _voice = VoicesDropDown.SelectedValue.ToString( );
                 var _message = "Voice = " + _voice;
-                SendMessage( _message );
+                SendNotification( _message );
             }
             catch( Exception ex )
             {
