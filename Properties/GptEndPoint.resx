@@ -177,4 +177,8 @@
     <value>https://api.openai.com/v1/responses</value>
     <comment>URL to the openai responses api</comment>
   </data>
+  <data name="ImageEditing" xml:space="preserve">
+    <value>https://api.openai.com/v1/images/edits</value>
+    <comment>URL to the openai image-editing api</comment>
+  </data>
 </root>

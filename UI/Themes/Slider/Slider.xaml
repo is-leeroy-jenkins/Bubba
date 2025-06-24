@@ -5,19 +5,25 @@
     xmlns:wpf="http://schemas.syncfusion.com/wpf">
     <!--  *********************************************** Slider *****************************************************  -->
 
-    <Style x:Key="InactiveTrackStyle" TargetType="Rectangle">
+    <Style
+        x:Key="InactiveTrackStyle"
+        TargetType="Rectangle">
         <Setter Property="Height" Value="3" />
         <Setter Property="Fill" Value="{StaticResource BlueBorderBrush}" />
         <Setter Property="RadiusX" Value="2" />
         <Setter Property="RadiusY" Value="2" />
     </Style>
 
-    <Style x:Key="ActiveTrackStyle" TargetType="Rectangle">
+    <Style
+        x:Key="ActiveTrackStyle"
+        TargetType="Rectangle">
         <Setter Property="Height" Value="3" />
         <Setter Property="Fill" Value="{StaticResource BlueBorderBrush}" />
     </Style>
 
-    <Style x:Key="ThumbStyle" TargetType="Thumb">
+    <Style
+        x:Key="ThumbStyle"
+        TargetType="Thumb">
         <Setter Property="Width" Value="10" />
         <Setter Property="Height" Value="10" />
         <Setter Property="Background" Value="#0095ff" />
@@ -34,7 +40,9 @@
         </Setter>
     </Style>
 
-    <Style x:Key="SliderStyle" TargetType="{x:Type wpf:SfRangeSlider}">
+    <Style
+        x:Key="SliderStyle"
+        TargetType="{x:Type wpf:SfRangeSlider}">
         <Setter Property="AllowRangeDrag" Value="True" />
         <Setter Property="OverridesDefaultStyle" Value="True" />
         <Setter Property="ShowRange" Value="True" />

@@ -29,6 +29,7 @@ namespace Bubba
         public MetroSlider( )
             : base( )
         {
+            SetResourceReference( StyleProperty, typeof( SfRangeSlider ) );
             MinHeight = 40;
             MinWidth = 120;
             ClipToBounds = true;

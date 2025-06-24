@@ -86,6 +86,11 @@ namespace Bubba
         Transcriptions,
 
         /// <summary>
+        /// The image editing
+        /// </summary>
+        ImageEditing,
+
+        /// <summary>
         /// The assistants
         /// </summary>
         Assistants,

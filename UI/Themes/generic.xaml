@@ -23,6 +23,8 @@
         <ResourceDictionary Source="/UI/Themes/RadioButton/RadioButton.xaml" />
 
         <!--  COMMON  -->
+        <ResourceDictionary Source="/UI/Themes/Common/Common.xaml" />
+        <ResourceDictionary Source="/UI/Themes/Common/Brushes.xaml" />
 
         <!--  TAB CONTROL  -->
         <ResourceDictionary Source="/UI/Themes/TabControl/TabControl.xaml" />

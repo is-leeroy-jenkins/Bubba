@@ -31,7 +31,9 @@
                         BorderBrush="{DynamicResource BlueBorderBrush}"
                         BorderThickness="1"
                         CornerRadius="3">
-                        <StackPanel IsItemsHost="True" KeyboardNavigation.DirectionalNavigation="Cycle" />
+                        <StackPanel
+                            IsItemsHost="True"
+                            KeyboardNavigation.DirectionalNavigation="Cycle" />
                     </Border>
                     <ControlTemplate.Triggers>
                         <Trigger Property="HasDropShadow" Value="true">

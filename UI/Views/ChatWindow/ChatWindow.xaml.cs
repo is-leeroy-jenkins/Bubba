@@ -562,7 +562,7 @@ namespace Bubba
         public ChatWindow( )
         {
             // Theme Properties
-            SfSkinManager.SetTheme( this, new Theme( "FluentDark", App.Controls ) );
+            SfSkinManager.ApplyStylesOnApplication = true;
 
             // Window Initialization
             InitializeComponent( );
@@ -1617,7 +1617,7 @@ namespace Bubba
             _request.Method = "POST";
             _request.ContentType = "application/json";
             _request.Headers.Add( "Authorization", "Bearer " + App.OpenAiKey );
-            var _maxTokens = int.Parse( MaxTokenTextBox.Text );// 2048
+            var _maxTokens = int.Parse( MaxTokenTextBox.Text );// 10000
 
             // 0.5
             var _temp = double.Parse( TemperatureTextBox.Text );
@@ -1657,6 +1657,8 @@ namespace Bubba
             _streamWriter.Write( _data );
             _streamWriter.Flush( );
             _streamWriter.Close( );
+
+            // ReSharper disable once NotAccessedVariable
             var _json = "";
             using( var _response = _request.GetResponse( ) )
             {
@@ -2957,8 +2959,10 @@ namespace Bubba
                             var _documents = Directory.GetFiles( _path );
                             foreach( var _file in _documents )
                             {
-                                var _filePath = Path.GetFileNameWithoutExtension( _file );
-                                DocumentListBox.Items.Add( _filePath );
+                                var _item = new MetroListBoxItem( );
+                                _item.Tag = Path.GetFullPath( _file );
+                                _item.Content = Path.GetFileNameWithoutExtension( _file );
+                                DocumentListBox.Items.Add( _item );
                             }
 
                             break;
@@ -3205,6 +3209,7 @@ namespace Bubba
         private protected void ActivateBusyTab( )
         {
             try
+
             {
                 SetToolbarVisibility( false );
             }
@@ -3522,6 +3527,12 @@ namespace Bubba
                     {
                         PopulateEmbeddingModels( );
                         _endpoint = GptEndPoint.Embeddings;
+                        break;
+                    }
+                    case API.ImageEditing:
+                    {
+                        PopulateImageEditingModels(  );
+                        _endpoint = GptEndPoint.ImageEditing;
                         break;
                     }
                     case API.VectorStores:
@@ -3845,6 +3856,8 @@ namespace Bubba
             InitializeTimer( );
             InitializeToolStrip( );
             InitializeEditor( );
+            EnableForwardButton( false );
+            EnableBackButton( false );
             App.ActiveWindows.Add( "ChatWindow", this );
             InitializeInterface( );
         }
@@ -4711,15 +4724,10 @@ namespace Bubba
         {
             try
             {
-                if( LanguageDropDown.SelectedIndex != -1 )
-                {
-                    _language =
-                        ( ( MetroDropDownItem )LanguageDropDown.SelectedItem )?.Tag.ToString(  );
-
+                    _language = ( ( MetroDropDownItem )LanguageDropDown.SelectedItem ).ToString( );
                     PopulateDocuments( );
                     var _message = "Language = " + _language;
                     SendNotification( _message );
-                }
             }
             catch( Exception ex )
             {

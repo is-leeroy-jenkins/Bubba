@@ -7489,6 +7489,11 @@
             The sound transcribing
             </summary>
         </member>
+        <member name="F:Bubba.API.ImageEditing">
+            <summary>
+            The image editing
+            </summary>
+        </member>
         <member name="F:Bubba.API.Assistants">
             <summary>
             The assistants
@@ -28019,6 +28024,11 @@
         <member name="P:Bubba.Properties.GptEndPoint.FineTuning">
             <summary>
               Looks up a localized string similar to https://api.openai.com/v1/fineTuning/jobs.
+            </summary>
+        </member>
+        <member name="P:Bubba.Properties.GptEndPoint.ImageEditing">
+            <summary>
+              Looks up a localized string similar to https://api.openai.com/v1/images/edits.
             </summary>
         </member>
         <member name="P:Bubba.Properties.GptEndPoint.ImageGeneration">

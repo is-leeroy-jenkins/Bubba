@@ -115,6 +115,15 @@ namespace Bubba.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to https://api.openai.com/v1/images/edits.
+        /// </summary>
+        internal static string ImageEditing {
+            get {
+                return ResourceManager.GetString("ImageEditing", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to https://api.openai.com/v1/images/generations.
         /// </summary>
         internal static string ImageGeneration {
