@@ -1646,7 +1646,7 @@
                                 ToolTip="Back" />
 
                             <Label
-                                x:Name="UrlPanelDateLabel"
+                                x:Name="UrlPanelStatusLabel"
                                 Grid.Column="9"
                                 Margin="1,5,4,5"
                                 Padding="1,1,1,1"
@@ -1759,14 +1759,39 @@
                                 FontFamily="Roboto"
                                 Foreground="{StaticResource FormForeground}"
                                 SnapsToDevicePixels="True">
-                                <b:MetroDropDownItem Content="Text" Tag="TXT" />
-                                <b:MetroDropDownItem Content="SQL" Tag="SQL" />
-                                <b:MetroDropDownItem Content="C" Tag="C" />
-                                <b:MetroDropDownItem Content="C++" Tag="CPP" />
-                                <b:MetroDropDownItem Content="C#" Tag="CS" />
-                                <b:MetroDropDownItem Content="Python" Tag="PY" />
-                                <b:MetroDropDownItem Content="JavaScript" Tag="JS" />
-                                <b:MetroDropDownItem Content="VBA" Tag="VBA" />
+
+                                <b:MetroDropDownItem 
+                                    Content="Text" 
+                                    Tag="TXT" />
+
+                                <b:MetroDropDownItem 
+                                    Content="SQL" 
+                                    Tag="SQL" />
+
+                                <b:MetroDropDownItem 
+                                    Content="C" 
+                                    Tag="C" />
+
+                                <b:MetroDropDownItem 
+                                    Content="C++" 
+                                    Tag="CPP" />
+
+                                <b:MetroDropDownItem 
+                                    Content="C#" 
+                                    Tag="CS" />
+
+                                <b:MetroDropDownItem 
+                                    Content="Python" 
+                                    Tag="PY" />
+
+                                <b:MetroDropDownItem 
+                                    Content="JavaScript" 
+                                    Tag="JS" />
+
+                                <b:MetroDropDownItem 
+                                    Content="VBA" 
+                                    Tag="VBA" />
+
                             </b:MetroDropDown>
                         </Canvas>
                         <Canvas x:Name="EditorCanvas" Grid.Column="1" />

@@ -3051,7 +3051,7 @@ namespace Bubba
                         default:
                         {
                             var _pre = @"C:\Users\terry\source\repos\Bubba\Resources\Documents\";
-                            var _path = _pre + @"Appropriations\";
+                            var _path = _pre + @"Prompts\";
                             Editor.DocumentLanguage = Syncfusion.Windows.Edit.Languages.Text;
                             DocumentListBox.Items?.Clear( );
                             var _documents = Directory.GetFiles( _path );

@@ -33734,6 +33734,11 @@
             The detail
             </summary>
         </member>
+        <member name="F:Bubba.ChatWindow._imageBackground">
+            <summary>
+            The detail
+            </summary>
+        </member>
         <member name="F:Bubba.ChatWindow._maximumTokens">
             <summary>
             An upper bound for the number of tokens
@@ -35092,6 +35097,13 @@
             <param name="sender">The sender.</param>
             <param name="e">The <see cref="T:System.Windows.RoutedEventArgs"/>
             instance containing the event data.</param>
+        </member>
+        <member name="M:Bubba.ChatWindow.OnImageBackgroundSelectionChanged(System.Object,System.Windows.RoutedEventArgs)">
+            <summary>
+            Called when [image background selection changed].
+            </summary>
+            <param name="sender">The sender.</param>
+            <param name="e">The <see cref="T:System.Windows.RoutedEventArgs"/> instance containing the event data.</param>
         </member>
         <member name="M:Bubba.ChatWindow.OnEffortSelectionChanged(System.Object,System.Windows.RoutedEventArgs)">
             <summary>
