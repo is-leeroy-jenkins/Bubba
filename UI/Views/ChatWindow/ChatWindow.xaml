@@ -327,9 +327,9 @@
                         <wpf:SfTextBoxExt
                             x:Name="ChatTextBox"
                             Grid.Column="0"
-                            Width="900"
+                            Width="934"
                             Height="550"
-                            Margin="5"
+                            Margin="5,0,0,0"
                             Padding="3"
                             HorizontalAlignment="Left"
                             VerticalAlignment="Center"
@@ -647,9 +647,6 @@
                                 Tag="GPT">
 
                                 <Grid Background="{StaticResource BackgroundBrush}">
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition />
-                                    </Grid.RowDefinitions>
 
                                     <Canvas Margin="1">
 
@@ -700,7 +697,6 @@
                                                     MinorTickFrequency="1"
                                                     MinorTickLength="5"
                                                     MinorTickStroke="{StaticResource WhiteForeground}"
-                                                    ShowRange="False"
                                                     ShowValueLabels="True"
                                                     SmallChange="0.1"
                                                     SnapsTo="Ticks"
@@ -749,6 +745,7 @@
                                                     MinorTickLength="5"
                                                     MinorTickStroke="{StaticResource WhiteForeground}"
                                                     ShowValueLabels="True"
+                                                    SmallChange="0.1"
                                                     SnapsTo="Ticks"
                                                     Tag="TopPercent"
                                                     ThumbStyle="{StaticResource ThumbStyle}"
@@ -756,6 +753,7 @@
                                                     TickPlacement="BottomRight"
                                                     TickStroke="{StaticResource WhiteForeground}"
                                                     ToolTip="top p% probability mass"
+                                                    ToolTipFormat="P"
                                                     Value="0.9" />
                                             </GroupBox>
 
@@ -778,6 +776,7 @@
                                                     Width="230"
                                                     Height="70"
                                                     Margin="1"
+                                                    Padding="1,1,1,1"
                                                     HorizontalAlignment="Stretch"
                                                     VerticalAlignment="Top"
                                                     VerticalContentAlignment="Stretch"
@@ -785,12 +784,14 @@
                                                     ActiveTickStroke="{StaticResource WhiteForeground}"
                                                     Background="{StaticResource BlueBorderBrush}"
                                                     Foreground="{StaticResource FormForeground}"
+                                                    LargeChange="0.5"
                                                     Maximum="2"
                                                     Minimum="-2"
                                                     MinorTickFrequency="2"
                                                     MinorTickLength="5"
                                                     MinorTickStroke="{StaticResource WhiteForeground}"
                                                     ShowValueLabels="True"
+                                                    SmallChange="0.25"
                                                     SnapsTo="Ticks"
                                                     Tag="FrequencyPenalty"
                                                     ThumbStyle="{StaticResource ThumbStyle}"
@@ -1226,15 +1227,19 @@
                                                 FontFamily="Roboto"
                                                 FontSize="12"
                                                 Foreground="{StaticResource FormForeground}"
-                                                Header="Speed">
+                                                Header="Speed"
+                                                Tag="speed"
+                                                ToolTip="AI speech rate ">
 
                                                 <wpf:SfRangeSlider
                                                     x:Name="SpeechRateSlider"
                                                     Height="70"
                                                     Margin="1"
+                                                    Padding="1,1,1,1"
                                                     VerticalAlignment="Top"
                                                     ActiveMinorTickStroke="{StaticResource WhiteForeground}"
                                                     ActiveTickStroke="{StaticResource WhiteForeground}"
+                                                    AllowRangeDrag="True"
                                                     Background="{StaticResource BlueBorderBrush}"
                                                     Foreground="{StaticResource FormForeground}"
                                                     Maximum="4"
@@ -1242,7 +1247,9 @@
                                                     MinorTickFrequency="4"
                                                     MinorTickLength="4"
                                                     MinorTickStroke="{StaticResource WhiteForeground}"
-                                                    ShowValueLabels="False"
+                                                    RangeEnd="0"
+                                                    RangeStart="0"
+                                                    ShowValueLabels="True"
                                                     SnapsTo="Ticks"
                                                     Tag="speed"
                                                     ThumbStyle="{StaticResource ThumbStyle}"
@@ -1301,7 +1308,7 @@
                                             Background="{StaticResource FormBackground}">
 
                                             <Separator
-                                                Height="5"
+                                                Height="18"
                                                 Background="{x:Null}"
                                                 BorderBrush="{x:Null}"
                                                 Foreground="{x:Null}" />
