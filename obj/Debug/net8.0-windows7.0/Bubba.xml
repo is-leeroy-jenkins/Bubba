@@ -34504,7 +34504,7 @@
             Populates the request types.
             </summary>
         </member>
-        <member name="M:Bubba.ChatWindow.PopulateLanguageListBox">
+        <member name="M:Bubba.ChatWindow.PopulateLanguageDropDown">
             <summary>
             Populates the language ListBox.
             </summary>
@@ -35028,7 +35028,7 @@
             <param name="e">The <see cref="T:System.Windows.RoutedEventArgs"/>
             instance containing the event data.</param>
         </member>
-        <member name="M:Bubba.ChatWindow.OnLanguageListBoxSelectionChanged(System.Object,System.Windows.RoutedEventArgs)">
+        <member name="M:Bubba.ChatWindow.OnLanguageDropDownSelectionChanged(System.Object,System.Windows.RoutedEventArgs)">
             <summary>
             Called when [document selection changed].
             </summary>
@@ -35036,7 +35036,7 @@
             <param name="e">The <see cref="T:System.Windows.RoutedEventArgs"/>
             instance containing the event data.</param>
         </member>
-        <member name="M:Bubba.ChatWindow.OnRequestListBoxSelectionChanged(System.Object,System.Windows.RoutedEventArgs)">
+        <member name="M:Bubba.ChatWindow.OnApiRequestDropDownSelectionChanged(System.Object,System.Windows.RoutedEventArgs)">
             <summary>
             Called when [task selection changed].
             </summary>

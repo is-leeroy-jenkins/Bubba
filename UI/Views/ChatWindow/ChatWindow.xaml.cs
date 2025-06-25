@@ -936,7 +936,7 @@ namespace Bubba
         {
             try
             {
-                GenerationListBox.SelectionChanged += OnRequestListBoxSelectionChanged;
+                GenerationListBox.SelectionChanged += OnApiRequestDropDownSelectionChanged;
                 ModelDropDown.SelectionChanged += OnModelDropDownSelectionChanged;
                 ToolStripTextBox.TextChanged += OnToolStripTextBoxTextChanged;
                 ToolStripMenuButton.Click += OnToggleButtonClick;
@@ -952,7 +952,7 @@ namespace Bubba
                 MuteCheckBox.Checked += OnMuteCheckedBoxChanged;
                 StoreCheckBox.Checked += OnStoreCheckBoxChecked;
                 StreamCheckBox.Checked += OnStreamCheckBoxChecked;
-                LanguageDropDown.SelectionChanged += OnLanguageListBoxSelectionChanged;
+                LanguageDropDown.SelectionChanged += OnLanguageDropDownSelectionChanged;
                 DocumentListBox.SelectionChanged += OnDocumentListBoxSelectionChanged;
                 ResponseFormatDropDown.SelectionChanged += OnResponseFormatSelectionChanged;
                 ImageSizeDropDown.SelectionChanged += OnImageSizeSelectionChanged;
@@ -2913,7 +2913,7 @@ namespace Bubba
         /// <summary>
         /// Populates the language ListBox.
         /// </summary>
-        private void PopulateLanguageListBox( )
+        private void PopulateLanguageDropDown( )
         {
             try
             {
@@ -3115,7 +3115,7 @@ namespace Bubba
         {
             try
             {
-                PopulateLanguageListBox(  );
+                PopulateLanguageDropDown(  );
                 PopulateDocumentListBox( );
             }
             catch( Exception ex )
@@ -4720,7 +4720,7 @@ namespace Bubba
         /// <param name="sender">The sender.</param>
         /// <param name="e">The <see cref="RoutedEventArgs"/>
         /// instance containing the event data.</param>
-        private void OnLanguageListBoxSelectionChanged( object sender, RoutedEventArgs e )
+        private void OnLanguageDropDownSelectionChanged( object sender, RoutedEventArgs e )
         {
             try
             {
@@ -4741,7 +4741,7 @@ namespace Bubba
         /// <param name="sender">The sender.</param>
         /// <param name="e">The <see cref="RoutedEventArgs"/>
         /// instance containing the event data.</param>
-        private void OnRequestListBoxSelectionChanged( object sender, RoutedEventArgs e )
+        private void OnApiRequestDropDownSelectionChanged( object sender, RoutedEventArgs e )
         {
             try
             {
@@ -4750,7 +4750,7 @@ namespace Bubba
                     var _item = ( ( MetroDropDownItem )GenerationListBox.SelectedItem )
                         ?.Tag.ToString( );
 
-                    _requestType = ( API )Enum.Parse( typeof( API ), _item );
+                    _requestType = ( API )Enum.Parse( typeof( API ), _item?.Replace( " ", "" ) );
                     SetRequestType( );
 
                     var _message = "Request Type = " + _requestType;
