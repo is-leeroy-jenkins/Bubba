@@ -7,11 +7,16 @@
     xmlns:sfskin="clr-namespace:Syncfusion.SfSkinManager;assembly=Syncfusion.SfSkinManager.WPF"
     xmlns:sys="clr-namespace:System;assembly=mscorlib"
     xmlns:themelocal="clr-namespace:Syncfusion.Themes.FluentDark.WPF"
-    mc:Ignorable="d">
+    mc:Ignorable="d"
+    xmlns:b="clr-namespace:Bubba">
 
     <ResourceDictionary.MergedDictionaries>
-        <sfskin:ResourceDictionaryProvider DictionaryName="Common" ThemeName="FluentDark" />
-        <sfskin:ResourceDictionaryProvider DictionaryName="Brushes" ThemeName="FluentDark" />
+        <sfskin:ResourceDictionaryProvider
+            DictionaryName="Common"
+            ThemeName="FluentDark" />
+        <sfskin:ResourceDictionaryProvider
+            DictionaryName="Brushes"
+            ThemeName="FluentDark" />
         <ResourceDictionary Source="/Syncfusion.Themes.FluentDark.WPF;component/MSControl/TextBlock.xaml" />
         <ResourceDictionary Source="/Syncfusion.Themes.FluentDark.WPF;component/MSControl/ToolTip.xaml" />
     </ResourceDictionary.MergedDictionaries>
@@ -19,7 +24,9 @@
     <!--  Theme Keys for SfRangeSlider  -->
 
     <!--  Style for Thumb of SfRangeSlider  -->
-    <Style x:Key="SyncfusionSfRangeSliderThumbStyle" TargetType="Thumb">
+    <Style
+        x:Key="SyncfusionSfRangeSliderThumbStyle"
+        TargetType="Thumb">
         <Setter Property="BorderThickness" Value="{StaticResource FluentDark.BorderThickness1}" />
         <Setter Property="BorderBrush" Value="{StaticResource PrimaryBackground}" />
         <Setter Property="Background" Value="{StaticResource PrimaryBackground}" />
@@ -29,17 +36,14 @@
                     <Grid>
                         <Border
                             x:Name="ThumbOuterBorder"
-                            
-                            CornerRadius="10"
-                            BorderThickness="0">
+                            BorderThickness="0"
+                            CornerRadius="10">
                             <Border
                                 x:Name="ThumbBorder"
-                                
-                                
                                 Background="{TemplateBinding Background}"
                                 BorderBrush="{TemplateBinding BorderBrush}"
                                 BorderThickness="0"
-                                CornerRadius="8" />  
+                                CornerRadius="8" />
                         </Border>
                     </Grid>
                     <ControlTemplate.Triggers>
@@ -86,7 +90,9 @@
     </Style>
 
     <!--  Style for TooltTip of Thumb  -->
-    <Style x:Key="ThumbToolTipStyle" TargetType="ToolTip">
+    <Style
+        x:Key="ThumbToolTipStyle"
+        TargetType="ToolTip">
         <Setter Property="Background" Value="{StaticResource TooltipBackground}" />
         <Setter Property="Foreground" Value="{StaticResource ContentForeground}" />
         <Setter Property="FontFamily" Value="{StaticResource FluentDark.ThemeFontFamily}" />
@@ -116,17 +122,17 @@
                             Fill="{TemplateBinding Background}"
                             Stretch="Fill"
                             Stroke="{TemplateBinding BorderBrush}"
-                            StrokeThickness="1" />  
+                            StrokeThickness="1" />
                         <TextBlock
-                            Margin="10 0 10 5"
+                            Margin="10,0,10,5"
                             HorizontalAlignment="Stretch"
                             VerticalAlignment="Center"
                             FontFamily="{TemplateBinding FontFamily}"
                             FontSize="{TemplateBinding FontSize}"
                             FontWeight="{TemplateBinding FontWeight}"
                             Foreground="{TemplateBinding Foreground}"
-                            Visibility="Visible"
-                            Text="{TemplateBinding Content}" />
+                            Text="{TemplateBinding Content}"
+                            Visibility="Visible" />
                     </Grid>
                 </ControlTemplate>
             </Setter.Value>
@@ -139,7 +145,7 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="ContentControl">
-                    <Grid 
+                    <Grid
                         Effect="{StaticResource Default.ShadowDepth2}"
                         RenderTransformOrigin="0.5,0.5">
                         <Grid.Margin>
@@ -161,15 +167,15 @@
                             </Path.LayoutTransform>
                         </Path>
                         <TextBlock
-                            Margin="10 5 10 0"
+                            Margin="10,5,10,0"
                             HorizontalAlignment="Stretch"
                             VerticalAlignment="Center"
                             FontFamily="{TemplateBinding FontFamily}"
                             FontSize="{TemplateBinding FontSize}"
                             FontWeight="{TemplateBinding FontWeight}"
                             Foreground="{TemplateBinding Foreground}"
-                            Visibility="Visible "
-                            Text="{TemplateBinding Content}" />
+                            Text="{TemplateBinding Content}"
+                            Visibility="Visible " />
                     </Grid>
                 </ControlTemplate>
             </Setter.Value>
@@ -183,7 +189,7 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="ContentControl">
-                    <Grid  Effect="{StaticResource Default.ShadowDepth2}" >
+                    <Grid Effect="{StaticResource Default.ShadowDepth2}">
                         <Grid.Margin>
                             <Thickness>4</Thickness>
                         </Grid.Margin>
@@ -195,22 +201,22 @@
                             Fill="{TemplateBinding Background}"
                             Stretch="Fill"
                             Stroke="{TemplateBinding BorderBrush}"
-                            StrokeThickness="1">    
+                            StrokeThickness="1">
                             <Path.LayoutTransform>
                                 <RotateTransform Angle="90" />
                             </Path.LayoutTransform>
                         </Path>
                         <TextBlock
-                                    Padding="16 5 8 7"
-                                    HorizontalAlignment="Stretch"
-                                    VerticalAlignment="Center"
-                                    Background="Transparent"
-                                    Visibility="Visible "
-                                    FontFamily="{TemplateBinding FontFamily}"
-                                    FontSize="{TemplateBinding FontSize}"
-                                    FontWeight="{TemplateBinding FontWeight}"
-                                    Foreground="{TemplateBinding Foreground}"
-                                    Text="{TemplateBinding Content}" />
+                            Padding="16,5,8,7"
+                            HorizontalAlignment="Stretch"
+                            VerticalAlignment="Center"
+                            Background="Transparent"
+                            FontFamily="{TemplateBinding FontFamily}"
+                            FontSize="{TemplateBinding FontSize}"
+                            FontWeight="{TemplateBinding FontWeight}"
+                            Foreground="{TemplateBinding Foreground}"
+                            Text="{TemplateBinding Content}"
+                            Visibility="Visible " />
                     </Grid>
                 </ControlTemplate>
             </Setter.Value>
@@ -229,56 +235,66 @@
                             <Thickness>4</Thickness>
                         </Grid.Margin>
                         <Path
-                    Width="32"
-                    HorizontalAlignment="Stretch"
-                    VerticalAlignment="Center"
-                    Data="M1,0 L15,0 C15.553,0 16,0.44800001 16,1 L16,10.511001 C16,11.063001 15.553,11.511001 15,11.511001 L10.173,11.511001 8,14 5.8150001,11.511001 1,11.511001 C0.44800001,11.511001 0,11.063001 0,10.511001 L0,1 C0,0.44800001 0.44800001,0 1,0 z"
-                    Fill="{TemplateBinding Background}"
-                    Stretch="Fill"
-                    Stroke="{TemplateBinding BorderBrush}"
-                    StrokeThickness="1" >
+                            Width="32"
+                            HorizontalAlignment="Stretch"
+                            VerticalAlignment="Center"
+                            Data="M1,0 L15,0 C15.553,0 16,0.44800001 16,1 L16,10.511001 C16,11.063001 15.553,11.511001 15,11.511001 L10.173,11.511001 8,14 5.8150001,11.511001 1,11.511001 C0.44800001,11.511001 0,11.063001 0,10.511001 L0,1 C0,0.44800001 0.44800001,0 1,0 z"
+                            Fill="{TemplateBinding Background}"
+                            Stretch="Fill"
+                            Stroke="{TemplateBinding BorderBrush}"
+                            StrokeThickness="1">
                             <Path.LayoutTransform>
                                 <RotateTransform Angle="270" />
                             </Path.LayoutTransform>
                         </Path>
                         <TextBlock
-                                    Padding="8 5 16 7"
-                                    HorizontalAlignment="Stretch"
-                                    VerticalAlignment="Center"
-                                    Background="Transparent"
-                                    FontFamily="{TemplateBinding FontFamily}"
-                                    FontSize="{TemplateBinding FontSize}"
-                                    FontWeight="{TemplateBinding FontWeight}"
-                                    Foreground="{TemplateBinding Foreground}"
-                                    Visibility="Visible "
-                                    Text="{TemplateBinding Content}" />
+                            Padding="8,5,16,7"
+                            HorizontalAlignment="Stretch"
+                            VerticalAlignment="Center"
+                            Background="Transparent"
+                            FontFamily="{TemplateBinding FontFamily}"
+                            FontSize="{TemplateBinding FontSize}"
+                            FontWeight="{TemplateBinding FontWeight}"
+                            Foreground="{TemplateBinding Foreground}"
+                            Text="{TemplateBinding Content}"
+                            Visibility="Visible " />
                     </Grid>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
     </Style>
     <!--  Style for inactive track of SfRangeSlider  -->
-    <Style x:Key="SyncfusionSfRangeSliderInactiveTrackStyle" TargetType="Rectangle">
+    <Style
+        x:Key="SyncfusionSfRangeSliderInactiveTrackStyle"
+        TargetType="Rectangle">
         <Setter Property="Height" Value="2" />
         <Setter Property="Fill" Value="{StaticResource BorderAlt}" />
     </Style>
-    <Style x:Key="SyncfusionSfRangeSliderVerticalInactiveTrackStyle" TargetType="Rectangle">
+    <Style
+        x:Key="SyncfusionSfRangeSliderVerticalInactiveTrackStyle"
+        TargetType="Rectangle">
         <Setter Property="Width" Value="2" />
         <Setter Property="Fill" Value="{StaticResource BorderAlt}" />
     </Style>
     <!--  Style for active track of SfRangeSlider  -->
-    <Style x:Key="SyncfusionSfRangeSliderActiveTrackStyle" TargetType="Rectangle">
+    <Style
+        x:Key="SyncfusionSfRangeSliderActiveTrackStyle"
+        TargetType="Rectangle">
         <Setter Property="Height" Value="2" />
         <Setter Property="Fill" Value="{StaticResource PrimaryBackground}" />
     </Style>
 
-    <Style x:Key="SyncfusionSfRangeSliderVerticalActiveTrackStyle" TargetType="Rectangle">
+    <Style
+        x:Key="SyncfusionSfRangeSliderVerticalActiveTrackStyle"
+        TargetType="Rectangle">
         <Setter Property="Width" Value="2" />
         <Setter Property="Fill" Value="{StaticResource PrimaryBackground}" />
     </Style>
 
     <!--  Style for TickBar of SfRangeSlider  -->
-    <Style x:Key="SyncfusionSfRangeSliderTickBarStyle" TargetType="Input:TickBar">
+    <Style
+        x:Key="SyncfusionSfRangeSliderTickBarStyle"
+        TargetType="Input:TickBar">
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="Input:TickBar">
@@ -288,21 +304,27 @@
         </Setter>
     </Style>
 
-    <Style BasedOn="{StaticResource SyncfusionSfRangeSliderTickBarStyle}" TargetType="Input:TickBar" />
+    <Style
+        BasedOn="{StaticResource SyncfusionSfRangeSliderTickBarStyle}"
+        TargetType="Input:TickBar" />
 
     <!--  Style for TickBarItem of SfRangeSlider  -->
-    <Style x:Key="SyncfusionSfRangeSliderTickBarItemStyle" TargetType="Input:TickBarItem">
+    <Style
+        x:Key="SyncfusionSfRangeSliderTickBarItemStyle"
+        TargetType="Input:TickBarItem">
         <Setter Property="Background" Value="Transparent" />
         <Setter Property="FontFamily" Value="{StaticResource FluentDark.ThemeFontFamily}" />
         <Setter Property="FontSize" Value="{StaticResource FluentDark.CaptionText}" />
         <Setter Property="FontWeight" Value="{StaticResource FluentDark.FontWeightNormal}" />
         <Setter Property="Foreground" Value="{StaticResource ContentForeground}" />
-        <Setter Property="IsTabStop" Value="False"/>
+        <Setter Property="IsTabStop" Value="False" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="Input:TickBarItem">
                     <Grid x:Name="PART_TickBarItem">
-                        <Grid x:Name="TopLeftPanel" Visibility="Collapsed">
+                        <Grid
+                            x:Name="TopLeftPanel"
+                            Visibility="Collapsed">
                             <Grid.RowDefinitions>
                                 <RowDefinition />
                                 <RowDefinition Height="Auto" />
@@ -331,11 +353,15 @@
                                 TextTrimming="WordEllipsis"
                                 Visibility="Collapsed">
                                 <TextBlock.Resources>
-                                    <Style BasedOn="{x:Null}" TargetType="{x:Type TextBlock}" />
+                                    <Style
+                                        BasedOn="{x:Null}"
+                                        TargetType="{x:Type TextBlock}" />
                                 </TextBlock.Resources>
                             </TextBlock>
                         </Grid>
-                        <Grid x:Name="BottomRightPanel" Visibility="Collapsed">
+                        <Grid
+                            x:Name="BottomRightPanel"
+                            Visibility="Collapsed">
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="Auto" />
                                 <RowDefinition />
@@ -364,7 +390,9 @@
                                 TextTrimming="WordEllipsis"
                                 Visibility="Collapsed">
                                 <TextBlock.Resources>
-                                    <Style BasedOn="{x:Null}" TargetType="{x:Type TextBlock}" />
+                                    <Style
+                                        BasedOn="{x:Null}"
+                                        TargetType="{x:Type TextBlock}" />
                                 </TextBlock.Resources>
                             </TextBlock>
                         </Grid>
@@ -382,8 +410,13 @@
         </Setter>
     </Style>
 
-    <Style BasedOn="{StaticResource SyncfusionSfRangeSliderTickBarItemStyle}" TargetType="Input:TickBarItem" />    <!--  Template for HorizontalRangeSlider  -->
-    <ControlTemplate x:Key="SyncfusionSfRangeSliderHorizontalControlTemplate" TargetType="Input:SfRangeSlider">
+    <Style
+        BasedOn="{StaticResource SyncfusionSfRangeSliderTickBarItemStyle}"
+        TargetType="Input:TickBarItem" />
+    <!--  Template for HorizontalRangeSlider  -->
+    <ControlTemplate
+        x:Key="SyncfusionSfRangeSliderHorizontalControlTemplate"
+        TargetType="Input:SfRangeSlider">
         <Border
             x:Name="border"
             Background="Transparent"
@@ -407,7 +440,6 @@
                     x:Name="HorizontalTrackRectangle"
                     Grid.Row="1"
                     Grid.ColumnSpan="3"
-                    
                     Width="{TemplateBinding ActualWidth}"
                     RadiusX="0"
                     RadiusY="0"
@@ -415,7 +447,6 @@
                 <Rectangle
                     x:Name="HorizontalDecreaseRectangle"
                     Grid.Row="1"
-                     
                     Grid.ColumnSpan="3"
                     Width="{TemplateBinding ActualWidth}"
                     RadiusX="0"
@@ -425,11 +456,11 @@
                     x:Name="TopTickBar"
                     Grid.ColumnSpan="3"
                     Margin="0,0,-1,2"
-                    IsTabStop="False"
                     VerticalAlignment="Bottom"
                     CustomLabels="{TemplateBinding CustomLabels}"
                     IsDirectionReversed="{TemplateBinding IsDirectionReversed}"
                     IsHitTestVisible="False"
+                    IsTabStop="False"
                     LabelOrientation="{TemplateBinding LabelOrientation}"
                     LabelPlacement="{TemplateBinding LabelPlacement}"
                     Maximum="{TemplateBinding Maximum}"
@@ -445,10 +476,10 @@
                     x:Name="HorizontalInlineTickBar"
                     Grid.Row="1"
                     Grid.ColumnSpan="3"
-                    IsTabStop="False"
                     CustomLabels="{TemplateBinding CustomLabels}"
                     IsDirectionReversed="{TemplateBinding IsDirectionReversed}"
                     IsHitTestVisible="False"
+                    IsTabStop="False"
                     LabelOrientation="{TemplateBinding LabelOrientation}"
                     LabelPlacement="{TemplateBinding LabelPlacement}"
                     Maximum="{TemplateBinding Maximum}"
@@ -465,11 +496,11 @@
                     Grid.Row="2"
                     Grid.ColumnSpan="3"
                     Margin="0,2,-1,0"
-                    IsTabStop="False"
                     VerticalAlignment="Top"
                     CustomLabels="{TemplateBinding CustomLabels}"
                     IsDirectionReversed="{TemplateBinding IsDirectionReversed}"
                     IsHitTestVisible="False"
+                    IsTabStop="False"
                     LabelOrientation="{TemplateBinding LabelOrientation}"
                     LabelPlacement="{TemplateBinding LabelPlacement}"
                     Maximum="{TemplateBinding Maximum}"
@@ -592,14 +623,16 @@
                 <Setter TargetName="HorizontalDecreaseRectangle" Property="Height" Value="4" />
             </Trigger>
             <Trigger Property="IsEnabled" Value="False">
-                <Setter Property="Fill" TargetName="HorizontalDecreaseRectangle" Value="{StaticResource BorderAlt}"/>
-                <Setter Property="Fill" TargetName="HorizontalTrackRectangle" Value="{StaticResource BorderAlt}"/>
+                <Setter TargetName="HorizontalDecreaseRectangle" Property="Fill" Value="{StaticResource BorderAlt}" />
+                <Setter TargetName="HorizontalTrackRectangle" Property="Fill" Value="{StaticResource BorderAlt}" />
             </Trigger>
         </ControlTemplate.Triggers>
     </ControlTemplate>
 
     <!--  Template for VerticalRangeSlider  -->
-    <ControlTemplate x:Key="SyncfusionSfRangeSliderVerticalControlTemplate" TargetType="Input:SfRangeSlider">
+    <ControlTemplate
+        x:Key="SyncfusionSfRangeSliderVerticalControlTemplate"
+        TargetType="Input:SfRangeSlider">
         <Border
             x:Name="border"
             Background="Transparent"
@@ -639,11 +672,11 @@
                     x:Name="LeftTickBar"
                     Grid.RowSpan="3"
                     Margin="0,0,2,0"
-                    IsTabStop="False"
                     HorizontalAlignment="Right"
                     CustomLabels="{TemplateBinding CustomLabels}"
                     IsDirectionReversed="{TemplateBinding IsDirectionReversed}"
                     IsHitTestVisible="False"
+                    IsTabStop="False"
                     LabelOrientation="{TemplateBinding LabelOrientation}"
                     LabelPlacement="{TemplateBinding LabelPlacement}"
                     Maximum="{TemplateBinding Maximum}"
@@ -659,10 +692,10 @@
                     x:Name="VerticalInlineTickBar"
                     Grid.RowSpan="3"
                     Grid.Column="1"
-                    IsTabStop="False"
                     CustomLabels="{TemplateBinding CustomLabels}"
                     IsDirectionReversed="{TemplateBinding IsDirectionReversed}"
                     IsHitTestVisible="False"
+                    IsTabStop="False"
                     LabelOrientation="{TemplateBinding LabelOrientation}"
                     LabelPlacement="{TemplateBinding LabelPlacement}"
                     Maximum="{TemplateBinding Maximum}"
@@ -679,11 +712,11 @@
                     Grid.RowSpan="3"
                     Grid.Column="2"
                     Margin="2,0,0,0"
-                    IsTabStop="False"
                     HorizontalAlignment="Left"
                     CustomLabels="{TemplateBinding CustomLabels}"
                     IsDirectionReversed="{TemplateBinding IsDirectionReversed}"
                     IsHitTestVisible="False"
+                    IsTabStop="False"
                     LabelOrientation="{TemplateBinding LabelOrientation}"
                     LabelPlacement="{TemplateBinding LabelPlacement}"
                     Maximum="{TemplateBinding Maximum}"
@@ -808,14 +841,16 @@
                 <Setter TargetName="VerticalDecreaseRectangle" Property="Height" Value="4" />
             </Trigger>
             <Trigger Property="IsEnabled" Value="False">
-                <Setter Property="Fill" TargetName="VerticalDecreaseRectangle" Value="{StaticResource BorderAlt}"/>
-                <Setter Property="Fill" TargetName="VerticalTrackRectangle" Value="{StaticResource BorderAlt}"/>
+                <Setter TargetName="VerticalDecreaseRectangle" Property="Fill" Value="{StaticResource BorderAlt}" />
+                <Setter TargetName="VerticalTrackRectangle" Property="Fill" Value="{StaticResource BorderAlt}" />
             </Trigger>
         </ControlTemplate.Triggers>
     </ControlTemplate>
 
     <!--  Style for SfRangeSlider  -->
-    <Style x:Key="SyncfusionSfRangeSliderStyle" TargetType="Input:SfRangeSlider">
+    <Style
+        x:Key="SyncfusionSfRangeSliderStyle"
+        TargetType="Input:SfRangeSlider">
         <Setter Property="BorderBrush" Value="Transparent" />
         <Setter Property="TickStroke" Value="{StaticResource BorderAlt1}" />
         <Setter Property="MinorTickStroke" Value="{StaticResource BorderAlt1}" />
@@ -876,17 +911,19 @@
                 <Setter Property="ToolTipStyle" Value="{StaticResource RightToolTipStyle}" />
             </MultiTrigger>
             <Trigger Property="IsEnabled" Value="False">
-                <Setter Property="TickStroke" Value="{StaticResource BorderAlt}"/>
-                <Setter Property="MinorTickStroke" Value="{StaticResource BorderAlt}"/>
-                <Setter Property="ActiveMinorTickStroke" Value="{StaticResource BorderAlt}"/>
-                <Setter Property="ActiveTickStroke" Value="{StaticResource BorderAlt}"/>
+                <Setter Property="TickStroke" Value="{StaticResource BorderAlt}" />
+                <Setter Property="MinorTickStroke" Value="{StaticResource BorderAlt}" />
+                <Setter Property="ActiveMinorTickStroke" Value="{StaticResource BorderAlt}" />
+                <Setter Property="ActiveTickStroke" Value="{StaticResource BorderAlt}" />
             </Trigger>
             <Trigger Property="sfskin:SkinManagerHelper.FocusVisualKind" Value="HighVisibility">
-                <Setter Property="FocusVisualStyle" Value="{StaticResource KeyboardFocusVisualStyle}"/>
+                <Setter Property="FocusVisualStyle" Value="{StaticResource KeyboardFocusVisualStyle}" />
             </Trigger>
         </Style.Triggers>
     </Style>
 
-    <Style BasedOn="{StaticResource SyncfusionSfRangeSliderStyle}" TargetType="Input:SfRangeSlider" />
+    <Style
+        BasedOn="{StaticResource SyncfusionSfRangeSliderStyle}"
+        TargetType="Input:SfRangeSlider" />
 
 </ResourceDictionary>

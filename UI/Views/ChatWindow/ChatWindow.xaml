@@ -1308,14 +1308,14 @@
                                             Background="{StaticResource FormBackground}">
 
                                             <Separator
-                                                Height="18"
+                                                Height="5"
                                                 Background="{x:Null}"
                                                 BorderBrush="{x:Null}"
                                                 Foreground="{x:Null}" />
 
                                             <GroupBox
                                                 x:Name="SizeGroupBox"
-                                                Height="80"
+                                                Height="75"
                                                 Margin="10,1,10,1"
                                                 Padding="1"
                                                 HorizontalContentAlignment="Stretch"
@@ -1336,9 +1336,52 @@
                                                     Background="{StaticResource ControlInteriorBrush}"
                                                     BorderBrush="{StaticResource BlueBorderBrush}"
                                                     FontSize="14"
-                                                    Foreground="{StaticResource WhiteForeground}" />
-                                            </GroupBox>
+                                                    Foreground="{StaticResource WhiteForeground}">
 
+                                                    <b:MetroDropDownItem
+                                                        Width="Auto"
+                                                        Height="35"
+                                                        Content="256x256"
+                                                        FontFamily="Roboto"
+                                                        FontSize="14" />
+
+                                                    <b:MetroDropDownItem
+                                                        Width="Auto"
+                                                        Height="35"
+                                                        Content="512x512"
+                                                        FontFamily="Roboto"
+                                                        FontSize="14" />
+
+                                                    <b:MetroDropDownItem
+                                                        Width="Auto"
+                                                        Height="35"
+                                                        Content="1024x1024"
+                                                        FontFamily="Roboto"
+                                                        FontSize="14" />
+
+                                                    <b:MetroDropDownItem
+                                                        Width="Auto"
+                                                        Height="35"
+                                                        Content="1024x1024"
+                                                        FontFamily="Roboto"
+                                                        FontSize="14" />
+
+                                                    <b:MetroDropDownItem
+                                                        Width="Auto"
+                                                        Height="35"
+                                                        Content="1792x1024"
+                                                        FontFamily="Roboto"
+                                                        FontSize="14" />
+
+                                                    <b:MetroDropDownItem
+                                                        Width="Auto"
+                                                        Height="35"
+                                                        Content="1024x1792"
+                                                        FontFamily="Roboto"
+                                                        FontSize="14" />
+
+                                                </b:MetroDropDown>
+                                            </GroupBox>
                                             <Separator
                                                 Height="5"
                                                 Background="{x:Null}"
@@ -1347,7 +1390,7 @@
 
                                             <GroupBox
                                                 x:Name="QualityGroupBox"
-                                                Height="80"
+                                                Height="75"
                                                 Margin="10,1,10,1"
                                                 Padding="1"
                                                 HorizontalContentAlignment="Stretch"
@@ -1368,19 +1411,62 @@
                                                     Background="{StaticResource ControlInteriorBrush}"
                                                     BorderBrush="{StaticResource BlueBorderBrush}"
                                                     FontSize="14"
-                                                    Foreground="{StaticResource WhiteForeground}" />
+                                                    Foreground="{StaticResource WhiteForeground}">
 
+                                                    <b:MetroDropDownItem
+                                                        Width="Auto"
+                                                        Height="35"
+                                                        Content="auto"
+                                                        FontFamily="Roboto"
+                                                        FontSize="14" />
+
+                                                    <b:MetroDropDownItem
+                                                        Width="Auto"
+                                                        Height="35"
+                                                        Content="low"
+                                                        FontFamily="Roboto"
+                                                        FontSize="14" />
+
+                                                    <b:MetroDropDownItem
+                                                        Width="Auto"
+                                                        Height="35"
+                                                        Content="medium"
+                                                        FontFamily="Roboto"
+                                                        FontSize="14" />
+
+                                                    <b:MetroDropDownItem
+                                                        Width="Auto"
+                                                        Height="35"
+                                                        Content="high"
+                                                        FontFamily="Roboto"
+                                                        FontSize="14" />
+
+                                                    <b:MetroDropDownItem
+                                                        Width="Auto"
+                                                        Height="35"
+                                                        Content="hd"
+                                                        FontFamily="Roboto"
+                                                        FontSize="14" />
+
+                                                    <b:MetroDropDownItem
+                                                        Width="Auto"
+                                                        Height="35"
+                                                        Content="standard"
+                                                        FontFamily="Roboto"
+                                                        FontSize="14" />
+
+                                                </b:MetroDropDown>
                                             </GroupBox>
 
                                             <Separator
-                                                Height="20"
+                                                Height="5"
                                                 Background="{x:Null}"
                                                 BorderBrush="{x:Null}"
                                                 Foreground="{StaticResource TransparentBrush}" />
 
                                             <GroupBox
                                                 x:Name="ImageDetailGroupBox"
-                                                Height="80"
+                                                Height="75"
                                                 Margin="10,1,10,1"
                                                 Padding="1"
                                                 HorizontalContentAlignment="Stretch"
@@ -1427,14 +1513,14 @@
 
 
                                             <Separator
-                                                Height="20"
+                                                Height="5"
                                                 Background="{x:Null}"
                                                 BorderBrush="{x:Null}"
                                                 Foreground="{x:Null}" />
 
                                             <GroupBox
                                                 x:Name="FormatGroupBox"
-                                                Height="80"
+                                                Height="75"
                                                 Margin="10,1,10,1"
                                                 Padding="1"
                                                 HorizontalContentAlignment="Stretch"
@@ -1482,14 +1568,14 @@
 
                                             </GroupBox>
                                             <Separator
-                                                Height="20"
+                                                Height="5"
                                                 Background="{x:Null}"
                                                 BorderBrush="{x:Null}"
                                                 Foreground="{x:Null}" />
 
                                             <GroupBox
                                                 x:Name="ImageBackgroundGroupBox"
-                                                Height="80"
+                                                Height="75"
                                                 Margin="10,1,10,1"
                                                 Padding="1"
                                                 HorizontalContentAlignment="Stretch"
@@ -1530,6 +1616,53 @@
                                                         Width="Auto"
                                                         Height="35"
                                                         Content="opaque"
+                                                        FontFamily="Roboto"
+                                                        FontSize="14" />
+
+                                                </b:MetroDropDown>
+                                            </GroupBox>
+                                            <Separator
+                                                Height="5"
+                                                Background="{x:Null}"
+                                                BorderBrush="{x:Null}"
+                                                Foreground="{x:Null}" />
+
+                                            <GroupBox
+                                                x:Name="ImageStyleGroupBox"
+                                                Height="75"
+                                                Margin="10,1,10,1"
+                                                Padding="1"
+                                                HorizontalContentAlignment="Stretch"
+                                                VerticalContentAlignment="Stretch"
+                                                Background="{StaticResource GroupBoxBackground}"
+                                                BorderBrush="{StaticResource MutedForeground}"
+                                                FontFamily="Roboto"
+                                                FontSize="12"
+                                                Foreground="{StaticResource FormForeground}"
+                                                Header="Image Style">
+
+                                                <b:MetroDropDown
+                                                    x:Name="ImageStyleDropDown"
+                                                    Height="35"
+                                                    Margin="3"
+                                                    VerticalAlignment="Center"
+                                                    VerticalContentAlignment="Center"
+                                                    Background="{StaticResource ControlInteriorBrush}"
+                                                    BorderBrush="{StaticResource BlueBorderBrush}"
+                                                    FontSize="14"
+                                                    Foreground="{StaticResource WhiteForeground}">
+
+                                                    <b:MetroDropDownItem
+                                                        Width="Auto"
+                                                        Height="35"
+                                                        Content="natural"
+                                                        FontFamily="Roboto"
+                                                        FontSize="14" />
+
+                                                    <b:MetroDropDownItem
+                                                        Width="Auto"
+                                                        Height="35"
+                                                        Content="vivid"
                                                         FontFamily="Roboto"
                                                         FontSize="14" />
 

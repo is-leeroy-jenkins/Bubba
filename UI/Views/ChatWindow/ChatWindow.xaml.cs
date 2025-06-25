@@ -65,14 +65,12 @@ namespace Bubba
     using MahApps.Metro.Controls;
     using Properties;
     using Syncfusion.SfSkinManager;
-    using Syncfusion.Windows.Edit;
     using ToastNotifications;
     using ToastNotifications.Lifetime;
     using ToastNotifications.Messages;
     using ToastNotifications.Position;
     using MessageBox = System.Windows.MessageBox;
     using MouseEventArgs = System.Windows.Input.MouseEventArgs;
-    using TabControl = System.Windows.Controls.TabControl;
     using Timer = System.Threading.Timer;
 
     /// <summary>

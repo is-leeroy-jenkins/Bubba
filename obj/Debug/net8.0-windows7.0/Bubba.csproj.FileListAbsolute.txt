@@ -713,3 +713,17 @@ C:\Users\terry\source\repos\Bubba\obj\Debug\net8.0-windows7.0\ref\Bubba.dll
 C:\Users\terry\source\repos\Bubba\obj\Debug\net8.0-windows7.0\UI\Themes\Common\Brushes.baml
 C:\Users\terry\source\repos\Bubba\obj\Debug\net8.0-windows7.0\UI\Themes\Common\Common.baml
 C:\Users\terry\source\repos\Bubba\obj\Debug\net8.0-windows7.0\UI\Themes\Slider\SfRangeSlider.baml
+C:\Users\terry\source\repos\Bubba\obj\Debug\net8.0-windows7.0\UI\Themes\ComboBox\ComboBoxAdv.baml
+C:\Users\terry\source\repos\Bubba\obj\Debug\net8.0-windows7.0\UI\Themes\RichTextBox\ContextMenu.baml
+C:\Users\terry\source\repos\Bubba\obj\Debug\net8.0-windows7.0\UI\Themes\RichTextBox\Dialogs.baml
+C:\Users\terry\source\repos\Bubba\obj\Debug\net8.0-windows7.0\UI\Themes\RichTextBox\FormatDialogs.baml
+C:\Users\terry\source\repos\Bubba\obj\Debug\net8.0-windows7.0\UI\Themes\RichTextBox\MiniToolBar.baml
+C:\Users\terry\source\repos\Bubba\obj\Debug\net8.0-windows7.0\UI\Themes\RichTextBox\SfRichTextBoxAdv.baml
+C:\Users\terry\source\repos\Bubba\obj\Debug\net8.0-windows7.0\UI\Themes\RichTextBox\SfRichTextBoxCommon.baml
+C:\Users\terry\source\repos\Bubba\obj\Debug\net8.0-windows7.0\UI\Themes\RichTextBox\SfRichTextRibbon.baml
+C:\Users\terry\source\repos\Bubba\obj\Debug\net8.0-windows7.0\UI\Themes\RichTextBox\StyleDialogs.baml
+C:\Users\terry\source\repos\Bubba\obj\Debug\net8.0-windows7.0\UI\Themes\RichTextBox\TableDialogs.baml
+C:\Users\terry\source\repos\Bubba\obj\Debug\net8.0-windows7.0\UI\Themes\TextBox\SfTextBoxExt.baml
+C:\Users\terry\source\repos\Bubba\obj\Debug\net8.0-windows7.0\UI\Themes\TabControl\TabControlExt.baml
+C:\Users\terry\source\repos\Bubba\obj\Debug\net8.0-windows7.0\UI\Themes\TextBox\IntegerTextBox.baml
+C:\Users\terry\source\repos\Bubba\obj\Debug\net8.0-windows7.0\UI\Themes\Tile\SfHubTile.baml

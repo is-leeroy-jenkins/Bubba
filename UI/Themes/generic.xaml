@@ -11,6 +11,7 @@
 
         <!--  COMBOBOX  -->
         <ResourceDictionary Source="/UI/Themes/ComboBox/ComboBox.xaml" />
+        <ResourceDictionary Source="/UI/Themes/ComboBox/ComboBoxAdv.xaml" />
 
         <!--  GROUPBOX  -->
         <ResourceDictionary Source="/UI/Themes/GroupBox/GroupBox.xaml" />
@@ -29,16 +30,30 @@
         <!--  TAB CONTROL  -->
         <ResourceDictionary Source="/UI/Themes/TabControl/TabControl.xaml" />
         <ResourceDictionary Source="/UI/Themes/TabControl/BrowserTabItem.xaml" />
+        <ResourceDictionary Source="/UI/Themes/TabControl/TabControlExt.xaml" />
 
         <!--  MENU  -->
         <ResourceDictionary Source="/UI/Themes/Menu/ContextMenu.xaml" />
         <ResourceDictionary Source="/UI/Themes/Menu/Menu.xaml" />
         <ResourceDictionary Source="/UI/Themes/Menu/MenuItem.xaml" />
 
-        <!--  TEXT  -->
+        <!--  TEXTBOX  -->
         <ResourceDictionary Source="/UI/Themes/TextBox/TextBox.xaml" />
         <ResourceDictionary Source="/UI/Themes/Label/Label.xaml" />
+        <ResourceDictionary Source="/UI/Themes/TextBox/SfTextBoxExt.xaml" />
+        <ResourceDictionary Source="/UI/Themes/TextBox/IntegerTextBox.xaml" />
+
+        <!--  RICHTEXTBOX  -->
         <ResourceDictionary Source="/UI/Themes/RichTextBox/RichTextBox.xaml" />
+        <ResourceDictionary Source="/UI/Themes/RichTextBox/ContextMenu.xaml" />
+        <ResourceDictionary Source="/UI/Themes/RichTextBox/Dialogs.xaml" />
+        <ResourceDictionary Source="/UI/Themes/RichTextBox/FormatDialogs.xaml" />
+        <ResourceDictionary Source="/UI/Themes/RichTextBox/MiniToolBar.xaml" />
+        <ResourceDictionary Source="/UI/Themes/RichTextBox/SfRichTextBoxCommon.xaml" />
+        <ResourceDictionary Source="/UI/Themes/RichTextBox/SfRichTextBoxAdv.xaml" />
+        <ResourceDictionary Source="/UI/Themes/RichTextBox/SfRichTextRibbon.xaml" />
+        <ResourceDictionary Source="/UI/Themes/RichTextBox/StyleDialogs.xaml" />
+        <ResourceDictionary Source="/UI/Themes/RichTextBox/TableDialogs.xaml" />
 
         <!--  LISTBOX/VIEW  -->
         <ResourceDictionary Source="/UI/Themes/ListBox/ListBox.xaml" />
@@ -54,9 +69,11 @@
 
         <!--  TILE  -->
         <ResourceDictionary Source="/UI/Themes/Tile/Tile.xaml" />
+        <ResourceDictionary Source="/UI/Themes/Tile/SfHubTile.xaml" />
 
         <!--  SLIDER  -->
         <ResourceDictionary Source="/UI/Themes/Slider/Slider.xaml" />
+        <ResourceDictionary Source="/UI/Themes/Slider/SfRangeSlider.xaml" />
 
         <!--  ToolTip  -->
         <ResourceDictionary Source="/UI/Themes/ToolTip/ToolTip.xaml" />
