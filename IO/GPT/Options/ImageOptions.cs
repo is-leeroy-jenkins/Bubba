@@ -80,6 +80,21 @@ namespace Bubba
         /// </summary>
         private protected string _style;
 
+        /// <summary>
+        /// The background
+        /// </summary>
+        private protected string _background;
+
+        /// <summary>
+        /// The output compression
+        /// </summary>
+        private protected double _outputCompression;
+
+        /// <summary>
+        /// The output format
+        /// </summary>
+        private protected string _outputFormat;
+
         /// <inheritdoc />
         /// <summary>
         /// Initializes a new instance of the
@@ -96,7 +111,7 @@ namespace Bubba
             _topPercent = 0.90;
             _frequencyPenalty = 0.00;
             _presencePenalty = 0.00;
-            _maxCompletionTokens = 2048;
+            _maxCompletionTokens = 10000;
             _size = "1024x1024";
             _style = "natural";
             _stop = "['#', ';']";
@@ -238,6 +253,72 @@ namespace Bubba
                 {
                     _model = value;
                     OnPropertyChanged( nameof( Model ) );
+                }
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the background.
+        /// </summary>
+        /// <value>
+        /// The background.
+        /// </value>
+        public string Background
+        {
+            get
+            {
+                return _background;
+            }
+            set
+            {
+                if( _background != value )
+                {
+                    _background = value;
+                    OnPropertyChanged( nameof( Background ) );
+                }
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the output compression.
+        /// </summary>
+        /// <value>
+        /// The output compression.
+        /// </value>
+        public double OutputCompression
+        {
+            get
+            {
+                return _outputCompression;
+            }
+            set
+            {
+                if( _outputCompression != value )
+                {
+                    _outputCompression = value;
+                    OnPropertyChanged( nameof( OutputCompression ) );
+                }
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the output format.
+        /// </summary>
+        /// <value>
+        /// The output format.
+        /// </value>
+        public string OutputFormat
+        {
+            get
+            {
+                return _outputFormat;
+            }
+            set
+            {
+                if( _outputFormat != value )
+                {
+                    _outputFormat = value;
+                    OnPropertyChanged( nameof( OutputFormat ) );
                 }
             }
         }

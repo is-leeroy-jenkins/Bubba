@@ -3,10 +3,10 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:Microsoft_Windows_Aero="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Aero"
     xmlns:Microsoft_Windows_Luna="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Luna"
-    xmlns:sys="clr-namespace:System;assembly=mscorlib"
     xmlns:po="http://schemas.microsoft.com/winfx/2006/xaml/presentation/options"
-    xmlns:themelocal="clr-namespace:Syncfusion.Themes.FluentDark.WPF"
     xmlns:sfskin="clr-namespace:Syncfusion.SfSkinManager;assembly=Syncfusion.SfSkinManager.WPF"
+    xmlns:sys="clr-namespace:System;assembly=mscorlib"
+    xmlns:themelocal="clr-namespace:Syncfusion.Themes.FluentDark.WPF"
     xmlns:tools_controls="clr-namespace:Syncfusion.Windows.Tools.Controls;assembly=Syncfusion.Tools.WPF"
     xmlns:tools_resources="clr-namespace:Syncfusion.Windows.Tools.Controls.Resources;assembly=Syncfusion.Tools.WPF"
     xmlns:windows_shared="clr-namespace:Syncfusion.Windows.Shared;assembly=Syncfusion.Shared.WPF">
@@ -14,8 +14,12 @@
     <!--  Brushes  -->
 
     <ResourceDictionary.MergedDictionaries>
-        <sfskin:ResourceDictionaryProvider DictionaryName="Common" ThemeName="FluentDark"/>
-        <sfskin:ResourceDictionaryProvider DictionaryName="Brushes" ThemeName="FluentDark"/>
+        <sfskin:ResourceDictionaryProvider
+            DictionaryName="Common"
+            ThemeName="FluentDark" />
+        <sfskin:ResourceDictionaryProvider
+            DictionaryName="Brushes"
+            ThemeName="FluentDark" />
         <ResourceDictionary Source="/Syncfusion.Themes.FluentDark.WPF;component/MSControl/Menu.xaml" />
         <ResourceDictionary Source="/Syncfusion.Themes.FluentDark.WPF;component/MSControl/GlyphButton.xaml" />
         <ResourceDictionary Source="/Syncfusion.Themes.FluentDark.WPF;component/MSControl/GlyphPrimaryToggleButton.xaml" />
@@ -24,8 +28,10 @@
     <tools_controls:CloseButtonTypeToVisibilityConverter x:Key="TabControlExtCloseButtonTypeToVisibilityConverter" />
     <windows_shared:BooleanToVisibilityConverterEx x:Key="TabControlExtBooleanToVisibilityConverterEx" />
     <tools_controls:ImageAlignmentToDockConverter x:Key="TabControlExtImageAlignmentToDockConverter" />
-    <windows_shared:ObjectNullToVisibilityConverter x:Key="TabControlExtObjectNullToVisibilityConverterEx"/>
-    <DataTemplate x:Key="TabControlExtHeaderDataTemplate" DataType="{x:Type tools_controls:TabItemExt}">
+    <windows_shared:ObjectNullToVisibilityConverter x:Key="TabControlExtObjectNullToVisibilityConverterEx" />
+    <DataTemplate
+        x:Key="TabControlExtHeaderDataTemplate"
+        DataType="{x:Type tools_controls:TabItemExt}">
         <TextBlock
             x:Name="HeaderText"
             Padding="1,0,0,1"
@@ -35,7 +41,9 @@
             TextTrimming="CharacterEllipsis" />
     </DataTemplate>
 
-    <DataTemplate x:Key="TabControlExtEditableDataTemplate" DataType="{x:Type tools_controls:TabItemExt}">
+    <DataTemplate
+        x:Key="TabControlExtEditableDataTemplate"
+        DataType="{x:Type tools_controls:TabItemExt}">
         <TextBox
             x:Name="EditableHeader"
             Padding="4,1,4,1"
@@ -46,52 +54,63 @@
     </DataTemplate>
 
     <DataTemplate x:Key="SyncfusionTabNewButtonDataTemplate">
-        <Border Height="16" Width="16" CornerRadius="{StaticResource FluentDark.CornerRadius2}" Background="Transparent" x:Name="NewButtonContentBorder">
-        <Grid >
+        <Border
+            x:Name="NewButtonContentBorder"
+            Width="16"
+            Height="16"
+            Background="Transparent"
+            CornerRadius="{StaticResource FluentDark.CornerRadius2}">
+            <Grid>
                 <Path
-                        x:Name="NewButtonPath"
-                        Width="9"
-                        Margin="0"
-                        Height="9"
-                        StrokeThickness="1"
-                        SnapsToDevicePixels="True"
-                        Stretch="Fill" >
+                    x:Name="NewButtonPath"
+                    Width="9"
+                    Height="9"
+                    Margin="0"
+                    SnapsToDevicePixels="True"
+                    Stretch="Fill"
+                    StrokeThickness="1">
                     <Path.Data>
                         <PathGeometry>M4.5 0V9M0 4.5H9</PathGeometry>
                     </Path.Data>
                     <Path.Style>
                         <Style TargetType="Path">
-                            <Setter Property="Stroke" Value="{Binding Path=Foreground, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Button}}}"/>
+                            <Setter Property="Stroke" Value="{Binding Path=Foreground, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Button}}}" />
                         </Style>
                     </Path.Style>
                 </Path>
             </Grid>
         </Border>
         <DataTemplate.Triggers>
-            <Trigger Property="IsMouseOver" SourceName="NewButtonContentBorder" Value="True">
-                <Setter Property="Background" TargetName="NewButtonContentBorder" Value="{StaticResource SecondaryBackgroundHovered}"/>
-                <Setter Property="BorderBrush" TargetName="NewButtonContentBorder" Value="{StaticResource SecondaryBackgroundHovered}"/>
+            <Trigger SourceName="NewButtonContentBorder" Property="IsMouseOver" Value="True">
+                <Setter TargetName="NewButtonContentBorder" Property="Background" Value="{StaticResource SecondaryBackgroundHovered}" />
+                <Setter TargetName="NewButtonContentBorder" Property="BorderBrush" Value="{StaticResource SecondaryBackgroundHovered}" />
             </Trigger>
         </DataTemplate.Triggers>
     </DataTemplate>
 
-     <Style x:Key="SyncfusionNewButtonStyle" TargetType="{x:Type Button}">
+    <Style
+        x:Key="SyncfusionNewButtonStyle"
+        TargetType="{x:Type Button}">
         <Setter Property="Background" Value="Transparent" />
-        <Setter Property="BorderThickness" Value="0"/>
-        <Setter Property="BorderBrush" Value="Transparent"/>
-        <Setter Property="Foreground" Value="{StaticResource IconColor}"/>
+        <Setter Property="BorderThickness" Value="0" />
+        <Setter Property="BorderBrush" Value="Transparent" />
+        <Setter Property="Foreground" Value="{StaticResource IconColor}" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type Button}">
-                    <Border 
-                        x:Name="NewButtonBorder" 
-                        CornerRadius="{StaticResource FluentDark.CornerRadius2}"
-                        Background="{TemplateBinding Background}" 
+                    <Border
+                        x:Name="NewButtonBorder"
+                        Padding="{TemplateBinding Padding}"
+                        Background="{TemplateBinding Background}"
                         BorderBrush="{TemplateBinding BorderBrush}"
                         BorderThickness="{TemplateBinding BorderThickness}"
-                        Padding="{TemplateBinding Padding}"
+                        CornerRadius="{StaticResource FluentDark.CornerRadius2}"
                         SnapsToDevicePixels="true">
-                        <ContentPresenter x:Name="contentPresenter" Focusable="False"  RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
+                        <ContentPresenter
+                            x:Name="contentPresenter"
+                            Focusable="False"
+                            RecognizesAccessKey="True"
+                            SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
                     </Border>
                     <ControlTemplate.Triggers>
                         <Trigger Property="sfskin:SfSkinManager.SizeMode" Value="Touch">
@@ -99,10 +118,10 @@
                             <Setter Property="MinWidth" Value="{StaticResource TouchMode.MinSize}" />
                         </Trigger>
                         <Trigger Property="IsMouseOver" Value="True">
-                            <Setter Property="Foreground" Value="{StaticResource SecondaryForegroundHovered}"/>
+                            <Setter Property="Foreground" Value="{StaticResource SecondaryForegroundHovered}" />
                         </Trigger>
                         <Trigger Property="IsPressed" Value="True">
-                            <Setter Property="Foreground" Value="{StaticResource SecondaryForegroundSelected}"/>
+                            <Setter Property="Foreground" Value="{StaticResource SecondaryForegroundSelected}" />
                         </Trigger>
                         <Trigger Property="IsEnabled" Value="False">
                             <Setter TargetName="NewButtonBorder" Property="BorderBrush" Value="Transparent" />
@@ -115,7 +134,7 @@
         </Setter>
         <Style.Triggers>
             <Trigger Property="sfskin:SkinManagerHelper.FocusVisualKind" Value="HighVisibility">
-                <Setter Property="FocusVisualStyle" Value="{StaticResource FlatKeyboardFocusVisualStyle}"/>
+                <Setter Property="FocusVisualStyle" Value="{StaticResource FlatKeyboardFocusVisualStyle}" />
             </Trigger>
         </Style.Triggers>
     </Style>
@@ -123,7 +142,7 @@
         x:Key="TabItemCaptionButtonsStyle"
         BasedOn="{StaticResource WPFGlyphPrimaryToggleButtonStyle}"
         TargetType="{x:Type ToggleButton}">
-        <Setter Property="MinWidth" Value="16"/>
+        <Setter Property="MinWidth" Value="16" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type ToggleButton}">
@@ -141,7 +160,9 @@
                             RecognizesAccessKey="True"
                             SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}">
                             <ContentPresenter.Resources>
-                                <Style BasedOn="{x:Null}" TargetType="{x:Type TextBlock}" />
+                                <Style
+                                    BasedOn="{x:Null}"
+                                    TargetType="{x:Type TextBlock}" />
                             </ContentPresenter.Resources>
                         </ContentPresenter>
                     </Border>
@@ -156,7 +177,9 @@
                             <Setter TargetName="border" Property="BorderBrush" Value="{StaticResource ContentBackgroundSelected}" />
                             <Setter Property="Foreground" Value="{StaticResource SelectedForeground}" />
                         </Trigger>
-                        <DataTrigger Binding="{Binding IsSelected, RelativeSource={RelativeSource AncestorType={x:Type tools_controls:TabItemExt}}}" Value="True">
+                        <DataTrigger
+                            Binding="{Binding IsSelected, RelativeSource={RelativeSource AncestorType={x:Type tools_controls:TabItemExt}}}"
+                            Value="True">
                             <Setter Property="Foreground" Value="{StaticResource ContentForegroundAlt1}" />
                             <Setter TargetName="border" Property="Background" Value="Transparent" />
                             <Setter TargetName="border" Property="BorderBrush" Value="Transparent" />
@@ -203,7 +226,7 @@
         x:Key="TabPanelCaptionButtonsStyle"
         BasedOn="{StaticResource WPFGlyphButtonStyle}"
         TargetType="{x:Type Button}">
-        <Setter Property="MinHeight" Value="16"/>
+        <Setter Property="MinHeight" Value="16" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type Button}">
@@ -221,7 +244,9 @@
                             RecognizesAccessKey="True"
                             SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}">
                             <ContentPresenter.Resources>
-                                <Style BasedOn="{x:Null}" TargetType="{x:Type TextBlock}" />
+                                <Style
+                                    BasedOn="{x:Null}"
+                                    TargetType="{x:Type TextBlock}" />
                             </ContentPresenter.Resources>
                         </ContentPresenter>
                     </Border>
@@ -295,10 +320,12 @@
         </Setter>
     </Style>
 
-    <Style x:Key="SyncfusionTabControlExtTabPanelAdvStyle" TargetType="{x:Type tools_controls:TabPanelAdv}">
+    <Style
+        x:Key="SyncfusionTabControlExtTabPanelAdvStyle"
+        TargetType="{x:Type tools_controls:TabPanelAdv}">
         <Setter Property="FocusVisualStyle" Value="{x:Null}" />
         <Setter Property="SnapsToDevicePixels" Value="True" />
-        <Setter Property="BorderThickness" Value="0"/>
+        <Setter Property="BorderThickness" Value="0" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type tools_controls:TabPanelAdv}">
@@ -313,12 +340,12 @@
                         BorderThickness="{TemplateBinding BorderThickness}"
                         CornerRadius="{TemplateBinding CornerRadius}">
                         <Grid>
-                            <Border 
-                                BorderThickness="0"
-                                BorderBrush="Transparent"/>
+                            <Border
+                                BorderBrush="Transparent"
+                                BorderThickness="0" />
                             <DockPanel
-                                LastChildFill="False"
-                                Grid.Column="5">
+                                Grid.Column="5"
+                                LastChildFill="False">
                                 <ContentPresenter
                                     x:Name="PART_CustomItems"
                                     MaxHeight="{Binding Path=ActualHeight, ElementName=PART_TabItems}"
@@ -346,9 +373,13 @@
                                     <Button.ToolTip>
                                         <ToolTip x:Name="tooltip">
                                             <ToolTip.Resources>
-                                                <Style BasedOn="{x:Null}" TargetType="{x:Type TextBlock}" />
+                                                <Style
+                                                    BasedOn="{x:Null}"
+                                                    TargetType="{x:Type TextBlock}" />
                                             </ToolTip.Resources>
-                                            <TextBlock x:Name="tooltipText" Text="{tools_controls:ToolsLocalizationResourceExtension ResourceName=CloseButtonTooltipText}" />
+                                            <TextBlock
+                                                x:Name="tooltipText"
+                                                Text="{tools_controls:ToolsLocalizationResourceExtension ResourceName=CloseButtonTooltipText}" />
                                         </ToolTip>
                                     </Button.ToolTip>
                                     <Button.Content>
@@ -358,11 +389,11 @@
                                             Height="8"
                                             HorizontalAlignment="Center"
                                             VerticalAlignment="Center"
-                                            Stroke="{Binding Foreground, ElementName=PART_CloseButton}"
-                                            StrokeThickness="1"
+                                            Data="M1 9L9 1M9 9L1 1"
                                             SnapsToDevicePixels="True"
-                                            Stretch="Fill" 
-                                            Data="M1 9L9 1M9 9L1 1"/>
+                                            Stretch="Fill"
+                                            Stroke="{Binding Foreground, ElementName=PART_CloseButton}"
+                                            StrokeThickness="1" />
                                     </Button.Content>
                                 </Button>
                                 <Button
@@ -382,9 +413,13 @@
                                     <Button.ToolTip>
                                         <ToolTip x:Name="PART_ContextMenuButtonTooltip">
                                             <ToolTip.Resources>
-                                                <Style BasedOn="{x:Null}" TargetType="{x:Type TextBlock}" />
+                                                <Style
+                                                    BasedOn="{x:Null}"
+                                                    TargetType="{x:Type TextBlock}" />
                                             </ToolTip.Resources>
-                                            <TextBlock x:Name="PART_ContextMenuButtonTooltipText" Text="{tools_controls:ToolsLocalizationResourceExtension ResourceName=MoreTabs}" />
+                                            <TextBlock
+                                                x:Name="PART_ContextMenuButtonTooltipText"
+                                                Text="{tools_controls:ToolsLocalizationResourceExtension ResourceName=MoreTabs}" />
                                         </ToolTip>
                                     </Button.ToolTip>
                                     <Button.Content>
@@ -392,12 +427,12 @@
                                             x:Name="MenuButtonPath1"
                                             Width="8"
                                             Height="4"
-                                            Stroke="{Binding Foreground, ElementName=PART_MenuButton}"
-                                            StrokeThickness="1"
+                                            Data="M1 1L5 5L9 1"
                                             RenderTransformOrigin="0.5,0.5"
                                             SnapsToDevicePixels="True"
-                                            Stretch="Fill" 
-                                            Data="M1 1L5 5L9 1"/>
+                                            Stretch="Fill"
+                                            Stroke="{Binding Foreground, ElementName=PART_MenuButton}"
+                                            StrokeThickness="1" />
                                     </Button.Content>
                                 </Button>
                                 <Button
@@ -417,20 +452,24 @@
                                     <Button.ToolTip>
                                         <ToolTip Name="LastTabToolTip">
                                             <ToolTip.Resources>
-                                                <Style BasedOn="{x:Null}" TargetType="{x:Type TextBlock}" />
+                                                <Style
+                                                    BasedOn="{x:Null}"
+                                                    TargetType="{x:Type TextBlock}" />
                                             </ToolTip.Resources>
-                                            <TextBlock Name="LastToolTipText" Text="{tools_controls:ToolsLocalizationResourceExtension ResourceName=LastTab}"/>
+                                            <TextBlock
+                                                Name="LastToolTipText"
+                                                Text="{tools_controls:ToolsLocalizationResourceExtension ResourceName=LastTab}" />
                                         </ToolTip>
                                     </Button.ToolTip>
                                     <Button.Content>
                                         <Path
                                             Width="5"
                                             Height="8"
-                                            Stroke="{Binding Foreground, ElementName=PART_LastTab}"
-                                            StrokeThickness="1"
+                                            Data="M0.5 1L4.5 5L0.5 9M5.5 1V9"
                                             SnapsToDevicePixels="True"
-                                            Stretch="Fill" 
-                                            Data="M0.5 1L4.5 5L0.5 9M5.5 1V9"/>
+                                            Stretch="Fill"
+                                            Stroke="{Binding Foreground, ElementName=PART_LastTab}"
+                                            StrokeThickness="1" />
                                     </Button.Content>
                                 </Button>
                                 <Button
@@ -450,20 +489,24 @@
                                     <Button.ToolTip>
                                         <ToolTip Name="NextTabToolTip">
                                             <ToolTip.Resources>
-                                                <Style BasedOn="{x:Null}" TargetType="{x:Type TextBlock}" />
+                                                <Style
+                                                    BasedOn="{x:Null}"
+                                                    TargetType="{x:Type TextBlock}" />
                                             </ToolTip.Resources>
-                                            <TextBlock Name="NextTabToolTipText" Text="{tools_controls:ToolsLocalizationResourceExtension ResourceName=NextTab}"/>
+                                            <TextBlock
+                                                Name="NextTabToolTipText"
+                                                Text="{tools_controls:ToolsLocalizationResourceExtension ResourceName=NextTab}" />
                                         </ToolTip>
                                     </Button.ToolTip>
                                     <Button.Content>
                                         <Path
                                             Width="4"
                                             Height="8"
-                                            Stroke="{Binding Foreground, ElementName=PART_NextTab}"
-                                            StrokeThickness="1"
+                                            Data="M1 1L5 5L1 9"
                                             SnapsToDevicePixels="True"
                                             Stretch="Fill"
-                                            Data="M1 1L5 5L1 9"/>
+                                            Stroke="{Binding Foreground, ElementName=PART_NextTab}"
+                                            StrokeThickness="1" />
                                     </Button.Content>
                                 </Button>
                                 <Button
@@ -483,20 +526,24 @@
                                     <Button.ToolTip>
                                         <ToolTip Name="PreviousTabToolTip">
                                             <ToolTip.Resources>
-                                                <Style BasedOn="{x:Null}" TargetType="{x:Type TextBlock}" />
+                                                <Style
+                                                    BasedOn="{x:Null}"
+                                                    TargetType="{x:Type TextBlock}" />
                                             </ToolTip.Resources>
-                                            <TextBlock Name="PreviousTabToolTipText" Text="{tools_controls:ToolsLocalizationResourceExtension ResourceName=PreviousTab}"/>
+                                            <TextBlock
+                                                Name="PreviousTabToolTipText"
+                                                Text="{tools_controls:ToolsLocalizationResourceExtension ResourceName=PreviousTab}" />
                                         </ToolTip>
                                     </Button.ToolTip>
                                     <Button.Content>
                                         <Path
                                             Width="4"
                                             Height="8"
-                                            Stroke="{Binding Foreground, ElementName=PART_PrevTab}"
-                                            StrokeThickness="1"
+                                            Data="M5 1L1 5L5 9"
                                             SnapsToDevicePixels="True"
                                             Stretch="Fill"
-                                            Data="M5 1L1 5L5 9"/>
+                                            Stroke="{Binding Foreground, ElementName=PART_PrevTab}"
+                                            StrokeThickness="1" />
                                     </Button.Content>
                                 </Button>
                                 <Button
@@ -516,20 +563,24 @@
                                     <Button.ToolTip>
                                         <ToolTip Name="NextPageToolTip">
                                             <ToolTip.Resources>
-                                                <Style BasedOn="{x:Null}" TargetType="{x:Type TextBlock}" />
+                                                <Style
+                                                    BasedOn="{x:Null}"
+                                                    TargetType="{x:Type TextBlock}" />
                                             </ToolTip.Resources>
-                                            <TextBlock Name="NextPageToolTipText" Text="{tools_controls:ToolsLocalizationResourceExtension ResourceName=NextPage}"/>
+                                            <TextBlock
+                                                Name="NextPageToolTipText"
+                                                Text="{tools_controls:ToolsLocalizationResourceExtension ResourceName=NextPage}" />
                                         </ToolTip>
                                     </Button.ToolTip>
                                     <Button.Content>
                                         <Path
                                             Width="7"
                                             Height="8"
-                                            Stroke="{Binding Foreground, ElementName=PART_NextPage}"
-                                            StrokeThickness="1"
+                                            Data="M1 1L5 5L1 9M4 1L8 5L4 9"
                                             SnapsToDevicePixels="True"
                                             Stretch="Fill"
-                                            Data="M1 1L5 5L1 9M4 1L8 5L4 9"/>
+                                            Stroke="{Binding Foreground, ElementName=PART_NextPage}"
+                                            StrokeThickness="1" />
                                     </Button.Content>
                                 </Button>
                                 <Button
@@ -549,20 +600,24 @@
                                     <Button.ToolTip>
                                         <ToolTip Name="PreviousPageToolTip">
                                             <ToolTip.Resources>
-                                                <Style BasedOn="{x:Null}" TargetType="{x:Type TextBlock}" />
+                                                <Style
+                                                    BasedOn="{x:Null}"
+                                                    TargetType="{x:Type TextBlock}" />
                                             </ToolTip.Resources>
-                                            <TextBlock Name="PreviousPageToolTipText" Text="{tools_controls:ToolsLocalizationResourceExtension ResourceName=PreviousPage}"/>
+                                            <TextBlock
+                                                Name="PreviousPageToolTipText"
+                                                Text="{tools_controls:ToolsLocalizationResourceExtension ResourceName=PreviousPage}" />
                                         </ToolTip>
                                     </Button.ToolTip>
                                     <Button.Content>
                                         <Path
                                             Width="7"
                                             Height="8"
-                                            Stroke="{Binding Foreground, ElementName=PART_PrevPage}"
-                                            StrokeThickness="1"
+                                            Data="M8 1L4 5L8 9M5 1L1 5L5 9"
                                             SnapsToDevicePixels="True"
-                                            Stretch="Fill" 
-                                            Data="M8 1L4 5L8 9M5 1L1 5L5 9"/>
+                                            Stretch="Fill"
+                                            Stroke="{Binding Foreground, ElementName=PART_PrevPage}"
+                                            StrokeThickness="1" />
                                     </Button.Content>
                                 </Button>
                                 <Button
@@ -582,20 +637,24 @@
                                     <Button.ToolTip>
                                         <ToolTip Name="FirstTabToolTip">
                                             <ToolTip.Resources>
-                                                <Style BasedOn="{x:Null}" TargetType="{x:Type TextBlock}" />
+                                                <Style
+                                                    BasedOn="{x:Null}"
+                                                    TargetType="{x:Type TextBlock}" />
                                             </ToolTip.Resources>
-                                            <TextBlock Name="FirstTabToolTipText" Text="{tools_controls:ToolsLocalizationResourceExtension ResourceName=FirstTab}"/>
+                                            <TextBlock
+                                                Name="FirstTabToolTipText"
+                                                Text="{tools_controls:ToolsLocalizationResourceExtension ResourceName=FirstTab}" />
                                         </ToolTip>
                                     </Button.ToolTip>
                                     <Button.Content>
                                         <Path
                                             Width="5"
                                             Height="8"
-                                            Stroke="{Binding Foreground, ElementName=PART_FirstTab}"
-                                            StrokeThickness="1"
+                                            Data="M5.5 1L1.5 5L5.5 9M0.5 1V9"
                                             SnapsToDevicePixels="True"
-                                            Stretch="Fill" 
-                                            Data="M5.5 1L1.5 5L5.5 9M0.5 1V9"/>
+                                            Stretch="Fill"
+                                            Stroke="{Binding Foreground, ElementName=PART_FirstTab}"
+                                            StrokeThickness="1" />
                                     </Button.Content>
                                 </Button>
                                 <Border
@@ -610,29 +669,29 @@
                                     Focusable="False"
                                     Visibility="Collapsed" />
                                 <DockPanel LastChildFill="False">
-                                    <Grid 
+                                    <Grid
                                         x:Name="NewButtonPosition"
-                                        DockPanel.Dock="Left"
                                         HorizontalAlignment="Center"
-                                        VerticalAlignment="Center">
+                                        VerticalAlignment="Center"
+                                        DockPanel.Dock="Left">
                                         <tools_controls:NewTabLayout Visibility="Visible">
-                                            <ContentPresenter x:Name="PART_ToolBarTray" 
-											Visibility="{Binding Path=ToolBarTray , Converter={StaticResource TabControlExtObjectNullToVisibilityConverterEx}, Mode=OneWay , RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type tools_controls:TabControlExt}}, FallbackValue=Collapsed}"
-											Content="{Binding Path=ToolBarTray, Mode=OneWay, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type tools_controls:TabControlExt}}, FallbackValue=''}" />
-                                            <Button 
+                                            <ContentPresenter
+                                                x:Name="PART_ToolBarTray"
+                                                Content="{Binding Path=ToolBarTray, Mode=OneWay, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type tools_controls:TabControlExt}}, FallbackValue=''}"
+                                                Visibility="{Binding Path=ToolBarTray, Converter={StaticResource TabControlExtObjectNullToVisibilityConverterEx}, Mode=OneWay, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type tools_controls:TabControlExt}}, FallbackValue=Collapsed}" />
+                                            <Button
                                                 x:Name="PART_NewTab"
-												Visibility="{Binding Path=IsNewButtonEnabled, Converter={StaticResource TabControlExtBooleanToVisibilityConverterEx}, Mode=OneWay, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type tools_controls:TabControlExt}},FallbackValue=Collapsed}"
+                                                Background="{Binding Path=NewButtonBackground, RelativeSource={RelativeSource AncestorType=tools_controls:TabControlExt}}"
                                                 BorderBrush="Transparent"
+                                                BorderThickness="{Binding Path=NewButtonBorderThickness, RelativeSource={RelativeSource AncestorType=tools_controls:TabControlExt}}"
                                                 ContentTemplate="{Binding Path=NewTabButtonTemplate, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type tools_controls:TabControlExt}}}"
-                                                Background="{Binding Path=NewButtonBackground, RelativeSource={RelativeSource AncestorType=tools_controls:TabControlExt}}"    
-                                                BorderThickness="{Binding Path=NewButtonBorderThickness, RelativeSource={RelativeSource AncestorType=tools_controls:TabControlExt}}"    
+                                                DockPanel.Dock="Top"
                                                 Style="{StaticResource SyncfusionNewButtonStyle}"
-                                                DockPanel.Dock="Top"/>
+                                                Visibility="{Binding Path=IsNewButtonEnabled, Converter={StaticResource TabControlExtBooleanToVisibilityConverterEx}, Mode=OneWay, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type tools_controls:TabControlExt}}, FallbackValue=Collapsed}" />
                                         </tools_controls:NewTabLayout>
                                     </Grid>
-                                    <Button 
+                                    <Button
                                         x:Name="PART_NextAutoScrollButton"
-                                        DockPanel.Dock="Right"
                                         Width="16"
                                         MinHeight="16"
                                         Margin="0,0,8,0"
@@ -640,23 +699,23 @@
                                         VerticalAlignment="Center"
                                         Background="Transparent"
                                         BorderBrush="Transparent"
+                                        DockPanel.Dock="Right"
                                         Focusable="False"
-                                        Tag="RightAutoScroll"
                                         Style="{Binding ScrollingButtonStyle, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type tools_controls:TabControlExt}}}"
+                                        Tag="RightAutoScroll"
                                         Visibility="Collapsed">
                                         <Button.Content>
-                                            <Path 
-                                                Data="M18,1.4210855E-14 C19.104004,-1.1920928E-07 20,0.89599597 20,1.9999999 20,3.1040038 19.104004,3.9999999 18,3.9999999 16.895996,3.9999999 16,3.1040038 16,1.9999999 16,0.89599597 16.895996,-1.1920928E-07 18,1.4210855E-14 z M10,1.4210855E-14 C11.104004,-1.1920928E-07 12,0.89599597 12,1.9999999 12,3.1040038 11.104004,3.9999999 10,3.9999999 8.8959961,3.9999999 8,3.1040038 8,1.9999999 8,0.89599597 8.8959961,-1.1920928E-07 10,1.4210855E-14 z M1.9999999,1.4210855E-14 C3.1040039,-1.1920928E-07 4,0.89599597 4,1.9999999 4,3.1040038 3.1040039,3.9999999 1.9999999,3.9999999 0.89599609,3.9999999 0,3.1040038 0,1.9999999 0,0.89599597 0.89599609,-1.1920928E-07 1.9999999,1.4210855E-14 z" 
+                                            <Path
+                                                Width="8"
+                                                Height="2"
+                                                Data="M18,1.4210855E-14 C19.104004,-1.1920928E-07 20,0.89599597 20,1.9999999 20,3.1040038 19.104004,3.9999999 18,3.9999999 16.895996,3.9999999 16,3.1040038 16,1.9999999 16,0.89599597 16.895996,-1.1920928E-07 18,1.4210855E-14 z M10,1.4210855E-14 C11.104004,-1.1920928E-07 12,0.89599597 12,1.9999999 12,3.1040038 11.104004,3.9999999 10,3.9999999 8.8959961,3.9999999 8,3.1040038 8,1.9999999 8,0.89599597 8.8959961,-1.1920928E-07 10,1.4210855E-14 z M1.9999999,1.4210855E-14 C3.1040039,-1.1920928E-07 4,0.89599597 4,1.9999999 4,3.1040038 3.1040039,3.9999999 1.9999999,3.9999999 0.89599609,3.9999999 0,3.1040038 0,1.9999999 0,0.89599597 0.89599609,-1.1920928E-07 1.9999999,1.4210855E-14 z"
                                                 Fill="{Binding Foreground, ElementName=PART_NextAutoScrollButton}"
-                                                Height="2"  
                                                 SnapsToDevicePixels="True"
-                                                Stretch="Fill"
-                                                Width="8"/>
+                                                Stretch="Fill" />
                                         </Button.Content>
                                     </Button>
                                     <Button
                                         x:Name="PART_PrevAutoScrollButton"
-                                        DockPanel.Dock="Left"
                                         Width="16"
                                         MinHeight="16"
                                         Margin="0,0,8,0"
@@ -664,24 +723,26 @@
                                         VerticalAlignment="Center"
                                         Background="Transparent"
                                         BorderBrush="Transparent"
+                                        DockPanel.Dock="Left"
                                         Focusable="False"
+                                        Style="{Binding ScrollingButtonStyle, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type tools_controls:TabControlExt}}}"
                                         Tag="LeftAutoScroll"
-                                        Style="{Binding ScrollingButtonStyle,RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type tools_controls:TabControlExt}}}"
                                         Visibility="Collapsed">
                                         <Button.Content>
-                                            <Path Data="M18,1.4210855E-14 C19.104004,-1.1920928E-07 20,0.89599597 20,1.9999999 20,3.1040038 19.104004,3.9999999 18,3.9999999 16.895996,3.9999999 16,3.1040038 16,1.9999999 16,0.89599597 16.895996,-1.1920928E-07 18,1.4210855E-14 z M10,1.4210855E-14 C11.104004,-1.1920928E-07 12,0.89599597 12,1.9999999 12,3.1040038 11.104004,3.9999999 10,3.9999999 8.8959961,3.9999999 8,3.1040038 8,1.9999999 8,0.89599597 8.8959961,-1.1920928E-07 10,1.4210855E-14 z M1.9999999,1.4210855E-14 C3.1040039,-1.1920928E-07 4,0.89599597 4,1.9999999 4,3.1040038 3.1040039,3.9999999 1.9999999,3.9999999 0.89599609,3.9999999 0,3.1040038 0,1.9999999 0,0.89599597 0.89599609,-1.1920928E-07 1.9999999,1.4210855E-14 z" 
-                                            Fill="{Binding Foreground, ElementName=PART_PrevAutoScrollButton}"
-                                            Height="2"  
-                                            SnapsToDevicePixels="True"
-                                            Stretch="Fill"
-                                            Width="8"/>
+                                            <Path
+                                                Width="8"
+                                                Height="2"
+                                                Data="M18,1.4210855E-14 C19.104004,-1.1920928E-07 20,0.89599597 20,1.9999999 20,3.1040038 19.104004,3.9999999 18,3.9999999 16.895996,3.9999999 16,3.1040038 16,1.9999999 16,0.89599597 16.895996,-1.1920928E-07 18,1.4210855E-14 z M10,1.4210855E-14 C11.104004,-1.1920928E-07 12,0.89599597 12,1.9999999 12,3.1040038 11.104004,3.9999999 10,3.9999999 8.8959961,3.9999999 8,3.1040038 8,1.9999999 8,0.89599597 8.8959961,-1.1920928E-07 10,1.4210855E-14 z M1.9999999,1.4210855E-14 C3.1040039,-1.1920928E-07 4,0.89599597 4,1.9999999 4,3.1040038 3.1040039,3.9999999 1.9999999,3.9999999 0.89599609,3.9999999 0,3.1040038 0,1.9999999 0,0.89599597 0.89599609,-1.1920928E-07 1.9999999,1.4210855E-14 z"
+                                                Fill="{Binding Foreground, ElementName=PART_PrevAutoScrollButton}"
+                                                SnapsToDevicePixels="True"
+                                                Stretch="Fill" />
                                         </Button.Content>
                                     </Button>
-                                    <ContentPresenter 
-                                        DockPanel.Dock="Left"
+                                    <ContentPresenter
                                         x:Name="PART_TabItems"
                                         Content="{TemplateBinding Content}"
-                                        ContentSource="TabItems"/>
+                                        ContentSource="TabItems"
+                                        DockPanel.Dock="Left" />
                                 </DockPanel>
                             </DockPanel>
                         </Grid>
@@ -705,11 +766,15 @@
                             <Setter TargetName="PART_LastTab" Property="MinHeight" Value="{StaticResource TouchMode.MinHeight}" />
                             <Setter TargetName="PART_FirstTab" Property="MinHeight" Value="{StaticResource TouchMode.MinHeight}" />
                         </Trigger>
-                        <DataTrigger Binding="{Binding Path=TabListContextMenuOptions,RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type tools_controls:TabControlExt}}}" Value="None">
-                            <Setter Property="Visibility" TargetName="PART_MenuButton" Value="Collapsed"/>
+                        <DataTrigger
+                            Binding="{Binding Path=TabListContextMenuOptions, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type tools_controls:TabControlExt}}}"
+                            Value="None">
+                            <Setter TargetName="PART_MenuButton" Property="Visibility" Value="Collapsed" />
                         </DataTrigger>
-                        <DataTrigger Binding="{Binding Path=TabStripPlacement, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type TabControl}}, FallbackValue=Top}" Value="Bottom">
-                            <Setter Property="BorderThickness" Value="0"/>
+                        <DataTrigger
+                            Binding="{Binding Path=TabStripPlacement, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type TabControl}}, FallbackValue=Top}"
+                            Value="Bottom">
+                            <Setter Property="BorderThickness" Value="0" />
                             <Setter TargetName="PART_CustomItems" Property="LayoutTransform">
                                 <Setter.Value>
                                     <RotateTransform Angle="-180" />
@@ -721,22 +786,30 @@
                                 </Setter.Value>
                             </Setter>
                         </DataTrigger>
-                        <DataTrigger Binding="{Binding Path=TabStripPlacement, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type TabControl}}, FallbackValue=Top}" Value="Left">
-                            <Setter Property="BorderThickness" Value="0"/>
+                        <DataTrigger
+                            Binding="{Binding Path=TabStripPlacement, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type TabControl}}, FallbackValue=Top}"
+                            Value="Left">
+                            <Setter Property="BorderThickness" Value="0" />
                             <Setter TargetName="PART_MenuButton" Property="LayoutTransform">
                                 <Setter.Value>
                                     <RotateTransform Angle="-180" />
                                 </Setter.Value>
                             </Setter>
                         </DataTrigger>
-                        <DataTrigger Binding="{Binding Path=TabStripPlacement, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type TabControl}}, FallbackValue=Top}" Value="Right">
-                            <Setter Property="BorderThickness" Value="0"/>
+                        <DataTrigger
+                            Binding="{Binding Path=TabStripPlacement, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type TabControl}}, FallbackValue=Top}"
+                            Value="Right">
+                            <Setter Property="BorderThickness" Value="0" />
                         </DataTrigger>
-                        <DataTrigger Binding="{Binding Path=NewButtonAlignment,RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type tools_controls:TabControlExt}},FallbackValue=First}" Value="Last">
-                            <Setter Property="DockPanel.Dock" Value="Right" TargetName="NewButtonPosition"/>
-                            <Setter Property="Margin" Value="0 0 6 0" TargetName="PART_NewTab"/>
+                        <DataTrigger
+                            Binding="{Binding Path=NewButtonAlignment, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type tools_controls:TabControlExt}}, FallbackValue=First}"
+                            Value="Last">
+                            <Setter TargetName="NewButtonPosition" Property="DockPanel.Dock" Value="Right" />
+                            <Setter TargetName="PART_NewTab" Property="Margin" Value="0,0,6,0" />
                         </DataTrigger>
-                        <DataTrigger Binding="{Binding Path=IsAllTabsClosed, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type tools_controls:TabControlExt}}, FallbackValue=false}" Value="True">
+                        <DataTrigger
+                            Binding="{Binding Path=IsAllTabsClosed, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type tools_controls:TabControlExt}}, FallbackValue=false}"
+                            Value="True">
                             <Setter TargetName="PART_CloseButton" Property="Visibility" Value="Hidden" />
                             <Setter TargetName="PART_MenuButton" Property="Visibility" Value="Hidden" />
                             <!--<Setter TargetName="BottomBorder" Property="Height" Value="0" />-->
@@ -745,7 +818,7 @@
                             <MultiDataTrigger.Conditions>
                                 <Condition Binding="{Binding Path=Items.Count, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type tools_controls:TabControlExt}}, FallbackValue=0}" Value="1" />
                                 <Condition Binding="{Binding Path=HideHeaderOnSingleChild, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type tools_controls:TabControlExt}}}" Value="True" />
-                                <Condition Binding="{Binding Path=TabListContextMenuOptions,RelativeSource={RelativeSource FindAncestor,AncestorType={x:Type tools_controls:TabControlExt}}}" Value="None" />
+                                <Condition Binding="{Binding Path=TabListContextMenuOptions, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type tools_controls:TabControlExt}}}" Value="None" />
                                 <Condition Binding="{Binding ElementName=PART_CloseButton, Path=Visibility}" Value="Collapsed" />
                             </MultiDataTrigger.Conditions>
                             <Setter TargetName="Bord" Property="Visibility" Value="Collapsed" />
@@ -756,7 +829,9 @@
         </Setter>
     </Style>
 
-    <Style x:Key="SyncfusionDragMarkerTemplatedAdornerInternalControlStyle" TargetType="{x:Type windows_shared:TemplatedAdornerInternalControl}">
+    <Style
+        x:Key="SyncfusionDragMarkerTemplatedAdornerInternalControlStyle"
+        TargetType="{x:Type windows_shared:TemplatedAdornerInternalControl}">
         <Setter Property="MinWidth" Value="15" />
         <Setter Property="MinHeight" Value="15" />
         <Setter Property="HorizontalAlignment" Value="Left" />
@@ -772,7 +847,8 @@
                         <Canvas
                             x:Name="PART_Top"
                             Width="5"
-                            Height="2" Margin="0,1,0,0"
+                            Height="2"
+                            Margin="0,1,0,0"
                             HorizontalAlignment="Left"
                             VerticalAlignment="Top"
                             DockPanel.Dock="Top">
@@ -792,7 +868,8 @@
                         <Canvas
                             x:Name="PART_Bottom"
                             Width="5"
-                            Height="2" Margin="0,0,0,2"
+                            Height="2"
+                            Margin="0,0,0,2"
                             HorizontalAlignment="Left"
                             VerticalAlignment="Bottom"
                             DockPanel.Dock="Bottom">
@@ -1049,7 +1126,9 @@
         </Setter>
     </Style>
 
-    <ControlTemplate x:Key="SyncfusionCustomMenuItemSeparatorControlTemplate" TargetType="{x:Type tools_controls:CustomMenuItem}">
+    <ControlTemplate
+        x:Key="SyncfusionCustomMenuItemSeparatorControlTemplate"
+        TargetType="{x:Type tools_controls:CustomMenuItem}">
         <Border Background="{TemplateBinding Background}">
             <Grid>
                 <Grid.ColumnDefinitions>
@@ -1072,7 +1151,9 @@
         BasedOn="{StaticResource WPFMenuItemStyle}"
         TargetType="tools_controls:CustomMenuItem">
         <Style.Triggers>
-            <DataTrigger Binding="{Binding Path=IsSeparator, RelativeSource={RelativeSource Self}, FallbackValue=False}" Value="True">
+            <DataTrigger
+                Binding="{Binding Path=IsSeparator, RelativeSource={RelativeSource Self}, FallbackValue=False}"
+                Value="True">
                 <Setter Property="BorderBrush" Value="{StaticResource BorderAlt}" />
                 <Setter Property="BorderThickness" Value="0.5" />
                 <Setter Property="Control.Template" Value="{StaticResource SyncfusionCustomMenuItemSeparatorControlTemplate}" />
@@ -1085,9 +1166,9 @@
         BasedOn="{StaticResource WPFMenuItemStyle}"
         TargetType="MenuItem">
         <Style.Triggers>
-            <Trigger Property="Tag"  Value="Separator">
+            <Trigger Property="Tag" Value="Separator">
                 <Setter Property="BorderBrush" Value="{StaticResource BorderAlt}" />
-                <Setter Property="Template" Value="{StaticResource SyncfusionCustomMenuItemSeparatorControlTemplate}"/>
+                <Setter Property="Template" Value="{StaticResource SyncfusionCustomMenuItemSeparatorControlTemplate}" />
             </Trigger>
         </Style.Triggers>
     </Style>
@@ -1203,7 +1284,9 @@
         </Style.Triggers>
     </Style>
 
-    <Style x:Key="SyncfusionTabItemExtStyle" TargetType="{x:Type tools_controls:TabItemExt}">
+    <Style
+        x:Key="SyncfusionTabItemExtStyle"
+        TargetType="{x:Type tools_controls:TabItemExt}">
         <Setter Property="TextElement.Foreground" Value="{StaticResource ContentForegroundAlt1}" />
         <Setter Property="TabItemContextMenuStyle" Value="{StaticResource TabItemContextMenu}" />
         <Setter Property="TabItemContextMenuItemStyle" Value="{StaticResource SyncfusionCustomMenuItemStyle}" />
@@ -1214,31 +1297,34 @@
         <Setter Property="HeaderMargin" Value="6 0" />
         <Setter Property="IconMargin" Value="6 0" />
         <Setter Property="Margin" Value="0" />
-        <Setter Property="Padding" Value="1 1 1 0" />
-        <Setter Property="BorderThickness" Value="{StaticResource FluentDark.BorderThickness0002}"/>
+        <Setter Property="Padding" Value="1,1,1,0" />
+        <Setter Property="BorderThickness" Value="{StaticResource FluentDark.BorderThickness0002}" />
         <Setter Property="Control.HorizontalContentAlignment" Value="Stretch" />
         <Setter Property="Control.VerticalContentAlignment" Value="Stretch" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type tools_controls:TabItemExt}">
-                    <Grid x:Name="templateRoot" 
-                          SnapsToDevicePixels="true">
-                        <Rectangle x:Name="TabSeparator"
-                            HorizontalAlignment="Right"
+                    <Grid
+                        x:Name="templateRoot"
+                        SnapsToDevicePixels="true">
+                        <Rectangle
+                            x:Name="TabSeparator"
                             Width="1"
+                            Margin="0,4,0,4"
+                            HorizontalAlignment="Right"
                             SnapsToDevicePixels="True"
-                            Visibility="Collapsed"    
-                             
                             StrokeThickness="1"
-                            Margin="0,4,0,4">
+                            Visibility="Collapsed">
                             <Rectangle.RenderTransform>
-                                <TranslateTransform X="1"/>
+                                <TranslateTransform X="1" />
                             </Rectangle.RenderTransform>
                         </Rectangle>
                         <Grid>
                             <Grid.RowDefinitions>
-                                <RowDefinition x:Name="topRow"/>
-                                <RowDefinition x:Name="bottomRow" Height="Auto"/>
+                                <RowDefinition x:Name="topRow" />
+                                <RowDefinition
+                                    x:Name="bottomRow"
+                                    Height="Auto" />
                             </Grid.RowDefinitions>
                             <!--<Grid.ColumnDefinitions>
                                 <ColumnDefinition x:Name="leftColumn"/>
@@ -1246,122 +1332,126 @@
                             </Grid.ColumnDefinitions>-->
                             <Border
                                 x:Name="Bd"
-                                BorderBrush="{TemplateBinding BorderBrush}"
                                 Padding="{TemplateBinding Padding}"
                                 Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
                                 BorderThickness="{TemplateBinding BorderThickness}"
                                 SnapsToDevicePixels="True"
                                 ToolTip="{TemplateBinding ItemToolTip}">
-                                <DockPanel x:Name="PART_DockPanel" LastChildFill="True">
+                                <DockPanel
+                                    x:Name="PART_DockPanel"
+                                    LastChildFill="True">
                                     <Button
-                                    x:Name="PART_CloseButton"
-                                    Width="{Binding ElementName=Content, Path=ActualHeight}"
-                                    Height="{Binding ElementName=Content, Path=ActualHeight}"
-                                    Margin="1"
-                                    HorizontalAlignment="Center"
-                                    VerticalAlignment="Center"
-                                    Background="Transparent"
-                                    BorderBrush="Transparent"
-                                    BorderThickness="0"
-                                    Command="tools_controls:TabControlCommands.CloseTabItem"
-                                    DockPanel.Dock="Right"
-                                    Focusable="False"
-                                    Style="{StaticResource TabPanelCaptionButtonsStyle}"
-                                    Tag="TabItem"
-                                    Visibility="Collapsed">
+                                        x:Name="PART_CloseButton"
+                                        Width="{Binding ElementName=Content, Path=ActualHeight}"
+                                        Height="{Binding ElementName=Content, Path=ActualHeight}"
+                                        Margin="1"
+                                        HorizontalAlignment="Center"
+                                        VerticalAlignment="Center"
+                                        Background="Transparent"
+                                        BorderBrush="Transparent"
+                                        BorderThickness="0"
+                                        Command="tools_controls:TabControlCommands.CloseTabItem"
+                                        DockPanel.Dock="Right"
+                                        Focusable="False"
+                                        Style="{StaticResource TabPanelCaptionButtonsStyle}"
+                                        Tag="TabItem"
+                                        Visibility="Collapsed">
                                         <Button.Content>
                                             <Path
-                                            x:Name="CloseButtonPath1"
-                                            Width="8"
-                                            Height="8"
-                                            HorizontalAlignment="Center"
-                                            VerticalAlignment="Center"
-                                            Stroke="{Binding Foreground, ElementName=PART_CloseButton}"
-                                            StrokeThickness="1"
-                                            SnapsToDevicePixels="True"
-                                            Stretch="Fill" 
-                                            Data="M1 9L9 1M9 9L1 1"/>
+                                                x:Name="CloseButtonPath1"
+                                                Width="8"
+                                                Height="8"
+                                                HorizontalAlignment="Center"
+                                                VerticalAlignment="Center"
+                                                Data="M1 9L9 1M9 9L1 1"
+                                                SnapsToDevicePixels="True"
+                                                Stretch="Fill"
+                                                Stroke="{Binding Foreground, ElementName=PART_CloseButton}"
+                                                StrokeThickness="1" />
                                         </Button.Content>
                                     </Button>
                                     <ToggleButton
-                                    x:Name="PART_PinButton"
-                                    Width="{Binding ElementName=Content, Path=ActualHeight}"
-                                    Height="{Binding ElementName=Content, Path=ActualHeight}"
-                                    Margin="1"
-                                    HorizontalAlignment="Center"
-                                    VerticalAlignment="Center"
-                                    Background="Transparent"
-                                    BorderBrush="Transparent"
-                                    BorderThickness="0"
-                                    Command="tools_controls:TabControlCommands.PinTabItem"
-                                    CommandParameter="{Binding IsChecked, RelativeSource={RelativeSource Self}}"
-                                    DockPanel.Dock="Right"
-                                    Style="{StaticResource TabItemCaptionButtonsStyle}"
-                                    Visibility="{Binding ShowPin, RelativeSource={RelativeSource AncestorType={x:Type tools_controls:TabItemExt}}, Converter={StaticResource TabControlExtCloseButtonTypeToVisibilityConverter}}">
+                                        x:Name="PART_PinButton"
+                                        Width="{Binding ElementName=Content, Path=ActualHeight}"
+                                        Height="{Binding ElementName=Content, Path=ActualHeight}"
+                                        Margin="1"
+                                        HorizontalAlignment="Center"
+                                        VerticalAlignment="Center"
+                                        Background="Transparent"
+                                        BorderBrush="Transparent"
+                                        BorderThickness="0"
+                                        Command="tools_controls:TabControlCommands.PinTabItem"
+                                        CommandParameter="{Binding IsChecked, RelativeSource={RelativeSource Self}}"
+                                        DockPanel.Dock="Right"
+                                        Style="{StaticResource TabItemCaptionButtonsStyle}"
+                                        Visibility="{Binding ShowPin, RelativeSource={RelativeSource AncestorType={x:Type tools_controls:TabItemExt}}, Converter={StaticResource TabControlExtCloseButtonTypeToVisibilityConverter}}">
                                         <ToggleButton.Content>
                                             <Path
-                                            x:Name="PinButtonPath1"
-                                            Width="8"
-                                            Height="10"
-                                            HorizontalAlignment="Center"
-                                            VerticalAlignment="Center"
-                                            Stroke="{Binding Foreground, ElementName=PART_PinButton}"
-                                            StrokeThickness="1" 
-                                            StrokeLineJoin="Bevel"
-                                            Stretch="Fill" 
-                                            Data="M7.71429 1V4.15789L10 6.78947H2L4.28571 4.15789V1M7.71429 1H4.28571M7.71429 1H8.85714M4.28571 1H3.14286M6 6.78947V11"/>
+                                                x:Name="PinButtonPath1"
+                                                Width="8"
+                                                Height="10"
+                                                HorizontalAlignment="Center"
+                                                VerticalAlignment="Center"
+                                                Data="M7.71429 1V4.15789L10 6.78947H2L4.28571 4.15789V1M7.71429 1H4.28571M7.71429 1H8.85714M4.28571 1H3.14286M6 6.78947V11"
+                                                Stretch="Fill"
+                                                Stroke="{Binding Foreground, ElementName=PART_PinButton}"
+                                                StrokeLineJoin="Bevel"
+                                                StrokeThickness="1" />
                                         </ToggleButton.Content>
                                         <ToggleButton.LayoutTransform>
                                             <RotateTransform Angle="90" />
                                         </ToggleButton.LayoutTransform>
                                     </ToggleButton>
                                     <Image
-                                    x:Name="PART_Image"
-                                    Width="{TemplateBinding tools_controls:TabControlExt.ImageWidth}"
-                                    Height="{TemplateBinding tools_controls:TabControlExt.ImageHeight}"
-                                    Margin="{TemplateBinding IconMargin}"
-                                    HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-                                    VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-                                    DockPanel.Dock="{Binding Path=(tools_controls:TabControlExt.ImageAlignment), Mode=OneWay, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource TabControlExtImageAlignmentToDockConverter}}"
-                                    SnapsToDevicePixels="True"
-                                    Source="{TemplateBinding tools_controls:TabControlExt.Image}"
-                                    Stretch="Fill" />
-									<Grid x:Name="HeaderGrid">
-                                    <ContentPresenter
-                                    x:Name="Content"
-                                    Margin="{TemplateBinding HeaderMargin}"
-                                    HorizontalAlignment="{Binding HorizontalContentAlignment, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}"
-                                    VerticalAlignment="{Binding VerticalContentAlignment, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}"
-                                    Content="{TemplateBinding HeaderedContentControl.Header}"
-                                    ContentSource="Header"
-                                    ContentTemplate="{TemplateBinding HeaderedContentControl.HeaderTemplate}"
-                                    RecognizesAccessKey="False"
-                                    SnapsToDevicePixels="{TemplateBinding UIElement.SnapsToDevicePixels}"
-                                    TextElement.Foreground="{TemplateBinding Foreground}">
-                                        <ContentPresenter.Resources>
-                                            <Style BasedOn="{x:Null}" TargetType="{x:Type TextBlock}" />
-                                        </ContentPresenter.Resources>
-                                    </ContentPresenter>
-                                    <ContentPresenter
-                                    x:Name="PART_EditHeader"
-                                    Margin="{TemplateBinding HeaderMargin}"
-                                    HorizontalAlignment="{Binding HorizontalContentAlignment, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}"
-                                    VerticalAlignment="{Binding VerticalContentAlignment, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}"
-                                    Content="{TemplateBinding HeaderedContentControl.Header}"
-                                    ContentSource="Header"
-                                    RecognizesAccessKey="True"
-                                    SnapsToDevicePixels="{TemplateBinding UIElement.SnapsToDevicePixels}"
-                                    TextElement.FontWeight="{TemplateBinding FontWeight}"
-                                    TextElement.Foreground="{TemplateBinding Foreground}"
-                                    Visibility="Collapsed" />
-									</Grid>
+                                        x:Name="PART_Image"
+                                        Width="{TemplateBinding tools_controls:TabControlExt.ImageWidth}"
+                                        Height="{TemplateBinding tools_controls:TabControlExt.ImageHeight}"
+                                        Margin="{TemplateBinding IconMargin}"
+                                        HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                        VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                        DockPanel.Dock="{Binding Path=(tools_controls:TabControlExt.ImageAlignment), Mode=OneWay, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource TabControlExtImageAlignmentToDockConverter}}"
+                                        SnapsToDevicePixels="True"
+                                        Source="{TemplateBinding tools_controls:TabControlExt.Image}"
+                                        Stretch="Fill" />
+                                    <Grid x:Name="HeaderGrid">
+                                        <ContentPresenter
+                                            x:Name="Content"
+                                            Margin="{TemplateBinding HeaderMargin}"
+                                            HorizontalAlignment="{Binding HorizontalContentAlignment, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}"
+                                            VerticalAlignment="{Binding VerticalContentAlignment, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}"
+                                            Content="{TemplateBinding HeaderedContentControl.Header}"
+                                            ContentSource="Header"
+                                            ContentTemplate="{TemplateBinding HeaderedContentControl.HeaderTemplate}"
+                                            RecognizesAccessKey="False"
+                                            SnapsToDevicePixels="{TemplateBinding UIElement.SnapsToDevicePixels}"
+                                            TextElement.Foreground="{TemplateBinding Foreground}">
+                                            <ContentPresenter.Resources>
+                                                <Style
+                                                    BasedOn="{x:Null}"
+                                                    TargetType="{x:Type TextBlock}" />
+                                            </ContentPresenter.Resources>
+                                        </ContentPresenter>
+                                        <ContentPresenter
+                                            x:Name="PART_EditHeader"
+                                            Margin="{TemplateBinding HeaderMargin}"
+                                            HorizontalAlignment="{Binding HorizontalContentAlignment, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}"
+                                            VerticalAlignment="{Binding VerticalContentAlignment, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}"
+                                            Content="{TemplateBinding HeaderedContentControl.Header}"
+                                            ContentSource="Header"
+                                            RecognizesAccessKey="True"
+                                            SnapsToDevicePixels="{TemplateBinding UIElement.SnapsToDevicePixels}"
+                                            TextElement.FontWeight="{TemplateBinding FontWeight}"
+                                            TextElement.Foreground="{TemplateBinding Foreground}"
+                                            Visibility="Collapsed" />
+                                    </Grid>
                                 </DockPanel>
                             </Border>
                             <Grid
-                                Grid.Row="1"
                                 Name="Curve"
-                                Visibility="Collapsed"
-                                Background="{TemplateBinding Background}">
+                                Grid.Row="1"
+                                Background="{TemplateBinding Background}"
+                                Visibility="Collapsed">
                                 <Path
                                     HorizontalAlignment="Left"
                                     VerticalAlignment="Bottom"
@@ -1370,18 +1460,18 @@
                                     Stroke="{TemplateBinding Background}"
                                     StrokeLineJoin="Round">
                                     <Path.RenderTransform>
-                                        <TranslateTransform X="-4"/>
+                                        <TranslateTransform X="-4" />
                                     </Path.RenderTransform>
                                 </Path>
                                 <Path
                                     HorizontalAlignment="Left"
                                     VerticalAlignment="Bottom"
                                     Data="M0,4 C 2,4 4,2 4,0"
-                                    StrokeThickness="1"
                                     Stroke="{TemplateBinding BorderBrush}"
-                                    StrokeLineJoin="Round">
+                                    StrokeLineJoin="Round"
+                                    StrokeThickness="1">
                                     <Path.RenderTransform>
-                                        <TranslateTransform X="-4"/>
+                                        <TranslateTransform X="-4" />
                                     </Path.RenderTransform>
                                 </Path>
                                 <Path
@@ -1392,18 +1482,18 @@
                                     Stroke="{TemplateBinding Background}"
                                     StrokeLineJoin="Round">
                                     <Path.RenderTransform>
-                                        <TranslateTransform X="4"/>
+                                        <TranslateTransform X="4" />
                                     </Path.RenderTransform>
                                 </Path>
                                 <Path
                                     HorizontalAlignment="Right"
                                     VerticalAlignment="Bottom"
                                     Data="M0,0 C 0,2 2,4 4,4"
-                                    StrokeThickness="1"
                                     Stroke="{TemplateBinding BorderBrush}"
-                                    StrokeLineJoin="Round">
+                                    StrokeLineJoin="Round"
+                                    StrokeThickness="1">
                                     <Path.RenderTransform>
-                                        <TranslateTransform X="4"/>
+                                        <TranslateTransform X="4" />
                                     </Path.RenderTransform>
                                 </Path>
                             </Grid>
@@ -1421,21 +1511,23 @@
                         </Trigger>
                         <MultiTrigger>
                             <MultiTrigger.Conditions>
-                                <Condition SourceName="PART_PinButton" Property="IsChecked" Value="True"/>
-                                <Condition Property="sfskin:SfSkinManager.SizeMode" Value="Touch"/>
+                                <Condition SourceName="PART_PinButton" Property="IsChecked" Value="True" />
+                                <Condition Property="sfskin:SfSkinManager.SizeMode" Value="Touch" />
                             </MultiTrigger.Conditions>
                             <Setter TargetName="PART_PinButton" Property="MinWidth" Value="{StaticResource TouchMode.MinSize}" />
                             <Setter TargetName="PART_PinButton" Property="MinHeight" Value="{StaticResource TouchMode.MinHeight}" />
                         </MultiTrigger>
                         <MultiTrigger>
                             <MultiTrigger.Conditions>
-                                <Condition SourceName="PART_PinButton" Property="IsChecked" Value="True"/>
-                                <Condition Property="sfskin:SfSkinManager.SizeMode" Value="Default"/>
+                                <Condition SourceName="PART_PinButton" Property="IsChecked" Value="True" />
+                                <Condition Property="sfskin:SfSkinManager.SizeMode" Value="Default" />
                             </MultiTrigger.Conditions>
                             <Setter TargetName="PART_PinButton" Property="MinHeight" Value="16" />
                             <Setter TargetName="PART_PinButton" Property="MinWidth" Value="16" />
                         </MultiTrigger>
-                        <DataTrigger Binding="{Binding Path=IsVisible, RelativeSource={RelativeSource Self}}" Value="True" >
+                        <DataTrigger
+                            Binding="{Binding Path=IsVisible, RelativeSource={RelativeSource Self}}"
+                            Value="True">
                             <Setter TargetName="PART_EditHeader" Property="ContentTemplate" Value="{Binding EditHeaderTemplate, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type tools_controls:TabControlExt}}}" />
                         </DataTrigger>
                         <Trigger Property="tools_controls:TabControlExt.ImageHeight" Value="{x:Static sys:Double.NaN}">
@@ -1457,23 +1549,33 @@
                             <Setter Property="BorderBrush" Value="{Binding Path=TabControlExt.TabItemHoverBorderBrush, RelativeSource={RelativeSource Mode=Self}, FallbackValue=Transparent}" />
                             <Setter Property="Foreground" Value="{Binding Path=TabControlExt.TabItemHoverForeground, RelativeSource={RelativeSource Mode=Self}, FallbackValue=Transparent}" />
                         </Trigger>
-                        <DataTrigger Binding="{Binding Path=IsSelected, RelativeSource={RelativeSource Self}}" Value="True">
+                        <DataTrigger
+                            Binding="{Binding Path=IsSelected, RelativeSource={RelativeSource Self}}"
+                            Value="True">
                             <Setter Property="Background" Value="{Binding Path=TabControlExt.TabItemSelectedBackground, RelativeSource={RelativeSource Mode=Self}, FallbackValue=Transparent}" />
                             <Setter Property="BorderBrush" Value="{Binding Path=TabControlExt.TabItemSelectedBorderBrush, RelativeSource={RelativeSource Mode=Self}, FallbackValue=Transparent}" />
                             <Setter Property="Foreground" Value="{Binding Path=TabControlExt.TabItemSelectedForeground, RelativeSource={RelativeSource Mode=Self}, FallbackValue=Transparent}" />
-                            <Setter Property="TextElement.FontWeight" TargetName="Content" Value="{Binding Path=TabControlExt.SelectedItemFontWeight, RelativeSource={RelativeSource Mode=TemplatedParent},FallbackValue=SemiBold}" />
-                            <Setter Property="TextElement.FontWeight" TargetName="PART_EditHeader" Value="{Binding Path=TabControlExt.SelectedItemFontWeight, RelativeSource={RelativeSource Mode=TemplatedParent},FallbackValue=SemiBold}" />
+                            <Setter TargetName="Content" Property="TextElement.FontWeight" Value="{Binding Path=TabControlExt.SelectedItemFontWeight, RelativeSource={RelativeSource Mode=TemplatedParent}, FallbackValue=SemiBold}" />
+                            <Setter TargetName="PART_EditHeader" Property="TextElement.FontWeight" Value="{Binding Path=TabControlExt.SelectedItemFontWeight, RelativeSource={RelativeSource Mode=TemplatedParent}, FallbackValue=SemiBold}" />
                         </DataTrigger>
-                        <DataTrigger Binding="{Binding Path=TabControlExt.CloseButtonType, RelativeSource={RelativeSource Mode=Self}, FallbackValue=Common}" Value="Both">
+                        <DataTrigger
+                            Binding="{Binding Path=TabControlExt.CloseButtonType, RelativeSource={RelativeSource Mode=Self}, FallbackValue=Common}"
+                            Value="Both">
                             <Setter TargetName="PART_CloseButton" Property="Visibility" Value="Visible" />
                         </DataTrigger>
-                        <DataTrigger Binding="{Binding Path=TabControlExt.CloseButtonType, RelativeSource={RelativeSource Mode=Self}, FallbackValue=Common}" Value="Individual">
+                        <DataTrigger
+                            Binding="{Binding Path=TabControlExt.CloseButtonType, RelativeSource={RelativeSource Mode=Self}, FallbackValue=Common}"
+                            Value="Individual">
                             <Setter TargetName="PART_CloseButton" Property="Visibility" Value="Visible" />
                         </DataTrigger>
-                        <DataTrigger Binding="{Binding Path=TabControlExt.CloseButtonType, RelativeSource={RelativeSource Mode=Self}, FallbackValue=Common}" Value="IndividualOnMouseOver">
+                        <DataTrigger
+                            Binding="{Binding Path=TabControlExt.CloseButtonType, RelativeSource={RelativeSource Mode=Self}, FallbackValue=Common}"
+                            Value="IndividualOnMouseOver">
                             <Setter TargetName="PART_CloseButton" Property="Visibility" Value="Hidden" />
                         </DataTrigger>
-                        <DataTrigger Binding="{Binding Path=TabControlExt.CloseButtonType, RelativeSource={RelativeSource Mode=Self}, FallbackValue=Common}" Value="Extended">
+                        <DataTrigger
+                            Binding="{Binding Path=TabControlExt.CloseButtonType, RelativeSource={RelativeSource Mode=Self}, FallbackValue=Common}"
+                            Value="Extended">
                             <Setter TargetName="PART_CloseButton" Property="Visibility" Value="Hidden" />
                         </DataTrigger>
                         <Trigger SourceName="PART_PinButton" Property="IsChecked" Value="True">
@@ -1499,17 +1601,19 @@
                         </MultiDataTrigger>
                         <MultiDataTrigger>
                             <MultiDataTrigger.Conditions>
-                                <Condition Binding="{Binding Path=TabControlExt.CloseButtonType,RelativeSource={RelativeSource Mode=Self}, FallbackValue=Common}" Value="Extended" />
+                                <Condition Binding="{Binding Path=TabControlExt.CloseButtonType, RelativeSource={RelativeSource Mode=Self}, FallbackValue=Common}" Value="Extended" />
                                 <Condition Binding="{Binding Path=IsMouseOver, ElementName=Bd}" Value="True" />
                             </MultiDataTrigger.Conditions>
                             <Setter TargetName="PART_CloseButton" Property="Visibility" Value="Visible" />
                         </MultiDataTrigger>
-                        <DataTrigger Binding="{Binding Path=(tools_controls:TabControlExt.Image), RelativeSource={RelativeSource Self}}" Value="{x:Null}">
+                        <DataTrigger
+                            Binding="{Binding Path=(tools_controls:TabControlExt.Image), RelativeSource={RelativeSource Self}}"
+                            Value="{x:Null}">
                             <Setter TargetName="PART_Image" Property="UIElement.Visibility" Value="Collapsed" />
                         </DataTrigger>
                         <MultiDataTrigger>
                             <MultiDataTrigger.Conditions>
-                                <Condition  Binding="{Binding Path=IsVisible, RelativeSource={RelativeSource Self}}" Value="True" />
+                                <Condition Binding="{Binding Path=IsVisible, RelativeSource={RelativeSource Self}}" Value="True" />
                                 <Condition Binding="{Binding Path=TabControlExt.TabStripPlacement, RelativeSource={RelativeSource Mode=Self}, FallbackValue=Top}" Value="Left" />
                                 <Condition Binding="{Binding Path=RotateTextWhenVertical, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type tools_controls:TabControlExt}}, FallbackValue=false}" Value="True" />
                             </MultiDataTrigger.Conditions>
@@ -1521,8 +1625,8 @@
                         </MultiDataTrigger>
                         <MultiDataTrigger>
                             <MultiDataTrigger.Conditions>
-                                <Condition  Binding="{Binding Path=IsVisible, RelativeSource={RelativeSource Self}}" Value="True" />
-                                <Condition Binding="{Binding Path=TabControlExt.TabStripPlacement,  RelativeSource={RelativeSource Mode=Self}, FallbackValue=Top}" Value="Right" />
+                                <Condition Binding="{Binding Path=IsVisible, RelativeSource={RelativeSource Self}}" Value="True" />
+                                <Condition Binding="{Binding Path=TabControlExt.TabStripPlacement, RelativeSource={RelativeSource Mode=Self}, FallbackValue=Top}" Value="Right" />
                                 <Condition Binding="{Binding Path=RotateTextWhenVertical, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type tools_controls:TabControlExt}}, FallbackValue=false}" Value="True" />
                             </MultiDataTrigger.Conditions>
                             <Setter TargetName="Bd" Property="LayoutTransform">
@@ -1533,7 +1637,7 @@
                         </MultiDataTrigger>
                         <MultiDataTrigger>
                             <MultiDataTrigger.Conditions>
-                                <Condition  Binding="{Binding Path=IsVisible, RelativeSource={RelativeSource Self}}" Value="True" />
+                                <Condition Binding="{Binding Path=IsVisible, RelativeSource={RelativeSource Self}}" Value="True" />
                                 <Condition Binding="{Binding Path=TabControlExt.TabStripPlacement, RelativeSource={RelativeSource Mode=Self}, FallbackValue=Top}" Value="Left" />
                             </MultiDataTrigger.Conditions>
                             <Setter Property="LayoutTransform">
@@ -1577,21 +1681,25 @@
         <Style.Triggers>
             <MultiDataTrigger>
                 <MultiDataTrigger.Conditions>
-                    <Condition  Binding="{Binding Path=IsVisible, RelativeSource={RelativeSource Self}}" Value="True" />
+                    <Condition Binding="{Binding Path=IsVisible, RelativeSource={RelativeSource Self}}" Value="True" />
                     <Condition Binding="{Binding Path=(tools_controls:TabControlExt.UseCustomEditableTemplate), RelativeSource={RelativeSource Self}}" Value="True" />
                     <Condition Binding="{Binding Path=(tools_controls:TabControlExt.IsEditing), RelativeSource={RelativeSource Mode=Self}}" Value="True" />
                 </MultiDataTrigger.Conditions>
                 <Setter Property="HeaderTemplate" Value="{Binding Path=(tools_controls:TabControlExt.CustomEditableTemplate), RelativeSource={RelativeSource Self}}" />
             </MultiDataTrigger>
             <Trigger Property="sfskin:SkinManagerHelper.FocusVisualKind" Value="HighVisibility">
-                <Setter Property="FocusVisualStyle" Value="{StaticResource FlatKeyboardFocusVisualStyle}"/>
+                <Setter Property="FocusVisualStyle" Value="{StaticResource FlatKeyboardFocusVisualStyle}" />
             </Trigger>
         </Style.Triggers>
     </Style>
 
-    <Style BasedOn="{StaticResource SyncfusionTabItemExtStyle}" TargetType="{x:Type tools_controls:TabItemExt}" />
+    <Style
+        BasedOn="{StaticResource SyncfusionTabItemExtStyle}"
+        TargetType="{x:Type tools_controls:TabItemExt}" />
 
-    <Style x:Key="SyncfusionTabControlExtStyle" TargetType="{x:Type tools_controls:TabControlExt}">
+    <Style
+        x:Key="SyncfusionTabControlExtStyle"
+        TargetType="{x:Type tools_controls:TabControlExt}">
         <Setter Property="FocusVisualStyle" Value="{x:Null}" />
         <Setter Property="Background" Value="{StaticResource ContentBackground}" />
         <Setter Property="BorderBrush" Value="{StaticResource BorderAlt}" />
@@ -1617,7 +1725,7 @@
         <Setter Property="Panel.Background" Value="{StaticResource ContentBackground}" />
         <Setter Property="DragMarkerStyle" Value="{StaticResource SyncfusionDragMarkerTemplatedAdornerInternalControlStyle}" />
         <Setter Property="NewTabButtonTemplate" Value="{StaticResource SyncfusionTabNewButtonDataTemplate}" />
-        <Setter Property="NewButtonStyle" Value="{StaticResource SyncfusionNewButtonStyle}"/>
+        <Setter Property="NewButtonStyle" Value="{StaticResource SyncfusionNewButtonStyle}" />
         <Setter Property="NewButtonBackground" Value="Transparent" />
         <Setter Property="HorizontalContentAlignment" Value="Center" />
         <Setter Property="VerticalContentAlignment" Value="Center" />
@@ -1625,79 +1733,86 @@
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type tools_controls:TabControlExt}">
                     <Grid
-                                x:Name="TabControlGrid"
-                                ClipToBounds="False"
-                                KeyboardNavigation.TabNavigation="Local"
-                                SnapsToDevicePixels="True">
+                        x:Name="TabControlGrid"
+                        ClipToBounds="False"
+                        KeyboardNavigation.TabNavigation="Local"
+                        SnapsToDevicePixels="True">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition x:Name="ColumnDefinition0" />
-                            <ColumnDefinition x:Name="ColumnDefinition1" Width="0" />
+                            <ColumnDefinition
+                                x:Name="ColumnDefinition1"
+                                Width="0" />
                         </Grid.ColumnDefinitions>
                         <Grid.RowDefinitions>
-                            <RowDefinition x:Name="RowDefinition0" Height="Auto" />
-                            <RowDefinition x:Name="RowDefinition1" Height="*" />
+                            <RowDefinition
+                                x:Name="RowDefinition0"
+                                Height="Auto" />
+                            <RowDefinition
+                                x:Name="RowDefinition1"
+                                Height="*" />
                         </Grid.RowDefinitions>
                         <tools_controls:HeaderPanel
-                                    x:Name="HeaderPanel"
-                                    Grid.Row="0"
-                                    Grid.Column="0"
-                                    HorizontalAlignment="Stretch"
-                                    VerticalAlignment="Stretch"
-                                    Panel.ZIndex="1"
-                                    Background="{TemplateBinding TabPanelBackground}"
-                                    Focusable="False">
+                            x:Name="HeaderPanel"
+                            Grid.Row="0"
+                            Grid.Column="0"
+                            HorizontalAlignment="Stretch"
+                            VerticalAlignment="Stretch"
+                            Panel.ZIndex="1"
+                            Background="{TemplateBinding TabPanelBackground}"
+                            Focusable="False">
                             <tools_controls:TabPanelAdv
-                                        x:Name="PART_TabPanel"
-                                        HorizontalAlignment="Stretch"
-                                        VerticalAlignment="Stretch"
-                                        DockPanel.Dock="Right"
-                                        Focusable="False"
-                                        Style="{TemplateBinding TabPanelStyle}">
+                                x:Name="PART_TabPanel"
+                                HorizontalAlignment="Stretch"
+                                VerticalAlignment="Stretch"
+                                DockPanel.Dock="Right"
+                                Focusable="False"
+                                Style="{TemplateBinding TabPanelStyle}">
                                 <tools_controls:TabLayoutPanel
-                                            x:Name="PART_TabLayoutPanel"
-                                            Margin="0"
-                                            HorizontalAlignment="Left"
-                                            VerticalAlignment="Top"
-                                            AllowDrop="True"
-                                            IsItemsHost="True"
-                                            KeyboardNavigation.TabIndex="1" />
+                                    x:Name="PART_TabLayoutPanel"
+                                    Margin="0"
+                                    HorizontalAlignment="Left"
+                                    VerticalAlignment="Top"
+                                    AllowDrop="True"
+                                    IsItemsHost="True"
+                                    KeyboardNavigation.TabIndex="1" />
                             </tools_controls:TabPanelAdv>
                         </tools_controls:HeaderPanel>
                         <Border
-                                    x:Name="ContentPanel"
-                                    Grid.Row="1"
-                                    Grid.Column="0"
-                                    AllowDrop="True"
-                                    BorderBrush="{TemplateBinding BorderBrush}"
-                                    BorderThickness="{TemplateBinding BorderThickness}"
-                                    KeyboardNavigation.DirectionalNavigation="Contained"
-                                    KeyboardNavigation.TabIndex="2"
-                                    KeyboardNavigation.TabNavigation="Local">
+                            x:Name="ContentPanel"
+                            Grid.Row="1"
+                            Grid.Column="0"
+                            AllowDrop="True"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            KeyboardNavigation.DirectionalNavigation="Contained"
+                            KeyboardNavigation.TabIndex="2"
+                            KeyboardNavigation.TabNavigation="Local">
                             <Border
-                                        x:Name="PART_ContentPanelBorder"
-                                        BorderBrush="{TemplateBinding BorderBrush}"
-                                        BorderThickness="0,0,0,0">
+                                x:Name="PART_ContentPanelBorder"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="0,0,0,0">
                                 <Border
-                                            x:Name="PART_ContentPanelInnerBorder"
-                                            Background="{TemplateBinding Background}"
-                                            BorderBrush="{TemplateBinding BorderBrush}">
+                                    x:Name="PART_ContentPanelInnerBorder"
+                                    Background="{TemplateBinding Background}"
+                                    BorderBrush="{TemplateBinding BorderBrush}">
                                     <Grid>
                                         <Grid
-                                                x:Name="PART_ContentHolder"
-                                                Margin="{TemplateBinding Control.Padding}"
-                                                AllowDrop="True"
-                                                SnapsToDevicePixels="{TemplateBinding UIElement.SnapsToDevicePixels}"
-                                                Visibility="Visible"/>
+                                            x:Name="PART_ContentHolder"
+                                            Margin="{TemplateBinding Control.Padding}"
+                                            AllowDrop="True"
+                                            SnapsToDevicePixels="{TemplateBinding UIElement.SnapsToDevicePixels}"
+                                            Visibility="Visible" />
 
                                         <ContentPresenter
-                                                x:Name="PART_SelectedContentHost"
-                                                Margin="{TemplateBinding Control.Padding}"
-                                                AllowDrop="True"
-                                                Content="{TemplateBinding SelectedContent}"
-                                                ContentSource="SelectedContent"
-                                                ContentTemplate="{TemplateBinding SelectedContentTemplate}"
-                                                ContentTemplateSelector="{TemplateBinding ContentTemplateSelector}"
-                                                SnapsToDevicePixels="{TemplateBinding UIElement.SnapsToDevicePixels}" Visibility="Collapsed"/>
+                                            x:Name="PART_SelectedContentHost"
+                                            Margin="{TemplateBinding Control.Padding}"
+                                            AllowDrop="True"
+                                            Content="{TemplateBinding SelectedContent}"
+                                            ContentSource="SelectedContent"
+                                            ContentTemplate="{TemplateBinding SelectedContentTemplate}"
+                                            ContentTemplateSelector="{TemplateBinding ContentTemplateSelector}"
+                                            SnapsToDevicePixels="{TemplateBinding UIElement.SnapsToDevicePixels}"
+                                            Visibility="Collapsed" />
                                     </Grid>
                                 </Border>
                             </Border>
@@ -1706,13 +1821,13 @@
                     <ControlTemplate.Triggers>
                         <MultiTrigger>
                             <MultiTrigger.Conditions>
-                                <Condition Property="IsDisableUnloadTabItemExtContent" Value="false"/>
+                                <Condition Property="IsDisableUnloadTabItemExtContent" Value="false" />
                             </MultiTrigger.Conditions>
-                            <Setter Property="Visibility" TargetName="PART_SelectedContentHost" Value="Visible"/>
-                            <Setter Property="Visibility" TargetName="PART_ContentHolder" Value="Collapsed"/>
+                            <Setter TargetName="PART_SelectedContentHost" Property="Visibility" Value="Visible" />
+                            <Setter TargetName="PART_ContentHolder" Property="Visibility" Value="Collapsed" />
                         </MultiTrigger>
                         <Trigger Property="TabControl.TabStripPlacement" Value="Bottom">
-                            <Setter Property="BorderThickness" Value="1"/>
+                            <Setter Property="BorderThickness" Value="1" />
                             <Setter TargetName="HeaderPanel" Property="Grid.Row" Value="1" />
                             <Setter TargetName="ContentPanel" Property="Grid.Row" Value="0" />
                             <Setter TargetName="RowDefinition0" Property="RowDefinition.Height" Value="*" />
@@ -1724,7 +1839,7 @@
                             </Setter>
                         </Trigger>
                         <Trigger Property="TabControl.TabStripPlacement" Value="Left">
-                            <Setter Property="BorderThickness" Value="1"/>
+                            <Setter Property="BorderThickness" Value="1" />
                             <Setter TargetName="HeaderPanel" Property="LayoutTransform">
                                 <Setter.Value>
                                     <RotateTransform Angle="90" />
@@ -1741,7 +1856,7 @@
                             <Setter TargetName="HeaderPanel" Property="VerticalAlignment" Value="Bottom" />
                         </Trigger>
                         <Trigger Property="TabControl.TabStripPlacement" Value="Right">
-                            <Setter Property="BorderThickness" Value="1"/>
+                            <Setter Property="BorderThickness" Value="1" />
                             <Setter TargetName="HeaderPanel" Property="LayoutTransform">
                                 <Setter.Value>
                                     <RotateTransform Angle="90" />
@@ -1766,7 +1881,9 @@
             </Setter.Value>
         </Setter>
         <Style.Triggers>
-            <DataTrigger Binding="{Binding Path=TabItemLayout, RelativeSource={RelativeSource Self}}" Value="SingleLine">
+            <DataTrigger
+                Binding="{Binding Path=TabItemLayout, RelativeSource={RelativeSource Self}}"
+                Value="SingleLine">
                 <Setter Property="Control.Template">
                     <Setter.Value>
                         <ControlTemplate TargetType="{x:Type tools_controls:TabControlExt}">
@@ -1777,11 +1894,17 @@
                                 SnapsToDevicePixels="True">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition x:Name="ColumnDefinition0" />
-                                    <ColumnDefinition x:Name="ColumnDefinition1" Width="0" />
+                                    <ColumnDefinition
+                                        x:Name="ColumnDefinition1"
+                                        Width="0" />
                                 </Grid.ColumnDefinitions>
                                 <Grid.RowDefinitions>
-                                    <RowDefinition x:Name="RowDefinition0" Height="Auto" />
-                                    <RowDefinition x:Name="RowDefinition1" Height="*" />
+                                    <RowDefinition
+                                        x:Name="RowDefinition0"
+                                        Height="Auto" />
+                                    <RowDefinition
+                                        x:Name="RowDefinition1"
+                                        Height="*" />
                                 </Grid.RowDefinitions>
                                 <tools_controls:HeaderPanel
                                     x:Name="HeaderPanel"
@@ -1806,9 +1929,9 @@
                                             VerticalScrollBarVisibility="Hidden">
                                             <tools_controls:TabLayoutPanel
                                                 x:Name="PART_TabLayoutPanel"
+                                                Margin="0"
                                                 HorizontalAlignment="Left"
                                                 VerticalAlignment="Top"
-                                                Margin="0"
                                                 AllowDrop="True"
                                                 IsItemsHost="True"
                                                 KeyboardNavigation.TabIndex="1" />
@@ -1835,21 +1958,22 @@
                                             BorderBrush="{TemplateBinding BorderBrush}">
                                             <Grid>
                                                 <Grid
-                                                x:Name="PART_ContentHolder"
-                                                Margin="{TemplateBinding Control.Padding}"
-                                                AllowDrop="True"
-                                                SnapsToDevicePixels="{TemplateBinding UIElement.SnapsToDevicePixels}"
-                                                Visibility="Visible"/>
+                                                    x:Name="PART_ContentHolder"
+                                                    Margin="{TemplateBinding Control.Padding}"
+                                                    AllowDrop="True"
+                                                    SnapsToDevicePixels="{TemplateBinding UIElement.SnapsToDevicePixels}"
+                                                    Visibility="Visible" />
 
                                                 <ContentPresenter
-                                                x:Name="PART_SelectedContentHost"
-                                                Margin="{TemplateBinding Control.Padding}"
-                                                AllowDrop="True"
-                                                Content="{TemplateBinding SelectedContent}"
-                                                ContentSource="SelectedContent"
-                                                ContentTemplate="{TemplateBinding SelectedContentTemplate}"
-                                                ContentTemplateSelector="{TemplateBinding ContentTemplateSelector}"
-                                                SnapsToDevicePixels="{TemplateBinding UIElement.SnapsToDevicePixels}" Visibility="Collapsed"/>
+                                                    x:Name="PART_SelectedContentHost"
+                                                    Margin="{TemplateBinding Control.Padding}"
+                                                    AllowDrop="True"
+                                                    Content="{TemplateBinding SelectedContent}"
+                                                    ContentSource="SelectedContent"
+                                                    ContentTemplate="{TemplateBinding SelectedContentTemplate}"
+                                                    ContentTemplateSelector="{TemplateBinding ContentTemplateSelector}"
+                                                    SnapsToDevicePixels="{TemplateBinding UIElement.SnapsToDevicePixels}"
+                                                    Visibility="Collapsed" />
                                             </Grid>
                                         </Border>
                                     </Border>
@@ -1858,13 +1982,13 @@
                             <ControlTemplate.Triggers>
                                 <MultiTrigger>
                                     <MultiTrigger.Conditions>
-                                        <Condition Property="IsDisableUnloadTabItemExtContent" Value="false"/>
+                                        <Condition Property="IsDisableUnloadTabItemExtContent" Value="false" />
                                     </MultiTrigger.Conditions>
-                                    <Setter Property="Visibility" TargetName="PART_SelectedContentHost" Value="Visible"/>
-                                    <Setter Property="Visibility" TargetName="PART_ContentHolder" Value="Collapsed"/>
+                                    <Setter TargetName="PART_SelectedContentHost" Property="Visibility" Value="Visible" />
+                                    <Setter TargetName="PART_ContentHolder" Property="Visibility" Value="Collapsed" />
                                 </MultiTrigger>
                                 <Trigger Property="TabControl.TabStripPlacement" Value="Bottom">
-                                    <Setter Property="BorderThickness" Value="1"/>
+                                    <Setter Property="BorderThickness" Value="1" />
                                     <Setter TargetName="HeaderPanel" Property="Grid.Row" Value="1" />
                                     <Setter TargetName="ContentPanel" Property="Grid.Row" Value="0" />
                                     <Setter TargetName="RowDefinition0" Property="RowDefinition.Height" Value="*" />
@@ -1876,7 +2000,7 @@
                                     </Setter>
                                 </Trigger>
                                 <Trigger Property="TabControl.TabStripPlacement" Value="Left">
-                                    <Setter Property="BorderThickness" Value="1"/>
+                                    <Setter Property="BorderThickness" Value="1" />
                                     <Setter TargetName="HeaderPanel" Property="LayoutTransform">
                                         <Setter.Value>
                                             <RotateTransform Angle="90" />
@@ -1893,7 +2017,7 @@
                                     <Setter TargetName="HeaderPanel" Property="VerticalAlignment" Value="Stretch" />
                                 </Trigger>
                                 <Trigger Property="TabControl.TabStripPlacement" Value="Right">
-                                    <Setter Property="BorderThickness" Value="1"/>
+                                    <Setter Property="BorderThickness" Value="1" />
                                     <Setter TargetName="HeaderPanel" Property="LayoutTransform">
                                         <Setter.Value>
                                             <RotateTransform Angle="90" />
@@ -1919,5 +2043,7 @@
             </DataTrigger>
         </Style.Triggers>
     </Style>
-    <Style BasedOn="{StaticResource SyncfusionTabControlExtStyle}" TargetType="{x:Type tools_controls:TabControlExt}" />
+    <Style
+        BasedOn="{StaticResource SyncfusionTabControlExtStyle}"
+        TargetType="{x:Type tools_controls:TabControlExt}" />
 </ResourceDictionary>

@@ -17698,6 +17698,21 @@
             less hyper-real looking images. This param is only supported for dall-e-3.
             </summary>
         </member>
+        <member name="F:Bubba.ImageOptions._background">
+            <summary>
+            The background
+            </summary>
+        </member>
+        <member name="F:Bubba.ImageOptions._outputCompression">
+            <summary>
+            The output compression
+            </summary>
+        </member>
+        <member name="F:Bubba.ImageOptions._outputFormat">
+            <summary>
+            The output format
+            </summary>
+        </member>
         <member name="M:Bubba.ImageOptions.#ctor">
             <inheritdoc />
             <summary>
@@ -17759,6 +17774,30 @@
             The chat model.
             </value>
             <inheritdoc />
+        </member>
+        <member name="P:Bubba.ImageOptions.Background">
+            <summary>
+            Gets or sets the background.
+            </summary>
+            <value>
+            The background.
+            </value>
+        </member>
+        <member name="P:Bubba.ImageOptions.OutputCompression">
+            <summary>
+            Gets or sets the output compression.
+            </summary>
+            <value>
+            The output compression.
+            </value>
+        </member>
+        <member name="P:Bubba.ImageOptions.OutputFormat">
+            <summary>
+            Gets or sets the output format.
+            </summary>
+            <value>
+            The output format.
+            </value>
         </member>
         <member name="M:Bubba.ImageOptions.GetData">
             <inheritdoc />
@@ -33635,12 +33674,12 @@
             The language
             </summary>
         </member>
-        <member name="F:Bubba.ChatWindow._selectedDocument">
+        <member name="F:Bubba.ChatWindow._document">
             <summary>
             The selected document
             </summary>
         </member>
-        <member name="F:Bubba.ChatWindow._selectedRequest">
+        <member name="F:Bubba.ChatWindow._request">
             <summary>
             The selected request
             </summary>
@@ -33704,11 +33743,6 @@
             returned in the content of message.
             </summary>
         </member>
-        <member name="F:Bubba.ChatWindow._imageSize">
-            <summary>
-            The image size
-            </summary>
-        </member>
         <member name="F:Bubba.ChatWindow._speed">
             <summary>
             The speed
@@ -33729,6 +33763,11 @@
             The audio format
             </summary>
         </member>
+        <member name="F:Bubba.ChatWindow._imageSize">
+            <summary>
+            The image size
+            </summary>
+        </member>
         <member name="F:Bubba.ChatWindow._imageFormat">
             <summary>
             The image format
@@ -33746,7 +33785,12 @@
         </member>
         <member name="F:Bubba.ChatWindow._imageBackground">
             <summary>
-            The detail
+            The background
+            </summary>
+        </member>
+        <member name="F:Bubba.ChatWindow._imageStyle">
+            <summary>
+            The image style
             </summary>
         </member>
         <member name="F:Bubba.ChatWindow._maximumTokens">
@@ -33978,6 +34022,22 @@
             Initializes a new instance of the
             <see cref="T:Bubba.ChatWindow"/> class.
             </summary>
+        </member>
+        <member name="P:Bubba.ChatWindow.LoadingDuration">
+            <summary>
+            Gets the duration of the current tab loading.
+            </summary>
+            <value>
+            The duration of the current tab loading.
+            </value>
+        </member>
+        <member name="P:Bubba.ChatWindow.SearchEngineUrl">
+            <summary>
+            Gets the search engine URL.
+            </summary>
+            <value>
+            The search engine URL.
+            </value>
         </member>
         <member name="P:Bubba.ChatWindow.LastIndex">
             <summary>
@@ -34277,6 +34337,13 @@
             <param name="form">The form.</param>
             <param name="interval">The interval.</param>
         </member>
+        <member name="M:Bubba.ChatWindow.FindTextOnPage(System.Boolean)">
+            <summary>
+            Finds the text on page.
+            </summary>
+            <param name="next">if set to
+            <c>true</c> [next].</param>
+        </member>
         <member name="M:Bubba.ChatWindow.SendHttpMessage(System.String)">
             <summary>
             Sends the HTTP message.
@@ -34307,6 +34374,22 @@
         <member name="M:Bubba.ChatWindow.LoadCalculator">
             <summary>
             Opens the calculator window.
+            </summary>
+        </member>
+        <member name="M:Bubba.ChatWindow.LoadUrl(System.String)">
+            <summary>
+            Loads the URL.
+            </summary>
+            <param name="url">The URL.</param>
+        </member>
+        <member name="M:Bubba.ChatWindow.NextTab">
+            <summary>
+            Nexts the tab.
+            </summary>
+        </member>
+        <member name="M:Bubba.ChatWindow.PreviousTab">
+            <summary>
+            Previous tab.
             </summary>
         </member>
         <member name="M:Bubba.ChatWindow.OpenFileBrowser">
@@ -34342,6 +34425,11 @@
         <member name="M:Bubba.ChatWindow.OpenDeveloperTools">
             <summary>
             Opens the developer tools.
+            </summary>
+        </member>
+        <member name="M:Bubba.ChatWindow.OpenDownloadsTab">
+            <summary>
+            Opens the downloads tab.
             </summary>
         </member>
         <member name="M:Bubba.ChatWindow.PadQuotes(System.String)">
@@ -34605,10 +34693,22 @@
             <param name="item">The item.</param>
             <returns></returns>
         </member>
-        <member name="M:Bubba.ChatWindow.RunClient">
+        <member name="M:Bubba.ChatWindow.GetResourceStream(System.String,System.Boolean)">
             <summary>
-            Runs the client application.
+            Gets the resource stream.
             </summary>
+            <param name="fileName">The fileName.</param>
+            <param name="nameSpace">if set to
+            <c>true</c> [with nameSpace].</param>
+            <returns></returns>
+        </member>
+        <member name="M:Bubba.ChatWindow.GetBrowserAsync(System.String,System.Boolean)">
+            <summary>
+            Gets the browser asynchronous.
+            </summary>
+            <param name="url">The URL.</param>
+            <param name="focused">if set to <c>true</c> [focused].</param>
+            <returns></returns>
         </member>
         <member name="M:Bubba.ChatWindow.RefreshActiveTab">
             <summary>
@@ -34690,6 +34790,12 @@
             </summary>
             <param name="input">The input.</param>
         </member>
+        <member name="M:Bubba.ChatWindow.WaitForBrowserToInitialize(CefSharp.Wpf.ChromiumWebBrowser)">
+            <summary>
+            Waits for browser to initialize.
+            </summary>
+            <param name="browser">The browser.</param>
+        </member>
         <member name="M:Bubba.ChatWindow.OnLoad(System.Object,System.Windows.RoutedEventArgs)">
             <summary>
             Called when [load].
@@ -34699,23 +34805,273 @@
             instance containing the event data.
             </param>
         </member>
+        <member name="M:Bubba.ChatWindow.OnAudioFormatSelectionChanged(System.Object,System.Windows.RoutedEventArgs)">
+            <summary>
+            Called when [audio format selection changed].
+            </summary>
+            <param name="sender">The sender.</param>
+            <param name="e">The <see cref="T:System.Windows.RoutedEventArgs"/>
+            instance containing the event data.</param>
+        </member>
+        <member name="M:Bubba.ChatWindow.OnRequestDropDownSelectionChanged(System.Object,System.Windows.RoutedEventArgs)">
+            <summary>
+            Called when [task selection changed].
+            </summary>
+            <param name="sender">The sender.</param>
+            <param name="e">The <see cref="T:System.Windows.RoutedEventArgs"/>
+            instance containing the event data.</param>
+        </member>
+        <member name="M:Bubba.ChatWindow.OnClosing(System.Object,System.ComponentModel.CancelEventArgs)">
+            <summary>
+            Called when [closing].
+            </summary>
+            <param name="sender">The sender.</param>
+            <param name="e">The <see cref="T:System.ComponentModel.CancelEventArgs"/>
+            instance containing the event data.</param>
+        </member>
+        <member name="M:Bubba.ChatWindow.OnCloseButtonClick(System.Object,System.Windows.RoutedEventArgs)">
+            <summary>
+            Called when [close button click].
+            </summary>
+            <param name="sender">The sender.</param>
+            <param name="e">The <see cref="T:System.Windows.RoutedEventArgs"/>
+            instance containing the event data.</param>
+        </member>
+        <member name="M:Bubba.ChatWindow.OnCalculatorMenuOptionClick(System.Object,System.Windows.RoutedEventArgs)">
+            <summary>
+            Called when [calculator menu option click].
+            </summary>
+            <param name="sender">The sender.</param>
+            <param name="e">The <see cref="T:System.Windows.RoutedEventArgs"/>
+            instance containing the event data.</param>
+        </member>
+        <member name="M:Bubba.ChatWindow.OnCloseOptionClick(System.Object,System.Windows.RoutedEventArgs)">
+            <summary>
+            Called when [close option click].
+            </summary>
+            <param name="sender">The sender.</param>
+            <param name="e">The <see cref="T:System.Windows.RoutedEventArgs"/>
+            instance containing the event data.</param>
+        </member>
+        <member name="M:Bubba.ChatWindow.OnChromeOptionClick(System.Object,System.Windows.RoutedEventArgs)">
+            <summary>
+            Called when [chrome option click].
+            </summary>
+            <param name="sender">The sender.</param>
+            <param name="e">The <see cref="T:System.Windows.RoutedEventArgs"/>
+            instance containing the event data.</param>
+        </member>
+        <member name="M:Bubba.ChatWindow.OnClearButtonClick(System.Object,System.Windows.RoutedEventArgs)">
+            <summary>
+            Called when [clear button click].
+            </summary>
+            <param name="sender">The sender.</param>
+            <param name="e">The <see cref="T:System.Windows.RoutedEventArgs"/>
+            instance containing the event data.</param>
+        </member>
+        <member name="M:Bubba.ChatWindow.OnControlPanelOptionClick(System.Object,System.Windows.RoutedEventArgs)">
+            <summary>
+            Called when [control panel option click].
+            </summary>
+            <param name="sender">The sender.</param>
+            <param name="e">The <see cref="T:System.Windows.RoutedEventArgs"/>
+            instance containing the event data.</param>
+        </member>
+        <member name="M:Bubba.ChatWindow.OnDeleteButtonClick(System.Object,System.Windows.RoutedEventArgs)">
+            <summary>
+            Called when [delete button click].
+            </summary>
+            <param name="sender">The sender.</param>
+            <param name="e">The <see cref="T:System.Windows.RoutedEventArgs"/>
+            instance containing the event data.</param>
+        </member>
+        <member name="M:Bubba.ChatWindow.OnDocumentListBoxSelectionChanged(System.Object,System.Windows.RoutedEventArgs)">
+            <summary>
+            Called when [select
+            ed document changed].
+            </summary>
+            <param name="sender">The sender.</param>
+            <param name="e">The <see cref="T:System.Windows.RoutedEventArgs"/>
+            instance containing the event data.</param>
+        </member>
+        <member name="M:Bubba.ChatWindow.OnEditButtonClick(System.Object,System.Windows.RoutedEventArgs)">
+            <summary>
+            Called when [edit button click].
+            </summary>
+            <param name="sender">The sender.</param>
+            <param name="e">The <see cref="T:System.Windows.RoutedEventArgs"/>
+            instance containing the event data.</param>
+        </member>
+        <member name="M:Bubba.ChatWindow.OnEdgeOptionClick(System.Object,System.Windows.RoutedEventArgs)">
+            <summary>
+            Called when [edge option click].
+            </summary>
+            <param name="sender">The sender.</param>
+            <param name="e">The <see cref="T:System.Windows.RoutedEventArgs"/>
+            instance containing the event data.</param>
+        </member>
+        <member name="M:Bubba.ChatWindow.OnEffortSelectionChanged(System.Object,System.Windows.RoutedEventArgs)">
+            <summary>
+            Called when [reasoning effort selection changed].
+            </summary>
+            <param name="sender">The sender.</param>
+            <param name="e">The <see cref="T:System.Windows.RoutedEventArgs"/>
+            instance containing the event data.</param>
+        </member>
+        <member name="M:Bubba.ChatWindow.OnFileMenuOptionClick(System.Object,System.Windows.RoutedEventArgs)">
+            <summary>
+            Called when [file menu option click].
+            </summary>
+            <param name="sender">The sender.</param>
+            <param name="e">The <see cref="T:System.Windows.RoutedEventArgs"/>
+            instance containing the event data.</param>
+        </member>
+        <member name="M:Bubba.ChatWindow.OnFileApiButtonClick(System.Object,System.Windows.RoutedEventArgs)">
+            <summary>
+            Called when [file upload button click].
+            </summary>
+            <param name="sender">The sender.</param>
+            <param name="e">The <see cref="T:System.Windows.RoutedEventArgs"/>
+            instance containing the event data.</param>
+        </member>
+        <member name="M:Bubba.ChatWindow.OnFirefoxOptionClick(System.Object,System.Windows.RoutedEventArgs)">
+            <summary>
+            Called when [firefox option click].
+            </summary>
+            <param name="sender">The sender.</param>
+            <param name="e">The <see cref="T:System.Windows.RoutedEventArgs"/>
+            instance containing the event data.</param>
+        </member>
+        <member name="M:Bubba.ChatWindow.OnFirstButtonClick(System.Object,System.Windows.RoutedEventArgs)">
+            <summary>
+            Called when [first button click].
+            </summary>
+            <param name="sender">The sender.</param>
+            <param name="e">The <see cref="T:System.Windows.RoutedEventArgs"/>
+            instance containing the event data.</param>
+        </member>
+        <member name="M:Bubba.ChatWindow.OnGoButtonClicked(System.Object,System.Windows.RoutedEventArgs)">
+            <summary>
+            Called when [go button clicked].
+            </summary>
+            <param name="sender">The sender.</param>
+            <param name="e">The <see cref="T:System.Windows.RoutedEventArgs"/>
+            instance containing the event data.</param>
+        </member>
+        <member name="M:Bubba.ChatWindow.OnLastButtonClick(System.Object,System.Windows.RoutedEventArgs)">
+            <summary>
+            Called when [last button click].
+            </summary>
+            <param name="sender">The sender.</param>
+            <param name="e">The <see cref="T:System.Windows.RoutedEventArgs"/>
+            instance containing the event data.</param>
+        </member>
+        <member name="M:Bubba.ChatWindow.OnListenCheckedChanged(System.Object,System.Windows.RoutedEventArgs)">
+            <summary>
+            Called when [listen checked changed].
+            </summary>
+            <param name="sender">The sender.</param>
+            <param name="e">The <see cref="T:System.Windows.RoutedEventArgs"/>
+            instance containing the event data.</param>
+        </member>
+        <member name="M:Bubba.ChatWindow.OnLanguageDropDownSelectionChanged(System.Object,System.Windows.RoutedEventArgs)">
+            <summary>
+            Called when [document selection changed].
+            </summary>
+            <param name="sender">The sender.</param>
+            <param name="e">The <see cref="T:System.Windows.RoutedEventArgs"/>
+            instance containing the event data.</param>
+        </member>
+        <member name="M:Bubba.ChatWindow.OnLookupButtonClick(System.Object,System.Windows.RoutedEventArgs)">
+            <summary>
+            Called when [lookup button click].
+            </summary>
+            <param name="sender">The sender.</param>
+            <param name="e">The <see cref="T:System.Windows.RoutedEventArgs"/>
+            instance containing the event data.</param>
+        </member>
+        <member name="M:Bubba.ChatWindow.OnMouseMove(System.Object,System.Windows.Input.MouseEventArgs)">
+            <summary>
+            Called when [mouse move].
+            </summary>
+            <param name="sender">The sender.</param>
+            <param name="e">The <see cref="T:System.Windows.Input.MouseEventArgs"/>
+            instance containing the event data.</param>
+        </member>
+        <member name="M:Bubba.ChatWindow.OnMenuButtonClick(System.Object,System.Windows.RoutedEventArgs)">
+            <summary>
+            Called when [menu button click].
+            </summary>
+            <param name="sender">The sender.</param>
+            <param name="e">The <see cref="T:System.Windows.RoutedEventArgs"/>
+            instance containing the event data.</param>
+        </member>
+        <member name="M:Bubba.ChatWindow.OnModelDropDownSelectionChanged(System.Object,System.Windows.RoutedEventArgs)">
+            <summary>
+            Called when [model ComboBox selection changed].
+            </summary>
+            <param name="sender">The sender.</param>
+            <param name="e">The <see cref="T:System.Windows.RoutedEventArgs"/>
+            instance containing the event data.</param>
+        </member>
+        <member name="M:Bubba.ChatWindow.OnMuteCheckedBoxChanged(System.Object,System.Windows.RoutedEventArgs)">
+            <summary>
+            Called when [mute checked box changed].
+            </summary>
+            <param name="sender">The sender.</param>
+            <param name="e">The <see cref="T:System.Windows.RoutedEventArgs"/>
+            instance containing the event data.</param>
+        </member>
+        <member name="M:Bubba.ChatWindow.OnNextButtonClick(System.Object,System.Windows.RoutedEventArgs)">
+            <summary>
+            Called when [next button click].
+            </summary>
+            
+            <param name="sender">The sender.</param>
+            <param name="e">The <see cref="T:System.Windows.RoutedEventArgs"/>
+            instance containing the event data.</param>
+        </member>
+        <member name="M:Bubba.ChatWindow.OnParameterTextBoxChanged(System.Object,System.Windows.RoutedEventArgs)">
+            <summary>
+            Called when [text box input changed].
+            </summary>
+            <param name="sender">The sender.</param>
+            <param name="e">The <see cref="T:System.Windows.RoutedEventArgs"/>
+            instance containing the event data.</param>
+        </member>
+        <member name="M:Bubba.ChatWindow.OnPromptOptionClick(System.Object,System.Windows.RoutedEventArgs)">
+            <summary>
+            Called when [system prompt button click].
+            </summary>
+            <param name="sender">The sender.</param>
+            <param name="e">The <see cref="T:System.Windows.RoutedEventArgs"/>
+            instance containing the event data.</param>
+        </member>
+        <member name="M:Bubba.ChatWindow.OnPreviousButtonClick(System.Object,System.Windows.RoutedEventArgs)">
+            <summary>
+            Called when [previous button click].
+            </summary>
+            <param name="sender">The sender.</param>
+            <param name="e">The <see cref="T:System.Windows.RoutedEventArgs"/>
+            instance containing the event data.</param>
+        </member>
         <member name="M:Bubba.ChatWindow.OnPropertyChanged(System.String)">
             <summary>
             Called when [property changed].
             </summary>
             <param name="propertyName">Name of the property.</param>
         </member>
-        <member name="M:Bubba.ChatWindow.OnTabClosed(System.Object,System.Windows.RoutedEventArgs)">
+        <member name="M:Bubba.ChatWindow.OnRefreshButtonClick(System.Object,System.EventArgs)">
             <summary>
-            Called when [tab closed].
+            Called when [refresh button click].
             </summary>
             <param name="sender">The sender.</param>
-            <param name="e">The <see cref="T:System.Windows.RoutedEventArgs"/>
+            <param name="e">The <see cref="T:System.EventArgs"/>
             instance containing the event data.</param>
         </member>
-        <member name="M:Bubba.ChatWindow.OnTabChanged(System.Object,System.Windows.RoutedEventArgs)">
+        <member name="M:Bubba.ChatWindow.OnResponseFormatSelectionChanged(System.Object,System.Windows.RoutedEventArgs)">
             <summary>
-            Called when [tab changed].
+            Called when [response format selection changed].
             </summary>
             <param name="sender">The sender.</param>
             <param name="e">The <see cref="T:System.Windows.RoutedEventArgs"/>
@@ -34745,171 +35101,25 @@
             <param name="e">The <see cref="T:System.EventArgs"/>
             instance containing the event data.</param>
         </member>
-        <member name="M:Bubba.ChatWindow.OnStreamCheckBoxChecked(System.Object,System.EventArgs)">
+        <member name="M:Bubba.ChatWindow.OnSpeechRecognized(System.Object,System.Speech.Recognition.SpeechRecognizedEventArgs)">
             <summary>
-            Called when [stream box checked].
+            Called when [speech recognized].
             </summary>
             <param name="sender">The sender.</param>
-            <param name="e">The <see cref="T:System.EventArgs"/>
+            <param name="e">The <see cref="T:System.Speech.Recognition.SpeechRecognizedEventArgs"/>
             instance containing the event data.</param>
         </member>
-        <!-- Badly formed XML comment ignored for member "M:Bubba.ChatWindow.OnMouseMove(System.Object,System.Windows.Input.MouseEventArgs)" -->
-        <member name="M:Bubba.ChatWindow.OnClosing(System.Object,System.ComponentModel.CancelEventArgs)">
+        <member name="M:Bubba.ChatWindow.OnSpeechHypothesized(System.Object,System.Speech.Recognition.SpeechHypothesizedEventArgs)">
             <summary>
-            Called when [closing].
+            Called when [speech hypothesized].
             </summary>
             <param name="sender">The sender.</param>
-            <param name="e">The <see cref="T:System.ComponentModel.CancelEventArgs"/>
+            <param name="e">The <see cref="T:System.Speech.Recognition.SpeechHypothesizedEventArgs"/>
             instance containing the event data.</param>
         </member>
-        <member name="M:Bubba.ChatWindow.OnCloseButtonClick(System.Object,System.Windows.RoutedEventArgs)">
+        <member name="M:Bubba.ChatWindow.OnSendButtonClick(System.Object,System.Windows.RoutedEventArgs)">
             <summary>
-            Called when [close button click].
-            </summary>
-            <param name="sender">The sender.</param>
-            <param name="e">The <see cref="T:System.Windows.RoutedEventArgs"/>
-            instance containing the event data.</param>
-        </member>
-        <member name="M:Bubba.ChatWindow.OnCalculatorMenuOptionClick(System.Object,System.Windows.RoutedEventArgs)">
-            <summary>
-            Called when [calculator menu option click].
-            </summary>
-            <param name="sender">The sender.</param>
-            <param name="e">The <see cref="T:System.Windows.RoutedEventArgs"/>
-            instance containing the event data.</param>
-        </member>
-        <member name="M:Bubba.ChatWindow.OnFileMenuOptionClick(System.Object,System.Windows.RoutedEventArgs)">
-            <summary>
-            Called when [file menu option click].
-            </summary>
-            <param name="sender">The sender.</param>
-            <param name="e">The <see cref="T:System.Windows.RoutedEventArgs"/>
-            instance containing the event data.</param>
-        </member>
-        <member name="M:Bubba.ChatWindow.OnControlPanelOptionClick(System.Object,System.Windows.RoutedEventArgs)">
-            <summary>
-            Called when [control panel option click].
-            </summary>
-            <param name="sender">The sender.</param>
-            <param name="e">The <see cref="T:System.Windows.RoutedEventArgs"/>
-            instance containing the event data.</param>
-        </member>
-        <member name="M:Bubba.ChatWindow.OnFileApiButtonClick(System.Object,System.Windows.RoutedEventArgs)">
-            <summary>
-            Called when [file upload button click].
-            </summary>
-            <param name="sender">The sender.</param>
-            <param name="e">The <see cref="T:System.Windows.RoutedEventArgs"/>
-            instance containing the event data.</param>
-        </member>
-        <member name="M:Bubba.ChatWindow.OnTaskManagerOptionClick(System.Object,System.Windows.RoutedEventArgs)">
-            <summary>
-            Called when [task manager option click].
-            </summary>
-            <param name="sender">The sender.</param>
-            <param name="e">The <see cref="T:System.Windows.RoutedEventArgs"/>
-            instance containing the event data.</param>
-        </member>
-        <member name="M:Bubba.ChatWindow.OnCloseOptionClick(System.Object,System.Windows.RoutedEventArgs)">
-            <summary>
-            Called when [close option click].
-            </summary>
-            <param name="sender">The sender.</param>
-            <param name="e">The <see cref="T:System.Windows.RoutedEventArgs"/>
-            instance containing the event data.</param>
-        </member>
-        <member name="M:Bubba.ChatWindow.OnChromeOptionClick(System.Object,System.Windows.RoutedEventArgs)">
-            <summary>
-            Called when [chrome option click].
-            </summary>
-            <param name="sender">The sender.</param>
-            <param name="e">The <see cref="T:System.Windows.RoutedEventArgs"/>
-            instance containing the event data.</param>
-        </member>
-        <member name="M:Bubba.ChatWindow.OnEdgeOptionClick(System.Object,System.Windows.RoutedEventArgs)">
-            <summary>
-            Called when [edge option click].
-            </summary>
-            <param name="sender">The sender.</param>
-            <param name="e">The <see cref="T:System.Windows.RoutedEventArgs"/>
-            instance containing the event data.</param>
-        </member>
-        <member name="M:Bubba.ChatWindow.OnFirefoxOptionClick(System.Object,System.Windows.RoutedEventArgs)">
-            <summary>
-            Called when [firefox option click].
-            </summary>
-            <param name="sender">The sender.</param>
-            <param name="e">The <see cref="T:System.Windows.RoutedEventArgs"/>
-            instance containing the event data.</param>
-        </member>
-        <member name="M:Bubba.ChatWindow.OnPromptOptionClick(System.Object,System.Windows.RoutedEventArgs)">
-            <summary>
-            Called when [system prompt button click].
-            </summary>
-            <param name="sender">The sender.</param>
-            <param name="e">The <see cref="T:System.Windows.RoutedEventArgs"/>
-            instance containing the event data.</param>
-        </member>
-        <member name="M:Bubba.ChatWindow.OnFirstButtonClick(System.Object,System.Windows.RoutedEventArgs)">
-            <summary>
-            Called when [first button click].
-            </summary>
-            <param name="sender">The sender.</param>
-            <param name="e">The <see cref="T:System.Windows.RoutedEventArgs"/>
-            instance containing the event data.</param>
-        </member>
-        <member name="M:Bubba.ChatWindow.OnPreviousButtonClick(System.Object,System.Windows.RoutedEventArgs)">
-            <summary>
-            Called when [previous button click].
-            </summary>
-            <param name="sender">The sender.</param>
-            <param name="e">The <see cref="T:System.Windows.RoutedEventArgs"/>
-            instance containing the event data.</param>
-        </member>
-        <member name="M:Bubba.ChatWindow.OnNextButtonClick(System.Object,System.Windows.RoutedEventArgs)">
-            <summary>
-            Called when [next button click].
-            </summary>
-            
-            <param name="sender">The sender.</param>
-            <param name="e">The <see cref="T:System.Windows.RoutedEventArgs"/>
-            instance containing the event data.</param>
-        </member>
-        <member name="M:Bubba.ChatWindow.OnLastButtonClick(System.Object,System.Windows.RoutedEventArgs)">
-            <summary>
-            Called when [last button click].
-            </summary>
-            <param name="sender">The sender.</param>
-            <param name="e">The <see cref="T:System.Windows.RoutedEventArgs"/>
-            instance containing the event data.</param>
-        </member>
-        <member name="M:Bubba.ChatWindow.OnEditButtonClick(System.Object,System.Windows.RoutedEventArgs)">
-            <summary>
-            Called when [edit button click].
-            </summary>
-            <param name="sender">The sender.</param>
-            <param name="e">The <see cref="T:System.Windows.RoutedEventArgs"/>
-            instance containing the event data.</param>
-        </member>
-        <member name="M:Bubba.ChatWindow.OnRefreshButtonClick(System.Object,System.EventArgs)">
-            <summary>
-            Called when [refresh button click].
-            </summary>
-            <param name="sender">The sender.</param>
-            <param name="e">The <see cref="T:System.EventArgs"/>
-            instance containing the event data.</param>
-        </member>
-        <member name="M:Bubba.ChatWindow.OnLookupButtonClick(System.Object,System.Windows.RoutedEventArgs)">
-            <summary>
-            Called when [lookup button click].
-            </summary>
-            <param name="sender">The sender.</param>
-            <param name="e">The <see cref="T:System.Windows.RoutedEventArgs"/>
-            instance containing the event data.</param>
-        </member>
-        <member name="M:Bubba.ChatWindow.OnDeleteButtonClick(System.Object,System.Windows.RoutedEventArgs)">
-            <summary>
-            Called when [delete button click].
+            Called when [send button click].
             </summary>
             <param name="sender">The sender.</param>
             <param name="e">The <see cref="T:System.Windows.RoutedEventArgs"/>
@@ -34923,9 +35133,33 @@
             <param name="e">The <see cref="T:System.Windows.RoutedEventArgs"/>
             instance containing the event data.</param>
         </member>
-        <member name="M:Bubba.ChatWindow.OnMenuButtonClick(System.Object,System.Windows.RoutedEventArgs)">
+        <member name="M:Bubba.ChatWindow.OnStreamCheckBoxChecked(System.Object,System.EventArgs)">
             <summary>
-            Called when [menu button click].
+            Called when [stream box checked].
+            </summary>
+            <param name="sender">The sender.</param>
+            <param name="e">The <see cref="T:System.EventArgs"/>
+            instance containing the event data.</param>
+        </member>
+        <member name="M:Bubba.ChatWindow.OnTaskManagerOptionClick(System.Object,System.Windows.RoutedEventArgs)">
+            <summary>
+            Called when [task manager option click].
+            </summary>
+            <param name="sender">The sender.</param>
+            <param name="e">The <see cref="T:System.Windows.RoutedEventArgs"/>
+            instance containing the event data.</param>
+        </member>
+        <member name="M:Bubba.ChatWindow.OnTabClosed(System.Object,System.Windows.RoutedEventArgs)">
+            <summary>
+            Called when [tab closed].
+            </summary>
+            <param name="sender">The sender.</param>
+            <param name="e">The <see cref="T:System.Windows.RoutedEventArgs"/>
+            instance containing the event data.</param>
+        </member>
+        <member name="M:Bubba.ChatWindow.OnTabChanged(System.Object,System.Windows.RoutedEventArgs)">
+            <summary>
+            Called when [tab changed].
             </summary>
             <param name="sender">The sender.</param>
             <param name="e">The <see cref="T:System.Windows.RoutedEventArgs"/>
@@ -34963,114 +35197,25 @@
             <param name="e">The <see cref="T:System.Windows.Input.MouseEventArgs"/>
             instance containing the event data.</param>
         </member>
-        <member name="M:Bubba.ChatWindow.OnListenCheckedChanged(System.Object,System.Windows.RoutedEventArgs)">
+        <member name="M:Bubba.ChatWindow.OnTabControlSelectionChanged(System.Object,System.Windows.Controls.SelectionChangedEventArgs)">
             <summary>
-            Called when [listen checked changed].
+            Called when [tab control index changed].
             </summary>
             <param name="sender">The sender.</param>
             <param name="e">The <see cref="T:System.Windows.RoutedEventArgs"/>
             instance containing the event data.</param>
         </member>
-        <member name="M:Bubba.ChatWindow.OnMuteCheckedBoxChanged(System.Object,System.Windows.RoutedEventArgs)">
+        <member name="M:Bubba.ChatWindow.OnUrlTextBoxClick(System.Object,System.Windows.Input.MouseEventArgs)">
             <summary>
-            Called when [mute checked box changed].
+            Called when [URL text box clicked].
             </summary>
             <param name="sender">The sender.</param>
-            <param name="e">The <see cref="T:System.Windows.RoutedEventArgs"/>
+            <param name="e">The <see cref="T:System.Windows.Input.MouseEventArgs" />
             instance containing the event data.</param>
         </member>
-        <member name="M:Bubba.ChatWindow.OnSpeechRecognized(System.Object,System.Speech.Recognition.SpeechRecognizedEventArgs)">
+        <member name="M:Bubba.ChatWindow.OnVoiceSelectionChanged(System.Object,System.Windows.RoutedEventArgs)">
             <summary>
-            Called when [speech recognized].
-            </summary>
-            <param name="sender">The sender.</param>
-            <param name="e">The <see cref="T:System.Speech.Recognition.SpeechRecognizedEventArgs"/>
-            instance containing the event data.</param>
-        </member>
-        <member name="M:Bubba.ChatWindow.OnSpeechHypothesized(System.Object,System.Speech.Recognition.SpeechHypothesizedEventArgs)">
-            <summary>
-            Called when [speech hypothesized].
-            </summary>
-            <param name="sender">The sender.</param>
-            <param name="e">The <see cref="T:System.Speech.Recognition.SpeechHypothesizedEventArgs"/>
-            instance containing the event data.</param>
-        </member>
-        <member name="M:Bubba.ChatWindow.OnSendButtonClick(System.Object,System.Windows.RoutedEventArgs)">
-            <summary>
-            Called when [send button click].
-            </summary>
-            <param name="sender">The sender.</param>
-            <param name="e">The <see cref="T:System.Windows.RoutedEventArgs"/>
-            instance containing the event data.</param>
-        </member>
-        <member name="M:Bubba.ChatWindow.OnClearButtonClick(System.Object,System.Windows.RoutedEventArgs)">
-            <summary>
-            Called when [clear button click].
-            </summary>
-            <param name="sender">The sender.</param>
-            <param name="e">The <see cref="T:System.Windows.RoutedEventArgs"/>
-            instance containing the event data.</param>
-        </member>
-        <member name="M:Bubba.ChatWindow.OnModelDropDownSelectionChanged(System.Object,System.Windows.RoutedEventArgs)">
-            <summary>
-            Called when [model ComboBox selection changed].
-            </summary>
-            <param name="sender">The sender.</param>
-            <param name="e">The <see cref="T:System.Windows.RoutedEventArgs"/>
-            instance containing the event data.</param>
-        </member>
-        <member name="M:Bubba.ChatWindow.OnDocumentListBoxSelectionChanged(System.Object,System.Windows.RoutedEventArgs)">
-            <summary>
-            Called when [select
-            ed document changed].
-            </summary>
-            <param name="sender">The sender.</param>
-            <param name="e">The <see cref="T:System.Windows.RoutedEventArgs"/>
-            instance containing the event data.</param>
-        </member>
-        <member name="M:Bubba.ChatWindow.OnLanguageDropDownSelectionChanged(System.Object,System.Windows.RoutedEventArgs)">
-            <summary>
-            Called when [document selection changed].
-            </summary>
-            <param name="sender">The sender.</param>
-            <param name="e">The <see cref="T:System.Windows.RoutedEventArgs"/>
-            instance containing the event data.</param>
-        </member>
-        <member name="M:Bubba.ChatWindow.OnApiRequestDropDownSelectionChanged(System.Object,System.Windows.RoutedEventArgs)">
-            <summary>
-            Called when [task selection changed].
-            </summary>
-            <param name="sender">The sender.</param>
-            <param name="e">The <see cref="T:System.Windows.RoutedEventArgs"/>
-            instance containing the event data.</param>
-        </member>
-        <member name="M:Bubba.ChatWindow.OnParameterTextBoxChanged(System.Object,System.Windows.RoutedEventArgs)">
-            <summary>
-            Called when [text box input changed].
-            </summary>
-            <param name="sender">The sender.</param>
-            <param name="e">The <see cref="T:System.Windows.RoutedEventArgs"/>
-            instance containing the event data.</param>
-        </member>
-        <member name="M:Bubba.ChatWindow.OnImageFormatSelectionChanged(System.Object,System.Windows.RoutedEventArgs)">
-            <summary>
-            Called when [selected image size changed].
-            </summary>
-            <param name="sender">The sender.</param>
-            <param name="e">The <see cref="T:System.Windows.RoutedEventArgs"/>
-            instance containing the event data.</param>
-        </member>
-        <member name="M:Bubba.ChatWindow.OnGoButtonClicked(System.Object,System.Windows.RoutedEventArgs)">
-            <summary>
-            Called when [go button clicked].
-            </summary>
-            <param name="sender">The sender.</param>
-            <param name="e">The <see cref="T:System.Windows.RoutedEventArgs"/>
-            instance containing the event data.</param>
-        </member>
-        <member name="M:Bubba.ChatWindow.OnResponseFormatSelectionChanged(System.Object,System.Windows.RoutedEventArgs)">
-            <summary>
-            Called when [response format selection changed].
+            Called when [voice selection changed].
             </summary>
             <param name="sender">The sender.</param>
             <param name="e">The <see cref="T:System.Windows.RoutedEventArgs"/>
@@ -35079,14 +35224,6 @@
         <member name="M:Bubba.ChatWindow.OnImageQualitySelectionChanged(System.Object,System.Windows.RoutedEventArgs)">
             <summary>
             Called when [guidance option click].
-            </summary>
-            <param name="sender">The sender.</param>
-            <param name="e">The <see cref="T:System.Windows.RoutedEventArgs"/>
-            instance containing the event data.</param>
-        </member>
-        <member name="M:Bubba.ChatWindow.OnAudioFormatSelectionChanged(System.Object,System.Windows.RoutedEventArgs)">
-            <summary>
-            Called when [audio format selection changed].
             </summary>
             <param name="sender">The sender.</param>
             <param name="e">The <see cref="T:System.Windows.RoutedEventArgs"/>
@@ -35115,17 +35252,17 @@
             <param name="sender">The sender.</param>
             <param name="e">The <see cref="T:System.Windows.RoutedEventArgs"/> instance containing the event data.</param>
         </member>
-        <member name="M:Bubba.ChatWindow.OnEffortSelectionChanged(System.Object,System.Windows.RoutedEventArgs)">
+        <member name="M:Bubba.ChatWindow.OnImageFormatSelectionChanged(System.Object,System.Windows.RoutedEventArgs)">
             <summary>
-            Called when [reasoning effort selection changed].
+            Called when [selected image size changed].
             </summary>
             <param name="sender">The sender.</param>
             <param name="e">The <see cref="T:System.Windows.RoutedEventArgs"/>
             instance containing the event data.</param>
         </member>
-        <member name="M:Bubba.ChatWindow.OnVoiceSelectionChanged(System.Object,System.Windows.RoutedEventArgs)">
+        <member name="M:Bubba.ChatWindow.OnImageStyleSelectionChanged(System.Object,System.Windows.RoutedEventArgs)">
             <summary>
-            Called when [voice selection changed].
+            Called when [image style selection changed].
             </summary>
             <param name="sender">The sender.</param>
             <param name="e">The <see cref="T:System.Windows.RoutedEventArgs"/>
@@ -35171,18 +35308,11 @@
             <param name="e">The <see cref="T:CefSharp.AddressChangedEventArgs" />
             instance containing the event data.</param>
         </member>
-        <member name="M:Bubba.ChatWindow.OnTabControlSelectionChanged(System.Object,System.Windows.Controls.SelectionChangedEventArgs)">
-            <summary>
-            Called when [tab control index changed].
-            </summary>
-            <param name="sender">The sender.</param>
-            <param name="e">The <see cref="T:System.Windows.RoutedEventArgs"/>
-            instance containing the event data.</param>
-        </member>
         <member name="M:Bubba.ChatWindow.Dispose">
             <inheritdoc />
             <summary>
-            Releases unmanaged and - optionally - managed resources.
+            Releases unmanaged and
+            - optionally - managed resources.
             </summary>
         </member>
         <member name="M:Bubba.ChatWindow.Dispose(System.Boolean)">
@@ -36728,11 +36858,6 @@
             The stop watch
             </summary>
         </member>
-        <member name="F:Bubba.SearchDialog._selectedDomains">
-            <summary>
-            The selected domains
-            </summary>
-        </member>
         <member name="M:Bubba.SearchDialog.#ctor">
             <inheritdoc />
             <summary>
@@ -36746,14 +36871,6 @@
             </summary>
             <value>
             The results.
-            </value>
-        </member>
-        <member name="P:Bubba.SearchDialog.SelectedDomains">
-            <summary>
-            Gets the selected domains.
-            </summary>
-            <value>
-            The selected domains.
             </value>
         </member>
         <member name="M:Bubba.SearchDialog.RegisterCallbacks">
@@ -37430,7 +37547,7 @@
             The downloads
             </summary>
         </member>
-        <member name="F:Bubba.WebBrowser.TabPages">
+        <member name="F:Bubba.WebBrowser._tabPages">
             <summary>
             The tab pages
             </summary>

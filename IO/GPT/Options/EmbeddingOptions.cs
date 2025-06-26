@@ -118,6 +118,28 @@ namespace Bubba
             }
         }
 
+        /// <summary>
+        /// Gets or sets the encoding format.
+        /// </summary>
+        /// <value>
+        /// The encoding format.
+        /// </value>
+        public string EncodingFormat
+        {
+            get
+            {
+                return _encodingFormat;
+            }
+            set
+            {
+                if( _encodingFormat != value )
+                {
+                    _encodingFormat = value;
+                    OnPropertyChanged( nameof( EncodingFormat ) );
+                }
+            }
+        }
+
         /// <inheritdoc />
         /// <summary>
         /// Gets or sets the end point.
@@ -165,7 +187,13 @@ namespace Bubba
         }
 
         /// <summary>
-        /// Gets or sets the input.
+        /// Input text to embed, encoded as a string or array of tokens.
+        /// To embed multiple inputs in a single request, pass an array of
+        /// strings or array of token arrays. The input must not exceed
+        /// the max input tokens for the model (8192 tokens for all embedding models),
+        /// cannot be an empty string, and any array must be 2048 dimensions or less.
+        /// In addition to the per-input token limit, all embedding models enforce
+        /// a maximum of 300,000 tokens summed across all inputs in a single request.
         /// </summary>
         /// <value>
         /// The input.
@@ -186,6 +214,28 @@ namespace Bubba
             }
         }
 
+        /// <summary>
+        /// Gets or sets the dimensions.
+        /// </summary>
+        /// <value>
+        /// The dimensions.
+        /// </value>
+        public int Dimensions
+        {
+            get
+            {
+                return _dimensions;
+            }
+            set
+            {
+                if( _dimensions != value )
+                {
+                    _dimensions = value;
+                    OnPropertyChanged( nameof( Dimensions ) );
+                }
+            }
+        }
+
         /// <inheritdoc />
         /// <summary>
         /// Gets the data.
@@ -195,8 +245,8 @@ namespace Bubba
         {
             try
             {
-                _data.Add("n", _number);
-                _data.Add("model", _model);
+                _data.Add( "n", _number );
+                _data.Add( "model", _model );
                 _data.Add( "max_completion_tokens", _maxCompletionTokens );
                 _data.Add( "store", _store );
                 _data.Add( "stream", _stream );

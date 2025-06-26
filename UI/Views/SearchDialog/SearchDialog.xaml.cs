@@ -118,11 +118,6 @@ namespace Bubba
         /// </summary>
         private Stopwatch _stopWatch = new Stopwatch( );
 
-        /// <summary>
-        /// The selected domains
-        /// </summary>
-        private protected IList<string> _selectedDomains;
-
         /// <inheritdoc />
         /// <summary>
         /// Initializes a new instance of the
@@ -163,24 +158,6 @@ namespace Bubba
             private protected set
             {
                 _results = value;
-            }
-        }
-
-        /// <summary>
-        /// Gets the selected domains.
-        /// </summary>
-        /// <value>
-        /// The selected domains.
-        /// </value>
-        public IList<string> SelectedDomains
-        {
-            get
-            {
-                return _selectedDomains;
-            }
-            private protected set
-            {
-                _selectedDomains = value;
             }
         }
 

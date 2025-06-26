@@ -63,12 +63,18 @@ namespace Bubba
         private protected string _version;
 
         /// <summary>
+        /// The instructions
+        /// </summary>
+        private protected string _instructions;
+
+        /// <summary>
         /// The variables
         /// </summary>
         private protected IDictionary<string, string> _variables;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="GptPrompt"/> class.
+        /// Initializes a new instance of the
+        /// <see cref="GptPrompt"/> class.
         /// </summary>
         public GptPrompt( )
         {
@@ -91,7 +97,29 @@ namespace Bubba
                 if( _id != value )
                 {
                     _id = value;
-                    OnPropertyChanged( nameof( GptPrompt.Id ) );
+                    OnPropertyChanged( nameof( Id ) );
+                }
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the instructions.
+        /// </summary>
+        /// <value>
+        /// The instructions.
+        /// </value>
+        public virtual string Instructions
+        {
+            get
+            {
+                return _instructions;
+            }
+            set
+            {
+                if( _instructions != value )
+                {
+                    _instructions = value;
+                    OnPropertyChanged( nameof( Instructions ) );
                 }
             }
         }
@@ -113,7 +141,7 @@ namespace Bubba
                 if( _version != value )
                 {
                     _version = value;
-                    OnPropertyChanged( nameof( GptPrompt.Version ) );
+                    OnPropertyChanged( nameof( Version ) );
                 }
             }
         }
@@ -135,7 +163,7 @@ namespace Bubba
                 if( _variables != value )
                 {
                     _variables = value;
-                    OnPropertyChanged( nameof( GptPrompt.Variables ) );
+                    OnPropertyChanged( nameof( Variables ) );
                 }
             }
         }

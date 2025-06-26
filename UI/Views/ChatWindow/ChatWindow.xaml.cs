@@ -57,6 +57,7 @@ namespace Bubba
     using System.Text.Json;
     using System.Threading;
     using System.Threading.Tasks;
+    using System.Web;
     using System.Windows;
     using System.Windows.Controls;
     using System.Windows.Forms;
@@ -204,12 +205,12 @@ namespace Bubba
         /// <summary>
         /// The selected document
         /// </summary>
-        private protected string _selectedDocument;
+        private protected string _document;
 
         /// <summary>
         /// The selected request
         /// </summary>
-        private protected string _selectedRequest;
+        private protected string _request;
 
         /// <summary>
         /// The theme
@@ -271,11 +272,6 @@ namespace Bubba
         private protected bool _logprobs;
 
         /// <summary>
-        /// The image size
-        /// </summary>
-        private protected string _imageSize;
-
-        /// <summary>
         /// The speed
         /// </summary>
         private protected int _speed;
@@ -296,6 +292,11 @@ namespace Bubba
         private protected string _audioFormat;
 
         /// <summary>
+        /// The image size
+        /// </summary>
+        private protected string _imageSize;
+
+        /// <summary>
         /// The image format
         /// </summary>
         private protected string _imageFormat;
@@ -311,9 +312,14 @@ namespace Bubba
         private protected string _imageDetail;
 
         /// <summary>
-        /// The detail
+        /// The background
         /// </summary>
         private protected string _imageBackground;
+
+        /// <summary>
+        /// The image style
+        /// </summary>
+        private protected string _imageStyle;
 
         /// <summary>
         /// An upper bound for the number of tokens
@@ -584,6 +590,8 @@ namespace Bubba
             _presencePenalty = PresenceSlider.Value;
             _frequencyPenalty = FrequencySlider.Value;
             _maximumTokens = int.Parse( MaxTokenTextBox.Value.ToString(  ) );
+
+            // GPT Parameter Options
             _sizeOptions = new List<string>( );
             _speedOptions = new List<string>( );
             _qualityOptions = new List<string>( );
@@ -596,6 +604,49 @@ namespace Bubba
             // Event Wiring
             Loaded += OnLoad;
             Closing += OnClosing;
+        }
+
+        /// <summary>
+        /// Gets the duration of the current tab loading.
+        /// </summary>
+        /// <value>
+        /// The duration of the current tab loading.
+        /// </value>
+        public int LoadingDuration
+        {
+            get
+            {
+                if( TabControl.SelectedItem != null
+                    && TabControl.SelectedItem != null )
+                {
+                    var _loadTime =
+                        ( int )( DateTime.Now - _currentTab.DateCreated ).TotalMilliseconds;
+
+                    return _loadTime;
+                }
+                else
+                {
+                    return 0;
+                }
+            }
+        }
+
+        /// <summary>
+        /// Gets the search engine URL.
+        /// </summary>
+        /// <value>
+        /// The search engine URL.
+        /// </value>
+        public string SearchEngineUrl
+        {
+            get
+            {
+                return _searchEngineUrl;
+            }
+            set
+            {
+                _searchEngineUrl = value;
+            }
         }
 
         /// <summary>
@@ -915,8 +966,11 @@ namespace Bubba
         /// </summary>
         private void InitializeBrowser( )
         {
-            ConfigureBrowser( WebBrowser );
-            _currentBrowser = WebBrowser;
+            ConfigureBrowser( Browser );
+            Browser.LoadingStateChanged += OnWebBrowserLoadingStateChanged;
+            Browser.AddressChanged += OnWebBrowserAddressChanged;
+            Browser.TitleChanged += OnWebBrowserTitleChanged;
+            _currentBrowser = Browser;
             _searchEngineUrl = Locations.Google;
             _hostCallback = new HostCallback( this );
             _downloadCallback = new DownloadCallback( this );
@@ -934,7 +988,7 @@ namespace Bubba
         {
             try
             {
-                GenerationListBox.SelectionChanged += OnApiRequestDropDownSelectionChanged;
+                GenerationListBox.SelectionChanged += OnRequestDropDownSelectionChanged;
                 ModelDropDown.SelectionChanged += OnModelDropDownSelectionChanged;
                 ToolStripTextBox.TextChanged += OnToolStripTextBoxTextChanged;
                 ToolStripMenuButton.Click += OnToggleButtonClick;
@@ -945,7 +999,6 @@ namespace Bubba
                 PresencePenaltyTextBox.TextChanged += OnParameterTextBoxChanged;
                 FrequencyPenaltyTextBox.TextChanged += OnParameterTextBoxChanged;
                 TopPercentTextBox.TextChanged += OnParameterTextBoxChanged;
-                SpeechRateTextBox.TextChanged += OnParameterTextBoxChanged;
                 ListenCheckBox.Checked += OnListenCheckedChanged;
                 MuteCheckBox.Checked += OnMuteCheckedBoxChanged;
                 StoreCheckBox.Checked += OnStoreCheckBoxChecked;
@@ -1591,6 +1644,29 @@ namespace Bubba
         }
 
         /// <summary>
+        /// Finds the text on page.
+        /// </summary>
+        /// <param name="next">if set to
+        /// <c>true</c> [next].</param>
+        private void FindTextOnPage( bool next = true )
+        {
+            Busy( );
+            var _first = _lastSearch != UrlPanelTextBox.Text;
+            _lastSearch = UrlPanelTextBox.Text;
+            if( _lastSearch.IsNull( ) )
+            {
+                _currentBrowser.GetBrowser( )?.Find( _lastSearch, true, false, !_first );
+            }
+            else
+            {
+                _currentBrowser.GetBrowser( )?.StopFinding( true );
+            }
+
+            UrlPanelTextBox.Focus( );
+            Chill( );
+        }
+
+        /// <summary>
         /// Sends the HTTP message.
         /// </summary>
         /// <param name="question">The question.</param>
@@ -1795,6 +1871,100 @@ namespace Bubba
         }
 
         /// <summary>
+        /// Loads the URL.
+        /// </summary>
+        /// <param name="url">The URL.</param>
+        private void LoadUrl( string url )
+        {
+            try
+            {
+                ThrowIf.Null( url, nameof( url ) );
+                Busy( );
+                var _newUrl = url;
+                var _urlLower = url.Trim( ).ToLower( );
+                SetTabText( _currentBrowser, "Loading..." );
+                if( _urlLower == "localhost" )
+                {
+                    _newUrl = "http://localhost/";
+                }
+                else if( url.IsFilePath( ) )
+                {
+                    _newUrl = url.PathToUrl( );
+                }
+                else
+                {
+                    Uri.TryCreate( url, UriKind.Absolute, out var _outUri );
+                    if( !( _urlLower.StartsWith( "http" )
+                        || _urlLower.StartsWith( Locations.Internal ) ) )
+                    {
+                        if( _outUri == null
+                            || _outUri.Scheme != Uri.UriSchemeFile )
+                        {
+                            _newUrl = "https://" + url;
+                        }
+                    }
+
+                    if( _urlLower.StartsWith( Locations.Internal + ":" )
+                        || ( Uri.TryCreate( _newUrl, UriKind.Absolute, out _outUri )
+                            && ( ( ( _outUri.Scheme == Uri.UriSchemeHttp
+                                        || _outUri.Scheme == Uri.UriSchemeHttps )
+                                    && _newUrl?.Contains( "." ) == true )
+                                || _outUri.Scheme == Uri.UriSchemeFile ) ) )
+                    {
+                    }
+                    else
+                    {
+                        _newUrl = Locations.Google + HttpUtility.UrlEncode( url );
+                    }
+                }
+
+                _currentBrowser.Load( _newUrl );
+                SetUrl( _newUrl );
+                EnableBackButton( true );
+                EnableForwardButton( false );
+                Chill( );
+            }
+            catch( Exception e )
+            {
+                Fail( e );
+            }
+        }
+
+        /// <summary>
+        /// Nexts the tab.
+        /// </summary>
+        private void NextTab( )
+        {
+            if( IsLastTab( ) )
+            {
+                var _msg = "At The End";
+                SendMessage( _msg );
+            }
+            else
+            {
+                var _next = TabControl.SelectedIndex + 1;
+                TabControl.SelectedItem = TabControl.Items[ _next ];
+            }
+        }
+
+        /// <summary>
+        /// Previous tab.
+        /// </summary>
+        private void PreviousTab( )
+        {
+            if( IsFirstTab( ) )
+            {
+                var _msg = "At The Beginning!";
+                SendMessage( _msg );
+            }
+            else
+            {
+                var _next = TabControl.SelectedIndex - 1;
+                TabControl.SelectedItem = TabControl.Items[ _next ];
+            }
+        }
+
+        /// <summary>
         /// Opens the file browser.
         /// </summary>
         private protected void OpenFileBrowser( )
@@ -1990,6 +2160,25 @@ namespace Bubba
             else
             {
                 _currentBrowser.ShowDevTools( );
+            }
+
+            Chill( );
+        }
+
+        /// <summary>
+        /// Opens the downloads tab.
+        /// </summary>
+        public void OpenDownloadsTab( )
+        {
+            Busy( );
+            if( _downloadStrip != null )
+            {
+                TabControl.SelectedItem = _downloadStrip;
+            }
+            else
+            {
+                var _brw = AddNewBrowserTab( Locations.Downloads );
+                _downloadStrip = ( BrowserTabItem )_brw.Parent;
             }
 
             Chill( );
@@ -3389,34 +3578,50 @@ namespace Bubba
         }
 
         /// <summary>
-        /// Runs the client application.
+        /// Gets the resource stream.
         /// </summary>
-        private void RunClient( )
+        /// <param name="fileName">The fileName.</param>
+        /// <param name="nameSpace">if set to
+        /// <c>true</c> [with nameSpace].</param>
+        /// <returns></returns>
+        public Stream GetResourceStream( string fileName, bool nameSpace = true )
         {
             try
             {
-                switch( _provider )
-                {
-                    case Provider.Access:
-                    {
-                        DataMinion.RunAccess( );
-                        break;
-                    }
-                    case Provider.SqlCe:
-                    {
-                        DataMinion.RunSqlCe( );
-                        break;
-                    }
-                    case Provider.SQLite:
-                    {
-                        DataMinion.RunSQLite( );
-                        break;
-                    }
-                }
+                ThrowIf.Null( fileName, nameof( fileName ) );
+                var _prefix = "Properties.Resources.";
+                return Assembly.GetManifestResourceStream( fileName );
+            }
+            catch( Exception )
+            {
+                //ignore exception
+            }
+
+            return null;
+        }
+
+        /// <summary>
+        /// Gets the browser asynchronous.
+        /// </summary>
+        /// <param name="url">The URL.</param>
+        /// <param name="focused">if set to <c>true</c> [focused].</param>
+        /// <returns></returns>
+        private protected Task<ChromiumWebBrowser> GetBrowserAsync( string url, bool focused )
+        {
+            var _tcs = new TaskCompletionSource<ChromiumWebBrowser>( );
+            try
+            {
+                ThrowIf.Null( url, nameof( url ) );
+                ThrowIf.Null( focused, nameof( focused ) );
+                var _browser = AddNewBrowserTab( url, focused );
+                _tcs.SetResult( _browser );
+                return _tcs.Task;
             }
             catch( Exception ex )
             {
+                _tcs.SetException( ex );
                 Fail( ex );
+                return default( Task<ChromiumWebBrowser> );
             }
         }
 
@@ -3838,6 +4043,18 @@ namespace Bubba
         }
 
         /// <summary>
+        /// Waits for browser to initialize.
+        /// </summary>
+        /// <param name="browser">The browser.</param>
+        public void WaitForBrowserToInitialize( ChromiumWebBrowser browser )
+        {
+            while( !browser.IsBrowserInitialized )
+            {
+                Thread.Sleep( 100 );
+            }
+        }
+
+        /// <summary>
         /// Called when [load].
         /// </summary>
         /// <param name="sender">The sender.</param>
@@ -3861,14 +4078,18 @@ namespace Bubba
         }
 
         /// <summary>
-        /// Called when [property changed].
+        /// Called when [audio format selection changed].
         /// </summary>
-        /// <param name="propertyName">Name of the property.</param>
-        public void OnPropertyChanged( [ CallerMemberName ] string propertyName = null )
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The <see cref="RoutedEventArgs"/>
+        /// instance containing the event data.</param>
+        private protected void OnAudioFormatSelectionChanged( object sender, RoutedEventArgs e )
         {
             try
             {
-                PropertyChanged?.Invoke( this, new PropertyChangedEventArgs( propertyName ) );
+                _audioFormat = AudioFormatDropDown.SelectedValue.ToString( );
+                var _message = "AudioFormat = " + _audioFormat;
+                SendNotification( _message );
             }
             catch( Exception ex )
             {
@@ -3877,12 +4098,193 @@ namespace Bubba
         }
 
         /// <summary>
-        /// Called when [tab closed].
+        /// Called when [task selection changed].
         /// </summary>
         /// <param name="sender">The sender.</param>
         /// <param name="e">The <see cref="RoutedEventArgs"/>
         /// instance containing the event data.</param>
-        private void OnTabClosed( object sender, RoutedEventArgs e )
+        private void OnRequestDropDownSelectionChanged( object sender, RoutedEventArgs e )
+        {
+            try
+            {
+                if( GenerationListBox.SelectedIndex != -1 )
+                {
+                    var _item = ( ( MetroDropDownItem )GenerationListBox.SelectedItem )
+                        ?.Tag.ToString( );
+
+                    _requestType = ( API )Enum.Parse( typeof( API ), _item?.Replace( " ", "" ) );
+                    SetRequestType( );
+
+                    var _message = "Request Type = " + _requestType;
+                    SendNotification( _message );
+                }
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+            }
+        }
+
+        /// <summary>
+        /// Called when [closing].
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The <see cref="CancelEventArgs"/>
+        /// instance containing the event data.</param>
+        private void OnClosing( object sender, CancelEventArgs e )
+        {
+            try
+            {
+                // ask user if they are sure
+                if( DownloadsInProgress( ) )
+                {
+                    var _msg = "DownloadItems are in progress.";
+                    SendMessage( _msg );
+                }
+
+                _timer?.Dispose( );
+                _statusUpdate += null;
+                SfSkinManager.Dispose( this );
+                App.ActiveWindows.Clear( );
+                Environment.Exit( 0 );
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+            }
+        }
+
+        /// <summary>
+        /// Called when [close button click].
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The <see cref="RoutedEventArgs"/>
+        /// instance containing the event data.</param>
+        private void OnCloseButtonClick( object sender, RoutedEventArgs e )
+        {
+            try
+            {
+                Close( );
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+            }
+        }
+
+        /// <summary>
+        /// Called when [calculator menu option click].
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The <see cref="RoutedEventArgs"/>
+        /// instance containing the event data.</param>
+        private void OnCalculatorMenuOptionClick( object sender, RoutedEventArgs e )
+        {
+            try
+            {
+                Busy( );
+                var _calculator = new CalculatorWindow
+                {
+                    WindowStartupLocation = WindowStartupLocation.CenterScreen,
+                    Owner = this,
+                    Topmost = true
+                };
+
+                Chill( );
+                _calculator.Show( );
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+            }
+        }
+
+        /// <summary>
+        /// Called when [close option click].
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The <see cref="RoutedEventArgs"/>
+        /// instance containing the event data.</param>
+        private void OnCloseOptionClick( object sender, RoutedEventArgs e )
+        {
+            try
+            {
+                Close( );
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+            }
+        }
+
+        /// <summary>
+        /// Called when [chrome option click].
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The <see cref="RoutedEventArgs"/>
+        /// instance containing the event data.</param>
+        private void OnChromeOptionClick( object sender, RoutedEventArgs e )
+        {
+            try
+            {
+                Busy( );
+                WebMinion.RunChrome( );
+                Chill( );
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+            }
+        }
+
+        /// <summary>
+        /// Called when [clear button click].
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The <see cref="RoutedEventArgs"/>
+        /// instance containing the event data.</param>
+        private void OnClearButtonClick( object sender, RoutedEventArgs e )
+        {
+            try
+            {
+                ClearChatControls( );
+                ClearParameters( );
+                ClearLabels( );
+                PopulateModelsAsync( );
+                PopulateInstalledVoices( );
+                PopulateImageSizes( );
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+            }
+        }
+
+        /// <summary>
+        /// Called when [control panel option click].
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The <see cref="RoutedEventArgs"/>
+        /// instance containing the event data.</param>
+        private void OnControlPanelOptionClick( object sender, RoutedEventArgs e )
+        {
+            try
+            {
+                WinMinion.LaunchControlPanel( );
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+            }
+        }
+
+        /// <summary>
+        /// Called when [delete button click].
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The <see cref="RoutedEventArgs"/>
+        /// instance containing the event data.</param>
+        private void OnDeleteButtonClick( object sender, RoutedEventArgs e )
         {
             try
             {
@@ -3896,16 +4298,521 @@ namespace Bubba
         }
 
         /// <summary>
-        /// Called when [tab changed].
+        /// Called when [select
+        /// ed document changed].
         /// </summary>
         /// <param name="sender">The sender.</param>
         /// <param name="e">The <see cref="RoutedEventArgs"/>
         /// instance containing the event data.</param>
-        private void OnTabChanged( object sender, RoutedEventArgs e )
+        private void OnDocumentListBoxSelectionChanged( object sender, RoutedEventArgs e )
+        {
+            try
+            {
+                if( DocumentListBox.SelectedIndex != -1 )
+                {
+                    Editor.ClearAllText( );
+                    _document = ( ( MetroListBoxItem )DocumentListBox.SelectedItem )
+                        ?.Tag.ToString( );
+
+                    Editor.LoadFile( _document );
+                    TabControl.SelectedIndex = 3;
+                    var _message = "Document = " + _document;
+                    SendNotification( _message );
+                }
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+            }
+        }
+
+        /// <summary>
+        /// Called when [edit button click].
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The <see cref="RoutedEventArgs"/>
+        /// instance containing the event data.</param>
+        private void OnEditButtonClick( object sender, RoutedEventArgs e )
         {
             try
             {
                 var _message = "NOT YET IMPLEMENTED!";
+                SendNotification( _message );
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+            }
+        }
+
+        /// <summary>
+        /// Called when [edge option click].
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The <see cref="RoutedEventArgs"/>
+        /// instance containing the event data.</param>
+        private void OnEdgeOptionClick( object sender, RoutedEventArgs e )
+        {
+            try
+            {
+                Busy( );
+                WebMinion.RunEdge( );
+                Chill( );
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+            }
+        }
+
+        /// <summary>
+        /// Called when [reasoning effort selection changed].
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The <see cref="RoutedEventArgs"/>
+        /// instance containing the event data.</param>
+        private protected void OnEffortSelectionChanged( object sender, RoutedEventArgs e )
+        {
+            try
+            {
+                _reasoningEffort = EffortDropDown.SelectedValue.ToString( );
+                var _message = "ReasoningEffort = " + _reasoningEffort;
+                SendNotification( _message );
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+            }
+        }
+
+        /// <summary>
+        /// Called when [file menu option click].
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The <see cref="RoutedEventArgs"/>
+        /// instance containing the event data.</param>
+        private void OnFileMenuOptionClick( object sender, RoutedEventArgs e )
+        {
+            try
+            {
+                OpenGptFileDialog( );
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+            }
+        }
+
+        /// <summary>
+        /// Called when [file upload button click].
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The <see cref="RoutedEventArgs"/>
+        /// instance containing the event data.</param>
+        private void OnFileApiButtonClick( object sender, RoutedEventArgs e )
+        {
+            try
+            {
+                OpenGptFileDialog( );
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+            }
+        }
+
+        /// <summary>
+        /// Called when [firefox option click].
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The <see cref="RoutedEventArgs"/>
+        /// instance containing the event data.</param>
+        private void OnFirefoxOptionClick( object sender, RoutedEventArgs e )
+        {
+            try
+            {
+                Busy( );
+                WebMinion.RunFirefox( );
+                Chill( );
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+            }
+        }
+
+        /// <summary>
+        /// Called when [first button click].
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The <see cref="RoutedEventArgs"/>
+        /// instance containing the event data.</param>
+        private void OnFirstButtonClick( object sender, RoutedEventArgs e )
+        {
+            try
+            {
+                var _message = "NOT YET IMPLEMENTED!";
+                SendNotification( _message );
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+            }
+        }
+
+        /// <summary>
+        /// Called when [go button clicked].
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The <see cref="RoutedEventArgs"/>
+        /// instance containing the event data.</param>
+        private protected void OnGoButtonClicked( object sender, RoutedEventArgs e )
+        {
+            try
+            {
+                _keyWords = ToolStripTextBox.InputText;
+                if( !string.IsNullOrEmpty( _keyWords ) )
+                {
+                    var _message = "The search keywords are empty!";
+                    SendNotification( _message );
+                }
+                else
+                {
+                    Busy( );
+                    var _keywords = ToolStripTextBox.Text;
+                    if( !string.IsNullOrEmpty( _keywords ) )
+                    {
+                        var _search = SearchEngineUrl + _keywords;
+                        _currentBrowser.Load( _search );
+                    }
+
+                    Chill( );
+                }
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+            }
+        }
+
+        /// <summary>
+        /// Called when [last button click].
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The <see cref="RoutedEventArgs"/>
+        /// instance containing the event data.</param>
+        private void OnLastButtonClick( object sender, RoutedEventArgs e )
+        {
+            try
+            {
+                var _message = "NOT YET IMPLEMENTED!";
+                SendNotification( _message );
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+            }
+        }
+
+        /// <summary>
+        /// Called when [listen checked changed].
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The <see cref="RoutedEventArgs"/>
+        /// instance containing the event data.</param>
+        private void OnListenCheckedChanged( object sender, RoutedEventArgs e )
+        {
+            if( ListenCheckBox.IsChecked == true )
+            {
+                InitializeSpeechEngine( );
+                var _msg = "The Speech Engine has been activated!";
+                SendNotification( _msg );
+            }
+            else
+            {
+                _engine.RecognizeAsyncStop( );
+            }
+        }
+
+        /// <summary>
+        /// Called when [document selection changed].
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The <see cref="RoutedEventArgs"/>
+        /// instance containing the event data.</param>
+        private void OnLanguageDropDownSelectionChanged( object sender, RoutedEventArgs e )
+        {
+            try
+            {
+                _language = ( ( MetroDropDownItem )LanguageDropDown.SelectedItem ).ToString( );
+                PopulateDocuments( );
+                var _message = "Language = " + _language;
+                SendNotification( _message );
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+            }
+        }
+
+        /// <summary>
+        /// Called when [lookup button click].
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The <see cref="RoutedEventArgs"/>
+        /// instance containing the event data.</param>
+        private void OnLookupButtonClick( object sender, RoutedEventArgs e )
+        {
+            try
+            {
+                var _message = "NOT YET IMPLEMENTED!";
+                SendNotification( _message );
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+            }
+        }
+
+        /// <summary>
+        /// Called when [mouse move].
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The <see cref="MouseEventArgs"/>
+        /// instance containing the event data.</param>
+        private protected void OnMouseMove( object sender, MouseEventArgs e )
+        {
+            try
+            {
+                var _psn = e.GetPosition( this );
+                var _searchDialog = new SearchDialog
+                {
+                    Owner = this,
+                    Left = _psn.X - 100,
+                    Top = _psn.Y + 50
+                };
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+            }
+        }
+
+        /// <summary>
+        /// Called when [menu button click].
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The <see cref="RoutedEventArgs"/>
+        /// instance containing the event data.</param>
+        private void OnMenuButtonClick( object sender, RoutedEventArgs e )
+        {
+            try
+            {
+                var _message = "NOT YET IMPLEMENTED!";
+                SendNotification( _message );
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+            }
+        }
+
+        /// <summary>
+        /// Called when [model ComboBox selection changed].
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The <see cref="RoutedEventArgs"/>
+        /// instance containing the event data.</param>
+        private void OnModelDropDownSelectionChanged( object sender, RoutedEventArgs e )
+        {
+            try
+            {
+                if( ModelDropDown.SelectedIndex != -1 )
+                {
+                    _model = ( ( MetroDropDownItem )ModelDropDown.SelectedItem )?.Tag.ToString( );
+                    PopulateImageSizes( );
+                    var _message = "Model = " + _model;
+                    SendNotification( _message );
+                }
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+            }
+        }
+
+        /// <summary>
+        /// Called when [mute checked box changed].
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The <see cref="RoutedEventArgs"/>
+        /// instance containing the event data.</param>
+        private void OnMuteCheckedBoxChanged( object sender, RoutedEventArgs e )
+        {
+            if( MuteCheckBox.IsChecked == true )
+            {
+                var _msg = "The GPT Audio Client has been activated!";
+                SendNotification( _msg );
+            }
+        }
+
+        /// <summary>
+        /// Called when [next button click].
+        /// </summary>
+        /// 
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The <see cref="RoutedEventArgs"/>
+        /// instance containing the event data.</param>
+        private void OnNextButtonClick( object sender, RoutedEventArgs e )
+        {
+            try
+            {
+                var _message = "NOT YET IMPLEMENTED!";
+                SendNotification( _message );
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+            }
+        }
+
+        /// <summary>
+        /// Called when [text box input changed].
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The <see cref="RoutedEventArgs"/>
+        /// instance containing the event data.</param>
+        private protected void OnParameterTextBoxChanged( object sender, RoutedEventArgs e )
+        {
+            try
+            {
+                if( sender is MetroTextBox _textBox )
+                {
+                    var _tag = _textBox?.Tag.ToString( );
+                    if( !string.IsNullOrEmpty( _tag ) )
+                    {
+                        switch( _tag )
+                        {
+                            case "FrequencyPenalty":
+                            case "PresencePenalty":
+                            {
+                                var _temp = _textBox.Text;
+                                var _value = double.Parse( _temp );
+                                _textBox.Text = _value.ToString( "N2" );
+                                break;
+                            }
+                            case "TopLogProbs":
+                            case "Temperature":
+                            case "TopPercent":
+                            {
+                                var _temp = _textBox.Text;
+                                var _top = double.TryParse( _temp, out var _value );
+                                if( _top )
+                                {
+                                    _textBox.Text = _value.ToString( "P2" );
+                                }
+
+                                break;
+                            }
+                        }
+                    }
+                }
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+            }
+        }
+
+        /// <summary>
+        /// Called when [system prompt button click].
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The <see cref="RoutedEventArgs"/>
+        /// instance containing the event data.</param>
+        private void OnPromptOptionClick( object sender, RoutedEventArgs e )
+        {
+            try
+            {
+                Busy( );
+                OpenSystemDialog( );
+                Chill( );
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+            }
+        }
+
+        /// <summary>
+        /// Called when [previous button click].
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The <see cref="RoutedEventArgs"/>
+        /// instance containing the event data.</param>
+        private void OnPreviousButtonClick( object sender, RoutedEventArgs e )
+        {
+            try
+            {
+                var _message = "NOT YET IMPLEMENTED!";
+                SendNotification( _message );
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+            }
+        }
+
+        /// <summary>
+        /// Called when [property changed].
+        /// </summary>
+        /// <param name="propertyName">Name of the property.</param>
+        public void OnPropertyChanged( [CallerMemberName] string propertyName = null )
+        {
+            try
+            {
+                PropertyChanged?.Invoke( this, new PropertyChangedEventArgs( propertyName ) );
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+            }
+        }
+
+        /// <summary>
+        /// Called when [refresh button click].
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The <see cref="EventArgs"/>
+        /// instance containing the event data.</param>
+        private void OnRefreshButtonClick( object sender, EventArgs e )
+        {
+            try
+            {
+                ClearChatControls( );
+                ClearParameters( );
+                ClearLabels( );
+                PopulateModelsAsync( );
+                PopulateInstalledVoices( );
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+            }
+        }
+
+        /// <summary>
+        /// Called when [response format selection changed].
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The <see cref="RoutedEventArgs"/>
+        /// instance containing the event data.</param>
+        private protected void OnResponseFormatSelectionChanged( object sender, RoutedEventArgs e )
+        {
+            try
+            {
+                var _image = ResponseFormatDropDown.SelectedValue.ToString( );
+                var _message = "ResponseFormat = " + _responseFormat;
                 SendNotification( _message );
             }
             catch( Exception ex )
@@ -3976,6 +4883,91 @@ namespace Bubba
         }
 
         /// <summary>
+        /// Called when [speech recognized].
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The <see cref="SpeechRecognizedEventArgs"/>
+        /// instance containing the event data.</param>
+        private void OnSpeechRecognized( object sender, SpeechRecognizedEventArgs e )
+        {
+            // Reset Hypothesized text
+            if( Editor.Text != "" )
+            {
+                Editor.Text += "\n";
+            }
+
+            var _text = e.Result.Text;
+            Editor.Text += _text;
+        }
+
+        /// <summary>
+        /// Called when [speech hypothesized].
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The <see cref="SpeechHypothesizedEventArgs"/>
+        /// instance containing the event data.</param>
+        private void OnSpeechHypothesized( object sender, SpeechHypothesizedEventArgs e )
+        {
+            var _text = e.Result.Text;
+        }
+
+        /// <summary>
+        /// Called when [send button click].
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The <see cref="RoutedEventArgs"/>
+        /// instance containing the event data.</param>
+        private void OnSendButtonClick( object sender, RoutedEventArgs e )
+        {
+            {
+                var _userInput = Editor.Text;
+                if( string.IsNullOrEmpty( _userInput ) )
+                {
+                    MessageBox.Show( "Type in your question!" );
+                    Editor.Focus( );
+                    return;
+                }
+
+                if( Editor.Text != "" )
+                {
+                    Editor.AppendText( "\r\n" );
+                }
+
+                Editor.AppendText( "User: " + _userInput + "\r\n" );
+                Editor.Text = "";
+                try
+                {
+                    var _answer = SendHttpMessage( _userInput ) + "";
+                    Editor.AppendText( "Bubba: " + _answer.Replace( "\n", "\r\n" ).Trim( ) );
+                    TextToSpeech( _answer );
+                }
+                catch( Exception ex )
+                {
+                    Editor.AppendText( "Error: " + ex.Message );
+                }
+            }
+        }
+
+        /// <summary>
+        /// Called when [save button click].
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The <see cref="RoutedEventArgs"/>
+        /// instance containing the event data.</param>
+        private void OnSaveButtonClick( object sender, RoutedEventArgs e )
+        {
+            try
+            {
+                var _message = "NOT YET IMPLEMENTED!";
+                SendNotification( _message );
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+            }
+        }
+
+        /// <summary>
         /// Called when [stream box checked].
         /// </summary>
         /// <param name="sender">The sender.</param>
@@ -3990,151 +4982,6 @@ namespace Bubba
                     var _msg = "The Responses are now being streamed!";
                     SendNotification( _msg );
                 }
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
-            }
-        }
-
-        /// <summary
-        /// Called when [URL text box click].
-        /// </summary>
-        /// <param name="sender">The sender.</param>
-        /// <param name="e">The <see cref="System.Windows.Input.MouseEventArgs"/>
-        /// instance containing the event data.</param>
-        private protected void OnMouseMove( object sender, MouseEventArgs e )
-        {
-            try
-            {
-                var _psn = e.GetPosition( this );
-                var _searchDialog = new SearchDialog
-                {
-                    Owner = this,
-                    Left = _psn.X - 100,
-                    Top = _psn.Y + 50
-                };
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
-            }
-        }
-
-        /// <summary>
-        /// Called when [closing].
-        /// </summary>
-        /// <param name="sender">The sender.</param>
-        /// <param name="e">The <see cref="CancelEventArgs"/>
-        /// instance containing the event data.</param>
-        private void OnClosing( object sender, CancelEventArgs e )
-        {
-            try
-            {
-                _timer?.Dispose( );
-                _statusUpdate += null;
-                SfSkinManager.Dispose( this );
-                App.ActiveWindows.Clear( );
-                Environment.Exit( 0 );
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
-            }
-        }
-
-        /// <summary>
-        /// Called when [close button click].
-        /// </summary>
-        /// <param name="sender">The sender.</param>
-        /// <param name="e">The <see cref="RoutedEventArgs"/>
-        /// instance containing the event data.</param>
-        private void OnCloseButtonClick( object sender, RoutedEventArgs e )
-        {
-            try
-            {
-                Close( );
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
-            }
-        }
-
-        /// <summary>
-        /// Called when [calculator menu option click].
-        /// </summary>
-        /// <param name="sender">The sender.</param>
-        /// <param name="e">The <see cref="RoutedEventArgs"/>
-        /// instance containing the event data.</param>
-        private void OnCalculatorMenuOptionClick( object sender, RoutedEventArgs e )
-        {
-            try
-            {
-                Busy( );
-                var _calculator = new CalculatorWindow
-                {
-                    WindowStartupLocation = WindowStartupLocation.CenterScreen,
-                    Owner = this,
-                    Topmost = true
-                };
-
-                Chill( );
-                _calculator.Show( );
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
-            }
-        }
-
-        /// <summary>
-        /// Called when [file menu option click].
-        /// </summary>
-        /// <param name="sender">The sender.</param>
-        /// <param name="e">The <see cref="RoutedEventArgs"/>
-        /// instance containing the event data.</param>
-        private void OnFileMenuOptionClick( object sender, RoutedEventArgs e )
-        {
-            try
-            {
-                OpenGptFileDialog( );
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
-            }
-        }
-
-        /// <summary>
-        /// Called when [control panel option click].
-        /// </summary>
-        /// <param name="sender">The sender.</param>
-        /// <param name="e">The <see cref="RoutedEventArgs"/>
-        /// instance containing the event data.</param>
-        private void OnControlPanelOptionClick( object sender, RoutedEventArgs e )
-        {
-            try
-            {
-                WinMinion.LaunchControlPanel( );
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
-            }
-        }
-
-        /// <summary>
-        /// Called when [file upload button click].
-        /// </summary>
-        /// <param name="sender">The sender.</param>
-        /// <param name="e">The <see cref="RoutedEventArgs"/>
-        /// instance containing the event data.</param>
-        private void OnFileApiButtonClick( object sender, RoutedEventArgs e )
-        {
-            try
-            {
-                OpenGptFileDialog( );
             }
             catch( Exception ex )
             {
@@ -4161,110 +5008,12 @@ namespace Bubba
         }
 
         /// <summary>
-        /// Called when [close option click].
+        /// Called when [tab closed].
         /// </summary>
         /// <param name="sender">The sender.</param>
         /// <param name="e">The <see cref="RoutedEventArgs"/>
         /// instance containing the event data.</param>
-        private void OnCloseOptionClick( object sender, RoutedEventArgs e )
-        {
-            try
-            {
-                Close( );
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
-            }
-        }
-
-        /// <summary>
-        /// Called when [chrome option click].
-        /// </summary>
-        /// <param name="sender">The sender.</param>
-        /// <param name="e">The <see cref="RoutedEventArgs"/>
-        /// instance containing the event data.</param>
-        private void OnChromeOptionClick( object sender, RoutedEventArgs e )
-        {
-            try
-            {
-                Busy( );
-                WebMinion.RunChrome( );
-                Chill( );
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
-            }
-        }
-
-        /// <summary>
-        /// Called when [edge option click].
-        /// </summary>
-        /// <param name="sender">The sender.</param>
-        /// <param name="e">The <see cref="RoutedEventArgs"/>
-        /// instance containing the event data.</param>
-        private void OnEdgeOptionClick( object sender, RoutedEventArgs e )
-        {
-            try
-            {
-                Busy( );
-                WebMinion.RunEdge( );
-                Chill( );
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
-            }
-        }
-
-        /// <summary>
-        /// Called when [firefox option click].
-        /// </summary>
-        /// <param name="sender">The sender.</param>
-        /// <param name="e">The <see cref="RoutedEventArgs"/>
-        /// instance containing the event data.</param>
-        private void OnFirefoxOptionClick( object sender, RoutedEventArgs e )
-        {
-            try
-            {
-                Busy( );
-                WebMinion.RunFirefox( );
-                Chill( );
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
-            }
-        }
-
-        /// <summary>
-        /// Called when [system prompt button click].
-        /// </summary>
-        /// <param name="sender">The sender.</param>
-        /// <param name="e">The <see cref="RoutedEventArgs"/>
-        /// instance containing the event data.</param>
-        private void OnPromptOptionClick( object sender, RoutedEventArgs e )
-        {
-            try
-            {
-                Busy( );
-                OpenSystemDialog( );
-                Chill( );
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
-            }
-        }
-
-        /// <summary>
-        /// Called when [first button click].
-        /// </summary>
-        /// <param name="sender">The sender.</param>
-        /// <param name="e">The <see cref="RoutedEventArgs"/>
-        /// instance containing the event data.</param>
-        private void OnFirstButtonClick( object sender, RoutedEventArgs e )
+        private void OnTabClosed( object sender, RoutedEventArgs e )
         {
             try
             {
@@ -4278,168 +5027,12 @@ namespace Bubba
         }
 
         /// <summary>
-        /// Called when [previous button click].
+        /// Called when [tab changed].
         /// </summary>
         /// <param name="sender">The sender.</param>
         /// <param name="e">The <see cref="RoutedEventArgs"/>
         /// instance containing the event data.</param>
-        private void OnPreviousButtonClick( object sender, RoutedEventArgs e )
-        {
-            try
-            {
-                var _message = "NOT YET IMPLEMENTED!";
-                SendNotification( _message );
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
-            }
-        }
-
-        /// <summary>
-        /// Called when [next button click].
-        /// </summary>
-        /// 
-        /// <param name="sender">The sender.</param>
-        /// <param name="e">The <see cref="RoutedEventArgs"/>
-        /// instance containing the event data.</param>
-        private void OnNextButtonClick( object sender, RoutedEventArgs e )
-        {
-            try
-            {
-                var _message = "NOT YET IMPLEMENTED!";
-                SendNotification( _message );
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
-            }
-        }
-
-        /// <summary>
-        /// Called when [last button click].
-        /// </summary>
-        /// <param name="sender">The sender.</param>
-        /// <param name="e">The <see cref="RoutedEventArgs"/>
-        /// instance containing the event data.</param>
-        private void OnLastButtonClick( object sender, RoutedEventArgs e )
-        {
-            try
-            {
-                var _message = "NOT YET IMPLEMENTED!";
-                SendNotification( _message );
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
-            }
-        }
-
-        /// <summary>
-        /// Called when [edit button click].
-        /// </summary>
-        /// <param name="sender">The sender.</param>
-        /// <param name="e">The <see cref="RoutedEventArgs"/>
-        /// instance containing the event data.</param>
-        private void OnEditButtonClick( object sender, RoutedEventArgs e )
-        {
-            try
-            {
-                var _message = "NOT YET IMPLEMENTED!";
-                SendNotification( _message );
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
-            }
-        }
-
-        /// <summary>
-        /// Called when [refresh button click].
-        /// </summary>
-        /// <param name="sender">The sender.</param>
-        /// <param name="e">The <see cref="EventArgs"/>
-        /// instance containing the event data.</param>
-        private void OnRefreshButtonClick( object sender, EventArgs e )
-        {
-            try
-            {
-                ClearChatControls( );
-                ClearParameters( );
-                ClearLabels( );
-                PopulateModelsAsync( );
-                PopulateInstalledVoices( );
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
-            }
-        }
-
-        /// <summary>
-        /// Called when [lookup button click].
-        /// </summary>
-        /// <param name="sender">The sender.</param>
-        /// <param name="e">The <see cref="RoutedEventArgs"/>
-        /// instance containing the event data.</param>
-        private void OnLookupButtonClick( object sender, RoutedEventArgs e )
-        {
-            try
-            {
-                var _message = "NOT YET IMPLEMENTED!";
-                SendNotification( _message );
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
-            }
-        }
-
-        /// <summary>
-        /// Called when [delete button click].
-        /// </summary>
-        /// <param name="sender">The sender.</param>
-        /// <param name="e">The <see cref="RoutedEventArgs"/>
-        /// instance containing the event data.</param>
-        private void OnDeleteButtonClick( object sender, RoutedEventArgs e )
-        {
-            try
-            {
-                var _message = "NOT YET IMPLEMENTED!";
-                SendNotification( _message );
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
-            }
-        }
-
-        /// <summary>
-        /// Called when [save button click].
-        /// </summary>
-        /// <param name="sender">The sender.</param>
-        /// <param name="e">The <see cref="RoutedEventArgs"/>
-        /// instance containing the event data.</param>
-        private void OnSaveButtonClick( object sender, RoutedEventArgs e )
-        {
-            try
-            {
-                var _message = "NOT YET IMPLEMENTED!";
-                SendNotification( _message );
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
-            }
-        }
-
-        /// <summary>
-        /// Called when [menu button click].
-        /// </summary>
-        /// <param name="sender">The sender.</param>
-        /// <param name="e">The <see cref="RoutedEventArgs"/>
-        /// instance containing the event data.</param>
-        private void OnMenuButtonClick( object sender, RoutedEventArgs e )
+        private void OnTabChanged( object sender, RoutedEventArgs e )
         {
             try
             {
@@ -4536,269 +5129,68 @@ namespace Bubba
         }
 
         /// <summary>
-        /// Called when [listen checked changed].
+        /// Called when [tab control index changed].
         /// </summary>
         /// <param name="sender">The sender.</param>
         /// <param name="e">The <see cref="RoutedEventArgs"/>
         /// instance containing the event data.</param>
-        private void OnListenCheckedChanged( object sender, RoutedEventArgs e )
-        {
-            if( ListenCheckBox.IsChecked == true )
-            {
-                InitializeSpeechEngine( );
-                var _msg = "The Speech Engine has been activated!";
-                SendNotification( _msg );
-            }
-            else
-            {
-                _engine.RecognizeAsyncStop( );
-            }
-        }
-
-        /// <summary>
-        /// Called when [mute checked box changed].
-        /// </summary>
-        /// <param name="sender">The sender.</param>
-        /// <param name="e">The <see cref="RoutedEventArgs"/>
-        /// instance containing the event data.</param>
-        private void OnMuteCheckedBoxChanged( object sender, RoutedEventArgs e )
-        {
-            if( MuteCheckBox.IsChecked == true )
-            {
-                var _msg = "The GPT Audio Client has been activated!";
-                SendNotification( _msg );
-            }
-        }
-
-        /// <summary>
-        /// Called when [speech recognized].
-        /// </summary>
-        /// <param name="sender">The sender.</param>
-        /// <param name="e">The <see cref="SpeechRecognizedEventArgs"/>
-        /// instance containing the event data.</param>
-        private void OnSpeechRecognized( object sender, SpeechRecognizedEventArgs e )
-        {
-            // Reset Hypothesized text
-            if( Editor.Text != "" )
-            {
-                Editor.Text += "\n";
-            }
-
-            var _text = e.Result.Text;
-            Editor.Text += _text;
-        }
-
-        /// <summary>
-        /// Called when [speech hypothesized].
-        /// </summary>
-        /// <param name="sender">The sender.</param>
-        /// <param name="e">The <see cref="SpeechHypothesizedEventArgs"/>
-        /// instance containing the event data.</param>
-        private void OnSpeechHypothesized( object sender, SpeechHypothesizedEventArgs e )
-        {
-            var _text = e.Result.Text;
-        }
-
-        /// <summary>
-        /// Called when [send button click].
-        /// </summary>
-        /// <param name="sender">The sender.</param>
-        /// <param name="e">The <see cref="RoutedEventArgs"/>
-        /// instance containing the event data.</param>
-        private void OnSendButtonClick( object sender, RoutedEventArgs e )
-        {
-            {
-                var _userInput = Editor.Text;
-                if( string.IsNullOrEmpty( _userInput ) )
-                {
-                    MessageBox.Show( "Type in your question!" );
-                    Editor.Focus( );
-                    return;
-                }
-
-                if( Editor.Text != "" )
-                {
-                    Editor.AppendText( "\r\n" );
-                }
-
-                Editor.AppendText( "User: " + _userInput + "\r\n" );
-                Editor.Text = "";
-                try
-                {
-                    var _answer = SendHttpMessage( _userInput ) + "";
-                    Editor.AppendText( "Bubba: " + _answer.Replace( "\n", "\r\n" ).Trim( ) );
-                    TextToSpeech( _answer );
-                }
-                catch( Exception ex )
-                {
-                    Editor.AppendText( "Error: " + ex.Message );
-                }
-            }
-        }
-
-        /// <summary>
-        /// Called when [clear button click].
-        /// </summary>
-        /// <param name="sender">The sender.</param>
-        /// <param name="e">The <see cref="RoutedEventArgs"/>
-        /// instance containing the event data.</param>
-        private void OnClearButtonClick( object sender, RoutedEventArgs e )
+        private void OnTabControlSelectionChanged( object sender, SelectionChangedEventArgs e )
         {
             try
             {
-                ClearChatControls( );
-                ClearParameters( );
-                ClearLabels( );
-                PopulateModelsAsync( );
-                PopulateInstalledVoices( );
-                PopulateImageSizes( );
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
-            }
-        }
-
-        /// <summary>
-        /// Called when [model ComboBox selection changed].
-        /// </summary>
-        /// <param name="sender">The sender.</param>
-        /// <param name="e">The <see cref="RoutedEventArgs"/>
-        /// instance containing the event data.</param>
-        private void OnModelDropDownSelectionChanged( object sender, RoutedEventArgs e )
-        {
-            try
-            {
-                if( ModelDropDown.SelectedIndex != -1 )
+                if( sender is MetroTabControl tabControl )
                 {
-                    _model = ( (MetroDropDownItem)ModelDropDown.SelectedItem )?.Tag.ToString( );
-                    PopulateImageSizes( );
-                    var _message = "Model = " + _model;
-                    SendNotification( _message );
-                }
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
-            }
-        }
-
-        /// <summary>
-        /// Called when [select
-        /// ed document changed].
-        /// </summary>
-        /// <param name="sender">The sender.</param>
-        /// <param name="e">The <see cref="RoutedEventArgs"/>
-        /// instance containing the event data.</param>
-        private void OnDocumentListBoxSelectionChanged( object sender, RoutedEventArgs e )
-        {
-            try
-            {
-                if( DocumentListBox.SelectedIndex != -1 )
-                {
-                    Editor.ClearAllText( );
-                    _selectedDocument = ( ( MetroListBoxItem )DocumentListBox.SelectedItem )
-                        ?.Tag.ToString( );
-                    
-                    Editor.LoadFile( _selectedDocument );
-                    TabControl.SelectedIndex = 3;
-                    var _message = "Document = " + _selectedDocument;
-                    SendNotification( _message );
-                }
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
-            }
-        }
-
-        /// <summary>
-        /// Called when [document selection changed].
-        /// </summary>
-        /// <param name="sender">The sender.</param>
-        /// <param name="e">The <see cref="RoutedEventArgs"/>
-        /// instance containing the event data.</param>
-        private void OnLanguageDropDownSelectionChanged( object sender, RoutedEventArgs e )
-        {
-            try
-            {
-                    _language = ( ( MetroDropDownItem )LanguageDropDown.SelectedItem ).ToString( );
-                    PopulateDocuments( );
-                    var _message = "Language = " + _language;
-                    SendNotification( _message );
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
-            }
-        }
-
-        /// <summary>
-        /// Called when [task selection changed].
-        /// </summary>
-        /// <param name="sender">The sender.</param>
-        /// <param name="e">The <see cref="RoutedEventArgs"/>
-        /// instance containing the event data.</param>
-        private void OnApiRequestDropDownSelectionChanged( object sender, RoutedEventArgs e )
-        {
-            try
-            {
-                if( GenerationListBox.SelectedIndex != -1 )
-                {
-                    var _item = ( ( MetroDropDownItem )GenerationListBox.SelectedItem )
-                        ?.Tag.ToString( );
-
-                    _requestType = ( API )Enum.Parse( typeof( API ), _item?.Replace( " ", "" ) );
-                    SetRequestType( );
-
-                    var _message = "Request Type = " + _requestType;
-                    SendNotification( _message );
-                }
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
-            }
-        }
-
-        /// <summary>
-        /// Called when [text box input changed].
-        /// </summary>
-        /// <param name="sender">The sender.</param>
-        /// <param name="e">The <see cref="RoutedEventArgs"/>
-        /// instance containing the event data.</param>
-        private protected void OnParameterTextBoxChanged( object sender, RoutedEventArgs e )
-        {
-            try
-            {
-                if( sender is MetroTextBox _textBox )
-                {
-                    var _tag = _textBox?.Tag.ToString( );
-                    if( !string.IsNullOrEmpty( _tag ) )
+                    var _index = tabControl.SelectedItem.Tag.ToString( );
+                    switch( _index )
                     {
-                        switch( _tag )
+                        case "Chat":
                         {
-                            case "FrequencyPenalty":
-                            case "PresencePenalty":
-                            {
-                                var _temp = _textBox.Text;
-                                var _value = double.Parse( _temp );
-                                _textBox.Text = _value.ToString( "N2" );
-                                break;
-                            }
-                            case "TopLogProbs":
-                            case "Temperature":
-                            case "TopPercent":
-                            {
-                                var _temp = _textBox.Text;
-                                var _top = double.TryParse( _temp, out var _value );
-                                if( _top )
-                                {
-                                    _textBox.Text = _value.ToString( "P2" );
-                                }
-
-                                break;
-                            }
+                            ActivateChatTab( );
+                            break;
+                        }
+                        case "GPT":
+                        {
+                            ActivateParameterTab( );
+                            break;
+                        }
+                        case "Web":
+                        {
+                            ActivateBrowserTab( );
+                            break;
+                        }
+                        case "Editor":
+                        {
+                            ActivateEditorTab( );
+                            break;
+                        }
+                        case "Image":
+                        {
+                            break;
+                        }
+                        case "Data":
+                        {
+                            ActivateDataTab( );
+                            break;
+                        }
+                        case "Chart":
+                        {
+                            ActivateChartTab( );
+                            break;
+                        }
+                        case "Graph":
+                        {
+                            ActivateGraphTab( );
+                            break;
+                        }
+                        case "Busy":
+                        {
+                            ActivateBusyTab( );
+                            break;
+                        }
+                        default:
+                        {
+                            ActivateChatTab( );
+                            break;
                         }
                     }
                 }
@@ -4810,21 +5202,22 @@ namespace Bubba
         }
 
         /// <summary>
-        /// Called when [selected image size changed].
+        /// Called when [URL text box clicked].
         /// </summary>
         /// <param name="sender">The sender.</param>
-        /// <param name="e">The <see cref="RoutedEventArgs"/>
+        /// <param name="e">The <see cref="MouseEventArgs" />
         /// instance containing the event data.</param>
-        private protected void OnImageFormatSelectionChanged( object sender, RoutedEventArgs e )
+        private protected void OnUrlTextBoxClick( object sender, MouseEventArgs e )
         {
             try
             {
-                if( ImageFormatDropDown.SelectedIndex != -1 )
-                {
-                    var _image = ImageFormatDropDown.SelectedValue.ToString( );
-                    var _message = "Image Format = " + _imageFormat;
-                    SendNotification( _message );
-                }
+                var _psn = e.GetPosition( this );
+                var _searchDialog = new SearchDialog( );
+                _searchDialog.Owner = this;
+                _searchDialog.Left = _psn.X - 100;
+                _searchDialog.Top = _psn.Y + 100;
+                _searchDialog.Show( );
+                _searchDialog.SearchPanelTextBox.Focus( );
             }
             catch( Exception ex )
             {
@@ -4833,54 +5226,17 @@ namespace Bubba
         }
 
         /// <summary>
-        /// Called when [go button clicked].
+        /// Called when [voice selection changed].
         /// </summary>
         /// <param name="sender">The sender.</param>
         /// <param name="e">The <see cref="RoutedEventArgs"/>
         /// instance containing the event data.</param>
-        private protected void OnGoButtonClicked( object sender, RoutedEventArgs e )
+        private protected void OnVoiceSelectionChanged( object sender, RoutedEventArgs e )
         {
             try
             {
-                var _item = "";
-                _keyWords = ToolStripTextBox.InputText;
-                if( !string.IsNullOrEmpty( _keyWords ) )
-                {
-                    var _message = "The search keywords are empty!";
-                    SendNotification( _message );
-                }
-                else
-                {
-                    Busy( );
-                    var _googleSearch = new GoogleSearch( _keyWords );
-                    var _results = _googleSearch.GetResults( );
-                    foreach( var _result in _results )
-                    {
-                        _item += _result;
-                    }
-
-                    Editor.Text = _item;
-                    Chill( );
-                }
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
-            }
-        }
-
-        /// <summary>
-        /// Called when [response format selection changed].
-        /// </summary>
-        /// <param name="sender">The sender.</param>
-        /// <param name="e">The <see cref="RoutedEventArgs"/>
-        /// instance containing the event data.</param>
-        private protected void OnResponseFormatSelectionChanged( object sender, RoutedEventArgs e )
-        {
-            try
-            {
-                var _image = ResponseFormatDropDown.SelectedValue.ToString( );
-                var _message = "ResponseFormat = " + _responseFormat;
+                _voice = VoicesDropDown.SelectedValue.ToString( );
+                var _message = "Voice = " + _voice;
                 SendNotification( _message );
             }
             catch( Exception ex )
@@ -4901,26 +5257,6 @@ namespace Bubba
             {
                 _imageQuality = ImageQualityDropDown.SelectedValue.ToString( );
                 var _message = "ImageQuality = " + _imageQuality;
-                SendNotification( _message );
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
-            }
-        }
-
-        /// <summary>
-        /// Called when [audio format selection changed].
-        /// </summary>
-        /// <param name="sender">The sender.</param>
-        /// <param name="e">The <see cref="RoutedEventArgs"/>
-        /// instance containing the event data.</param>
-        private protected void OnAudioFormatSelectionChanged( object sender, RoutedEventArgs e )
-        {
-            try
-            {
-                _audioFormat = AudioFormatDropDown.SelectedValue.ToString( );
-                var _message = "AudioFormat = " + _audioFormat;
                 SendNotification( _message );
             }
             catch( Exception ex )
@@ -4990,18 +5326,21 @@ namespace Bubba
         }
 
         /// <summary>
-        /// Called when [reasoning effort selection changed].
+        /// Called when [selected image size changed].
         /// </summary>
         /// <param name="sender">The sender.</param>
         /// <param name="e">The <see cref="RoutedEventArgs"/>
         /// instance containing the event data.</param>
-        private protected void OnEffortSelectionChanged( object sender, RoutedEventArgs e )
+        private protected void OnImageFormatSelectionChanged( object sender, RoutedEventArgs e )
         {
             try
             {
-                _reasoningEffort = EffortDropDown.SelectedValue.ToString( );
-                var _message = "ReasoningEffort = " + _reasoningEffort;
-                SendNotification( _message );
+                if( ImageFormatDropDown.SelectedIndex != -1 )
+                {
+                    _imageFormat = ImageFormatDropDown.SelectedItem.ToString( );
+                    var _message = "Image Format = " + _imageFormat;
+                    SendNotification( _message );
+                }
             }
             catch( Exception ex )
             {
@@ -5010,18 +5349,21 @@ namespace Bubba
         }
 
         /// <summary>
-        /// Called when [voice selection changed].
+        /// Called when [image style selection changed].
         /// </summary>
         /// <param name="sender">The sender.</param>
         /// <param name="e">The <see cref="RoutedEventArgs"/>
         /// instance containing the event data.</param>
-        private protected void OnVoiceSelectionChanged( object sender, RoutedEventArgs e )
+        private protected void OnImageStyleSelectionChanged( object sender, RoutedEventArgs e )
         {
             try
             {
-                _voice = VoicesDropDown.SelectedValue.ToString( );
-                var _message = "Voice = " + _voice;
-                SendNotification( _message );
+                if( ImageStyleDropDown.SelectedIndex != -1 )
+                {
+                    _imageStyle = ImageStyleDropDown.SelectedItem.ToString( );
+                    var _message = "Image Style = " + _imageFormat;
+                    SendNotification( _message );
+                }
             }
             catch( Exception ex )
             {
@@ -5037,22 +5379,24 @@ namespace Bubba
         /// instance containing the event data.</param>
         private protected void OnWebBrowserLoadingStateChanged( object sender, LoadingStateChangedEventArgs e )
         {
-            try
+            if( sender == _currentBrowser )
             {
-                Dispatcher.BeginInvoke( ( ) =>
+                EnableBackButton( e.CanGoBack );
+                EnableForwardButton( e.CanGoForward );
+                if( e.IsLoading )
                 {
-                    // Enable or disable navigation buttons based on loading state
-                    UrlPanelBackButton.IsEnabled = e.CanGoBack;
-                    UrlPanelForwardButton.IsEnabled = e.CanGoForward;
-                    if( !e.IsLoading )
+                    // set title
+                    SetTitleText( "Loading..." );
+                }
+                else
+                {
+                    // after loaded / stopped
+                    InvokeIf( ( ) =>
                     {
-                        StatusLabel.Content = "Page loaded";
-                    }
-                } );
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
+                        ToolStripRefreshButton.Visibility = Visibility.Visible;
+                        UrlPanelCancelButton.Visibility = Visibility.Hidden;
+                    } );
+                }
             }
         }
 
@@ -5130,82 +5474,10 @@ namespace Bubba
             } );
         }
 
-        /// <summary>
-        /// Called when [tab control index changed].
-        /// </summary>
-        /// <param name="sender">The sender.</param>
-        /// <param name="e">The <see cref="RoutedEventArgs"/>
-        /// instance containing the event data.</param>
-        private void OnTabControlSelectionChanged( object sender, SelectionChangedEventArgs e )
-        {
-            try
-            {
-                if( sender is MetroTabControl tabControl )
-                {
-                    var _index = tabControl.SelectedItem.Tag.ToString(  );
-                    switch( _index )
-                    {
-                        case "Chat":
-                        {
-                            ActivateChatTab( );
-                            break;
-                        }
-                        case "GPT":
-                        {
-                            ActivateParameterTab( );
-                            break;
-                        }
-                        case "Web":
-                        {
-                            ActivateBrowserTab( );
-                            break;
-                        }
-                        case "Editor":
-                        {
-                            ActivateEditorTab( );
-                            break;
-                        }
-                        case "Image":
-                        {
-                            break;
-                        }
-                        case "Data":
-                        {
-                            ActivateDataTab( );
-                            break;
-                        }
-                        case "Chart":
-                        {
-                            ActivateChartTab( );
-                            break;
-                        }
-                        case "Graph":
-                        {
-                            ActivateGraphTab( );
-                            break;
-                        }
-                        case "Busy":
-                        {
-                            ActivateBusyTab( );
-                            break;
-                        }
-                        default:
-                        {
-                            ActivateChatTab( );
-                            break;
-                        }
-                    }
-                }
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
-            }
-        }
-
         /// <inheritdoc />
         /// <summary>
-        /// Releases unmanaged and - optionally - managed resources.
+        /// Releases unmanaged and
+        /// - optionally - managed resources.
         /// </summary>
         public void Dispose( )
         {

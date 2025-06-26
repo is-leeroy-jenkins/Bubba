@@ -3,18 +3,22 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:Input="clr-namespace:Syncfusion.Windows.Controls.Input;assembly=Syncfusion.SfInput.WPF"
     xmlns:Microsoft_Windows_Themes="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Aero"
+    xmlns:b="clr-namespace:Bubba"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:themelocal="clr-namespace:Syncfusion.Themes.FluentDark.WPF"
-    xmlns:sfskin="clr-namespace:Syncfusion.SfSkinManager;assembly=Syncfusion.SfSkinManager.WPF"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:sfskin="clr-namespace:Syncfusion.SfSkinManager;assembly=Syncfusion.SfSkinManager.WPF"
     xmlns:shared_converters="clr-namespace:Syncfusion.Windows.Converters;assembly=Syncfusion.SfInput.WPF"
     xmlns:sys="clr-namespace:System;assembly=mscorlib"
-    mc:Ignorable="d"
-    xmlns:b="clr-namespace:Bubba">
+    xmlns:themelocal="clr-namespace:Syncfusion.Themes.FluentDark.WPF"
+    mc:Ignorable="d">
 
     <ResourceDictionary.MergedDictionaries>
-        <sfskin:ResourceDictionaryProvider DictionaryName="Common" ThemeName="FluentDark"/>
-        <sfskin:ResourceDictionaryProvider DictionaryName="Brushes" ThemeName="FluentDark"/>
+        <sfskin:ResourceDictionaryProvider
+            DictionaryName="Common"
+            ThemeName="FluentDark" />
+        <sfskin:ResourceDictionaryProvider
+            DictionaryName="Brushes"
+            ThemeName="FluentDark" />
         <ResourceDictionary Source="/Syncfusion.Themes.FluentDark.WPF;component/MSControl/GlyphDropdownExpander.xaml" />
         <ResourceDictionary Source="/Syncfusion.Themes.FluentDark.WPF;component/MSControl/GlyphEditableDropdownExpander.xaml" />
         <ResourceDictionary Source="/Syncfusion.Themes.FluentDark.WPF;component/MSControl/GlyphButton.xaml" />
@@ -39,7 +43,9 @@
     <Thickness x:Key="TokenTextBlockPadding">0,1,0,0</Thickness>
     <Thickness x:Key="WrapPanelMarginFluent">1,0,0,0</Thickness>
 
-    <ControlTemplate x:Key="SyncfusionSfTextBoxExtDefaultControlTemplate" TargetType="{x:Type Input:SfTextBoxExt}">
+    <ControlTemplate
+        x:Key="SyncfusionSfTextBoxExtDefaultControlTemplate"
+        TargetType="{x:Type Input:SfTextBoxExt}">
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
@@ -89,8 +95,6 @@
             <Button
                 Name="deleteButton"
                 Grid.Column="1"
-                
-                
                 Margin="1"
                 Padding="5,0,5,0"
                 Background="Transparent"
@@ -114,13 +118,12 @@
                 Name="toggleButton"
                 Grid.Column="2"
                 Width="18"
-                
                 HorizontalAlignment="Right"
                 HorizontalContentAlignment="Center"
                 IsChecked="{Binding Path=IsSuggestionOpen, Mode=TwoWay, RelativeSource={RelativeSource AncestorType={x:Type Input:SfTextBoxExt}}}"
                 IsTabStop="False"
                 Style="{StaticResource WPFGlyphEditableDropdownExpanderStyle}"
-                Visibility="{Binding ShowDropDownButton, Converter={StaticResource BooleanVisibilityConverter}, RelativeSource={RelativeSource Mode=TemplatedParent}}" >
+                Visibility="{Binding ShowDropDownButton, Converter={StaticResource BooleanVisibilityConverter}, RelativeSource={RelativeSource Mode=TemplatedParent}}">
                 <ToggleButton.Padding>
                     <Thickness>0,0,0,2</Thickness>
                 </ToggleButton.Padding>
@@ -134,7 +137,7 @@
                     x:Name="DropDownBorder"
                     BorderBrush="{StaticResource BorderAlt}"
                     BorderThickness="{StaticResource FluentDark.BorderThickness1}"
-                    Effect="{StaticResource Default.ShadowDepth3}" >
+                    Effect="{StaticResource Default.ShadowDepth3}">
                     <Border.CornerRadius>
                         <CornerRadius>4</CornerRadius>
                     </Border.CornerRadius>
@@ -155,7 +158,7 @@
                             </Input:SuggestionBox.Padding>
                             <Input:SuggestionBox.Resources>
                                 <Style TargetType="Border">
-                                    <Setter Property="CornerRadius" Value="{StaticResource FluentDark.CornerRadius4}"/>
+                                    <Setter Property="CornerRadius" Value="{StaticResource FluentDark.CornerRadius4}" />
                                 </Style>
                             </Input:SuggestionBox.Resources>
                         </Input:SuggestionBox>
@@ -196,7 +199,9 @@
         </ControlTemplate.Triggers>
     </ControlTemplate>
 
-    <ControlTemplate x:Key="SyncfusionSfTextBoxExtTokenControlTemplate" TargetType="{x:Type Input:SfTextBoxExt}">
+    <ControlTemplate
+        x:Key="SyncfusionSfTextBoxExtTokenControlTemplate"
+        TargetType="{x:Type Input:SfTextBoxExt}">
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
@@ -213,15 +218,20 @@
                 CornerRadius="{StaticResource FluentDark.CornerRadius2}"
                 SnapsToDevicePixels="true">
                 <Grid Margin="{TemplateBinding Padding}">
-                    <ScrollViewer x:Name="MultiPanelScrollViewer"  HorizontalAlignment="Left" Foreground="{TemplateBinding Foreground}">
-                        <WrapPanel 
+                    <ScrollViewer
+                        x:Name="MultiPanelScrollViewer"
+                        HorizontalAlignment="Left"
+                        Foreground="{TemplateBinding Foreground}">
+                        <WrapPanel
                             x:Name="Multi_Panel"
                             MinHeight="20"
                             VerticalAlignment="Center"
                             Orientation="Horizontal">
                             <Grid>
                                 <Grid.RowDefinitions>
-                                    <RowDefinition Height="*" MinHeight="20"/>
+                                    <RowDefinition
+                                        Height="*"
+                                        MinHeight="20" />
                                 </Grid.RowDefinitions>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="Auto" />
@@ -231,13 +241,13 @@
 
                                 <ScrollViewer
                                     x:Name="PART_ContentHost"
-                                    Grid.Row="0" 
-                                    Background="Transparent"
-                                    Foreground="{TemplateBinding Foreground}"
-                                    Grid.Column="1" 
+                                    Grid.Row="0"
+                                    Grid.Column="1"
                                     Margin="{StaticResource TextMargin}"
                                     VerticalAlignment="Center"
                                     VerticalContentAlignment="Center"
+                                    Background="Transparent"
+                                    Foreground="{TemplateBinding Foreground}"
                                     SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
 
                                 <ContentControl
@@ -266,38 +276,39 @@
                     </ScrollViewer>
                 </Grid>
             </Border>
-            <StackPanel Grid.Column="1" Orientation="Horizontal">
-                <Button Name="deleteButton" 
-                        
-                        
-                        Padding="5,0,5,0" 
-                        Margin="1"
-                        Visibility="Collapsed" 
-                        Background="Transparent" 
-                        BorderBrush="Transparent"
-                        Style="{StaticResource WPFGlyphButtonStyle}"
-                        BorderThickness="0"
-                        IsTabStop="False">
-                    <Path x:Name="ClearButtonContent"
+            <StackPanel
+                Grid.Column="1"
+                Orientation="Horizontal">
+                <Button
+                    Name="deleteButton"
+                    Margin="1"
+                    Padding="5,0,5,0"
+                    Background="Transparent"
+                    BorderBrush="Transparent"
+                    BorderThickness="0"
+                    IsTabStop="False"
+                    Style="{StaticResource WPFGlyphButtonStyle}"
+                    Visibility="Collapsed">
+                    <Path
+                        x:Name="ClearButtonContent"
                         Width="8"
                         Height="8"
                         HorizontalAlignment="Center"
                         VerticalAlignment="Center"
                         Data="M1.4139423,0 L7.0029922,5.5845888 12.592018,0 14.006015,1.4149939 8.4180527,6.9985202 14.006,12.582007 12.591996,13.997001 7.0030056,8.4124444 1.4140122,13.997001 1.5026823E-05,12.582007 5.5879484,6.9985092 0,1.4149939 z"
-                        Fill="{Binding Path=Foreground,RelativeSource={RelativeSource AncestorType={x:Type Button}}}"
+                        Fill="{Binding Path=Foreground, RelativeSource={RelativeSource AncestorType={x:Type Button}}}"
                         Stretch="Fill"
                         UseLayoutRounding="True" />
                 </Button>
                 <ToggleButton
                     Name="toggleButton"
                     Width="18"
-                    
                     HorizontalAlignment="Right"
                     HorizontalContentAlignment="Center"
                     IsChecked="{Binding Path=IsSuggestionOpen, Mode=TwoWay, RelativeSource={RelativeSource AncestorType={x:Type Input:SfTextBoxExt}}}"
                     IsTabStop="False"
                     Style="{StaticResource WPFGlyphEditableDropdownExpanderStyle}"
-                Visibility="{Binding ShowDropDownButton, Converter={StaticResource BooleanVisibilityConverter}, RelativeSource={RelativeSource Mode=TemplatedParent}}">
+                    Visibility="{Binding ShowDropDownButton, Converter={StaticResource BooleanVisibilityConverter}, RelativeSource={RelativeSource Mode=TemplatedParent}}">
                     <ToggleButton.Padding>
                         <Thickness>0,0,0,2</Thickness>
                     </ToggleButton.Padding>
@@ -312,9 +323,9 @@
                     x:Name="DropDownBorder"
                     BorderBrush="{StaticResource BorderAlt}"
                     BorderThickness="{StaticResource FluentDark.BorderThickness1}"
-                    Effect="{StaticResource Default.ShadowDepth3}" >
+                    Effect="{StaticResource Default.ShadowDepth3}">
                     <Border.CornerRadius>
-                    	<CornerRadius>4</CornerRadius>
+                        <CornerRadius>4</CornerRadius>
                     </Border.CornerRadius>
                     <Border.Margin>
                         <Thickness>8,0,8,8</Thickness>
@@ -333,7 +344,7 @@
                             </Input:SuggestionBox.Padding>
                             <Input:SuggestionBox.Resources>
                                 <Style TargetType="Border">
-                                    <Setter Property="CornerRadius" Value="{StaticResource FluentDark.CornerRadius4}"/>
+                                    <Setter Property="CornerRadius" Value="{StaticResource FluentDark.CornerRadius4}" />
                                 </Style>
                             </Input:SuggestionBox.Resources>
                         </Input:SuggestionBox>
@@ -350,11 +361,11 @@
             </Trigger>
             <MultiTrigger>
                 <MultiTrigger.Conditions>
-                    <Condition  Property="sfskin:SfSkinManager.SizeMode" Value="Default" />
+                    <Condition Property="sfskin:SfSkinManager.SizeMode" Value="Default" />
                     <Condition Property="IsKeyboardFocused" Value="true" />
                 </MultiTrigger.Conditions>
                 <MultiTrigger.Setters>
-                    <Setter Property="Padding" Value="-2"/>
+                    <Setter Property="Padding" Value="-2" />
                 </MultiTrigger.Setters>
             </MultiTrigger>
             <Trigger Property="IsFocused" Value="True">
@@ -363,14 +374,14 @@
                 <Setter Property="Foreground" Value="{StaticResource ContentForeground}" />
                 <Setter Property="BorderThickness" Value="{StaticResource FluentDark.BorderThickness2}" />
                 <Setter TargetName="deleteButton" Property="Margin" Value="1" />
-                <Setter TargetName="toggleButton" Property="Margin" Value="0"/>
+                <Setter TargetName="toggleButton" Property="Margin" Value="0" />
             </Trigger>
             <Trigger Property="IsKeyboardFocused" Value="true">
                 <Setter TargetName="Border" Property="BorderBrush" Value="{StaticResource PrimaryBackground}" />
                 <Setter TargetName="Border" Property="BorderThickness" Value="{StaticResource FluentDark.BorderThickness2}" />
-                <Setter Property="Padding" Value="-2"  />
+                <Setter Property="Padding" Value="-2" />
             </Trigger>
-            
+
             <Trigger Property="IsSuggestionOpen" Value="True">
                 <Setter Property="BorderBrush" Value="{StaticResource PrimaryBackground}" />
                 <Setter Property="BorderThickness" Value="{StaticResource FluentDark.BorderThickness2}" />
@@ -389,10 +400,12 @@
         </ControlTemplate.Triggers>
     </ControlTemplate>
 
-    <Style x:Key="SyncfusionSfTextBoxExtStyle" TargetType="{x:Type Input:SfTextBoxExt}">
+    <Style
+        x:Key="SyncfusionSfTextBoxExtStyle"
+        TargetType="{x:Type Input:SfTextBoxExt}">
         <Setter Property="Foreground" Value="{StaticResource ContentForeground}" />
-        <Setter Property="SelectionBackgroundColor" Value="{StaticResource ContentBackgroundSelected}"/>
-        <Setter Property="HighlightedTextColor" Value="{StaticResource PrimaryColorForeground}"/>
+        <Setter Property="SelectionBackgroundColor" Value="{StaticResource ContentBackgroundSelected}" />
+        <Setter Property="HighlightedTextColor" Value="{StaticResource PrimaryColorForeground}" />
         <Setter Property="SelectionBrush" Value="{StaticResource PrimaryBackground}" />
         <Setter Property="FontSize" Value="{StaticResource FluentDark.BodyTextStyle}" />
         <Setter Property="FontFamily" Value="{StaticResource FluentDark.ThemeFontFamily}" />
@@ -422,24 +435,30 @@
         </Style.Triggers>
     </Style>
 
-    <Style BasedOn="{StaticResource SyncfusionSfTextBoxExtStyle}" TargetType="{x:Type Input:SfTextBoxExt}" />
+    <Style
+        BasedOn="{StaticResource SyncfusionSfTextBoxExtStyle}"
+        TargetType="{x:Type Input:SfTextBoxExt}" />
 
-    <Style x:Key="SyncfusionSfTextBoxExtTokenItemStyle" TargetType="Input:TokenItem">
+    <Style
+        x:Key="SyncfusionSfTextBoxExtTokenItemStyle"
+        TargetType="Input:TokenItem">
         <Setter Property="IsTabStop" Value="False" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="Input:TokenItem">
                     <Border
                         x:Name="TokenBorder"
-                        Height="18"      
+                        Height="18"
                         Background="{StaticResource ContentBackgroundAlt2}"
                         BorderBrush="{StaticResource ContentBackgroundAlt2}"
-                        CornerRadius="0"
-                        BorderThickness="0">
+                        BorderThickness="0"
+                        CornerRadius="0">
                         <Border.Margin>
                             <Thickness>4,2,2,2</Thickness>
                         </Border.Margin>
-                        <Grid x:Name="TokenGrid" Margin="2">
+                        <Grid
+                            x:Name="TokenGrid"
+                            Margin="2">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="auto" />
                                 <ColumnDefinition Width="*" />
@@ -455,34 +474,35 @@
                                 x:Name="TokenTextBlock"
                                 Grid.Column="1"
                                 Height="18"
+                                Margin="4,1,0,1"
                                 Padding="0"
                                 HorizontalAlignment="Center"
                                 VerticalAlignment="Center"
                                 Foreground="{StaticResource ContentForeground}"
-                                Margin="4 1 0 1"
                                 Text="{TemplateBinding Text}" />
                             <Button
                                 x:Name="TokenCloseButton"
-                                IsTabStop="False" 
                                 Grid.Column="2"
                                 Width="17"
                                 Height="18"
-                                Style="{StaticResource WPFGlyphButtonStyle}"
                                 Margin="{StaticResource TokenCloseButtonMarginFluent}"
                                 HorizontalAlignment="Center"
                                 VerticalAlignment="Center"
                                 HorizontalContentAlignment="Center"
                                 VerticalContentAlignment="Center"
-                                CommandParameter="{Binding RelativeSource={RelativeSource Mode=TemplatedParent}}" >
-                                <Path x:Name="TokenButtonContent"
+                                CommandParameter="{Binding RelativeSource={RelativeSource Mode=TemplatedParent}}"
+                                IsTabStop="False"
+                                Style="{StaticResource WPFGlyphButtonStyle}">
+                                <Path
+                                    x:Name="TokenButtonContent"
                                     Width="7"
                                     Height="7"
                                     HorizontalAlignment="Center"
                                     VerticalAlignment="Center"
                                     Data="M1.4139423,0 L7.0029922,5.5845888 12.592018,0 14.006015,1.4149939 8.4180527,6.9985202 14.006,12.582007 12.591996,13.997001 7.0030056,8.4124444 1.4140122,13.997001 1.5026823E-05,12.582007 5.5879484,6.9985092 0,1.4149939 z"
+                                    Fill="{Binding Path=Foreground, RelativeSource={RelativeSource AncestorType={x:Type Button}}}"
                                     Stretch="Fill"
-                                                    UseLayoutRounding="True"
-                                Fill="{Binding Path=Foreground,RelativeSource={RelativeSource AncestorType={x:Type Button}}}"/>
+                                    UseLayoutRounding="True" />
                             </Button>
                         </Grid>
                     </Border>
@@ -499,5 +519,7 @@
         </Setter>
     </Style>
 
-    <Style BasedOn="{StaticResource SyncfusionSfTextBoxExtTokenItemStyle}" TargetType="Input:TokenItem" />
+    <Style
+        BasedOn="{StaticResource SyncfusionSfTextBoxExtTokenItemStyle}"
+        TargetType="Input:TokenItem" />
 </ResourceDictionary>

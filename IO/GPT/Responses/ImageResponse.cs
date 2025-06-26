@@ -1,19 +1,19 @@
 ﻿// ******************************************************************************************
 //     Assembly:                Bubba
 //     Author:                  Terry D. Eppler
-//     Created:                 01-07-2025
+//     Created:                 06-26-2025
 // 
 //     Last Modified By:        Terry D. Eppler
-//     Last Modified On:        01-07-2025
+//     Last Modified On:        06-26-2025
 // ******************************************************************************************
 // <copyright file="ImageResponse.cs" company="Terry D. Eppler">
-//    Bubba is a small and simple windows (wpf) application for interacting with the OpenAI API
-//    that's developed in C-Sharp under the MIT license.C#.
+//     Badger is a budget execution & data analysis tool for EPA analysts
+//     based on WPF, Net 6, and written in C Sharp.
 // 
-//    Copyright ©  2020-2024 Terry D. Eppler
+//     Copyright �  2022 Terry D. Eppler
 // 
 //    Permission is hereby granted, free of charge, to any person obtaining a copy
-//    of this software and associated documentation files (the “Software”),
+//    of this software and associated documentation files (the �Software�),
 //    to deal in the Software without restriction,
 //    including without limitation the rights to use,
 //    copy, modify, merge, publish, distribute, sublicense,
@@ -24,7 +24,7 @@
 //    The above copyright notice and this permission notice shall be included in all
 //    copies or substantial portions of the Software.
 // 
-//    THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,
+//    THE SOFTWARE IS PROVIDED �AS IS�, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,
 //    INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
 //    FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT.
 //    IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
@@ -38,7 +38,6 @@
 //   ImageResponse.cs
 // </summary>
 // ******************************************************************************************
-
 namespace Bubba
 {
     using System;
@@ -89,7 +88,7 @@ namespace Bubba
         /// <see cref="T:Bubba.ImageResponse" /> class.
         /// </summary>
         /// <param name="request">The request.</param>
-        public ImageResponse( ImageRequest request )
+        public ImageResponse( ImageGenerationRequest request )
             : base( request )
         {
             _model = request.Model;
@@ -112,7 +111,7 @@ namespace Bubba
                 if( _resourceLocations != value )
                 {
                     _resourceLocations = value;
-                    OnPropertyChanged( nameof( ResourceLocations ) );
+                    OnPropertyChanged( nameof( ImageResponse.ResourceLocations ) );
                 }
             }
         }
@@ -134,7 +133,7 @@ namespace Bubba
                 if( _transcribedText != value )
                 {
                     _transcribedText = value;
-                    OnPropertyChanged( nameof( TranscribedText ) );
+                    OnPropertyChanged( nameof( ImageResponse.TranscribedText ) );
                 }
             }
         }
@@ -156,7 +155,7 @@ namespace Bubba
                 if( _rawResponse != value )
                 {
                     _rawResponse = value;
-                    OnPropertyChanged( nameof( RawResponse ) );
+                    OnPropertyChanged( nameof( ImageResponse.RawResponse ) );
                 }
             }
         }
@@ -168,7 +167,7 @@ namespace Bubba
         /// <value>
         /// The identifier.
         /// </value>
-        [JsonPropertyName("id")]
+        [ JsonPropertyName( "id" ) ]
         public override string Id
         {
             get
@@ -180,7 +179,7 @@ namespace Bubba
                 if( _id != value )
                 {
                     _id = value;
-                    OnPropertyChanged( nameof( Id ) );
+                    OnPropertyChanged( nameof( ImageResponse.Id ) );
                 }
             }
         }
@@ -192,7 +191,7 @@ namespace Bubba
         /// <value>
         /// The object.
         /// </value>
-        [JsonPropertyName("object")]
+        [ JsonPropertyName( "object" ) ]
         public override string Object
         {
             get
@@ -204,7 +203,7 @@ namespace Bubba
                 if( _object != value )
                 {
                     _object = value;
-                    OnPropertyChanged( nameof( Object ) );
+                    OnPropertyChanged( nameof( ImageResponse.Object ) );
                 }
             }
         }
@@ -216,7 +215,7 @@ namespace Bubba
         /// <value>
         /// The created.
         /// </value>
-        [JsonPropertyName("created")]
+        [ JsonPropertyName( "created" ) ]
         public override DateTime Created
         {
             get
@@ -228,7 +227,7 @@ namespace Bubba
                 if( _created != value )
                 {
                     _created = value;
-                    OnPropertyChanged( nameof( Created ) );
+                    OnPropertyChanged( nameof( ImageResponse.Created ) );
                 }
             }
         }
@@ -252,7 +251,7 @@ namespace Bubba
                 if( _model != value )
                 {
                     _model = value;
-                    OnPropertyChanged( nameof( Model ) );
+                    OnPropertyChanged( nameof( ImageResponse.Model ) );
                 }
             }
         }
@@ -275,7 +274,7 @@ namespace Bubba
                 if( _choices != value )
                 {
                     _choices = value;
-                    OnPropertyChanged( nameof( Choices ) );
+                    OnPropertyChanged( nameof( ImageResponse.Choices ) );
                 }
             }
         }
@@ -287,7 +286,7 @@ namespace Bubba
         /// <value>
         /// The usage.
         /// </value>
-        [JsonPropertyName("usage")]
+        [ JsonPropertyName( "usage" ) ]
         public override GptUsage Usage
         {
             get
@@ -299,7 +298,7 @@ namespace Bubba
                 if( _usage != value )
                 {
                     _usage = value;
-                    OnPropertyChanged( nameof( Usage ) );
+                    OnPropertyChanged( nameof( ImageResponse.Usage ) );
                 }
             }
         }
@@ -311,9 +310,20 @@ namespace Bubba
         /// <returns></returns>
         private string ExtractImage( string jsonResponse )
         {
-            using var _document = JsonDocument.Parse( jsonResponse );
-            return _document.RootElement.GetProperty( "choices" )[ 0 ].GetProperty( "text" )
-                .GetString( );
+            try
+            {
+                ThrowIf.Empty( jsonResponse, nameof( jsonResponse ) );
+                using var _document = JsonDocument.Parse( jsonResponse );
+                return _document.RootElement
+                    .GetProperty( "choices" )[ 0 ]
+                    .GetProperty( "text" )
+                    .GetString( );
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+                return string.Empty;
+            }
         }
 
         /// <summary>

@@ -80,6 +80,7 @@ namespace Bubba
     [ SuppressMessage( "ReSharper", "PreferConcreteValueOverDefault" ) ]
     [ SuppressMessage( "ReSharper", "PossibleUnintendedReferenceComparison" ) ]
     [ SuppressMessage( "ReSharper", "MergeSequentialChecks" ) ]
+    [ SuppressMessage( "ReSharper", "FieldCanBeMadeReadOnly.Global" ) ]
     public partial class WebBrowser : Window, IDisposable
     {
         /// <summary>
@@ -235,7 +236,7 @@ namespace Bubba
         /// <summary>
         /// The tab pages
         /// </summary>
-        private protected BrowserTabCollection TabPages;
+        private protected BrowserTabCollection _tabPages;
 
         /// <summary>
         /// The download strip
@@ -290,7 +291,7 @@ namespace Bubba
         public WebBrowser( )
         {
             // Theme Properties
-            SfSkinManager.SetTheme(this, new Theme("FluentDark", App.Controls) );
+            SfSkinManager.SetTheme( this, new Theme( "FluentDark", App.Controls ) );
 
             // Window Properties
             InitializeComponent( );
@@ -1073,7 +1074,7 @@ namespace Bubba
         public void CloseActiveTab( )
         {
             if( _currentTab != null
-                && TabPages.Count > 2 )
+                && _tabPages.Count > 2 )
             {
                 var _index = TabControl.Items.IndexOf( TabControl.SelectedItem );
                 TabControl.Items.RemoveAt( _index );
