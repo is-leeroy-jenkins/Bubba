@@ -352,8 +352,13 @@
                         <mah:MetroTabControl
                             x:Name="ParamTabControl"
                             Grid.Column="1"
+                            Margin="3,3,1,3"
+                            Padding="1,1,1,1"
+                            mah:HeaderedControlHelper.HeaderFontFamily="Roboto"
                             Background="{StaticResource BackgroundBrush}"
+                            FontFamily="Roboto"
                             ScrollViewer.CanContentScroll="True"
+                            Style="{DynamicResource MahApps.Styles.TabControl}"
                             TabStripMargin="0,5,1,5">
 
                             <TabItem
@@ -688,12 +693,14 @@
                                                 Padding="1"
                                                 HorizontalContentAlignment="Stretch"
                                                 VerticalContentAlignment="Stretch"
+                                                mah:HeaderedControlHelper.HeaderFontFamily="Roboto"
                                                 Background="{StaticResource GroupBoxBackground}"
                                                 BorderBrush="{StaticResource MutedForeground}"
                                                 FontFamily="Roboto"
                                                 FontSize="12"
                                                 Foreground="{StaticResource FormForeground}"
-                                                Header="Temperature">
+                                                Header="Temperature"
+                                                Tag="Temperature">
 
 
                                                 <wpf:SfRangeSlider
@@ -722,6 +729,7 @@
                                                     ShowValueLabels="True"
                                                     SmallChange="0.1"
                                                     SnapsTo="Ticks"
+                                                    Style="{DynamicResource SyncfusionSfRangeSliderStyle}"
                                                     Tag="Temperature"
                                                     ThumbStyle="{StaticResource ThumbStyle}"
                                                     TickFrequency="0.5"
@@ -751,24 +759,28 @@
                                                     x:Name="TopPercentSlider"
                                                     Width="230"
                                                     Height="70"
-                                                    Margin="1"
+                                                    Margin="3"
                                                     Padding="1"
                                                     HorizontalAlignment="Stretch"
-                                                    VerticalAlignment="Top"
-                                                    VerticalContentAlignment="Stretch"
+                                                    VerticalAlignment="Stretch"
+                                                    VerticalContentAlignment="Top"
                                                     ActiveMinorTickStroke="{StaticResource WhiteForeground}"
                                                     ActiveTickStroke="{StaticResource WhiteForeground}"
+                                                    ActiveTrackStyle="{DynamicResource ActiveTrackStyle}"
                                                     AllowRangeDrag="True"
                                                     Background="{StaticResource BlueBorderBrush}"
+                                                    BorderThickness="1,1,1,1"
                                                     Foreground="{StaticResource FormForeground}"
+                                                    LabelPlacement="BottomRight"
                                                     Maximum="1"
                                                     Minimum="0"
-                                                    MinorTickFrequency="0.2"
+                                                    MinorTickFrequency="0.25"
                                                     MinorTickLength="5"
                                                     MinorTickStroke="{StaticResource WhiteForeground}"
                                                     ShowValueLabels="True"
                                                     SmallChange="0.1"
                                                     SnapsTo="Ticks"
+                                                    Style="{DynamicResource SyncfusionSfRangeSliderStyle}"
                                                     Tag="TopPercent"
                                                     ThumbStyle="{StaticResource ThumbStyle}"
                                                     TickFrequency="0.1"
@@ -776,7 +788,12 @@
                                                     TickStroke="{StaticResource WhiteForeground}"
                                                     ToolTip="top p% probability mass"
                                                     ToolTipFormat="P"
-                                                    Value="0.9" />
+                                                    UseLayoutRounding="True"
+                                                    Value="0.9">
+                                                    <wpf:SfRangeSlider.InactiveTrackStyle>
+                                                        <Style />
+                                                    </wpf:SfRangeSlider.InactiveTrackStyle>
+                                                </wpf:SfRangeSlider>
                                             </GroupBox>
 
                                             <GroupBox
@@ -804,6 +821,8 @@
                                                     VerticalContentAlignment="Stretch"
                                                     ActiveMinorTickStroke="{StaticResource WhiteForeground}"
                                                     ActiveTickStroke="{StaticResource WhiteForeground}"
+                                                    ActiveTrackStyle="{DynamicResource ActiveTrackStyle}"
+                                                    AllowRangeDrag="True"
                                                     Background="{StaticResource BlueBorderBrush}"
                                                     Foreground="{StaticResource FormForeground}"
                                                     LargeChange="0.5"
@@ -815,6 +834,7 @@
                                                     ShowValueLabels="True"
                                                     SmallChange="0.25"
                                                     SnapsTo="Ticks"
+                                                    Style="{DynamicResource SyncfusionSfRangeSliderStyle}"
                                                     Tag="FrequencyPenalty"
                                                     ThumbStyle="{StaticResource ThumbStyle}"
                                                     TickFrequency="0.5"
@@ -850,6 +870,7 @@
                                                     VerticalContentAlignment="Stretch"
                                                     ActiveMinorTickStroke="{StaticResource WhiteForeground}"
                                                     ActiveTickStroke="{StaticResource WhiteForeground}"
+                                                    ActiveTrackStyle="{DynamicResource ActiveTrackStyle}"
                                                     AllowRangeDrag="True"
                                                     Background="{StaticResource BlueBorderBrush}"
                                                     Foreground="{StaticResource FormForeground}"
@@ -860,6 +881,7 @@
                                                     MinorTickStroke="{StaticResource WhiteForeground}"
                                                     ShowValueLabels="True"
                                                     SnapsTo="Ticks"
+                                                    Style="{DynamicResource SyncfusionSfRangeSliderStyle}"
                                                     Tag="PresensePenalty"
                                                     ThumbStyle="{StaticResource ThumbStyle}"
                                                     TickFrequency="0.5"
@@ -895,6 +917,7 @@
                                                     VerticalContentAlignment="Stretch"
                                                     ActiveMinorTickStroke="{StaticResource WhiteForeground}"
                                                     ActiveTickStroke="{StaticResource WhiteForeground}"
+                                                    ActiveTrackStyle="{DynamicResource ActiveTrackStyle}"
                                                     AllowRangeDrag="True"
                                                     Background="{StaticResource BlueBorderBrush}"
                                                     Foreground="{StaticResource FormForeground}"
@@ -903,6 +926,7 @@
                                                     MinorTickFrequency="1"
                                                     ShowValueLabels="True"
                                                     SnapsTo="Ticks"
+                                                    Style="{DynamicResource SyncfusionSfRangeSliderStyle}"
                                                     Tag="TopLogProbs"
                                                     ThumbStyle="{StaticResource ThumbStyle}"
                                                     TickFrequency="2"
@@ -1281,6 +1305,7 @@
                                                     VerticalAlignment="Top"
                                                     ActiveMinorTickStroke="{StaticResource WhiteForeground}"
                                                     ActiveTickStroke="{StaticResource WhiteForeground}"
+                                                    ActiveTrackStyle="{DynamicResource ActiveTrackStyle}"
                                                     AllowRangeDrag="True"
                                                     Background="{StaticResource BlueBorderBrush}"
                                                     Foreground="{StaticResource FormForeground}"
@@ -1702,22 +1727,50 @@
                                             Height="115"
                                             HorizontalAlignment="Left"
                                             VerticalAlignment="Center"
-                                            Header="Image Compression" />
+                                            Header="Image Compression">
+                                            <b:MetroTextBox
+                                                x:Name="ImageCompressionTextBox"
+                                                Width="60"
+                                                Height="40"
+                                                Margin="271,0,3,0"
+                                                Padding="10,1,1,1"
+                                                VerticalAlignment="Center"
+                                                Background="{DynamicResource ControlInteriorBrush}"
+                                                BorderBrush="{DynamicResource BlueBorderBrush}"
+                                                FontSize="16"
+                                                Tag="ImageCompression"
+                                                Text="{Binding ElementName=ImageCompressionSlider, Path=Value}"
+                                                TextWrapping="Wrap"
+                                                ToolTip="Image Compression"
+                                                UseLayoutRounding="True"
+                                                Watermark="Enter a Value" />
+                                        </GroupBox>
 
                                         <wpf:SfRangeSlider
                                             x:Name="ImageCompressionSlider"
                                             Canvas.Left="41"
                                             Canvas.Top="424"
-                                            Width="305"
+                                            Width="226"
                                             Height="75"
+                                            Padding="1,1,1,1"
                                             HorizontalAlignment="Left"
                                             VerticalAlignment="Center"
+                                            ActiveTrackStyle="{DynamicResource ActiveTrackStyle}"
+                                            AllowRangeDrag="True"
+                                            LargeChange="20"
                                             Maximum="100"
                                             Minimum="0"
+                                            MinorTickStroke="{DynamicResource WhiteForeground}"
                                             ShowValueLabels="True"
+                                            SmallChange="10"
+                                            SnapsTo="Ticks"
+                                            Style="{DynamicResource SyncfusionSfRangeSliderStyle}"
+                                            Tag="ImageCompression"
                                             TickFrequency="20"
                                             TickPlacement="BottomRight"
-                                            Value="1" />
+                                            TickStroke="{DynamicResource WhiteForeground}"
+                                            ToolTip="Image Compression"
+                                            ToolTipFormat="P" />
                                     </Canvas>
                                 </Grid>
                             </TabItem>
@@ -1894,6 +1947,7 @@
                 <TabItem
                     x:Name="EditorTabItem"
                     Margin="3,3,3,3"
+                    BorderBrush="{x:Null}"
                     Foreground="{DynamicResource FormForeground}"
                     Header="Editor"
                     Tag="Editor"
@@ -2282,7 +2336,7 @@
                     x:Name="BusyTabItem"
                     Margin="3,3,3,3"
                     BorderBrush="{x:Null}"
-                    Foreground="{StaticResource BlueBorderBrush}"
+                    Foreground="{DynamicResource FormForeground}"
                     Header="Busy"
                     Tag="Busy">
 

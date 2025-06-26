@@ -3164,8 +3164,10 @@ namespace Bubba
                             var _documents = Directory.GetFiles( _path );
                             foreach( var _file in _documents )
                             {
-                                var _filePath = Path.GetFileNameWithoutExtension( _file );
-                                DocumentListBox.Items.Add( _filePath );
+                                var _item = new MetroListBoxItem( );
+                                _item.Tag = Path.GetFullPath( _file );
+                                _item.Content = Path.GetFileNameWithoutExtension( _file );
+                                DocumentListBox.Items.Add( _item );
                             }
 
                             break;
@@ -3178,8 +3180,10 @@ namespace Bubba
                             var _documents = Directory.GetFiles( _path );
                             foreach( var _file in _documents )
                             {
-                                var _filePath = Path.GetFileNameWithoutExtension( _file );
-                                DocumentListBox.Items.Add( _filePath );
+                                var _item = new MetroListBoxItem( );
+                                _item.Tag = Path.GetFullPath( _file );
+                                _item.Content = Path.GetFileNameWithoutExtension( _file );
+                                DocumentListBox.Items.Add( _item );
                             }
 
                             break;
@@ -3192,8 +3196,10 @@ namespace Bubba
                             var _documents = Directory.GetFiles( _path );
                             foreach( var _file in _documents )
                             {
-                                var _filePath = Path.GetFileNameWithoutExtension( _file );
-                                DocumentListBox.Items.Add( _filePath );
+                                var _item = new MetroListBoxItem( );
+                                _item.Tag = Path.GetFullPath( _file );
+                                _item.Content = Path.GetFileNameWithoutExtension( _file );
+                                DocumentListBox.Items.Add( _item );
                             }
 
                             break;
@@ -3206,8 +3212,10 @@ namespace Bubba
                             var _documents = Directory.GetFiles( _path );
                             foreach( var _file in _documents )
                             {
-                                var _filePath = Path.GetFileNameWithoutExtension( _file );
-                                DocumentListBox.Items.Add( _filePath );
+                                var _item = new MetroListBoxItem( );
+                                _item.Tag = Path.GetFullPath( _file );
+                                _item.Content = Path.GetFileNameWithoutExtension( _file );
+                                DocumentListBox.Items.Add( _item );
                             }
 
                             break;
@@ -3221,8 +3229,10 @@ namespace Bubba
                             var _documents = Directory.GetFiles( _path );
                             foreach( var _file in _documents )
                             {
-                                var _filePath = Path.GetFileNameWithoutExtension( _file );
-                                DocumentListBox.Items.Add( _filePath );
+                                var _item = new MetroListBoxItem( );
+                                _item.Tag = Path.GetFullPath( _file );
+                                _item.Content = Path.GetFileNameWithoutExtension( _file );
+                                DocumentListBox.Items.Add( _item );
                             }
 
                             break;
@@ -3235,8 +3245,10 @@ namespace Bubba
                             var _documents = Directory.GetFiles( _path );
                             foreach( var _file in _documents )
                             {
-                                var _filePath = Path.GetFileNameWithoutExtension( _file );
-                                DocumentListBox.Items.Add( _filePath );
+                                var _item = new MetroListBoxItem( );
+                                _item.Tag = Path.GetFullPath( _file );
+                                _item.Content = Path.GetFileNameWithoutExtension( _file );
+                                DocumentListBox.Items.Add( _item );
                             }
 
                             break;
@@ -3250,8 +3262,10 @@ namespace Bubba
                             var _documents = Directory.GetFiles( _path );
                             foreach( var _file in _documents )
                             {
-                                var _filePath = Path.GetFileNameWithoutExtension( _file );
-                                DocumentListBox.Items.Add( _filePath );
+                                var _item = new MetroListBoxItem( );
+                                _item.Tag = Path.GetFullPath( _file );
+                                _item.Content = Path.GetFileNameWithoutExtension( _file );
+                                DocumentListBox.Items.Add( _item );
                             }
 
                             break;
@@ -4314,7 +4328,7 @@ namespace Bubba
             {
                 if( DocumentListBox.SelectedIndex != -1 )
                 {
-                    _document = ( (MetroListBoxItem)DocumentListBox.SelectedItem )?.Tag.ToString( );
+                    _document = ((MetroListBoxItem)DocumentListBox.SelectedItem).Tag.ToString( );
                     Editor.LoadFile( _document );
                     TabControl.SelectedIndex = 3;
                     var _message = "Document = " + _document;
