@@ -390,9 +390,9 @@ namespace Bubba
             {
                 var _sizes = new List<string>
                 {
-                    "256X256",
-                    "512X512",
-                    "1024X1024"
+                    "256x256",
+                    "512x512",
+                    "1024x1024"
                 };
 
                 return _sizes;
@@ -420,10 +420,10 @@ namespace Bubba
 
                 return _sizes;
             }
-            catch(Exception ex)
+            catch( Exception ex )
             {
-                Fail(ex);
-                return default(IList<string>);
+                Fail( ex );
+                return default( IList<string> );
             }
         }
     }

@@ -4089,7 +4089,9 @@ namespace Bubba
         {
             try
             {
-                _audioFormat = AudioFormatDropDown.SelectedValue.ToString( );
+                _audioFormat = ( ( MetroDropDownItem )AudioFormatDropDown.SelectedItem )
+                        ?.Content?.ToString( );
+
                 var _message = "AudioFormat = " + _audioFormat;
                 SendNotification( _message );
             }
@@ -4112,7 +4114,7 @@ namespace Bubba
                 if( GenerationListBox.SelectedIndex != -1 )
                 {
                     var _item = ( ( MetroDropDownItem )GenerationListBox.SelectedItem )
-                        ?.Tag.ToString( );
+                        ?.Content?.ToString( );
 
                     _requestType = ( API )Enum.Parse( typeof( API ), _item?.Replace( " ", "" ) );
                     SetRequestType( );
@@ -4312,10 +4314,7 @@ namespace Bubba
             {
                 if( DocumentListBox.SelectedIndex != -1 )
                 {
-                    Editor.ClearAllText( );
-                    _document = ( ( MetroListBoxItem )DocumentListBox.SelectedItem )
-                        ?.Tag.ToString( );
-
+                    _document = ( (MetroListBoxItem)DocumentListBox.SelectedItem )?.Tag.ToString( );
                     Editor.LoadFile( _document );
                     TabControl.SelectedIndex = 3;
                     var _message = "Document = " + _document;
@@ -4377,7 +4376,9 @@ namespace Bubba
         {
             try
             {
-                _reasoningEffort = EffortDropDown.SelectedValue.ToString( );
+                _reasoningEffort = ((MetroDropDownItem)EffortDropDown.SelectedItem)
+                    ?.Content?.ToString( );
+
                 var _message = "ReasoningEffort = " + _reasoningEffort;
                 SendNotification( _message );
             }
@@ -5237,9 +5238,7 @@ namespace Bubba
         {
             try
             {
-                _voice = ( ( MetroDropDownItem )VoicesDropDown.SelectedItem )
-                    ?.Tag.ToString( );
-
+                _voice = ( ( MetroDropDownItem )VoicesDropDown.SelectedItem )?.Content?.ToString( );
                 var _message = "Voice = " + _voice;
                 SendNotification( _message );
             }
@@ -5260,7 +5259,7 @@ namespace Bubba
             try
             {
                 _imageQuality = ( ( MetroDropDownItem )ImageQualityDropDown.SelectedItem )
-                    ?.Tag.ToString( );
+                    ?.Content?.ToString( );
 
                 var _message = "ImageQuality = " + _imageQuality;
                 SendNotification( _message );
@@ -5281,10 +5280,9 @@ namespace Bubba
         {
             try
             {
-                var _image = ( ( MetroDropDownItem )ImageSizeDropDown.SelectedItem )
-                    ?.Tag.ToString( );
+                _imageSize = ( ( MetroDropDownItem )ImageSizeDropDown.SelectedItem )
+                    ?.Content?.ToString( );
 
-                _imageSize = _image?.Replace( " ", "" );
                 var _message = "ImageSize = " + _imageSize;
                 SendNotification( _message );
             }
@@ -5305,7 +5303,7 @@ namespace Bubba
             try
             {
                 _imageDetail = ( ( MetroDropDownItem )ImageDetailDropDown.SelectedItem)
-                    ?.Tag.ToString( );
+                    ?.Content?.ToString( );
 
                 var _message = "ImageDetail = " + _imageDetail;
                 SendNotification( _message );
@@ -5326,7 +5324,7 @@ namespace Bubba
             try
             {
                 _imageBackground = ( ( MetroDropDownItem )ImageBackgroundDropDown.SelectedItem )
-                    ?.Tag.ToString( );
+                    ?.Content?.ToString( );
 
                 var _message = "ImageBackground = " + _imageBackground;
                 SendNotification( _message );
@@ -5349,8 +5347,8 @@ namespace Bubba
             {
                 if( ImageFormatDropDown.SelectedIndex != -1 )
                 {
-                    _imageFormat = ( ( MetroDropDownItem )ImageFormatDropDown.SelectedItem)
-                        ?.Tag.ToString( );
+                    _imageFormat = ( ( MetroDropDownItem )ImageFormatDropDown.SelectedItem )
+                        ?.Content?.ToString( );
 
                     var _message = "Image Format = " + _imageFormat;
                     SendNotification( _message );
@@ -5375,7 +5373,7 @@ namespace Bubba
                 if( ImageStyleDropDown.SelectedIndex != -1 )
                 {
                     _imageStyle = ( ( MetroDropDownItem )ImageStyleDropDown.SelectedItem )
-                        ?.Tag.ToString( );
+                        ?.Content?.ToString( );
 
                     var _message = "Image Style = " + _imageFormat;
                     SendNotification( _message );
@@ -5435,6 +5433,7 @@ namespace Bubba
         }
 
         /// <summary>
+        /// 
         /// Called when [load error].
         /// </summary>
         /// <param name="sender">The sender.</param>

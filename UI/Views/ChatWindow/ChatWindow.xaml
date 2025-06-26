@@ -231,20 +231,23 @@
                     x:Name="ToolStripRefreshButton"
                     Width="40"
                     Height="30"
+                    Margin="5,1,5,1"
                     ImageSource="/Resources/Assets/MenuImages/RefreshItem.png"
                     ToolTip="Clear Propmt Text" />
 
                 <b:ToolStripButton
                     x:Name="ToolStripDeleteButton"
                     Width="40"
-                    Height="34"
+                    Height="30"
+                    Margin="5,1,5,1"
                     ImageSource="/Resources/Assets/ToolStripImages/PreviousButton.png"
                     ToolTip="Delete/Backspace" />
 
                 <b:ToolStripButton
                     x:Name="ToolStripCancelButton"
                     Width="40"
-                    Height="39"
+                    Height="30"
+                    Margin="5,1,5,1"
                     FontFamily="Roboto"
                     ImageSource="/Resources/Assets/ToolStripImages/StopButton.png"
                     ToolTip="Cancel" />
@@ -262,7 +265,7 @@
                     x:Name="ToolStripFileButton"
                     Width="40"
                     Height="30"
-                    Margin="1,1,5,1"
+                    Margin="5,1,5,1"
                     FontFamily="Roboto"
                     ImageSource="/Resources/Assets/ToolStripImages/GptUploadButton.png"
                     ToolTip="GPT File" />
@@ -318,10 +321,10 @@
 
                 <TabItem
                     x:Name="ChatTab"
+                    Margin="3"
                     Foreground="{StaticResource BlueBorderBrush}"
                     Header="Chat"
                     Tag="Chat"
-                    Margin="3"
                     ToolTip="AI Functionality">
                     <Grid
                         x:Name="ChatTabGrid"
@@ -334,9 +337,11 @@
                         <wpf:SfTextBoxExt
                             x:Name="ChatTextBox"
                             Grid.Column="0"
+                            Width="895"
                             Height="550"
-                            Margin="5,0,14,0"
+                            Margin="40,0,0,0"
                             Padding="20,10,5,3"
+                            HorizontalAlignment="Left"
                             VerticalAlignment="Center"
                             BorderBrush="{StaticResource BlueBorderBrush}"
                             BorderThickness="1"

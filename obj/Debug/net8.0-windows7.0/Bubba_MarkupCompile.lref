@@ -1,4 +1,4 @@
-﻿C:\Users\terry\source\repos\Bubba\obj\Debug\net8.0-windows7.0\GeneratedInternalTypeHelper.g.cs
+﻿
 FC:\Users\terry\source\repos\Bubba\App.xaml;;
 FC:\Users\terry\source\repos\Bubba\UI\Controls\Frame\MetroComboFrame.xaml;;
 FC:\Users\terry\source\repos\Bubba\UI\Controls\Frame\MetroTextInput.xaml;;
@@ -9,6 +9,7 @@ FC:\Users\terry\source\repos\Bubba\UI\Themes\CheckBox\CheckBox.xaml;;
 FC:\Users\terry\source\repos\Bubba\UI\Themes\CheckList\CheckList.xaml;;
 FC:\Users\terry\source\repos\Bubba\UI\Themes\ComboBox\ComboBox.xaml;;
 FC:\Users\terry\source\repos\Bubba\UI\Themes\ComboBox\ComboBoxAdv.xaml;;
+FC:\Users\terry\source\repos\Bubba\UI\Themes\Common\Brushes.xaml;;
 FC:\Users\terry\source\repos\Bubba\UI\Themes\Common\Common.xaml;;
 FC:\Users\terry\source\repos\Bubba\UI\Themes\DataGrid\SfDataGrid.xaml;;
 FC:\Users\terry\source\repos\Bubba\UI\Themes\DropDown\DropDown.xaml;;
@@ -23,6 +24,7 @@ FC:\Users\terry\source\repos\Bubba\UI\Themes\Menu\Menu.xaml;;
 FC:\Users\terry\source\repos\Bubba\UI\Themes\Menu\MenuItem.xaml;;
 FC:\Users\terry\source\repos\Bubba\UI\Themes\MultiSelectDropDown\MultiSelectDropDown.xaml;;
 FC:\Users\terry\source\repos\Bubba\UI\Themes\Page\Page.xaml;;
+FC:\Users\terry\source\repos\Bubba\UI\Themes\Progress\SfCircularProgressBar.xaml;;
 FC:\Users\terry\source\repos\Bubba\UI\Themes\RadioButton\RadioButton.xaml;;
 FC:\Users\terry\source\repos\Bubba\UI\Themes\RichTextBox\ContextMenu.xaml;;
 FC:\Users\terry\source\repos\Bubba\UI\Themes\RichTextBox\Dialogs.xaml;;
