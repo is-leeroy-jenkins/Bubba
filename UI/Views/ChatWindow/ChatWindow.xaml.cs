@@ -1010,6 +1010,8 @@ namespace Bubba
                 ImageFormatDropDown.SelectionChanged += OnImageFormatSelectionChanged;
                 ImageQualityDropDown.SelectionChanged += OnImageQualitySelectionChanged;
                 ImageDetailDropDown.SelectionChanged += OnImageDetailSelectionChanged;
+                ImageStyleDropDown.SelectionChanged += OnImageStyleSelectionChanged;
+                ImageBackgroundDropDown.SelectionChanged += OnImageBackgroundSelectionChanged;
                 EffortDropDown.SelectionChanged += OnEffortSelectionChanged;
                 AudioFormatDropDown.SelectionChanged += OnAudioFormatSelectionChanged;
                 VoicesDropDown.SelectionChanged += OnVoiceSelectionChanged;

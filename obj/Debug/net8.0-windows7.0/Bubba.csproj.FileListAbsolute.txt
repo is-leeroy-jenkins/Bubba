@@ -727,3 +727,5 @@ C:\Users\terry\source\repos\Bubba\obj\Debug\net8.0-windows7.0\UI\Themes\TextBox\
 C:\Users\terry\source\repos\Bubba\obj\Debug\net8.0-windows7.0\UI\Themes\TabControl\TabControlExt.baml
 C:\Users\terry\source\repos\Bubba\obj\Debug\net8.0-windows7.0\UI\Themes\TextBox\IntegerTextBox.baml
 C:\Users\terry\source\repos\Bubba\obj\Debug\net8.0-windows7.0\UI\Themes\Tile\SfHubTile.baml
+C:\Users\terry\source\repos\Bubba\obj\Debug\net8.0-windows7.0\UI\Themes\Chart\SfChart3D.baml
+C:\Users\terry\source\repos\Bubba\obj\Debug\net8.0-windows7.0\UI\Themes\DataGrid\SfDataGrid.baml
