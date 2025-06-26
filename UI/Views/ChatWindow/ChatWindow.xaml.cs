@@ -5235,7 +5235,9 @@ namespace Bubba
         {
             try
             {
-                _voice = VoicesDropDown.SelectedValue.ToString( );
+                _voice = ( ( MetroDropDownItem )VoicesDropDown.SelectedItem )
+                    ?.Tag.ToString( );
+
                 var _message = "Voice = " + _voice;
                 SendNotification( _message );
             }
@@ -5255,7 +5257,9 @@ namespace Bubba
         {
             try
             {
-                _imageQuality = ImageQualityDropDown.SelectedValue.ToString( );
+                _imageQuality = ( ( MetroDropDownItem )ImageQualityDropDown.SelectedItem )
+                    ?.Tag.ToString( );
+
                 var _message = "ImageQuality = " + _imageQuality;
                 SendNotification( _message );
             }
@@ -5275,7 +5279,9 @@ namespace Bubba
         {
             try
             {
-                var _image = ImageSizeDropDown.SelectedValue.ToString( );
+                var _image = ( ( MetroDropDownItem )ImageSizeDropDown.SelectedItem )
+                    ?.Tag.ToString( );
+
                 _imageSize = _image?.Replace( " ", "" );
                 var _message = "ImageSize = " + _imageSize;
                 SendNotification( _message );
@@ -5296,7 +5302,9 @@ namespace Bubba
         {
             try
             {
-                _imageDetail = ImageDetailDropDown.SelectedValue.ToString( );
+                _imageDetail = ( ( MetroDropDownItem )ImageDetailDropDown.SelectedItem)
+                    ?.Tag.ToString( );
+
                 var _message = "ImageDetail = " + _imageDetail;
                 SendNotification( _message );
             }
@@ -5315,7 +5323,9 @@ namespace Bubba
         {
             try
             {
-                _imageBackground = ImageBackgroundDropDown.SelectedValue.ToString( );
+                _imageBackground = ( ( MetroDropDownItem )ImageBackgroundDropDown.SelectedItem )
+                    ?.Tag.ToString( );
+
                 var _message = "ImageBackground = " + _imageBackground;
                 SendNotification( _message );
             }
@@ -5337,7 +5347,9 @@ namespace Bubba
             {
                 if( ImageFormatDropDown.SelectedIndex != -1 )
                 {
-                    _imageFormat = ImageFormatDropDown.SelectedItem.ToString( );
+                    _imageFormat = ( ( MetroDropDownItem )ImageFormatDropDown.SelectedItem)
+                        ?.Tag.ToString( );
+
                     var _message = "Image Format = " + _imageFormat;
                     SendNotification( _message );
                 }
@@ -5360,7 +5372,9 @@ namespace Bubba
             {
                 if( ImageStyleDropDown.SelectedIndex != -1 )
                 {
-                    _imageStyle = ImageStyleDropDown.SelectedItem.ToString( );
+                    _imageStyle = ( ( MetroDropDownItem )ImageStyleDropDown.SelectedItem )
+                        ?.Tag.ToString( );
+
                     var _message = "Image Style = " + _imageFormat;
                     SendNotification( _message );
                 }

@@ -1,19 +1,19 @@
 ﻿// ******************************************************************************************
 //     Assembly:                Bubba
 //     Author:                  Terry D. Eppler
-//     Created:                 01-31-2025
+//     Created:                 06-26-2025
 // 
 //     Last Modified By:        Terry D. Eppler
-//     Last Modified On:        01-31-2025
+//     Last Modified On:        06-26-2025
 // ******************************************************************************************
 // <copyright file="GptRequest.cs" company="Terry D. Eppler">
-//    Bubba is a small and simple windows (wpf) application for interacting with the OpenAI API
-//    that's developed in C-Sharp under the MIT license.C#.
+//     Badger is a budget execution & data analysis tool for EPA analysts
+//     based on WPF, Net 6, and written in C Sharp.
 // 
-//    Copyright ©  2020-2024 Terry D. Eppler
+//     Copyright �  2022 Terry D. Eppler
 // 
 //    Permission is hereby granted, free of charge, to any person obtaining a copy
-//    of this software and associated documentation files (the “Software”),
+//    of this software and associated documentation files (the �Software�),
 //    to deal in the Software without restriction,
 //    including without limitation the rights to use,
 //    copy, modify, merge, publish, distribute, sublicense,
@@ -24,7 +24,7 @@
 //    The above copyright notice and this permission notice shall be included in all
 //    copies or substantial portions of the Software.
 // 
-//    THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,
+//    THE SOFTWARE IS PROVIDED �AS IS�, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,
 //    INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
 //    FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT.
 //    IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
@@ -38,7 +38,6 @@
 //   GptRequest.cs
 // </summary>
 // ******************************************************************************************
-
 namespace Bubba
 {
     using System;
@@ -108,31 +107,6 @@ namespace Bubba
         /// Initializes a new instance of the
         /// <see cref="T:Bubba.GptRequest" /> class.
         /// </summary>
-        /// <param name = "inputText > </param>
-        /// <param name = "options" > </param>
-        public GptRequest( string inputText, IGptParameter options )
-            : this( )
-        {
-            _header = new GptHeader( );
-            _inputText = inputText;
-            _messages.Add( new SystemMessage( _instructions ) );
-            _messages.Add( new UserMessage( inputText ) );
-            _apiKey = _header.ApiKey;
-            _number = options.Number;
-            _store = options.Store;
-            _stream = options.Stream;
-            _frequencyPenalty = options.FrequencyPenalty;
-            _presencePenalty = options.PresencePenalty;
-            _topPercent = options.TopPercent;
-            _temperature = options.Temperature;
-            _maxCompletionTokens = options.MaxCompletionTokens;
-        }
-
-        /// <inheritdoc />
-        /// <summary>
-        /// Initializes a new instance of the
-        /// <see cref="T:Bubba.GptRequest" /> class.
-        /// </summary>
         /// <param name="request">The GPT request.</param>
         public GptRequest( GptRequest request )
             : this( )
@@ -165,10 +139,11 @@ namespace Bubba
         /// <param name = "topPercent" > </param>
         /// <param name = "tokens">The maximum tokens.</param>
         public void Deconstruct( out GptHeader header, out string endPoint, out string user,
-            out string system, out bool store, out bool stream,
-            out string model, out int number, out double presence,
-            out double frequency, out double temperature, out double topPercent,
-            out int tokens )
+                                 out string system, out bool store, out bool stream,
+                                 out string model, out int number, out double presence,
+                                 out double frequency, out double temperature,
+                                 out double topPercent,
+                                 out int tokens )
         {
             header = _header;
             endPoint = _endPoint;
@@ -203,7 +178,59 @@ namespace Bubba
                 if( _stop != value )
                 {
                     _stop = value;
-                    OnPropertyChanged( nameof( Stop ) );
+                    OnPropertyChanged( nameof( GptRequest.Stop ) );
+                }
+            }
+        }
+
+        /// <inheritdoc />
+        /// <summary>
+        /// Number between -2.0 and 2.0. Positive values penalize new tokens
+        /// based on whether they appear in the text so far,
+        /// ncreasing the model's likelihood to talk about new topics.
+        /// </summary>
+        /// <value>
+        /// The frequency.
+        /// </value>
+        [ JsonPropertyName( "frequency_penalty" ) ]
+        public override double FrequencyPenalty
+        {
+            get
+            {
+                return _frequencyPenalty;
+            }
+            set
+            {
+                if( _frequencyPenalty != value )
+                {
+                    _frequencyPenalty = value;
+                    OnPropertyChanged( nameof( GptRequest.FrequencyPenalty ) );
+                }
+            }
+        }
+
+        /// <inheritdoc />
+        /// <summary>
+        /// Number between -2.0 and 2.0. Positive values penalize new tokens
+        /// based on whether they appear in the text so far,
+        /// ncreasing the model's likelihood to talk about new topics.
+        /// </summary>
+        /// <value>
+        /// The presence.
+        /// </value>
+        [ JsonPropertyName( "presence_penalty" ) ]
+        public override double PresencePenalty
+        {
+            get
+            {
+                return _presencePenalty;
+            }
+            set
+            {
+                if( _presencePenalty != value )
+                {
+                    _presencePenalty = value;
+                    OnPropertyChanged( nameof( GptRequest.PresencePenalty ) );
                 }
             }
         }
@@ -214,7 +241,7 @@ namespace Bubba
         /// <value>
         /// The modalities.
         /// </value>
-        [JsonPropertyName("response_format")]
+        [ JsonPropertyName( "response_format" ) ]
         public virtual string ResponseFormat
         {
             get
@@ -226,7 +253,7 @@ namespace Bubba
                 if( _responseFormat != value )
                 {
                     _responseFormat = value;
-                    OnPropertyChanged( nameof( ResponseFormat ) );
+                    OnPropertyChanged( nameof( GptRequest.ResponseFormat ) );
                 }
             }
         }
@@ -237,7 +264,7 @@ namespace Bubba
         /// <value>
         /// The modalities.
         /// </value>
-        [JsonPropertyName( "modalities" ) ]
+        [ JsonPropertyName( "modalities" ) ]
         public virtual string Modalities
         {
             get
@@ -249,7 +276,7 @@ namespace Bubba
                 if( _modalities != value )
                 {
                     _modalities = value;
-                    OnPropertyChanged( nameof( Modalities ) );
+                    OnPropertyChanged( nameof( GptRequest.Modalities ) );
                 }
             }
         }

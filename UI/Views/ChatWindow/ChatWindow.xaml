@@ -320,7 +320,9 @@
                     x:Name="ChatTab"
                     Foreground="{StaticResource BlueBorderBrush}"
                     Header="Chat"
-                    Tag="Chat">
+                    Tag="Chat"
+                    Margin="3"
+                    ToolTip="AI Functionality">
                     <Grid
                         x:Name="ChatTabGrid"
                         Background="{StaticResource FormBackground}">
@@ -332,11 +334,9 @@
                         <wpf:SfTextBoxExt
                             x:Name="ChatTextBox"
                             Grid.Column="0"
-                            Width="934"
                             Height="550"
-                            Margin="5"
-                            Padding="3"
-                            HorizontalAlignment="Left"
+                            Margin="5,0,14,0"
+                            Padding="20,10,5,3"
                             VerticalAlignment="Center"
                             BorderBrush="{StaticResource BlueBorderBrush}"
                             BorderThickness="1"
@@ -348,6 +348,7 @@
                             x:Name="ParamTabControl"
                             Grid.Column="1"
                             Background="{StaticResource BackgroundBrush}"
+                            ScrollViewer.CanContentScroll="True"
                             TabStripMargin="0,5,1,5">
 
                             <TabItem
@@ -355,8 +356,10 @@
                                 Margin="3"
                                 Padding="10"
                                 Background="{StaticResource BackgroundBrush}"
-                                Foreground="{StaticResource BlueBorderBrush}"
-                                Header="Settings">
+                                Foreground="{DynamicResource FormForeground}"
+                                Header="Settings"
+                                Tag="Settings"
+                                ToolTip="General Options">
 
                                 <Grid Background="{StaticResource BackgroundBrush}">
                                     <Grid.RowDefinitions>
@@ -430,7 +433,7 @@
                                                     FontFamily="Roboto"
                                                     ShowSpinButton="True"
                                                     TextWrapping="Wrap"
-                                                    ToolTip="Max Completion Tokens"
+                                                    ToolTip="Maximum Completion Tokens"
                                                     UseNullOption="True"
                                                     WatermarkText="Max Tokens:"
                                                     WatermarkTextIsVisible="True"
@@ -446,7 +449,7 @@
 
                                             <GroupBox
                                                 x:Name="ApiGroupBox"
-                                                Height="100"
+                                                Height="80"
                                                 Margin="10,1,10,1"
                                                 Padding="1"
                                                 HorizontalContentAlignment="Stretch"
@@ -543,21 +546,24 @@
                                                         Content="text"
                                                         FontFamily="Roboto"
                                                         FontSize="14"
-                                                        Foreground="{StaticResource WhiteForeground}" />
+                                                        Foreground="{StaticResource WhiteForeground}"
+                                                        Tag="text" />
 
                                                     <b:MetroDropDownItem
                                                         Height="35"
                                                         Content="json_object"
                                                         FontFamily="Roboto"
                                                         FontSize="14"
-                                                        Foreground="{StaticResource WhiteForeground}" />
+                                                        Foreground="{StaticResource WhiteForeground}"
+                                                        Tag="json_object" />
 
                                                     <b:MetroDropDownItem
                                                         Height="35"
                                                         Content="json_schema"
                                                         FontFamily="Roboto"
                                                         FontSize="14"
-                                                        Foreground="{StaticResource WhiteForeground}" />
+                                                        Foreground="{StaticResource WhiteForeground}"
+                                                        Tag="json_schema" />
 
 
                                                     <b:MetroDropDownItem
@@ -565,14 +571,16 @@
                                                         Content="url"
                                                         FontFamily="Roboto"
                                                         FontSize="14"
-                                                        Foreground="{StaticResource WhiteForeground}" />
+                                                        Foreground="{StaticResource WhiteForeground}"
+                                                        Tag="url" />
 
                                                     <b:MetroDropDownItem
                                                         Height="35"
                                                         Content="base64_json"
                                                         FontFamily="Roboto"
                                                         FontSize="14"
-                                                        Foreground="{StaticResource WhiteForeground}" />
+                                                        Foreground="{StaticResource WhiteForeground}"
+                                                        Tag="base64_json" />
 
                                                 </b:MetroDropDown>
                                             </GroupBox>
@@ -615,7 +623,8 @@
                                                         Content="low"
                                                         FontFamily="Roboto"
                                                         FontSize="14"
-                                                        Foreground="{StaticResource WhiteForeground}" />
+                                                        Foreground="{StaticResource WhiteForeground}"
+                                                        Tag="low" />
 
                                                     <b:MetroDropDownItem
                                                         Height="35"
@@ -623,14 +632,16 @@
                                                         Content="medium"
                                                         FontFamily="Roboto"
                                                         FontSize="14"
-                                                        Foreground="{StaticResource WhiteForeground}" />
+                                                        Foreground="{StaticResource WhiteForeground}"
+                                                        Tag="medium" />
 
                                                     <b:MetroDropDownItem
                                                         Height="35"
                                                         Background="{StaticResource ControlInteriorBrush}"
                                                         Content="high"
                                                         FontFamily="Roboto"
-                                                        Foreground="{StaticResource WhiteForeground}" />
+                                                        Foreground="{StaticResource WhiteForeground}"
+                                                        Tag="high" />
                                                 </b:MetroDropDown>
                                             </GroupBox>
 
@@ -649,7 +660,8 @@
                                 Background="{StaticResource BackgroundBrush}"
                                 Foreground="{StaticResource BlueBorderBrush}"
                                 Header="Parameters"
-                                Tag="GPT">
+                                Tag="GPT"
+                                ToolTip="Hyperparameters">
 
                                 <Grid Background="{StaticResource BackgroundBrush}">
 
@@ -999,7 +1011,9 @@
                                 Padding="10"
                                 Background="{StaticResource BackgroundBrush}"
                                 Foreground="{StaticResource BlueBorderBrush}"
-                                Header="Audio">
+                                Header="Audio"
+                                Tag="Audio"
+                                ToolTip="Audio API Options">
 
                                 <Grid Background="{StaticResource BackgroundBrush}">
                                     <Grid.RowDefinitions>
@@ -1258,7 +1272,7 @@
                                                     x:Name="SpeechRateSlider"
                                                     Height="70"
                                                     Margin="1"
-                                                    Padding="1,1,1,1"
+                                                    Padding="1"
                                                     VerticalAlignment="Top"
                                                     ActiveMinorTickStroke="{StaticResource WhiteForeground}"
                                                     ActiveTickStroke="{StaticResource WhiteForeground}"
@@ -1296,7 +1310,9 @@
                                 Padding="10"
                                 Background="{StaticResource BackgroundBrush}"
                                 Foreground="{StaticResource BlueBorderBrush}"
-                                Header="Image">
+                                Header="Image"
+                                Tag="Image"
+                                ToolTip="Set Image API Options">
 
                                 <Grid Background="{StaticResource BackgroundBrush}">
                                     <Grid.RowDefinitions>
@@ -1340,26 +1356,29 @@
                                                     Height="35"
                                                     Content="256x256"
                                                     FontFamily="Roboto"
-                                                    FontSize="14" />
+                                                    FontSize="14"
+                                                    Tag="256x256" />
 
                                                 <b:MetroDropDownItem
                                                     Width="Auto"
                                                     Height="35"
                                                     Content="512x512"
                                                     FontFamily="Roboto"
-                                                    FontSize="14" />
+                                                    FontSize="14"
+                                                    Tag="512x512" />
 
                                                 <b:MetroDropDownItem
                                                     Width="Auto"
                                                     Height="35"
                                                     Content="1024x1024"
                                                     FontFamily="Roboto"
-                                                    FontSize="14" />
+                                                    FontSize="14"
+                                                    Tag="1024x1024" />
 
                                                 <b:MetroDropDownItem
                                                     Width="Auto"
                                                     Height="35"
-                                                    Content="1024x1024"
+                                                    Content="1024x2048"
                                                     FontFamily="Roboto"
                                                     FontSize="14" />
 
@@ -1368,14 +1387,16 @@
                                                     Height="35"
                                                     Content="1792x1024"
                                                     FontFamily="Roboto"
-                                                    FontSize="14" />
+                                                    FontSize="14"
+                                                    Tag="1792x1024" />
 
                                                 <b:MetroDropDownItem
                                                     Width="Auto"
                                                     Height="35"
                                                     Content="1024x1792"
                                                     FontFamily="Roboto"
-                                                    FontSize="14" />
+                                                    FontSize="14"
+                                                    Tag="1024x1792" />
 
                                             </b:MetroDropDown>
                                         </GroupBox>
@@ -1414,42 +1435,48 @@
                                                     Height="35"
                                                     Content="auto"
                                                     FontFamily="Roboto"
-                                                    FontSize="14" />
+                                                    FontSize="14"
+                                                    Tag="auto" />
 
                                                 <b:MetroDropDownItem
                                                     Width="Auto"
                                                     Height="35"
                                                     Content="low"
                                                     FontFamily="Roboto"
-                                                    FontSize="14" />
+                                                    FontSize="14"
+                                                    Tag="low" />
 
                                                 <b:MetroDropDownItem
                                                     Width="Auto"
                                                     Height="35"
                                                     Content="medium"
                                                     FontFamily="Roboto"
-                                                    FontSize="14" />
+                                                    FontSize="14"
+                                                    Tag="medium" />
 
                                                 <b:MetroDropDownItem
                                                     Width="Auto"
                                                     Height="35"
                                                     Content="high"
                                                     FontFamily="Roboto"
-                                                    FontSize="14" />
+                                                    FontSize="14"
+                                                    Tag="high" />
 
                                                 <b:MetroDropDownItem
                                                     Width="Auto"
                                                     Height="35"
                                                     Content="hd"
                                                     FontFamily="Roboto"
-                                                    FontSize="14" />
+                                                    FontSize="14"
+                                                    Tag="hd" />
 
                                                 <b:MetroDropDownItem
                                                     Width="Auto"
                                                     Height="35"
                                                     Content="standard"
                                                     FontFamily="Roboto"
-                                                    FontSize="14" />
+                                                    FontSize="14"
+                                                    Tag="standard" />
 
                                             </b:MetroDropDown>
                                         </GroupBox>
@@ -1486,21 +1513,24 @@
                                                     Content="auto"
                                                     FontFamily="Roboto"
                                                     FontSize="14"
-                                                    Foreground="{StaticResource WhiteForeground}" />
+                                                    Foreground="{StaticResource WhiteForeground}"
+                                                    Tag="auto" />
 
                                                 <b:MetroDropDownItem
                                                     Height="35"
                                                     Margin="3"
                                                     Content="hi"
                                                     FontFamily="Roboto"
-                                                    FontSize="14" />
+                                                    FontSize="14"
+                                                    Tag="hi" />
 
                                                 <b:MetroDropDownItem
                                                     Height="35"
                                                     Margin="3"
                                                     Content="low"
                                                     FontFamily="Roboto"
-                                                    FontSize="14" />
+                                                    FontSize="14"
+                                                    Tag="low" />
 
                                             </b:MetroDropDown>
                                         </GroupBox>
@@ -1538,21 +1568,24 @@
                                                     Height="35"
                                                     Content="png"
                                                     FontFamily="Roboto"
-                                                    FontSize="14" />
+                                                    FontSize="14"
+                                                    Tag="png" />
 
                                                 <b:MetroDropDownItem
                                                     Width="Auto"
                                                     Height="35"
                                                     Content="jpeg"
                                                     FontFamily="Roboto"
-                                                    FontSize="14" />
+                                                    FontSize="14"
+                                                    Tag="jpeg" />
 
                                                 <b:MetroDropDownItem
                                                     Width="Auto"
                                                     Height="35"
                                                     Content="webp"
                                                     FontFamily="Roboto"
-                                                    FontSize="14" />
+                                                    FontSize="14"
+                                                    Tag="webp" />
                                             </b:MetroDropDown>
 
                                         </GroupBox>
@@ -1589,21 +1622,24 @@
                                                     Height="35"
                                                     Content="auto"
                                                     FontFamily="Roboto"
-                                                    FontSize="14" />
+                                                    FontSize="14"
+                                                    Tag="auto" />
 
                                                 <b:MetroDropDownItem
                                                     Width="Auto"
                                                     Height="35"
                                                     Content="transparent"
                                                     FontFamily="Roboto"
-                                                    FontSize="14" />
+                                                    FontSize="14"
+                                                    Tag="transparent" />
 
                                                 <b:MetroDropDownItem
                                                     Width="Auto"
                                                     Height="35"
                                                     Content="opaque"
                                                     FontFamily="Roboto"
-                                                    FontSize="14" />
+                                                    FontSize="14"
+                                                    Tag="opaque" />
 
                                             </b:MetroDropDown>
                                         </GroupBox>
@@ -1640,14 +1676,16 @@
                                                     Height="35"
                                                     Content="natural"
                                                     FontFamily="Roboto"
-                                                    FontSize="14" />
+                                                    FontSize="14"
+                                                    Tag="natural" />
 
                                                 <b:MetroDropDownItem
                                                     Width="Auto"
                                                     Height="35"
                                                     Content="vivid"
                                                     FontFamily="Roboto"
-                                                    FontSize="14" />
+                                                    FontSize="14"
+                                                    Tag="vivid" />
 
                                             </b:MetroDropDown>
                                         </GroupBox>
@@ -1688,10 +1726,12 @@
 
                 <TabItem
                     x:Name="BrowserTabItem"
+                    Margin="3,3,3,3"
                     BorderBrush="{x:Null}"
-                    Foreground="{StaticResource BlueBorderBrush}"
+                    Foreground="{DynamicResource FormForeground}"
                     Header="Web"
-                    Tag="Web">
+                    Tag="Web"
+                    ToolTip="Internet Browser">
                     <Grid
                         x:Name="BroswerTabGrid"
                         Height="Auto"
@@ -1848,9 +1888,11 @@
 
                 <TabItem
                     x:Name="EditorTabItem"
-                    Foreground="{StaticResource BlueBorderBrush}"
+                    Margin="3,3,3,3"
+                    Foreground="{DynamicResource FormForeground}"
                     Header="Editor"
-                    Tag="Editor">
+                    Tag="Editor"
+                    ToolTip="Text/Code Editing">
                     <Grid
                         x:Name="EditorTabGrid"
                         Background="{StaticResource FormBackground}">
@@ -2025,10 +2067,12 @@
 
                 <TabItem
                     x:Name="ImageTabItem"
+                    Margin="3,3,3,3"
                     BorderBrush="{x:Null}"
-                    Foreground="{StaticResource BlueBorderBrush}"
+                    Foreground="{DynamicResource FormForeground}"
                     Header="Image"
-                    Tag="Image">
+                    Tag="Image"
+                    ToolTip="Image Editing">
                     <Grid
                         x:Name="ImageTabGrid"
                         Background="{StaticResource FormBackground}">
@@ -2090,10 +2134,12 @@
 
                 <TabItem
                     x:Name="ChartTabItem"
+                    Margin="3,3,3,3"
                     BorderBrush="{x:Null}"
-                    Foreground="{StaticResource BlueBorderBrush}"
+                    Foreground="{DynamicResource FormForeground}"
                     Header="Chart"
-                    Tag="Chart">
+                    Tag="Chart"
+                    ToolTip="Data Visualizations">
                     <Grid
                         x:Name="ChartTabGrid"
                         Height="Auto"
@@ -2139,9 +2185,11 @@
 
                 <TabItem
                     x:Name="DataTabItem"
-                    Foreground="{StaticResource BlueBorderBrush}"
+                    Margin="3,3,3,3"
+                    Foreground="{DynamicResource FormForeground}"
                     Header="Data"
-                    Tag="Data">
+                    Tag="Data"
+                    ToolTip="Data Management">
 
                     <Grid
                         x:Name="DatabaseGrid"
@@ -2199,9 +2247,11 @@
 
                 <TabItem
                     x:Name="PlotTabItem"
-                    Foreground="{StaticResource BlueBorderBrush}"
+                    Margin="3,3,3,3"
+                    Foreground="{DynamicResource FormForeground}"
                     Header="Graph"
-                    Tag="Graph">
+                    Tag="Graph"
+                    ToolTip="Plotting Data">
 
                     <Grid
                         x:Name="PlotTabGrid"
@@ -2225,6 +2275,7 @@
 
                 <TabItem
                     x:Name="BusyTabItem"
+                    Margin="3,3,3,3"
                     BorderBrush="{x:Null}"
                     Foreground="{StaticResource BlueBorderBrush}"
                     Header="Busy"

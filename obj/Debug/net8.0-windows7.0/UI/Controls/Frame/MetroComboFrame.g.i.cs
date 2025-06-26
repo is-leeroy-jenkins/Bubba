@@ -149,7 +149,7 @@ namespace Bubba {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/Bubba;V1.0.0.0;component/ui/controls/frame/metrocomboframe.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/Bubba;component/ui/controls/frame/metrocomboframe.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\..\..\UI\Controls\Frame\MetroComboFrame.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

@@ -16055,6 +16055,11 @@
             The version
             </summary>
         </member>
+        <member name="F:Bubba.GptPrompt._instructions">
+            <summary>
+            The instructions
+            </summary>
+        </member>
         <member name="F:Bubba.GptPrompt._variables">
             <summary>
             The variables
@@ -16062,7 +16067,8 @@
         </member>
         <member name="M:Bubba.GptPrompt.#ctor">
             <summary>
-            Initializes a new instance of the <see cref="T:Bubba.GptPrompt"/> class.
+            Initializes a new instance of the
+            <see cref="T:Bubba.GptPrompt"/> class.
             </summary>
         </member>
         <member name="P:Bubba.GptPrompt.Id">
@@ -16071,6 +16077,14 @@
             </summary>
             <value>
             The identifier.
+            </value>
+        </member>
+        <member name="P:Bubba.GptPrompt.Instructions">
+            <summary>
+            Gets or sets the instructions.
+            </summary>
+            <value>
+            The instructions.
             </value>
         </member>
         <member name="P:Bubba.GptPrompt.Version">
@@ -17148,6 +17162,14 @@
             The file path.
             </value>
         </member>
+        <member name="P:Bubba.EmbeddingOptions.EncodingFormat">
+            <summary>
+            Gets or sets the encoding format.
+            </summary>
+            <value>
+            The encoding format.
+            </value>
+        </member>
         <member name="P:Bubba.EmbeddingOptions.EndPoint">
             <inheritdoc />
             <summary>
@@ -17168,10 +17190,24 @@
         </member>
         <member name="P:Bubba.EmbeddingOptions.Input">
             <summary>
-            Gets or sets the input.
+            Input text to embed, encoded as a string or array of tokens.
+            To embed multiple inputs in a single request, pass an array of
+            strings or array of token arrays. The input must not exceed
+            the max input tokens for the model (8192 tokens for all embedding models),
+            cannot be an empty string, and any array must be 2048 dimensions or less.
+            In addition to the per-input token limit, all embedding models enforce
+            a maximum of 300,000 tokens summed across all inputs in a single request.
             </summary>
             <value>
             The input.
+            </value>
+        </member>
+        <member name="P:Bubba.EmbeddingOptions.Dimensions">
+            <summary>
+            Gets or sets the dimensions.
+            </summary>
+            <value>
+            The dimensions.
             </value>
         </member>
         <member name="M:Bubba.EmbeddingOptions.GetData">
@@ -20776,7 +20812,6 @@
             <see cref="T:Bubba.GptRequest" /> class.
             </summary>
         </member>
-        <!-- Badly formed XML comment ignored for member "M:Bubba.GptRequest.#ctor(System.String,Bubba.IGptParameter)" -->
         <member name="M:Bubba.GptRequest.#ctor(Bubba.GptRequest)">
             <inheritdoc />
             <summary>
@@ -20809,6 +20844,28 @@
             </summary>
             <value>
             The stop sequences.
+            </value>
+        </member>
+        <member name="P:Bubba.GptRequest.FrequencyPenalty">
+            <inheritdoc />
+            <summary>
+            Number between -2.0 and 2.0. Positive values penalize new tokens
+            based on whether they appear in the text so far,
+            ncreasing the model's likelihood to talk about new topics.
+            </summary>
+            <value>
+            The frequency.
+            </value>
+        </member>
+        <member name="P:Bubba.GptRequest.PresencePenalty">
+            <inheritdoc />
+            <summary>
+            Number between -2.0 and 2.0. Positive values penalize new tokens
+            based on whether they appear in the text so far,
+            ncreasing the model's likelihood to talk about new topics.
+            </summary>
+            <value>
+            The presence.
             </value>
         </member>
         <member name="P:Bubba.GptRequest.ResponseFormat">
@@ -20870,34 +20927,49 @@
             or resetting unmanaged resources.
             </summary>
         </member>
-        <member name="T:Bubba.ImageRequest">
+        <member name="T:Bubba.ImageGenerationRequest">
             <inheritdoc />
             <summary>
             </summary>
         </member>
-        <member name="F:Bubba.ImageRequest._size">
+        <member name="F:Bubba.ImageGenerationRequest._size">
             <summary>
             The image size
             </summary>
         </member>
-        <member name="F:Bubba.ImageRequest._quality">
+        <member name="F:Bubba.ImageGenerationRequest._quality">
             <summary>
             The quality
             </summary>
         </member>
-        <member name="F:Bubba.ImageRequest._style">
+        <member name="F:Bubba.ImageGenerationRequest._style">
             <summary>
             The style
             </summary>
         </member>
-        <member name="M:Bubba.ImageRequest.#ctor">
+        <member name="F:Bubba.ImageGenerationRequest._background">
+            <summary>
+            The background
+            </summary>
+        </member>
+        <member name="F:Bubba.ImageGenerationRequest._outputCompression">
+            <summary>
+            The output compression
+            </summary>
+        </member>
+        <member name="F:Bubba.ImageGenerationRequest._outputFormat">
+            <summary>
+            The output format
+            </summary>
+        </member>
+        <member name="M:Bubba.ImageGenerationRequest.#ctor">
             <inheritdoc />
             <summary>
             Initializes a new instance of the
-            <see cref="T:Bubba.ImageRequest" /> class.
+            <see cref="T:Bubba.ImageGenerationRequest" /> class.
             </summary>
         </member>
-        <member name="P:Bubba.ImageRequest.HttpClient">
+        <member name="P:Bubba.ImageGenerationRequest.HttpClient">
             <inheritdoc />
             <summary>
             Gets or sets a value indicating whether this
@@ -20907,7 +20979,7 @@
               <c>true</c> if store; otherwise, <c>false</c>.
             </value>
         </member>
-        <member name="P:Bubba.ImageRequest.Size">
+        <member name="P:Bubba.ImageGenerationRequest.Size">
             <summary>
             Gets or sets the size of the image.
             </summary>
@@ -20915,7 +20987,7 @@
             The size of the image.
             </value>
         </member>
-        <member name="P:Bubba.ImageRequest.Prompt">
+        <member name="P:Bubba.ImageGenerationRequest.Prompt">
             <inheritdoc />
             <summary>
             Gets or sets the prompt.
@@ -20924,7 +20996,7 @@
             The prompt.
             </value>
         </member>
-        <member name="P:Bubba.ImageRequest.Quality">
+        <member name="P:Bubba.ImageGenerationRequest.Quality">
             <summary>
             Gets or sets the quality.
             </summary>
@@ -20932,7 +21004,7 @@
             The quality.
             </value>
         </member>
-        <member name="P:Bubba.ImageRequest.Style">
+        <member name="P:Bubba.ImageGenerationRequest.Style">
             <summary>
             Gets or sets the style.
             </summary>
@@ -20940,7 +21012,23 @@
             The style.
             </value>
         </member>
-        <member name="P:Bubba.ImageRequest.Messages">
+        <member name="P:Bubba.ImageGenerationRequest.Background">
+            <summary>
+            Gets or sets the background.
+            </summary>
+            <value>
+            The background.
+            </value>
+        </member>
+        <member name="P:Bubba.ImageGenerationRequest.OutputFormat">
+            <summary>
+            Gets or sets the output format.
+            </summary>
+            <value>
+            The output format.
+            </value>
+        </member>
+        <member name="P:Bubba.ImageGenerationRequest.Messages">
             <inheritdoc />
             <summary>
             Gets or sets the messages.
@@ -20949,7 +21037,7 @@
             The messages.
             </value>
         </member>
-        <member name="P:Bubba.ImageRequest.EndPoint">
+        <member name="P:Bubba.ImageGenerationRequest.EndPoint">
             <inheritdoc />
             <summary>
             Gets the end point.
@@ -20958,7 +21046,7 @@
             The end point.
             </value>
         </member>
-        <member name="P:Bubba.ImageRequest.Number">
+        <member name="P:Bubba.ImageGenerationRequest.Number">
             <inheritdoc />
             <summary>
             THe number 'n' of responses returned by the API.
@@ -20967,7 +21055,7 @@
             The user identifier.
             </value>
         </member>
-        <member name="P:Bubba.ImageRequest.MaxCompletionTokens">
+        <member name="P:Bubba.ImageGenerationRequest.MaxCompletionTokens">
             <inheritdoc />
             <summary>
             Gets the maximum tokens.
@@ -20976,7 +21064,7 @@
             The maximum tokens.
             </value>
         </member>
-        <member name="M:Bubba.ImageRequest.GetData">
+        <member name="M:Bubba.ImageGenerationRequest.GetData">
             <inheritdoc />
             <summary>
             Gets the data.
@@ -20984,7 +21072,7 @@
             <returns>
             </returns>
         </member>
-        <member name="M:Bubba.ImageRequest.ToString">
+        <member name="M:Bubba.ImageGenerationRequest.ToString">
             <summary>
             Converts to string.
             </summary>
@@ -20992,14 +21080,14 @@
             A <see cref="T:System.String" /> that represents this instance.
             </returns>
         </member>
-        <member name="M:Bubba.ImageRequest.GetResponseAsync(System.String)">
+        <member name="M:Bubba.ImageGenerationRequest.GetResponseAsync(System.String)">
             <summary>
             Generates the images asynchronous.
             </summary>
             <param name="prompt">The prompt.</param>
             <returns></returns>
         </member>
-        <member name="M:Bubba.ImageRequest.ExtractContent(System.String)">
+        <member name="M:Bubba.ImageGenerationRequest.ExtractContent(System.String)">
             <summary>
             Extracts the image urls.
             </summary>
@@ -22402,7 +22490,7 @@
             </summary>
             <inheritdoc />
         </member>
-        <member name="M:Bubba.ImageResponse.#ctor(Bubba.ImageRequest)">
+        <member name="M:Bubba.ImageResponse.#ctor(Bubba.ImageGenerationRequest)">
             <inheritdoc />
             <summary>
             Initializes a new instance of the
@@ -38620,6 +38708,36 @@
         <member name="M:Bubba.WebBrowser.InitializeComponent">
             <summary>
             InitializeComponent
+            </summary>
+        </member>
+        <member name="T:XamlGeneratedNamespace.GeneratedInternalTypeHelper">
+            <summary>
+            GeneratedInternalTypeHelper
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.CreateInstance(System.Type,System.Globalization.CultureInfo)">
+            <summary>
+            CreateInstance
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.GetPropertyValue(System.Reflection.PropertyInfo,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            GetPropertyValue
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.SetPropertyValue(System.Reflection.PropertyInfo,System.Object,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            SetPropertyValue
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.CreateDelegate(System.Type,System.Object,System.String)">
+            <summary>
+            CreateDelegate
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.AddEventHandler(System.Reflection.EventInfo,System.Object,System.Delegate)">
+            <summary>
+            AddEventHandler
             </summary>
         </member>
     </members>

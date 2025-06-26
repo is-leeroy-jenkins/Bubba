@@ -78,6 +78,21 @@ namespace Bubba
         /// </summary>
         private protected string _style;
 
+        /// <summary>
+        /// The background
+        /// </summary>
+        private protected string _background;
+
+        /// <summary>
+        /// The output compression
+        /// </summary>
+        private protected double _outputCompression;
+
+        /// <summary>
+        /// The output format
+        /// </summary>
+        private protected string _outputFormat;
+
         /// <inheritdoc />
         /// <summary>
         /// Initializes a new instance of the
@@ -170,7 +185,7 @@ namespace Bubba
                 if( _prompt != value )
                 {
                     _prompt = value;
-                    OnPropertyChanged( nameof( ImageGenerationRequest.Prompt ) );
+                    OnPropertyChanged( nameof( Prompt ) );
                 }
             }
         }
@@ -217,6 +232,52 @@ namespace Bubba
                 {
                     _style = value;
                     OnPropertyChanged( nameof( Style ) );
+                }
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the background.
+        /// </summary>
+        /// <value>
+        /// The background.
+        /// </value>
+        [ JsonPropertyName( "background" ) ]
+        public string Background
+        {
+            get
+            {
+                return _background;
+            }
+            set
+            {
+                if( _background != value )
+                {
+                    _background = value;
+                    OnPropertyChanged( nameof( Background ) );
+                }
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the output format.
+        /// </summary>
+        /// <value>
+        /// The output format.
+        /// </value>
+        [ JsonPropertyName( "output_format" ) ]
+        public string OutputFormat
+        {
+            get
+            {
+                return _outputFormat;
+            }
+            set
+            {
+                if( _outputFormat != value )
+                {
+                    _outputFormat = value;
+                    OnPropertyChanged( nameof( OutputFormat ) );
                 }
             }
         }
