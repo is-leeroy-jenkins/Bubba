@@ -6,6 +6,10 @@
     <!--  ******************************************** Resources *********************************************  -->
 
     <ResourceDictionary.MergedDictionaries>
+        <!--  COMMON  -->
+        <ResourceDictionary Source="/UI/Themes/Common/Common.xaml" />
+        <ResourceDictionary Source="/UI/Themes/Common/Brushes.xaml" />
+
         <!--  COMBOBOX  -->
         <ResourceDictionary Source="/UI/Themes/Window/Window.xaml" />
 
@@ -22,10 +26,6 @@
 
         <!--  RADIO BUTTONS  -->
         <ResourceDictionary Source="/UI/Themes/RadioButton/RadioButton.xaml" />
-
-        <!--  COMMON  -->
-        <ResourceDictionary Source="/UI/Themes/Common/Common.xaml" />
-        <ResourceDictionary Source="/UI/Themes/Common/Brushes.xaml" />
 
         <!--  TAB CONTROL  -->
         <ResourceDictionary Source="/UI/Themes/TabControl/TabControl.xaml" />

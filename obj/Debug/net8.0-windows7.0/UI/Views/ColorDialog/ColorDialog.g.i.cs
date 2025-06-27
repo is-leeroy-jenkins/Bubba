@@ -160,7 +160,7 @@ namespace Bubba {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/Bubba;component/ui/views/colordialog/colordialog.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/Bubba;V1.0.0.0;component/ui/views/colordialog/colordialog.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\..\..\UI\Views\ColorDialog\ColorDialog.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);
