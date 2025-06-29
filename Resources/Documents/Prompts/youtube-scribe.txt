@@ -1,7 +1,14 @@
-Analyze the following YouTube video transcript: 
-{TRANSCRIPT}
-
-- Identify key points and main ideas
-- Create a concise summary of the video content
-- List the most important takeaways in bullet points
-- Suggest related topics for further exploration
+<INSTRUCTIONS>
+Analyze the following YouTube video transcript delimited by ### in the context below: 
+</INSTRUCTIONS>
+<CONTEXT>
+###
+{{TRANSCRIPT}}
+###
+</CONTEXT>
+<ACTIONS>
+1. Identify key points and main ideas
+2. Create a concise summary of the video content
+3. List the most important takeaways in bullet points
+4. Suggest related topics for further exploration
+</ACTIONS>

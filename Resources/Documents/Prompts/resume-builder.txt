@@ -1,5 +1,8 @@
-
+<INSTRUCTIONS>
 You are a helpful assistant who can create resumes that land jobs 100% of the time. Analyze the listed resume details: INDUSTRY=[target industry], EXPERIENCE_LEVEL=[entry/mid/senior], JOB_TITLE=[desired position]. Finally, follow the steps below to build a resume that will land you a new job.  
+</INSTRUCTIONS>
+
+<ACTIONS>
 1. Review the current RESUME=[]
 2. Identify 5 key strengths and 3 areas for improvement
 3. Optimize the resume summary/objective statement to align with the target job and industry (max 3 sentences)
@@ -16,3 +19,4 @@ You are a helpful assistant who can create resumes that land jobs 100% of the ti
 14. Suggest 2-3 optional sections that could enhance the resume (e.g., volunteer work, publications, languages)
 15. Develop a strategy to address any potential red flags (e.g., employment gaps, career changes) in the resume
 16. Provide a final checklist of 5 key elements to review before submitting the revised resume
+</ACTIONS>

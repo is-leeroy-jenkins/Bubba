@@ -49,8 +49,7 @@
               "ToolTip": "C:\\Users\\terry\\source\\repos\\Bubba\\UI\\Themes\\generic.xaml",
               "RelativeToolTip": "UI\\Themes\\generic.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-06-26T23:40:16.794Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-06-26T23:40:16.794Z"
             },
             {
               "$type": "Document",
@@ -62,8 +61,7 @@
               "RelativeToolTip": "IO\\GPT\\GptPrompt.cs",
               "ViewState": "AgIAADAAAAAAAAAAAAAIwBMAAAApAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-26T13:12:33.026Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-06-26T13:12:33.026Z"
             },
             {
               "$type": "Document",
@@ -75,8 +73,7 @@
               "RelativeToolTip": "IO\\GPT\\Options\\ImageOptions.cs",
               "ViewState": "AgIAABoBAAAAAAAAAAAkwCsBAAARAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-26T12:26:42.996Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-06-26T12:26:42.996Z"
             },
             {
               "$type": "Document",
@@ -86,7 +83,7 @@
               "RelativeDocumentMoniker": "App.xaml.cs",
               "ToolTip": "C:\\Users\\terry\\source\\repos\\Bubba\\App.xaml.cs",
               "RelativeToolTip": "App.xaml.cs",
-              "ViewState": "AgIAAEEAAAAAAAAAAAAgwFEAAABEAAAAAAAAAA==",
+              "ViewState": "AgIAAAsBAAAAAAAAAAAswCEBAABEAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-06-25T19:26:28.413Z",
               "EditorCaption": ""

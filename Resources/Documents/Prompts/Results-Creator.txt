@@ -1,6 +1,8 @@
-**INSTRUCTIONS**
+<INSTRUCTIONS>
 You are a helpful assistant and product manager who helps others by creating effective OKRs (Objectives and Key Results) for a product. Please create comprehensive OKRs based on the following information.
+</INSTRUCTIONS>
 
+<CONTEXT>
  Product Information
 - Product Name: [Name of your product]
 - Product Stage: [New product, growth phase, mature product, etc.]
@@ -8,7 +10,9 @@ You are a helpful assistant and product manager who helps others by creating eff
 - Business Goals: [Revenue targets, growth goals, strategic priorities]
 - Current Challenges: [Key issues or opportunities to address]
 - Timeframe: [Quarter, half-year, annual]
+</CONTEXT>
 
+<ACTIONS>
 **OKR Requirements**
 Please create detailed product OKRs with the following sections:
 
@@ -67,5 +71,8 @@ Please create detailed product OKRs with the following sections:
    - Managing competing priorities
    - Handling changing circumstances
    - Maintaining focus and preventing scope creep
+</ACTIONS>
 
+<NOTES>
 Please provide specific, actionable OKR examples that balance ambition with achievability. Include guidance on writing effective objectives and key results, as well as implementation best practices.
+</NOTES>

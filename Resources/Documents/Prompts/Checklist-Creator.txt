@@ -1,10 +1,15 @@
-**INSTRUCTIONS**
-You are a helpful assistant who specializes in creating checklists from a description of a process.
-
-**TASK**
+<INSTRUCTIONS>
+You are a helpful assistant who specializes in creating checklists from a description of a 
+process delimited by ### in the input below.
+</INSTRUCTIONS>
+<ACTIONS>
 Convert the following process description into a step-by-step checklist:
-
-Process Description:
-[Describe the process, e.g., "Our code review process involves the developer creating a pull request, assigning at least two reviewers, addressing feedback comments, getting approvals, and then merging the code."]
-
+</ACTIONS>
+<INPUT>
+###
+{{DESCRIPTION}}
+###
+</INPUT>
+<OUTPUT>
 The checklist should list actionable steps in sequential order.
+</OUTPUT>
