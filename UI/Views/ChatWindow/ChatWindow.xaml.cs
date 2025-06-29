@@ -1307,7 +1307,7 @@ namespace Bubba
                 MuteCheckBox.IsChecked = false;
                 ListenCheckBox.IsChecked = false;
                 StoreCheckBox.IsChecked = false;
-                StreamCheckBox.IsChecked = true;
+                StreamCheckBox.IsChecked = false;
             }
             catch( Exception ex )
             {
@@ -1324,9 +1324,9 @@ namespace Bubba
             {
                 PresenceSlider.Value = 0.00;
                 FrequencySlider.Value = 0.00;
-                TemperatureSlider.Value = 0.08;
-                TopPercentSlider.Value = 0.09;
-                SpeechRateSlider.Value = 2;
+                TemperatureSlider.Value = 0.8;
+                TopPercentSlider.Value = 0.9;
+                SpeechRateSlider.Value = 1;
             }
             catch( Exception ex )
             {
@@ -4950,7 +4950,7 @@ namespace Bubba
                     Editor.AppendText( "\r\n" );
                 }
 
-                Editor.AppendText( "User: " + _userInput + "\r\n" );
+                Editor.AppendText( _userInput + "\r\n" );
                 Editor.Text = "";
                 try
                 {

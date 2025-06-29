@@ -360,7 +360,8 @@ namespace Bubba
         /// <summary>
         /// Gets the formats.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>
+        /// </returns>
         public IList<string> GetFormats( )
         {
             try

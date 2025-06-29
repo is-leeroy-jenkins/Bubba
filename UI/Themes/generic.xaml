@@ -23,7 +23,6 @@
         <!--  BUTTONS  -->
         <ResourceDictionary Source="/UI/Themes/Button/Button.xaml" />
 
-
         <!--  RADIO BUTTONS  -->
         <ResourceDictionary Source="/UI/Themes/RadioButton/RadioButton.xaml" />
 
@@ -77,6 +76,10 @@
 
         <!--  ToolTip  -->
         <ResourceDictionary Source="/UI/Themes/ToolTip/ToolTip.xaml" />
+
+        <!--  Editor  -->
+        <ResourceDictionary Source="/UI/Themes/Editor/EditControl.xaml" />
+        <ResourceDictionary Source="/UI/Themes/Editor/SfImageEditor.xaml" />
 
 
     </ResourceDictionary.MergedDictionaries>

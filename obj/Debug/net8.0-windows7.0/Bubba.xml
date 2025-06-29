@@ -17846,7 +17846,8 @@
             <summary>
             Gets the formats.
             </summary>
-            <returns></returns>
+            <returns>
+            </returns>
         </member>
         <member name="M:Bubba.ImageOptions.GetDalleTwoSizes">
             <summary>
