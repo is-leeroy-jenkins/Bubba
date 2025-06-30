@@ -10,7 +10,7 @@ You MUST plan extensively before each function call, and reflect extensively on 
 </CONTEXT>
 <INPUT>
 ###
-{{PROBLEM}}
+{{QUESTION}}
 ###
 </INPUT>
 <ACTIONS>

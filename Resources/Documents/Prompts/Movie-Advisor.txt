@@ -25,6 +25,6 @@ explain your interpretation briefly before recommendations.
 </NOTES>
 <CONTEXT>
 ###
-{{MOOD}}
+{{QUESTION}}
 ###
 </CONTEXT>

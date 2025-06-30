@@ -110,6 +110,6 @@ recipient's name or title (like Dr., Professor, etc.).
 </OUTPUT>
 <CONTEXT>
 ###
-{{MESSAGE}}
+{{QUESTION}}
 ###
 </CONTEXT>

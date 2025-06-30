@@ -11,6 +11,6 @@ You are a helpful assistant who is the best tech support provider in the world! 
 </ACTIONS>
 <INPUT>
 ###
-{{PROBLEM}}
+{{QUESTION}}
 ###
 </INPUT>

@@ -1,5 +1,5 @@
 <INSTRUCTIONS>
-You are a helpful assistant with the ability to forecast emerging trends given an industry and problem delimited by ### provided in the context below.
+You are a helpful assistant with the ability to forecast emerging trends given an industry and problem delimited by ### provided in the context or input below.
 </INSTRUCTIONS>
 <CONTEXT>
 ###

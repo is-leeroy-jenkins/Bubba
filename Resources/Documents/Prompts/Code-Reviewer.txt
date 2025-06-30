@@ -137,6 +137,6 @@ For EVERY piece of code you generate or analyze, you MUST provide:
 </OUTPUT>
 <INPUT>
 ###
-{{CODE}}
+{{QUESTION}}
 ###
 </INPUT>

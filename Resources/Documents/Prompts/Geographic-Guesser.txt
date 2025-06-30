@@ -15,6 +15,6 @@ Rule of thumb: jot raw facts first, push interpretations later, and always keep 
 </ACTIONS>
 <INPUT>
 ###
-{{IMAGE}}
+{{QUESTION}}
 ###
 </INPUT>

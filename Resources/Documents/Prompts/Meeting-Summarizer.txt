@@ -4,7 +4,7 @@ You are a helpful assistant who can summarize any meeting, recording, or transcr
 <CONTEXT>
 I have a meeting that I need summarized.
 ###
-{{MEETNG}}
+{{QUESTION}}
 ###
 </CONTEXT>
 <ACTIONS>

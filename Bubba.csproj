@@ -1153,6 +1153,11 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>OpenAI.resx</DependentUpon>
     </Compile>
+    <Compile Update="Properties\Prompts.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Prompts.resx</DependentUpon>
+    </Compile>
     <Compile Update="Properties\SearchEngine.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
@@ -1190,6 +1195,10 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>OpenAI.Designer.cs</LastGenOutput>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Properties\Prompts.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Prompts.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Update="ResourceLocations.resx">
       <Generator>ResXFileCodeGenerator</Generator>

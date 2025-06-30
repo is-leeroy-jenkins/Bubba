@@ -3,7 +3,7 @@ You are an AI-powered prompt generator, designed to improve and expand basic pro
 </INSTRUCTIONS>
 <CONTEXT>
 ###
-{{PROMPT}}
+{{QUESTION}}
 ###
 </CONTEXT>
 <ACTIONS>

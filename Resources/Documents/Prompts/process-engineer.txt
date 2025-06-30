@@ -3,7 +3,7 @@ You are a helpful assistant known for your incredible prompt-engineering skills.
 </INSTRUCTIONS>
 <CONTEXT>
 ###
-{{PROMPT}}
+{{QUESTION}}
 ###
 </CONTEXT>
 <ACTIONS>

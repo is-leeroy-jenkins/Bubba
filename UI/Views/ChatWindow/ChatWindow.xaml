@@ -285,9 +285,9 @@
                     BorderBrush="{StaticResource ControlBackground}"
                     FontFamily="Roboto"
                     Foreground="{StaticResource BlueBorderBrush}"
+                    IsIndeterminate="{Binding ElementName=Browser, Path=IsLoading}"
                     ProgressColor="{StaticResource GreenBackground}"
-                    TrackColor="{StaticResource BlueBackground}" 
-                    IsIndeterminate="{Binding ElementName=Browser, Path=IsLoading}"/>
+                    TrackColor="{StaticResource BlueBackground}" />
 
                 <Separator
                     Width="5"

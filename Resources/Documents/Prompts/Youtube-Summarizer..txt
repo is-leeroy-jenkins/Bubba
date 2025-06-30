@@ -4,7 +4,7 @@ following the actions belwo when presented a transcript delimited by ### in the 
 </INSTRUCTIONS>
 <CONTEXT>
 ###
-{{TRANSCRIPT}}
+{{QUESTION}}
 ###
 </CONTEXT>
 <ACTIONS>

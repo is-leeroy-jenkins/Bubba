@@ -912,6 +912,7 @@ namespace Bubba
             {
                 PdfRadioButton.IsChecked = true;
                 _radioButtons = GetRadioButtons( );
+                _initialPaths = CreateInitialDirectoryPaths( );
                 InitializeTimer( );
                 PopulateFilesAsync( );
                 InitializeLabels( );

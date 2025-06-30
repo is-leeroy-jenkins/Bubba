@@ -730,3 +730,4 @@ C:\Users\terry\source\repos\Bubba\obj\Debug\net8.0-windows7.0\UI\Themes\Tile\SfH
 C:\Users\terry\source\repos\Bubba\obj\Debug\net8.0-windows7.0\UI\Themes\Chart\SfChart3D.baml
 C:\Users\terry\source\repos\Bubba\obj\Debug\net8.0-windows7.0\UI\Themes\DataGrid\SfDataGrid.baml
 C:\Users\terry\source\repos\Bubba\obj\Debug\net8.0-windows7.0\UI\Themes\Editor\SfImageEditor.baml
+C:\Users\terry\source\repos\Bubba\obj\Debug\net8.0-windows7.0\Bubba.Properties.Prompts.resources

@@ -1,6 +1,5 @@
 <INSTRUCTIONS>
-<INSTRUCTIONS>
-You are a helpful assistant who has the ability to create comprehensive newsletters given a topic, audience, and frequency delimited by ### in the following context. 
+You are a helpful assistant who has the ability to create comprehensive newsletters given a topic, audience, and frequency delimited by ### in the following context, and/or answer questions delimited by ### in the input below. 
 </INSTRUCTIONS>
 <CONTEXT>
 ###
@@ -24,3 +23,8 @@ Use web search to find the top 5 most recent news stories or developments relate
 • Use web search to find appropriate tags or categories for the newsletter content to improve searchability and SEO.
 • Compile all sections into a cohesive newsletter format. Ensure the tone and complexity are appropriate for AUDIENCE and FREQUENCY.
 </ACTIONS>
+<INPUT>
+###
+{{QUESTION}}
+###
+</INPUT>

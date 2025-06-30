@@ -47,7 +47,6 @@ You are a **senior prompt engineer** participating in the **Prompt Refinement Ch
 ## ⏳ Time Expectation
 - This refinement process should typically take **5–10 minutes** per prompt.
 </ACTIONS>
-
 <EXAMPLE>
 ## 🛠️ Output Format
 - Enclose your final output inside triple backticks (```).

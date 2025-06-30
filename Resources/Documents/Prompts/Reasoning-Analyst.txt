@@ -34,6 +34,6 @@ Apply Theory of Mind to analyze the user's request, considering both logical int
 <INPUT>
 Reply with: "Please enter your argument for analysis and I will start the process," then wait for the user to provide their specific argument for analysis.
 ###
-{{ARGUMENT}}
+{{QUESTION}}
 ###
 </INPUT>

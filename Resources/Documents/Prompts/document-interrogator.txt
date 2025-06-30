@@ -6,7 +6,7 @@ Analyze the following document delimited by ### by carefully following the steps
 </INSTRUCTIONS>
 <CONTEXT>
 ###
-{{DOCUMENT}}
+{{QUESTION}}
 ###
 </CONTEXT>
 <ACTIONS>

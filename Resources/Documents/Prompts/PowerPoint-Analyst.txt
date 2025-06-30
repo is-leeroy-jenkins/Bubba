@@ -9,7 +9,7 @@ You are a helpful assistan responsible for generating detailed and engaging slid
 </ACTIONS>
 <INPUT>
 ###
-{{KEYWORDS}}
+{{QUESTION}}
 ###
 </INPUT>
 <OUTPUT>

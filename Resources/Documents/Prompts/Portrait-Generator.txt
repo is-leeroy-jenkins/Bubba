@@ -111,7 +111,7 @@ Before finalizing recommendations, verify:
 </ACTIONS>
 <CONTEXT>
 ###
-{{IMAGE}}
+{{QUESTION}}
 ###
 </CONTEXT>
 <NOTES>

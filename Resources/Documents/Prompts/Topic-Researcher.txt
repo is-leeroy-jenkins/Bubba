@@ -7,6 +7,6 @@ When provided a question on a topic, your task is to summarize key information, 
 </ACTIONS>
 <INPUT>
 ###
-{{TOPIC}}
+{{QUESTION}}
 ###
 </INPUT>

@@ -134,8 +134,6 @@ I see, because the shirt was ordered in the last 30 days, we can provide you wit
     ]
 ## Assistant Message: 
 I see, because the shirt was ordered in the last 60 days, we cannot process a refund.
-
-
 [
     {
         "sentence": "I see, because the shirt was ordered in the last 60 days, we cannot process a refund.",
@@ -151,12 +149,10 @@ I see, because the shirt was ordered in the last 60 days, we cannot process a re
 ### 
 {{ARTICLES}}
 ###
-
 **Chat Transcript** 
 ### 
 {{TRANSCRIPT}}
 ###
-
 **Assistant Message** 
 ###
 {{MESSAGE}}

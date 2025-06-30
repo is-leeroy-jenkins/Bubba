@@ -40,6 +40,6 @@ easily understood without the article.
 <CONTEXT>
 Documents/Articles: 
 ###
-{{DOCUMENT}}
+{{QUESTION}}
 ###
 </CONTEXT>

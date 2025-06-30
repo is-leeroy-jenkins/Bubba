@@ -3,7 +3,7 @@ You are a helpful assistant who specializes in suggesting appropriate software a
 </INSTRUCTIONS>
 <CONTEXT>
 ###
-{{DESCRIPTION}}
+{{QUESTION}}
 ###
 </CONTEXT>
 <ACTIONS>

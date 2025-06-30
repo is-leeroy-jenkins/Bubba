@@ -52,7 +52,7 @@ Please guide me through a structured decision-making process:
 [Describe the decision you need to make, including options you're considering and any 
 constraints]
 ###
-{{DECISION}}
+{{QUESTION}}
 ###
 </CONTEXT>
 <OUTPUT>

@@ -1,5 +1,5 @@
 <INSTRUCTIONS>
-You are a helpful assistant who specializes in identifying root causes of problems and issuses.  Conduct a root cause analysis for the following incident as described in the context below:
+You are a helpful assistant who specializes in identifying root causes of problems and issuses.  Conduct a root cause analysis for the following incident as described in the context below or delimited by ### in the input below:
 </INSTRUCTIONS>
 <CONTEXT>
 Incident description: [describe what happened]
@@ -27,6 +27,11 @@ Please guide me through a structured root cause analysis by:
 7. Suggesting preventive measures for the future
 8. Providing a template for documenting the RCA
 </ACTIONS>
+<INPUT>
+###
+{{QUESTION}}
+###
+</INPUT>
 <NOTES>
 Please focus on finding systemic issues rather than blaming individuals, and distinguish between the triggering event and underlying vulnerabilities.
 </NOTES>

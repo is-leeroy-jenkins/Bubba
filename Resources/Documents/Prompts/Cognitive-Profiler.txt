@@ -84,3 +84,8 @@ FINAL SECTION — NON-NEGOTIABLE
 - Language must cut. Humor allowed only if it wounds smartly.
 - This is not meant to be safe. It is meant to be true.
 </NOTES>
+<INPUT>
+###
+{{QUESTION}}
+###
+</INPUT>

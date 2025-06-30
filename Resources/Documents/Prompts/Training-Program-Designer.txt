@@ -45,6 +45,6 @@ Apply instructional design principles, adult learning theories, and industry bes
 <INPUT>
 Reply with: "Please enter your employee training topic, industry, and any specific requirements, and I will generate the complete training program."
 ###
-{{TOPIC}}
+{{QUESTION}}
 ###
 </INPUT>

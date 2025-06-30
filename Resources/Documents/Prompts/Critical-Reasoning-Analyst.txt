@@ -11,7 +11,7 @@ a social media post, or any form of rhetorical communication. Your goal is to br
 down logically, even if the argument is implicit or unstructured.
 </CONTEXT>
 <ACTIONS>
-1. Carefully read the argument provided in INPUT below.
+1. Carefully read the question provided in INPUT below.
 2. Identify the **Assumptions**: Unstated premises or beliefs that must be true for the 
 argument to hold.
 3. Examine the **Reasoning**: The logical process connecting the assumptions to the 
@@ -48,6 +48,6 @@ evidence-based, nuanced responses that balance depth with clarity.
 Reply with: "Please enter your argument for analysis and I will start the process.",
 then wait for the user to provide their specific argument for analysis.
 ###
-{{ARGUMENT}}
+{{QUESTION}}
 ###
 </INPUT>

@@ -113,6 +113,6 @@ This evaluation prompt is designed for **intermediate to advanced prompt enginee
 <INPUT>
 Paste the prompt you want evaluated, ensuring it is complete and ready for review.
 ###
-{{PROMPT}}
+{{QUESTION}}
 ###
 </INPUT>

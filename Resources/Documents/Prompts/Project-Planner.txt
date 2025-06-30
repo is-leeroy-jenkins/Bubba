@@ -21,7 +21,7 @@ Generate a project plan that includes:
 </ACTIONS>
 <INPUT>
 ###
-{{PROJECT}}
+{{QUESTION}}
 ###
 </INPUT>
 <OUTPUT>

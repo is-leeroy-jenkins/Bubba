@@ -3,6 +3,10 @@
   "WorkspaceRootPath": "C:\\Users\\terry\\source\\repos\\Bubba\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{08012640-3765-4051-B5EB-4FF782150AEC}|Bubba.csproj|c:\\users\\terry\\source\\repos\\bubba\\ui\\controls\\tile\\metrotile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{08012640-3765-4051-B5EB-4FF782150AEC}|Bubba.csproj|solutionrelative:ui\\controls\\tile\\metrotile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{08012640-3765-4051-B5EB-4FF782150AEC}|Bubba.csproj|c:\\users\\terry\\source\\repos\\bubba\\ui\\views\\chatwindow\\chatwindow.xaml.cs||{8B382828-6202-11D1-8870-0000F87579D2}|",
       "RelativeMoniker": "D:0:0:{08012640-3765-4051-B5EB-4FF782150AEC}|Bubba.csproj|solutionrelative:ui\\views\\chatwindow\\chatwindow.xaml.cs||{8B382828-6202-11D1-8870-0000F87579D2}|"
     },
@@ -11,16 +15,16 @@
       "RelativeMoniker": "D:0:0:{08012640-3765-4051-B5EB-4FF782150AEC}|Bubba.csproj|solutionrelative:ui\\views\\chatwindow\\chatwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{08012640-3765-4051-B5EB-4FF782150AEC}|Bubba.csproj|c:\\users\\terry\\source\\repos\\bubba\\io\\gpt\\options\\imageoptions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{08012640-3765-4051-B5EB-4FF782150AEC}|Bubba.csproj|solutionrelative:io\\gpt\\options\\imageoptions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{08012640-3765-4051-B5EB-4FF782150AEC}|Bubba.csproj|c:\\users\\terry\\source\\repos\\bubba\\io\\gpt\\gptprompt.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{08012640-3765-4051-B5EB-4FF782150AEC}|Bubba.csproj|solutionrelative:io\\gpt\\gptprompt.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{08012640-3765-4051-B5EB-4FF782150AEC}|Bubba.csproj|c:\\users\\terry\\source\\repos\\bubba\\app.xaml.cs||{8B382828-6202-11D1-8870-0000F87579D2}|",
       "RelativeMoniker": "D:0:0:{08012640-3765-4051-B5EB-4FF782150AEC}|Bubba.csproj|solutionrelative:app.xaml.cs||{8B382828-6202-11D1-8870-0000F87579D2}|"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{08012640-3765-4051-B5EB-4FF782150AEC}|Bubba.csproj|c:\\users\\terry\\source\\repos\\bubba\\io\\gpt\\options\\imageoptions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{08012640-3765-4051-B5EB-4FF782150AEC}|Bubba.csproj|solutionrelative:io\\gpt\\options\\imageoptions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -30,7 +34,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 4,
+          "SelectedChildIndex": 3,
           "Children": [
             {
               "$type": "Bookmark",
@@ -46,58 +50,71 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
+              "Title": "MetroTile.cs",
+              "DocumentMoniker": "C:\\Users\\terry\\source\\repos\\Bubba\\UI\\Controls\\Tile\\MetroTile.cs",
+              "RelativeDocumentMoniker": "UI\\Controls\\Tile\\MetroTile.cs",
+              "ToolTip": "C:\\Users\\terry\\source\\repos\\Bubba\\UI\\Controls\\Tile\\MetroTile.cs",
+              "RelativeToolTip": "UI\\Controls\\Tile\\MetroTile.cs",
+              "ViewState": "AgIAAEQAAAAAAAAAAAAowFEAAAAYAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-30T15:42:15.036Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
               "Title": "ChatWindow.xaml",
               "DocumentMoniker": "C:\\Users\\terry\\source\\repos\\Bubba\\UI\\Views\\ChatWindow\\ChatWindow.xaml",
               "RelativeDocumentMoniker": "UI\\Views\\ChatWindow\\ChatWindow.xaml",
               "ToolTip": "C:\\Users\\terry\\source\\repos\\Bubba\\UI\\Views\\ChatWindow\\ChatWindow.xaml",
               "RelativeToolTip": "UI\\Views\\ChatWindow\\ChatWindow.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-06-29T17:55:39.284Z",
+              "WhenOpened": "2025-06-30T15:27:19.547Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "ChatWindow.xaml.cs",
               "DocumentMoniker": "C:\\Users\\terry\\source\\repos\\Bubba\\UI\\Views\\ChatWindow\\ChatWindow.xaml.cs",
               "RelativeDocumentMoniker": "UI\\Views\\ChatWindow\\ChatWindow.xaml.cs",
-              "ToolTip": "C:\\Users\\terry\\source\\repos\\Bubba\\UI\\Views\\ChatWindow\\ChatWindow.xaml.cs*",
-              "RelativeToolTip": "UI\\Views\\ChatWindow\\ChatWindow.xaml.cs*",
-              "ViewState": "AgIAAAcUAAAAAAAAAAAAANITAAAgAAAAAAAAAA==",
+              "ToolTip": "C:\\Users\\terry\\source\\repos\\Bubba\\UI\\Views\\ChatWindow\\ChatWindow.xaml.cs",
+              "RelativeToolTip": "UI\\Views\\ChatWindow\\ChatWindow.xaml.cs",
+              "ViewState": "AgIAAJAGAAAAAAAAAAAmwKEGAAASAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-06-29T17:45:57.392Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 4,
               "Title": "GptPrompt.cs",
               "DocumentMoniker": "C:\\Users\\terry\\source\\repos\\Bubba\\IO\\GPT\\GptPrompt.cs",
               "RelativeDocumentMoniker": "IO\\GPT\\GptPrompt.cs",
               "ToolTip": "C:\\Users\\terry\\source\\repos\\Bubba\\IO\\GPT\\GptPrompt.cs",
               "RelativeToolTip": "IO\\GPT\\GptPrompt.cs",
-              "ViewState": "AgIAAKEAAAAAAAAAAAAqwLUAAAABAAAAAAAAAA==",
+              "ViewState": "AgIAAHkAAAAAAAAAAAAowIYAAAAPAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-06-26T13:12:33.026Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 3,
               "Title": "ImageOptions.cs",
               "DocumentMoniker": "C:\\Users\\terry\\source\\repos\\Bubba\\IO\\GPT\\Options\\ImageOptions.cs",
               "RelativeDocumentMoniker": "IO\\GPT\\Options\\ImageOptions.cs",
               "ToolTip": "C:\\Users\\terry\\source\\repos\\Bubba\\IO\\GPT\\Options\\ImageOptions.cs",
               "RelativeToolTip": "IO\\GPT\\Options\\ImageOptions.cs",
-              "ViewState": "AgIAAF4AAAAAAAAAAAAAAG8AAAAcAAAAAAAAAA==",
+              "ViewState": "AgIAAHQAAAAAAAAAAAAAAI4AAAAVAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-06-26T12:26:42.996Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 5,
               "Title": "App.xaml.cs",
               "DocumentMoniker": "C:\\Users\\terry\\source\\repos\\Bubba\\App.xaml.cs",
               "RelativeDocumentMoniker": "App.xaml.cs",
@@ -105,8 +122,7 @@
               "RelativeToolTip": "App.xaml.cs",
               "ViewState": "AgIAAAsBAAAAAAAAAAAswBUBAAAbAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-25T19:26:28.413Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-06-25T19:26:28.413Z"
             }
           ]
         }

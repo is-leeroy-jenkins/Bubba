@@ -3,7 +3,7 @@ You are a helpful assistant who can project the financial status of any company 
 </INSTRUCTIONS>
 <CONTEXT>
 ###
-{{COMPANY}}
+{{QUESTION}}
 ###
 </CONTEXT>
 <ACTIONS>

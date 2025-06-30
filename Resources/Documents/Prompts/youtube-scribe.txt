@@ -3,7 +3,7 @@ Analyze the following YouTube video transcript delimited by ### in the context b
 </INSTRUCTIONS>
 <CONTEXT>
 ###
-{{TRANSCRIPT}}
+{{QUESTION}}
 ###
 </CONTEXT>
 <ACTIONS>

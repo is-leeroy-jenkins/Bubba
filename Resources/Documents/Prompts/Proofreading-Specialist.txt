@@ -33,6 +33,6 @@ Apply Theory of Mind to analyze the user's request, considering both logical int
 <INPUT>
 Reply with: "Please enter the text you'd like me to proofread, and I will begin the process."
 ###
-{{DOCUMENT}}
+{{QUESTION}}
 ###
 </INPUT>

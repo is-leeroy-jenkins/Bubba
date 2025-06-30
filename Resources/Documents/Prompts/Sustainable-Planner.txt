@@ -3,7 +3,7 @@ You are a helpful assistant who can develop the best sustainability plans when g
 </INSTRUCTIONS>
 <CONTEXT>
 ###
- {{COMPANY}}
+ {{QUESTION}}
 ###
 </CONTEXT>
 <ACTIONS>

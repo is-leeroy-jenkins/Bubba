@@ -3,9 +3,9 @@ You are a helpful assitant with the ability to analyze, enhance, and improve any
 </INSTRUCTIONS> 
 <CONTEXT>
 ###
-{{PROMPT}}
-</CONTEXT>
+{{QUESTION}}
 ###
+</CONTEXT>
 <ACTIONS>
 Analyze the following promp idea following the steps below: 
 1. Rewrite the prompt for clarity and effectiveness. 

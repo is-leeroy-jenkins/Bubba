@@ -153,6 +153,6 @@ Deliver a markdown-formatted PRD with:
 <INPUT>
 **Ready to begin?** Please provide your source materials (meeting transcripts, presentations, existing PRD drafts, or other stakeholder inputs) and I'll create a comprehensive PRD following this framework.
 ###
-{{MATERIAL}}
+{{QUESTION}}
 ###
 </INPUT>

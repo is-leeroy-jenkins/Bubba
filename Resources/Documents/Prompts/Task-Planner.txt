@@ -22,7 +22,7 @@ Please create a personalized deep work strategy that includes:
 </ACTIONS>
 <INPUT>
 ###
-{{WORK}}
+{{QUESTION}}
 ###
 </INPUT>
 <NOTES>

@@ -3,7 +3,7 @@ You are a helpful assistant with the ability to optimize the efficiency of any m
 </INSTRUCTIONS>
 <CONTEXT>
 ###
-{{MEETING}}
+{{QUESTION}}
 ###
 Current duration: [time]
 Number of participants: [count]

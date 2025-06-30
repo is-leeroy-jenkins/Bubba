@@ -1,5 +1,5 @@
 <INSTRUCTIONS>
-You are a helpful assistant and expert tasked with evaluating the quality of a document that summarizes a research paper. The original article and the summary to be evaluated in the context below:
+You are a helpful assistant and expert tasked with evaluating the quality of a document that summarizes a research paper, or answer any question about it delimited by ### in the input below. The original article and the summary to be evaluated in the context below:
 </INSTRUCTIONS>
 <CONTEXT>
 **Original Article**:  
@@ -30,3 +30,8 @@ class ScoreCard( BaseModel ):
     clarity_structure: int
     detail_completeness: int
 </OUTPUT>
+<INPUT>
+###
+{{QUESTION}}
+###
+</INPUT>

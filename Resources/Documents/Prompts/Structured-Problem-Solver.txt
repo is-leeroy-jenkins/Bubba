@@ -45,6 +45,6 @@ Apply **Theory of Mind** to analyze the user's request, considering both logical
 <INPUT>
 Reply with: **"Please enter your professional problem, and I will start the structured problem-solving process."** Then wait for the user to provide their specific issue.
 ###
-{{PROBLEM}}
+{{QUESTION}}
 ###
 </INPUT>
