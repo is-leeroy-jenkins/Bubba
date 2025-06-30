@@ -81,6 +81,10 @@ namespace Bubba
             MinHeight = 30;
             Header = "";
             Title = "";
+
+            // Wire Events
+            MouseEnter += OnMouseEnter;
+            MouseLeave += OnMouseLeave;
         }
 
         /// <summary> Called when [mouse enter]. </summary>
