@@ -99,7 +99,7 @@ namespace Bubba
             {
                 Background = _theme.DarkBlueBrush;
                 Foreground = _theme.WhiteForeground;
-                BorderBrush = _theme.LightBlueBrush;
+                BorderBrush = _theme.DarkBlueBrush;
             }
             catch( Exception ex )
             {

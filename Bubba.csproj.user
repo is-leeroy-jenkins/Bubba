@@ -10,9 +10,6 @@
     <Compile Update="UI\Views\ChatWindow\ChatWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="UI\Views\PropertyDialog\PropertyDialog.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Update="UI\Views\ColorDialog\ColorDialog.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -36,9 +33,6 @@
     <Page Update="UI\Themes\GroupBox\GroupBox.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="UI\Views\PropertyDialog\PropertyDialog.xaml">
-      <SubType>Designer</SubType>
-    </Page>
     <Page Update="UI\Views\ColorDialog\ColorDialog.xaml">
       <SubType>Designer</SubType>
     </Page>
@@ -58,12 +52,6 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="UI\Themes\MultiSelectDropDown\MultiSelectDropDown.xaml">
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Update="UI\Controls\Frame\MetroComboFrame.xaml">
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Update="UI\Controls\Frame\MetroTextInput.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="UI\Themes\Button\Button.xaml">

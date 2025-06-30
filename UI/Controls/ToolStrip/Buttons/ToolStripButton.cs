@@ -74,11 +74,16 @@ namespace Bubba
             Title = "";
             Background = _theme.FormBackground;
             Foreground = _theme.FormForeground;
+
+            // Wire Events
+            MouseEnter += OnMouseEnter;
+            MouseLeave += OnMouseLeave;
         }
 
         /// <inheritdoc />
         /// <summary> Called when [mouse enter]. </summary>
         /// <param name="sender"> The sender. </param>
+        /// 
         /// <param name="e">
         /// The
         /// <see cref="T:System.EventArgs" />
@@ -88,9 +93,9 @@ namespace Bubba
         {
             try
             {
-                Background = _theme.SteelBlueBrush;
+                Background = _theme.DarkBlueBrush;
                 BorderBrush = _theme.LightBlueBrush;
-                Foreground = _theme.WhiteForeground;
+                Foreground = _theme.DarkBlueBrush;
             }
             catch( Exception ex )
             {

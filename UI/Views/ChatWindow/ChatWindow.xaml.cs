@@ -4390,7 +4390,7 @@ namespace Bubba
         {
             try
             {
-                _reasoningEffort = ((MetroDropDownItem)EffortDropDown.SelectedItem)
+                _reasoningEffort = ((MetroDropDownItem)EffortDropDown.SelectedItem )
                     ?.Content?.ToString( );
 
                 var _message = "ReasoningEffort = " + _reasoningEffort;
