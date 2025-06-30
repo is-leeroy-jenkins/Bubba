@@ -43,7 +43,6 @@ namespace Bubba
 {
     using System;
     using System.Diagnostics.CodeAnalysis;
-    using System.Windows;
     using System.Windows.Input;
     using Syncfusion.Windows.Controls.Notification;
 
@@ -98,7 +97,7 @@ namespace Bubba
         {
             try
             {
-                Background = _theme.SteelBlueBrush;
+                Background = _theme.DarkBlueBrush;
                 Foreground = _theme.WhiteForeground;
                 BorderBrush = _theme.LightBlueBrush;
             }
