@@ -768,6 +768,59 @@
             <param name="newBrowser">The new browser.</param>
             <returns></returns>
         </member>
+        <member name="T:Bubba.PaintEventArgs">
+            <summary>
+            Event arguments for the Paint event handler.
+            </summary>
+            <seealso cref="T:System.EventArgs" />
+        </member>
+        <member name="P:Bubba.PaintEventArgs.IsPopup">
+            <summary>
+            Is the OnPaint call for a Popup or the Main View
+            </summary>
+        </member>
+        <member name="P:Bubba.PaintEventArgs.DirtyRect">
+            <summary>
+            contains the set of rectangles in pixel coordinates that need to be repainted
+            </summary>
+        </member>
+        <member name="P:Bubba.PaintEventArgs.Buffer">
+            <summary>
+            Pointer to the unmanaged buffer that holds the bitmap.
+            The buffer shouldn't be accessed outside the scope of
+            <see cref="E:CefSharp.Wpf.ChromiumWebBrowser.Paint"/> event.
+            A copy should be taken as the buffer is reused
+            internally and may potentialy be freed. 
+            </summary>
+            <remarks>The bitmap will be width * height *
+            4 bytes in size and represents a BGRA image
+            with an upper-left origin</remarks>
+        </member>
+        <member name="P:Bubba.PaintEventArgs.Width">
+            <summary>
+            Width
+            </summary>
+        </member>
+        <member name="P:Bubba.PaintEventArgs.Height">
+            <summary>
+            Height
+            </summary>
+        </member>
+        <member name="P:Bubba.PaintEventArgs.Handled">
+            <summary>
+            Gets or sets a value indicating whether the event is handled.
+            </summary>
+        </member>
+        <member name="M:Bubba.PaintEventArgs.#ctor(System.Boolean,Bubba.Rect,System.IntPtr,System.Int32,System.Int32)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Bubba.PaintEventArgs"/> class.
+            </summary>
+            <param name="isPopup">is popup</param>
+            <param name="dirtyRect">direct rectangle</param>
+            <param name="buffer">buffer</param>
+            <param name="width">width</param>
+            <param name="height">height</param>
+        </member>
         <member name="T:Bubba.RequestCallback">
             <summary>
             
@@ -17425,6 +17478,13 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="M:Bubba.TranscriptionOptions.GetData">
+            <inheritdoc />
+            <summary>
+            Gets the data.
+            </summary>
+            <returns></returns>
+        </member>
         <member name="T:Bubba.TranslationOptions">
             <inheritdoc />
             <summary>
@@ -28900,6 +28960,68 @@
             </summary>
             <param name="ex">The ex.</param>
         </member>
+        <member name="T:Bubba.Rect">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Bubba.Rect.X">
+            <summary>
+            X coordinate
+            </summary>
+        </member>
+        <member name="P:Bubba.Rect.Y">
+            <summary>
+            Y coordinate
+            </summary>
+        </member>
+        <member name="P:Bubba.Rect.Width">
+            <summary>
+            Width
+            </summary>
+        </member>
+        <member name="P:Bubba.Rect.Height">
+            <summary>
+            Height
+            </summary>
+        </member>
+        <member name="M:Bubba.Rect.#ctor(System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Rect
+            </summary>
+            <param name="x">x coordinate</param>
+            <param name="y">y coordinate</param>
+            <param name="width">width</param>
+            <param name="height">height</param>
+        </member>
+        <member name="M:Bubba.Rect.ScaleByDpi(System.Single)">
+            <summary>
+            Returns a new Rect with Scaled values
+            </summary>
+            <param name="dpi">Dpi to scale by</param>
+            <returns>New rect with scaled values</returns>
+        </member>
+        <member name="T:Bubba.IWpfWebBrowser">
+            <summary>
+            WPF specific implementation, has reference to some of the commands
+            and properties the <see cref="T:CefSharp.Wpf.ChromiumWebBrowser" /> exposes.
+            </summary>
+            <seealso cref="T:CefSharp.IWebBrowser" />
+        </member>
+        <member name="E:Bubba.IWpfWebBrowser.Paint">
+            <summary>
+            Raised every time <see cref="M:CefSharp.Internals.IRenderWebBrowser.OnPaint(CefSharp.PaintElementType,CefSharp.Structs.Rect,System.IntPtr,System.Int32,System.Int32)"/> is called. You can access the underlying buffer, though it's
+            preferable to either override <see cref="M:CefSharp.Wpf.ChromiumWebBrowser.OnPaint(System.Boolean,CefSharp.Structs.Rect,System.IntPtr,System.Int32,System.Int32)"/> or implement your own <see cref="T:CefSharp.Wpf.IRenderHandler"/> as there is no outwardly
+            accessible locking (locking is done within the default <see cref="T:CefSharp.Wpf.IRenderHandler"/> implementations).
+            It's important to note this event is fired on a CEF UI thread, which by default is not the same as your application UI thread
+            </summary>
+        </member>
+        <member name="E:Bubba.IWpfWebBrowser.VirtualKeyboardRequested">
+            <summary>
+            Raised every time <see cref="M:CefSharp.Internals.IRenderWebBrowser.OnVirtualKeyboardRequested(CefSharp.IBrowser,CefSharp.Enums.TextInputMode)"/> is called. 
+            It's important to note this event is fired on a CEF UI thread, which by default is not the same as your application UI thread
+            </summary>
+        </member>
         <member name="T:Bubba.PropertyChangedBase">
             <inheritdoc />
             <summary>
@@ -28990,6 +29112,80 @@
             <param name="sender">The sender.</param>
             <param name="e">The <see cref="T:System.Windows.Input.KeyEventArgs"/>
             instance containing the event data.</param>
+        </member>
+        <member name="T:Bubba.RelayCommand">
+            <summary>
+            
+            </summary>
+            <seealso cref="T:System.Windows.Input.ICommand" />
+        </member>
+        <member name="F:Bubba.RelayCommand._commandHandler">
+            <summary>
+            The command handler
+            </summary>
+        </member>
+        <member name="F:Bubba.RelayCommand._canExecuteHandler">
+            <summary>
+            The can execute handler
+            </summary>
+        </member>
+        <member name="E:Bubba.RelayCommand.CanExecuteChanged">
+            <summary>
+            Occurs when changes occur that affect whether or not the command should execute.
+            </summary>
+        </member>
+        <member name="M:Bubba.RelayCommand.#ctor(System.Action{System.Object},System.Func{System.Object,System.Boolean})">
+            <summary>
+            Initializes a new instance of the <see cref="T:Bubba.RelayCommand"/> class.
+            </summary>
+            <param name="commandHandler">The command handler.</param>
+            <param name="canExecuteHandler">The can execute handler.</param>
+        </member>
+        <member name="M:Bubba.RelayCommand.#ctor(System.Action,System.Func{System.Boolean})">
+            <summary>
+            Initializes a new instance of the <see cref="T:Bubba.RelayCommand"/> class.
+            </summary>
+            <param name="commandHandler">The command handler.</param>
+            <param name="canExecuteHandler">The can execute handler.</param>
+        </member>
+        <member name="M:Bubba.RelayCommand.Execute(System.Object)">
+            <summary>
+            Defines the method to be called when the command is invoked.
+            </summary>
+            <param name="parameter">Data used by the command.
+            If the command does not require data to be passed,
+            this object can be set to <see langword="null" />.</param>
+        </member>
+        <member name="M:Bubba.RelayCommand.CanExecute(System.Object)">
+            <summary>
+            Defines the method that determines whether the command can execute in its current state.
+            </summary>
+            <param name="parameter">Data used by the command.
+            If the command does not require data to be passed,
+            this object can be set to <see langword="null" />.</param>
+            <returns>
+              <see langword="true" /> if this command can be executed;
+            otherwise, <see langword="false" />.
+            </returns>
+        </member>
+        <member name="M:Bubba.RelayCommand.RaiseCanExecuteChanged">
+            <summary>
+            Raises the can execute changed.
+            </summary>
+        </member>
+        <member name="T:Bubba.RelayCommand`1">
+            <summary>
+            
+            </summary>
+            <typeparam name="T"></typeparam>
+            <seealso cref="T:System.Windows.Input.ICommand" />
+        </member>
+        <member name="M:Bubba.RelayCommand`1.#ctor(System.Action{`0},System.Func{`0,System.Boolean})">
+            <summary>
+            Initializes a new instance of the <see cref="T:Bubba.RelayCommand`1"/> class.
+            </summary>
+            <param name="commandHandler">The command handler.</param>
+            <param name="canExecuteHandler">The can execute handler.</param>
         </member>
         <member name="T:Bubba.MetroButton">
             <inheritdoc />
@@ -32403,6 +32599,329 @@
             </summary>
             <inheritdoc />
         </member>
+        <member name="T:Bubba.BrowserTabViewModel">
+            <summary>
+            
+            </summary>
+            <seealso cref="T:System.ComponentModel.INotifyPropertyChanged" />
+        </member>
+        <member name="F:Bubba.BrowserTabViewModel._address">
+            <summary>
+            The address
+            </summary>
+        </member>
+        <member name="F:Bubba.BrowserTabViewModel._addressEditable">
+            <summary>
+            The address editable
+            </summary>
+        </member>
+        <member name="F:Bubba.BrowserTabViewModel._outputMessage">
+            <summary>
+            The output message
+            </summary>
+        </member>
+        <member name="F:Bubba.BrowserTabViewModel._statusMessage">
+            <summary>
+            The status message
+            </summary>
+        </member>
+        <member name="F:Bubba.BrowserTabViewModel._title">
+            <summary>
+            The title
+            </summary>
+        </member>
+        <member name="F:Bubba.BrowserTabViewModel._showDownloadInfo">
+            <summary>
+            The show download information
+            </summary>
+        </member>
+        <member name="F:Bubba.BrowserTabViewModel._webBrowser">
+            <summary>
+            The web browser
+            </summary>
+        </member>
+        <member name="F:Bubba.BrowserTabViewModel._evaluateJavaScriptResult">
+            <summary>
+            The evaluate java script result
+            </summary>
+        </member>
+        <member name="F:Bubba.BrowserTabViewModel._showSidebar">
+            <summary>
+            The show sidebar
+            </summary>
+        </member>
+        <member name="F:Bubba.BrowserTabViewModel._legacyBindingEnabled">
+            <summary>
+            The legacy binding enabled
+            </summary>
+        </member>
+        <member name="F:Bubba.BrowserTabViewModel._lastDownloadAction">
+            <summary>
+            The last download action
+            </summary>
+        </member>
+        <member name="F:Bubba.BrowserTabViewModel._downloadItem">
+            <summary>
+            The download item
+            </summary>
+        </member>
+        <member name="F:Bubba.BrowserTabViewModel._goCommand">
+            <summary>
+            The go command
+            </summary>
+        </member>
+        <member name="F:Bubba.BrowserTabViewModel._homeCommand">
+            <summary>
+            The home command
+            </summary>
+        </member>
+        <member name="F:Bubba.BrowserTabViewModel._executeJavaScriptCommand">
+            <summary>
+            The execute java script command
+            </summary>
+        </member>
+        <member name="F:Bubba.BrowserTabViewModel._evaluateJavaScriptCommand">
+            <summary>
+            The evaluate java script command
+            </summary>
+        </member>
+        <member name="F:Bubba.BrowserTabViewModel._showDevToolsCommand">
+            <summary>
+            The show dev tools command
+            </summary>
+        </member>
+        <member name="F:Bubba.BrowserTabViewModel._closeDevToolsCommand">
+            <summary>
+            The close dev tools command
+            </summary>
+        </member>
+        <member name="F:Bubba.BrowserTabViewModel._javascriptBindingStressTest">
+            <summary>
+            The javascript binding stress test
+            </summary>
+        </member>
+        <member name="P:Bubba.BrowserTabViewModel.Address">
+            <summary>
+            Gets or sets the address.
+            </summary>
+            <value>
+            The address.
+            </value>
+        </member>
+        <member name="P:Bubba.BrowserTabViewModel.AddressEditable">
+            <summary>
+            Gets or sets the address editable.
+            </summary>
+            <value>
+            The address editable.
+            </value>
+        </member>
+        <member name="P:Bubba.BrowserTabViewModel.OutputMessage">
+            <summary>
+            Gets or sets the output message.
+            </summary>
+            <value>
+            The output message.
+            </value>
+        </member>
+        <member name="P:Bubba.BrowserTabViewModel.StatusMessage">
+            <summary>
+            Gets or sets the status message.
+            </summary>
+            <value>
+            The status message.
+            </value>
+        </member>
+        <member name="P:Bubba.BrowserTabViewModel.Title">
+            <summary>
+            Gets or sets the title.
+            </summary>
+            <value>
+            The title.
+            </value>
+        </member>
+        <member name="P:Bubba.BrowserTabViewModel.WebBrowser">
+            <summary>
+            Gets or sets the WebBrowser.
+            </summary>
+            <value>
+            The WebBrowser.
+            </value>
+        </member>
+        <member name="P:Bubba.BrowserTabViewModel.EvaluateJavaScriptResult">
+            <summary>
+            Gets or sets the evaluate java script result.
+            </summary>
+            <value>
+            The evaluate java script result.
+            </value>
+        </member>
+        <member name="P:Bubba.BrowserTabViewModel.ShowSidebar">
+            <summary>
+            Gets or sets a value indicating whether [show sidebar].
+            </summary>
+            <value>
+              <c>true</c> if [show sidebar]; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:Bubba.BrowserTabViewModel.ShowDownloadInfo">
+            <summary>
+            Gets or sets a value indicating whether [show download information].
+            </summary>
+            <value>
+              <c>true</c> if [show download information]; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:Bubba.BrowserTabViewModel.LastDownloadAction">
+            <summary>
+            Gets or sets the last download action.
+            </summary>
+            <value>
+            The last download action.
+            </value>
+        </member>
+        <member name="P:Bubba.BrowserTabViewModel.DownloadItem">
+            <summary>
+            Gets or sets the download item.
+            </summary>
+            <value>
+            The download item.
+            </value>
+        </member>
+        <member name="E:Bubba.BrowserTabViewModel.PropertyChanged">
+            <summary>
+            Occurs when [property changed].
+            </summary>
+        </member>
+        <member name="P:Bubba.BrowserTabViewModel.LegacyBindingEnabled">
+            <summary>
+            Gets or sets a value indicating whether [legacy binding enabled].
+            </summary>
+            <value>
+              <c>true</c> if [legacy binding enabled]; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:Bubba.BrowserTabViewModel.GoCommand">
+            <summary>
+            Gets the go command.
+            </summary>
+            <value>
+            The go command.
+            </value>
+        </member>
+        <member name="P:Bubba.BrowserTabViewModel.HomeCommand">
+            <summary>
+            Gets the home command.
+            </summary>
+            <value>
+            The home command.
+            </value>
+        </member>
+        <member name="P:Bubba.BrowserTabViewModel.ExecuteJavaScriptCommand">
+            <summary>
+            Gets the execute java script command.
+            </summary>
+            <value>
+            The execute java script command.
+            </value>
+        </member>
+        <member name="P:Bubba.BrowserTabViewModel.EvaluateJavaScriptCommand">
+            <summary>
+            Gets the evaluate java script command.
+            </summary>
+            <value>
+            The evaluate java script command.
+            </value>
+        </member>
+        <member name="P:Bubba.BrowserTabViewModel.ShowDevToolsCommand">
+            <summary>
+            Gets the show dev tools command.
+            </summary>
+            <value>
+            The show dev tools command.
+            </value>
+        </member>
+        <member name="P:Bubba.BrowserTabViewModel.CloseDevToolsCommand">
+            <summary>
+            Gets the close dev tools command.
+            </summary>
+            <value>
+            The close dev tools command.
+            </value>
+        </member>
+        <member name="P:Bubba.BrowserTabViewModel.JavascriptBindingStressTest">
+            <summary>
+            Gets the javascript binding stress test.
+            </summary>
+            <value>
+            The javascript binding stress test.
+            </value>
+        </member>
+        <member name="M:Bubba.BrowserTabViewModel.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Bubba.BrowserTabViewModel"/> class.
+            </summary>
+            <param name="address">The address.</param>
+        </member>
+        <member name="M:Bubba.BrowserTabViewModel.EvaluateJavaScript(System.String)">
+            <summary>
+            Evaluates the java script.
+            </summary>
+            <param name="s">The s.</param>
+        </member>
+        <member name="M:Bubba.BrowserTabViewModel.ExecuteJavaScript(System.String)">
+            <summary>
+            Executes the java script.
+            </summary>
+            <param name="s">The s.</param>
+        </member>
+        <member name="M:Bubba.BrowserTabViewModel.OnPropertyChanged(System.Object,System.ComponentModel.PropertyChangedEventArgs)">
+            <summary>
+            Called when [property changed].
+            </summary>
+            <param name="sender">The sender.</param>
+            <param name="e">The <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance containing the event data.</param>
+        </member>
+        <member name="M:Bubba.BrowserTabViewModel.OnWebBrowserConsoleMessage(System.Object,CefSharp.ConsoleMessageEventArgs)">
+            <summary>
+            Called when [WebBrowser console message].
+            </summary>
+            <param name="sender">The sender.</param>
+            <param name="e">The <see cref="T:CefSharp.ConsoleMessageEventArgs"/> instance containing the event data.</param>
+        </member>
+        <member name="M:Bubba.BrowserTabViewModel.OnWebBrowserStatusMessage(System.Object,CefSharp.StatusMessageEventArgs)">
+            <summary>
+            Called when [WebBrowser status message].
+            </summary>
+            <param name="sender">The sender.</param>
+            <param name="e">The <see cref="T:CefSharp.StatusMessageEventArgs"/> instance containing the event data.</param>
+        </member>
+        <member name="M:Bubba.BrowserTabViewModel.Go">
+            <summary>
+            Goes this instance.
+            </summary>
+        </member>
+        <member name="M:Bubba.BrowserTabViewModel.LoadCustomRequestExample">
+            <summary>
+            Loads the custom request example.
+            </summary>
+        </member>
+        <member name="M:Bubba.BrowserTabViewModel.Set``1(``0@,``0,System.String)">
+            <summary>
+            Sets the specified field.
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="field">The field.</param>
+            <param name="value">The value.</param>
+            <param name="propertyName">Name of the property.</param>
+        </member>
+        <member name="M:Bubba.BrowserTabViewModel.Fail(System.Exception)">
+            <summary>
+            Fails the specified ex.
+            
+            </summary>
+            <param name="ex">The ex.</param>
+        </member>
         <member name="T:Bubba.CalculatorWindow">
             <inheritdoc />
             <summary>
@@ -32981,6 +33500,14 @@
             </summary>
             <value>
             The last index.
+            </value>
+        </member>
+        <member name="P:Bubba.ChatWindow.BrowserTabs">
+            <summary>
+            Gets or sets the browser tabs.
+            </summary>
+            <value>
+            The browser tabs.
             </value>
         </member>
         <member name="P:Bubba.ChatWindow.HostCallback">
@@ -37544,36 +38071,6 @@
         <member name="M:Bubba.WebBrowser.InitializeComponent">
             <summary>
             InitializeComponent
-            </summary>
-        </member>
-        <member name="T:XamlGeneratedNamespace.GeneratedInternalTypeHelper">
-            <summary>
-            GeneratedInternalTypeHelper
-            </summary>
-        </member>
-        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.CreateInstance(System.Type,System.Globalization.CultureInfo)">
-            <summary>
-            CreateInstance
-            </summary>
-        </member>
-        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.GetPropertyValue(System.Reflection.PropertyInfo,System.Object,System.Globalization.CultureInfo)">
-            <summary>
-            GetPropertyValue
-            </summary>
-        </member>
-        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.SetPropertyValue(System.Reflection.PropertyInfo,System.Object,System.Object,System.Globalization.CultureInfo)">
-            <summary>
-            SetPropertyValue
-            </summary>
-        </member>
-        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.CreateDelegate(System.Type,System.Object,System.String)">
-            <summary>
-            CreateDelegate
-            </summary>
-        </member>
-        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.AddEventHandler(System.Reflection.EventInfo,System.Object,System.Delegate)">
-            <summary>
-            AddEventHandler
             </summary>
         </member>
     </members>

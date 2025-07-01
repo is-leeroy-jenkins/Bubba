@@ -42,6 +42,7 @@ namespace Bubba
 {
     using System;
     using System.Collections.Generic;
+    using System.Collections.ObjectModel;
     using System.ComponentModel;
     using System.Diagnostics.CodeAnalysis;
     using System.Globalization;
@@ -398,6 +399,8 @@ namespace Bubba
         /// </summary>
         private protected string _model;
 
+        public ObservableCollection<BrowserTabViewModel> _browserTabs;
+
         /// <summary>
         /// The context menu handler
         /// </summary>
@@ -660,6 +663,24 @@ namespace Bubba
             get
             {
                 return TabControl.Items.Count - 2;
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the browser tabs.
+        /// </summary>
+        /// <value>
+        /// The browser tabs.
+        /// </value>
+        public ObservableCollection<BrowserTabViewModel> BrowserTabs
+        {
+            get
+            {
+                return _browserTabs;
+            }
+            set
+            {
+                _browserTabs = value;
             }
         }
 

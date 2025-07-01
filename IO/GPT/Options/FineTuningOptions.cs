@@ -365,28 +365,27 @@ namespace Bubba
         {
             try
             {
-                _data.Add( "model", _model );
-                _data.Add( "endpoint", _endPoint );
-                _data.Add( "number", _number );
-                _data.Add( "max_completion_tokens", _maxCompletionTokens );
-                _data.Add( "stop", _stop );
-                _data.Add( "store", _store );
-                _data.Add( "stream", _stream );
-                _data.Add( "temperature", _temperature );
-                _data.Add( "frequency_penalty", _frequencyPenalty );
-                _data.Add( "presence_penalty", _presencePenalty );
-                _data.Add( "top_p", _topPercent );
+                _data.Add( "Number", _number );
+                _data.Add( "MaxCompletionTokens", _maxCompletionTokens );
+                _data.Add( "Store", _store );
+                _data.Add( "Stream", _stream );
+                _data.Add( "Temperature", _temperature );
+                _data.Add( "TopPercent", _topPercent );
+                _data.Add( "FrequencyPenalty", _frequencyPenalty );
+                _data.Add( "PresencePenalty", _presencePenalty );
+                _data.Add( "ResponseFormat", _responseFormat );
+                _data.Add( "Modalities", _modalities );
+                _data.Add( "Stop", _stop );
                 _method.Add( "type", "supervised" );
                 _data.Add( "method", _method );
-                _data.Add( "logprobs", _logProbs );
-                _data.Add( "echo", _echo );
-                _data.Add( "best_of", _bestOf );
-                _data.Add( "stop", _stop );
-                if( !string.IsNullOrEmpty( _trainingFile ) )
-                {
-                    _data.Add( "filepath", _trainingFile );
-                }
-
+                _data.Add( "LogProbs", _logProbs );
+                _data.Add( "Echo", _echo );
+                _data.Add( "BestOf", _bestOf );
+                _data.Add( "TrainingFile", _trainingFile );
+                _data.Add( "ValidationFile", _validationFile );
+                _data.Add( "LogitBias", _logitBias );
+                _data.Add( "Suffix", _suffix );
+                _data.Add( "Seed", _seed );
                 return _data?.Any( ) == true
                     ? _data
                     : default( IDictionary<string, object> );

@@ -188,19 +188,17 @@ namespace Bubba
         {
             try
             {
-                _data.Add( "n", _number );
-                _data.Add( "model", _model );
-                _data.Add( "endpoint", _endPoint );
-                _data.Add( "max_completion_tokens", _maxCompletionTokens );
-                _data.Add( "store", _store );
-                _data.Add( "stream", _stream );
-                _data.Add( "temperature", _temperature );
-                _data.Add( "frequency_penalty", _frequencyPenalty );
-                _data.Add( "presence_penalty", _presencePenalty );
-                _data.Add( "top_p", _topPercent );
-                _data.Add( "stop", _stop );
-                _data.Add( "response_format", _responseFormat );
-                _data.Add( "modalities", _modalities );
+                _data.Add( "Number", _number );
+                _data.Add( "MaxCompletionTokens", _maxCompletionTokens );
+                _data.Add( "Endoint", _endPoint );
+                _data.Add( "Store", _store );
+                _data.Add( "Stream", _stream );
+                _data.Add( "Temperature", _temperature );
+                _data.Add( "TopPercent", _topPercent );
+                _data.Add( "FrequencyPenalty", _frequencyPenalty );
+                _data.Add( "PresencePenalty", _presencePenalty );
+                _data.Add( "ResponseFormat", _responseFormat );
+                _data.Add( "Stop", _stop );
                 return _data?.Any( ) == true
                     ? _data
                     : default( IDictionary<string, object> );

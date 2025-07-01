@@ -335,5 +335,36 @@ namespace Bubba
                 return default( IList<string> );
             }
         }
+
+        /// <inheritdoc />
+        /// <summary>
+        /// Gets the data.
+        /// </summary>
+        /// <returns></returns>
+        public override IDictionary<string, object> GetData( )
+        {
+            try
+            {
+                _data.Add( "Number", _number );
+                _data.Add( "MaxCompletionTokens", _maxCompletionTokens );
+                _data.Add( "Endoint", _endPoint );
+                _data.Add( "Store", _store );
+                _data.Add( "Stream", _stream );
+                _data.Add( "Temperature", _temperature );
+                _data.Add( "TopPercent", _topPercent );
+                _data.Add( "FrequencyPenalty", _frequencyPenalty );
+                _data.Add( "PresencePenalty", _presencePenalty );
+                _data.Add( "ResponseFormat", _responseFormat );
+                _data.Add( "Stop", _stop );
+                return _data?.Any( ) == true
+                    ? _data
+                    : default( IDictionary<string, object> );
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+                return default( IDictionary<string, object> );
+            }
+        }
     }
 }

@@ -132,7 +132,7 @@ namespace Bubba
             _topPercent = 0.90;
             _frequencyPenalty = 0.00;
             _presencePenalty = 0.00;
-            _maxCompletionTokens = 2048;
+            _maxCompletionTokens = 10000;
             _order = "desc";
             _limit = 10000;
         }
@@ -375,62 +375,28 @@ namespace Bubba
         {
             try
             {
-                _data.Add( "n", _number );
-                _data.Add( "model", _model );
-                _data.Add( "max_completion_tokens", _maxCompletionTokens );
-                _data.Add( "store", _store );
-                _data.Add( "stream", _stream );
-                _data.Add( "temperature", _temperature );
-                _data.Add( "frequency_penalty", _frequencyPenalty );
-                _data.Add( "presence_penalty", _presencePenalty );
-                _data.Add( "top_p", _topPercent );
-                _data.Add( "stop", _stop );
-                _data.Add( "order", _order );
-                if( !string.IsNullOrEmpty( _id ) )
-                {
-                    _data.Add( "id", _id );
-                }
-
-                if( !string.IsNullOrEmpty( _purpose ) )
-                {
-                    _data.Add( "purpose", _purpose );
-                }
-
-                if( !string.IsNullOrEmpty( _fileId ) )
-                {
-                    _data.Add( "file_id", _fileId );
-                }
-
-                if( _createdAt > 0 )
-                {
-                    _data.Add( "created_at", _createdAt  );
-                }
-
-                if( _bytes > 0 )
-                {
-                    _data.Add( "bytes", _bytes );
-                }
-
-                if( !string.IsNullOrEmpty( _fileName ) )
-                {
-                    _data.Add( "file_name", _fileName );
-                }
-
-                if( !string.IsNullOrEmpty( _mimeType ) )
-                {
-                    _data.Add( "mime_type", _mimeType );
-                }
-
-                if( !string.IsNullOrEmpty( _order ) )
-                {
-                    _data.Add( "order", _order );
-                }
-
-                if( _limit > 0 )
-                {
-                    _data.Add( "limit", _limit );
-                }
-
+                _data.Add( "Number", _number );
+                _data.Add( "MaxCompletionTokens", _maxCompletionTokens );
+                _data.Add( "Endpoint", _endPoint );
+                _data.Add( "Store", _store );
+                _data.Add( "Stream", _stream );
+                _data.Add( "Temperature", _temperature );
+                _data.Add( "TopPercent", _topPercent );
+                _data.Add( "FrequencyPenalty", _frequencyPenalty );
+                _data.Add( "PresencePenalty", _presencePenalty );
+                _data.Add( "ResponseFormat", _responseFormat );
+                _data.Add( "Modalities", _modalities );
+                _data.Add( "Id", _id );
+                _data.Add( "Purpose", _purpose );
+                _data.Add( "Limit", _limit );
+                _data.Add( "Order", _order );
+                _data.Add( "FileId", _fileId );
+                _data.Add( "FileName", _fileName );
+                _data.Add( "After", _after );
+                _data.Add( "CreatedAt", _createdAt );
+                _data.Add( "Bytes", _bytes );
+                _data.Add( "MimeType", _mimeType );
+                _data.Add( "Stop", _stop );
                 return _data?.Any( ) == true
                     ? _data
                     : default( IDictionary<string, object> );
