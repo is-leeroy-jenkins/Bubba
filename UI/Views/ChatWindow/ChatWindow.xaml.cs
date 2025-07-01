@@ -62,6 +62,7 @@ namespace Bubba
     using System.Windows;
     using System.Windows.Controls;
     using System.Windows.Forms;
+    using System.Windows.Input;
     using CefSharp;
     using CefSharp.Wpf;
     using MahApps.Metro.Controls;
@@ -85,6 +86,8 @@ namespace Bubba
     [ SuppressMessage( "ReSharper", "FieldCanBeMadeReadOnly.Global" ) ]
     [ SuppressMessage( "ReSharper", "RedundantExtendsListEntry" ) ]
     [ SuppressMessage( "ReSharper", "UseNullPropagation" ) ]
+    [ SuppressMessage( "ReSharper", "SuggestBaseTypeForParameter" ) ]
+    [ SuppressMessage( "ReSharper", "PossibleUnintendedReferenceComparison" ) ]
     public partial class ChatWindow : Window, INotifyPropertyChanged, IDisposable
     {
         /// <summary>
@@ -602,6 +605,7 @@ namespace Bubba
             _responseFormatOptions = new List<string>( );
             _audioFormatOptions = new List<string>( );
             _voiceOptions = new Dictionary<string, string>( );
+            BrowserTabs = new ObservableCollection<BrowserTabViewModel>( );
             _systemPrompt = App.Instructions;
 
             // Event Wiring
@@ -974,6 +978,26 @@ namespace Bubba
                 _userPrompt = _language == "Text"
                     ? Editor.Text
                     : "";
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+            }
+        }
+
+        /// <summary>
+        /// Initializes the command bindings.
+        /// </summary>
+        private void InitializeCommandBindings( )
+        {
+            try
+            {
+                CommandBindings.Add( new CommandBinding( ApplicationCommands.New, OpenNewTab ) );
+                CommandBindings.Add( new CommandBinding( ApplicationCommands.Close, CloseTab ) );
+                CommandBindings.Add( new CommandBinding( CefSharpCommands.Exit, CloseTab ) );
+                CommandBindings.Add( new CommandBinding( CefSharpCommands.OpenTabCommand, OpenTabCommandBinding ) );
+                CommandBindings.Add( new CommandBinding( CefSharpCommands.PrintTabToPdfCommand, PrintToPdfCommandBinding ) );
+                CommandBindings.Add( new CommandBinding( CefSharpCommands.CustomCommand, CustomCommandBinding ) );
             }
             catch( Exception ex )
             {
@@ -1499,6 +1523,37 @@ namespace Bubba
         }
 
         /// <summary>
+        /// Closes the tab.
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The <see cref="ExecutedRoutedEventArgs"/>
+        /// instance containing the event data.</param>
+        private void CloseTab( object sender, ExecutedRoutedEventArgs e )
+        {
+            if( BrowserTabs.Count > 0 )
+            {
+                //Obtain the original source element for this event
+                var originalSource = ( FrameworkElement )e.OriginalSource;
+
+                BrowserTabViewModel browserViewModel;
+
+                if( originalSource is ChatWindow )
+                {
+                    browserViewModel = BrowserTabs[ TabControl.SelectedIndex ];
+                    BrowserTabs.RemoveAt( TabControl.SelectedIndex );
+                }
+                else
+                {
+                    //Remove the matching DataContext from the BrowserTabs collection
+                    browserViewModel = ( BrowserTabViewModel )originalSource.DataContext;
+                    BrowserTabs.Remove( browserViewModel );
+                }
+
+                browserViewModel.WebBrowser.Dispose( );
+            }
+        }
+
+        /// <summary>
         /// Closes the active tab.
         /// </summary>
         public void CloseActiveTab( )
@@ -1551,6 +1606,124 @@ namespace Bubba
             catch( Exception ex )
             {
                 Fail( ex );
+            }
+        }
+
+        /// <summary>
+        /// Creates the new tab.
+        /// </summary>
+        /// <param name="url">The URL.</param>
+        /// <param name="showSideBar">if set to <c>true</c> [show side bar].</param>
+        /// <param name="legacyBindingEnabled">if set to <c>true</c> [legacy binding enabled].</param>
+        private void CreateNewTab( string url, bool showSideBar = false, 
+                                   bool legacyBindingEnabled = false )
+        {
+            BrowserTabs.Add( new BrowserTabViewModel( url )
+            {
+                ShowSidebar = showSideBar, 
+                LegacyBindingEnabled = legacyBindingEnabled
+            } );
+        }
+
+        /// <summary>
+        /// Customs the command binding.
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The <see cref="ExecutedRoutedEventArgs"/> instance containing the event data.</param>
+        private void CustomCommandBinding( object sender, ExecutedRoutedEventArgs e )
+        {
+            var param = e.Parameter.ToString( );
+
+            if( BrowserTabs.Count > 0 )
+            {
+                var originalSource = ( FrameworkElement )e.OriginalSource;
+
+                //TODO: Remove duplicate code
+                BrowserTabViewModel browserViewModel;
+
+                if( originalSource is ChatWindow )
+                {
+                    browserViewModel = BrowserTabs[ TabControl.SelectedIndex ];
+                }
+                else
+                {
+                    browserViewModel = ( BrowserTabViewModel )originalSource.DataContext;
+                }
+
+                if( param == "CustomRequest" )
+                {
+                    browserViewModel.LoadCustomRequestExample( );
+                }
+                else if( param == "OpenDevTools" )
+                {
+                    browserViewModel.WebBrowser.ShowDevTools( );
+                }
+                else if( param == "ZoomIn" )
+                {
+                    var cmd = browserViewModel.WebBrowser.ZoomInCommand;
+                    cmd.Execute( null );
+                }
+                else if( param == "ZoomOut" )
+                {
+                    var cmd = browserViewModel.WebBrowser.ZoomOutCommand;
+                    cmd.Execute( null );
+                }
+                else if( param == "ZoomReset" )
+                {
+                    var cmd = browserViewModel.WebBrowser.ZoomResetCommand;
+                    cmd.Execute( null );
+                }
+                else if( param == "ToggleAudioMute" )
+                {
+                    var cmd = browserViewModel.WebBrowser.ToggleAudioMuteCommand;
+                    cmd.Execute( null );
+                }
+                else if( param == "ClearHttpAuthCredentials" )
+                {
+                    var browserHost = browserViewModel.WebBrowser.GetBrowserHost( );
+                    if( browserHost != null && !browserHost.IsDisposed )
+                    {
+                        var requestContext = browserHost.RequestContext;
+                        requestContext.ClearHttpAuthCredentials( );
+                        requestContext.ClearHttpAuthCredentialsAsync( ).ContinueWith( x =>
+                        {
+                            Console.WriteLine( "RequestContext.ClearHttpAuthCredentials returned " + x.Result );
+                        } );
+                    }
+                }
+                else if( param == "ToggleSidebar" )
+                {
+                    browserViewModel.ShowSidebar = !browserViewModel.ShowSidebar;
+                }
+                else if( param == "ToggleDownloadInfo" )
+                {
+                    browserViewModel.ShowDownloadInfo = !browserViewModel.ShowDownloadInfo;
+                }
+                else if( param == "ResizeHackTests" )
+                {
+                    ReproduceWasResizedCrashAsync( );
+                }
+                else if( param == "AsyncJsbTaskTests" )
+                {
+                    //After this setting has changed all tests will run through the Concurrent MethodQueueRunner
+                    CefSharpSettings.ConcurrentTaskExecution = true;
+
+                    CreateNewTab( _searchEngineUrl, true );
+
+                    TabControl.SelectedIndex = TabControl.Items.Count - 1;
+                }
+                else if( param == "LegacyBindingTest" )
+                {
+                    CreateNewTab( _searchEngineUrl, true, legacyBindingEnabled: true );
+
+                    TabControl.SelectedIndex = TabControl.Items.Count - 1;
+                }
+
+                //NOTE: Add as required
+                //else if (param == "CustomRequest123")
+                //{
+                //    browserViewModel.LoadCustomRequestExample();
+                //}
             }
         }
 
@@ -2205,6 +2378,85 @@ namespace Bubba
             }
 
             Chill( );
+        }
+
+        /// <summary>
+        /// Opens the new tab.
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The <see cref="ExecutedRoutedEventArgs"/>
+        /// instance containing the event data.</param>
+        private void OpenNewTab( object sender, ExecutedRoutedEventArgs e )
+        {
+            CreateNewTab( _searchEngineUrl );
+            TabControl.SelectedIndex = TabControl.Items.Count - 1;
+        }
+
+        /// <summary>
+        /// Opens the tab command binding.
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The <see cref="ExecutedRoutedEventArgs"/>
+        /// instance containing the event data.</param>
+        /// <exception cref="Bubba.ErrorWindow.Exception">
+        /// Please provide a valid command parameter for binding</exception>
+        private void OpenTabCommandBinding( object sender, ExecutedRoutedEventArgs e )
+        {
+            var url = e.Parameter.ToString( );
+            if( string.IsNullOrEmpty( url ) )
+            {
+                throw new Exception( "Please provide a valid command parameter for binding" );
+            }
+
+            CreateNewTab( url, true );
+            TabControl.SelectedIndex = TabControl.Items.Count - 1;
+        }
+
+        /// <summary>
+        /// Prints to PDF command binding.
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The <see cref="ExecutedRoutedEventArgs"/>
+        /// instance containing the event data.</param>
+        private async void PrintToPdfCommandBinding( object sender, ExecutedRoutedEventArgs e )
+        {
+            if( BrowserTabs.Count > 0 )
+            {
+                var originalSource = ( FrameworkElement )e.OriginalSource;
+                BrowserTabViewModel browserViewModel;
+                if( originalSource is ChatWindow )
+                {
+                    browserViewModel = BrowserTabs[ TabControl.SelectedIndex ];
+                }
+                else
+                {
+                    browserViewModel = ( BrowserTabViewModel )originalSource.DataContext;
+                }
+
+                var dialog = new SaveFileDialog
+                {
+                    DefaultExt = ".pdf",
+                    Filter = "Pdf documents (.pdf)|*.pdf"
+                };
+
+                var success = await browserViewModel.WebBrowser.PrintToPdfAsync( dialog.FileName, new PdfPrintSettings
+                {
+                    MarginType = CefPdfPrintMarginType.Custom,
+                    MarginBottom = 0.01,
+                    MarginTop = 0.01,
+                    MarginLeft = 0.01,
+                    MarginRight = 0.01,
+                } );
+
+                if( success )
+                {
+                    MessageBox.Show( "Pdf was saved to " + dialog.FileName );
+                }
+                else
+                {
+                    MessageBox.Show( "Unable to save Pdf, check you have write permissions to " + dialog.FileName );
+                }
+            }
         }
 
         /// <summary>
@@ -3674,6 +3926,69 @@ namespace Bubba
         }
 
         /// <summary>
+        /// Reproduces the was resized crash asynchronous.
+        /// </summary>
+        private void ReproduceWasResizedCrashAsync( )
+        {
+            CreateNewTab( _searchEngineUrl );
+            CreateNewTab( _searchEngineUrl );
+            WindowState = WindowState.Normal;
+            Task.Run( ( ) =>
+            {
+                try
+                {
+                    var random = new Random( );
+                    for( var i = 0; i < 20; i++ )
+                    {
+                        for( var j = 0; j < 150; j++ )
+                        {
+                            Dispatcher.Invoke( new Action( ( ) =>
+                            {
+                                var newWidth = Width + ( i % 2 == 0 ? -5 : 5 );
+                                var newHeight = Height + ( i % 2 == 0 ? -5 : 5 );
+                                if( newWidth < 500 
+                                    || newWidth > 1500 )
+                                {
+                                    newWidth = 1000;
+                                }
+
+                                if( newHeight < 500 
+                                    || newHeight > 1500 )
+                                {
+                                    newHeight = 1000;
+                                }
+
+                                Width = newWidth;
+                                Height = newHeight;
+                                var indexes = new List<int>( );
+                                for( var k = 0; k < TabControl.Items.Count; k++ )
+                                {
+                                    if( TabControl.SelectedIndex != k )
+                                    {
+                                        indexes.Add( k );
+                                    }
+                                }
+
+                                // Select a random unselected tab
+                                TabControl.SelectedIndex = indexes[ random.Next( 0, indexes.Count ) ];
+                                if( random.Next( 0, 5 ) == 0 )
+                                {
+                                    // Don't close the first tab
+                                    CloseOtherTabs( ); 
+                                    CreateNewTab( _searchEngineUrl );
+                                }
+                            } ) );
+
+                            // Sleep random amount of time
+                            Thread.Sleep( random.Next( 1, 11 ) );
+                        }
+                    }
+                }
+                catch( TaskCanceledException ) { } // So it doesn't break on VS stop
+            } );
+        }
+
+        /// <summary>
         /// Sends the message.
         /// </summary>
         /// <param name="message">The message.</param>
@@ -4103,6 +4418,7 @@ namespace Bubba
             PopulateRequestTypes( );
             PopulateModelsAsync(  );
             PopulateVoices( );
+            InitializeCommandBindings( );
             InitializePlotter( );
             InitializeHotkeys( );
             InitializeTimer( );

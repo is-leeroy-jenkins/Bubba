@@ -28445,6 +28445,31 @@
               Looks up a localized string similar to vs_712r5W5833G6aLxIYIbuvVcK.
             </summary>
         </member>
+        <member name="T:Bubba.CefSharpCommands">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Bubba.CefSharpCommands.Exit">
+            <summary>
+            The exit
+            </summary>
+        </member>
+        <member name="F:Bubba.CefSharpCommands.OpenTabCommand">
+            <summary>
+            The open tab command
+            </summary>
+        </member>
+        <member name="F:Bubba.CefSharpCommands.PrintTabToPdfCommand">
+            <summary>
+            The print tab to PDF command
+            </summary>
+        </member>
+        <member name="F:Bubba.CefSharpCommands.CustomCommand">
+            <summary>
+            The custom command
+            </summary>
+        </member>
         <member name="T:Bubba.DataMinion">
             <summary>
             
@@ -33598,6 +33623,11 @@
             Sets the hyper parameters.
             </summary>
         </member>
+        <member name="M:Bubba.ChatWindow.InitializeCommandBindings">
+            <summary>
+            Initializes the command bindings.
+            </summary>
+        </member>
         <member name="M:Bubba.ChatWindow.InitializeBrowser">
             <summary>
             this is done just once,
@@ -33750,6 +33780,14 @@
             </summary>
             <param name="browser">The browser.</param>
         </member>
+        <member name="M:Bubba.ChatWindow.CloseTab(System.Object,System.Windows.Input.ExecutedRoutedEventArgs)">
+            <summary>
+            Closes the tab.
+            </summary>
+            <param name="sender">The sender.</param>
+            <param name="e">The <see cref="T:System.Windows.Input.ExecutedRoutedEventArgs"/>
+            instance containing the event data.</param>
+        </member>
         <member name="M:Bubba.ChatWindow.CloseActiveTab">
             <summary>
             Closes the active tab.
@@ -33764,6 +33802,21 @@
             <summary>
             Closes the other tabs.
             </summary>
+        </member>
+        <member name="M:Bubba.ChatWindow.CreateNewTab(System.String,System.Boolean,System.Boolean)">
+            <summary>
+            Creates the new tab.
+            </summary>
+            <param name="url">The URL.</param>
+            <param name="showSideBar">if set to <c>true</c> [show side bar].</param>
+            <param name="legacyBindingEnabled">if set to <c>true</c> [legacy binding enabled].</param>
+        </member>
+        <member name="M:Bubba.ChatWindow.CustomCommandBinding(System.Object,System.Windows.Input.ExecutedRoutedEventArgs)">
+            <summary>
+            Customs the command binding.
+            </summary>
+            <param name="sender">The sender.</param>
+            <param name="e">The <see cref="T:System.Windows.Input.ExecutedRoutedEventArgs"/> instance containing the event data.</param>
         </member>
         <member name="M:Bubba.ChatWindow.DownloadsInProgress">
             <summary>
@@ -33894,6 +33947,32 @@
             <summary>
             Opens the downloads tab.
             </summary>
+        </member>
+        <member name="M:Bubba.ChatWindow.OpenNewTab(System.Object,System.Windows.Input.ExecutedRoutedEventArgs)">
+            <summary>
+            Opens the new tab.
+            </summary>
+            <param name="sender">The sender.</param>
+            <param name="e">The <see cref="T:System.Windows.Input.ExecutedRoutedEventArgs"/>
+            instance containing the event data.</param>
+        </member>
+        <member name="M:Bubba.ChatWindow.OpenTabCommandBinding(System.Object,System.Windows.Input.ExecutedRoutedEventArgs)">
+            <summary>
+            Opens the tab command binding.
+            </summary>
+            <param name="sender">The sender.</param>
+            <param name="e">The <see cref="T:System.Windows.Input.ExecutedRoutedEventArgs"/>
+            instance containing the event data.</param>
+            <exception cref="P:Bubba.ErrorWindow.Exception">
+            Please provide a valid command parameter for binding</exception>
+        </member>
+        <member name="M:Bubba.ChatWindow.PrintToPdfCommandBinding(System.Object,System.Windows.Input.ExecutedRoutedEventArgs)">
+            <summary>
+            Prints to PDF command binding.
+            </summary>
+            <param name="sender">The sender.</param>
+            <param name="e">The <see cref="T:System.Windows.Input.ExecutedRoutedEventArgs"/>
+            instance containing the event data.</param>
         </member>
         <member name="M:Bubba.ChatWindow.PadQuotes(System.String)">
             <summary>
@@ -34176,6 +34255,11 @@
         <member name="M:Bubba.ChatWindow.RefreshActiveTab">
             <summary>
             Refreshes the active tab.
+            </summary>
+        </member>
+        <member name="M:Bubba.ChatWindow.ReproduceWasResizedCrashAsync">
+            <summary>
+            Reproduces the was resized crash asynchronous.
             </summary>
         </member>
         <member name="M:Bubba.ChatWindow.SendMessage(System.String)">

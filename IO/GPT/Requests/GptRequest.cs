@@ -230,7 +230,7 @@ namespace Bubba
                 if( _presencePenalty != value )
                 {
                     _presencePenalty = value;
-                    OnPropertyChanged( nameof( GptRequest.PresencePenalty ) );
+                    OnPropertyChanged( nameof( PresencePenalty ) );
                 }
             }
         }
@@ -253,7 +253,7 @@ namespace Bubba
                 if( _responseFormat != value )
                 {
                     _responseFormat = value;
-                    OnPropertyChanged( nameof( GptRequest.ResponseFormat ) );
+                    OnPropertyChanged( nameof( ResponseFormat ) );
                 }
             }
         }
@@ -276,7 +276,7 @@ namespace Bubba
                 if( _modalities != value )
                 {
                     _modalities = value;
-                    OnPropertyChanged( nameof( GptRequest.Modalities ) );
+                    OnPropertyChanged( nameof( Modalities ) );
                 }
             }
         }
@@ -379,16 +379,17 @@ namespace Bubba
             try
             {
                 _data.Add( "model", _model );
-                _data.Add( "n", _number.ToString( ) );
-                _data.Add( "max_completion_tokens", _maxCompletionTokens.ToString( ) );
-                _data.Add( "store", _store.ToString( ) );
-                _data.Add( "stream", _stream.ToString( ) );
-                _data.Add( "temperature", _temperature.ToString( ) );
-                _data.Add( "frequency_penalty", _frequencyPenalty.ToString( ) );
-                _data.Add( "presence_penalty", _presencePenalty.ToString( ) );
-                _data.Add( "top_p", _topPercent.ToString( ) );
+                _data.Add( "n", _number );
+                _data.Add( "max_completion_tokens", _maxCompletionTokens );
+                _data.Add( "store", _store );
+                _data.Add( "stream", _stream );
+                _data.Add( "temperature", _temperature );
+                _data.Add( "frequency_penalty", _frequencyPenalty );
+                _data.Add( "presence_penalty", _presencePenalty );
+                _data.Add( "top_p", _topPercent );
                 _data.Add( "stop", _stop );
                 _data.Add( "modalities", _modalities );
+                _data.Add( "response_format", _responseFormat );
                 return _data;
             }
             catch( Exception ex )
