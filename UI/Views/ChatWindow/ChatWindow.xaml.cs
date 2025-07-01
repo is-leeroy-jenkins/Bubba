@@ -45,6 +45,7 @@ namespace Bubba
     using System.Collections.ObjectModel;
     using System.ComponentModel;
     using System.Diagnostics.CodeAnalysis;
+    using System.Drawing;
     using System.Globalization;
     using System.IO;
     using System.Linq;
@@ -230,6 +231,9 @@ namespace Bubba
         /// The options
         /// </summary>
         private protected GptOptions _options;
+
+        //Store draggable region if we have one - used for hit testing
+        private Region _region;
 
         /// <summary>
         /// A number between 0 and 2.
@@ -5838,6 +5842,19 @@ namespace Bubba
                     _currentTab.DateCreated = DateTime.Now;
                 }
             } );
+        }
+
+        private void OnBrowserMouseLeftButtonDown( object sender, MouseButtonEventArgs e )
+        {
+            var point = e.GetPosition( Browser );
+
+            if( _region.IsVisible( ( float )point.X, ( float )point.Y ) )
+            {
+                var window = Window.GetWindow( this );
+                window.DragMove( );
+
+                e.Handled = true;
+            }
         }
 
         /// <inheritdoc />
