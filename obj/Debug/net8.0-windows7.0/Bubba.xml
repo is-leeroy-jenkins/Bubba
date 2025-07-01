@@ -18,6 +18,11 @@
             The window place
             </summary>
         </member>
+        <member name="F:Bubba.App._instructions">
+            <summary>
+            The instructions
+            </summary>
+        </member>
         <member name="P:Bubba.App.ActiveWindows">
             <summary>
             The active windows
@@ -35,7 +40,7 @@
             <see cref="T:Bubba.App" /> class.
             </summary>
         </member>
-        <member name="F:Bubba.App.Instructions">
+        <member name="P:Bubba.App.Instructions">
             <summary>
             The system instructions
             </summary>
@@ -33078,7 +33083,7 @@
             The search open
             </summary>
         </member>
-        <member name="F:Bubba.ChatWindow._systemPrompt">
+        <member name="F:Bubba.ChatWindow._instructions">
             <summary>
             The system prompt fro the GPT
             </summary>
@@ -33088,7 +33093,11 @@
             The user prompt for the GPT
             </summary>
         </member>
-        <!-- Badly formed XML comment ignored for member "F:Bubba.ChatWindow._tabPages" -->
+        <member name="F:Bubba.ChatWindow._tabPages">
+            <summary>
+            The tab pages
+            </summary>
+        </member>
         <member name="F:Bubba.ChatWindow._downloadStrip">
             <summary>
             The download strip
@@ -33860,6 +33869,37 @@
             <param name="next">if set to
             <c>true</c> [next].</param>
         </member>
+        <member name="M:Bubba.ChatWindow.GetDownloadPath(CefSharp.DownloadItem)">
+            <summary>
+            Calculates the download path.
+            </summary>
+            <param name="item">The item.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Bubba.ChatWindow.GetResourceStream(System.String,System.Boolean)">
+            <summary>
+            Gets the resource stream.
+            </summary>
+            <param name="fileName">The fileName.</param>
+            <param name="nameSpace">if set to
+            <c>true</c> [with nameSpace].</param>
+            <returns></returns>
+        </member>
+        <member name="M:Bubba.ChatWindow.GetBrowserAsync(System.String,System.Boolean)">
+            <summary>
+            Gets the browser asynchronous.
+            </summary>
+            <param name="url">The URL.</param>
+            <param name="focused">if set to <c>true</c> [focused].</param>
+            <returns></returns>
+        </member>
+        <member name="M:Bubba.ChatWindow.GetResourceNames(System.String)">
+            <summary>
+            Gets the resource names.
+            </summary>
+            <param name="resxPath">The RESX file path.</param>
+            <returns></returns>
+        </member>
         <member name="M:Bubba.ChatWindow.SendHttpMessage(System.String)">
             <summary>
             Sends the HTTP message.
@@ -34144,6 +34184,11 @@
             Sets the user document language.
             </summary>
         </member>
+        <member name="M:Bubba.ChatWindow.PopulatePromptDropDown">
+            <summary>
+            Populates the prompt drop down.
+            </summary>
+        </member>
         <member name="M:Bubba.ChatWindow.ActivateChatTab">
             <summary>
             Activates the chat tab.
@@ -34202,7 +34247,8 @@
             <param name="focus">if set to
             <c>true</c> [focus new tab].</param>
             <param name="referringUrl">The referring URL.</param>
-            <returns></returns>
+            <returns>
+            </returns>
         </member>
         <member name="M:Bubba.ChatWindow.AddNewBrowser(Bubba.BrowserTabItem,System.String)">
             <summary>
@@ -34227,30 +34273,6 @@
             Updates the download item.
             </summary>
             <param name="item">The item.</param>
-        </member>
-        <member name="M:Bubba.ChatWindow.GetDownloadPath(CefSharp.DownloadItem)">
-            <summary>
-            Calculates the download path.
-            </summary>
-            <param name="item">The item.</param>
-            <returns></returns>
-        </member>
-        <member name="M:Bubba.ChatWindow.GetResourceStream(System.String,System.Boolean)">
-            <summary>
-            Gets the resource stream.
-            </summary>
-            <param name="fileName">The fileName.</param>
-            <param name="nameSpace">if set to
-            <c>true</c> [with nameSpace].</param>
-            <returns></returns>
-        </member>
-        <member name="M:Bubba.ChatWindow.GetBrowserAsync(System.String,System.Boolean)">
-            <summary>
-            Gets the browser asynchronous.
-            </summary>
-            <param name="url">The URL.</param>
-            <param name="focused">if set to <c>true</c> [focused].</param>
-            <returns></returns>
         </member>
         <member name="M:Bubba.ChatWindow.RefreshActiveTab">
             <summary>
@@ -36767,7 +36789,7 @@
             The timer
             </summary>
         </member>
-        <member name="F:Bubba.SystemDialog._systemPrompt">
+        <member name="F:Bubba.SystemDialog._instructions">
             <summary>
             The domain
             </summary>
@@ -36794,7 +36816,7 @@
             <see cref="T:Bubba.SystemDialog" /> class.
             </summary>
         </member>
-        <member name="P:Bubba.SystemDialog.SystemPrompt">
+        <member name="P:Bubba.SystemDialog.Instructions">
             <summary>
             Gets or sets the results.
             </summary>

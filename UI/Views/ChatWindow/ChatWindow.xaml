@@ -382,13 +382,13 @@
                                         <StackPanel
                                             Canvas.Left="30"
                                             Width="270"
-                                            Height="527"
+                                            Height="553"
                                             HorizontalAlignment="Center"
                                             VerticalAlignment="Top"
                                             Background="{StaticResource FormBackground}">
 
                                             <Separator
-                                                Height="35"
+                                                Height="20"
                                                 Background="{x:Null}"
                                                 BorderBrush="{x:Null}"
                                                 Foreground="{x:Null}" />
@@ -453,7 +453,7 @@
                                             </Grid>
 
                                             <Separator
-                                                Height="5"
+                                                Height="10"
                                                 Background="{x:Null}"
                                                 BorderBrush="{x:Null}"
                                                 Foreground="{x:Null}" />
@@ -487,7 +487,7 @@
                                             </GroupBox>
 
                                             <Separator
-                                                Height="5"
+                                                Height="10"
                                                 Background="{x:Null}"
                                                 BorderBrush="{x:Null}"
                                                 Foreground="{x:Null}" />
@@ -518,6 +518,40 @@
                                                     Foreground="{StaticResource FormForeground}"
                                                     Text="Select LLM" />
 
+                                            </GroupBox>
+
+                                            <Separator
+                                                Height="10"
+                                                Background="{x:Null}"
+                                                BorderBrush="{x:Null}"
+                                                Foreground="{StaticResource TransparentBrush}" />
+
+                                            <GroupBox
+                                                x:Name="PromptGroupBox"
+                                                Height="80"
+                                                Margin="10,1,10,1"
+                                                Padding="1"
+                                                HorizontalContentAlignment="Stretch"
+                                                VerticalContentAlignment="Stretch"
+                                                Background="{StaticResource GroupBoxBackground}"
+                                                BorderBrush="{StaticResource MutedForeground}"
+                                                FontFamily="Roboto"
+                                                FontSize="12"
+                                                Foreground="{StaticResource FormForeground}"
+                                                Header="System Instructions">
+
+                                                <b:MetroDropDown
+                                                    x:Name="PromptDropDown"
+                                                    Height="35"
+                                                    Margin="3,3,3,3"
+                                                    VerticalAlignment="Center"
+                                                    VerticalContentAlignment="Center"
+                                                    Background="{StaticResource ControlInteriorBrush}"
+                                                    BorderBrush="{StaticResource BlueBorderBrush}"
+                                                    FontSize="14"
+                                                    Foreground="{StaticResource FormForeground}"
+                                                    Text="Select Prompt">
+                                                </b:MetroDropDown>
                                             </GroupBox>
 
                                             <Separator
@@ -655,7 +689,6 @@
                                                         Tag="high" />
                                                 </b:MetroDropDown>
                                             </GroupBox>
-
                                         </StackPanel>
 
                                     </Canvas>
@@ -1115,7 +1148,7 @@
                                                 <b:MetroDropDown
                                                     x:Name="AudioFormatDropDown"
                                                     Height="35"
-                                                    Margin="3,3,3,3"
+                                                    Margin="3"
                                                     VerticalAlignment="Center"
                                                     VerticalContentAlignment="Center"
                                                     Background="{StaticResource ControlInteriorBrush}"
@@ -1162,9 +1195,9 @@
                                                     <b:MetroDropDownItem
                                                         Height="35"
                                                         Margin="3"
-                                                        Content="pcm"
+                                                        Content="pcm16"
                                                         FontFamily="Roboto"
-                                                        Tag="pcm" />
+                                                        Tag="pcm16" />
 
                                                 </b:MetroDropDown>
                                             </GroupBox>

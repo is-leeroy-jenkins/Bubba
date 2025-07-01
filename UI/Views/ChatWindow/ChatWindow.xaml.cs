@@ -41,6 +41,7 @@
 namespace Bubba
 {
     using System;
+    using System.Collections;
     using System.Collections.Generic;
     using System.Collections.ObjectModel;
     using System.ComponentModel;
@@ -53,6 +54,7 @@ namespace Bubba
     using System.Net.Http;
     using System.Net.Http.Headers;
     using System.Reflection;
+    using System.Resources;
     using System.Runtime.CompilerServices;
     using System.Speech.Recognition;
     using System.Speech.Synthesis;
@@ -129,14 +131,13 @@ namespace Bubba
         /// <summary>
         /// The system prompt fro the GPT
         /// </summary>
-        private protected string _systemPrompt;
+        private protected string _instructions;
 
         /// <summary>
         /// The user prompt for the GPT
         /// </summary>
         private protected string _userPrompt;
 
-        /// <summa
         /// <summary>
         /// The tab pages
         /// </summary>
@@ -609,8 +610,8 @@ namespace Bubba
             _responseFormatOptions = new List<string>( );
             _audioFormatOptions = new List<string>( );
             _voiceOptions = new Dictionary<string, string>( );
-            BrowserTabs = new ObservableCollection<BrowserTabViewModel>( );
-            _systemPrompt = App.Instructions;
+            _browserTabs = new ObservableCollection<BrowserTabViewModel>( );
+            _instructions = App.Instructions;
 
             // Event Wiring
             Loaded += OnLoad;
@@ -656,7 +657,11 @@ namespace Bubba
             }
             set
             {
-                _searchEngineUrl = value;
+                if( _searchEngineUrl != value )
+                {
+                    _searchEngineUrl = value;
+                    OnPropertyChanged( nameof( SearchEngineUrl ) );
+                }
             }
         }
 
@@ -688,7 +693,11 @@ namespace Bubba
             }
             set
             {
-                _browserTabs = value;
+                if( _browserTabs != value )
+                {
+                    _browserTabs = value;
+                    OnPropertyChanged( nameof( BrowserTabs ) );
+                }
             }
         }
 
@@ -1637,7 +1646,6 @@ namespace Bubba
         private void CustomCommandBinding( object sender, ExecutedRoutedEventArgs e )
         {
             var param = e.Parameter.ToString( );
-
             if( BrowserTabs.Count > 0 )
             {
                 var originalSource = ( FrameworkElement )e.OriginalSource;
@@ -1654,80 +1662,83 @@ namespace Bubba
                     browserViewModel = ( BrowserTabViewModel )originalSource.DataContext;
                 }
 
-                if( param == "CustomRequest" )
+                switch( param )
                 {
-                    browserViewModel.LoadCustomRequestExample( );
-                }
-                else if( param == "OpenDevTools" )
-                {
-                    browserViewModel.WebBrowser.ShowDevTools( );
-                }
-                else if( param == "ZoomIn" )
-                {
-                    var cmd = browserViewModel.WebBrowser.ZoomInCommand;
-                    cmd.Execute( null );
-                }
-                else if( param == "ZoomOut" )
-                {
-                    var cmd = browserViewModel.WebBrowser.ZoomOutCommand;
-                    cmd.Execute( null );
-                }
-                else if( param == "ZoomReset" )
-                {
-                    var cmd = browserViewModel.WebBrowser.ZoomResetCommand;
-                    cmd.Execute( null );
-                }
-                else if( param == "ToggleAudioMute" )
-                {
-                    var cmd = browserViewModel.WebBrowser.ToggleAudioMuteCommand;
-                    cmd.Execute( null );
-                }
-                else if( param == "ClearHttpAuthCredentials" )
-                {
-                    var browserHost = browserViewModel.WebBrowser.GetBrowserHost( );
-                    if( browserHost != null && !browserHost.IsDisposed )
+                    case "CustomRequest":
+                        browserViewModel.LoadCustomRequestExample( );
+                        break;
+
+                    case "OpenDevTools":
+                        browserViewModel.WebBrowser.ShowDevTools( );
+                        break;
+
+                    case "ZoomIn":
                     {
-                        var requestContext = browserHost.RequestContext;
-                        requestContext.ClearHttpAuthCredentials( );
-                        requestContext.ClearHttpAuthCredentialsAsync( ).ContinueWith( x =>
-                        {
-                            Console.WriteLine( "RequestContext.ClearHttpAuthCredentials returned " + x.Result );
-                        } );
+                        var cmd = browserViewModel.WebBrowser.ZoomInCommand;
+                        cmd.Execute( null );
+                        break;
                     }
-                }
-                else if( param == "ToggleSidebar" )
-                {
-                    browserViewModel.ShowSidebar = !browserViewModel.ShowSidebar;
-                }
-                else if( param == "ToggleDownloadInfo" )
-                {
-                    browserViewModel.ShowDownloadInfo = !browserViewModel.ShowDownloadInfo;
-                }
-                else if( param == "ResizeHackTests" )
-                {
-                    ReproduceWasResizedCrashAsync( );
-                }
-                else if( param == "AsyncJsbTaskTests" )
-                {
-                    //After this setting has changed all tests will run through the Concurrent MethodQueueRunner
-                    CefSharpSettings.ConcurrentTaskExecution = true;
 
-                    CreateNewTab( _searchEngineUrl, true );
+                    case "ZoomOut":
+                    {
+                        var cmd = browserViewModel.WebBrowser.ZoomOutCommand;
+                        cmd.Execute( null );
+                        break;
+                    }
 
-                    TabControl.SelectedIndex = TabControl.Items.Count - 1;
+                    case "ZoomReset":
+                    {
+                        var cmd = browserViewModel.WebBrowser.ZoomResetCommand;
+                        cmd.Execute( null );
+                        break;
+                    }
+
+                    case "ToggleAudioMute":
+                    {
+                        var cmd = browserViewModel.WebBrowser.ToggleAudioMuteCommand;
+                        cmd.Execute( null );
+                        break;
+                    }
+
+                    case "ClearHttpAuthCredentials":
+                    {
+                        var browserHost = browserViewModel.WebBrowser.GetBrowserHost( );
+                        if( browserHost != null && !browserHost.IsDisposed )
+                        {
+                            var requestContext = browserHost.RequestContext;
+                            requestContext.ClearHttpAuthCredentials( );
+                            requestContext.ClearHttpAuthCredentialsAsync( ).ContinueWith( x =>
+                            {
+                                Console.WriteLine( "RequestContext.ClearHttpAuthCredentials returned " + x.Result );
+                            } );
+                        }
+
+                        break;
+                    }
+
+                    case "ToggleSidebar":
+                        browserViewModel.ShowSidebar = !browserViewModel.ShowSidebar;
+                        break;
+
+                    case "ToggleDownloadInfo":
+                        browserViewModel.ShowDownloadInfo = !browserViewModel.ShowDownloadInfo;
+                        break;
+
+                    case "ResizeHackTests":
+                        ReproduceWasResizedCrashAsync( );
+                        break;
+
+                    case "AsyncJsbTaskTests":
+                        CefSharpSettings.ConcurrentTaskExecution = true;
+                        CreateNewTab( _searchEngineUrl, true );
+                        TabControl.SelectedIndex = TabControl.Items.Count - 1;
+                        break;
+
+                    case "LegacyBindingTest":
+                        CreateNewTab( _searchEngineUrl, true, true );
+                        TabControl.SelectedIndex = TabControl.Items.Count - 1;
+                        break;
                 }
-                else if( param == "LegacyBindingTest" )
-                {
-                    CreateNewTab( _searchEngineUrl, true, legacyBindingEnabled: true );
-
-                    TabControl.SelectedIndex = TabControl.Items.Count - 1;
-                }
-
-                //NOTE: Add as required
-                //else if (param == "CustomRequest123")
-                //{
-                //    browserViewModel.LoadCustomRequestExample();
-                //}
             }
         }
 
@@ -1864,6 +1875,92 @@ namespace Bubba
 
             UrlPanelTextBox.Focus( );
             Chill( );
+        }
+
+        /// <summary>
+        /// Calculates the download path.
+        /// </summary>
+        /// <param name="item">The item.</param>
+        /// <returns></returns>
+        public string GetDownloadPath( DownloadItem item )
+        {
+            return item.SuggestedFileName;
+        }
+
+        /// <summary>
+        /// Gets the resource stream.
+        /// </summary>
+        /// <param name="fileName">The fileName.</param>
+        /// <param name="nameSpace">if set to
+        /// <c>true</c> [with nameSpace].</param>
+        /// <returns></returns>
+        public Stream GetResourceStream( string fileName, bool nameSpace = true )
+        {
+            try
+            {
+                ThrowIf.Null( fileName, nameof( fileName ) );
+                var _prefix = "Properties.Resources.";
+                return Assembly.GetManifestResourceStream( fileName );
+            }
+            catch( Exception )
+            {
+                //ignore exception
+            }
+
+            return null;
+        }
+
+        /// <summary>
+        /// Gets the browser asynchronous.
+        /// </summary>
+        /// <param name="url">The URL.</param>
+        /// <param name="focused">if set to <c>true</c> [focused].</param>
+        /// <returns></returns>
+        private protected Task<ChromiumWebBrowser> GetBrowserAsync( string url, bool focused )
+        {
+            var _tcs = new TaskCompletionSource<ChromiumWebBrowser>( );
+            try
+            {
+                ThrowIf.Null( url, nameof( url ) );
+                ThrowIf.Null( focused, nameof( focused ) );
+                var _browser = AddNewBrowserTab( url, focused );
+                _tcs.SetResult( _browser );
+                return _tcs.Task;
+            }
+            catch( Exception ex )
+            {
+                _tcs.SetException( ex );
+                Fail( ex );
+                return default( Task<ChromiumWebBrowser> );
+            }
+        }
+
+        /// <summary>
+        /// Gets the resource names.
+        /// </summary>
+        /// <param name="resxPath">The RESX file path.</param>
+        /// <returns></returns>
+        private protected List<string> GetResourceNames( string resxPath )
+        {
+            try
+            {
+                ThrowIf.Null( resxPath, nameof( resxPath ) );
+                var _names = new List<string>( );
+                using var reader = new ResXResourceReader( resxPath );
+                foreach( DictionaryEntry entry in reader )
+                {
+                    _names.Add( entry.Key.ToString( ) );
+                }
+
+                return _names?.Any( ) == true
+                    ? _names
+                    : default( List<string> );
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+                return default( List<string> );
+            }
         }
 
         /// <summary>
@@ -3557,6 +3654,35 @@ namespace Bubba
         }
 
         /// <summary>
+        /// Populates the prompt drop down.
+        /// </summary>
+        private protected void PopulatePromptDropDown( )
+        {
+            try
+            {
+                PromptDropDown.Items?.Clear( );
+                var _filepath = @"C:\Users\terry\source\repos\Bubba\Properties\Prompts.resx";
+                var _path = Locations.PathPrefix + @"Resources\Documents\Prompts\";
+                var _files = Directory.GetFiles( _path, "*.txt" );
+                var _names = GetResourceNames( _filepath );
+                foreach( var _file in _names )
+                {
+                    var _item = new MetroDropDownItem( )
+                    {
+                        Tag = _file,
+                        Content = _file
+                    };
+
+                    PromptDropDown.Items.Add( _item );
+                }
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+            }
+        }
+
+        /// <summary>
         /// Activates the chat tab.
         /// </summary>
         private protected void ActivateChatTab( )
@@ -3718,7 +3844,8 @@ namespace Bubba
         /// <param name="focus">if set to
         /// <c>true</c> [focus new tab].</param>
         /// <param name="referringUrl">The referring URL.</param>
-        /// <returns></returns>
+        /// <returns>
+        /// </returns>
         public ChromiumWebBrowser AddNewBrowserTab( string url, bool focus = true,
             string referringUrl = null )
         {
@@ -3857,64 +3984,6 @@ namespace Bubba
                 _downloadItems[ item.Id ] = item;
 
                 //UpdateSnipProgress();
-            }
-        }
-
-        /// <summary>
-        /// Calculates the download path.
-        /// </summary>
-        /// <param name="item">The item.</param>
-        /// <returns></returns>
-        public string GetDownloadPath( DownloadItem item )
-        {
-            return item.SuggestedFileName;
-        }
-
-        /// <summary>
-        /// Gets the resource stream.
-        /// </summary>
-        /// <param name="fileName">The fileName.</param>
-        /// <param name="nameSpace">if set to
-        /// <c>true</c> [with nameSpace].</param>
-        /// <returns></returns>
-        public Stream GetResourceStream( string fileName, bool nameSpace = true )
-        {
-            try
-            {
-                ThrowIf.Null( fileName, nameof( fileName ) );
-                var _prefix = "Properties.Resources.";
-                return Assembly.GetManifestResourceStream( fileName );
-            }
-            catch( Exception )
-            {
-                //ignore exception
-            }
-
-            return null;
-        }
-
-        /// <summary>
-        /// Gets the browser asynchronous.
-        /// </summary>
-        /// <param name="url">The URL.</param>
-        /// <param name="focused">if set to <c>true</c> [focused].</param>
-        /// <returns></returns>
-        private protected Task<ChromiumWebBrowser> GetBrowserAsync( string url, bool focused )
-        {
-            var _tcs = new TaskCompletionSource<ChromiumWebBrowser>( );
-            try
-            {
-                ThrowIf.Null( url, nameof( url ) );
-                ThrowIf.Null( focused, nameof( focused ) );
-                var _browser = AddNewBrowserTab( url, focused );
-                _tcs.SetResult( _browser );
-                return _tcs.Task;
-            }
-            catch( Exception ex )
-            {
-                _tcs.SetException( ex );
-                Fail( ex );
-                return default( Task<ChromiumWebBrowser> );
             }
         }
 
@@ -4419,8 +4488,9 @@ namespace Bubba
         /// </param>
         private protected void OnLoad( object sender, RoutedEventArgs e )
         {
+            PopulatePromptDropDown( );
             PopulateRequestTypes( );
-            PopulateModelsAsync(  );
+            PopulateModelsAsync( );
             PopulateVoices( );
             InitializeCommandBindings( );
             InitializePlotter( );
@@ -5125,7 +5195,7 @@ namespace Bubba
         /// Called when [property changed].
         /// </summary>
         /// <param name="propertyName">Name of the property.</param>
-        public void OnPropertyChanged( [CallerMemberName] string propertyName = null )
+        public void OnPropertyChanged( [ CallerMemberName ] string propertyName = null )
         {
             try
             {
@@ -5888,7 +5958,7 @@ namespace Bubba
         /// 
         /// </summary>
         /// <param name="ex">The ex.</param>
-        private protected void Fail( Exception ex )
+        private protected static void Fail( Exception ex )
         {
             using var _error = new ErrorWindow( ex );
             _error?.SetText( );

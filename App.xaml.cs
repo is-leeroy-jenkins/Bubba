@@ -77,6 +77,11 @@ namespace Bubba
         private protected WindowPlace _windowPlace;
 
         /// <summary>
+        /// The instructions
+        /// </summary>
+        private protected static string _instructions;
+
+        /// <summary>
         /// The active windows
         /// </summary>
         public static IDictionary<string, Window> ActiveWindows { get; private set; }
@@ -145,7 +150,18 @@ namespace Bubba
         /// <summary>
         /// The system instructions
         /// </summary>
-        public static string Instructions;
+        public static string Instructions
+        {
+            get
+            {
+                return _instructions;
+            }
+            set
+            {
+                _instructions = value 
+                    ?? throw new ArgumentNullException( nameof( value ), "Instructions null." );
+            }
+        }
 
         /// <summary>
         /// The open ai API key

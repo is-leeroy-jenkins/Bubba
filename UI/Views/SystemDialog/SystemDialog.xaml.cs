@@ -60,6 +60,8 @@ namespace Bubba
     [ SuppressMessage( "ReSharper", "ConvertToAutoProperty" ) ]
     [ SuppressMessage( "ReSharper", "ConvertToAutoPropertyWhenPossible" ) ]
     [ SuppressMessage( "ReSharper", "MemberCanBeProtected.Global" ) ]
+    [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
+    [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
     public partial class SystemDialog : Window, IDisposable
     {
         /// <summary>
@@ -90,7 +92,7 @@ namespace Bubba
         /// <summary>
         /// The domain
         /// </summary>
-        private string _systemPrompt;
+        private string _instructions;
 
         /// <summary>
         /// The results
@@ -122,7 +124,7 @@ namespace Bubba
             RegisterCallbacks( );
 
             // Dialog Properties
-            _systemPrompt = App.Instructions;
+            _instructions = App.Instructions;
 
             //Event Wiring
             Loaded += OnLoad;
@@ -134,15 +136,15 @@ namespace Bubba
         /// <value>
         /// The results.
         /// </value>
-        public string SystemPrompt
+        public string Instructions
         {
             get
             {
-                return _systemPrompt;
+                return _instructions;
             }
             set
             {
-                _systemPrompt = value;
+                _instructions = value;
             }
         }
 
@@ -203,7 +205,7 @@ namespace Bubba
         {
             try
             {
-                SystemDialogTextBox.Text = _systemPrompt;
+                SystemDialogTextBox.Text = _instructions;
             }
             catch( Exception ex )
             {
@@ -426,7 +428,7 @@ namespace Bubba
         /// Fails the specified ex.
         /// </summary>
         /// <param name="ex">The ex.</param>
-        private protected static void Fail( Exception ex )
+        private protected void Fail( Exception ex )
         {
             using var _error = new ErrorWindow( ex );
             _error?.SetText( );
