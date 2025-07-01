@@ -87,10 +87,10 @@ namespace Bubba
         {
             _messages = new List<IGptMessage>( );
             _header = new GptHeader( );
-            _apiKey = _header.ApiKey;
+            _apiKey = App.OpenAiKey;
             _instructions = App.Instructions;
             _store = true;
-            _stream = true;
+            _stream = false;
             _presencePenalty = 0.00;
             _frequencyPenalty = 0.00;
             _topPercent = 0.9;
