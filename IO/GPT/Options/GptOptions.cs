@@ -114,7 +114,7 @@ namespace Bubba
         /// <value>
         /// The modalities.
         /// </value>
-        public string Modalities
+        public virtual string Modalities
         {
             get
             {
@@ -382,7 +382,6 @@ namespace Bubba
         /// <value>
         /// The modalities.
         /// </value>
-        [ JsonPropertyName( "response_format" ) ]
         public virtual string ResponseFormat
         {
             get

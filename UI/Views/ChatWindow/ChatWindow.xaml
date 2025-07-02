@@ -1843,11 +1843,11 @@
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="50" />
                                 <ColumnDefinition Width="50" />
-                                <ColumnDefinition Width="95" />
-                                <ColumnDefinition Width="50" />
-                                <ColumnDefinition Width="50" />
+                                <ColumnDefinition Width="80" />
+                                <ColumnDefinition Width="55" />
+                                <ColumnDefinition Width="55" />
                                 <ColumnDefinition Width="532" />
-                                <ColumnDefinition Width="65" />
+                                <ColumnDefinition Width="55" />
                                 <ColumnDefinition Width="55" />
                                 <ColumnDefinition Width="90" />
                                 <ColumnDefinition />
@@ -1860,7 +1860,7 @@
                             <b:ToolStripButton
                                 x:Name="UrlPanelForwardButton"
                                 Title=""
-                                Grid.Column="6"
+                                Grid.Column="7"
                                 Width="40"
                                 Height="30"
                                 Padding="1"
@@ -1878,7 +1878,7 @@
                             <b:ToolStripButton
                                 x:Name="UrlPanelCancelButton"
                                 Title=""
-                                Grid.Column="7"
+                                Grid.Column="3"
                                 Width="40"
                                 Height="30"
                                 Padding="1"
@@ -1917,7 +1917,7 @@
                             <b:ToolStripButton
                                 x:Name="UrlPanelBackButton"
                                 Title=""
-                                Grid.Column="4"
+                                Grid.Column="6"
                                 Width="40"
                                 Height="30"
                                 Padding="1"
@@ -1948,7 +1948,7 @@
                             <b:ToolStripButton
                                 x:Name="UrlPanelHomeButton"
                                 Title=""
-                                Grid.Column="3"
+                                Grid.Column="4"
                                 Width="40"
                                 Height="30"
                                 Padding="1"

@@ -7,7 +7,7 @@ Convert the following process description into a step-by-step checklist:
 </ACTIONS>
 <INPUT>
 ###
-{{DESCRIPTION}}
+{{QUESTION}}
 ###
 </INPUT>
 <OUTPUT>

@@ -4972,7 +4972,7 @@ namespace Bubba
         {
             try
             {
-                _language = ( ( MetroDropDownItem )LanguageDropDown.SelectedItem ).ToString( );
+                _language = ( ( MetroDropDownItem )LanguageDropDown.SelectedItem ).Content.ToString( );
                 PopulateDocuments( );
                 var _message = "Language = " + _language;
                 SendNotification( _message );
@@ -5914,15 +5914,19 @@ namespace Bubba
             } );
         }
 
+        /// <summary>
+        /// Called when [browser mouse left button down].
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The <see cref="MouseButtonEventArgs"/>
+        /// instance containing the event data.</param>
         private void OnBrowserMouseLeftButtonDown( object sender, MouseButtonEventArgs e )
         {
             var point = e.GetPosition( Browser );
-
             if( _region.IsVisible( ( float )point.X, ( float )point.Y ) )
             {
                 var window = Window.GetWindow( this );
                 window.DragMove( );
-
                 e.Handled = true;
             }
         }
