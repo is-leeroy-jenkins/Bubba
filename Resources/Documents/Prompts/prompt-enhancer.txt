@@ -1,5 +1,5 @@
 <INSTRUCTIONS>
-You are a helpful assitant with the ability to analyze, enhance, and improve any AI prompt presented to you delimited by ### in the context below.
+You are a helpful assistant with the ability to analyze, enhance, and improve any AI prompt presented to you delimited by ### in the context below.
 </INSTRUCTIONS> 
 <CONTEXT>
 ###

@@ -13,6 +13,7 @@
 //     Copyright �  2022 Terry D. Eppler
 // 
 //    Permission is hereby granted, free of charge, to any person obtaining a copy
+
 //    of this software and associated documentation files (the �Software�),
 //    to deal in the Software without restriction,
 //    including without limitation the rights to use,
@@ -233,7 +234,9 @@ namespace Bubba
         /// </summary>
         private protected GptOptions _options;
 
-        //Store draggable region if we have one - used for hit testing
+        /// <summary>
+        /// The region
+        /// </summary>
         private Region _region;
 
         /// <summary>
@@ -407,7 +410,10 @@ namespace Bubba
         /// </summary>
         private protected string _model;
 
-        public ObservableCollection<BrowserTabViewModel> _browserTabs;
+        /// <summary>
+        /// The browser tabs
+        /// </summary>
+        private ObservableCollection<BrowserTabViewModel> _browserTabs;
 
         /// <summary>
         /// The context menu handler
@@ -611,7 +617,7 @@ namespace Bubba
             _audioFormatOptions = new List<string>( );
             _voiceOptions = new Dictionary<string, string>( );
             _browserTabs = new ObservableCollection<BrowserTabViewModel>( );
-            _instructions = App.Instructions;
+            _instructions = Prompts.BudgetAnalyst;
 
             // Event Wiring
             Loaded += OnLoad;
@@ -1053,6 +1059,7 @@ namespace Bubba
                 ToolStripRefreshButton.Click += OnToolStripRefreshButtonClick;
                 ToolStripSendButton.Click += OnGoButtonClicked;
                 ToolStripFileButton.Click += OnFileApiButtonClick;
+                UrlPanelCancelButton.Click += OnUrlCancelButtonClick;
                 TemperatureTextBox.TextChanged += OnParameterTextBoxChanged;
                 PresencePenaltyTextBox.TextChanged += OnParameterTextBoxChanged;
                 FrequencyPenaltyTextBox.TextChanged += OnParameterTextBoxChanged;
@@ -1073,6 +1080,7 @@ namespace Bubba
                 EffortDropDown.SelectionChanged += OnEffortSelectionChanged;
                 AudioFormatDropDown.SelectionChanged += OnAudioFormatSelectionChanged;
                 VoicesDropDown.SelectionChanged += OnVoiceSelectionChanged;
+                PromptDropDown.SelectionChanged += OnPromptDropDownSelectionChanged;
             }
             catch( Exception ex )
             {
@@ -3663,7 +3671,6 @@ namespace Bubba
                 PromptDropDown.Items?.Clear( );
                 var _filepath = @"C:\Users\terry\source\repos\Bubba\Properties\Prompts.resx";
                 var _path = Locations.PathPrefix + @"Resources\Documents\Prompts\";
-                var _files = Directory.GetFiles( _path, "*.txt" );
                 var _names = GetResourceNames( _filepath );
                 foreach( var _file in _names )
                 {
@@ -4739,9 +4746,11 @@ namespace Bubba
             {
                 if( DocumentListBox.SelectedIndex != -1 )
                 {
+                    var _filepath = @"C:\Users\terry\source\repos\Bubba\Properties\Prompts.resx";
+                    var _path = Locations.PathPrefix + @"Resources\Documents\Prompts\";
+                    var _names = GetResourceNames( _filepath );
                     _document = ((MetroListBoxItem)DocumentListBox.SelectedItem).Tag.ToString( );
                     Editor.LoadFile( _document );
-                    TabControl.SelectedIndex = 3;
                     var _message = "Document = " + _document;
                     SendNotification( _message );
                 }
@@ -5158,13 +5167,37 @@ namespace Bubba
         /// <param name="sender">The sender.</param>
         /// <param name="e">The <see cref="RoutedEventArgs"/>
         /// instance containing the event data.</param>
-        private void OnPromptOptionClick( object sender, RoutedEventArgs e )
+        private void OnPromptMenuOptionClick( object sender, RoutedEventArgs e )
         {
             try
             {
-                Busy( );
-                OpenSystemDialog( );
-                Chill( );
+                var _name = ( (MetroListBoxItem)PromptDropDown.SelectedItem)
+                    ?.Tag?.ToString( );
+
+                var _message = "Prompt = " + _name;
+                SendNotification( _message );
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+            }
+        }
+
+        /// <summary>
+        /// Called when [prompt drop down selection changed].
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The <see cref="RoutedEventArgs"/>
+        /// instance containing the event data.</param>
+        private void OnPromptDropDownSelectionChanged( object sender, RoutedEventArgs e )
+        {
+            try
+            {
+                var _name = ( ( MetroDropDownItem )PromptDropDown.SelectedItem )
+                    ?.Tag?.ToString( );
+
+                var _message = "Selected Prompt = " + _name;
+                SendNotification( _message );
             }
             catch( Exception ex )
             {
@@ -5646,6 +5679,27 @@ namespace Bubba
                 _searchDialog.Top = _psn.Y + 100;
                 _searchDialog.Show( );
                 _searchDialog.SearchPanelTextBox.Focus( );
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+            }
+        }
+
+        /// <summary>
+        /// Called when [URL cancel button click].
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The <see cref="MouseEventArgs"/>
+        /// instance containing the event data.</param>
+        private protected void OnUrlCancelButtonClick( object sender, RoutedEventArgs e )
+        {
+            try
+            {
+                if( Browser.IsLoading )
+                {
+                    Browser.Stop( );
+                }
             }
             catch( Exception ex )
             {

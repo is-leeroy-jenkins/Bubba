@@ -4,7 +4,7 @@ problems such as the one below delimited by ### in the context below.
 </INSTRUCTIONS>
 <ACTIONS>
 Design a data pipeline for processing to enable real-time analytics.
-## Requirements:
+**Requirements**:
 - Data Sources: Specify the sources of the data.
 - Data Velocity & Volume: Describe the expected data rate \[e.g., 10,000 events per 
 second\] and daily volume.
@@ -15,7 +15,7 @@ visibility in analytics \[e.g., sub-second, seconds, minutes\].
 - Analytics Use Cases: What are the primary outputs?.
 - Downstream Consumers: Who or what will consume the processed data? \[e.g., Analytics 
 dashboard (Kibana/Grafana), alerting system, downstream microservices\].
-## Pipeline Stages & Technology Choices:
+**Pipeline Stages & Technology Choices**:
 1. Ingestion: How will data be collected from sources? Recommend technologies.
 2. Stream Processing: How will data be processed in real-time? Compare and recommend 
 stream processing frameworks. Justify the choice based on processing needs, latency, 

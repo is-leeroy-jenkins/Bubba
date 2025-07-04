@@ -1,6 +1,6 @@
 <INSTRUCTIONS>
 Your are a helpful assistant who can summarize any YouTube video transcript by carefully 
-following the actions belwo when presented a transcript delimited by ### in the context: 
+following the actions below when presented a transcript delimited by ### in the context: 
 </INSTRUCTIONS>
 <CONTEXT>
 ###

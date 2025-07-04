@@ -23,7 +23,7 @@
     wpf:SfSkinManager.Theme="{wpf:SkinManager ThemeName=FluentDark}"
     Background="{StaticResource FormBackground}"
     BorderBrush="{StaticResource BlueBorderBrush}"
-    BorderThickness="1,1,1,1"
+    BorderThickness="1"
     FontFamily="Roboto"
     Foreground="{StaticResource FormForeground}"
     Icon="/Resources/Assets/ApplicationImages/Bubba.png"
@@ -76,7 +76,7 @@
             </wpf:MenuItemAdv>
 
             <wpf:MenuItemAdv
-                Click="OnPromptOptionClick"
+                Click="OnPromptMenuOptionClick"
                 Header="System Prompt"
                 ToolTip="Change System Prompt">
                 <wpf:MenuItemAdv.Icon>
@@ -325,8 +325,7 @@
                     Margin="3"
                     Foreground="{StaticResource BlueBorderBrush}"
                     Header="Chat"
-                    Tag="Chat"
-                    ToolTip="AI Functionality">
+                    Tag="Chat">
                     <Grid
                         x:Name="ChatTabGrid"
                         Background="{StaticResource FormBackground}">
@@ -388,7 +387,7 @@
                                             Background="{StaticResource FormBackground}">
 
                                             <Separator
-                                                Height="20"
+                                                Height="30"
                                                 Background="{x:Null}"
                                                 BorderBrush="{x:Null}"
                                                 Foreground="{x:Null}" />
@@ -406,7 +405,7 @@
                                                     x:Name="StreamCheckBox"
                                                     Width="65"
                                                     Height="40"
-                                                    Margin="3,0,0,0"
+                                                    Margin="15,0,0,0"
                                                     HorizontalAlignment="Left"
                                                     HorizontalContentAlignment="Left"
                                                     Content="Stream"
@@ -421,7 +420,7 @@
                                                     Grid.Column="1"
                                                     Width="65"
                                                     Height="40"
-                                                    Margin="3,0,0,0"
+                                                    Margin="15,0,0,0"
                                                     HorizontalAlignment="Left"
                                                     HorizontalContentAlignment="Left"
                                                     Content="Store"
@@ -453,7 +452,7 @@
                                             </Grid>
 
                                             <Separator
-                                                Height="10"
+                                                Height="5"
                                                 Background="{x:Null}"
                                                 BorderBrush="{x:Null}"
                                                 Foreground="{x:Null}" />
@@ -487,7 +486,7 @@
                                             </GroupBox>
 
                                             <Separator
-                                                Height="10"
+                                                Height="5"
                                                 Background="{x:Null}"
                                                 BorderBrush="{x:Null}"
                                                 Foreground="{x:Null}" />
@@ -521,7 +520,7 @@
                                             </GroupBox>
 
                                             <Separator
-                                                Height="10"
+                                                Height="5"
                                                 Background="{x:Null}"
                                                 BorderBrush="{x:Null}"
                                                 Foreground="{StaticResource TransparentBrush}" />
@@ -550,12 +549,11 @@
                                                     BorderBrush="{StaticResource BlueBorderBrush}"
                                                     FontSize="14"
                                                     Foreground="{StaticResource FormForeground}"
-                                                    Text="Select Prompt">
-                                                </b:MetroDropDown>
+                                                    Text="Select Prompt" />
                                             </GroupBox>
 
                                             <Separator
-                                                Height="10"
+                                                Height="5"
                                                 Background="{x:Null}"
                                                 BorderBrush="{x:Null}"
                                                 Foreground="{StaticResource TransparentBrush}" />
@@ -631,7 +629,7 @@
                                             </GroupBox>
 
                                             <Separator
-                                                Height="10"
+                                                Height="5"
                                                 Background="{x:Null}"
                                                 BorderBrush="{x:Null}"
                                                 Foreground="{StaticResource TransparentBrush}" />
@@ -707,7 +705,7 @@
                                 Tag="GPT"
                                 ToolTip="Hyperparameters">
 
-                                <Grid Background="{StaticResource BackgroundBrush}">
+                                <Grid>
 
                                     <Canvas Margin="1">
 
@@ -717,8 +715,7 @@
                                             Width="270"
                                             Height="506"
                                             HorizontalAlignment="Center"
-                                            VerticalAlignment="Top"
-                                            Background="{StaticResource FormBackground}">
+                                            VerticalAlignment="Top">
 
                                             <GroupBox
                                                 x:Name="TemperatureGroupBox"
@@ -938,7 +935,7 @@
                                                 FontFamily="Roboto"
                                                 FontSize="12"
                                                 Foreground="{StaticResource FormForeground}"
-                                                Header="Top Log-Probability">
+                                                Header="Top Log-Probs">
 
                                                 <wpf:SfRangeSlider
                                                     x:Name="TopLogProbSlider"
@@ -1881,16 +1878,17 @@
                                 Grid.Column="3"
                                 Width="40"
                                 Height="30"
-                                Padding="1"
+                                Padding="0"
                                 HorizontalAlignment="Center"
                                 VerticalAlignment="Center"
                                 HorizontalContentAlignment="Stretch"
                                 VerticalContentAlignment="Stretch"
                                 Background="{StaticResource FormBackground}"
                                 BorderBrush="{StaticResource FormBackground}"
-                                BorderThickness="1"
+                                BorderThickness="0"
                                 Header=""
                                 ImageSource="/Resources/Assets/ToolStripImages/StopButton.png"
+                                IsEnabled="{Binding ElementName=Browser, Path=IsLoading, UpdateSourceTrigger=PropertyChanged}"
                                 ToolTip="Cancel" />
 
                             <b:MetroTextBox

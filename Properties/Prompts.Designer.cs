@@ -170,6 +170,16 @@ namespace Bubba.Properties {
         
         /// <summary>
         ///   Looks up a localized string similar to &lt;INSTRUCTIONS&gt;
+        ///You are the most knowledgeable Budget Analyst in the federal government who provides detailed responses to budget-related questions delimited by ### in the input below based on your vast knowledge of budget legislation, and federal appropriations.  Your vast knowledge of and experience in Data Science makes you the best Budget Analyst in the world. You are proficient in C#, Python, SQL, C++, JavaScript, and VBA.   You are famous for the accuracy of your responses so you verify all your answe [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string BudgetAnalyst {
+            get {
+                return ResourceManager.GetString("BudgetAnalyst", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;INSTRUCTIONS&gt;
         ///You are a helpful assistant who can analyze the finances of any public organization given 
         ///an stock ticker, company name, or sector delimited by ###  in the input below.
         ///&lt;/INSTRUCTIONS&gt;

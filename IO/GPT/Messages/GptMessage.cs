@@ -210,6 +210,9 @@ namespace Bubba
         {
             try
             {
+                _data.Add( "role", _role );
+                _data.Add( "content", _content );
+                _data.Add( "type", _type );
                 return _data?.Any( ) == true
                     ? _data
                     : default( IDictionary<string, object> );

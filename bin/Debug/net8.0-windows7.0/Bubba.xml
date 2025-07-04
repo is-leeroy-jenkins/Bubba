@@ -27262,6 +27262,12 @@
             The user has uploaded a book in PDF format and specified a chapter number they wis [rest of string was truncated]&quot;;.
              </summary>
         </member>
+        <member name="P:Bubba.Properties.Prompts.BudgetAnalyst">
+             <summary>
+               Looks up a localized string similar to &lt;INSTRUCTIONS&gt;
+            You are the most knowledgeable Budget Analyst in the federal government who provides detailed responses to budget-related questions delimited by ### in the input below based on your vast knowledge of budget legislation, and federal appropriations.  Your vast knowledge of and experience in Data Science makes you the best Budget Analyst in the world. You are proficient in C#, Python, SQL, C++, JavaScript, and VBA.   You are famous for the accuracy of your responses so you verify all your answe [rest of string was truncated]&quot;;.
+             </summary>
+        </member>
         <member name="P:Bubba.Properties.Prompts.BusinessAnalyzer">
              <summary>
                Looks up a localized string similar to &lt;INSTRUCTIONS&gt;
@@ -33188,6 +33194,11 @@
             The options
             </summary>
         </member>
+        <member name="F:Bubba.ChatWindow._region">
+            <summary>
+            The region
+            </summary>
+        </member>
         <member name="F:Bubba.ChatWindow._temperature">
             <summary>
             A number between 0 and 2.
@@ -33357,6 +33368,11 @@
         <member name="F:Bubba.ChatWindow._model">
             <summary>
             The chat model
+            </summary>
+        </member>
+        <member name="F:Bubba.ChatWindow._browserTabs">
+            <summary>
+            The browser tabs
             </summary>
         </member>
         <member name="F:Bubba.ChatWindow._contextMenuCallback">
@@ -34608,9 +34624,17 @@
             <param name="e">The <see cref="T:System.Windows.RoutedEventArgs"/>
             instance containing the event data.</param>
         </member>
-        <member name="M:Bubba.ChatWindow.OnPromptOptionClick(System.Object,System.Windows.RoutedEventArgs)">
+        <member name="M:Bubba.ChatWindow.OnPromptMenuOptionClick(System.Object,System.Windows.RoutedEventArgs)">
             <summary>
             Called when [system prompt button click].
+            </summary>
+            <param name="sender">The sender.</param>
+            <param name="e">The <see cref="T:System.Windows.RoutedEventArgs"/>
+            instance containing the event data.</param>
+        </member>
+        <member name="M:Bubba.ChatWindow.OnPromptDropDownSelectionChanged(System.Object,System.Windows.RoutedEventArgs)">
+            <summary>
+            Called when [prompt drop down selection changed].
             </summary>
             <param name="sender">The sender.</param>
             <param name="e">The <see cref="T:System.Windows.RoutedEventArgs"/>
@@ -34782,6 +34806,14 @@
             <param name="e">The <see cref="T:System.Windows.Input.MouseEventArgs" />
             instance containing the event data.</param>
         </member>
+        <member name="M:Bubba.ChatWindow.OnUrlCancelButtonClick(System.Object,System.Windows.RoutedEventArgs)">
+            <summary>
+            Called when [URL cancel button click].
+            </summary>
+            <param name="sender">The sender.</param>
+            <param name="e">The <see cref="T:System.Windows.Input.MouseEventArgs"/>
+            instance containing the event data.</param>
+        </member>
         <member name="M:Bubba.ChatWindow.OnVoiceSelectionChanged(System.Object,System.Windows.RoutedEventArgs)">
             <summary>
             Called when [voice selection changed].
@@ -34876,6 +34908,14 @@
             </summary>
             <param name="sender">The sender.</param>
             <param name="e">The <see cref="T:CefSharp.AddressChangedEventArgs" />
+            instance containing the event data.</param>
+        </member>
+        <member name="M:Bubba.ChatWindow.OnBrowserMouseLeftButtonDown(System.Object,System.Windows.Input.MouseButtonEventArgs)">
+            <summary>
+            Called when [browser mouse left button down].
+            </summary>
+            <param name="sender">The sender.</param>
+            <param name="e">The <see cref="T:System.Windows.Input.MouseButtonEventArgs"/>
             instance containing the event data.</param>
         </member>
         <member name="M:Bubba.ChatWindow.Dispose">
@@ -38177,6 +38217,36 @@
         <member name="M:Bubba.WebBrowser.InitializeComponent">
             <summary>
             InitializeComponent
+            </summary>
+        </member>
+        <member name="T:XamlGeneratedNamespace.GeneratedInternalTypeHelper">
+            <summary>
+            GeneratedInternalTypeHelper
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.CreateInstance(System.Type,System.Globalization.CultureInfo)">
+            <summary>
+            CreateInstance
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.GetPropertyValue(System.Reflection.PropertyInfo,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            GetPropertyValue
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.SetPropertyValue(System.Reflection.PropertyInfo,System.Object,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            SetPropertyValue
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.CreateDelegate(System.Type,System.Object,System.String)">
+            <summary>
+            CreateDelegate
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.AddEventHandler(System.Reflection.EventInfo,System.Object,System.Delegate)">
+            <summary>
+            AddEventHandler
             </summary>
         </member>
     </members>

@@ -171,16 +171,9 @@ namespace Bubba
         {
             try
             {
-                if( !string.IsNullOrEmpty( _role ) )
-                {
-                    _data.Add( "role", _role );
-                }
-
-                if( _content != null )
-                {
-                    _data.Add( "content", _content );
-                }
-
+                _data.Add( "role", _role );
+                _data.Add( "content", _content );
+                _data.Add( "type", _type );
                 return _data?.Any( ) == true
                     ? _data
                     : default( IDictionary<string, object> );

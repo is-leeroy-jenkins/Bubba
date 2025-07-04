@@ -485,7 +485,7 @@
     <PackageReference Include="CefSharp.OffScreen.NETCore" Version="137.0.100" />
     <PackageReference Include="CefSharp.WinForms.NETCore" Version="137.0.100" />
     <PackageReference Include="CefSharp.Wpf.NETCore" Version="137.0.100" />
-    <PackageReference Include="EPPlus" Version="8.0.5" />
+    <PackageReference Include="EPPlus" Version="8.0.7" />
     <PackageReference Include="Google.Apis.CustomSearchAPI.v1" Version="1.68.0.3520" />
     <PackageReference Include="LinqStatistics" Version="3.0.1" />
     <PackageReference Include="MahApps.Metro" Version="2.4.10" />
@@ -500,7 +500,7 @@
     <PackageReference Include="ModernWpfUI" Version="0.9.6" />
     <PackageReference Include="NAudio" Version="2.2.1" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
-    <PackageReference Include="OpenAI" Version="2.1.0" />
+    <PackageReference Include="OpenAI" Version="2.2.0" />
     <PackageReference Include="PDFsharp" Version="6.2.0" />
     <PackageReference Include="QRCoder" Version="1.6.0" />
     <PackageReference Include="RestoreWindowPlace" Version="3.1.0" />
@@ -537,6 +537,7 @@
     <PackageReference Include="System.Text.Encodings.Web" Version="9.0.6" />
     <PackageReference Include="System.Text.Json" Version="9.0.6" />
     <PackageReference Include="SystemExtensions.NetCore" Version="1.6.12" />
+    <PackageReference Include="TiktokenSharp" Version="1.1.7" />
     <PackageReference Include="ToastNotifications.Messages.Net6" Version="1.0.4" />
     <PackageReference Include="ToastNotifications.Net6" Version="1.0.4" />
   </ItemGroup>

@@ -52,6 +52,6 @@ Apply Theory of Mind to analyze the user's request, considering both logical int
 <INPUT>
 Reply with: "Please enter your training development request and I will start the process," then wait for the user to provide their specific training process request.
 ###
-{{TOPIC}}
+{{QUESTION}}
 ###
 </INPUT>

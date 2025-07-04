@@ -403,7 +403,7 @@
           "Microsoft.WindowsDesktop.App.WPF"
         ]
       },
-      "EPPlus/8.0.5": {
+      "EPPlus/8.0.7": {
         "type": "package",
         "dependencies": {
           "EPPlus.Interfaces": "8.0.0",
@@ -796,7 +796,7 @@
           "buildTransitive/net6.0/_._": {}
         }
       },
-      "Microsoft.Extensions.Logging.Abstractions/8.0.2": {
+      "Microsoft.Extensions.Logging.Abstractions/8.0.3": {
         "type": "package",
         "dependencies": {
           "Microsoft.Extensions.DependencyInjection.Abstractions": "8.0.2"
@@ -1710,19 +1710,18 @@
           }
         }
       },
-      "OpenAI/2.1.0": {
+      "OpenAI/2.2.0": {
         "type": "package",
         "dependencies": {
-          "System.ClientModel": "1.2.1",
-          "System.Diagnostics.DiagnosticSource": "6.0.1"
+          "System.ClientModel": "1.4.2"
         },
         "compile": {
-          "lib/net6.0/OpenAI.dll": {
+          "lib/net8.0/OpenAI.dll": {
             "related": ".xml"
           }
         },
         "runtime": {
-          "lib/net6.0/OpenAI.dll": {
+          "lib/net8.0/OpenAI.dll": {
             "related": ".xml"
           }
         }
@@ -3259,19 +3258,19 @@
           }
         }
       },
-      "System.ClientModel/1.2.1": {
+      "System.ClientModel/1.4.2": {
         "type": "package",
         "dependencies": {
-          "System.Memory.Data": "6.0.0",
-          "System.Text.Json": "6.0.10"
+          "Microsoft.Extensions.Logging.Abstractions": "8.0.3",
+          "System.Memory.Data": "6.0.1"
         },
         "compile": {
-          "lib/net6.0/System.ClientModel.dll": {
+          "lib/net8.0/System.ClientModel.dll": {
             "related": ".xml"
           }
         },
         "runtime": {
-          "lib/net6.0/System.ClientModel.dll": {
+          "lib/net8.0/System.ClientModel.dll": {
             "related": ".xml"
           }
         }
@@ -3402,25 +3401,6 @@
           "Stub.System.Data.SQLite.Core.NetStandard": "[1.0.119]"
         }
       },
-      "System.Diagnostics.DiagnosticSource/6.0.1": {
-        "type": "package",
-        "dependencies": {
-          "System.Runtime.CompilerServices.Unsafe": "6.0.0"
-        },
-        "compile": {
-          "lib/net6.0/System.Diagnostics.DiagnosticSource.dll": {
-            "related": ".xml"
-          }
-        },
-        "runtime": {
-          "lib/net6.0/System.Diagnostics.DiagnosticSource.dll": {
-            "related": ".xml"
-          }
-        },
-        "build": {
-          "buildTransitive/netcoreapp3.1/_._": {}
-        }
-      },
       "System.Diagnostics.EventLog/9.0.6": {
         "type": "package",
         "compile": {
@@ -3526,11 +3506,8 @@
           "lib/netcoreapp2.1/_._": {}
         }
       },
-      "System.Memory.Data/6.0.0": {
+      "System.Memory.Data/6.0.1": {
         "type": "package",
-        "dependencies": {
-          "System.Text.Json": "6.0.0"
-        },
         "compile": {
           "lib/net6.0/System.Memory.Data.dll": {
             "related": ".xml"
@@ -3568,22 +3545,6 @@
         },
         "runtime": {
           "lib/netcoreapp2.0/_._": {}
-        }
-      },
-      "System.Runtime.CompilerServices.Unsafe/6.0.0": {
-        "type": "package",
-        "compile": {
-          "lib/net6.0/System.Runtime.CompilerServices.Unsafe.dll": {
-            "related": ".xml"
-          }
-        },
-        "runtime": {
-          "lib/net6.0/System.Runtime.CompilerServices.Unsafe.dll": {
-            "related": ".xml"
-          }
-        },
-        "build": {
-          "buildTransitive/netcoreapp3.1/_._": {}
         }
       },
       "System.Security.AccessControl/4.7.0": {
@@ -3814,6 +3775,15 @@
         },
         "runtime": {
           "lib/netstandard2.0/SystemExtensions.NetStandard.dll": {}
+        }
+      },
+      "TiktokenSharp/1.1.7": {
+        "type": "package",
+        "compile": {
+          "lib/net8.0/TiktokenSharp.dll": {}
+        },
+        "runtime": {
+          "lib/net8.0/TiktokenSharp.dll": {}
         }
       },
       "ToastNotifications.Messages.Net6/1.0.4": {
@@ -4986,15 +4956,15 @@
         "logo-mini.png"
       ]
     },
-    "EPPlus/8.0.5": {
-      "sha512": "Q8H+E7yDy71I4hCONrb2OSUzkhJI9WSbSeJOCLji5iry45QAiffd14mLtdYocQCYFjQA04iCXomHjZitAJgm4Q==",
+    "EPPlus/8.0.7": {
+      "sha512": "nk+mFru50sM6GTE1EKoA0eSj07IHyL2yPwKIvxnNVvACv4qxCl48V1KP+R6wE2ncwOrZvqg3g3Fd+LnJvg6+dg==",
       "type": "package",
-      "path": "epplus/8.0.5",
+      "path": "epplus/8.0.7",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "EPPlusLogo.png",
-        "epplus.8.0.5.nupkg.sha512",
+        "epplus.8.0.7.nupkg.sha512",
         "epplus.nuspec",
         "lib/net35/EPPlus.dll",
         "lib/net35/EPPlus.xml",
@@ -5595,10 +5565,10 @@
         "useSharedDesignerContext.txt"
       ]
     },
-    "Microsoft.Extensions.Logging.Abstractions/8.0.2": {
-      "sha512": "nroMDjS7hNBPtkZqVBbSiQaQjWRDxITI8Y7XnDs97rqG3EbzVTNLZQf7bIeUJcaHOV8bca47s1Uxq94+2oGdxA==",
+    "Microsoft.Extensions.Logging.Abstractions/8.0.3": {
+      "sha512": "dL0QGToTxggRLMYY4ZYX5AMwBb+byQBd/5dMiZE07Nv73o6I5Are3C7eQTh7K2+A4ct0PVISSr7TZANbiNb2yQ==",
       "type": "package",
-      "path": "microsoft.extensions.logging.abstractions/8.0.2",
+      "path": "microsoft.extensions.logging.abstractions/8.0.3",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -5663,7 +5633,7 @@
         "lib/net8.0/Microsoft.Extensions.Logging.Abstractions.xml",
         "lib/netstandard2.0/Microsoft.Extensions.Logging.Abstractions.dll",
         "lib/netstandard2.0/Microsoft.Extensions.Logging.Abstractions.xml",
-        "microsoft.extensions.logging.abstractions.8.0.2.nupkg.sha512",
+        "microsoft.extensions.logging.abstractions.8.0.3.nupkg.sha512",
         "microsoft.extensions.logging.abstractions.nuspec",
         "useSharedDesignerContext.txt"
       ]
@@ -7372,10 +7342,10 @@
         "packageIcon.png"
       ]
     },
-    "OpenAI/2.1.0": {
-      "sha512": "zl72nyP4O94ZyEoCLoE8qoc5vp8kSJmRuqR+UdK+jNIjFJGWJYjsb4rAGpMWWRTbPYuk82E8myMJdVQurMLDnQ==",
+    "OpenAI/2.2.0": {
+      "sha512": "MSFrQXZsgdwcJq3b8159oA0sYRJk0Io5Rg+MhbNs1NFIhwQ7IlSP2jao7V0NqBqCRfVhvoNxPZeVOqgbOiZ/Nw==",
       "type": "package",
-      "path": "openai/2.1.0",
+      "path": "openai/2.2.0",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -7384,9 +7354,11 @@
         "README.md",
         "lib/net6.0/OpenAI.dll",
         "lib/net6.0/OpenAI.xml",
+        "lib/net8.0/OpenAI.dll",
+        "lib/net8.0/OpenAI.xml",
         "lib/netstandard2.0/OpenAI.dll",
         "lib/netstandard2.0/OpenAI.xml",
-        "openai.2.1.0.nupkg.sha512",
+        "openai.2.2.0.nupkg.sha512",
         "openai.nuspec"
       ]
     },
@@ -9210,21 +9182,24 @@
         "tools/net5.0/VisualStudioToolsManifest.xml"
       ]
     },
-    "System.ClientModel/1.2.1": {
-      "sha512": "s9+M5El+DXdCRRLzxak8uGBKWT8H/eIssGpFtpaMKdJULrQbBDPH/zFbVyHX+NDczhS5EvjHFbBH9/L+0UhmcA==",
+    "System.ClientModel/1.4.2": {
+      "sha512": "goGitN7trB9hoQ01dIpxaSYcruI+lGt/xq471AUv8irFvsIX+4HCqk1pDT/4ZPTLmU6ZUuNzhCb4MJAIwG7+Uw==",
       "type": "package",
-      "path": "system.clientmodel/1.2.1",
+      "path": "system.clientmodel/1.4.2",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "CHANGELOG.md",
         "DotNetPackageIcon.png",
         "README.md",
+        "analyzers/dotnet/cs/System.ClientModel.SourceGeneration.dll",
         "lib/net6.0/System.ClientModel.dll",
         "lib/net6.0/System.ClientModel.xml",
+        "lib/net8.0/System.ClientModel.dll",
+        "lib/net8.0/System.ClientModel.xml",
         "lib/netstandard2.0/System.ClientModel.dll",
         "lib/netstandard2.0/System.ClientModel.xml",
-        "system.clientmodel.1.2.1.nupkg.sha512",
+        "system.clientmodel.1.4.2.nupkg.sha512",
         "system.clientmodel.nuspec"
       ]
     },
@@ -9481,31 +9456,6 @@
         "system.data.sqlite.core.nuspec"
       ]
     },
-    "System.Diagnostics.DiagnosticSource/6.0.1": {
-      "sha512": "KiLYDu2k2J82Q9BJpWiuQqCkFjRBWVq4jDzKKWawVi9KWzyD0XG3cmfX0vqTQlL14Wi9EufJrbL0+KCLTbqWiQ==",
-      "type": "package",
-      "path": "system.diagnostics.diagnosticsource/6.0.1",
-      "files": [
-        ".nupkg.metadata",
-        ".signature.p7s",
-        "Icon.png",
-        "LICENSE.TXT",
-        "THIRD-PARTY-NOTICES.TXT",
-        "buildTransitive/netcoreapp2.0/System.Diagnostics.DiagnosticSource.targets",
-        "buildTransitive/netcoreapp3.1/_._",
-        "lib/net461/System.Diagnostics.DiagnosticSource.dll",
-        "lib/net461/System.Diagnostics.DiagnosticSource.xml",
-        "lib/net5.0/System.Diagnostics.DiagnosticSource.dll",
-        "lib/net5.0/System.Diagnostics.DiagnosticSource.xml",
-        "lib/net6.0/System.Diagnostics.DiagnosticSource.dll",
-        "lib/net6.0/System.Diagnostics.DiagnosticSource.xml",
-        "lib/netstandard2.0/System.Diagnostics.DiagnosticSource.dll",
-        "lib/netstandard2.0/System.Diagnostics.DiagnosticSource.xml",
-        "system.diagnostics.diagnosticsource.6.0.1.nupkg.sha512",
-        "system.diagnostics.diagnosticsource.nuspec",
-        "useSharedDesignerContext.txt"
-      ]
-    },
     "System.Diagnostics.EventLog/9.0.6": {
       "sha512": "lum+Dv+8S4gqN5H1C576UcQe0M2buoRjEUVs4TctXRSWjBH3ay3w2KyQrOo1yPdRs1I+xK69STz+4mjIisFI5w==",
       "type": "package",
@@ -9659,10 +9609,10 @@
         "system.memory.nuspec"
       ]
     },
-    "System.Memory.Data/6.0.0": {
-      "sha512": "ntFHArH3I4Lpjf5m4DCXQHJuGwWPNVJPaAvM95Jy/u+2Yzt2ryiyIN04LAogkjP9DeRcEOiviAjQotfmPq/FrQ==",
+    "System.Memory.Data/6.0.1": {
+      "sha512": "yliDgLh9S9Mcy5hBIdZmX6yphYIW3NH+3HN1kV1m7V1e0s7LNTw/tHNjJP4U9nSMEgl3w1TzYv/KA1Tg9NYy6w==",
       "type": "package",
-      "path": "system.memory.data/6.0.0",
+      "path": "system.memory.data/6.0.1",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -9677,7 +9627,7 @@
         "lib/net6.0/System.Memory.Data.xml",
         "lib/netstandard2.0/System.Memory.Data.dll",
         "lib/netstandard2.0/System.Memory.Data.xml",
-        "system.memory.data.6.0.0.nupkg.sha512",
+        "system.memory.data.6.0.1.nupkg.sha512",
         "system.memory.data.nuspec",
         "useSharedDesignerContext.txt"
       ]
@@ -9768,31 +9718,6 @@
         "system.reflection.emit.lightweight.nuspec",
         "useSharedDesignerContext.txt",
         "version.txt"
-      ]
-    },
-    "System.Runtime.CompilerServices.Unsafe/6.0.0": {
-      "sha512": "/iUeP3tq1S0XdNNoMz5C9twLSrM/TH+qElHkXWaPvuNOt+99G75NrV0OS2EqHx5wMN7popYjpc8oTjC1y16DLg==",
-      "type": "package",
-      "path": "system.runtime.compilerservices.unsafe/6.0.0",
-      "files": [
-        ".nupkg.metadata",
-        ".signature.p7s",
-        "Icon.png",
-        "LICENSE.TXT",
-        "THIRD-PARTY-NOTICES.TXT",
-        "buildTransitive/netcoreapp2.0/System.Runtime.CompilerServices.Unsafe.targets",
-        "buildTransitive/netcoreapp3.1/_._",
-        "lib/net461/System.Runtime.CompilerServices.Unsafe.dll",
-        "lib/net461/System.Runtime.CompilerServices.Unsafe.xml",
-        "lib/net6.0/System.Runtime.CompilerServices.Unsafe.dll",
-        "lib/net6.0/System.Runtime.CompilerServices.Unsafe.xml",
-        "lib/netcoreapp3.1/System.Runtime.CompilerServices.Unsafe.dll",
-        "lib/netcoreapp3.1/System.Runtime.CompilerServices.Unsafe.xml",
-        "lib/netstandard2.0/System.Runtime.CompilerServices.Unsafe.dll",
-        "lib/netstandard2.0/System.Runtime.CompilerServices.Unsafe.xml",
-        "system.runtime.compilerservices.unsafe.6.0.0.nupkg.sha512",
-        "system.runtime.compilerservices.unsafe.nuspec",
-        "useSharedDesignerContext.txt"
       ]
     },
     "System.Security.AccessControl/4.7.0": {
@@ -10227,6 +10152,24 @@
         "systemextensions.netstandard.nuspec"
       ]
     },
+    "TiktokenSharp/1.1.7": {
+      "sha512": "W1yx3jdpETAepkMNFH9ignBujmQreH6F85cMJDclEyxTFzUFvHx1IU6GgvKjDull0re8aDHX/VM/V9dVn2YWBw==",
+      "type": "package",
+      "path": "tiktokensharp/1.1.7",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "LICENSE.txt",
+        "README.md",
+        "lib/net7.0/TiktokenSharp.dll",
+        "lib/net8.0/TiktokenSharp.dll",
+        "lib/net9.0/TiktokenSharp.dll",
+        "lib/netstandard2.0/TiktokenSharp.dll",
+        "lib/netstandard2.1/TiktokenSharp.dll",
+        "tiktokensharp.1.1.7.nupkg.sha512",
+        "tiktokensharp.nuspec"
+      ]
+    },
     "ToastNotifications.Messages.Net6/1.0.4": {
       "sha512": "T8Yf7vmzZ5auCuEHLsjIacHCLwX5cnCBAXkjfShSbe/Mzb/BgNZF54FM5tL1PESi9JSBpNqvyljEzBmgyT1gpw==",
       "type": "package",
@@ -10260,7 +10203,7 @@
       "CefSharp.OffScreen.NETCore >= 137.0.100",
       "CefSharp.WinForms.NETCore >= 137.0.100",
       "CefSharp.Wpf.NETCore >= 137.0.100",
-      "EPPlus >= 8.0.5",
+      "EPPlus >= 8.0.7",
       "Google.Apis.CustomSearchAPI.v1 >= 1.68.0.3520",
       "LinqStatistics >= 3.0.1",
       "MahApps.Metro >= 2.4.10",
@@ -10272,7 +10215,7 @@
       "ModernWpfUI >= 0.9.6",
       "NAudio >= 2.2.1",
       "Newtonsoft.Json >= 13.0.3",
-      "OpenAI >= 2.1.0",
+      "OpenAI >= 2.2.0",
       "PDFsharp >= 6.2.0",
       "QRCoder >= 1.6.0",
       "RestoreWindowPlace >= 3.1.0",
@@ -10309,6 +10252,7 @@
       "System.Text.Encodings.Web >= 9.0.6",
       "System.Text.Json >= 9.0.6",
       "SystemExtensions.NetCore >= 1.6.12",
+      "TiktokenSharp >= 1.1.7",
       "ToastNotifications.Messages.Net6 >= 1.0.4",
       "ToastNotifications.Net6 >= 1.0.4",
       "chromiumembeddedframework.runtime.win-arm64 >= 137.0.10",
@@ -10396,7 +10340,7 @@
           },
           "EPPlus": {
             "target": "Package",
-            "version": "[8.0.5, )"
+            "version": "[8.0.7, )"
           },
           "Google.Apis.CustomSearchAPI.v1": {
             "target": "Package",
@@ -10446,7 +10390,7 @@
           },
           "OpenAI": {
             "target": "Package",
-            "version": "[2.1.0, )"
+            "version": "[2.2.0, )"
           },
           "PDFsharp": {
             "target": "Package",
@@ -10591,6 +10535,10 @@
           "SystemExtensions.NetCore": {
             "target": "Package",
             "version": "[1.6.12, )"
+          },
+          "TiktokenSharp": {
+            "target": "Package",
+            "version": "[1.1.7, )"
           },
           "ToastNotifications.Messages.Net6": {
             "target": "Package",
