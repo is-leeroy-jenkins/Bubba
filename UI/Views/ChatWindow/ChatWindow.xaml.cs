@@ -46,6 +46,7 @@ namespace Bubba
     using System.Collections.Generic;
     using System.Collections.ObjectModel;
     using System.ComponentModel;
+    using System.Diagnostics;
     using System.Diagnostics.CodeAnalysis;
     using System.Drawing;
     using System.Globalization;
@@ -76,6 +77,7 @@ namespace Bubba
     using ToastNotifications.Lifetime;
     using ToastNotifications.Messages;
     using ToastNotifications.Position;
+    using Application = System.Windows.Forms.Application;
     using MessageBox = System.Windows.MessageBox;
     using MouseEventArgs = System.Windows.Input.MouseEventArgs;
     using Timer = System.Threading.Timer;
@@ -464,11 +466,6 @@ namespace Bubba
         /// The speech synthesizer
         /// </summary>
         private protected SpeechSynthesizer _synthesizer;
-
-        /// <summary>
-        /// The current browser
-        /// </summary>
-        private protected ChromiumWebBrowser _currentBrowser;
 
         /// <summary>
         /// The download names
@@ -865,6 +862,11 @@ namespace Bubba
             try
             {
                 SetToolbarVisibility( true );
+                EnableUrlForwardButton( false );
+                EnableUrlBackButton( false );
+                EnableUrlCancelButton( false );
+                EnableUrlHomeButton( true ); 
+                EnableUrlRefreshButton( false );
             }
             catch( Exception ex )
             {
@@ -1007,7 +1009,7 @@ namespace Bubba
         /// <summary>
         /// Initializes the command bindings.
         /// </summary>
-        private void InitializeCommandBindings( )
+        private void InitializeCommands( )
         {
             try
             {
@@ -1030,11 +1032,9 @@ namespace Bubba
         /// </summary>
         private void InitializeBrowser( )
         {
-            ConfigureBrowser( Browser );
             Browser.LoadingStateChanged += OnWebBrowserLoadingStateChanged;
             Browser.AddressChanged += OnWebBrowserAddressChanged;
             Browser.TitleChanged += OnWebBrowserTitleChanged;
-            _currentBrowser = Browser;
             _searchEngineUrl = Locations.Google;
             _hostCallback = new HostCallback( this );
             _downloadCallback = new DownloadCallback( this );
@@ -1043,6 +1043,7 @@ namespace Bubba
             _keyboardCallback = new KeyboardCallback( this );
             _requestCallback = new RequestCallback( this );
             InitializeDownloads( );
+            ConfigureBrowser( Browser );
         }
 
         /// <summary>
@@ -1059,11 +1060,12 @@ namespace Bubba
                 ToolStripRefreshButton.Click += OnToolStripRefreshButtonClick;
                 ToolStripSendButton.Click += OnGoButtonClicked;
                 ToolStripFileButton.Click += OnFileApiButtonClick;
-                UrlPanelCancelButton.Click += OnUrlCancelButtonClick;
-                TemperatureTextBox.TextChanged += OnParameterTextBoxChanged;
-                PresencePenaltyTextBox.TextChanged += OnParameterTextBoxChanged;
-                FrequencyPenaltyTextBox.TextChanged += OnParameterTextBoxChanged;
-                TopPercentTextBox.TextChanged += OnParameterTextBoxChanged;
+                UrlCancelButton.Click += OnUrlCancelButtonClick;
+                UrlHomeButton.Click += OnUrlHomeButtonClick;
+                UrlRefreshButton.Click += OnUrlRefreshButtonClick;
+                UrlBackButton.Click += OnUrlBackButtonClick;  
+                UrlForwardButton.Click += OnUrlForwardButtonClick;
+                UrlPanelTextBox.MouseLeftButtonDown += OnUrlTextBoxMouseEnter;
                 ListenCheckBox.Checked += OnListenCheckedChanged;
                 MuteCheckBox.Checked += OnMuteCheckedBoxChanged;
                 StoreCheckBox.Checked += OnStoreCheckBoxChecked;
@@ -1531,11 +1533,8 @@ namespace Bubba
                 ThrowIf.Null( browser, nameof( browser ) );
                 var _config = new BrowserSettings( );
                 var _flag = Locations.WebGL;
-                if( !string.IsNullOrEmpty( _flag ) )
-                {
-                    _config.WebGl = bool.Parse( _flag ).ToCefState( );
-                    browser.BrowserSettings = _config;
-                }
+                _config.WebGl = bool.Parse( _flag ).ToCefState( );
+                browser.BrowserSettings = _config;
             }
             catch( Exception ex )
             {
@@ -1597,7 +1596,7 @@ namespace Bubba
                 _isSearchOpen = false;
                 InvokeIf( ( ) =>
                 {
-                    _currentBrowser.GetBrowser( )?.StopFinding( true );
+                   Browser.GetBrowser( )?.StopFinding( true );
                 } );
             }
         }
@@ -1774,21 +1773,84 @@ namespace Bubba
         }
 
         /// <summary>
+        /// Enables the URL home button.
+        /// </summary>
+        /// <param name="canGoHome">
+        /// if set to <c>true</c> [can go forward].
+        /// </param>
+        private void EnableUrlHomeButton( bool canGoHome )
+        {
+            InvokeIf( ( ) =>
+            {
+                if( canGoHome )
+                {
+                    UrlHomeButton.Visibility = Visibility.Visible;
+                }
+                else
+                {
+                    UrlHomeButton.Visibility = Visibility.Hidden;
+                }
+            } );
+        }
+
+        /// <summary>
+        /// Enables the URL cancel button.
+        /// </summary>
+        /// <param name="canCancel">
+        /// if set to <c>true</c> [can go forward].
+        /// </param>
+        private void EnableUrlCancelButton( bool canCancel )
+        {
+            InvokeIf( ( ) =>
+            {
+                if( canCancel )
+                {
+                    UrlCancelButton.Visibility = Visibility.Visible;
+                }
+                else
+                {
+                    UrlCancelButton.Visibility = Visibility.Hidden;
+                }
+            } );
+        }
+
+        /// <summary>
+        /// Enables the URL refresh button.
+        /// </summary>
+        /// <param name="canRefresh">
+        /// if set to <c>true</c> [can refresh].
+        /// </param>
+        private void EnableUrlRefreshButton( bool canRefresh )
+        {
+            InvokeIf( ( ) =>
+            {
+                if( canRefresh )
+                {
+                    UrlRefreshButton.Visibility = Visibility.Visible;
+                }
+                else
+                {
+                    UrlRefreshButton.Visibility = Visibility.Hidden;
+                }
+            } );
+        }
+
+        /// <summary>
         /// Enables the back button.
         /// </summary>
         /// <param name="canGoBack">if set to
         /// <c>true</c> [can go back].</param>
-        private void EnableBackButton( bool canGoBack )
+        private void EnableUrlBackButton( bool canGoBack )
         {
             InvokeIf( ( ) =>
             {
                 if( canGoBack )
                 {
-                    UrlPanelBackButton.Visibility = Visibility.Visible;
+                    UrlBackButton.Visibility = Visibility.Visible;
                 }
                 else
                 {
-                    UrlPanelBackButton.Visibility = Visibility.Hidden;
+                    UrlBackButton.Visibility = Visibility.Hidden;
                 }
             } );
         }
@@ -1799,17 +1861,17 @@ namespace Bubba
         /// <param name="canGoForward">
         /// if set to <c>true</c> [can go forward].
         /// </param>
-        private void EnableForwardButton( bool canGoForward )
+        private void EnableUrlForwardButton( bool canGoForward )
         {
             InvokeIf( ( ) =>
             {
                 if( canGoForward )
                 {
-                    UrlPanelForwardButton.Visibility = Visibility.Visible;
+                    UrlForwardButton.Visibility = Visibility.Visible;
                 }
                 else
                 {
-                    UrlPanelForwardButton.Visibility = Visibility.Hidden;
+                    UrlForwardButton.Visibility = Visibility.Hidden;
                 }
             } );
         }
@@ -1874,11 +1936,11 @@ namespace Bubba
             _lastSearch = UrlPanelTextBox.Text;
             if( _lastSearch.IsNull( ) )
             {
-                _currentBrowser.GetBrowser( )?.Find( _lastSearch, true, false, !_first );
+                Browser.GetBrowser( )?.Find( _lastSearch, true, false, !_first );
             }
             else
             {
-                _currentBrowser.GetBrowser( )?.StopFinding( true );
+                Browser.GetBrowser( )?.StopFinding( true );
             }
 
             UrlPanelTextBox.Focus( );
@@ -1999,7 +2061,7 @@ namespace Bubba
             var _maxTokens = int.Parse( MaxTokenTextBox.Text );// 10000
 
             // 0.5
-            var _temp = double.Parse( TemperatureTextBox.Text );
+            var _temp = double.Parse( TemperatureSlider.Value.ToString( ) );
             if( ( _temp < 0d ) | ( _temp > 1d ) )
             {
                 var _msg = "Randomness has to be between 0 and 2"
@@ -2187,7 +2249,7 @@ namespace Bubba
                 Busy( );
                 var _newUrl = url;
                 var _urlLower = url.Trim( ).ToLower( );
-                SetTabText( _currentBrowser, "Loading..." );
+                SetTabText( Browser, "Loading..." );
                 if( _urlLower == "localhost" )
                 {
                     _newUrl = "http://localhost/";
@@ -2223,10 +2285,10 @@ namespace Bubba
                     }
                 }
 
-                _currentBrowser.Load( _newUrl );
+                Browser.Load( _newUrl );
                 SetUrl( _newUrl );
-                EnableBackButton( true );
-                EnableForwardButton( false );
+                EnableUrlBackButton( true );
+                EnableUrlForwardButton( false );
                 Chill( );
             }
             catch( Exception e )
@@ -2457,14 +2519,14 @@ namespace Bubba
         private void OpenDeveloperTools( )
         {
             Busy( );
-            if( _currentBrowser == null )
+            if( Browser == null )
             {
                 var _message = "CurrentBrowser is null!";
                 SendNotification( _message );
             }
             else
             {
-                _currentBrowser.ShowDevTools( );
+                Browser.ShowDevTools( );
             }
 
             Chill( );
@@ -3845,6 +3907,23 @@ namespace Bubba
         }
 
         /// <summary>
+        /// Adds the blank window.
+        /// </summary>
+        public void AddBlankWindow( )
+        {
+            var _info = new ProcessStartInfo( Application.ExecutablePath, "" )
+            {
+                LoadUserProfile = true,
+                UseShellExecute = false,
+                RedirectStandardError = true,
+                RedirectStandardOutput = true,
+                RedirectStandardInput = true
+            };
+
+            Process.Start( _info );
+        }
+
+        /// <summary>
         /// Adds the new browser tab.
         /// </summary>
         /// <param name="url">The URL.</param>
@@ -4000,8 +4079,8 @@ namespace Bubba
         public void RefreshActiveTab( )
         {
             Busy( );
-            var _address = _currentBrowser.Address;
-            _currentBrowser.Load( _address );
+            var _address = Browser.Address;
+            Browser.Load( _address );
             Chill( );
         }
 
@@ -4296,7 +4375,7 @@ namespace Bubba
         /// </summary>
         private void StopActiveTab( )
         {
-            _currentBrowser.Stop( );
+            Browser.Stop( );
         }
 
         /// <summary>
@@ -4311,8 +4390,7 @@ namespace Bubba
                 _originalUrl = url;
                 _finalUrl = CleanUrl( url );
                 UrlPanelTextBox.Text = _finalUrl;
-                _currentBrowser.LoadUrl( _finalUrl );
-                CloseSearch( );
+                Browser.LoadUrl( _finalUrl );
             }
             catch( Exception ex )
             {
@@ -4351,7 +4429,7 @@ namespace Bubba
                 }
 
                 // if current tab
-                if( browser == _currentBrowser )
+                if( browser == Browser )
                 {
                     SetTitleText( text );
                 }
@@ -4495,18 +4573,16 @@ namespace Bubba
         /// </param>
         private protected void OnLoad( object sender, RoutedEventArgs e )
         {
+            PopulateModelsAsync( );
             PopulatePromptDropDown( );
             PopulateRequestTypes( );
-            PopulateModelsAsync( );
             PopulateVoices( );
-            InitializeCommandBindings( );
+            InitializeCommands( );
             InitializePlotter( );
             InitializeHotkeys( );
             InitializeTimer( );
             InitializeToolStrip( );
             InitializeEditor( );
-            EnableForwardButton( false );
-            EnableBackButton( false );
             App.ActiveWindows.Add( "ChatWindow", this );
             InitializeInterface( );
         }
@@ -4526,34 +4602,6 @@ namespace Bubba
 
                 var _message = "AudioFormat = " + _audioFormat;
                 SendNotification( _message );
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
-            }
-        }
-
-        /// <summary>
-        /// Called when [task selection changed].
-        /// </summary>
-        /// <param name="sender">The sender.</param>
-        /// <param name="e">The <see cref="RoutedEventArgs"/>
-        /// instance containing the event data.</param>
-        private void OnRequestDropDownSelectionChanged( object sender, RoutedEventArgs e )
-        {
-            try
-            {
-                if( GenerationListBox.SelectedIndex != -1 )
-                {
-                    var _item = ( ( MetroDropDownItem )GenerationListBox.SelectedItem )
-                        ?.Content?.ToString( );
-
-                    _requestType = ( API )Enum.Parse( typeof( API ), _item?.Replace( " ", "" ) );
-                    SetRequestType( );
-
-                    var _message = "Request Type = " + _requestType;
-                    SendNotification( _message );
-                }
             }
             catch( Exception ex )
             {
@@ -4920,7 +4968,7 @@ namespace Bubba
                     if( !string.IsNullOrEmpty( _keywords ) )
                     {
                         var _search = SearchEngineUrl + _keywords;
-                        _currentBrowser.Load( _search );
+                        Browser.Load( _search );
                     }
 
                     Chill( );
@@ -4981,7 +5029,9 @@ namespace Bubba
         {
             try
             {
-                _language = ( ( MetroDropDownItem )LanguageDropDown.SelectedItem ).Content.ToString( );
+                _language = ( ( MetroDropDownItem )LanguageDropDown.SelectedItem )
+                    ?.Content?.ToString( );
+
                 PopulateDocuments( );
                 var _message = "Language = " + _language;
                 SendNotification( _message );
@@ -5066,7 +5116,9 @@ namespace Bubba
             {
                 if( ModelDropDown.SelectedIndex != -1 )
                 {
-                    _model = ( ( MetroDropDownItem )ModelDropDown.SelectedItem )?.Tag.ToString( );
+                    _model = ( ( MetroDropDownItem )ModelDropDown.SelectedItem )
+                        ?.Tag?.ToString( );
+
                     PopulateImageSizes( );
                     var _message = "Model = " + _model;
                     SendNotification( _message );
@@ -5233,6 +5285,34 @@ namespace Bubba
             try
             {
                 PropertyChanged?.Invoke( this, new PropertyChangedEventArgs( propertyName ) );
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+            }
+        }
+
+        /// <summary>
+        /// Called when [task selection changed].
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The <see cref="RoutedEventArgs"/>
+        /// instance containing the event data.</param>
+        private void OnRequestDropDownSelectionChanged( object sender, RoutedEventArgs e )
+        {
+            try
+            {
+                if( GenerationListBox.SelectedIndex != -1 )
+                {
+                    var _item = ( ( MetroDropDownItem )GenerationListBox.SelectedItem )
+                        ?.Content?.ToString( );
+
+                    _requestType = ( API )Enum.Parse( typeof( API ), _item?.Replace( " ", "" ) );
+                    SetRequestType( );
+
+                    var _message = "Request Type = " + _requestType;
+                    SendNotification( _message );
+                }
             }
             catch( Exception ex )
             {
@@ -5668,15 +5748,15 @@ namespace Bubba
         /// <param name="sender">The sender.</param>
         /// <param name="e">The <see cref="MouseEventArgs" />
         /// instance containing the event data.</param>
-        private protected void OnUrlTextBoxClick( object sender, MouseEventArgs e )
+        private protected void OnUrlTextBoxMouseEnter( object sender, MouseEventArgs e )
         {
             try
             {
                 var _psn = e.GetPosition( this );
                 var _searchDialog = new SearchDialog( );
                 _searchDialog.Owner = this;
-                _searchDialog.Left = _psn.X - 100;
-                _searchDialog.Top = _psn.Y + 100;
+                _searchDialog.Left = _psn.X + 100;
+                _searchDialog.Top = _psn.Y - 100;
                 _searchDialog.Show( );
                 _searchDialog.SearchPanelTextBox.Focus( );
             }
@@ -5708,6 +5788,65 @@ namespace Bubba
         }
 
         /// <summary>
+        /// Called when [home button click].
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The <see cref="EventArgs" />
+        /// instance containing the event data.</param>
+        private void OnUrlHomeButtonClick( object sender, EventArgs e )
+        {
+            ProgressBar.IsIndeterminate = true;
+            _originalUrl = Browser.Address;
+            SetUrl( Locations.Google );
+            ProgressBar.IsIndeterminate = false;
+        }
+
+        /// <summary>
+        /// Called when [home button click].
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The <see cref="EventArgs" />
+        /// instance containing the event data.</param>
+        private void OnUrlRefreshButtonClick( object sender, EventArgs e )
+        {
+            ProgressBar.IsIndeterminate = true;
+            RefreshActiveTab( );
+            ProgressBar.IsIndeterminate = false;
+        }
+
+        /// <summary>
+        /// Called when [URL back button click].
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The <see cref="EventArgs"/>
+        /// instance containing the event data.</param>
+        private void OnUrlBackButtonClick( object sender, EventArgs e )
+        {
+            if( !string.IsNullOrEmpty( _originalUrl ) )
+            {
+                ProgressBar.IsIndeterminate = true;
+                SetUrl( _originalUrl );
+                ProgressBar.IsIndeterminate = false;
+            }
+        }
+
+        /// <summary>
+        /// Called when [URL forward button click].
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The <see cref="EventArgs"/>
+        /// instance containing the event data.</param>
+        private void OnUrlForwardButtonClick( object sender, EventArgs e )
+        {
+            if( !string.IsNullOrEmpty( _finalUrl ) )
+            {
+                ProgressBar.IsIndeterminate = true;
+                SetUrl( _finalUrl );
+                ProgressBar.IsIndeterminate = false;
+            }
+        }
+
+        /// <summary>
         /// Called when [voice selection changed].
         /// </summary>
         /// <param name="sender">The sender.</param>
@@ -5717,7 +5856,9 @@ namespace Bubba
         {
             try
             {
-                _voice = ( ( MetroDropDownItem )VoicesDropDown.SelectedItem )?.Content?.ToString( );
+                _voice = ( ( MetroDropDownItem )VoicesDropDown.SelectedItem )
+                    ?.Content?.ToString( );
+
                 var _message = "Voice = " + _voice;
                 SendNotification( _message );
             }
@@ -5872,24 +6013,13 @@ namespace Bubba
         /// instance containing the event data.</param>
         private protected void OnWebBrowserLoadingStateChanged( object sender, LoadingStateChangedEventArgs e )
         {
-            if( sender == _currentBrowser )
+            if( e.IsLoading )
             {
-                EnableBackButton( e.CanGoBack );
-                EnableForwardButton( e.CanGoForward );
-                if( e.IsLoading )
-                {
-                    // set title
-                    SetTitleText( "Loading..." );
-                }
-                else
-                {
-                    // after loaded / stopped
-                    InvokeIf( ( ) =>
-                    {
-                        ToolStripRefreshButton.Visibility = Visibility.Visible;
-                        UrlPanelCancelButton.Visibility = Visibility.Hidden;
-                    } );
-                }
+                ProgressBar.IsIndeterminate = true;
+            }
+            else if( !e.IsLoading )
+            {
+                ProgressBar.IsIndeterminate = false;
             }
         }
 
@@ -5946,26 +6076,31 @@ namespace Bubba
         /// instance containing the event data.</param>
         private void OnWebBrowserAddressChanged( object sender, DependencyPropertyChangedEventArgs e )
         {
+            ProgressBar.IsIndeterminate = true;
             InvokeIf( ( ) =>
             {
                 // if current tab
-                if( sender == _currentBrowser
+                if( sender == Browser
                     && e.Property.Name.Equals( "Address" ) )
                 {
+                    _originalUrl = Browser.Address;
                     if( !NetUtility.IsFocused( UrlPanelTextBox ) )
                     {
-                        var _url = e.NewValue.ToString( );
-                        SetUrl( _url );
+                        _finalUrl = e.NewValue.ToString( );
+                        SetUrl( _finalUrl );
                     }
 
-                    EnableBackButton( _currentBrowser.CanGoBack );
-                    EnableForwardButton( _currentBrowser.CanGoForward );
+                    EnableUrlBackButton( true );
+                    EnableUrlForwardButton( false );
+                    EnableUrlCancelButton( false  );
+                    EnableUrlHomeButton( true  );
+                    EnableUrlRefreshButton( true );
                     SetTabText( ( ChromiumWebBrowser )sender, "Loading..." );
-                    ToolStripRefreshButton.Visibility = Visibility.Hidden;
-                    UrlPanelCancelButton.Visibility = Visibility.Visible;
                     _currentTab.DateCreated = DateTime.Now;
                 }
             } );
+
+            ProgressBar.IsIndeterminate = false;
         }
 
         /// <summary>

@@ -33425,11 +33425,6 @@
             The speech synthesizer
             </summary>
         </member>
-        <member name="F:Bubba.ChatWindow._currentBrowser">
-            <summary>
-            The current browser
-            </summary>
-        </member>
         <member name="F:Bubba.ChatWindow._downloadNames">
             <summary>
             The download names
@@ -33648,7 +33643,7 @@
             Sets the hyper parameters.
             </summary>
         </member>
-        <member name="M:Bubba.ChatWindow.InitializeCommandBindings">
+        <member name="M:Bubba.ChatWindow.InitializeCommands">
             <summary>
             Initializes the command bindings.
             </summary>
@@ -33849,14 +33844,38 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="M:Bubba.ChatWindow.EnableBackButton(System.Boolean)">
+        <member name="M:Bubba.ChatWindow.EnableUrlHomeButton(System.Boolean)">
+            <summary>
+            Enables the URL home button.
+            </summary>
+            <param name="canGoHome">
+            if set to <c>true</c> [can go forward].
+            </param>
+        </member>
+        <member name="M:Bubba.ChatWindow.EnableUrlCancelButton(System.Boolean)">
+            <summary>
+            Enables the URL cancel button.
+            </summary>
+            <param name="canCancel">
+            if set to <c>true</c> [can go forward].
+            </param>
+        </member>
+        <member name="M:Bubba.ChatWindow.EnableUrlRefreshButton(System.Boolean)">
+            <summary>
+            Enables the URL refresh button.
+            </summary>
+            <param name="canRefresh">
+            if set to <c>true</c> [can refresh].
+            </param>
+        </member>
+        <member name="M:Bubba.ChatWindow.EnableUrlBackButton(System.Boolean)">
             <summary>
             Enables the back button.
             </summary>
             <param name="canGoBack">if set to
             <c>true</c> [can go back].</param>
         </member>
-        <member name="M:Bubba.ChatWindow.EnableForwardButton(System.Boolean)">
+        <member name="M:Bubba.ChatWindow.EnableUrlForwardButton(System.Boolean)">
             <summary>
             Enables the forward button.
             </summary>
@@ -34255,6 +34274,11 @@
             Adds the blank tab.
             </summary>
         </member>
+        <member name="M:Bubba.ChatWindow.AddBlankWindow">
+            <summary>
+            Adds the blank window.
+            </summary>
+        </member>
         <member name="M:Bubba.ChatWindow.AddNewBrowserTab(System.String,System.Boolean,System.String)">
             <summary>
             Adds the new browser tab.
@@ -34393,14 +34417,6 @@
         <member name="M:Bubba.ChatWindow.OnAudioFormatSelectionChanged(System.Object,System.Windows.RoutedEventArgs)">
             <summary>
             Called when [audio format selection changed].
-            </summary>
-            <param name="sender">The sender.</param>
-            <param name="e">The <see cref="T:System.Windows.RoutedEventArgs"/>
-            instance containing the event data.</param>
-        </member>
-        <member name="M:Bubba.ChatWindow.OnRequestDropDownSelectionChanged(System.Object,System.Windows.RoutedEventArgs)">
-            <summary>
-            Called when [task selection changed].
             </summary>
             <param name="sender">The sender.</param>
             <param name="e">The <see cref="T:System.Windows.RoutedEventArgs"/>
@@ -34654,6 +34670,14 @@
             </summary>
             <param name="propertyName">Name of the property.</param>
         </member>
+        <member name="M:Bubba.ChatWindow.OnRequestDropDownSelectionChanged(System.Object,System.Windows.RoutedEventArgs)">
+            <summary>
+            Called when [task selection changed].
+            </summary>
+            <param name="sender">The sender.</param>
+            <param name="e">The <see cref="T:System.Windows.RoutedEventArgs"/>
+            instance containing the event data.</param>
+        </member>
         <member name="M:Bubba.ChatWindow.OnRefreshButtonClick(System.Object,System.EventArgs)">
             <summary>
             Called when [refresh button click].
@@ -34798,7 +34822,7 @@
             <param name="e">The <see cref="T:System.Windows.RoutedEventArgs"/>
             instance containing the event data.</param>
         </member>
-        <member name="M:Bubba.ChatWindow.OnUrlTextBoxClick(System.Object,System.Windows.Input.MouseEventArgs)">
+        <member name="M:Bubba.ChatWindow.OnUrlTextBoxMouseEnter(System.Object,System.Windows.Input.MouseEventArgs)">
             <summary>
             Called when [URL text box clicked].
             </summary>
@@ -34812,6 +34836,38 @@
             </summary>
             <param name="sender">The sender.</param>
             <param name="e">The <see cref="T:System.Windows.Input.MouseEventArgs"/>
+            instance containing the event data.</param>
+        </member>
+        <member name="M:Bubba.ChatWindow.OnUrlHomeButtonClick(System.Object,System.EventArgs)">
+            <summary>
+            Called when [home button click].
+            </summary>
+            <param name="sender">The sender.</param>
+            <param name="e">The <see cref="T:System.EventArgs" />
+            instance containing the event data.</param>
+        </member>
+        <member name="M:Bubba.ChatWindow.OnUrlRefreshButtonClick(System.Object,System.EventArgs)">
+            <summary>
+            Called when [home button click].
+            </summary>
+            <param name="sender">The sender.</param>
+            <param name="e">The <see cref="T:System.EventArgs" />
+            instance containing the event data.</param>
+        </member>
+        <member name="M:Bubba.ChatWindow.OnUrlBackButtonClick(System.Object,System.EventArgs)">
+            <summary>
+            Called when [URL back button click].
+            </summary>
+            <param name="sender">The sender.</param>
+            <param name="e">The <see cref="T:System.EventArgs"/>
+            instance containing the event data.</param>
+        </member>
+        <member name="M:Bubba.ChatWindow.OnUrlForwardButtonClick(System.Object,System.EventArgs)">
+            <summary>
+            Called when [URL forward button click].
+            </summary>
+            <param name="sender">The sender.</param>
+            <param name="e">The <see cref="T:System.EventArgs"/>
             instance containing the event data.</param>
         </member>
         <member name="M:Bubba.ChatWindow.OnVoiceSelectionChanged(System.Object,System.Windows.RoutedEventArgs)">
@@ -38217,6 +38273,36 @@
         <member name="M:Bubba.WebBrowser.InitializeComponent">
             <summary>
             InitializeComponent
+            </summary>
+        </member>
+        <member name="T:XamlGeneratedNamespace.GeneratedInternalTypeHelper">
+            <summary>
+            GeneratedInternalTypeHelper
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.CreateInstance(System.Type,System.Globalization.CultureInfo)">
+            <summary>
+            CreateInstance
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.GetPropertyValue(System.Reflection.PropertyInfo,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            GetPropertyValue
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.SetPropertyValue(System.Reflection.PropertyInfo,System.Object,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            SetPropertyValue
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.CreateDelegate(System.Type,System.Object,System.String)">
+            <summary>
+            CreateDelegate
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.AddEventHandler(System.Reflection.EventInfo,System.Object,System.Delegate)">
+            <summary>
+            AddEventHandler
             </summary>
         </member>
     </members>

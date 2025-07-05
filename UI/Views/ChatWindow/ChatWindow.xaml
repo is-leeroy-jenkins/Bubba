@@ -232,7 +232,7 @@
                     Width="40"
                     Height="30"
                     Margin="5,1,5,1"
-                    ImageSource="/Resources/Assets/MenuImages/RefreshItem.png"
+                    ImageSource="/Resources/Assets/ToolStripImages/RefreshButton.png"
                     ToolTip="Clear Propmt Text" />
 
                 <b:ToolStripButton
@@ -249,7 +249,7 @@
                     Height="30"
                     Margin="5,1,5,1"
                     FontFamily="Roboto"
-                    ImageSource="/Resources/Assets/ToolStripImages/StopButton.png"
+                    ImageSource="/Resources/Assets/ToolStripImages/CancelButton.png"
                     ToolTip="Cancel" />
 
                 <b:ToolStripButton
@@ -285,7 +285,6 @@
                     BorderBrush="{StaticResource ControlBackground}"
                     FontFamily="Roboto"
                     Foreground="{StaticResource BlueBorderBrush}"
-                    IsIndeterminate="{Binding ElementName=Browser, Path=IsLoading}"
                     ProgressColor="{StaticResource GreenBackground}"
                     TrackColor="{StaticResource BlueBackground}" />
 
@@ -315,8 +314,15 @@
                 x:Name="TabControl"
                 Grid.Row="0"
                 mah:HeaderedControlHelper.HeaderFontFamily="Roboto"
+                mah:TabControlHelper.UnderlineMouseOverBrush="{DynamicResource BlueBackground}"
+                mah:TabControlHelper.UnderlineMouseOverSelectedBrush="{DynamicResource BlueBorderBrush}"
+                mah:TabControlHelper.UnderlinePlacement="Bottom"
+                mah:TabControlHelper.UnderlineSelectedBrush="{DynamicResource BlueBorderBrush}"
+                mah:TabControlHelper.Underlined="SelectedTabItem"
                 Foreground="{StaticResource FormForeground}"
-                SelectedIndex="0">
+                IsTabStop="True"
+                SelectedIndex="0"
+                TabStripMargin="3,3,3,3">
 
                 <!--  ********************************************* CHAT TAB *************************************  -->
 
@@ -352,9 +358,14 @@
                         <mah:MetroTabControl
                             x:Name="ParamTabControl"
                             Grid.Column="1"
-                            Margin="3,3,1,3"
+                            Margin="3"
                             Padding="1,1,1,1"
                             mah:HeaderedControlHelper.HeaderFontFamily="Roboto"
+                            mah:TabControlHelper.UnderlineMouseOverBrush="{DynamicResource BlueBackground}"
+                            mah:TabControlHelper.UnderlineMouseOverSelectedBrush="{DynamicResource BlueBorderBrush}"
+                            mah:TabControlHelper.UnderlinePlacement="Bottom"
+                            mah:TabControlHelper.UnderlineSelectedBrush="{DynamicResource BlueBorderBrush}"
+                            mah:TabControlHelper.Underlined="SelectedTabItem"
                             Background="{StaticResource BackgroundBrush}"
                             FontFamily="Roboto"
                             ScrollViewer.CanContentScroll="True"
@@ -380,14 +391,14 @@
 
                                         <StackPanel
                                             Canvas.Left="30"
-                                            Width="270"
-                                            Height="553"
+                                            Width="284"
+                                            Height="547"
                                             HorizontalAlignment="Center"
                                             VerticalAlignment="Top"
                                             Background="{StaticResource FormBackground}">
 
                                             <Separator
-                                                Height="30"
+                                                Height="20"
                                                 Background="{x:Null}"
                                                 BorderBrush="{x:Null}"
                                                 Foreground="{x:Null}" />
@@ -553,7 +564,7 @@
                                             </GroupBox>
 
                                             <Separator
-                                                Height="5"
+                                                Height="10"
                                                 Background="{x:Null}"
                                                 BorderBrush="{x:Null}"
                                                 Foreground="{StaticResource TransparentBrush}" />
@@ -629,7 +640,7 @@
                                             </GroupBox>
 
                                             <Separator
-                                                Height="5"
+                                                Height="10"
                                                 Background="{x:Null}"
                                                 BorderBrush="{x:Null}"
                                                 Foreground="{StaticResource TransparentBrush}" />
@@ -707,358 +718,294 @@
 
                                 <Grid>
 
-                                    <Canvas Margin="1">
+                                    <StackPanel
+                                        Canvas.Left="10"
+                                        Canvas.Top="19"
+                                        Width="270"
+                                        Height="535"
+                                        HorizontalAlignment="Center"
+                                        VerticalAlignment="Top">
 
-                                        <StackPanel
-                                            Canvas.Left="10"
-                                            Canvas.Top="19"
-                                            Width="270"
-                                            Height="506"
-                                            HorizontalAlignment="Center"
-                                            VerticalAlignment="Top">
+                                        <Separator
+                                            Height="5"
+                                            Background="{x:Null}"
+                                            BorderBrush="{x:Null}"
+                                            Foreground="{StaticResource TransparentBrush}" />
 
-                                            <GroupBox
-                                                x:Name="TemperatureGroupBox"
-                                                Height="95"
-                                                Margin="10,1,10,1"
+                                        <GroupBox
+                                            x:Name="TemperatureGroupBox"
+                                            Height="95"
+                                            Margin="10,1,10,1"
+                                            Padding="1"
+                                            HorizontalContentAlignment="Stretch"
+                                            VerticalContentAlignment="Stretch"
+                                            mah:HeaderedControlHelper.HeaderFontFamily="Roboto"
+                                            Background="{StaticResource GroupBoxBackground}"
+                                            BorderBrush="{StaticResource MutedForeground}"
+                                            FontFamily="Roboto"
+                                            FontSize="12"
+                                            Foreground="{StaticResource FormForeground}"
+                                            Header="Temperature"
+                                            Tag="Temperature">
+
+
+                                            <wpf:SfRangeSlider
+                                                x:Name="TemperatureSlider"
+                                                Width="230"
+                                                Height="70"
+                                                Margin="3"
                                                 Padding="1"
-                                                HorizontalContentAlignment="Stretch"
-                                                VerticalContentAlignment="Stretch"
-                                                mah:HeaderedControlHelper.HeaderFontFamily="Roboto"
-                                                Background="{StaticResource GroupBoxBackground}"
-                                                BorderBrush="{StaticResource MutedForeground}"
-                                                FontFamily="Roboto"
-                                                FontSize="12"
-                                                Foreground="{StaticResource FormForeground}"
-                                                Header="Temperature"
-                                                Tag="Temperature">
-
-
-                                                <wpf:SfRangeSlider
-                                                    x:Name="TemperatureSlider"
-                                                    Width="230"
-                                                    Height="70"
-                                                    Margin="3"
-                                                    Padding="1"
-                                                    HorizontalAlignment="Stretch"
-                                                    VerticalAlignment="Stretch"
-                                                    VerticalContentAlignment="Top"
-                                                    ActiveMinorTickStroke="{StaticResource FormForeground}"
-                                                    ActiveTickStroke="{StaticResource WhiteForeground}"
-                                                    ActiveTrackStyle="{StaticResource ActiveTrackStyle}"
-                                                    AllowRangeDrag="True"
-                                                    Background="{StaticResource BlueBorderBrush}"
-                                                    BorderThickness="1"
-                                                    Foreground="{StaticResource FormForeground}"
-                                                    LabelPlacement="BottomRight"
-                                                    LargeChange="0.25"
-                                                    Maximum="2"
-                                                    Minimum="-2"
-                                                    MinorTickFrequency="1"
-                                                    MinorTickLength="5"
-                                                    MinorTickStroke="{StaticResource WhiteForeground}"
-                                                    ShowValueLabels="True"
-                                                    SmallChange="0.1"
-                                                    SnapsTo="Ticks"
-                                                    Style="{DynamicResource SyncfusionSfRangeSliderStyle}"
-                                                    Tag="Temperature"
-                                                    ThumbStyle="{StaticResource ThumbStyle}"
-                                                    TickFrequency="0.5"
-                                                    TickPlacement="BottomRight"
-                                                    TickStroke="{StaticResource WhiteForeground}"
-                                                    ToolTip="Lower values increase deterministic output"
-                                                    ToolTipFormat="P"
-                                                    UseLayoutRounding="True"
-                                                    Value="0.80" />
-                                            </GroupBox>
-
-                                            <GroupBox
-                                                x:Name="TopPercentGroupBox"
-                                                Height="95"
-                                                Margin="10,1,10,1"
-                                                Padding="1"
-                                                HorizontalContentAlignment="Stretch"
-                                                VerticalContentAlignment="Stretch"
-                                                Background="{StaticResource GroupBoxBackground}"
-                                                BorderBrush="{StaticResource MutedForeground}"
-                                                FontFamily="Roboto"
-                                                FontSize="12"
-                                                Foreground="{StaticResource FormForeground}"
-                                                Header="Top Percent">
-
-                                                <wpf:SfRangeSlider
-                                                    x:Name="TopPercentSlider"
-                                                    Width="230"
-                                                    Height="70"
-                                                    Margin="3"
-                                                    Padding="1"
-                                                    HorizontalAlignment="Stretch"
-                                                    VerticalAlignment="Stretch"
-                                                    VerticalContentAlignment="Top"
-                                                    ActiveMinorTickStroke="{StaticResource WhiteForeground}"
-                                                    ActiveTickStroke="{StaticResource WhiteForeground}"
-                                                    ActiveTrackStyle="{DynamicResource ActiveTrackStyle}"
-                                                    AllowRangeDrag="True"
-                                                    Background="{StaticResource BlueBorderBrush}"
-                                                    BorderThickness="1,1,1,1"
-                                                    Foreground="{StaticResource FormForeground}"
-                                                    LabelPlacement="BottomRight"
-                                                    Maximum="1"
-                                                    Minimum="0"
-                                                    MinorTickFrequency="0.25"
-                                                    MinorTickLength="5"
-                                                    MinorTickStroke="{StaticResource WhiteForeground}"
-                                                    ShowValueLabels="True"
-                                                    SmallChange="0.1"
-                                                    SnapsTo="Ticks"
-                                                    Style="{DynamicResource SyncfusionSfRangeSliderStyle}"
-                                                    Tag="TopPercent"
-                                                    ThumbStyle="{StaticResource ThumbStyle}"
-                                                    TickFrequency="0.1"
-                                                    TickPlacement="BottomRight"
-                                                    TickStroke="{StaticResource WhiteForeground}"
-                                                    ToolTip="top p% probability mass"
-                                                    ToolTipFormat="P"
-                                                    UseLayoutRounding="True"
-                                                    Value="0.9">
-                                                    <wpf:SfRangeSlider.InactiveTrackStyle>
-                                                        <Style />
-                                                    </wpf:SfRangeSlider.InactiveTrackStyle>
-                                                </wpf:SfRangeSlider>
-                                            </GroupBox>
-
-                                            <GroupBox
-                                                x:Name="FequencyPenaltyGroupBox"
-                                                Height="95"
-                                                Margin="10,1,10,1"
-                                                Padding="1"
-                                                HorizontalContentAlignment="Stretch"
-                                                VerticalContentAlignment="Stretch"
-                                                Background="{StaticResource GroupBoxBackground}"
-                                                BorderBrush="{StaticResource MutedForeground}"
-                                                FontFamily="Roboto"
-                                                FontSize="12"
-                                                Foreground="{StaticResource FormForeground}"
-                                                Header="Frequency Penalty">
-
-                                                <wpf:SfRangeSlider
-                                                    x:Name="FrequencySlider"
-                                                    Width="230"
-                                                    Height="70"
-                                                    Margin="1"
-                                                    Padding="1,1,1,1"
-                                                    HorizontalAlignment="Stretch"
-                                                    VerticalAlignment="Top"
-                                                    VerticalContentAlignment="Stretch"
-                                                    ActiveMinorTickStroke="{StaticResource WhiteForeground}"
-                                                    ActiveTickStroke="{StaticResource WhiteForeground}"
-                                                    ActiveTrackStyle="{DynamicResource ActiveTrackStyle}"
-                                                    AllowRangeDrag="True"
-                                                    Background="{StaticResource BlueBorderBrush}"
-                                                    Foreground="{StaticResource FormForeground}"
-                                                    LargeChange="0.5"
-                                                    Maximum="2"
-                                                    Minimum="-2"
-                                                    MinorTickFrequency="2"
-                                                    MinorTickLength="5"
-                                                    MinorTickStroke="{StaticResource WhiteForeground}"
-                                                    ShowValueLabels="True"
-                                                    SmallChange="0.25"
-                                                    SnapsTo="Ticks"
-                                                    Style="{DynamicResource SyncfusionSfRangeSliderStyle}"
-                                                    Tag="FrequencyPenalty"
-                                                    ThumbStyle="{StaticResource ThumbStyle}"
-                                                    TickFrequency="0.5"
-                                                    TickPlacement="BottomRight"
-                                                    TickStroke="{StaticResource WhiteForeground}"
-                                                    ToolTip="Positive values decrease reptition"
-                                                    Value="0.00" />
-
-                                            </GroupBox>
-
-                                            <GroupBox
-                                                x:Name="PercentGroupBox"
-                                                Height="95"
-                                                Margin="10,1,10,1"
-                                                Padding="1"
-                                                HorizontalContentAlignment="Center"
+                                                HorizontalAlignment="Stretch"
+                                                VerticalAlignment="Stretch"
                                                 VerticalContentAlignment="Top"
-                                                Background="{StaticResource GroupBoxBackground}"
-                                                BorderBrush="{StaticResource MutedForeground}"
-                                                FontFamily="Roboto"
-                                                FontSize="12"
+                                                ActiveMinorTickStroke="{StaticResource FormForeground}"
+                                                ActiveTickStroke="{StaticResource WhiteForeground}"
+                                                ActiveTrackStyle="{StaticResource ActiveTrackStyle}"
+                                                AllowRangeDrag="True"
+                                                Background="{StaticResource BlueBorderBrush}"
+                                                BorderThickness="1"
                                                 Foreground="{StaticResource FormForeground}"
-                                                Header="Presense Penalty">
+                                                LabelPlacement="BottomRight"
+                                                LargeChange="0.25"
+                                                Maximum="2"
+                                                Minimum="-2"
+                                                MinorTickFrequency="1"
+                                                MinorTickLength="5"
+                                                MinorTickStroke="{StaticResource WhiteForeground}"
+                                                ShowValueLabels="True"
+                                                SmallChange="0.1"
+                                                SnapsTo="Ticks"
+                                                Style="{DynamicResource SyncfusionSfRangeSliderStyle}"
+                                                Tag="Temperature"
+                                                ThumbStyle="{StaticResource ThumbStyle}"
+                                                TickFrequency="0.5"
+                                                TickPlacement="BottomRight"
+                                                TickStroke="{StaticResource WhiteForeground}"
+                                                ToolTip="Lower values increase deterministic output"
+                                                ToolTipFormat="P"
+                                                UseLayoutRounding="True"
+                                                Value="0.80" />
+                                        </GroupBox>
 
-                                                <wpf:SfRangeSlider
-                                                    x:Name="PresenceSlider"
-                                                    Width="230"
-                                                    Height="70"
-                                                    Margin="1"
-                                                    Padding="1"
-                                                    HorizontalAlignment="Stretch"
-                                                    VerticalAlignment="Top"
-                                                    VerticalContentAlignment="Stretch"
-                                                    ActiveMinorTickStroke="{StaticResource WhiteForeground}"
-                                                    ActiveTickStroke="{StaticResource WhiteForeground}"
-                                                    ActiveTrackStyle="{DynamicResource ActiveTrackStyle}"
-                                                    AllowRangeDrag="True"
-                                                    Background="{StaticResource BlueBorderBrush}"
-                                                    Foreground="{StaticResource FormForeground}"
-                                                    Maximum="2"
-                                                    Minimum="-2"
-                                                    MinorTickFrequency="2"
-                                                    MinorTickLength="5"
-                                                    MinorTickStroke="{StaticResource WhiteForeground}"
-                                                    ShowValueLabels="True"
-                                                    SnapsTo="Ticks"
-                                                    Style="{DynamicResource SyncfusionSfRangeSliderStyle}"
-                                                    Tag="PresensePenalty"
-                                                    ThumbStyle="{StaticResource ThumbStyle}"
-                                                    TickFrequency="0.5"
-                                                    TickPlacement="BottomRight"
-                                                    TickStroke="{StaticResource WhiteForeground}"
-                                                    ToolTip="Positive values creative output" />
+                                        <Separator
+                                            Height="3"
+                                            Background="{x:Null}"
+                                            BorderBrush="{x:Null}"
+                                            Foreground="{StaticResource TransparentBrush}" />
 
-                                            </GroupBox>
+                                        <GroupBox
+                                            x:Name="TopPercentGroupBox"
+                                            Height="95"
+                                            Margin="10,1,10,1"
+                                            Padding="1"
+                                            HorizontalContentAlignment="Stretch"
+                                            VerticalContentAlignment="Stretch"
+                                            Background="{StaticResource GroupBoxBackground}"
+                                            BorderBrush="{StaticResource MutedForeground}"
+                                            FontFamily="Roboto"
+                                            FontSize="12"
+                                            Foreground="{StaticResource FormForeground}"
+                                            Header="Top Percent">
 
-                                            <GroupBox
-                                                x:Name="ProbsGroupBox"
-                                                Width="250"
-                                                Height="95"
+                                            <wpf:SfRangeSlider
+                                                x:Name="TopPercentSlider"
+                                                Width="230"
+                                                Height="70"
+                                                Margin="3"
+                                                Padding="1"
+                                                HorizontalAlignment="Stretch"
+                                                VerticalAlignment="Stretch"
+                                                VerticalContentAlignment="Top"
+                                                ActiveMinorTickStroke="{StaticResource WhiteForeground}"
+                                                ActiveTickStroke="{StaticResource WhiteForeground}"
+                                                ActiveTrackStyle="{DynamicResource ActiveTrackStyle}"
+                                                AllowRangeDrag="True"
+                                                Background="{StaticResource BlueBorderBrush}"
+                                                BorderThickness="1,1,1,1"
+                                                Foreground="{StaticResource FormForeground}"
+                                                LabelPlacement="BottomRight"
+                                                Maximum="1"
+                                                Minimum="0"
+                                                MinorTickFrequency="0.25"
+                                                MinorTickLength="5"
+                                                MinorTickStroke="{StaticResource WhiteForeground}"
+                                                ShowValueLabels="True"
+                                                SmallChange="0.1"
+                                                SnapsTo="Ticks"
+                                                Style="{DynamicResource SyncfusionSfRangeSliderStyle}"
+                                                Tag="TopPercent"
+                                                ThumbStyle="{StaticResource ThumbStyle}"
+                                                TickFrequency="0.1"
+                                                TickPlacement="BottomRight"
+                                                TickStroke="{StaticResource WhiteForeground}"
+                                                ToolTip="top p% probability mass"
+                                                ToolTipFormat="P"
+                                                UseLayoutRounding="True"
+                                                Value="0.9">
+                                                <wpf:SfRangeSlider.InactiveTrackStyle>
+                                                    <Style />
+                                                </wpf:SfRangeSlider.InactiveTrackStyle>
+                                            </wpf:SfRangeSlider>
+                                        </GroupBox>
+
+                                        <Separator
+                                            Height="3"
+                                            Background="{x:Null}"
+                                            BorderBrush="{x:Null}"
+                                            Foreground="{StaticResource TransparentBrush}" />
+
+                                        <GroupBox
+                                            x:Name="FequencyPenaltyGroupBox"
+                                            Height="95"
+                                            Margin="10,1,10,1"
+                                            Padding="1"
+                                            HorizontalContentAlignment="Stretch"
+                                            VerticalContentAlignment="Stretch"
+                                            Background="{StaticResource GroupBoxBackground}"
+                                            BorderBrush="{StaticResource MutedForeground}"
+                                            FontFamily="Roboto"
+                                            FontSize="12"
+                                            Foreground="{StaticResource FormForeground}"
+                                            Header="Frequency Penalty">
+
+                                            <wpf:SfRangeSlider
+                                                x:Name="FrequencySlider"
+                                                Width="230"
+                                                Height="70"
+                                                Margin="1"
+                                                Padding="1,1,1,1"
+                                                HorizontalAlignment="Stretch"
+                                                VerticalAlignment="Top"
+                                                VerticalContentAlignment="Stretch"
+                                                ActiveMinorTickStroke="{StaticResource WhiteForeground}"
+                                                ActiveTickStroke="{StaticResource WhiteForeground}"
+                                                ActiveTrackStyle="{DynamicResource ActiveTrackStyle}"
+                                                AllowRangeDrag="True"
+                                                Background="{StaticResource BlueBorderBrush}"
+                                                Foreground="{StaticResource FormForeground}"
+                                                LargeChange="0.5"
+                                                Maximum="2"
+                                                Minimum="-2"
+                                                MinorTickFrequency="2"
+                                                MinorTickLength="5"
+                                                MinorTickStroke="{StaticResource WhiteForeground}"
+                                                ShowValueLabels="True"
+                                                SmallChange="0.25"
+                                                SnapsTo="Ticks"
+                                                Style="{DynamicResource SyncfusionSfRangeSliderStyle}"
+                                                Tag="FrequencyPenalty"
+                                                ThumbStyle="{StaticResource ThumbStyle}"
+                                                TickFrequency="0.5"
+                                                TickPlacement="BottomRight"
+                                                TickStroke="{StaticResource WhiteForeground}"
+                                                ToolTip="Positive values decrease reptition"
+                                                Value="0.00" />
+
+                                        </GroupBox>
+
+                                        <Separator
+                                            Height="3"
+                                            Background="{x:Null}"
+                                            BorderBrush="{x:Null}"
+                                            Foreground="{StaticResource TransparentBrush}" />
+
+                                        <GroupBox
+                                            x:Name="PercentGroupBox"
+                                            Height="95"
+                                            Margin="10,1,10,1"
+                                            Padding="1"
+                                            HorizontalContentAlignment="Center"
+                                            VerticalContentAlignment="Top"
+                                            Background="{StaticResource GroupBoxBackground}"
+                                            BorderBrush="{StaticResource MutedForeground}"
+                                            FontFamily="Roboto"
+                                            FontSize="12"
+                                            Foreground="{StaticResource FormForeground}"
+                                            Header="Presense Penalty">
+
+                                            <wpf:SfRangeSlider
+                                                x:Name="PresenceSlider"
+                                                Width="230"
+                                                Height="70"
                                                 Margin="1"
                                                 Padding="1"
-                                                HorizontalContentAlignment="Center"
-                                                VerticalContentAlignment="Top"
-                                                Background="{StaticResource GroupBoxBackground}"
-                                                BorderBrush="{StaticResource MutedForeground}"
-                                                FontFamily="Roboto"
-                                                FontSize="12"
+                                                HorizontalAlignment="Stretch"
+                                                VerticalAlignment="Top"
+                                                VerticalContentAlignment="Stretch"
+                                                ActiveMinorTickStroke="{StaticResource WhiteForeground}"
+                                                ActiveTickStroke="{StaticResource WhiteForeground}"
+                                                ActiveTrackStyle="{DynamicResource ActiveTrackStyle}"
+                                                AllowRangeDrag="True"
+                                                Background="{StaticResource BlueBorderBrush}"
                                                 Foreground="{StaticResource FormForeground}"
-                                                Header="Top Log-Probs">
+                                                Maximum="2"
+                                                Minimum="-2"
+                                                MinorTickFrequency="2"
+                                                MinorTickLength="5"
+                                                MinorTickStroke="{StaticResource WhiteForeground}"
+                                                ShowValueLabels="True"
+                                                SnapsTo="Ticks"
+                                                Style="{DynamicResource SyncfusionSfRangeSliderStyle}"
+                                                Tag="PresensePenalty"
+                                                ThumbStyle="{StaticResource ThumbStyle}"
+                                                TickFrequency="0.5"
+                                                TickPlacement="BottomRight"
+                                                TickStroke="{StaticResource WhiteForeground}"
+                                                ToolTip="Positive values creative output" />
 
-                                                <wpf:SfRangeSlider
-                                                    x:Name="TopLogProbSlider"
-                                                    Width="230"
-                                                    Height="70"
-                                                    Margin="1"
-                                                    Padding="1"
-                                                    HorizontalAlignment="Stretch"
-                                                    VerticalAlignment="Top"
-                                                    VerticalContentAlignment="Stretch"
-                                                    ActiveMinorTickStroke="{StaticResource WhiteForeground}"
-                                                    ActiveTickStroke="{StaticResource WhiteForeground}"
-                                                    ActiveTrackStyle="{DynamicResource ActiveTrackStyle}"
-                                                    AllowRangeDrag="True"
-                                                    Background="{StaticResource BlueBorderBrush}"
-                                                    Foreground="{StaticResource FormForeground}"
-                                                    Maximum="20"
-                                                    Minimum="0"
-                                                    MinorTickFrequency="1"
-                                                    ShowValueLabels="True"
-                                                    SnapsTo="Ticks"
-                                                    Style="{DynamicResource SyncfusionSfRangeSliderStyle}"
-                                                    Tag="TopLogProbs"
-                                                    ThumbStyle="{StaticResource ThumbStyle}"
-                                                    TickFrequency="2"
-                                                    TickPlacement="BottomRight"
-                                                    Value="15" />
+                                        </GroupBox>
 
-                                            </GroupBox>
+                                        <Separator
+                                            Height="3"
+                                            Background="{x:Null}"
+                                            BorderBrush="{x:Null}"
+                                            Foreground="{StaticResource TransparentBrush}" />
 
-                                        </StackPanel>
-
-                                        <b:MetroTextBox
-                                            x:Name="TopLogProbsTextBox"
-                                            Canvas.Left="285"
-                                            Canvas.Top="446"
-                                            Width="70"
-                                            Height="40"
-                                            HorizontalAlignment="Center"
-                                            VerticalAlignment="Center"
+                                        <GroupBox
+                                            x:Name="ProbsGroupBox"
+                                            Width="250"
+                                            Height="95"
+                                            Margin="1"
+                                            Padding="1"
                                             HorizontalContentAlignment="Center"
-                                            VerticalContentAlignment="Center"
-                                            Background="{StaticResource ControlInteriorBrush}"
-                                            BorderBrush="{StaticResource BlueBorderBrush}"
-                                            FontSize="14"
-                                            Tag="TopLogProbs"
-                                            Text="{Binding ElementName=TopLogProbSlider, Path=Value, StringFormat=N0}"
-                                            TextWrapping="Wrap"
-                                            Watermark="Top Log-Probability" />
+                                            VerticalContentAlignment="Top"
+                                            Background="{StaticResource GroupBoxBackground}"
+                                            BorderBrush="{StaticResource MutedForeground}"
+                                            FontFamily="Roboto"
+                                            FontSize="12"
+                                            Foreground="{StaticResource FormForeground}"
+                                            Header="Top Log-Probs">
 
-                                        <b:MetroTextBox
-                                            x:Name="PresencePenaltyTextBox"
-                                            Canvas.Left="285"
-                                            Canvas.Top="346"
-                                            Width="70"
-                                            Height="40"
-                                            HorizontalAlignment="Center"
-                                            VerticalAlignment="Center"
-                                            HorizontalContentAlignment="Center"
-                                            VerticalContentAlignment="Center"
-                                            Background="{StaticResource ControlInteriorBrush}"
-                                            BorderBrush="{StaticResource BlueBorderBrush}"
-                                            FontSize="14"
-                                            Tag="PresensePenalty"
-                                            Text="{Binding ElementName=PresenceSlider, Path=Value, StringFormat=N2}"
-                                            TextWrapping="Wrap"
-                                            Watermark="Presence" />
+                                            <wpf:SfRangeSlider
+                                                x:Name="TopLogProbSlider"
+                                                Width="236"
+                                                Height="70"
+                                                Margin="1"
+                                                Padding="1"
+                                                HorizontalAlignment="Stretch"
+                                                VerticalAlignment="Top"
+                                                VerticalContentAlignment="Stretch"
+                                                ActiveMinorTickStroke="{StaticResource WhiteForeground}"
+                                                ActiveTickStroke="{StaticResource WhiteForeground}"
+                                                ActiveTrackStyle="{DynamicResource ActiveTrackStyle}"
+                                                AllowRangeDrag="True"
+                                                Background="{StaticResource BlueBorderBrush}"
+                                                Foreground="{StaticResource FormForeground}"
+                                                Maximum="20"
+                                                Minimum="0"
+                                                MinorTickFrequency="1"
+                                                ShowValueLabels="True"
+                                                SnapsTo="Ticks"
+                                                Style="{DynamicResource SyncfusionSfRangeSliderStyle}"
+                                                Tag="TopLogProbs"
+                                                ThumbStyle="{StaticResource ThumbStyle}"
+                                                TickFrequency="2"
+                                                TickPlacement="BottomRight"
+                                                Value="15" />
 
-                                        <b:MetroTextBox
-                                            x:Name="FrequencyPenaltyTextBox"
-                                            Canvas.Left="285"
-                                            Canvas.Top="251"
-                                            Width="70"
-                                            Height="40"
-                                            HorizontalAlignment="Center"
-                                            VerticalAlignment="Center"
-                                            HorizontalContentAlignment="Center"
-                                            VerticalContentAlignment="Center"
-                                            Background="{StaticResource ControlInteriorBrush}"
-                                            BorderBrush="{StaticResource BlueBorderBrush}"
-                                            FontSize="14"
-                                            Tag="FrequencyPenalty"
-                                            Text="{Binding ElementName=FrequencySlider, Path=Value, StringFormat=N2}"
-                                            TextWrapping="Wrap"
-                                            Watermark="Frequency" />
+                                        </GroupBox>
 
-                                        <b:MetroTextBox
-                                            x:Name="TopPercentTextBox"
-                                            Canvas.Left="285"
-                                            Canvas.Top="151"
-                                            Width="70"
-                                            Height="40"
-                                            HorizontalAlignment="Center"
-                                            VerticalAlignment="Center"
-                                            HorizontalContentAlignment="Center"
-                                            VerticalContentAlignment="Center"
-                                            Background="{StaticResource ControlInteriorBrush}"
-                                            BorderBrush="{StaticResource BlueBorderBrush}"
-                                            FontSize="14"
-                                            Tag="TopPercent"
-                                            Text="{Binding ElementName=TopPercentSlider, Path=Value, StringFormat=P2}"
-                                            TextWrapping="Wrap"
-                                            Watermark="Top Percent" />
-
-                                        <b:MetroTextBox
-                                            x:Name="TemperatureTextBox"
-                                            Canvas.Left="285"
-                                            Canvas.Top="50"
-                                            Width="70"
-                                            Height="40"
-                                            HorizontalAlignment="Center"
-                                            VerticalAlignment="Center"
-                                            HorizontalContentAlignment="Center"
-                                            VerticalContentAlignment="Center"
-                                            Background="{StaticResource ControlInteriorBrush}"
-                                            BorderBrush="{StaticResource BlueBorderBrush}"
-                                            FontSize="14"
-                                            Tag="Temperature"
-                                            Text="{Binding ElementName=TemperatureSlider, Path=Value, StringFormat=P2}"
-                                            TextWrapping="Wrap"
-                                            Watermark="Temperature" />
-
-                                    </Canvas>
+                                    </StackPanel>
                                 </Grid>
 
                             </TabItem>
@@ -1834,19 +1781,19 @@
                             Grid.Row="0"
                             Height="50"
                             MinWidth="1100"
-                            Margin="0,0,10,0"
+                            Margin="3"
                             VerticalAlignment="Center"
                             UseLayoutRounding="True">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="50" />
+                                <ColumnDefinition Width="55" />
+                                <ColumnDefinition Width="55" />
+                                <ColumnDefinition Width="55" />
+                                <ColumnDefinition Width="55" />
+                                <ColumnDefinition Width="620" />
+                                <ColumnDefinition Width="40" />
                                 <ColumnDefinition Width="50" />
-                                <ColumnDefinition Width="80" />
-                                <ColumnDefinition Width="55" />
-                                <ColumnDefinition Width="55" />
-                                <ColumnDefinition Width="532" />
-                                <ColumnDefinition Width="55" />
-                                <ColumnDefinition Width="55" />
-                                <ColumnDefinition Width="90" />
+                                <ColumnDefinition Width="65" />
                                 <ColumnDefinition />
                             </Grid.ColumnDefinitions>
 
@@ -1855,11 +1802,12 @@
 
 
                             <b:ToolStripButton
-                                x:Name="UrlPanelForwardButton"
+                                x:Name="UrlForwardButton"
                                 Title=""
                                 Grid.Column="7"
                                 Width="40"
                                 Height="30"
+                                Margin="3"
                                 Padding="1"
                                 HorizontalAlignment="Center"
                                 VerticalAlignment="Center"
@@ -1868,34 +1816,37 @@
                                 Background="{StaticResource FormBackground}"
                                 BorderBrush="{StaticResource FormBackground}"
                                 BorderThickness="1"
+                                ClipToBounds="True"
                                 Header=""
                                 ImageSource="/Resources/Assets/ToolStripImages/CircleArrowRight.png"
-                                ToolTip="Next" />
+                                ToolTip="Go Forward" />
 
                             <b:ToolStripButton
-                                x:Name="UrlPanelCancelButton"
+                                x:Name="UrlCancelButton"
                                 Title=""
                                 Grid.Column="3"
                                 Width="40"
                                 Height="30"
-                                Padding="0"
+                                Margin="3"
+                                Padding="1"
                                 HorizontalAlignment="Center"
                                 VerticalAlignment="Center"
                                 HorizontalContentAlignment="Stretch"
                                 VerticalContentAlignment="Stretch"
-                                Background="{StaticResource FormBackground}"
+                                Background="{DynamicResource FormBackground}"
                                 BorderBrush="{StaticResource FormBackground}"
-                                BorderThickness="0"
+                                BorderThickness="1"
+                                ClipToBounds="True"
                                 Header=""
                                 ImageSource="/Resources/Assets/ToolStripImages/StopButton.png"
-                                IsEnabled="{Binding ElementName=Browser, Path=IsLoading, UpdateSourceTrigger=PropertyChanged}"
-                                ToolTip="Cancel" />
+                                ToolTip="Cancel Search" />
 
                             <b:MetroTextBox
                                 x:Name="UrlPanelTextBox"
                                 Grid.Column="5"
-                                Width="512"
-                                Margin="0,5,0,5"
+                                Width="600"
+                                Height="30"
+                                Margin="1"
                                 Padding="30,1,1,1"
                                 HorizontalAlignment="Center"
                                 HorizontalContentAlignment="Left"
@@ -1910,23 +1861,27 @@
                                 Foreground="{StaticResource FormForeground}"
                                 Text="{Binding Address, ElementName=Browser}"
                                 TextWrapping="NoWrap"
-                                ToolTip="Web URL" />
+                                ToolTip="URL" />
 
                             <b:ToolStripButton
-                                x:Name="UrlPanelBackButton"
+                                x:Name="UrlBackButton"
                                 Title=""
                                 Grid.Column="6"
                                 Width="40"
                                 Height="30"
+                                Margin="3"
                                 Padding="1"
                                 HorizontalAlignment="Center"
                                 VerticalAlignment="Center"
+                                HorizontalContentAlignment="Stretch"
+                                VerticalContentAlignment="Stretch"
                                 Background="{StaticResource FormBackground}"
                                 BorderBrush="{StaticResource FormBackground}"
                                 BorderThickness="1"
+                                ClipToBounds="True"
                                 Header=""
                                 ImageSource="/Resources/Assets/ToolStripImages/CircleArrowLeft.png"
-                                ToolTip="Back" />
+                                ToolTip="Go Back" />
 
                             <Label
                                 x:Name="UrlPanelStatusLabel"
@@ -1944,20 +1899,43 @@
                                 UseLayoutRounding="True" />
 
                             <b:ToolStripButton
-                                x:Name="UrlPanelHomeButton"
+                                x:Name="UrlHomeButton"
                                 Title=""
                                 Grid.Column="4"
                                 Width="40"
                                 Height="30"
+                                Margin="3"
                                 Padding="1"
                                 HorizontalAlignment="Center"
                                 VerticalAlignment="Center"
+                                HorizontalContentAlignment="Stretch"
+                                VerticalContentAlignment="Stretch"
                                 Background="{StaticResource FormBackground}"
                                 BorderBrush="{StaticResource FormBackground}"
                                 BorderThickness="1"
+                                ClipToBounds="True"
                                 Header=""
                                 ImageSource="/Resources/Assets/ToolStripImages/HomeButton.png"
                                 ToolTip="Home Page" />
+
+                            <b:MetroTile
+                                x:Name="UrlRefreshButton"
+                                Title=""
+                                Grid.Column="2"
+                                Width="40"
+                                Height="30"
+                                Margin="1"
+                                Padding="1"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"
+                                HorizontalContentAlignment="Stretch"
+                                VerticalContentAlignment="Stretch"
+                                Background="{StaticResource FormBackground}"
+                                BorderBrush="{StaticResource FormBackground}"
+                                BorderThickness="1"
+                                ClipToBounds="True"
+                                ImageSource="/Resources/Assets/MenuImages/RefreshItem.png"
+                                ToolTip="Refresh Page" />
                         </Grid>
                         <Canvas
                             Grid.Row="1"
