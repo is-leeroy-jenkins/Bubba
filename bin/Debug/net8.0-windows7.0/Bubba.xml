@@ -32371,7 +32371,6 @@
             <inheritdoc />
             <summary> Called when [mouse enter]. </summary>
             <param name="sender"> The sender. </param>
-            
             <param name="e">
             The
             <see cref="T:System.EventArgs" />
@@ -34379,6 +34378,14 @@
             
             Shows the items.
             </summary>
+        </member>
+        <member name="M:Bubba.ChatWindow.SetUrlPanelVisibility(System.Boolean)">
+            <summary>
+            Sets the URL panel visibility.
+            </summary>
+            <param name="visible">
+            if set to <c>true</c> [show].
+            </param>
         </member>
         <member name="M:Bubba.ChatWindow.SetTitleText(System.String)">
             <summary>

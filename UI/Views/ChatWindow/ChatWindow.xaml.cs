@@ -862,11 +862,6 @@ namespace Bubba
             try
             {
                 SetToolbarVisibility( true );
-                EnableUrlForwardButton( false );
-                EnableUrlBackButton( false );
-                EnableUrlCancelButton( false );
-                EnableUrlHomeButton( true ); 
-                EnableUrlRefreshButton( false );
             }
             catch( Exception ex )
             {
@@ -4477,6 +4472,39 @@ namespace Bubba
         }
 
         /// <summary>
+        /// Sets the URL panel visibility.
+        /// </summary>
+        /// <param name="visible">
+        /// if set to <c>true</c> [show].
+        /// </param>
+        private void SetUrlPanelVisibility( bool visible = true )
+        {
+            try
+            {
+                if( visible )
+                {
+                    UrlForwardButton.Visibility = Visibility.Visible;
+                    UrlBackButton.Visibility = Visibility.Visible;
+                    UrlCancelButton.Visibility = Visibility.Visible;
+                    UrlHomeButton.Visibility = Visibility.Hidden;
+                    UrlRefreshButton.Visibility = Visibility.Visible;
+                }
+                else
+                {
+                    UrlForwardButton.Visibility = Visibility.Hidden;
+                    UrlBackButton.Visibility = Visibility.Hidden;
+                    UrlCancelButton.Visibility = Visibility.Hidden;
+                    UrlHomeButton.Visibility = Visibility.Visible;
+                    UrlRefreshButton.Visibility = Visibility.Hidden;
+                }
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+            }
+        }
+
+        /// <summary>
         /// Sets the form title.
         /// </summary>
         /// <param name="title">
@@ -4573,6 +4601,7 @@ namespace Bubba
         /// </param>
         private protected void OnLoad( object sender, RoutedEventArgs e )
         {
+            _originalUrl = Locations.Google;
             PopulateModelsAsync( );
             PopulatePromptDropDown( );
             PopulateRequestTypes( );
@@ -5822,12 +5851,9 @@ namespace Bubba
         /// instance containing the event data.</param>
         private void OnUrlBackButtonClick( object sender, EventArgs e )
         {
-            if( !string.IsNullOrEmpty( _originalUrl ) )
-            {
-                ProgressBar.IsIndeterminate = true;
-                SetUrl( _originalUrl );
-                ProgressBar.IsIndeterminate = false;
-            }
+            ProgressBar.IsIndeterminate = true;
+            Browser.LoadUrl( _originalUrl );
+            ProgressBar.IsIndeterminate = false;
         }
 
         /// <summary>
@@ -5841,7 +5867,7 @@ namespace Bubba
             if( !string.IsNullOrEmpty( _finalUrl ) )
             {
                 ProgressBar.IsIndeterminate = true;
-                SetUrl( _finalUrl );
+                Browser.LoadUrl( _finalUrl );
                 ProgressBar.IsIndeterminate = false;
             }
         }
@@ -6015,11 +6041,11 @@ namespace Bubba
         {
             if( e.IsLoading )
             {
-                ProgressBar.IsIndeterminate = true;
+                Busy( );
             }
             else if( !e.IsLoading )
             {
-                ProgressBar.IsIndeterminate = false;
+                Chill( );
             }
         }
 
@@ -6076,31 +6102,26 @@ namespace Bubba
         /// instance containing the event data.</param>
         private void OnWebBrowserAddressChanged( object sender, DependencyPropertyChangedEventArgs e )
         {
-            ProgressBar.IsIndeterminate = true;
+            Busy( );
+            _originalUrl = Browser.Address;
             InvokeIf( ( ) =>
             {
                 // if current tab
                 if( sender == Browser
                     && e.Property.Name.Equals( "Address" ) )
                 {
-                    _originalUrl = Browser.Address;
                     if( !NetUtility.IsFocused( UrlPanelTextBox ) )
                     {
                         _finalUrl = e.NewValue.ToString( );
                         SetUrl( _finalUrl );
+                        SetUrlPanelVisibility( Browser.IsLoading );
+                        SetTabText( ( ChromiumWebBrowser )sender, "Loading..." );
+                        _currentTab.DateCreated = DateTime.Now;
                     }
-
-                    EnableUrlBackButton( true );
-                    EnableUrlForwardButton( false );
-                    EnableUrlCancelButton( false  );
-                    EnableUrlHomeButton( true  );
-                    EnableUrlRefreshButton( true );
-                    SetTabText( ( ChromiumWebBrowser )sender, "Loading..." );
-                    _currentTab.DateCreated = DateTime.Now;
                 }
             } );
 
-            ProgressBar.IsIndeterminate = false;
+            Chill( );
         }
 
         /// <summary>
@@ -6127,6 +6148,7 @@ namespace Bubba
         /// </summary>
         public void Dispose( )
         {
+
             Dispose( true );
             GC.SuppressFinalize( this );
         }

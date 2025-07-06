@@ -83,7 +83,6 @@ namespace Bubba
         /// <inheritdoc />
         /// <summary> Called when [mouse enter]. </summary>
         /// <param name="sender"> The sender. </param>
-        /// 
         /// <param name="e">
         /// The
         /// <see cref="T:System.EventArgs" />
@@ -94,7 +93,7 @@ namespace Bubba
             try
             {
                 Background = _theme.DarkBlueBrush;
-                BorderBrush = _theme.LightBlueBrush;
+                BorderBrush = _theme.DarkBlueBrush;
                 Foreground = _theme.DarkBlueBrush;
             }
             catch( Exception ex )
@@ -117,7 +116,7 @@ namespace Bubba
             {
                 Background = _theme.FormBackground;
                 BorderBrush = _theme.FormBackground;
-                Foreground = _theme.LightBlueBrush;
+                Foreground = _theme.FormBackground;
             }
             catch( Exception ex )
             {
