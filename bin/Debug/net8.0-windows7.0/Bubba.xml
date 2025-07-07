@@ -7517,6 +7517,11 @@
             The chat completion
             </summary>
         </member>
+        <member name="F:Bubba.API.Agents">
+            <summary>
+            The agents
+            </summary>
+        </member>
         <member name="F:Bubba.API.TextGeneration">
             <summary>
             The text generation
@@ -15356,6 +15361,13 @@
             <value>
             The previous identifier.
             </value>
+        </member>
+        <member name="M:Bubba.GptPrompt.GetResourceNames(System.String)">
+            <summary>
+            Gets the resource names.
+            </summary>
+            <param name = "resxPath" > </param>
+            <returns></returns>
         </member>
         <member name="M:Bubba.GptPrompt.Fail(System.Exception)">
             <summary>
@@ -34146,6 +34158,11 @@
         <member name="M:Bubba.ChatWindow.PopulateFileModels">
             <summary>
             Populates the file API models.
+            </summary>
+        </member>
+        <member name="M:Bubba.ChatWindow.PopulateAgentModels">
+            <summary>
+            Populates the agent models.
             </summary>
         </member>
         <member name="M:Bubba.ChatWindow.PopulateDocumentListBox">

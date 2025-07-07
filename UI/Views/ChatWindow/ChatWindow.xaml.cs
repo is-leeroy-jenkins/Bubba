@@ -594,7 +594,6 @@ namespace Bubba
             PresenceSlider.Value = 0.00;
             FrequencySlider.Value = 0.00;
             SpeechRateSlider.Value = 1.0;
-            TopLogProbSlider.Value = 0;
 
             // GPT Parameters
             _store = true;
@@ -615,6 +614,8 @@ namespace Bubba
             _voiceOptions = new Dictionary<string, string>( );
             _browserTabs = new ObservableCollection<BrowserTabViewModel>( );
             _instructions = Prompts.BudgetAnalyst;
+            _searchEngineUrl = Locations.SearchUrl;
+            _originalUrl = Locations.Google;
 
             // Event Wiring
             Loaded += OnLoad;
@@ -986,7 +987,6 @@ namespace Bubba
                 _temperature = double.Parse( TemperatureSlider.Value.ToString( "N2" ) );
                 _topPercent = double.Parse( TopPercentSlider.Value.ToString( "N2" ) );
                 _frequencyPenalty = double.Parse( FrequencySlider.Value.ToString( "N2" ) );
-                _topLogProbs = int.Parse( TopLogProbSlider.Value.ToString( ) );
                 _number = int.Parse( MaxTokenTextBox.Text );
                 _maximumTokens = Convert.ToInt32( MaxTokenTextBox.Text );
                 _model = ModelDropDown.SelectedItem.ToString( ) ?? "gpt-4o-mini";
@@ -1030,7 +1030,7 @@ namespace Bubba
             Browser.LoadingStateChanged += OnWebBrowserLoadingStateChanged;
             Browser.AddressChanged += OnWebBrowserAddressChanged;
             Browser.TitleChanged += OnWebBrowserTitleChanged;
-            _searchEngineUrl = Locations.Google;
+            _searchEngineUrl = Locations.SearchUrl;
             _hostCallback = new HostCallback( this );
             _downloadCallback = new DownloadCallback( this );
             _lifeSpanCallback = new LifeSpanCallback( this );
@@ -1060,7 +1060,7 @@ namespace Bubba
                 UrlRefreshButton.Click += OnUrlRefreshButtonClick;
                 UrlBackButton.Click += OnUrlBackButtonClick;  
                 UrlForwardButton.Click += OnUrlForwardButtonClick;
-                UrlPanelTextBox.MouseLeftButtonDown += OnUrlTextBoxMouseEnter;
+                UrlPanelTextBox.GotMouseCapture += OnUrlTextBoxMouseEnter;
                 ListenCheckBox.Checked += OnListenCheckedChanged;
                 MuteCheckBox.Checked += OnMuteCheckedBoxChanged;
                 StoreCheckBox.Checked += OnStoreCheckBoxChecked;
@@ -1210,8 +1210,8 @@ namespace Bubba
         {
             try
             {
-                ProgressBar.IsIndeterminate = true;
                 ProgressBar.Visibility = Visibility.Visible;
+                ProgressBar.IsIndeterminate = true;
                 lock( _entry )
                 {
                     _busy = true;
@@ -1549,9 +1549,7 @@ namespace Bubba
             {
                 //Obtain the original source element for this event
                 var originalSource = ( FrameworkElement )e.OriginalSource;
-
                 BrowserTabViewModel browserViewModel;
-
                 if( originalSource is ChatWindow )
                 {
                     browserViewModel = BrowserTabs[ TabControl.SelectedIndex ];
@@ -2243,7 +2241,7 @@ namespace Bubba
                 ThrowIf.Null( url, nameof( url ) );
                 Busy( );
                 var _newUrl = url;
-                var _urlLower = url.Trim( ).ToLower( );
+                var _urlLower = url.Trim( )?.ToLower( );
                 SetTabText( Browser, "Loading..." );
                 if( _urlLower == "localhost" )
                 {
@@ -3146,6 +3144,31 @@ namespace Bubba
                 ModelDropDown.Items.Add( "o1-2024-12-17" );
                 ModelDropDown.Items.Add( "o1-mini-2024-09-12" );
                 ModelDropDown.Items.Add( "o3-mini-2025-01-31" );
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+            }
+        }
+
+        /// <summary>
+        /// Populates the agent models.
+        /// </summary>
+        private void PopulateAgentModels( )
+        {
+            try
+            {
+                ModelDropDown.Items?.Clear( );
+                ModelDropDown.Items.Add( "o1-2024-12-17" );
+                ModelDropDown.Items.Add( "o1-mini-2024-09-12" );
+                ModelDropDown.Items.Add( "o3-mini-2025-01-31" );
+                ModelDropDown.Items.Add( "gpt-4-0613" );
+                ModelDropDown.Items.Add( "gpt-4o-mini-2024-07-18" );
+                ModelDropDown.Items.Add( "gpt-4o-2024-11-20" );
+                ModelDropDown.Items.Add( "gpt-4.1-2025-04-14" );
+                ModelDropDown.Items.Add( "gpt-4.1-nano-2025-04-14" );
+                ModelDropDown.Items.Add( "gpt-4.1-mini-2025-04-14" );
+                ModelDropDown.Items.Add( "gpt-4.5-preview-2025-02-27" );
             }
             catch( Exception ex )
             {
@@ -4226,6 +4249,12 @@ namespace Bubba
                         _endpoint = GptEndPoint.TextGeneration;
                         break;
                     }
+                    case API.Agents:
+                    {
+                        PopulateAgentModels(  );
+                        _endpoint = GptEndPoint.Responses;
+                        break;
+                    }
                     case API.ImageGeneration:
                     {
                         PopulateImageEditingModels( );
@@ -4601,7 +4630,6 @@ namespace Bubba
         /// </param>
         private protected void OnLoad( object sender, RoutedEventArgs e )
         {
-            _originalUrl = Locations.Google;
             PopulateModelsAsync( );
             PopulatePromptDropDown( );
             PopulateRequestTypes( );
@@ -5146,7 +5174,7 @@ namespace Bubba
                 if( ModelDropDown.SelectedIndex != -1 )
                 {
                     _model = ( ( MetroDropDownItem )ModelDropDown.SelectedItem )
-                        ?.Tag?.ToString( );
+                        ?.Tag.ToString(  );
 
                     PopulateImageSizes( );
                     var _message = "Model = " + _model;
@@ -5685,8 +5713,7 @@ namespace Bubba
             try
             {
                 var _textBox = sender as ToolStripTextBox;
-
-                var _text = _textBox?.Text;
+                var _text = _textBox?.InputText;
                 if( !string.IsNullOrEmpty( _text ) )
                 {
                     ChatTextBox.Text = _text;
@@ -5824,10 +5851,10 @@ namespace Bubba
         /// instance containing the event data.</param>
         private void OnUrlHomeButtonClick( object sender, EventArgs e )
         {
-            ProgressBar.IsIndeterminate = true;
+            Busy( );
             _originalUrl = Browser.Address;
             SetUrl( Locations.Google );
-            ProgressBar.IsIndeterminate = false;
+            Chill( );
         }
 
         /// <summary>
@@ -5838,9 +5865,9 @@ namespace Bubba
         /// instance containing the event data.</param>
         private void OnUrlRefreshButtonClick( object sender, EventArgs e )
         {
-            ProgressBar.IsIndeterminate = true;
+            Busy( );
             RefreshActiveTab( );
-            ProgressBar.IsIndeterminate = false;
+            Chill( );
         }
 
         /// <summary>
@@ -5851,9 +5878,9 @@ namespace Bubba
         /// instance containing the event data.</param>
         private void OnUrlBackButtonClick( object sender, EventArgs e )
         {
-            ProgressBar.IsIndeterminate = true;
-            Browser.LoadUrl( _originalUrl );
-            ProgressBar.IsIndeterminate = false;
+            Busy( );
+            Browser.Back( );
+            Chill( );
         }
 
         /// <summary>
@@ -5864,12 +5891,9 @@ namespace Bubba
         /// instance containing the event data.</param>
         private void OnUrlForwardButtonClick( object sender, EventArgs e )
         {
-            if( !string.IsNullOrEmpty( _finalUrl ) )
-            {
-                ProgressBar.IsIndeterminate = true;
-                Browser.LoadUrl( _finalUrl );
-                ProgressBar.IsIndeterminate = false;
-            }
+            Busy( );
+            Browser.Forward( );
+            Chill( );
         }
 
         /// <summary>
@@ -5883,7 +5907,8 @@ namespace Bubba
             try
             {
                 _voice = ( ( MetroDropDownItem )VoicesDropDown.SelectedItem )
-                    ?.Content?.ToString( );
+                    ?.Content
+                    ?.ToString( );
 
                 var _message = "Voice = " + _voice;
                 SendNotification( _message );
@@ -5905,7 +5930,8 @@ namespace Bubba
             try
             {
                 _imageQuality = ( ( MetroDropDownItem )ImageQualityDropDown.SelectedItem )
-                    ?.Content?.ToString( );
+                    ?.Content
+                    ?.ToString( );
 
                 var _message = "ImageQuality = " + _imageQuality;
                 SendNotification( _message );

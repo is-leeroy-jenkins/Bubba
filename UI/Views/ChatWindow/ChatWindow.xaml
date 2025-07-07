@@ -383,9 +383,6 @@
                                 ToolTip="General Options">
 
                                 <Grid Background="{StaticResource BackgroundBrush}">
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition />
-                                    </Grid.RowDefinitions>
 
                                     <Canvas Margin="5">
 
@@ -527,7 +524,6 @@
                                                     FontSize="14"
                                                     Foreground="{StaticResource FormForeground}"
                                                     Text="Select LLM" />
-
                                             </GroupBox>
 
                                             <Separator
@@ -729,26 +725,6 @@
                                     </Grid.ColumnDefinitions>
 
 
-                                    <b:MetroTextBox
-                                        x:Name="TemperatureTextBox"
-                                        Grid.Row="0"
-                                        Grid.Column="1"
-                                        Width="60"
-                                        Height="50"
-                                        Padding="1,1,1,1"
-                                        HorizontalAlignment="Center"
-                                        VerticalAlignment="Center"
-                                        HorizontalContentAlignment="Center"
-                                        VerticalContentAlignment="Center"
-                                        Background="{StaticResource ControlInteriorBrush}"
-                                        BorderBrush="{StaticResource BlueBorderBrush}"
-                                        ClipToBounds="True"
-                                        FontSize="14"
-                                        Text="{Binding ElementName=TemperatureSlider, Path=Value, StringFormat=N0}"
-                                        UseLayoutRounding="True"
-                                        VerticalScrollBarVisibility="Disabled"
-                                        Watermark="" />
-
                                     <GroupBox
                                         x:Name="TemperatureGroupBox"
                                         Grid.Row="0"
@@ -763,25 +739,48 @@
                                         Header="Temperature"
                                         UseLayoutRounding="True" />
 
+
+                                    <b:MetroTextBox
+                                        x:Name="TemperatureTextBox"
+                                        Grid.Row="0"
+                                        Grid.Column="1"
+                                        Width="60"
+                                        Height="50"
+                                        Margin="15,58,0,31"
+                                        Padding="1,1,1,1"
+                                        HorizontalAlignment="Left"
+                                        HorizontalContentAlignment="Center"
+                                        VerticalContentAlignment="Center"
+                                        Background="{StaticResource ControlInteriorBrush}"
+                                        BorderBrush="{StaticResource BlueBorderBrush}"
+                                        ClipToBounds="True"
+                                        FontSize="14"
+                                        Text="{Binding Value, ElementName=TemperatureSlider, StringFormat=N2}"
+                                        UseLayoutRounding="True"
+                                        VerticalScrollBarVisibility="Disabled"
+                                        Watermark="" />
+
                                     <wpf:SfRangeSlider
                                         x:Name="TemperatureSlider"
                                         Grid.Row="0"
                                         Grid.Column="0"
-                                        Margin="20,34,20,10"
+                                        Width="229"
+                                        Height="90"
+                                        Margin="16,38,24,11"
                                         Padding="1"
                                         HorizontalContentAlignment="Stretch"
-                                        VerticalContentAlignment="Center"
-                                        ActiveMinorTickStroke="{StaticResource FormForeground}"
+                                        VerticalContentAlignment="Bottom"
+                                        ActiveMinorTickStroke="{StaticResource WhiteForeground}"
                                         ActiveTickStroke="{StaticResource WhiteForeground}"
-                                        ActiveTrackStyle="{StaticResource ActiveTrackStyle}"
+                                        ActiveTrackStyle="{DynamicResource ActiveTrackStyle}"
                                         AllowRangeDrag="True"
                                         Background="{StaticResource BlueBorderBrush}"
                                         BorderThickness="1"
+                                        FontSize="14"
                                         Foreground="{StaticResource FormForeground}"
                                         LabelPlacement="BottomRight"
-                                        LargeChange="0.25"
-                                        Maximum="2"
-                                        Minimum="-2"
+                                        Maximum="1"
+                                        Minimum="0"
                                         MinorTickFrequency="1"
                                         MinorTickLength="5"
                                         MinorTickStroke="{StaticResource WhiteForeground}"
@@ -789,15 +788,15 @@
                                         SmallChange="0.1"
                                         SnapsTo="Ticks"
                                         Style="{DynamicResource SyncfusionSfRangeSliderStyle}"
-                                        Tag="Temperature"
+                                        Tag="TopPercent"
                                         ThumbStyle="{StaticResource ThumbStyle}"
-                                        TickFrequency="0.5"
+                                        TickFrequency="0.1"
                                         TickPlacement="BottomRight"
                                         TickStroke="{StaticResource WhiteForeground}"
-                                        ToolTip="Lower values increase deterministic output"
+                                        ToolTip="Temperature"
                                         ToolTipFormat="P"
                                         UseLayoutRounding="True"
-                                        Value="0.80" />
+                                        Value="0.8" />
 
 
                                     <b:MetroTextBox
@@ -806,16 +805,17 @@
                                         Grid.Column="1"
                                         Width="60"
                                         Height="50"
+                                        Margin="15,0,0,0"
                                         Padding="1,1,1,1"
-                                        HorizontalAlignment="Center"
+                                        HorizontalAlignment="Left"
                                         VerticalAlignment="Center"
-                                        HorizontalContentAlignment="Stretch"
+                                        HorizontalContentAlignment="Center"
                                         VerticalContentAlignment="Center"
                                         Background="{StaticResource ControlInteriorBrush}"
                                         BorderBrush="{StaticResource BlueBorderBrush}"
                                         ClipToBounds="True"
                                         FontSize="14"
-                                        Text="{Binding ElementName=TopPercentSlider, Path=Value, StringFormat=N0}"
+                                        Text="{Binding Value, ElementName=TopPercentSlider, StringFormat=N2}"
                                         UseLayoutRounding="True"
                                         VerticalScrollBarVisibility="Disabled"
                                         Watermark="" />
@@ -850,6 +850,7 @@
                                         AllowRangeDrag="True"
                                         Background="{StaticResource BlueBorderBrush}"
                                         BorderThickness="1"
+                                        FontSize="14"
                                         Foreground="{StaticResource FormForeground}"
                                         LabelPlacement="BottomRight"
                                         Maximum="1"
@@ -880,18 +881,17 @@
                                         x:Name="PresenseTextBox"
                                         Grid.Row="2"
                                         Grid.Column="1"
-                                        Width="60"
                                         Height="50"
+                                        Margin="15,0,51,0"
                                         Padding="1,1,1,1"
-                                        HorizontalAlignment="Center"
                                         VerticalAlignment="Center"
-                                        HorizontalContentAlignment="Stretch"
+                                        HorizontalContentAlignment="Center"
                                         VerticalContentAlignment="Center"
                                         Background="{StaticResource ControlInteriorBrush}"
                                         BorderBrush="{StaticResource BlueBorderBrush}"
                                         ClipToBounds="True"
                                         FontSize="14"
-                                        Text="{Binding ElementName=PresenceSlider, Path=Value, StringFormat=N0}"
+                                        Text="{Binding Value, ElementName=PresenceSlider, StringFormat=N0}"
                                         UseLayoutRounding="True"
                                         VerticalScrollBarVisibility="Disabled"
                                         Watermark="" />
@@ -928,6 +928,7 @@
                                         AutomationProperties.IsColumnHeader="True"
                                         AutomationProperties.Name="Presence Penalty"
                                         Background="{StaticResource BlueBorderBrush}"
+                                        FontSize="14"
                                         Foreground="{StaticResource FormForeground}"
                                         Maximum="2"
                                         Minimum="-2"
@@ -967,66 +968,67 @@
                                         Grid.Column="1"
                                         Width="60"
                                         Height="50"
+                                        Margin="15,0,0,0"
                                         Padding="1,1,1,1"
-                                        HorizontalAlignment="Center"
+                                        HorizontalAlignment="Left"
                                         VerticalAlignment="Center"
-                                        HorizontalContentAlignment="Stretch"
+                                        HorizontalContentAlignment="Center"
                                         VerticalContentAlignment="Center"
                                         Background="{StaticResource ControlInteriorBrush}"
                                         BorderBrush="{StaticResource BlueBorderBrush}"
                                         ClipToBounds="True"
                                         FontSize="14"
-                                        Text="{Binding ElementName=PresenceSlider, Path=Value, StringFormat=N0}"
+                                        Text="{Binding Value, ElementName=PresenceSlider, StringFormat=N2}"
                                         UseLayoutRounding="True"
                                         VerticalScrollBarVisibility="Disabled"
                                         Watermark="" />
 
                                     <wpf:SfRangeSlider
-                                        x:Name="TopLogProbSlider"
+                                        x:Name="FrequencySlider"
                                         Grid.Row="3"
                                         Grid.Column="0"
-                                        Width="229"
-                                        Height="95"
-                                        Margin="14,24,14,24"
+                                        Margin="20,21,20,22"
                                         Padding="1"
-                                        VerticalContentAlignment="Stretch"
+                                        HorizontalContentAlignment="Center"
+                                        VerticalContentAlignment="Center"
                                         ActiveMinorTickStroke="{StaticResource WhiteForeground}"
                                         ActiveTickStroke="{StaticResource WhiteForeground}"
                                         ActiveTrackStyle="{DynamicResource ActiveTrackStyle}"
                                         AllowRangeDrag="True"
                                         Background="{StaticResource BlueBorderBrush}"
+                                        FontSize="14"
                                         Foreground="{StaticResource FormForeground}"
-                                        Maximum="20"
+                                        Maximum="2"
                                         Minimum="0"
-                                        MinorTickFrequency="1"
+                                        MinorTickFrequency="2"
                                         ShowValueLabels="True"
                                         SnapsTo="Ticks"
                                         Style="{DynamicResource SyncfusionSfRangeSliderStyle}"
-                                        Tag="TopLogProbs"
+                                        Tag="Frequency Penalty"
                                         ThumbStyle="{StaticResource ThumbStyle}"
-                                        TickFrequency="2"
+                                        TickFrequency=".5"
                                         TickPlacement="BottomRight"
-                                        Value="15" />
+                                        Value="0" />
 
                                     <b:MetroTextBox
-                                        x:Name="TopLogProbsTextBox"
+                                        x:Name="FrequencyTextBox"
                                         Grid.Row="3"
                                         Grid.Column="1"
                                         Width="60"
                                         Height="50"
+                                        Margin="15,0,0,0"
                                         Padding="1,1,1,1"
-                                        HorizontalAlignment="Center"
+                                        HorizontalAlignment="Left"
                                         VerticalAlignment="Center"
-                                        HorizontalContentAlignment="Stretch"
+                                        HorizontalContentAlignment="Center"
                                         VerticalContentAlignment="Center"
                                         Background="{StaticResource ControlInteriorBrush}"
                                         BorderBrush="{StaticResource BlueBorderBrush}"
                                         ClipToBounds="True"
                                         FontSize="14"
-                                        Text="{Binding ElementName=TopLogProbSlider, Path=Value, StringFormat=N0}"
+                                        Text="{Binding Value, ElementName=FrequencySlider, StringFormat=N2}"
                                         UseLayoutRounding="True"
-                                        VerticalScrollBarVisibility="Disabled"
-                                        Watermark="" />
+                                        VerticalScrollBarVisibility="Disabled" />
                                 </Grid>
 
                             </TabItem>
@@ -1044,10 +1046,6 @@
                                 ToolTip="Audio API Options">
 
                                 <Grid Background="{StaticResource BackgroundBrush}">
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition />
-                                    </Grid.RowDefinitions>
-
                                     <Canvas Margin="5">
 
                                         <StackPanel
@@ -1344,9 +1342,6 @@
                                 ToolTip="Set Image API Options">
 
                                 <Grid Background="{StaticResource BackgroundBrush}">
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition />
-                                    </Grid.RowDefinitions>
 
                                     <Canvas Margin="5">
 

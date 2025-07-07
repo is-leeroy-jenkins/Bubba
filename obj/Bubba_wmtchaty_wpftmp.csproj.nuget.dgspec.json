@@ -1,0 +1,327 @@
+{
+  "format": 1,
+  "restore": {
+    "C:\\Users\\terry\\source\\repos\\Bubba\\Bubba.csproj": {}
+  },
+  "projects": {
+    "C:\\Users\\terry\\source\\repos\\Bubba\\Bubba.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\terry\\source\\repos\\Bubba\\Bubba.csproj",
+        "projectName": "Bubba",
+        "projectPath": "C:\\Users\\terry\\source\\repos\\Bubba\\Bubba.csproj",
+        "packagesPath": "C:\\Users\\terry\\.nuget\\packages",
+        "outputPath": "C:\\Users\\terry\\source\\repos\\Bubba\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
+          "C:\\Program Files (x86)\\Syncfusion\\Essential Studio\\WPF\\24.1.41\\ToolboxNuGetPackages"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\terry\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Syncfusion Toolbox for WPF.config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0-windows7.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net8.0-windows7.0": {
+            "targetAlias": "net8.0-windows7.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        },
+        "SdkAnalysisLevel": "9.0.300"
+      },
+      "frameworks": {
+        "net8.0-windows7.0": {
+          "targetAlias": "net8.0-windows7.0",
+          "dependencies": {
+            "AngleSharp": {
+              "target": "Package",
+              "version": "[1.3.0, )"
+            },
+            "CefSharp.Common": {
+              "target": "Package",
+              "version": "[137.0.100, )"
+            },
+            "CefSharp.Common.NETCore": {
+              "target": "Package",
+              "version": "[137.0.100, )"
+            },
+            "CefSharp.OffScreen.NETCore": {
+              "target": "Package",
+              "version": "[137.0.100, )"
+            },
+            "CefSharp.WinForms.NETCore": {
+              "target": "Package",
+              "version": "[137.0.100, )"
+            },
+            "CefSharp.Wpf.NETCore": {
+              "target": "Package",
+              "version": "[137.0.100, )"
+            },
+            "EPPlus": {
+              "target": "Package",
+              "version": "[8.0.7, )"
+            },
+            "Google.Apis.CustomSearchAPI.v1": {
+              "target": "Package",
+              "version": "[1.68.0.3520, )"
+            },
+            "LinqStatistics": {
+              "target": "Package",
+              "version": "[3.0.1, )"
+            },
+            "MahApps.Metro": {
+              "target": "Package",
+              "version": "[2.4.10, )"
+            },
+            "Microsoft.ML": {
+              "target": "Package",
+              "version": "[4.0.2, )"
+            },
+            "Microsoft.NETFramework.ReferenceAssemblies": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[1.0.3, )"
+            },
+            "Microsoft.NETFramework.ReferenceAssemblies.net45": {
+              "target": "Package",
+              "version": "[1.0.3, )"
+            },
+            "Microsoft.Office.Interop.Outlook": {
+              "target": "Package",
+              "version": "[15.0.4797.1004, )"
+            },
+            "ModernUI.WPF": {
+              "target": "Package",
+              "version": "[1.0.9, )"
+            },
+            "ModernWpfUI": {
+              "target": "Package",
+              "version": "[0.9.6, )"
+            },
+            "NAudio": {
+              "target": "Package",
+              "version": "[2.2.1, )"
+            },
+            "Newtonsoft.Json": {
+              "target": "Package",
+              "version": "[13.0.3, )"
+            },
+            "OpenAI": {
+              "target": "Package",
+              "version": "[2.2.0, )"
+            },
+            "PDFsharp": {
+              "target": "Package",
+              "version": "[6.2.0, )"
+            },
+            "QRCoder": {
+              "target": "Package",
+              "version": "[1.6.0, )"
+            },
+            "RestoreWindowPlace": {
+              "target": "Package",
+              "version": "[3.1.0, )"
+            },
+            "ScottPlot": {
+              "target": "Package",
+              "version": "[5.0.55, )"
+            },
+            "ScottPlot.WPF": {
+              "target": "Package",
+              "version": "[5.0.55, )"
+            },
+            "SkiaSharp": {
+              "target": "Package",
+              "version": "[3.119.0, )"
+            },
+            "SqlServerCompact": {
+              "target": "Package",
+              "version": "[4.0.8854.1, )"
+            },
+            "Syncfusion.Edit.WPF": {
+              "target": "Package",
+              "version": "[24.1.41, )"
+            },
+            "Syncfusion.Grid.WPF": {
+              "target": "Package",
+              "version": "[24.1.41, )"
+            },
+            "Syncfusion.Grouping.Base": {
+              "target": "Package",
+              "version": "[24.1.41, )"
+            },
+            "Syncfusion.Licensing": {
+              "target": "Package",
+              "version": "[24.1.41, )"
+            },
+            "Syncfusion.PivotTable.Wpf": {
+              "target": "Package",
+              "version": "[24.1.41, )"
+            },
+            "Syncfusion.PropertyGrid.WPF": {
+              "target": "Package",
+              "version": "[24.1.41, )"
+            },
+            "Syncfusion.SfAccordion.WPF": {
+              "target": "Package",
+              "version": "[24.1.41, )"
+            },
+            "Syncfusion.SfBarcode.WPF": {
+              "target": "Package",
+              "version": "[24.1.41, )"
+            },
+            "Syncfusion.SfBusyIndicator.WPF": {
+              "target": "Package",
+              "version": "[24.1.41, )"
+            },
+            "Syncfusion.SfChart.WPF": {
+              "target": "Package",
+              "version": "[24.1.41, )"
+            },
+            "Syncfusion.SfGauge.WPF": {
+              "target": "Package",
+              "version": "[24.1.41, )"
+            },
+            "Syncfusion.SfGrid.WPF": {
+              "target": "Package",
+              "version": "[24.1.41, )"
+            },
+            "Syncfusion.SfHubTile.WPF": {
+              "target": "Package",
+              "version": "[24.1.41, )"
+            },
+            "Syncfusion.SfInput.WPF": {
+              "target": "Package",
+              "version": "[24.1.41, )"
+            },
+            "Syncfusion.SfNavigationDrawer.WPF": {
+              "target": "Package",
+              "version": "[24.1.41, )"
+            },
+            "Syncfusion.SfSkinManager.WPF": {
+              "target": "Package",
+              "version": "[24.1.41, )"
+            },
+            "Syncfusion.SfTreeView.WPF": {
+              "target": "Package",
+              "version": "[24.1.41, )"
+            },
+            "Syncfusion.Shared.Base": {
+              "target": "Package",
+              "version": "[24.1.41, )"
+            },
+            "Syncfusion.Shared.WPF": {
+              "target": "Package",
+              "version": "[24.1.41, )"
+            },
+            "Syncfusion.Themes.FluentDark.WPF": {
+              "target": "Package",
+              "version": "[24.1.41, )"
+            },
+            "Syncfusion.Tools.WPF": {
+              "target": "Package",
+              "version": "[24.1.41, )"
+            },
+            "Syncfusion.UI.WPF.NET": {
+              "target": "Package",
+              "version": "[24.1.41, )"
+            },
+            "System.Data.OleDb": {
+              "target": "Package",
+              "version": "[9.0.6, )"
+            },
+            "System.Data.SQLite.Core": {
+              "target": "Package",
+              "version": "[1.0.119, )"
+            },
+            "System.Data.SqlClient": {
+              "target": "Package",
+              "version": "[4.9.0, )"
+            },
+            "System.Speech": {
+              "target": "Package",
+              "version": "[9.0.6, )"
+            },
+            "System.Text.Encodings.Web": {
+              "target": "Package",
+              "version": "[9.0.6, )"
+            },
+            "System.Text.Json": {
+              "target": "Package",
+              "version": "[9.0.6, )"
+            },
+            "SystemExtensions.NetCore": {
+              "target": "Package",
+              "version": "[1.6.12, )"
+            },
+            "TiktokenSharp": {
+              "target": "Package",
+              "version": "[1.1.7, )"
+            },
+            "ToastNotifications.Messages.Net6": {
+              "target": "Package",
+              "version": "[1.0.4, )"
+            },
+            "ToastNotifications.Net6": {
+              "target": "Package",
+              "version": "[1.0.4, )"
+            },
+            "chromiumembeddedframework.runtime.win-arm64": {
+              "target": "Package",
+              "version": "[137.0.10, )"
+            },
+            "chromiumembeddedframework.runtime.win-x64": {
+              "target": "Package",
+              "version": "[137.0.10, )"
+            },
+            "chromiumembeddedframework.runtime.win-x86": {
+              "target": "Package",
+              "version": "[137.0.10, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            },
+            "Microsoft.WindowsDesktop.App": {
+              "privateAssets": "none"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.301/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}

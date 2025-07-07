@@ -56,6 +56,11 @@ namespace Bubba
         ChatCompletion,
 
         /// <summary>
+        /// The agents
+        /// </summary>
+        Agents,
+
+        /// <summary>
         /// The text generation
         /// </summary>
         TextGeneration,

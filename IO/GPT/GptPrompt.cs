@@ -41,8 +41,12 @@
 namespace Bubba
 {
     using System;
+    using System.Collections;
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
+    using System.Linq;
+    using System.Resources;
+    using Properties;
 
     /// <summary>
     /// 
@@ -50,6 +54,7 @@ namespace Bubba
     /// <seealso cref="Bubba.PropertyChangedBase" />
     [ SuppressMessage( "ReSharper", "PossibleUnintendedReferenceComparison" ) ]
     [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
+    [ SuppressMessage( "ReSharper", "PreferConcreteValueOverDefault" ) ]
     public class GptPrompt : PropertyChangedBase
     {
         /// <summary>
@@ -78,6 +83,7 @@ namespace Bubba
         /// </summary>
         public GptPrompt( )
         {
+            _instructions = Prompts.BudgetAnalyst;
         }
 
         /// <summary>
@@ -165,6 +171,34 @@ namespace Bubba
                     _variables = value;
                     OnPropertyChanged( nameof( Variables ) );
                 }
+            }
+        }
+
+        /// <summary>
+        /// Gets the resource names.
+        /// </summary>
+        /// <param name = "resxPath" > </param>
+        /// <returns></returns>
+        private protected virtual IList<string> GetResourceNames( string resxPath )
+        {
+            try
+            {
+                ThrowIf.Null( resxPath, nameof( resxPath ) );
+                var _names = new List<string>( );
+                using var reader = new ResXResourceReader( resxPath );
+                foreach( DictionaryEntry entry in reader )
+                {
+                    _names.Add( entry.Key.ToString( ) );
+                }
+
+                return _names?.Any( ) == true
+                    ? _names
+                    : default( List<string> );
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+                return default( List<string> );
             }
         }
 
