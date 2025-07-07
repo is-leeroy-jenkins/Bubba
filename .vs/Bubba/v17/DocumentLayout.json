@@ -86,8 +86,7 @@
               "RelativeToolTip": "UI\\Views\\ChatWindow\\ChatWindow.xaml",
               "ViewState": "AgIAALMHAAAAAAAAAAAuwN4HAABeAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-07-07T14:47:17.481Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-07-07T14:47:17.481Z"
             },
             {
               "$type": "Document",
@@ -99,8 +98,7 @@
               "RelativeToolTip": "IO\\GPT\\GptPrompt.cs",
               "ViewState": "AgIAAIYAAAAAAAAAAAAuwJ0AAAATAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-06T09:48:46.438Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-07-06T09:48:46.438Z"
             },
             {
               "$type": "Document",
@@ -110,7 +108,7 @@
               "RelativeDocumentMoniker": "UI\\Views\\ChatWindow\\ChatWindow.xaml.cs",
               "ToolTip": "C:\\Users\\terry\\source\\repos\\Bubba\\UI\\Views\\ChatWindow\\ChatWindow.xaml.cs",
               "RelativeToolTip": "UI\\Views\\ChatWindow\\ChatWindow.xaml.cs",
-              "ViewState": "AgIAABQEAAAAAAAAAADwvyYEAABKAAAAAAAAAA==",
+              "ViewState": "AgIAALYWAAAAAAAAAADwv9cWAAAmAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-07-03T16:28:58.693Z",
               "EditorCaption": ""
@@ -125,8 +123,7 @@
               "RelativeToolTip": "IO\\GPT\\Options\\GptOptions.cs",
               "ViewState": "AgIAAAQBAAAAAAAAAAAYwB4BAAANAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-30T22:12:58.517Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-06-30T22:12:58.517Z"
             }
           ]
         },

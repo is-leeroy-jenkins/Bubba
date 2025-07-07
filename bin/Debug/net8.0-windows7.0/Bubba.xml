@@ -33839,8 +33839,12 @@
             Creates the new tab.
             </summary>
             <param name="url">The URL.</param>
-            <param name="showSideBar">if set to <c>true</c> [show side bar].</param>
-            <param name="legacyBindingEnabled">if set to <c>true</c> [legacy binding enabled].</param>
+            <param name="showSideBar">
+            if set to <c>true</c> [show side bar].
+            </param>
+            <param name="legacyBindingEnabled">
+            if set to <c>true</c> [legacy binding enabled].
+            </param>
         </member>
         <member name="M:Bubba.ChatWindow.CustomCommandBinding(System.Object,System.Windows.Input.ExecutedRoutedEventArgs)">
             <summary>
@@ -33853,7 +33857,8 @@
             <summary>
             DownloadItems the in progress.
             </summary>
-            <returns></returns>
+            <returns>
+            </returns>
         </member>
         <member name="M:Bubba.ChatWindow.EnableUrlHomeButton(System.Boolean)">
             <summary>
@@ -34056,9 +34061,13 @@
             <summary>
             Prints to PDF command binding.
             </summary>
-            <param name="sender">The sender.</param>
-            <param name="e">The <see cref="T:System.Windows.Input.ExecutedRoutedEventArgs"/>
-            instance containing the event data.</param>
+            <param name="sender">
+            The sender.
+            </param>
+            <param name="e">
+            The <see cref="T:System.Windows.Input.ExecutedRoutedEventArgs"/>
+            instance containing the event data.
+            </param>
         </member>
         <member name="M:Bubba.ChatWindow.PadQuotes(System.String)">
             <summary>
@@ -38297,36 +38306,6 @@
         <member name="M:Bubba.WebBrowser.InitializeComponent">
             <summary>
             InitializeComponent
-            </summary>
-        </member>
-        <member name="T:XamlGeneratedNamespace.GeneratedInternalTypeHelper">
-            <summary>
-            GeneratedInternalTypeHelper
-            </summary>
-        </member>
-        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.CreateInstance(System.Type,System.Globalization.CultureInfo)">
-            <summary>
-            CreateInstance
-            </summary>
-        </member>
-        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.GetPropertyValue(System.Reflection.PropertyInfo,System.Object,System.Globalization.CultureInfo)">
-            <summary>
-            GetPropertyValue
-            </summary>
-        </member>
-        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.SetPropertyValue(System.Reflection.PropertyInfo,System.Object,System.Object,System.Globalization.CultureInfo)">
-            <summary>
-            SetPropertyValue
-            </summary>
-        </member>
-        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.CreateDelegate(System.Type,System.Object,System.String)">
-            <summary>
-            CreateDelegate
-            </summary>
-        </member>
-        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.AddEventHandler(System.Reflection.EventInfo,System.Object,System.Delegate)">
-            <summary>
-            AddEventHandler
             </summary>
         </member>
     </members>

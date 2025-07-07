@@ -898,6 +898,7 @@ namespace Bubba
             try
             {
                 LoadFileBrowser( );
+                LoadSearchDialog( );
                 LoadGptFileDialog( );
                 LoadCalculator( );
                 LoadSystemDialog( );
@@ -1589,7 +1590,8 @@ namespace Bubba
                 _isSearchOpen = false;
                 InvokeIf( ( ) =>
                 {
-                   Browser.GetBrowser( )?.StopFinding( true );
+                   Browser.GetBrowser( )
+                       ?.StopFinding( true );
                 } );
             }
         }
@@ -1626,8 +1628,12 @@ namespace Bubba
         /// Creates the new tab.
         /// </summary>
         /// <param name="url">The URL.</param>
-        /// <param name="showSideBar">if set to <c>true</c> [show side bar].</param>
-        /// <param name="legacyBindingEnabled">if set to <c>true</c> [legacy binding enabled].</param>
+        /// <param name="showSideBar">
+        /// if set to <c>true</c> [show side bar].
+        /// </param>
+        /// <param name="legacyBindingEnabled">
+        /// if set to <c>true</c> [legacy binding enabled].
+        /// </param>
         private void CreateNewTab( string url, bool showSideBar = false, 
                                    bool legacyBindingEnabled = false )
         {
@@ -1703,7 +1709,8 @@ namespace Bubba
                     case "ClearHttpAuthCredentials":
                     {
                         var browserHost = browserViewModel.WebBrowser.GetBrowserHost( );
-                        if( browserHost != null && !browserHost.IsDisposed )
+                        if( browserHost != null 
+                            && !browserHost.IsDisposed )
                         {
                             var requestContext = browserHost.RequestContext;
                             requestContext.ClearHttpAuthCredentials( );
@@ -1745,7 +1752,8 @@ namespace Bubba
         /// <summary>
         /// DownloadItems the in progress.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>
+        /// </returns>
         public bool DownloadsInProgress( )
         {
             if( _downloadItems?.Values?.Count > 0 )
@@ -2091,8 +2099,6 @@ namespace Bubba
             _streamWriter.Write( _data );
             _streamWriter.Flush( );
             _streamWriter.Close( );
-
-            // ReSharper disable once NotAccessedVariable
             var _json = "";
             using( var _response = _request.GetResponse( ) )
             {
@@ -2171,8 +2177,7 @@ namespace Bubba
             {
                 var _searchDialog = new SearchDialog
                 {
-                    Topmost = true,
-                    WindowStartupLocation = WindowStartupLocation.CenterScreen
+                    Topmost = true
                 };
 
                 App.ActiveWindows.Add( "SearchDialog", _searchDialog );
@@ -2194,8 +2199,7 @@ namespace Bubba
                 var _default = App.Instructions;
                 var _systemDialog = new SystemDialog( )
                 {
-                    Topmost = true,
-                    WindowStartupLocation = WindowStartupLocation.CenterScreen
+                    Topmost = true
                 };
 
                 _systemDialog.SystemDialogTextBox.Text = _default;
@@ -2464,23 +2468,30 @@ namespace Bubba
         /// </summary>
         private void OpenSearch( )
         {
-            if( !_isSearchOpen )
+            try
             {
-                _isSearchOpen = true;
-                InvokeIf( ( ) =>
+                if( !_isSearchOpen )
                 {
-                    UrlPanelTextBox.Text = _lastSearch;
-                    UrlPanelTextBox.Focus( );
-                    UrlPanelTextBox.SelectAll( );
-                } );
+                    _isSearchOpen = true;
+                    InvokeIf( ( ) =>
+                    {
+                        UrlPanelTextBox.Text = _lastSearch;
+                        UrlPanelTextBox.Focus( );
+                        UrlPanelTextBox.SelectAll( );
+                    } );
+                }
+                else
+                {
+                    InvokeIf( ( ) =>
+                    {
+                        UrlPanelTextBox.Focus( );
+                        UrlPanelTextBox.SelectAll( );
+                    } );
+                }
             }
-            else
+            catch( Exception ex )
             {
-                InvokeIf( ( ) =>
-                {
-                    UrlPanelTextBox.Focus( );
-                    UrlPanelTextBox.SelectAll( );
-                } );
+                Fail( ex );
             }
         }
 
@@ -2493,12 +2504,14 @@ namespace Bubba
             {
                 ThrowIf.Negative( x, nameof( x ) );
                 ThrowIf.Negative( y, nameof( y ) );
+                Busy( );
                 var _searchDialog = new SearchDialog( );
                 _searchDialog.Owner = this;
                 _searchDialog.Left = x;
-                _searchDialog.Top = y;
+                _searchDialog.Top = y - 100;
                 _searchDialog.Show( );
                 _searchDialog.SearchPanelTextBox.Focus( );
+                Chill(  );
             }
             catch( Exception ex )
             {
@@ -2511,18 +2524,25 @@ namespace Bubba
         /// </summary>
         private void OpenDeveloperTools( )
         {
-            Busy( );
-            if( Browser == null )
+            try
             {
-                var _message = "CurrentBrowser is null!";
-                SendNotification( _message );
-            }
-            else
-            {
-                Browser.ShowDevTools( );
-            }
+                Busy( );
+                if( Browser == null )
+                {
+                    var _message = "CurrentBrowser is null!";
+                    SendNotification( _message );
+                }
+                else
+                {
+                    Browser.ShowDevTools( );
+                }
 
-            Chill( );
+                Chill( );
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+            }
         }
 
         /// <summary>
@@ -2569,7 +2589,8 @@ namespace Bubba
             var url = e.Parameter.ToString( );
             if( string.IsNullOrEmpty( url ) )
             {
-                throw new Exception( "Please provide a valid command parameter for binding" );
+                var _message = "Please provide a valid command parameter for binding"; 
+                throw new Exception( _message );
             }
 
             CreateNewTab( url, true );
@@ -2579,9 +2600,13 @@ namespace Bubba
         /// <summary>
         /// Prints to PDF command binding.
         /// </summary>
-        /// <param name="sender">The sender.</param>
-        /// <param name="e">The <see cref="ExecutedRoutedEventArgs"/>
-        /// instance containing the event data.</param>
+        /// <param name="sender">
+        /// The sender.
+        /// </param>
+        /// <param name="e">
+        /// The <see cref="ExecutedRoutedEventArgs"/>
+        /// instance containing the event data.
+        /// </param>
         private async void PrintToPdfCommandBinding( object sender, ExecutedRoutedEventArgs e )
         {
             if( BrowserTabs.Count > 0 )
@@ -4375,7 +4400,9 @@ namespace Bubba
                 _options = _requestType switch
                 {
                     API.ChatCompletion => new ChatOptions( ),
+                    API.Responses => new ChatOptions( ),
                     API.Assistants => new AssistantOptions(  ),
+                    API.Agents => new AssistantOptions( ),
                     API.TextGeneration => new TextOptions(  ),
                     API.ImageGeneration => new ImageOptions(  ),
                     API.Transcriptions => new TranscriptionOptions( ),
@@ -4731,8 +4758,8 @@ namespace Bubba
                     Topmost = true
                 };
 
-                Chill( );
                 _calculator.Show( );
+                Chill( );
             }
             catch( Exception ex )
             {
@@ -4788,12 +4815,14 @@ namespace Bubba
         {
             try
             {
+                Busy( );
                 ClearChatControls( );
                 ClearParameters( );
                 ClearLabels( );
                 PopulateModelsAsync( );
                 PopulateInstalledVoices( );
                 PopulateImageSizes( );
+                Chill( );
             }
             catch( Exception ex )
             {
@@ -4851,11 +4880,13 @@ namespace Bubba
             {
                 if( DocumentListBox.SelectedIndex != -1 )
                 {
+                    Busy( );
                     var _filepath = @"C:\Users\terry\source\repos\Bubba\Properties\Prompts.resx";
                     var _path = Locations.PathPrefix + @"Resources\Documents\Prompts\";
                     var _names = GetResourceNames( _filepath );
                     _document = ((MetroListBoxItem)DocumentListBox.SelectedItem).Tag.ToString( );
                     Editor.LoadFile( _document );
+                    Chill( );
                     var _message = "Document = " + _document;
                     SendNotification( _message );
                 }
@@ -5280,7 +5311,7 @@ namespace Bubba
         {
             try
             {
-                var _name = ( (MetroListBoxItem)PromptDropDown.SelectedItem)
+                var _name = ( (MetroListBoxItem)PromptDropDown.SelectedItem )
                     ?.Tag?.ToString( );
 
                 var _message = "Prompt = " + _name;
@@ -5737,7 +5768,7 @@ namespace Bubba
             {
                 if( sender is MetroTabControl tabControl )
                 {
-                    var _index = tabControl.SelectedItem.Tag.ToString( );
+                    var _index = tabControl.SelectedItem.Tag?.ToString( );
                     switch( _index )
                     {
                         case "Chat":
@@ -5808,13 +5839,15 @@ namespace Bubba
         {
             try
             {
+                Busy( );
                 var _psn = e.GetPosition( this );
                 var _searchDialog = new SearchDialog( );
                 _searchDialog.Owner = this;
-                _searchDialog.Left = _psn.X + 100;
+                _searchDialog.Left = _psn.X - 100;
                 _searchDialog.Top = _psn.Y - 100;
                 _searchDialog.Show( );
                 _searchDialog.SearchPanelTextBox.Focus( );
+                Chill( );
             }
             catch( Exception ex )
             {
