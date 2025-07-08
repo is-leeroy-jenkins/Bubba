@@ -2175,13 +2175,9 @@ namespace Bubba
         {
             try
             {
-                var _searchDialog = new SearchDialog
-                {
-                    Topmost = true
-                };
-
-                App.ActiveWindows.Add( "SearchDialog", _searchDialog );
+                var _searchDialog = new SearchDialog( );
                 _searchDialog.Hide( );
+                App.ActiveWindows.Add( "SearchDialog", _searchDialog );
             }
             catch( Exception ex )
             {
@@ -2335,26 +2331,6 @@ namespace Bubba
         {
             try
             {
-                Busy( );
-                if( App.ActiveWindows.Keys.Contains( "FileBrowser" ) )
-                {
-                    var _window = ( FileBrowser )App.ActiveWindows[ "FileBrowser" ];
-                    _window.Owner = this;
-                    _window.Show( );
-                }
-                else
-                {
-                    var _fileBrowser = new FileBrowser( )
-                    {
-                        Topmost = true,
-                        Owner = this,
-                        WindowStartupLocation = WindowStartupLocation.CenterScreen
-                    };
-
-                    _fileBrowser.Show( );
-                }
-
-                Chill( );
             }
             catch( Exception ex )
             {
@@ -2369,7 +2345,6 @@ namespace Bubba
         {
             try
             {
-                Busy( );
                 if( App.ActiveWindows.Keys.Contains( "SystemDialog" ) )
                 {
                     var _window = ( SystemDialog )App.ActiveWindows[ "SystemDialog" ];
@@ -2387,8 +2362,6 @@ namespace Bubba
 
                     _systemDialog.Show( );
                 }
-
-                Chill( );
             }
             catch( Exception ex )
             {
@@ -2403,7 +2376,6 @@ namespace Bubba
         {
             try
             {
-                Busy( );
                 if( App.ActiveWindows.Keys.Contains( "CalculatorWindow" ) )
                 {
                     var _window = ( CalculatorWindow )App.ActiveWindows[ "CalculatorWindow" ];
@@ -2420,8 +2392,6 @@ namespace Bubba
 
                     _calculator.Show( );
                 }
-
-                Chill( );
             }
             catch( Exception ex )
             {
@@ -2502,16 +2472,12 @@ namespace Bubba
         {
             try
             {
-                ThrowIf.Negative( x, nameof( x ) );
-                ThrowIf.Negative( y, nameof( y ) );
-                Busy( );
-                var _searchDialog = new SearchDialog( );
+                var _searchDialog = (SearchDialog)App.ActiveWindows[ "SearchDialog" ];
                 _searchDialog.Owner = this;
+                _searchDialog.Topmost = true;
                 _searchDialog.Left = x;
-                _searchDialog.Top = y - 100;
+                _searchDialog.Top = y + 100;
                 _searchDialog.Show( );
-                _searchDialog.SearchPanelTextBox.Focus( );
-                Chill(  );
             }
             catch( Exception ex )
             {
@@ -2526,7 +2492,6 @@ namespace Bubba
         {
             try
             {
-                Busy( );
                 if( Browser == null )
                 {
                     var _message = "CurrentBrowser is null!";
@@ -2536,8 +2501,6 @@ namespace Bubba
                 {
                     Browser.ShowDevTools( );
                 }
-
-                Chill( );
             }
             catch( Exception ex )
             {
@@ -2550,7 +2513,6 @@ namespace Bubba
         /// </summary>
         public void OpenDownloadsTab( )
         {
-            Busy( );
             if( _downloadStrip != null )
             {
                 TabControl.SelectedItem = _downloadStrip;
@@ -2560,8 +2522,6 @@ namespace Bubba
                 var _brw = AddNewBrowserTab( Locations.Downloads );
                 _downloadStrip = ( BrowserTabItem )_brw.Parent;
             }
-
-            Chill( );
         }
 
         /// <summary>
@@ -2709,7 +2669,6 @@ namespace Bubba
         {
             try
             {
-                Busy( );
                 var _url = "https://api.openai.com/v1/models";
                 _httpClient = new HttpClient( );
                 _httpClient.Timeout = new TimeSpan( 0, 0, 3 );
@@ -2746,8 +2705,6 @@ namespace Bubba
                         }
                     }
                 } );
-
-                Chill( );
             }
             catch( HttpRequestException ex )
             {
@@ -4282,7 +4239,7 @@ namespace Bubba
                     }
                     case API.ImageGeneration:
                     {
-                        PopulateImageEditingModels( );
+                        PopulateImageGenerationModels( );
                         _endpoint = GptEndPoint.ImageGeneration;
                         break;
                     }
@@ -4407,6 +4364,7 @@ namespace Bubba
                     API.ImageGeneration => new ImageOptions(  ),
                     API.Transcriptions => new TranscriptionOptions( ),
                     API.Translations => new TranslationOptions( ),
+                    API.ImageEditing => new ImageOptions(  ),
                     API.Files => new FileOptions( ),
                     API.Embeddings => new EmbeddingOptions(  ),
                     API.FineTuning => new FineTuningOptions(  ),
@@ -5839,15 +5797,10 @@ namespace Bubba
         {
             try
             {
-                Busy( );
                 var _psn = e.GetPosition( this );
-                var _searchDialog = new SearchDialog( );
-                _searchDialog.Owner = this;
-                _searchDialog.Left = _psn.X - 100;
-                _searchDialog.Top = _psn.Y - 100;
-                _searchDialog.Show( );
-                _searchDialog.SearchPanelTextBox.Focus( );
-                Chill( );
+                var _x = _psn.X - 100.0;
+                var _y = _psn.Y - 100.0;
+                OpenSearchDialog( _x, _y );
             }
             catch( Exception ex )
             {
