@@ -356,7 +356,7 @@
                             TextWrapping="Wrap" />
 
                         <mah:MetroTabControl
-                            x:Name="ParamTabControl"
+                            x:Name="OptionTabControl"
                             Grid.Column="1"
                             Margin="3"
                             Padding="1,1,1,1"
@@ -375,12 +375,12 @@
                             <TabItem
                                 x:Name="RequestTab"
                                 Margin="3"
-                                Padding="10"
+                                Padding="1,1,1,1"
                                 Background="{StaticResource BackgroundBrush}"
                                 Foreground="{DynamicResource FormForeground}"
                                 Header="Settings"
                                 Tag="Settings"
-                                ToolTip="General Options">
+                                ToolTip="API Options">
 
                                 <Grid Background="{StaticResource BackgroundBrush}">
 
@@ -704,13 +704,15 @@
 
                             <TabItem
                                 x:Name="SettingTab"
+                                Width="60"
+                                Height="30"
                                 Margin="3"
-                                Padding="10"
+                                Padding="1,1,1,1"
                                 Background="{StaticResource BackgroundBrush}"
                                 Foreground="{StaticResource BlueBorderBrush}"
-                                Header="Parameters"
+                                Header="Options"
                                 Tag="GPT"
-                                ToolTip="Hyperparameters">
+                                ToolTip="Parameters">
 
                                 <Grid Margin="3,3,3,3">
                                     <Grid.RowDefinitions>
@@ -1032,18 +1034,27 @@
                                 </Grid>
 
                             </TabItem>
+                            <TabItem
+                                Width="60"
+                                Height="30"
+                                Margin="3,3,3,3"
+                                Header="Penalty"
+                                Tag="Penalty"
+                                ToolTip="Penalty Options"  />
 
                             <!--  ********************************************* AUDIO TAB *************************************  -->
 
                             <TabItem
                                 x:Name="AudioTab"
+                                Width="60"
+                                Height="30"
                                 Margin="3"
-                                Padding="10"
+                                Padding="1,1,1,1"
                                 Background="{StaticResource BackgroundBrush}"
                                 Foreground="{StaticResource BlueBorderBrush}"
                                 Header="Audio"
                                 Tag="Audio"
-                                ToolTip="Audio API Options">
+                                ToolTip="Sound Settings">
 
                                 <Grid Background="{StaticResource BackgroundBrush}">
                                     <Canvas Margin="5">
@@ -1333,13 +1344,15 @@
 
                             <TabItem
                                 x:Name="ImageTab"
+                                Width="60"
+                                Height="30"
                                 Margin="3"
-                                Padding="10"
+                                Padding="1,1,1,1"
                                 Background="{StaticResource BackgroundBrush}"
                                 Foreground="{StaticResource BlueBorderBrush}"
                                 Header="Image"
                                 Tag="Image"
-                                ToolTip="Set Image API Options">
+                                ToolTip="Image Options">
 
                                 <Grid Background="{StaticResource BackgroundBrush}">
 

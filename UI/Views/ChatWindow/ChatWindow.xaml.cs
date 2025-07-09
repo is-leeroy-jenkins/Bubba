@@ -5839,7 +5839,7 @@ namespace Bubba
         {
             Busy( );
             _originalUrl = Browser.Address;
-            SetUrl( Locations.Google );
+            SetUrl( Locations.HomePage );
             Chill( );
         }
 
@@ -6160,7 +6160,6 @@ namespace Bubba
         /// </summary>
         public void Dispose( )
         {
-
             Dispose( true );
             GC.SuppressFinalize( this );
         }
