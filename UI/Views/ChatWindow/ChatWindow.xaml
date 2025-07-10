@@ -845,7 +845,7 @@
                                         x:Name="TopPercentSlider"
                                         Grid.Row="1"
                                         Grid.Column="0"
-                                        Margin="16,40,24,10"
+                                        Margin="16,40,24,32"
                                         Padding="1"
                                         HorizontalContentAlignment="Stretch"
                                         VerticalContentAlignment="Bottom"
@@ -916,15 +916,16 @@
                                         Grid.Column="1"
                                         Width="60"
                                         Height="50"
-                                        Margin="15,126,51,76"
+                                        Margin="15,124,51,75"
                                         Padding="1,1,1,1"
+                                        BorderThickness="1"
                                         HorizontalContentAlignment="Center"
                                         VerticalContentAlignment="Center"
                                         Background="{StaticResource ControlInteriorBrush}"
                                         BorderBrush="{StaticResource BlueBorderBrush}"
                                         ClipToBounds="True"
                                         FontSize="14"
-                                        Text="{Binding Value, ElementName=PresenceSlider, StringFormat=N0}"
+                                        Text="{Binding Value, ElementName=PresenceSlider, StringFormat=N2}"
                                         UseLayoutRounding="True"
                                         VerticalScrollBarVisibility="Disabled"
                                         Watermark="" />
@@ -942,7 +943,7 @@
                                         FontFamily="Roboto"
                                         FontSize="12"
                                         Foreground="{StaticResource FormForeground}"
-                                        Header="Temperature"
+                                        Header="Presence Penalty"
                                         UseLayoutRounding="True">
 
                                         <wpf:SfRangeSlider
@@ -980,7 +981,7 @@
                                     </GroupBox>
 
                                     <GroupBox
-                                        x:Name="TopLogsGroupBox"
+                                        x:Name="FrequencyGroupBox"
                                         Grid.Row="1"
                                         Grid.Column="0"
                                         Margin="2,0,10,19"
@@ -990,29 +991,8 @@
                                         FontFamily="Roboto"
                                         FontSize="12"
                                         Foreground="{StaticResource FormForeground}"
-                                        Header="Top Log-Probs"
+                                        Header="Frequency Penalty"
                                         UseLayoutRounding="True" />
-
-                                    <b:MetroTextBox
-                                        x:Name="PresenceTextBox"
-                                        Grid.Row="1"
-                                        Grid.Column="1"
-                                        Width="60"
-                                        Height="50"
-                                        Margin="15,0,0,0"
-                                        Padding="1,1,1,1"
-                                        HorizontalAlignment="Left"
-                                        VerticalAlignment="Center"
-                                        HorizontalContentAlignment="Center"
-                                        VerticalContentAlignment="Center"
-                                        Background="{StaticResource ControlInteriorBrush}"
-                                        BorderBrush="{StaticResource BlueBorderBrush}"
-                                        ClipToBounds="True"
-                                        FontSize="14"
-                                        Text="{Binding Value, ElementName=PresenceSlider, StringFormat=N2}"
-                                        UseLayoutRounding="True"
-                                        VerticalScrollBarVisibility="Disabled"
-                                        Watermark="" />
 
                                     <wpf:SfRangeSlider
                                         x:Name="FrequencySlider"
@@ -1122,7 +1102,7 @@
                                             </Grid>
 
                                             <Separator
-                                                Height="35"
+                                                Height="25"
                                                 Background="{x:Null}"
                                                 BorderBrush="{x:Null}"
                                                 Foreground="{x:Null}" />
@@ -1199,7 +1179,7 @@
                                             </GroupBox>
 
                                             <Separator
-                                                Height="39"
+                                                Height="29"
                                                 Background="{x:Null}"
                                                 BorderBrush="{x:Null}"
                                                 Foreground="{x:Null}" />
@@ -1306,7 +1286,7 @@
                                             </GroupBox>
 
                                             <Separator
-                                                Height="34"
+                                                Height="24"
                                                 Background="{x:Null}"
                                                 BorderBrush="{x:Null}"
                                                 Foreground="{StaticResource TransparentBrush}" />
@@ -1329,10 +1309,10 @@
 
                                                 <wpf:SfRangeSlider
                                                     x:Name="SpeechRateSlider"
-                                                    Height="70"
-                                                    Margin="1"
+                                                    Height="61"
+                                                    Margin="1,0,1,0"
                                                     Padding="1"
-                                                    VerticalAlignment="Top"
+                                                    VerticalAlignment="Center"
                                                     ActiveMinorTickStroke="{StaticResource WhiteForeground}"
                                                     ActiveTickStroke="{StaticResource WhiteForeground}"
                                                     ActiveTrackStyle="{DynamicResource ActiveTrackStyle}"
@@ -1823,7 +1803,10 @@
 
                 <TabItem
                     x:Name="BrowserTabItem"
-                    Margin="3,3,3,3"
+                    Width="60"
+                    Height="30"
+                    Margin="3"
+                    Padding="1,1,1,1"
                     BorderBrush="{x:Null}"
                     Foreground="{DynamicResource FormForeground}"
                     Header="Web"
@@ -2017,8 +2000,10 @@
 
                 <TabItem
                     x:Name="EditorTabItem"
+                    Width="60"
+                    Height="30"
                     Margin="3"
-                    Padding="1"
+                    Padding="1,1,1,1"
                     BorderBrush="{x:Null}"
                     Foreground="{DynamicResource FormForeground}"
                     Header="Editor"
@@ -2198,8 +2183,10 @@
 
                 <TabItem
                     x:Name="ImageTabItem"
+                    Width="60"
+                    Height="30"
                     Margin="3"
-                    Padding="1"
+                    Padding="1,1,1,1"
                     BorderBrush="{x:Null}"
                     Foreground="{DynamicResource FormForeground}"
                     Header="Image"
@@ -2266,7 +2253,10 @@
 
                 <TabItem
                     x:Name="ChartTabItem"
-                    Margin="3,3,3,3"
+                    Width="60"
+                    Height="30"
+                    Margin="3"
+                    Padding="1,1,1,1"
                     BorderBrush="{x:Null}"
                     Foreground="{DynamicResource FormForeground}"
                     Header="Chart"
@@ -2317,8 +2307,10 @@
 
                 <TabItem
                     x:Name="DataTabItem"
+                    Width="60"
+                    Height="30"
                     Margin="3"
-                    Padding="1"
+                    Padding="1,1,1,1"
                     Foreground="{DynamicResource FormForeground}"
                     Header="Data"
                     Tag="Data"
@@ -2380,8 +2372,10 @@
 
                 <TabItem
                     x:Name="PlotTabItem"
+                    Width="60"
+                    Height="30"
                     Margin="3"
-                    Padding="1"
+                    Padding="1,1,1,1"
                     Foreground="{DynamicResource FormForeground}"
                     Header="Graph"
                     Tag="Graph"
@@ -2409,7 +2403,10 @@
 
                 <TabItem
                     x:Name="BusyTabItem"
-                    Margin="3,3,3,3"
+                    Width="60"
+                    Height="30"
+                    Margin="3"
+                    Padding="1,1,1,1"
                     BorderBrush="{x:Null}"
                     Foreground="{DynamicResource FormForeground}"
                     Header="Busy"
