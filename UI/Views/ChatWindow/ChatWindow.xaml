@@ -328,7 +328,10 @@
 
                 <TabItem
                     x:Name="ChatTab"
+                    Width="60"
+                    Height="30"
                     Margin="3"
+                    Padding="1,1,1,1"
                     Foreground="{StaticResource BlueBorderBrush}"
                     Header="Chat"
                     Tag="Chat">
@@ -374,6 +377,8 @@
 
                             <TabItem
                                 x:Name="RequestTab"
+                                Width="60"
+                                Height="30"
                                 Margin="3"
                                 Padding="1,1,1,1"
                                 Background="{StaticResource BackgroundBrush}"
@@ -714,12 +719,12 @@
                                 Tag="GPT"
                                 ToolTip="Parameters">
 
+
                                 <Grid Margin="3,3,3,3">
                                     <Grid.RowDefinitions>
-                                        <RowDefinition />
-                                        <RowDefinition />
-                                        <RowDefinition />
-                                        <RowDefinition />
+                                        <RowDefinition Height="63*" />
+                                        <RowDefinition Height="40*" />
+                                        <RowDefinition Height="37*" />
                                     </Grid.RowDefinitions>
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="269*" />
@@ -731,8 +736,10 @@
                                         x:Name="TemperatureGroupBox"
                                         Grid.Row="0"
                                         Grid.Column="0"
-                                        Margin="2,10,10,10"
+                                        Margin="2,77,10,35"
                                         Padding="1,1,1,1"
+                                        HorizontalContentAlignment="Stretch"
+                                        VerticalContentAlignment="Center"
                                         Background="{StaticResource GroupBoxBackground}"
                                         BorderBrush="{StaticResource MutedForeground}"
                                         FontFamily="Roboto"
@@ -748,7 +755,7 @@
                                         Grid.Column="1"
                                         Width="60"
                                         Height="50"
-                                        Margin="15,58,0,31"
+                                        Margin="15,140,0,55"
                                         Padding="1,1,1,1"
                                         HorizontalAlignment="Left"
                                         HorizontalContentAlignment="Center"
@@ -766,9 +773,7 @@
                                         x:Name="TemperatureSlider"
                                         Grid.Row="0"
                                         Grid.Column="0"
-                                        Width="229"
-                                        Height="90"
-                                        Margin="16,38,24,11"
+                                        Margin="16,107,24,58"
                                         Padding="1"
                                         HorizontalContentAlignment="Stretch"
                                         VerticalContentAlignment="Bottom"
@@ -840,9 +845,7 @@
                                         x:Name="TopPercentSlider"
                                         Grid.Row="1"
                                         Grid.Column="0"
-                                        Width="229"
-                                        Height="90"
-                                        Margin="16,38,24,10"
+                                        Margin="16,40,24,10"
                                         Padding="1"
                                         HorizontalContentAlignment="Stretch"
                                         VerticalContentAlignment="Bottom"
@@ -879,14 +882,42 @@
                                     </wpf:SfRangeSlider>
 
 
+                                </Grid>
+
+                            </TabItem>
+                            <!--  ********************************************* PENALTY TAB *************************************  -->
+
+                            <TabItem
+                                x:Name="PenaltyTab"
+                                Width="60"
+                                Height="30"
+                                Margin="3,3,3,3"
+                                Padding="1"
+                                Background="{StaticResource BackgroundBrush}"
+                                Foreground="{StaticResource BlueBorderBrush}"
+                                Header="Penalty"
+                                Tag="Penalty"
+                                ToolTip="Penalty Options">
+
+                                <Grid Margin="3,3,3,3">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="63*" />
+                                        <RowDefinition Height="40*" />
+                                        <RowDefinition Height="37*" />
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="269*" />
+                                        <ColumnDefinition Width="126*" />
+                                    </Grid.ColumnDefinitions>
+
+
                                     <b:MetroTextBox
                                         x:Name="PresenseTextBox"
-                                        Grid.Row="2"
                                         Grid.Column="1"
+                                        Width="60"
                                         Height="50"
-                                        Margin="15,0,51,0"
+                                        Margin="15,126,51,76"
                                         Padding="1,1,1,1"
-                                        VerticalAlignment="Center"
                                         HorizontalContentAlignment="Center"
                                         VerticalContentAlignment="Center"
                                         Background="{StaticResource ControlInteriorBrush}"
@@ -900,59 +931,57 @@
 
                                     <GroupBox
                                         x:Name="PresenseGroupBox"
-                                        Grid.Row="1"
-                                        Grid.RowSpan="2"
+                                        Grid.Row="0"
                                         Grid.Column="0"
-                                        Margin="2,138,10,20"
+                                        Margin="2,77,10,35"
                                         Padding="1,1,1,1"
+                                        HorizontalContentAlignment="Stretch"
+                                        VerticalContentAlignment="Center"
                                         Background="{StaticResource GroupBoxBackground}"
                                         BorderBrush="{StaticResource MutedForeground}"
                                         FontFamily="Roboto"
                                         FontSize="12"
                                         Foreground="{StaticResource FormForeground}"
-                                        Header="Presence Penalty"
-                                        UseLayoutRounding="True" />
+                                        Header="Temperature"
+                                        UseLayoutRounding="True">
 
-                                    <wpf:SfRangeSlider
-                                        x:Name="PresenceSlider"
-                                        Grid.Row="2"
-                                        Grid.Column="0"
-                                        Width="229"
-                                        Height="95"
-                                        Margin="17,22,17,22"
-                                        Padding="1"
-                                        HorizontalContentAlignment="Stretch"
-                                        VerticalContentAlignment="Bottom"
-                                        ActiveMinorTickStroke="{StaticResource WhiteForeground}"
-                                        ActiveTickStroke="{StaticResource WhiteForeground}"
-                                        ActiveTrackStyle="{DynamicResource ActiveTrackStyle}"
-                                        AllowRangeDrag="True"
-                                        AutomationProperties.IsColumnHeader="True"
-                                        AutomationProperties.Name="Presence Penalty"
-                                        Background="{StaticResource BlueBorderBrush}"
-                                        FontSize="14"
-                                        Foreground="{StaticResource FormForeground}"
-                                        Maximum="2"
-                                        Minimum="-2"
-                                        MinorTickFrequency="2"
-                                        MinorTickLength="5"
-                                        MinorTickStroke="{StaticResource WhiteForeground}"
-                                        ShowValueLabels="True"
-                                        SnapsTo="Ticks"
-                                        Style="{DynamicResource SyncfusionSfRangeSliderStyle}"
-                                        Tag="PresensePenalty"
-                                        ThumbStyle="{StaticResource ThumbStyle}"
-                                        TickFrequency="0.5"
-                                        TickPlacement="BottomRight"
-                                        TickStroke="{StaticResource WhiteForeground}"
-                                        ToolTip="Positive values creative output"
-                                        UseLayoutRounding="False" />
-
-
+                                        <wpf:SfRangeSlider
+                                            x:Name="PresenceSlider"
+                                            Width="229"
+                                            Height="95"
+                                            Margin="5,0,5,0"
+                                            Padding="1"
+                                            HorizontalContentAlignment="Stretch"
+                                            VerticalContentAlignment="Bottom"
+                                            ActiveMinorTickStroke="{StaticResource WhiteForeground}"
+                                            ActiveTickStroke="{StaticResource WhiteForeground}"
+                                            ActiveTrackStyle="{DynamicResource ActiveTrackStyle}"
+                                            AllowRangeDrag="True"
+                                            AutomationProperties.IsColumnHeader="True"
+                                            AutomationProperties.Name="Presence Penalty"
+                                            Background="{StaticResource BlueBorderBrush}"
+                                            FontSize="14"
+                                            Foreground="{StaticResource FormForeground}"
+                                            Maximum="2"
+                                            Minimum="-2"
+                                            MinorTickFrequency="2"
+                                            MinorTickLength="5"
+                                            MinorTickStroke="{StaticResource WhiteForeground}"
+                                            ShowValueLabels="True"
+                                            SnapsTo="Ticks"
+                                            Style="{DynamicResource SyncfusionSfRangeSliderStyle}"
+                                            Tag="PresensePenalty"
+                                            ThumbStyle="{StaticResource ThumbStyle}"
+                                            TickFrequency="0.5"
+                                            TickPlacement="BottomRight"
+                                            TickStroke="{StaticResource WhiteForeground}"
+                                            ToolTip="Positive values creative output"
+                                            UseLayoutRounding="False" />
+                                    </GroupBox>
 
                                     <GroupBox
                                         x:Name="TopLogsGroupBox"
-                                        Grid.Row="3"
+                                        Grid.Row="1"
                                         Grid.Column="0"
                                         Margin="2,0,10,19"
                                         Padding="1,1,1,1"
@@ -966,7 +995,7 @@
 
                                     <b:MetroTextBox
                                         x:Name="PresenceTextBox"
-                                        Grid.Row="2"
+                                        Grid.Row="1"
                                         Grid.Column="1"
                                         Width="60"
                                         Height="50"
@@ -987,8 +1016,10 @@
 
                                     <wpf:SfRangeSlider
                                         x:Name="FrequencySlider"
-                                        Grid.Row="3"
+                                        Grid.Row="1"
                                         Grid.Column="0"
+                                        Width="229"
+                                        Height="95"
                                         Margin="20,21,20,22"
                                         Padding="1"
                                         HorizontalContentAlignment="Center"
@@ -1014,7 +1045,7 @@
 
                                     <b:MetroTextBox
                                         x:Name="FrequencyTextBox"
-                                        Grid.Row="3"
+                                        Grid.Row="1"
                                         Grid.Column="1"
                                         Width="60"
                                         Height="50"
@@ -1032,16 +1063,7 @@
                                         UseLayoutRounding="True"
                                         VerticalScrollBarVisibility="Disabled" />
                                 </Grid>
-
                             </TabItem>
-                            <TabItem
-                                Width="60"
-                                Height="30"
-                                Margin="3,3,3,3"
-                                Header="Penalty"
-                                Tag="Penalty"
-                                ToolTip="Penalty Options"  />
-
                             <!--  ********************************************* AUDIO TAB *************************************  -->
 
                             <TabItem
@@ -1995,7 +2017,8 @@
 
                 <TabItem
                     x:Name="EditorTabItem"
-                    Margin="3,3,3,3"
+                    Margin="3"
+                    Padding="1"
                     BorderBrush="{x:Null}"
                     Foreground="{DynamicResource FormForeground}"
                     Header="Editor"
@@ -2175,7 +2198,8 @@
 
                 <TabItem
                     x:Name="ImageTabItem"
-                    Margin="3,3,3,3"
+                    Margin="3"
+                    Padding="1"
                     BorderBrush="{x:Null}"
                     Foreground="{DynamicResource FormForeground}"
                     Header="Image"
@@ -2293,7 +2317,8 @@
 
                 <TabItem
                     x:Name="DataTabItem"
-                    Margin="3,3,3,3"
+                    Margin="3"
+                    Padding="1"
                     Foreground="{DynamicResource FormForeground}"
                     Header="Data"
                     Tag="Data"
@@ -2355,7 +2380,8 @@
 
                 <TabItem
                     x:Name="PlotTabItem"
-                    Margin="3,3,3,3"
+                    Margin="3"
+                    Padding="1"
                     Foreground="{DynamicResource FormForeground}"
                     Header="Graph"
                     Tag="Graph"
