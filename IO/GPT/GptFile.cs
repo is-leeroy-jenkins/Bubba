@@ -44,6 +44,7 @@ namespace Bubba
     using System;
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
+    using Syncfusion.Grouping;
 
     /// <summary>
     /// 
@@ -52,6 +53,21 @@ namespace Bubba
     [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
     public class GptFile : PropertyChangedBase
     {
+        /// <summary>
+        /// The bytes
+        /// </summary>
+        private protected int _bytes;
+
+        /// <summary>
+        /// The created at
+        /// </summary>
+        private protected int _createdAt;
+
+        /// <summary>
+        /// The expires at
+        /// </summary>
+        private protected int _expiresAt;
+
         /// <summary>
         /// The file name
         /// </summary>
@@ -94,6 +110,72 @@ namespace Bubba
         public GptFile( )
         {
             _object = "file";
+        }
+
+        /// <summary>
+        /// Gets or sets the bytes.
+        /// </summary>
+        /// <value>
+        /// The bytes.
+        /// </value>
+        public int Bytes
+        {
+            get
+            {
+                return _bytes;
+            }
+            set
+            {
+                if( _bytes != value )
+                {
+                    _bytes = value;
+                    OnPropertyChanged( nameof( Bytes) );
+                }
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the created at.
+        /// </summary>
+        /// <value>
+        /// The created at.
+        /// </value>
+        public int CreatedAt
+        {
+            get
+            {
+                return _createdAt;
+            }
+            set
+            {
+                if( _createdAt != value )
+                {
+                    _createdAt = value;
+                    OnPropertyChanged( nameof( CreatedAt ) );
+                }
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the expired at.
+        /// </summary>
+        /// <value>
+        /// The expired at.
+        /// </value>
+        public int ExpiredAt
+        {
+            get
+            {
+                return _expiresAt;
+            }
+            set
+            {
+                if( _expiresAt != value )
+                {
+                    _expiresAt = value;
+                    OnPropertyChanged( nameof( ExpiredAt ) );
+                }
+            }
         }
 
         /// <summary>
@@ -222,6 +304,32 @@ namespace Bubba
             {
                 Fail( ex );
                 return default( IDictionary<string, object> );
+            }
+        }
+
+        /// <summary>
+        /// Gets the purposes.
+        /// </summary>
+        /// <returns>
+        /// </returns>
+        public IList<string> GetFilePurposes( )
+        {
+            try
+            {
+                var _purposes = new List<string>( );
+                _purposes.Add( "fine-tune" );
+                _purposes.Add( "fine-tune-results" );
+                _purposes.Add( "assistants" );
+                _purposes.Add( "assistants_output" );
+                _purposes.Add( "batch" );
+                _purposes.Add( "batch_output" );  
+                _purposes.Add( "vision" );
+                return _purposes;
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+                return default( IList<string> );
             }
         }
 

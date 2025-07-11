@@ -47,6 +47,7 @@ namespace Bubba
     using System.Linq;
     using System.Text;
     using System.Threading.Tasks;
+    using System.Text.Json.Serialization;
 
     /// <inheritdoc />
     [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
@@ -58,7 +59,8 @@ namespace Bubba
         private protected GptFormat _format;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="GptText"/> class.
+        /// Initializes a new instance of the
+        /// <see cref="GptText"/> class.
         /// </summary>
         public GptText( )
         {
@@ -70,6 +72,7 @@ namespace Bubba
         /// <value>
         /// The format.
         /// </value>
+        [ JsonPropertyName( "format" ) ]
         public GptFormat Format
         {
             get

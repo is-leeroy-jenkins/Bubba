@@ -60,7 +60,7 @@ namespace Bubba
     [ SuppressMessage( "ReSharper", "PreferConcreteValueOverDefault" ) ]
     [ SuppressMessage( "ReSharper", "ClassCanBeSealed.Global" ) ]
     [ SuppressMessage( "ReSharper", "PossibleUnintendedReferenceComparison" ) ]
-    public class AssistantRequest : TextRequest
+    public class AssistantRequest : TextGenerationRequest
     {
         /// <summary>
         /// The tools

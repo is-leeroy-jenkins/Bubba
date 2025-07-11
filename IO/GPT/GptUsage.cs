@@ -94,7 +94,7 @@ namespace Bubba
         {
             _promptTokens = prompt;
             _completionTokens = completion;
-            TotalTokens = total;
+            _totalTokens = total;
         }
 
         /// <summary>
@@ -106,7 +106,7 @@ namespace Bubba
         {
             _promptTokens = usage.PromptTokens;
             _completionTokens = usage.CompletionTokens;
-            TotalTokens = usage.TotalTokens;
+            _totalTokens = usage.TotalTokens;
         }
 
         /// <summary>
@@ -120,7 +120,7 @@ namespace Bubba
         {
             promptTokens = _promptTokens;
             completionTokens = _completionTokens;
-            totalTokens = TotalTokens;
+            totalTokens = _totalTokens;
         }
 
         /// <summary>
@@ -129,7 +129,7 @@ namespace Bubba
         /// <value>
         /// The prompt tokens.
         /// </value>
-        [ JsonPropertyName( "promptTokens" ) ]
+        [ JsonPropertyName( "prompt_tokens" ) ]
         public int PromptTokens
         {
             get
@@ -152,7 +152,7 @@ namespace Bubba
         /// <value>
         /// The completion tokens.
         /// </value>
-        [ JsonPropertyName( "completionTokens" ) ]
+        [ JsonPropertyName( "completion_tokens" ) ]
         public int CompletionTokens
         {
             get
@@ -175,18 +175,18 @@ namespace Bubba
         /// <value>
         /// The total tokens.
         /// </value>
-        [ JsonPropertyName( "totalTokens" ) ]
+        [ JsonPropertyName( "total_tokens" ) ]
         public int TotalTokens
         {
             get
             {
-                return TotalTokens;
+                return _totalTokens;
             }
             set
             {
-                if( TotalTokens != value )
+                if( _totalTokens != value )
                 {
-                    TotalTokens = value;
+                    _totalTokens = value;
                     OnPropertyChanged( nameof( TotalTokens ) );
                 }
             }
@@ -202,9 +202,9 @@ namespace Bubba
         {
             try
             {
-                _data.Add( "promptTokens", _promptTokens );
-                _data.Add( "completionTokens", _completionTokens );
-                _data.Add( "totalTokens", TotalTokens );
+                _data.Add( "prompt_tokens", _promptTokens );
+                _data.Add( "completion_tokens", _completionTokens );
+                _data.Add( "total_tokens", _totalTokens );
                 return _data?.Any( ) == true
                     ? _data
                     : default( IDictionary<string, object> );

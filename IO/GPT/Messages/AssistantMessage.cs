@@ -71,6 +71,26 @@ namespace Bubba
         private protected string _assistantPrompt;
 
         /// <summary>
+        /// The refusal
+        /// </summary>
+        private protected string _refusal;
+
+        /// <summary>
+        /// The audio
+        /// </summary>
+        private protected byte[ ] _audio;
+
+        /// <summary>
+        /// The tool calls
+        /// </summary>
+        private protected IList<GptTool> _toolCalls;
+
+        /// <summary>
+        /// The logprobs
+        /// </summary>
+        private protected bool _logprobs;
+
+        /// <summary>
         /// Initializes a new instance of the
         /// <see cref="AssistantMessage"/> class.
         /// </summary>
@@ -116,6 +136,77 @@ namespace Bubba
         {
             role = _role;
             content = _content;
+        }
+
+        /// <inheritdoc />
+        /// <summary>
+        /// Gets the role.
+        /// </summary>
+        /// <value>
+        /// The role.
+        /// </value>
+        [JsonPropertyName( "name" ) ]
+        public override string Name
+        {
+            get
+            {
+                return _name;
+            }
+            set
+            {
+                if( _name != value )
+                {
+                    _name = value;
+                    OnPropertyChanged( nameof( Name ) );
+                }
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the audio.
+        /// </summary>
+        /// <value>
+        /// The audio.
+        /// </value>
+        [ JsonPropertyName( "audio" ) ]
+        public byte[ ] Audio
+        {
+            get
+            {
+                return _audio;
+            }
+            set
+            {
+                if( _audio != value )
+                {
+                    _audio = value;
+                    OnPropertyChanged( nameof( Audio ) );
+                }
+            }
+        }
+
+        /// <inheritdoc />
+        /// <summary>
+        /// Gets the role.
+        /// </summary>
+        /// <value>
+        /// The role.
+        /// </value>
+        [ JsonPropertyName( "name" ) ]
+        public virtual string Refusal
+        {
+            get
+            {
+                return _refusal;
+            }
+            set
+            {
+                if( _refusal != value )
+                {
+                    _refusal = value;
+                    OnPropertyChanged( nameof( Refusal ) );
+                }
+            }
         }
 
         /// <inheritdoc />

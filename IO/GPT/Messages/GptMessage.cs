@@ -59,6 +59,11 @@ namespace Bubba
     public abstract class GptMessage : PropertyChangedBase
     {
         /// <summary>
+        /// The name
+        /// </summary>
+        private protected string _name;
+
+        /// <summary>
         /// The role
         /// </summary>
         private protected string _role;
@@ -78,6 +83,30 @@ namespace Bubba
         /// The data
         /// </summary>
         private protected IDictionary<string, object> _data;
+
+        /// <inheritdoc />
+        /// <summary>
+        /// Gets the role.
+        /// </summary>
+        /// <value>
+        /// The role.
+        /// </value>
+        [JsonPropertyName( "name" ) ]
+        public virtual string Name
+        {
+            get
+            {
+                return _name;
+            }
+            set
+            {
+                if( _name != value )
+                {
+                    _name = value;
+                    OnPropertyChanged( nameof( Name ) );
+                }
+            }
+        }
 
         /// <inheritdoc />
         /// <summary>

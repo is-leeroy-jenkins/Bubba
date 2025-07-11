@@ -47,6 +47,7 @@ namespace Bubba
     using System.Linq;
     using System.Text;
     using System.Threading.Tasks;
+    using System.Text.Json.Serialization;
 
     /// <summary>
     /// 
@@ -73,6 +74,7 @@ namespace Bubba
         /// <value>
         /// The type.
         /// </value>
+        [ JsonPropertyName( "type" ) ]
         public string Type
         {
             get

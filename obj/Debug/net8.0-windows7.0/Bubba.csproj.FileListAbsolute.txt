@@ -9,7 +9,6 @@ C:\Users\terry\source\repos\Bubba\obj\Debug\net8.0-windows7.0\UI\Views\ColorDial
 C:\Users\terry\source\repos\Bubba\obj\Debug\net8.0-windows7.0\UI\Views\ErrorWindow\ErrorWindow.g.cs
 C:\Users\terry\source\repos\Bubba\obj\Debug\net8.0-windows7.0\UI\Views\FileBrowser\FileBrowser.g.cs
 C:\Users\terry\source\repos\Bubba\obj\Debug\net8.0-windows7.0\UI\Views\GptFileDialog\GptFileDialog.g.cs
-C:\Users\terry\source\repos\Bubba\obj\Debug\net8.0-windows7.0\UI\Views\GptImageDialog\GptImageDialog.g.cs
 C:\Users\terry\source\repos\Bubba\obj\Debug\net8.0-windows7.0\UI\Views\Notification\Notification.g.cs
 C:\Users\terry\source\repos\Bubba\obj\Debug\net8.0-windows7.0\UI\Views\SearchDialog\SearchDialog.g.cs
 C:\Users\terry\source\repos\Bubba\obj\Debug\net8.0-windows7.0\UI\Views\SplashWindow\SplashMessage.g.cs
@@ -700,7 +699,6 @@ C:\Users\terry\source\repos\Bubba\obj\Debug\net8.0-windows7.0\UI\Views\ColorDial
 C:\Users\terry\source\repos\Bubba\obj\Debug\net8.0-windows7.0\UI\Views\ErrorWindow\ErrorWindow.baml
 C:\Users\terry\source\repos\Bubba\obj\Debug\net8.0-windows7.0\UI\Views\FileBrowser\FileBrowser.baml
 C:\Users\terry\source\repos\Bubba\obj\Debug\net8.0-windows7.0\UI\Views\GptFileDialog\GptFileDialog.baml
-C:\Users\terry\source\repos\Bubba\obj\Debug\net8.0-windows7.0\UI\Views\GptImageDialog\GptImageDialog.baml
 C:\Users\terry\source\repos\Bubba\obj\Debug\net8.0-windows7.0\UI\Views\SearchDialog\SearchDialog.baml
 C:\Users\terry\source\repos\Bubba\obj\Debug\net8.0-windows7.0\UI\Views\SplashWindow\SplashMessage.baml
 C:\Users\terry\source\repos\Bubba\obj\Debug\net8.0-windows7.0\UI\Views\SystemDialog\SystemDialog.baml

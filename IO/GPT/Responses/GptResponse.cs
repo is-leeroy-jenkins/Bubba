@@ -70,9 +70,29 @@ namespace Bubba
         private protected GptUsage _usage;
 
         /// <summary>
+        /// The error
+        /// </summary>
+        private protected GptError _error;
+
+        /// <summary>
         /// The status
         /// </summary>
         private protected string _status;
+
+        /// <summary>
+        /// The meta data
+        /// </summary>
+        private protected IDictionary<string, string> _metaData;
+
+        /// <summary>
+        /// The maximum tool calls
+        /// </summary>
+        private protected int _maxToolCalls;
+
+        /// <summary>
+        /// The output
+        /// </summary>
+        private protected IList<string> _output;
 
         /// <inheritdoc />
         /// <summary>
@@ -83,27 +103,24 @@ namespace Bubba
             : base( )
         {
             _object = "response";
-            _model = "gpt-4o-mini";
-            _presencePenalty = 0.0;
-            _frequencyPenalty = 0.0;
-            _maxOutputTokens = 10000;
-            _number = 1;
+            _metaData = new Dictionary<string, string>( );
+            _output = new List<string>( );
+            _choices = new List<GptChoice>( );
         }
 
         /// <inheritdoc />
         /// <summary>
         /// Initializes a new instance of the <see cref="T:Bubba.GptResponse" /> class.
         /// </summary>
-        /// <param name="request">The request.</param>
-        public GptResponse( GptRequest request )
+        /// <param name="response">The request.</param>
+        public GptResponse( GptResponse response )
             : this( )
         {
-            _model = request.Model;
-            _endPoint = request.EndPoint;
-            _presencePenalty = request.PresencePenalty;
-            _frequencyPenalty = request.FrequencyPenalty;
-            _maxOutputTokens = request.MaxCompletionTokens;
-            _number = request.Number;
+            _model = response.Model;
+            _object = response.Object;
+            _maxToolCalls = response.MaxToolCalls;
+            _choices = response.Choices;
+            _output = response.Output;
         }
 
         /// <summary>
@@ -135,6 +152,7 @@ namespace Bubba
         /// <value>
         /// The maximum output tokens.
         /// </value>
+        [ JsonPropertyName( "max_output_tokens" ) ]
         public virtual int MaxOutputTokens
         {
             get
@@ -152,6 +170,52 @@ namespace Bubba
         }
 
         /// <summary>
+        /// Gets or sets the meta data.
+        /// </summary>
+        /// <value>
+        /// The meta data.
+        /// </value>
+        [ JsonPropertyName( "metadata" ) ]
+        public virtual IDictionary<string, string> MetaData
+        {
+            get
+            {
+                return _metaData;
+            }
+            set
+            {
+                if( _metaData != value )
+                {
+                    _metaData = value;
+                    OnPropertyChanged( nameof( MetaData ) );
+                }
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the maximum tool calls.
+        /// </summary>
+        /// <value>
+        /// The maximum tool calls.
+        /// </value>
+        [ JsonPropertyName( "max_tool_calls" ) ]
+        public int MaxToolCalls
+        {
+            get
+            {
+                return _maxToolCalls;
+            }
+            set
+            {
+                if( _maxToolCalls != value )
+                {
+                    _maxToolCalls = value;
+                    OnPropertyChanged( nameof( MaxToolCalls ) );
+                }
+            }
+        }
+
+        /// <summary>
         /// Gets or sets the object.
         /// </summary>
         /// <value>
@@ -163,14 +227,6 @@ namespace Bubba
             get
             {
                 return _object;
-            }
-            set
-            {
-                if( _object != value )
-                {
-                    _object = value;
-                    OnPropertyChanged( nameof( Object ) );
-                }
             }
         }
 
@@ -203,7 +259,7 @@ namespace Bubba
         /// <value>
         /// The created.
         /// </value>
-        [ JsonPropertyName( "created" ) ]
+        [ JsonPropertyName( "created_at" ) ]
         public override DateTime Created
         {
             get
@@ -285,6 +341,28 @@ namespace Bubba
                 {
                     _usage = value;
                     OnPropertyChanged( nameof( Usage ) );
+                }
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the output.
+        /// </summary>
+        /// <value>
+        /// The output.
+        /// </value>
+        public virtual IList<string> Output
+        {
+            get
+            {
+                return _output;
+            }
+            set
+            {
+                if( _output != value )
+                {
+                    _output = value;
+                    OnPropertyChanged( nameof( Output ) );
                 }
             }
         }

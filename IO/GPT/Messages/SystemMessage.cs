@@ -79,7 +79,7 @@ namespace Bubba
         {
             _role = "system";
             _type = "text";
-            _instructions = App.Instructions;
+            _instructions = Prompts.BudgetAnalyst;
         }
 
         /// <inheritdoc />
@@ -116,6 +116,30 @@ namespace Bubba
         {
             role = _role;
             content = _content;
+        }
+
+        /// <summary>
+        /// Gets the role.
+        /// </summary>
+        /// <value>
+        /// The role.
+        /// </value>
+        /// <inheritdoc />
+        [ JsonPropertyName( "name" ) ]
+        public override string Name
+        {
+            get
+            {
+                return _name;
+            }
+            set
+            {
+                if( _name != value )
+                {
+                    _name = value;
+                    OnPropertyChanged( nameof( Name ) );
+                }
+            }
         }
 
         /// <inheritdoc />

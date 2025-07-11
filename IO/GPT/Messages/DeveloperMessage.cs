@@ -97,6 +97,30 @@ namespace Bubba
             _role = message.Role;
         }
 
+        /// <summary>
+        /// Gets the role.
+        /// </summary>
+        /// <value>
+        /// The role.
+        /// </value>
+        /// <inheritdoc />
+        [ JsonPropertyName( "name" ) ]
+        public override string Name
+        {
+            get
+            {
+                return _name;
+            }
+            set
+            {
+                if( _name != value )
+                {
+                    _name = value;
+                    OnPropertyChanged( nameof( Name ) );
+                }
+            }
+        }
+
         /// <inheritdoc />
         /// <summary>
         /// Gets the role.

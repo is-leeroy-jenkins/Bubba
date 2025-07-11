@@ -16,9 +16,6 @@
     <Compile Update="UI\Views\SystemDialog\SystemDialog.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="UI\Views\GptImageDialog\GptImageDialog.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Update="UI\Views\GptFileDialog\GptFileDialog.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -37,9 +34,6 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="UI\Views\SystemDialog\SystemDialog.xaml">
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Update="UI\Views\GptImageDialog\GptImageDialog.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="UI\Themes\Slider\Slider.xaml">

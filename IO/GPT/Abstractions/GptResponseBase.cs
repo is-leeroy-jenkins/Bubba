@@ -43,6 +43,7 @@ namespace Bubba
 {
     using System;
     using System.Diagnostics.CodeAnalysis;
+    using System.Text.Json.Serialization;
 
     /// <inheritdoc />
     /// <summary>
@@ -50,7 +51,7 @@ namespace Bubba
     /// <seealso cref="T:Bubba.GptBase" />
     [ SuppressMessage( "ReSharper", "UnusedType.Global" ) ]
     [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
-    public class GptResponseBase : GptBase
+    public abstract class GptResponseBase : GptBase
     {
         /// <summary>
         /// The identifier
@@ -98,6 +99,7 @@ namespace Bubba
         /// <value>
         /// The identifier.
         /// </value>
+        [ JsonPropertyName( "id" ) ]
         public virtual string Id
         {
             get
@@ -120,6 +122,7 @@ namespace Bubba
         /// <value>
         /// The identifier.
         /// </value>
+        [ JsonPropertyName( "output_text" ) ]
         public virtual string OutputText
         {
             get
@@ -142,6 +145,7 @@ namespace Bubba
         /// <value>
         /// The previous identifier.
         /// </value>
+        [ JsonPropertyName( "previous_id" ) ]
         public virtual string PreviousId
         {
             get
@@ -164,6 +168,7 @@ namespace Bubba
         /// <value>
         /// The object.
         /// </value>
+        [ JsonPropertyName( "object" ) ]
         public virtual string Object
         {
             get
@@ -187,6 +192,7 @@ namespace Bubba
         /// <value>
         ///   <c>true</c> if background; otherwise, <c>false</c>.
         /// </value>
+        [ JsonPropertyName( "background" ) ]
         public virtual bool Background
         {
             get
@@ -209,6 +215,7 @@ namespace Bubba
         /// <value>
         /// The created.
         /// </value>
+        [ JsonPropertyName( "created" ) ]
         public virtual DateTime Created
         {
             get

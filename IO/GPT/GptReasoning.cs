@@ -44,9 +44,7 @@ namespace Bubba
     using System;
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
-    using System.Linq;
-    using System.Text;
-    using System.Threading.Tasks;
+    using System.Text.Json.Serialization;
 
     /// <inheritdoc />
     [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
@@ -63,11 +61,68 @@ namespace Bubba
         private protected string _summary;
 
         /// <summary>
+        /// The identifier
+        /// </summary>
+        private protected string _id;
+
+        /// <summary>
+        /// The status
+        /// </summary>
+        private protected string _status;
+
+        /// <summary>
+        /// The encrypted content
+        /// </summary>
+        private protected string _encryptedContent;
+
+        /// <summary>
         /// Initializes a new instance of the
         /// <see cref="GptReasoning"/> class.
         /// </summary>
         public GptReasoning( )
         {
+            _effort = "medium";
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="GptReasoning"/> class.
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        /// <param name="effort">The effort.</param>
+        /// <param name="summary">The summary.</param>
+        /// <param name="encryptedContent">Content of the encrypted.</param>
+        /// <param name="status">The status.</param>
+        public GptReasoning( string id, string effort, string summary, 
+                             string encryptedContent, string status )
+        {
+            Id = id;
+            Effort = effort;
+            Summary = summary;
+            EncryptedContent = encryptedContent;
+            Status = status;
+        }
+
+        /// <summary>
+        /// Gets or sets the identifier.
+        /// </summary>
+        /// <value>
+        /// The identifier.
+        /// </value>
+        [ JsonPropertyName( "id" ) ]
+        public string Id
+        {
+            get
+            {
+                return _id;
+            }
+            set
+            {
+                if( _id != value )
+                {
+                    _id = value;
+                    OnPropertyChanged( nameof( Id ) );
+                }
+            }
         }
 
         /// <summary>
@@ -76,6 +131,7 @@ namespace Bubba
         /// <value>
         /// The code.
         /// </value>
+        [ JsonPropertyName( "effort" ) ]
         public string Effort
         {
             get
@@ -98,6 +154,7 @@ namespace Bubba
         /// <value>
         /// The message.
         /// </value>
+        [ JsonPropertyName( "summary" ) ]
         public string Summary
         {
             get
@@ -112,6 +169,65 @@ namespace Bubba
                     OnPropertyChanged( nameof( Summary ) );
                 }
             }
+        }
+
+        /// <summary>
+        /// Gets or sets the content of the encrypted.
+        /// </summary>
+        /// <value>
+        /// The content of the encrypted.
+        /// </value>
+        [ JsonPropertyName( "encrypted_content" ) ]
+        public string EncryptedContent
+        {
+            get
+            {
+                return _encryptedContent;
+            }
+            set
+            {
+                if( _encryptedContent != value )
+                {
+                    _encryptedContent = value;
+                    OnPropertyChanged( nameof( EncryptedContent ) );
+                }
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the status.
+        /// </summary>
+        /// <value>
+        /// The status.
+        /// </value>
+        [ JsonPropertyName( "status" ) ]
+        public string Status
+        {
+            get
+            {
+                return _status;
+            }
+            set
+            {
+                if( _status != value )
+                {
+                    _status = value;
+                    OnPropertyChanged( nameof( Status ) );
+                }
+            }
+        }
+
+        /// <summary>
+        /// Gets the effort options.
+        /// </summary>
+        /// <returns></returns>
+        public IList<string> GetEffortOptions( )
+        {
+            var _options = new List<string>( );
+            _options.Add( "low" );  
+            _options.Add( "medium" );
+            _options.Add( "high" );
+            return _options;
         }
 
         /// <summary>

@@ -14154,6 +14154,14 @@
             <returns>
             </returns>
         </member>
+        <member name="P:Bubba.IGptInput.Object">
+            <summary>
+            Gets the object.
+            </summary>
+            <value>
+            The object.
+            </value>
+        </member>
         <member name="T:Bubba.IGptMessage">
             <summary>
             
@@ -14182,6 +14190,22 @@
             <returns>
             A string that represents the current object.
             </returns>
+        </member>
+        <member name="P:Bubba.IGptOutput.Id">
+            <summary>
+            Gets or sets the identifier.
+            </summary>
+            <value>
+            The identifier.
+            </value>
+        </member>
+        <member name="P:Bubba.IGptOutput.Object">
+            <summary>
+            Gets the object.
+            </summary>
+            <value>
+            The object.
+            </value>
         </member>
         <member name="T:Bubba.IGptParameter">
             <summary>
@@ -14834,6 +14858,141 @@
             The prompt.
             </value>
         </member>
+        <member name="T:Bubba.GptContainer">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Bubba.GptContainer._id">
+            <summary>
+            The identifier
+            </summary>
+        </member>
+        <member name="F:Bubba.GptContainer._status">
+            <summary>
+            The status
+            </summary>
+        </member>
+        <member name="F:Bubba.GptContainer._name">
+            <summary>
+            The name
+            </summary>
+        </member>
+        <member name="F:Bubba.GptContainer._expiresAfter">
+            <summary>
+            The expires after
+            </summary>
+        </member>
+        <member name="F:Bubba.GptContainer._fileIds">
+            <summary>
+            The file ids
+            </summary>
+        </member>
+        <member name="M:Bubba.GptContainer.#ctor">
+            <summary>
+            Initializes a new instance of the
+            <see cref="T:Bubba.GptContainer"/> class.
+            </summary>
+        </member>
+        <member name="M:Bubba.GptContainer.#ctor(System.Int32,System.String,System.String,System.Int32)">
+            <summary>
+            Initializes a new instance of the
+            <see cref="T:Bubba.GptContainer"/> class.
+            </summary>
+            <param name="id">The identifier.</param>
+            <param name="status">The status.</param>
+            <param name="name">The name.</param>
+            <param name="expires">The expires.</param>
+        </member>
+        <member name="P:Bubba.GptContainer.Id">
+            <summary>
+            Gets or sets the identifier.
+            </summary>
+            <value>
+            The identifier.
+            </value>
+        </member>
+        <member name="P:Bubba.GptContainer.Name">
+            <summary>
+            Gets or sets the name.
+            </summary>
+            <value>
+            The name.
+            </value>
+        </member>
+        <member name="P:Bubba.GptContainer.Status">
+            <summary>
+            Gets or sets the status.
+            </summary>
+            <value>
+            The status.
+            </value>
+        </member>
+        <member name="P:Bubba.GptContainer.FileIds">
+            <summary>
+            Gets or sets the file ids.
+            </summary>
+            <value>
+            The file ids.
+            </value>
+        </member>
+        <member name="M:Bubba.GptContainer.Fail(System.Exception)">
+            <summary>
+            Fails the specified ex.
+            </summary>
+            <param name="ex">The ex.</param>
+        </member>
+        <member name="T:Bubba.GptContainerFile">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Bubba.GptContainerFile._containerId">
+            <summary>
+            The container identifier
+            </summary>
+        </member>
+        <member name="F:Bubba.GptContainerFile._file">
+            <summary>
+            The file
+            </summary>
+        </member>
+        <member name="M:Bubba.GptContainerFile.#ctor">
+            <summary>
+            Initializes a new instance of the
+            <see cref="T:Bubba.GptContainerFile"/> class.
+            </summary>
+        </member>
+        <member name="M:Bubba.GptContainerFile.#ctor(System.String,Bubba.GptFile)">
+            <summary>
+            Initializes a new instance of the
+            <see cref="T:Bubba.GptContainerFile"/> class.
+            </summary>
+            <param name="id">The identifier.</param>
+            <param name="file">The file.</param>
+        </member>
+        <member name="P:Bubba.GptContainerFile.ContainerId">
+            <summary>
+            Gets or sets the container identifier.
+            </summary>
+            <value>
+            The container identifier.
+            </value>
+        </member>
+        <member name="P:Bubba.GptContainerFile.File">
+            <summary>
+            Gets or sets the file.
+            </summary>
+            <value>
+            The file.
+            </value>
+        </member>
+        <member name="M:Bubba.GptContainerFile.Fail(System.Exception)">
+            <summary>
+            Fails the specified ex.
+            </summary>
+            <param name="ex">The ex.</param>
+        </member>
         <member name="T:Bubba.GptChoice">
             <inheritdoc />
             <summary>
@@ -15004,6 +15163,21 @@
             
             </summary>
         </member>
+        <member name="F:Bubba.GptFile._bytes">
+            <summary>
+            The bytes
+            </summary>
+        </member>
+        <member name="F:Bubba.GptFile._createdAt">
+            <summary>
+            The created at
+            </summary>
+        </member>
+        <member name="F:Bubba.GptFile._expiresAt">
+            <summary>
+            The expires at
+            </summary>
+        </member>
         <member name="F:Bubba.GptFile._fileName">
             <summary>
             The file name
@@ -15044,6 +15218,30 @@
             Initializes a new instance of the
             <see cref="T:Bubba.GptFile"/> class.
             </summary>
+        </member>
+        <member name="P:Bubba.GptFile.Bytes">
+            <summary>
+            Gets or sets the bytes.
+            </summary>
+            <value>
+            The bytes.
+            </value>
+        </member>
+        <member name="P:Bubba.GptFile.CreatedAt">
+            <summary>
+            Gets or sets the created at.
+            </summary>
+            <value>
+            The created at.
+            </value>
+        </member>
+        <member name="P:Bubba.GptFile.ExpiredAt">
+            <summary>
+            Gets or sets the expired at.
+            </summary>
+            <value>
+            The expired at.
+            </value>
         </member>
         <member name="P:Bubba.GptFile.FileName">
             <summary>
@@ -15089,6 +15287,13 @@
             <inheritdoc />
             <summary>
             Gets the data.
+            </summary>
+            <returns>
+            </returns>
+        </member>
+        <member name="M:Bubba.GptFile.GetFilePurposes">
+            <summary>
+            Gets the purposes.
             </summary>
             <returns>
             </returns>
@@ -15166,6 +15371,21 @@
             The type
             </summary>
         </member>
+        <member name="F:Bubba.GptFunction._name">
+            <summary>
+            The name
+            </summary>
+        </member>
+        <member name="F:Bubba.GptFunction._description">
+            <summary>
+            The description
+            </summary>
+        </member>
+        <member name="F:Bubba.GptFunction._parameters">
+            <summary>
+            The parameters
+            </summary>
+        </member>
         <member name="M:Bubba.GptFunction.#ctor">
             <summary>
             Initializes a new instance of the
@@ -15178,6 +15398,22 @@
             </summary>
             <value>
             The tool choice.
+            </value>
+        </member>
+        <member name="P:Bubba.GptFunction.Description">
+            <summary>
+            Gets or sets the description.
+            </summary>
+            <value>
+            The description.
+            </value>
+        </member>
+        <member name="P:Bubba.GptFunction.Name">
+            <summary>
+            Gets or sets the name.
+            </summary>
+            <value>
+            The name.
             </value>
         </member>
         <member name="P:Bubba.GptFunction.Strict">
@@ -15195,6 +15431,14 @@
             </summary>
             <value>
             The type.
+            </value>
+        </member>
+        <member name="P:Bubba.GptFunction.Parameters">
+            <summary>
+            Gets or sets the parameters.
+            </summary>
+            <value>
+            The parameters.
             </value>
         </member>
         <member name="M:Bubba.GptFunction.Fail(System.Exception)">
@@ -15298,6 +15542,215 @@
             </summary>
             <param name="ex">The ex.</param>
         </member>
+        <member name="T:Bubba.GptInput">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Bubba.GptInput._firstId">
+            <summary>
+            The first identifier
+            </summary>
+        </member>
+        <member name="F:Bubba.GptInput._lastId">
+            <summary>
+            The last identifier
+            </summary>
+        </member>
+        <member name="F:Bubba.GptInput._hasMore">
+            <summary>
+            The has more
+            </summary>
+        </member>
+        <member name="F:Bubba.GptInput._object">
+            <summary>
+            The object
+            </summary>
+        </member>
+        <member name="M:Bubba.GptInput.#ctor">
+            <summary>
+            Initializes a new instance of the
+            <see cref="T:Bubba.GptInput"/> class.
+            </summary>
+        </member>
+        <member name="M:Bubba.GptInput.#ctor(System.String,System.String,System.Boolean)">
+            <summary>
+            Initializes a new instance of the
+            <see cref="T:Bubba.GptInput"/> class.
+            </summary>
+            <param name="firstId">The first identifier.</param>
+            <param name="lastId">The last identifier.</param>
+            <param name="hasMore">if set to <c>true</c> [has more].</param>
+        </member>
+        <member name="P:Bubba.GptInput.FirstId">
+            <summary>
+            Gets or sets the first identifier.
+            </summary>
+            <value>
+            The first identifier.
+            </value>
+        </member>
+        <member name="P:Bubba.GptInput.LastId">
+            <summary>
+            Gets or sets the last identifier.
+            </summary>
+            <value>
+            The last identifier.
+            </value>
+        </member>
+        <!-- Badly formed XML comment ignored for member "P:Bubba.GptInput.HasMore" -->
+        <member name="P:Bubba.GptInput.Object">
+            <summary>
+            Gets the object.
+            </summary>
+            <value>
+            The object.
+            </value>
+        </member>
+        <member name="M:Bubba.GptInput.Fail(System.Exception)">
+            <summary>
+            Fails the specified ex.
+            </summary>
+            <param name="ex">The ex.</param>
+        </member>
+        <member name="T:Bubba.GptLocation">
+            <summary>
+            
+            </summary>
+            <seealso cref="T:Bubba.PropertyChangedBase" />
+        </member>
+        <member name="F:Bubba.GptLocation._city">
+            <summary>
+            The city
+            </summary>
+        </member>
+        <member name="F:Bubba.GptLocation._region">
+            <summary>
+            The region
+            </summary>
+        </member>
+        <member name="F:Bubba.GptLocation._country">
+            <summary>
+            The country
+            </summary>
+        </member>
+        <member name="F:Bubba.GptLocation._state">
+            <summary>
+            The state
+            </summary>
+        </member>
+        <member name="F:Bubba.GptLocation._zipCode">
+            <summary>
+            The zip code
+            </summary>
+        </member>
+        <member name="M:Bubba.GptLocation.#ctor">
+            <summary>
+            Initializes a new instance of the
+            <see cref="T:Bubba.GptLocation"/> class.
+            </summary>
+        </member>
+        <member name="M:Bubba.GptLocation.#ctor(System.String,System.String,System.String,System.String,System.String)">
+            <summary>
+            Initializes a new instance of the
+            <see cref="T:Bubba.GptLocation"/> class.
+            </summary>
+            <param name="city">The city.</param>
+            <param name="region">The region.</param>
+            <param name="country">The country.</param>
+            <param name="state">The state.</param>
+            <param name="zipCode">The zip code.</param>
+        </member>
+        <member name="P:Bubba.GptLocation.City">
+            <summary>
+            Gets or sets the city.
+            </summary>
+            <value>
+            The city.
+            </value>
+        </member>
+        <member name="P:Bubba.GptLocation.Region">
+            <summary>
+            Gets or sets the region.
+            </summary>
+            <value>
+            The region.
+            </value>
+        </member>
+        <member name="P:Bubba.GptLocation.State">
+            <summary>
+            Gets or sets the state.
+            </summary>
+            <value>
+            The state.
+            </value>
+        </member>
+        <member name="P:Bubba.GptLocation.ZipCode">
+            <summary>
+            Gets or sets the zip code.
+            </summary>
+            <value>
+            The zip code.
+            </value>
+        </member>
+        <member name="M:Bubba.GptLocation.Fail(System.Exception)">
+            <summary>
+            Fails the specified ex.
+            
+            </summary>
+            <param name="ex">The ex.</param>
+        </member>
+        <member name="T:Bubba.GptOutput">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Bubba.GptOutput._object">
+            <summary>
+            The object
+            </summary>
+        </member>
+        <member name="F:Bubba.GptOutput._id">
+            <summary>
+            The identifier
+            </summary>
+        </member>
+        <member name="M:Bubba.GptOutput.#ctor">
+            <summary>
+            Initializes a new instance of the
+            <see cref="T:Bubba.GptOutput"/> class.
+            </summary>
+        </member>
+        <member name="M:Bubba.GptOutput.#ctor(System.String,System.String)">
+            <summary>
+            Initializes a new instance of the
+            <see cref="T:Bubba.GptOutput"/> class.
+            </summary>
+            <param name="id">The identifier.</param>
+            <param name="obj">The object.</param>
+        </member>
+        <member name="P:Bubba.GptOutput.Id">
+            <summary>
+            Gets or sets the identifier.
+            </summary>
+            <value>
+            The identifier.
+            </value>
+        </member>
+        <member name="P:Bubba.GptOutput.Object">
+            <summary>
+            Gets the object.
+            </summary>
+            <value>
+            The object.
+            </value>
+        </member>
+        <member name="M:Bubba.GptOutput.Fail(System.Exception)">
+            <summary>
+            Fails the specified ex.
+            </summary>
+            <param name="ex">The ex.</param>
+        </member>
         <member name="T:Bubba.GptPrompt">
             <summary>
             
@@ -15388,11 +15841,44 @@
             The summary
             </summary>
         </member>
+        <member name="F:Bubba.GptReasoning._id">
+            <summary>
+            The identifier
+            </summary>
+        </member>
+        <member name="F:Bubba.GptReasoning._status">
+            <summary>
+            The status
+            </summary>
+        </member>
+        <member name="F:Bubba.GptReasoning._encryptedContent">
+            <summary>
+            The encrypted content
+            </summary>
+        </member>
         <member name="M:Bubba.GptReasoning.#ctor">
             <summary>
             Initializes a new instance of the
             <see cref="T:Bubba.GptReasoning"/> class.
             </summary>
+        </member>
+        <member name="M:Bubba.GptReasoning.#ctor(System.String,System.String,System.String,System.String,System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Bubba.GptReasoning"/> class.
+            </summary>
+            <param name="id">The identifier.</param>
+            <param name="effort">The effort.</param>
+            <param name="summary">The summary.</param>
+            <param name="encryptedContent">Content of the encrypted.</param>
+            <param name="status">The status.</param>
+        </member>
+        <member name="P:Bubba.GptReasoning.Id">
+            <summary>
+            Gets or sets the identifier.
+            </summary>
+            <value>
+            The identifier.
+            </value>
         </member>
         <member name="P:Bubba.GptReasoning.Effort">
             <summary>
@@ -15410,6 +15896,28 @@
             The message.
             </value>
         </member>
+        <member name="P:Bubba.GptReasoning.EncryptedContent">
+            <summary>
+            Gets or sets the content of the encrypted.
+            </summary>
+            <value>
+            The content of the encrypted.
+            </value>
+        </member>
+        <member name="P:Bubba.GptReasoning.Status">
+            <summary>
+            Gets or sets the status.
+            </summary>
+            <value>
+            The status.
+            </value>
+        </member>
+        <member name="M:Bubba.GptReasoning.GetEffortOptions">
+            <summary>
+            Gets the effort options.
+            </summary>
+            <returns></returns>
+        </member>
         <member name="M:Bubba.GptReasoning.Fail(System.Exception)">
             <summary>
             Wraps error
@@ -15426,7 +15934,8 @@
         </member>
         <member name="M:Bubba.GptText.#ctor">
             <summary>
-            Initializes a new instance of the <see cref="T:Bubba.GptText"/> class.
+            Initializes a new instance of the
+            <see cref="T:Bubba.GptText"/> class.
             </summary>
         </member>
         <member name="P:Bubba.GptText.Format">
@@ -15668,6 +16177,113 @@
             </summary>
             <param name="ex">The ex.</param>
         </member>
+        <member name="T:Bubba.FunctionOutput">
+            <summary>
+            
+            </summary>
+            <seealso cref="T:Bubba.PropertyChangedBase" />
+        </member>
+        <member name="M:Bubba.FunctionOutput.#ctor">
+            <summary>
+            Initializes a new instance of the
+            <see cref="T:Bubba.FunctionOutput"/> class.
+            </summary>
+        </member>
+        <member name="M:Bubba.FunctionOutput.Fail(System.Exception)">
+            <summary>
+            Fails the specified ex.
+            </summary>
+            <param name="ex">The ex.</param>
+        </member>
+        <member name="T:Bubba.GptGuardrail">
+            <summary>
+            
+            </summary>
+            <seealso cref="T:Bubba.PropertyChangedBase" />
+        </member>
+        <member name="M:Bubba.GptGuardrail.#ctor">
+            <summary>
+            Initializes a new instance of the
+            <see cref="T:Bubba.GptGuardrail"/> class.
+            </summary>
+        </member>
+        <member name="M:Bubba.GptGuardrail.Fail(System.Exception)">
+            <summary>
+            Fails the specified ex.
+            </summary>
+            <param name="ex">The ex.</param>
+        </member>
+        <member name="T:Bubba.InputGuardrail">
+            <summary>
+            
+            </summary>
+            <seealso cref="T:Bubba.PropertyChangedBase" />
+        </member>
+        <member name="M:Bubba.InputGuardrail.#ctor">
+            <summary>
+            Initializes a new instance of the
+            <see cref="T:Bubba.InputGuardrail"/> class.
+            </summary>
+        </member>
+        <member name="M:Bubba.InputGuardrail.Fail(System.Exception)">
+            <summary>
+            Fails the specified ex.
+            </summary>
+            <param name="ex">The ex.</param>
+        </member>
+        <member name="T:Bubba.InputGuardrailResult">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Bubba.InputGuardrailResult.#ctor">
+            <summary>
+            Initializes a new instance of the
+            <see cref="T:Bubba.InputGuardrailResult"/> class.
+            </summary>
+        </member>
+        <member name="M:Bubba.InputGuardrailResult.Fail(System.Exception)">
+            <summary>
+            Fails the specified ex.
+            </summary>
+            <param name="ex">The ex.</param>
+        </member>
+        <member name="T:Bubba.OutputGuardrail">
+            <summary>
+            
+            </summary>
+            <seealso cref="T:Bubba.PropertyChangedBase" />
+        </member>
+        <member name="M:Bubba.OutputGuardrail.#ctor">
+            <summary>
+            Initializes a new instance of the
+            <see cref="T:Bubba.OutputGuardrail" /> class.
+            </summary>
+        </member>
+        <member name="M:Bubba.OutputGuardrail.Fail(System.Exception)">
+            <summary>
+            Fails the specified ex.
+            </summary>
+            <param name="ex">The ex.</param>
+        </member>
+        <member name="T:Bubba.OutputGuardrailResult">
+            <summary>
+            
+            </summary>
+            <seealso cref="T:Bubba.PropertyChangedBase" />
+        </member>
+        <member name="M:Bubba.OutputGuardrailResult.#ctor">
+            <summary>
+            Initializes a new instance of the
+            <see cref="T:Bubba.OutputGuardrailResult"/> class.
+            </summary>
+        </member>
+        <member name="M:Bubba.OutputGuardrailResult.Fail(System.Exception)">
+            <summary>
+            Fails the specified ex.
+            </summary>
+            <param name="ex">The ex.</param>
+        </member>
         <member name="T:Bubba.AssistantMessage">
             <inheritdoc />
             <summary>
@@ -15678,6 +16294,26 @@
         <member name="F:Bubba.AssistantMessage._assistantPrompt">
             <summary>
             The system prompt
+            </summary>
+        </member>
+        <member name="F:Bubba.AssistantMessage._refusal">
+            <summary>
+            The refusal
+            </summary>
+        </member>
+        <member name="F:Bubba.AssistantMessage._audio">
+            <summary>
+            The audio
+            </summary>
+        </member>
+        <member name="F:Bubba.AssistantMessage._toolCalls">
+            <summary>
+            The tool calls
+            </summary>
+        </member>
+        <member name="F:Bubba.AssistantMessage._logprobs">
+            <summary>
+            The logprobs
             </summary>
         </member>
         <member name="M:Bubba.AssistantMessage.#ctor">
@@ -15709,6 +16345,32 @@
             </summary>
             <param name="role">The role.</param>
             <param name="content">The content.</param>
+        </member>
+        <member name="P:Bubba.AssistantMessage.Name">
+            <inheritdoc />
+            <summary>
+            Gets the role.
+            </summary>
+            <value>
+            The role.
+            </value>
+        </member>
+        <member name="P:Bubba.AssistantMessage.Audio">
+            <summary>
+            Gets or sets the audio.
+            </summary>
+            <value>
+            The audio.
+            </value>
+        </member>
+        <member name="P:Bubba.AssistantMessage.Refusal">
+            <inheritdoc />
+            <summary>
+            Gets the role.
+            </summary>
+            <value>
+            The role.
+            </value>
         </member>
         <member name="P:Bubba.AssistantMessage.Role">
             <inheritdoc />
@@ -15781,6 +16443,15 @@
             </summary>
             <param name="message">The message.</param>
         </member>
+        <member name="P:Bubba.DeveloperMessage.Name">
+            <summary>
+            Gets the role.
+            </summary>
+            <value>
+            The role.
+            </value>
+            <inheritdoc />
+        </member>
         <member name="P:Bubba.DeveloperMessage.Role">
             <inheritdoc />
             <summary>
@@ -15823,11 +16494,79 @@
             A string that represents the current object.
             </returns>
         </member>
+        <member name="T:Bubba.FunctionMessage">
+            <summary>
+            
+            </summary>
+            <seealso cref="T:Bubba.GptMessage" />
+        </member>
+        <member name="M:Bubba.FunctionMessage.#ctor">
+            <summary>
+            Initializes a new instance of the
+            <see cref="T:Bubba.FunctionMessage"/> class.
+            </summary>
+        </member>
+        <member name="P:Bubba.FunctionMessage.Name">
+            <summary>
+            Gets the role.
+            </summary>
+            <value>
+            The role.
+            </value>
+            <inheritdoc />
+        </member>
+        <member name="P:Bubba.FunctionMessage.Role">
+            <inheritdoc />
+            <summary>
+            Gets the role.
+            </summary>
+            <value>
+            The role.
+            </value>
+        </member>
+        <member name="P:Bubba.FunctionMessage.Content">
+            <inheritdoc />
+            <summary>
+            Gets the content.
+            </summary>
+            <value>
+            The content.
+            </value>
+        </member>
+        <member name="M:Bubba.FunctionMessage.GetData">
+            <inheritdoc />
+            <summary>
+            Gets the data.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Bubba.FunctionMessage.Serialize">
+            <inheritdoc />
+            <summary>
+            Serializes the specified prompt.
+            </summary>
+            <returns>
+            </returns>
+        </member>
+        <member name="M:Bubba.FunctionMessage.ToString">
+            <inheritdoc />
+            <summary>
+            Returns a string that represents the current object.
+            </summary>
+            <returns>
+            A string that represents the current object.
+            </returns>
+        </member>
         <member name="T:Bubba.GptMessage">
             <inheritdoc />
             <summary>
             </summary>
             <seealso cref="T:Bubba.PropertyChangedBase" />
+        </member>
+        <member name="F:Bubba.GptMessage._name">
+            <summary>
+            The name
+            </summary>
         </member>
         <member name="F:Bubba.GptMessage._role">
             <summary>
@@ -15845,6 +16584,15 @@
             </summary>
         </member>
         <!-- Badly formed XML comment ignored for member "F:Bubba.GptMessage._data" -->
+        <member name="P:Bubba.GptMessage.Name">
+            <inheritdoc />
+            <summary>
+            Gets the role.
+            </summary>
+            <value>
+            The role.
+            </value>
+        </member>
         <member name="P:Bubba.GptMessage.Role">
             <inheritdoc />
             <summary>
@@ -15951,6 +16699,15 @@
             <param name="role">The role.</param>
             <param name="content">The content.</param>
         </member>
+        <member name="P:Bubba.SystemMessage.Name">
+            <summary>
+            Gets the role.
+            </summary>
+            <value>
+            The role.
+            </value>
+            <inheritdoc />
+        </member>
         <member name="P:Bubba.SystemMessage.Role">
             <inheritdoc />
             <summary>
@@ -15983,6 +16740,79 @@
             <returns></returns>
         </member>
         <member name="M:Bubba.SystemMessage.Serialize">
+            <inheritdoc />
+            <summary>
+            Serializes the specified prompt.
+            </summary>
+            <returns>
+            </returns>
+        </member>
+        <member name="T:Bubba.ToolMessage">
+            <summary>
+            
+            </summary>
+            <seealso cref="T:Bubba.GptMessage" />
+        </member>
+        <member name="F:Bubba.ToolMessage._toolCallId">
+            <summary>
+            The identifier
+            </summary>
+        </member>
+        <member name="M:Bubba.ToolMessage.#ctor">
+            <summary>
+            Initializes a new instance of the
+            <see cref="T:Bubba.ToolMessage"/> class.
+            </summary>
+        </member>
+        <member name="P:Bubba.ToolMessage.Name">
+            <summary>
+            Gets the role.
+            </summary>
+            <value>
+            The role.
+            </value>
+            <inheritdoc />
+        </member>
+        <member name="P:Bubba.ToolMessage.ToolCallId">
+            <summary>
+            Gets or sets the tool call identifier.
+            </summary>
+            <value>
+            The tool call identifier.
+            </value>
+        </member>
+        <member name="P:Bubba.ToolMessage.Role">
+            <inheritdoc />
+            <summary>
+            Gets the role.
+            </summary>
+            <value>
+            The role.
+            </value>
+        </member>
+        <member name="P:Bubba.ToolMessage.Content">
+            <inheritdoc />
+            <summary>
+            Gets the content.
+            </summary>
+            <value>
+            The content.
+            </value>
+        </member>
+        <member name="M:Bubba.ToolMessage.GetData">
+            <inheritdoc />
+            <summary>
+            Gets the data.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Bubba.ToolMessage.Dump">
+            <summary>
+            Dumps this instance.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Bubba.ToolMessage.Serialize">
             <inheritdoc />
             <summary>
             Serializes the specified prompt.
@@ -19503,36 +20333,36 @@
             <param name="response">The json response.</param>
             <returns></returns>
         </member>
-        <member name="T:Bubba.ChatRequest">
+        <member name="T:Bubba.ChatCompletionRequest">
             <inheritdoc />
             <summary>
             </summary>
             <seealso cref="T:Bubba.TextRequest" />
         </member>
-        <member name="F:Bubba.ChatRequest._tools">
+        <member name="F:Bubba.ChatCompletionRequest._tools">
             <summary>
             The tools
             </summary>
         </member>
-        <member name="F:Bubba.ChatRequest._metaData">
+        <member name="F:Bubba.ChatCompletionRequest._metaData">
             <summary>
             Developer-defined tags and values used for filtering completions
             </summary>
         </member>
-        <member name="F:Bubba.ChatRequest._reasoningEffort">
+        <member name="F:Bubba.ChatCompletionRequest._reasoningEffort">
             <summary>
             The reasoning effort
             </summary>
         </member>
-        <member name="M:Bubba.ChatRequest.#ctor">
+        <member name="M:Bubba.ChatCompletionRequest.#ctor">
             <summary>
             Initializes a new instance of the
-            <see cref="T:Bubba.ChatRequest"/> class.
+            <see cref="T:Bubba.ChatCompletionRequest"/> class.
             </summary>
             <inheritdoc />
         </member>
-        <!-- Badly formed XML comment ignored for member "M:Bubba.ChatRequest.#ctor(System.String,Bubba.GptOptions)" -->
-        <member name="P:Bubba.ChatRequest.EndPoint">
+        <!-- Badly formed XML comment ignored for member "M:Bubba.ChatCompletionRequest.#ctor(System.String,Bubba.GptOptions)" -->
+        <member name="P:Bubba.ChatCompletionRequest.EndPoint">
             <inheritdoc />
             <summary>
             Gets the end point.
@@ -19541,7 +20371,7 @@
             The end point.
             </value>
         </member>
-        <member name="P:Bubba.ChatRequest.Modalities">
+        <member name="P:Bubba.ChatCompletionRequest.Modalities">
             <inheritdoc />
             <summary>
             Gets or sets the modalities.
@@ -19550,7 +20380,7 @@
             The modalities.
             </value>
         </member>
-        <member name="P:Bubba.ChatRequest.Instructions">
+        <member name="P:Bubba.ChatCompletionRequest.Instructions">
             <summary>
             Gets or sets the instructions.
             </summary>
@@ -19558,7 +20388,7 @@
             The instructions.
             </value>
         </member>
-        <member name="P:Bubba.ChatRequest.Prompt">
+        <member name="P:Bubba.ChatCompletionRequest.Prompt">
             <inheritdoc />
             <summary>
             Gets or sets the user prompt.
@@ -19567,7 +20397,7 @@
             The user prompt.
             </value>
         </member>
-        <member name="P:Bubba.ChatRequest.ReasoningEffort">
+        <member name="P:Bubba.ChatCompletionRequest.ReasoningEffort">
             <summary>
             Gets or sets the reasoning effort.
             </summary>
@@ -19575,7 +20405,7 @@
             The reasoning effort.
             </value>
         </member>
-        <member name="P:Bubba.ChatRequest.Tools">
+        <member name="P:Bubba.ChatCompletionRequest.Tools">
             <summary>
             A list of tool enabled on the assistant.
             There can be a maximum of 128 tools per assistant.
@@ -19585,7 +20415,7 @@
             The tools.
             </value>
         </member>
-        <member name="P:Bubba.ChatRequest.MetaData">
+        <member name="P:Bubba.ChatCompletionRequest.MetaData">
             <summary>
             Set of 16 key-value pairs that can be attached to an object.
             This can be useful for storing additional information about the
@@ -19596,14 +20426,14 @@
             The meta data.
             </value>
         </member>
-        <member name="M:Bubba.ChatRequest.GetResponseAsync(System.String)">
+        <member name="M:Bubba.ChatCompletionRequest.GetResponseAsync(System.String)">
             <inheritdoc />
             <summary>
             Gets the chat response asynchronous.
             </summary>
             <returns></returns>
         </member>
-        <member name="M:Bubba.ChatRequest.ExtractContent(System.String)">
+        <member name="M:Bubba.ChatCompletionRequest.ExtractContent(System.String)">
             <inheritdoc />
             <summary>
             Extracts the message from response.
@@ -20368,54 +21198,19 @@
             <param name="jsonResponse">The json response.</param>
             <returns></returns>
         </member>
-        <member name="T:Bubba.SpeechReqeust">
+        <member name="T:Bubba.TextGenerationRequest">
             <inheritdoc />
             <summary>
             </summary>
         </member>
-        <member name="F:Bubba.SpeechReqeust._file">
-            <summary>
-            The file
-            </summary>
-        </member>
-        <member name="F:Bubba.SpeechReqeust._voice">
-            <summary>
-            The voice
-            </summary>
-        </member>
-        <member name="F:Bubba.SpeechReqeust._language">
-            <summary>
-            The language
-            </summary>
-        </member>
-        <member name="F:Bubba.SpeechReqeust._speed">
-            <summary>
-            The speed
-            </summary>
-        </member>
-        <member name="F:Bubba.SpeechReqeust._inputText">
-            <summary>
-            The input
-            </summary>
-        </member>
-        <member name="F:Bubba.SpeechReqeust._audioData">
-            <summary>
-            The audio data
-            </summary>
-        </member>
-        <member name="F:Bubba.SpeechReqeust._audio">
-            <summary>
-            The audio
-            </summary>
-        </member>
-        <member name="M:Bubba.SpeechReqeust.#ctor">
+        <member name="M:Bubba.TextGenerationRequest.#ctor">
             <summary>
             Initializes a new instance of the
-            <see cref="T:Bubba.SpeechReqeust"/> class.
+            <see cref="T:Bubba.TextGenerationRequest"/> class.
             </summary>
             <inheritdoc />
         </member>
-        <member name="P:Bubba.SpeechReqeust.HttpClient">
+        <member name="P:Bubba.TextGenerationRequest.HttpClient">
             <inheritdoc />
             <summary>
             Gets or sets a value indicating whether this
@@ -20425,136 +21220,7 @@
               <c>true</c> if store; otherwise, <c>false</c>.
             </value>
         </member>
-        <member name="P:Bubba.SpeechReqeust.Messages">
-            <inheritdoc />
-            <summary>
-            Gets or sets the messages.
-            </summary>
-            <value>
-            The messages.
-            </value>
-        </member>
-        <member name="P:Bubba.SpeechReqeust.Language">
-            <summary>
-            Gets or sets the language.
-            </summary>
-            <value>
-            The language.
-            </value>
-        </member>
-        <member name="P:Bubba.SpeechReqeust.InputText">
-            <summary>
-            Gets or sets the input.
-            </summary>
-            <value>
-            The input.
-            </value>
-        </member>
-        <member name="P:Bubba.SpeechReqeust.Voice">
-            <summary>
-            Gets or sets the voice.
-            </summary>
-            <value>
-            The voice.
-            </value>
-        </member>
-        <member name="P:Bubba.SpeechReqeust.Speed">
-            <summary>
-            Gets or sets the speed.
-            </summary>
-            <value>
-            The speed.
-            </value>
-        </member>
-        <member name="P:Bubba.SpeechReqeust.Seed">
-            <inheritdoc />
-            <summary>
-            Gets or sets the seed.
-            </summary>
-            <value>
-            The seed.
-            </value>
-        </member>
-        <member name="P:Bubba.SpeechReqeust.File">
-            <summary>
-            Gets or sets the file path.
-            </summary>
-            <value>
-            The file path.
-            </value>
-        </member>
-        <member name="P:Bubba.SpeechReqeust.AudioData">
-            <summary>
-            Gets or sets the audio data.
-            </summary>
-            <value>
-            The audio data.
-            </value>
-        </member>
-        <member name="P:Bubba.SpeechReqeust.ResponseFormat">
-            <inheritdoc />
-            <summary>
-            Gets or sets the modalities.
-            </summary>
-            <value>
-            The modalities.
-            </value>
-        </member>
-        <member name="M:Bubba.SpeechReqeust.GetData">
-            <inheritdoc />
-            <summary>
-            Gets the data.
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:Bubba.SpeechReqeust.GetResponseAsync(System.String)">
-            <inheritdoc />
-            <summary>
-            Generates the speech asynchronous.
-            </summary>
-            <returns>
-            Task
-            </returns>
-        </member>
-        <member name="M:Bubba.SpeechReqeust.ExtractContent(System.String)">
-            <inheritdoc />
-            <summary>
-            Parses the generated speech.
-            </summary>
-            <param name="response">The json response.</param>
-            <returns>
-            string
-            </returns>
-        </member>
-        <member name="M:Bubba.SpeechReqeust.SaveAsync(System.String)">
-            <summary>
-            Saves the speech asynchronous.
-            </summary>
-            <param name="filePath">The file path.</param>
-        </member>
-        <member name="T:Bubba.TextRequest">
-            <inheritdoc />
-            <summary>
-            </summary>
-        </member>
-        <member name="M:Bubba.TextRequest.#ctor">
-            <summary>
-            Initializes a new instance of the
-            <see cref="T:Bubba.TextRequest"/> class.
-            </summary>
-            <inheritdoc />
-        </member>
-        <member name="P:Bubba.TextRequest.HttpClient">
-            <inheritdoc />
-            <summary>
-            Gets or sets a value indicating whether this
-            <see cref="P:Bubba.GptRequest.HttpClient" /> is store.
-            </summary>
-            <value>
-              <c>true</c> if store; otherwise, <c>false</c>.
-            </value>
-        </member>
-        <member name="P:Bubba.TextRequest.Model">
+        <member name="P:Bubba.TextGenerationRequest.Model">
             <summary>
             Gets the chat model.
             </summary>
@@ -20563,7 +21229,7 @@
             </value>
             <inheritdoc />
         </member>
-        <member name="P:Bubba.TextRequest.Messages">
+        <member name="P:Bubba.TextGenerationRequest.Messages">
             <inheritdoc />
             <summary>
             Gets or sets the messages.
@@ -20572,7 +21238,7 @@
             The messages.
             </value>
         </member>
-        <member name="P:Bubba.TextRequest.EndPoint">
+        <member name="P:Bubba.TextGenerationRequest.EndPoint">
             <inheritdoc />
             <summary>
             Gets the end point.
@@ -20581,7 +21247,7 @@
             The end point.
             </value>
         </member>
-        <member name="P:Bubba.TextRequest.Number">
+        <member name="P:Bubba.TextGenerationRequest.Number">
             <inheritdoc />
             <summary>
             THe number 'n' of responses returned by the API.
@@ -20590,7 +21256,7 @@
             The user identifier.
             </value>
         </member>
-        <member name="P:Bubba.TextRequest.MaxCompletionTokens">
+        <member name="P:Bubba.TextGenerationRequest.MaxCompletionTokens">
             <inheritdoc />
             <summary>
             Gets the maximum tokens.
@@ -20599,7 +21265,7 @@
             The maximum tokens.
             </value>
         </member>
-        <member name="P:Bubba.TextRequest.Store">
+        <member name="P:Bubba.TextGenerationRequest.Store">
             <inheritdoc />
             <summary>
             Gets or sets a value indicating whether this
@@ -20609,7 +21275,7 @@
               <c>true</c> if store; otherwise, <c>false</c>.
             </value>
         </member>
-        <member name="P:Bubba.TextRequest.Stream">
+        <member name="P:Bubba.TextGenerationRequest.Stream">
             <inheritdoc />
             <summary>
             Gets or sets a value indicating whether this
@@ -20619,7 +21285,7 @@
               <c>true</c> if stream; otherwise, <c>false</c>.
             </value>
         </member>
-        <member name="P:Bubba.TextRequest.Temperature">
+        <member name="P:Bubba.TextGenerationRequest.Temperature">
             <inheritdoc />
             <summary>
             A number between -2.0 and 2.0 Positive value decrease the
@@ -20629,7 +21295,7 @@
             The temperature.
             </value>
         </member>
-        <member name="P:Bubba.TextRequest.TopPercent">
+        <member name="P:Bubba.TextGenerationRequest.TopPercent">
             <inheritdoc />
             <summary>
             An alternative to sampling with temperature,
@@ -20643,7 +21309,7 @@
             The top percent.
             </value>
         </member>
-        <member name="P:Bubba.TextRequest.FrequencyPenalty">
+        <member name="P:Bubba.TextGenerationRequest.FrequencyPenalty">
             <inheritdoc />
             <summary>
             Number between -2.0 and 2.0. Positive values penalize new tokens
@@ -20654,7 +21320,7 @@
             The frequency.
             </value>
         </member>
-        <member name="P:Bubba.TextRequest.PresencePenalty">
+        <member name="P:Bubba.TextGenerationRequest.PresencePenalty">
             <inheritdoc />
             <summary>
             Number between -2.0 and 2.0. Positive values penalize new tokens
@@ -20665,14 +21331,14 @@
             The presence.
             </value>
         </member>
-        <member name="M:Bubba.TextRequest.GetResponseAsync(System.String)">
+        <member name="M:Bubba.TextGenerationRequest.GetResponseAsync(System.String)">
             <inheritdoc />
             <summary>
             Gets the text completion asynchronous.
             </summary>
             <returns></returns>
         </member>
-        <member name="M:Bubba.TextRequest.ExtractContent(System.String)">
+        <member name="M:Bubba.TextGenerationRequest.ExtractContent(System.String)">
             <inheritdoc />
             <summary>
             Extracts the content of the response.
@@ -20680,20 +21346,179 @@
             <param name="response">The json response.</param>
             <returns></returns>
         </member>
-        <member name="M:Bubba.TextRequest.GetData">
+        <member name="M:Bubba.TextGenerationRequest.GetData">
             <inheritdoc />
             <summary>
             Gets the data.
             </summary>
             <returns></returns>
         </member>
-        <member name="M:Bubba.TextRequest.ToString">
+        <member name="M:Bubba.TextGenerationRequest.ToString">
             <summary>
             Converts to string.
             </summary>
             <returns>
             A <see cref="T:System.String" /> that represents this instance.
             </returns>
+        </member>
+        <member name="T:Bubba.TextToSpeechReqeust">
+            <inheritdoc />
+            <summary>
+            </summary>
+        </member>
+        <member name="F:Bubba.TextToSpeechReqeust._file">
+            <summary>
+            The file
+            </summary>
+        </member>
+        <member name="F:Bubba.TextToSpeechReqeust._voice">
+            <summary>
+            The voice
+            </summary>
+        </member>
+        <member name="F:Bubba.TextToSpeechReqeust._language">
+            <summary>
+            The language
+            </summary>
+        </member>
+        <member name="F:Bubba.TextToSpeechReqeust._speed">
+            <summary>
+            The speed
+            </summary>
+        </member>
+        <member name="F:Bubba.TextToSpeechReqeust._audioData">
+            <summary>
+            The audio data
+            </summary>
+        </member>
+        <member name="F:Bubba.TextToSpeechReqeust._audio">
+            <summary>
+            The audio
+            </summary>
+        </member>
+        <member name="M:Bubba.TextToSpeechReqeust.#ctor">
+            <summary>
+            Initializes a new instance of the
+            <see cref="T:Bubba.TextToSpeechReqeust"/> class.
+            </summary>
+            <inheritdoc />
+        </member>
+        <member name="P:Bubba.TextToSpeechReqeust.HttpClient">
+            <inheritdoc />
+            <summary>
+            Gets or sets a value indicating whether this
+            <see cref="P:Bubba.GptRequest.HttpClient" /> is store.
+            </summary>
+            <value>
+              <c>true</c> if store; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:Bubba.TextToSpeechReqeust.Messages">
+            <inheritdoc />
+            <summary>
+            Gets or sets the messages.
+            </summary>
+            <value>
+            The messages.
+            </value>
+        </member>
+        <member name="P:Bubba.TextToSpeechReqeust.Language">
+            <summary>
+            Gets or sets the language.
+            </summary>
+            <value>
+            The language.
+            </value>
+        </member>
+        <member name="P:Bubba.TextToSpeechReqeust.InputText">
+            <summary>
+            Gets or sets the input.
+            </summary>
+            <value>
+            The input.
+            </value>
+        </member>
+        <member name="P:Bubba.TextToSpeechReqeust.Voice">
+            <summary>
+            Gets or sets the voice.
+            </summary>
+            <value>
+            The voice.
+            </value>
+        </member>
+        <member name="P:Bubba.TextToSpeechReqeust.Speed">
+            <summary>
+            Gets or sets the speed.
+            </summary>
+            <value>
+            The speed.
+            </value>
+        </member>
+        <member name="P:Bubba.TextToSpeechReqeust.Seed">
+            <inheritdoc />
+            <summary>
+            Gets or sets the seed.
+            </summary>
+            <value>
+            The seed.
+            </value>
+        </member>
+        <member name="P:Bubba.TextToSpeechReqeust.File">
+            <summary>
+            Gets or sets the file path.
+            </summary>
+            <value>
+            The file path.
+            </value>
+        </member>
+        <member name="P:Bubba.TextToSpeechReqeust.AudioData">
+            <summary>
+            Gets or sets the audio data.
+            </summary>
+            <value>
+            The audio data.
+            </value>
+        </member>
+        <member name="P:Bubba.TextToSpeechReqeust.ResponseFormat">
+            <inheritdoc />
+            <summary>
+            Gets or sets the modalities.
+            </summary>
+            <value>
+            The modalities.
+            </value>
+        </member>
+        <member name="M:Bubba.TextToSpeechReqeust.GetData">
+            <inheritdoc />
+            <summary>
+            Gets the data.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Bubba.TextToSpeechReqeust.GetResponseAsync(System.String)">
+            <inheritdoc />
+            <summary>
+            Generates the speech asynchronous.
+            </summary>
+            <returns>
+            Task
+            </returns>
+        </member>
+        <member name="M:Bubba.TextToSpeechReqeust.ExtractContent(System.String)">
+            <inheritdoc />
+            <summary>
+            Parses the generated speech.
+            </summary>
+            <param name="response">The json response.</param>
+            <returns>
+            string
+            </returns>
+        </member>
+        <member name="M:Bubba.TextToSpeechReqeust.SaveAsync(System.String)">
+            <summary>
+            Saves the speech asynchronous.
+            </summary>
+            <param name="filePath">The file path.</param>
         </member>
         <member name="T:Bubba.TranscriptionRequest">
             <inheritdoc />
@@ -21626,9 +22451,29 @@
             The usage
             </summary>
         </member>
+        <member name="F:Bubba.GptResponse._error">
+            <summary>
+            The error
+            </summary>
+        </member>
         <member name="F:Bubba.GptResponse._status">
             <summary>
             The status
+            </summary>
+        </member>
+        <member name="F:Bubba.GptResponse._metaData">
+            <summary>
+            The meta data
+            </summary>
+        </member>
+        <member name="F:Bubba.GptResponse._maxToolCalls">
+            <summary>
+            The maximum tool calls
+            </summary>
+        </member>
+        <member name="F:Bubba.GptResponse._output">
+            <summary>
+            The output
             </summary>
         </member>
         <member name="M:Bubba.GptResponse.#ctor">
@@ -21638,12 +22483,12 @@
             <see cref="T:Bubba.GptResponse" /> class.
             </summary>
         </member>
-        <member name="M:Bubba.GptResponse.#ctor(Bubba.GptRequest)">
+        <member name="M:Bubba.GptResponse.#ctor(Bubba.GptResponse)">
             <inheritdoc />
             <summary>
             Initializes a new instance of the <see cref="T:Bubba.GptResponse" /> class.
             </summary>
-            <param name="request">The request.</param>
+            <param name="response">The request.</param>
         </member>
         <member name="P:Bubba.GptResponse.Id">
             <summary>
@@ -21659,6 +22504,22 @@
             </summary>
             <value>
             The maximum output tokens.
+            </value>
+        </member>
+        <member name="P:Bubba.GptResponse.MetaData">
+            <summary>
+            Gets or sets the meta data.
+            </summary>
+            <value>
+            The meta data.
+            </value>
+        </member>
+        <member name="P:Bubba.GptResponse.MaxToolCalls">
+            <summary>
+            Gets or sets the maximum tool calls.
+            </summary>
+            <value>
+            The maximum tool calls.
             </value>
         </member>
         <member name="P:Bubba.GptResponse.Object">
@@ -21709,6 +22570,14 @@
             The usage.
             </value>
         </member>
+        <member name="P:Bubba.GptResponse.Output">
+            <summary>
+            Gets or sets the output.
+            </summary>
+            <value>
+            The output.
+            </value>
+        </member>
         <member name="M:Bubba.GptResponse.ExtractContent(System.String)">
             <summary>
             Extracts the message from response.
@@ -21737,34 +22606,34 @@
             <c>false</c> to release only unmanaged resources.
             </param>
         </member>
-        <member name="T:Bubba.ImageResponse">
+        <member name="T:Bubba.ImageGenerationResponse">
             <inheritdoc />
             <summary>
             </summary>
         </member>
-        <member name="F:Bubba.ImageResponse._resourceLocations">
+        <member name="F:Bubba.ImageGenerationResponse._resourceLocations">
             <summary>
             The resource locations
             </summary>
         </member>
-        <member name="F:Bubba.ImageResponse._transcribedText">
+        <member name="F:Bubba.ImageGenerationResponse._transcribedText">
             <summary>
             The transcribed text
             </summary>
         </member>
-        <member name="F:Bubba.ImageResponse._rawResponse">
+        <member name="F:Bubba.ImageGenerationResponse._rawResponse">
             <summary>
             The raw response
             </summary>
         </member>
-        <member name="M:Bubba.ImageResponse.#ctor">
+        <member name="M:Bubba.ImageGenerationResponse.#ctor">
             <summary>
             Initializes a new instance of the
-            <see cref="T:Bubba.ImageResponse"/> class.
+            <see cref="T:Bubba.ImageGenerationResponse"/> class.
             </summary>
             <inheritdoc />
         </member>
-        <member name="M:Bubba.ImageResponse.#ctor(Bubba.ImageGenerationRequest)">
+        <member name="M:Bubba.ImageGenerationResponse.#ctor(Bubba.ImageGenerationResponse)">
             <inheritdoc />
             <summary>
             Initializes a new instance of the
@@ -21772,7 +22641,7 @@
             </summary>
             <param name="request">The request.</param>
         </member>
-        <member name="P:Bubba.ImageResponse.ResourceLocations">
+        <member name="P:Bubba.ImageGenerationResponse.ResourceLocations">
             <summary>
             Gets or sets the image urls.
             </summary>
@@ -21780,7 +22649,7 @@
             The image urls.
             </value>
         </member>
-        <member name="P:Bubba.ImageResponse.TranscribedText">
+        <member name="P:Bubba.ImageGenerationResponse.TranscribedText">
             <summary>
             Gets or sets the transcribed text.
             </summary>
@@ -21788,7 +22657,7 @@
             The transcribed text.
             </value>
         </member>
-        <member name="P:Bubba.ImageResponse.RawResponse">
+        <member name="P:Bubba.ImageGenerationResponse.RawResponse">
             <summary>
             Gets or sets the raw response.
             </summary>
@@ -21796,7 +22665,7 @@
             The raw response.
             </value>
         </member>
-        <member name="P:Bubba.ImageResponse.Id">
+        <member name="P:Bubba.ImageGenerationResponse.Id">
             <inheritdoc />
             <summary>
             Gets or sets the identifier.
@@ -21805,7 +22674,7 @@
             The identifier.
             </value>
         </member>
-        <member name="P:Bubba.ImageResponse.Object">
+        <member name="P:Bubba.ImageGenerationResponse.Object">
             <inheritdoc />
             <summary>
             Gets or sets the object.
@@ -21814,7 +22683,7 @@
             The object.
             </value>
         </member>
-        <member name="P:Bubba.ImageResponse.Created">
+        <member name="P:Bubba.ImageGenerationResponse.Created">
             <inheritdoc />
             <summary>
             Gets or sets the created.
@@ -21823,7 +22692,7 @@
             The created.
             </value>
         </member>
-        <member name="P:Bubba.ImageResponse.Model">
+        <member name="P:Bubba.ImageGenerationResponse.Model">
             <inheritdoc />
             <summary>
             Gets or sets the model.
@@ -21832,7 +22701,7 @@
             The model.
             </value>
         </member>
-        <member name="P:Bubba.ImageResponse.Choices">
+        <member name="P:Bubba.ImageGenerationResponse.Choices">
             <inheritdoc />
             <summary>
             Gets or sets the choices.
@@ -21841,7 +22710,7 @@
             The choices.
             </value>
         </member>
-        <member name="P:Bubba.ImageResponse.Usage">
+        <member name="P:Bubba.ImageGenerationResponse.Usage">
             <inheritdoc />
             <summary>
             Gets or sets the usage.
@@ -21850,14 +22719,14 @@
             The usage.
             </value>
         </member>
-        <member name="M:Bubba.ImageResponse.ExtractImage(System.String)">
+        <member name="M:Bubba.ImageGenerationResponse.ExtractImage(System.String)">
             <summary>
             Extracts the image.
             </summary>
             <param name="jsonResponse">The json response.</param>
             <returns></returns>
         </member>
-        <member name="M:Bubba.ImageResponse.ExtractResponseData(System.String,System.String)">
+        <member name="M:Bubba.ImageGenerationResponse.ExtractResponseData(System.String,System.String)">
             <summary>
             Extracts the message from response.
             </summary>
@@ -21865,136 +22734,29 @@
             <param name="chatModel">The chat model.</param>
             <returns></returns>
         </member>
-        <member name="T:Bubba.SpeechResponse">
+        <member name="T:Bubba.TextGenerationResponse">
             <inheritdoc />
             <summary>
             </summary>
         </member>
-        <member name="F:Bubba.SpeechResponse._text">
-            <summary>
-            The text
-            </summary>
-        </member>
-        <member name="F:Bubba.SpeechResponse._rawResponse">
-            <summary>
-            The raw response
-            </summary>
-        </member>
-        <member name="M:Bubba.SpeechResponse.#ctor">
-            <summary>
-            Initializes a new instance of the
-            <see cref="T:Bubba.SpeechResponse"/> class.
-            </summary>
-            <inheritdoc />
-        </member>
-        <member name="P:Bubba.SpeechResponse.Text">
-            <summary>
-            Gets or sets the transcribed text.
-            </summary>
-            <value>
-            The transcribed text.
-            </value>
-        </member>
-        <member name="P:Bubba.SpeechResponse.RawResponse">
-            <summary>
-            Gets or sets the raw response.
-            </summary>
-            <value>
-            The raw response.
-            </value>
-        </member>
-        <member name="P:Bubba.SpeechResponse.Id">
-            <inheritdoc />
-            <summary>
-            Gets or sets the identifier.
-            </summary>
-            <value>
-            The identifier.
-            </value>
-        </member>
-        <member name="P:Bubba.SpeechResponse.Object">
-            <inheritdoc />
-            <summary>
-            Gets or sets the object.
-            </summary>
-            <value>
-            The object.
-            </value>
-        </member>
-        <member name="P:Bubba.SpeechResponse.Created">
-            <inheritdoc />
-            <summary>
-            Gets or sets the created.
-            </summary>
-            <value>
-            The created.
-            </value>
-        </member>
-        <member name="P:Bubba.SpeechResponse.Model">
-            <inheritdoc />
-            <summary>
-            Gets or sets the model.
-            </summary>
-            <value>
-            The model.
-            </value>
-        </member>
-        <member name="P:Bubba.SpeechResponse.Choices">
-            <inheritdoc />
-            <summary>
-            Gets or sets the choices.
-            </summary>
-            <value>
-            The choices.
-            </value>
-        </member>
-        <member name="P:Bubba.SpeechResponse.Usage">
-            <inheritdoc />
-            <summary>
-            Gets or sets the usage.
-            </summary>
-            <value>
-            The usage.
-            </value>
-        </member>
-        <member name="M:Bubba.SpeechResponse.ExtractAudioText(System.String)">
-            <summary>
-            Extracts the audio text.
-            </summary>
-            <param name="jsonResponse">The json response.</param>
-            <returns></returns>
-        </member>
-        <member name="M:Bubba.SpeechResponse.ExtractResponseData(System.String,System.String)">
-            <summary>
-            Extracts the message from response.
-            </summary>
-            <param name="jsonResponse">The json response.</param>
-            <param name="chatModel">The chat model.</param>
-            <returns></returns>
-        </member>
-        <member name="T:Bubba.TextResponse">
-            <inheritdoc />
-            <summary>
-            </summary>
-        </member>
-        <member name="F:Bubba.TextResponse._generatedText">
+        <member name="F:Bubba.TextGenerationResponse._generatedText">
             <summary>
             The transcribed text
             </summary>
         </member>
-        <member name="F:Bubba.TextResponse._rawResponse">
+        <member name="F:Bubba.TextGenerationResponse._rawResponse">
             <summary>
             The raw response
             </summary>
         </member>
-        <member name="M:Bubba.TextResponse.#ctor">
+        <member name="M:Bubba.TextGenerationResponse.#ctor">
             <summary>
             Initializes a new instance of the
-            <see cref="T:Bubba.TextResponse"/> class.
+            <see cref="T:Bubba.TextGenerationResponse"/> class.
             </summary>
             <inheritdoc />
         </member>
-        <member name="M:Bubba.TextResponse.#ctor(System.String)">
+        <member name="M:Bubba.TextGenerationResponse.#ctor(System.String)">
             <inheritdoc />
             <summary>
             Initializes a new instance of the
@@ -22002,16 +22764,15 @@
             </summary>
             <param name="response">The request.</param>
         </member>
-        <member name="P:Bubba.TextResponse.GeneratedText">
+        <member name="P:Bubba.TextGenerationResponse.GeneratedText">
             <summary>
             Gets or sets the generated text.
             </summary>
             <value>
             The generated text.
             </value>
-            
         </member>
-        <member name="P:Bubba.TextResponse.RawResponse">
+        <member name="P:Bubba.TextGenerationResponse.RawResponse">
             <summary>
             Gets or sets the raw response.
             </summary>
@@ -22019,7 +22780,7 @@
             The raw response.
             </value>
         </member>
-        <member name="P:Bubba.TextResponse.Id">
+        <member name="P:Bubba.TextGenerationResponse.Id">
             <inheritdoc />
             <summary>
             Gets or sets the identifier.
@@ -22028,7 +22789,7 @@
             The identifier.
             </value>
         </member>
-        <member name="P:Bubba.TextResponse.Object">
+        <member name="P:Bubba.TextGenerationResponse.Object">
             <inheritdoc />
             <summary>
             Gets or sets the object.
@@ -22037,7 +22798,7 @@
             The object.
             </value>
         </member>
-        <member name="P:Bubba.TextResponse.Created">
+        <member name="P:Bubba.TextGenerationResponse.Created">
             <inheritdoc />
             <summary>
             Gets or sets the created.
@@ -22046,7 +22807,7 @@
             The created.
             </value>
         </member>
-        <member name="P:Bubba.TextResponse.Model">
+        <member name="P:Bubba.TextGenerationResponse.Model">
             <inheritdoc />
             <summary>
             Gets or sets the model.
@@ -22055,7 +22816,7 @@
             The model.
             </value>
         </member>
-        <member name="P:Bubba.TextResponse.Choices">
+        <member name="P:Bubba.TextGenerationResponse.Choices">
             <inheritdoc />
             <summary>
             Gets or sets the choices.
@@ -22064,7 +22825,7 @@
             The choices.
             </value>
         </member>
-        <member name="P:Bubba.TextResponse.Usage">
+        <member name="P:Bubba.TextGenerationResponse.Usage">
             <inheritdoc />
             <summary>
             Gets or sets the usage.
@@ -22073,7 +22834,7 @@
             The usage.
             </value>
         </member>
-        <member name="M:Bubba.TextResponse.ToString">
+        <member name="M:Bubba.TextGenerationResponse.ToString">
             <inheritdoc />
             <summary>
             Converts to string.
@@ -22082,6 +22843,113 @@
             A <see cref="T:System.String" />
             that represents this instance.
             </returns>
+        </member>
+        <member name="T:Bubba.TextToSpeechResponse">
+            <inheritdoc />
+            <summary>
+            </summary>
+        </member>
+        <member name="F:Bubba.TextToSpeechResponse._text">
+            <summary>
+            The text
+            </summary>
+        </member>
+        <member name="F:Bubba.TextToSpeechResponse._rawResponse">
+            <summary>
+            The raw response
+            </summary>
+        </member>
+        <member name="M:Bubba.TextToSpeechResponse.#ctor">
+            <summary>
+            Initializes a new instance of the
+            <see cref="T:Bubba.TextToSpeechResponse"/> class.
+            </summary>
+            <inheritdoc />
+        </member>
+        <member name="P:Bubba.TextToSpeechResponse.Text">
+            <summary>
+            Gets or sets the transcribed text.
+            </summary>
+            <value>
+            The transcribed text.
+            </value>
+        </member>
+        <member name="P:Bubba.TextToSpeechResponse.RawResponse">
+            <summary>
+            Gets or sets the raw response.
+            </summary>
+            <value>
+            The raw response.
+            </value>
+        </member>
+        <member name="P:Bubba.TextToSpeechResponse.Id">
+            <inheritdoc />
+            <summary>
+            Gets or sets the identifier.
+            </summary>
+            <value>
+            The identifier.
+            </value>
+        </member>
+        <member name="P:Bubba.TextToSpeechResponse.Object">
+            <inheritdoc />
+            <summary>
+            Gets or sets the object.
+            </summary>
+            <value>
+            The object.
+            </value>
+        </member>
+        <member name="P:Bubba.TextToSpeechResponse.Created">
+            <inheritdoc />
+            <summary>
+            Gets or sets the created.
+            </summary>
+            <value>
+            The created.
+            </value>
+        </member>
+        <member name="P:Bubba.TextToSpeechResponse.Model">
+            <inheritdoc />
+            <summary>
+            Gets or sets the model.
+            </summary>
+            <value>
+            The model.
+            </value>
+        </member>
+        <member name="P:Bubba.TextToSpeechResponse.Choices">
+            <inheritdoc />
+            <summary>
+            Gets or sets the choices.
+            </summary>
+            <value>
+            The choices.
+            </value>
+        </member>
+        <member name="P:Bubba.TextToSpeechResponse.Usage">
+            <inheritdoc />
+            <summary>
+            Gets or sets the usage.
+            </summary>
+            <value>
+            The usage.
+            </value>
+        </member>
+        <member name="M:Bubba.TextToSpeechResponse.ExtractAudioText(System.String)">
+            <summary>
+            Extracts the audio text.
+            </summary>
+            <param name="jsonResponse">The json response.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Bubba.TextToSpeechResponse.ExtractResponseData(System.String,System.String)">
+            <summary>
+            Extracts the message from response.
+            </summary>
+            <param name="jsonResponse">The json response.</param>
+            <param name="chatModel">The chat model.</param>
+            <returns></returns>
         </member>
         <member name="T:Bubba.TranscriptionResponse">
             <inheritdoc />
@@ -22549,6 +23417,12 @@
             <see cref="T:Bubba.FunctionCall"/> class.
             </summary>
         </member>
+        <member name="M:Bubba.FunctionCall.Fail(System.Exception)">
+            <summary>
+            Wraps error
+            </summary>
+            <param name="ex">The ex.</param>
+        </member>
         <member name="T:Bubba.GptTool">
             <summary>
             
@@ -22597,6 +23471,49 @@
             Initializes a new instance of the <see cref="T:Bubba.ImageGeneration"/> class.
             </summary>
         </member>
+        <member name="T:Bubba.ToolCall">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Bubba.ToolCall._id">
+            <summary>
+            The identifier
+            </summary>
+        </member>
+        <member name="F:Bubba.ToolCall._type">
+            <summary>
+            The type
+            </summary>
+        </member>
+        <member name="M:Bubba.ToolCall.#ctor">
+            <summary>
+            Initializes a new instance of the
+            <see cref="T:Bubba.ToolCall"/> class.
+            </summary>
+        </member>
+        <member name="P:Bubba.ToolCall.Id">
+            <summary>
+            Gets or sets the identifier.
+            </summary>
+            <value>
+            The identifier.
+            </value>
+        </member>
+        <member name="P:Bubba.ToolCall.Type">
+            <summary>
+            Gets or sets the type.
+            </summary>
+            <value>
+            The type.
+            </value>
+        </member>
+        <member name="M:Bubba.ToolCall.Fail(System.Exception)">
+            <summary>
+            Wraps error
+            </summary>
+            <param name="ex">The ex.</param>
+        </member>
         <member name="T:Bubba.WebSearch">
             <summary>
             
@@ -22607,82 +23524,6 @@
             Initializes a new instance of the
             <see cref="T:Bubba.WebSearch"/> class.
             </summary>
-        </member>
-        <member name="T:Bubba.UserLocation">
-            <summary>
-            
-            </summary>
-            <seealso cref="T:Bubba.PropertyChangedBase" />
-        </member>
-        <member name="F:Bubba.UserLocation._city">
-            <summary>
-            The city
-            </summary>
-        </member>
-        <member name="F:Bubba.UserLocation._region">
-            <summary>
-            The region
-            </summary>
-        </member>
-        <member name="F:Bubba.UserLocation._country">
-            <summary>
-            The country
-            </summary>
-        </member>
-        <member name="F:Bubba.UserLocation._state">
-            <summary>
-            The state
-            </summary>
-        </member>
-        <member name="F:Bubba.UserLocation._zipCode">
-            <summary>
-            The zip code
-            </summary>
-        </member>
-        <member name="M:Bubba.UserLocation.#ctor">
-            <summary>
-            Initializes a new instance of the
-            <see cref="T:Bubba.UserLocation"/> class.
-            </summary>
-        </member>
-        <member name="P:Bubba.UserLocation.City">
-            <summary>
-            Gets or sets the city.
-            </summary>
-            <value>
-            The city.
-            </value>
-        </member>
-        <member name="P:Bubba.UserLocation.Region">
-            <summary>
-            Gets or sets the region.
-            </summary>
-            <value>
-            The region.
-            </value>
-        </member>
-        <member name="P:Bubba.UserLocation.State">
-            <summary>
-            Gets or sets the state.
-            </summary>
-            <value>
-            The state.
-            </value>
-        </member>
-        <member name="P:Bubba.UserLocation.ZipCode">
-            <summary>
-            Gets or sets the zip code.
-            </summary>
-            <value>
-            The zip code.
-            </value>
-        </member>
-        <member name="M:Bubba.UserLocation.Fail(System.Exception)">
-            <summary>
-            Fails the specified ex.
-            
-            </summary>
-            <param name="ex">The ex.</param>
         </member>
         <member name="T:Bubba.HtmlAttribute">
             <inheritdoc />
@@ -35998,306 +36839,6 @@
             <param name="ex">The ex.</param>
         </member>
         <member name="M:Bubba.GptFileDialog.InitializeComponent">
-            <summary>
-            InitializeComponent
-            </summary>
-        </member>
-        <member name="T:Bubba.GptImageDialog">
-            <summary>
-            Interaction logic for GptImageDialog.xaml
-            </summary>
-            <summary>
-            GptImageDialog
-            </summary>
-        </member>
-        <member name="F:Bubba.GptImageDialog._busy">
-            <summary>
-            The busy
-            </summary>
-        </member>
-        <member name="F:Bubba.GptImageDialog._count">
-            <summary>
-            The count
-            </summary>
-        </member>
-        <member name="F:Bubba.GptImageDialog._data">
-            <summary>
-            The data
-            </summary>
-        </member>
-        <member name="F:Bubba.GptImageDialog._duration">
-            <summary>
-            The duration
-            </summary>
-        </member>
-        <member name="F:Bubba.GptImageDialog._extension">
-            <summary>
-            The extension
-            </summary>
-        </member>
-        <member name="F:Bubba.GptImageDialog._fileExtension">
-            <summary>
-            The file extension
-            </summary>
-        </member>
-        <member name="F:Bubba.GptImageDialog._filePaths">
-            <summary>
-            The file paths
-            </summary>
-        </member>
-        <member name="F:Bubba.GptImageDialog._image">
-            <summary>
-            The image
-            </summary>
-        </member>
-        <member name="F:Bubba.GptImageDialog._initialDirectory">
-            <summary>
-            The initial directory
-            </summary>
-        </member>
-        <member name="F:Bubba.GptImageDialog._initialPaths">
-            <summary>
-            The initial dir paths
-            </summary>
-        </member>
-        <member name="F:Bubba.GptImageDialog._entry">
-            <summary>
-            The locked object
-            </summary>
-        </member>
-        <member name="F:Bubba.GptImageDialog._radioButtons">
-            <summary>
-            The radio buttons
-            </summary>
-        </member>
-        <member name="F:Bubba.GptImageDialog._seconds">
-            <summary>
-            The seconds
-            </summary>
-        </member>
-        <member name="F:Bubba.GptImageDialog._selectedFile">
-            <summary>
-            The selected file
-            </summary>
-        </member>
-        <member name="F:Bubba.GptImageDialog._selectedPath">
-            <summary>
-            The selected path
-            </summary>
-        </member>
-        <member name="F:Bubba.GptImageDialog._statusUpdate">
-            <summary>
-            The status update
-            </summary>
-        </member>
-        <member name="F:Bubba.GptImageDialog._theme">
-            <summary>
-            The theme
-            </summary>
-        </member>
-        <member name="F:Bubba.GptImageDialog._time">
-            <summary>
-            The time
-            </summary>
-        </member>
-        <member name="F:Bubba.GptImageDialog._timer">
-            <summary>
-            The timer
-            </summary>
-        </member>
-        <member name="F:Bubba.GptImageDialog._timerCallback">
-            <summary>
-            The timer
-            </summary>
-        </member>
-        <member name="E:Bubba.GptImageDialog.PropertyChanged">
-            <inheritdoc />
-            <summary>
-            Occurs when a property value changes.
-            </summary>
-        </member>
-        <member name="F:Bubba.GptImageDialog._httpClient">
-            <summary>
-            The HTTP client
-            </summary>
-        </member>
-        <member name="M:Bubba.GptImageDialog.#ctor">
-            <inheritdoc />
-            <summary>
-            Initializes a new instance of the
-            <see cref="T:Bubba.GptImageDialog" /> class.
-            </summary>
-        </member>
-        <member name="P:Bubba.GptImageDialog.SelectedPath">
-            <summary>
-            Gets or sets the selected path.
-            </summary>
-            <value>
-            The selected path.
-            </value>
-        </member>
-        <member name="P:Bubba.GptImageDialog.SelectedFile">
-            <summary>
-            Gets or sets the selected file.
-            </summary>
-            <value>
-            The selected file.
-            </value>
-        </member>
-        <member name="P:Bubba.GptImageDialog.IsBusy">
-            <summary>
-            Gets a value indicating whether this instance is busy.
-            </summary>
-            <value>
-            <c> true </c>
-            if this instance is busy; otherwise,
-            <c> false </c>
-            </value>
-        </member>
-        <member name="M:Bubba.GptImageDialog.RegisterCallbacks">
-            <summary>
-            Initializes the callbacks.
-            </summary>
-        </member>
-        <member name="M:Bubba.GptImageDialog.InitializeDelegates">
-            <summary>
-            Initializes the delegates.
-            </summary>
-        </member>
-        <member name="M:Bubba.GptImageDialog.InitializeLabels">
-            <summary>
-            Initializes the labels.
-            </summary>
-        </member>
-        <member name="M:Bubba.GptImageDialog.InitializeTimer">
-            <summary>
-            Initializes the timer.
-            </summary>
-        </member>
-        <member name="M:Bubba.GptImageDialog.InitializeButtons">
-            <summary>
-            Initializes the buttons.
-            </summary>
-        </member>
-        <member name="M:Bubba.GptImageDialog.InvokeIf(System.Action)">
-            <summary>
-            Invokes if needed.
-            </summary>
-            <param name="action">The action.</param>
-        </member>
-        <member name="M:Bubba.GptImageDialog.InvokeIf(System.Action{System.Object})">
-            <summary>
-            Invokes if.
-            </summary>
-            <param name="action">The action.</param>
-        </member>
-        <member name="M:Bubba.GptImageDialog.Busy">
-            <summary>
-            Begins the initialize.
-            </summary>
-        </member>
-        <member name="M:Bubba.GptImageDialog.Chill">
-            <summary>
-            Ends the initialize.
-            </summary>
-        </member>
-        <member name="M:Bubba.GptImageDialog.ClearCallbacks">
-            <summary>
-            Clears the callbacks.
-            </summary>
-        </member>
-        <member name="M:Bubba.GptImageDialog.ClearDelegates">
-            <summary>
-            Clears the delegates.
-            </summary>
-        </member>
-        <member name="M:Bubba.GptImageDialog.SendNotification(System.String)">
-            <summary>
-            Sends the notification.
-            </summary>
-            <param name="message">
-            The message.
-            </param>
-        </member>
-        <member name="M:Bubba.GptImageDialog.SendMessage(System.String)">
-            <summary>
-            Shows the splash message.
-            </summary>
-        </member>
-        <member name="M:Bubba.GptImageDialog.UpdateStatus">
-            <summary>
-            Updates the status.
-            </summary>
-        </member>
-        <member name="M:Bubba.GptImageDialog.UpdateStatus(System.Object)">
-            <summary>
-            Updates the status.
-            </summary>
-        </member>
-        <member name="M:Bubba.GptImageDialog.CreateInitialDirectoryPaths">
-            <summary>
-            Gets the initial dir paths.
-            </summary>
-            <returns>
-            IList(string)
-            </returns>
-        </member>
-        <member name="M:Bubba.GptImageDialog.OnLoaded(System.Object,System.EventArgs)">
-            <summary>
-            Called when [load].
-            </summary>
-            <param name="sender">The sender.</param>
-            <param name="e">The <see cref="T:System.EventArgs"/>
-            instance containing the event data.</param>
-        </member>
-        <member name="M:Bubba.GptImageDialog.OnClosing(System.Object,System.ComponentModel.CancelEventArgs)">
-            <summary>
-            Called when [closing].
-            </summary>
-            <param name="sender">The sender.</param>
-            <param name="e">The <see cref="T:System.Windows.RoutedEventArgs"/>
-            instance containing the event data.</param>
-        </member>
-        <member name="M:Bubba.GptImageDialog.OnCloseButtonClick(System.Object,System.Windows.RoutedEventArgs)">
-            <summary>
-            Called when [close button click].
-            </summary>
-            <param name="sender">The sender.</param>
-            <param name="e">The <see cref="T:System.Windows.RoutedEventArgs"/>
-            instance containing the event data.</param>
-        </member>
-        <member name="M:Bubba.GptImageDialog.OnPropertyChanged(System.String)">
-            <summary>
-            Called when [property changed].
-            </summary>
-            <param name="propertyName">Name of the property.</param>
-        </member>
-        <member name="M:Bubba.GptImageDialog.Dispose">
-            <inheritdoc />
-            <summary>
-            Performs application-defined tasks
-            associated with freeing, releasing,
-            or resetting unmanaged resources.
-            </summary>
-        </member>
-        <member name="M:Bubba.GptImageDialog.Dispose(System.Boolean)">
-            <summary>
-            Releases unmanaged and - optionally - managed resources.
-            </summary>
-            <param name="disposing">
-            <c>true</c>
-            to release both managed
-            and unmanaged resources;
-            <c>false</c> to release only unmanaged resources.
-            </param>
-        </member>
-        <member name="M:Bubba.GptImageDialog.Fail(System.Exception)">
-            <summary>
-            Fails the specified ex.
-            </summary>
-            <param name="ex">The ex.</param>
-        </member>
-        <member name="M:Bubba.GptImageDialog.InitializeComponent">
             <summary>
             InitializeComponent
             </summary>

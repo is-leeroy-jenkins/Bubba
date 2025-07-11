@@ -43,6 +43,7 @@ namespace Bubba
 {
     using System;
     using System.Diagnostics.CodeAnalysis;
+    using System.Text.Json.Serialization;
 
     /// <summary>
     /// 
@@ -74,6 +75,7 @@ namespace Bubba
         /// <value>
         /// The name.
         /// </value>
+        [ JsonPropertyName( "name" ) ]
         public string Name
         {
             get
@@ -92,6 +94,7 @@ namespace Bubba
         /// <value>
         /// The type.
         /// </value>
+        [ JsonPropertyName( "type" ) ]
         public string Type
         {
             get
