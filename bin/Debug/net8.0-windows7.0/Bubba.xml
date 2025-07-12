@@ -34441,11 +34441,6 @@
             The cancel requests.
             </value>
         </member>
-        <member name="M:Bubba.ChatWindow.InitializePlotter">
-            <summary>
-            Initializes the plotter.
-            </summary>
-        </member>
         <member name="M:Bubba.ChatWindow.InitializeDelegates">
             <summary>
             Initializes the delegates.
@@ -34459,6 +34454,11 @@
         <member name="M:Bubba.ChatWindow.InitializeToolStrip">
             <summary>
             Initializes the tool strip.
+            </summary>
+        </member>
+        <member name="M:Bubba.ChatWindow.InitializeUrlPanel">
+            <summary>
+            Initializes the URL panel.
             </summary>
         </member>
         <member name="M:Bubba.ChatWindow.InitializeEditor">

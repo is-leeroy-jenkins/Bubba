@@ -790,41 +790,6 @@ namespace Bubba
         }
 
         /// <summary>
-        /// Initializes the plotter.
-        /// </summary>
-        private protected void InitializePlotter( )
-        {
-            try
-            {
-                Plotter.Plot.Clear( );
-                var  _x = new[ ]
-                {
-                    1,
-                    2,
-                    3,
-                    4,
-                    5
-                };
-
-                var _y = new[ ]
-                {
-                    1,
-                    4,
-                    9,
-                    16,
-                    25
-                };
-
-                Plotter.Plot.Add.Scatter( _x, _y );
-                Plotter.Refresh( );
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
-            }
-        }
-
-        /// <summary>
         /// Initializes the delegates.
         /// </summary>
         private void InitializeDelegates( )
@@ -863,6 +828,21 @@ namespace Bubba
             try
             {
                 SetToolbarVisibility( true );
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+            }
+        }
+
+        /// <summary>
+        /// Initializes the URL panel.
+        /// </summary>
+        private void InitializeUrlPanel( )
+        {
+            try
+            {
+                SetUrlPanelVisibility( true );
             }
             catch( Exception ex )
             {
@@ -4497,19 +4477,19 @@ namespace Bubba
             {
                 if( visible )
                 {
-                    UrlForwardButton.Visibility = Visibility.Visible;
-                    UrlBackButton.Visibility = Visibility.Visible;
-                    UrlCancelButton.Visibility = Visibility.Visible;
-                    UrlHomeButton.Visibility = Visibility.Hidden;
-                    UrlRefreshButton.Visibility = Visibility.Visible;
+                    EnableUrlForwardButton( Browser.CanGoForward );
+                    EnableUrlBackButton( Browser.CanGoBack );
+                    EnableUrlCancelButton( Browser.IsLoading );
+                    EnableUrlHomeButton( visible );
+                    EnableUrlRefreshButton( visible );
                 }
                 else
                 {
-                    UrlForwardButton.Visibility = Visibility.Hidden;
-                    UrlBackButton.Visibility = Visibility.Hidden;
-                    UrlCancelButton.Visibility = Visibility.Hidden;
-                    UrlHomeButton.Visibility = Visibility.Visible;
-                    UrlRefreshButton.Visibility = Visibility.Hidden;
+                    EnableUrlForwardButton( Browser.CanGoForward );
+                    EnableUrlBackButton( Browser.CanGoBack );
+                    EnableUrlCancelButton( Browser.IsLoading );
+                    EnableUrlHomeButton( visible );
+                    EnableUrlRefreshButton( visible );
                 }
             }
             catch( Exception ex )
@@ -4620,10 +4600,10 @@ namespace Bubba
             PopulateRequestTypes( );
             PopulateVoices( );
             InitializeCommands( );
-            InitializePlotter( );
             InitializeHotkeys( );
             InitializeTimer( );
             InitializeToolStrip( );
+            InitializeUrlPanel( );
             InitializeEditor( );
             App.ActiveWindows.Add( "ChatWindow", this );
             InitializeInterface( );
