@@ -59,23 +59,23 @@
             },
             "CefSharp.Common": {
               "target": "Package",
-              "version": "[137.0.100, )"
+              "version": "[138.0.170, )"
             },
             "CefSharp.Common.NETCore": {
               "target": "Package",
-              "version": "[137.0.100, )"
+              "version": "[138.0.170, )"
             },
             "CefSharp.OffScreen.NETCore": {
               "target": "Package",
-              "version": "[137.0.100, )"
+              "version": "[138.0.170, )"
             },
             "CefSharp.WinForms.NETCore": {
               "target": "Package",
-              "version": "[137.0.100, )"
+              "version": "[138.0.170, )"
             },
             "CefSharp.Wpf.NETCore": {
               "target": "Package",
-              "version": "[137.0.100, )"
+              "version": "[138.0.170, )"
             },
             "EPPlus": {
               "target": "Package",
@@ -289,15 +289,15 @@
             },
             "chromiumembeddedframework.runtime.win-arm64": {
               "target": "Package",
-              "version": "[137.0.10, )"
+              "version": "[138.0.17, )"
             },
             "chromiumembeddedframework.runtime.win-x64": {
               "target": "Package",
-              "version": "[137.0.10, )"
+              "version": "[138.0.17, )"
             },
             "chromiumembeddedframework.runtime.win-x86": {
               "target": "Package",
-              "version": "[137.0.10, )"
+              "version": "[138.0.17, )"
             }
           },
           "imports": [

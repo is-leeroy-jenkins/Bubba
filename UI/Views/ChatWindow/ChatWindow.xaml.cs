@@ -586,7 +586,6 @@ namespace Bubba
             InitializeComponent( );
             RegisterCallbacks( );
             InitializeDelegates( );
-            InitializeToolStrip( );
 
             // Control Properties
             TemperatureSlider.Value = 0.8;
@@ -1019,7 +1018,6 @@ namespace Bubba
             _keyboardCallback = new KeyboardCallback( this );
             _requestCallback = new RequestCallback( this );
             InitializeDownloads( );
-            ConfigureBrowser( Browser );
         }
 
         /// <summary>
@@ -1628,7 +1626,8 @@ namespace Bubba
         /// Customs the command binding.
         /// </summary>
         /// <param name="sender">The sender.</param>
-        /// <param name="e">The <see cref="ExecutedRoutedEventArgs"/> instance containing the event data.</param>
+        /// <param name="e">The <see cref="ExecutedRoutedEventArgs"/>
+        /// instance containing the event data.</param>
         private void CustomCommandBinding( object sender, ExecutedRoutedEventArgs e )
         {
             var param = e.Parameter.ToString( );
@@ -1761,17 +1760,14 @@ namespace Bubba
         /// </param>
         private void EnableUrlHomeButton( bool canGoHome )
         {
-            InvokeIf( ( ) =>
+            if( canGoHome )
             {
-                if( canGoHome )
-                {
-                    UrlHomeButton.Visibility = Visibility.Visible;
-                }
-                else
-                {
-                    UrlHomeButton.Visibility = Visibility.Hidden;
-                }
-            } );
+                UrlHomeButton.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                UrlHomeButton.Visibility = Visibility.Hidden;
+            }
         }
 
         /// <summary>
@@ -1782,17 +1778,14 @@ namespace Bubba
         /// </param>
         private void EnableUrlCancelButton( bool canCancel )
         {
-            InvokeIf( ( ) =>
+            if( canCancel )
             {
-                if( canCancel )
-                {
-                    UrlCancelButton.Visibility = Visibility.Visible;
-                }
-                else
-                {
-                    UrlCancelButton.Visibility = Visibility.Hidden;
-                }
-            } );
+                UrlCancelButton.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                UrlCancelButton.Visibility = Visibility.Hidden;
+            }
         }
 
         /// <summary>
@@ -1803,17 +1796,14 @@ namespace Bubba
         /// </param>
         private void EnableUrlRefreshButton( bool canRefresh )
         {
-            InvokeIf( ( ) =>
+            if( canRefresh )
             {
-                if( canRefresh )
-                {
-                    UrlRefreshButton.Visibility = Visibility.Visible;
-                }
-                else
-                {
-                    UrlRefreshButton.Visibility = Visibility.Hidden;
-                }
-            } );
+                UrlRefreshButton.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                UrlRefreshButton.Visibility = Visibility.Hidden;
+            }
         }
 
         /// <summary>
@@ -1823,17 +1813,14 @@ namespace Bubba
         /// <c>true</c> [can go back].</param>
         private void EnableUrlBackButton( bool canGoBack )
         {
-            InvokeIf( ( ) =>
+            if( canGoBack )
             {
-                if( canGoBack )
-                {
-                    UrlBackButton.Visibility = Visibility.Visible;
-                }
-                else
-                {
-                    UrlBackButton.Visibility = Visibility.Hidden;
-                }
-            } );
+                UrlBackButton.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                UrlBackButton.Visibility = Visibility.Hidden;
+            }
         }
 
         /// <summary>
@@ -1844,17 +1831,14 @@ namespace Bubba
         /// </param>
         private void EnableUrlForwardButton( bool canGoForward )
         {
-            InvokeIf( ( ) =>
+            if( canGoForward )
             {
-                if( canGoForward )
-                {
-                    UrlForwardButton.Visibility = Visibility.Visible;
-                }
-                else
-                {
-                    UrlForwardButton.Visibility = Visibility.Hidden;
-                }
-            } );
+                UrlForwardButton.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                UrlForwardButton.Visibility = Visibility.Hidden;
+            }
         }
 
         /// <summary>
@@ -4445,7 +4429,7 @@ namespace Bubba
                     ToolStripTextBox.Visibility = Visibility.Visible;
                     ToolStripCancelButton.Visibility = Visibility.Visible;
                     ToolStripFileButton.Visibility = Visibility.Visible;
-                    ToolStripDeleteButton.Visibility = Visibility.Visible;
+                    ToolStripBackspaceButton.Visibility = Visibility.Visible;
                     ToolStripRemoveButton.Visibility = Visibility.Visible;
                 }
                 else
@@ -4455,7 +4439,7 @@ namespace Bubba
                     ToolStripRefreshButton.Visibility = Visibility.Hidden;
                     ToolStripCancelButton.Visibility = Visibility.Hidden;
                     ToolStripFileButton.Visibility = Visibility.Hidden;
-                    ToolStripDeleteButton.Visibility = Visibility.Hidden;
+                    ToolStripBackspaceButton.Visibility = Visibility.Hidden;
                     ToolStripRemoveButton.Visibility = Visibility.Hidden;
                 }
             }
@@ -4481,7 +4465,7 @@ namespace Bubba
                     EnableUrlBackButton( Browser.CanGoBack );
                     EnableUrlCancelButton( Browser.IsLoading );
                     EnableUrlHomeButton( visible );
-                    EnableUrlRefreshButton( visible );
+                    EnableUrlRefreshButton( !visible );
                 }
                 else
                 {
@@ -4599,6 +4583,7 @@ namespace Bubba
             PopulatePromptDropDown( );
             PopulateRequestTypes( );
             PopulateVoices( );
+            InitializeBrowser( );
             InitializeCommands( );
             InitializeHotkeys( );
             InitializeTimer( );
@@ -4607,6 +4592,7 @@ namespace Bubba
             InitializeEditor( );
             App.ActiveWindows.Add( "ChatWindow", this );
             InitializeInterface( );
+            ConfigureBrowser( Browser );
         }
 
         /// <summary>
@@ -4688,7 +4674,6 @@ namespace Bubba
         {
             try
             {
-                Busy( );
                 var _calculator = new CalculatorWindow
                 {
                     WindowStartupLocation = WindowStartupLocation.CenterScreen,
@@ -4697,7 +4682,6 @@ namespace Bubba
                 };
 
                 _calculator.Show( );
-                Chill( );
             }
             catch( Exception ex )
             {
@@ -4733,9 +4717,7 @@ namespace Bubba
         {
             try
             {
-                Busy( );
                 WebMinion.RunChrome( );
-                Chill( );
             }
             catch( Exception ex )
             {
@@ -4818,13 +4800,11 @@ namespace Bubba
             {
                 if( DocumentListBox.SelectedIndex != -1 )
                 {
-                    Busy( );
                     var _filepath = @"C:\Users\terry\source\repos\Bubba\Properties\Prompts.resx";
                     var _path = Locations.PathPrefix + @"Resources\Documents\Prompts\";
                     var _names = GetResourceNames( _filepath );
-                    _document = ((MetroListBoxItem)DocumentListBox.SelectedItem).Tag.ToString( );
+                    _document = ((MetroListBoxItem)DocumentListBox.SelectedItem ).Tag.ToString( );
                     Editor.LoadFile( _document );
-                    Chill( );
                     var _message = "Document = " + _document;
                     SendNotification( _message );
                 }
@@ -4864,9 +4844,7 @@ namespace Bubba
         {
             try
             {
-                Busy( );
                 WebMinion.RunEdge( );
-                Chill( );
             }
             catch( Exception ex )
             {
@@ -5817,10 +5795,15 @@ namespace Bubba
         /// instance containing the event data.</param>
         private void OnUrlHomeButtonClick( object sender, EventArgs e )
         {
-            Busy( );
-            _originalUrl = Browser.Address;
-            SetUrl( Locations.HomePage );
-            Chill( );
+            try
+            {
+                _originalUrl = Browser.Address;
+                SetUrl( Locations.HomePage );
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+            }
         }
 
         /// <summary>
@@ -5831,9 +5814,14 @@ namespace Bubba
         /// instance containing the event data.</param>
         private void OnUrlRefreshButtonClick( object sender, EventArgs e )
         {
-            Busy( );
-            RefreshActiveTab( );
-            Chill( );
+            try
+            {
+                RefreshActiveTab( );
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+            }
         }
 
         /// <summary>
@@ -5844,9 +5832,14 @@ namespace Bubba
         /// instance containing the event data.</param>
         private void OnUrlBackButtonClick( object sender, EventArgs e )
         {
-            Busy( );
-            Browser.Back( );
-            Chill( );
+            try
+            {
+                Browser.Back( );
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+            }
         }
 
         /// <summary>
@@ -5857,9 +5850,14 @@ namespace Bubba
         /// instance containing the event data.</param>
         private void OnUrlForwardButtonClick( object sender, EventArgs e )
         {
-            Busy( );
-            Browser.Forward( );
-            Chill( );
+            try
+            {
+                Browser.Forward( );
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+            }
         }
 
         /// <summary>
@@ -5956,7 +5954,8 @@ namespace Bubba
         /// Called when [image background selection changed].
         /// </summary>
         /// <param name="sender">The sender.</param>
-        /// <param name="e">The <see cref="RoutedEventArgs"/> instance containing the event data.</param>
+        /// <param name="e">The <see cref="RoutedEventArgs"/>
+        /// instance containing the event data.</param>
         private protected void OnImageBackgroundSelectionChanged( object sender, RoutedEventArgs e )
         {
             try
@@ -6031,13 +6030,16 @@ namespace Bubba
         /// instance containing the event data.</param>
         private protected void OnWebBrowserLoadingStateChanged( object sender, LoadingStateChangedEventArgs e )
         {
-            if( e.IsLoading )
+            try
             {
-                Busy( );
+                InvokeIf( ( ) =>
+                {
+                    EnableUrlCancelButton( true );
+                } );
             }
-            else if( !e.IsLoading )
+            catch( Exception ex )
             {
-                Chill( );
+                Fail( ex );
             }
         }
 
@@ -6074,7 +6076,7 @@ namespace Bubba
         /// <summary>
         /// Called when [title changed].
         /// </summary>
-        /// <param name="sender">The sender.</param>
+        /// <param name="sender">The sender.</cparam>
         /// <param name="e">The <see cref="TitleChangedEventArgs" />
         /// instance containing the event data.</param>
         private void OnWebBrowserTitleChanged( object sender, DependencyPropertyChangedEventArgs e )
@@ -6094,26 +6096,31 @@ namespace Bubba
         /// instance containing the event data.</param>
         private void OnWebBrowserAddressChanged( object sender, DependencyPropertyChangedEventArgs e )
         {
-            Busy( );
-            _originalUrl = Browser.Address;
-            InvokeIf( ( ) =>
+            try
             {
-                // if current tab
-                if( sender == Browser
-                    && e.Property.Name.Equals( "Address" ) )
+                _originalUrl = Browser.Address;
+                InvokeIf( ( ) =>
                 {
-                    if( !NetUtility.IsFocused( UrlPanelTextBox ) )
+                    // if current tab
+                    if( sender == Browser
+                        && e.Property.Name.Equals( "Address" ) )
                     {
-                        _finalUrl = e.NewValue.ToString( );
-                        SetUrl( _finalUrl );
-                        SetUrlPanelVisibility( Browser.IsLoading );
-                        SetTabText( ( ChromiumWebBrowser )sender, "Loading..." );
-                        _currentTab.DateCreated = DateTime.Now;
+                        if( !NetUtility.IsFocused( UrlPanelTextBox ) )
+                        {
+                            _finalUrl = e.NewValue.ToString( );
+                            SetUrl( _finalUrl );
+                            SetTabText( ( ChromiumWebBrowser )sender, "Loading..." );
+                            _currentTab.DateCreated = DateTime.Now;
+                        }
                     }
-                }
-            } );
+                } );
 
-            Chill( );
+                EnableUrlBackButton( true );
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+            }
         }
 
         /// <summary>
@@ -6124,12 +6131,19 @@ namespace Bubba
         /// instance containing the event data.</param>
         private void OnBrowserMouseLeftButtonDown( object sender, MouseButtonEventArgs e )
         {
-            var point = e.GetPosition( Browser );
-            if( _region.IsVisible( ( float )point.X, ( float )point.Y ) )
+            try
             {
-                var window = Window.GetWindow( this );
-                window.DragMove( );
-                e.Handled = true;
+                var point = e.GetPosition( Browser );
+                if( _region.IsVisible( ( float )point.X, ( float )point.Y ) )
+                {
+                    var window = Window.GetWindow( this );
+                    window.DragMove( );
+                    e.Handled = true;
+                }
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
             }
         }
 

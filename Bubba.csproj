@@ -480,11 +480,11 @@
 
   <ItemGroup>
     <PackageReference Include="AngleSharp" Version="1.3.0" />
-    <PackageReference Include="CefSharp.Common" Version="137.0.100" />
-    <PackageReference Include="CefSharp.Common.NETCore" Version="137.0.100" />
-    <PackageReference Include="CefSharp.OffScreen.NETCore" Version="137.0.100" />
-    <PackageReference Include="CefSharp.WinForms.NETCore" Version="137.0.100" />
-    <PackageReference Include="CefSharp.Wpf.NETCore" Version="137.0.100" />
+    <PackageReference Include="CefSharp.Common" Version="138.0.170" />
+    <PackageReference Include="CefSharp.Common.NETCore" Version="138.0.170" />
+    <PackageReference Include="CefSharp.OffScreen.NETCore" Version="138.0.170" />
+    <PackageReference Include="CefSharp.WinForms.NETCore" Version="138.0.170" />
+    <PackageReference Include="CefSharp.Wpf.NETCore" Version="138.0.170" />
     <PackageReference Include="EPPlus" Version="8.0.7" />
     <PackageReference Include="Google.Apis.CustomSearchAPI.v1" Version="1.68.0.3520" />
     <PackageReference Include="LinqStatistics" Version="3.0.1" />
@@ -1213,15 +1213,15 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Update="chromiumembeddedframework.runtime.win-arm64" Version="137.0.10" />
+    <PackageReference Update="chromiumembeddedframework.runtime.win-arm64" Version="138.0.17" />
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Update="chromiumembeddedframework.runtime.win-x64" Version="137.0.10" />
+    <PackageReference Update="chromiumembeddedframework.runtime.win-x64" Version="138.0.17" />
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Update="chromiumembeddedframework.runtime.win-x86" Version="137.0.10" />
+    <PackageReference Update="chromiumembeddedframework.runtime.win-x86" Version="138.0.17" />
   </ItemGroup>
 
 </Project>

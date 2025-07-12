@@ -34692,7 +34692,8 @@
             Customs the command binding.
             </summary>
             <param name="sender">The sender.</param>
-            <param name="e">The <see cref="T:System.Windows.Input.ExecutedRoutedEventArgs"/> instance containing the event data.</param>
+            <param name="e">The <see cref="T:System.Windows.Input.ExecutedRoutedEventArgs"/>
+            instance containing the event data.</param>
         </member>
         <member name="M:Bubba.ChatWindow.DownloadsInProgress">
             <summary>
@@ -35781,7 +35782,8 @@
             Called when [image background selection changed].
             </summary>
             <param name="sender">The sender.</param>
-            <param name="e">The <see cref="T:System.Windows.RoutedEventArgs"/> instance containing the event data.</param>
+            <param name="e">The <see cref="T:System.Windows.RoutedEventArgs"/>
+            instance containing the event data.</param>
         </member>
         <member name="M:Bubba.ChatWindow.OnImageFormatSelectionChanged(System.Object,System.Windows.RoutedEventArgs)">
             <summary>
@@ -35824,14 +35826,7 @@
             <param name="e">The <see cref="T:CefSharp.LoadErrorEventArgs" />
             instance containing the event data.</param>
         </member>
-        <member name="M:Bubba.ChatWindow.OnWebBrowserTitleChanged(System.Object,System.Windows.DependencyPropertyChangedEventArgs)">
-            <summary>
-            Called when [title changed].
-            </summary>
-            <param name="sender">The sender.</param>
-            <param name="e">The <see cref="T:CefSharp.TitleChangedEventArgs" />
-            instance containing the event data.</param>
-        </member>
+        <!-- Badly formed XML comment ignored for member "M:Bubba.ChatWindow.OnWebBrowserTitleChanged(System.Object,System.Windows.DependencyPropertyChangedEventArgs)" -->
         <member name="M:Bubba.ChatWindow.OnWebBrowserAddressChanged(System.Object,System.Windows.DependencyPropertyChangedEventArgs)">
             <summary>
             Called when [URL changed].
@@ -38847,6 +38842,36 @@
         <member name="M:Bubba.WebBrowser.InitializeComponent">
             <summary>
             InitializeComponent
+            </summary>
+        </member>
+        <member name="T:XamlGeneratedNamespace.GeneratedInternalTypeHelper">
+            <summary>
+            GeneratedInternalTypeHelper
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.CreateInstance(System.Type,System.Globalization.CultureInfo)">
+            <summary>
+            CreateInstance
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.GetPropertyValue(System.Reflection.PropertyInfo,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            GetPropertyValue
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.SetPropertyValue(System.Reflection.PropertyInfo,System.Object,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            SetPropertyValue
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.CreateDelegate(System.Type,System.Object,System.String)">
+            <summary>
+            CreateDelegate
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.AddEventHandler(System.Reflection.EventInfo,System.Object,System.Delegate)">
+            <summary>
+            AddEventHandler
             </summary>
         </member>
     </members>
