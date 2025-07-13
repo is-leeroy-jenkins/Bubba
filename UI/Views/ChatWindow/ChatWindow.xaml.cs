@@ -70,7 +70,6 @@ namespace Bubba
     using System.Windows.Input;
     using CefSharp;
     using CefSharp.Wpf;
-    using MahApps.Metro.Controls;
     using Properties;
     using Syncfusion.SfSkinManager;
     using ToastNotifications;
@@ -1191,10 +1190,6 @@ namespace Bubba
             {
                 ProgressBar.Visibility = Visibility.Visible;
                 ProgressBar.IsIndeterminate = true;
-                lock( _entry )
-                {
-                    _busy = true;
-                }
             }
             catch( Exception ex )
             {
@@ -1238,10 +1233,6 @@ namespace Bubba
             {
                 ProgressBar.Visibility = Visibility.Hidden;
                 ProgressBar.IsIndeterminate = false;
-                lock( _entry )
-                {
-                    _busy = false;
-                }
             }
             catch( Exception ex )
             {
@@ -2635,7 +2626,7 @@ namespace Bubba
             {
                 var _url = "https://api.openai.com/v1/models";
                 _httpClient = new HttpClient( );
-                _httpClient.Timeout = new TimeSpan( 0, 0, 3 );
+                _httpClient.Timeout = new TimeSpan( 0, 0, 5 );
                 _httpClient.DefaultRequestHeaders.Authorization =
                     new AuthenticationHeaderValue( "Bearer", App.OpenAiKey );
 
@@ -3722,7 +3713,7 @@ namespace Bubba
         {
             try
             {
-                var _tabPages = new Dictionary<string, MetroTabItem>( );
+                var _tabPages = new Dictionary<string, BrowserTabItem>( );
                 SetToolbarVisibility( true );
             }
             catch( Exception ex )
@@ -3957,18 +3948,7 @@ namespace Bubba
             _newBrowser.LifeSpanHandler = _lifeSpanCallback;
             _newBrowser.KeyboardHandler = _keyboardCallback;
             _newBrowser.RequestHandler = _requestCallback;
-            var _tabItem = new BrowserTabItem
-            {
-                IsOpen = true,
-                Browser = _newBrowser,
-                Tab = tabItem,
-                OriginalUrl = url,
-                CurrentUrl = url,
-                Title = "New Tab",
-                DateCreated = DateTime.Now
-            };
-
-            tabItem.Tag = _tabItem;
+            tabItem.Tag = tabItem;
             if( !string.IsNullOrEmpty( url )
                 && url.StartsWith( Locations.Internal + ":" ) )
             {
@@ -3976,7 +3956,7 @@ namespace Bubba
                     BindingOptions.DefaultBinder );
             }
 
-            return _tabItem;
+            return tabItem;
         }
 
         /// <summary>
@@ -4393,12 +4373,12 @@ namespace Bubba
                 {
                     var _title = text.Substring( 0, 20 ) + "...";
                     var _tab = ( BrowserTabItem )browser.Parent;
-                    _tab.Title = _title;
+                    _tab.Header = _title;
                 }
                 else 
                 {
                     var _tab = ( BrowserTabItem )browser.Parent;
-                    _tab.Title = text;
+                    _tab.Header = text;
                 }
 
                 // if current tab
@@ -4959,6 +4939,7 @@ namespace Bubba
         {
             try
             {
+                var _browser = sender as ChromiumWebBrowser;
                 _keyWords = ToolStripTextBox.InputText;
                 if( !string.IsNullOrEmpty( _keyWords ) )
                 {
@@ -4972,7 +4953,7 @@ namespace Bubba
                     if( !string.IsNullOrEmpty( _keywords ) )
                     {
                         var _search = SearchEngineUrl + _keywords;
-                        Browser.Load( _search );
+                        _browser.Load( _search );
                     }
 
                     Chill( );
@@ -5034,7 +5015,8 @@ namespace Bubba
             try
             {
                 _language = ( ( MetroDropDownItem )LanguageDropDown.SelectedItem )
-                    ?.Content?.ToString( );
+                    ?.Content
+                    ?.ToString( );
 
                 PopulateDocuments( );
                 var _message = "Language = " + _language;
@@ -5228,7 +5210,8 @@ namespace Bubba
             try
             {
                 var _name = ( (MetroListBoxItem)PromptDropDown.SelectedItem )
-                    ?.Tag?.ToString( );
+                    ?.Tag
+                    ?.ToString( );
 
                 var _message = "Prompt = " + _name;
                 SendNotification( _message );
@@ -5250,7 +5233,8 @@ namespace Bubba
             try
             {
                 var _name = ( ( MetroDropDownItem )PromptDropDown.SelectedItem )
-                    ?.Tag?.ToString( );
+                    ?.Tag
+                    ?.ToString( );
 
                 var _message = "Selected Prompt = " + _name;
                 SendNotification( _message );
@@ -5356,7 +5340,10 @@ namespace Bubba
         {
             try
             {
-                var _image = ResponseFormatDropDown.SelectedValue.ToString( );
+                _responseFormat = ResponseFormatDropDown
+                    ?.SelectedValue
+                    ?.ToString( );
+
                 var _message = "ResponseFormat = " + _responseFormat;
                 SendNotification( _message );
             }
@@ -5435,14 +5422,20 @@ namespace Bubba
         /// instance containing the event data.</param>
         private void OnSpeechRecognized( object sender, SpeechRecognizedEventArgs e )
         {
-            // Reset Hypothesized text
-            if( Editor.Text != "" )
+            try
             {
-                Editor.Text += "\n";
-            }
+                if( Editor.Text != "" )
+                {
+                    Editor.Text += "\n";
+                }
 
-            var _text = e.Result.Text;
-            Editor.Text += _text;
+                var _text = e.Result.Text;
+                Editor.Text += _text;
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+            }
         }
 
         /// <summary>
@@ -5463,7 +5456,8 @@ namespace Bubba
         /// <param name="e">The <see cref="RoutedEventArgs"/>
         /// instance containing the event data.</param>
         private void OnSendButtonClick( object sender, RoutedEventArgs e )
-        {
+        { 
+            try
             {
                 var _userInput = Editor.Text;
                 if( string.IsNullOrEmpty( _userInput ) )
@@ -5480,16 +5474,13 @@ namespace Bubba
 
                 Editor.AppendText( _userInput + "\r\n" );
                 Editor.Text = "";
-                try
-                {
-                    var _answer = SendHttpMessage( _userInput ) + "";
-                    Editor.AppendText( "Bubba: " + _answer.Replace( "\n", "\r\n" ).Trim( ) );
-                    TextToSpeech( _answer );
-                }
-                catch( Exception ex )
-                {
-                    Editor.AppendText( "Error: " + ex.Message );
-                }
+                var _answer = SendHttpMessage( _userInput ) + "";
+                Editor.AppendText( "Bubba: " + _answer.Replace( "\n", "\r\n" ).Trim( ) );
+                TextToSpeech( _answer );
+            }
+            catch( Exception ex )
+            {
+                Editor.AppendText( "Error: " + ex.Message );
             }
         }
 
@@ -5684,7 +5675,11 @@ namespace Bubba
             {
                 if( sender is MetroTabControl tabControl )
                 {
-                    var _index = tabControl.SelectedItem.Tag?.ToString( );
+                    var _index = tabControl
+                        ?.SelectedItem
+                        ?.Tag
+                        ?.ToString( );
+
                     switch( _index )
                     {
                         case "Chat":
@@ -5776,9 +5771,10 @@ namespace Bubba
         {
             try
             {
-                if( Browser.IsLoading )
+                var _browser = sender as ChromiumWebBrowser;
+                while( _browser.IsLoading )
                 {
-                    Browser.Stop( );
+                    _browser.Stop( );
                 }
             }
             catch( Exception ex )
@@ -5797,8 +5793,12 @@ namespace Bubba
         {
             try
             {
-                _originalUrl = Browser.Address;
+                Busy( );
+                var _browser = sender as ChromiumWebBrowser;
+                _finalUrl = _browser.Address;
+                _originalUrl = Locations.Google;
                 SetUrl( Locations.HomePage );
+                Chill( );
             }
             catch( Exception ex )
             {
@@ -5816,7 +5816,9 @@ namespace Bubba
         {
             try
             {
+                Busy( );
                 RefreshActiveTab( );
+                Chill( );
             }
             catch( Exception ex )
             {
@@ -5834,7 +5836,10 @@ namespace Bubba
         {
             try
             {
-                Browser.Back( );
+                Busy( );
+                var _browser = sender as ChromiumWebBrowser;
+                _browser.Back( );
+                Chill( );
             }
             catch( Exception ex )
             {
@@ -5852,7 +5857,10 @@ namespace Bubba
         {
             try
             {
-                Browser.Forward( );
+                Busy( );
+                var _browser = sender as ChromiumWebBrowser;
+                _browser.Forward( );
+                Chill( );
             }
             catch( Exception ex )
             {
@@ -5917,7 +5925,8 @@ namespace Bubba
             try
             {
                 _imageSize = ( ( MetroDropDownItem )ImageSizeDropDown.SelectedItem )
-                    ?.Content?.ToString( );
+                    ?.Content
+                    ?.ToString( );
 
                 var _message = "ImageSize = " + _imageSize;
                 SendNotification( _message );
@@ -5939,7 +5948,8 @@ namespace Bubba
             try
             {
                 _imageDetail = ( ( MetroDropDownItem )ImageDetailDropDown.SelectedItem)
-                    ?.Content?.ToString( );
+                    ?.Content
+                    ?.ToString( );
 
                 var _message = "ImageDetail = " + _imageDetail;
                 SendNotification( _message );
@@ -5961,7 +5971,8 @@ namespace Bubba
             try
             {
                 _imageBackground = ( ( MetroDropDownItem )ImageBackgroundDropDown.SelectedItem )
-                    ?.Content?.ToString( );
+                    ?.Content
+                    ?.ToString( );
 
                 var _message = "ImageBackground = " + _imageBackground;
                 SendNotification( _message );
@@ -5985,7 +5996,8 @@ namespace Bubba
                 if( ImageFormatDropDown.SelectedIndex != -1 )
                 {
                     _imageFormat = ( ( MetroDropDownItem )ImageFormatDropDown.SelectedItem )
-                        ?.Content?.ToString( );
+                        ?.Content
+                        ?.ToString( );
 
                     var _message = "Image Format = " + _imageFormat;
                     SendNotification( _message );
@@ -6010,7 +6022,8 @@ namespace Bubba
                 if( ImageStyleDropDown.SelectedIndex != -1 )
                 {
                     _imageStyle = ( ( MetroDropDownItem )ImageStyleDropDown.SelectedItem )
-                        ?.Content?.ToString( );
+                        ?.Content
+                        ?.ToString( );
 
                     var _message = "Image Style = " + _imageFormat;
                     SendNotification( _message );
@@ -6032,10 +6045,16 @@ namespace Bubba
         {
             try
             {
-                InvokeIf( ( ) =>
+                Busy( );
+                while( e.IsLoading )
                 {
-                    EnableUrlCancelButton( true );
-                } );
+                    InvokeIf( ( ) =>
+                    {
+                        EnableUrlCancelButton( true );
+                    } );
+                }
+
+                Chill( );
             }
             catch( Exception ex )
             {
@@ -6076,14 +6095,14 @@ namespace Bubba
         /// <summary>
         /// Called when [title changed].
         /// </summary>
-        /// <param name="sender">The sender.</cparam>
+        /// <param name="sender">The sender.</param>
         /// <param name="e">The <see cref="TitleChangedEventArgs" />
         /// instance containing the event data.</param>
         private void OnWebBrowserTitleChanged( object sender, DependencyPropertyChangedEventArgs e )
         {
             InvokeIf( ( ) =>
             {
-                var _browser = ( ChromiumWebBrowser )sender;
+                var _browser = sender as ChromiumWebBrowser;
                 SetTabText( _browser, _browser.Title );
             } );
         }
@@ -6098,24 +6117,24 @@ namespace Bubba
         {
             try
             {
-                _originalUrl = Browser.Address;
+                Busy( );
+                var _browser = sender as ChromiumWebBrowser;
+                _originalUrl = _browser.Address;
                 InvokeIf( ( ) =>
                 {
-                    // if current tab
-                    if( sender == Browser
-                        && e.Property.Name.Equals( "Address" ) )
+                    if( e.Property.Name.Equals( "Address" ) )
                     {
                         if( !NetUtility.IsFocused( UrlPanelTextBox ) )
                         {
                             _finalUrl = e.NewValue.ToString( );
                             SetUrl( _finalUrl );
-                            SetTabText( ( ChromiumWebBrowser )sender, "Loading..." );
-                            _currentTab.DateCreated = DateTime.Now;
+                            SetTabText( _browser, "Loading..." );
                         }
                     }
                 } );
 
                 EnableUrlBackButton( true );
+                Chill( );
             }
             catch( Exception ex )
             {
@@ -6133,7 +6152,8 @@ namespace Bubba
         {
             try
             {
-                var point = e.GetPosition( Browser );
+                var _browser = sender as ChromiumWebBrowser;
+                var point = e.GetPosition( _browser );
                 if( _region.IsVisible( ( float )point.X, ( float )point.Y ) )
                 {
                     var window = Window.GetWindow( this );

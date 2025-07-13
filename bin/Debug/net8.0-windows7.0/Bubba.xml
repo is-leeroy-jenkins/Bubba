@@ -35826,7 +35826,14 @@
             <param name="e">The <see cref="T:CefSharp.LoadErrorEventArgs" />
             instance containing the event data.</param>
         </member>
-        <!-- Badly formed XML comment ignored for member "M:Bubba.ChatWindow.OnWebBrowserTitleChanged(System.Object,System.Windows.DependencyPropertyChangedEventArgs)" -->
+        <member name="M:Bubba.ChatWindow.OnWebBrowserTitleChanged(System.Object,System.Windows.DependencyPropertyChangedEventArgs)">
+            <summary>
+            Called when [title changed].
+            </summary>
+            <param name="sender">The sender.</param>
+            <param name="e">The <see cref="T:CefSharp.TitleChangedEventArgs" />
+            instance containing the event data.</param>
+        </member>
         <member name="M:Bubba.ChatWindow.OnWebBrowserAddressChanged(System.Object,System.Windows.DependencyPropertyChangedEventArgs)">
             <summary>
             Called when [URL changed].
