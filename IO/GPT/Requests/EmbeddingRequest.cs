@@ -53,7 +53,7 @@ namespace Bubba
     using System.Threading.Tasks;
     using Newtonsoft.Json;
     using Properties;
-    using JsonSerializer = Newtonsoft.Json.JsonSerializer;
+    using System.Text.Json.Serialization;
 
     /// <inheritdoc />
     /// <summary>
@@ -84,6 +84,11 @@ namespace Bubba
         /// The dimensions
         /// </summary>
         private protected int _dimensions;
+
+        /// <summary>
+        /// The embedding
+        /// </summary>
+        private protected double[ ] _embedding;
 
         /// <summary>
         /// Initializes a new instance of the
@@ -126,7 +131,8 @@ namespace Bubba
         }
 
         /// <summary>
-        /// The format to return the embeddings in. Can be either float or base64.
+        /// The format to return the embeddings in.
+        /// Can be either float or base64.
         /// </summary>
         /// <value>
         /// The encoding format.
@@ -307,7 +313,7 @@ namespace Bubba
                 ThrowIf.Empty( query, nameof( query ) );
                 _inputText = query;
                 _httpClient = new HttpClient( );
-                _httpClient.Timeout = new TimeSpan( 0, 0, 3 );
+                _httpClient.Timeout = new TimeSpan( 0, 0, 5 );
                 _httpClient.DefaultRequestHeaders.Authorization =
                     new AuthenticationHeaderValue( "Bearer", _header.ApiKey );
 
@@ -338,18 +344,26 @@ namespace Bubba
         /// <returns></returns>
         private protected new float[ ] ExtractContent( string response )
         {
-            using var _document = JsonDocument.Parse( response );
-            var _embedding = _document.RootElement
-                .GetProperty( "data" )[ 0 ]
-                .GetProperty( "embedding" );
-
-            var _embeddingList = new List<float>( );
-            foreach( var _value in _embedding.EnumerateArray( ) )
+            try
             {
-                _embeddingList.Add( _value.GetSingle( ) );
-            }
+                using var _document = JsonDocument.Parse( response );
+                var _embedding = _document.RootElement
+                    .GetProperty( "data" )[ 0 ]
+                    .GetProperty( "embedding" );
 
-            return _embeddingList.ToArray( );
+                var _embeddingList = new List<float>( );
+                foreach( var _value in _embedding.EnumerateArray( ) )
+                {
+                    _embeddingList.Add( _value.GetSingle( ) );
+                }
+
+                return _embeddingList.ToArray( );
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+                return default( float[ ] );
+            }
         }
     }
 }

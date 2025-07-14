@@ -14993,6 +14993,85 @@
             </summary>
             <param name="ex">The ex.</param>
         </member>
+        <member name="T:Bubba.GptAudio">
+            <summary>
+            
+            </summary>
+            <seealso cref="T:Bubba.PropertyChangedBase" />
+        </member>
+        <member name="F:Bubba.GptAudio._format">
+            <summary>
+            The format
+            </summary>
+        </member>
+        <member name="F:Bubba.GptAudio._voice">
+            <summary>
+            The voice
+            </summary>
+        </member>
+        <member name="M:Bubba.GptAudio.#ctor">
+            <summary>
+            Initializes a new instance of the
+            <see cref="T:Bubba.GptAudio"/> class.
+            </summary>
+        </member>
+        <member name="M:Bubba.GptAudio.#ctor(System.String,System.String)">
+            <summary>
+            Initializes a new instance of the
+            <see cref="T:Bubba.GptAudio"/> class.
+            </summary>
+            <param name="format">The format.</param>
+            <param name="voice">The voice.</param>
+        </member>
+        <member name="P:Bubba.GptAudio.Format">
+            <summary>
+            Gets or sets the format.
+            </summary>
+            <value>
+            The format.
+            </value>
+        </member>
+        <member name="P:Bubba.GptAudio.Voice">
+            <summary>
+            Gets or sets the voice.
+            </summary>
+            <value>
+            The voice.
+            </value>
+        </member>
+        <member name="M:Bubba.GptAudio.GetFormatOptions">
+            <summary>
+            Gets the voice options.
+            </summary>
+            <returns>
+            </returns>
+        </member>
+        <member name="M:Bubba.GptAudio.GetVoiceOptions">
+            <summary>
+            Gets the voice options.
+            </summary>
+            <returns>
+            </returns>
+        </member>
+        <member name="M:Bubba.GptAudio.GetSpeedOptions">
+            <summary>
+            Gets the speed options.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Bubba.GptAudio.GetModelOptions">
+            <summary>
+            Gets the model options.
+            </summary>
+            <returns>
+            </returns>
+        </member>
+        <member name="M:Bubba.GptAudio.Fail(System.Exception)">
+            <summary>
+            Fails the specified ex.
+            </summary>
+            <param name="ex">The ex.</param>
+        </member>
         <member name="T:Bubba.GptChoice">
             <inheritdoc />
             <summary>
@@ -15537,6 +15616,179 @@
             </returns>
         </member>
         <member name="M:Bubba.GptHeader.Fail(System.Exception)">
+            <summary>
+            Fails the specified ex.
+            </summary>
+            <param name="ex">The ex.</param>
+        </member>
+        <member name="T:Bubba.GptImage">
+            <summary>
+            
+            </summary>
+            <seealso cref="T:Bubba.PropertyChangedBase" />
+        </member>
+        <member name="F:Bubba.GptImage._model">
+            <summary>
+            The model
+            </summary>
+        </member>
+        <member name="F:Bubba.GptImage._background">
+            <summary>
+            The background
+            </summary>
+        </member>
+        <member name="F:Bubba.GptImage._number">
+            <summary>
+            The number
+            </summary>
+        </member>
+        <member name="F:Bubba.GptImage._url">
+            <summary>
+            The URL
+            </summary>
+        </member>
+        <member name="F:Bubba.GptImage._prompt">
+            <summary>
+            The prompt
+            </summary>
+        </member>
+        <member name="F:Bubba.GptImage._quality">
+            <summary>
+            The quality
+            </summary>
+        </member>
+        <member name="F:Bubba.GptImage._responseFormat">
+            <summary>
+            The response format
+            </summary>
+        </member>
+        <member name="F:Bubba.GptImage._outputFormat">
+            <summary>
+            The response format
+            </summary>
+        </member>
+        <member name="F:Bubba.GptImage._user">
+            <summary>
+            The user
+            </summary>
+        </member>
+        <member name="F:Bubba.GptImage._size">
+            <summary>
+            The size
+            </summary>
+        </member>
+        <member name="F:Bubba.GptImage._style">
+            <summary>
+            The style
+            </summary>
+        </member>
+        <member name="M:Bubba.GptImage.#ctor">
+            <summary>
+            Initializes a new instance of the
+            <see cref="T:Bubba.GptImage"/> class.
+            </summary>
+        </member>
+        <member name="P:Bubba.GptImage.Size">
+            <summary>
+            Gets or sets the size of the image.
+            </summary>
+            <value>
+            The size of the image.
+            </value>
+        </member>
+        <member name="P:Bubba.GptImage.Prompt">
+            <inheritdoc />
+            <summary>
+            Gets or sets the prompt.
+            </summary>
+            <value>
+            The prompt.
+            </value>
+        </member>
+        <member name="P:Bubba.GptImage.Quality">
+            <summary>
+            Gets or sets the quality.
+            </summary>
+            <value>
+            The quality.
+            </value>
+        </member>
+        <member name="P:Bubba.GptImage.Style">
+            <summary>
+            Gets or sets the style.
+            </summary>
+            <value>
+            The style.
+            </value>
+        </member>
+        <member name="P:Bubba.GptImage.Background">
+            <summary>
+            Gets or sets the background.
+            </summary>
+            <value>
+            The background.
+            </value>
+        </member>
+        <member name="P:Bubba.GptImage.OutputFormat">
+            <summary>
+            Gets or sets the output format.
+            </summary>
+            <value>
+            The output format.
+            </value>
+        </member>
+        <member name="P:Bubba.GptImage.ResponseFormat">
+            <summary>
+            Gets or sets the output format.
+            </summary>
+            <value>
+            The output format.
+            </value>
+        </member>
+        <member name="M:Bubba.GptImage.GetModelOptions">
+            <summary>
+            Gets the model options.
+            </summary>
+            <returns>
+            </returns>
+        </member>
+        <member name="M:Bubba.GptImage.GetQualiyOptions">
+            <summary>
+            Gets the qualiy options.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Bubba.GptImage.GetOutputFormatOptions">
+            <summary>
+            Gets the output format options.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Bubba.GptImage.GetResponseFormatOptions">
+            <summary>
+            Gets the format options.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Bubba.GptImage.GetStyleOptions">
+            <summary>
+            Gets the format options.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Bubba.GptImage.GetBackgroundOptions">
+            <summary>
+            Gets the background options.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Bubba.GptImage.GetSizeOptions">
+            <summary>
+            Gets the size options.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Bubba.GptImage.Fail(System.Exception)">
             <summary>
             Fails the specified ex.
             </summary>
@@ -16168,7 +16420,8 @@
             Converts to string.
             </summary>
             <returns>
-            A <see cref="T:System.String" /> that represents this instance.
+            A <see cref="T:System.String" />
+            that represents this instance.
             </returns>
         </member>
         <member name="M:Bubba.GptUsage.Fail(System.Exception)">
@@ -20467,6 +20720,11 @@
             The dimensions
             </summary>
         </member>
+        <member name="F:Bubba.EmbeddingRequest._embedding">
+            <summary>
+            The embedding
+            </summary>
+        </member>
         <member name="M:Bubba.EmbeddingRequest.#ctor">
             <summary>
             Initializes a new instance of the
@@ -20486,7 +20744,8 @@
         </member>
         <member name="P:Bubba.EmbeddingRequest.EncodingFormat">
             <summary>
-            The format to return the embeddings in. Can be either float or base64.
+            The format to return the embeddings in.
+            Can be either float or base64.
             </summary>
             <value>
             The encoding format.
@@ -33936,6 +34195,11 @@
             The current full URL
             </summary>
         </member>
+        <member name="F:Bubba.ChatWindow._previousUrl">
+            <summary>
+            The previous URL
+            </summary>
+        </member>
         <member name="F:Bubba.ChatWindow._isSearchOpen">
             <summary>
             The search open
@@ -35234,13 +35498,6 @@
             </summary>
             <param name="url">The URL.</param>
         </member>
-        <member name="M:Bubba.ChatWindow.SetTabText(CefSharp.Wpf.ChromiumWebBrowser,System.String)">
-            <summary>
-            Sets the tab title.
-            </summary>
-            <param name="browser">The browser.</param>
-            <param name="text">The text.</param>
-        </member>
         <member name="M:Bubba.ChatWindow.SetToolbarVisibility(System.Boolean)">
             <summary>
             
@@ -35824,14 +36081,6 @@
             </summary>
             <param name="sender">The sender.</param>
             <param name="e">The <see cref="T:CefSharp.LoadErrorEventArgs" />
-            instance containing the event data.</param>
-        </member>
-        <member name="M:Bubba.ChatWindow.OnWebBrowserTitleChanged(System.Object,System.Windows.DependencyPropertyChangedEventArgs)">
-            <summary>
-            Called when [title changed].
-            </summary>
-            <param name="sender">The sender.</param>
-            <param name="e">The <see cref="T:CefSharp.TitleChangedEventArgs" />
             instance containing the event data.</param>
         </member>
         <member name="M:Bubba.ChatWindow.OnWebBrowserAddressChanged(System.Object,System.Windows.DependencyPropertyChangedEventArgs)">

@@ -1,4 +1,5 @@
-﻿// ******************************************************************************************
+﻿
+// ******************************************************************************************
 //     Assembly:                Bubba
 //     Author:                  Terry D. Eppler
 //     Created:                 03-17-2025
@@ -13,7 +14,6 @@
 //     Copyright �  2022 Terry D. Eppler
 // 
 //    Permission is hereby granted, free of charge, to any person obtaining a copy
-
 //    of this software and associated documentation files (the �Software�),
 //    to deal in the Software without restriction,
 //    including without limitation the rights to use,
@@ -124,6 +124,11 @@ namespace Bubba
         /// The current full URL
         /// </summary>
         private protected string _originalUrl;
+
+        /// <summary>
+        /// The previous URL
+        /// </summary>
+        private protected string _previousUrl;
 
         /// <summary>
         /// The search open
@@ -1008,8 +1013,8 @@ namespace Bubba
         {
             Browser.LoadingStateChanged += OnWebBrowserLoadingStateChanged;
             Browser.AddressChanged += OnWebBrowserAddressChanged;
-            Browser.TitleChanged += OnWebBrowserTitleChanged;
             _searchEngineUrl = Locations.SearchUrl;
+            _originalUrl = _searchEngineUrl;
             _hostCallback = new HostCallback( this );
             _downloadCallback = new DownloadCallback( this );
             _lifeSpanCallback = new LifeSpanCallback( this );
@@ -2197,7 +2202,6 @@ namespace Bubba
                 Busy( );
                 var _newUrl = url;
                 var _urlLower = url.Trim( )?.ToLower( );
-                SetTabText( Browser, "Loading..." );
                 if( _urlLower == "localhost" )
                 {
                     _newUrl = "http://localhost/";
@@ -3940,7 +3944,6 @@ namespace Bubba
             tabItem.Content = _newBrowser;
             _newBrowser.StatusMessage += OnStatusUpdated;
             _newBrowser.LoadingStateChanged += OnWebBrowserLoadingStateChanged;
-            _newBrowser.TitleChanged += OnWebBrowserTitleChanged;
             _newBrowser.LoadError += OnWebBrowserLoadError;
             _newBrowser.AddressChanged += OnWebBrowserAddressChanged;
             _newBrowser.DownloadHandler = _downloadCallback;
@@ -4033,7 +4036,6 @@ namespace Bubba
         /// </summary>
         private void ReproduceWasResizedCrashAsync( )
         {
-            CreateNewTab( _searchEngineUrl );
             CreateNewTab( _searchEngineUrl );
             WindowState = WindowState.Normal;
             Task.Run( ( ) =>
@@ -4344,48 +4346,6 @@ namespace Bubba
                 _finalUrl = CleanUrl( url );
                 UrlPanelTextBox.Text = _finalUrl;
                 Browser.LoadUrl( _finalUrl );
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
-            }
-        }
-
-        /// <summary>
-        /// Sets the tab title.
-        /// </summary>
-        /// <param name="browser">The browser.</param>
-        /// <param name="text">The text.</param>
-        private void SetTabText( ChromiumWebBrowser browser, string text )
-        {
-            try
-            {
-                ThrowIf.Null( browser, nameof( browser ) );
-                ThrowIf.Null( text, nameof( text ) );
-                text = text.Trim( );
-                if( IsBlank( text ) )
-                {
-                    text = "New Tab";
-                }
-
-                browser.Tag = text;
-                if( text.Length > 20 )
-                {
-                    var _title = text.Substring( 0, 20 ) + "...";
-                    var _tab = ( BrowserTabItem )browser.Parent;
-                    _tab.Header = _title;
-                }
-                else 
-                {
-                    var _tab = ( BrowserTabItem )browser.Parent;
-                    _tab.Header = text;
-                }
-
-                // if current tab
-                if( browser == Browser )
-                {
-                    SetTitleText( text );
-                }
             }
             catch( Exception ex )
             {
@@ -4939,7 +4899,6 @@ namespace Bubba
         {
             try
             {
-                var _browser = sender as ChromiumWebBrowser;
                 _keyWords = ToolStripTextBox.InputText;
                 if( !string.IsNullOrEmpty( _keyWords ) )
                 {
@@ -4953,7 +4912,7 @@ namespace Bubba
                     if( !string.IsNullOrEmpty( _keywords ) )
                     {
                         var _search = SearchEngineUrl + _keywords;
-                        _browser.Load( _search );
+                        Browser.Load( _search );
                     }
 
                     Chill( );
@@ -5771,10 +5730,9 @@ namespace Bubba
         {
             try
             {
-                var _browser = sender as ChromiumWebBrowser;
-                while( _browser.IsLoading )
+                if( Browser.IsLoading )
                 {
-                    _browser.Stop( );
+                    Browser.Stop( );
                 }
             }
             catch( Exception ex )
@@ -5794,8 +5752,7 @@ namespace Bubba
             try
             {
                 Busy( );
-                var _browser = sender as ChromiumWebBrowser;
-                _finalUrl = _browser.Address;
+                _finalUrl = Browser.Address;
                 _originalUrl = Locations.Google;
                 SetUrl( Locations.HomePage );
                 Chill( );
@@ -5837,8 +5794,7 @@ namespace Bubba
             try
             {
                 Busy( );
-                var _browser = sender as ChromiumWebBrowser;
-                _browser.Back( );
+                Browser.Load( _previousUrl );
                 Chill( );
             }
             catch( Exception ex )
@@ -5858,8 +5814,7 @@ namespace Bubba
             try
             {
                 Busy( );
-                var _browser = sender as ChromiumWebBrowser;
-                _browser.Forward( );
+                Browser.Forward( );
                 Chill( );
             }
             catch( Exception ex )
@@ -6045,16 +6000,22 @@ namespace Bubba
         {
             try
             {
-                Busy( );
-                while( e.IsLoading )
+               InvokeIf( ( ) =>
                 {
-                    InvokeIf( ( ) =>
+                    if( sender == Browser )
                     {
-                        EnableUrlCancelButton( true );
-                    } );
-                }
-
-                Chill( );
+                        EnableUrlBackButton( Browser.CanGoBack );
+                        EnableUrlForwardButton( Browser.CanGoForward );
+                        if( e.IsLoading )
+                        {
+                            Busy( );
+                        }
+                        else
+                        {
+                            Chill( );
+                        }
+                    }
+                } );
             }
             catch( Exception ex )
             {
@@ -6093,21 +6054,6 @@ namespace Bubba
         }
 
         /// <summary>
-        /// Called when [title changed].
-        /// </summary>
-        /// <param name="sender">The sender.</param>
-        /// <param name="e">The <see cref="TitleChangedEventArgs" />
-        /// instance containing the event data.</param>
-        private void OnWebBrowserTitleChanged( object sender, DependencyPropertyChangedEventArgs e )
-        {
-            InvokeIf( ( ) =>
-            {
-                var _browser = sender as ChromiumWebBrowser;
-                SetTabText( _browser, _browser.Title );
-            } );
-        }
-
-        /// <summary>
         /// Called when [URL changed].
         /// </summary>
         /// <param name="sender">The sender.</param>
@@ -6117,24 +6063,22 @@ namespace Bubba
         {
             try
             {
-                Busy( );
-                var _browser = sender as ChromiumWebBrowser;
-                _originalUrl = _browser.Address;
                 InvokeIf( ( ) =>
                 {
-                    if( e.Property.Name.Equals( "Address" ) )
+                    if( sender == Browser 
+                        && e.Property.Name.Equals( "Address" ) )
                     {
+                        _previousUrl = e.OldValue.ToString( );
+                        _finalUrl = e.NewValue.ToString( );
                         if( !NetUtility.IsFocused( UrlPanelTextBox ) )
                         {
-                            _finalUrl = e.NewValue.ToString( );
-                            SetUrl( _finalUrl );
-                            SetTabText( _browser, "Loading..." );
+                            Browser.Load( _finalUrl );
                         }
+
+                        EnableUrlBackButton( Browser.CanGoBack );
+                        EnableUrlForwardButton( Browser.CanGoForward );
                     }
                 } );
-
-                EnableUrlBackButton( true );
-                Chill( );
             }
             catch( Exception ex )
             {
