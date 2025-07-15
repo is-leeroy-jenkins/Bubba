@@ -44,12 +44,10 @@ namespace Bubba
 {
     using System;
     using System.IO;
-    using CefSharp;
     using System.Diagnostics.CodeAnalysis;
     using System.Windows;
     using System.Windows.Input;
     using System.Windows.Controls;
-    using CefSharp.Wpf.Internals;
 
     /// <summary>
     /// 
@@ -149,18 +147,6 @@ namespace Bubba
         {
             return eventData.IsDown == ctrl && eventData.Handled == shift
                 && eventData.Key == Key.LeftShift == alt;
-        }
-
-        /// <summary>
-        /// Converts to cefstate.
-        /// </summary>
-        /// <param name="value">if set to <c>true</c> [value].</param>
-        /// <returns></returns>
-        public static CefState ToCefState( this bool value )
-        {
-            return value
-                ? CefState.Enabled
-                : CefState.Disabled;
         }
 
         /// <summary>

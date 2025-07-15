@@ -28,7 +28,6 @@
 
         <!--  TAB CONTROL  -->
         <ResourceDictionary Source="/UI/Themes/TabControl/TabControl.xaml" />
-        <ResourceDictionary Source="/UI/Themes/TabControl/BrowserTabItem.xaml" />
         <ResourceDictionary Source="/UI/Themes/TabControl/TabControlExt.xaml" />
 
         <!--  MENU  -->

@@ -66,10 +66,7 @@ namespace Bubba
     using System.Web;
     using System.Windows;
     using System.Windows.Controls;
-    using System.Windows.Forms;
     using System.Windows.Input;
-    using CefSharp;
-    using CefSharp.Wpf;
     using Properties;
     using Syncfusion.SfSkinManager;
     using ToastNotifications;
@@ -106,11 +103,6 @@ namespace Bubba
         private protected object _entry = new object( );
 
         /// <summary>
-        /// The current clean URL
-        /// </summary>
-        private protected string _finalUrl;
-
-        /// <summary>
         /// The last search
         /// </summary>
         private string _lastSearch = "";
@@ -119,21 +111,6 @@ namespace Bubba
         /// The old window state
         /// </summary>
         private protected WindowState _oldWindowState;
-
-        /// <summary>
-        /// The current full URL
-        /// </summary>
-        private protected string _originalUrl;
-
-        /// <summary>
-        /// The previous URL
-        /// </summary>
-        private protected string _previousUrl;
-
-        /// <summary>
-        /// The search open
-        /// </summary>
-        private protected bool _isSearchOpen;
 
         /// <summary>
         /// The system prompt fro the GPT
@@ -146,31 +123,6 @@ namespace Bubba
         private protected string _userPrompt;
 
         /// <summary>
-        /// The tab pages
-        /// </summary>
-        private protected BrowserTabCollection _tabPages;
-
-        /// <summary>
-        /// The download strip
-        /// </summary>
-        private protected BrowserTabItem _downloadStrip;
-
-        /// <summary>
-        /// The add tab item
-        /// </summary>
-        private protected BrowserTabItem _addTabItem;
-
-        /// <summary>
-        /// The new tab strip
-        /// </summary>
-        private protected BrowserTabItem _newTabItem;
-
-        /// <summary>
-        /// The new tab strip
-        /// </summary>
-        private protected BrowserTabItem _currentTab;
-
-        /// <summary>
         /// The assembly
         /// </summary>
         public static Assembly Assembly;
@@ -179,11 +131,6 @@ namespace Bubba
         /// The messages
         /// </summary>
         private protected ChatLog _messages;
-
-        /// <summary>
-        /// The key words for the custome search engine
-        /// </summary>
-        private protected string _keyWords;
 
         /// <summary>
         /// The role
@@ -417,21 +364,6 @@ namespace Bubba
         private protected string _model;
 
         /// <summary>
-        /// The browser tabs
-        /// </summary>
-        private ObservableCollection<BrowserTabViewModel> _browserTabs;
-
-        /// <summary>
-        /// The context menu handler
-        /// </summary>
-        private protected ContextMenuCallback _contextMenuCallback;
-
-        /// <summary>
-        /// The current title
-        /// </summary>
-        private string _currentTitle;
-
-        /// <summary>
         /// The search engine identifier
         /// </summary>
         private protected string _searchEngineId;
@@ -462,31 +394,6 @@ namespace Bubba
         private protected string _searchEngineUrl;
 
         /// <summary>
-        /// The speech recognition engine
-        /// </summary>
-        private protected SpeechRecognitionEngine _engine;
-
-        /// <summary>
-        /// The speech synthesizer
-        /// </summary>
-        private protected SpeechSynthesizer _synthesizer;
-
-        /// <summary>
-        /// The download names
-        /// </summary>
-        private protected Dictionary<int, string> _downloadNames;
-
-        /// <summary>
-        /// The downloads
-        /// </summary>
-        private protected Dictionary<int, DownloadItem> _downloadItems;
-
-        /// <summary>
-        /// The full screen
-        /// </summary>
-        private protected bool _fullScreen;
-
-        /// <summary>
         /// The time
         /// </summary>
         private protected int _time;
@@ -497,40 +404,9 @@ namespace Bubba
         private protected int _number;
 
         /// <summary>
-        /// The download cancel requests
-        /// </summary>
-        private protected List<int> _cancelRequests;
-
-        /// <summary>
         /// The timer
         /// </summary>
         private protected Timer _timer;
-
-        /// <summary>
-        /// The life span handler
-        /// </summary>
-        private protected LifeSpanCallback _lifeSpanCallback;
-
-        /// <summary>
-        /// 
-        /// The keyboard handler
-        /// </summary>
-        private protected KeyboardCallback _keyboardCallback;
-
-        /// <summary>
-        /// The download handler
-        /// </summary>
-        private protected DownloadCallback _downloadCallback;
-
-        /// <summary>
-        /// The request handler
-        /// </summary>
-        private protected RequestCallback _requestCallback;
-
-        /// <summary>
-        /// The host
-        /// </summary>
-        private protected HostCallback _hostCallback;
 
         /// <summary>
         /// The timer callback
@@ -538,38 +414,24 @@ namespace Bubba
         private protected TimerCallback _timerCallback;
 
         /// <summary>
-        /// The browser action
+        /// The engine
         /// </summary>
-        private protected Func<ChromiumWebBrowser> _browserCallback;
+        private protected SpeechRecognitionEngine _engine;
+
+        /// <summary>
+        /// The synthesizer
+        /// </summary>
+        private protected SpeechSynthesizer _synthesizer;
+
+        /// <summary>
+        /// The search dialog
+        /// </summary>
+        private protected SearchDialog _searchDialog;
 
         /// <summary>
         /// The status update
         /// </summary>
         private protected Action _statusUpdate;
-
-        /// <summary>
-        /// The x
-        /// </summary>
-        private protected double[ ] _x =
-        {
-            1,
-            2,
-            3,
-            4,
-            5
-        };
-
-        /// <summary>
-        /// The y
-        /// </summary>
-        private protected double[ ] _y =
-        {
-            1,
-            4,
-            9,
-            16,
-            25
-        };
 
         /// <inheritdoc />
         /// <summary>
@@ -615,181 +477,11 @@ namespace Bubba
             _responseFormatOptions = new List<string>( );
             _audioFormatOptions = new List<string>( );
             _voiceOptions = new Dictionary<string, string>( );
-            _browserTabs = new ObservableCollection<BrowserTabViewModel>( );
             _instructions = Prompts.BudgetAnalyst;
-            _searchEngineUrl = Locations.SearchUrl;
-            _originalUrl = Locations.Google;
 
             // Event Wiring
             Loaded += OnLoad;
             Closing += OnClosing;
-        }
-
-        /// <summary>
-        /// Gets the duration of the current tab loading.
-        /// </summary>
-        /// <value>
-        /// The duration of the current tab loading.
-        /// </value>
-        public int LoadingDuration
-        {
-            get
-            {
-                if( TabControl.SelectedItem != null
-                    && TabControl.SelectedItem != null )
-                {
-                    var _loadTime =
-                        ( int )( DateTime.Now - _currentTab.DateCreated ).TotalMilliseconds;
-
-                    return _loadTime;
-                }
-                else
-                {
-                    return 0;
-                }
-            }
-        }
-
-        /// <summary>
-        /// Gets the search engine URL.
-        /// </summary>
-        /// <value>
-        /// The search engine URL.
-        /// </value>
-        public string SearchEngineUrl
-        {
-            get
-            {
-                return _searchEngineUrl;
-            }
-            set
-            {
-                if( _searchEngineUrl != value )
-                {
-                    _searchEngineUrl = value;
-                    OnPropertyChanged( nameof( SearchEngineUrl ) );
-                }
-            }
-        }
-
-        /// <summary>
-        /// Gets the last index.
-        /// </summary>
-        /// <value>
-        /// The last index.
-        /// </value>
-        private int LastIndex
-        {
-            get
-            {
-                return TabControl.Items.Count - 2;
-            }
-        }
-
-        /// <summary>
-        /// Gets or sets the browser tabs.
-        /// </summary>
-        /// <value>
-        /// The browser tabs.
-        /// </value>
-        public ObservableCollection<BrowserTabViewModel> BrowserTabs
-        {
-            get
-            {
-                return _browserTabs;
-            }
-            set
-            {
-                if( _browserTabs != value )
-                {
-                    _browserTabs = value;
-                    OnPropertyChanged( nameof( BrowserTabs ) );
-                }
-            }
-        }
-
-        /// <summary>
-        /// The host
-        /// </summary>
-        public HostCallback HostCallback
-        {
-            get
-            {
-                return _hostCallback;
-            }
-            set
-            {
-                _hostCallback = value;
-            }
-        }
-
-        /// <summary>
-        /// The download names
-        /// </summary>
-        public Dictionary<int, string> DownloadNames
-        {
-            get
-            {
-                return _downloadNames;
-            }
-            set
-            {
-                _downloadNames = value;
-            }
-        }
-
-        /// <summary>
-        /// Gets or sets the add tab item.
-        /// </summary>
-        /// <value>
-        /// The add tab item.
-        /// </value>
-        public BrowserTabItem AddTabItem
-        {
-            get
-            {
-                return _addTabItem;
-            }
-            set
-            {
-                _addTabItem = value;
-            }
-        }
-
-        /// <summary>
-        /// Creates new tabitem.
-        /// </summary>
-        /// <value>
-        /// The new tab item.
-        /// </value>
-        public BrowserTabItem NewTabItem
-        {
-            get
-            {
-                return _newTabItem;
-            }
-            set
-            {
-                _newTabItem = value;
-            }
-        }
-
-        /// <summary>
-        /// Gets the cancel requests.
-        /// </summary>
-        /// <value>
-        /// The cancel requests.
-        /// </value>
-        public List<int> CancelRequests
-        {
-            get
-            {
-                return _cancelRequests;
-            }
-            set
-            {
-                _cancelRequests = value;
-            }
         }
 
         /// <summary>
@@ -831,21 +523,6 @@ namespace Bubba
             try
             {
                 SetToolbarVisibility( true );
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
-            }
-        }
-
-        /// <summary>
-        /// Initializes the URL panel.
-        /// </summary>
-        private void InitializeUrlPanel( )
-        {
-            try
-            {
-                SetUrlPanelVisibility( true );
             }
             catch( Exception ex )
             {
@@ -918,45 +595,6 @@ namespace Bubba
         }
 
         /// <summary>
-        /// we must store download metadata in a list,
-        /// since CefSharp does not
-        /// </summary>
-        private void InitializeDownloads( )
-        {
-            _downloadItems = new Dictionary<int, DownloadItem>( );
-            _downloadNames = new Dictionary<int, string>( );
-            _cancelRequests = new List<int>( );
-        }
-
-        /// <summary>
-        /// these hot keys work when the user
-        /// is focused on the .NET form and its controls,
-        /// AND when the user is focused on the browser
-        /// (CefSharp portion)
-        /// </summary>
-        private void InitializeHotkeys( )
-        {
-            try
-            {
-                // browser hot keys
-                KeyboardCallback.AddHotKey( this, CloseActiveTab, Keys.W, true );
-                KeyboardCallback.AddHotKey( this, CloseActiveTab, Keys.Escape, true );
-                KeyboardCallback.AddHotKey( this, RefreshActiveTab, Keys.F5 );
-                KeyboardCallback.AddHotKey( this, OpenDeveloperTools, Keys.F12 );
-
-                // search hot keys
-                KeyboardCallback.AddHotKey( this, OpenSearch, Keys.F, true );
-                KeyboardCallback.AddHotKey( this, CloseSearch, Keys.Escape );
-                KeyboardCallback.AddHotKey( this, StopActiveTab, Keys.Escape );
-                KeyboardCallback.AddHotKey( this, ToggleFullscreen, Keys.F11 );
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
-            }
-        }
-
-        /// <summary>
         /// Sets the hyper parameters.
         /// </summary>
         private protected void InitializeParameters( )
@@ -986,45 +624,6 @@ namespace Bubba
         }
 
         /// <summary>
-        /// Initializes the command bindings.
-        /// </summary>
-        private void InitializeCommands( )
-        {
-            try
-            {
-                CommandBindings.Add( new CommandBinding( ApplicationCommands.New, OpenNewTab ) );
-                CommandBindings.Add( new CommandBinding( ApplicationCommands.Close, CloseTab ) );
-                CommandBindings.Add( new CommandBinding( CefSharpCommands.Exit, CloseTab ) );
-                CommandBindings.Add( new CommandBinding( CefSharpCommands.OpenTabCommand, OpenTabCommandBinding ) );
-                CommandBindings.Add( new CommandBinding( CefSharpCommands.PrintTabToPdfCommand, PrintToPdfCommandBinding ) );
-                CommandBindings.Add( new CommandBinding( CefSharpCommands.CustomCommand, CustomCommandBinding ) );
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
-            }
-        }
-
-        /// <summary>
-        /// this is done just once,
-        /// to globally initialize CefSharp/CEF
-        /// </summary>
-        private void InitializeBrowser( )
-        {
-            Browser.LoadingStateChanged += OnWebBrowserLoadingStateChanged;
-            Browser.AddressChanged += OnWebBrowserAddressChanged;
-            _searchEngineUrl = Locations.SearchUrl;
-            _originalUrl = _searchEngineUrl;
-            _hostCallback = new HostCallback( this );
-            _downloadCallback = new DownloadCallback( this );
-            _lifeSpanCallback = new LifeSpanCallback( this );
-            _contextMenuCallback = new ContextMenuCallback( this );
-            _keyboardCallback = new KeyboardCallback( this );
-            _requestCallback = new RequestCallback( this );
-            InitializeDownloads( );
-        }
-
-        /// <summary>
         /// Registers the callbacks.
         /// </summary>
         private protected void RegisterCallbacks( )
@@ -1036,14 +635,6 @@ namespace Bubba
                 ToolStripTextBox.TextChanged += OnToolStripTextBoxTextChanged;
                 ToolStripMenuButton.Click += OnToggleButtonClick;
                 ToolStripRefreshButton.Click += OnToolStripRefreshButtonClick;
-                ToolStripSendButton.Click += OnGoButtonClicked;
-                ToolStripFileButton.Click += OnFileApiButtonClick;
-                UrlCancelButton.Click += OnUrlCancelButtonClick;
-                UrlHomeButton.Click += OnUrlHomeButtonClick;
-                UrlRefreshButton.Click += OnUrlRefreshButtonClick;
-                UrlBackButton.Click += OnUrlBackButtonClick;  
-                UrlForwardButton.Click += OnUrlForwardButtonClick;
-                UrlPanelTextBox.GotMouseCapture += OnUrlTextBoxMouseEnter;
                 ListenCheckBox.Checked += OnListenCheckedChanged;
                 MuteCheckBox.Checked += OnMuteCheckedBoxChanged;
                 StoreCheckBox.Checked += OnStoreCheckBoxChecked;
@@ -1254,6 +845,7 @@ namespace Bubba
             {
                 _timerCallback = null;
                 _statusUpdate = null;
+                _timerCallback = null;
             }
             catch( Exception ex )
             {
@@ -1304,34 +896,6 @@ namespace Bubba
             catch( Exception ex )
             {
                 Fail( ex );
-            }
-        }
-
-        /// <summary>
-        /// Cleans the URL.
-        /// </summary>
-        /// <param name="url">The URL.</param>
-        /// <returns></returns>
-        private string CleanUrl( string url )
-        {
-            try
-            {
-                ThrowIf.Null( url, nameof( url ) );
-                if( url.BeginsWith( "about:" ) )
-                {
-                    return "";
-                }
-
-                url = url.RemovePrefix( "http://" );
-                url = url.RemovePrefix( "https://" );
-                url = url.RemovePrefix( "file://" );
-                url = url.RemovePrefix( "/" );
-                return url.DecodeUrlForFilePath( );
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
-                return string.Empty;
             }
         }
 
@@ -1493,351 +1057,6 @@ namespace Bubba
         }
 
         /// <summary>
-        /// this is done every time a new tab is opened
-        /// </summary>
-        /// <param name="browser">The browser.</param>
-        private void ConfigureBrowser( ChromiumWebBrowser browser )
-        {
-            try
-            {
-                ThrowIf.Null( browser, nameof( browser ) );
-                var _config = new BrowserSettings( );
-                var _flag = Locations.WebGL;
-                _config.WebGl = bool.Parse( _flag ).ToCefState( );
-                browser.BrowserSettings = _config;
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
-            }
-        }
-
-        /// <summary>
-        /// Closes the tab.
-        /// </summary>
-        /// <param name="sender">The sender.</param>
-        /// <param name="e">The <see cref="ExecutedRoutedEventArgs"/>
-        /// instance containing the event data.</param>
-        private void CloseTab( object sender, ExecutedRoutedEventArgs e )
-        {
-            if( BrowserTabs.Count > 0 )
-            {
-                //Obtain the original source element for this event
-                var originalSource = ( FrameworkElement )e.OriginalSource;
-                BrowserTabViewModel browserViewModel;
-                if( originalSource is ChatWindow )
-                {
-                    browserViewModel = BrowserTabs[ TabControl.SelectedIndex ];
-                    BrowserTabs.RemoveAt( TabControl.SelectedIndex );
-                }
-                else
-                {
-                    //Remove the matching DataContext from the BrowserTabs collection
-                    browserViewModel = ( BrowserTabViewModel )originalSource.DataContext;
-                    BrowserTabs.Remove( browserViewModel );
-                }
-
-                browserViewModel.WebBrowser.Dispose( );
-            }
-        }
-
-        /// <summary>
-        /// Closes the active tab.
-        /// </summary>
-        public void CloseActiveTab( )
-        {
-            var _index = TabControl.Items.IndexOf( TabControl.SelectedItem );
-            TabControl.Items.RemoveAt( _index );
-            if( ( TabControl.Items.Count - 1 ) > _index )
-            {
-                TabControl.SelectedItem = TabControl.Items[ _index ];
-            }
-        }
-
-        /// <summary>
-        /// Closes the search.
-        /// </summary>
-        private void CloseSearch( )
-        {
-            if( _isSearchOpen )
-            {
-                _isSearchOpen = false;
-                InvokeIf( ( ) =>
-                {
-                   Browser.GetBrowser( )
-                       ?.StopFinding( true );
-                } );
-            }
-        }
-
-        /// <summary>
-        /// Closes the other tabs.
-        /// </summary>
-        private void CloseOtherTabs( )
-        {
-            try
-            {
-                var _listToClose = new List<BrowserTabItem>( );
-                foreach( BrowserTabItem _tab in TabControl.Items )
-                {
-                    if( _tab != _currentTab
-                        && _tab != TabControl.SelectedItem )
-                    {
-                        _listToClose.Add( _tab );
-                    }
-                }
-
-                foreach( var _tab in _listToClose )
-                {
-                    TabControl.Items.Remove( _tab );
-                }
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
-            }
-        }
-
-        /// <summary>
-        /// Creates the new tab.
-        /// </summary>
-        /// <param name="url">The URL.</param>
-        /// <param name="showSideBar">
-        /// if set to <c>true</c> [show side bar].
-        /// </param>
-        /// <param name="legacyBindingEnabled">
-        /// if set to <c>true</c> [legacy binding enabled].
-        /// </param>
-        private void CreateNewTab( string url, bool showSideBar = false, 
-                                   bool legacyBindingEnabled = false )
-        {
-            BrowserTabs.Add( new BrowserTabViewModel( url )
-            {
-                ShowSidebar = showSideBar, 
-                LegacyBindingEnabled = legacyBindingEnabled
-            } );
-        }
-
-        /// <summary>
-        /// Customs the command binding.
-        /// </summary>
-        /// <param name="sender">The sender.</param>
-        /// <param name="e">The <see cref="ExecutedRoutedEventArgs"/>
-        /// instance containing the event data.</param>
-        private void CustomCommandBinding( object sender, ExecutedRoutedEventArgs e )
-        {
-            var param = e.Parameter.ToString( );
-            if( BrowserTabs.Count > 0 )
-            {
-                var originalSource = ( FrameworkElement )e.OriginalSource;
-
-                //TODO: Remove duplicate code
-                BrowserTabViewModel browserViewModel;
-
-                if( originalSource is ChatWindow )
-                {
-                    browserViewModel = BrowserTabs[ TabControl.SelectedIndex ];
-                }
-                else
-                {
-                    browserViewModel = ( BrowserTabViewModel )originalSource.DataContext;
-                }
-
-                switch( param )
-                {
-                    case "CustomRequest":
-                        browserViewModel.LoadCustomRequestExample( );
-                        break;
-
-                    case "OpenDevTools":
-                        browserViewModel.WebBrowser.ShowDevTools( );
-                        break;
-
-                    case "ZoomIn":
-                    {
-                        var cmd = browserViewModel.WebBrowser.ZoomInCommand;
-                        cmd.Execute( null );
-                        break;
-                    }
-
-                    case "ZoomOut":
-                    {
-                        var cmd = browserViewModel.WebBrowser.ZoomOutCommand;
-                        cmd.Execute( null );
-                        break;
-                    }
-
-                    case "ZoomReset":
-                    {
-                        var cmd = browserViewModel.WebBrowser.ZoomResetCommand;
-                        cmd.Execute( null );
-                        break;
-                    }
-
-                    case "ToggleAudioMute":
-                    {
-                        var cmd = browserViewModel.WebBrowser.ToggleAudioMuteCommand;
-                        cmd.Execute( null );
-                        break;
-                    }
-
-                    case "ClearHttpAuthCredentials":
-                    {
-                        var browserHost = browserViewModel.WebBrowser.GetBrowserHost( );
-                        if( browserHost != null 
-                            && !browserHost.IsDisposed )
-                        {
-                            var requestContext = browserHost.RequestContext;
-                            requestContext.ClearHttpAuthCredentials( );
-                            requestContext.ClearHttpAuthCredentialsAsync( ).ContinueWith( x =>
-                            {
-                                Console.WriteLine( "RequestContext.ClearHttpAuthCredentials returned " + x.Result );
-                            } );
-                        }
-
-                        break;
-                    }
-
-                    case "ToggleSidebar":
-                        browserViewModel.ShowSidebar = !browserViewModel.ShowSidebar;
-                        break;
-
-                    case "ToggleDownloadInfo":
-                        browserViewModel.ShowDownloadInfo = !browserViewModel.ShowDownloadInfo;
-                        break;
-
-                    case "ResizeHackTests":
-                        ReproduceWasResizedCrashAsync( );
-                        break;
-
-                    case "AsyncJsbTaskTests":
-                        CefSharpSettings.ConcurrentTaskExecution = true;
-                        CreateNewTab( _searchEngineUrl, true );
-                        TabControl.SelectedIndex = TabControl.Items.Count - 1;
-                        break;
-
-                    case "LegacyBindingTest":
-                        CreateNewTab( _searchEngineUrl, true, true );
-                        TabControl.SelectedIndex = TabControl.Items.Count - 1;
-                        break;
-                }
-            }
-        }
-
-        /// <summary>
-        /// DownloadItems the in progress.
-        /// </summary>
-        /// <returns>
-        /// </returns>
-        public bool DownloadsInProgress( )
-        {
-            if( _downloadItems?.Values?.Count > 0 )
-            {
-                Busy( );
-                foreach( var _item in _downloadItems.Values )
-                {
-                    if( _item.IsInProgress )
-                    {
-                        return true;
-                    }
-                }
-
-                Chill( );
-            }
-
-            return false;
-        }
-
-        /// <summary>
-        /// Enables the URL home button.
-        /// </summary>
-        /// <param name="canGoHome">
-        /// if set to <c>true</c> [can go forward].
-        /// </param>
-        private void EnableUrlHomeButton( bool canGoHome )
-        {
-            if( canGoHome )
-            {
-                UrlHomeButton.Visibility = Visibility.Visible;
-            }
-            else
-            {
-                UrlHomeButton.Visibility = Visibility.Hidden;
-            }
-        }
-
-        /// <summary>
-        /// Enables the URL cancel button.
-        /// </summary>
-        /// <param name="canCancel">
-        /// if set to <c>true</c> [can go forward].
-        /// </param>
-        private void EnableUrlCancelButton( bool canCancel )
-        {
-            if( canCancel )
-            {
-                UrlCancelButton.Visibility = Visibility.Visible;
-            }
-            else
-            {
-                UrlCancelButton.Visibility = Visibility.Hidden;
-            }
-        }
-
-        /// <summary>
-        /// Enables the URL refresh button.
-        /// </summary>
-        /// <param name="canRefresh">
-        /// if set to <c>true</c> [can refresh].
-        /// </param>
-        private void EnableUrlRefreshButton( bool canRefresh )
-        {
-            if( canRefresh )
-            {
-                UrlRefreshButton.Visibility = Visibility.Visible;
-            }
-            else
-            {
-                UrlRefreshButton.Visibility = Visibility.Hidden;
-            }
-        }
-
-        /// <summary>
-        /// Enables the back button.
-        /// </summary>
-        /// <param name="canGoBack">if set to
-        /// <c>true</c> [can go back].</param>
-        private void EnableUrlBackButton( bool canGoBack )
-        {
-            if( canGoBack )
-            {
-                UrlBackButton.Visibility = Visibility.Visible;
-            }
-            else
-            {
-                UrlBackButton.Visibility = Visibility.Hidden;
-            }
-        }
-
-        /// <summary>
-        /// Enables the forward button.
-        /// </summary>
-        /// <param name="canGoForward">
-        /// if set to <c>true</c> [can go forward].
-        /// </param>
-        private void EnableUrlForwardButton( bool canGoForward )
-        {
-            if( canGoForward )
-            {
-                UrlForwardButton.Visibility = Visibility.Visible;
-            }
-            else
-            {
-                UrlForwardButton.Visibility = Visibility.Hidden;
-            }
-        }
-
-        /// <summary>
         /// Fades the in asynchronous.
         /// </summary>
         /// <param name="form">The form.</param>
@@ -1886,39 +1105,6 @@ namespace Bubba
         }
 
         /// <summary>
-        /// Finds the text on page.
-        /// </summary>
-        /// <param name="next">if set to
-        /// <c>true</c> [next].</param>
-        private void FindTextOnPage( bool next = true )
-        {
-            Busy( );
-            var _first = _lastSearch != UrlPanelTextBox.Text;
-            _lastSearch = UrlPanelTextBox.Text;
-            if( _lastSearch.IsNull( ) )
-            {
-                Browser.GetBrowser( )?.Find( _lastSearch, true, false, !_first );
-            }
-            else
-            {
-                Browser.GetBrowser( )?.StopFinding( true );
-            }
-
-            UrlPanelTextBox.Focus( );
-            Chill( );
-        }
-
-        /// <summary>
-        /// Calculates the download path.
-        /// </summary>
-        /// <param name="item">The item.</param>
-        /// <returns></returns>
-        public string GetDownloadPath( DownloadItem item )
-        {
-            return item.SuggestedFileName;
-        }
-
-        /// <summary>
         /// Gets the resource stream.
         /// </summary>
         /// <param name="fileName">The fileName.</param>
@@ -1939,31 +1125,6 @@ namespace Bubba
             }
 
             return null;
-        }
-
-        /// <summary>
-        /// Gets the browser asynchronous.
-        /// </summary>
-        /// <param name="url">The URL.</param>
-        /// <param name="focused">if set to <c>true</c> [focused].</param>
-        /// <returns></returns>
-        private protected Task<ChromiumWebBrowser> GetBrowserAsync( string url, bool focused )
-        {
-            var _tcs = new TaskCompletionSource<ChromiumWebBrowser>( );
-            try
-            {
-                ThrowIf.Null( url, nameof( url ) );
-                ThrowIf.Null( focused, nameof( focused ) );
-                var _browser = AddNewBrowserTab( url, focused );
-                _tcs.SetResult( _browser );
-                return _tcs.Task;
-            }
-            catch( Exception ex )
-            {
-                _tcs.SetException( ex );
-                Fail( ex );
-                return default( Task<ChromiumWebBrowser> );
-            }
         }
 
         /// <summary>
@@ -2191,99 +1352,6 @@ namespace Bubba
         }
 
         /// <summary>
-        /// Loads the URL.
-        /// </summary>
-        /// <param name="url">The URL.</param>
-        private void LoadUrl( string url )
-        {
-            try
-            {
-                ThrowIf.Null( url, nameof( url ) );
-                Busy( );
-                var _newUrl = url;
-                var _urlLower = url.Trim( )?.ToLower( );
-                if( _urlLower == "localhost" )
-                {
-                    _newUrl = "http://localhost/";
-                }
-                else if( url.IsFilePath( ) )
-                {
-                    _newUrl = url.PathToUrl( );
-                }
-                else
-                {
-                    Uri.TryCreate( url, UriKind.Absolute, out var _outUri );
-                    if( !( _urlLower.StartsWith( "http" )
-                        || _urlLower.StartsWith( Locations.Internal ) ) )
-                    {
-                        if( _outUri == null
-                            || _outUri.Scheme != Uri.UriSchemeFile )
-                        {
-                            _newUrl = "https://" + url;
-                        }
-                    }
-
-                    if( _urlLower.StartsWith( Locations.Internal + ":" )
-                        || ( Uri.TryCreate( _newUrl, UriKind.Absolute, out _outUri )
-                            && ( ( ( _outUri.Scheme == Uri.UriSchemeHttp
-                                        || _outUri.Scheme == Uri.UriSchemeHttps )
-                                    && _newUrl?.Contains( "." ) == true )
-                                || _outUri.Scheme == Uri.UriSchemeFile ) ) )
-                    {
-                    }
-                    else
-                    {
-                        _newUrl = Locations.Google + HttpUtility.UrlEncode( url );
-                    }
-                }
-
-                Browser.Load( _newUrl );
-                SetUrl( _newUrl );
-                EnableUrlBackButton( true );
-                EnableUrlForwardButton( false );
-                Chill( );
-            }
-            catch( Exception e )
-            {
-                Fail( e );
-            }
-        }
-
-        /// <summary>
-        /// Nexts the tab.
-        /// </summary>
-        private void NextTab( )
-        {
-            if( IsLastTab( ) )
-            {
-                var _msg = "At The End";
-                SendMessage( _msg );
-            }
-            else
-            {
-                var _next = TabControl.SelectedIndex + 1;
-                TabControl.SelectedItem = TabControl.Items[ _next ];
-            }
-        }
-
-        /// <summary>
-        /// Previous tab.
-        /// </summary>
-        private void PreviousTab( )
-        {
-            if( IsFirstTab( ) )
-            {
-                var _msg = "At The Beginning!";
-                SendMessage( _msg );
-            }
-            else
-            {
-                var _next = TabControl.SelectedIndex - 1;
-                TabControl.SelectedItem = TabControl.Items[ _next ];
-            }
-        }
-
-        /// <summary>
         /// Opens the file browser.
         /// </summary>
         private protected void OpenFileBrowser( )
@@ -2393,177 +1461,23 @@ namespace Bubba
         }
 
         /// <summary>
-        /// Opens the search.
-        /// </summary>
-        private void OpenSearch( )
-        {
-            try
-            {
-                if( !_isSearchOpen )
-                {
-                    _isSearchOpen = true;
-                    InvokeIf( ( ) =>
-                    {
-                        UrlPanelTextBox.Text = _lastSearch;
-                        UrlPanelTextBox.Focus( );
-                        UrlPanelTextBox.SelectAll( );
-                    } );
-                }
-                else
-                {
-                    InvokeIf( ( ) =>
-                    {
-                        UrlPanelTextBox.Focus( );
-                        UrlPanelTextBox.SelectAll( );
-                    } );
-                }
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
-            }
-        }
-
-        /// <summary>
         /// Shows the search dialog.
         /// </summary>
         private protected virtual void OpenSearchDialog( double x, double y )
         {
             try
             {
-                var _searchDialog = (SearchDialog)App.ActiveWindows[ "SearchDialog" ];
+                _searchDialog = (SearchDialog)App.ActiveWindows[ "SearchDialog" ];
                 _searchDialog.Owner = this;
                 _searchDialog.Topmost = true;
                 _searchDialog.Left = x;
                 _searchDialog.Top = y + 100;
                 _searchDialog.Show( );
+                _searchDialog.SearchPanelTextBox.Focus(  );
             }
             catch( Exception ex )
             {
                 Fail( ex );
-            }
-        }
-
-        /// <summary>
-        /// Opens the developer tools.
-        /// </summary>
-        private void OpenDeveloperTools( )
-        {
-            try
-            {
-                if( Browser == null )
-                {
-                    var _message = "CurrentBrowser is null!";
-                    SendNotification( _message );
-                }
-                else
-                {
-                    Browser.ShowDevTools( );
-                }
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
-            }
-        }
-
-        /// <summary>
-        /// Opens the downloads tab.
-        /// </summary>
-        public void OpenDownloadsTab( )
-        {
-            if( _downloadStrip != null )
-            {
-                TabControl.SelectedItem = _downloadStrip;
-            }
-            else
-            {
-                var _brw = AddNewBrowserTab( Locations.Downloads );
-                _downloadStrip = ( BrowserTabItem )_brw.Parent;
-            }
-        }
-
-        /// <summary>
-        /// Opens the new tab.
-        /// </summary>
-        /// <param name="sender">The sender.</param>
-        /// <param name="e">The <see cref="ExecutedRoutedEventArgs"/>
-        /// instance containing the event data.</param>
-        private void OpenNewTab( object sender, ExecutedRoutedEventArgs e )
-        {
-            CreateNewTab( _searchEngineUrl );
-            TabControl.SelectedIndex = TabControl.Items.Count - 1;
-        }
-
-        /// <summary>
-        /// Opens the tab command binding.
-        /// </summary>
-        /// <param name="sender">The sender.</param>
-        /// <param name="e">The <see cref="ExecutedRoutedEventArgs"/>
-        /// instance containing the event data.</param>
-        /// <exception cref="Bubba.ErrorWindow.Exception">
-        /// Please provide a valid command parameter for binding</exception>
-        private void OpenTabCommandBinding( object sender, ExecutedRoutedEventArgs e )
-        {
-            var url = e.Parameter.ToString( );
-            if( string.IsNullOrEmpty( url ) )
-            {
-                var _message = "Please provide a valid command parameter for binding"; 
-                throw new Exception( _message );
-            }
-
-            CreateNewTab( url, true );
-            TabControl.SelectedIndex = TabControl.Items.Count - 1;
-        }
-
-        /// <summary>
-        /// Prints to PDF command binding.
-        /// </summary>
-        /// <param name="sender">
-        /// The sender.
-        /// </param>
-        /// <param name="e">
-        /// The <see cref="ExecutedRoutedEventArgs"/>
-        /// instance containing the event data.
-        /// </param>
-        private async void PrintToPdfCommandBinding( object sender, ExecutedRoutedEventArgs e )
-        {
-            if( BrowserTabs.Count > 0 )
-            {
-                var originalSource = ( FrameworkElement )e.OriginalSource;
-                BrowserTabViewModel browserViewModel;
-                if( originalSource is ChatWindow )
-                {
-                    browserViewModel = BrowserTabs[ TabControl.SelectedIndex ];
-                }
-                else
-                {
-                    browserViewModel = ( BrowserTabViewModel )originalSource.DataContext;
-                }
-
-                var dialog = new SaveFileDialog
-                {
-                    DefaultExt = ".pdf",
-                    Filter = "Pdf documents (.pdf)|*.pdf"
-                };
-
-                var success = await browserViewModel.WebBrowser.PrintToPdfAsync( dialog.FileName, new PdfPrintSettings
-                {
-                    MarginType = CefPdfPrintMarginType.Custom,
-                    MarginBottom = 0.01,
-                    MarginTop = 0.01,
-                    MarginLeft = 0.01,
-                    MarginRight = 0.01,
-                } );
-
-                if( success )
-                {
-                    MessageBox.Show( "Pdf was saved to " + dialog.FileName );
-                }
-                else
-                {
-                    MessageBox.Show( "Unable to save Pdf, check you have write permissions to " + dialog.FileName );
-                }
             }
         }
 
@@ -3717,7 +2631,7 @@ namespace Bubba
         {
             try
             {
-                var _tabPages = new Dictionary<string, BrowserTabItem>( );
+                var _tabPages = new Dictionary<string, TabItem>( );
                 SetToolbarVisibility( true );
             }
             catch( Exception ex )
@@ -3733,7 +2647,6 @@ namespace Bubba
         {
             try
             {
-                InitializeBrowser( );
                 SetToolbarVisibility( true );
             }
             catch( Exception ex )
@@ -3854,18 +2767,6 @@ namespace Bubba
         }
 
         /// <summary>
-        /// Adds the blank tab.
-        /// </summary>
-        public void AddBlankTab( )
-        {
-            AddNewBrowserTab( "" );
-            Dispatcher.BeginInvoke( ( ) =>
-            {
-                UrlPanelTextBox.Focus( );
-            } );
-        }
-
-        /// <summary>
         /// Adds the blank window.
         /// </summary>
         public void AddBlankWindow( )
@@ -3880,86 +2781,6 @@ namespace Bubba
             };
 
             Process.Start( _info );
-        }
-
-        /// <summary>
-        /// Adds the new browser tab.
-        /// </summary>
-        /// <param name="url">The URL.</param>
-        /// <param name="focus">if set to
-        /// <c>true</c> [focus new tab].</param>
-        /// <param name="referringUrl">The referring URL.</param>
-        /// <returns>
-        /// </returns>
-        public ChromiumWebBrowser AddNewBrowserTab( string url, bool focus = true,
-            string referringUrl = null )
-        {
-            return Dispatcher.Invoke( delegate
-            {
-                foreach( BrowserTabItem _item in TabControl.Items )
-                {
-                    var _tab2 = ( BrowserTabItem )_item.Tag;
-                    if( _tab2 != null
-                        && _tab2.CurrentUrl == url )
-                    {
-                        TabControl.SelectedItem = _item;
-                        return _tab2.Browser;
-                    }
-                }
-
-                var _tab = new BrowserTabItem
-                {
-                    Title = "New Tab"
-                };
-
-                TabControl.Items.Insert( TabControl.Items.Count - 1, _tab );
-                _newTabItem = _tab;
-                var _newTab = AddNewBrowser( _newTabItem, url );
-                _newTab.ReferringUrl = referringUrl;
-                if( focus )
-                {
-                    _newTab.BringIntoView( );
-                }
-
-                return _newTab.Browser;
-            } );
-        }
-
-        /// <summary>
-        /// Adds the new browser.
-        /// </summary>
-        /// <param name="tabItem">The tab strip.</param>
-        /// <param name="url">The URL.</param>
-        /// <returns></returns>
-        private BrowserTabItem AddNewBrowser( BrowserTabItem tabItem, string url )
-        {
-            if( url == "" )
-            {
-                url = Locations.NewTab;
-            }
-
-            var _newBrowser = new ChromiumWebBrowser( url );
-            ConfigureBrowser( _newBrowser );
-            _newBrowser.BringIntoView( );
-            tabItem.Content = _newBrowser;
-            _newBrowser.StatusMessage += OnStatusUpdated;
-            _newBrowser.LoadingStateChanged += OnWebBrowserLoadingStateChanged;
-            _newBrowser.LoadError += OnWebBrowserLoadError;
-            _newBrowser.AddressChanged += OnWebBrowserAddressChanged;
-            _newBrowser.DownloadHandler = _downloadCallback;
-            _newBrowser.MenuHandler = _contextMenuCallback;
-            _newBrowser.LifeSpanHandler = _lifeSpanCallback;
-            _newBrowser.KeyboardHandler = _keyboardCallback;
-            _newBrowser.RequestHandler = _requestCallback;
-            tabItem.Tag = tabItem;
-            if( !string.IsNullOrEmpty( url )
-                && url.StartsWith( Locations.Internal + ":" ) )
-            {
-                _newBrowser.JavascriptObjectRepository.Register( "host", _hostCallback,
-                    BindingOptions.DefaultBinder );
-            }
-
-            return tabItem;
         }
 
         /// <summary>
@@ -3990,107 +2811,6 @@ namespace Bubba
             {
                 Fail( ex );
             }
-        }
-
-        /// <summary>
-        /// Updates the download item.
-        /// </summary>
-        /// <param name="item">The item.</param>
-        public void UpdateDownloadItem( DownloadItem item )
-        {
-            lock( _downloadItems )
-            {
-                // SuggestedFileName comes full only
-                // in the first attempt so keep it somewhere
-                if( item.SuggestedFileName != "" )
-                {
-                    _downloadNames[ item.Id ] = item.SuggestedFileName;
-                }
-
-                // Set it back if it is empty
-                if( item.SuggestedFileName == ""
-                    && _downloadNames.TryGetValue( item.Id, out var _name ) )
-                {
-                    item.SuggestedFileName = _name;
-                }
-
-                _downloadItems[ item.Id ] = item;
-
-                //UpdateSnipProgress();
-            }
-        }
-
-        /// <summary>
-        /// Refreshes the active tab.
-        /// </summary>
-        public void RefreshActiveTab( )
-        {
-            Busy( );
-            var _address = Browser.Address;
-            Browser.Load( _address );
-            Chill( );
-        }
-
-        /// <summary>
-        /// Reproduces the was resized crash asynchronous.
-        /// </summary>
-        private void ReproduceWasResizedCrashAsync( )
-        {
-            CreateNewTab( _searchEngineUrl );
-            WindowState = WindowState.Normal;
-            Task.Run( ( ) =>
-            {
-                try
-                {
-                    var random = new Random( );
-                    for( var i = 0; i < 20; i++ )
-                    {
-                        for( var j = 0; j < 150; j++ )
-                        {
-                            Dispatcher.Invoke( new Action( ( ) =>
-                            {
-                                var newWidth = Width + ( i % 2 == 0 ? -5 : 5 );
-                                var newHeight = Height + ( i % 2 == 0 ? -5 : 5 );
-                                if( newWidth < 500 
-                                    || newWidth > 1500 )
-                                {
-                                    newWidth = 1000;
-                                }
-
-                                if( newHeight < 500 
-                                    || newHeight > 1500 )
-                                {
-                                    newHeight = 1000;
-                                }
-
-                                Width = newWidth;
-                                Height = newHeight;
-                                var indexes = new List<int>( );
-                                for( var k = 0; k < TabControl.Items.Count; k++ )
-                                {
-                                    if( TabControl.SelectedIndex != k )
-                                    {
-                                        indexes.Add( k );
-                                    }
-                                }
-
-                                // Select a random unselected tab
-                                TabControl.SelectedIndex = indexes[ random.Next( 0, indexes.Count ) ];
-                                if( random.Next( 0, 5 ) == 0 )
-                                {
-                                    // Don't close the first tab
-                                    CloseOtherTabs( ); 
-                                    CreateNewTab( _searchEngineUrl );
-                                }
-                            } ) );
-
-                            // Sleep random amount of time
-                            Thread.Sleep( random.Next( 1, 11 ) );
-                        }
-                    }
-                }
-                catch( TaskCanceledException ) { } // So it doesn't break on VS stop
-            } );
         }
 
         /// <summary>
@@ -4326,34 +3046,6 @@ namespace Bubba
         }
 
         /// <summary>
-        /// Stops the active tab.
-        /// </summary>
-        private void StopActiveTab( )
-        {
-            Browser.Stop( );
-        }
-
-        /// <summary>
-        /// Called by LoadURL to set the form URL.
-        /// </summary>
-        /// <param name="url">The URL.</param>
-        private void SetUrl( string url )
-        {
-            try
-            {
-                ThrowIf.Null( url, nameof( url ) );
-                _originalUrl = url;
-                _finalUrl = CleanUrl( url );
-                UrlPanelTextBox.Text = _finalUrl;
-                Browser.LoadUrl( _finalUrl );
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
-            }
-        }
-
-        /// <summary>
         /// 
         /// Shows the items.
         /// </summary>
@@ -4386,82 +3078,6 @@ namespace Bubba
             catch( Exception ex )
             {
                 Fail( ex );
-            }
-        }
-
-        /// <summary>
-        /// Sets the URL panel visibility.
-        /// </summary>
-        /// <param name="visible">
-        /// if set to <c>true</c> [show].
-        /// </param>
-        private void SetUrlPanelVisibility( bool visible = true )
-        {
-            try
-            {
-                if( visible )
-                {
-                    EnableUrlForwardButton( Browser.CanGoForward );
-                    EnableUrlBackButton( Browser.CanGoBack );
-                    EnableUrlCancelButton( Browser.IsLoading );
-                    EnableUrlHomeButton( visible );
-                    EnableUrlRefreshButton( !visible );
-                }
-                else
-                {
-                    EnableUrlForwardButton( Browser.CanGoForward );
-                    EnableUrlBackButton( Browser.CanGoBack );
-                    EnableUrlCancelButton( Browser.IsLoading );
-                    EnableUrlHomeButton( visible );
-                    EnableUrlRefreshButton( visible );
-                }
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
-            }
-        }
-
-        /// <summary>
-        /// Sets the form title.
-        /// </summary>
-        /// <param name="title">
-        /// Name of the tab.
-        /// </param>
-        private void SetTitleText( string title )
-        {
-            InvokeIf( ( ) =>
-            {
-                if( title.IsNull( ) )
-                {
-                    Title = Locations.Branding + " - " + title;
-                    _currentTitle = title;
-                }
-                else
-                {
-                    Title = Locations.Branding;
-                    _currentTitle = "New Tab";
-                }
-            } );
-        }
-
-        /// <summary>
-        /// Toggles the fullscreen.
-        /// </summary>
-        private void ToggleFullscreen( )
-        {
-            if( !_fullScreen )
-            {
-                _oldWindowState = WindowState;
-                WindowStyle = WindowStyle.SingleBorderWindow;
-                WindowState = WindowState.Maximized;
-                _fullScreen = true;
-            }
-            else
-            {
-                WindowStyle = WindowStyle.SingleBorderWindow;
-                WindowState = _oldWindowState;
-                _fullScreen = false;
             }
         }
 
@@ -4499,18 +3115,6 @@ namespace Bubba
         }
 
         /// <summary>
-        /// Waits for browser to initialize.
-        /// </summary>
-        /// <param name="browser">The browser.</param>
-        public void WaitForBrowserToInitialize( ChromiumWebBrowser browser )
-        {
-            while( !browser.IsBrowserInitialized )
-            {
-                Thread.Sleep( 100 );
-            }
-        }
-
-        /// <summary>
         /// Called when [load].
         /// </summary>
         /// <param name="sender">The sender.</param>
@@ -4523,16 +3127,11 @@ namespace Bubba
             PopulatePromptDropDown( );
             PopulateRequestTypes( );
             PopulateVoices( );
-            InitializeBrowser( );
-            InitializeCommands( );
-            InitializeHotkeys( );
             InitializeTimer( );
             InitializeToolStrip( );
-            InitializeUrlPanel( );
             InitializeEditor( );
             App.ActiveWindows.Add( "ChatWindow", this );
             InitializeInterface( );
-            ConfigureBrowser( Browser );
         }
 
         /// <summary>
@@ -4546,7 +3145,8 @@ namespace Bubba
             try
             {
                 _audioFormat = ( ( MetroDropDownItem )AudioFormatDropDown.SelectedItem )
-                        ?.Content?.ToString( );
+                    ?.Content
+                    ?.ToString( );
 
                 var _message = "AudioFormat = " + _audioFormat;
                 SendNotification( _message );
@@ -4567,13 +3167,6 @@ namespace Bubba
         {
             try
             {
-                // ask user if they are sure
-                if( DownloadsInProgress( ) )
-                {
-                    var _msg = "DownloadItems are in progress.";
-                    SendMessage( _msg );
-                }
-
                 _timer?.Dispose( );
                 _statusUpdate += null;
                 SfSkinManager.Dispose( this );
@@ -4833,24 +3426,6 @@ namespace Bubba
         }
 
         /// <summary>
-        /// Called when [file upload button click].
-        /// </summary>
-        /// <param name="sender">The sender.</param>
-        /// <param name="e">The <see cref="RoutedEventArgs"/>
-        /// instance containing the event data.</param>
-        private void OnFileApiButtonClick( object sender, RoutedEventArgs e )
-        {
-            try
-            {
-                OpenGptFileDialog( );
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
-            }
-        }
-
-        /// <summary>
         /// Called when [firefox option click].
         /// </summary>
         /// <param name="sender">The sender.</param>
@@ -4882,41 +3457,6 @@ namespace Bubba
             {
                 var _message = "NOT YET IMPLEMENTED!";
                 SendNotification( _message );
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
-            }
-        }
-
-        /// <summary>
-        /// Called when [go button clicked].
-        /// </summary>
-        /// <param name="sender">The sender.</param>
-        /// <param name="e">The <see cref="RoutedEventArgs"/>
-        /// instance containing the event data.</param>
-        private protected void OnGoButtonClicked( object sender, RoutedEventArgs e )
-        {
-            try
-            {
-                _keyWords = ToolStripTextBox.InputText;
-                if( !string.IsNullOrEmpty( _keyWords ) )
-                {
-                    var _message = "The search keywords are empty!";
-                    SendNotification( _message );
-                }
-                else
-                {
-                    Busy( );
-                    var _keywords = ToolStripTextBox.Text;
-                    if( !string.IsNullOrEmpty( _keywords ) )
-                    {
-                        var _search = SearchEngineUrl + _keywords;
-                        Browser.Load( _search );
-                    }
-
-                    Chill( );
-                }
             }
             catch( Exception ex )
             {
@@ -5316,9 +3856,9 @@ namespace Bubba
         /// Called when [status updated].
         /// </summary>
         /// <param name="sender">The sender.</param>
-        /// <param name="e">The <see cref="StatusMessageEventArgs"/>
+        /// <param name="e">The <see cref="RoutedEventArgs"/>
         /// instance containing the event data.</param>
-        private void OnStatusUpdated( object sender, StatusMessageEventArgs e )
+        private void OnStatusUpdated( object sender, RoutedEventArgs e )
         {
             try
             {
@@ -5623,83 +4163,6 @@ namespace Bubba
         }
 
         /// <summary>
-        /// Called when [tab control index changed].
-        /// </summary>
-        /// <param name="sender">The sender.</param>
-        /// <param name="e">The <see cref="RoutedEventArgs"/>
-        /// instance containing the event data.</param>
-        private void OnTabControlSelectionChanged( object sender, SelectionChangedEventArgs e )
-        {
-            try
-            {
-                if( sender is MetroTabControl tabControl )
-                {
-                    var _index = tabControl
-                        ?.SelectedItem
-                        ?.Tag
-                        ?.ToString( );
-
-                    switch( _index )
-                    {
-                        case "Chat":
-                        {
-                            ActivateChatTab( );
-                            break;
-                        }
-                        case "GPT":
-                        {
-                            ActivateParameterTab( );
-                            break;
-                        }
-                        case "Web":
-                        {
-                            ActivateBrowserTab( );
-                            break;
-                        }
-                        case "Editor":
-                        {
-                            ActivateEditorTab( );
-                            break;
-                        }
-                        case "Image":
-                        {
-                            break;
-                        }
-                        case "Data":
-                        {
-                            ActivateDataTab( );
-                            break;
-                        }
-                        case "Chart":
-                        {
-                            ActivateChartTab( );
-                            break;
-                        }
-                        case "Graph":
-                        {
-                            ActivateGraphTab( );
-                            break;
-                        }
-                        case "Busy":
-                        {
-                            ActivateBusyTab( );
-                            break;
-                        }
-                        default:
-                        {
-                            ActivateChatTab( );
-                            break;
-                        }
-                    }
-                }
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
-            }
-        }
-
-        /// <summary>
         /// Called when [URL text box clicked].
         /// </summary>
         /// <param name="sender">The sender.</param>
@@ -5713,109 +4176,6 @@ namespace Bubba
                 var _x = _psn.X - 100.0;
                 var _y = _psn.Y - 100.0;
                 OpenSearchDialog( _x, _y );
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
-            }
-        }
-
-        /// <summary>
-        /// Called when [URL cancel button click].
-        /// </summary>
-        /// <param name="sender">The sender.</param>
-        /// <param name="e">The <see cref="MouseEventArgs"/>
-        /// instance containing the event data.</param>
-        private protected void OnUrlCancelButtonClick( object sender, RoutedEventArgs e )
-        {
-            try
-            {
-                if( Browser.IsLoading )
-                {
-                    Browser.Stop( );
-                }
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
-            }
-        }
-
-        /// <summary>
-        /// Called when [home button click].
-        /// </summary>
-        /// <param name="sender">The sender.</param>
-        /// <param name="e">The <see cref="EventArgs" />
-        /// instance containing the event data.</param>
-        private void OnUrlHomeButtonClick( object sender, EventArgs e )
-        {
-            try
-            {
-                Busy( );
-                _finalUrl = Browser.Address;
-                _originalUrl = Locations.Google;
-                SetUrl( Locations.HomePage );
-                Chill( );
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
-            }
-        }
-
-        /// <summary>
-        /// Called when [home button click].
-        /// </summary>
-        /// <param name="sender">The sender.</param>
-        /// <param name="e">The <see cref="EventArgs" />
-        /// instance containing the event data.</param>
-        private void OnUrlRefreshButtonClick( object sender, EventArgs e )
-        {
-            try
-            {
-                Busy( );
-                RefreshActiveTab( );
-                Chill( );
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
-            }
-        }
-
-        /// <summary>
-        /// Called when [URL back button click].
-        /// </summary>
-        /// <param name="sender">The sender.</param>
-        /// <param name="e">The <see cref="EventArgs"/>
-        /// instance containing the event data.</param>
-        private void OnUrlBackButtonClick( object sender, EventArgs e )
-        {
-            try
-            {
-                Busy( );
-                Browser.Load( _previousUrl );
-                Chill( );
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
-            }
-        }
-
-        /// <summary>
-        /// Called when [URL forward button click].
-        /// </summary>
-        /// <param name="sender">The sender.</param>
-        /// <param name="e">The <see cref="EventArgs"/>
-        /// instance containing the event data.</param>
-        private void OnUrlForwardButtonClick( object sender, EventArgs e )
-        {
-            try
-            {
-                Busy( );
-                Browser.Forward( );
-                Chill( );
             }
             catch( Exception ex )
             {
@@ -5991,102 +4351,6 @@ namespace Bubba
         }
 
         /// <summary>
-        /// Called when [loading state changed].
-        /// </summary>
-        /// <param name="sender">The sender.</param>
-        /// <param name="e">The <see cref="RoutedEventArgs"/>
-        /// instance containing the event data.</param>
-        private protected void OnWebBrowserLoadingStateChanged( object sender, LoadingStateChangedEventArgs e )
-        {
-            try
-            {
-               InvokeIf( ( ) =>
-                {
-                    if( sender == Browser )
-                    {
-                        EnableUrlBackButton( Browser.CanGoBack );
-                        EnableUrlForwardButton( Browser.CanGoForward );
-                        if( e.IsLoading )
-                        {
-                            Busy( );
-                        }
-                        else
-                        {
-                            Chill( );
-                        }
-                    }
-                } );
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
-            }
-        }
-
-        /// <summary>
-        /// Called when [WebBrowser frame load end].
-        /// </summary>
-        /// <param name="sender">The sender.</param>
-        /// <param name="e">The <see cref="CefSharp.FrameLoadEndEventArgs"/>
-        /// instance containing the event data.</param>
-        private void OnWebBrowserFrameLoadEnd( object sender, FrameLoadEndEventArgs e )
-        {
-            try
-            {
-                // Do something after page loads
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
-            }
-        }
-
-        /// <summary>
-        /// 
-        /// Called when [load error].
-        /// </summary>
-        /// <param name="sender">The sender.</param>
-        /// <param name="e">The <see cref="LoadErrorEventArgs" />
-        /// instance containing the event data.</param>
-        private void OnWebBrowserLoadError( object sender, LoadErrorEventArgs e )
-        {
-            // ("Load Error:" + e.ErrorCode + ";" + e.ErrorText);
-        }
-
-        /// <summary>
-        /// Called when [URL changed].
-        /// </summary>
-        /// <param name="sender">The sender.</param>
-        /// <param name="e">The <see cref="AddressChangedEventArgs" />
-        /// instance containing the event data.</param>
-        private void OnWebBrowserAddressChanged( object sender, DependencyPropertyChangedEventArgs e )
-        {
-            try
-            {
-                InvokeIf( ( ) =>
-                {
-                    if( sender == Browser 
-                        && e.Property.Name.Equals( "Address" ) )
-                    {
-                        _previousUrl = e.OldValue.ToString( );
-                        _finalUrl = e.NewValue.ToString( );
-                        if( !NetUtility.IsFocused( UrlPanelTextBox ) )
-                        {
-                            Browser.Load( _finalUrl );
-                        }
-
-                        EnableUrlBackButton( Browser.CanGoBack );
-                        EnableUrlForwardButton( Browser.CanGoForward );
-                    }
-                } );
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
-            }
-        }
-
-        /// <summary>
         /// Called when [browser mouse left button down].
         /// </summary>
         /// <param name="sender">The sender.</param>
@@ -6096,8 +4360,7 @@ namespace Bubba
         {
             try
             {
-                var _browser = sender as ChromiumWebBrowser;
-                var point = e.GetPosition( _browser );
+                var point = e.GetPosition( this );
                 if( _region.IsVisible( ( float )point.X, ( float )point.Y ) )
                 {
                     var window = Window.GetWindow( this );

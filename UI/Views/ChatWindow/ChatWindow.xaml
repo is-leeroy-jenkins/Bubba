@@ -11,7 +11,6 @@
     xmlns:skin="clr-namespace:Syncfusion.SfSkinManager;assembly=Syncfusion.SfSkinManager.WPF"
     xmlns:sp="clr-namespace:ScottPlot.WPF;assembly=ScottPlot.WPF"
     xmlns:ui="http://schemas.modernwpf.com/2019"
-    xmlns:web="clr-namespace:CefSharp.Wpf;assembly=CefSharp.Wpf"
     xmlns:wpf="http://schemas.syncfusion.com/wpf"
     Title="Bubba"
     Width="1370"
@@ -165,7 +164,7 @@
                 <RowDefinition Height="58.04" />
             </Grid.RowDefinitions>
 
-    <!--  *********************************************  TOOLSTRIP *************************************  -->
+            <!--  *********************************************  TOOLSTRIP *************************************  -->
 
             <ToolBar
                 x:Name="ToolStrip"
@@ -284,8 +283,8 @@
                     Background="{StaticResource ControlBackground}"
                     BorderBrush="{StaticResource ControlBackground}"
                     FontFamily="Roboto"
-                    IsIndeterminate="{Binding ElementName=Browser, Path=IsLoading}"
                     Foreground="{StaticResource BlueBorderBrush}"
+                    IsIndeterminate="{Binding ElementName=Browser, Path=IsLoading}"
                     ProgressColor="{StaticResource GreenBackground}"
                     TrackColor="{StaticResource FormBackground}" />
 
@@ -1336,202 +1335,6 @@
                 </TabItem>
 
                 <!--  ********************************************* PARAMETER TAB *************************************  -->
-
-                <TabItem
-                    x:Name="BrowserTabItem"
-                    Width="60"
-                    Height="30"
-                    Margin="3"
-                    Padding="1,1,1,1"
-                    Background="{DynamicResource FormBackground}"
-                    BorderBrush="{DynamicResource FormBackground}"
-                    Foreground="{DynamicResource FormForeground}"
-                    Header="Web"
-                    Tag="Web"
-                    ToolTip="Internet Browser">
-                    <Grid
-                        x:Name="BroswerTabGrid"
-                        Height="Auto"
-                        Background="{StaticResource FormBackground}">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="47" />
-                            <RowDefinition Height="Auto" />
-                        </Grid.RowDefinitions>
-                        <Grid
-                            x:Name="ControlBox"
-                            Grid.Row="0"
-                            Height="50"
-                            MinWidth="1100"
-                            Margin="3"
-                            VerticalAlignment="Center"
-                            UseLayoutRounding="True">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="50" />
-                                <ColumnDefinition Width="55" />
-                                <ColumnDefinition Width="55" />
-                                <ColumnDefinition Width="55" />
-                                <ColumnDefinition Width="55" />
-                                <ColumnDefinition Width="620" />
-                                <ColumnDefinition Width="40" />
-                                <ColumnDefinition Width="50" />
-                                <ColumnDefinition Width="65" />
-                                <ColumnDefinition />
-                            </Grid.ColumnDefinitions>
-
-
-                            <!--  ******************************************** URL Search Bar  ***********************************  -->
-
-
-                            <b:ToolStripButton
-                                x:Name="UrlForwardButton"
-                                Title=""
-                                Grid.Column="7"
-                                Width="40"
-                                Height="30"
-                                Margin="3"
-                                Padding="1"
-                                HorizontalAlignment="Center"
-                                VerticalAlignment="Center"
-                                HorizontalContentAlignment="Stretch"
-                                VerticalContentAlignment="Stretch"
-                                Background="{StaticResource FormBackground}"
-                                BorderBrush="{StaticResource FormBackground}"
-                                BorderThickness="1"
-                                ClipToBounds="True"
-                                Header=""
-                                ImageSource="/Resources/Assets/ToolStripImages/CircleArrowRight.png"
-                                ToolTip="Go Forward" />
-
-                            <b:ToolStripButton
-                                x:Name="UrlCancelButton"
-                                Title=""
-                                Grid.Column="3"
-                                Width="40"
-                                Height="30"
-                                Margin="3"
-                                Padding="1"
-                                HorizontalAlignment="Center"
-                                VerticalAlignment="Center"
-                                HorizontalContentAlignment="Stretch"
-                                VerticalContentAlignment="Stretch"
-                                Background="{DynamicResource FormBackground}"
-                                BorderBrush="{StaticResource FormBackground}"
-                                BorderThickness="1"
-                                ClipToBounds="True"
-                                Header=""
-                                ImageSource="/Resources/Assets/ToolStripImages/StopButton.png"
-                                ToolTip="Cancel Search" />
-
-                            <b:MetroTextBox
-                                x:Name="UrlPanelTextBox"
-                                Grid.Column="5"
-                                Width="600"
-                                Height="30"
-                                Margin="1"
-                                Padding="30,1,1,1"
-                                HorizontalAlignment="Center"
-                                HorizontalContentAlignment="Left"
-                                VerticalContentAlignment="Center"
-                                Panel.ZIndex="1"
-                                Background="{StaticResource ControlInteriorBrush}"
-                                BorderBrush="{StaticResource BlueBorderBrush}"
-                                BorderThickness="1"
-                                ClipToBounds="True"
-                                FontFamily="Roboto"
-                                FontSize="16"
-                                Foreground="{StaticResource FormForeground}"
-                                Text="{Binding Address, ElementName=Browser}"
-                                TextWrapping="NoWrap"
-                                ToolTip="URL" />
-
-                            <b:ToolStripButton
-                                x:Name="UrlBackButton"
-                                Title=""
-                                Grid.Column="6"
-                                Width="40"
-                                Height="30"
-                                Margin="3"
-                                Padding="1"
-                                HorizontalAlignment="Center"
-                                VerticalAlignment="Center"
-                                HorizontalContentAlignment="Stretch"
-                                VerticalContentAlignment="Stretch"
-                                Background="{StaticResource FormBackground}"
-                                BorderBrush="{StaticResource FormBackground}"
-                                BorderThickness="1"
-                                ClipToBounds="True"
-                                Header=""
-                                ImageSource="/Resources/Assets/ToolStripImages/CircleArrowLeft.png"
-                                ToolTip="Go Back" />
-
-                            <Label
-                                x:Name="UrlPanelStatusLabel"
-                                Grid.Column="9"
-                                Margin="1,5,4,5"
-                                Padding="1,1,1,1"
-                                HorizontalContentAlignment="Right"
-                                VerticalContentAlignment="Center"
-                                BorderThickness="1,1,1,1"
-                                ClipToBounds="True"
-                                Content="Label"
-                                FontFamily="Roboto"
-                                Foreground="{StaticResource BlueBorderBrush}"
-                                SnapsToDevicePixels="True"
-                                UseLayoutRounding="True" />
-
-                            <b:ToolStripButton
-                                x:Name="UrlHomeButton"
-                                Title=""
-                                Grid.Column="4"
-                                Width="40"
-                                Height="30"
-                                Margin="3"
-                                Padding="1"
-                                HorizontalAlignment="Center"
-                                VerticalAlignment="Center"
-                                HorizontalContentAlignment="Stretch"
-                                VerticalContentAlignment="Stretch"
-                                Background="{StaticResource FormBackground}"
-                                BorderBrush="{StaticResource FormBackground}"
-                                BorderThickness="1"
-                                ClipToBounds="True"
-                                Header=""
-                                ImageSource="/Resources/Assets/ToolStripImages/HomeButton.png"
-                                ToolTip="Home Page" />
-
-                            <b:ToolStripButton
-                                x:Name="UrlRefreshButton"
-                                Title=""
-                                Grid.Column="2"
-                                Width="40"
-                                Height="30"
-                                Margin="3"
-                                Padding="1"
-                                HorizontalAlignment="Center"
-                                VerticalAlignment="Center"
-                                HorizontalContentAlignment="Stretch"
-                                VerticalContentAlignment="Stretch"
-                                Background="{StaticResource FormBackground}"
-                                BorderBrush="{StaticResource FormBackground}"
-                                BorderThickness="1"
-                                ClipToBounds="True"
-                                ImageSource="/Resources/Assets/MenuImages/RefreshItem.png"
-                                ToolTip="Refresh Page" />
-                        </Grid>
-                        <Canvas
-                            Grid.Row="1"
-                            Height="550"
-                            Margin="3" />
-
-                        <web:ChromiumWebBrowser
-                            x:Name="Browser"
-                            Grid.Row="1"
-                            Margin="5"
-                            Padding="1"
-                            Address="https://www.google.com" />
-
-                    </Grid>
-                </TabItem>
                 <TabItem
                     x:Name="ImageTabItem"
                     Width="60"
@@ -2011,7 +1814,7 @@
                     Background="{DynamicResource FormBackground}"
                     BorderBrush="{DynamicResource FormBackground}"
                     Foreground="{DynamicResource FormForeground}"
-                    Header="Editor"
+                    Header="Text"
                     Tag="Editor"
                     ToolTip="Text/Code Editing">
                     <Grid
@@ -2190,72 +1993,6 @@
 
 
                 <!--  ********************************************* DATA TAB *************************************  -->
-
-
-                <TabItem
-                    x:Name="DataTabItem"
-                    Width="60"
-                    Height="30"
-                    Margin="3"
-                    Padding="1,1,1,1"
-                    Background="{DynamicResource FormBackground}"
-                    BorderBrush="{DynamicResource FormBackground}"
-                    Foreground="{DynamicResource FormForeground}"
-                    Header="Data"
-                    Tag="Data"
-                    ToolTip="Data Management">
-
-                    <Grid
-                        x:Name="DatabaseGrid"
-                        Background="{StaticResource FormBackground}">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="165*" />
-                            <ColumnDefinition Width="53*" />
-                        </Grid.ColumnDefinitions>
-
-                        <b:MetroDataGrid
-                            x:Name="DataGrid"
-                            Margin="40,60,30,80"
-                            BorderBrush="{StaticResource BlueBorderBrush}"
-                            BorderThickness="2" />
-                        <Canvas
-                            x:Name="DataFilterGrid"
-                            Grid.Column="1">
-
-                            <b:MetroDropDown
-                                x:Name="DataComboBox"
-                                Canvas.Left="30"
-                                Canvas.Top="64"
-                                Width="243"
-                                Height="43"
-                                HorizontalAlignment="Left"
-                                AllowMultiSelect="True"
-                                Background="{StaticResource ControlInteriorBrush}"
-                                BorderBrush="{StaticResource BlueBorderBrush}"
-                                DefaultText="ComboBox Items">
-                                <wpf:ComboBoxItemAdv Content="Item 1" />
-                                <wpf:ComboBoxItemAdv Content="Item 2" />
-                                <wpf:ComboBoxItemAdv Content="Item 3" />
-                                <wpf:ComboBoxItemAdv Content="Item 4" />
-                                <wpf:ComboBoxItemAdv Content="Item 5" />
-                            </b:MetroDropDown>
-
-                            <b:MetroListBox
-                                Canvas.Left="31"
-                                Canvas.Top="128"
-                                Width="243"
-                                Height="384"
-                                HorizontalAlignment="Center"
-                                VerticalAlignment="Top" />
-                        </Canvas>
-                        <Grid Grid.Column="0">
-                            <Grid.RowDefinitions>
-                                <RowDefinition />
-                                <RowDefinition />
-                            </Grid.RowDefinitions>
-                        </Grid>
-                    </Grid>
-                </TabItem>
 
                 <!--  ********************************************* PLOT TAB *************************************  -->
 

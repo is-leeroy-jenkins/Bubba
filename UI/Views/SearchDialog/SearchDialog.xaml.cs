@@ -422,27 +422,6 @@ namespace Bubba
             }
         }
 
-        /// <summary>
-        /// Called when [search engine selected].
-        /// </summary>
-        /// 
-        /// <param name="sender">The sender.</param>
-        /// <param name="e">The <see cref="EventArgs"/>
-        /// instance containing the event data.</param>
-        private void OnSelectedDomainChanged( object sender, RoutedEventArgs e )
-        {
-            try
-            {
-                if( sender is MetroComboBox _comboBox )
-                {
-                }
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
-            }
-        }
-
         /// <inheritdoc />
         /// <summary>
         /// Releases unmanaged and - optionally - managed resources.

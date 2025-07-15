@@ -49,8 +49,6 @@ namespace Bubba
     using System.Threading.Tasks;
     using System.Windows;
     using System.Windows.Media;
-    using CefSharp;
-    using CefSharp.Wpf;
     using OfficeOpenXml;
     using RestoreWindowPlace;
     using Syncfusion.Licensing;
@@ -268,29 +266,9 @@ namespace Bubba
 
                 AppDomain.CurrentDomain.UnhandledException += ( s, args ) =>
                     HandleException( args.ExceptionObject as Exception );
-
-                var _cefSettings = new CefSettings( );
-                _cefSettings.RegisterScheme( new CefCustomScheme
-                {
-                    SchemeName = Locations.Internal,
-                    SchemeHandlerFactory = new SchemaCallbackFactory( )
-                } );
-
-                _cefSettings.UserAgent = Locations.UserAgent;
-                _cefSettings.AcceptLanguageList = Locations.AcceptLanguage;
-                _cefSettings.IgnoreCertificateErrors = true;
-                _cefSettings.CachePath = GetApplicationDirectory( "CefSharp\\Cache" );
-                if( bool.Parse( Locations.Proxy ) )
-                {
-                    CefSharpSettings.Proxy = new ProxyOptions( Locations.ProxyIP, Locations.ProxyPort, 
-                        Locations.ProxyUsername, Locations.ProxyPassword, Locations.ProxyBypassList );
-                }
-
-                Cef.Initialize( _cefSettings );
             }
             catch( Exception ex )
             {
-                Cef.Shutdown( );
                 Fail( ex );
                 Environment.Exit( 1 );
             }
@@ -307,7 +285,6 @@ namespace Bubba
         {
             try
             {
-                Cef.Shutdown( );
                 base.OnExit( e );
                 ActiveWindows?.Clear( );
                 Environment.Exit( 0 );

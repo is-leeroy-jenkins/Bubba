@@ -1,4 +1,4 @@
-﻿
+﻿C:\Users\terry\source\repos\Bubba\obj\Debug\net8.0-windows7.0\GeneratedInternalTypeHelper.g.cs
 FC:\Users\terry\source\repos\Bubba\App.xaml;;
 FC:\Users\terry\source\repos\Bubba\UI\Themes\Button\Button.xaml;;
 FC:\Users\terry\source\repos\Bubba\UI\Themes\Calculator\SfCalculator.xaml;;
@@ -39,7 +39,6 @@ FC:\Users\terry\source\repos\Bubba\UI\Themes\Scrolling\ScrollBar.xaml;;
 FC:\Users\terry\source\repos\Bubba\UI\Themes\Scrolling\ScrollViewer.xaml;;
 FC:\Users\terry\source\repos\Bubba\UI\Themes\Slider\SfRangeSlider.xaml;;
 FC:\Users\terry\source\repos\Bubba\UI\Themes\Slider\Slider.xaml;;
-FC:\Users\terry\source\repos\Bubba\UI\Themes\TabControl\BrowserTabItem.xaml;;
 FC:\Users\terry\source\repos\Bubba\UI\Themes\TabControl\TabControl.xaml;;
 FC:\Users\terry\source\repos\Bubba\UI\Themes\TabControl\TabControlExt.xaml;;
 FC:\Users\terry\source\repos\Bubba\UI\Themes\TextBlock\TextBlock.xaml;;
@@ -59,5 +58,4 @@ FC:\Users\terry\source\repos\Bubba\UI\Views\GptFileDialog\GptFileDialog.xaml;;
 FC:\Users\terry\source\repos\Bubba\UI\Views\SearchDialog\SearchDialog.xaml;;
 FC:\Users\terry\source\repos\Bubba\UI\Views\SplashWindow\SplashMessage.xaml;;
 FC:\Users\terry\source\repos\Bubba\UI\Views\SystemDialog\SystemDialog.xaml;;
-FC:\Users\terry\source\repos\Bubba\UI\Views\WebBrowser\WebBrowser.xaml;;
 
