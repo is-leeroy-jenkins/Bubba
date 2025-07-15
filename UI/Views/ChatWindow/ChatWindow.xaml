@@ -341,14 +341,14 @@
                         x:Name="ChatTabGrid"
                         Background="{StaticResource FormBackground}">
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="935*" />
-                            <ColumnDefinition Width="403*" />
+                            <ColumnDefinition Width="925*" />
+                            <ColumnDefinition Width="433*" />
                         </Grid.ColumnDefinitions>
 
                         <wpf:SfTextBoxExt
                             x:Name="ChatTextBox"
                             Grid.Column="0"
-                            Margin="40,10,44,20"
+                            Margin="40,10,22,20"
                             Padding="20,10,5,3"
                             BorderBrush="{StaticResource BlueBorderBrush}"
                             BorderThickness="1"
@@ -359,7 +359,7 @@
                         <mah:MetroTabControl
                             x:Name="OptionTabControl"
                             Grid.Column="1"
-                            Margin="3"
+                            Margin="1"
                             Padding="1,1,1,1"
                             mah:HeaderedControlHelper.HeaderFontFamily="Roboto"
                             mah:TabControlHelper.UnderlineMouseOverBrush="{DynamicResource BlueBackground}"
@@ -385,322 +385,193 @@
                                 Tag="Settings"
                                 ToolTip="API Options">
 
-                                <Grid Background="{StaticResource BackgroundBrush}">
+                                <Canvas
+                                    Height="560"
+                                    Margin="10,0,8,0">
 
-                                    <Canvas Margin="5">
-
-                                        <StackPanel
-                                            Canvas.Left="5"
-                                            Width="284"
-                                            Height="547"
-                                            HorizontalAlignment="Center"
-                                            VerticalAlignment="Top"
-                                            Background="{StaticResource FormBackground}">
-
-                                            <Separator
-                                                Height="20"
-                                                Background="{x:Null}"
-                                                BorderBrush="{x:Null}"
-                                                Foreground="{x:Null}" />
-
-                                            <Grid
-                                                x:Name="ApiGrid"
-                                                Height="40">
-                                                <Grid.ColumnDefinitions>
-                                                    <ColumnDefinition Width="8*" />
-                                                    <ColumnDefinition Width="8*" />
-                                                    <ColumnDefinition Width="11*" />
-                                                </Grid.ColumnDefinitions>
-
-                                                <CheckBox
-                                                    x:Name="StreamCheckBox"
-                                                    Width="65"
-                                                    Height="40"
-                                                    Margin="15,0,0,0"
-                                                    HorizontalAlignment="Left"
-                                                    HorizontalContentAlignment="Left"
-                                                    Content="Stream"
-                                                    FontFamily="Roboto"
-                                                    Foreground="{StaticResource FormForeground}"
-                                                    IsChecked="False"
-                                                    Tag="stream"
-                                                    ToolTip="Streams the Response" />
-
-                                                <CheckBox
-                                                    x:Name="StoreCheckBox"
-                                                    Grid.Column="1"
-                                                    Width="65"
-                                                    Height="40"
-                                                    Margin="15,0,0,0"
-                                                    HorizontalAlignment="Left"
-                                                    HorizontalContentAlignment="Left"
-                                                    Content="Store"
-                                                    FontFamily="Roboto"
-                                                    Foreground="{StaticResource FormForeground}"
-                                                    IsChecked="True"
-                                                    Tag="store"
-                                                    ToolTip="Save the chat" />
-
-                                                <wpf:IntegerTextBox
-                                                    x:Name="MaxTokenTextBox"
-                                                    Grid.Column="2"
-                                                    Width="90"
-                                                    Height="35"
-                                                    Margin="10,0,0,1"
-                                                    HorizontalAlignment="Left"
-                                                    HorizontalContentAlignment="Center"
-                                                    AutomationProperties.HelpText="Maximum Tokens"
-                                                    BorderBrush="{StaticResource BlueBorderBrush}"
-                                                    FontFamily="Roboto"
-                                                    ShowSpinButton="True"
-                                                    TextWrapping="Wrap"
-                                                    ToolTip="Maximum Completion Tokens"
-                                                    UseNullOption="True"
-                                                    WatermarkText="Max Tokens:"
-                                                    WatermarkTextIsVisible="True"
-                                                    Value="10000" />
-
-                                            </Grid>
-
-                                            <Separator
-                                                Height="5"
-                                                Background="{x:Null}"
-                                                BorderBrush="{x:Null}"
-                                                Foreground="{x:Null}" />
-
-                                            <GroupBox
-                                                x:Name="ApiGroupBox"
-                                                Height="80"
-                                                Margin="10,1,10,1"
-                                                Padding="1"
-                                                HorizontalContentAlignment="Stretch"
-                                                VerticalContentAlignment="Stretch"
-                                                Background="{StaticResource GroupBoxBackground}"
-                                                BorderBrush="{StaticResource MutedForeground}"
-                                                FontFamily="Roboto"
-                                                FontSize="12"
-                                                Foreground="{StaticResource FormForeground}"
-                                                Header="AI Request">
-
-                                                <b:MetroDropDown
-                                                    x:Name="GenerationListBox"
-                                                    Height="35"
-                                                    Margin="3,3,3,3"
-                                                    VerticalAlignment="Center"
-                                                    VerticalContentAlignment="Center"
-                                                    Background="{StaticResource ControlInteriorBrush}"
-                                                    BorderBrush="{StaticResource BlueBorderBrush}"
-                                                    FontSize="14"
-                                                    Foreground="{StaticResource FormForeground}"
-                                                    Text="Select API" />
-
-                                            </GroupBox>
-
-                                            <Separator
-                                                Height="5"
-                                                Background="{x:Null}"
-                                                BorderBrush="{x:Null}"
-                                                Foreground="{x:Null}" />
-
-                                            <GroupBox
-                                                x:Name="LanguageModelGroupBox"
-                                                Height="80"
-                                                Margin="10,1,10,1"
-                                                Padding="1"
-                                                HorizontalContentAlignment="Stretch"
-                                                VerticalContentAlignment="Stretch"
-                                                Background="{StaticResource GroupBoxBackground}"
-                                                BorderBrush="{StaticResource MutedForeground}"
-                                                FontFamily="Roboto"
-                                                FontSize="12"
-                                                Foreground="{StaticResource FormForeground}"
-                                                Header="Language Models">
-
-                                                <b:MetroDropDown
-                                                    x:Name="ModelDropDown"
-                                                    Height="35"
-                                                    Margin="3,3,3,3"
-                                                    VerticalAlignment="Center"
-                                                    VerticalContentAlignment="Center"
-                                                    Background="{StaticResource ControlInteriorBrush}"
-                                                    BorderBrush="{StaticResource BlueBorderBrush}"
-                                                    FontSize="14"
-                                                    Foreground="{StaticResource FormForeground}"
-                                                    Text="Select LLM" />
-                                            </GroupBox>
-
-                                            <Separator
-                                                Height="5"
-                                                Background="{x:Null}"
-                                                BorderBrush="{x:Null}"
-                                                Foreground="{StaticResource TransparentBrush}" />
-
-                                            <GroupBox
-                                                x:Name="PromptGroupBox"
-                                                Height="80"
-                                                Margin="10,1,10,1"
-                                                Padding="1"
-                                                HorizontalContentAlignment="Stretch"
-                                                VerticalContentAlignment="Stretch"
-                                                Background="{StaticResource GroupBoxBackground}"
-                                                BorderBrush="{StaticResource MutedForeground}"
-                                                FontFamily="Roboto"
-                                                FontSize="12"
-                                                Foreground="{StaticResource FormForeground}"
-                                                Header="System Instructions">
-
-                                                <b:MetroDropDown
-                                                    x:Name="PromptDropDown"
-                                                    Height="35"
-                                                    Margin="3,3,3,3"
-                                                    VerticalAlignment="Center"
-                                                    VerticalContentAlignment="Center"
-                                                    Background="{StaticResource ControlInteriorBrush}"
-                                                    BorderBrush="{StaticResource BlueBorderBrush}"
-                                                    FontSize="14"
-                                                    Foreground="{StaticResource FormForeground}"
-                                                    Text="Select Prompt" />
-                                            </GroupBox>
-
-                                            <Separator
-                                                Height="10"
-                                                Background="{x:Null}"
-                                                BorderBrush="{x:Null}"
-                                                Foreground="{StaticResource TransparentBrush}" />
-
-                                            <GroupBox
-                                                x:Name="ResponseFormatGroupBox"
-                                                Height="80"
-                                                Margin="10,1,10,1"
-                                                Padding="1"
-                                                HorizontalContentAlignment="Stretch"
-                                                VerticalContentAlignment="Stretch"
-                                                Background="{StaticResource GroupBoxBackground}"
-                                                BorderBrush="{StaticResource MutedForeground}"
-                                                FontFamily="Roboto"
-                                                FontSize="12"
-                                                Foreground="{StaticResource FormForeground}"
-                                                Header="Response Format">
-
-                                                <b:MetroDropDown
-                                                    x:Name="ResponseFormatDropDown"
-                                                    Height="35"
-                                                    Margin="3,3,3,3"
-                                                    VerticalAlignment="Center"
-                                                    VerticalContentAlignment="Center"
-                                                    Background="{StaticResource ControlInteriorBrush}"
-                                                    BorderBrush="{StaticResource BlueBorderBrush}"
-                                                    FontSize="14"
-                                                    Foreground="{StaticResource FormForeground}"
-                                                    Text="Select Format">
-
-                                                    <b:MetroDropDownItem
-                                                        Height="35"
-                                                        Content="text"
-                                                        FontFamily="Roboto"
-                                                        FontSize="14"
-                                                        Foreground="{StaticResource WhiteForeground}"
-                                                        Tag="text" />
-
-                                                    <b:MetroDropDownItem
-                                                        Height="35"
-                                                        Content="json_object"
-                                                        FontFamily="Roboto"
-                                                        FontSize="14"
-                                                        Foreground="{StaticResource WhiteForeground}"
-                                                        Tag="json_object" />
-
-                                                    <b:MetroDropDownItem
-                                                        Height="35"
-                                                        Content="json_schema"
-                                                        FontFamily="Roboto"
-                                                        FontSize="14"
-                                                        Foreground="{StaticResource WhiteForeground}"
-                                                        Tag="json_schema" />
+                                    <Separator
+                                        Height="20"
+                                        Background="{x:Null}"
+                                        BorderBrush="{x:Null}"
+                                        Foreground="{x:Null}" />
 
 
-                                                    <b:MetroDropDownItem
-                                                        Height="35"
-                                                        Content="url"
-                                                        FontFamily="Roboto"
-                                                        FontSize="14"
-                                                        Foreground="{StaticResource WhiteForeground}"
-                                                        Tag="url" />
+                                    <CheckBox
+                                        x:Name="StreamCheckBox"
+                                        Canvas.Left="106"
+                                        Canvas.Top="56"
+                                        Width="64"
+                                        Height="32"
+                                        HorizontalAlignment="Center"
+                                        VerticalAlignment="Top"
+                                        HorizontalContentAlignment="Left"
+                                        Content="Stream"
+                                        FontFamily="Roboto"
+                                        Foreground="{StaticResource FormForeground}"
+                                        IsChecked="False"
+                                        Tag="stream"
+                                        ToolTip="Streams the Response" />
 
-                                                    <b:MetroDropDownItem
-                                                        Height="35"
-                                                        Content="base64_json"
-                                                        FontFamily="Roboto"
-                                                        FontSize="14"
-                                                        Foreground="{StaticResource WhiteForeground}"
-                                                        Tag="base64_json" />
+                                    <CheckBox
+                                        x:Name="StoreCheckBox"
+                                        Canvas.Left="14"
+                                        Canvas.Top="52"
+                                        Width="65"
+                                        Height="36"
+                                        HorizontalAlignment="Center"
+                                        VerticalAlignment="Top"
+                                        HorizontalContentAlignment="Left"
+                                        Content="Store"
+                                        FontFamily="Roboto"
+                                        Foreground="{StaticResource FormForeground}"
+                                        IsChecked="True"
+                                        Tag="store"
+                                        ToolTip="Save the chat" />
 
-                                                </b:MetroDropDown>
-                                            </GroupBox>
+                                    <wpf:IntegerTextBox
+                                        x:Name="MaxTokenTextBox"
+                                        Canvas.Left="196"
+                                        Canvas.Top="52"
+                                        Width="90"
+                                        Height="36"
+                                        HorizontalAlignment="Left"
+                                        VerticalAlignment="Center"
+                                        HorizontalContentAlignment="Center"
+                                        AutomationProperties.HelpText="Maximum Tokens"
+                                        BorderBrush="{StaticResource BlueBorderBrush}"
+                                        FontFamily="Roboto"
+                                        ShowSpinButton="True"
+                                        TextWrapping="Wrap"
+                                        ToolTip="Maximum Completion Tokens"
+                                        UseNullOption="True"
+                                        WatermarkText="Max Tokens:"
+                                        WatermarkTextIsVisible="True"
+                                        Value="10000" />
 
-                                            <Separator
-                                                Height="10"
-                                                Background="{x:Null}"
-                                                BorderBrush="{x:Null}"
-                                                Foreground="{StaticResource TransparentBrush}" />
 
-                                            <GroupBox
-                                                x:Name="ReasoningGroupBox"
-                                                Height="80"
-                                                Margin="10,1,10,1"
-                                                Padding="1"
-                                                HorizontalContentAlignment="Stretch"
-                                                VerticalContentAlignment="Stretch"
-                                                Background="{StaticResource GroupBoxBackground}"
-                                                BorderBrush="{StaticResource MutedForeground}"
-                                                FontFamily="Roboto"
-                                                FontSize="12"
-                                                Foreground="{StaticResource FormForeground}"
-                                                Header="Reasoning Effort">
+                                    <Separator
+                                        Height="5"
+                                        Background="{x:Null}"
+                                        BorderBrush="{x:Null}"
+                                        Foreground="{x:Null}" />
 
-                                                <b:MetroDropDown
-                                                    x:Name="EffortDropDown"
-                                                    Height="35"
-                                                    Margin="3,3,3,3"
-                                                    VerticalAlignment="Center"
-                                                    VerticalContentAlignment="Center"
-                                                    Background="{StaticResource ControlInteriorBrush}"
-                                                    BorderBrush="{StaticResource BlueBorderBrush}"
-                                                    FontSize="14"
-                                                    Foreground="{StaticResource FormForeground}"
-                                                    Text="Select Effort">
+                                    <GroupBox
+                                        x:Name="ApiGroupBox"
+                                        Canvas.Left="10"
+                                        Canvas.Top="129"
+                                        Width="276"
+                                        Height="80"
+                                        Padding="1"
+                                        HorizontalAlignment="Left"
+                                        VerticalAlignment="Center"
+                                        HorizontalContentAlignment="Center"
+                                        VerticalContentAlignment="Center"
+                                        Background="{StaticResource GroupBoxBackground}"
+                                        BorderBrush="{StaticResource MutedForeground}"
+                                        FontFamily="Roboto"
+                                        FontSize="12"
+                                        Foreground="{StaticResource FormForeground}"
+                                        Header="AI Request">
 
-                                                    <b:MetroDropDownItem
-                                                        Height="35"
-                                                        Background="{StaticResource ControlInteriorBrush}"
-                                                        Content="low"
-                                                        FontFamily="Roboto"
-                                                        FontSize="14"
-                                                        Foreground="{StaticResource WhiteForeground}"
-                                                        Tag="low" />
+                                        <b:MetroDropDown
+                                            x:Name="GenerationListBox"
+                                            Height="36"
+                                            Margin="10,0,7,0"
+                                            VerticalAlignment="Center"
+                                            VerticalContentAlignment="Center"
+                                            Background="{StaticResource ControlInteriorBrush}"
+                                            BorderBrush="{StaticResource BlueBorderBrush}"
+                                            FontSize="14"
+                                            Foreground="{StaticResource FormForeground}"
+                                            Text="Select API" />
 
-                                                    <b:MetroDropDownItem
-                                                        Height="35"
-                                                        Background="{StaticResource ControlInteriorBrush}"
-                                                        Content="medium"
-                                                        FontFamily="Roboto"
-                                                        FontSize="14"
-                                                        Foreground="{StaticResource WhiteForeground}"
-                                                        Tag="medium" />
+                                    </GroupBox>
 
-                                                    <b:MetroDropDownItem
-                                                        Height="35"
-                                                        Background="{StaticResource ControlInteriorBrush}"
-                                                        Content="high"
-                                                        FontFamily="Roboto"
-                                                        Foreground="{StaticResource WhiteForeground}"
-                                                        Tag="high" />
-                                                </b:MetroDropDown>
-                                            </GroupBox>
-                                        </StackPanel>
+                                    <Separator
+                                        Height="5"
+                                        Background="{x:Null}"
+                                        BorderBrush="{x:Null}"
+                                        Foreground="{x:Null}" />
 
-                                    </Canvas>
-                                </Grid>
+                                    <GroupBox
+                                        x:Name="LanguageModelGroupBox"
+                                        Canvas.Left="14"
+                                        Canvas.Top="240"
+                                        Width="272"
+                                        Height="80"
+                                        Padding="1"
+                                        HorizontalAlignment="Left"
+                                        VerticalAlignment="Center"
+                                        VerticalContentAlignment="Center"
+                                        Background="{StaticResource GroupBoxBackground}"
+                                        BorderBrush="{StaticResource MutedForeground}"
+                                        FontFamily="Roboto"
+                                        FontSize="12"
+                                        Foreground="{StaticResource FormForeground}"
+                                        Header="Language Models">
+
+                                        <b:MetroDropDown
+                                            x:Name="ModelDropDown"
+                                            Height="35"
+                                            Margin="10,0,12,0"
+                                            VerticalAlignment="Center"
+                                            VerticalContentAlignment="Center"
+                                            Background="{StaticResource ControlInteriorBrush}"
+                                            BorderBrush="{StaticResource BlueBorderBrush}"
+                                            FontSize="14"
+                                            Foreground="{StaticResource FormForeground}"
+                                            Text="Select LLM" />
+                                    </GroupBox>
+
+                                    <Separator
+                                        Height="5"
+                                        Background="{x:Null}"
+                                        BorderBrush="{x:Null}"
+                                        Foreground="{StaticResource TransparentBrush}" />
+
+                                    <GroupBox
+                                        x:Name="PromptGroupBox"
+                                        Canvas.Left="10"
+                                        Canvas.Top="359"
+                                        Width="276"
+                                        Height="80"
+                                        Padding="1"
+                                        HorizontalAlignment="Left"
+                                        VerticalAlignment="Center"
+                                        VerticalContentAlignment="Center"
+                                        Background="{StaticResource GroupBoxBackground}"
+                                        BorderBrush="{StaticResource MutedForeground}"
+                                        FontFamily="Roboto"
+                                        FontSize="12"
+                                        Foreground="{StaticResource FormForeground}"
+                                        Header="System Instructions">
+
+                                        <b:MetroDropDown
+                                            x:Name="PromptDropDown"
+                                            Height="35"
+                                            Margin="3,3,3,3"
+                                            VerticalAlignment="Center"
+                                            VerticalContentAlignment="Center"
+                                            Background="{StaticResource ControlInteriorBrush}"
+                                            BorderBrush="{StaticResource BlueBorderBrush}"
+                                            FontSize="14"
+                                            Foreground="{StaticResource FormForeground}"
+                                            Text="Select Prompt" />
+                                    </GroupBox>
+
+                                    <Separator
+                                        Height="10"
+                                        Background="{x:Null}"
+                                        BorderBrush="{x:Null}"
+                                        Foreground="{StaticResource TransparentBrush}" />
+
+                                    <Separator
+                                        Height="10"
+                                        Background="{x:Null}"
+                                        BorderBrush="{x:Null}"
+                                        Foreground="{StaticResource TransparentBrush}" />
+
+                                </Canvas>
                             </TabItem>
 
                             <!--  ********************************************* SETTING TAB *************************************  -->
@@ -718,23 +589,73 @@
                                 ToolTip="Parameters">
 
 
-                                <Grid Margin="3,3,3,3">
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition Height="249*" />
-                                        <RowDefinition Height="217*" />
-                                        <RowDefinition Height="88*" />
-                                    </Grid.RowDefinitions>
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="269*" />
-                                        <ColumnDefinition Width="126*" />
-                                    </Grid.ColumnDefinitions>
+                                <Canvas
+                                    Height="564"
+                                    Margin="3,3,3,3">
 
 
                                     <GroupBox
+                                        x:Name="ReasoningGroupBox"
+                                        Canvas.Left="12"
+                                        Canvas.Top="40"
+                                        Width="247"
+                                        Height="80"
+                                        Padding="1"
+                                        HorizontalAlignment="Left"
+                                        VerticalAlignment="Center"
+                                        VerticalContentAlignment="Center"
+                                        Background="{StaticResource GroupBoxBackground}"
+                                        BorderBrush="{StaticResource MutedForeground}"
+                                        FontFamily="Roboto"
+                                        FontSize="12"
+                                        Foreground="{StaticResource FormForeground}"
+                                        Header="Reasoning Effort">
+
+                                        <b:MetroDropDown
+                                            x:Name="EffortDropDown"
+                                            Height="35"
+                                            Margin="3,3,3,3"
+                                            VerticalAlignment="Center"
+                                            VerticalContentAlignment="Center"
+                                            Background="{StaticResource ControlInteriorBrush}"
+                                            BorderBrush="{StaticResource BlueBorderBrush}"
+                                            FontSize="14"
+                                            Foreground="{StaticResource FormForeground}"
+                                            Text="Select Effort">
+
+                                            <b:MetroDropDownItem
+                                                Height="35"
+                                                Background="{StaticResource ControlInteriorBrush}"
+                                                Content="low"
+                                                FontFamily="Roboto"
+                                                FontSize="14"
+                                                Foreground="{StaticResource WhiteForeground}"
+                                                Tag="low" />
+
+                                            <b:MetroDropDownItem
+                                                Height="35"
+                                                Background="{StaticResource ControlInteriorBrush}"
+                                                Content="medium"
+                                                FontFamily="Roboto"
+                                                FontSize="14"
+                                                Foreground="{StaticResource WhiteForeground}"
+                                                Tag="medium" />
+
+                                            <b:MetroDropDownItem
+                                                Height="35"
+                                                Background="{StaticResource ControlInteriorBrush}"
+                                                Content="high"
+                                                FontFamily="Roboto"
+                                                Foreground="{StaticResource WhiteForeground}"
+                                                Tag="high" />
+                                        </b:MetroDropDown>
+                                    </GroupBox>
+                                    <GroupBox
                                         x:Name="TemperatureGroupBox"
-                                        Grid.Row="0"
-                                        Grid.Column="0"
-                                        Margin="2,77,10,35"
+                                        Canvas.Left="10"
+                                        Canvas.Top="191"
+                                        Width="249"
+                                        Height="125"
                                         Padding="1,1,1,1"
                                         HorizontalContentAlignment="Stretch"
                                         VerticalContentAlignment="Center"
@@ -744,14 +665,45 @@
                                         FontSize="12"
                                         Foreground="{StaticResource FormForeground}"
                                         Header="Temperature"
-                                        UseLayoutRounding="True" />
+                                        UseLayoutRounding="True">
+
+                                        <Slider
+                                            x:Name="TemperatureSlider"
+                                            Width="216"
+                                            Height="70"
+                                            Margin="1,0,6,0"
+                                            Padding="1"
+                                            HorizontalContentAlignment="Center"
+                                            VerticalContentAlignment="Center"
+                                            AutoToolTipPlacement="TopLeft"
+                                            Background="{StaticResource GroupBoxBackground}"
+                                            BorderThickness="1"
+                                            FontSize="14"
+                                            Foreground="{StaticResource FormForeground}"
+                                            IsMoveToPointEnabled="True"
+                                            IsSelectionRangeEnabled="True"
+                                            IsSnapToTickEnabled="True"
+                                            LargeChange="0.25"
+                                            Maximum="1"
+                                            Minimum="0"
+                                            SelectionStart="-3"
+                                            SmallChange="0.1"
+                                            Style="{DynamicResource MahApps.Styles.Slider.Win10}"
+                                            Tag="TopPercent"
+                                            TickFrequency="0.1"
+                                            TickPlacement="BottomRight"
+                                            ToolTip="Temperature"
+                                            UseLayoutRounding="True"
+                                            Value="0.8" />
+                                    </GroupBox>
 
 
                                     <b:MetroTextBox
                                         x:Name="TemperatureTextBox"
-                                        Grid.Row="0"
-                                        Grid.Column="1"
-                                        Margin="15,135,46,68"
+                                        Canvas.Left="284"
+                                        Canvas.Top="234"
+                                        Width="76"
+                                        Height="48"
                                         Padding="1,1,1,1"
                                         HorizontalContentAlignment="Center"
                                         VerticalContentAlignment="Center"
@@ -761,52 +713,17 @@
                                         FontSize="14"
                                         Text="{Binding Value, ElementName=TemperatureSlider, StringFormat=P0}"
                                         UseLayoutRounding="True"
-                                        VerticalScrollBarVisibility="Disabled"
-                                        Watermark="" />
-
-                                    <wpf:SfRangeSlider
-                                        x:Name="TemperatureSlider"
-                                        Grid.Row="0"
-                                        Grid.Column="0"
-                                        Margin="16,107,24,58"
-                                        Padding="1"
-                                        HorizontalContentAlignment="Stretch"
-                                        VerticalContentAlignment="Bottom"
-                                        ActiveMinorTickStroke="{StaticResource WhiteForeground}"
-                                        ActiveTickStroke="{StaticResource WhiteForeground}"
-                                        ActiveTrackStyle="{DynamicResource ActiveTrackStyle}"
-                                        AllowRangeDrag="True"
-                                        Background="{StaticResource BlueBorderBrush}"
-                                        BorderThickness="1"
-                                        FontSize="14"
-                                        Foreground="{StaticResource FormForeground}"
-                                        LabelPlacement="BottomRight"
-                                        Maximum="1"
-                                        Minimum="0"
-                                        MinorTickFrequency="1"
-                                        MinorTickLength="5"
-                                        MinorTickStroke="{StaticResource WhiteForeground}"
-                                        ShowValueLabels="True"
-                                        SmallChange="0.1"
-                                        SnapsTo="Ticks"
-                                        Style="{DynamicResource SyncfusionSfRangeSliderStyle}"
-                                        Tag="TopPercent"
-                                        ThumbStyle="{StaticResource ThumbStyle}"
-                                        TickFrequency="0.1"
-                                        TickPlacement="BottomRight"
-                                        TickStroke="{StaticResource WhiteForeground}"
-                                        ToolTip="Temperature"
-                                        ToolTipFormat="P"
-                                        UseLayoutRounding="True"
-                                        Value="0.8" />
+                                        VerticalScrollBarVisibility="Disabled" />
 
 
                                     <b:MetroTextBox
                                         x:Name="TopPercentTextBox"
-                                        Grid.Row="1"
-                                        Grid.Column="1"
-                                        Margin="15,112,46,62"
+                                        Canvas.Left="284"
+                                        Canvas.Top="416"
+                                        Width="76"
+                                        Height="50"
                                         Padding="1,1,1,1"
+                                        VerticalAlignment="Center"
                                         HorizontalContentAlignment="Center"
                                         VerticalContentAlignment="Center"
                                         Background="{StaticResource ControlInteriorBrush}"
@@ -820,9 +737,10 @@
 
                                     <GroupBox
                                         x:Name="TopPercentGroupBox"
-                                        Grid.Row="1"
-                                        Grid.Column="0"
-                                        Margin="2,67,10,10"
+                                        Canvas.Left="10"
+                                        Canvas.Top="376"
+                                        Width="249"
+                                        Height="130"
                                         Padding="1,1,1,1"
                                         Background="{StaticResource GroupBoxBackground}"
                                         BorderBrush="{StaticResource MutedForeground}"
@@ -830,50 +748,33 @@
                                         FontSize="12"
                                         Foreground="{StaticResource FormForeground}"
                                         Header="Top Percent"
-                                        UseLayoutRounding="True" />
+                                        UseLayoutRounding="True">
 
-                                    <wpf:SfRangeSlider
-                                        x:Name="TopPercentSlider"
-                                        Grid.Row="1"
-                                        Grid.Column="0"
-                                        Margin="16,112,24,32"
-                                        Padding="1"
-                                        HorizontalContentAlignment="Stretch"
-                                        VerticalContentAlignment="Bottom"
-                                        ActiveMinorTickStroke="{StaticResource WhiteForeground}"
-                                        ActiveTickStroke="{StaticResource WhiteForeground}"
-                                        ActiveTrackStyle="{DynamicResource ActiveTrackStyle}"
-                                        AllowRangeDrag="True"
-                                        Background="{StaticResource BlueBorderBrush}"
-                                        BorderThickness="1"
-                                        FontSize="14"
-                                        Foreground="{StaticResource FormForeground}"
-                                        LabelPlacement="BottomRight"
-                                        Maximum="1"
-                                        Minimum="0"
-                                        MinorTickFrequency="1"
-                                        MinorTickLength="5"
-                                        MinorTickStroke="{StaticResource WhiteForeground}"
-                                        ShowValueLabels="True"
-                                        SmallChange="0.1"
-                                        SnapsTo="Ticks"
-                                        Style="{DynamicResource SyncfusionSfRangeSliderStyle}"
-                                        Tag="TopPercent"
-                                        ThumbStyle="{StaticResource ThumbStyle}"
-                                        TickFrequency="0.1"
-                                        TickPlacement="BottomRight"
-                                        TickStroke="{StaticResource WhiteForeground}"
-                                        ToolTip="top p% probability mass"
-                                        ToolTipFormat="P"
-                                        UseLayoutRounding="True"
-                                        Value="0.9">
-                                        <wpf:SfRangeSlider.InactiveTrackStyle>
-                                            <Style />
-                                        </wpf:SfRangeSlider.InactiveTrackStyle>
-                                    </wpf:SfRangeSlider>
+                                        <Slider
+                                            x:Name="TopPercentSlider"
+                                            Height="70"
+                                            Margin="9,0,1,0"
+                                            Padding="1"
+                                            HorizontalContentAlignment="Stretch"
+                                            VerticalContentAlignment="Center"
+                                            Background="{StaticResource GroupBoxBackground}"
+                                            BorderThickness="1"
+                                            FontSize="14"
+                                            Foreground="{StaticResource FormForeground}"
+                                            Maximum="1"
+                                            Minimum="0"
+                                            SmallChange="0.1"
+                                            Style="{DynamicResource MahApps.Styles.Slider.Win10}"
+                                            Tag="TopPercent"
+                                            TickFrequency="0.1"
+                                            TickPlacement="BottomRight"
+                                            ToolTip="top p% probability mass"
+                                            UseLayoutRounding="True"
+                                            Value="0.9" />
+                                    </GroupBox>
 
 
-                                </Grid>
+                                </Canvas>
 
                             </TabItem>
                             <!--  ********************************************* PENALTY TAB *************************************  -->
@@ -890,23 +791,91 @@
                                 Tag="Penalty"
                                 ToolTip="Penalty Options">
 
-                                <Grid Margin="3,3,3,3">
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition Height="291*" />
-                                        <RowDefinition Height="185*" />
-                                        <RowDefinition Height="78*" />
-                                    </Grid.RowDefinitions>
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="269*" />
-                                        <ColumnDefinition Width="126*" />
-                                    </Grid.ColumnDefinitions>
+                                <Canvas
+                                    Height="564"
+                                    Margin="3,3,3,3">
+
+                                    <GroupBox
+                                        x:Name="ResponseFormatGroupBox"
+                                        Canvas.Left="5"
+                                        Canvas.Top="36"
+                                        Width="254"
+                                        Height="80"
+                                        Padding="1"
+                                        HorizontalAlignment="Left"
+                                        VerticalAlignment="Center"
+                                        VerticalContentAlignment="Center"
+                                        Background="{StaticResource GroupBoxBackground}"
+                                        BorderBrush="{StaticResource MutedForeground}"
+                                        FontFamily="Roboto"
+                                        FontSize="12"
+                                        Foreground="{StaticResource FormForeground}"
+                                        Header="Response Format">
+
+                                        <b:MetroDropDown
+                                            x:Name="ResponseFormatDropDown"
+                                            Grid.Row="0"
+                                            Height="35"
+                                            Margin="3,3,3,3"
+                                            VerticalAlignment="Center"
+                                            VerticalContentAlignment="Center"
+                                            Background="{StaticResource ControlInteriorBrush}"
+                                            BorderBrush="{StaticResource BlueBorderBrush}"
+                                            FontSize="14"
+                                            Foreground="{StaticResource FormForeground}"
+                                            Text="Select Format">
+
+                                            <b:MetroDropDownItem
+                                                Height="35"
+                                                Content="text"
+                                                FontFamily="Roboto"
+                                                FontSize="14"
+                                                Foreground="{StaticResource WhiteForeground}"
+                                                Tag="text" />
+
+                                            <b:MetroDropDownItem
+                                                Height="35"
+                                                Content="json_object"
+                                                FontFamily="Roboto"
+                                                FontSize="14"
+                                                Foreground="{StaticResource WhiteForeground}"
+                                                Tag="json_object" />
+
+                                            <b:MetroDropDownItem
+                                                Height="35"
+                                                Content="json_schema"
+                                                FontFamily="Roboto"
+                                                FontSize="14"
+                                                Foreground="{StaticResource WhiteForeground}"
+                                                Tag="json_schema" />
+
+
+                                            <b:MetroDropDownItem
+                                                Height="35"
+                                                Content="url"
+                                                FontFamily="Roboto"
+                                                FontSize="14"
+                                                Foreground="{StaticResource WhiteForeground}"
+                                                Tag="url" />
+
+                                            <b:MetroDropDownItem
+                                                Height="35"
+                                                Content="base64_json"
+                                                FontFamily="Roboto"
+                                                FontSize="14"
+                                                Foreground="{StaticResource WhiteForeground}"
+                                                Tag="base64_json" />
+
+                                        </b:MetroDropDown>
+                                    </GroupBox>
 
 
                                     <b:MetroTextBox
                                         x:Name="PresenseTextBox"
-                                        Grid.Column="1"
-                                        Width="60"
-                                        Margin="15,146,51,100"
+                                        Canvas.Left="284"
+                                        Canvas.Top="211"
+                                        Width="71"
+                                        Height="45"
                                         Padding="1,1,1,1"
                                         HorizontalContentAlignment="Center"
                                         VerticalContentAlignment="Center"
@@ -922,12 +891,11 @@
 
                                     <GroupBox
                                         x:Name="PresenseGroupBox"
-                                        Grid.Row="0"
-                                        Grid.Column="0"
-                                        Height="139"
-                                        Margin="2,0,10,0"
+                                        Canvas.Left="2"
+                                        Canvas.Top="161"
+                                        Width="257"
+                                        Height="121"
                                         Padding="1,1,1,1"
-                                        VerticalAlignment="Center"
                                         HorizontalContentAlignment="Stretch"
                                         VerticalContentAlignment="Center"
                                         Background="{StaticResource GroupBoxBackground}"
@@ -938,46 +906,39 @@
                                         Header="Presence Penalty"
                                         UseLayoutRounding="True">
 
-                                        <wpf:SfRangeSlider
+                                        <Slider
                                             x:Name="PresenceSlider"
                                             Width="229"
-                                            Height="82"
+                                            Height="71"
                                             Margin="5,0,5,0"
                                             Padding="1"
-                                            HorizontalContentAlignment="Stretch"
-                                            VerticalContentAlignment="Bottom"
-                                            ActiveMinorTickStroke="{StaticResource WhiteForeground}"
-                                            ActiveTickStroke="{StaticResource WhiteForeground}"
-                                            ActiveTrackStyle="{DynamicResource ActiveTrackStyle}"
-                                            AllowRangeDrag="True"
-                                            AutomationProperties.IsColumnHeader="True"
-                                            AutomationProperties.Name="Presence Penalty"
-                                            Background="{StaticResource BlueBorderBrush}"
+                                            HorizontalContentAlignment="Center"
+                                            VerticalContentAlignment="Center"
+                                            Background="{DynamicResource GroupBoxBackground}"
                                             FontSize="14"
                                             Foreground="{StaticResource FormForeground}"
+                                            IsSelectionRangeEnabled="True"
+                                            IsSnapToTickEnabled="True"
+                                            LargeChange="0.4"
                                             Maximum="2"
                                             Minimum="-2"
-                                            MinorTickFrequency="2"
-                                            MinorTickLength="5"
-                                            MinorTickStroke="{StaticResource WhiteForeground}"
-                                            ShowValueLabels="True"
-                                            SnapsTo="Ticks"
-                                            Style="{DynamicResource SyncfusionSfRangeSliderStyle}"
+                                            SmallChange="0.2"
+                                            Style="{DynamicResource MahApps.Styles.Slider.Win10}"
                                             Tag="PresensePenalty"
-                                            ThumbStyle="{StaticResource ThumbStyle}"
-                                            TickFrequency="0.5"
+                                            TickFrequency="0.4"
                                             TickPlacement="BottomRight"
-                                            TickStroke="{StaticResource WhiteForeground}"
                                             ToolTip="Positive values creative output"
                                             UseLayoutRounding="False" />
                                     </GroupBox>
 
                                     <GroupBox
                                         x:Name="FrequencyGroupBox"
-                                        Grid.Row="1"
-                                        Grid.Column="0"
-                                        Margin="2,19,10,35"
+                                        Canvas.Left="2"
+                                        Canvas.Top="330"
+                                        Width="257"
+                                        Height="122"
                                         Padding="1,1,1,1"
+                                        VerticalAlignment="Bottom"
                                         Background="{StaticResource GroupBoxBackground}"
                                         BorderBrush="{StaticResource MutedForeground}"
                                         FontFamily="Roboto"
@@ -986,39 +947,36 @@
                                         Header="Frequency Penalty"
                                         UseLayoutRounding="True">
 
-                                        <wpf:SfRangeSlider
+                                        <Slider
                                             x:Name="FrequencySlider"
+                                            Grid.Row="2"
                                             Height="82"
-                                            Margin="9,0,1,0"
+                                            Margin="10,0,16,0"
                                             Padding="1"
-                                            HorizontalContentAlignment="Center"
                                             VerticalContentAlignment="Center"
-                                            ActiveMinorTickStroke="{StaticResource WhiteForeground}"
-                                            ActiveTickStroke="{StaticResource WhiteForeground}"
-                                            ActiveTrackStyle="{DynamicResource ActiveTrackStyle}"
-                                            AllowRangeDrag="True"
-                                            Background="{StaticResource BlueBorderBrush}"
+                                            AutoToolTipPlacement="TopLeft"
+                                            Background="{DynamicResource GroupBoxBackground}"
                                             FontSize="14"
                                             Foreground="{StaticResource FormForeground}"
+                                            IsMoveToPointEnabled="True"
+                                            IsSelectionRangeEnabled="True"
+                                            IsSnapToTickEnabled="True"
+                                            LargeChange="0.2"
                                             Maximum="2"
                                             Minimum="0"
-                                            MinorTickFrequency="1"
-                                            ShowValueLabels="True"
-                                            SnapsTo="Ticks"
-                                            Style="{DynamicResource SyncfusionSfRangeSliderStyle}"
+                                            Style="{DynamicResource MahApps.Styles.Slider.Win10}"
                                             Tag="Frequency Penalty"
-                                            ThumbStyle="{StaticResource ThumbStyle}"
-                                            TickFrequency=".25"
+                                            TickFrequency="0.2"
                                             TickPlacement="BottomRight"
                                             Value="0" />
                                     </GroupBox>
 
                                     <b:MetroTextBox
                                         x:Name="FrequencyTextBox"
-                                        Grid.Row="1"
-                                        Grid.Column="1"
-                                        Width="60"
-                                        Margin="15,72,51,67"
+                                        Canvas.Left="284"
+                                        Canvas.Top="376"
+                                        Width="71"
+                                        Height="45"
                                         Padding="1,1,1,1"
                                         HorizontalContentAlignment="Center"
                                         VerticalContentAlignment="Center"
@@ -1029,8 +987,9 @@
                                         Text="{Binding Value, ElementName=FrequencySlider, StringFormat=P0}"
                                         UseLayoutRounding="True"
                                         VerticalScrollBarVisibility="Disabled" />
-                                </Grid>
+                                </Canvas>
                             </TabItem>
+
                             <!--  ********************************************* AUDIO TAB *************************************  -->
 
                             <TabItem
@@ -1048,282 +1007,290 @@
                                 <Grid Background="{StaticResource BackgroundBrush}">
                                     <Canvas Margin="5">
 
-                                        <StackPanel
-                                            Canvas.Left="45"
-                                            Width="270"
-                                            Height="518"
+                                        <Separator
+                                            Height="30"
+                                            Background="{x:Null}"
+                                            BorderBrush="{x:Null}"
+                                            Foreground="{x:Null}" />
+
+                                        <CheckBox
+                                            x:Name="MuteCheckBox"
+                                            Canvas.Left="124"
+                                            Canvas.Top="70"
+                                            Width="86"
+                                            Height="26"
+                                            HorizontalAlignment="Center"
+                                            VerticalAlignment="Top"
+                                            HorizontalContentAlignment="Left"
+                                            Content="Mute"
+                                            FontFamily="Roboto"
+                                            Foreground="{StaticResource FormForeground}" />
+
+                                        <CheckBox
+                                            x:Name="ListenCheckBox"
+                                            Grid.Column="1"
+                                            Canvas.Left="23"
+                                            Canvas.Top="70"
+                                            Width="63"
+                                            Height="26"
+                                            HorizontalAlignment="Center"
+                                            VerticalAlignment="Top"
+                                            HorizontalContentAlignment="Left"
+                                            Content="Listen"
+                                            FontFamily="Roboto"
+                                            Foreground="{StaticResource FormForeground}" />
+
+                                        <Separator
+                                            Height="25"
+                                            Background="{x:Null}"
+                                            BorderBrush="{x:Null}"
+                                            Foreground="{x:Null}" />
+                                        <GroupBox
+                                            x:Name="AudioBox"
+                                            Canvas.Left="23"
+                                            Canvas.Top="116"
+                                            Width="274"
+                                            Height="80"
+                                            Padding="1"
                                             HorizontalAlignment="Left"
                                             VerticalAlignment="Center"
-                                            Background="{StaticResource FormBackground}">
+                                            HorizontalContentAlignment="Stretch"
+                                            VerticalContentAlignment="Stretch"
+                                            Background="{StaticResource FormBackground}"
+                                            BorderBrush="{StaticResource MutedForeground}"
+                                            FontFamily="Roboto"
+                                            FontSize="12"
+                                            Foreground="{StaticResource FormForeground}"
+                                            Header="Output Format">
 
-                                            <Separator
-                                                Height="30"
-                                                Background="{x:Null}"
-                                                BorderBrush="{x:Null}"
-                                                Foreground="{x:Null}" />
+                                            <b:MetroDropDown
+                                                x:Name="AudioFormatDropDown"
+                                                Height="35"
+                                                Margin="3"
+                                                VerticalAlignment="Center"
+                                                VerticalContentAlignment="Center"
+                                                Background="{StaticResource ControlInteriorBrush}"
+                                                BorderBrush="{StaticResource BlueBorderBrush}"
+                                                FontSize="14"
+                                                Foreground="{StaticResource FormForeground}">
 
-                                            <Grid Height="48">
-                                                <Grid.ColumnDefinitions>
-                                                    <ColumnDefinition />
-                                                    <ColumnDefinition />
-                                                </Grid.ColumnDefinitions>
-
-                                                <CheckBox
-                                                    x:Name="MuteCheckBox"
-                                                    Grid.Column="0"
-                                                    Margin="20,0,0,0"
-                                                    HorizontalContentAlignment="Left"
-                                                    Content="Mute"
-                                                    FontFamily="Roboto"
-                                                    Foreground="{StaticResource FormForeground}" />
-
-                                                <CheckBox
-                                                    x:Name="ListenCheckBox"
-                                                    Grid.Column="1"
-                                                    Margin="10,0,0,0"
-                                                    HorizontalContentAlignment="Left"
-                                                    Content="Listen"
-                                                    FontFamily="Roboto"
-                                                    Foreground="{StaticResource FormForeground}" />
-
-                                            </Grid>
-
-                                            <Separator
-                                                Height="25"
-                                                Background="{x:Null}"
-                                                BorderBrush="{x:Null}"
-                                                Foreground="{x:Null}" />
-
-                                            <GroupBox
-                                                x:Name="AudioBox"
-                                                Height="80"
-                                                Margin="10,1,10,1"
-                                                Padding="1"
-                                                HorizontalContentAlignment="Stretch"
-                                                VerticalContentAlignment="Stretch"
-                                                Background="{StaticResource FormBackground}"
-                                                BorderBrush="{StaticResource MutedForeground}"
-                                                FontFamily="Roboto"
-                                                FontSize="12"
-                                                Foreground="{StaticResource FormForeground}"
-                                                Header="Output Format">
-
-                                                <b:MetroDropDown
-                                                    x:Name="AudioFormatDropDown"
+                                                <b:MetroDropDownItem
                                                     Height="35"
                                                     Margin="3"
-                                                    VerticalAlignment="Center"
-                                                    VerticalContentAlignment="Center"
-                                                    Background="{StaticResource ControlInteriorBrush}"
-                                                    BorderBrush="{StaticResource BlueBorderBrush}"
-                                                    FontSize="14"
-                                                    Foreground="{StaticResource FormForeground}">
+                                                    Content="mp3"
+                                                    FontFamily="Roboto"
+                                                    Foreground="{StaticResource WhiteForeground}"
+                                                    Tag="mp3" />
 
-                                                    <b:MetroDropDownItem
-                                                        Height="35"
-                                                        Margin="3"
-                                                        Content="mp3"
-                                                        FontFamily="Roboto"
-                                                        Foreground="{StaticResource WhiteForeground}"
-                                                        Tag="mp3" />
-
-                                                    <b:MetroDropDownItem
-                                                        Height="35"
-                                                        Margin="3"
-                                                        Content="opus"
-                                                        FontFamily="Roboto"
-                                                        Tag="opus" />
-
-                                                    <b:MetroDropDownItem
-                                                        Height="35"
-                                                        Margin="3"
-                                                        Content="aac"
-                                                        FontFamily="Roboto"
-                                                        Tag="aac" />
-
-                                                    <b:MetroDropDownItem
-                                                        Height="35"
-                                                        Margin="3"
-                                                        Content="flac"
-                                                        FontFamily="Roboto"
-                                                        Tag="flac" />
-
-                                                    <b:MetroDropDownItem
-                                                        Height="35"
-                                                        Margin="3"
-                                                        Content="wav"
-                                                        FontFamily="Roboto"
-                                                        Tag="wav" />
-
-                                                    <b:MetroDropDownItem
-                                                        Height="35"
-                                                        Margin="3"
-                                                        Content="pcm16"
-                                                        FontFamily="Roboto"
-                                                        Tag="pcm16" />
-
-                                                </b:MetroDropDown>
-                                            </GroupBox>
-
-                                            <Separator
-                                                Height="29"
-                                                Background="{x:Null}"
-                                                BorderBrush="{x:Null}"
-                                                Foreground="{x:Null}" />
-
-                                            <GroupBox
-                                                x:Name="VoiceGroupBox"
-                                                Height="80"
-                                                Margin="10,1,10,1"
-                                                Padding="1"
-                                                HorizontalContentAlignment="Stretch"
-                                                VerticalContentAlignment="Stretch"
-                                                Background="{StaticResource GroupBoxBackground}"
-                                                BorderBrush="{StaticResource MutedForeground}"
-                                                FontFamily="Roboto"
-                                                FontSize="14"
-                                                Foreground="{StaticResource FormForeground}"
-                                                Header="Voice">
-
-                                                <b:MetroDropDown
-                                                    x:Name="VoicesDropDown"
+                                                <b:MetroDropDownItem
                                                     Height="35"
-                                                    Margin="3,3,3,3"
-                                                    VerticalAlignment="Center"
-                                                    VerticalContentAlignment="Center"
-                                                    Background="{StaticResource ControlInteriorBrush}"
-                                                    BorderBrush="{StaticResource BlueBorderBrush}"
-                                                    BorderThickness="1"
-                                                    FontSize="14"
-                                                    Foreground="{StaticResource WhiteForeground}">
+                                                    Margin="3"
+                                                    Content="opus"
+                                                    FontFamily="Roboto"
+                                                    Tag="opus" />
 
-                                                    <b:MetroDropDownItem
-                                                        Height="35"
-                                                        Margin="3"
-                                                        Content="alloy"
-                                                        FontFamily="Roboto"
-                                                        Foreground="{StaticResource WhiteForeground}"
-                                                        Tag="alloy" />
+                                                <b:MetroDropDownItem
+                                                    Height="35"
+                                                    Margin="3"
+                                                    Content="aac"
+                                                    FontFamily="Roboto"
+                                                    Tag="aac" />
 
-                                                    <b:MetroDropDownItem
-                                                        Height="35"
-                                                        Margin="3"
-                                                        Content="ash"
-                                                        FontFamily="Roboto"
-                                                        Tag="ash" />
+                                                <b:MetroDropDownItem
+                                                    Height="35"
+                                                    Margin="3"
+                                                    Content="flac"
+                                                    FontFamily="Roboto"
+                                                    Tag="flac" />
 
-                                                    <b:MetroDropDownItem
-                                                        Height="35"
-                                                        Margin="3"
-                                                        Content="ballad"
-                                                        FontFamily="Roboto"
-                                                        Tag="ballad" />
+                                                <b:MetroDropDownItem
+                                                    Height="35"
+                                                    Margin="3"
+                                                    Content="wav"
+                                                    FontFamily="Roboto"
+                                                    Tag="wav" />
 
-                                                    <b:MetroDropDownItem
-                                                        Height="35"
-                                                        Margin="3"
-                                                        Content="coral"
-                                                        FontFamily="Roboto"
-                                                        Tag="coral" />
+                                                <b:MetroDropDownItem
+                                                    Height="35"
+                                                    Margin="3"
+                                                    Content="pcm16"
+                                                    FontFamily="Roboto"
+                                                    Tag="pcm16" />
 
-                                                    <b:MetroDropDownItem
-                                                        Height="35"
-                                                        Margin="3"
-                                                        Content="echo"
-                                                        FontFamily="Roboto"
-                                                        Tag="echo" />
+                                            </b:MetroDropDown>
+                                        </GroupBox>
 
-                                                    <b:MetroDropDownItem
-                                                        Height="35"
-                                                        Margin="3"
-                                                        Content="fable"
-                                                        FontFamily="Roboto"
-                                                        Tag="fable" />
+                                        <Separator
+                                            Height="29"
+                                            Background="{x:Null}"
+                                            BorderBrush="{x:Null}"
+                                            Foreground="{x:Null}" />
 
-                                                    <b:MetroDropDownItem
-                                                        Height="35"
-                                                        Margin="3"
-                                                        Content="nova"
-                                                        FontFamily="Roboto"
-                                                        Tag="nova" />
+                                        <GroupBox
+                                            x:Name="VoiceGroupBox"
+                                            Canvas.Left="23"
+                                            Canvas.Top="221"
+                                            Width="274"
+                                            Height="80"
+                                            Padding="1"
+                                            HorizontalAlignment="Left"
+                                            VerticalAlignment="Center"
+                                            HorizontalContentAlignment="Stretch"
+                                            VerticalContentAlignment="Stretch"
+                                            Background="{StaticResource GroupBoxBackground}"
+                                            BorderBrush="{StaticResource MutedForeground}"
+                                            FontFamily="Roboto"
+                                            FontSize="14"
+                                            Foreground="{StaticResource FormForeground}"
+                                            Header="Voice">
 
-                                                    <b:MetroDropDownItem
-                                                        Height="35"
-                                                        Margin="3"
-                                                        Content="sage"
-                                                        FontFamily="Roboto"
-                                                        Tag="sage" />
+                                            <b:MetroDropDown
+                                                x:Name="VoicesDropDown"
+                                                Height="35"
+                                                Margin="3,3,3,3"
+                                                VerticalAlignment="Center"
+                                                VerticalContentAlignment="Center"
+                                                Background="{StaticResource ControlInteriorBrush}"
+                                                BorderBrush="{StaticResource BlueBorderBrush}"
+                                                BorderThickness="1"
+                                                FontSize="14"
+                                                Foreground="{StaticResource WhiteForeground}">
 
-                                                    <b:MetroDropDownItem
-                                                        Height="35"
-                                                        Margin="3"
-                                                        Content="shimmer"
-                                                        FontFamily="Roboto"
-                                                        Tag="shimmer" />
+                                                <b:MetroDropDownItem
+                                                    Height="35"
+                                                    Margin="3"
+                                                    Content="alloy"
+                                                    FontFamily="Roboto"
+                                                    Foreground="{StaticResource WhiteForeground}"
+                                                    Tag="alloy" />
 
-                                                    <b:MetroDropDownItem
-                                                        Height="35"
-                                                        Margin="3"
-                                                        Content="verse"
-                                                        FontFamily="Roboto"
-                                                        Tag="verse" />
+                                                <b:MetroDropDownItem
+                                                    Height="35"
+                                                    Margin="3"
+                                                    Content="ash"
+                                                    FontFamily="Roboto"
+                                                    Tag="ash" />
 
-                                                </b:MetroDropDown>
+                                                <b:MetroDropDownItem
+                                                    Height="35"
+                                                    Margin="3"
+                                                    Content="ballad"
+                                                    FontFamily="Roboto"
+                                                    Tag="ballad" />
 
-                                            </GroupBox>
+                                                <b:MetroDropDownItem
+                                                    Height="35"
+                                                    Margin="3"
+                                                    Content="coral"
+                                                    FontFamily="Roboto"
+                                                    Tag="coral" />
 
-                                            <Separator
-                                                Height="24"
-                                                Background="{x:Null}"
-                                                BorderBrush="{x:Null}"
-                                                Foreground="{StaticResource TransparentBrush}" />
+                                                <b:MetroDropDownItem
+                                                    Height="35"
+                                                    Margin="3"
+                                                    Content="echo"
+                                                    FontFamily="Roboto"
+                                                    Tag="echo" />
 
-                                            <GroupBox
-                                                x:Name="SpeechRatesGroupBox"
-                                                Height="112"
-                                                Margin="10,1,10,1"
-                                                Padding="1"
-                                                HorizontalContentAlignment="Stretch"
-                                                VerticalContentAlignment="Stretch"
-                                                Background="{StaticResource GroupBoxBackground}"
-                                                BorderBrush="{StaticResource MutedForeground}"
-                                                FontFamily="Roboto"
-                                                FontSize="12"
-                                                Foreground="{StaticResource FormForeground}"
-                                                Header="Speed"
-                                                Tag="speed"
-                                                ToolTip="AI speech rate ">
+                                                <b:MetroDropDownItem
+                                                    Height="35"
+                                                    Margin="3"
+                                                    Content="fable"
+                                                    FontFamily="Roboto"
+                                                    Tag="fable" />
 
-                                                <wpf:SfRangeSlider
-                                                    x:Name="SpeechRateSlider"
-                                                    Height="61"
-                                                    Margin="10,0,10,0"
-                                                    Padding="1"
-                                                    VerticalAlignment="Center"
-                                                    ActiveMinorTickStroke="{StaticResource WhiteForeground}"
-                                                    ActiveTickStroke="{StaticResource WhiteForeground}"
-                                                    ActiveTrackStyle="{DynamicResource ActiveTrackStyle}"
-                                                    AllowRangeDrag="True"
-                                                    Background="{StaticResource BlueBorderBrush}"
-                                                    Foreground="{StaticResource FormForeground}"
-                                                    Maximum="4"
-                                                    Minimum="1"
-                                                    MinorTickFrequency="4"
-                                                    MinorTickLength="4"
-                                                    MinorTickStroke="{StaticResource WhiteForeground}"
-                                                    RangeEnd="0"
-                                                    RangeStart="0"
-                                                    ShowValueLabels="True"
-                                                    SnapsTo="Ticks"
-                                                    Tag="speed"
-                                                    ThumbStyle="{StaticResource ThumbStyle}"
-                                                    TickFrequency="1"
-                                                    TickPlacement="BottomRight"
-                                                    TickStroke="{StaticResource WhiteForeground}"
-                                                    Value="1" />
-                                            </GroupBox>
+                                                <b:MetroDropDownItem
+                                                    Height="35"
+                                                    Margin="3"
+                                                    Content="nova"
+                                                    FontFamily="Roboto"
+                                                    Tag="nova" />
 
-                                        </StackPanel>
+                                                <b:MetroDropDownItem
+                                                    Height="35"
+                                                    Margin="3"
+                                                    Content="sage"
+                                                    FontFamily="Roboto"
+                                                    Tag="sage" />
+
+                                                <b:MetroDropDownItem
+                                                    Height="35"
+                                                    Margin="3"
+                                                    Content="shimmer"
+                                                    FontFamily="Roboto"
+                                                    Tag="shimmer" />
+
+                                                <b:MetroDropDownItem
+                                                    Height="35"
+                                                    Margin="3"
+                                                    Content="verse"
+                                                    FontFamily="Roboto"
+                                                    Tag="verse" />
+
+                                            </b:MetroDropDown>
+
+                                        </GroupBox>
+
+                                        <Separator
+                                            Height="24"
+                                            Background="{x:Null}"
+                                            BorderBrush="{x:Null}"
+                                            Foreground="{StaticResource TransparentBrush}" />
+
+                                        <GroupBox
+                                            x:Name="SpeechRatesGroupBox"
+                                            Canvas.Left="30"
+                                            Canvas.Top="334"
+                                            Width="274"
+                                            Height="80"
+                                            Padding="1"
+                                            HorizontalAlignment="Left"
+                                            VerticalAlignment="Top"
+                                            HorizontalContentAlignment="Stretch"
+                                            VerticalContentAlignment="Stretch"
+                                            Background="{StaticResource GroupBoxBackground}"
+                                            BorderBrush="{StaticResource MutedForeground}"
+                                            Focusable="True"
+                                            FontFamily="Roboto"
+                                            FontSize="12"
+                                            Foreground="{StaticResource FormForeground}"
+                                            Header="Speed"
+                                            Tag="speed"
+                                            ToolTip="AI speech rate">
+
+                                            <b:MetroDropDown
+                                                Height="35"
+                                                Margin="10,0,10,0"
+                                                AllowMultiSelect="True"
+                                                Background="{DynamicResource ControlInteriorBrush}"
+                                                BorderBrush="{DynamicResource BlueBorderBrush}"
+                                                DefaultText="ComboBox Items"
+                                                Foreground="{DynamicResource FormForeground}" 
+                                                FontSize="14">
+
+                                                <b:MetroDropDownItem
+                                                    Height="35"
+                                                    Margin="3"
+                                                    Content="0.25"
+                                                    FontFamily="Roboto"
+                                                    Tag="0.25" />
+
+                                                <b:MetroDropDownItem
+                                                    Height="35"
+                                                    Margin="3"
+                                                    Content="1.0"
+                                                    FontFamily="Roboto"
+                                                    Tag="1.0" />
+
+                                                <b:MetroDropDownItem
+                                                    Height="35"
+                                                    Margin="3"
+                                                    Content="4.0"
+                                                    FontFamily="Roboto"
+                                                    Tag="4.0" />
+
+                                            </b:MetroDropDown>
+                                        </GroupBox>
 
                                     </Canvas>
                                 </Grid>

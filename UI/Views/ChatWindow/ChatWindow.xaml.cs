@@ -458,7 +458,6 @@ namespace Bubba
             TopPercentSlider.Value = 0.9;
             PresenceSlider.Value = 0.00;
             FrequencySlider.Value = 0.00;
-            SpeechRateSlider.Value = 1.0;
 
             // GPT Parameters
             _store = true;
@@ -612,7 +611,6 @@ namespace Bubba
                 _number = int.Parse( MaxTokenTextBox.Text );
                 _maximumTokens = Convert.ToInt32( MaxTokenTextBox.Text );
                 _model = ModelDropDown.SelectedItem.ToString( ) ?? "gpt-4o-mini";
-                _speed = int.Parse( SpeechRateSlider.Value.ToString( "N0"  ) );
                 _userPrompt = _language == "Text"
                     ? Editor.Text
                     : "";
@@ -705,76 +703,6 @@ namespace Bubba
             {
                 Fail( ex );
             }
-        }
-
-        /// <summary>
-        /// Determines whether the specified URL is blank.
-        /// </summary>
-        /// <param name="url">The URL.</param>
-        /// <returns>
-        /// <c>true</c>
-        /// if the specified URL is blank;
-        /// otherwise,
-        /// <c>false</c>.
-        /// </returns>
-        private bool IsBlank( string url )
-        {
-            try
-            {
-                ThrowIf.Null( url, nameof( url ) );
-                return url == "" || url == "about:blank";
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
-                return false;
-            }
-        }
-
-        /// <summary>
-        /// Determines whether [is blank or system] [the specified URL].
-        /// </summary>
-        /// <param name="url">The URL.</param>
-        /// <returns>
-        /// <c>true</c> if [is blank or system] [the specified URL];
-        /// otherwise,
-        /// <c>false</c>.
-        /// </returns>
-        private bool IsBlankOrSystem( string url )
-        {
-            try
-            {
-                ThrowIf.Null( url, nameof( url ) );
-                return url == "" || url.BeginsWith( "about:" ) || url.BeginsWith( "chrome:" )
-                    || url.BeginsWith( Locations.Internal + ":" );
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
-                return false;
-            }
-        }
-
-        /// <summary>
-        /// Determines whether [is on first tab].
-        /// </summary>
-        /// <returns>
-        ///   <c>true</c> if [is on first tab]; otherwise, <c>false</c>.
-        /// </returns>
-        private bool IsFirstTab( )
-        {
-            return TabControl.SelectedItem == TabControl.Items[ 0 ];
-        }
-
-        /// <summary>
-        /// Determines whether [is on last tab].
-        /// </summary>
-        /// <returns>
-        ///   <c>true</c> if [is on last tab]; otherwise, <c>false</c>.
-        /// </returns>
-        private bool IsLastTab( )
-        {
-            return TabControl.SelectedItem == TabControl.Items[ ^2 ];
         }
 
         /// <summary>
@@ -928,7 +856,6 @@ namespace Bubba
                 FrequencySlider.Value = 0.00;
                 TemperatureSlider.Value = 0.8;
                 TopPercentSlider.Value = 0.9;
-                SpeechRateSlider.Value = 1;
             }
             catch( Exception ex )
             {
@@ -1344,20 +1271,6 @@ namespace Bubba
 
                 App.ActiveWindows.Add( "CalculatorWindow", _calculator );
                 _calculator.Hide( );
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
-            }
-        }
-
-        /// <summary>
-        /// Opens the file browser.
-        /// </summary>
-        private protected void OpenFileBrowser( )
-        {
-            try
-            {
             }
             catch( Exception ex )
             {
@@ -2625,148 +2538,6 @@ namespace Bubba
         }
 
         /// <summary>
-        /// Activates the chat tab.
-        /// </summary>
-        private protected void ActivateChatTab( )
-        {
-            try
-            {
-                var _tabPages = new Dictionary<string, TabItem>( );
-                SetToolbarVisibility( true );
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
-            }
-        }
-
-        /// <summary>
-        /// Activates the chat tab.
-        /// </summary>
-        private protected void ActivateBrowserTab( )
-        {
-            try
-            {
-                SetToolbarVisibility( true );
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
-            }
-        }
-
-        /// <summary>
-        /// Activates the editor tab.
-        /// </summary>
-        private protected void ActivateEditorTab( )
-        {
-            try
-            {
-                PopulateLanguageDropDown(  );
-                PopulateDocumentListBox( );
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
-            }
-        }
-
-        /// <summary>
-        /// Activates the image tab.
-        /// </summary>
-        private protected void ActivateImageTab( )
-        {
-            try
-            {
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
-            }
-        }
-
-        /// <summary>
-        /// Activates the parameter tab.
-        /// </summary>
-        private protected void ActivateParameterTab( )
-        {
-            try
-            {
-                SetToolbarVisibility( true );
-                PopulateRequestTypes( );
-                PopulateModelsAsync( );
-                PopulateVoices( );
-                PopulateImageSizes( );
-                ClearChatControls( );
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
-            }
-        }
-
-        /// <summary>
-        /// Activates the chart tab.
-        /// </summary>
-        private protected void ActivateChartTab( )
-        {
-            try
-            {
-                SetToolbarVisibility( true );
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
-            }
-        }
-
-        /// <summary>
-        /// Activates the data tab.
-        /// </summary>
-        private protected void ActivateDataTab( )
-        {
-            try
-            {
-                SetToolbarVisibility( true );
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
-            }
-        }
-
-        /// <summary>
-        /// Activates the graph tab.
-        /// </summary>
-        private protected void ActivateGraphTab( )
-        {
-            try
-            {
-                SetToolbarVisibility( true );
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
-            }
-        }
-
-        /// <summary>
-        /// Activates the busy tab.
-        /// </summary>
-        private protected void ActivateBusyTab( )
-        {
-            try
-
-            {
-                SetToolbarVisibility( false );
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
-            }
-        }
-
-        /// <summary>
         /// Adds the blank window.
         /// </summary>
         public void AddBlankWindow( )
@@ -2992,20 +2763,6 @@ namespace Bubba
                         break;
                     }
                 }
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
-            }
-        }
-
-        /// <summary>
-        /// Sets the user mode.
-        /// </summary>
-        private protected void SetTabControl( )
-        {
-            try
-            {
             }
             catch( Exception ex )
             {

@@ -31520,45 +31520,6 @@
             </summary>
             <param name="action">The action.</param>
         </member>
-        <member name="M:Bubba.ChatWindow.IsBlank(System.String)">
-            <summary>
-            Determines whether the specified URL is blank.
-            </summary>
-            <param name="url">The URL.</param>
-            <returns>
-            <c>true</c>
-            if the specified URL is blank;
-            otherwise,
-            <c>false</c>.
-            </returns>
-        </member>
-        <member name="M:Bubba.ChatWindow.IsBlankOrSystem(System.String)">
-            <summary>
-            Determines whether [is blank or system] [the specified URL].
-            </summary>
-            <param name="url">The URL.</param>
-            <returns>
-            <c>true</c> if [is blank or system] [the specified URL];
-            otherwise,
-            <c>false</c>.
-            </returns>
-        </member>
-        <member name="M:Bubba.ChatWindow.IsFirstTab">
-            <summary>
-            Determines whether [is on first tab].
-            </summary>
-            <returns>
-              <c>true</c> if [is on first tab]; otherwise, <c>false</c>.
-            </returns>
-        </member>
-        <member name="M:Bubba.ChatWindow.IsLastTab">
-            <summary>
-            Determines whether [is on last tab].
-            </summary>
-            <returns>
-              <c>true</c> if [is on last tab]; otherwise, <c>false</c>.
-            </returns>
-        </member>
         <member name="M:Bubba.ChatWindow.Busy">
             <summary>
             Begins the initialize.
@@ -31696,11 +31657,6 @@
         <member name="M:Bubba.ChatWindow.LoadCalculator">
             <summary>
             Opens the calculator window.
-            </summary>
-        </member>
-        <member name="M:Bubba.ChatWindow.OpenFileBrowser">
-            <summary>
-            Opens the file browser.
             </summary>
         </member>
         <member name="M:Bubba.ChatWindow.OpenSystemDialog">
@@ -31903,51 +31859,6 @@
             Populates the prompt drop down.
             </summary>
         </member>
-        <member name="M:Bubba.ChatWindow.ActivateChatTab">
-            <summary>
-            Activates the chat tab.
-            </summary>
-        </member>
-        <member name="M:Bubba.ChatWindow.ActivateBrowserTab">
-            <summary>
-            Activates the chat tab.
-            </summary>
-        </member>
-        <member name="M:Bubba.ChatWindow.ActivateEditorTab">
-            <summary>
-            Activates the editor tab.
-            </summary>
-        </member>
-        <member name="M:Bubba.ChatWindow.ActivateImageTab">
-            <summary>
-            Activates the image tab.
-            </summary>
-        </member>
-        <member name="M:Bubba.ChatWindow.ActivateParameterTab">
-            <summary>
-            Activates the parameter tab.
-            </summary>
-        </member>
-        <member name="M:Bubba.ChatWindow.ActivateChartTab">
-            <summary>
-            Activates the chart tab.
-            </summary>
-        </member>
-        <member name="M:Bubba.ChatWindow.ActivateDataTab">
-            <summary>
-            Activates the data tab.
-            </summary>
-        </member>
-        <member name="M:Bubba.ChatWindow.ActivateGraphTab">
-            <summary>
-            Activates the graph tab.
-            </summary>
-        </member>
-        <member name="M:Bubba.ChatWindow.ActivateBusyTab">
-            <summary>
-            Activates the busy tab.
-            </summary>
-        </member>
         <member name="M:Bubba.ChatWindow.AddBlankWindow">
             <summary>
             Adds the blank window.
@@ -31983,11 +31894,6 @@
         <member name="M:Bubba.ChatWindow.SetRequestType">
             <summary>
             Sets the end point.
-            </summary>
-        </member>
-        <member name="M:Bubba.ChatWindow.SetTabControl">
-            <summary>
-            Sets the user mode.
             </summary>
         </member>
         <member name="M:Bubba.ChatWindow.SetGptOptions">
