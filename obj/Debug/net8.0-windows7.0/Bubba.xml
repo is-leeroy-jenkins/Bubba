@@ -31185,11 +31185,6 @@
             The language
             </summary>
         </member>
-        <member name="F:Bubba.ChatWindow._document">
-            <summary>
-            The selected document
-            </summary>
-        </member>
         <member name="F:Bubba.ChatWindow._request">
             <summary>
             The selected request
@@ -31208,11 +31203,6 @@
         <member name="F:Bubba.ChatWindow._options">
             <summary>
             The options
-            </summary>
-        </member>
-        <member name="F:Bubba.ChatWindow._region">
-            <summary>
-            The region
             </summary>
         </member>
         <member name="F:Bubba.ChatWindow._temperature">
@@ -31264,6 +31254,36 @@
             The speed
             </summary>
         </member>
+        <member name="F:Bubba.ChatWindow._model">
+            <summary>
+            The chat model
+            </summary>
+        </member>
+        <member name="F:Bubba.ChatWindow._time">
+            <summary>
+            The time
+            </summary>
+        </member>
+        <member name="F:Bubba.ChatWindow._number">
+            <summary>
+            The number
+            </summary>
+        </member>
+        <member name="F:Bubba.ChatWindow._document">
+            <summary>
+            The document
+            </summary>
+        </member>
+        <member name="F:Bubba.ChatWindow._inputText">
+            <summary>
+            The user prompt for the GPT
+            </summary>
+        </member>
+        <member name="F:Bubba.ChatWindow._outputFormat">
+            <summary>
+            The output format
+            </summary>
+        </member>
         <member name="F:Bubba.ChatWindow._responseFormat">
             <summary>
             The response format
@@ -31309,10 +31329,20 @@
             The image style
             </summary>
         </member>
+        <member name="F:Bubba.ChatWindow._imageCompression">
+            <summary>
+            The image compression
+            </summary>
+        </member>
         <member name="F:Bubba.ChatWindow._maximumTokens">
             <summary>
             An upper bound for the number of tokens
             that can be generated for a completion
+            </summary>
+        </member>
+        <member name="F:Bubba.ChatWindow._outputTokens">
+            <summary>
+            The output tokens
             </summary>
         </member>
         <member name="F:Bubba.ChatWindow._frequencyPenalty">
@@ -31379,51 +31409,6 @@
         <member name="F:Bubba.ChatWindow._audioFormatOptions">
             <summary>
             The audio format options
-            </summary>
-        </member>
-        <member name="F:Bubba.ChatWindow._model">
-            <summary>
-            The chat model
-            </summary>
-        </member>
-        <member name="F:Bubba.ChatWindow._searchEngineId">
-            <summary>
-            The search engine identifier
-            </summary>
-        </member>
-        <member name="F:Bubba.ChatWindow._searchEngineProjectId">
-            <summary>
-            The search engine project identifier
-            </summary>
-        </member>
-        <member name="F:Bubba.ChatWindow._searchEngineName">
-            <summary>
-            The search engine name
-            </summary>
-        </member>
-        <member name="F:Bubba.ChatWindow._searchEngineProjectNumber">
-            <summary>
-            The search engine project number
-            </summary>
-        </member>
-        <member name="F:Bubba.ChatWindow._searchEngineKey">
-            <summary>
-            The search engine key
-            </summary>
-        </member>
-        <member name="F:Bubba.ChatWindow._searchEngineUrl">
-            <summary>
-            The search engine URL
-            </summary>
-        </member>
-        <member name="F:Bubba.ChatWindow._time">
-            <summary>
-            The time
-            </summary>
-        </member>
-        <member name="F:Bubba.ChatWindow._number">
-            <summary>
-            The number
             </summary>
         </member>
         <member name="F:Bubba.ChatWindow._timer">
@@ -31596,6 +31581,55 @@
             </summary>
             <returns>
             </returns>
+        </member>
+        <member name="M:Bubba.ChatWindow.EnableResetButton(System.Boolean)">
+            <summary>
+            Enables the reset button.
+            </summary>
+            <param name="canReset">
+            if set to <c>true</c> [can go back].</param>
+        </member>
+        <member name="M:Bubba.ChatWindow.EnableSendButton(System.Boolean)">
+            <summary>
+            Enables the send button.
+            </summary>
+            <param name="canSend">
+            if set to <c>true</c> [can send].</param>
+        </member>
+        <member name="M:Bubba.ChatWindow.EnableEraseButton(System.Boolean)">
+            <summary>
+            Enables the erase button.
+            </summary>
+            <param name="canErase">
+            if set to <c>true</c> [can erase].</param>
+        </member>
+        <member name="M:Bubba.ChatWindow.EnableCancelButton(System.Boolean)">
+            <summary>
+            Enables the cancel button.
+            </summary>
+            <param name="canCancel">
+            if set to <c>true</c> [can cancel].</param>
+        </member>
+        <member name="M:Bubba.ChatWindow.EnableDeleteButton(System.Boolean)">
+            <summary>
+            Enables the delete button.
+            </summary>
+            <param name="canDelete">
+            if set to <c>true</c> [can delete].</param>
+        </member>
+        <member name="M:Bubba.ChatWindow.EnableSaveButton(System.Boolean)">
+            <summary>
+            Enables the save button.
+            </summary>
+            <param name="canSave">
+            if set to <c>true</c> [can go back].</param>
+        </member>
+        <member name="M:Bubba.ChatWindow.EnableUploadButton(System.Boolean)">
+            <summary>
+            Enables the upload button.
+            </summary>
+            <param name="canUpload">
+            if set to <c>true</c> [can upload].</param>
         </member>
         <member name="M:Bubba.ChatWindow.FadeInAsync(System.Windows.Window,System.Int32)">
             <summary>
@@ -31784,41 +31818,6 @@
             Populates the agent models.
             </summary>
         </member>
-        <member name="M:Bubba.ChatWindow.PopulateDocumentListBox">
-            <summary>
-            Populates the language ListBox.
-            </summary>
-        </member>
-        <member name="M:Bubba.ChatWindow.PopulateVisualBasicDocuments">
-            <summary>
-            Populates the visual basic documents.
-            </summary>
-        </member>
-        <member name="M:Bubba.ChatWindow.PopulateCPlusDocuments">
-            <summary>
-            Populates the c plus documents.
-            </summary>
-        </member>
-        <member name="M:Bubba.ChatWindow.PopulateJavaScriptDocuments">
-            <summary>
-            Populates the java script documents.
-            </summary>
-        </member>
-        <member name="M:Bubba.ChatWindow.PopulateSqlDocuments">
-            <summary>
-            Populates the SQL documents.
-            </summary>
-        </member>
-        <member name="M:Bubba.ChatWindow.PopulatePythonDocuments">
-            <summary>
-            Populates the python documents.
-            </summary>
-        </member>
-        <member name="M:Bubba.ChatWindow.PopulateCSharpDocuments">
-            <summary>
-            Populates the c sharp documents.
-            </summary>
-        </member>
         <member name="M:Bubba.ChatWindow.PopulateTextDocuments">
             <summary>
             Populates the text documents.
@@ -31844,24 +31843,14 @@
             Populates the request types.
             </summary>
         </member>
-        <member name="M:Bubba.ChatWindow.PopulateLanguageDropDown">
-            <summary>
-            Populates the language ListBox.
-            </summary>
-        </member>
         <member name="M:Bubba.ChatWindow.PopulateDocuments">
             <summary>
             Sets the user document language.
             </summary>
         </member>
-        <member name="M:Bubba.ChatWindow.PopulatePromptDropDown">
+        <member name="M:Bubba.ChatWindow.PopulatePromptListBox">
             <summary>
             Populates the prompt drop down.
-            </summary>
-        </member>
-        <member name="M:Bubba.ChatWindow.AddBlankWindow">
-            <summary>
-            Adds the blank window.
             </summary>
         </member>
         <member name="M:Bubba.ChatWindow.UpdateStatus">
@@ -32067,14 +32056,6 @@
             <param name="e">The <see cref="T:System.Windows.RoutedEventArgs"/>
             instance containing the event data.</param>
         </member>
-        <member name="M:Bubba.ChatWindow.OnLanguageDropDownSelectionChanged(System.Object,System.Windows.RoutedEventArgs)">
-            <summary>
-            Called when [document selection changed].
-            </summary>
-            <param name="sender">The sender.</param>
-            <param name="e">The <see cref="T:System.Windows.RoutedEventArgs"/>
-            instance containing the event data.</param>
-        </member>
         <member name="M:Bubba.ChatWindow.OnLookupButtonClick(System.Object,System.Windows.RoutedEventArgs)">
             <summary>
             Called when [lookup button click].
@@ -32127,22 +32108,6 @@
         <member name="M:Bubba.ChatWindow.OnParameterTextBoxChanged(System.Object,System.Windows.RoutedEventArgs)">
             <summary>
             Called when [text box input changed].
-            </summary>
-            <param name="sender">The sender.</param>
-            <param name="e">The <see cref="T:System.Windows.RoutedEventArgs"/>
-            instance containing the event data.</param>
-        </member>
-        <member name="M:Bubba.ChatWindow.OnPromptMenuOptionClick(System.Object,System.Windows.RoutedEventArgs)">
-            <summary>
-            Called when [system prompt button click].
-            </summary>
-            <param name="sender">The sender.</param>
-            <param name="e">The <see cref="T:System.Windows.RoutedEventArgs"/>
-            instance containing the event data.</param>
-        </member>
-        <member name="M:Bubba.ChatWindow.OnPromptDropDownSelectionChanged(System.Object,System.Windows.RoutedEventArgs)">
-            <summary>
-            Called when [prompt drop down selection changed].
             </summary>
             <param name="sender">The sender.</param>
             <param name="e">The <see cref="T:System.Windows.RoutedEventArgs"/>
@@ -32290,7 +32255,7 @@
             <param name="e">The <see cref="T:System.Windows.RoutedEventArgs"/>
             instance containing the event data.</param>
         </member>
-        <member name="M:Bubba.ChatWindow.OnToolStripRefreshButtonClick(System.Object,System.Windows.RoutedEventArgs)">
+        <member name="M:Bubba.ChatWindow.OnToolStripResetButtonClick(System.Object,System.Windows.RoutedEventArgs)">
             <summary>
             Called when [tool strip refresh button click].
             </summary>
@@ -32306,12 +32271,36 @@
             <param name="e">The <see cref="T:System.Windows.Input.MouseEventArgs"/>
             instance containing the event data.</param>
         </member>
-        <member name="M:Bubba.ChatWindow.OnUrlTextBoxMouseEnter(System.Object,System.Windows.Input.MouseEventArgs)">
+        <member name="M:Bubba.ChatWindow.OnUrlTextBoxDoubleClick(System.Object,System.Windows.Input.MouseEventArgs)">
             <summary>
             Called when [URL text box clicked].
             </summary>
             <param name="sender">The sender.</param>
             <param name="e">The <see cref="T:System.Windows.Input.MouseEventArgs" />
+            instance containing the event data.</param>
+        </member>
+        <member name="M:Bubba.ChatWindow.OnToolStripCancelButtonClick(System.Object,System.Windows.RoutedEventArgs)">
+            <summary>
+            Called when [tool strip cancel button click].
+            </summary>
+            <param name="sender">The sender.</param>
+            <param name="e">The <see cref="T:System.Windows.RoutedEventArgs"/>
+            instance containing the event data.</param>
+        </member>
+        <member name="M:Bubba.ChatWindow.OnToolStripEraseButtonClick(System.Object,System.Windows.RoutedEventArgs)">
+            <summary>
+            Called when [tool strip erase button click].
+            </summary>
+            <param name="sender">The sender.</param>
+            <param name="e">The <see cref="T:System.Windows.RoutedEventArgs"/>
+            instance containing the event data.</param>
+        </member>
+        <member name="M:Bubba.ChatWindow.OnToolStripUploadButtonClick(System.Object,System.Windows.RoutedEventArgs)">
+            <summary>
+            Called when [tool strip upload button click].
+            </summary>
+            <param name="sender">The sender.</param>
+            <param name="e">The <see cref="T:System.Windows.RoutedEventArgs"/>
             instance containing the event data.</param>
         </member>
         <member name="M:Bubba.ChatWindow.OnVoiceSelectionChanged(System.Object,System.Windows.RoutedEventArgs)">
@@ -32368,14 +32357,6 @@
             </summary>
             <param name="sender">The sender.</param>
             <param name="e">The <see cref="T:System.Windows.RoutedEventArgs"/>
-            instance containing the event data.</param>
-        </member>
-        <member name="M:Bubba.ChatWindow.OnBrowserMouseLeftButtonDown(System.Object,System.Windows.Input.MouseButtonEventArgs)">
-            <summary>
-            Called when [browser mouse left button down].
-            </summary>
-            <param name="sender">The sender.</param>
-            <param name="e">The <see cref="T:System.Windows.Input.MouseButtonEventArgs"/>
             instance containing the event data.</param>
         </member>
         <member name="M:Bubba.ChatWindow.Dispose">
@@ -34134,6 +34115,36 @@
         <member name="M:Bubba.SystemDialog.InitializeComponent">
             <summary>
             InitializeComponent
+            </summary>
+        </member>
+        <member name="T:XamlGeneratedNamespace.GeneratedInternalTypeHelper">
+            <summary>
+            GeneratedInternalTypeHelper
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.CreateInstance(System.Type,System.Globalization.CultureInfo)">
+            <summary>
+            CreateInstance
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.GetPropertyValue(System.Reflection.PropertyInfo,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            GetPropertyValue
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.SetPropertyValue(System.Reflection.PropertyInfo,System.Object,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            SetPropertyValue
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.CreateDelegate(System.Type,System.Object,System.String)">
+            <summary>
+            CreateDelegate
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.AddEventHandler(System.Reflection.EventInfo,System.Object,System.Delegate)">
+            <summary>
+            AddEventHandler
             </summary>
         </member>
     </members>

@@ -163,11 +163,6 @@ namespace Bubba
         private protected string _language;
 
         /// <summary>
-        /// The selected document
-        /// </summary>
-        private protected string _document;
-
-        /// <summary>
         /// The selected request
         /// </summary>
         private protected string _request;
@@ -186,11 +181,6 @@ namespace Bubba
         /// The options
         /// </summary>
         private protected GptOptions _options;
-
-        /// <summary>
-        /// The region
-        /// </summary>
-        private Region _region;
 
         /// <summary>
         /// A number between 0 and 2.
@@ -242,6 +232,36 @@ namespace Bubba
         private protected int _speed;
 
         /// <summary>
+        /// The chat model
+        /// </summary>
+        private protected string _model;
+
+        /// <summary>
+        /// The time
+        /// </summary>
+        private protected int _time;
+
+        /// <summary>
+        /// The number
+        /// </summary>
+        private protected int _number;
+
+        /// <summary>
+        /// The document
+        /// </summary>
+        private protected string _document;
+
+        /// <summary>
+        /// The user prompt for the GPT
+        /// </summary>
+        private protected string _inputText;
+
+        /// <summary>
+        /// The output format
+        /// </summary>
+        private protected string _outputFormat;
+
+        /// <summary>
         /// The response format
         /// </summary>
         private protected string _responseFormat;
@@ -287,10 +307,20 @@ namespace Bubba
         private protected string _imageStyle;
 
         /// <summary>
+        /// The image compression
+        /// </summary>
+        private protected string _imageCompression;
+
+        /// <summary>
         /// An upper bound for the number of tokens
         /// that can be generated for a completion
         /// </summary>
         private protected int _maximumTokens;
+
+        /// <summary>
+        /// The output tokens
+        /// </summary>
+        private protected int _outputTokens;
 
         /// <summary>
         /// A number between -2.0 and 2.0. Positive values penalize new
@@ -357,51 +387,6 @@ namespace Bubba
         /// The audio format options
         /// </summary>
         private protected IList<string> _audioFormatOptions;
-
-        /// <summary>
-        /// The chat model
-        /// </summary>
-        private protected string _model;
-
-        /// <summary>
-        /// The search engine identifier
-        /// </summary>
-        private protected string _searchEngineId;
-
-        /// <summary>
-        /// The search engine project identifier
-        /// </summary>
-        private protected string _searchEngineProjectId;
-
-        /// <summary>
-        /// The search engine name
-        /// </summary>
-        private protected string _searchEngineName;
-
-        /// <summary>
-        /// The search engine project number
-        /// </summary>
-        private protected string _searchEngineProjectNumber;
-
-        /// <summary>
-        /// The search engine key
-        /// </summary>
-        private protected string _searchEngineKey;
-
-        /// <summary>
-        /// The search engine URL
-        /// </summary>
-        private protected string _searchEngineUrl;
-
-        /// <summary>
-        /// The time
-        /// </summary>
-        private protected int _time;
-
-        /// <summary>
-        /// The number
-        /// </summary>
-        private protected int _number;
 
         /// <summary>
         /// The timer
@@ -483,6 +468,22 @@ namespace Bubba
             Closing += OnClosing;
         }
 
+        public string InputText
+        {
+            get
+            {
+                return _inputText;
+            }
+            set
+            {
+                if( _inputText != value )
+                {
+                    _inputText = value;
+                    OnPropertyChanged( nameof(InputText ) );
+                }
+            }
+        }
+
         /// <summary>
         /// Initializes the delegates.
         /// </summary>
@@ -521,7 +522,7 @@ namespace Bubba
         {
             try
             {
-                SetToolbarVisibility( true );
+                SetToolbarVisibility( false );
             }
             catch( Exception ex )
             {
@@ -602,7 +603,7 @@ namespace Bubba
             {
                 _store = StoreCheckBox.IsChecked ?? true;
                 _stream = StreamCheckBox.IsChecked ?? true;
-                _listen = ListenCheckBox.IsChecked ?? false;
+                _listen = ListenCheckBox.IsChecked ?? false; 
                 _mute = MuteCheckBox.IsChecked ?? true;
                 _presencePenalty = double.Parse( PresenceSlider.Value.ToString( "N2" ) );
                 _temperature = double.Parse( TemperatureSlider.Value.ToString( "N2" ) );
@@ -631,13 +632,13 @@ namespace Bubba
                 GenerationListBox.SelectionChanged += OnRequestDropDownSelectionChanged;
                 ModelDropDown.SelectionChanged += OnModelDropDownSelectionChanged;
                 ToolStripTextBox.TextChanged += OnToolStripTextBoxTextChanged;
+                ToolStripTextBox.MouseDoubleClick += OnUrlTextBoxDoubleClick;
                 ToolStripMenuButton.Click += OnToggleButtonClick;
-                ToolStripRefreshButton.Click += OnToolStripRefreshButtonClick;
+                ToolStripResetButton.Click += OnToolStripResetButtonClick;
                 ListenCheckBox.Checked += OnListenCheckedChanged;
                 MuteCheckBox.Checked += OnMuteCheckedBoxChanged;
                 StoreCheckBox.Checked += OnStoreCheckBoxChecked;
                 StreamCheckBox.Checked += OnStreamCheckBoxChecked;
-                LanguageDropDown.SelectionChanged += OnLanguageDropDownSelectionChanged;
                 DocumentListBox.SelectionChanged += OnDocumentListBoxSelectionChanged;
                 ResponseFormatDropDown.SelectionChanged += OnResponseFormatSelectionChanged;
                 ImageSizeDropDown.SelectionChanged += OnImageSizeSelectionChanged;
@@ -649,7 +650,6 @@ namespace Bubba
                 EffortDropDown.SelectionChanged += OnEffortSelectionChanged;
                 AudioFormatDropDown.SelectionChanged += OnAudioFormatSelectionChanged;
                 VoicesDropDown.SelectionChanged += OnVoiceSelectionChanged;
-                PromptDropDown.SelectionChanged += OnPromptDropDownSelectionChanged;
             }
             catch( Exception ex )
             {
@@ -714,6 +714,10 @@ namespace Bubba
             {
                 ProgressBar.Visibility = Visibility.Visible;
                 ProgressBar.IsIndeterminate = true;
+                lock( _entry )
+                {
+                    _busy = true;
+                }
             }
             catch( Exception ex )
             {
@@ -757,6 +761,10 @@ namespace Bubba
             {
                 ProgressBar.Visibility = Visibility.Hidden;
                 ProgressBar.IsIndeterminate = false;
+                lock( _entry )
+                {
+                    _busy = true;
+                }
             }
             catch( Exception ex )
             {
@@ -888,7 +896,6 @@ namespace Bubba
                 ModelDropDown.SelectedIndex = -1;
                 VoicesDropDown.SelectedIndex = -1;
                 ImageSizeDropDown.SelectedIndex = -1;
-                LanguageDropDown.SelectedIndex = -1;
             }
             catch( Exception ex )
             {
@@ -903,7 +910,7 @@ namespace Bubba
         {
             try
             {
-                PopulateDocumentListBox( );
+                PopulateTextDocuments( );
             }
             catch( Exception ex )
             {
@@ -981,6 +988,146 @@ namespace Bubba
                 Fail( ex );
                 return default( Notifier );
             }
+        }
+
+        /// <summary>
+        /// Enables the reset button.
+        /// </summary>
+        /// <param name="canReset">
+        /// if set to <c>true</c> [can go back].</param>
+        private void EnableResetButton( bool canReset )
+        {
+            InvokeIf( ( ) =>
+            {
+                if( canReset )
+                {
+                    ToolStripResetButton.Visibility = Visibility.Visible;
+                }
+                else
+                {
+                    ToolStripResetButton.Visibility = Visibility.Hidden;
+                }
+            } );
+        }
+
+        /// <summary>
+        /// Enables the send button.
+        /// </summary>
+        /// <param name="canSend">
+        /// if set to <c>true</c> [can send].</param>
+        private void EnableSendButton( bool canSend )
+        {
+            InvokeIf( ( ) =>
+            {
+                if( canSend )
+                {
+                    ToolStripSendButton.Visibility = Visibility.Visible;
+                }
+                else
+                {
+                    ToolStripSendButton.Visibility = Visibility.Hidden;
+                }
+            } );
+        }
+
+        /// <summary>
+        /// Enables the erase button.
+        /// </summary>
+        /// <param name="canErase">
+        /// if set to <c>true</c> [can erase].</param>
+        private void EnableEraseButton( bool canErase )
+        {
+            InvokeIf( ( ) =>
+            {
+                if( canErase )
+                {
+                    ToolStripEraseButton.Visibility = Visibility.Visible;
+                }
+                else
+                {
+                    ToolStripEraseButton.Visibility = Visibility.Hidden;
+                }
+            } );
+        }
+
+        /// <summary>
+        /// Enables the cancel button.
+        /// </summary>
+        /// <param name="canCancel">
+        /// if set to <c>true</c> [can cancel].</param>
+        private void EnableCancelButton( bool canCancel )
+        {
+            InvokeIf( ( ) =>
+            {
+                if( canCancel )
+                {
+                    ToolStripCancelButton.Visibility = Visibility.Visible;
+                }
+                else
+                {
+                    ToolStripCancelButton.Visibility = Visibility.Hidden;
+                }
+            } );
+        }
+
+        /// <summary>
+        /// Enables the delete button.
+        /// </summary>
+        /// <param name="canDelete">
+        /// if set to <c>true</c> [can delete].</param>
+        private void EnableDeleteButton( bool canDelete )
+        {
+            InvokeIf( ( ) =>
+            {
+                if( canDelete )
+                {
+                    ToolStripDeleteButton.Visibility = Visibility.Visible;
+                }
+                else
+                {
+                    ToolStripDeleteButton.Visibility = Visibility.Hidden;
+                }
+            } );
+        }
+
+        /// <summary>
+        /// Enables the save button.
+        /// </summary>
+        /// <param name="canSave">
+        /// if set to <c>true</c> [can go back].</param>
+        private void EnableSaveButton( bool canSave )
+        {
+            InvokeIf( ( ) =>
+            {
+                if( canSave )
+                {
+                    ToolStripSaveButton.Visibility = Visibility.Visible;
+                }
+                else
+                {
+                    ToolStripSaveButton.Visibility = Visibility.Hidden;
+                }
+            } );
+        }
+
+        /// <summary>
+        /// Enables the upload button.
+        /// </summary>
+        /// <param name="canUpload">
+        /// if set to <c>true</c> [can upload].</param>
+        private void EnableUploadButton( bool canUpload )
+        {
+            InvokeIf( ( ) =>
+            {
+                if( canUpload )
+                {
+                    ToolStripUploadButton.Visibility = Visibility.Visible;
+                }
+                else
+                {
+                    ToolStripUploadButton.Visibility = Visibility.Hidden;
+                }
+            } );
         }
 
         /// <summary>
@@ -1945,232 +2092,6 @@ namespace Bubba
         }
 
         /// <summary>
-        /// Populates the language ListBox.
-        /// </summary>
-        private void PopulateDocumentListBox( )
-        {
-            try
-            {
-                if( !string.IsNullOrEmpty( _language ) )
-                {
-                    switch( _language )
-                    {
-                        case "TXT":
-                        {
-                            PopulateTextDocuments( );
-                            break;
-                        }
-                        case "CS":
-                        {
-                            PopulateCSharpDocuments( );
-                            break;
-                        }
-                        case "PY":
-                        {
-                            PopulatePythonDocuments( );
-                            break;
-                        }
-                        case "SQL":
-                        {
-                            PopulateSqlDocuments( );
-                            break;
-                        }
-                        case "JS":
-                        {
-                            PopulateJavaScriptDocuments( );
-                            break;
-                        }
-                        case "CPP":
-                        {
-                            PopulateCPlusDocuments( );
-                            break;
-                        }
-                        case "VBA":
-                        {
-                            PopulateVisualBasicDocuments( );
-                            break;
-                        }
-                        default:
-                        {
-                            PopulateTextDocuments( );
-                            break;
-                        }
-                    }
-                }
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
-            }
-        }
-
-        /// <summary>
-        /// Populates the visual basic documents.
-        /// </summary>
-        private void PopulateVisualBasicDocuments( )
-        {
-            var _path = Locations.PathPrefix + @"Resources\Documents\Editor\VBA\";
-            TabControl.SelectedIndex = 0;
-            Editor.DocumentLanguage = Syncfusion.Windows.Edit.Languages.VisualBasic;
-            DocumentListBox.Items?.Clear( );
-            var _documents = Directory.GetFiles( _path );
-            foreach( var _file in _documents )
-            {
-                var _item = new MetroListBoxItem(  )
-                {
-                    Tag = Path.GetFullPath( _file ),
-                    Content = Path.GetFileNameWithoutExtension( _file )
-                };
-
-                DocumentListBox.Items?.Add( _item );
-            }
-        }
-
-        /// <summary>
-        /// Populates the c plus documents.
-        /// </summary>
-        private void PopulateCPlusDocuments( )
-        {
-            try
-            {
-                var _path = Locations.PathPrefix + @"Resources\Documents\Editor\CPP\";
-                TabControl.SelectedIndex = 0;
-                Editor.DocumentLanguage = Syncfusion.Windows.Edit.Languages.C;
-                Editor.DocumentSource = _path;
-                DocumentListBox.Items?.Clear( );
-                var _documents = Directory.GetFiles( _path );
-                foreach( var _file in _documents )
-                {
-                    var _item = new MetroListBoxItem(  )
-                    {
-                        Tag = Path.GetFullPath( _file ),
-                        Content = Path.GetFileNameWithoutExtension( _file )
-                    };
-
-                    DocumentListBox.Items?.Add( _item );
-                }
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
-            }
-        }
-
-        /// <summary>
-        /// Populates the java script documents.
-        /// </summary>
-        private void PopulateJavaScriptDocuments( )
-        {
-            try
-            {
-                var _path = Locations.PathPrefix + @"Resources\Documents\Editor\JS\";
-                TabControl.SelectedIndex = 0;
-                Editor.DocumentLanguage = Syncfusion.Windows.Edit.Languages.JScript;
-                DocumentListBox.Items?.Clear( );
-                var _documents = Directory.GetFiles( _path );
-                foreach( var _file in _documents )
-                {
-                    var _item = new MetroListBoxItem(  )
-
-                    {
-                        Tag = Path.GetFullPath( _file ),
-                        Content = Path.GetFileNameWithoutExtension( _file )
-                    };
-
-                    DocumentListBox.Items?.Add( _item );
-                }
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
-            }
-        }
-
-        /// <summary>
-        /// Populates the SQL documents.
-        /// </summary>
-        private void PopulateSqlDocuments( )
-        {
-            try
-            {
-                var _path = @"C:\Users\terry\source\repos\Bubba\Resources\Documents\Editor\SQL\";
-                Editor.DocumentLanguage = Syncfusion.Windows.Edit.Languages.SQL;
-                DocumentListBox.Items?.Clear( );
-                var _documents = Directory.GetFiles( _path );
-                foreach( var _file in _documents )
-                {
-                    var _item = new MetroListBoxItem(  )
-                    {
-                        Tag = Path.GetFullPath( _file ),
-                        Content = Path.GetFileNameWithoutExtension( _file )
-                    };
-
-                    DocumentListBox.Items?.Add( _item );
-                }
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
-            }
-        }
-
-        /// <summary>
-        /// Populates the python documents.
-        /// </summary>
-        private void PopulatePythonDocuments( )
-        {
-            try
-            {
-                var _path = Locations.PathPrefix + @"Resources\Documents\Editor\PY\";
-                Editor.DocumentLanguage = Syncfusion.Windows.Edit.Languages.Text;
-                DocumentListBox.Items?.Clear( );
-                var _documents = Directory.GetFiles( _path );
-                foreach( var _file in _documents )
-                {
-                    var _item = new MetroListBoxItem( )
-                    {
-                        Tag = Path.GetFullPath( _file ),
-                        Content = Path.GetFileNameWithoutExtension( _file )
-                    };
-
-                    DocumentListBox.Items?.Add( _item );
-                }
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
-            }
-        }
-
-        /// <summary>
-        /// Populates the c sharp documents.
-        /// </summary>
-        private void PopulateCSharpDocuments( )
-        {
-            try
-            {
-                var _path = Locations.PathPrefix + @"Resources\Documents\Editor\CS\";
-                Editor.DocumentLanguage = Syncfusion.Windows.Edit.Languages.CSharp;
-                DocumentListBox.Items?.Clear( );
-                var _documents = Directory.GetFiles( _path );
-                foreach( var _file in _documents )
-                {
-                    var _item = new MetroListBoxItem( )
-                    {
-                        Tag = Path.GetFullPath( _file ),
-                        Content = Path.GetFileNameWithoutExtension( _file )
-                    };
-
-                    DocumentListBox.Items?.Add( _item );
-                }
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
-            }
-        }
-
-        /// <summary>
         /// Populates the text documents.
         /// </summary>
         private void PopulateTextDocuments( )
@@ -2330,33 +2251,6 @@ namespace Bubba
         }
 
         /// <summary>
-        /// Populates the language ListBox.
-        /// </summary>
-        private void PopulateLanguageDropDown( )
-        {
-            try
-            {
-                LanguageDropDown.Items?.Clear( );
-                var _names = Enum.GetNames( typeof( Languages ) );
-                foreach( var _request in _names )
-                {
-                    var _item = new MetroDropDownItem( )
-                    {
-                        Height = 35,
-                        Tag = _request,
-                        Content = _request
-                    };
-
-                    LanguageDropDown.Items.Add( _item );
-                }
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
-            }
-        }
-
-        /// <summary>
         /// Sets the user document language.
         /// </summary>
         private protected void PopulateDocuments( )
@@ -2364,143 +2258,18 @@ namespace Bubba
             try
             {
                 var _prefix = @"C:\Users\terry\source\repos\Bubba\Resources\Documents\Editor\";
-                if( !string.IsNullOrEmpty( _language ) )
+                Editor.Text = "";
+                var _pre = @"C:\Users\terry\source\repos\Bubba\Resources\Documents\";
+                var _path = _pre + @"Prompts\";
+                Editor.DocumentLanguage = Syncfusion.Windows.Edit.Languages.Text;
+                DocumentListBox.Items?.Clear( );
+                var _documents = Directory.GetFiles( _path );
+                foreach( var _file in _documents )
                 {
-                    Editor.Text = "";
-                    switch( _language )
-                    {
-                        case "TXT":
-                        {
-                            var _pre = @"C:\Users\terry\source\repos\Bubba\Resources\Documents\";
-                            var _path = _pre + @"Prompts\";
-                            Editor.DocumentLanguage = Syncfusion.Windows.Edit.Languages.Text;
-                            DocumentListBox.Items?.Clear( );
-                            var _documents = Directory.GetFiles( _path );
-                            foreach( var _file in _documents )
-                            {
-                                var _item = new MetroListBoxItem( );
-                                _item.Tag = Path.GetFullPath( _file );
-                                _item.Content = Path.GetFileNameWithoutExtension( _file );
-                                DocumentListBox.Items.Add( _item );
-                            }
-
-                            break;
-                        }
-                        case "CS":
-                        {
-                            var _path = _prefix + @"CS\";
-                            Editor.DocumentLanguage = Syncfusion.Windows.Edit.Languages.CSharp;
-                            DocumentListBox.Items?.Clear( );
-                            var _documents = Directory.GetFiles( _path );
-                            foreach( var _file in _documents )
-                            {
-                                var _item = new MetroListBoxItem( );
-                                _item.Tag = Path.GetFullPath( _file );
-                                _item.Content = Path.GetFileNameWithoutExtension( _file );
-                                DocumentListBox.Items.Add( _item );
-                            }
-
-                            break;
-                        }
-                        case "PY":
-                        {
-                            var _path = _prefix + @"PY\";
-                            Editor.DocumentLanguage = Syncfusion.Windows.Edit.Languages.Text;
-                            DocumentListBox.Items?.Clear( );
-                            var _documents = Directory.GetFiles( _path );
-                            foreach( var _file in _documents )
-                            {
-                                var _item = new MetroListBoxItem( );
-                                _item.Tag = Path.GetFullPath( _file );
-                                _item.Content = Path.GetFileNameWithoutExtension( _file );
-                                DocumentListBox.Items.Add( _item );
-                            }
-
-                            break;
-                        }
-                        case "SQL":
-                        {
-                            var _path = _prefix + @"SQL\";
-                            Editor.DocumentLanguage = Syncfusion.Windows.Edit.Languages.SQL;
-                            DocumentListBox.Items?.Clear( );
-                            var _documents = Directory.GetFiles( _path );
-                            foreach( var _file in _documents )
-                            {
-                                var _item = new MetroListBoxItem( );
-                                _item.Tag = Path.GetFullPath( _file );
-                                _item.Content = Path.GetFileNameWithoutExtension( _file );
-                                DocumentListBox.Items.Add( _item );
-                            }
-
-                            break;
-                        }
-                        case "JS":
-                        {
-                            var _path = _prefix + @"JS\";
-                            Editor.DocumentLanguage = Syncfusion.Windows.Edit.Languages.JScript;
-                            DocumentListBox.Items?.Clear( );
-                            var _documents = Directory.GetFiles( _path );
-                            foreach( var _file in _documents )
-                            {
-                                var _item = new MetroListBoxItem( );
-                                _item.Tag = Path.GetFullPath( _file );
-                                _item.Content = Path.GetFileNameWithoutExtension( _file );
-                                DocumentListBox.Items.Add( _item );
-                            }
-
-                            break;
-                        }
-                        case "CPP":
-                        {
-                            var _path = _prefix + @"CPP\";
-                            Editor.DocumentLanguage = Syncfusion.Windows.Edit.Languages.C;
-                            Editor.DocumentSource = _path;
-                            DocumentListBox.Items?.Clear( );
-                            var _documents = Directory.GetFiles( _path );
-                            foreach( var _file in _documents )
-                            {
-                                var _item = new MetroListBoxItem( );
-                                _item.Tag = Path.GetFullPath( _file );
-                                _item.Content = Path.GetFileNameWithoutExtension( _file );
-                                DocumentListBox.Items.Add( _item );
-                            }
-
-                            break;
-                        }
-                        case "VBA":
-                        {
-                            var _path = _prefix + @"VBA\";
-                            Editor.DocumentLanguage = Syncfusion.Windows.Edit.Languages.VisualBasic;
-                            DocumentListBox.Items?.Clear( );
-                            var _documents = Directory.GetFiles( _path );
-                            foreach( var _file in _documents )
-                            {
-                                var _item = new MetroListBoxItem( );
-                                _item.Tag = Path.GetFullPath( _file );
-                                _item.Content = Path.GetFileNameWithoutExtension( _file );
-                                DocumentListBox.Items.Add( _item );
-                            }
-
-                            break;
-                        }
-                        default:
-                        {
-                            var _pre = @"C:\Users\terry\source\repos\Bubba\Resources\Documents\";
-                            var _path = _pre + @"Prompts\";
-                            Editor.DocumentLanguage = Syncfusion.Windows.Edit.Languages.Text;
-                            DocumentListBox.Items?.Clear( );
-                            var _documents = Directory.GetFiles( _path );
-                            foreach( var _file in _documents )
-                            {
-                                var _item = new MetroListBoxItem( );
-                                _item.Tag = Path.GetFullPath( _file );
-                                _item.Content = Path.GetFileNameWithoutExtension( _file );
-                                DocumentListBox.Items.Add( _item );
-                            }
-
-                            break;
-                        }
-                    }
+                    var _item = new MetroListBoxItem( );
+                    _item.Tag = Path.GetFullPath( _file );
+                    _item.Content = Path.GetFileNameWithoutExtension( _file );
+                    DocumentListBox.Items.Add( _item );
                 }
             }
             catch( Exception ex )
@@ -2512,11 +2281,11 @@ namespace Bubba
         /// <summary>
         /// Populates the prompt drop down.
         /// </summary>
-        private protected void PopulatePromptDropDown( )
+        private protected void PopulatePromptListBox( )
         {
             try
             {
-                PromptDropDown.Items?.Clear( );
+                DocumentListBox.Items?.Clear( );
                 var _filepath = @"C:\Users\terry\source\repos\Bubba\Properties\Prompts.resx";
                 var _path = Locations.PathPrefix + @"Resources\Documents\Prompts\";
                 var _names = GetResourceNames( _filepath );
@@ -2528,30 +2297,13 @@ namespace Bubba
                         Content = _file
                     };
 
-                    PromptDropDown.Items.Add( _item );
+                    DocumentListBox.Items.Add( _item );
                 }
             }
             catch( Exception ex )
             {
                 Fail( ex );
             }
-        }
-
-        /// <summary>
-        /// Adds the blank window.
-        /// </summary>
-        public void AddBlankWindow( )
-        {
-            var _info = new ProcessStartInfo( Application.ExecutablePath, "" )
-            {
-                LoadUserProfile = true,
-                UseShellExecute = false,
-                RedirectStandardError = true,
-                RedirectStandardOutput = true,
-                RedirectStandardInput = true
-            };
-
-            Process.Start( _info );
         }
 
         /// <summary>
@@ -2814,22 +2566,24 @@ namespace Bubba
                 {
                     ToolStripTextBox.Visibility = Visibility.Visible;
                     ToolStripSendButton.Visibility = Visibility.Visible;
-                    ToolStripRefreshButton.Visibility = Visibility.Visible;
+                    ToolStripResetButton.Visibility = Visibility.Visible;
                     ToolStripTextBox.Visibility = Visibility.Visible;
                     ToolStripCancelButton.Visibility = Visibility.Visible;
-                    ToolStripFileButton.Visibility = Visibility.Visible;
-                    ToolStripBackspaceButton.Visibility = Visibility.Visible;
-                    ToolStripRemoveButton.Visibility = Visibility.Visible;
+                    ToolStripUploadButton.Visibility = Visibility.Visible;
+                    ToolStripSaveButton.Visibility = Visibility.Visible;
+                    ToolStripEraseButton.Visibility = Visibility.Visible;
+                    ToolStripDeleteButton.Visibility = Visibility.Visible;
                 }
                 else
                 {
                     ToolStripTextBox.Visibility = Visibility.Hidden;
                     ToolStripSendButton.Visibility = Visibility.Hidden;
-                    ToolStripRefreshButton.Visibility = Visibility.Hidden;
+                    ToolStripResetButton.Visibility = Visibility.Hidden;
                     ToolStripCancelButton.Visibility = Visibility.Hidden;
-                    ToolStripFileButton.Visibility = Visibility.Hidden;
-                    ToolStripBackspaceButton.Visibility = Visibility.Hidden;
-                    ToolStripRemoveButton.Visibility = Visibility.Hidden;
+                    ToolStripSaveButton.Visibility = Visibility.Hidden;
+                    ToolStripUploadButton.Visibility = Visibility.Hidden;
+                    ToolStripEraseButton.Visibility = Visibility.Hidden;
+                    ToolStripDeleteButton.Visibility = Visibility.Hidden;
                 }
             }
             catch( Exception ex )
@@ -2881,9 +2635,9 @@ namespace Bubba
         private protected void OnLoad( object sender, RoutedEventArgs e )
         {
             PopulateModelsAsync( );
-            PopulatePromptDropDown( );
             PopulateRequestTypes( );
             PopulateVoices( );
+            PopulateTextDocuments( );
             InitializeTimer( );
             InitializeToolStrip( );
             InitializeEditor( );
@@ -3261,30 +3015,6 @@ namespace Bubba
         }
 
         /// <summary>
-        /// Called when [document selection changed].
-        /// </summary>
-        /// <param name="sender">The sender.</param>
-        /// <param name="e">The <see cref="RoutedEventArgs"/>
-        /// instance containing the event data.</param>
-        private void OnLanguageDropDownSelectionChanged( object sender, RoutedEventArgs e )
-        {
-            try
-            {
-                _language = ( ( MetroDropDownItem )LanguageDropDown.SelectedItem )
-                    ?.Content
-                    ?.ToString( );
-
-                PopulateDocuments( );
-                var _message = "Language = " + _language;
-                SendNotification( _message );
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
-            }
-        }
-
-        /// <summary>
         /// Called when [lookup button click].
         /// </summary>
         /// <param name="sender">The sender.</param>
@@ -3448,52 +3178,6 @@ namespace Bubba
                         }
                     }
                 }
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
-            }
-        }
-
-        /// <summary>
-        /// Called when [system prompt button click].
-        /// </summary>
-        /// <param name="sender">The sender.</param>
-        /// <param name="e">The <see cref="RoutedEventArgs"/>
-        /// instance containing the event data.</param>
-        private void OnPromptMenuOptionClick( object sender, RoutedEventArgs e )
-        {
-            try
-            {
-                var _name = ( (MetroListBoxItem)PromptDropDown.SelectedItem )
-                    ?.Tag
-                    ?.ToString( );
-
-                var _message = "Prompt = " + _name;
-                SendNotification( _message );
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
-            }
-        }
-
-        /// <summary>
-        /// Called when [prompt drop down selection changed].
-        /// </summary>
-        /// <param name="sender">The sender.</param>
-        /// <param name="e">The <see cref="RoutedEventArgs"/>
-        /// instance containing the event data.</param>
-        private void OnPromptDropDownSelectionChanged( object sender, RoutedEventArgs e )
-        {
-            try
-            {
-                var _name = ( ( MetroDropDownItem )PromptDropDown.SelectedItem )
-                    ?.Tag
-                    ?.ToString( );
-
-                var _message = "Selected Prompt = " + _name;
-                SendNotification( _message );
             }
             catch( Exception ex )
             {
@@ -3880,7 +3564,7 @@ namespace Bubba
         /// <param name="sender">The sender.</param>
         /// <param name="e">The <see cref="RoutedEventArgs"/>
         /// instance containing the event data.</param>
-        private void OnToolStripRefreshButtonClick( object sender, RoutedEventArgs e )
+        private void OnToolStripResetButtonClick( object sender, RoutedEventArgs e )
         {
             try
             {
@@ -3925,14 +3609,65 @@ namespace Bubba
         /// <param name="sender">The sender.</param>
         /// <param name="e">The <see cref="MouseEventArgs" />
         /// instance containing the event data.</param>
-        private protected void OnUrlTextBoxMouseEnter( object sender, MouseEventArgs e )
+        private protected void OnUrlTextBoxDoubleClick( object sender, MouseEventArgs e )
         {
             try
             {
                 var _psn = e.GetPosition( this );
-                var _x = _psn.X - 100.0;
-                var _y = _psn.Y - 100.0;
+                var _x = _psn.X + 100.0;
+                var _y = _psn.Y + 100.0;
                 OpenSearchDialog( _x, _y );
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+            }
+        }
+
+        /// <summary>
+        /// Called when [tool strip cancel button click].
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The <see cref="RoutedEventArgs"/>
+        /// instance containing the event data.</param>
+        private void OnToolStripCancelButtonClick( object sender, RoutedEventArgs e )
+        {
+            try
+            {
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+            }
+        }
+
+        /// <summary>
+        /// Called when [tool strip erase button click].
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The <see cref="RoutedEventArgs"/>
+        /// instance containing the event data.</param>
+        private void OnToolStripEraseButtonClick( object sender, RoutedEventArgs e )
+        {
+            try
+            {
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+            }
+        }
+
+        /// <summary>
+        /// Called when [tool strip upload button click].
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The <see cref="RoutedEventArgs"/>
+        /// instance containing the event data.</param>
+        private void OnToolStripUploadButtonClick( object sender, RoutedEventArgs e )
+        {
+            try
+            {
             }
             catch( Exception ex )
             {
@@ -4099,30 +3834,6 @@ namespace Bubba
 
                     var _message = "Image Style = " + _imageFormat;
                     SendNotification( _message );
-                }
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
-            }
-        }
-
-        /// <summary>
-        /// Called when [browser mouse left button down].
-        /// </summary>
-        /// <param name="sender">The sender.</param>
-        /// <param name="e">The <see cref="MouseButtonEventArgs"/>
-        /// instance containing the event data.</param>
-        private void OnBrowserMouseLeftButtonDown( object sender, MouseButtonEventArgs e )
-        {
-            try
-            {
-                var point = e.GetPosition( this );
-                if( _region.IsVisible( ( float )point.X, ( float )point.Y ) )
-                {
-                    var window = Window.GetWindow( this );
-                    window.DragMove( );
-                    e.Handled = true;
                 }
             }
             catch( Exception ex )

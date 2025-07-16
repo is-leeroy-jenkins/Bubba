@@ -308,6 +308,7 @@
     <None Remove="Resources\Assets\ToolStripImages\ChatLog.png" />
     <None Remove="Resources\Assets\ToolStripImages\CircleArrowLeft.png" />
     <None Remove="Resources\Assets\ToolStripImages\CircleArrowRight.png" />
+    <None Remove="Resources\Assets\ToolStripImages\CleanButton.png" />
     <None Remove="Resources\Assets\ToolStripImages\CloseTabsButton.png" />
     <None Remove="Resources\Assets\ToolStripImages\ColumnButton.png" />
     <None Remove="Resources\Assets\ToolStripImages\DataSourceButton.png" />
@@ -315,6 +316,7 @@
     <None Remove="Resources\Assets\ToolStripImages\DecreaseButton.png" />
     <None Remove="Resources\Assets\ToolStripImages\DeleteButton.png" />
     <None Remove="Resources\Assets\ToolStripImages\EditButton.png" />
+    <None Remove="Resources\Assets\ToolStripImages\EraseButton.png" />
     <None Remove="Resources\Assets\ToolStripImages\ExcelButton.png" />
     <None Remove="Resources\Assets\ToolStripImages\ExitButton.png" />
     <None Remove="Resources\Assets\ToolStripImages\ExportButton.png" />
@@ -758,6 +760,7 @@
     <Resource Include="Resources\Assets\ToolStripImages\ChatLog.png" />
     <Resource Include="Resources\Assets\ToolStripImages\CircleArrowLeft.png" />
     <Resource Include="Resources\Assets\ToolStripImages\CircleArrowRight.png" />
+    <Resource Include="Resources\Assets\ToolStripImages\CleanButton.png" />
     <Resource Include="Resources\Assets\ToolStripImages\CloseTabsButton.png" />
     <Resource Include="Resources\Assets\ToolStripImages\ColumnButton.png" />
     <Resource Include="Resources\Assets\ToolStripImages\DataSourceButton.png" />
@@ -765,6 +768,7 @@
     <Resource Include="Resources\Assets\ToolStripImages\DecreaseButton.png" />
     <Resource Include="Resources\Assets\ToolStripImages\DeleteButton.png" />
     <Resource Include="Resources\Assets\ToolStripImages\EditButton.png" />
+    <Resource Include="Resources\Assets\ToolStripImages\EraseButton.png" />
     <Resource Include="Resources\Assets\ToolStripImages\ExcelButton.png" />
     <Resource Include="Resources\Assets\ToolStripImages\ExitButton.png" />
     <Resource Include="Resources\Assets\ToolStripImages\ExportButton.png" />
