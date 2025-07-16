@@ -31453,6 +31453,14 @@
             <see cref="T:Bubba.ChatWindow"/> class.
             </summary>
         </member>
+        <member name="P:Bubba.ChatWindow.InputText">
+            <summary>
+            Gets or sets the input text.
+            </summary>
+            <value>
+            The input text.
+            </value>
+        </member>
         <member name="M:Bubba.ChatWindow.InitializeDelegates">
             <summary>
             Initializes the delegates.
@@ -31627,6 +31635,13 @@
         <member name="M:Bubba.ChatWindow.EnableUploadButton(System.Boolean)">
             <summary>
             Enables the upload button.
+            </summary>
+            <param name="canUpload">
+            if set to <c>true</c> [can upload].</param>
+        </member>
+        <member name="M:Bubba.ChatWindow.EnableMenuButton(System.Boolean)">
+            <summary>
+            Enables the menu button.
             </summary>
             <param name="canUpload">
             if set to <c>true</c> [can upload].</param>

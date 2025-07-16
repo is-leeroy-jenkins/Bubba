@@ -1143,6 +1143,26 @@ namespace Bubba
         }
 
         /// <summary>
+        /// Enables the menu button.
+        /// </summary>
+        /// <param name="canUpload">
+        /// if set to <c>true</c> [can upload].</param>
+        private void EnableMenuButton( bool canUpload )
+        {
+            InvokeIf( ( ) =>
+            {
+                if( canUpload )
+                {
+                    ToolStripMenuButton.Visibility = Visibility.Visible;
+                }
+                else
+                {
+                    ToolStripMenuButton.Visibility = Visibility.Hidden;
+                }
+            } );
+        }
+
+        /// <summary>
         /// Fades the in asynchronous.
         /// </summary>
         /// <param name="form">The form.</param>
@@ -3100,7 +3120,8 @@ namespace Bubba
                 if( ModelDropDown.SelectedIndex != -1 )
                 {
                     _model = ( ( MetroDropDownItem )ModelDropDown.SelectedItem )
-                        ?.Tag.ToString(  );
+                        ?.Content
+                        ?.ToString(  );
 
                     PopulateImageSizes( );
                     var _message = "Model = " + _model;
@@ -3244,7 +3265,8 @@ namespace Bubba
                 if( GenerationListBox.SelectedIndex != -1 )
                 {
                     var _item = ( ( MetroDropDownItem )GenerationListBox.SelectedItem )
-                        ?.Content?.ToString( );
+                        ?.Content
+                        ?.ToString( );
 
                     _requestType = ( API )Enum.Parse( typeof( API ), _item?.Replace( " ", "" ) );
                     SetRequestType( );
@@ -3291,8 +3313,8 @@ namespace Bubba
         {
             try
             {
-                _responseFormat = ResponseFormatDropDown
-                    ?.SelectedValue
+                _responseFormat = ( (MetroDropDownItem)ResponseFormatDropDown.SelectedItem )
+                    ?.Content
                     ?.ToString( );
 
                 var _message = "ResponseFormat = " + _responseFormat;
@@ -3319,7 +3341,7 @@ namespace Bubba
 
                 _speed = int.Parse( _rate );
 
-                var _message = "Speech Rate = " + _speed;
+                var _message = "Speech Rate = " + _rate;
                 SendNotification( _message );
             }
             catch( Exception ex )
