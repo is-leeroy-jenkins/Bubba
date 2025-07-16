@@ -1276,6 +1276,7 @@
                                             ToolTip="AI speech rate">
 
                                             <b:MetroDropDown
+                                                x:Name="SpeechRateDropDown"
                                                 Height="35"
                                                 Margin="10,0,10,0"
                                                 AllowMultiSelect="false"

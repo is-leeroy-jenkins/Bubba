@@ -32151,6 +32151,13 @@
             <param name="e">The <see cref="T:System.Windows.RoutedEventArgs"/>
             instance containing the event data.</param>
         </member>
+        <member name="M:Bubba.ChatWindow.OnSpeechRateSelectionChanged(System.Object,System.Windows.RoutedEventArgs)">
+            <summary>
+            Called when [speech rate selection changed].
+            </summary>
+            <param name="sender">The sender.</param>
+            <param name="e">The <see cref="T:System.Windows.RoutedEventArgs"/> instance containing the event data.</param>
+        </member>
         <member name="M:Bubba.ChatWindow.OnStatusUpdated(System.Object,System.Windows.RoutedEventArgs)">
             <summary>
             Called when [status updated].
@@ -32239,12 +32246,20 @@
             <param name="e">The <see cref="T:System.Windows.RoutedEventArgs"/>
             instance containing the event data.</param>
         </member>
-        <member name="M:Bubba.ChatWindow.OnToggleButtonClick(System.Object,System.Windows.RoutedEventArgs)">
+        <member name="M:Bubba.ChatWindow.OnToolStripToggleButtonClick(System.Object,System.Windows.RoutedEventArgs)">
             <summary>
             Called when [toggle button click].
             </summary>
             <param name="sender">The sender.</param>
             <param name="e">The <see cref="T:System.Windows.RoutedEventArgs"/>
+            instance containing the event data.</param>
+        </member>
+        <member name="M:Bubba.ChatWindow.OnToolStripTextBoxTextChanged(System.Object,System.Windows.Controls.TextChangedEventArgs)">
+            <summary>
+            Called when [tool strip text box click].
+            </summary>
+            <param name="sender">The sender.</param>
+            <param name="e">The <see cref="T:System.Windows.Input.MouseEventArgs"/>
             instance containing the event data.</param>
         </member>
         <member name="M:Bubba.ChatWindow.OnToolStripTextBoxMouseEnter(System.Object,System.Windows.RoutedEventArgs)">
@@ -32261,14 +32276,6 @@
             </summary>
             <param name="sender">The sender.</param>
             <param name="e">The <see cref="T:System.Windows.RoutedEventArgs"/>
-            instance containing the event data.</param>
-        </member>
-        <member name="M:Bubba.ChatWindow.OnToolStripTextBoxTextChanged(System.Object,System.Windows.Controls.TextChangedEventArgs)">
-            <summary>
-            Called when [tool strip text box click].
-            </summary>
-            <param name="sender">The sender.</param>
-            <param name="e">The <see cref="T:System.Windows.Input.MouseEventArgs"/>
             instance containing the event data.</param>
         </member>
         <member name="M:Bubba.ChatWindow.OnUrlTextBoxDoubleClick(System.Object,System.Windows.Input.MouseEventArgs)">
@@ -32298,6 +32305,22 @@
         <member name="M:Bubba.ChatWindow.OnToolStripUploadButtonClick(System.Object,System.Windows.RoutedEventArgs)">
             <summary>
             Called when [tool strip upload button click].
+            </summary>
+            <param name="sender">The sender.</param>
+            <param name="e">The <see cref="T:System.Windows.RoutedEventArgs"/>
+            instance containing the event data.</param>
+        </member>
+        <member name="M:Bubba.ChatWindow.OnToolStripSaveButtonClick(System.Object,System.Windows.RoutedEventArgs)">
+            <summary>
+            Called when [tool strip save button click].
+            </summary>
+            <param name="sender">The sender.</param>
+            <param name="e">The <see cref="T:System.Windows.RoutedEventArgs"/>
+            instance containing the event data.</param>
+        </member>
+        <member name="M:Bubba.ChatWindow.OnToolStripSendButtonClick(System.Object,System.Windows.RoutedEventArgs)">
+            <summary>
+            Called when [tool strip send button click].
             </summary>
             <param name="sender">The sender.</param>
             <param name="e">The <see cref="T:System.Windows.RoutedEventArgs"/>

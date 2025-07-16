@@ -468,6 +468,12 @@ namespace Bubba
             Closing += OnClosing;
         }
 
+        /// <summary>
+        /// Gets or sets the input text.
+        /// </summary>
+        /// <value>
+        /// The input text.
+        /// </value>
         public string InputText
         {
             get
@@ -523,6 +529,7 @@ namespace Bubba
             try
             {
                 SetToolbarVisibility( false );
+                ToolStripMenuButton.Visibility = Visibility.Visible;
             }
             catch( Exception ex )
             {
@@ -633,8 +640,12 @@ namespace Bubba
                 ModelDropDown.SelectionChanged += OnModelDropDownSelectionChanged;
                 ToolStripTextBox.TextChanged += OnToolStripTextBoxTextChanged;
                 ToolStripTextBox.MouseDoubleClick += OnUrlTextBoxDoubleClick;
-                ToolStripMenuButton.Click += OnToggleButtonClick;
+                ToolStripMenuButton.Click += OnToolStripToggleButtonClick;
                 ToolStripResetButton.Click += OnToolStripResetButtonClick;
+                ToolStripSaveButton.Click += OnToolStripSaveButtonClick;
+                ToolStripCancelButton.Click += OnToolStripCancelButtonClick;
+                ToolStripSendButton.Click += OnToolStripSendButtonClick;
+                ToolStripEraseButton.Click += OnToolStripEraseButtonClick;
                 ListenCheckBox.Checked += OnListenCheckedChanged;
                 MuteCheckBox.Checked += OnMuteCheckedBoxChanged;
                 StoreCheckBox.Checked += OnStoreCheckBoxChecked;
@@ -650,6 +661,7 @@ namespace Bubba
                 EffortDropDown.SelectionChanged += OnEffortSelectionChanged;
                 AudioFormatDropDown.SelectionChanged += OnAudioFormatSelectionChanged;
                 VoicesDropDown.SelectionChanged += OnVoiceSelectionChanged;
+                SpeechRateDropDown.SelectionChanged += OnSpeechRateSelectionChanged;
             }
             catch( Exception ex )
             {
@@ -2567,7 +2579,6 @@ namespace Bubba
                     ToolStripTextBox.Visibility = Visibility.Visible;
                     ToolStripSendButton.Visibility = Visibility.Visible;
                     ToolStripResetButton.Visibility = Visibility.Visible;
-                    ToolStripTextBox.Visibility = Visibility.Visible;
                     ToolStripCancelButton.Visibility = Visibility.Visible;
                     ToolStripUploadButton.Visibility = Visibility.Visible;
                     ToolStripSaveButton.Visibility = Visibility.Visible;
@@ -3294,6 +3305,30 @@ namespace Bubba
         }
 
         /// <summary>
+        /// Called when [speech rate selection changed].
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The <see cref="RoutedEventArgs"/> instance containing the event data.</param>
+        private void OnSpeechRateSelectionChanged( object sender, RoutedEventArgs e )
+        {
+            try
+            {
+                var _rate = ( ( MetroDropDownItem )SpeechRateDropDown.SelectedItem )
+                    ?.Content
+                    ?.ToString( );
+
+                _speed = int.Parse( _rate );
+
+                var _message = "Speech Rate = " + _speed;
+                SendNotification( _message );
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+            }
+        }
+
+        /// <summary>
         /// Called when [status updated].
         /// </summary>
         /// <param name="sender">The sender.</param>
@@ -3527,11 +3562,34 @@ namespace Bubba
         /// <param name="sender">The sender.</param>
         /// <param name="e">The <see cref="RoutedEventArgs"/>
         /// instance containing the event data.</param>
-        private void OnToggleButtonClick( object sender, RoutedEventArgs e )
+        private void OnToolStripToggleButtonClick( object sender, RoutedEventArgs e )
         {
             try
             {
                 SetToolbarVisibility( !ToolStripTextBox.IsVisible );
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+            }
+        }
+
+        /// <summary>
+        /// Called when [tool strip text box click].
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The <see cref="MouseEventArgs"/>
+        /// instance containing the event data.</param>
+        private protected void OnToolStripTextBoxTextChanged( object sender, TextChangedEventArgs e )
+        {
+            try
+            {
+                var _textBox = sender as ToolStripTextBox;
+                var _text = _textBox?.InputText;
+                if( !string.IsNullOrEmpty( _text ) )
+                {
+                    ChatTextBox.Text = _text;
+                }
             }
             catch( Exception ex )
             {
@@ -3581,29 +3639,6 @@ namespace Bubba
         }
 
         /// <summary>
-        /// Called when [tool strip text box click].
-        /// </summary>
-        /// <param name="sender">The sender.</param>
-        /// <param name="e">The <see cref="MouseEventArgs"/>
-        /// instance containing the event data.</param>
-        private protected void OnToolStripTextBoxTextChanged( object sender, TextChangedEventArgs e )
-        {
-            try
-            {
-                var _textBox = sender as ToolStripTextBox;
-                var _text = _textBox?.InputText;
-                if( !string.IsNullOrEmpty( _text ) )
-                {
-                    ChatTextBox.Text = _text;
-                }
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
-            }
-        }
-
-        /// <summary>
         /// Called when [URL text box clicked].
         /// </summary>
         /// <param name="sender">The sender.</param>
@@ -3634,6 +3669,8 @@ namespace Bubba
         {
             try
             {
+                var _message = "NOT YET IMPLEMENTED!";
+                SendNotification( _message );
             }
             catch( Exception ex )
             {
@@ -3651,6 +3688,8 @@ namespace Bubba
         {
             try
             {
+                var _message = "NOT YET IMPLEMENTED!";
+                SendNotification( _message );
             }
             catch( Exception ex )
             {
@@ -3668,6 +3707,46 @@ namespace Bubba
         {
             try
             {
+                var _message = "NOT YET IMPLEMENTED!";
+                SendNotification( _message );
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+            }
+        }
+
+        /// <summary>
+        /// Called when [tool strip save button click].
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The <see cref="RoutedEventArgs"/>
+        /// instance containing the event data.</param>
+        private void OnToolStripSaveButtonClick( object sender, RoutedEventArgs e )
+        {
+            try
+            {
+                var _message = "NOT YET IMPLEMENTED!";
+                SendNotification( _message );
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+            }
+        }
+
+        /// <summary>
+        /// Called when [tool strip send button click].
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The <see cref="RoutedEventArgs"/>
+        /// instance containing the event data.</param>
+        private void OnToolStripSendButtonClick( object sender, RoutedEventArgs e )
+        {
+            try
+            {
+                var _message = "NOT YET IMPLEMENTED!";
+                SendNotification( _message );
             }
             catch( Exception ex )
             {
