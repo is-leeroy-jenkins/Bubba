@@ -423,11 +423,11 @@
                                             BorderBrush="{StaticResource BlueBorderBrush}"
                                             FontFamily="Roboto"
                                             ShowSpinButton="True"
+                                            Tag="max_completion_tokens"
                                             TextWrapping="Wrap"
                                             ToolTip="Maximum Completion Tokens"
                                             UseNullOption="True"
                                             WatermarkText="Max Tokens:"
-                                            Tag="max_completion_tokens"
                                             WatermarkTextIsVisible="True"
                                             Value="10000" />
                                     </GroupBox>
@@ -499,10 +499,10 @@
                                             BorderBrush="{StaticResource BlueBorderBrush}"
                                             FontFamily="Roboto"
                                             ShowSpinButton="True"
+                                            Tag="max_output_tokens"
                                             TextWrapping="Wrap"
                                             ToolTip="Output Tokens"
                                             UseNullOption="True"
-                                            Tag="max_output_tokens"
                                             WatermarkText="Output Tokens:"
                                             WatermarkTextIsVisible="True"
                                             Value="8000" />
@@ -572,8 +572,8 @@
                                             Background="{StaticResource ControlInteriorBrush}"
                                             BorderBrush="{StaticResource BlueBorderBrush}"
                                             FontSize="14"
-                                            Tag="model"
                                             Foreground="{StaticResource FormForeground}"
+                                            Tag="model"
                                             Text="Select LLM" />
                                     </GroupBox>
 
@@ -591,9 +591,9 @@
                                         BorderBrush="{StaticResource MutedForeground}"
                                         FontFamily="Roboto"
                                         FontSize="14"
-                                        Tag="response_format"
                                         Foreground="{StaticResource FormForeground}"
-                                        Header="Response Format">
+                                        Header="Response Format"
+                                        Tag="response_format">
 
                                         <b:MetroDropDown
                                             x:Name="ResponseFormatDropDown"
@@ -701,8 +701,8 @@
                                             Background="{StaticResource ControlInteriorBrush}"
                                             BorderBrush="{StaticResource BlueBorderBrush}"
                                             FontSize="14"
-                                            Tag="reasoning_effort"
                                             Foreground="{StaticResource FormForeground}"
+                                            Tag="reasoning_effort"
                                             Text="Select Effort">
 
                                             <b:MetroDropDownItem
@@ -1043,8 +1043,8 @@
                                             Content="Mute"
                                             FontFamily="Roboto"
                                             FontSize="14"
-                                            Tag="Mute"
-                                            Foreground="{StaticResource FormForeground}" />
+                                            Foreground="{StaticResource FormForeground}"
+                                            Tag="Mute" />
 
                                         <CheckBox
                                             x:Name="ListenCheckBox"
@@ -1058,8 +1058,8 @@
                                             Content="Listen"
                                             FontFamily="Roboto"
                                             FontSize="14"
-                                            Tag="Listen"
-                                            Foreground="{StaticResource FormForeground}" />
+                                            Foreground="{StaticResource FormForeground}"
+                                            Tag="Listen" />
 
                                         <Separator
                                             Height="25"
@@ -1094,8 +1094,8 @@
                                                 Background="{StaticResource ControlInteriorBrush}"
                                                 BorderBrush="{StaticResource BlueBorderBrush}"
                                                 FontSize="14"
-                                                Tag="OutputFormat"
-                                                Foreground="{StaticResource FormForeground}">
+                                                Foreground="{StaticResource FormForeground}"
+                                                Tag="OutputFormat">
 
                                                 <b:MetroDropDownItem
                                                     Height="35"
@@ -1177,8 +1177,8 @@
                                                 BorderBrush="{StaticResource BlueBorderBrush}"
                                                 BorderThickness="1"
                                                 FontSize="14"
-                                                Tag="Voice"
-                                                Foreground="{StaticResource WhiteForeground}">
+                                                Foreground="{StaticResource WhiteForeground}"
+                                                Tag="Voice">
 
                                                 <b:MetroDropDownItem
                                                     Height="35"
@@ -1290,8 +1290,8 @@
                                                 Background="{DynamicResource ControlInteriorBrush}"
                                                 BorderBrush="{DynamicResource BlueBorderBrush}"
                                                 FontSize="14"
-                                                Tag="Speed"
-                                                Foreground="{DynamicResource FormForeground}">
+                                                Foreground="{DynamicResource FormForeground}"
+                                                Tag="Speed">
 
                                                 <b:MetroDropDownItem
                                                     Height="35"

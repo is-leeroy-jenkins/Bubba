@@ -41,9 +41,11 @@
 namespace Bubba
 {
     using System;
+    using System.Collections;
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
     using System.Linq;
+    using System.Resources;
     using System.Text.Encodings.Web;
     using System.Text.Json;
     using System.Text.Json.Serialization;
@@ -82,16 +84,15 @@ namespace Bubba
             _instructions = Prompts.BudgetAnalyst;
         }
 
-        /// <inheritdoc />
         /// <summary>
-        /// Initializes a new instance of the
-        /// <see cref="T:Bubba.SystemMessage" /> class.
+        /// Initializes a new instance of the <see cref="SystemMessage"/> class.
         /// </summary>
         /// <param name="prompt">The prompt.</param>
         public SystemMessage( string prompt )
         {
             _role = "system";
             _type = "text";
+            _instructions = prompt;
             _content.Add( _type, prompt );
         }
 
@@ -187,6 +188,34 @@ namespace Bubba
                     _content = value;
                     OnPropertyChanged( nameof( Content ) );
                 }
+            }
+        }
+
+        /// <summary>
+        /// Gets the resource names.
+        /// </summary>
+        /// <param name="resxPath">The RESX file path.</param>
+        /// <returns></returns>
+        private protected List<string> GetResourceNames( string resxPath )
+        {
+            try
+            {
+                ThrowIf.Null( resxPath, nameof( resxPath ) );
+                var _names = new List<string>( );
+                using var reader = new ResXResourceReader( resxPath );
+                foreach( DictionaryEntry entry in reader )
+                {
+                    _names.Add( entry.Key.ToString( ) );
+                }
+
+                return _names?.Any( ) == true
+                    ? _names
+                    : default( List<string> );
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+                return default( List<string> );
             }
         }
 

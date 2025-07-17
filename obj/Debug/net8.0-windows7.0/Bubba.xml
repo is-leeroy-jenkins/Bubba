@@ -7958,37 +7958,6 @@
             The alphanumeric
             </summary>
         </member>
-        <member name="T:Bubba.IconNotFoundException">
-            <inheritdoc />
-            <summary>
-            </summary>
-            <seealso cref="T:System.Exception" />
-        </member>
-        <member name="M:Bubba.IconNotFoundException.#ctor(System.String,System.Int32)">
-            <inheritdoc />
-            <summary>
-            Initializes a new instance of the
-            <see cref="T:IconUtils.IconNotFoundException" /> class.
-            </summary>
-            <param name="fileName">Name of the file.</param>
-            <param name="index">The index.</param>
-        </member>
-        <member name="T:Bubba.UnableToExtractIconsException">
-            <inheritdoc />
-            <summary>
-            </summary>
-            <seealso cref="T:System.Exception" />
-        </member>
-        <member name="M:Bubba.UnableToExtractIconsException.#ctor(System.String,System.Int32,System.Int32)">
-            <inheritdoc />
-            <summary>
-            Initializes a new instance of the
-            <see cref="T:IconUtils.UnableToExtractIconsException" /> class.
-            </summary>
-            <param name="fileName">Name of the file.</param>
-            <param name="firstIconIndex">First index of the icon.</param>
-            <param name="iconCount">The icon count.</param>
-        </member>
         <member name="T:Bubba.CollectionExtensions">
             <summary>
             
@@ -12599,6 +12568,108 @@
             </summary>
             <param name="ex">The ex.</param>
         </member>
+        <member name="T:Bubba.GptMessage">
+            <inheritdoc />
+            <summary>
+            </summary>
+            <seealso cref="T:Bubba.PropertyChangedBase" />
+        </member>
+        <member name="F:Bubba.GptMessage._name">
+            <summary>
+            The name
+            </summary>
+        </member>
+        <member name="F:Bubba.GptMessage._role">
+            <summary>
+            The role
+            </summary>
+        </member>
+        <member name="F:Bubba.GptMessage._content">
+            <summary>
+            The content
+            </summary>
+        </member>
+        <member name="F:Bubba.GptMessage._type">
+            <summary>
+            The type
+            </summary>
+        </member>
+        <!-- Badly formed XML comment ignored for member "F:Bubba.GptMessage._data" -->
+        <member name="P:Bubba.GptMessage.Name">
+            <inheritdoc />
+            <summary>
+            Gets the role.
+            </summary>
+            <value>
+            The role.
+            </value>
+        </member>
+        <member name="P:Bubba.GptMessage.Role">
+            <inheritdoc />
+            <summary>
+            Gets the role.
+            </summary>
+            <value>
+            The role.
+            </value>
+        </member>
+        <member name="P:Bubba.GptMessage.Content">
+            <summary>
+            Gets or sets the content.
+            </summary>
+            <value>
+            The content.
+            </value>
+        </member>
+        <member name="P:Bubba.GptMessage.Type">
+            <summary>
+            Gets or sets the type.
+            </summary>
+            <value>
+            The type.
+            </value>
+        </member>
+        <member name="M:Bubba.GptMessage.PadQuotes(System.String)">
+            <summary>
+            Pads the quotes.
+            </summary>
+            <param name="input">The input.</param>
+            <returns>
+            </returns>
+        </member>
+        <member name="M:Bubba.GptMessage.GetData">
+            <inheritdoc />
+            <summary>
+            Gets the data.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Bubba.GptMessage.Serialize">
+            <inheritdoc />
+            <summary>
+            Serializes the specified prompt.
+            </summary>
+            <returns>
+            </returns>
+        </member>
+        <member name="M:Bubba.GptMessage.GetRoles">
+            <summary>
+            Gets the roles.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Bubba.GptMessage.GetTypes">
+            <summary>
+            Gets the types.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Bubba.GptMessage.Fail(System.Exception)">
+            <summary>
+            Fails the specified ex.
+            </summary>
+            <param name="ex">The ex.</param>
+        </member>
         <member name="T:Bubba.GptRequestBase">
             <inheritdoc />
             <summary>
@@ -14238,7 +14309,7 @@
             The type.
             </value>
         </member>
-        <member name="M:Bubba.GptFormat.GetTypes">
+        <member name="M:Bubba.GptFormat.GetTypeOptions">
             <summary>
             Gets the type options.
             </summary>
@@ -15568,171 +15639,6 @@
             A string that represents the current object.
             </returns>
         </member>
-        <member name="T:Bubba.FunctionMessage">
-            <summary>
-            
-            </summary>
-            <seealso cref="T:Bubba.GptMessage" />
-        </member>
-        <member name="M:Bubba.FunctionMessage.#ctor">
-            <summary>
-            Initializes a new instance of the
-            <see cref="T:Bubba.FunctionMessage"/> class.
-            </summary>
-        </member>
-        <member name="P:Bubba.FunctionMessage.Name">
-            <summary>
-            Gets the role.
-            </summary>
-            <value>
-            The role.
-            </value>
-            <inheritdoc />
-        </member>
-        <member name="P:Bubba.FunctionMessage.Role">
-            <inheritdoc />
-            <summary>
-            Gets the role.
-            </summary>
-            <value>
-            The role.
-            </value>
-        </member>
-        <member name="P:Bubba.FunctionMessage.Content">
-            <inheritdoc />
-            <summary>
-            Gets the content.
-            </summary>
-            <value>
-            The content.
-            </value>
-        </member>
-        <member name="M:Bubba.FunctionMessage.GetData">
-            <inheritdoc />
-            <summary>
-            Gets the data.
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:Bubba.FunctionMessage.Serialize">
-            <inheritdoc />
-            <summary>
-            Serializes the specified prompt.
-            </summary>
-            <returns>
-            </returns>
-        </member>
-        <member name="M:Bubba.FunctionMessage.ToString">
-            <inheritdoc />
-            <summary>
-            Returns a string that represents the current object.
-            </summary>
-            <returns>
-            A string that represents the current object.
-            </returns>
-        </member>
-        <member name="T:Bubba.GptMessage">
-            <inheritdoc />
-            <summary>
-            </summary>
-            <seealso cref="T:Bubba.PropertyChangedBase" />
-        </member>
-        <member name="F:Bubba.GptMessage._name">
-            <summary>
-            The name
-            </summary>
-        </member>
-        <member name="F:Bubba.GptMessage._role">
-            <summary>
-            The role
-            </summary>
-        </member>
-        <member name="F:Bubba.GptMessage._content">
-            <summary>
-            The content
-            </summary>
-        </member>
-        <member name="F:Bubba.GptMessage._type">
-            <summary>
-            The type
-            </summary>
-        </member>
-        <!-- Badly formed XML comment ignored for member "F:Bubba.GptMessage._data" -->
-        <member name="P:Bubba.GptMessage.Name">
-            <inheritdoc />
-            <summary>
-            Gets the role.
-            </summary>
-            <value>
-            The role.
-            </value>
-        </member>
-        <member name="P:Bubba.GptMessage.Role">
-            <inheritdoc />
-            <summary>
-            Gets the role.
-            </summary>
-            <value>
-            The role.
-            </value>
-        </member>
-        <member name="P:Bubba.GptMessage.Content">
-            <summary>
-            Gets or sets the content.
-            </summary>
-            <value>
-            The content.
-            </value>
-        </member>
-        <member name="P:Bubba.GptMessage.Type">
-            <summary>
-            Gets or sets the type.
-            </summary>
-            <value>
-            The type.
-            </value>
-        </member>
-        <member name="M:Bubba.GptMessage.PadQuotes(System.String)">
-            <summary>
-            Pads the quotes.
-            </summary>
-            <param name="input">The input.</param>
-            <returns>
-            </returns>
-        </member>
-        <member name="M:Bubba.GptMessage.GetData">
-            <inheritdoc />
-            <summary>
-            Gets the data.
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:Bubba.GptMessage.Serialize">
-            <inheritdoc />
-            <summary>
-            Serializes the specified prompt.
-            </summary>
-            <returns>
-            </returns>
-        </member>
-        <member name="M:Bubba.GptMessage.GetRoles">
-            <summary>
-            Gets the roles.
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:Bubba.GptMessage.GetTypes">
-            <summary>
-            Gets the types.
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:Bubba.GptMessage.Fail(System.Exception)">
-            <summary>
-            Fails the specified ex.
-            </summary>
-            <param name="ex">The ex.</param>
-        </member>
         <member name="T:Bubba.SystemMessage">
             <inheritdoc />
             <summary>
@@ -15752,10 +15658,8 @@
             </summary>
         </member>
         <member name="M:Bubba.SystemMessage.#ctor(System.String)">
-            <inheritdoc />
             <summary>
-            Initializes a new instance of the
-            <see cref="T:Bubba.SystemMessage" /> class.
+            Initializes a new instance of the <see cref="T:Bubba.SystemMessage"/> class.
             </summary>
             <param name="prompt">The prompt.</param>
         </member>
@@ -15799,6 +15703,13 @@
             <value>
             The content.
             </value>
+        </member>
+        <member name="M:Bubba.SystemMessage.GetResourceNames(System.String)">
+            <summary>
+            Gets the resource names.
+            </summary>
+            <param name="resxPath">The RESX file path.</param>
+            <returns></returns>
         </member>
         <member name="M:Bubba.SystemMessage.GetData">
             <inheritdoc />
@@ -28458,148 +28369,6 @@
             </summary>
             <param name="ex">The ex.</param>
         </member>
-        <member name="T:Bubba.IconUtility">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="M:Bubba.IconUtility.GetFileIcon(System.String,Bubba.IconSize)">
-            <summary>
-            Gets the file icon.
-            </summary>
-            <param name="name">The name.</param>
-            <param name="size">The size.</param>
-            <returns></returns>
-        </member>
-        <member name="M:Bubba.IconUtility.ExtractEx(System.String,System.Collections.Generic.List{System.Drawing.Icon},System.Collections.Generic.List{System.Drawing.Icon},System.Int32,System.Int32)">
-            <summary>
-            Extracts the ex.
-            </summary>
-            <param name="fileName">Name of the file.</param>
-            <param name="largeIcons">The large icons.</param>
-            <param name="smallIcons">The small icons.</param>
-            <param name="firstIconIndex">First index of the icon.</param>
-            <param name="iconCount">The icon count.</param>
-            <exception cref="T:Bubba.UnableToExtractIconsException"></exception>
-        </member>
-        <member name="M:Bubba.IconUtility.ExtractEx(System.String,Bubba.IconSize,System.Int32,System.Int32)">
-            <summary>
-            Extracts the ex.
-            </summary>
-            <param name="fileName">Name of the file.</param>
-            <param name="size">The size.</param>
-            <param name="firstIconIndex">First index of the icon.</param>
-            <param name="iconCount">The icon count.</param>
-            <returns></returns>
-            <exception cref="T:System.ArgumentOutOfRangeException">size</exception>
-        </member>
-        <member name="M:Bubba.IconUtility.Extract(System.String,System.Collections.Generic.List{System.Drawing.Icon},System.Collections.Generic.List{System.Drawing.Icon})">
-            <summary>
-            Extracts the specified file name.
-            </summary>
-            <param name="fileName">Name of the file.</param>
-            <param name="largeIcons">The large icons.</param>
-            <param name="smallIcons">The small icons.</param>
-        </member>
-        <member name="M:Bubba.IconUtility.Extract(System.String,Bubba.IconSize)">
-            <summary>
-            Extracts the specified file name.
-            </summary>
-            <param name="fileName">Name of the file.</param>
-            <param name="size">The size.</param>
-            <returns></returns>
-        </member>
-        <member name="M:Bubba.IconUtility.ExtractOne(System.String,System.Int32,Bubba.IconSize)">
-            <summary>
-            Extracts the one.
-            </summary>
-            <param name="fileName">Name of the file.</param>
-            <param name="index">The index.</param>
-            <param name="size">The size.</param>
-            <returns></returns>
-            <exception cref="T:Bubba.IconNotFoundException"></exception>
-        </member>
-        <member name="M:Bubba.IconUtility.ExtractOne(System.String,System.Int32,System.Drawing.Icon@,System.Drawing.Icon@)">
-            <summary>
-            Extracts the one.
-            </summary>
-            <param name="fileName">Name of the file.</param>
-            <param name="index">The index.</param>
-            <param name="largeIcon">The large icon.</param>
-            <param name="smallIcon">The small icon.</param>
-            <exception cref="T:Bubba.IconNotFoundException"></exception>
-        </member>
-        <member name="M:Bubba.IconUtility.IconFromExtension(System.String,Bubba.IconSize)">
-            <summary>
-            Icons from extension.
-            </summary>
-            <param name="extension">The extension.</param>
-            <param name="size">The size.</param>
-            <returns></returns>
-        </member>
-        <member name="M:Bubba.IconUtility.ExtractInformationFromRegistryString(System.String,System.String@,System.Int32@)">
-            <summary>
-            Print strings in registry who contains the name of the icon and
-            the index of the icon an return both parts.
-            </summary>
-            <param name="regString">The full string in the form "path,index" as found in registry.</param>
-            <param name="fileName">The "path" part of the string.</param>
-            <param name="index">The "index" part of the string.</param>
-            <exception cref="T:System.ArgumentNullException">regString</exception>
-            <exception cref="T:System.ArgumentException">The string should not be empty. - regString</exception>
-        </member>
-        <member name="M:Bubba.IconUtility.ExtractIconEx(System.String,System.Int32,System.IntPtr[],System.IntPtr[],System.Int32)">
-            <summary>
-            Creates an array of handles to large or small icons extracted from
-            the specified executable file, dynamic-link library (DLL), or icon
-            file.
-            </summary>
-            <param name="lpszFile">Name of an executable file, DLL, or icon file from which icons will
-            be extracted.</param>
-            <param name="nIconIndex"><para>
-            Specifies the zero-based index of the first icon to extract. For
-            example, if this value is zero, the function extracts the first
-            icon in the specified file.
-            </para>
-            <para>
-            If this value is �1 and <paramref name="phiconLarge" /> and
-            <paramref name="phiconSmall" /> are both NULL, the function returns
-            the total number of icons in the specified file. If the file is an
-            executable file or DLL, the return value is the number of
-            RT_GROUP_ICON resources. If the file is an .ico file, the return
-            value is 1.
-            </para>
-            <para>
-            Windows 95/98/Me, Windows NT 4.0 and later: If this value is a
-            negative number and either <paramref name="phiconLarge" /> or
-            <paramref name="phiconSmall" /> is not NULL, the function begins by
-            extracting the icon whose resource identifier is equal to the
-            absolute value of <paramref name="nIconIndex" />. For example, use -3
-            to extract the icon whose resource identifier is 3.
-            </para></param>
-            <param name="phIconLarge">An array of icon handles that receives handles to the large icons
-            extracted from the file. If this parameter is NULL, no large icons
-            are extracted from the file.</param>
-            <param name="phIconSmall">An array of icon handles that receives handles to the small icons
-            extracted from the file. If this parameter is NULL, no small icons
-            are extracted from the file.</param>
-            <param name="nIcons">Specifies the number of icons to extract from the file.</param>
-            <returns>
-            If the <paramref name="nIconIndex" /> parameter is -1, the
-            <paramref name="phIconLarge" /> parameter is NULL, and the
-            <paramref name="phiconSmall" /> parameter is NULL, then the return
-            value is the number of icons contained in the specified file.
-            Otherwise, the return value is the number of icons successfully
-            extracted from the file.
-            </returns>
-        </member>
-        <member name="M:Bubba.IconUtility.GetIconsCountInFile(System.String)">
-            <summary>
-            Get the number of icons in the specified file.
-            </summary>
-            <param name="fileName">Full path of the file to look for.</param>
-            <returns></returns>
-        </member>
         <member name="T:Bubba.NetUtility">
             <summary>
             
@@ -28896,47 +28665,6 @@
             Fails the specified ex.
             </summary>
             <param name="ex">The ex.</param>
-        </member>
-        <member name="T:Bubba.Rect">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="P:Bubba.Rect.X">
-            <summary>
-            X coordinate
-            </summary>
-        </member>
-        <member name="P:Bubba.Rect.Y">
-            <summary>
-            Y coordinate
-            </summary>
-        </member>
-        <member name="P:Bubba.Rect.Width">
-            <summary>
-            Width
-            </summary>
-        </member>
-        <member name="P:Bubba.Rect.Height">
-            <summary>
-            Height
-            </summary>
-        </member>
-        <member name="M:Bubba.Rect.#ctor(System.Int32,System.Int32,System.Int32,System.Int32)">
-            <summary>
-            Rect
-            </summary>
-            <param name="x">x coordinate</param>
-            <param name="y">y coordinate</param>
-            <param name="width">width</param>
-            <param name="height">height</param>
-        </member>
-        <member name="M:Bubba.Rect.ScaleByDpi(System.Single)">
-            <summary>
-            Returns a new Rect with Scaled values
-            </summary>
-            <param name="dpi">Dpi to scale by</param>
-            <returns>New rect with scaled values</returns>
         </member>
         <member name="T:Bubba.PropertyChangedBase">
             <inheritdoc />

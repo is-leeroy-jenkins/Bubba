@@ -91,7 +91,7 @@ namespace Bubba
         /// Gets the type options.
         /// </summary>
         /// <returns></returns>
-        public IList<string> GetTypes( )
+        public IList<string> GetTypeOptions( )
         {
             var _types = new List<string>
             {
