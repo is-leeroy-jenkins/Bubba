@@ -31125,11 +31125,6 @@
             The entry
             </summary>
         </member>
-        <member name="F:Bubba.ChatWindow._lastSearch">
-            <summary>
-            The last search
-            </summary>
-        </member>
         <member name="F:Bubba.ChatWindow._oldWindowState">
             <summary>
             The old window state
@@ -31551,6 +31546,11 @@
         <member name="M:Bubba.ChatWindow.ClearSliders">
             <summary>
             Clears the list boxes.
+            </summary>
+        </member>
+        <member name="M:Bubba.ChatWindow.ClearIntegerTextBoxes">
+            <summary>
+            Clears the integer text boxes.
             </summary>
         </member>
         <member name="M:Bubba.ChatWindow.ClearLabels">

@@ -285,7 +285,7 @@
 
                 <wpf:SfLinearProgressBar
                     x:Name="ProgressBar"
-                    Width="230"
+                    Width="200"
                     Height="28"
                     HorizontalContentAlignment="Right"
                     Background="{StaticResource ControlBackground}"
@@ -427,6 +427,7 @@
                                             ToolTip="Maximum Completion Tokens"
                                             UseNullOption="True"
                                             WatermarkText="Max Tokens:"
+                                            Tag="max_completion_tokens"
                                             WatermarkTextIsVisible="True"
                                             Value="10000" />
                                     </GroupBox>
@@ -490,7 +491,7 @@
                                         Header="Output Tokens">
 
                                         <wpf:IntegerTextBox
-                                            x:Name="InputTokenTextBox"
+                                            x:Name="OutputTokenTextBox"
                                             Height="30"
                                             Margin="33,0,33,0"
                                             HorizontalContentAlignment="Center"
@@ -501,6 +502,7 @@
                                             TextWrapping="Wrap"
                                             ToolTip="Output Tokens"
                                             UseNullOption="True"
+                                            Tag="max_output_tokens"
                                             WatermarkText="Output Tokens:"
                                             WatermarkTextIsVisible="True"
                                             Value="8000" />
@@ -570,6 +572,7 @@
                                             Background="{StaticResource ControlInteriorBrush}"
                                             BorderBrush="{StaticResource BlueBorderBrush}"
                                             FontSize="14"
+                                            Tag="model"
                                             Foreground="{StaticResource FormForeground}"
                                             Text="Select LLM" />
                                     </GroupBox>
@@ -588,6 +591,7 @@
                                         BorderBrush="{StaticResource MutedForeground}"
                                         FontFamily="Roboto"
                                         FontSize="14"
+                                        Tag="response_format"
                                         Foreground="{StaticResource FormForeground}"
                                         Header="Response Format">
 
@@ -689,7 +693,7 @@
                                         Header="Reasoning Effort">
 
                                         <b:MetroDropDown
-                                            x:Name="EffortDropDown"
+                                            x:Name="ReasoningEffortDropDown"
                                             Height="35"
                                             Margin="3,3,3,3"
                                             VerticalAlignment="Center"
@@ -697,6 +701,7 @@
                                             Background="{StaticResource ControlInteriorBrush}"
                                             BorderBrush="{StaticResource BlueBorderBrush}"
                                             FontSize="14"
+                                            Tag="reasoning_effort"
                                             Foreground="{StaticResource FormForeground}"
                                             Text="Select Effort">
 
@@ -829,7 +834,6 @@
 
                                         <Slider
                                             x:Name="FrequencySlider"
-                                            Grid.Row="2"
                                             Height="74"
                                             Margin="10,0,10,0"
                                             Padding="1"
@@ -845,7 +849,7 @@
                                             Maximum="2"
                                             Minimum="0"
                                             Style="{DynamicResource MahApps.Styles.Slider.Win10}"
-                                            Tag="Frequency Penalty"
+                                            Tag="FrequencyPenalty"
                                             TickFrequency="0.2"
                                             TickPlacement="BottomRight"
                                             Value="0" />
@@ -1039,21 +1043,22 @@
                                             Content="Mute"
                                             FontFamily="Roboto"
                                             FontSize="14"
+                                            Tag="Mute"
                                             Foreground="{StaticResource FormForeground}" />
 
                                         <CheckBox
                                             x:Name="ListenCheckBox"
-                                            Grid.Column="1"
                                             Canvas.Left="30"
                                             Canvas.Top="66"
-                                            Width="63"
+                                            Width="88"
                                             Height="26"
                                             HorizontalAlignment="Left"
-                                            VerticalAlignment="Top"
+                                            VerticalAlignment="Center"
                                             HorizontalContentAlignment="Left"
                                             Content="Listen"
                                             FontFamily="Roboto"
                                             FontSize="14"
+                                            Tag="Listen"
                                             Foreground="{StaticResource FormForeground}" />
 
                                         <Separator
@@ -1089,6 +1094,7 @@
                                                 Background="{StaticResource ControlInteriorBrush}"
                                                 BorderBrush="{StaticResource BlueBorderBrush}"
                                                 FontSize="14"
+                                                Tag="OutputFormat"
                                                 Foreground="{StaticResource FormForeground}">
 
                                                 <b:MetroDropDownItem
@@ -1171,6 +1177,7 @@
                                                 BorderBrush="{StaticResource BlueBorderBrush}"
                                                 BorderThickness="1"
                                                 FontSize="14"
+                                                Tag="Voice"
                                                 Foreground="{StaticResource WhiteForeground}">
 
                                                 <b:MetroDropDownItem
@@ -1283,6 +1290,7 @@
                                                 Background="{DynamicResource ControlInteriorBrush}"
                                                 BorderBrush="{DynamicResource BlueBorderBrush}"
                                                 FontSize="14"
+                                                Tag="Speed"
                                                 Foreground="{DynamicResource FormForeground}">
 
                                                 <b:MetroDropDownItem

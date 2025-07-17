@@ -103,11 +103,6 @@ namespace Bubba
         private protected object _entry = new object( );
 
         /// <summary>
-        /// The last search
-        /// </summary>
-        private string _lastSearch = "";
-
-        /// <summary>
         /// The old window state
         /// </summary>
         private protected WindowState _oldWindowState;
@@ -658,7 +653,7 @@ namespace Bubba
                 ImageDetailDropDown.SelectionChanged += OnImageDetailSelectionChanged;
                 ImageStyleDropDown.SelectionChanged += OnImageStyleSelectionChanged;
                 ImageBackgroundDropDown.SelectionChanged += OnImageBackgroundSelectionChanged;
-                EffortDropDown.SelectionChanged += OnEffortSelectionChanged;
+                ReasoningEffortDropDown.SelectionChanged += OnEffortSelectionChanged;
                 AudioFormatDropDown.SelectionChanged += OnAudioFormatSelectionChanged;
                 VoicesDropDown.SelectionChanged += OnVoiceSelectionChanged;
                 SpeechRateDropDown.SelectionChanged += OnSpeechRateSelectionChanged;
@@ -831,15 +826,22 @@ namespace Bubba
                 _stream = true;
                 _model = "";
                 _imageSize = "";
+                _imageBackground = "";
+                _imageStyle = "";
+                _imageFormat = "";
+                _imageCompression = "";
+                _imageQuality = "";
+                _imageDetail = "";
+                _inputText = "";
                 _endpoint = "";
+                _language = "";
+                _voice = "";
                 _number = 1;
                 _maximumTokens = 10000;
                 _temperature = 0.8;
                 _topPercent = 0.9;
                 _frequencyPenalty = 0.00;
                 _presencePenalty = 0.00;
-                _language = "";
-                _voice = "";
             }
             catch( Exception ex )
             {
@@ -884,6 +886,22 @@ namespace Bubba
         }
 
         /// <summary>
+        /// Clears the integer text boxes.
+        /// </summary>
+        private void ClearIntegerTextBoxes( )
+        {
+            try
+            {
+                MaxTokenTextBox.Value = 10000;
+                OutputTokenTextBox.Value = 8000;
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+            }
+        }
+
+        /// <summary>
         /// Clears the labels.
         /// </summary>
         private void ClearLabels( )
@@ -906,8 +924,16 @@ namespace Bubba
             {
                 GenerationListBox.SelectedIndex = -1;
                 ModelDropDown.SelectedIndex = -1;
+                ResponseFormatDropDown.SelectedIndex = -1;
+                ReasoningEffortDropDown.SelectedItem = -1;
+                AudioFormatDropDown.SelectedIndex = -1;
                 VoicesDropDown.SelectedIndex = -1;
                 ImageSizeDropDown.SelectedIndex = -1;
+                ImageStyleDropDown.SelectedItem = -1;
+                ImageBackgroundDropDown.SelectedItem = -1;
+                ImageQualityDropDown.SelectedItem = -1;
+                ImageDetailDropDown.SelectedItem = -1;
+                ImageFormatDropDown.SelectedItem = -1;
             }
             catch( Exception ex )
             {
@@ -1691,11 +1717,11 @@ namespace Bubba
                 ImageSizeDropDown.Items?.Clear( );
                 if( string.IsNullOrEmpty( _model ) )
                 {
-                    ImageSizeDropDown.AddItem( "256 X 256" );
-                    ImageSizeDropDown.AddItem( "512 X 512" );
-                    ImageSizeDropDown.AddItem( "1024 X 1024" );
-                    ImageSizeDropDown.AddItem( "1792 X 1024" );
-                    ImageSizeDropDown.AddItem( "1024 X 1792" );
+                    ImageSizeDropDown.AddItem( "256x256" );
+                    ImageSizeDropDown.AddItem( "512x512" );
+                    ImageSizeDropDown.AddItem( "1024x1024" );
+                    ImageSizeDropDown.AddItem( "1792x1024" );
+                    ImageSizeDropDown.AddItem( "1024x1792" );
                 }
                 else if( !string.IsNullOrEmpty( _model ) )
                 {
@@ -1703,24 +1729,24 @@ namespace Bubba
                     {
                         case "dall-e-2":
                         {
-                            ImageSizeDropDown.AddItem( "256 X 256" );
-                            ImageSizeDropDown.AddItem( "512 X 512" );
-                            ImageSizeDropDown.AddItem( "1024 X 1024" );
+                            ImageSizeDropDown.AddItem( "256x256" );
+                            ImageSizeDropDown.AddItem( "512x512" );
+                            ImageSizeDropDown.AddItem( "1024x1024" );
                             break;
                         }
                         case "dall-e-3":
                         {
-                            ImageSizeDropDown.AddItem( "1024 X 1024" );
-                            ImageSizeDropDown.AddItem( "1792 X 1024" );
-                            ImageSizeDropDown.AddItem( "1024 X 1792" );
+                            ImageSizeDropDown.AddItem( "1024x1024" );
+                            ImageSizeDropDown.AddItem( "1792x1024" );
+                            ImageSizeDropDown.AddItem( "1024x1792" );
                             break;
                         }
                         default:
                         { 
-                            ImageSizeDropDown.AddItem( "512 X 512" );
-                            ImageSizeDropDown.AddItem( "1024 X 1024" );
-                            ImageSizeDropDown.AddItem( "1792 X 1024" );
-                            ImageSizeDropDown.AddItem( "1024 X 1792" );
+                            ImageSizeDropDown.AddItem( "512x512" );
+                            ImageSizeDropDown.AddItem( "1024x1024" );
+                            ImageSizeDropDown.AddItem( "1792x1024" );
+                            ImageSizeDropDown.AddItem( "1024x1792" );
 
                             break;
                         }
@@ -2193,15 +2219,15 @@ namespace Bubba
             try
             {
                 var _aiVoices = new Dictionary<string, string>( );
-                _aiVoices.Add( "alloy", "alloy" );
-                _aiVoices.Add( "ash", "ash" );
-                _aiVoices.Add( "coral", "coral" );
-                _aiVoices.Add( "echo", "echo" );
-                _aiVoices.Add( "onyx", "onyx" );
-                _aiVoices.Add( "fable", "fable" );
-                _aiVoices.Add( "nova", "nova" );
-                _aiVoices.Add( "sage", "sage" );
-                _aiVoices.Add( "shimmer", "shimer" );
+                _aiVoices.Add( "alloy", "Alloy" );
+                _aiVoices.Add( "ash", "Ash" );
+                _aiVoices.Add( "coral", "Coral" );
+                _aiVoices.Add( "echo", "Echo" );
+                _aiVoices.Add( "onyx", "Onyx" );
+                _aiVoices.Add( "fable", "Fable" );
+                _aiVoices.Add( "nova", "Nova" );
+                _aiVoices.Add( "sage", "Sage" );
+                _aiVoices.Add( "shimmer", "Shimer" );
                 VoicesDropDown.Items.Clear(  );
                 foreach( var _voice in _aiVoices )
                 {
@@ -2937,7 +2963,7 @@ namespace Bubba
         {
             try
             {
-                _reasoningEffort = ((MetroDropDownItem)EffortDropDown.SelectedItem )
+                _reasoningEffort = ((MetroDropDownItem)ReasoningEffortDropDown.SelectedItem )
                     ?.Content?.ToString( );
 
                 var _message = "ReasoningEffort = " + _reasoningEffort;
@@ -3788,7 +3814,8 @@ namespace Bubba
             {
                 _voice = ( ( MetroDropDownItem )VoicesDropDown.SelectedItem )
                     ?.Content
-                    ?.ToString( );
+                    ?.ToString( )
+                    ?.ToLower( );
 
                 var _message = "Voice = " + _voice;
                 SendNotification( _message );
