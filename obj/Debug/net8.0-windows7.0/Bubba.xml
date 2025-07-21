@@ -14742,7 +14742,14 @@
             The last identifier.
             </value>
         </member>
-        <!-- Badly formed XML comment ignored for member "P:Bubba.GptInput.HasMore" -->
+        <member name="P:Bubba.GptInput.HasMore">
+            <summary>
+            Gets or sets a value indicating whether this instance has more.
+            </summary>
+            <value>
+              <c>true</c> if this instance has more; otherwise, <c>false</c>.
+            </value>
+        </member>
         <member name="P:Bubba.GptInput.Object">
             <summary>
             Gets the object.
@@ -24040,10 +24047,15 @@
         <member name="M:Bubba.DataPreprocessor.#ctor(System.String,System.String)">
             <inheritdoc />
             <summary>
-            Initializes a new instance of the <see cref="T:Bubba.DataPreprocessor" /> class.
+            Initializes a new instance of the
+            <see cref="T:Bubba.DataPreprocessor" /> class.
             </summary>
-            <param name="inputColumnName">Name of the input column.</param>
-            <param name="outputColumnName">Name of the output column.</param>
+            <param name="inputColumnName">
+            Name of the input column.
+            </param>
+            <param name="outputColumnName">
+            Name of the output column.
+            </param>
         </member>
         <member name="M:Bubba.DataPreprocessor.HandleMissingValues(System.String)">
             <summary>
@@ -24239,9 +24251,35 @@
             The tokens.
             </value>
         </member>
+        <member name="M:Bubba.FeatureVectors.Fail(System.Exception)">
+            <summary>
+            Fails the specified ex.
+            </summary>
+            <param name="ex">The ex.</param>
+        </member>
         <member name="T:Bubba.InputData">
             <summary>
             
+            </summary>
+        </member>
+        <member name="F:Bubba.InputData._text">
+            <summary>
+            The text
+            </summary>
+        </member>
+        <member name="F:Bubba.InputData._number">
+            <summary>
+            The number
+            </summary>
+        </member>
+        <member name="F:Bubba.InputData._category">
+            <summary>
+            The category
+            </summary>
+        </member>
+        <member name="F:Bubba.InputData._label">
+            <summary>
+            The label
             </summary>
         </member>
         <member name="M:Bubba.InputData.#ctor">
@@ -24290,6 +24328,12 @@
             The label.
             </value>
         </member>
+        <member name="M:Bubba.InputData.Fail(System.Exception)">
+            <summary>
+            Fails the specified ex.
+            </summary>
+            <param name="ex">The ex.</param>
+        </member>
         <member name="T:Bubba.LanguagePipeline">
             <summary>
             
@@ -24323,6 +24367,12 @@
             Processes the text.
             </summary>
             <param name="text">The text.</param>
+        </member>
+        <member name="M:Bubba.LanguagePipeline.Fail(System.Exception)">
+            <summary>
+            Fails the specified ex.
+            </summary>
+            <param name="ex">The ex.</param>
         </member>
         <member name="T:Bubba.NlpResult">
             <summary>
@@ -24539,6 +24589,12 @@
             <value>
               <c>true</c> if sentiment; otherwise, <c>false</c>.
             </value>
+        </member>
+        <member name="M:Bubba.SentimentData.Fail(System.Exception)">
+            <summary>
+            Fails the specified ex.
+            </summary>
+            <param name="ex">The ex.</param>
         </member>
         <member name="T:Bubba.SentimentPrediction">
             <summary>
@@ -33881,36 +33937,6 @@
         <member name="M:Bubba.SystemDialog.InitializeComponent">
             <summary>
             InitializeComponent
-            </summary>
-        </member>
-        <member name="T:XamlGeneratedNamespace.GeneratedInternalTypeHelper">
-            <summary>
-            GeneratedInternalTypeHelper
-            </summary>
-        </member>
-        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.CreateInstance(System.Type,System.Globalization.CultureInfo)">
-            <summary>
-            CreateInstance
-            </summary>
-        </member>
-        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.GetPropertyValue(System.Reflection.PropertyInfo,System.Object,System.Globalization.CultureInfo)">
-            <summary>
-            GetPropertyValue
-            </summary>
-        </member>
-        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.SetPropertyValue(System.Reflection.PropertyInfo,System.Object,System.Object,System.Globalization.CultureInfo)">
-            <summary>
-            SetPropertyValue
-            </summary>
-        </member>
-        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.CreateDelegate(System.Type,System.Object,System.String)">
-            <summary>
-            CreateDelegate
-            </summary>
-        </member>
-        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.AddEventHandler(System.Reflection.EventInfo,System.Object,System.Delegate)">
-            <summary>
-            AddEventHandler
             </summary>
         </member>
     </members>

@@ -62,12 +62,12 @@ namespace Bubba
         public SentimentAnalyzer( )
         {
             var _mlContext = new MLContext( );
-            var Trainer =
-                _mlContext.BinaryClassification.Trainers.SdcaLogisticRegression( nameof( SentimentData.Sentiment ) );
+            var _trainer = _mlContext.BinaryClassification
+                ?.Trainers.SdcaLogisticRegression( nameof( SentimentData.Sentiment ) );
 
             var _data = _mlContext.Data.LoadFromEnumerable( new List<SentimentData>( ) );
             var _pipeline = _mlContext.Transforms.Text
-                .FeaturizeText( "Features", nameof( SentimentData.Text ) ).Append( Trainer );
+                .FeaturizeText( "Features", nameof( SentimentData.Text ) ).Append( _trainer );
 
             var _model = _pipeline.Fit( _data );
             _predictor =

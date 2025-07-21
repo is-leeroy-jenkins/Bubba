@@ -102,9 +102,9 @@ namespace Bubba
                     _busy = true;
                 }
             }
-            catch( Exception ex )
+            catch( Exception _ex )
             {
-                Fail( ex );
+                Fail( _ex );
             }
         }
 
@@ -120,9 +120,9 @@ namespace Bubba
                     _busy = false;
                 }
             }
-            catch( Exception ex )
+            catch( Exception _ex )
             {
-                Fail( ex );
+                Fail( _ex );
             }
         }
 
@@ -166,9 +166,9 @@ namespace Bubba
 
                 return _chunks;
             }
-            catch( Exception ex )
+            catch( Exception _ex )
             {
-                Fail( ex );
+                Fail( _ex );
                 return default( IList<string> );
             }
         }
@@ -205,9 +205,9 @@ namespace Bubba
                     ? _tkn
                     : 0;
             }
-            catch( Exception ex )
+            catch( Exception _ex )
             {
-                Fail( ex );
+                Fail( _ex );
                 return 0;
             }
         }

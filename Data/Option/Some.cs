@@ -73,9 +73,9 @@ namespace Bubba
             {
                 return new Some<_result>( func( _value ) );
             }
-            catch( Exception ex )
+            catch( Exception _ex )
             {
-                Fail( ex );
+                Fail( _ex );
                 return default( Option<_result> );
             }
         }
@@ -96,9 +96,9 @@ namespace Bubba
             {
                 return someFunc( _value );
             }
-            catch( Exception ex )
+            catch( Exception _ex )
             {
-                Fail( ex );
+                Fail( _ex );
                 return default( _result );
             }
         }

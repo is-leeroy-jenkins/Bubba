@@ -76,10 +76,15 @@ namespace Bubba
 
         /// <inheritdoc />
         /// <summary>
-        /// Initializes a new instance of the <see cref="T:Bubba.DataPreprocessor" /> class.
+        /// Initializes a new instance of the
+        /// <see cref="T:Bubba.DataPreprocessor" /> class.
         /// </summary>
-        /// <param name="inputColumnName">Name of the input column.</param>
-        /// <param name="outputColumnName">Name of the output column.</param>
+        /// <param name="inputColumnName">
+        /// Name of the input column.
+        /// </param>
+        /// <param name="outputColumnName">
+        /// Name of the output column.
+        /// </param>
         public DataPreprocessor( string inputColumnName, string outputColumnName )
             : this( )
         {

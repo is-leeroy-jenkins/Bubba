@@ -42,10 +42,12 @@
 namespace Bubba
 {
     using System;
+    using System.Diagnostics.CodeAnalysis;
 
     /// <summary>
     /// 
     /// </summary>
+    [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
     public class LanguagePipeline
     {
         /// <summary>
@@ -83,16 +85,35 @@ namespace Bubba
         /// <param name="text">The text.</param>
         public void ProcessText( string text )
         {
-            var _normalizedText = _processor.NormalizeText( text );
-            var _tokens = _processor.TokenizeText( _normalizedText );
-            var _cleanTokens = _processor.RemoveStopWords( _tokens );
-            foreach( var Token in _cleanTokens )
+            try
             {
-                Console.WriteLine( _processor.StemWord( Token ) );
-            }
+                ThrowIf.Null( text, nameof( text ) );
+                var _normalizedText = _processor.NormalizeText( text );
+                var _tokens = _processor.TokenizeText( _normalizedText );
+                var _cleanTokens = _processor.RemoveStopWords( _tokens );
+                foreach( var _token in _cleanTokens )
+                {
+                    Console.WriteLine( _processor.StemWord( _token ) );
+                }
 
-            var _sentiment = _sentimentAnalyzer.AnalyzeSentiment( _normalizedText );
-            var _category = _classifier.ClassifyText( _normalizedText );
+                var _sentiment = _sentimentAnalyzer.AnalyzeSentiment( _normalizedText );
+                var _category = _classifier.ClassifyText( _normalizedText );
+            }
+            catch( Exception _ex )
+            {
+                Fail( _ex  );
+            }
+        }
+
+        /// <summary>
+        /// Fails the specified ex.
+        /// </summary>
+        /// <param name="ex">The ex.</param>
+        private protected void Fail( Exception ex )
+        {
+            var _error = new ErrorWindow( ex );
+            _error?.SetText( );
+            _error?.ShowDialog( );
         }
     }
 }

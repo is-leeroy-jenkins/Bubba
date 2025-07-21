@@ -54,7 +54,8 @@ namespace Bubba
     public class ComputerUse : GptTool
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="ComputerUse"/> class.
+        /// Initializes a new instance of the
+        /// <see cref="ComputerUse"/> class.
         /// </summary>
         public ComputerUse( )
         {

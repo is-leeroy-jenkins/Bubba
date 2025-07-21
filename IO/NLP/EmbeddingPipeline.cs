@@ -90,9 +90,9 @@ namespace Bubba
                 var _view = _data.LoadFromTextFile<TextData>( _filePath, '\t', false );
                 return _view;
             }
-            catch( Exception ex )
+            catch( Exception _ex )
             {
-                Fail( ex );
+                Fail( _ex );
                 return default( IDataView );
             }
         }
@@ -106,13 +106,13 @@ namespace Bubba
             try
             {
                 ThrowIf.Null( dataView, nameof( dataView ) );
-                var pipeline = BuildPipeline( );
-                var model = pipeline.Fit( dataView );
-                return model.Transform( dataView );
+                var _pipeline = BuildPipeline( );
+                var _model = _pipeline.Fit( dataView );
+                return _model.Transform( dataView );
             }
-            catch( Exception ex )
+            catch( Exception _ex )
             {
-                Fail( ex );
+                Fail( _ex );
                 return default( IDataView );
             }
         }
@@ -133,9 +133,9 @@ namespace Bubba
                 _features.Append( _tokens );
                 return _features;
             }
-            catch( Exception ex )
+            catch( Exception _ex )
             {
-                Fail( ex );
+                Fail( _ex );
                 return default( IEstimator<ITransformer> );
             }
         }
@@ -150,9 +150,9 @@ namespace Bubba
                 ThrowIf.Null( transformedData, nameof( transformedData ) );
                 return _context.Data.CreateEnumerable<TokenizedVector>( transformedData, false ).ToArray( );
             }
-            catch( Exception ex )
+            catch( Exception _ex )
             {
-                Fail( ex  );
+                Fail( _ex  );
                 return default( TokenizedVector[ ] );
             }
         }
@@ -164,14 +164,14 @@ namespace Bubba
         {
             try
             {
-                var dataView = LoadData( );
-                var pipeline = BuildPipeline( );
-                var model = pipeline.Fit( dataView );
-                return model.Transform( dataView );
+                var _dataView = LoadData( );
+                var _pipeline = BuildPipeline( );
+                var _model = _pipeline.Fit( _dataView );
+                return _model.Transform( _dataView );
             }
-            catch( Exception ex )
+            catch( Exception _ex )
             {
-                Fail( ex );
+                Fail( _ex );
                 return default( IDataView );
             }
         }
@@ -189,9 +189,9 @@ namespace Bubba
                 var _vectors = _tokens.ToArray( );
                 return _vectors;
             }
-            catch( Exception ex )
+            catch( Exception _ex )
             {
-                Fail( ex );
+                Fail( _ex );
                 return default( TokenizedVector[ ] );
             }
         }

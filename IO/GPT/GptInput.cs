@@ -87,9 +87,9 @@ namespace Bubba
         /// <param name="firstId">The first identifier.</param>
         /// <param name="lastId">The last identifier.</param>
         /// <param name="hasMore">if set to <c>true</c> [has more].</param>
-        public GptInput( string firstId, string lastId, bool hasMore = false )
+        public GptInput( string firstId, string lastId, bool hasMore = false ) 
+            : this( )
         {
-            _object = "list";
             _firstId = firstId;
             _lastId = lastId;
             _hasMore = hasMore;
@@ -138,7 +138,7 @@ namespace Bubba
         /// </summary>
         /// <value>
         ///   <c>true</c> if this instance has more; otherwise, <c>false</c>.
-        /// </value
+        /// </value>
         [ JsonPropertyName( "has_more" ) ]
         public bool HasMore
         {
