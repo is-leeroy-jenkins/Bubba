@@ -22401,7 +22401,20 @@
         </member>
         <member name="M:Bubba.ComputerUse.#ctor">
             <summary>
-            Initializes a new instance of the <see cref="T:Bubba.ComputerUse"/> class.
+            Initializes a new instance of the
+            <see cref="T:Bubba.ComputerUse"/> class.
+            </summary>
+        </member>
+        <member name="T:Bubba.FileSearch">
+            <summary>
+            
+            </summary>
+            <seealso cref="T:Bubba.GptTool" />
+        </member>
+        <member name="M:Bubba.FileSearch.#ctor">
+            <summary>
+            Initializes a new instance of the
+            <see cref="T:Bubba.FileSearch"/> class.
             </summary>
         </member>
         <member name="T:Bubba.FunctionCall">
@@ -22414,12 +22427,6 @@
             Initializes a new instance of the
             <see cref="T:Bubba.FunctionCall"/> class.
             </summary>
-        </member>
-        <member name="M:Bubba.FunctionCall.Fail(System.Exception)">
-            <summary>
-            Wraps error
-            </summary>
-            <param name="ex">The ex.</param>
         </member>
         <member name="T:Bubba.GptTool">
             <summary>
@@ -22463,6 +22470,27 @@
             Wraps error
             </summary>
             <param name="ex">The ex.</param>
+        </member>
+        <member name="T:Bubba.IGptTool">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Bubba.IGptTool.Name">
+            <summary>
+            Gets or sets the name.
+            </summary>
+            <value>
+            The name.
+            </value>
+        </member>
+        <member name="P:Bubba.IGptTool.Type">
+            <summary>
+            Gets or sets the type.
+            </summary>
+            <value>
+            The type.
+            </value>
         </member>
         <member name="M:Bubba.ImageGeneration.#ctor">
             <summary>

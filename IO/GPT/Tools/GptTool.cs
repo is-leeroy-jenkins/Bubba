@@ -50,6 +50,7 @@ namespace Bubba
     /// </summary>
     [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
     public class GptTool
+        : IGptTool
     {
         /// <summary>
         /// The name
@@ -76,7 +77,7 @@ namespace Bubba
         /// The name.
         /// </value>
         [ JsonPropertyName( "name" ) ]
-        public string Name
+        public virtual string Name
         {
             get
             {
@@ -95,7 +96,7 @@ namespace Bubba
         /// The type.
         /// </value>
         [ JsonPropertyName( "type" ) ]
-        public string Type
+        public virtual string Type
         {
             get
             {

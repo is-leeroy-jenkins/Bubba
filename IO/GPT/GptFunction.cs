@@ -225,7 +225,7 @@ namespace Bubba
             }
             set
             {
-                if( _parameters != value )
+                if( _parameters.Equals( value ) )
                 {
                     _parameters = value;
                     OnPropertyChanged( nameof( Parameters ) );

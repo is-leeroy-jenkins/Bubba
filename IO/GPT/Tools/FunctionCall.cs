@@ -56,19 +56,10 @@ namespace Bubba
         /// Initializes a new instance of the
         /// <see cref="FunctionCall"/> class.
         /// </summary>
-        public FunctionCall( )
+        public FunctionCall( ) 
+            : base( )
         {
-        }
-
-        /// <summary>
-        /// Wraps error
-        /// </summary>
-        /// <param name="ex">The ex.</param>
-        private protected void Fail( Exception ex )
-        {
-            var _error = new ErrorWindow( ex );
-            _error?.SetText( );
-            _error?.ShowDialog( );
+            _type = "function";
         }
     }
 }

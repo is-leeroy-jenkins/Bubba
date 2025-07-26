@@ -39,6 +39,7 @@
 // </summary>
 // ******************************************************************************************
 
+
 namespace Bubba
 {
     using System;
@@ -47,10 +48,20 @@ namespace Bubba
     using System.Text;
     using System.Threading.Tasks;
 
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <seealso cref="Bubba.GptTool" />
     public class FileSearch : GptTool
     {
-        public FileSearch( )
+        /// <summary>
+        /// Initializes a new instance of the
+        /// <see cref="FileSearch"/> class.
+        /// </summary>
+        public FileSearch( ) 
+            : base( )
         {
+            _type = "file_search";
         }
     }
 }
