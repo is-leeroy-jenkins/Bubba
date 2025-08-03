@@ -95,11 +95,11 @@ namespace Bubba
         public GptReasoning( string id, string effort, string summary, 
                              string encryptedContent, string status )
         {
-            Id = id;
-            Effort = effort;
-            Summary = summary;
-            EncryptedContent = encryptedContent;
-            Status = status;
+            _id = id;
+            _effort = effort;
+            _summary = summary;
+            _encryptedContent = encryptedContent;
+            _status = status;
         }
 
         /// <summary>

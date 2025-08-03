@@ -132,7 +132,7 @@ namespace Bubba
         /// </summary>
         /// <returns>
         /// </returns>
-        public IList<string> GetFormatOptions( )
+        public IList<string> GetTextToSpeechFormats( )
         {
             try
             {
@@ -146,9 +146,35 @@ namespace Bubba
                 _formats.Add( "opus" );
                 return _formats;
             }
-            catch( Exception ex )
+            catch( Exception _ex )
             {
-                Fail( ex );
+                Fail( _ex );
+                return default( IList<string> );
+            }
+        }
+
+        /// <summary>
+        /// Gets the transcription formats.
+        /// </summary>
+        /// <returns>
+        /// </returns>
+        public IList<string> GetTranscriptionFormats( )
+        {
+            try
+            {
+                var _formats = new List<string>( );
+                _formats.Add( "mp3" );
+                _formats.Add( "mp4" );
+                _formats.Add( "mpeg" );
+                _formats.Add( "mpga" );
+                _formats.Add( "m4a" );
+                _formats.Add( "wav" );
+                _formats.Add( "webm" );
+                return _formats;
+            }
+            catch( Exception _ex )
+            {
+                Fail( _ex );
                 return default( IList<string> );
             }
         }
@@ -177,9 +203,9 @@ namespace Bubba
                 _voices.Add( "verse" );
                 return _voices;
             }
-            catch( Exception ex )
+            catch( Exception _ex )
             {
-                Fail( ex );
+                Fail( _ex );
                 return default( IList<string> );
             }
         }
@@ -198,9 +224,9 @@ namespace Bubba
                 _formats.Add( 1.0 );
                 return _formats;
             }
-            catch( Exception ex )
+            catch( Exception _ex )
             {
-                Fail( ex );
+                Fail( _ex );
                 return default( IList<double> );
             }
         }
@@ -218,11 +244,55 @@ namespace Bubba
                 _formats.Add( "tts-1" );
                 _formats.Add( "tts-1-hd" );
                 _formats.Add( "gpt-4o-mini-tts" );
+                _formats.Add( "gpt-4o-transcribe" );
+                _formats.Add( "gpt-4o-mini-transcribe" );
                 return _formats;
             }
-            catch( Exception ex )
+            catch( Exception _ex )
             {
-                Fail( ex );
+                Fail( _ex );
+                return default( IList<string> );
+            }
+        }
+
+        /// <summary>
+        /// Gets the transcription models.
+        /// </summary>
+        /// <returns></returns>
+        public IList<string> GetTranscriptionModels( )
+        {
+            try
+            { 
+                var _formats = new List<string>( );
+                _formats.Add( "whisper-1" );
+                _formats.Add( "gpt-4o-transcribe" );
+                _formats.Add( "gpt-4o-mini-transcribe" );
+                return _formats;
+            }
+            catch( Exception _ex )
+            {
+                Fail( _ex );
+                return default( IList<string> );
+            }
+        }
+
+        /// <summary>
+        /// Gets the text to speech models.
+        /// </summary>
+        /// <returns></returns>
+        public static IList<string> GetTextToSpeechModels( )
+        {
+            try
+            {
+                var _formats = new List<string>( );
+                _formats.Add( "tts-1" );
+                _formats.Add( "tts-1-hd" );
+                _formats.Add( "gpt-4o-mini-tts" );
+                return _formats;
+            }
+            catch( Exception _ex )
+            {
+                Fail( _ex );
                 return default( IList<string> );
             }
         }
@@ -231,7 +301,7 @@ namespace Bubba
         /// Fails the specified ex.
         /// </summary>
         /// <param name="ex">The ex.</param>
-        private protected void Fail( Exception ex )
+        private protected static void Fail( Exception ex )
         {
             var _error = new ErrorWindow( ex );
             _error?.SetText( );

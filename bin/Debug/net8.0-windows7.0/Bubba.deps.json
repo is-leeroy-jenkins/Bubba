@@ -9,7 +9,7 @@
       "Bubba/1.0.0": {
         "dependencies": {
           "AngleSharp": "1.3.0",
-          "EPPlus": "8.0.7",
+          "EPPlus": "8.0.8",
           "Google.Apis.CustomSearchAPI.v1": "1.68.0.3520",
           "LinqStatistics": "3.0.1",
           "MahApps.Metro": "2.4.10",
@@ -22,7 +22,7 @@
           "NAudio": "2.2.1",
           "Newtonsoft.Json": "13.0.3",
           "OpenAI": "2.2.0",
-          "PDFsharp": "6.2.0",
+          "PDFsharp": "6.2.1",
           "QRCoder": "1.6.0",
           "RestoreWindowPlace": "3.1.0",
           "ScottPlot.WPF": "5.0.55",
@@ -50,12 +50,12 @@
           "Syncfusion.Themes.FluentDark.WPF": "24.1.41",
           "Syncfusion.Tools.WPF": "24.1.41",
           "Syncfusion.UI.WPF.NET": "24.1.41",
-          "System.Data.OleDb": "9.0.6",
+          "System.Data.OleDb": "9.0.7",
           "System.Data.SQLite.Core": "1.0.119",
           "System.Data.SqlClient": "4.9.0",
-          "System.Speech": "9.0.6",
-          "System.Text.Encodings.Web": "9.0.6",
-          "System.Text.Json": "9.0.6",
+          "System.Speech": "9.0.7",
+          "System.Text.Encodings.Web": "9.0.7",
+          "System.Text.Json": "9.0.7",
           "SystemExtensions.NetCore": "1.6.12",
           "TiktokenSharp": "1.1.7",
           "ToastNotifications.Messages.Net6": "1.0.4",
@@ -76,7 +76,7 @@
       "ControlzEx/4.4.0": {
         "dependencies": {
           "Microsoft.Xaml.Behaviors.Wpf": "1.1.19",
-          "System.Text.Json": "9.0.6"
+          "System.Text.Json": "9.0.7"
         },
         "runtime": {
           "lib/netcoreapp3.1/ControlzEx.dll": {
@@ -85,7 +85,7 @@
           }
         }
       },
-      "EPPlus/8.0.7": {
+      "EPPlus/8.0.8": {
         "dependencies": {
           "EPPlus.Interfaces": "8.0.0",
           "Microsoft.Extensions.Configuration.Json": "8.0.1",
@@ -97,8 +97,8 @@
         },
         "runtime": {
           "lib/net8.0/EPPlus.dll": {
-            "assemblyVersion": "8.0.7.0",
-            "fileVersion": "8.0.7.0"
+            "assemblyVersion": "8.0.8.0",
+            "fileVersion": "8.0.8.0"
           }
         }
       },
@@ -1208,47 +1208,47 @@
           }
         }
       },
-      "PDFsharp/6.2.0": {
+      "PDFsharp/6.2.1": {
         "dependencies": {
           "Microsoft.Extensions.Logging": "8.0.1",
           "System.Security.Cryptography.Pkcs": "8.0.1"
         },
         "runtime": {
           "lib/net8.0/PdfSharp.BarCodes.dll": {
-            "assemblyVersion": "6.2.0.0",
-            "fileVersion": "6.2.0.7443"
+            "assemblyVersion": "6.2.1.0",
+            "fileVersion": "6.2.1.7508"
           },
           "lib/net8.0/PdfSharp.Charting.dll": {
-            "assemblyVersion": "6.2.0.0",
-            "fileVersion": "6.2.0.7443"
+            "assemblyVersion": "6.2.1.0",
+            "fileVersion": "6.2.1.7508"
           },
           "lib/net8.0/PdfSharp.Cryptography.dll": {
-            "assemblyVersion": "6.2.0.0",
-            "fileVersion": "6.2.0.7443"
+            "assemblyVersion": "6.2.1.0",
+            "fileVersion": "6.2.1.7508"
           },
           "lib/net8.0/PdfSharp.Quality.dll": {
-            "assemblyVersion": "6.2.0.0",
-            "fileVersion": "6.2.0.7443"
+            "assemblyVersion": "6.2.1.0",
+            "fileVersion": "6.2.1.7508"
           },
           "lib/net8.0/PdfSharp.Shared.dll": {
-            "assemblyVersion": "6.2.0.0",
-            "fileVersion": "6.2.0.7443"
+            "assemblyVersion": "6.2.1.0",
+            "fileVersion": "6.2.1.7508"
           },
           "lib/net8.0/PdfSharp.Snippets.dll": {
-            "assemblyVersion": "6.2.0.0",
-            "fileVersion": "6.2.0.7443"
+            "assemblyVersion": "6.2.1.0",
+            "fileVersion": "6.2.1.7508"
           },
           "lib/net8.0/PdfSharp.System.dll": {
-            "assemblyVersion": "6.2.0.0",
-            "fileVersion": "6.2.0.7443"
+            "assemblyVersion": "6.2.1.0",
+            "fileVersion": "6.2.1.7508"
           },
           "lib/net8.0/PdfSharp.WPFonts.dll": {
-            "assemblyVersion": "6.2.0.0",
-            "fileVersion": "6.2.0.7443"
+            "assemblyVersion": "6.2.1.0",
+            "fileVersion": "6.2.1.7508"
           },
           "lib/net8.0/PdfSharp.dll": {
-            "assemblyVersion": "6.2.0.0",
-            "fileVersion": "6.2.0.7443"
+            "assemblyVersion": "6.2.1.0",
+            "fileVersion": "6.2.1.7508"
           }
         }
       },
@@ -2074,35 +2074,35 @@
       "System.CodeDom/8.0.0": {},
       "System.Collections.Immutable/8.0.0": {},
       "System.ComponentModel.Annotations/5.0.0": {},
-      "System.Configuration.ConfigurationManager/9.0.6": {
+      "System.Configuration.ConfigurationManager/9.0.7": {
         "dependencies": {
-          "System.Diagnostics.EventLog": "9.0.6",
-          "System.Security.Cryptography.ProtectedData": "9.0.6"
+          "System.Diagnostics.EventLog": "9.0.7",
+          "System.Security.Cryptography.ProtectedData": "9.0.7"
         },
         "runtime": {
           "lib/net8.0/System.Configuration.ConfigurationManager.dll": {
             "assemblyVersion": "9.0.0.0",
-            "fileVersion": "9.0.625.26613"
+            "fileVersion": "9.0.725.31616"
           }
         }
       },
-      "System.Data.OleDb/9.0.6": {
+      "System.Data.OleDb/9.0.7": {
         "dependencies": {
-          "System.Configuration.ConfigurationManager": "9.0.6",
-          "System.Diagnostics.PerformanceCounter": "9.0.6"
+          "System.Configuration.ConfigurationManager": "9.0.7",
+          "System.Diagnostics.PerformanceCounter": "9.0.7"
         },
         "runtime": {
           "lib/net8.0/System.Data.OleDb.dll": {
-            "assemblyVersion": "9.0.0.6",
-            "fileVersion": "9.0.625.26613"
+            "assemblyVersion": "9.0.0.7",
+            "fileVersion": "9.0.725.31616"
           }
         },
         "runtimeTargets": {
           "runtimes/win/lib/net8.0/System.Data.OleDb.dll": {
             "rid": "win",
             "assetType": "runtime",
-            "assemblyVersion": "9.0.0.6",
-            "fileVersion": "9.0.625.26613"
+            "assemblyVersion": "9.0.0.7",
+            "fileVersion": "9.0.725.31616"
           }
         }
       },
@@ -2136,11 +2136,11 @@
           "Stub.System.Data.SQLite.Core.NetStandard": "1.0.119"
         }
       },
-      "System.Diagnostics.EventLog/9.0.6": {
+      "System.Diagnostics.EventLog/9.0.7": {
         "runtime": {
           "lib/net8.0/System.Diagnostics.EventLog.dll": {
             "assemblyVersion": "9.0.0.0",
-            "fileVersion": "9.0.625.26613"
+            "fileVersion": "9.0.725.31616"
           }
         },
         "runtimeTargets": {
@@ -2154,18 +2154,18 @@
             "rid": "win",
             "assetType": "runtime",
             "assemblyVersion": "9.0.0.0",
-            "fileVersion": "9.0.625.26613"
+            "fileVersion": "9.0.725.31616"
           }
         }
       },
-      "System.Diagnostics.PerformanceCounter/9.0.6": {
+      "System.Diagnostics.PerformanceCounter/9.0.7": {
         "dependencies": {
-          "System.Configuration.ConfigurationManager": "9.0.6"
+          "System.Configuration.ConfigurationManager": "9.0.7"
         },
         "runtime": {
           "lib/net8.0/System.Diagnostics.PerformanceCounter.dll": {
             "assemblyVersion": "9.0.0.0",
-            "fileVersion": "9.0.625.26613"
+            "fileVersion": "9.0.725.31616"
           }
         },
         "runtimeTargets": {
@@ -2173,7 +2173,7 @@
             "rid": "win",
             "assetType": "runtime",
             "assemblyVersion": "9.0.0.0",
-            "fileVersion": "9.0.625.26613"
+            "fileVersion": "9.0.725.31616"
           }
         }
       },
@@ -2182,11 +2182,11 @@
           "Microsoft.Win32.SystemEvents": "6.0.0"
         }
       },
-      "System.IO.Pipelines/9.0.6": {
+      "System.IO.Pipelines/9.0.7": {
         "runtime": {
           "lib/net8.0/System.IO.Pipelines.dll": {
             "assemblyVersion": "9.0.0.0",
-            "fileVersion": "9.0.625.26613"
+            "fileVersion": "9.0.725.31616"
           }
         }
       },
@@ -2230,11 +2230,11 @@
           }
         }
       },
-      "System.Security.Cryptography.ProtectedData/9.0.6": {
+      "System.Security.Cryptography.ProtectedData/9.0.7": {
         "runtime": {
           "lib/net8.0/System.Security.Cryptography.ProtectedData.dll": {
             "assemblyVersion": "9.0.0.0",
-            "fileVersion": "9.0.625.26613"
+            "fileVersion": "9.0.725.31616"
           }
         }
       },
@@ -2250,28 +2250,28 @@
         }
       },
       "System.Security.Principal.Windows/4.7.0": {},
-      "System.Speech/9.0.6": {
+      "System.Speech/9.0.7": {
         "runtime": {
           "lib/net8.0/System.Speech.dll": {
-            "assemblyVersion": "9.0.0.6",
-            "fileVersion": "9.0.625.26613"
+            "assemblyVersion": "9.0.0.7",
+            "fileVersion": "9.0.725.31616"
           }
         },
         "runtimeTargets": {
           "runtimes/win/lib/net8.0/System.Speech.dll": {
             "rid": "win",
             "assetType": "runtime",
-            "assemblyVersion": "9.0.0.6",
-            "fileVersion": "9.0.625.26613"
+            "assemblyVersion": "9.0.0.7",
+            "fileVersion": "9.0.725.31616"
           }
         }
       },
       "System.Text.Encoding.CodePages/8.0.0": {},
-      "System.Text.Encodings.Web/9.0.6": {
+      "System.Text.Encodings.Web/9.0.7": {
         "runtime": {
           "lib/net8.0/System.Text.Encodings.Web.dll": {
             "assemblyVersion": "9.0.0.0",
-            "fileVersion": "9.0.625.26613"
+            "fileVersion": "9.0.725.31616"
           }
         },
         "runtimeTargets": {
@@ -2279,19 +2279,19 @@
             "rid": "browser",
             "assetType": "runtime",
             "assemblyVersion": "9.0.0.0",
-            "fileVersion": "9.0.625.26613"
+            "fileVersion": "9.0.725.31616"
           }
         }
       },
-      "System.Text.Json/9.0.6": {
+      "System.Text.Json/9.0.7": {
         "dependencies": {
-          "System.IO.Pipelines": "9.0.6",
-          "System.Text.Encodings.Web": "9.0.6"
+          "System.IO.Pipelines": "9.0.7",
+          "System.Text.Encodings.Web": "9.0.7"
         },
         "runtime": {
           "lib/net8.0/System.Text.Json.dll": {
             "assemblyVersion": "9.0.0.0",
-            "fileVersion": "9.0.625.26613"
+            "fileVersion": "9.0.725.31616"
           }
         }
       },
@@ -2368,12 +2368,12 @@
       "path": "controlzex/4.4.0",
       "hashPath": "controlzex.4.4.0.nupkg.sha512"
     },
-    "EPPlus/8.0.7": {
+    "EPPlus/8.0.8": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-nk+mFru50sM6GTE1EKoA0eSj07IHyL2yPwKIvxnNVvACv4qxCl48V1KP+R6wE2ncwOrZvqg3g3Fd+LnJvg6+dg==",
-      "path": "epplus/8.0.7",
-      "hashPath": "epplus.8.0.7.nupkg.sha512"
+      "sha512": "sha512-Vh0vlPuSmSP1L/KYrTzDEi0DMFpeT+UEpjuPnpTgT8IanZ/xyAxQ3Jid9TgM2TMEe+o1xysOWVjrVcXwurorkQ==",
+      "path": "epplus/8.0.8",
+      "hashPath": "epplus.8.0.8.nupkg.sha512"
     },
     "EPPlus.Interfaces/8.0.0": {
       "type": "package",
@@ -2788,12 +2788,12 @@
       "path": "opentk.windowing.graphicslibraryframework/4.3.0",
       "hashPath": "opentk.windowing.graphicslibraryframework.4.3.0.nupkg.sha512"
     },
-    "PDFsharp/6.2.0": {
+    "PDFsharp/6.2.1": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-5Q6gn8qFiaFpJz1QcvXO6q5QTvLPlqlOxI7XVtyRB3PIAIZIarc5qH3TDKcGUifxrhcYxMNBzz008qdKWlQhVw==",
-      "path": "pdfsharp/6.2.0",
-      "hashPath": "pdfsharp.6.2.0.nupkg.sha512"
+      "sha512": "sha512-u/vJfZhmp3g3oIGRngRnpSqKN2GxpJ9GeG7tKj2o/g/Tef9A+Ghlrq7I6eG5T28zUiUCOuFSilTm7iWz+bjWvA==",
+      "path": "pdfsharp/6.2.1",
+      "hashPath": "pdfsharp.6.2.1.nupkg.sha512"
     },
     "QRCoder/1.6.0": {
       "type": "package",
@@ -3138,19 +3138,19 @@
       "path": "system.componentmodel.annotations/5.0.0",
       "hashPath": "system.componentmodel.annotations.5.0.0.nupkg.sha512"
     },
-    "System.Configuration.ConfigurationManager/9.0.6": {
+    "System.Configuration.ConfigurationManager/9.0.7": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-GQYhl3XCSGhxQvbRCjQiuGbJjm1tlq2lu98SGItjeingM7D+uKNnmKlK0MMuAU1asT7YtJ8uoT83WnGCuna9Qg==",
-      "path": "system.configuration.configurationmanager/9.0.6",
-      "hashPath": "system.configuration.configurationmanager.9.0.6.nupkg.sha512"
+      "sha512": "sha512-T8Q/AkI7hL82+O/ARCAKrVliQOPtMtYuv+4SFVhkXVo8dwPll4y3Ls0T1RIbuspNYxC1uL1zfa3sckOveVNlSg==",
+      "path": "system.configuration.configurationmanager/9.0.7",
+      "hashPath": "system.configuration.configurationmanager.9.0.7.nupkg.sha512"
     },
-    "System.Data.OleDb/9.0.6": {
+    "System.Data.OleDb/9.0.7": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-hUIdIhMPpcuo9V47iYjvQAoW/iwIZHj2AJmKos2MW/4ZGjQhpSxXfjJUprYOAyzsvFO0EE8oP46D0vNmawREPg==",
-      "path": "system.data.oledb/9.0.6",
-      "hashPath": "system.data.oledb.9.0.6.nupkg.sha512"
+      "sha512": "sha512-hyh2JFHF5hPVKE0nr7Hfr1o+RL1SMYDiCONER80EIHkbd2Z++Be7TzGR3RwgnrWGnymIYODYq1Q7zdi+0nyGCg==",
+      "path": "system.data.oledb/9.0.7",
+      "hashPath": "system.data.oledb.9.0.7.nupkg.sha512"
     },
     "System.Data.SqlClient/4.9.0": {
       "type": "package",
@@ -3166,19 +3166,19 @@
       "path": "system.data.sqlite.core/1.0.119",
       "hashPath": "system.data.sqlite.core.1.0.119.nupkg.sha512"
     },
-    "System.Diagnostics.EventLog/9.0.6": {
+    "System.Diagnostics.EventLog/9.0.7": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-lum+Dv+8S4gqN5H1C576UcQe0M2buoRjEUVs4TctXRSWjBH3ay3w2KyQrOo1yPdRs1I+xK69STz+4mjIisFI5w==",
-      "path": "system.diagnostics.eventlog/9.0.6",
-      "hashPath": "system.diagnostics.eventlog.9.0.6.nupkg.sha512"
+      "sha512": "sha512-AJ+9fyCtQUImntxAJ9l4PZiCd4iepuk4pm7Qcno7PBIWQnfXlvwKuFsGk2H+QyY69GUVzDP2heELW6ho5BCXUg==",
+      "path": "system.diagnostics.eventlog/9.0.7",
+      "hashPath": "system.diagnostics.eventlog.9.0.7.nupkg.sha512"
     },
-    "System.Diagnostics.PerformanceCounter/9.0.6": {
+    "System.Diagnostics.PerformanceCounter/9.0.7": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-CrOJB8Iw+XsgD5Tt+PETBdZzWpLEw0FgobKESfcyrn4kxcg9FNz3r1cP5n1c35cTrZNbYCbOnk/xB/0AL1UtLw==",
-      "path": "system.diagnostics.performancecounter/9.0.6",
-      "hashPath": "system.diagnostics.performancecounter.9.0.6.nupkg.sha512"
+      "sha512": "sha512-TjjrytnKEXzDqu5Fo1HNc5YNcLfrvtkxtBySOiXI4BQiOTsA1ZZi/CqULvWl3OKX9N6H1eCzNYIz21GLoV+RWg==",
+      "path": "system.diagnostics.performancecounter/9.0.7",
+      "hashPath": "system.diagnostics.performancecounter.9.0.7.nupkg.sha512"
     },
     "System.Drawing.Common/6.0.0": {
       "type": "package",
@@ -3187,12 +3187,12 @@
       "path": "system.drawing.common/6.0.0",
       "hashPath": "system.drawing.common.6.0.0.nupkg.sha512"
     },
-    "System.IO.Pipelines/9.0.6": {
+    "System.IO.Pipelines/9.0.7": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-0nlr0reXrRmkZNKifKqh2DgGhQgfkT7Qa3gQxIn/JI7/y3WDiTz67M+Sq3vFhUqcG8O5zVrpqHvIHeGPGUBsEw==",
-      "path": "system.io.pipelines/9.0.6",
-      "hashPath": "system.io.pipelines.9.0.6.nupkg.sha512"
+      "sha512": "sha512-I9KHYFNKQkufs/Ec7evpPPSu2HkuW+jNpq1kT0WOWjzuN6BjxRYy7CuWNLjQmuBzcKd9vKrHaPGcHVxSF5DadQ==",
+      "path": "system.io.pipelines/9.0.7",
+      "hashPath": "system.io.pipelines.9.0.7.nupkg.sha512"
     },
     "System.Memory/4.6.0": {
       "type": "package",
@@ -3236,12 +3236,12 @@
       "path": "system.security.cryptography.pkcs/8.0.1",
       "hashPath": "system.security.cryptography.pkcs.8.0.1.nupkg.sha512"
     },
-    "System.Security.Cryptography.ProtectedData/9.0.6": {
+    "System.Security.Cryptography.ProtectedData/9.0.7": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-yErfw/3pZkJE/VKza/Cm5idTpIKOy/vsmVi59Ta5SruPVtubzxb8CtnE8tyUpzs5pr0Y28GUFfSVzAhCLN3F/Q==",
-      "path": "system.security.cryptography.protecteddata/9.0.6",
-      "hashPath": "system.security.cryptography.protecteddata.9.0.6.nupkg.sha512"
+      "sha512": "sha512-OAiDZTyzIzgbtrjzbMlprCxvlXpFW7q+JVOSEc/v4jgLBF4hVSey0MQ06MyctGjspKyJBdGj6k6MuqjiZV9c5Q==",
+      "path": "system.security.cryptography.protecteddata/9.0.7",
+      "hashPath": "system.security.cryptography.protecteddata.9.0.7.nupkg.sha512"
     },
     "System.Security.Cryptography.Xml/8.0.2": {
       "type": "package",
@@ -3257,12 +3257,12 @@
       "path": "system.security.principal.windows/4.7.0",
       "hashPath": "system.security.principal.windows.4.7.0.nupkg.sha512"
     },
-    "System.Speech/9.0.6": {
+    "System.Speech/9.0.7": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-Cyc9GLB8OpPNFFSlvnaLzkLSyGCuIENllB47w0WwP+SzVfDWvGdTEK1iIaMQEoRjpdl4sRYrchCDYx6GqNlu/w==",
-      "path": "system.speech/9.0.6",
-      "hashPath": "system.speech.9.0.6.nupkg.sha512"
+      "sha512": "sha512-EYnOurHxVxIx4OpHj0roSXIltuN41EZI77CVHJ/rxEOYPHV/9EsD+zVtTkOLWPcLJZnZqxVw2MGhai+op3oQGQ==",
+      "path": "system.speech/9.0.7",
+      "hashPath": "system.speech.9.0.7.nupkg.sha512"
     },
     "System.Text.Encoding.CodePages/8.0.0": {
       "type": "package",
@@ -3271,19 +3271,19 @@
       "path": "system.text.encoding.codepages/8.0.0",
       "hashPath": "system.text.encoding.codepages.8.0.0.nupkg.sha512"
     },
-    "System.Text.Encodings.Web/9.0.6": {
+    "System.Text.Encodings.Web/9.0.7": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-uWRgViw2yJAUyGxrzDLCc6fkzE2dZIoXxs8V6YjCujKsJuP0pnpYSlbm2/7tKd0SjBnMtwfDQhLenk3bXonVOA==",
-      "path": "system.text.encodings.web/9.0.6",
-      "hashPath": "system.text.encodings.web.9.0.6.nupkg.sha512"
+      "sha512": "sha512-WswuKENaV4gC4ZYZi8BhehJHHRdyZQzXEYv/lV8DHW9FwkdnKaTutdRbK/S1wHZtKUUzzptBPAX2XOxdoURkMw==",
+      "path": "system.text.encodings.web/9.0.7",
+      "hashPath": "system.text.encodings.web.9.0.7.nupkg.sha512"
     },
-    "System.Text.Json/9.0.6": {
+    "System.Text.Json/9.0.7": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-h+ZtYTyTnTh5Ju6mHCKb3FPGx4ylJZgm9W7Y2psUnkhQRPMOIxX+TCN0ZgaR/+Yea+93XHWAaMzYTar1/EHIPg==",
-      "path": "system.text.json/9.0.6",
-      "hashPath": "system.text.json.9.0.6.nupkg.sha512"
+      "sha512": "sha512-u/lN2FEEXs3ghj2ta8tWA4r2MS9Yni07K7jDmnz8h1UPDf0lIIIEMkWx383Zz4fJjJio7gDl+00RYuQ/7R8ZQw==",
+      "path": "system.text.json/9.0.7",
+      "hashPath": "system.text.json.9.0.7.nupkg.sha512"
     },
     "System.Threading.Channels/8.0.0": {
       "type": "package",

@@ -293,9 +293,9 @@ namespace Bubba
                 _formats.Add( "gpt-image-1" );
                 return _formats;
             }
-            catch( Exception ex )
+            catch( Exception _ex )
             {
-                Fail( ex );
+                Fail( _ex );
                 return default( IList<string> );
             }
         }
@@ -315,9 +315,9 @@ namespace Bubba
                 _formats.Add( "low" );
                 return _formats;
             }
-            catch( Exception ex )
+            catch( Exception _ex )
             {
-                Fail( ex );
+                Fail( _ex );
                 return default( IList<string> );
             }
         }
@@ -336,9 +336,9 @@ namespace Bubba
                 _formats.Add( "webp" );
                 return _formats;
             }
-            catch( Exception ex )
+            catch( Exception _ex )
             {
-                Fail( ex );
+                Fail( _ex );
                 return default( IList<string> );
             }
         }
@@ -356,9 +356,9 @@ namespace Bubba
                 _formats.Add( "b64_json" );
                 return _formats;
             }
-            catch( Exception ex )
+            catch( Exception _ex )
             {
-                Fail( ex );
+                Fail( _ex );
                 return default( IList<string> );
             }
         }
@@ -376,9 +376,9 @@ namespace Bubba
                 _formats.Add( "vivid" );
                 return _formats;
             }
-            catch( Exception ex )
+            catch( Exception _ex )
             {
-                Fail( ex );
+                Fail( _ex );
                 return default( IList<string> );
             }
         }
@@ -397,9 +397,9 @@ namespace Bubba
                 _formats.Add( "transparent" );
                 return _formats;
             }
-            catch( Exception ex )
+            catch( Exception _ex )
             {
-                Fail( ex );
+                Fail( _ex );
                 return default( IList<string> );
             }
         }
@@ -421,9 +421,9 @@ namespace Bubba
                 _formats.Add( "1024x1792" );
                 return _formats;
             }
-            catch( Exception ex )
+            catch( Exception _ex )
             {
-                Fail( ex );
+                Fail( _ex );
                 return default( IList<string> );
             }
         }

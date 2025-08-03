@@ -1,45 +1,6 @@
 ﻿<wpf:ResourceDictionary xml:space="preserve" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:ss="urn:shemas-jetbrains-com:settings-storage-xaml" xmlns:wpf="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
 	<s:String x:Key="/Default/CodeInspection/Highlighting/SweaWarningsMode/@EntryValue">DoNotShowAndRun</s:String>
-	<s:String x:Key="/Default/CodeStyle/FileHeader/FileHeaderText/@EntryValue">******************************************************************************************&#xD;
-    Assembly:                Bubba&#xD;
-    Author:                  Terry D. Eppler&#xD;
-    Created:                 ${CurrentDate.Month}-${CurrentDate.Day}-${CurrentDate.Year}&#xD;
-&#xD;
-    Last Modified By:        Terry D. Eppler&#xD;
-    Last Modified On:        ${CurrentDate.Month}-${CurrentDate.Day}-${CurrentDate.Year}&#xD;
-******************************************************************************************&#xD;
-&lt;copyright file="${File.FileName}" company="Terry D. Eppler"&gt;&#xD;
-    Badger is a budget execution &amp; data analysis tool for EPA analysts &#xD;
-    based on WPF, Net 6, and written in C#.&#xD;
-    &#xD;
-    Copyright ©  2022 Terry D. Eppler&#xD;
-&#xD;
-   Permission is hereby granted, free of charge, to any person obtaining a copy&#xD;
-   of this software and associated documentation files (the “Software”),&#xD;
-   to deal in the Software without restriction,&#xD;
-   including without limitation the rights to use,&#xD;
-   copy, modify, merge, publish, distribute, sublicense,&#xD;
-   and/or sell copies of the Software,&#xD;
-   and to permit persons to whom the Software is furnished to do so,&#xD;
-   subject to the following conditions:&#xD;
-&#xD;
-   The above copyright notice and this permission notice shall be included in all&#xD;
-   copies or substantial portions of the Software.&#xD;
-&#xD;
-   THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,&#xD;
-   INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,&#xD;
-   FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT.&#xD;
-   IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,&#xD;
-   DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,&#xD;
-   ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER&#xD;
-   DEALINGS IN THE SOFTWARE.&#xD;
-&#xD;
-   You can contact me at:  terryeppler@gmail.com or eppler.terry@epa.gov&#xD;
-&lt;/copyright&gt;&#xD;
-&lt;summary&gt;&#xD;
-  ${File.FileName}&#xD;
-&lt;/summary&gt;&#xD;
-******************************************************************************************</s:String>
+	
 	<s:String x:Key="/Default/CodeStyle/Naming/CSharpNaming/UserRules/=0c4c6401_002D2a1f_002D4db1_002Da21f_002D562f51542cf8/@EntryIndexedValue">&lt;Policy&gt;&lt;Descriptor Staticness="Any" AccessRightKinds="Any" Description="Events"&gt;&lt;ElementKinds&gt;&lt;Kind Name="NAMESPACE" /&gt;&lt;Kind Name="CLASS" /&gt;&lt;Kind Name="STRUCT" /&gt;&lt;Kind Name="INTERFACE" /&gt;&lt;Kind Name="ENUM" /&gt;&lt;Kind Name="PROPERTY" /&gt;&lt;Kind Name="METHOD" /&gt;&lt;Kind Name="ANY_FIELD" /&gt;&lt;Kind Name="EVENT" /&gt;&lt;Kind Name="DELEGATE" /&gt;&lt;Kind Name="PARAMETER" /&gt;&lt;Kind Name="TYPE_PARAMETER" /&gt;&lt;Kind Name="LOCAL" /&gt;&lt;Kind Name="LOCAL_FUNCTION" /&gt;&lt;/ElementKinds&gt;&lt;/Descriptor&gt;&lt;Policy Inspect="False" WarnAboutPrefixesAndSuffixes="False" Prefix="" Suffix="" Style="AaBb" /&gt;&lt;/Policy&gt;</s:String>
 	<s:String x:Key="/Default/CodeStyle/Naming/CSharpNaming/UserRules/=4a98fdf6_002D7d98_002D4f5a_002Dafeb_002Dea44ad98c70c/@EntryIndexedValue">&lt;Policy&gt;&lt;Descriptor Staticness="Instance" AccessRightKinds="Private, Protected, ProtectedInternal, Internal, PrivateProtected" Description="Instance fields (private)"&gt;&lt;ElementKinds&gt;&lt;Kind Name="FIELD" /&gt;&lt;Kind Name="READONLY_FIELD" /&gt;&lt;Kind Name="LOCAL_CONSTANT" /&gt;&lt;/ElementKinds&gt;&lt;/Descriptor&gt;&lt;Policy Inspect="True" WarnAboutPrefixesAndSuffixes="False" Prefix="_" Suffix="" Style="aaBb" /&gt;&lt;/Policy&gt;</s:String>
 	<s:String x:Key="/Default/CodeStyle/Naming/CSharpNaming/UserRules/=8a85b61a_002D1024_002D4f87_002Db9ef_002D1fdae19930a1/@EntryIndexedValue">&lt;Policy&gt;&lt;Descriptor Staticness="Any" AccessRightKinds="Private, Protected, ProtectedInternal, Internal, PrivateProtected, FileLocal" Description="Parameters"&gt;&lt;ElementKinds&gt;&lt;Kind Name="PARAMETER" /&gt;&lt;/ElementKinds&gt;&lt;/Descriptor&gt;&lt;Policy Inspect="True" WarnAboutPrefixesAndSuffixes="False" Prefix="" Suffix="" Style="aaBb" /&gt;&lt;/Policy&gt;</s:String>

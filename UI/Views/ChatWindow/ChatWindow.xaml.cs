@@ -165,7 +165,7 @@ namespace Bubba
         /// <summary>
         /// The theme
         /// </summary>
-        private protected readonly DarkMode _theme = new DarkMode( );
+        private protected readonly DarkMode _theme;
 
         /// <summary>
         /// The HTTP client
@@ -426,6 +426,7 @@ namespace Bubba
         public ChatWindow( )
         {
             // Theme Properties
+            _theme = new DarkMode( );
             SfSkinManager.ApplyStylesOnApplication = true;
 
             // Window Initialization
@@ -1331,7 +1332,8 @@ namespace Bubba
                 _data = "{";
                 _data += " \"model\":\"" + _model + "\",";
                 _data += " \"messages\": [{\"role\": \"user\", \"content\": \""
-                    + PadQuotes( question ) + "\"}]";
+                    + PadQuotes( question ) 
+                    + "\"}]";
 
                 _data += "}";
             }
@@ -1802,8 +1804,8 @@ namespace Bubba
                 ModelDropDown.AddItem( "gpt-4o-2024-11-20" );
                 ModelDropDown.AddItem( "gpt-4o-2024-05-13" );
                 ModelDropDown.AddItem( "gpt-4o-mini-2024-07-18" );
+                ModelDropDown.AddItem( "gpt-4o-mini-audio-preview-2024-12-17" );
                 ModelDropDown.AddItem( "o1-2024-12-17" );
-                ModelDropDown.AddItem( "o1-pro-2025-03-19" );
                 ModelDropDown.AddItem( "o1-mini-2024-09-12" );
                 ModelDropDown.AddItem( "o3-mini-2025-01-31" );
             }
@@ -1829,7 +1831,6 @@ namespace Bubba
                 ModelDropDown.AddItem( "gpt-4o-2024-05-13" );
                 ModelDropDown.AddItem( "gpt-4o-mini-2024-07-18" );
                 ModelDropDown.AddItem( "o1-2024-12-17" );
-                ModelDropDown.AddItem( "o1-pro-2025-03-19" );
                 ModelDropDown.AddItem( "o3-mini-2025-01-31" );
             }
             catch( Exception ex )
@@ -1898,7 +1899,6 @@ namespace Bubba
                 ModelDropDown.AddItem( "gpt-4o-2024-05-13" );
                 ModelDropDown.AddItem( "gpt-4o-mini-2024-07-18" );
                 ModelDropDown.AddItem( "o1-2024-12-17" );
-                ModelDropDown.AddItem( "o1-pro-2025-03-19" );
                 ModelDropDown.AddItem( "o3-2025-04-16" );
                 ModelDropDown.AddItem( "o3-mini-2025-01-31" );
                 ModelDropDown.AddItem( "o4-mini-2025-04-16" );
@@ -2345,7 +2345,6 @@ namespace Bubba
             {
                 DocumentListBox.Items?.Clear( );
                 var _filepath = @"C:\Users\terry\source\repos\Bubba\Properties\Prompts.resx";
-                var _path = Locations.PathPrefix + @"Resources\Documents\Prompts\";
                 var _names = GetResourceNames( _filepath );
                 foreach( var _file in _names )
                 {

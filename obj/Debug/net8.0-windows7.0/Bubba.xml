@@ -13931,9 +13931,16 @@
             The voice.
             </value>
         </member>
-        <member name="M:Bubba.GptAudio.GetFormatOptions">
+        <member name="M:Bubba.GptAudio.GetTextToSpeechFormats">
             <summary>
             Gets the voice options.
+            </summary>
+            <returns>
+            </returns>
+        </member>
+        <member name="M:Bubba.GptAudio.GetTranscriptionFormats">
+            <summary>
+            Gets the transcription formats.
             </summary>
             <returns>
             </returns>
@@ -13957,6 +13964,18 @@
             </summary>
             <returns>
             </returns>
+        </member>
+        <member name="M:Bubba.GptAudio.GetTranscriptionModels">
+            <summary>
+            Gets the transcription models.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Bubba.GptAudio.GetTextToSpeechModels">
+            <summary>
+            Gets the text to speech models.
+            </summary>
+            <returns></returns>
         </member>
         <member name="M:Bubba.GptAudio.Fail(System.Exception)">
             <summary>
@@ -14084,6 +14103,187 @@
             Fails the specified ex.
             </summary>
             <param name="ex">The ex.</param>
+        </member>
+        <member name="T:Bubba.GptCompletion">
+            <summary>
+            
+            </summary>
+            <seealso cref="T:Bubba.PropertyChangedBase" />
+        </member>
+        <member name="F:Bubba.GptCompletion._modalities">
+            <summary>
+            The modalities
+            </summary>
+        </member>
+        <member name="F:Bubba.GptCompletion._responseFormat">
+            <summary>
+            The response format
+            </summary>
+        </member>
+        <member name="F:Bubba.GptCompletion._metaData">
+            <summary>
+            Developer-defined tags and values used for filtering completions
+            </summary>
+        </member>
+        <member name="F:Bubba.GptCompletion._reasoningEffort">
+            <summary>
+            The reasoning effort
+            </summary>
+        </member>
+        <member name="F:Bubba.GptCompletion._toolChoice">
+            <summary>
+            The tool choice
+            </summary>
+        </member>
+        <member name="F:Bubba.GptCompletion._tools">
+            <summary>
+            The tools
+            </summary>
+        </member>
+        <member name="F:Bubba.GptCompletion._imageUrl">
+            <summary>
+            The image URL
+            </summary>
+        </member>
+        <member name="F:Bubba.GptCompletion._file">
+            <summary>
+            The file
+            </summary>
+        </member>
+        <member name="F:Bubba.GptCompletion._filePath">
+            <summary>
+            The file path
+            </summary>
+        </member>
+        <member name="F:Bubba.GptCompletion._vectorStoreIds">
+            <summary>
+            The vector store ids
+            </summary>
+        </member>
+        <member name="F:Bubba.GptCompletion._input">
+            <summary>
+            The input
+            </summary>
+        </member>
+        <member name="M:Bubba.GptCompletion.#ctor">
+            <summary>
+            Initializes a new instance of the
+            <see cref="T:Bubba.GptCompletion"/> class.
+            </summary>
+        </member>
+        <member name="P:Bubba.GptCompletion.Instructions">
+            <summary>
+            The instructions parameter gives the model high-level instructions on
+            how it should behave while generating a response, including tone, goals,
+            and examples of correct responses. Any instructions provided this way
+            will take priority over a prompt in the input parameter.
+            </summary>
+            <value>
+            The instructions.
+            </value>
+        </member>
+        <member name="P:Bubba.GptCompletion.ReasoningEffort">
+            <summary>
+            o1 models only.
+            Constrains effort on reasoning for reasoning models.
+            Currently supported values are low, medium, and high.
+            Reducing reasoning effort can result in faster responses
+            and fewer tokens used on reasoning in a response.
+            </summary>
+            <value>
+            The reasoning effort.
+            </value>
+        </member>
+        <member name="P:Bubba.GptCompletion.ResponseFormat">
+            <inheritdoc />
+            <summary>
+            Gets or sets the modalities.
+            </summary>
+            <value>
+            The modalities.
+            </value>
+        </member>
+        <member name="P:Bubba.GptCompletion.Tools">
+            <summary>
+            A list of tool enabled on the assistant.
+            There can be a maximum of 128 tools per assistant.
+            Tools can be of types code_interpreter, file_search, or function.
+            </summary>
+            <value>
+            The tools.
+            </value>
+        </member>
+        <member name="P:Bubba.GptCompletion.ToolChoice">
+            <summary>
+            Gets or sets the tool choice.
+            </summary>
+            <value>
+            The tool choice.
+            </value>
+        </member>
+        <member name="P:Bubba.GptCompletion.MetaData">
+            <summary>
+            Set of 16 key-value pairs that can be attached to an object.
+            This can be useful for storing additional information about the
+            object in a structured format. Keys can be a maximum of 64 characters
+            long and values can be a maximum of 512 characters long.
+            </summary>
+            <value>
+            The meta data.
+            </value>
+        </member>
+        <member name="P:Bubba.GptCompletion.ImageUrl">
+            <summary>
+            Gets or sets the image URL.
+            </summary>
+            <value>
+            The image URL.
+            </value>
+        </member>
+        <member name="P:Bubba.GptCompletion.FilePath">
+            <summary>
+            Gets or sets the file path.
+            </summary>
+            <value>
+            The file path.
+            </value>
+        </member>
+        <member name="P:Bubba.GptCompletion.File">
+            <summary>
+            Gets or sets the file.
+            </summary>
+            <value>
+            The file.
+            </value>
+        </member>
+        <member name="P:Bubba.GptCompletion.VectorStoreIds">
+            <summary>
+            Gets or sets the vector store ids.
+            </summary>
+            <value>
+            The vector store ids.
+            </value>
+        </member>
+        <member name="P:Bubba.GptCompletion.Input">
+            <summary>
+            Gets or sets the input.
+            </summary>
+            <value>
+            The input.
+            </value>
+        </member>
+        <member name="M:Bubba.GptCompletion.GetFormats">
+            <summary>
+            Gets the formats.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Bubba.GptCompletion.GetData">
+            <inheritdoc />
+            <summary>
+            Gets the data.
+            </summary>
+            <returns></returns>
         </member>
         <member name="T:Bubba.GptError">
             <summary>
@@ -14262,7 +14462,7 @@
             <returns>
             </returns>
         </member>
-        <member name="M:Bubba.GptFile.GetFilePurposes">
+        <member name="M:Bubba.GptFile.GetPurposeOptions">
             <summary>
             Gets the purposes.
             </summary>

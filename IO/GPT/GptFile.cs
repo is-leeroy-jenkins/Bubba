@@ -129,7 +129,7 @@ namespace Bubba
                 if( _bytes != value )
                 {
                     _bytes = value;
-                    OnPropertyChanged( nameof( Bytes) );
+                    OnPropertyChanged( nameof( Bytes ) );
                 }
             }
         }
@@ -300,9 +300,9 @@ namespace Bubba
             {
                 return  default( IDictionary<string, object> );
             }
-            catch( Exception ex )
+            catch( Exception _ex )
             {
-                Fail( ex );
+                Fail( _ex );
                 return default( IDictionary<string, object> );
             }
         }
@@ -312,7 +312,7 @@ namespace Bubba
         /// </summary>
         /// <returns>
         /// </returns>
-        public IList<string> GetFilePurposes( )
+        public IList<string> GetPurposeOptions( )
         {
             try
             {
@@ -326,9 +326,9 @@ namespace Bubba
                 _purposes.Add( "vision" );
                 return _purposes;
             }
-            catch( Exception ex )
+            catch( Exception _ex )
             {
-                Fail( ex );
+                Fail( _ex );
                 return default( IList<string> );
             }
         }
@@ -345,11 +345,11 @@ namespace Bubba
         {
             try
             {
-                return string.Empty;
+                return _filePath;
             }
-            catch( Exception ex )
+            catch( Exception _ex )
             {
-                Fail( ex );
+                Fail( _ex );
                 return string.Empty;
             }
         }

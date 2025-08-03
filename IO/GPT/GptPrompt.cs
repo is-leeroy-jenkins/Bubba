@@ -185,19 +185,19 @@ namespace Bubba
             {
                 ThrowIf.Null( resxPath, nameof( resxPath ) );
                 var _names = new List<string>( );
-                using var reader = new ResXResourceReader( resxPath );
-                foreach( DictionaryEntry entry in reader )
+                using var _reader = new ResXResourceReader( resxPath );
+                foreach( DictionaryEntry _entry in _reader )
                 {
-                    _names.Add( entry.Key.ToString( ) );
+                    _names.Add( _entry.Key.ToString( ) );
                 }
 
                 return _names?.Any( ) == true
                     ? _names
                     : default( List<string> );
             }
-            catch( Exception ex )
+            catch( Exception _ex )
             {
-                Fail( ex );
+                Fail( _ex );
                 return default( List<string> );
             }
         }

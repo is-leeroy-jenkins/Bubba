@@ -59,7 +59,7 @@
             },
             "EPPlus": {
               "target": "Package",
-              "version": "[8.0.7, )"
+              "version": "[8.0.8, )"
             },
             "Google.Apis.CustomSearchAPI.v1": {
               "target": "Package",
@@ -113,7 +113,7 @@
             },
             "PDFsharp": {
               "target": "Package",
-              "version": "[6.2.0, )"
+              "version": "[6.2.1, )"
             },
             "QRCoder": {
               "target": "Package",
@@ -225,7 +225,7 @@
             },
             "System.Data.OleDb": {
               "target": "Package",
-              "version": "[9.0.6, )"
+              "version": "[9.0.7, )"
             },
             "System.Data.SQLite.Core": {
               "target": "Package",
@@ -237,15 +237,15 @@
             },
             "System.Speech": {
               "target": "Package",
-              "version": "[9.0.6, )"
+              "version": "[9.0.7, )"
             },
             "System.Text.Encodings.Web": {
               "target": "Package",
-              "version": "[9.0.6, )"
+              "version": "[9.0.7, )"
             },
             "System.Text.Json": {
               "target": "Package",
-              "version": "[9.0.6, )"
+              "version": "[9.0.7, )"
             },
             "SystemExtensions.NetCore": {
               "target": "Package",
